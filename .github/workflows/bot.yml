@@ -26,6 +26,8 @@ jobs:
           pip install requests feedparser beautifulsoup4 pillow
 
       - name: Run news scraper
+        env:
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
         run: python main.py
 
       - name: Commit & Push changes
