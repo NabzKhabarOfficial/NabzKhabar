@@ -2,7 +2,6 @@ import os
 import time
 import feedparser
 from bs4 import BeautifulSoup
-from PIL import Image, ImageDraw, ImageFont
 import requests
 
 # تنظیمات اصلی
@@ -58,7 +57,6 @@ def get_nobitex_prices():
             usdt_price = stats.get("usdt-irt", {}).get("latest", "نامشخص")
             btc_price = stats.get("btc-irt", {}).get("latest", "نامشخص")
             
-            # تبدیل به عدد خواناتر اگر موجود باشد
             if usdt_price != "نامشخص":
                 usdt_price = f"{int(float(usdt_price)):,}"
             if btc_price != "نامشخص":
@@ -98,7 +96,7 @@ def check_market_interval():
 def main():
     sent_news = load_sent_news()
     
-    # اول بررسی قیمت بازار بر اساس بازه ۶ ساعته
+    # بررسی قیمت بازار بر اساس بازه ۶ ساعته
     check_market_interval()
     
     # بررسی اخبار جدید
@@ -120,7 +118,7 @@ def main():
                 send_to_telegram(news_text)
                 save_sent_news(link)
                 print(f"Sent: {clean_title}")
-                return  لنار در هر اجرا یک خبر ارسال شود تا کانال اسپم نشود
+                return  # در هر اجرا یک خبر ارسال شود تا کانال اسپم نشود
 
 if __name__ == "__main__":
     main()
