@@ -4,6 +4,7 @@ import feedparser
 from bs4 import BeautifulSoup
 import requests
 import traceback
+import html
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHANNEL_ID = "@NabzKhabarOfficial"
@@ -36,7 +37,7 @@ def send_to_telegram(text):
         return
         
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    payload = {"chat_id": TELEGRAM_CHANNEL_ID, "text": text}
+    payload = {"chat_id": TELEGRAM_CHANNEL_ID, "text": text, "parse_mode": "HTML"}
     response = requests.post(url, json=payload)
     print("Telegram Response:", response.text)
     return response.json()
@@ -46,24 +47,32 @@ def main():
         sent_news = load_sent_news()
         
         for feed_url in FEEDS:
-            feed = feedparser.parse(feed_url)
-            for entry in feed.entries[:2]:
-                link = getattr(entry, "link", "")
-                title = getattr(entry, "title", "بدون عنوان")
+            try:
+                feed = feedparser.parse(feed_url)
+                if not feed.entries:
+                    continue
+                for entry in feed.entries[:2]:
+                    link = getattr(entry, "link", "")
+                    title = getattr(entry, "title", "بدون عنوان")
+                    
+                    if link and link not in sent_news:
+                        clean_title = BeautifulSoup(title, "html.parser").get_text()
+                        safe_title = html.escape(clean_title)
+                        
+                        news_text = (
+                            f"📰 <b>{safe_title}</b>\n\n"
+                            f"🔗 <a href='{link}'>مطالعه کامل خبر</a>\n\n"
+                            "🔴 #نبض_خبر | @NabzKhabarOfficial"
+                        )
+                        
+                        send_to_telegram(news_text)
+                        save_sent_news(link)
+                        print(f"Sent: {clean_title}")
+                        return
+            except Exception as feed_err:
+                print(f"Skipping feed due to error {feed_url}: {feed_err}")
+                continue
                 
-                if link and link not in sent_news:
-                    clean_title = BeautifulSoup(title, "html.parser").get_text()
-                    
-                    news_text = (
-                        f"📰 {clean_title}\n\n"
-                        f"🔗 {link}\n\n"
-                        "🔴 #نبض_خبر | @NabzKhabarOfficial"
-                    )
-                    
-                    send_to_telegram(news_text)
-                    save_sent_news(link)
-                    print(f"Sent: {clean_title}")
-                    return
     except Exception as e:
         print("CRITICAL ERROR IN MAIN:")
         traceback.print_exc()
