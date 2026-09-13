@@ -1,6 +1,7 @@
 import os
 import io
 import json
+import time
 import requests
 import feedparser
 from bs4 import BeautifulSoup
@@ -10,13 +11,11 @@ from difflib import SequenceMatcher
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
-# تنظیمات اصلی ربات
 BOT_TOKEN = "8863833653:AAGt5P8SUBun1zHDuDOrinn1z7gfwoWerUY"
 CHAT_ID = "@NabzKhabarOfficial"
 HISTORY_FILE = "sent_news.txt"
 AI_API_KEY = os.getenv("AI_API_KEY")
 
-# منابع ۱۰ گانه RSS
 RSS_FEEDS = {
     "تسنیم": "https://www.tasnimnews.com/fa/rss/feed/0/0/0/",
     "ایسنا": "https://www.isna.ir/rss",
@@ -87,9 +86,11 @@ def ai_rewrite(title, raw_text):
     try:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={AI_API_KEY}"
         prompt = (
-            "این خبر را بازنویسی و خلاصه کن. "
-            "خروجی باید دقیقاً شامل ۲ یا ۳ جمله روان فارسی باشد که ابتدای هر جمله علامت 🔷 قرار گرفته است. "
-            "هیچ متن اضافه یا توضیحی اضافه نکن.\n"
+            "تو یک خبرنگار ارشد و حرفه‌ای هستی. این خبر را بازنویسی کن.\n"
+            "دستورالعمل‌ها:\n"
+            "۱. خلاصه خبر را در ۲ یا ۳ جمله روان و جذاب بنویس.\n"
+            "۲. در ابتدای هر جمله از ایموجی‌های مناسب با موضوع (مثل ⚽، 💵، 🏛️، 🚨، 💻 یا 🔹) استفاده کن.\n"
+            "۳. لحن خبر باید کاملاً حرفه‌ای و بدون توضیحات اضافی باشد.\n\n"
             f"تیتر: {title}\nمتن: {raw_text}"
         )
         payload = {"contents": [{"parts": [{"text": prompt}]}]}
@@ -107,22 +108,27 @@ def add_watermark(image_url):
         if response.status_code != 200:
             return None
             
-        img = Image.open(io.BytesIO(response.content)).convert("RGB")
+        img = Image.open(io.BytesIO(response.content)).convert("RGBA")
         width, height = img.size
         
-        draw = ImageDraw.Draw(img)
+        # ساخت لایه شفاف برای واترمارک نرم
+        overlay = Image.new("RGBA", img.size, (255, 255, 255, 0))
+        draw = ImageDraw.Draw(overlay)
         text = "NabzKhabarOfficial"
         font = ImageFont.load_default()
         
-        x = width - 150
-        y = height - 30
+        x = width - 140
+        y = height - 28
         
-        # کادر تیره شفاف گوشه تصویر
-        draw.rectangle([x - 5, y - 5, x + 135, y + 20], fill=(0, 0, 0))
-        draw.text((x, y), text, fill=(255, 255, 255), font=font)
+        # کادر مشکی نیمه‌شفاف شیک
+        draw.rectangle([x - 8, y - 4, width - 10, height - 8], fill=(0, 0, 0, 160))
+        draw.text((x, y), text, fill=(255, 255, 255, 230), font=font)
+        
+        # ترکیب لایه‌ها
+        watermarked = Image.alpha_composite(img, overlay).convert("RGB")
         
         img_byte_arr = io.BytesIO()
-        img.save(img_byte_arr, format='JPEG', quality=95)
+        watermarked.save(img_byte_arr, format='JPEG', quality=95)
         img_byte_arr.seek(0)
         return img_byte_arr
     except Exception as e:
@@ -157,14 +163,11 @@ def extract_image_and_paragraphs(entry, base_url):
     text_clean = clean_text(entry.get('summary', entry.get('description', '')))
     title_clean = clean_text(entry.title)
     
-    # تلاش برای خلاصه‌سازی با هوش مصنوعی
     ai_summary = ai_rewrite(title_clean, text_clean)
     if ai_summary:
         return image_url, ai_summary + "\n\n"
 
-    # روش استخراج متنی رزرو (در صورت بروز خطا در AI)
     sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 25]
-    
     body_formatted = ""
     filtered_sentences = [s for s in sentences if s not in title_clean and "خبرگزاری" not in s and "دیجیاتو" not in s]
     
@@ -177,7 +180,6 @@ def extract_image_and_paragraphs(entry, base_url):
     return image_url, body_formatted
 
 def send_telegram(caption, image_url=None):
-    # دکمه‌های شیشه‌ای تعاملی
     reply_markup = json.dumps({
         "inline_keyboard": [[
             {"text": "👍 کاربردی بود", "callback_data": "like"},
@@ -256,6 +258,7 @@ def send_market_prices(sent_news):
 
         send_telegram(caption)
         sent_news.add(price_key)
+        time.sleep(3)
     except Exception as e:
         print(f"Market Prices Error: {e}")
 
@@ -293,6 +296,9 @@ def check_feeds():
                 send_telegram(caption, image_url)
                 sent_news.add(news_id)
                 recent_titles.append(title)
+                
+                # ایجاد وقفه ۳ ثانیه‌ای بین پست‌ها جهت حفظ نظم کانال
+                time.sleep(3)
         except Exception as e:
             print(f"Error checking {source_name}: {e}")
 
