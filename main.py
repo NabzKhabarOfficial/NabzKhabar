@@ -1,10 +1,14 @@
 import os
+import io
+import json
 import requests
 import feedparser
 from bs4 import BeautifulSoup
 import re
 from urllib.parse import urljoin
 from difflib import SequenceMatcher
+from datetime import datetime
+from PIL import Image, ImageDraw, ImageFont
 
 BOT_TOKEN = "8863833653:AAGt5P8SUBun1zHDuDOrinn1z7gfwoWerUY"
 CHAT_ID = "@NabzKhabarOfficial"
@@ -50,8 +54,6 @@ def clean_text(html_text):
         return ""
     soup = BeautifulSoup(html_text, "html.parser")
     text = soup.get_text(separator=' ')
-    
-    # حذف متن‌های تبلیغاتی مرسوم RSS‌ها
     text = re.sub(r'The post.*?appeared first on.*', '', text, flags=re.IGNORECASE)
     text = re.sub(r'appeared first on.*', '', text, flags=re.IGNORECASE)
     text = re.sub(r'\s+', ' ', text).strip()
@@ -74,6 +76,39 @@ def detect_category_and_tags(title, body):
 
 def is_important(title):
     return any(kw in title for kw in IMPORTANT_KEYWORDS)
+
+# ۱. بخش حک واترمارک روی تصاویر
+def add_watermark(image_url):
+    try:
+        response = requests.get(image_url, timeout=10)
+        if response.status_code != 200:
+            return None
+            
+        img = Image.open(io.BytesIO(response.content)).convert("RGB")
+        width, height = img.size
+        
+        draw = ImageDraw.Draw(img)
+        text = "NabzKhabarOfficial"
+        
+        # محاسبه ابعاد متن
+        font = ImageFont.load_default()
+        
+        margin = 15
+        x = width - 150
+        y = height - 30
+        
+        # کشیدن پس‌زمینه نیمه‌شفاف سیاه
+        draw.rectangle([x - 5, y - 5, x + 135, y + 20], fill=(0, 0, 0))
+        # نوشتن آیدی کانال با رنگ سفید
+        draw.text((x, y), text, fill=(255, 255, 255), font=font)
+        
+        img_byte_arr = io.BytesIO()
+        img.save(img_byte_arr, format='JPEG', quality=95)
+        img_byte_arr.seek(0)
+        return img_byte_arr
+    except Exception as e:
+        print(f"Watermark Error: {e}")
+        return None
 
 def extract_image_and_paragraphs(entry, base_url):
     image_url = None
@@ -103,16 +138,11 @@ def extract_image_and_paragraphs(entry, base_url):
     text_clean = clean_text(entry.get('summary', entry.get('description', '')))
     title_clean = clean_text(entry.title)
     
-    # تفکیک دقیق‌تر جمله و حذف عبارات کوتاه یا تکراری
     sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 25]
     
     body_formatted = ""
-    filtered_sentences = []
-    for s in sentences:
-        if s not in title_clean and "خبرگزاری" not in s and "دیجیاتو" not in s:
-            filtered_sentences.append(s)
+    filtered_sentences = [s for s in sentences if s not in title_clean and "خبرگزاری" not in s and "دیجیاتو" not in s]
     
-    # اگر متن کوتاهی ماند، کل متن پاک‌سازی‌شده استفاده شود
     if not filtered_sentences and len(text_clean) > 20:
         filtered_sentences = [text_clean]
 
@@ -121,22 +151,45 @@ def extract_image_and_paragraphs(entry, base_url):
 
     return image_url, body_formatted
 
+# ۳. ارسال پیام همراه با دکمه‌های تعاملی شیشه‌ای
 def send_telegram(caption, image_url=None):
+    # دکمه‌های شیشه‌ای ری‌اکشن
+    reply_markup = json.dumps({
+        "inline_keyboard": [[
+            {"text": "👍 کاربردی بود", "callback_data": "like"},
+            {"text": "👎 بی‌کیفیت", "callback_data": "dislike"}
+        ]]
+    })
+
     sent_success = False
     if image_url:
+        processed_image = add_watermark(image_url)
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
-        payload = {
-            "chat_id": CHAT_ID,
-            "photo": image_url,
-            "caption": caption,
-            "parse_mode": "HTML"
-        }
+        
         try:
-            res = requests.post(url, data=payload, timeout=10)
+            if processed_image:
+                files = {'photo': ('image.jpg', processed_image, 'image/jpeg')}
+                data = {
+                    "chat_id": CHAT_ID,
+                    "caption": caption,
+                    "parse_mode": "HTML",
+                    "reply_markup": reply_markup
+                }
+                res = requests.post(url, data=data, files=files, timeout=15)
+            else:
+                payload = {
+                    "chat_id": CHAT_ID,
+                    "photo": image_url,
+                    "caption": caption,
+                    "parse_mode": "HTML",
+                    "reply_markup": reply_markup
+                }
+                res = requests.post(url, data=payload, timeout=10)
+
             if res.ok:
                 sent_success = True
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Error sending photo: {e}")
 
     if not sent_success:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
@@ -144,16 +197,46 @@ def send_telegram(caption, image_url=None):
             "chat_id": CHAT_ID,
             "text": caption,
             "parse_mode": "HTML",
-            "disable_web_page_preview": True
+            "disable_web_page_preview": True,
+            "reply_markup": reply_markup
         }
         try:
             requests.post(url, data=payload, timeout=10)
         except Exception:
             pass
 
+# ۲. گزارش روزانه قیمت طلا و ارز
+def send_market_prices(sent_news):
+    now = datetime.now()
+    # چک کردن زمان برای ارسال گزارش قیمت (مثلا در اجرای ظهر)
+    price_key = f"MARKET_PRICES_{now.strftime('%Y-%m-%d')}"
+    if price_key in sent_news:
+        return
+
+    try:
+        url = "https://api.nobitex.ir/v2/orderbook/USDTIRT"
+        res = requests.get(url, timeout=10).json()
+        usdt_price = int(res['lastTradePrice']) // 10 if 'lastTradePrice' in res else None
+
+        caption = "📈 <b>گزارش روزانه قیمت‌های بازار</b>\n\n"
+        if usdt_price:
+            caption += f"💵 <b>دلار آزاد (تتر):</b> {usdt_price:,} تومان\n"
+        caption += "🪙 <b>سکه امامی:</b> نیازمند استعلام لحظه‌ای\n"
+        caption += "🏆 <b>طلای ۱۸ عیار:</b> نیازمند استعلام لحظه‌ای\n\n"
+        caption += "#بازار #قیمت_ارز\n"
+        caption += f"{CHAT_ID}"
+
+        send_telegram(caption)
+        sent_news.add(price_key)
+    except Exception as e:
+        print(f"Market Prices Error: {e}")
+
 def check_feeds():
     sent_news = load_sent_news()
     recent_titles = []
+
+    # ارسال قیمت بازار در صورت لزوم
+    send_market_prices(sent_news)
 
     for source_name, feed_url in RSS_FEEDS.items():
         try:
