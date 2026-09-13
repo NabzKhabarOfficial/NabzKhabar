@@ -14,31 +14,56 @@ RSS_FEEDS = {
 
 SENT_NEWS = set()
 
-def clean_text(html_text):
-    if not html_text:
+def clean_html(raw_html):
+    if not raw_html:
         return ""
-    soup = BeautifulSoup(html_text, "html.parser")
-    text = soup.get_text()
+    soup = BeautifulSoup(raw_html, "html.parser")
+    text = soup.get_text(separator=' ')
     text = re.sub(r'\s+', ' ', text).strip()
     return text
 
-def extract_image(entry):
-    # ۱. جستجو در media_content یا enclosures
-    if 'media_content' in entry and len(entry.media_content) > 0:
-        return entry.media_content[0].get('url')
+def extract_image_and_paragraphs(entry):
+    image_url = None
+    
+    # ۱. استخراج تصویر از enclosures یا media
     if 'enclosures' in entry and len(entry.enclosures) > 0:
         for enc in entry.enclosures:
             if enc.get('type', '').startswith('image'):
-                return enc.get('href')
+                image_url = enc.get('href')
+                break
+                
+    if not image_url and 'media_content' in entry and len(entry.media_content) > 0:
+        image_url = entry.media_content[0].get('url')
+
+    # ۲. استخراج متن و تصویر از summary / description
+    raw_desc = entry.get('summary', entry.get('description', ''))
+    soup = BeautifulSoup(raw_desc, 'html.parser')
     
-    # ۲. جستجو در HTML خلاصه خبر
-    description = entry.get('summary', entry.get('description', ''))
-    soup = BeautifulSoup(description, "html.parser")
-    img_tag = soup.find('img')
-    if img_tag and img_tag.get('src'):
-        return img_tag['src']
+    if not image_url:
+        img_tag = soup.find('img')
+        if img_tag and img_tag.get('src'):
+            image_url = img_tag['src']
+
+    # استخراج جملات برای ساخت پاراگراف‌های محتوایی
+    text_clean = clean_html(raw_desc)
+    
+    # تفکیک متن به جملات
+    sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 15]
+    
+    body_formatted = ""
+    # ترکیب جملات به ۲ یا ۳ پاراگراف مجزا با ایموجی 🔷
+    if sentences:
+        title_clean = clean_html(entry.title)
+        filtered_sentences = [s for s in sentences if s not in title_clean]
         
-    return None
+        # پاراگراف اول
+        if len(filtered_sentences) > 0:
+            body_formatted += f"🔷 {filtered_sentences[0]}.\n\n"
+        # پاراگراف دوم
+        if len(filtered_sentences) > 1:
+            body_formatted += f"🔷 {filtered_sentences[1]}.\n\n"
+
+    return image_url, body_formatted
 
 def send_telegram(caption, image_url=None):
     if image_url:
@@ -56,7 +81,7 @@ def send_telegram(caption, image_url=None):
         except Exception:
             pass
 
-    # ارسال متنی در صورت عدم وجود عکس یا خطا در عکس
+    # ارسال متنی در صورت نبود تصویر
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": CHAT_ID,
@@ -73,26 +98,15 @@ def check_feeds():
             for entry in feed.entries[:2]:
                 news_id = entry.link
                 if news_id not in SENT_NEWS:
-                    title = clean_text(entry.title)
-                    summary = clean_text(entry.get('summary', entry.get('description', '')))
+                    title = clean_html(entry.title)
+                    image_url, body_text = extract_image_and_paragraphs(entry)
                     
-                    # حذف عنوان از ابتدای خلاصه در صورت تکرار
-                    if summary.startswith(title):
-                        summary = summary[len(title):].strip()
+                    # قالب‌بندی بدون لینک و کاملاً محتوایی
+                    caption = f"🔻<b>{title}</b>\n\n"
+                    if body_text:
+                        caption += f"{body_text}"
+                    caption += f"{CHAT_ID}"
                     
-                    # کوتاه کردن خلاصه خبر
-                    if len(summary) > 200:
-                        summary = summary[:200] + "..."
-
-                    image_url = extract_image(entry)
-
-                    # ساخت پیام با ظاهر جذاب و استاندارد
-                    caption = f"🔻 <b>{title}</b>\n\n"
-                    if summary:
-                        caption += f"🔷 {summary}\n\n"
-                    caption += f"📌 <b>خبرگزاری {source_name}</b>\n"
-                    caption += f"🆔 {CHAT_ID}"
-
                     send_telegram(caption, image_url)
                     SENT_NEWS.add(news_id)
         except Exception as e:
