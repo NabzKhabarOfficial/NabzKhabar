@@ -45,13 +45,18 @@ def save_sent_news(sent_set):
         for link in recent_links:
             f.write(f"{link}\n")
 
-def clean_text(html_text):
+def clean_text(html_text, is_title=False):
     if not html_text:
         return ""
     soup = BeautifulSoup(html_text, "html.parser")
     text = soup.get_text(separator=' ')
     text = re.sub(r'The post.*?appeared first on.*', '', text, flags=re.IGNORECASE)
     text = re.sub(r'appeared first on.*', '', text, flags=re.IGNORECASE)
+    
+    if is_title:
+        # حذف عبارت‌های اضافی مثل (عکس)، + عکس، + جدول و غیره از تیتر
+        text = re.sub(r'\s*[\+\(]\s*(عکس|جدول|فیلم|ویدیو|صوت|گزارش تصویری)\s*[\)]?', '', text, flags=re.IGNORECASE)
+        
     text = re.sub(r'\s+', ' ', text).strip()
     return text
 
@@ -71,7 +76,7 @@ def ai_rewrite(title, raw_text):
             "تو دبیر خبر یک خبرگزاری معتبر و حرفه‌ای هستی. این خبر را با بالاترین استانداردهای روزنامه‌نگاری بازنویسی کن.\n"
             "دستورالعمل‌های دقیق:\n"
             "۱. **لید خبری (جمله اول):** جذاب، صریح و در برگیرنده مهم‌ترین هسته خبر (چه چیزی، کجا و چه زمانی رخ داده).\n"
-            "۲. **بدنه کلیدی (جملات بعدی):** ارائه جزئیات حیاتی، علت وقوع یا پیامدها بدون حاشیه‌روی و جملات تکراری.\n"
+            "۲. **بدنه کلیدی:** ارائه جزئیات حیاتی. **توجه مهم:** اگر در متن به 'جدول' یا اطلاعاتی اشاره شده که در متن وجود ندارد، به هیچ وجه عبارت‌هایی مثل 'در ادامه جدول آمده است' را به کار نبر و متن را به صورت کامل و مستقل ببند.\n"
             "۳. **لحن:** کاملاً رسمی، مطبوعاتی، بی‌طرفانه و دور از هرگونه اغراق.\n"
             "۴. **ایموجی‌ها:** استفاده محدود، هوشمندانه و مینیمال در ابتدای خطوط (مثل 🚨، 📉، 🏛️، 💻، ⚡).\n\n"
             f"تیتر اصلی: {title}\nمتن خام: {raw_text}"
@@ -171,7 +176,7 @@ def extract_media_and_paragraphs(entry, base_url):
         pass
 
     text_clean = clean_text(entry.get('summary', entry.get('description', '')))
-    title_clean = clean_text(entry.title)
+    title_clean = clean_text(entry.title, is_title=True)
     
     ai_summary = ai_rewrite(title_clean, text_clean)
     if ai_summary:
@@ -194,7 +199,6 @@ def send_telegram(caption, media_url=None, media_type='photo'):
         print("Error: BOT_TOKEN is missing!")
         return False
 
-    # جلوگیری از ارسال پست‌های بدون عکس یا ویدیو
     if not media_url:
         print("Skipping post: No media (image/video) found.")
         return False
@@ -295,7 +299,7 @@ def check_feeds():
             feed = feedparser.parse(feed_url)
             for entry in feed.entries[:2]:
                 news_id = entry.link
-                title = clean_text(entry.title)
+                title = clean_text(entry.title, is_title=True)
 
                 if news_id in sent_news:
                     continue
@@ -306,7 +310,6 @@ def check_feeds():
 
                 media_url, media_type, body_text = extract_media_and_paragraphs(entry, feed_url)
                 
-                # رد کردن اخبار فاقد تصویر یا ویدیو
                 if not media_url:
                     sent_news.add(news_id)
                     continue
