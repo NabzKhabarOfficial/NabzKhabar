@@ -111,12 +111,10 @@ def add_watermark(image_url):
         y = height - box_height - 10
         
         draw.rounded_rectangle([x, y, x + box_width, y + box_height], radius=4, fill=(0, 0, 0, 150))
-        
         draw.text((x + 8, y + 3), text_fa, fill=(255, 255, 255, 245), font=font_fa)
         draw.text((x + 8, y + 16), text_en, fill=(200, 220, 255, 230), font=font_en)
         
         watermarked = Image.alpha_composite(img, overlay).convert("RGB")
-        
         img_byte_arr = io.BytesIO()
         watermarked.save(img_byte_arr, format='JPEG', quality=95)
         img_byte_arr.seek(0)
@@ -125,28 +123,50 @@ def add_watermark(image_url):
         print(f"Watermark Error: {e}")
         return None
 
-def extract_image_and_paragraphs(entry, base_url):
-    image_url = None
+def extract_media_and_paragraphs(entry, base_url):
+    media_url = None
+    media_type = 'photo'
     try:
-        if 'enclosures' in entry and len(entry.enclosures) > 0:
+        # بررسی انکلوزرها برای یافتن ویدیو یا عکس
+        if 'enclosures' in entry:
             for enc in entry.enclosures:
-                if enc.get('type', '').startswith('image'):
-                    image_url = enc.get('href')
+                enc_type = enc.get('type', '')
+                if enc_type.startswith('video'):
+                    media_url = enc.get('href')
+                    media_type = 'video'
                     break
+                elif enc_type.startswith('image') and not media_url:
+                    media_url = enc.get('href')
+                    media_type = 'photo'
                     
-        if not image_url and 'media_content' in entry and len(entry.media_content) > 0:
-            image_url = entry.media_content[0].get('url')
+        # بررسی media_content
+        if not media_url and 'media_content' in entry:
+            for mc in entry.media_content:
+                mc_type = mc.get('type', '') or mc.get('medium', '')
+                if 'video' in mc_type:
+                    media_url = mc.get('url')
+                    media_type = 'video'
+                    break
+                elif 'image' in mc_type and not media_url:
+                    media_url = mc.get('url')
+                    media_type = 'photo'
 
         raw_desc = entry.get('summary', entry.get('description', ''))
         soup = BeautifulSoup(raw_desc, 'html.parser')
         
-        if not image_url:
-            img_tag = soup.find('img')
-            if img_tag and img_tag.get('src'):
-                image_url = img_tag['src']
+        if not media_url:
+            video_tag = soup.find('video')
+            if video_tag and video_tag.get('src'):
+                media_url = video_tag['src']
+                media_type = 'video'
+            else:
+                img_tag = soup.find('img')
+                if img_tag and img_tag.get('src'):
+                    media_url = img_tag['src']
+                    media_type = 'photo'
 
-        if image_url:
-            image_url = urljoin(base_url, image_url)
+        if media_url:
+            media_url = urljoin(base_url, media_url)
     except Exception:
         pass
 
@@ -155,7 +175,7 @@ def extract_image_and_paragraphs(entry, base_url):
     
     ai_summary = ai_rewrite(title_clean, text_clean)
     if ai_summary:
-        return image_url, ai_summary + "\n\n"
+        return media_url, media_type, ai_summary + "\n\n"
 
     sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 25]
     body_formatted = ""
@@ -167,40 +187,54 @@ def extract_image_and_paragraphs(entry, base_url):
     for s in filtered_sentences[:2]:
         body_formatted += f"🔷 {s}.\n\n"
 
-    return image_url, body_formatted
+    return media_url, media_type, body_formatted
 
-def send_telegram(caption, image_url=None):
+def send_telegram(caption, media_url=None, media_type='photo'):
     if not BOT_TOKEN:
         print("Error: BOT_TOKEN is missing!")
         return
 
     sent_success = False
-    if image_url:
-        processed_image = add_watermark(image_url)
-        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
-        
-        try:
-            if processed_image:
-                files = {'photo': ('image.jpg', processed_image, 'image/jpeg')}
-                data = {
-                    "chat_id": CHAT_ID,
-                    "caption": caption,
-                    "parse_mode": "HTML"
-                }
-                res = requests.post(url, data=data, files=files, timeout=15)
-            else:
-                payload = {
-                    "chat_id": CHAT_ID,
-                    "photo": image_url,
-                    "caption": caption,
-                    "parse_mode": "HTML"
-                }
-                res = requests.post(url, data=payload, timeout=10)
+    if media_url:
+        if media_type == 'video':
+            url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendVideo"
+            payload = {
+                "chat_id": CHAT_ID,
+                "video": media_url,
+                "caption": caption,
+                "parse_mode": "HTML"
+            }
+            try:
+                res = requests.post(url, data=payload, timeout=20)
+                if res.ok:
+                    sent_success = True
+            except Exception as e:
+                print(f"Error sending video: {e}")
+        else:
+            processed_image = add_watermark(media_url)
+            url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
+            try:
+                if processed_image:
+                    files = {'photo': ('image.jpg', processed_image, 'image/jpeg')}
+                    data = {
+                        "chat_id": CHAT_ID,
+                        "caption": caption,
+                        "parse_mode": "HTML"
+                    }
+                    res = requests.post(url, data=data, files=files, timeout=15)
+                else:
+                    payload = {
+                        "chat_id": CHAT_ID,
+                        "photo": media_url,
+                        "caption": caption,
+                        "parse_mode": "HTML"
+                    }
+                    res = requests.post(url, data=payload, timeout=10)
 
-            if res.ok:
-                sent_success = True
-        except Exception as e:
-            print(f"Error sending photo: {e}")
+                if res.ok:
+                    sent_success = True
+            except Exception as e:
+                print(f"Error sending photo: {e}")
 
     if not sent_success:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
@@ -217,7 +251,9 @@ def send_telegram(caption, image_url=None):
 
 def send_market_prices(sent_news):
     now = datetime.now()
-    price_key = f"MARKET_PRICES_{now.strftime('%Y-%m-%d')}"
+    current_block = now.hour // 8
+    price_key = f"MARKET_PRICES_{now.strftime('%Y-%m-%d')}_block_{current_block}"
+    
     if price_key in sent_news:
         return
 
@@ -230,17 +266,23 @@ def send_market_prices(sent_news):
         res_btc = requests.get(url_btc, timeout=10).json()
         btc_price = float(res_btc['lastTradePrice']) if 'lastTradePrice' in res_btc else None
 
-        caption = "📈 <b>گزارش روزانه قیمت‌های بازار و رمزارز</b>\n\n"
+        caption = "📈 <b>گزارش بروز قیمت‌های بازار و ارز</b>\n\n"
         if usdt_price:
             caption += f"💵 <b>دلار آزاد (تتر):</b> {usdt_price:,} تومان\n"
+        else:
+            caption += f"💵 <b>دلار آزاد:</b> در حال به‌روزرسانی\n"
+            
+        caption += "🪙 <b>سکه امامی:</b> بر اساس آخرین نرخ بازار\n"
+        caption += "🏆 <b>طلای ۱۸ عیار:</b> بر اساس آخرین نرخ بازار\n"
+        
         if btc_price:
             caption += f"🪙 <b>بیت‌کوین:</b> ${btc_price:,.2f}\n"
-        caption += "🪙 <b>سکه امامی:</b> استعلام لحظه‌ای\n"
-        caption += "🏆 <b>طلای ۱۸ عیار:</b> استعلام لحظه‌ای\n\n"
-        caption += f"{CHAT_ID}"
+            
+        caption += f"\n{CHAT_ID}"
 
         send_telegram(caption)
         sent_news.add(price_key)
+        save_sent_news(sent_news)
         time.sleep(3)
     except Exception as e:
         print(f"Market Prices Error: {e}")
@@ -265,7 +307,7 @@ def check_feeds():
                     sent_news.add(news_id)
                     continue
 
-                image_url, body_text = extract_image_and_paragraphs(entry, feed_url)
+                media_url, media_type, body_text = extract_media_and_paragraphs(entry, feed_url)
                 
                 header_icon = "🚨 <b>فوری | " if is_important(title) else "🔻 <b>"
                 
@@ -274,7 +316,7 @@ def check_feeds():
                     caption += f"{body_text}"
                 caption += f"{CHAT_ID}"
                 
-                send_telegram(caption, image_url)
+                send_telegram(caption, media_url, media_type)
                 sent_news.add(news_id)
                 recent_titles.append(title)
                 
