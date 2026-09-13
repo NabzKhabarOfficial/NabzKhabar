@@ -28,7 +28,7 @@ jobs:
         run: |
           python main.py
 
-      -       - name: Commit and push sent_news.txt
+      - name: Commit and push sent_news.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -38,4 +38,3 @@ jobs:
           git add sent_news.txt
           git diff --staged --quiet || git commit -m "Update sent_news.txt [skip ci]"
           git push
-
