@@ -16,6 +16,7 @@ CHAT_ID = "@NabzKhabarOfficial"
 HISTORY_FILE = "sent_news.txt"
 AI_API_KEY = os.getenv("AI_API_KEY")
 
+# منابع جامع‌تر RSS شامل خبرگزاری‌های معتبر و منابع تخصصی فناوری و اقتصاد
 RSS_FEEDS = {
     "تسنیم": "https://www.tasnimnews.com/fa/rss/feed/0/0/0/",
     "ایسنا": "https://www.isna.ir/rss",
@@ -26,7 +27,8 @@ RSS_FEEDS = {
     "خبرآنلاین": "https://www.khabaronline.ir/rss",
     "دنیای اقتصاد": "https://donya-e-eqtesad.com/fa/tinynews/rss/",
     "ورزش سه": "https://www.varzesh3.com/rss/all",
-    "دیجیاتو": "https://digiato.com/feed"
+    "دیجیاتو": "https://digiato.com/feed",
+    "زومیت": "https://www.zoomit.ir/feed/"
 }
 
 CATEGORIES = {
@@ -34,7 +36,7 @@ CATEGORIES = {
     "#اقتصادی": ["بورس", "طلا", "سکه", "ارز", "دلار", "گرانی", "بازار", "بانک", "مسکن", "خودرو", "اقتصاد", "توکن", "سهام", "بیت کوین"],
     "#سیاسی": ["مجلس", "دولت", "رئیس جمهور", "وزیر", "مذاکره", "تحریم", "انتخابات", "شورای امنیت", "آمریکا", "ایران"],
     "#حوادث": ["زلزله", "تصادف", "آتش‌سوزی", "دستگیری", "پلیس", "قتل", "کشف", "سقوط"],
-    "#فناوری": ["اینترنت", "هوش مصنوعی", "گوشی", "سامسونگ", "آیفون", "سایبری", "پلتفرم", "فناوری", "دیجیاتو"]
+    "#فناوری": ["اینترنت", "هوش مصنوعی", "گوشی", "سامسونگ", "آیفون", "سایبری", "پلتفرم", "فناوری", "دیجیاتو", "زومیت"]
 }
 
 IMPORTANT_KEYWORDS = ["فوری", "مهم", "هشدار", "جان باختن", "شهادت", "زلزله شدید", "سقوط", "انفجار"]
@@ -177,7 +179,7 @@ def extract_image_and_paragraphs(entry, base_url):
 
     sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 25]
     body_formatted = ""
-    filtered_sentences = [s for s in sentences if s not in title_clean and "خبرگزاری" not in s and "دیجیاتو" not in s]
+    filtered_sentences = [s for s in sentences if s not in title_clean and "خبرگزاری" not in s and "دیجیاتو" not in s and "زومیت" not in s]
     
     if not filtered_sentences and len(text_clean) > 20:
         filtered_sentences = [text_clean]
