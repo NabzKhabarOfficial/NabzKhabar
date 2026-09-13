@@ -191,9 +191,8 @@ def extract_media_and_paragraphs(entry, base_url):
 def send_telegram(caption, media_url=None, media_type='photo'):
     if not BOT_TOKEN:
         print("Error: BOT_TOKEN is missing!")
-        return
+        return False
 
-    sent_success = False
     if media_url:
         if media_type == 'video':
             url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendVideo"
@@ -206,36 +205,33 @@ def send_telegram(caption, media_url=None, media_type='photo'):
             try:
                 res = requests.post(url, data=payload, timeout=20)
                 if res.ok:
-                    sent_success = True
+                    return True
             except Exception as e:
                 print(f"Error sending video: {e}")
+            return False
         else:
+            # ارسال عکس همراه با واترمارک
             processed_image = add_watermark(media_url)
+            if not processed_image:
+                print("Skipping post: Image download or watermark failed.")
+                return False  # پستی که عکس دارد ولی عکس نمی‌دهد/خطا دارد ارسال نمی‌شود
+                
             url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
             try:
-                if processed_image:
-                    files = {'photo': ('image.jpg', processed_image, 'image/jpeg')}
-                    data = {
-                        "chat_id": CHAT_ID,
-                        "caption": caption,
-                        "parse_mode": "HTML"
-                    }
-                    res = requests.post(url, data=data, files=files, timeout=15)
-                else:
-                    payload = {
-                        "chat_id": CHAT_ID,
-                        "photo": media_url,
-                        "caption": caption,
-                        "parse_mode": "HTML"
-                    }
-                    res = requests.post(url, data=payload, timeout=10)
-
+                files = {'photo': ('image.jpg', processed_image, 'image/jpeg')}
+                data = {
+                    "chat_id": CHAT_ID,
+                    "caption": caption,
+                    "parse_mode": "HTML"
+                }
+                res = requests.post(url, data=data, files=files, timeout=15)
                 if res.ok:
-                    sent_success = True
+                    return True
             except Exception as e:
                 print(f"Error sending photo: {e}")
-
-    if not sent_success:
+            return False
+    else:
+        # اگر خبر کلاً عکس ندارد، به صورت متن ارسال شود
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
         payload = {
             "chat_id": CHAT_ID,
@@ -244,9 +240,12 @@ def send_telegram(caption, media_url=None, media_type='photo'):
             "disable_web_page_preview": True
         }
         try:
-            requests.post(url, data=payload, timeout=10)
-        except Exception:
-            pass
+            res = requests.post(url, data=payload, timeout=10)
+            if res.ok:
+                return True
+        except Exception as e:
+            print(f"Error sending text message: {e}")
+        return False
 
 def send_market_prices(sent_news):
     now = datetime.now()
@@ -279,10 +278,10 @@ def send_market_prices(sent_news):
             
         caption += f"\n{CHAT_ID}"
 
-        send_telegram(caption)
-        sent_news.add(price_key)
-        save_sent_news(sent_news)
-        time.sleep(3)
+        if send_telegram(caption):
+            sent_news.add(price_key)
+            save_sent_news(sent_news)
+            time.sleep(3)
     except Exception as e:
         print(f"Market Prices Error: {e}")
 
@@ -315,15 +314,16 @@ def check_feeds():
                     caption += f"{body_text}"
                 caption += f"{CHAT_ID}"
                 
-                send_telegram(caption, media_url, media_type)
-                sent_news.add(news_id)
-                recent_titles.append(title)
-                
-                time.sleep(3)
+                # ارسال به تلگرام و بررسی موفقیت‌آمیز بودن آن
+                success = send_telegram(caption, media_url, media_type)
+                if success:
+                    sent_news.add(news_id)
+                    recent_titles.append(title)
+                    save_sent_news(sent_news)
+                    time.sleep(3)
+                    break # یک خبر موفق از این فید ارسال شد، برو سراغ فید بعدی
         except Exception as e:
             print(f"Error checking {source_name}: {e}")
-
-    save_sent_news(sent_news)
 
 if __name__ == "__main__":
     check_feeds()
