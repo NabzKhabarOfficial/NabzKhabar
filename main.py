@@ -30,16 +30,6 @@ RSS_FEEDS = {
     "زومیت": "https://www.zoomit.ir/feed/"
 }
 
-# دسته‌بندی‌های کامل‌تر و دقیق‌تر برای جلوگیری از برچسب اشتباه
-CATEGORIES = {
-    "#ورزشی": ["استقلال", "پرسپولیس", "فوتبال", "لیگ", "ورزش", "ورزشی", "سرمربی", "المپیک", "جام جهانی", "ورزش سه", "شمشیربازی", "مسابقات", "مدال", "کشتی", "فوتبالیست"],
-    "#اقتصادی": ["بورس", "طلا", "سکه", "ارز", "دلار", "گرانی", "بازار", "بانک", "مسکن", "خودرو", "اقتصاد", "اقتصادی", "توکن", "سهام", "بیت کوین", "تورم", "حقوق"],
-    "#سیاسی": ["مجلس", "دولت", "رئیس جمهور", "وزیر", "مذاکره", "تحریم", "انتخابات", "شورای امنیت", "آمریکا", "ایران", "سیاسی", "دیپلماتیک", "سفیر"],
-    "#حوادث": ["زلزله", "تصادف", "آتش‌سوزی", "دستگیری", "پلیس", "قتل", "کشف", "سقوط", "حوادث", "مصدوم", "جان‌باخته", "فوتی"],
-    "#فناوری": ["اینترنت", "هوش مصنوعی", "گوشی", "سامسونگ", "آیفون", "سایبری", "پلتفرم", "فناوری", "دیجیاتو", "زومیت", "اپلیکیشن", "تکنولوژی"],
-    "#اجتماعی": ["هواشناسی", "آب و هوا", "دما", "بارندگی", "آموزش و پرورش", "کنکور", "دانشگاه", "پزشکی", "سلامت", "اجتماعی", "ترافیک", "تهران"]
-}
-
 IMPORTANT_KEYWORDS = ["فوری", "مهم", "هشدار", "جان باختن", "شهادت", "زلزله شدید", "سقوط", "انفجار"]
 
 def load_sent_news():
@@ -66,18 +56,6 @@ def clean_text(html_text):
 
 def is_similar(title1, title2):
     return SequenceMatcher(None, title1, title2).ratio() > 0.75
-
-def detect_category_and_tags(title, body):
-    full_text = f"{title} {body}"
-    detected_tags = set()
-    for tag, keywords in CATEGORIES.items():
-        for kw in keywords:
-            if kw in full_text:
-                detected_tags.add(tag)
-                break
-    if not detected_tags:
-        detected_tags.add("#اخبار")
-    return " ".join(detected_tags)
 
 def is_important(title):
     return any(kw in title for kw in IMPORTANT_KEYWORDS)
@@ -120,7 +98,6 @@ def add_watermark(image_url):
         text_fa = "نبض خبر"
         text_en = "@NabzKhabarOfficial"
         
-        # بارگذاری فونت با سایز متناسب و استاندارد (کوچک و شیک در گوشه تصویر)
         try:
             font_fa = ImageFont.truetype("Vazirmatn-Bold.ttf", 11)
             font_en = ImageFont.truetype("Vazirmatn-Regular.ttf", 8)
@@ -128,16 +105,13 @@ def add_watermark(image_url):
             font_fa = ImageFont.load_default()
             font_en = ImageFont.load_default()
         
-        # مختصات قرارگیری در گوشه پایین سمت راست با ابعاد کوچک
         box_width = 115
         box_height = 28
         x = width - box_width - 10
         y = height - box_height - 10
         
-        # رسم کادر نیمه‌شفاف کوچک
         draw.rounded_rectangle([x, y, x + box_width, y + box_height], radius=4, fill=(0, 0, 0, 150))
         
-        # درج متن‌ها داخل کادر
         draw.text((x + 8, y + 3), text_fa, fill=(255, 255, 255, 245), font=font_fa)
         draw.text((x + 8, y + 16), text_en, fill=(200, 220, 255, 230), font=font_en)
         
@@ -263,7 +237,6 @@ def send_market_prices(sent_news):
             caption += f"🪙 <b>بیت‌کوین:</b> ${btc_price:,.2f}\n"
         caption += "🪙 <b>سکه امامی:</b> استعلام لحظه‌ای\n"
         caption += "🏆 <b>طلای ۱۸ عیار:</b> استعلام لحظه‌ای\n\n"
-        caption += "#بازار #قیمت_ارز #کریپتو\n"
         caption += f"{CHAT_ID}"
 
         send_telegram(caption)
@@ -293,14 +266,12 @@ def check_feeds():
                     continue
 
                 image_url, body_text = extract_image_and_paragraphs(entry, feed_url)
-                tags = detect_category_and_tags(title, body_text)
                 
                 header_icon = "🚨 <b>فوری | " if is_important(title) else "🔻 <b>"
                 
                 caption = f"{header_icon}{title}</b>\n\n"
                 if body_text:
                     caption += f"{body_text}"
-                caption += f"{tags}\n"
                 caption += f"{CHAT_ID}"
                 
                 send_telegram(caption, image_url)
