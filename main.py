@@ -11,7 +11,7 @@ from difflib import SequenceMatcher
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
-BOT_TOKEN = "8863833653:AAGt5P8SUBun1zHDuDOrinn1z7gfwoWerUY"
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = "@NabzKhabarOfficial"
 HISTORY_FILE = "sent_news.txt"
 AI_API_KEY = os.getenv("AI_API_KEY")
@@ -117,7 +117,6 @@ def add_watermark(image_url):
         text_fa = "نبض خبر"
         text_en = "@NabzKhabarOfficial"
         
-        # بارگذاری فونت وزیر آپلود شده
         try:
             font_fa = ImageFont.truetype("Vazirmatn-Bold.ttf", 15)
             font_en = ImageFont.truetype("Vazirmatn-Regular.ttf", 11)
@@ -129,10 +128,8 @@ def add_watermark(image_url):
         y_fa = height - 44
         y_en = height - 22
         
-        # کادر نیمه‌شفاف تیره
         draw.rectangle([x - 8, y_fa - 4, width - 10, height - 8], fill=(0, 0, 0, 160))
         
-        # رسم متن فارسی در بالا و انگلیسی در پایین
         draw.text((x, y_fa), text_fa, fill=(255, 255, 255, 245), font=font_fa)
         draw.text((x, y_en), text_en, fill=(200, 220, 255, 230), font=font_en)
         
@@ -191,6 +188,10 @@ def extract_image_and_paragraphs(entry, base_url):
     return image_url, body_formatted
 
 def send_telegram(caption, image_url=None):
+    if not BOT_TOKEN:
+        print("Error: BOT_TOKEN is missing!")
+        return
+
     sent_success = False
     if image_url:
         processed_image = add_watermark(image_url)
