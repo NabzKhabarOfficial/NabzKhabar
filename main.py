@@ -16,21 +16,23 @@ CHAT_ID = "@NabzKhabarOfficial"
 HISTORY_FILE = "sent_news.txt"
 AI_API_KEY = os.getenv("AI_API_KEY")
 
+# پوشش کامل منابع خبری، جنگ، دفاعی، اقتصادی، ورزشی و فناوری از خبرگزاری‌های معتبر
 RSS_FEEDS = {
-    "تسنیم": "https://www.tasnimnews.com/fa/rss/feed/0/0/0/",
+    "تسنیم (عمومی)": "https://www.tasnimnews.com/fa/rss/feed/0/0/0/",
+    "تسنیم (اقتصادی)": "https://www.tasnimnews.com/fa/rss/feed/0/8/0/",
+    "تسنیم (بین‌الملل و دفاعی/جنگ)": "https://www.tasnimnews.com/fa/rss/feed/0/3/0/",
     "ایسنا": "https://www.isna.ir/rss",
-    "مهر": "https://www.mehrnews.com/rss",
-    "فارس": "https://www.farsnews.ir/rss",
+    "مهرنیوز": "https://www.mehrnews.com/rss",
+    "فارس (سیاسی و امنیتی)": "https://www.farsnews.ir/rss",
     "ایرنا": "https://www.irna.ir/rss",
-    "YJC": "https://www.yjc.ir/fa/rss/allnews",
     "خبرآنلاین": "https://www.khabaronline.ir/rss",
-    "دنیای اقتصاد": "https://donya-e-eqtesad.com/fa/tinynews/rss/",
-    "ورزش سه": "https://www.varzesh3.com/rss/all",
+    "دنیای اقتصاد (بازار، طلا، ارز)": "https://donya-e-eqtesad.com/fa/tinynews/rss/",
+    "ورزش سه (ورزشی)": "https://www.varzesh3.com/rss/all",
     "دیجیاتو": "https://digiato.com/feed",
     "زومیت": "https://www.zoomit.ir/feed/"
 }
 
-IMPORTANT_KEYWORDS = ["فوری", "مهم", "هشدار", "جان باختن", "شهادت", "زلزله شدید", "سقوط", "انفجار"]
+IMPORTANT_KEYWORDS = ["فوری", "مهم", "هشدار", "جان باختن", "شهادت", "زلزله شدید", "سقوط", "انفجار", "درگیری", "حمله"]
 
 def load_sent_news():
     if os.path.exists(HISTORY_FILE):
@@ -70,7 +72,7 @@ def ai_rewrite(title, raw_text):
             "تو یک خبرنگار ارشد و حرفه‌ای هستی. این خبر را بازنویسی کن.\n"
             "دستورالعمل‌ها:\n"
             "۱. خلاصه خبر را در ۲ یا ۳ جمله روان و جذاب بنویس.\n"
-            "۲. در ابتدای هر جمله از ایموجی‌های مناسب با موضوع (مثل ⚽، 💵، 🏛️، 🚨، 💻، 🌤️ یا 🔹) استفاده کن.\n"
+            "۲. در ابتدای هر جمله از ایموجی‌های مناسب با موضوع (مثل ⚽، 💵، 🏛️، 🚨، 💻، ⚔️ یا 🔹) استفاده کن.\n"
             "۳. لحن خبر باید کاملاً حرفه‌ای و بدون توضیحات اضافی باشد.\n\n"
             f"تیتر: {title}\nمتن: {raw_text}"
         )
@@ -127,7 +129,6 @@ def extract_media_and_paragraphs(entry, base_url):
     media_url = None
     media_type = 'photo'
     try:
-        # بررسی انکلوزرها برای یافتن ویدیو یا عکس
         if 'enclosures' in entry:
             for enc in entry.enclosures:
                 enc_type = enc.get('type', '')
@@ -139,7 +140,6 @@ def extract_media_and_paragraphs(entry, base_url):
                     media_url = enc.get('href')
                     media_type = 'photo'
                     
-        # بررسی media_content
         if not media_url and 'media_content' in entry:
             for mc in entry.media_content:
                 mc_type = mc.get('type', '') or mc.get('medium', '')
