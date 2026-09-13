@@ -4,6 +4,7 @@ import feedparser
 from bs4 import BeautifulSoup
 import requests
 import traceback
+import html
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHANNEL_ID = "@NabzKhabarOfficial"
@@ -66,14 +67,14 @@ def send_to_telegram(text, image_url=None):
             "chat_id": TELEGRAM_CHANNEL_ID,
             "photo": image_url,
             "caption": text,
-            "parse_mode": "Markdown"
+            "parse_mode": "HTML"
         }
     else:
         url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
         payload = {
             "chat_id": TELEGRAM_CHANNEL_ID,
             "text": text,
-            "parse_mode": "Markdown"
+            "parse_mode": "HTML"
         }
         
     response = requests.post(url, json=payload)
@@ -98,11 +99,12 @@ def main():
                     if link:
                         if link not in sent_news:
                             clean_title = BeautifulSoup(title, "html.parser").get_text()
+                            safe_title = html.escape(clean_title)
                             image_url = extract_image_url(entry)
                             
                             news_text = (
-                                f"📰 **{clean_title}**\n\n"
-                                f"🔗 [مطالعه کامل خبر]({link})\n\n"
+                                f"📰 <b>{safe_title}</b>\n\n"
+                                f"🔗 <a href='{link}'>مطالعه کامل خبر</a>\n\n"
                                 "🔴 #نبض_خبر | @NabzKhabarOfficial"
                             )
                             
