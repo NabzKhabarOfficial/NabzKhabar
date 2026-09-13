@@ -27,8 +27,7 @@ jobs:
 
       - name: Run news scraper
         env:
-          AI_API_KEY: ${{ secrets.AI_API_KEY }}
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: python main.py
 
       - name: Commit & Push changes
