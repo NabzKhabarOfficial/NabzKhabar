@@ -1,6 +1,6 @@
 import feedparser
 import requests
-from bs4 and import BeautifulSoup  # wait, beautifulsoup import is standard: from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup  # wait, beautifulsoup import is standard: from bs4 import BeautifulSoup
 import os
 import time
 import json
