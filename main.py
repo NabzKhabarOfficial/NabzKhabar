@@ -2,6 +2,7 @@ import requests
 import feedparser
 from bs4 import BeautifulSoup
 import re
+from urllib.parse import urljoin
 
 BOT_TOKEN = "8863833653:AAGt5P8SUBun1zHDuDOrinn1z7gfwoWerUY"
 CHAT_ID = "@NabzKhabarOfficial"
@@ -22,10 +23,10 @@ def clean_text(html_text):
     text = re.sub(r'\s+', ' ', text).strip()
     return text
 
-def extract_image_and_paragraphs(entry):
+def extract_image_and_paragraphs(entry, base_url):
     image_url = None
     
-    # ۱. استخراج تصویر اصلی از تگ‌های رسانه‌ای RSS
+    # ۱. استخراج تصویر از تگ‌های رسانه‌ای RSS
     if 'enclosures' in entry and len(entry.enclosures) > 0:
         for enc in entry.enclosures:
             if enc.get('type', '').startswith('image'):
@@ -44,11 +45,14 @@ def extract_image_and_paragraphs(entry):
         if img_tag and img_tag.get('src'):
             image_url = img_tag['src']
 
+    # اصلاح آدرس عکس‌های نسبی
+    if image_url:
+        image_url = urljoin(base_url, image_url)
+
     # استخراج جملات محتوایی برای پاراگراف‌بندی
     text_clean = clean_text(raw_desc)
     title_clean = clean_text(entry.title)
     
-    # تفکیک متن به جملات
     sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 15]
     
     body_formatted = ""
@@ -61,7 +65,7 @@ def extract_image_and_paragraphs(entry):
     return image_url, body_formatted
 
 def send_telegram(caption, image_url=None):
-    # اگر تصویر وجود داشت آن را به صورت Photo ارسال کن
+    # ارسال عکس در صورت وجود آدرس معتبر
     if image_url:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
         payload = {
@@ -77,7 +81,7 @@ def send_telegram(caption, image_url=None):
         except Exception as e:
             print(f"Error sending photo: {e}")
 
-    # در صورت عدم وجود عکس، ارسال پیام متنی بدون پیش‌نمایش لینک (disable_web_page_preview)
+    # ارسال متنی بدون پیش‌نمایش لینک در صورت عدم وجود عکس
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": CHAT_ID,
@@ -95,9 +99,9 @@ def check_feeds():
                 news_id = entry.link
                 if news_id not in SENT_NEWS:
                     title = clean_text(entry.title)
-                    image_url, body_text = extract_image_and_paragraphs(entry)
+                    image_url, body_text = extract_image_and_paragraphs(entry, feed_url)
                     
-                    # قالب‌بندی استاندارد خبر بدونه هیچ لینک اضافه‌ای
+                    # قالب‌بندی بدون لینک اضافی
                     caption = f"🔻<b>{title}</b>\n\n"
                     if body_text:
                         caption += f"{body_text}"
