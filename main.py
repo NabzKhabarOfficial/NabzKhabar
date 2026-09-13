@@ -25,10 +25,10 @@ RSS_FEEDS = {
 
 CATEGORIES = {
     "#ورزشی": ["استقلال", "پرسپولیس", "فوتبال", "لیگ", "ورزش", "سرمربی", "المپیک", "جام جهانی", "ورزش سه"],
-    "#اقتصادی": ["بورس", "طلا", "سکه", "ارز", "دلار", "گرانی", "بازار", "بانک", "مسکن", "خودرو", "اقتصاد"],
+    "#اقتصادی": ["بورس", "طلا", "سکه", "ارز", "دلار", "گرانی", "بازار", "بانک", "مسکن", "خودرو", "اقتصاد", "توکن", "سهام"],
     "#سیاسی": ["مجلس", "دولت", "رئیس جمهور", "وزیر", "مذاکره", "تحریم", "انتخابات", "شورای امنیت", "آمریکا", "ایران"],
     "#حوادث": ["زلزله", "تصادف", "آتش‌سوزی", "دستگیری", "پلیس", "قتل", "کشف", "سقوط"],
-    "#فناوری": ["اینترنت", "هوش مصنوعی", "گوشی", "سامسونگ", "آیفون", "سایبری", "پلتفرم", "فناوری"]
+    "#فناوری": ["اینترنت", "هوش مصنوعی", "گوشی", "سامسونگ", "آیفون", "سایبری", "پلتفرم", "فناوری", "جاروبرقی", "دیجیاتو"]
 }
 
 IMPORTANT_KEYWORDS = ["فوری", "مهم", "هشدار", "جان باختن", "شهادت", "زلزله شدید", "سقوط", "انفجار"]
@@ -40,7 +40,6 @@ def load_sent_news():
     return set()
 
 def save_sent_news(sent_set):
-    # نگه‌داشتن فقط ۲۰۰ لینک اخیر برای جلوگیری از بزرگ شدن فایل
     recent_links = list(sent_set)[-200:]
     with open(HISTORY_FILE, "w", encoding="utf-8") as f:
         for link in recent_links:
@@ -51,13 +50,15 @@ def clean_text(html_text):
         return ""
     soup = BeautifulSoup(html_text, "html.parser")
     text = soup.get_text(separator=' ')
+    
+    # حذف متن‌های تبلیغاتی مرسوم RSS‌ها
+    text = re.sub(r'The post.*?appeared first on.*', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'appeared first on.*', '', text, flags=re.IGNORECASE)
     text = re.sub(r'\s+', ' ', text).strip()
     return text
 
 def is_similar(title1, title2):
-    # بررسی شباهت متنی برای جلوگیری از ارسال خبر یکسان از دو خبرگزاری مختلف
-    ratio = SequenceMatcher(None, title1, title2).ratio()
-    return ratio > 0.75
+    return SequenceMatcher(None, title1, title2).ratio() > 0.75
 
 def detect_category_and_tags(title, body):
     full_text = f"{title} {body}"
@@ -102,12 +103,20 @@ def extract_image_and_paragraphs(entry, base_url):
     text_clean = clean_text(entry.get('summary', entry.get('description', '')))
     title_clean = clean_text(entry.title)
     
-    sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 15]
+    # تفکیک دقیق‌تر جمله و حذف عبارات کوتاه یا تکراری
+    sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 25]
     
     body_formatted = ""
-    filtered_sentences = [s for s in sentences if s not in title_clean and "خبرگزاری" not in s]
+    filtered_sentences = []
+    for s in sentences:
+        if s not in title_clean and "خبرگزاری" not in s and "دیجیاتو" not in s:
+            filtered_sentences.append(s)
     
-    for s in filtered_sentences[:3]:
+    # اگر متن کوتاهی ماند، کل متن پاک‌سازی‌شده استفاده شود
+    if not filtered_sentences and len(text_clean) > 20:
+        filtered_sentences = [text_clean]
+
+    for s in filtered_sentences[:2]:
         body_formatted += f"🔷 {s}.\n\n"
 
     return image_url, body_formatted
@@ -153,11 +162,9 @@ def check_feeds():
                 news_id = entry.link
                 title = clean_text(entry.title)
 
-                # ۱. بررسی تکراری بودن لینک
                 if news_id in sent_news:
                     continue
 
-                # ۲. بررسی شباهت تیتر با اخبار تازه فرستاده شده
                 if any(is_similar(title, prev_title) for prev_title in recent_titles):
                     sent_news.add(news_id)
                     continue
