@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   run-bot:
@@ -27,3 +27,11 @@ jobs:
 
       - name: Run news scraper
         run: python main.py
+
+      - name: Commit & Push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add sent_news.txt || true
+          git commit -m "Update sent news history" || true
+          git push || true
