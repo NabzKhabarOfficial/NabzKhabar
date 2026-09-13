@@ -33,7 +33,8 @@ def send_to_telegram(text):
         return
         
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    payload = {"chat_id": TELEGRAM_CHANNEL_ID, "text": text, "parse_mode": "Markdown"}
+    # حذف parse_mode برای جلوگیری از خطای کاراکترهای خاص و مارک‌داون
+    payload = {"chat_id": TELEGRAM_CHANNEL_ID, "text": text}
     response = requests.post(url, json=payload)
     print("Telegram Response:", response.text)
     return response.json()
@@ -52,8 +53,8 @@ def main():
                     clean_title = BeautifulSoup(title, "html.parser").get_text()
                     
                     news_text = (
-                        f"📰 **{clean_title}**\n\n"
-                        f"🔗 [مطالعه کامل خبر]({link})\n\n"
+                        f"📰 {clean_title}\n\n"
+                        f"🔗 {link}\n\n"
                         "🔴 #نبض_خبر | @NabzKhabarOfficial"
                     )
                     
