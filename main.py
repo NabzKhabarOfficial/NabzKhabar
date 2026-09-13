@@ -14,6 +14,9 @@ FEEDS = [
     "https://www.mehrnews.com/rss",
     "https://www.tasnimnews.com/fa/rss/feed/0/8/0/",
     "https://www.farsnews.ir/rss",
+    "https://www.irna.ir/rss",
+    "https://www.varzesh3.com/rss/all",
+    "https://www.zoomit.ir/feed/",
     "https://economictimes.indiatimes.com/rssfeedstopstories.cms"
 ]
 
@@ -33,7 +36,6 @@ def send_to_telegram(text):
         return
         
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    # حذف parse_mode برای جلوگیری از خطای کاراکترهای خاص و مارک‌داون
     payload = {"chat_id": TELEGRAM_CHANNEL_ID, "text": text}
     response = requests.post(url, json=payload)
     print("Telegram Response:", response.text)
