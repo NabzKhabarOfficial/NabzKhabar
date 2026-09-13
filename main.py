@@ -11,11 +11,13 @@ from difflib import SequenceMatcher
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
+# تنظیمات اصلی ربات
 BOT_TOKEN = "8863833653:AAGt5P8SUBun1zHDuDOrinn1z7gfwoWerUY"
 CHAT_ID = "@NabzKhabarOfficial"
 HISTORY_FILE = "sent_news.txt"
 AI_API_KEY = os.getenv("AI_API_KEY")
 
+# منابع ۱۰ گانه RSS
 RSS_FEEDS = {
     "تسنیم": "https://www.tasnimnews.com/fa/rss/feed/0/0/0/",
     "ایسنا": "https://www.isna.ir/rss",
@@ -111,7 +113,6 @@ def add_watermark(image_url):
         img = Image.open(io.BytesIO(response.content)).convert("RGBA")
         width, height = img.size
         
-        # ساخت لایه شفاف برای واترمارک نرم
         overlay = Image.new("RGBA", img.size, (255, 255, 255, 0))
         draw = ImageDraw.Draw(overlay)
         text = "NabzKhabarOfficial"
@@ -120,11 +121,9 @@ def add_watermark(image_url):
         x = width - 140
         y = height - 28
         
-        # کادر مشکی نیمه‌شفاف شیک
         draw.rectangle([x - 8, y - 4, width - 10, height - 8], fill=(0, 0, 0, 160))
         draw.text((x, y), text, fill=(255, 255, 255, 230), font=font)
         
-        # ترکیب لایه‌ها
         watermarked = Image.alpha_composite(img, overlay).convert("RGB")
         
         img_byte_arr = io.BytesIO()
@@ -180,13 +179,6 @@ def extract_image_and_paragraphs(entry, base_url):
     return image_url, body_formatted
 
 def send_telegram(caption, image_url=None):
-    reply_markup = json.dumps({
-        "inline_keyboard": [[
-            {"text": "👍 کاربردی بود", "callback_data": "like"},
-            {"text": "👎 بی‌کیفیت", "callback_data": "dislike"}
-        ]]
-    })
-
     sent_success = False
     if image_url:
         processed_image = add_watermark(image_url)
@@ -198,8 +190,7 @@ def send_telegram(caption, image_url=None):
                 data = {
                     "chat_id": CHAT_ID,
                     "caption": caption,
-                    "parse_mode": "HTML",
-                    "reply_markup": reply_markup
+                    "parse_mode": "HTML"
                 }
                 res = requests.post(url, data=data, files=files, timeout=15)
             else:
@@ -207,8 +198,7 @@ def send_telegram(caption, image_url=None):
                     "chat_id": CHAT_ID,
                     "photo": image_url,
                     "caption": caption,
-                    "parse_mode": "HTML",
-                    "reply_markup": reply_markup
+                    "parse_mode": "HTML"
                 }
                 res = requests.post(url, data=payload, timeout=10)
 
@@ -223,8 +213,7 @@ def send_telegram(caption, image_url=None):
             "chat_id": CHAT_ID,
             "text": caption,
             "parse_mode": "HTML",
-            "disable_web_page_preview": True,
-            "reply_markup": reply_markup
+            "disable_web_page_preview": True
         }
         try:
             requests.post(url, data=payload, timeout=10)
@@ -297,7 +286,6 @@ def check_feeds():
                 sent_news.add(news_id)
                 recent_titles.append(title)
                 
-                # ایجاد وقفه ۳ ثانیه‌ای بین پست‌ها جهت حفظ نظم کانال
                 time.sleep(3)
         except Exception as e:
             print(f"Error checking {source_name}: {e}")
