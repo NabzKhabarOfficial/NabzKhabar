@@ -14,10 +14,10 @@ RSS_FEEDS = {
 
 SENT_NEWS = set()
 
-def clean_html(raw_html):
-    if not raw_html:
+def clean_text(html_text):
+    if not html_text:
         return ""
-    soup = BeautifulSoup(raw_html, "html.parser")
+    soup = BeautifulSoup(html_text, "html.parser")
     text = soup.get_text(separator=' ')
     text = re.sub(r'\s+', ' ', text).strip()
     return text
@@ -25,7 +25,7 @@ def clean_html(raw_html):
 def extract_image_and_paragraphs(entry):
     image_url = None
     
-    # ۱. استخراج تصویر از enclosures یا media
+    # ۱. استخراج تصویر اصلی از تگ‌های رسانه‌ای RSS
     if 'enclosures' in entry and len(entry.enclosures) > 0:
         for enc in entry.enclosures:
             if enc.get('type', '').startswith('image'):
@@ -35,7 +35,7 @@ def extract_image_and_paragraphs(entry):
     if not image_url and 'media_content' in entry and len(entry.media_content) > 0:
         image_url = entry.media_content[0].get('url')
 
-    # ۲. استخراج متن و تصویر از summary / description
+    # ۲. استخراج عکس و متن از توضیحات
     raw_desc = entry.get('summary', entry.get('description', ''))
     soup = BeautifulSoup(raw_desc, 'html.parser')
     
@@ -44,28 +44,24 @@ def extract_image_and_paragraphs(entry):
         if img_tag and img_tag.get('src'):
             image_url = img_tag['src']
 
-    # استخراج جملات برای ساخت پاراگراف‌های محتوایی
-    text_clean = clean_html(raw_desc)
+    # استخراج جملات محتوایی برای پاراگراف‌بندی
+    text_clean = clean_text(raw_desc)
+    title_clean = clean_text(entry.title)
     
     # تفکیک متن به جملات
     sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 15]
     
     body_formatted = ""
-    # ترکیب جملات به ۲ یا ۳ پاراگراف مجزا با ایموجی 🔷
-    if sentences:
-        title_clean = clean_html(entry.title)
-        filtered_sentences = [s for s in sentences if s not in title_clean]
-        
-        # پاراگراف اول
-        if len(filtered_sentences) > 0:
-            body_formatted += f"🔷 {filtered_sentences[0]}.\n\n"
-        # پاراگراف دوم
-        if len(filtered_sentences) > 1:
-            body_formatted += f"🔷 {filtered_sentences[1]}.\n\n"
+    filtered_sentences = [s for s in sentences if s not in title_clean and "خبرگزاری" not in s]
+    
+    # ساخت پاراگراف‌ها با ایموجی 🔷
+    for s in filtered_sentences[:3]:
+        body_formatted += f"🔷 {s}.\n\n"
 
     return image_url, body_formatted
 
 def send_telegram(caption, image_url=None):
+    # اگر تصویر وجود داشت آن را به صورت Photo ارسال کن
     if image_url:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
         payload = {
@@ -78,10 +74,10 @@ def send_telegram(caption, image_url=None):
             res = requests.post(url, data=payload, timeout=12)
             if res.ok:
                 return
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Error sending photo: {e}")
 
-    # ارسال متنی در صورت نبود تصویر
+    # در صورت عدم وجود عکس، ارسال پیام متنی بدون پیش‌نمایش لینک (disable_web_page_preview)
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": CHAT_ID,
@@ -98,10 +94,10 @@ def check_feeds():
             for entry in feed.entries[:2]:
                 news_id = entry.link
                 if news_id not in SENT_NEWS:
-                    title = clean_html(entry.title)
+                    title = clean_text(entry.title)
                     image_url, body_text = extract_image_and_paragraphs(entry)
                     
-                    # قالب‌بندی بدون لینک و کاملاً محتوایی
+                    # قالب‌بندی استاندارد خبر بدونه هیچ لینک اضافه‌ای
                     caption = f"🔻<b>{title}</b>\n\n"
                     if body_text:
                         caption += f"{body_text}"
