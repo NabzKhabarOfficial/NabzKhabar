@@ -10,10 +10,13 @@ from difflib import SequenceMatcher
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
+# تنظیمات اصلی ربات
 BOT_TOKEN = "8863833653:AAGt5P8SUBun1zHDuDOrinn1z7gfwoWerUY"
 CHAT_ID = "@NabzKhabarOfficial"
 HISTORY_FILE = "sent_news.txt"
+AI_API_KEY = os.getenv("AI_API_KEY")
 
+# منابع ۱۰ گانه RSS
 RSS_FEEDS = {
     "تسنیم": "https://www.tasnimnews.com/fa/rss/feed/0/0/0/",
     "ایسنا": "https://www.isna.ir/rss",
@@ -29,10 +32,10 @@ RSS_FEEDS = {
 
 CATEGORIES = {
     "#ورزشی": ["استقلال", "پرسپولیس", "فوتبال", "لیگ", "ورزش", "سرمربی", "المپیک", "جام جهانی", "ورزش سه"],
-    "#اقتصادی": ["بورس", "طلا", "سکه", "ارز", "دلار", "گرانی", "بازار", "بانک", "مسکن", "خودرو", "اقتصاد", "توکن", "سهام"],
+    "#اقتصادی": ["بورس", "طلا", "سکه", "ارز", "دلار", "گرانی", "بازار", "بانک", "مسکن", "خودرو", "اقتصاد", "توکن", "سهام", "بیت کوین"],
     "#سیاسی": ["مجلس", "دولت", "رئیس جمهور", "وزیر", "مذاکره", "تحریم", "انتخابات", "شورای امنیت", "آمریکا", "ایران"],
     "#حوادث": ["زلزله", "تصادف", "آتش‌سوزی", "دستگیری", "پلیس", "قتل", "کشف", "سقوط"],
-    "#فناوری": ["اینترنت", "هوش مصنوعی", "گوشی", "سامسونگ", "آیفون", "سایبری", "پلتفرم", "فناوری", "جاروبرقی", "دیجیاتو"]
+    "#فناوری": ["اینترنت", "هوش مصنوعی", "گوشی", "سامسونگ", "آیفون", "سایبری", "پلتفرم", "فناوری", "دیجیاتو"]
 }
 
 IMPORTANT_KEYWORDS = ["فوری", "مهم", "هشدار", "جان باختن", "شهادت", "زلزله شدید", "سقوط", "انفجار"]
@@ -77,7 +80,27 @@ def detect_category_and_tags(title, body):
 def is_important(title):
     return any(kw in title for kw in IMPORTANT_KEYWORDS)
 
-# ۱. بخش حک واترمارک روی تصاویر
+def ai_rewrite(title, raw_text):
+    if not AI_API_KEY:
+        return None
+
+    try:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={AI_API_KEY}"
+        prompt = (
+            "این خبر را بازنویسی و خلاصه کن. "
+            "خروجی باید دقیقاً شامل ۲ یا ۳ جمله روان فارسی باشد که ابتدای هر جمله علامت 🔷 قرار گرفته است. "
+            "هیچ متن اضافه یا توضیحی اضافه نکن.\n"
+            f"تیتر: {title}\nمتن: {raw_text}"
+        )
+        payload = {"contents": [{"parts": [{"text": prompt}]}]}
+        res = requests.post(url, json=payload, timeout=10)
+        if res.ok:
+            data = res.json()
+            return data['candidates'][0]['content']['parts'][0]['text'].strip()
+    except Exception as e:
+        print(f"AI Rewrite Error: {e}")
+    return None
+
 def add_watermark(image_url):
     try:
         response = requests.get(image_url, timeout=10)
@@ -89,17 +112,13 @@ def add_watermark(image_url):
         
         draw = ImageDraw.Draw(img)
         text = "NabzKhabarOfficial"
-        
-        # محاسبه ابعاد متن
         font = ImageFont.load_default()
         
-        margin = 15
         x = width - 150
         y = height - 30
         
-        # کشیدن پس‌زمینه نیمه‌شفاف سیاه
+        # کادر تیره شفاف گوشه تصویر
         draw.rectangle([x - 5, y - 5, x + 135, y + 20], fill=(0, 0, 0))
-        # نوشتن آیدی کانال با رنگ سفید
         draw.text((x, y), text, fill=(255, 255, 255), font=font)
         
         img_byte_arr = io.BytesIO()
@@ -138,6 +157,12 @@ def extract_image_and_paragraphs(entry, base_url):
     text_clean = clean_text(entry.get('summary', entry.get('description', '')))
     title_clean = clean_text(entry.title)
     
+    # تلاش برای خلاصه‌سازی با هوش مصنوعی
+    ai_summary = ai_rewrite(title_clean, text_clean)
+    if ai_summary:
+        return image_url, ai_summary + "\n\n"
+
+    # روش استخراج متنی رزرو (در صورت بروز خطا در AI)
     sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 25]
     
     body_formatted = ""
@@ -151,9 +176,8 @@ def extract_image_and_paragraphs(entry, base_url):
 
     return image_url, body_formatted
 
-# ۳. ارسال پیام همراه با دکمه‌های تعاملی شیشه‌ای
 def send_telegram(caption, image_url=None):
-    # دکمه‌های شیشه‌ای ری‌اکشن
+    # دکمه‌های شیشه‌ای تعاملی
     reply_markup = json.dumps({
         "inline_keyboard": [[
             {"text": "👍 کاربردی بود", "callback_data": "like"},
@@ -205,25 +229,29 @@ def send_telegram(caption, image_url=None):
         except Exception:
             pass
 
-# ۲. گزارش روزانه قیمت طلا و ارز
 def send_market_prices(sent_news):
     now = datetime.now()
-    # چک کردن زمان برای ارسال گزارش قیمت (مثلا در اجرای ظهر)
     price_key = f"MARKET_PRICES_{now.strftime('%Y-%m-%d')}"
     if price_key in sent_news:
         return
 
     try:
-        url = "https://api.nobitex.ir/v2/orderbook/USDTIRT"
-        res = requests.get(url, timeout=10).json()
-        usdt_price = int(res['lastTradePrice']) // 10 if 'lastTradePrice' in res else None
+        url_usdt = "https://api.nobitex.ir/v2/orderbook/USDTIRT"
+        res_usdt = requests.get(url_usdt, timeout=10).json()
+        usdt_price = int(res_usdt['lastTradePrice']) // 10 if 'lastTradePrice' in res_usdt else None
 
-        caption = "📈 <b>گزارش روزانه قیمت‌های بازار</b>\n\n"
+        url_btc = "https://api.nobitex.ir/v2/orderbook/BTCUSDT"
+        res_btc = requests.get(url_btc, timeout=10).json()
+        btc_price = float(res_btc['lastTradePrice']) if 'lastTradePrice' in res_btc else None
+
+        caption = "📈 <b>گزارش روزانه قیمت‌های بازار و رمزارز</b>\n\n"
         if usdt_price:
             caption += f"💵 <b>دلار آزاد (تتر):</b> {usdt_price:,} تومان\n"
-        caption += "🪙 <b>سکه امامی:</b> نیازمند استعلام لحظه‌ای\n"
-        caption += "🏆 <b>طلای ۱۸ عیار:</b> نیازمند استعلام لحظه‌ای\n\n"
-        caption += "#بازار #قیمت_ارز\n"
+        if btc_price:
+            caption += f"🪙 <b>بیت‌کوین:</b> ${btc_price:,.2f}\n"
+        caption += "🪙 <b>سکه امامی:</b> استعلام لحظه‌ای\n"
+        caption += "🏆 <b>طلای ۱۸ عیار:</b> استعلام لحظه‌ای\n\n"
+        caption += "#بازار #قیمت_ارز #کریپتو\n"
         caption += f"{CHAT_ID}"
 
         send_telegram(caption)
@@ -235,7 +263,6 @@ def check_feeds():
     sent_news = load_sent_news()
     recent_titles = []
 
-    # ارسال قیمت بازار در صورت لزوم
     send_market_prices(sent_news)
 
     for source_name, feed_url in RSS_FEEDS.items():
