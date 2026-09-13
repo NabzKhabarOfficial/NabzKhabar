@@ -3,6 +3,7 @@ import time
 import feedparser
 from bs4 import BeautifulSoup
 import requests
+import traceback
 
 # تنظیمات اصلی
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -52,7 +53,7 @@ def get_nobitex_prices():
         response = requests.get(url, timeout=10)
         data = response.json()
         
-        if data.get("status") == "success":
+        if data.get("status") in ["success", "ok"]:
             stats = data.get("stats", {})
             usdt_price = stats.get("usdt-irt", {}).get("latest", "نامشخص")
             btc_price = stats.get("btc-irt", {}).get("latest", "نامشخص")
@@ -94,31 +95,36 @@ def check_market_interval():
                 f.write(str(current_time))
 
 def main():
-    sent_news = load_sent_news()
-    
-    # بررسی قیمت بازار بر اساس بازه ۶ ساعته
-    check_market_interval()
-    
-    # بررسی اخبار جدید
-    for feed_url in FEEDS:
-        feed = feedparser.parse(feed_url)
-        for entry in feed.entries[:2]:
-            link = getattr(entry, "link", "")
-            title = getattr(entry, "title", "بدون عنوان")
-            
-            if link and link not in sent_news:
-                clean_title = BeautifulSoup(title, "html.parser").get_text()
+    try:
+        sent_news = load_sent_news()
+        
+        # بررسی قیمت بازار بر اساس بازه ۶ ساعته
+        check_market_interval()
+        
+        # بررسی اخبار جدید
+        for feed_url in FEEDS:
+            feed = feedparser.parse(feed_url)
+            for entry in feed.entries[:2]:
+                link = getattr(entry, "link", "")
+                title = getattr(entry, "title", "بدون عنوان")
                 
-                news_text = (
-                    f"📰 **{clean_title}**\n\n"
-                    f"🔗 [مطالعه کامل خبر]({link})\n\n"
-                    "🔴 #نبض_خبر | @NabzKhabarOfficial"
-                )
-                
-                send_to_telegram(news_text)
-                save_sent_news(link)
-                print(f"Sent: {clean_title}")
-                return  # در هر اجرا یک خبر ارسال شود تا کانال اسپم نشود
+                if link and link not in sent_news:
+                    clean_title = BeautifulSoup(title, "html.parser").get_text()
+                    
+                    news_text = (
+                        f"📰 **{clean_title}**\n\n"
+                        f"🔗 [مطالعه کامل خبر]({link})\n\n"
+                        "🔴 #نبض_خبر | @NabzKhabarOfficial"
+                    )
+                    
+                    send_to_telegram(news_text)
+                    save_sent_news(link)
+                    print(f"Sent: {clean_title}")
+                    return  # در هر اجرا یک خبر ارسال شود تا کانال اسپم نشود
+    except Exception as e:
+        print("CRITICAL ERROR IN MAIN:")
+        traceback.print_exc()
+        raise e
 
 if __name__ == "__main__":
     main()
