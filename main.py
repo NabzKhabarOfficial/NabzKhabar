@@ -68,12 +68,13 @@ def ai_rewrite(title, raw_text):
     try:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={AI_API_KEY}"
         prompt = (
-            "تو یک خبرنگار ارشد و حرفه‌ای هستی. این خبر را بازنویسی کن.\n"
-            "دستورالعمل‌ها:\n"
-            "۱. خلاصه خبر را در ۲ یا ۳ جمله روان و جذاب بنویس.\n"
-            "۲. در ابتدای هر جمله از ایموجی‌های مناسب با موضوع (مثل ⚽، 💵، 🏛️، 🚨، 💻، ⚔️ یا 🔹) استفاده کن.\n"
-            "۳. لحن خبر باید کاملاً حرفه‌ای و بدون توضیحات اضافی باشد.\n\n"
-            f"تیتر: {title}\nمتن: {raw_text}"
+            "تو دبیر خبر یک خبرگزاری معتبر و حرفه‌ای هستی. این خبر را با بالاترین استانداردهای روزنامه‌نگاری بازنویسی کن.\n"
+            "دستورالعمل‌های دقیق:\n"
+            "۱. **لید خبری (جمله اول):** جذاب، صریح و در برگیرنده مهم‌ترین هسته خبر (چه چیزی، کجا و چه زمانی رخ داده).\n"
+            "۲. **بدنه کلیدی (جملات بعدی):** ارائه جزئیات حیاتی، علت وقوع یا پیامدها بدون حاشیه‌روی و جملات تکراری.\n"
+            "۳. **لحن:** کاملاً رسمی، مطبوعاتی، بی‌طرفانه و دور از هرگونه اغراق.\n"
+            "۴. **ایموجی‌ها:** استفاده محدود، هوشمندانه و مینیمال در ابتدای خطوط (مثل 🚨، 📉، 🏛️، 💻، ⚡).\n\n"
+            f"تیتر اصلی: {title}\nمتن خام: {raw_text}"
         )
         payload = {"contents": [{"parts": [{"text": prompt}]}]}
         res = requests.post(url, json=payload, timeout=10)
@@ -184,7 +185,7 @@ def extract_media_and_paragraphs(entry, base_url):
         filtered_sentences = [text_clean]
 
     for s in filtered_sentences[:2]:
-        body_formatted += f"🔷 {s}.\n\n"
+        body_formatted += f"🔹 {s}.\n\n"
 
     return media_url, media_type, body_formatted
 
@@ -193,7 +194,7 @@ def send_telegram(caption, media_url=None, media_type='photo'):
         print("Error: BOT_TOKEN is missing!")
         return False
 
-    # اگر رسانه‌ای وجود نداشته باشد، اصلاً پیام ارسال نمی‌شود (جلوگیری از ارسال پست متنی خالی)
+    # جلوگیری از ارسال پست‌های بدون عکس یا ویدیو
     if not media_url:
         print("Skipping post: No media (image/video) found.")
         return False
@@ -244,12 +245,15 @@ def send_market_prices(sent_news):
 
     try:
         url_usdt = "https://api.nobitex.ir/v2/orderbook/USDTIRT"
-        res_usdt = requests.get(url_usdt, timeout=10).json()
-        usdt_price = int(res_usdt['lastTradePrice']) // 10 if 'lastTradePrice' in res_usdt else None
+        res_usdt = requests.get(url_usdt, timeout=5)
+        if res_usdt.status_code != 200:
+            return
+        res_usdt_json = res_usdt.json()
+        usdt_price = int(res_usdt_json['lastTradePrice']) // 10 if 'lastTradePrice' in res_usdt_json else None
 
         url_btc = "https://api.nobitex.ir/v2/orderbook/BTCUSDT"
-        res_btc = requests.get(url_btc, timeout=10).json()
-        btc_price = float(res_btc['lastTradePrice']) if 'lastTradePrice' in res_btc else None
+        res_btc = requests.get(url_btc, timeout=5)
+        btc_price = float(res_btc.json()['lastTradePrice']) if res_btc.status_code == 200 and 'lastTradePrice' in res_btc.json() else None
 
         caption = "📈 <b>گزارش بروز قیمت‌های بازار و ارز</b>\n\n"
         if usdt_price:
@@ -278,7 +282,7 @@ def send_market_prices(sent_news):
             save_sent_news(sent_news)
             time.sleep(3)
     except Exception as e:
-        print(f"Market Prices Error: {e}")
+        print(f"Market Prices Error (Skipped): {e}")
 
 def check_feeds():
     sent_news = load_sent_news()
@@ -302,7 +306,7 @@ def check_feeds():
 
                 media_url, media_type, body_text = extract_media_and_paragraphs(entry, feed_url)
                 
-                # اگر خبر عکس یا ویدیو نداشته باشد، کلاً رد می‌شود و به عنوان خوانده شده ثبت می‌شود تا دوباره بررسی نشود
+                # رد کردن اخبار فاقد تصویر یا ویدیو
                 if not media_url:
                     sent_news.add(news_id)
                     continue
