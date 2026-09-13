@@ -7,9 +7,7 @@ from urllib.parse import urljoin
 BOT_TOKEN = "8863833653:AAGt5P8SUBun1zHDuDOrinn1z7gfwoWerUY"
 CHAT_ID = "@NabzKhabarOfficial"
 
-# لیست جامع و کامل منابع خبری اصلی، ورزشی، اقتصادی و فناوری
 RSS_FEEDS = {
-    # خبرگزاری‌های عمومی و سیاسی
     "تسنیم": "https://www.tasnimnews.com/fa/rss/feed/0/0/0/",
     "ایسنا": "https://www.isna.ir/rss",
     "مهر": "https://www.mehrnews.com/rss",
@@ -17,20 +15,13 @@ RSS_FEEDS = {
     "ایرنا": "https://www.irna.ir/rss",
     "YJC": "https://www.yjc.ir/fa/rss/allnews",
     "خبرآنلاین": "https://www.khabaronline.ir/rss",
-    
-    # تخصصی اقتصادی
     "دنیای اقتصاد": "https://donya-e-eqtesad.com/fa/tinynews/rss/",
-    
-    # تخصصی ورزشی
     "ورزش سه": "https://www.varzesh3.com/rss/all",
-    
-    # تخصصی فناوری
     "دیجیاتو": "https://digiato.com/feed"
 }
 
 SENT_NEWS = set()
 
-# سیستم دسته‌بندی و هشتگ‌گذاری هوشمند موضوعی
 CATEGORIES = {
     "#ورزشی": ["استقلال", "پرسپولیس", "فوتبال", "لیگ", "ورزش", "سرمربی", "المپیک", "جام جهانی", "ورزش سه"],
     "#اقتصادی": ["بورس", "طلا", "سکه", "ارز", "دلار", "گرانی", "بازار", "بانک", "مسکن", "خودرو", "اقتصاد"],
@@ -70,31 +61,30 @@ def is_important(title):
 def extract_image_and_paragraphs(entry, base_url):
     image_url = None
     
-    # ۱. استخراج تصویر از تگ‌های enclosures یا media_content
-    if 'enclosures' in entry and len(entry.enclosures) > 0:
-        for enc in entry.enclosures:
-            if enc.get('type', '').startswith('image'):
-                image_url = enc.get('href')
-                break
-                
-    if not image_url and 'media_content' in entry and len(entry.media_content) > 0:
-        image_url = entry.media_content[0].get('url')
+    try:
+        if 'enclosures' in entry and len(entry.enclosures) > 0:
+            for enc in entry.enclosures:
+                if enc.get('type', '').startswith('image'):
+                    image_url = enc.get('href')
+                    break
+                    
+        if not image_url and 'media_content' in entry and len(entry.media_content) > 0:
+            image_url = entry.media_content[0].get('url')
 
-    # ۲. استخراج عکس و متن از توضیحات HTML
-    raw_desc = entry.get('summary', entry.get('description', ''))
-    soup = BeautifulSoup(raw_desc, 'html.parser')
-    
-    if not image_url:
-        img_tag = soup.find('img')
-        if img_tag and img_tag.get('src'):
-            image_url = img_tag['src']
+        raw_desc = entry.get('summary', entry.get('description', ''))
+        soup = BeautifulSoup(raw_desc, 'html.parser')
+        
+        if not image_url:
+            img_tag = soup.find('img')
+            if img_tag and img_tag.get('src'):
+                image_url = img_tag['src']
 
-    # اصلاح لینک عکس‌های نسبی (مثلا عکس‌هایی که ابتدای آنها دامنه سایت نیست)
-    if image_url:
-        image_url = urljoin(base_url, image_url)
+        if image_url:
+            image_url = urljoin(base_url, image_url)
+    except Exception:
+        pass
 
-    # استخراج و پاراگراف‌بندی متن
-    text_clean = clean_text(raw_desc)
+    text_clean = clean_text(entry.get('summary', entry.get('description', '')))
     title_clean = clean_text(entry.title)
     
     sentences = [s.strip() for s in re.split(r'[.؛!؟]\s+', text_clean) if len(s.strip()) > 15]
@@ -108,7 +98,8 @@ def extract_image_and_paragraphs(entry, base_url):
     return image_url, body_formatted
 
 def send_telegram(caption, image_url=None):
-    # ارسال عکس به صورت Photo در صورت وجود
+    sent_success = False
+    
     if image_url:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
         payload = {
@@ -118,21 +109,24 @@ def send_telegram(caption, image_url=None):
             "parse_mode": "HTML"
         }
         try:
-            res = requests.post(url, data=payload, timeout=12)
+            res = requests.post(url, data=payload, timeout=10)
             if res.ok:
-                return
+                sent_success = True
         except Exception as e:
-            print(f"Error sending photo: {e}")
+            print(f"Photo send failed: {e}")
 
-    # ارسال متنی در صورت عدم وجود تصویر یا بروز خطا در لینک عکس
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": CHAT_ID,
-        "text": caption,
-        "parse_mode": "HTML",
-        "disable_web_page_preview": True
-    }
-    requests.post(url, data=payload, timeout=12)
+    if not sent_success:
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+        payload = {
+            "chat_id": CHAT_ID,
+            "text": caption,
+            "parse_mode": "HTML",
+            "disable_web_page_preview": True
+        }
+        try:
+            requests.post(url, data=payload, timeout=10)
+        except Exception as e:
+            print(f"Message send failed: {e}")
 
 def check_feeds():
     for source_name, feed_url in RSS_FEEDS.items():
@@ -145,8 +139,7 @@ def check_feeds():
                     image_url, body_text = extract_image_and_paragraphs(entry, feed_url)
                     tags = detect_category_and_tags(title, body_text)
                     
-                    # تعیین علامت تیتر (فوری یا معمولی)
-                    header_icon = "🚨 <b>فوری | " if is_important(title) else "🔻<b>"
+                    header_icon = "🚨 <b>فوری | " if is_important(title) else "🔻 <b>"
                     
                     caption = f"{header_icon}{title}</b>\n\n"
                     if body_text:
@@ -157,7 +150,7 @@ def check_feeds():
                     send_telegram(caption, image_url)
                     SENT_NEWS.add(news_id)
         except Exception as e:
-            print(f"Error checking {feed_url}: {e}")
+            print(f"Error checking {source_name}: {e}")
 
 if __name__ == "__main__":
     check_feeds()
