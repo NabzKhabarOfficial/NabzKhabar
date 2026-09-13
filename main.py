@@ -115,14 +115,21 @@ def add_watermark(image_url):
         
         overlay = Image.new("RGBA", img.size, (255, 255, 255, 0))
         draw = ImageDraw.Draw(overlay)
-        text = "NabzKhabarOfficial"
+        
+        text_fa = "NabzKhabar | نبض خبر"
+        text_en = "@NabzKhabarOfficial"
         font = ImageFont.load_default()
         
-        x = width - 140
-        y = height - 28
+        x = width - 165
+        y_fa = height - 42
+        y_en = height - 24
         
-        draw.rectangle([x - 8, y - 4, width - 10, height - 8], fill=(0, 0, 0, 160))
-        draw.text((x, y), text, fill=(255, 255, 255, 230), font=font)
+        # کادر نیمه‌شفاف برای دو سطر متن
+        draw.rectangle([x - 8, y_fa - 4, width - 10, height - 8], fill=(0, 0, 0, 160))
+        
+        # درج متن‌ها
+        draw.text((x, y_fa), text_fa, fill=(255, 255, 255, 240), font=font)
+        draw.text((x, y_en), text_en, fill=(200, 220, 255, 230), font=font)
         
         watermarked = Image.alpha_composite(img, overlay).convert("RGB")
         
