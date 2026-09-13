@@ -11,13 +11,11 @@ from difflib import SequenceMatcher
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
-# تنظیمات اصلی ربات
 BOT_TOKEN = "8863833653:AAGt5P8SUBun1zHDuDOrinn1z7gfwoWerUY"
 CHAT_ID = "@NabzKhabarOfficial"
 HISTORY_FILE = "sent_news.txt"
 AI_API_KEY = os.getenv("AI_API_KEY")
 
-# منابع ۱۰ گانه RSS
 RSS_FEEDS = {
     "تسنیم": "https://www.tasnimnews.com/fa/rss/feed/0/0/0/",
     "ایسنا": "https://www.isna.ir/rss",
@@ -116,20 +114,27 @@ def add_watermark(image_url):
         overlay = Image.new("RGBA", img.size, (255, 255, 255, 0))
         draw = ImageDraw.Draw(overlay)
         
-        text_fa = "NabzKhabar | نبض خبر"
+        text_fa = "نبض خبر"
         text_en = "@NabzKhabarOfficial"
-        font = ImageFont.load_default()
         
-        x = width - 165
-        y_fa = height - 42
-        y_en = height - 24
+        # بارگذاری فونت وزیر آپلود شده
+        try:
+            font_fa = ImageFont.truetype("Vazirmatn-Bold.ttf", 15)
+            font_en = ImageFont.truetype("Vazirmatn-Regular.ttf", 11)
+        except IOError:
+            font_fa = ImageFont.load_default()
+            font_en = ImageFont.load_default()
         
-        # کادر نیمه‌شفاف برای دو سطر متن
+        x = width - 175
+        y_fa = height - 44
+        y_en = height - 22
+        
+        # کادر نیمه‌شفاف تیره
         draw.rectangle([x - 8, y_fa - 4, width - 10, height - 8], fill=(0, 0, 0, 160))
         
-        # درج متن‌ها
-        draw.text((x, y_fa), text_fa, fill=(255, 255, 255, 240), font=font)
-        draw.text((x, y_en), text_en, fill=(200, 220, 255, 230), font=font)
+        # رسم متن فارسی در بالا و انگلیسی در پایین
+        draw.text((x, y_fa), text_fa, fill=(255, 255, 255, 245), font=font_fa)
+        draw.text((x, y_en), text_en, fill=(200, 220, 255, 230), font=font_en)
         
         watermarked = Image.alpha_composite(img, overlay).convert("RGB")
         
