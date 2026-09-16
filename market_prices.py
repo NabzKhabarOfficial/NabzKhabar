@@ -1,6 +1,7 @@
 import re
 import os
-from datetime import datetime, timezone
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import requests
 from bs4 import BeautifulSoup
@@ -12,15 +13,13 @@ PRICES_URL = "https://gheymat.online/prices"
 
 PERSIAN_DIGITS = "۰۱۲۳۴۵۶۷۸۹"
 ENGLISH_DIGITS = "0123456789"
+IRAN_TIMEZONE = ZoneInfo("Asia/Tehran")
 
 
 def normalize_digits(text):
     if not text:
         return ""
-    table = str.maketrans(
-        PERSIAN_DIGITS + "٠١٢٣٤٥٦٧٨٩",
-        ENGLISH_DIGITS + ENGLISH_DIGITS,
-    )
+    table = str.maketrans(PERSIAN_DIGITS + "٠١٢٣٤٥٦٧٨٩", ENGLISH_DIGITS + ENGLISH_DIGITS)
     return str(text).translate(table)
 
 
@@ -37,13 +36,10 @@ def clean_text(text):
 
 
 def format_market_value(value):
-    """Convert compact source units such as 23.17 م.ن / 17.461 م.د to clear Persian units."""
     value = clean_text(value)
     if not value:
         return ""
 
-    # Source abbreviations used by Gheymat Online:
-    # م.ن = million تومان, م.د = billion تومان.
     compact = re.fullmatch(r"([0-9]+(?:\.[0-9]+)?)\s*م\s*[\.:]?\s*([ند])", value)
     if compact:
         number = compact.group(1)
@@ -51,18 +47,13 @@ def format_market_value(value):
         label = "میلیون" if unit == "ن" else "میلیارد"
         return f"{to_persian_digits(number)} {label} تومان"
 
-    # Also handle explicit million/billion text if the source changes its display format.
     explicit = re.fullmatch(
         r"([0-9]+(?:\.[0-9]+)?)\s*(میلیون|میلیارد)\s*(?:تومان)?",
         value,
     )
     if explicit:
-        return (
-            f"{to_persian_digits(explicit.group(1))} "
-            f"{explicit.group(2)} تومان"
-        )
+        return f"{to_persian_digits(explicit.group(1))} {explicit.group(2)} تومان"
 
-    # Plain تومان values get Persian thousands separators.
     plain = value.replace(",", "").replace("٬", "").replace(" ", "")
     if re.fullmatch(r"[0-9]+(?:\.[0-9]+)?", plain):
         if "." in plain:
@@ -111,8 +102,6 @@ def value_for(rows, symbol):
     cells = rows.get(symbol.upper())
     if not cells or len(cells) < 3:
         return None
-
-    # Table order on Gheymat Online is: asset, buy, sell, change.
     return cells[2]
 
 
@@ -162,8 +151,10 @@ def main():
     if found == 0:
         raise RuntimeError("No supported market prices were found on Gheymat Online")
 
-    now = datetime.now(timezone.utc).strftime("%H:%M UTC")
-    lines += ["", f"🕐 بروزرسانی: {now}", "#نبض_خبر"]
+    # Iran uses Asia/Tehran (UTC+3:30) all year; show the post time in Iran local time.
+    now = datetime.now(IRAN_TIMEZONE).strftime("%H:%M")
+    now = to_persian_digits(now)
+    lines += ["", f"🕐 بروزرسانی: {now} به وقت ایران", "#نبض_خبر"]
 
     send_telegram("\n".join(lines))
     print(f"Market price post sent successfully ({found} assets).")
