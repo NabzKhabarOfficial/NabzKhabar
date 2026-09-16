@@ -187,19 +187,124 @@ def patch_source_coverage(source):
     return source
 
 
+def patch_hot_news(source):
+    """Detect genuinely hot stories using urgency + recency + corroboration signals."""
+    marker = "def calculate_importance(\n    candidate\n):"
+    helper = '''def calculate_hot_news_signal(candidate):
+    """Return True for fresh, high-urgency stories; avoid labeling ordinary news as hot."""
+    title = candidate.get("title", "")
+    body = candidate.get("summary", "")
+    keyword_score = calculate_keyword_importance(title, body)
+    recency_score = calculate_recency_score(candidate.get("published_at"))
+    cluster_size = candidate.get("cluster_size", 1)
+
+    if keyword_score >= 8 and recency_score >= 8:
+        return True
+
+    if keyword_score >= 16 and recency_score >= 5:
+        return True
+
+    if cluster_size >= 2 and keyword_score >= 8 and recency_score >= 5:
+        return True
+
+    return False
+
+
+'''
+
+    if marker in source and "def calculate_hot_news_signal(" not in source:
+        source = source.replace(marker, helper + marker, 1)
+
+    anchor = '''    score += source_priority(
+        candidate.get(
+            "link",
+            ""
+        ),
+        candidate.get(
+            "is_google",
+            False
+        )
+    )'''
+    replacement = anchor + '''
+
+    candidate["is_hot"] = calculate_hot_news_signal(candidate)
+
+    if candidate.get("is_hot"):
+        # Strong enough to outrank ordinary category news, but not enough
+        # to override duplicate protection or diversity rules by itself.
+        score += 18'''
+
+    if anchor in source and 'candidate["is_hot"] = calculate_hot_news_signal(candidate)' not in source:
+        source = source.replace(anchor, replacement, 1)
+
+    caption_anchor = '''def build_caption(title, body):
+    title = clean_title(title)
+    body = enforce_short_summary(body)
+    emoji = choose_news_emoji(title, body)
+
+    if body:
+        return (
+            f"{emoji} {title}\\n\\n"
+            f"{body}\\n\\n"
+            f"#نبض_خبر"
+        )
+
+    return (
+        f"{emoji} {title}\\n\\n"
+        f"#نبض_خبر"
+    )'''
+
+    caption_replacement = '''def build_caption(title, body, is_hot=False):
+    title = clean_title(title)
+    body = enforce_short_summary(body)
+    emoji = choose_news_emoji(title, body)
+    hot_prefix = "🔥 " if is_hot and emoji != "🚨" else ""
+
+    if body:
+        return (
+            f"{hot_prefix}{emoji} {title}\\n\\n"
+            f"{body}\\n\\n"
+            f"#نبض_خبر"
+        )
+
+    return (
+        f"{hot_prefix}{emoji} {title}\\n\\n"
+        f"#نبض_خبر"
+    )'''
+
+    if caption_anchor in source and "def build_caption(title, body, is_hot=False):" not in source:
+        source = source.replace(caption_anchor, caption_replacement, 1)
+
+    call_anchor = '''    caption = build_caption(
+        final_title,
+        final_summary
+    )'''
+    call_replacement = '''    caption = build_caption(
+        final_title,
+        final_summary,
+        candidate.get("is_hot", False),
+    )'''
+
+    if call_anchor in source and 'candidate.get("is_hot", False)' not in source:
+        source = source.replace(call_anchor, call_replacement, 1)
+
+    return source
+
+
 def main():
     with open(SOURCE, "r", encoding="utf-8") as f:
         source = f.read()
 
     patched = patch_canonical_duplicate_guard(source)
     patched = patch_source_coverage(patched)
+    patched = patch_hot_news(patched)
 
     if patched != source:
         with open(SOURCE, "w", encoding="utf-8") as f:
             f.write(patched)
-        print("NABZ KHABAR: v12 source coverage expanded")
+        print("NABZ KHABAR: v12 hot-news detection active")
     else:
-        print("NABZ KHABAR: v12 source coverage already active")
+        print("NABZ KHABAR: v12 patches already active")
 
     namespace = {"__name__": "__main__", "__file__": SOURCE}
     exec(compile(patched, SOURCE, "exec"), namespace)
