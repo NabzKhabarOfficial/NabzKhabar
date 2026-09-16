@@ -46,7 +46,6 @@ def format_decimal(number):
 
 
 def format_market_value(value):
-    """Convert source compact units to clear Persian تومان values."""
     value = clean_text(value)
     if not value:
         return ""
@@ -81,7 +80,6 @@ def format_market_value(value):
 
 
 def format_change(value):
-    """Return a compact Persian market-change indicator from the source change cell."""
     value = clean_text(value)
     if not value:
         return ""
@@ -201,6 +199,7 @@ def main():
     lines = [
         "📊 نرخ لحظه‌ای ارز، طلا و رمزارز",
         "━━━━━━━━━━━━━━━━━━━━",
+        "",
     ]
 
     found = 0
@@ -210,7 +209,7 @@ def main():
             continue
 
         change = change_for(rows, symbol)
-        suffix = f"  {change}" if change else ""
+        suffix = f" {change}" if change else ""
         lines.append(f"{emoji} {label}: {format_market_value(value)}{suffix}")
         found += 1
 
@@ -219,7 +218,7 @@ def main():
 
     now = datetime.now(IRAN_TIMEZONE).strftime("%H:%M")
     now = to_persian_digits(now)
-    lines += ["", f"🕐 بروزرسانی: {now} به وقت ایران", "#نبض_خبر"]
+    lines += ["", f"🕐 بروزرسانی: {now} به وقت ایران", "", "#نبض_خبر"]
 
     send_telegram("\n".join(lines))
     print(f"Market price post sent successfully ({found} assets).")
