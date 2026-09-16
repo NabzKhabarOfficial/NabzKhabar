@@ -10,20 +10,69 @@ CHANNEL_ID = "@NabzKhabarOfficial"
 PRICES_URL = "https://gheymat.online/prices"
 
 
+PERSIAN_DIGITS = "۰۱۲۳۴۵۶۷۸۹"
+ENGLISH_DIGITS = "0123456789"
+
+
 def normalize_digits(text):
     if not text:
         return ""
     table = str.maketrans(
-        "۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩",
-        "01234567890123456789",
+        PERSIAN_DIGITS + "٠١٢٣٤٥٦٧٨٩",
+        ENGLISH_DIGITS + ENGLISH_DIGITS,
     )
-    return text.translate(table)
+    return str(text).translate(table)
+
+
+def to_persian_digits(text):
+    if text is None:
+        return ""
+    return str(text).translate(str.maketrans(ENGLISH_DIGITS, PERSIAN_DIGITS))
 
 
 def clean_text(text):
     text = normalize_digits(text or "")
     text = re.sub(r"\s+", " ", text)
     return text.strip()
+
+
+def format_market_value(value):
+    """Convert compact source units such as 23.17 م.ن / 17.461 م.د to clear Persian units."""
+    value = clean_text(value)
+    if not value:
+        return ""
+
+    # Source abbreviations used by Gheymat Online:
+    # م.ن = million تومان, م.د = billion تومان.
+    compact = re.fullmatch(r"([0-9]+(?:\.[0-9]+)?)\s*م\s*[\.:]?\s*([ند])", value)
+    if compact:
+        number = compact.group(1)
+        unit = compact.group(2)
+        label = "میلیون" if unit == "ن" else "میلیارد"
+        return f"{to_persian_digits(number)} {label} تومان"
+
+    # Also handle explicit million/billion text if the source changes its display format.
+    explicit = re.fullmatch(
+        r"([0-9]+(?:\.[0-9]+)?)\s*(میلیون|میلیارد)\s*(?:تومان)?",
+        value,
+    )
+    if explicit:
+        return (
+            f"{to_persian_digits(explicit.group(1))} "
+            f"{explicit.group(2)} تومان"
+        )
+
+    # Plain تومان values get Persian thousands separators.
+    plain = value.replace(",", "").replace("٬", "").replace(" ", "")
+    if re.fullmatch(r"[0-9]+(?:\.[0-9]+)?", plain):
+        if "." in plain:
+            integer, fraction = plain.split(".", 1)
+            formatted = f"{int(integer):,}.{fraction}"
+        else:
+            formatted = f"{int(plain):,}"
+        return f"{to_persian_digits(formatted.replace(',', '٬'))} تومان"
+
+    return f"{to_persian_digits(value)} تومان"
 
 
 def fetch_prices():
@@ -107,7 +156,7 @@ def main():
     for emoji, label, symbol in wanted:
         value = value_for(rows, symbol)
         if value:
-            lines.append(f"{emoji} {label}: {value} تومان")
+            lines.append(f"{emoji} {label}: {format_market_value(value)}")
             found += 1
 
     if found == 0:
