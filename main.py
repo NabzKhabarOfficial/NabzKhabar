@@ -8,6 +8,7 @@ import time
 import warnings
 from io import BytesIO
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from urllib.parse import urljoin
 
 import requests
 import feedparser
@@ -34,6 +35,7 @@ AI_API_KEY = os.getenv("AI_API_KEY")
 
 CHANNEL = "@NabzKhabarOfficial"
 
+# Current stable Gemini model
 GEMINI_MODEL = "gemini-3.5-flash-lite"
 
 MAX_NEWS_PER_RUN = int(
@@ -176,6 +178,7 @@ def clean_text(text):
         return ""
 
     try:
+
         text = BeautifulSoup(
             raw,
             "html.parser"
@@ -183,7 +186,9 @@ def clean_text(text):
             " ",
             strip=True
         )
+
     except Exception:
+
         text = raw
 
     return normalize_spaces(text)
@@ -223,13 +228,16 @@ def remove_dateline_source(text):
 
     patterns = [
 
+        # مشهد-ایرنا-
         rf"^[\u0600-\u06FF‌]+(?:\s*[-–—]\s*)"
         rf"(?:{source_pattern})\s*[-–—:]\s*",
 
+        # مشهد - ایرنا -
         rf"^[\u0600-\u06FF‌]+(?:\s+[\u0600-\u06FF‌]+)?"
         rf"\s*[-–—]\s*(?:{source_pattern})"
         rf"\s*[-–—:]\s*",
 
+        # ایرنا -
         rf"^(?:{source_pattern})\s*[-–—:]\s*",
     ]
 
@@ -327,6 +335,131 @@ def clean_content(text):
     text = remove_dateline_source(text)
 
     return text.strip()
+
+
+# =========================================================
+# ROUNDUP / LOW QUALITY NEWS FILTER
+# =========================================================
+
+ROUNDUP_TITLE_PATTERNS = [
+    r"مروری\s+بر\s+(?:مهمترین|مهم‌ترین|آخرین)\s+اخبار",
+    r"مرور\s+(?:مهمترین|مهم‌ترین|آخرین)\s+اخبار",
+    r"بسته\s+اخبار",
+    r"بسته\s+خبری",
+    r"اخبار\s+کوتاه",
+    r"مهمترین\s+اخبار\s+(?:امروز|این\s+روز|امروز)",
+    r"مهم‌ترین\s+اخبار\s+(?:امروز|این\s+روز|امروز)",
+    r"گزیده\s+اخبار",
+    r"مروری\s+بر\s+اخبار",
+    r"مرور\s+اخبار",
+    r"آخرین\s+اخبار\s+استان",
+    r"اخبار\s+استان\s+.*در\s+یک\s+نگاه",
+    r"در\s+یک\s+نگاه",
+    r"آنچه\s+امروز\s+در\s+.*گذشت",
+    r"مهمترین\s+رویدادهای\s+امروز",
+    r"مهم‌ترین\s+رویدادهای\s+امروز",
+]
+
+
+ROUNDUP_BODY_PATTERNS = [
+    r"بسته\s+اخبار\s+کوتاه",
+    r"در\s+این\s+بسته\s+خبری",
+    r"در\s+این\s+بسته",
+    r"مجموعه\s+ای\s+از\s+رویدادها",
+    r"مجموعه\s+ای\s+از\s+اخبار",
+    r"مجموعه‌ای\s+از\s+رویدادها",
+    r"مجموعه‌ای\s+از\s+اخبار",
+    r"اخبار\s+کوتاه.*در\s+قالب",
+    r"در\s+قالب\s+خبرهای\s+کوتاه",
+    r"این\s+صفحه.*به\s+روز(?:رسانی|رسانی)\s+می\s*شود",
+    r"این\s+صفحه.*به‌روز\s+می\s*شود",
+    r"این\s+صفحه.*به\s+روزرسانی",
+    r"در\s+فواصل\s+زمانی\s+مشخص",
+    r"مهمترین\s+رویدادها.*مرور",
+    r"مهم‌ترین\s+رویدادها.*مرور",
+]
+
+
+def is_roundup_news(title, body=""):
+
+    title = clean_content(title)
+    body = clean_content(body)
+
+    title_normalized = normalize_title(title)
+    body_normalized = normalize_title(body)
+
+    # -----------------------------------------------------
+    # Strong title detection
+    # -----------------------------------------------------
+
+    for pattern in ROUNDUP_TITLE_PATTERNS:
+
+        if re.search(
+            pattern,
+            title_normalized,
+            flags=re.I
+        ):
+            return True
+
+    # -----------------------------------------------------
+    # Strong body detection
+    # -----------------------------------------------------
+
+    body_hits = 0
+
+    for pattern in ROUNDUP_BODY_PATTERNS:
+
+        if re.search(
+            pattern,
+            body_normalized,
+            flags=re.I
+        ):
+            body_hits += 1
+
+    if body_hits >= 1:
+        return True
+
+    # -----------------------------------------------------
+    # Generic roundup wording
+    # -----------------------------------------------------
+
+    roundup_words = [
+        "بسته خبری",
+        "اخبار کوتاه",
+        "گزیده اخبار",
+        "مروری بر اخبار",
+        "مرور اخبار",
+        "در یک نگاه",
+        "مجموعه اخبار",
+    ]
+
+    for word in roundup_words:
+
+        if word in title_normalized:
+            return True
+
+    # -----------------------------------------------------
+    # Page-update boilerplate
+    # -----------------------------------------------------
+
+    boilerplate_words = [
+        "این صفحه",
+        "فواصل زمانی",
+        "به روزرسانی می شود",
+        "به روز رسانی می شود",
+        "به‌روزرسانی می‌شود",
+    ]
+
+    boilerplate_hits = sum(
+        1
+        for word in boilerplate_words
+        if word in body_normalized
+    )
+
+    if boilerplate_hits >= 2:
+        return True
+
+    return False
 
 
 # =========================================================
@@ -566,18 +699,9 @@ def collect_candidates(history, start_time):
                 if not title or not link:
                     continue
 
-                news_id = make_news_id(
-                    title,
-                    link
-                )
-
-                if news_id in history:
-                    continue
-
-                if news_id in seen_ids:
-                    continue
-
-                seen_ids.add(news_id)
+                # -------------------------------------------------
+                # Reject obvious roundup/news-package pages early
+                # -------------------------------------------------
 
                 summary = clean_content(
                     entry.get("summary")
@@ -590,6 +714,30 @@ def collect_candidates(history, start_time):
                         ""
                     )
                 )
+
+                if is_roundup_news(
+                    title,
+                    summary
+                ):
+
+                    log.info(
+                        f"SKIPPED ROUNDUP: {title}"
+                    )
+
+                    continue
+
+                news_id = make_news_id(
+                    title,
+                    link
+                )
+
+                if news_id in history:
+                    continue
+
+                if news_id in seen_ids:
+                    continue
+
+                seen_ids.add(news_id)
 
                 candidates.append({
                     "id": news_id,
@@ -648,8 +796,10 @@ def absolute_url(url, base_url):
         return "https:" + url
 
     if url.startswith("/"):
-        from urllib.parse import urljoin
-        return urljoin(url, url)
+        return urljoin(
+            base_url,
+            url
+        )
 
     return url
 
@@ -803,9 +953,14 @@ def extract_video_from_soup(
                         candidates.append(value)
 
                     elif isinstance(value, dict):
+
                         candidates.append(
-                            value.get("contentUrl")
-                            or value.get("url")
+                            value.get(
+                                "contentUrl"
+                            )
+                            or value.get(
+                                "url"
+                            )
                             or ""
                         )
 
@@ -929,12 +1084,15 @@ def extract_rss_media(entry):
 
         if video:
 
+            source = video.find("source")
+
             url = (
                 video.get("src")
                 or (
-                    video.find("source")
-                    or {}
-                ).get("src")
+                    source.get("src")
+                    if source
+                    else None
+                )
             )
 
             if url:
@@ -980,6 +1138,7 @@ def extract_article_data(url):
             url
         )
 
+        # image fallback
         image_url = None
 
         if not media:
@@ -990,6 +1149,7 @@ def extract_article_data(url):
             )
 
             if og and og.get("content"):
+
                 image_url = absolute_url(
                     og["content"],
                     url
@@ -1033,9 +1193,11 @@ def extract_article_data(url):
         ):
 
             try:
+
                 containers.extend(
                     soup.select(selector)
                 )
+
             except Exception:
                 pass
 
@@ -1091,6 +1253,7 @@ def extract_article_data(url):
         result_media = None
 
         if media:
+
             result_media = {
                 "type": "video",
                 "url": media
@@ -1161,7 +1324,11 @@ def gemini_request(
 9. حداکثر 3 پاراگراف کوتاه بنویس.
 10. متن باید مستقیماً قابل انتشار باشد.
 11. source و link اصلاً در خروجی نباشد.
-12. فقط JSON معتبر برگردان.
+12. اگر ورودی یک «بسته خبری»، «مروری بر اخبار»،
+    «اخبار کوتاه»، «گزیده اخبار»، «در یک نگاه»،
+    یا صفحه‌ای است که صرفاً مجموعه‌ای از چند خبر را
+    معرفی می‌کند، آن را خبر مستقل محسوب نکن.
+13. فقط JSON معتبر برگردان.
 
 دسته:
 {category}
@@ -1277,6 +1444,21 @@ def gemini_request(
         if not final_title or not final_body:
             return None
 
+        # -------------------------------------------------
+        # Reject roundup output from Gemini
+        # -------------------------------------------------
+
+        if is_roundup_news(
+            final_title,
+            final_body
+        ):
+
+            log.info(
+                "Gemini result rejected: roundup/news package."
+            )
+
+            return None
+
         return {
             "title": final_title,
             "body": final_body,
@@ -1353,6 +1535,13 @@ def local_news_writer(
 
     title = clean_title(title)
 
+    # Reject roundup before local generation
+    if is_roundup_news(
+        title,
+        text
+    ):
+        return None
+
     sentences = split_sentences(
         text
     )
@@ -1416,12 +1605,18 @@ def download_image(url):
 
         response.raise_for_status()
 
+        content_type = response.headers.get(
+            "Content-Type",
+            ""
+        ).lower()
+
         if (
-            "image"
-            not in response.headers.get(
-                "Content-Type",
-                ""
-            ).lower()
+            "image" not in content_type
+            and not re.search(
+                r"\.(jpg|jpeg|png|webp)(?:\?|$)",
+                url,
+                flags=re.I
+            )
         ):
             return None
 
@@ -1446,20 +1641,45 @@ def download_image(url):
 
 def add_watermark(image):
 
+    """
+    Small professional watermark.
+
+    The old version used:
+        image.width // 35
+
+    which could become too large.
+
+    This version keeps the watermark around
+    1.8% to 2.5% of image width and limits it.
+    """
+
     try:
 
         draw = ImageDraw.Draw(
             image
         )
 
+        # -------------------------------------------------
+        # Calculate a small font
+        # -------------------------------------------------
+
+        calculated_size = int(
+            image.width * 0.022
+        )
+
+        font_size = max(
+            18,
+            min(
+                calculated_size,
+                42
+            )
+        )
+
         try:
 
             font = ImageFont.truetype(
                 FONT_BOLD,
-                max(
-                    24,
-                    image.width // 35
-                )
+                font_size
             )
 
         except Exception:
@@ -1477,9 +1697,13 @@ def add_watermark(image):
         tw = bbox[2] - bbox[0]
         th = bbox[3] - bbox[1]
 
+        # -------------------------------------------------
+        # Small margin
+        # -------------------------------------------------
+
         margin = max(
-            15,
-            image.width // 60
+            10,
+            int(image.width * 0.018)
         )
 
         x = (
@@ -1494,15 +1718,28 @@ def add_watermark(image):
             - margin
         )
 
+        # -------------------------------------------------
+        # Very subtle shadow
+        # -------------------------------------------------
+
+        shadow_offset = max(
+            1,
+            font_size // 14
+        )
+
         draw.text(
             (
-                x + 2,
-                y + 2
+                x + shadow_offset,
+                y + shadow_offset
             ),
             text,
             font=font,
             fill=(0, 0, 0)
         )
+
+        # -------------------------------------------------
+        # White watermark
+        # -------------------------------------------------
 
         draw.text(
             (
@@ -1517,6 +1754,7 @@ def add_watermark(image):
         return image
 
     except Exception:
+
         return image
 
 
@@ -1578,6 +1816,7 @@ def download_video(url):
                     / 1024
                 )
 
+                # Telegram practical limit
                 if size_mb > 49:
 
                     log.info(
@@ -1615,6 +1854,7 @@ def download_video(url):
 
         data.seek(0)
 
+        # Accept MP4/WebM/MOV
         if (
             "video" not in content_type
             and not re.search(
@@ -1811,6 +2051,7 @@ def make_caption(
         f"#نبض_خبر"
     )
 
+    # Telegram media caption limit
     if len(caption) > 1024:
 
         available = (
@@ -1830,6 +2071,7 @@ def make_caption(
         last_space = shortened.rfind(" ")
 
         if last_space > 80:
+
             shortened = shortened[
                 :last_space
             ]
@@ -1861,6 +2103,21 @@ def quality_check(
     if len(body) < 50:
         return False
 
+    # -----------------------------------------------------
+    # Reject roundup/package news
+    # -----------------------------------------------------
+
+    if is_roundup_news(
+        title,
+        body
+    ):
+
+        log.info(
+            "SKIPPED: roundup/package news"
+        )
+
+        return False
+
     forbidden = [
         "فهرست مطالب",
         "مطالب مرتبط",
@@ -1874,7 +2131,17 @@ def quality_check(
         "ادامه مطلب",
         "به گزارش خبرنگار",
         "به گزارش خبرگزاری",
-        "به نقل از خبرگزاری"
+        "به نقل از خبرگزاری",
+        "این صفحه در فواصل",
+        "این صفحه به روز",
+        "این صفحه به‌روز",
+        "بسته اخبار کوتاه",
+        "بسته خبری",
+        "اخبار کوتاه",
+        "مروری بر مهمترین اخبار",
+        "مروری بر مهم‌ترین اخبار",
+        "مروری بر اخبار",
+        "مرور اخبار",
     ]
 
     normalized = normalize_title(
@@ -1884,6 +2151,11 @@ def quality_check(
     for word in forbidden:
 
         if normalize_title(word) in normalized:
+
+            log.info(
+                f"SKIPPED: forbidden phrase -> {word}"
+            )
+
             return False
 
     if re.search(
@@ -1914,6 +2186,21 @@ def process_news(
     log.info(
         f"Processing: {original_title}"
     )
+
+    # -----------------------------------------------------
+    # Extra safety check before processing
+    # -----------------------------------------------------
+
+    if is_roundup_news(
+        original_title,
+        news.get("summary", "")
+    ):
+
+        log.info(
+            "SKIPPED ROUNDUP BEFORE PROCESSING"
+        )
+
+        return False
 
     # -----------------------------------------------------
     # RSS MEDIA
@@ -1966,6 +2253,21 @@ def process_news(
     if not text:
 
         text = news["summary"]
+
+    # -----------------------------------------------------
+    # SECOND ROUNDUP CHECK USING ARTICLE
+    # -----------------------------------------------------
+
+    if is_roundup_news(
+        original_title,
+        text
+    ):
+
+        log.info(
+            "SKIPPED ROUNDUP AFTER ARTICLE EXTRACTION"
+        )
+
+        return False
 
     # -----------------------------------------------------
     # GEMINI
@@ -2023,6 +2325,21 @@ def process_news(
 
         final_title = local["title"]
         final_body = local["body"]
+
+    # -----------------------------------------------------
+    # FINAL ROUNDUP CHECK
+    # -----------------------------------------------------
+
+    if is_roundup_news(
+        final_title,
+        final_body
+    ):
+
+        log.info(
+            "SKIPPED: final result is roundup/package"
+        )
+
+        return False
 
     # -----------------------------------------------------
     # TITLE VIDEO MARKER
@@ -2207,10 +2524,10 @@ def main():
         "===================================="
     )
     log.info(
-        "NABZ KHABAR BOT v5"
+        "NABZ KHABAR BOT v6"
     )
     log.info(
-        "GEMINI + VIDEO ENGINE"
+        "GEMINI + VIDEO + SMART FILTER"
     )
     log.info(
         "===================================="
@@ -2255,6 +2572,7 @@ def main():
 
         return
 
+    # Don't process too many at once
     candidates = candidates[:20]
 
     published_count = 0
