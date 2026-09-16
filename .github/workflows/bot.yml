@@ -41,25 +41,41 @@ jobs:
         run: |
           python main.py
 
-      - name: Commit and push sent_news.txt
+      - name: Safely update sent_news.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -e
+
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
 
+          # Get the newest remote state
+          git fetch origin main
+
+          # Preserve BOTH local and remote history.
+          # sent_news.txt is append-only, so combining unique lines is safe.
+          if git show origin/main:sent_news.txt > /tmp/remote_sent_news.txt 2>/dev/null; then
+            cat /tmp/remote_sent_news.txt sent_news.txt | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt
+            mv /tmp/merged_sent_news.txt sent_news.txt
+          fi
+
           git add sent_news.txt
 
-          if git diff --staged --quiet; then
-            echo "No changes to sent_news.txt"
+          # Create a commit only if there are actual changes
+          if git diff --cached --quiet; then
+            echo "No sent_news.txt changes to commit."
             exit 0
           fi
 
           git commit -m "Update sent_news.txt [skip ci]"
 
-          git fetch origin main
+          # Rebase onto latest main.
+          # Since local and remote sent_news.txt were merged above,
+          # this should not produce the previous conflict.
           git rebase origin/main
 
+          # Push the result
           git push origin HEAD:main
