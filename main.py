@@ -1083,20 +1083,37 @@ def make_history_key(
     title,
     link
 ):
+    """Primary identity: canonical article URL.
+    Title is deliberately excluded so Gemini title changes cannot
+    make the same article look new.
+    """
+    canonical_link = canonicalize_url(link)
 
-    canonical_link = canonicalize_url(
-        link
-    )
+    if not canonical_link:
+        canonical_link = normalize_space(title)
 
-    value = (
-        normalize_space(title)
-        + "|"
-        + canonical_link
-    )
+    return hashlib.sha256(
+        canonical_link.encode("utf-8")
+    ).hexdigest()
 
+
+def make_legacy_history_key(title, link):
+    """Old v11/v12 title+URL hash kept for backward compatibility."""
+    canonical_link = canonicalize_url(link)
+    value = normalize_space(title) + "|" + canonical_link
     return hashlib.sha256(
         value.encode("utf-8")
     ).hexdigest()
+
+
+def history_key_exists(title, link, hash_history):
+    """Check both the new URL-only identity and old stored identity."""
+    primary = make_history_key(title, link)
+    if primary in hash_history:
+        return True
+
+    legacy = make_legacy_history_key(title, link)
+    return legacy in hash_history
 
 
 # ============================================================
@@ -2842,26 +2859,51 @@ def choose_news_emoji(title, body):
     return "⚡"
 
 
-def build_caption(
-    title,
-    body
-):
+def choose_news_emoji(title, body):
+    """Choose one clean emoji based on the main topic of the news."""
 
-    title = clean_title(
-        title
-    )
+    text = normalize_space(f"{title} {body}").lower()
 
-    body = enforce_short_summary(
-        body
-    )
+    urgent_keywords = [
+        "خبر فوری", "فوری", "انفجار", "حمله", "موشک", "جنگ",
+        "زلزله", "سیل", "آتش سوزی", "آتش‌سوزی", "سقوط",
+        "تصادف", "کشته", "مفقود", "ترور", "حادثه مهم"
+    ]
+    if any(k in text for k in urgent_keywords):
+        return "🚨"
 
-    emoji = choose_news_emoji(
-        title,
-        body
-    )
+    categories = [
+        ("⚽", ["فوتبال", "ورزش", "لیگ", "جام جهانی", "المپیک", "تیم ملی", "بازیکن", "مربی", "آرسنال", "استقلال", "پرسپولیس"]),
+        ("💵", ["دلار", "ارز", "یورو", "پوند", "نرخ ارز"]),
+        ("🪙", ["طلا", "سکه", "اونس طلا", "طلای ۱۸", "طلای 24", "طلای ۲۴"]),
+        ("📈", ["بورس", "شاخص کل", "فرابورس", "سهام", "معاملات بورس"]),
+        ("🤖", ["هوش مصنوعی", "ai", "gemini", "chatgpt", "مدل زبانی"]),
+        ("📱", ["موبایل", "گوشی", "اینترنت", "اپلیکیشن", "اندروید", "آیفون", "ios", "شبکه اجتماعی"]),
+        ("🚗", ["خودرو", "ماشین", "خودروساز", "خودروهای وارداتی", "خودرو برقی"]),
+        ("🏥", ["سلامت", "پزشکی", "بیمارستان", "دارو", "درمان", "پزشک"]),
+        ("🌦️", ["هواشناسی", "آب و هوا", "بارندگی", "بارش", "دما", "هوا"]),
+        ("₿", ["بیت کوین", "اتریوم", "ارز دیجیتال", "کریپتو", "رمزارز", "crypto"]),
+        ("🛢️", ["نفت", "گاز", "انرژی", "بنزین", "برق", "سوخت", "پالایشگاه"]),
+        ("🔬", ["علم", "دانش", "پژوهش", "فضا", "ناسا", "نجوم", "آزمایش"]),
+        ("🎬", ["سینما", "فیلم", "سریال", "بازیگر", "هنر", "موسیقی", "فرهنگ"]),
+        ("🎓", ["دانشگاه", "مدرسه", "آموزش", "دانشجو", "کنکور", "معلم"]),
+        ("🌍", ["جهان", "آمریکا", "اروپا", "روسیه", "اوکراین", "چین", "خاورمیانه", "بین‌الملل", "بین الملل"]),
+        ("🇮🇷", ["ایران", "تهران", "مجلس", "دولت", "وزارتخانه", "استاندار", "استان"]),
+    ]
+
+    for emoji, keywords in categories:
+        if any(k in text for k in keywords):
+            return emoji
+
+    return "⚡"
+
+
+def build_caption(title, body):
+    title = clean_title(title)
+    body = enforce_short_summary(body)
+    emoji = choose_news_emoji(title, body)
 
     if body:
-
         return (
             f"{emoji} {title}\n\n"
             f"{body}\n\n"
@@ -3571,7 +3613,7 @@ def collect_candidates(
             link
         )
 
-        if old_hash in hash_history:
+        if history_key_exists(title, link, hash_history):
 
             history_skipped += 1
 
@@ -3798,10 +3840,7 @@ def collect_candidates(
         ):
             continue
 
-        if make_history_key(
-            title,
-            link
-        ) in hash_history:
+        if history_key_exists(title, link, hash_history):
             continue
 
         final_candidates.append(
@@ -3980,10 +4019,14 @@ def process_news(
         link
     )
 
-    if history_key in hash_history:
+    if history_key_exists(
+        original_title,
+        link,
+        hash_history
+    ):
 
         print(
-            "SKIPPED: old hash history"
+            "SKIPPED: URL history (duplicate article)"
         )
 
         return False
