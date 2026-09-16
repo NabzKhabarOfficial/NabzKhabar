@@ -1311,6 +1311,87 @@ def numeric_anchors(text):
     )
 
 
+# ============================================================
+# V13 EVENT-LEVEL DUPLICATE PROTECTION
+# ============================================================
+
+EVENT_TERMS = {
+    "سیل", "زلزله", "سونامی", "بهمن", "طوفان", "گردباد", "رانش", "آتش سوزی", "آتش‌سوزی",
+    "انفجار", "تصادف", "سقوط", "هواپیما", "قطار", "کشتی", "غرق", "حمله", "موشک", "جنگ",
+    "درگیری", "آتش بس", "آتش‌بس", "ترور", "کشته", "قربانی", "تلفات", "مفقود", "بازداشت",
+    "تحریم", "زلزله", "فوت", "مرگ", "مسمومیت", "قطعی", "خاموشی", "آتش",
+}
+
+LOCATION_TERMS = {
+    "ایران", "تهران", "نپال", "چین", "هند", "پاکستان", "افغانستان", "ترکیه", "عراق", "سوریه",
+    "لبنان", "اسرائیل", "فلسطین", "غزه", "آمریکا", "روسیه", "اوکراین", "فرانسه", "آلمان",
+    "انگلیس", "بریتانیا", "ایتالیا", "اسپانیا", "ژاپن", "کره", "عربستان", "امارات", "قطر",
+    "بحرین", "عمان", "مصر", "سودان", "یمن", "لیبی", "مکزیک", "برزیل", "کانادا",
+}
+
+
+def event_numbers(text):
+    text = normalize_digits(text or "")
+    values = re.findall(r"\d+(?:[.,٬]\d+)*", text)
+    return {re.sub(r"[.,٬]", "", value) for value in values}
+
+
+def event_terms(text):
+    normalized = normalize_space(normalize_digits(text or "")).lower()
+    normalized = normalized.replace("ي", "ی").replace("ك", "ک")
+    normalized = normalized.replace("‌", " ")
+    return {
+        term for term in EVENT_TERMS
+        if term in normalized
+    }
+
+
+def location_terms(text):
+    normalized = normalize_space(normalize_digits(text or "")).lower()
+    return {
+        term for term in LOCATION_TERMS
+        if term in normalized
+    }
+
+
+def same_real_world_event(title_a, title_b):
+    """Detect the same incident when publishers use substantially different wording."""
+    combined_a = clean_title(title_a)
+    combined_b = clean_title(title_b)
+
+    events_a = event_terms(combined_a)
+    events_b = event_terms(combined_b)
+    common_events = events_a & events_b
+
+    locations_a = location_terms(combined_a)
+    locations_b = location_terms(combined_b)
+    common_locations = locations_a & locations_b
+
+    numbers_a = event_numbers(combined_a)
+    numbers_b = event_numbers(combined_b)
+    common_numbers = numbers_a & numbers_b
+
+    # Same incident type + same location + a shared key number.
+    if common_events and common_locations and common_numbers:
+        return True
+
+    # Same incident + same location is enough when both headlines are clearly
+    # describing a concrete casualty/disaster/attack event.
+    if len(common_events) >= 1 and len(common_locations) >= 1:
+        if common_numbers:
+            return True
+
+        sim = story_similarity(combined_a, combined_b)
+        if sim >= 0.30:
+            return True
+
+    # Different number formatting such as 1400 vs 1,400 is normalized above.
+    if len(common_events) >= 2 and common_numbers:
+        return True
+
+    return False
+
+
 def same_story(a, b):
 
     title_a = clean_title(
@@ -1329,6 +1410,11 @@ def same_story(a, b):
 
     if not title_a or not title_b:
         return False
+
+    # Event-level identity catches different headlines describing the same
+    # real-world incident, before ordinary token similarity is evaluated.
+    if same_real_world_event(title_a, title_b):
+        return True
 
     # Exact normalized title.
     if (
@@ -4223,13 +4309,8 @@ def event_tokens(text):
     return {x for x in tokens if len(x) >= 2 and x not in GENERIC_EVENT_WORDS}
 
 
-def event_numbers(text):
-    return {x.replace(",", "") for x in re.findall(r"\d+(?:[.,]\d+)?", event_normalize(text))}
 
 
-def event_terms(text):
-    normalized = event_normalize(text)
-    return {x for x in EVENT_WORDS if event_normalize(x) in normalized}
 
 
 def same_event(a_title, a_body, b_title, b_body):
@@ -4661,6 +4742,7 @@ def process_news(
                             canonical_article_url,
                         )
                     )
+
 
 
 
