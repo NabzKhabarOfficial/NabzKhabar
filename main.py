@@ -205,17 +205,24 @@ def send_telegram(caption, media_url=None, media_type='photo'):
         return False
 
     if media_type == 'video':
-        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendVideo"
-        payload = {
-            "chat_id": CHAT_ID,
-            "video": media_url,
-            "caption": caption,
-            "parse_mode": "HTML"
-        }
         try:
-            res = requests.post(url, data=payload, timeout=20)
+            vid_res = requests.get(media_url, timeout=25)
+            if vid_res.status_code != 200:
+                print("Failed to download video file.")
+                return False
+                
+            url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendVideo"
+            files = {'video': ('video.mp4', io.BytesIO(vid_res.content), 'video/mp4')}
+            payload = {
+                "chat_id": CHAT_ID,
+                "caption": caption,
+                "parse_mode": "HTML"
+            }
+            res = requests.post(url, data=payload, files=files, timeout=30)
             if res.ok:
                 return True
+            else:
+                print(f"Telegram Video Error: {res.text}")
         except Exception as e:
             print(f"Error sending video: {e}")
         return False
