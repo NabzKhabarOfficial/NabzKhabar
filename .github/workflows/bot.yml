@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -45,7 +47,19 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+
           git add sent_news.txt
-          git diff --staged --quiet || git commit -m "Update sent_news.txt [skip ci]"
-          git push
+
+          if git diff --staged --quiet; then
+            echo "No changes to sent_news.txt"
+            exit 0
+          fi
+
+          git commit -m "Update sent_news.txt [skip ci]"
+
+          git fetch origin main
+          git rebase origin/main
+
+          git push origin HEAD:main
