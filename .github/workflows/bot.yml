@@ -2,8 +2,6 @@ name: Run NabzKhabar News
 
 on:
   schedule:
-    # One workflow handles both normal and hot-news lanes.
-    # Normal lane: every 15 minutes. Hot lane: every 5 minutes, offset by 2 minutes.
     - cron: '0,15,30,45 * * * *'
     - cron: '2/5 * * * *'
   workflow_dispatch:
@@ -56,7 +54,7 @@ jobs:
             export HOT_ONLY='1'
           fi
 
-          python v14_runner.py
+          python main.py
 
       - name: Safely update bot state
         env:
