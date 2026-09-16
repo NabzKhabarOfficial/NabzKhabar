@@ -33,13 +33,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run bot script (v13)
+      - name: Run bot script (v14)
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           MAX_NEWS_PER_RUN: '4'
         run: |
-          python v13_runner.py
+          python v14_runner.py
 
       - name: Safely update bot state
         env:
@@ -59,6 +59,6 @@ jobs:
             echo "No bot state changes to commit."
             exit 0
           fi
-          git commit -m "Apply NabzKhabar v13 quality gate [skip ci]"
+          git commit -m "Apply NabzKhabar v14 event protection [skip ci]"
           git rebase origin/main
           git push origin HEAD:main
