@@ -67,16 +67,47 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-          git fetch origin main
-          if git show origin/main:sent_news.txt > /tmp/remote_sent_news.txt 2>/dev/null; then
-            cat /tmp/remote_sent_news.txt sent_news.txt | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt
-            mv /tmp/merged_sent_news.txt sent_news.txt
-          fi
-          git add sent_news.txt main.py
-          if git diff --cached --quiet; then
-            echo "No bot state changes to commit."
-            exit 0
-          fi
-          git commit -m "Update NabzKhabar news state [skip ci]"
-          git rebase origin/main
-          git push origin HEAD:main
+
+          # Never rebase sent_news.txt. A rebase can conflict when another run
+          # has already recorded news, which previously caused the state update
+          # to fail after Telegram publication and allowed the same story to post again.
+          cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || :
+
+          for attempt in 1 2 3; do
+            echo "State sync attempt $attempt/3"
+            git fetch origin main
+
+            if git show origin/main:sent_news.txt > /tmp/remote_sent_news.txt 2>/dev/null; then
+              cat /tmp/remote_sent_news.txt /tmp/local_sent_news.txt 2>/dev/null \
+                | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt
+            else
+              cat /tmp/local_sent_news.txt 2>/dev/null \
+                | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt || true
+            fi
+
+            # Start from the latest remote commit, then apply only the merged
+            # bot state. This avoids sent_news.txt merge conflicts entirely.
+            git reset --hard origin/main
+            if [ -f /tmp/merged_sent_news.txt ]; then
+              cp /tmp/merged_sent_news.txt sent_news.txt
+            fi
+
+            git add sent_news.txt
+            if git diff --cached --quiet; then
+              echo "No bot state changes to commit."
+              exit 0
+            fi
+
+            git commit -m "Update NabzKhabar news state [skip ci]"
+
+            if git push origin HEAD:main; then
+              echo "Bot state pushed successfully."
+              exit 0
+            fi
+
+            echo "Push raced with another update; retrying..."
+            git reset --hard HEAD~1
+          done
+
+          echo "ERROR: Could not safely update bot state after 3 attempts."
+          exit 1
