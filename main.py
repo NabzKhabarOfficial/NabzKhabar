@@ -103,7 +103,7 @@ SESSION.headers.update({
 
 
 # =========================================================
-# TEXT CLEANING
+# TEXT NORMALIZATION
 # =========================================================
 
 def normalize_spaces(text):
@@ -162,7 +162,6 @@ def clean_text(text):
 
     raw = str(text).strip()
 
-    # URL تنها را به عنوان HTML پردازش نکن
     if re.fullmatch(
         r"https?://\S+",
         raw,
@@ -184,77 +183,17 @@ def clean_text(text):
 
         text = raw
 
-    text = html.unescape(text)
-
-    text = text.replace(
-        "\u200c",
-        " "
-    )
-
-    text = text.replace(
-        "\u200f",
-        ""
-    )
-
-    text = text.replace(
-        "\u200e",
-        ""
-    )
-
-    text = re.sub(
-        r"https?://\S+",
-        "",
-        text,
-        flags=re.I
-    )
-
-    text = re.sub(
-        r"www\.\S+",
-        "",
-        text,
-        flags=re.I
-    )
-
-    text = re.sub(
-        r"@\w+",
-        "",
-        text
-    )
-
-    text = re.sub(
-        r"\s+",
-        " ",
-        text
-    )
-
-    return text.strip()
+    return normalize_spaces(text)
 
 
 def normalize_title(title):
 
-    title = clean_text(
-        title
-    ).lower()
+    title = clean_text(title).lower()
 
-    title = title.replace(
-        "ي",
-        "ی"
-    )
-
-    title = title.replace(
-        "ك",
-        "ک"
-    )
-
-    title = title.replace(
-        "ۀ",
-        "ه"
-    )
-
-    title = title.replace(
-        "ة",
-        "ه"
-    )
+    title = title.replace("ي", "ی")
+    title = title.replace("ك", "ک")
+    title = title.replace("ۀ", "ه")
+    title = title.replace("ة", "ه")
 
     title = re.sub(
         r"[^\w\u0600-\u06ff ]",
@@ -271,10 +210,7 @@ def normalize_title(title):
     return title.strip()
 
 
-def make_news_id(
-    title,
-    link
-):
+def make_news_id(title, link):
 
     base = (
         normalize_title(title)
@@ -293,9 +229,7 @@ def make_news_id(
 
 def load_history():
 
-    if not os.path.exists(
-        HISTORY_FILE
-    ):
+    if not os.path.exists(HISTORY_FILE):
         return set()
 
     try:
@@ -328,7 +262,6 @@ def save_history(history):
         items = list(history)
 
         if len(items) > 500:
-
             items = items[-500:]
 
         with open(
@@ -338,10 +271,7 @@ def save_history(history):
         ) as f:
 
             for item in items:
-
-                f.write(
-                    item + "\n"
-                )
+                f.write(item + "\n")
 
     except Exception as e:
 
@@ -354,9 +284,7 @@ def save_history(history):
 # DEADLINE
 # =========================================================
 
-def deadline_reached(
-    start_time
-):
+def deadline_reached(start_time):
 
     return (
         time.monotonic()
@@ -369,9 +297,7 @@ def deadline_reached(
 # RSS
 # =========================================================
 
-def fetch_feed(
-    source
-):
+def fetch_feed(source):
 
     category, url = source
 
@@ -409,9 +335,7 @@ def fetch_feed(
         return category, []
 
 
-def get_entry_timestamp(
-    entry
-):
+def get_entry_timestamp(entry):
 
     for key in (
         "published_parsed",
@@ -419,36 +343,24 @@ def get_entry_timestamp(
         "created_parsed"
     ):
 
-        value = entry.get(
-            key
-        )
+        value = entry.get(key)
 
         if value:
 
             try:
-
-                return time.mktime(
-                    value
-                )
-
+                return time.mktime(value)
             except Exception:
-
                 pass
 
     return 0
 
 
-def collect_candidates(
-    history,
-    start_time
-):
+def collect_candidates(history, start_time):
 
     candidates = []
     seen_ids = set()
 
-    log.info(
-        "Collecting RSS feeds..."
-    )
+    log.info("Collecting RSS feeds...")
 
     with ThreadPoolExecutor(
         max_workers=8
@@ -462,33 +374,20 @@ def collect_candidates(
             for source in RSS_FEEDS
         ]
 
-        for future in as_completed(
-            futures
-        ):
+        for future in as_completed(futures):
 
-            if deadline_reached(
-                start_time
-            ):
-
+            if deadline_reached(start_time):
                 break
 
             try:
-
-                category, entries = (
-                    future.result()
-                )
-
+                category, entries = future.result()
             except Exception:
-
                 continue
 
             for entry in entries:
 
                 title = clean_text(
-                    entry.get(
-                        "title",
-                        ""
-                    )
+                    entry.get("title", "")
                 )
 
                 link = (
@@ -498,7 +397,6 @@ def collect_candidates(
                 ).strip()
 
                 if not title or not link:
-
                     continue
 
                 news_id = make_news_id(
@@ -507,16 +405,12 @@ def collect_candidates(
                 )
 
                 if news_id in history:
-
                     continue
 
                 if news_id in seen_ids:
-
                     continue
 
-                seen_ids.add(
-                    news_id
-                )
+                seen_ids.add(news_id)
 
                 summary = clean_text(
                     entry.get("summary")
@@ -552,16 +446,50 @@ def collect_candidates(
     )
 
     log.info(
-        f"Candidates found: "
-        f"{len(candidates)}"
+        f"Candidates found: {len(candidates)}"
     )
 
     return candidates
 
 
 # =========================================================
-# BAD CONTENT FILTER
+# SOURCE / BOILERPLATE CLEANING
 # =========================================================
+
+SOURCE_PATTERNS = [
+
+    r"^به گزارش\s+",
+    r"^به گزارش خبرنگار\s+",
+    r"^به گزارش خبرگزاری\s+",
+    r"^به نقل از\s+",
+    r"^در گفت‌وگو با\s+",
+    r"^در گفتگو با\s+",
+    r"^به نقل از خبرگزاری\s+",
+    r"^خبرگزاری\s+\S+\s*[-–—:]\s*",
+    r"^خبرنگار\s+\S+\s*[-–—:]\s*",
+    r"^ایرنا\s*[-–—:]\s*",
+    r"^مهر\s*[-–—:]\s*",
+]
+
+
+def remove_source_phrase(text):
+
+    if not text:
+        return ""
+
+    text = clean_text(text)
+
+    for pattern in SOURCE_PATTERNS:
+
+        text = re.sub(
+            pattern,
+            "",
+            text,
+            flags=re.I
+        )
+
+    return text.strip()
+
 
 BAD_PATTERNS = [
 
@@ -601,107 +529,81 @@ BAD_PATTERNS = [
     "پست‌های مرتبط",
 
     "پایان پیام",
+
+    "منبع:",
+    "منبع خبر:",
 ]
 
 
-def is_bad_paragraph(
-    text
-):
+def is_bad_paragraph(text):
 
-    text = clean_text(
-        text
-    )
+    text = remove_source_phrase(text)
 
     if not text:
-
         return True
 
-    normalized = normalize_title(
-        text
-    )
+    normalized = normalize_title(text)
 
     if len(text) < 35:
-
         return True
 
     for pattern in BAD_PATTERNS:
 
-        if normalize_title(
-            pattern
-        ) in normalized:
-
+        if normalize_title(pattern) in normalized:
             return True
 
     if re.search(
         r"^(فهرست|مطالب مرتبط|"
-        r"تبلیغات|اشتراک)",
+        r"تبلیغات|اشتراک|کپی لینک)",
         normalized
     ):
-
         return True
 
-    if normalized.count(
-        "?"
-    ) >= 4:
-
+    if normalized.count("?") >= 4:
         return True
 
     return False
 
 
-def clean_paragraph_list(
-    paragraphs
-):
+# =========================================================
+# PARAGRAPH CLEANING
+# =========================================================
+
+def clean_paragraph_list(paragraphs):
 
     result = []
     seen = set()
 
     for paragraph in paragraphs:
 
-        paragraph = clean_text(
+        paragraph = remove_source_phrase(
             paragraph
         )
 
-        if is_bad_paragraph(
-            paragraph
-        ):
-
+        if is_bad_paragraph(paragraph):
             continue
 
-        key = normalize_title(
-            paragraph
-        )
+        key = normalize_title(paragraph)
 
         if key in seen:
-
             continue
 
-        seen.add(
-            key
-        )
+        seen.add(key)
 
-        if len(
-            paragraph.split()
-        ) < 7:
-
+        if len(paragraph.split()) < 7:
             continue
 
-        result.append(
-            paragraph
-        )
+        result.append(paragraph)
 
     return result
 
 
 # =========================================================
-# ARTICLE MEDIA
+# MEDIA EXTRACTION
 # =========================================================
 
-def extract_media_from_soup(
-    soup
-):
+def extract_media_from_soup(soup):
 
-    # Video metadata
     for property_name in (
         "og:video",
         "og:video:url",
@@ -713,76 +615,48 @@ def extract_media_from_soup(
             property=property_name
         )
 
-        if (
-            video
-            and video.get("content")
-        ):
+        if video and video.get("content"):
 
             return {
                 "type": "video",
-                "url": video[
-                    "content"
-                ].strip()
+                "url": video["content"].strip()
             }
 
-    # Video tag
-    video_tag = soup.find(
-        "video"
-    )
+    video_tag = soup.find("video")
 
     if video_tag:
 
-        source = video_tag.find(
-            "source"
-        )
+        source = video_tag.find("source")
 
-        if (
-            source
-            and source.get("src")
-        ):
+        if source and source.get("src"):
 
             return {
                 "type": "video",
-                "url": source[
-                    "src"
-                ].strip()
+                "url": source["src"].strip()
             }
 
-        if video_tag.get(
-            "src"
-        ):
+        if video_tag.get("src"):
 
             return {
                 "type": "video",
-                "url": video_tag[
-                    "src"
-                ].strip()
+                "url": video_tag["src"].strip()
             }
 
-    # OpenGraph image
     og_image = soup.find(
         "meta",
         property="og:image"
     )
 
-    if (
-        og_image
-        and og_image.get("content")
-    ):
+    if og_image and og_image.get("content"):
 
         return {
             "type": "image",
-            "url": og_image[
-                "content"
-            ].strip()
+            "url": og_image["content"].strip()
         }
 
-    # Twitter image
     twitter_image = soup.find(
         "meta",
-        attrs={
-            "name": "twitter:image"
-        }
+        attrs={"name": "twitter:image"}
     )
 
     if (
@@ -792,9 +666,7 @@ def extract_media_from_soup(
 
         return {
             "type": "image",
-            "url": twitter_image[
-                "content"
-            ].strip()
+            "url": twitter_image["content"].strip()
         }
 
     return None
@@ -804,9 +676,7 @@ def extract_media_from_soup(
 # ARTICLE EXTRACTION
 # =========================================================
 
-def extract_article_data(
-    url
-):
+def extract_article_data(url):
 
     try:
 
@@ -826,7 +696,6 @@ def extract_article_data(
             soup
         )
 
-        # Remove website UI
         for tag in soup([
             "script",
             "style",
@@ -872,27 +741,19 @@ def extract_article_data(
 
             try:
 
-                found = soup.select(
-                    selector
-                )
+                found = soup.select(selector)
 
                 for container in found:
-
-                    containers.append(
-                        container
-                    )
+                    containers.append(container)
 
             except Exception:
-
                 pass
 
         article_paragraphs = []
 
         for container in containers:
 
-            for p in container.find_all(
-                "p"
-            ):
+            for p in container.find_all("p"):
 
                 text = clean_text(
                     p.get_text(
@@ -901,28 +762,22 @@ def extract_article_data(
                     )
                 )
 
+                text = remove_source_phrase(
+                    text
+                )
+
                 if text:
+                    article_paragraphs.append(text)
 
-                    article_paragraphs.append(
-                        text
-                    )
-
-        article_paragraphs = (
-            clean_paragraph_list(
-                article_paragraphs
-            )
+        article_paragraphs = clean_paragraph_list(
+            article_paragraphs
         )
 
-        # اگر article container مناسب پیدا نشد
-        if len(
-            article_paragraphs
-        ) < 2:
+        if len(article_paragraphs) < 2:
 
             article_paragraphs = []
 
-            for p in soup.find_all(
-                "p"
-            ):
+            for p in soup.find_all("p"):
 
                 text = clean_text(
                     p.get_text(
@@ -931,16 +786,15 @@ def extract_article_data(
                     )
                 )
 
-                if text:
-
-                    article_paragraphs.append(
-                        text
-                    )
-
-            article_paragraphs = (
-                clean_paragraph_list(
-                    article_paragraphs
+                text = remove_source_phrase(
+                    text
                 )
+
+                if text:
+                    article_paragraphs.append(text)
+
+            article_paragraphs = clean_paragraph_list(
+                article_paragraphs
             )
 
         final_paragraphs = []
@@ -949,39 +803,26 @@ def extract_article_data(
 
         for paragraph in article_paragraphs:
 
-            key = normalize_title(
-                paragraph
-            )
+            key = normalize_title(paragraph)
 
             if key in seen:
-
                 continue
 
-            seen.add(
-                key
-            )
+            seen.add(key)
 
-            final_paragraphs.append(
-                paragraph
-            )
+            final_paragraphs.append(paragraph)
 
-        # حداکثر 12 پاراگراف
-        final_paragraphs = (
-            final_paragraphs[:12]
-        )
+        final_paragraphs = final_paragraphs[:15]
 
         return {
-            "text": "\n\n".join(
-                final_paragraphs
-            ),
+            "text": "\n\n".join(final_paragraphs),
             "media": media
         }
 
     except Exception as e:
 
         log.info(
-            f"Article fetch failed: "
-            f"{url} | {e}"
+            f"Article fetch failed: {url} | {e}"
         )
 
         return {
@@ -994,9 +835,7 @@ def extract_article_data(
 # RSS MEDIA
 # =========================================================
 
-def extract_rss_media(
-    entry
-):
+def extract_rss_media(entry):
 
     media_content = entry.get(
         "media_content"
@@ -1006,12 +845,9 @@ def extract_rss_media(
 
         for media in media_content:
 
-            url = media.get(
-                "url"
-            )
+            url = media.get("url")
 
             if not url:
-
                 continue
 
             mime = media.get(
@@ -1050,7 +886,6 @@ def extract_rss_media(
             )
 
             if not url:
-
                 continue
 
             mime = enclosure.get(
@@ -1083,39 +918,28 @@ def extract_rss_media(
             "html.parser"
         )
 
-        img = soup.find(
-            "img"
-        )
+        img = soup.find("img")
 
-        if (
-            img
-            and img.get("src")
-        ):
+        if img and img.get("src"):
 
             return {
                 "type": "image",
-                "url": img[
-                    "src"
-                ].strip()
+                "url": img["src"].strip()
             }
 
     except Exception:
-
         pass
 
     return None
 
 
 # =========================================================
-# SENTENCE PROCESSING
+# SENTENCE ENGINE
 # =========================================================
 
-def split_sentences(
-    text
-):
+def split_sentences(text):
 
     if not text:
-
         return []
 
     text = text.replace(
@@ -1132,23 +956,218 @@ def split_sentences(
 
     for part in parts:
 
-        part = clean_text(
-            part
-        )
+        part = remove_source_phrase(part)
 
         if not part:
-
             continue
 
-        result.append(
-            part
-        )
+        result.append(part)
 
     return result
 
 
+def sentence_key(text):
+
+    text = normalize_title(text)
+
+    # حذف برخی علائم برای مقایسه بهتر
+    text = re.sub(
+        r"[،؛:!؟.,]",
+        " ",
+        text
+    )
+
+    text = re.sub(
+        r"\s+",
+        " ",
+        text
+    )
+
+    return text.strip()
+
+
+def word_set(text):
+
+    return {
+        w
+        for w in sentence_key(text).split()
+        if len(w) > 2
+    }
+
+
+def similarity(a, b):
+
+    wa = word_set(a)
+    wb = word_set(b)
+
+    if not wa or not wb:
+        return 0
+
+    return (
+        len(wa & wb)
+        / max(
+            1,
+            len(wa | wb)
+        )
+    )
+
+
 # =========================================================
-# LOCAL NEWS BODY ENGINE
+# SENTENCE QUALITY
+# =========================================================
+
+def is_malformed_sentence(sentence):
+
+    if not sentence:
+        return True
+
+    sentence = clean_text(sentence)
+
+    if len(sentence) < 45:
+        return True
+
+    if len(sentence) > 700:
+        return True
+
+    normalized = normalize_title(sentence)
+
+    # علائم واضح استخراج خراب
+    if "همچنین بر" in normalized and "فرماندار" in normalized:
+        if normalized.count("فرماندار") >= 2:
+            return True
+
+    if "همچنین" in normalized and normalized.count("همچنین") >= 3:
+        return True
+
+    if normalized.count("،") > 10:
+        return True
+
+    # چند تیتر/عبارت چسبیده
+    if re.search(
+        r"(فرماندار|رئیس|مدیر|وزیر).{0,30}"
+        r"(همچنین|وی همچنین).{0,10}"
+        r"(فرماندار|رئیس|مدیر|وزیر)",
+        normalized
+    ):
+        return True
+
+    # جمله‌هایی که ناگهان با یک عنوان جدید ادامه پیدا می‌کنند
+    if re.search(
+        r"\b(رئیس|فرماندار|وزیر|مدیرعامل)\s+\S+"
+        r".{0,20}\b(همچنین|افزود|گفت)\b",
+        normalized
+    ) and len(sentence) > 500:
+
+        return True
+
+    return False
+
+
+# =========================================================
+# IMPORTANT SENTENCE SCORING
+# =========================================================
+
+IMPORTANT_WORDS = [
+
+    "اعلام",
+    "خبر",
+    "گفت",
+    "افزود",
+
+    "تأکید",
+    "تاکید",
+
+    "اظهار",
+    "عنوان",
+
+    "بیان کرد",
+    "اعلام کرد",
+
+    "آغاز",
+    "برگزار",
+    "برگزاری",
+
+    "تصمیم",
+    "توافق",
+    "مذاکره",
+
+    "حادثه",
+    "کشته",
+    "مجروح",
+    "زخمی",
+
+    "بازداشت",
+
+    "افزایش",
+    "کاهش",
+    "رشد",
+    "افت",
+
+    "قیمت",
+    "تولید",
+
+    "رقابت",
+    "مسابقه",
+    "دیدار",
+    "سفر",
+
+    "پرونده",
+    "مختومه",
+    "سازش",
+
+    "جنگ",
+    "درگیری",
+    "حمله",
+
+    "امکانات",
+    "برنامه",
+    "پروژه",
+]
+
+
+def score_sentence(sentence, index):
+
+    score = 0
+
+    normalized = normalize_title(sentence)
+
+    if index == 0:
+        score += 5
+
+    elif index == 1:
+        score += 3
+
+    elif index == 2:
+        score += 2
+
+    for word in IMPORTANT_WORDS:
+
+        if normalize_title(word) in normalized:
+            score += 2
+
+    # عدد معمولاً در خبرهای آماری مهم است
+    if re.search(r"\d", sentence):
+        score += 3
+
+    # درصد
+    if "%" in sentence or "درصد" in sentence:
+        score += 2
+
+    # طول مناسب
+    words = len(sentence.split())
+
+    if 12 <= words <= 45:
+        score += 2
+
+    # جملات بیش از حد طولانی جریمه شوند
+    if words > 65:
+        score -= 3
+
+    return score
+
+
+# =========================================================
+# LOCAL NEWS WRITER v4
 # =========================================================
 
 def make_news_body(
@@ -1157,300 +1176,258 @@ def make_news_body(
     article_text
 ):
 
-    title = clean_title(
-        title
-    )
+    title = clean_title(title)
 
-    # اولویت با متن کامل‌تر مقاله
     source_text = (
         article_text
         if article_text
         else summary
     )
 
-    if not source_text:
-
-        return ""
-
     source_text = clean_text(
         source_text
     )
 
     if not source_text:
-
         return ""
 
-    sentences = split_sentences(
+    paragraphs = []
+
+    for raw_paragraph in re.split(
+        r"\n{2,}",
         source_text
-    )
+    ):
 
-    if not sentences:
+        raw_paragraph = remove_source_phrase(
+            raw_paragraph
+        )
 
-        return ""
+        if is_bad_paragraph(
+            raw_paragraph
+        ):
+            continue
 
-    # -----------------------------------------
-    # حذف جملات نامناسب
-    # -----------------------------------------
+        paragraphs.append(
+            raw_paragraph
+        )
 
-    usable = []
-    seen = set()
+    # اگر پاراگراف‌بندی خراب بود
+    if len(paragraphs) < 2:
 
-    title_normalized = normalize_title(
-        title
-    )
+        paragraphs = split_sentences(
+            source_text
+        )
+
+    sentences = []
+
+    for paragraph in paragraphs:
+
+        parts = split_sentences(
+            paragraph
+        )
+
+        for sentence in parts:
+
+            sentence = remove_source_phrase(
+                sentence
+            )
+
+            if not sentence:
+                continue
+
+            if is_bad_paragraph(
+                sentence
+            ):
+                continue
+
+            if is_malformed_sentence(
+                sentence
+            ):
+                continue
+
+            sentences.append(
+                sentence
+            )
+
+    # حذف تکرار
+    unique_sentences = []
 
     for sentence in sentences:
+
+        duplicate = False
+
+        for previous in unique_sentences:
+
+            if similarity(
+                sentence,
+                previous
+            ) >= 0.72:
+
+                duplicate = True
+                break
+
+        if not duplicate:
+
+            unique_sentences.append(
+                sentence
+            )
+
+    sentences = unique_sentences
+
+    if not sentences:
+        return ""
+
+    # -----------------------------------------------------
+    # اگر خبر خیلی کوتاه است
+    # -----------------------------------------------------
+
+    if len(sentences) <= 2:
+
+        selected = sentences
+
+    else:
+
+        scored = []
+
+        for index, sentence in enumerate(
+            sentences
+        ):
+
+            scored.append({
+                "sentence": sentence,
+                "index": index,
+                "score": score_sentence(
+                    sentence,
+                    index
+                )
+            })
+
+        # لید را از سه جمله اول انتخاب کن
+        lead_candidates = scored[:5]
+
+        lead = max(
+            lead_candidates,
+            key=lambda x: x["score"]
+        )
+
+        selected = [
+            lead["sentence"]
+        ]
+
+        total_length = len(
+            lead["sentence"]
+        )
+
+        # برای حفظ ترتیب طبیعی خبر
+        remaining = sorted(
+            [
+                item
+                for item in scored
+                if item["sentence"]
+                != lead["sentence"]
+            ],
+            key=lambda x: x["index"]
+        )
+
+        for item in remaining:
+
+            sentence = item["sentence"]
+
+            if len(selected) >= 4:
+                break
+
+            if any(
+                similarity(
+                    sentence,
+                    old
+                ) >= 0.65
+                for old in selected
+            ):
+                continue
+
+            if (
+                total_length
+                + len(sentence)
+                + 2
+                > 1700
+            ):
+                continue
+
+            selected.append(
+                sentence
+            )
+
+            total_length += len(
+                sentence
+            )
+
+    # -----------------------------------------------------
+    # حذف جمله‌های خیلی کم‌ارزش
+    # -----------------------------------------------------
+
+    cleaned_selected = []
+
+    for sentence in selected:
 
         sentence = clean_text(
             sentence
         )
 
+        sentence = remove_source_phrase(
+            sentence
+        )
+
         if not sentence:
-
-            continue
-
-        if len(sentence) < 45:
-
-            continue
-
-        if len(sentence) > 650:
-
             continue
 
         if is_bad_paragraph(
             sentence
         ):
-
             continue
 
-        normalized = normalize_title(
+        cleaned_selected.append(
             sentence
         )
 
-        if not normalized:
+    selected = cleaned_selected
 
-            continue
-
-        if normalized in seen:
-
-            continue
-
-        # حذف جمله‌ای که دقیقاً تیتر است
-        if normalized == title_normalized:
-
-            continue
-
-        seen.add(
-            normalized
-        )
-
-        usable.append(
-            sentence
-        )
-
-    if not usable:
-
+    if not selected:
         return ""
 
-    # -----------------------------------------
-    # پیدا کردن بهترین لید
-    # -----------------------------------------
+    # -----------------------------------------------------
+    # ساخت پاراگراف‌ها
+    # -----------------------------------------------------
 
-    lead = None
-
-    for index, sentence in enumerate(
-        usable[:6]
-    ):
-
-        score = 0
-
-        if index == 0:
-
-            score += 7
-
-        elif index == 1:
-
-            score += 4
-
-        elif index == 2:
-
-            score += 2
-
-        informative_words = [
-
-            "اعلام",
-            "خبر",
-            "گفت",
-            "خبر داد",
-
-            "افزود",
-
-            "تأکید",
-            "تاکید",
-
-            "اظهار",
-            "عنوان",
-
-            "منصوب",
-
-            "آغاز",
-            "برگزار",
-            "برگزاری",
-
-            "تصمیم",
-
-            "حادثه",
-
-            "کشته",
-            "مجروح",
-            "زخمی",
-
-            "بازداشت",
-
-            "افزایش",
-            "کاهش",
-
-            "رشد",
-            "افت",
-
-            "قیمت",
-            "تولید",
-
-            "انتخابات",
-            "توافق",
-            "مذاکره",
-
-            "سفر",
-            "دیدار",
-        ]
-
-        normalized_sentence = normalize_title(
-            sentence
-        )
-
-        for word in informative_words:
-
-            if normalize_title(
-                word
-            ) in normalized_sentence:
-
-                score += 2
-
-        if re.search(
-            r"\d",
-            sentence
-        ):
-
-            score += 1
-
-        if lead is None:
-
-            lead = {
-                "text": sentence,
-                "score": score,
-                "index": index
-            }
-
-        elif score > lead["score"]:
-
-            lead = {
-                "text": sentence,
-                "score": score,
-                "index": index
-            }
-
-    if not lead:
-
-        return ""
-
-    # -----------------------------------------
-    # انتخاب جزئیات مهم
-    # -----------------------------------------
-
-    selected = [
-        lead["text"]
-    ]
-
-    total_length = len(
-        lead["text"]
-    )
-
-    for sentence in usable:
-
-        if sentence == lead["text"]:
-
-            continue
-
-        # حداکثر 3 جمله/بخش
-        if len(selected) >= 3:
-
-            break
-
-        if (
-            total_length
-            + len(sentence)
-            + 2
-            > 1600
-        ):
-
-            continue
-
-        duplicate = False
-
-        sentence_normalized = normalize_title(
-            sentence
-        )
-
-        for previous in selected:
-
-            previous_normalized = normalize_title(
-                previous
-            )
-
-            # تشابه خیلی ساده برای جلوگیری
-            # از تکرار جمله
-            if (
-                sentence_normalized
-                == previous_normalized
-            ):
-
-                duplicate = True
-
-                break
-
-        if duplicate:
-
-            continue
-
-        selected.append(
-            sentence
-        )
-
-        total_length += len(
-            sentence
-        )
-
-    # -----------------------------------------
-    # ساخت متن نهایی
-    # -----------------------------------------
-
+    # خبرهای خیلی کوتاه
     if len(selected) == 1:
 
         return selected[0]
 
-    lead_text = selected[0]
+    # لید جدا + جزئیات
+    lead = selected[0]
 
-    details = " ".join(
-        selected[1:]
-    )
+    details = []
 
-    if len(details) < 60:
+    for sentence in selected[1:]:
 
-        return lead_text
+        if similarity(
+            lead,
+            sentence
+        ) >= 0.65:
+            continue
+
+        details.append(
+            sentence
+        )
+
+    if not details:
+
+        return lead
 
     return (
-        f"{lead_text}\n\n"
-        f"{details}"
+        lead
+        + "\n\n"
+        + " ".join(details)
     )
 
 
@@ -1458,13 +1435,9 @@ def make_news_body(
 # TITLE CLEANING
 # =========================================================
 
-def clean_title(
-    title
-):
+def clean_title(title):
 
-    title = clean_text(
-        title
-    )
+    title = clean_text(title)
 
     title = re.sub(
         r"^(خبر فوری|فوری|اختصاصی)"
@@ -1506,32 +1479,22 @@ def clean_title(
 # QUALITY CONTROL
 # =========================================================
 
-def quality_check(
-    title,
-    body
-):
+def quality_check(title, body):
 
-    title = clean_title(
-        title
-    )
+    title = clean_title(title)
 
     body = body.strip()
 
     if len(title) < 8:
-
         return False
 
-    if len(body) < 100:
-
+    if len(body) < 80:
         return False
 
     if len(body) > 1900:
-
         return False
 
-    normalized_body = normalize_title(
-        body
-    )
+    normalized_body = normalize_title(body)
 
     forbidden = [
 
@@ -1543,6 +1506,7 @@ def quality_check(
         "پیشنهاد سردبیر",
 
         "تبلیغات",
+        "تبلیغ",
 
         "خبرنامه",
 
@@ -1559,13 +1523,16 @@ def quality_check(
         "ادامه خبر",
 
         "اخبار مرتبط",
+
+        "به گزارش خبرنگار",
+        "به گزارش خبرگزاری",
+        "به نقل از خبرگزاری",
+        "به گزارش",
     ]
 
     for word in forbidden:
 
-        if normalize_title(
-            word
-        ) in normalized_body:
+        if normalize_title(word) in normalized_body:
 
             return False
 
@@ -1574,62 +1541,37 @@ def quality_check(
         body,
         flags=re.I
     ):
-
         return False
 
     if re.search(
         r"@\w+",
         body
     ):
-
         return False
 
-    sentences = split_sentences(
-        body
-    )
+    sentences = split_sentences(body)
 
-    if len(sentences) < 2:
-
+    if len(sentences) < 1:
         return False
 
-    normalized_sentences = []
+    # جملات کاملاً تکراری
+    normalized_sentences = [
+        sentence_key(x)
+        for x in sentences
+        if sentence_key(x)
+    ]
 
-    for sentence in sentences:
-
-        normalized = normalize_title(
-            sentence
-        )
-
-        if normalized:
-
-            normalized_sentences.append(
-                normalized
-            )
-
-    # جلوگیری از جمله‌های کاملاً تکراری
     if (
         len(normalized_sentences)
-        != len(
-            set(normalized_sentences)
-        )
+        != len(set(normalized_sentences))
     ):
-
         return False
 
-    # متن نباید تبدیل به فهرست کوتاه شود
-    short_sentences = 0
-
+    # اگر یک جمله به شکل غیرعادی طولانی باشد
     for sentence in sentences:
 
-        if len(
-            sentence.split()
-        ) < 8:
-
-            short_sentences += 1
-
-    if short_sentences >= 2:
-
-        return False
+        if len(sentence) > 800:
+            return False
 
     return True
 
@@ -1638,9 +1580,7 @@ def quality_check(
 # IMAGE
 # =========================================================
 
-def download_image(
-    url
-):
+def download_image(url):
 
     try:
 
@@ -1657,13 +1597,10 @@ def download_image(
         ).lower()
 
         if "image" not in content_type:
-
             return None
 
         image = Image.open(
-            BytesIO(
-                response.content
-            )
+            BytesIO(response.content)
         ).convert("RGB")
 
         image.thumbnail(
@@ -1675,22 +1612,17 @@ def download_image(
     except Exception as e:
 
         log.info(
-            f"Image download failed: "
-            f"{e}"
+            f"Image download failed: {e}"
         )
 
         return None
 
 
-def add_watermark(
-    image
-):
+def add_watermark(image):
 
     try:
 
-        draw = ImageDraw.Draw(
-            image
-        )
+        draw = ImageDraw.Draw(image)
 
         try:
 
@@ -1706,9 +1638,7 @@ def add_watermark(
 
             font = ImageFont.load_default()
 
-        text = (
-            "نبض خبر | NABZ"
-        )
+        text = "نبض خبر | NABZ"
 
         bbox = draw.textbbox(
             (0, 0),
@@ -1716,15 +1646,8 @@ def add_watermark(
             font=font
         )
 
-        tw = (
-            bbox[2]
-            - bbox[0]
-        )
-
-        th = (
-            bbox[3]
-            - bbox[1]
-        )
+        tw = bbox[2] - bbox[0]
+        th = bbox[3] - bbox[1]
 
         margin = max(
             15,
@@ -1743,7 +1666,6 @@ def add_watermark(
             - margin
         )
 
-        # سایه
         draw.text(
             (
                 x + 2,
@@ -1754,7 +1676,6 @@ def add_watermark(
             fill=(0, 0, 0)
         )
 
-        # متن
         draw.text(
             (
                 x,
@@ -1776,9 +1697,7 @@ def add_watermark(
         return image
 
 
-def image_to_bytes(
-    image
-):
+def image_to_bytes(image):
 
     output = BytesIO()
 
@@ -1798,9 +1717,7 @@ def image_to_bytes(
 # TELEGRAM
 # =========================================================
 
-def telegram_url(
-    method
-):
+def telegram_url(method):
 
     return (
         f"https://api.telegram.org/bot"
@@ -1808,10 +1725,7 @@ def telegram_url(
     )
 
 
-def send_photo(
-    image,
-    caption
-):
+def send_photo(image, caption):
 
     try:
 
@@ -1830,16 +1744,13 @@ def send_photo(
         }
 
         response = SESSION.post(
-            telegram_url(
-                "sendPhoto"
-            ),
+            telegram_url("sendPhoto"),
             data=data,
             files=files,
             timeout=TELEGRAM_TIMEOUT
         )
 
         if response.ok:
-
             return True
 
         log.info(
@@ -1850,17 +1761,13 @@ def send_photo(
     except Exception as e:
 
         log.info(
-            f"Telegram photo exception: "
-            f"{e}"
+            f"Telegram photo exception: {e}"
         )
 
     return False
 
 
-def send_video(
-    video_url,
-    caption
-):
+def send_video(video_url, caption):
 
     try:
 
@@ -1896,7 +1803,6 @@ def send_video(
                     return False
 
             except Exception:
-
                 pass
 
         video_data = BytesIO(
@@ -1920,16 +1826,13 @@ def send_video(
         }
 
         result = SESSION.post(
-            telegram_url(
-                "sendVideo"
-            ),
+            telegram_url("sendVideo"),
             data=data,
             files=files,
             timeout=TELEGRAM_TIMEOUT
         )
 
         if result.ok:
-
             return True
 
         log.info(
@@ -1946,9 +1849,7 @@ def send_video(
     return False
 
 
-def send_text(
-    caption
-):
+def send_text(caption):
 
     try:
 
@@ -1960,15 +1861,12 @@ def send_text(
         }
 
         response = SESSION.post(
-            telegram_url(
-                "sendMessage"
-            ),
+            telegram_url("sendMessage"),
             data=data,
             timeout=TELEGRAM_TIMEOUT
         )
 
         if response.ok:
-
             return True
 
         log.info(
@@ -1979,8 +1877,7 @@ def send_text(
     except Exception as e:
 
         log.info(
-            f"Telegram text exception: "
-            f"{e}"
+            f"Telegram text exception: {e}"
         )
 
     return False
@@ -1990,32 +1887,20 @@ def send_text(
 # CAPTION
 # =========================================================
 
-def make_caption(
-    title,
-    body
-):
+def make_caption(title, body):
 
-    title = clean_title(
-        title
-    )
+    title = clean_title(title)
 
     body = body.strip()
 
     if not title:
-
         title = "خبر جدید"
 
     if not body:
-
         return None
 
-    title = html.escape(
-        title
-    )
-
-    body = html.escape(
-        body
-    )
+    title = html.escape(title)
+    body = html.escape(body)
 
     caption = (
         f"📰 <b>{title}</b>\n\n"
@@ -2023,7 +1908,6 @@ def make_caption(
         f"#نبض_خبر"
     )
 
-    # Telegram photo caption limit
     if len(caption) > 1024:
 
         fixed = (
@@ -2038,22 +1922,14 @@ def make_caption(
         )
 
         if max_body < 100:
-
             return None
 
-        shortened = body[
-            :max_body
-        ]
+        shortened = body[:max_body]
 
-        last_space = shortened.rfind(
-            " "
-        )
+        last_space = shortened.rfind(" ")
 
         if last_space > 80:
-
-            shortened = shortened[
-                :last_space
-            ]
+            shortened = shortened[:last_space]
 
         shortened = shortened.rstrip(
             " .،؛:!"
@@ -2072,27 +1948,17 @@ def make_caption(
 # PROCESS NEWS
 # =========================================================
 
-def process_news(
-    news,
-    history,
-    start_time
-):
+def process_news(news, history, start_time):
 
-    if deadline_reached(
-        start_time
-    ):
-
+    if deadline_reached(start_time):
         return False
 
-    title = news[
-        "title"
-    ]
+    title = news["title"]
 
     log.info(
         f"Processing: {title}"
     )
 
-    # اول تصویر RSS را امتحان کن
     media = extract_rss_media(
         news["entry"]
     )
@@ -2107,7 +1973,6 @@ def process_news(
         rss_summary
     )
 
-    # اگر RSS ضعیف بود، صفحه اصلی خبر را بخوان
     needs_article = (
         len(rss_summary) < 900
         or "فهرست مطالب" in summary_norm
@@ -2123,21 +1988,12 @@ def process_news(
             news["link"]
         )
 
-        if data.get(
-            "text"
-        ):
-
-            article_text = data[
-                "text"
-            ]
+        if data.get("text"):
+            article_text = data["text"]
 
         if not media:
+            media = data.get("media")
 
-            media = data.get(
-                "media"
-            )
-
-    # ساخت متن حرفه‌ای محلی
     final_body = make_news_body(
         news["title"],
         rss_summary,
@@ -2174,19 +2030,14 @@ def process_news(
 
     published = False
 
-    # -----------------------------------------
+    # -----------------------------------------------------
     # VIDEO
-    # -----------------------------------------
+    # -----------------------------------------------------
 
     if media:
 
-        media_type = media.get(
-            "type"
-        )
-
-        media_url = media.get(
-            "url"
-        )
+        media_type = media.get("type")
+        media_url = media.get("url")
 
         if (
             media_type == "video"
@@ -2194,8 +2045,7 @@ def process_news(
         ):
 
             log.info(
-                f"Trying video: "
-                f"{media_url}"
+                f"Trying video: {media_url}"
             )
 
             published = send_video(
@@ -2203,9 +2053,9 @@ def process_news(
                 caption
             )
 
-        # -------------------------------------
+        # -------------------------------------------------
         # IMAGE
-        # -------------------------------------
+        # -------------------------------------------------
 
         elif (
             media_type == "image"
@@ -2213,8 +2063,7 @@ def process_news(
         ):
 
             log.info(
-                f"Trying image: "
-                f"{media_url}"
+                f"Trying image: {media_url}"
             )
 
             image = download_image(
@@ -2236,9 +2085,9 @@ def process_news(
                     caption
                 )
 
-    # -----------------------------------------
+    # -----------------------------------------------------
     # TEXT FALLBACK
-    # -----------------------------------------
+    # -----------------------------------------------------
 
     if not published:
 
@@ -2251,9 +2100,9 @@ def process_news(
             caption
         )
 
-    # -----------------------------------------
-    # SAVE HISTORY
-    # -----------------------------------------
+    # -----------------------------------------------------
+    # HISTORY
+    # -----------------------------------------------------
 
     if published:
 
@@ -2261,20 +2110,16 @@ def process_news(
             news["id"]
         )
 
-        save_history(
-            history
-        )
+        save_history(history)
 
         log.info(
-            f"PUBLISHED: "
-            f"{final_title}"
+            f"PUBLISHED: {final_title}"
         )
 
         return True
 
     log.info(
-        f"FAILED TO PUBLISH: "
-        f"{title}"
+        f"FAILED TO PUBLISH: {title}"
     )
 
     return False
@@ -2299,7 +2144,7 @@ def main():
     )
 
     log.info(
-        "AI-FREE LOCAL NEWS ENGINE v3"
+        "LOCAL NEWS ENGINE v4"
     )
 
     log.info(
@@ -2317,8 +2162,7 @@ def main():
     history = load_history()
 
     log.info(
-        f"History entries: "
-        f"{len(history)}"
+        f"History entries: {len(history)}"
     )
 
     candidates = collect_candidates(
@@ -2338,7 +2182,6 @@ def main():
 
         return
 
-    # فقط جدیدترین 20 خبر برای پردازش
     candidates = candidates[:20]
 
     published_count = 0
@@ -2349,12 +2192,9 @@ def main():
             published_count
             >= MAX_NEWS_PER_RUN
         ):
-
             break
 
-        if deadline_reached(
-            start_time
-        ):
+        if deadline_reached(start_time):
 
             log.info(
                 "Run deadline reached."
@@ -2369,7 +2209,6 @@ def main():
         )
 
         if success:
-
             published_count += 1
 
         time.sleep(1)
@@ -2404,5 +2243,4 @@ def main():
 # =========================================================
 
 if __name__ == "__main__":
-
     main()
