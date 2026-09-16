@@ -2,9 +2,8 @@ name: Market Prices
 
 on:
   schedule:
-    # Every 15 minutes. The free source allows 250 API requests/day;
-    # this workflow makes at most 96 requests/day.
-    - cron: "*/15 * * * *"
+    # Every 4 hours. The free source remains well within its daily request limit.
+    - cron: "0 */4 * * *"
   workflow_dispatch:
 
 concurrency:
