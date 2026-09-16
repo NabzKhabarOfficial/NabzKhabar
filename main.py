@@ -4592,6 +4592,7 @@ def process_news(
 
 
 
+
                 record_semantic_history(
                     original_title,
                     title_history
