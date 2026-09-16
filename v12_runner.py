@@ -57,13 +57,14 @@ def main():
     with open(SOURCE, "r", encoding="utf-8") as f:
         source = f.read()
 
-    patched = patch_v12(source)
-
-    # Persist v12 so the repository itself becomes v12 after this run.
-    with open(SOURCE, "w", encoding="utf-8") as f:
-        f.write(patched)
-
-    print("NABZ KHABAR v12 patch applied successfully")
+    if "NABZ KHABAR BOT v12" in source:
+        patched = source
+        print("NABZ KHABAR v12 already active")
+    else:
+        patched = patch_v12(source)
+        with open(SOURCE, "w", encoding="utf-8") as f:
+            f.write(patched)
+        print("NABZ KHABAR v12 patch applied successfully")
 
     namespace = {"__name__": "__main__", "__file__": SOURCE}
     exec(compile(patched, SOURCE, "exec"), namespace)
