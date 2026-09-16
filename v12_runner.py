@@ -126,7 +126,7 @@ def patch_source_coverage(source):
     # Additional free publisher feeds for broader coverage.
     ("ایران", "https://www.tabnak.ir/fa/rss/allnews"),
     ("ایران", "https://www.khabaronline.ir/rss"),
-    ("ایران", "https://www.tasnimnews.com/fa/rss/feed/0/8/0/%D9%85%D9%87%D9%85%D8%AA%D8%B1%DB%8C%D9%86-%D8%A7%D8%AE%D8%A8%D8%A7%D8%B1-%D8%AA%D8%B3%D9%86%DB%8C%D9%85"),
+    ("ایران", "https://www.tasnimnews.com/fa/rss/feed/0/8/0/%D9%85%D9%87%D9%85%D8%AA%D8%B1%DB%8C%D9%86-%D8%AE%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D8%B3%D9%86%DB%8C%D9%85"),
     ("ایران", "https://www.asriran.com/fa/rss/allnews"),
     ("ایران", "https://www.entekhab.ir/fa/rss/allnews"),
     ("اقتصاد", "https://donya-e-eqtesad.com/fa/feeds/?p=all"),
@@ -135,7 +135,6 @@ def patch_source_coverage(source):
     ("جهان", "https://irannewsdaily.com/feed/"),
     ("جهان", "https://www.theguardian.com/world/iran/rss"),
     ("جهان", "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml"),
-    ("جهان", "https://feeds.reuters.com/reuters/worldNews"),
 ]
 '''
 
@@ -151,6 +150,7 @@ def patch_source_coverage(source):
     ("ایران", google_news_search_url("ایران")),
     ("خبر فوری", google_news_search_url("خبر فوری ایران")),
     ("خبر مهم", google_news_search_url("خبر مهم ایران")),
+    ("رویترز", google_news_search_url("Reuters Iran world news")),
     ("حوادث", google_news_search_url("حادثه انفجار تصادف سقوط آتش سوزی ایران")),
     ("اقتصاد", google_news_search_url("اقتصاد ایران")),
     ("دلار", google_news_search_url("قیمت دلار بازار ایران")),
