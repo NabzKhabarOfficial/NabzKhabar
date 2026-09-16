@@ -1,0 +1,67 @@
+name: One-time caption emoji fix
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nabzkhabar-bot
+  cancel-in-progress: false
+
+jobs:
+  fix-caption:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove newspaper emoji
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("main.py")
+          text = path.read_text(encoding="utf-8")
+
+          replacements = {
+              'f"📰 {title}\\n\\n"': 'f"{title}\\n\\n"',
+              'f"📰 {title}\\n\\n"': 'f"{title}\\n\\n"',
+          }
+
+          original = text
+          for old, new in replacements.items():
+              text = text.replace(old, new)
+
+          if text == original:
+              print("No newspaper emoji caption pattern found.")
+          else:
+              path.write_text(text, encoding="utf-8")
+              print("Removed newspaper emoji from all matching captions.")
+          PY
+
+      - name: Commit and remove temporary workflow
+        run: |
+          set -e
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add main.py
+          git rm .github/workflows/emoji-fix.yml
+
+          if git diff --cached --quiet; then
+            echo "No changes needed."
+            git reset
+            git checkout -- .github/workflows/emoji-fix.yml
+            exit 0
+          fi
+
+          git commit -m "Remove newspaper emoji from news captions"
+          git pull --rebase origin main
+          git push origin HEAD:main
