@@ -28,7 +28,9 @@ RSS_FEEDS = {
     "دنیای اقتصاد (بازار، طلا، ارز)": "https://donya-e-eqtesad.com/fa/tinynews/rss/",
     "ورزش سه (ورزشی)": "https://www.varzesh3.com/rss/all",
     "دیجیاتو": "https://digiato.com/feed",
-    "زومیت": "https://www.zoomit.ir/feed/"
+    "زومیت": "https://www.zoomit.ir/feed/",
+    "گوگل نیوز (فارسی - عمومی)": "https://news.google.com/rss?hl=fa&gl=IR&ceid=IR:fa",
+    "گوگل نیوز (اقتصاد و بازار)": "https://news.google.com/rss/search?q=اقتصاد+بورس+دلار+سکه&hl=fa&gl=IR&ceid=IR:fa"
 }
 
 IMPORTANT_KEYWORDS = ["فوری", "مهم", "هشدار", "جان باختن", "شهادت", "زلزله شدید", "سقوط", "انفجار", "درگیری", "حمله"]
@@ -54,7 +56,6 @@ def clean_text(html_text, is_title=False):
     text = re.sub(r'appeared first on.*', '', text, flags=re.IGNORECASE)
     
     if is_title:
-        # حذف عبارت‌های اضافی مثل (عکس)، + عکس، + جدول و غیره از تیتر
         text = re.sub(r'\s*[\+\(]\s*(عکس|جدول|فیلم|ویدیو|صوت|گزارش تصویری)\s*[\)]?', '', text, flags=re.IGNORECASE)
         
     text = re.sub(r'\s+', ' ', text).strip()
