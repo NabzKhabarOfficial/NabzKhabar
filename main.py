@@ -4404,6 +4404,17 @@ def process_news(
 
         return False
 
+    # Event-level history guard. This is intentionally separate from
+    # title similarity so the same real-world event is blocked even when
+    # publishers or Gemini rewrite the headline differently.
+    if event_history_contains(candidate, title_history):
+
+        print(
+            "SKIPPED: event history (same real-world event)"
+        )
+
+        return False
+
     # --------------------------------------------------------
     # Article URL.
     # --------------------------------------------------------
@@ -5021,6 +5032,11 @@ def main():
                 title,
                 title_history
             ):
+                continue
+
+            # Event-level history guard prevents the same real-world event
+            # from being selected again under a different headline.
+            if event_history_contains(candidate, title_history):
                 continue
 
             # Effective score.
