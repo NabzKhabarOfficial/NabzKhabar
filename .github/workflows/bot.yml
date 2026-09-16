@@ -54,7 +54,10 @@ jobs:
             export HOT_ONLY='1'
           fi
 
-          python main.py
+          # Load the stronger duplicate matcher before starting the existing engine.
+          # main.py itself remains unchanged; the patch strengthens clustering,
+          # current-run duplicate checks and history checks together.
+          python -c "import dedup_patch; import main; main.main()"
 
       - name: Safely update bot state
         env:
