@@ -34,7 +34,7 @@ AI_API_KEY = os.getenv("AI_API_KEY")
 
 CHANNEL = "@NabzKhabarOfficial"
 
-GEMINI_MODEL = "gemini-2.5-flash-lite"
+GEMINI_MODEL = "gemini-3.5-flash-lite"
 
 MAX_NEWS_PER_RUN = int(
     os.getenv("MAX_NEWS_PER_RUN", "4")
@@ -223,16 +223,13 @@ def remove_dateline_source(text):
 
     patterns = [
 
-        # مشهد-ایرنا-
         rf"^[\u0600-\u06FF‌]+(?:\s*[-–—]\s*)"
         rf"(?:{source_pattern})\s*[-–—:]\s*",
 
-        # مشهد - ایرنا -
         rf"^[\u0600-\u06FF‌]+(?:\s+[\u0600-\u06FF‌]+)?"
         rf"\s*[-–—]\s*(?:{source_pattern})"
         rf"\s*[-–—:]\s*",
 
-        # ایرنا -
         rf"^(?:{source_pattern})\s*[-–—:]\s*",
     ]
 
@@ -274,8 +271,6 @@ def remove_source_phrase(text):
 
     text = remove_dateline_source(text)
 
-    # چند مرحله برای عباراتی مثل:
-    # به گزارش مهر به نقل از آناتولی،
     for _ in range(3):
 
         old = text
@@ -654,7 +649,7 @@ def absolute_url(url, base_url):
 
     if url.startswith("/"):
         from urllib.parse import urljoin
-        return urljoin(base_url, url)
+        return urljoin(url, url)
 
     return url
 
@@ -985,7 +980,6 @@ def extract_article_data(url):
             url
         )
 
-        # image fallback
         image_url = None
 
         if not media:
@@ -1201,7 +1195,6 @@ def gemini_request(
             }
         ],
         "generationConfig": {
-            "temperature": 0.15,
             "responseMimeType": "application/json"
         }
     }
@@ -1585,7 +1578,6 @@ def download_video(url):
                     / 1024
                 )
 
-                # Telegram Bot API practical limit
                 if size_mb > 49:
 
                     log.info(
@@ -1623,8 +1615,6 @@ def download_video(url):
 
         data.seek(0)
 
-        # Accept MP4/WebM/MOV and
-        # servers that don't send MIME correctly
         if (
             "video" not in content_type
             and not re.search(
@@ -1821,7 +1811,6 @@ def make_caption(
         f"#نبض_خبر"
     )
 
-    # Telegram media caption limit
     if len(caption) > 1024:
 
         available = (
@@ -2005,8 +1994,6 @@ def process_news(
             == "image"
         ):
 
-            # Search article once more
-            # specifically for video
             video_data = extract_article_data(
                 news["link"]
             )
@@ -2268,7 +2255,6 @@ def main():
 
         return
 
-    # Don't process too many at once
     candidates = candidates[:20]
 
     published_count = 0
