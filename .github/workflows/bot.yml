@@ -2,8 +2,9 @@ name: Run NabzKhabar News
 
 on:
   schedule:
-    # One news workflow handles both normal and hot-news lanes.
-    # Every 5 minutes; every 15-minute boundary runs the normal lane.
+    # One workflow handles both normal and hot-news lanes.
+    # Normal lane: every 15 minutes. Hot lane: every 5 minutes, offset by 2 minutes.
+    - cron: '0,15,30,45 * * * *'
     - cron: '2/5 * * * *'
   workflow_dispatch:
 
