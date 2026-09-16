@@ -2816,14 +2816,14 @@ def build_caption(
     if body:
 
         return (
-            f"📰 {title}\n\n"
+            f"{title}\n\n"
             f"{body}\n\n"
             f"📡 @NabzKhabarOfficial\n"
             f"#نبض_خبر"
         )
 
     return (
-        f"📰 {title}\n\n"
+        f"{title}\n\n"
         f"📡 @NabzKhabarOfficial\n"
         f"#نبض_خبر"
     )
