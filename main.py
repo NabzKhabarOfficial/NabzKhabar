@@ -4437,6 +4437,14 @@ def process_news(
                         )
                     )
 
+                if canonical_article_url:
+                    hash_history.add(
+                        make_history_key(
+                            original_title,
+                            canonical_article_url,
+                        )
+                    )
+
                 record_semantic_history(
                     original_title,
                     title_history
