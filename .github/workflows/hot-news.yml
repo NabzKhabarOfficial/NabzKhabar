@@ -35,38 +35,33 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run hot-news fast lane
+      - name: Run hot-news fast lane (v13)
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           MAX_NEWS_PER_RUN: '1'
           HOT_ONLY: '1'
         run: |
-          python v12_runner.py
+          python v13_runner.py
 
       - name: Safely update bot state
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e
-
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
           git fetch origin main
-
           if git show origin/main:sent_news.txt > /tmp/remote_sent_news.txt 2>/dev/null; then
             cat /tmp/remote_sent_news.txt sent_news.txt | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt
             mv /tmp/merged_sent_news.txt sent_news.txt
           fi
-
           git add sent_news.txt main.py
-
           if git diff --cached --quiet; then
             echo "No hot-news state changes to commit."
             exit 0
           fi
-
-          git commit -m "Update hot-news state [skip ci]"
+          git commit -m "Update hot-news state with v13 [skip ci]"
           git rebase origin/main
           git push origin HEAD:main
