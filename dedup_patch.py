@@ -71,19 +71,16 @@ def strong_same_story(a, b):
     jaccard = len(common) / len(tokens_a | tokens_b)
     containment = len(common) / min(len(tokens_a), len(tokens_b))
 
-    # Strong overlap: different wording, same core entities.
     if len(common) >= 4 and containment >= 0.60:
         return True
 
     if len(common) >= 5 and jaccard >= 0.32:
         return True
 
-    # A shared number is a strong event anchor.
     common_numbers = _numbers(title_a) & _numbers(title_b)
     if common_numbers and len(common) >= 2 and jaccard >= 0.25:
         return True
 
-    # Several distinctive long words shared between headlines.
     long_common = [word for word in common if len(word) >= 4]
     if len(long_common) >= 3 and containment >= 0.50:
         return True
@@ -91,8 +88,6 @@ def strong_same_story(a, b):
     return False
 
 
-# The existing pipeline calls same_story in clustering, current-run selection,
-# and history checks. Replacing this single function strengthens all of them.
 main.same_story = strong_same_story
 
 
@@ -110,9 +105,6 @@ main.same_event = strong_same_event
 # BREAKING NEWS ENGINE
 # ============================================================
 
-# These terms are intentionally narrower than the normal importance list.
-# The goal is to surface genuinely time-sensitive events without turning
-# every important headline into a breaking alert.
 BREAKING_TERMS = {
     "خبر فوری": 8,
     "فوری": 7,
@@ -145,9 +137,22 @@ BREAKING_TERMS = {
     "هشدار فوری": 7,
 }
 
+# Events that are important but are normally not "breaking" merely because
+# they are newly published: ceremonies, memorials, funerals and photo reports.
+NON_BREAKING_CEREMONY_TERMS = {
+    "تشییع", "تشییع پیکر", "تدفین", "خاکسپاری", "مراسم تشییع",
+    "مراسم", "وداع", "سوگواری", "گلزار شهدا", "پیکر", "تصاویر",
+    "عکس", "گزارش تصویری", "یادبود", "گرامیداشت",
+}
+
+
+def _is_ceremony_story(title, body):
+    text = _norm(f"{title} {body}")
+    return any(_norm(term) in text for term in NON_BREAKING_CEREMONY_TERMS)
+
 
 def breaking_signal(candidate):
-    """Return (score, is_breaking) for a fresh time-sensitive story."""
+    """Return (score, is_breaking) for genuinely time-sensitive stories."""
     title = main.clean_title(candidate.get("title", ""))
     body = main.clean_content(candidate.get("summary", ""))
     title_norm = _norm(title)
@@ -155,7 +160,6 @@ def breaking_signal(candidate):
 
     score = 0
     title_hits = 0
-    body_hits = 0
 
     for term, weight in BREAKING_TERMS.items():
         term_norm = _norm(term)
@@ -164,9 +168,7 @@ def breaking_signal(candidate):
             title_hits += 1
         elif term_norm and term_norm in body_norm:
             score += max(1, weight // 2)
-            body_hits += 1
 
-    # Recency is mandatory for the breaking classification.
     recency = main.calculate_recency_score(candidate.get("published_at"))
     cluster_size = int(candidate.get("cluster_size", 1) or 1)
 
@@ -179,29 +181,27 @@ def breaking_signal(candidate):
     else:
         score -= 4
 
-    # Independent publishers reporting the same event is a useful signal.
     if cluster_size >= 2:
         score += min(cluster_size, 4) * 2
 
-    # A title hit is much stronger than a body-only hit.
+    explicit_urgent = any(
+        phrase in title_norm
+        for phrase in (
+            "خبر فوری", "لحظاتی پیش", "دقایقی پیش", "همین حالا", "هشدار فوری",
+        )
+    )
+
+    # A ceremony/photo report is not breaking unless the headline itself has
+    # an explicit urgent marker. This prevents ordinary funeral/photo stories
+    # from receiving breaking treatment just because they are fresh.
+    if _is_ceremony_story(title, body) and not explicit_urgent:
+        return 0, False
+
     is_breaking = (
         recency >= 8
         and (
             score >= 10
             or (title_hits >= 1 and cluster_size >= 2 and score >= 8)
-        )
-    )
-
-    # A very explicit emergency phrase can break through even before a second
-    # publisher has picked it up, provided the article is genuinely fresh.
-    explicit_urgent = any(
-        phrase in title_norm
-        for phrase in (
-            "خبر فوری",
-            "لحظاتی پیش",
-            "دقایقی پیش",
-            "همین حالا",
-            "هشدار فوری",
         )
     )
 
@@ -213,6 +213,7 @@ def breaking_signal(candidate):
 
 _original_hot_news_signal = main.calculate_hot_news_signal
 _original_calculate_importance = main.calculate_importance
+_original_choose_news_emoji = getattr(main, "choose_news_emoji", None)
 
 
 def enhanced_hot_news_signal(candidate):
@@ -220,9 +221,11 @@ def enhanced_hot_news_signal(candidate):
     candidate["breaking_score"] = score
     candidate["is_breaking"] = is_breaking
 
-    # Keep the existing hot-news rules as a safety net; breaking news is an
-    # additional path, not a replacement. This prevents the new layer from
-    # making the 5-minute hot lane more restrictive.
+    # Ceremony/photo stories must not receive the generic hot prefix merely
+    # because they are fresh. Explicitly urgent ceremony reports remain hot.
+    if _is_ceremony_story(candidate.get("title", ""), candidate.get("summary", "")) and not is_breaking:
+        return False
+
     return bool(_original_hot_news_signal(candidate) or is_breaking)
 
 
@@ -234,11 +237,49 @@ def enhanced_calculate_importance(candidate):
     candidate["is_breaking"] = is_breaking
 
     if is_breaking:
-        # Strong priority boost for urgent stories in both hot and normal lanes.
         score += 25
+    elif _is_ceremony_story(candidate.get("title", ""), candidate.get("summary", "")):
+        candidate["is_hot"] = False
 
     return score
 
 
 main.calculate_hot_news_signal = enhanced_hot_news_signal
 main.calculate_importance = enhanced_calculate_importance
+
+
+# ============================================================
+# CONTEXTUAL EMOJI
+# ============================================================
+
+# Replace generic urgency-style emoji selection with one topic-relevant emoji.
+# The existing hot prefix (🔥) is also suppressed for ceremony/photo reports.
+
+def contextual_news_emoji(title, body):
+    text = _norm(f"{title} {body}")
+
+    if any(x in text for x in ("تشییع", "تدفین", "خاکسپاری", "پیکر", "وداع", "سوگواری", "یادبود", "گرامیداشت")):
+        return "🕊️"
+    if any(x in text for x in ("زلزله", "سونامی", "سیل", "طوفان", "گردباد")):
+        return "🌍"
+    if any(x in text for x in ("انفجار", "آتش سوزی", "آتش‌سوزی")):
+        return "🔥"
+    if any(x in text for x in ("فوتبال", "ورزش", "مسابقه", "تیم", "گل")):
+        return "⚽"
+    if any(x in text for x in ("هوش مصنوعی", "فناوری", "موبایل", "گوشی", "ربات")):
+        return "💻"
+    if any(x in text for x in ("دلار", "طلا", "سکه", "بورس", "اقتصاد", "قیمت")):
+        return "💰"
+    if any(x in text for x in ("هواپیما", "پرواز", "قطار", "خودرو", "تصادف")):
+        return "🚗"
+    if any(x in text for x in ("مذاکرات", "تحریم", "مجلس", "دولت", "رئیس جمهور", "وزیر")):
+        return "🏛️"
+    if any(x in text for x in ("پزشکی", "سلامت", "بیمار", "درمان")):
+        return "🩺"
+    if any(x in text for x in ("باران", "هواشناسی", "دما", "برف")):
+        return "🌦️"
+    return "📰"
+
+
+if _original_choose_news_emoji is not None:
+    main.choose_news_emoji = contextual_news_emoji
