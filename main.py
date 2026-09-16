@@ -362,7 +362,20 @@ DIRECT_RSS_FEEDS = [
     ("فرهنگ", "https://www.irna.ir/rss/service/culture"),
     ("اجتماعی", "https://www.irna.ir/rss/service/society"),
     ("جهان", "https://www.isna.ir/rss/service/world"),
+    # Additional free publisher feeds for broader coverage.
+    ("ایران", "https://www.tabnak.ir/fa/rss/allnews"),
+    ("ایران", "https://www.khabaronline.ir/rss"),
+    ("ایران", "https://www.tasnimnews.com/fa/rss/feed/0/8/0/%D9%85%D9%87%D9%85%D8%AA%D8%B1%DB%8C%D9%86-%D8%AE%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D8%B3%D9%86%DB%8C%D9%85"),
+    ("ایران", "https://www.asriran.com/fa/rss/allnews"),
+    ("ایران", "https://www.entekhab.ir/fa/rss/allnews"),
+    ("اقتصاد", "https://donya-e-eqtesad.com/fa/feeds/?p=all"),
+    ("بین الملل", "https://www.iranpress.com/rss"),
+    ("جهان", "https://www.iranintl.com/en/feed"),
+    ("جهان", "https://irannewsdaily.com/feed/"),
+    ("جهان", "https://www.theguardian.com/world/iran/rss"),
+    ("جهان", "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml"),
 ]
+
 
 
 # ============================================================
@@ -373,61 +386,34 @@ GOOGLE_NEWS_FEEDS = [
     ("ایران", google_news_search_url("ایران")),
     ("خبر فوری", google_news_search_url("خبر فوری ایران")),
     ("خبر مهم", google_news_search_url("خبر مهم ایران")),
-    ("حوادث", google_news_search_url(
-        "حادثه انفجار تصادف سقوط آتش سوزی ایران"
-    )),
-    ("اقتصاد", google_news_search_url(
-        "اقتصاد ایران"
-    )),
-    ("دلار", google_news_search_url(
-        "قیمت دلار بازار ایران"
-    )),
-    ("ارز", google_news_search_url(
-        "قیمت ارز ایران"
-    )),
-    ("طلا", google_news_search_url(
-        "قیمت طلا ایران"
-    )),
-    ("سکه", google_news_search_url(
-        "قیمت سکه ایران"
-    )),
-    ("بورس", google_news_search_url(
-        "بورس ایران"
-    )),
-    ("نفت", google_news_search_url(
-        "نفت انرژی ایران"
-    )),
-    ("هوش مصنوعی", google_news_search_url(
-        "هوش مصنوعی AI"
-    )),
-    ("فناوری", google_news_search_url(
-        "فناوری تکنولوژی"
-    )),
-    ("موبایل", google_news_search_url(
-        "موبایل گوشی"
-    )),
-    ("خودرو", google_news_search_url(
-        "خودرو ماشین"
-    )),
-    ("ورزش", google_news_search_url(
-        "ورزش فوتبال"
-    )),
-    ("سلامت", google_news_search_url(
-        "سلامت پزشکی"
-    )),
-    ("علم", google_news_search_url(
-        "علم دانش"
-    )),
-    ("فرهنگ", google_news_search_url(
-        "فرهنگ هنر سینما"
-    )),
-    ("جامعه", google_news_search_url(
-        "جامعه اجتماعی"
-    )),
-    ("کریپتو", google_news_search_url(
-        "ارز دیجیتال بیت کوین کریپتو"
-    )),
+    ("رویترز", google_news_search_url("Reuters Iran world news")),
+    ("حوادث", google_news_search_url("حادثه انفجار تصادف سقوط آتش سوزی ایران")),
+    ("اقتصاد", google_news_search_url("اقتصاد ایران")),
+    ("دلار", google_news_search_url("قیمت دلار بازار ایران")),
+    ("ارز", google_news_search_url("قیمت ارز ایران")),
+    ("طلا", google_news_search_url("قیمت طلا ایران")),
+    ("سکه", google_news_search_url("قیمت سکه ایران")),
+    ("بورس", google_news_search_url("بورس ایران")),
+    ("نفت", google_news_search_url("نفت انرژی ایران")),
+    ("هوش مصنوعی", google_news_search_url("هوش مصنوعی AI")),
+    ("فناوری", google_news_search_url("فناوری تکنولوژی")),
+    ("موبایل", google_news_search_url("موبایل گوشی")),
+    ("خودرو", google_news_search_url("خودرو ماشین")),
+    ("ورزش", google_news_search_url("ورزش فوتبال")),
+    ("سلامت", google_news_search_url("سلامت پزشکی")),
+    ("علم", google_news_search_url("علم دانش")),
+    ("فرهنگ", google_news_search_url("فرهنگ هنر سینما")),
+    ("جامعه", google_news_search_url("جامعه اجتماعی")),
+    ("کریپتو", google_news_search_url("ارز دیجیتال بیت کوین کریپتو")),
+    ("مسکن", google_news_search_url("مسکن اجاره خانه ایران")),
+    ("کار", google_news_search_url("حقوق دستمزد اشتغال ایران")),
+    ("آموزش", google_news_search_url("آموزش دانشگاه مدرسه کنکور ایران")),
+    ("هواشناسی", google_news_search_url("هواشناسی ایران بارندگی")),
+    ("انرژی", google_news_search_url("برق گاز انرژی ایران")),
+    ("بانک", google_news_search_url("بانک مرکزی نرخ بهره ایران")),
+    ("گمرک", google_news_search_url("تجارت واردات صادرات ایران")),
 ]
+
 
 
 # ============================================================
@@ -4418,6 +4404,14 @@ def process_news(
                 hash_history.add(
                     history_key
                 )
+
+                if canonical_article_url:
+                    hash_history.add(
+                        make_history_key(
+                            original_title,
+                            canonical_article_url,
+                        )
+                    )
 
                 if canonical_article_url:
                     hash_history.add(
