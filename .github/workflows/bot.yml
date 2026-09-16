@@ -33,47 +33,32 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run bot script (v12)
+      - name: Run bot script (v13)
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           MAX_NEWS_PER_RUN: '4'
         run: |
-          python v12_runner.py
+          python v13_runner.py
 
       - name: Safely update bot state
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e
-
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-
-          # Get the newest remote state
           git fetch origin main
-
-          # Preserve BOTH local and remote history.
-          # sent_news.txt is append-only, so combining unique lines is safe.
           if git show origin/main:sent_news.txt > /tmp/remote_sent_news.txt 2>/dev/null; then
             cat /tmp/remote_sent_news.txt sent_news.txt | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt
             mv /tmp/merged_sent_news.txt sent_news.txt
           fi
-
           git add sent_news.txt main.py
-
-          # Create a commit only if there are actual changes
           if git diff --cached --quiet; then
             echo "No bot state changes to commit."
             exit 0
           fi
-
-          git commit -m "Apply NabzKhabar v12 and update sent_news.txt [skip ci]"
-
-          # Rebase onto latest main.
+          git commit -m "Apply NabzKhabar v13 quality gate [skip ci]"
           git rebase origin/main
-
-          # Push the result
           git push origin HEAD:main
