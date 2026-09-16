@@ -21,7 +21,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 # ============================================================
-# NABZ KHABAR BOT v12
+# NABZ KHABAR BOT v13
 # STRONG SEMANTIC DEDUPLICATION
 # GOOGLE NEWS DISCOVERY
 # GEMINI + VIDEO + PHOTO + TEXT + WATERMARK
@@ -1626,6 +1626,26 @@ def source_priority(
     return score
 
 
+def calculate_hot_news_signal(candidate):
+    """Return True for fresh, high-urgency stories; avoid labeling ordinary news as hot."""
+    title = candidate.get("title", "")
+    body = candidate.get("summary", "")
+    keyword_score = calculate_keyword_importance(title, body)
+    recency_score = calculate_recency_score(candidate.get("published_at"))
+    cluster_size = candidate.get("cluster_size", 1)
+
+    if keyword_score >= 8 and recency_score >= 8:
+        return True
+
+    if keyword_score >= 16 and recency_score >= 5:
+        return True
+
+    if cluster_size >= 2 and keyword_score >= 8 and recency_score >= 5:
+        return True
+
+    return False
+
+
 def calculate_importance(
     candidate
 ):
@@ -1663,6 +1683,11 @@ def calculate_importance(
             False
         )
     )
+
+    candidate["is_hot"] = calculate_hot_news_signal(candidate)
+
+    if candidate.get("is_hot"):
+        score += 18
 
     if candidate.get(
         "video_url"
@@ -2912,59 +2937,23 @@ def choose_news_emoji(title, body):
     return "⚡"
 
 
-def choose_news_emoji(title, body):
-    """Choose one clean emoji based on the main topic of the news."""
-
-    text = normalize_space(f"{title} {body}").lower()
-
-    urgent_keywords = [
-        "خبر فوری", "فوری", "انفجار", "حمله", "موشک", "جنگ",
-        "زلزله", "سیل", "آتش سوزی", "آتش‌سوزی", "سقوط",
-        "تصادف", "کشته", "مفقود", "ترور", "حادثه مهم"
-    ]
-    if any(k in text for k in urgent_keywords):
-        return "🚨"
-
-    categories = [
-        ("⚽", ["فوتبال", "ورزش", "لیگ", "جام جهانی", "المپیک", "تیم ملی", "بازیکن", "مربی", "آرسنال", "استقلال", "پرسپولیس"]),
-        ("💵", ["دلار", "ارز", "یورو", "پوند", "نرخ ارز"]),
-        ("🪙", ["طلا", "سکه", "اونس طلا", "طلای ۱۸", "طلای 24", "طلای ۲۴"]),
-        ("📈", ["بورس", "شاخص کل", "فرابورس", "سهام", "معاملات بورس"]),
-        ("🤖", ["هوش مصنوعی", "ai", "gemini", "chatgpt", "مدل زبانی"]),
-        ("📱", ["موبایل", "گوشی", "اینترنت", "اپلیکیشن", "اندروید", "آیفون", "ios", "شبکه اجتماعی"]),
-        ("🚗", ["خودرو", "ماشین", "خودروساز", "خودروهای وارداتی", "خودرو برقی"]),
-        ("🏥", ["سلامت", "پزشکی", "بیمارستان", "دارو", "درمان", "پزشک"]),
-        ("🌦️", ["هواشناسی", "آب و هوا", "بارندگی", "بارش", "دما", "هوا"]),
-        ("₿", ["بیت کوین", "اتریوم", "ارز دیجیتال", "کریپتو", "رمزارز", "crypto"]),
-        ("🛢️", ["نفت", "گاز", "انرژی", "بنزین", "برق", "سوخت", "پالایشگاه"]),
-        ("🔬", ["علم", "دانش", "پژوهش", "فضا", "ناسا", "نجوم", "آزمایش"]),
-        ("🎬", ["سینما", "فیلم", "سریال", "بازیگر", "هنر", "موسیقی", "فرهنگ"]),
-        ("🎓", ["دانشگاه", "مدرسه", "آموزش", "دانشجو", "کنکور", "معلم"]),
-        ("🌍", ["جهان", "آمریکا", "اروپا", "روسیه", "اوکراین", "چین", "خاورمیانه", "بین‌الملل", "بین الملل"]),
-        ("🇮🇷", ["ایران", "تهران", "مجلس", "دولت", "وزارتخانه", "استاندار", "استان"]),
-    ]
-
-    for emoji, keywords in categories:
-        if any(k in text for k in keywords):
-            return emoji
-
-    return "⚡"
 
 
-def build_caption(title, body):
+def build_caption(title, body, is_hot=False):
     title = clean_title(title)
     body = enforce_short_summary(body)
     emoji = choose_news_emoji(title, body)
+    hot_prefix = "🔥 " if is_hot and emoji != "🚨" else ""
 
     if body:
         return (
-            f"{emoji} {title}\n\n"
+            f"{hot_prefix}{emoji} {title}\n\n"
             f"{body}\n\n"
             f"#نبض_خبر"
         )
 
     return (
-        f"{emoji} {title}\n\n"
+        f"{hot_prefix}{emoji} {title}\n\n"
         f"#نبض_خبر"
     )
 
@@ -3902,6 +3891,13 @@ def collect_candidates(
 
     clustered = final_candidates
 
+    if os.getenv("HOT_ONLY", "0").strip() == "1":
+        clustered = [
+            item for item in clustered
+            if item.get("is_hot", False)
+        ]
+        print(f"HOT-ONLY MODE: {len(clustered)} hot candidates remain")
+
     # --------------------------------------------------------
     # Final sort.
     # --------------------------------------------------------
@@ -4032,6 +4028,166 @@ def diversity_penalty(
         return 10
 
     return 18
+
+
+# ============================================================
+# V13 QUALITY GATE
+# ============================================================
+
+QUALITY_PR_PATTERNS = [
+    r"\bروابط\s*عمومی\b",
+    r"\bروابط‌عمومی\b",
+    r"\bمراسم\b",
+    r"\bگرامیداشت\b",
+    r"\bتجلیل\b",
+    r"\bتبریک\b",
+    r"\bتسلیت\b",
+    r"\bهمایش\b",
+    r"\bنشست\b",
+    r"\bدیدار\b",
+    r"\bبالندگی\b",
+    r"\bپویایی\b",
+    r"\bافتخار\b",
+    r"\bدستاوردهای\b",
+    r"\bدرخشان\b",
+    r"\bمردم‌سالاری\b",
+    r"\bمردم سالاری\b",
+]
+
+QUALITY_CONCRETE_PATTERNS = [
+    r"\bتصویب\b",
+    r"\bتصمیم\b",
+    r"\bاعلام کرد\b",
+    r"\bگفت\b",
+    r"\bآغاز\b",
+    r"\bافتتاح\b",
+    r"\bلغو\b",
+    r"\bبازداشت\b",
+    r"\bکشته\b",
+    r"\bمصدوم\b",
+    r"\bانفجار\b",
+    r"\bآتش‌سوزی\b",
+    r"\bتصادف\b",
+    r"\bسقوط\b",
+    r"\bقیمت\b",
+    r"\bافزایش\b",
+    r"\bکاهش\b",
+    r"\bتغییر\b",
+    r"\bاستخدام\b",
+    r"\bتولید\b",
+    r"\bعرضه\b",
+    r"\bممنوع\b",
+    r"\bتحریم\b",
+    r"\bآتش‌بس\b",
+    r"\bحمله\b",
+    r"\bزلزله\b",
+    r"\bسیل\b",
+]
+
+QUALITY_BAD_PATTERNS = [
+    r"برای کسب اطلاعات بیشتر",
+    r"جهت کسب اطلاعات بیشتر",
+    r"کلیک کنید",
+    r"همین حالا",
+    r"ثبت\s*نام کنید",
+    r"خرید کنید",
+    r"فروش ویژه",
+    r"تخفیف ویژه",
+    r"اسپانسر",
+    r"تبلیغات",
+    r"https?://",
+    r"www\.",
+    r"t\.me/",
+]
+
+UNEXPECTED_SCRIPT_RE = re.compile(r"[\u0370-\u03ff\u0400-\u04ff\u0530-\u058f]")
+
+
+def sanitize_public_text(text):
+    if not text:
+        return ""
+
+    text = str(text)
+    text = text.replace("\u200b", " ")
+    text = text.replace("\u200c", " ")
+    text = text.replace("\u200d", " ")
+    text = text.replace("\u200e", " ")
+    text = text.replace("\u200f", " ")
+    text = text.replace("\ufeff", " ")
+    text = text.replace("ي", "ی").replace("ى", "ی").replace("ك", "ک")
+    text = UNEXPECTED_SCRIPT_RE.sub("", text)
+    text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]", "", text)
+    text = re.sub(r"[ \t]{2,}", " ", text)
+    text = re.sub(r"\s+([،,:؛.!؟])", r"\1", text)
+    text = re.sub(r"([،,:؛])(?=[آ-یA-Za-z])", r"\1 ", text)
+    text = re.sub(r"([.!؟])\1+", r"\1", text)
+    return normalize_space(text)
+
+
+def is_low_value_story(title, body):
+    text = normalize_space(f"{title} {body}")
+    low_hits = sum(bool(re.search(p, text, flags=re.I)) for p in QUALITY_PR_PATTERNS)
+    if low_hits < 2:
+        return False
+
+    concrete = any(re.search(p, text, flags=re.I) for p in QUALITY_CONCRETE_PATTERNS)
+    return not concrete
+
+
+def quality_gate(candidate, final_title, final_summary):
+    """Return (accepted, reason) for the final publishable text."""
+    title = sanitize_public_text(final_title)
+    summary = sanitize_public_text(final_summary)
+    original = sanitize_public_text(candidate.get("title", ""))
+    article_text = sanitize_public_text(candidate.get("article_text", ""))
+
+    if not title or len(title) < 12:
+        return False, "title_too_short"
+
+    if len(title) > 180:
+        return False, "title_too_long"
+
+    if UNEXPECTED_SCRIPT_RE.search(title) or UNEXPECTED_SCRIPT_RE.search(summary):
+        return False, "unexpected_script"
+
+    for pattern in QUALITY_BAD_PATTERNS:
+        if re.search(pattern, f"{title} {summary}", flags=re.I):
+            return False, "advertising_or_link"
+
+    if re.search(r"^(خبر|گزارش|آخرین اخبار|اخبار مهم|خبر مهم)$", title, flags=re.I):
+        return False, "vague_title"
+
+    title_words = [w for w in re.split(r"\s+", title) if len(w) > 1]
+    if len(title_words) < 3 and len(original) >= 12:
+        return False, "vague_title"
+
+    if is_low_value_story(title, summary):
+        return False, "low_value_pr"
+
+    if article_text and not summary:
+        return False, "empty_summary"
+
+    if summary:
+        if len(summary) < 25 and article_text:
+            return False, "summary_too_short"
+        if len(summary) > 650:
+            return False, "summary_too_long"
+        sentences = split_sentences(summary)
+        if len(sentences) > 3:
+            return False, "too_many_sentences"
+
+    return True, "ok"
+
+
+def quality_adjustment(candidate):
+    """Deprioritize major single-source claims; do not hard-block them."""
+    keyword_score = calculate_keyword_importance(
+        candidate.get("title", ""),
+        candidate.get("summary", "")
+    )
+    if candidate.get("cluster_size", 1) == 1 and keyword_score >= 16:
+        return -3
+    return 0
 
 
 # ============================================================
@@ -4333,6 +4489,22 @@ def process_news(
         )
 
     # --------------------------------------------------------
+    # V13 quality gate: never bypassed by hot-news mode.
+    # --------------------------------------------------------
+
+    quality_ok, quality_reason = quality_gate(
+        candidate,
+        final_title,
+        final_summary,
+    )
+
+    if not quality_ok:
+        print(
+            f"QUALITY GATE BLOCKED: {quality_reason} | {final_title}"
+        )
+        return False
+
+    # --------------------------------------------------------
     # Final semantic protection.
     # --------------------------------------------------------
 
@@ -4356,7 +4528,8 @@ def process_news(
 
     caption = build_caption(
         final_title,
-        final_summary
+        final_summary,
+        candidate.get("is_hot", False),
     )
 
     # ========================================================
@@ -4413,45 +4586,11 @@ def process_news(
                         )
                     )
 
-                if canonical_article_url:
-                    hash_history.add(
-                        make_history_key(
-                            original_title,
-                            canonical_article_url,
-                        )
-                    )
 
-                if canonical_article_url:
-                    hash_history.add(
-                        make_history_key(
-                            original_title,
-                            canonical_article_url,
-                        )
-                    )
 
-                if canonical_article_url:
-                    hash_history.add(
-                        make_history_key(
-                            original_title,
-                            canonical_article_url,
-                        )
-                    )
 
-                if canonical_article_url:
-                    hash_history.add(
-                        make_history_key(
-                            original_title,
-                            canonical_article_url,
-                        )
-                    )
 
-                if canonical_article_url:
-                    hash_history.add(
-                        make_history_key(
-                            original_title,
-                            canonical_article_url,
-                        )
-                    )
+
 
                 record_semantic_history(
                     original_title,
