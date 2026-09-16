@@ -6,6 +6,11 @@ SOURCE = "main.py"
 
 
 def patch_event_dedup(source):
+    """Apply V13's event-level guard and add a final history guard."""
+    # V13 contains the stronger event matcher (event + location + number).
+    # Make sure it is actually applied before the final V14 guard.
+    source = v13_runner.patch_event_level_dedup(source)
+
     marker = "# ============================================================\n# PROCESS NEWS\n# ============================================================"
     helper = r'''# ============================================================
 # V14 EVENT-LEVEL DUPLICATE PROTECTION
@@ -79,10 +84,23 @@ def event_history_contains(candidate, title_history):
     if marker in source and "def event_history_contains(candidate, title_history):" not in source:
         source = source.replace(marker, helper + marker, 1)
 
-    anchor = "    # --------------------------------------------------------\n    # Final semantic protection.\n    # --------------------------------------------------------\n\n    if history_contains_story("
-    replacement = "    # --------------------------------------------------------\n    # V14 event-level protection: same real-world incident, different wording.\n    # --------------------------------------------------------\n\n    if event_history_contains(candidate, title_history):\n        print(f\"EVENT DUPLICATE BLOCKED: {final_title}\")\n        return False\n\n    # --------------------------------------------------------\n    # Final semantic protection.\n    # --------------------------------------------------------\n\n    if history_contains_story("
-    if anchor in source and "EVENT DUPLICATE BLOCKED" not in source:
-        source = source.replace(anchor, replacement, 1)
+    # V13's quality gate already locates the final semantic block. If that
+    # exact comment is absent, use the first history check as a fallback.
+    if "EVENT DUPLICATE BLOCKED" not in source:
+        insertion = (
+            "    # V14 event-level protection: same real-world incident, different wording.\n"
+            "    if event_history_contains(candidate, title_history):\n"
+            "        print(f\"EVENT DUPLICATE BLOCKED: {final_title}\")\n"
+            "        return False\n\n"
+        )
+        anchors = [
+            "    # Final semantic protection.\n",
+            "    if history_contains_story(\n",
+        ]
+        for anchor in anchors:
+            if anchor in source:
+                source = source.replace(anchor, insertion + anchor, 1)
+                break
     return source
 
 
@@ -98,6 +116,7 @@ def main():
     source = v13_runner.cleanup_duplicate_definitions(source)
     source = v13_runner.collapse_repeated_canonical_history_blocks(source)
     source = v13_runner.patch_quality_gate(source)
+    source = v13_runner.patch_event_level_dedup(source)
     source = v13_runner.cleanup_duplicate_definitions(source)
     source = v13_runner.collapse_repeated_canonical_history_blocks(source)
     source = patch_event_dedup(source)
