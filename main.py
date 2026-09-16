@@ -4,9 +4,8 @@ import io
 import json
 import time
 import hashlib
-import mimetypes
-from datetime import datetime, timezone
-from urllib.parse import urlparse, quote_plus
+from datetime import datetime, timezone, timedelta
+from urllib.parse import urlparse, quote_plus, urljoin
 
 import requests
 import feedparser
@@ -15,15 +14,17 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 # ============================================================
-# NABZ KHABAR BOT v9
-# GEMINI + GOOGLE NEWS + SMART SOURCE + VIDEO + WATERMARK
+# NABZ KHABAR BOT v10
+# SMART NEWS DEDUPLICATION + GOOGLE NEWS DISCOVERY
+# GEMINI + VIDEO + PHOTO + TEXT + WATERMARK
 # ============================================================
 
-print("=" * 60)
-print("NABZ KHABAR BOT v9")
-print("GEMINI + GOOGLE NEWS + SMART SOURCE")
-print("VIDEO + PHOTO + TEXT + WATERMARK")
-print("=" * 60)
+print("=" * 64)
+print("NABZ KHABAR BOT v10")
+print("SMART DEDUPLICATION + FRESH NEWS FILTER")
+print("GEMINI + GOOGLE NEWS + VIDEO + PHOTO")
+print("WATERMARK + SOURCE QUALITY")
+print("=" * 64)
 
 
 # ============================================================
@@ -37,7 +38,9 @@ CHANNEL_ID = "@NabzKhabarOfficial"
 
 GEMINI_MODEL = "gemini-3.5-flash-lite"
 
-MAX_NEWS_PER_RUN = int(os.getenv("MAX_NEWS_PER_RUN", "4"))
+MAX_NEWS_PER_RUN = int(
+    os.getenv("MAX_NEWS_PER_RUN", "4")
+)
 
 REQUEST_TIMEOUT = 20
 ARTICLE_TIMEOUT = 25
@@ -45,16 +48,26 @@ ARTICLE_TIMEOUT = 25
 MAX_VIDEO_MB = 49
 MAX_IMAGE_MB = 12
 
-MAX_BODY_CHARS = 600
-MAX_BODY_SENTENCES = 4
+# News older than this is normally ignored.
+# This prevents old RSS items from suddenly appearing.
+MAX_NEWS_AGE_HOURS = 36
+
+# Same story is considered recently published for this period.
+# This is separate from the old hash history.
+SEMANTIC_HISTORY_DAYS = 7
 
 HISTORY_FILE = "sent_news.txt"
 
 WATERMARK_TEXT = "نبض خبر | NABZ"
 
+# Standardize images before applying watermark.
+# This prevents huge 4K watermarks.
+MAX_OUTPUT_IMAGE_WIDTH = 1600
+MAX_OUTPUT_IMAGE_HEIGHT = 1600
+
 
 # ============================================================
-# BASIC VALIDATION
+# VALIDATION
 # ============================================================
 
 if not BOT_TOKEN:
@@ -62,6 +75,8 @@ if not BOT_TOKEN:
 
 print(f"Gemini enabled: {bool(AI_API_KEY)}")
 print(f"Gemini model: {GEMINI_MODEL}")
+print(f"Max news/run: {MAX_NEWS_PER_RUN}")
+print(f"Freshness window: {MAX_NEWS_AGE_HOURS}h")
 
 
 # ============================================================
@@ -100,7 +115,7 @@ def clean_url(url):
     if not url:
         return ""
 
-    return url.strip()
+    return str(url).strip()
 
 
 def get_hostname(url):
@@ -110,13 +125,28 @@ def get_hostname(url):
         return ""
 
 
+def base_domain(host):
+    host = (host or "").lower()
+
+    if host.startswith("www."):
+        host = host[4:]
+
+    return host
+
+
+# ============================================================
+# HOST FILTERS
+# ============================================================
+
 def is_google_host(url):
     host = get_hostname(url)
 
     return (
         host == "news.google.com"
+        or host == "google.com"
         or host.endswith(".google.com")
         or "googleusercontent.com" in host
+        or "gstatic.com" in host
     )
 
 
@@ -126,8 +156,10 @@ def is_social_host(url):
     social_hosts = (
         "facebook.com",
         "fb.com",
+        "fbcdn.net",
         "x.com",
         "twitter.com",
+        "twimg.com",
         "youtube.com",
         "youtu.be",
         "tiktok.com",
@@ -171,12 +203,14 @@ def looks_like_video_url(url):
 
     value = url.lower().split("?")[0]
 
-    return value.endswith((
-        ".mp4",
-        ".webm",
-        ".mov",
-        ".m4v"
-    ))
+    return value.endswith(
+        (
+            ".mp4",
+            ".webm",
+            ".mov",
+            ".m4v"
+        )
+    )
 
 
 def is_hls_url(url):
@@ -209,7 +243,7 @@ def google_news_search_url(query):
 
 
 # ============================================================
-# DIRECT RSS SOURCES
+# DIRECT RSS
 # ============================================================
 
 DIRECT_RSS_FEEDS = [
@@ -229,46 +263,77 @@ DIRECT_RSS_FEEDS = [
 
 
 # ============================================================
-# GOOGLE NEWS FEEDS
+# GOOGLE NEWS SEARCH FEEDS
+#
+# IMPORTANT:
+# Google News /topics/... endpoints were returning 400.
+# They are deliberately removed in v10.
+# Google News is used for DISCOVERY only.
 # ============================================================
 
 GOOGLE_NEWS_FEEDS = [
-    ("گوگل نیوز", f"{GOOGLE_NEWS_BASE}?hl={GOOGLE_HL}&gl={GOOGLE_GL}&ceid={GOOGLE_CEID}"),
-
-    ("جهان", f"{GOOGLE_NEWS_BASE}/topics/WORLD?hl={GOOGLE_HL}&gl={GOOGLE_GL}&ceid={GOOGLE_CEID}"),
-    ("اقتصاد", f"{GOOGLE_NEWS_BASE}/topics/BUSINESS?hl={GOOGLE_HL}&gl={GOOGLE_GL}&ceid={GOOGLE_CEID}"),
-    ("فناوری", f"{GOOGLE_NEWS_BASE}/topics/TECHNOLOGY?hl={GOOGLE_HL}&gl={GOOGLE_GL}&ceid={GOOGLE_CEID}"),
-    ("ورزش", f"{GOOGLE_NEWS_BASE}/topics/SPORTS?hl={GOOGLE_HL}&gl={GOOGLE_GL}&ceid={GOOGLE_CEID}"),
-    ("سلامت", f"{GOOGLE_NEWS_BASE}/topics/HEALTH?hl={GOOGLE_HL}&gl={GOOGLE_GL}&ceid={GOOGLE_CEID}"),
-    ("علم", f"{GOOGLE_NEWS_BASE}/topics/SCIENCE?hl={GOOGLE_HL}&gl={GOOGLE_GL}&ceid={GOOGLE_CEID}"),
-    ("فرهنگ", f"{GOOGLE_NEWS_BASE}/topics/ENTERTAINMENT?hl={GOOGLE_HL}&gl={GOOGLE_GL}&ceid={GOOGLE_CEID}"),
-
     ("ایران", google_news_search_url("ایران")),
     ("خبر فوری", google_news_search_url("خبر فوری ایران")),
     ("خبر مهم", google_news_search_url("خبر مهم ایران")),
-    ("حوادث", google_news_search_url("حادثه انفجار تصادف ایران")),
-    ("اقتصاد", google_news_search_url("اقتصاد ایران")),
-    ("دلار", google_news_search_url("قیمت دلار بازار ایران")),
-    ("ارز", google_news_search_url("قیمت ارز ایران")),
-    ("طلا", google_news_search_url("قیمت طلا ایران")),
-    ("سکه", google_news_search_url("قیمت سکه ایران")),
-    ("بورس", google_news_search_url("بورس ایران")),
-    ("نفت", google_news_search_url("نفت انرژی ایران")),
-    ("هوش مصنوعی", google_news_search_url("هوش مصنوعی AI")),
-    ("فناوری", google_news_search_url("فناوری تکنولوژی")),
-    ("موبایل", google_news_search_url("موبایل گوشی")),
-    ("خودرو", google_news_search_url("خودرو ماشین")),
-    ("ورزش", google_news_search_url("ورزش فوتبال")),
-    ("سلامت", google_news_search_url("سلامت پزشکی")),
-    ("علم", google_news_search_url("علم دانش")),
-    ("فرهنگ", google_news_search_url("فرهنگ هنر سینما")),
-    ("جامعه", google_news_search_url("جامعه اجتماعی")),
-    ("کریپتو", google_news_search_url("ارز دیجیتال بیت کوین کریپتو")),
+    ("حوادث", google_news_search_url(
+        "حادثه انفجار تصادف سقوط آتش سوزی ایران"
+    )),
+    ("اقتصاد", google_news_search_url(
+        "اقتصاد ایران"
+    )),
+    ("دلار", google_news_search_url(
+        "قیمت دلار بازار ایران"
+    )),
+    ("ارز", google_news_search_url(
+        "قیمت ارز ایران"
+    )),
+    ("طلا", google_news_search_url(
+        "قیمت طلا ایران"
+    )),
+    ("سکه", google_news_search_url(
+        "قیمت سکه ایران"
+    )),
+    ("بورس", google_news_search_url(
+        "بورس ایران"
+    )),
+    ("نفت", google_news_search_url(
+        "نفت انرژی ایران"
+    )),
+    ("هوش مصنوعی", google_news_search_url(
+        "هوش مصنوعی AI"
+    )),
+    ("فناوری", google_news_search_url(
+        "فناوری تکنولوژی"
+    )),
+    ("موبایل", google_news_search_url(
+        "موبایل گوشی"
+    )),
+    ("خودرو", google_news_search_url(
+        "خودرو ماشین"
+    )),
+    ("ورزش", google_news_search_url(
+        "ورزش فوتبال"
+    )),
+    ("سلامت", google_news_search_url(
+        "سلامت پزشکی"
+    )),
+    ("علم", google_news_search_url(
+        "علم دانش"
+    )),
+    ("فرهنگ", google_news_search_url(
+        "فرهنگ هنر سینما"
+    )),
+    ("جامعه", google_news_search_url(
+        "جامعه اجتماعی"
+    )),
+    ("کریپتو", google_news_search_url(
+        "ارز دیجیتال بیت کوین کریپتو"
+    )),
 ]
 
 
 # ============================================================
-# IMPORTANCE KEYWORDS
+# IMPORTANCE
 # ============================================================
 
 VERY_IMPORTANT_KEYWORDS = [
@@ -372,15 +437,6 @@ MEDIUM_QUALITY_HOSTS = {
 }
 
 
-def base_domain(host):
-    host = (host or "").lower()
-
-    if host.startswith("www."):
-        host = host[4:]
-
-    return host
-
-
 def publisher_quality(url):
     host = base_domain(get_hostname(url))
 
@@ -388,10 +444,10 @@ def publisher_quality(url):
         return 0
 
     if is_social_host(url):
-        return -30
+        return -40
 
     if is_google_host(url):
-        return -35
+        return -50
 
     for domain in HIGH_QUALITY_HOSTS:
         if host == domain or host.endswith("." + domain):
@@ -405,7 +461,7 @@ def publisher_quality(url):
 
 
 # ============================================================
-# HTTP SESSION
+# HTTP
 # ============================================================
 
 SESSION = requests.Session()
@@ -455,7 +511,7 @@ def is_roundup_title(title):
 
 
 # ============================================================
-# SOURCE / DATELINE CLEANING
+# SOURCE CLEANING
 # ============================================================
 
 SOURCE_PHRASES = [
@@ -482,11 +538,13 @@ def clean_content(text):
     if not text:
         return ""
 
-    text = BeautifulSoup(str(text), "html.parser").get_text(" ")
+    text = BeautifulSoup(
+        str(text),
+        "html.parser"
+    ).get_text(" ")
 
     text = normalize_space(text)
 
-    # Remove obvious RSS/source prefixes
     text = re.sub(
         r"^(مشهد|تهران|قم|تبریز|اصفهان|شیراز|کرج|اهواز|بغداد|واشنگتن|لندن)"
         r"\s*[-–—:]\s*",
@@ -496,17 +554,19 @@ def clean_content(text):
     )
 
     for phrase in SOURCE_PHRASES:
-        text = text.replace(phrase, "")
+        text = text.replace(
+            phrase,
+            ""
+        )
 
-    # Remove common source markers
     text = re.sub(
-        r"\b(ایرنا|ایسنا|مهر|باشگاه خبرنگاران جوان|خبرگزاری)\s*[:：-]",
+        r"\b(ایرنا|ایسنا|مهر|باشگاه خبرنگاران جوان|خبرگزاری)"
+        r"\s*[:：-]",
         "",
         text,
         flags=re.I
     )
 
-    # Remove media markers
     text = re.sub(
         r"\+\s*(فیلم|ویدئو|ویدیو|عکس|تصاویر)\s*$",
         "",
@@ -516,7 +576,7 @@ def clean_content(text):
 
     text = normalize_space(text)
 
-    return text[:3000]
+    return text[:6000]
 
 
 # ============================================================
@@ -527,26 +587,28 @@ def clean_title(title):
     if not title:
         return ""
 
-    title = BeautifulSoup(str(title), "html.parser").get_text(" ")
+    title = BeautifulSoup(
+        str(title),
+        "html.parser"
+    ).get_text(" ")
 
     title = normalize_space(title)
 
-    # Remove Google News publisher suffix
     title = re.sub(
-        r"\s*[-|]\s*(facebook\.com|twitter\.com|x\.com|youtube\.com)\s*$",
+        r"\s*[-|]\s*"
+        r"(facebook\.com|twitter\.com|x\.com|youtube\.com)"
+        r"\s*$",
         "",
         title,
         flags=re.I
     )
 
-    # Common Google News publisher suffixes
     title = re.sub(
         r"\s+-\s+[A-Za-z0-9._-]+\.[A-Za-z]{2,}$",
         "",
         title
     )
 
-    # Remove source names at the beginning
     title = re.sub(
         r"^(ایرنا|ایسنا|مهر|فارس|تسنیم|یعنی چه|باشگاه خبرنگاران جوان)"
         r"\s*[-|:：]\s*",
@@ -555,7 +617,6 @@ def clean_title(title):
         flags=re.I
     )
 
-    # Remove + فیلم / + عکس
     title = re.sub(
         r"\s*\+\s*(فیلم|ویدئو|ویدیو|عکس|تصاویر)\s*$",
         "",
@@ -563,9 +624,7 @@ def clean_title(title):
         flags=re.I
     )
 
-    title = normalize_space(title)
-
-    return title[:180]
+    return normalize_space(title)[:180]
 
 
 # ============================================================
@@ -605,7 +664,16 @@ def sentence_score(sentence):
         if word in sentence:
             score += 2
 
-    if any(x in sentence for x in ["اعلام کرد", "گفت", "تصمیم", "تصویب", "تأیید"]):
+    if any(
+        x in sentence
+        for x in [
+            "اعلام کرد",
+            "گفت",
+            "تصمیم",
+            "تصویب",
+            "تأیید"
+        ]
+    ):
         score += 1
 
     return score
@@ -620,66 +688,188 @@ def enforce_short_summary(text):
     sentences = split_sentences(text)
 
     if not sentences:
-        return text[:MAX_BODY_CHARS]
+        return text[:600].strip()
 
-    selected = []
-
-    first = sentences[0]
-
-    selected.append(first)
-
-    remaining = sentences[1:]
+    selected = [
+        sentences[0]
+    ]
 
     remaining = sorted(
-        remaining,
+        sentences[1:],
         key=sentence_score,
         reverse=True
     )
 
     for sentence in remaining:
-        if len(selected) >= MAX_BODY_SENTENCES:
+
+        if len(selected) >= 3:
             break
 
-        candidate = " ".join(selected + [sentence])
+        candidate = " ".join(
+            selected + [sentence]
+        )
 
-        if len(candidate) <= MAX_BODY_CHARS:
+        if len(candidate) <= 600:
             selected.append(sentence)
 
-    result = " ".join(selected)
-
-    return result[:MAX_BODY_CHARS].strip()
+    return " ".join(selected)[:600].strip()
 
 
 # ============================================================
 # HISTORY
+#
+# Old file compatibility:
+# - old lines are hashes
+# - new lines:
+#   TITLE|timestamp|title
 # ============================================================
 
 def load_history():
+    hash_history = set()
+    title_history = []
+
     if not os.path.exists(HISTORY_FILE):
-        return set()
+        return hash_history, title_history
 
     try:
-        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
-            return {
-                normalize_space(x)
-                for x in f.read().splitlines()
-                if normalize_space(x)
-            }
-    except Exception:
-        return set()
+        with open(
+            HISTORY_FILE,
+            "r",
+            encoding="utf-8"
+        ) as f:
 
+            for raw in f.read().splitlines():
 
-def save_history(history):
-    try:
-        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
-            for item in sorted(history):
-                f.write(item + "\n")
+                line = raw.strip()
+
+                if not line:
+                    continue
+
+                # New semantic history format
+                if line.startswith("TITLE|"):
+
+                    parts = line.split(
+                        "|",
+                        2
+                    )
+
+                    if len(parts) == 3:
+
+                        try:
+                            timestamp = int(
+                                parts[1]
+                            )
+                        except Exception:
+                            timestamp = 0
+
+                        title = clean_title(
+                            parts[2]
+                        )
+
+                        if title:
+                            title_history.append(
+                                (
+                                    timestamp,
+                                    title
+                                )
+                            )
+
+                    continue
+
+                # Old hash format
+                hash_history.add(
+                    normalize_space(line)
+                )
+
     except Exception as e:
-        print(f"History save error: {e}")
+        print(
+            f"History load error: {e}"
+        )
+
+    return hash_history, title_history
+
+
+def save_history(hash_history, title_history):
+    try:
+
+        # Keep old hashes.
+        # Keep only recent semantic titles.
+        cutoff = int(
+            (
+                datetime.now(timezone.utc)
+                - timedelta(
+                    days=SEMANTIC_HISTORY_DAYS
+                )
+            ).timestamp()
+        )
+
+        recent_titles = []
+
+        for timestamp, title in title_history:
+
+            if timestamp >= cutoff:
+                recent_titles.append(
+                    (
+                        timestamp,
+                        clean_title(title)
+                    )
+                )
+
+        # Remove exact duplicate title records.
+        seen_titles = set()
+        cleaned_titles = []
+
+        for timestamp, title in sorted(
+            recent_titles,
+            key=lambda x: x[0]
+        ):
+
+            key = normalize_space(
+                title
+            ).lower()
+
+            if not key or key in seen_titles:
+                continue
+
+            seen_titles.add(key)
+
+            cleaned_titles.append(
+                (
+                    timestamp,
+                    title
+                )
+            )
+
+        with open(
+            HISTORY_FILE,
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            for item in sorted(
+                hash_history
+            ):
+                f.write(
+                    item + "\n"
+                )
+
+            for timestamp, title in cleaned_titles:
+                f.write(
+                    f"TITLE|{timestamp}|{title}\n"
+                )
+
+    except Exception as e:
+        print(
+            f"History save error: {e}"
+        )
 
 
 def make_history_key(title, link):
-    value = normalize_space(title) + "|" + normalize_space(link)
+    value = (
+        normalize_space(title)
+        + "|"
+        + normalize_space(link)
+    )
 
     return hashlib.sha256(
         value.encode("utf-8")
@@ -687,7 +877,7 @@ def make_history_key(title, link):
 
 
 # ============================================================
-# TITLE SIMILARITY
+# TITLE / STORY NORMALIZATION
 # ============================================================
 
 STOPWORDS = {
@@ -713,12 +903,61 @@ STOPWORDS = {
     "خواهد",
     "خبر",
     "گزارش",
+    "اعلام",
+    "جدید",
+    "مهم",
+    "آخرین",
+    "درباره",
+    "مورد",
+    "پس",
+    "نیز",
+    "اما",
+    "هم",
+    "تا",
+    "بر",
+    "های",
+    "ها",
+}
+
+
+GENERIC_NEWS_WORDS = {
+    "خبر",
+    "گزارش",
+    "اعلام",
+    "آخرین",
+    "جدید",
+    "مهم",
+    "ادعا",
+    "مدعی",
+    "تصمیم",
+    "تازه",
+    "جزئیات",
+    "واکنش",
+    "اظهارات",
+    "مواضع",
+    "توضیح",
+    "انتقاد",
+    "تأکید",
+    "تاکید",
+    "خبرگزاری",
+    "تحلیل",
+    "تحلیلگر",
+    "گفت",
+    "گفتند",
+    "عنوان",
+    "رونمایی",
+    "انتشار",
 }
 
 
 def title_tokens(title):
-    title = normalize_digits(title)
-    title = clean_title(title).lower()
+    title = normalize_digits(
+        title
+    )
+
+    title = clean_title(
+        title
+    ).lower()
 
     title = re.sub(
         r"[^\w\u0600-\u06ff]+",
@@ -726,12 +965,31 @@ def title_tokens(title):
         title
     )
 
-    tokens = {
-        x for x in title.split()
-        if len(x) >= 2 and x not in STOPWORDS
-    }
+    tokens = set()
+
+    for token in title.split():
+
+        token = token.strip()
+
+        if len(token) < 2:
+            continue
+
+        if token in STOPWORDS:
+            continue
+
+        tokens.add(token)
 
     return tokens
+
+
+def story_tokens(title):
+    tokens = title_tokens(title)
+
+    return {
+        x
+        for x in tokens
+        if x not in GENERIC_NEWS_WORDS
+    }
 
 
 def title_similarity(a, b):
@@ -741,8 +999,13 @@ def title_similarity(a, b):
     if not A or not B:
         return 0
 
-    intersection = len(A & B)
-    union = len(A | B)
+    intersection = len(
+        A & B
+    )
+
+    union = len(
+        A | B
+    )
 
     if union == 0:
         return 0
@@ -750,139 +1013,158 @@ def title_similarity(a, b):
     return intersection / union
 
 
-def detect_cross_source_bonus(candidate, candidates):
-    title = candidate.get("title", "")
+def story_similarity(a, b):
+    A = story_tokens(a)
+    B = story_tokens(b)
 
-    bonus = 0
-
-    checked = 0
-
-    for other in candidates:
-        if other is candidate:
-            continue
-
-        checked += 1
-
-        if checked > 80:
-            break
-
-        similarity = title_similarity(
-            title,
-            other.get("title", "")
+    if not A or not B:
+        return title_similarity(
+            a,
+            b
         )
 
-        if similarity >= 0.72:
-            bonus += 5
+    intersection = len(
+        A & B
+    )
 
-        elif similarity >= 0.58:
-            bonus += 2
+    if intersection == 0:
+        return 0
 
-    return min(bonus, 10)
+    union = len(
+        A | B
+    )
 
+    jaccard = (
+        intersection / union
+    )
 
-# ============================================================
-# STORY CLUSTERING
-# ============================================================
+    containment = intersection / min(
+        len(A),
+        len(B)
+    )
+
+    # Weighted toward containment.
+    return (
+        jaccard * 0.45
+        + containment * 0.55
+    )
+
 
 def same_story(a, b):
-    similarity = title_similarity(
-        a.get("title", ""),
-        b.get("title", "")
+    title_a = a.get(
+        "title",
+        ""
+    )
+
+    title_b = b.get(
+        "title",
+        ""
+    )
+
+    similarity = story_similarity(
+        title_a,
+        title_b
     )
 
     if similarity >= 0.70:
         return True
 
-    A = title_tokens(a.get("title", ""))
-    B = title_tokens(b.get("title", ""))
+    A = story_tokens(
+        title_a
+    )
+
+    B = story_tokens(
+        title_b
+    )
 
     common = A & B
 
-    if len(common) >= 4 and similarity >= 0.50:
-        return True
+    # Strong entity/event overlap.
+    if len(common) >= 4:
+        if similarity >= 0.52:
+            return True
+
+    # Short titles need a stricter rule.
+    if len(A) <= 3 or len(B) <= 3:
+        return (
+            title_similarity(
+                title_a,
+                title_b
+            ) >= 0.80
+        )
 
     return False
 
 
-def choose_cluster_representative(cluster):
-    if not cluster:
-        return None
+def history_contains_story(
+    title,
+    title_history
+):
+    if not title:
+        return False
 
-    def score(item):
-        value = 0
+    now = int(
+        datetime.now(
+            timezone.utc
+        ).timestamp()
+    )
 
-        value += publisher_quality(item.get("link", ""))
+    cutoff = now - int(
+        SEMANTIC_HISTORY_DAYS
+        * 86400
+    )
 
-        if item.get("is_google"):
-            value -= 20
+    for timestamp, old_title in title_history:
 
-        if item.get("resolved_link"):
-            value += 8
+        if timestamp < cutoff:
+            continue
 
-        if item.get("article_text"):
-            value += 5
+        if same_story(
+            {"title": title},
+            {"title": old_title}
+        ):
+            return True
 
-        if item.get("image_url"):
-            value += 3
-
-        if item.get("video_url"):
-            value += 4
-
-        value += item.get("importance", 0)
-
-        return value
-
-    return max(cluster, key=score)
+    return False
 
 
-def cluster_candidates(candidates):
-    clusters = []
+def record_semantic_history(
+    title,
+    title_history
+):
+    title = clean_title(
+        title
+    )
 
-    for candidate in candidates:
-        placed = False
+    if not title:
+        return
 
-        for cluster in clusters:
-            representative = cluster[0]
-
-            if same_story(candidate, representative):
-                cluster.append(candidate)
-                placed = True
-                break
-
-        if not placed:
-            clusters.append([candidate])
-
-    result = []
-
-    for cluster in clusters:
-        representative = choose_cluster_representative(cluster)
-
-        if representative:
-            # If a direct publisher version exists in the cluster,
-            # prefer its metadata.
-            for item in cluster:
-                if not item.get("is_google"):
-                    if publisher_quality(item.get("link", "")) > publisher_quality(
-                        representative.get("link", "")
-                    ):
-                        representative = item
-
-            representative["cluster_size"] = len(cluster)
-
-            result.append(representative)
-
-    return result
+    title_history.append(
+        (
+            int(
+                datetime.now(
+                    timezone.utc
+                ).timestamp()
+            ),
+            title
+        )
+    )
 
 
 # ============================================================
-# DATE / IMPORTANCE
+# DATE / FRESHNESS
 # ============================================================
 
 def parse_entry_time(entry):
     try:
-        parsed = entry.get("published_parsed") or entry.get("updated_parsed")
+
+        parsed = (
+            entry.get("published_parsed")
+            or entry.get("updated_parsed")
+        )
 
         if parsed:
+
             return datetime(
                 parsed.tm_year,
                 parsed.tm_mon,
@@ -896,10 +1178,82 @@ def parse_entry_time(entry):
     except Exception:
         pass
 
-    return datetime.now(timezone.utc)
+    return None
 
 
-def calculate_keyword_importance(title, body):
+def is_fresh(published_at):
+    if not published_at:
+        return True
+
+    try:
+
+        now = datetime.now(
+            timezone.utc
+        )
+
+        age_hours = (
+            now - published_at
+        ).total_seconds() / 3600
+
+        # Future timestamps are accepted.
+        if age_hours < 0:
+            return True
+
+        return (
+            age_hours
+            <= MAX_NEWS_AGE_HOURS
+        )
+
+    except Exception:
+        return True
+
+
+def calculate_recency_score(dt):
+    if not dt:
+        return 0
+
+    try:
+
+        now = datetime.now(
+            timezone.utc
+        )
+
+        age_hours = (
+            now - dt
+        ).total_seconds() / 3600
+
+        if age_hours < 1:
+            return 12
+
+        if age_hours < 3:
+            return 10
+
+        if age_hours < 6:
+            return 8
+
+        if age_hours < 12:
+            return 5
+
+        if age_hours < 24:
+            return 3
+
+        if age_hours <= 36:
+            return 1
+
+    except Exception:
+        pass
+
+    return 0
+
+
+# ============================================================
+# IMPORTANCE
+# ============================================================
+
+def calculate_keyword_importance(
+    title,
+    body
+):
     text = f"{title} {body}"
 
     score = 0
@@ -912,40 +1266,19 @@ def calculate_keyword_importance(title, body):
         if word in text:
             score += 3
 
-    return min(score, 40)
+    return min(
+        score,
+        40
+    )
 
 
-def calculate_recency_score(dt):
-    try:
-        now = datetime.now(timezone.utc)
-
-        age_hours = (
-            now - dt
-        ).total_seconds() / 3600
-
-        if age_hours < 1:
-            return 10
-
-        if age_hours < 3:
-            return 8
-
-        if age_hours < 6:
-            return 6
-
-        if age_hours < 12:
-            return 4
-
-        if age_hours < 24:
-            return 2
-
-    except Exception:
-        pass
-
-    return 0
-
-
-def source_priority(url, is_google=False):
-    score = publisher_quality(url)
+def source_priority(
+    url,
+    is_google=False
+):
+    score = publisher_quality(
+        url
+    )
 
     if is_google:
         score -= 10
@@ -953,9 +1286,18 @@ def source_priority(url, is_google=False):
     return score
 
 
-def calculate_importance(candidate):
-    title = candidate.get("title", "")
-    body = candidate.get("summary", "")
+def calculate_importance(
+    candidate
+):
+    title = candidate.get(
+        "title",
+        ""
+    )
+
+    body = candidate.get(
+        "summary",
+        ""
+    )
 
     score = 0
 
@@ -973,44 +1315,66 @@ def calculate_importance(candidate):
         candidate.get("is_google", False)
     )
 
-    if candidate.get("video_url"):
+    if candidate.get(
+        "video_url"
+    ):
         score += 3
 
-    if candidate.get("image_url"):
+    if candidate.get(
+        "image_url"
+    ):
         score += 2
 
-    if candidate.get("resolved_link"):
+    if candidate.get(
+        "resolved_link"
+    ):
         score += 5
 
-    # Social/aggregator penalty
-    if is_social_host(candidate.get("link", "")):
+    if is_social_host(
+        candidate.get("link", "")
+    ):
+        score -= 30
+
+    if is_google_host(
+        candidate.get("link", "")
+    ):
         score -= 20
 
-    if is_google_host(candidate.get("link", "")):
-        score -= 10
-
-    if is_roundup_title(title):
+    if is_roundup_title(
+        title
+    ):
         score -= 25
 
-    # Multi-source confirmation
-    if candidate.get("cluster_size", 1) >= 2:
-        score += min(candidate["cluster_size"], 4) * 2
+    if candidate.get(
+        "cluster_size",
+        1
+    ) >= 2:
+
+        score += min(
+            candidate["cluster_size"],
+            4
+        ) * 2
 
     return score
 
 
 # ============================================================
-# GOOGLE NEWS REDIRECT RESOLUTION
+# GOOGLE NEWS RESOLUTION
 # ============================================================
 
-def resolve_google_news_url(url):
+def resolve_google_news_url(
+    url
+):
     if not url:
         return ""
 
-    if not is_google_host(url):
+    if not is_google_host(
+        url
+    ):
         return url
 
     try:
+
         response = SESSION.get(
             url,
             timeout=12,
@@ -1025,17 +1389,23 @@ def resolve_google_news_url(url):
         except Exception:
             pass
 
-        if final_url and not is_google_host(final_url):
+        if (
+            final_url
+            and not is_google_host(final_url)
+            and not is_social_host(final_url)
+        ):
             return final_url
 
     except Exception as e:
-        print(f"Google URL resolve failed: {e}")
+        print(
+            f"Google URL resolve failed: {e}"
+        )
 
     return ""
 
 
 # ============================================================
-# ARTICLE FETCH
+# ARTICLE
 # ============================================================
 
 def fetch_article(url):
@@ -1043,6 +1413,7 @@ def fetch_article(url):
         return ""
 
     try:
+
         response = SESSION.get(
             url,
             timeout=ARTICLE_TIMEOUT,
@@ -1065,7 +1436,6 @@ def fetch_article(url):
             "html.parser"
         )
 
-        # Remove unwanted elements
         for tag in soup([
             "script",
             "style",
@@ -1081,7 +1451,7 @@ def fetch_article(url):
 
         candidates = []
 
-        for selector in [
+        selectors = [
             "article",
             "[itemprop='articleBody']",
             ".article-body",
@@ -1090,29 +1460,50 @@ def fetch_article(url):
             ".news-content",
             ".content",
             "main"
-        ]:
-            for node in soup.select(selector):
+        ]
+
+        for selector in selectors:
+
+            for node in soup.select(
+                selector
+            ):
+
                 text = normalize_space(
-                    node.get_text(" ", strip=True)
+                    node.get_text(
+                        " ",
+                        strip=True
+                    )
                 )
 
                 if len(text) > 150:
-                    candidates.append(text)
+                    candidates.append(
+                        text
+                    )
 
         if not candidates:
+
             paragraphs = []
 
             for p in soup.find_all("p"):
+
                 text = normalize_space(
-                    p.get_text(" ", strip=True)
+                    p.get_text(
+                        " ",
+                        strip=True
+                    )
                 )
 
                 if len(text) >= 40:
-                    paragraphs.append(text)
+                    paragraphs.append(
+                        text
+                    )
 
-            candidates.append(
-                " ".join(paragraphs)
-            )
+            if paragraphs:
+                candidates.append(
+                    " ".join(
+                        paragraphs
+                    )
+                )
 
         if not candidates:
             return ""
@@ -1122,33 +1513,47 @@ def fetch_article(url):
             key=len
         )
 
-        return clean_content(text)[:6000]
+        return clean_content(
+            text
+        )[:6000]
 
     except Exception as e:
-        print(f"Article fetch error: {e}")
+        print(
+            f"Article fetch error: {e}"
+        )
+
         return ""
 
 
 # ============================================================
-# IMAGE EXTRACTION
+# IMAGE
 # ============================================================
 
-def absolute_url(url, base):
+def absolute_url(
+    url,
+    base
+):
     if not url:
         return ""
 
     try:
-        from urllib.parse import urljoin
-        return urljoin(base, url)
+        return urljoin(
+            base,
+            url
+        )
     except Exception:
         return url
 
 
-def image_is_acceptable(url):
+def image_is_acceptable(
+    url
+):
     if not url:
         return False
 
-    if is_bad_media_url(url):
+    if is_bad_media_url(
+        url
+    ):
         return False
 
     lower = url.lower()
@@ -1161,28 +1566,32 @@ def image_is_acceptable(url):
         "placeholder",
         "default",
         "sprite",
-        "google-news"
+        "google-news",
+        "google_news",
+        "blank.gif"
     ]
 
     for word in bad_words:
+
         if word in lower:
             return False
 
     return True
 
 
-def extract_image_from_html(html, page_url):
+def extract_image_from_html(
+    html,
+    page_url
+):
     if not html:
         return ""
 
     try:
+
         soup = BeautifulSoup(
             html,
             "html.parser"
         )
-
-        # Priority order:
-        # og:image -> twitter:image -> large image in article
 
         meta_names = [
             ("property", "og:image"),
@@ -1193,33 +1602,45 @@ def extract_image_from_html(html, page_url):
         ]
 
         for attr, value in meta_names:
+
             tag = soup.find(
                 "meta",
-                attrs={attr: value}
+                attrs={
+                    attr: value
+                }
             )
 
             if tag:
-                url = tag.get("content", "").strip()
+
+                url = tag.get(
+                    "content",
+                    ""
+                ).strip()
 
                 url = absolute_url(
                     url,
                     page_url
                 )
 
-                if image_is_acceptable(url):
+                if image_is_acceptable(
+                    url
+                ):
                     return url
 
-        # Article images
         article_nodes = soup.select(
-            "article img, main img, [itemprop='articleBody'] img"
+            "article img, "
+            "main img, "
+            "[itemprop='articleBody'] img"
         )
 
         best = ""
 
         for img in article_nodes:
+
             src = (
                 img.get("data-src")
                 or img.get("data-original")
+                or img.get("data-lazy-src")
                 or img.get("src")
                 or ""
             )
@@ -1229,23 +1650,38 @@ def extract_image_from_html(html, page_url):
                 page_url
             )
 
-            if not image_is_acceptable(src):
+            if not image_is_acceptable(
+                src
+            ):
                 continue
 
             width = 0
             height = 0
 
             try:
-                width = int(img.get("width", 0))
+                width = int(
+                    img.get(
+                        "width",
+                        0
+                    )
+                )
             except Exception:
                 pass
 
             try:
-                height = int(img.get("height", 0))
+                height = int(
+                    img.get(
+                        "height",
+                        0
+                    )
+                )
             except Exception:
                 pass
 
-            if width >= 500 or height >= 300:
+            if (
+                width >= 500
+                or height >= 300
+            ):
                 return src
 
             if not best:
@@ -1257,11 +1693,14 @@ def extract_image_from_html(html, page_url):
         return ""
 
 
-def extract_image_from_article(url):
+def extract_image_from_article(
+    url
+):
     if not url:
         return ""
 
     try:
+
         response = SESSION.get(
             url,
             timeout=ARTICLE_TIMEOUT,
@@ -1285,19 +1724,26 @@ def extract_image_from_article(url):
         )
 
     except Exception as e:
-        print(f"Image extraction error: {e}")
+        print(
+            f"Image extraction error: {e}"
+        )
+
         return ""
 
 
 # ============================================================
-# VIDEO EXTRACTION
+# VIDEO
 # ============================================================
 
-def extract_video_from_html(html, page_url):
+def extract_video_from_html(
+    html,
+    page_url
+):
     if not html:
         return ""
 
     try:
+
         soup = BeautifulSoup(
             html,
             "html.parser"
@@ -1311,26 +1757,36 @@ def extract_video_from_html(html, page_url):
         ]
 
         for attr, value in meta_values:
+
             tag = soup.find(
                 "meta",
-                attrs={attr: value}
+                attrs={
+                    attr: value
+                }
             )
 
             if tag:
-                url = tag.get("content", "").strip()
+
+                url = tag.get(
+                    "content",
+                    ""
+                ).strip()
 
                 url = absolute_url(
                     url,
                     page_url
                 )
 
-                if looks_like_video_url(url):
+                if (
+                    looks_like_video_url(url)
+                    and not is_bad_media_url(url)
+                ):
                     return url
 
-        # video/source
         for source in soup.select(
             "video source, video"
         ):
+
             url = (
                 source.get("src")
                 or source.get("data-src")
@@ -1342,36 +1798,56 @@ def extract_video_from_html(html, page_url):
                 page_url
             )
 
-            if looks_like_video_url(url):
+            if (
+                looks_like_video_url(url)
+                and not is_bad_media_url(url)
+            ):
                 return url
 
-        # JSON-LD
         for script in soup.find_all(
             "script",
-            attrs={"type": "application/ld+json"}
+            attrs={
+                "type": "application/ld+json"
+            }
         ):
+
             try:
+
                 data = json.loads(
-                    script.string or script.get_text()
+                    script.string
+                    or script.get_text()
                 )
 
                 objects = data
 
-                if isinstance(data, dict):
+                if isinstance(
+                    data,
+                    dict
+                ):
                     objects = [data]
 
-                if not isinstance(objects, list):
+                if not isinstance(
+                    objects,
+                    list
+                ):
                     continue
 
                 for obj in objects:
-                    if not isinstance(obj, dict):
+
+                    if not isinstance(
+                        obj,
+                        dict
+                    ):
                         continue
 
                     for key in [
                         "contentUrl",
                         "embedUrl"
                     ]:
-                        url = obj.get(key)
+
+                        url = obj.get(
+                            key
+                        )
 
                         if not url:
                             continue
@@ -1381,7 +1857,10 @@ def extract_video_from_html(html, page_url):
                             page_url
                         )
 
-                        if looks_like_video_url(url):
+                        if (
+                            looks_like_video_url(url)
+                            and not is_bad_media_url(url)
+                        ):
                             return url
 
             except Exception:
@@ -1393,11 +1872,14 @@ def extract_video_from_html(html, page_url):
     return ""
 
 
-def extract_video_from_article(url):
+def extract_video_from_article(
+    url
+):
     if not url:
         return ""
 
     try:
+
         response = SESSION.get(
             url,
             timeout=ARTICLE_TIMEOUT,
@@ -1413,7 +1895,10 @@ def extract_video_from_article(url):
         )
 
     except Exception as e:
-        print(f"Video extraction error: {e}")
+        print(
+            f"Video extraction error: {e}"
+        )
+
         return ""
 
 
@@ -1421,11 +1906,16 @@ def extract_video_from_article(url):
 # DOWNLOAD
 # ============================================================
 
-def download_file(url, filename, max_mb):
+def download_file(
+    url,
+    filename,
+    max_mb
+):
     if not url:
         return ""
 
     try:
+
         response = SESSION.get(
             url,
             timeout=ARTICLE_TIMEOUT,
@@ -1436,25 +1926,27 @@ def download_file(url, filename, max_mb):
         if response.status_code != 200:
             return ""
 
-        content_type = response.headers.get(
-            "content-type",
-            ""
-        ).lower()
-
         content_length = response.headers.get(
             "content-length"
         )
 
         if content_length:
+
             try:
-                size_mb = int(content_length) / (
+
+                size_mb = int(
+                    content_length
+                ) / (
                     1024 * 1024
                 )
 
                 if size_mb > max_mb:
+
                     print(
-                        f"File too large: {size_mb:.1f} MB"
+                        f"File too large: "
+                        f"{size_mb:.1f} MB"
                     )
+
                     return ""
 
             except Exception:
@@ -1462,33 +1954,54 @@ def download_file(url, filename, max_mb):
 
         total = 0
 
-        with open(filename, "wb") as f:
+        with open(
+            filename,
+            "wb"
+        ) as f:
+
             for chunk in response.iter_content(
                 chunk_size=64 * 1024
             ):
+
                 if not chunk:
                     continue
 
-                total += len(chunk)
+                total += len(
+                    chunk
+                )
 
-                if total > max_mb * 1024 * 1024:
+                if (
+                    total
+                    > max_mb
+                    * 1024
+                    * 1024
+                ):
+
                     print(
-                        f"Download exceeded {max_mb} MB"
+                        f"Download exceeded "
+                        f"{max_mb} MB"
                     )
 
                     try:
                         f.close()
-                        os.remove(filename)
+                        os.remove(
+                            filename
+                        )
                     except Exception:
                         pass
 
                     return ""
 
-                f.write(chunk)
+                f.write(
+                    chunk
+                )
 
         if total == 0:
+
             try:
-                os.remove(filename)
+                os.remove(
+                    filename
+                )
             except Exception:
                 pass
 
@@ -1497,11 +2010,20 @@ def download_file(url, filename, max_mb):
         return filename
 
     except Exception as e:
-        print(f"Download error: {e}")
+
+        print(
+            f"Download error: {e}"
+        )
 
         try:
-            if os.path.exists(filename):
-                os.remove(filename)
+
+            if os.path.exists(
+                filename
+            ):
+                os.remove(
+                    filename
+                )
+
         except Exception:
             pass
 
@@ -1512,57 +2034,103 @@ def download_file(url, filename, max_mb):
 # WATERMARK
 # ============================================================
 
-def find_font(size, bold=True):
-    candidates = []
-
+def find_font(
+    size,
+    bold=True
+):
     if bold:
+
         candidates = [
             "Vazirmatn-Bold.ttf",
             "./Vazirmatn-Bold.ttf",
         ]
+
     else:
+
         candidates = [
             "Vazirmatn-Regular.ttf",
             "./Vazirmatn-Regular.ttf",
         ]
 
     for path in candidates:
-        if os.path.exists(path):
+
+        if os.path.exists(
+            path
+        ):
+
             try:
+
                 return ImageFont.truetype(
                     path,
                     size
                 )
+
             except Exception:
                 pass
 
     return ImageFont.load_default()
 
 
-def add_watermark(input_path, output_path):
+def resize_for_telegram(
+    image
+):
+    width, height = image.size
+
+    ratio = min(
+        MAX_OUTPUT_IMAGE_WIDTH / width,
+        MAX_OUTPUT_IMAGE_HEIGHT / height,
+        1.0
+    )
+
+    if ratio >= 1:
+        return image
+
+    new_width = max(
+        1,
+        int(width * ratio)
+    )
+
+    new_height = max(
+        1,
+        int(height * ratio)
+    )
+
+    return image.resize(
+        (
+            new_width,
+            new_height
+        ),
+        Image.Resampling.LANCZOS
+    )
+
+
+def add_watermark(
+    input_path,
+    output_path
+):
     try:
+
         image = Image.open(
             input_path
         ).convert("RGBA")
 
+        # Resize FIRST.
+        # Watermark is therefore always consistent.
+        image = resize_for_telegram(
+            image
+        )
+
         width, height = image.size
 
-        # ----------------------------------------------------
-        # IMPORTANT:
-        # Watermark is deliberately small and capped.
-        # It will NOT grow excessively on 4K images.
-        # ----------------------------------------------------
-
-        if width >= 3000:
-            font_size = 25
-        elif width >= 2200:
-            font_size = 24
-        elif width >= 1600:
-            font_size = 22
-        elif width >= 1000:
+        # Small fixed watermark sizes
+        if width >= 1400:
             font_size = 20
-        else:
+        elif width >= 1000:
             font_size = 18
+        elif width >= 700:
+            font_size = 16
+        else:
+            font_size = 14
 
         font = find_font(
             font_size,
@@ -1580,24 +2148,34 @@ def add_watermark(input_path, output_path):
             font=font
         )
 
-        text_width = bbox[2] - bbox[0]
-        text_height = bbox[3] - bbox[1]
-
-        # Small proportional margin
-        margin = max(
-            12,
-            min(
-                int(width * 0.012),
-                28
-            )
+        text_width = (
+            bbox[2] - bbox[0]
         )
 
-        x = width - text_width - margin
-        y = height - text_height - margin
+        text_height = (
+            bbox[3] - bbox[1]
+        )
 
-        # Small semi-transparent background
-        pad_x = 8
-        pad_y = 5
+        margin = max(
+            10,
+            int(width * 0.012)
+        )
+
+        x = (
+            width
+            - text_width
+            - margin
+        )
+
+        y = (
+            height
+            - text_height
+            - margin
+        )
+
+        # Very small translucent backing.
+        pad_x = 6
+        pad_y = 3
 
         draw.rounded_rectangle(
             [
@@ -1606,40 +2184,45 @@ def add_watermark(input_path, output_path):
                 x + text_width + pad_x,
                 y + text_height + pad_y
             ],
-            radius=6,
-            fill=(0, 0, 0, 100)
+            radius=5,
+            fill=(0, 0, 0, 75)
         )
 
-        # Very subtle shadow
+        # Soft shadow
         draw.text(
             (x + 1, y + 1),
             WATERMARK_TEXT,
             font=font,
-            fill=(0, 0, 0, 150)
+            fill=(0, 0, 0, 120)
         )
 
-        # Main watermark
+        # Small subtle watermark
         draw.text(
             (x, y),
             WATERMARK_TEXT,
             font=font,
-            fill=(255, 255, 255, 205)
+            fill=(255, 255, 255, 190)
         )
 
-        image = image.convert("RGB")
+        image = image.convert(
+            "RGB"
+        )
 
-        # Keep output reasonable
         image.save(
             output_path,
             "JPEG",
-            quality=91,
+            quality=90,
             optimize=True
         )
 
         return output_path
 
     except Exception as e:
-        print(f"Watermark error: {e}")
+
+        print(
+            f"Watermark error: {e}"
+        )
+
         return input_path
 
 
@@ -1647,17 +2230,24 @@ def add_watermark(input_path, output_path):
 # TELEGRAM
 # ============================================================
 
-def telegram_api(method):
+def telegram_api(
+    method
+):
     return (
         f"https://api.telegram.org/bot"
         f"{BOT_TOKEN}/{method}"
     )
 
 
-def send_message(text):
+def send_message(
+    text
+):
     try:
+
         response = SESSION.post(
-            telegram_api("sendMessage"),
+            telegram_api(
+                "sendMessage"
+            ),
             data={
                 "chat_id": CHANNEL_ID,
                 "text": text,
@@ -1676,16 +2266,29 @@ def send_message(text):
         )
 
     except Exception as e:
-        print(f"sendMessage error: {e}")
+
+        print(
+            f"sendMessage error: {e}"
+        )
 
     return False
 
 
-def send_photo(path, caption):
+def send_photo(
+    path,
+    caption
+):
     try:
-        with open(path, "rb") as photo:
+
+        with open(
+            path,
+            "rb"
+        ) as photo:
+
             response = SESSION.post(
-                telegram_api("sendPhoto"),
+                telegram_api(
+                    "sendPhoto"
+                ),
                 data={
                     "chat_id": CHANNEL_ID,
                     "caption": caption,
@@ -1697,7 +2300,11 @@ def send_photo(path, caption):
             )
 
         if response.ok:
-            print("PHOTO PUBLISHED")
+
+            print(
+                "PHOTO PUBLISHED"
+            )
+
             return True
 
         print(
@@ -1707,16 +2314,29 @@ def send_photo(path, caption):
         )
 
     except Exception as e:
-        print(f"sendPhoto error: {e}")
+
+        print(
+            f"sendPhoto error: {e}"
+        )
 
     return False
 
 
-def send_video(path, caption):
+def send_video(
+    path,
+    caption
+):
     try:
-        with open(path, "rb") as video:
+
+        with open(
+            path,
+            "rb"
+        ) as video:
+
             response = SESSION.post(
-                telegram_api("sendVideo"),
+                telegram_api(
+                    "sendVideo"
+                ),
                 data={
                     "chat_id": CHANNEL_ID,
                     "caption": caption,
@@ -1729,7 +2349,11 @@ def send_video(path, caption):
             )
 
         if response.ok:
-            print("VIDEO PUBLISHED")
+
+            print(
+                "VIDEO PUBLISHED"
+            )
+
             return True
 
         print(
@@ -1739,20 +2363,32 @@ def send_video(path, caption):
         )
 
     except Exception as e:
-        print(f"sendVideo error: {e}")
+
+        print(
+            f"sendVideo error: {e}"
+        )
 
     return False
 
 
 # ============================================================
-# TELEGRAM CAPTION
+# CAPTION
 # ============================================================
 
-def build_caption(title, body):
-    title = clean_title(title)
-    body = enforce_short_summary(body)
+def build_caption(
+    title,
+    body
+):
+    title = clean_title(
+        title
+    )
+
+    body = enforce_short_summary(
+        body
+    )
 
     if body:
+
         return (
             f"📰 {title}\n\n"
             f"{body}\n\n"
@@ -1769,7 +2405,10 @@ def build_caption(title, body):
 # GEMINI
 # ============================================================
 
-def gemini_request(title, article_text):
+def gemini_request(
+    title,
+    article_text
+):
     if not AI_API_KEY:
         return None
 
@@ -1777,7 +2416,8 @@ def gemini_request(title, article_text):
         article_text = title
 
     endpoint = (
-        "https://generativelanguage.googleapis.com/v1beta/models/"
+        "https://generativelanguage.googleapis.com/"
+        "v1beta/models/"
         f"{GEMINI_MODEL}:generateContent"
     )
 
@@ -1798,6 +2438,7 @@ def gemini_request(title, article_text):
 5. لحن کاملاً خبری، خنثی و حرفه‌ای باشد.
 6. از اغراق، کلیک‌بیت و نظر شخصی خودداری کن.
 7. اگر عنوان اصلی مناسب است، آن را بی‌دلیل تغییر نده.
+8. فقط اطلاعات موجود در متن را استفاده کن.
 
 فقط JSON معتبر برگردان:
 
@@ -1824,6 +2465,7 @@ def gemini_request(title, article_text):
     }
 
     try:
+
         response = SESSION.post(
             endpoint,
             params={
@@ -1834,20 +2476,34 @@ def gemini_request(title, article_text):
         )
 
         if not response.ok:
+
             print(
                 f"Gemini error: "
                 f"{response.status_code} "
                 f"{response.text[:600]}"
             )
+
             return None
 
         data = response.json()
 
         text = (
-            data.get("candidates", [{}])[0]
-            .get("content", {})
-            .get("parts", [{}])[0]
-            .get("text", "")
+            data.get(
+                "candidates",
+                [{}]
+            )[0]
+            .get(
+                "content",
+                {}
+            )
+            .get(
+                "parts",
+                [{}]
+            )[0]
+            .get(
+                "text",
+                ""
+            )
         )
 
         if not text:
@@ -1856,6 +2512,7 @@ def gemini_request(title, article_text):
         text = text.strip()
 
         if text.startswith("```"):
+
             text = re.sub(
                 r"^```(?:json)?",
                 "",
@@ -1871,18 +2528,28 @@ def gemini_request(title, article_text):
 
             text = text.strip()
 
-        result = json.loads(text)
+        result = json.loads(
+            text
+        )
 
         final_title = clean_title(
-            result.get("title", "")
+            result.get(
+                "title",
+                ""
+            )
         )
 
         final_summary = enforce_short_summary(
-            result.get("summary", "")
+            result.get(
+                "summary",
+                ""
+            )
         )
 
         if not final_title:
-            final_title = clean_title(title)
+            final_title = clean_title(
+                title
+            )
 
         return {
             "title": final_title,
@@ -1890,7 +2557,10 @@ def gemini_request(title, article_text):
         }
 
     except Exception as e:
-        print(f"Gemini exception: {e}")
+
+        print(
+            f"Gemini exception: {e}"
+        )
 
     return None
 
@@ -1899,18 +2569,23 @@ def gemini_request(title, article_text):
 # LOCAL FALLBACK
 # ============================================================
 
-def local_news_engine(title, body):
-    title = clean_title(title)
+def local_news_engine(
+    title,
+    body
+):
+    title = clean_title(
+        title
+    )
 
-    body = clean_content(body)
-
-    summary = enforce_short_summary(
+    body = clean_content(
         body
     )
 
     return {
         "title": title,
-        "summary": summary
+        "summary": enforce_short_summary(
+            body
+        )
     }
 
 
@@ -1918,10 +2593,15 @@ def local_news_engine(title, body):
 # RSS COLLECTION
 # ============================================================
 
-def collect_feed(category, url, is_google=False):
+def collect_feed(
+    category,
+    url,
+    is_google=False
+):
     candidates = []
 
     try:
+
         response = SESSION.get(
             url,
             timeout=REQUEST_TIMEOUT
@@ -1935,17 +2615,24 @@ def collect_feed(category, url, is_google=False):
 
         print(
             f"RSS OK: {category} | "
-            f"{len(feed.entries)} | {url}"
+            f"{len(feed.entries)} | "
+            f"{url}"
         )
 
-        for entry in feed.entries[:12]:
+        for entry in feed.entries[:15]:
 
             raw_title = normalize_space(
-                entry.get("title", "")
+                entry.get(
+                    "title",
+                    ""
+                )
             )
 
             raw_link = clean_url(
-                entry.get("link", "")
+                entry.get(
+                    "link",
+                    ""
+                )
             )
 
             if not raw_title or not raw_link:
@@ -1958,61 +2645,105 @@ def collect_feed(category, url, is_google=False):
             if not title:
                 continue
 
-            if is_roundup_title(title):
-                print(
-                    f"SKIPPED ROUNDUP: {title}"
-                )
-                continue
+            if is_roundup_title(
+                title
+            ):
 
-            summary = clean_content(
-                entry.get("summary", "")
-                or entry.get("description", "")
-            )
+                print(
+                    f"SKIPPED ROUNDUP: "
+                    f"{title}"
+                )
+
+                continue
 
             published_at = parse_entry_time(
                 entry
             )
 
+            # Don't let old RSS items suddenly enter.
+            if not is_fresh(
+                published_at
+            ):
+
+                print(
+                    f"SKIPPED OLD: "
+                    f"{title}"
+                )
+
+                continue
+
+            summary = clean_content(
+                entry.get(
+                    "summary",
+                    ""
+                )
+                or entry.get(
+                    "description",
+                    ""
+                )
+            )
+
             image_url = ""
 
+            # ------------------------------------------------
             # RSS media
+            # ------------------------------------------------
+
             media_content = entry.get(
                 "media_content",
                 []
             )
 
             for media in media_content:
-                if not isinstance(media, dict):
+
+                if not isinstance(
+                    media,
+                    dict
+                ):
                     continue
 
-                media_url = media.get(
-                    "url",
-                    ""
+                media_url = clean_url(
+                    media.get(
+                        "url",
+                        ""
+                    )
                 )
 
-                if image_is_acceptable(
-                    media_url
-                ):
-                    if not looks_like_video_url(
+                if (
+                    image_is_acceptable(
                         media_url
-                    ):
-                        image_url = media_url
-                        break
+                    )
+                    and not looks_like_video_url(
+                        media_url
+                    )
+                ):
 
+                    image_url = media_url
+
+                    break
+
+            # ------------------------------------------------
             # RSS enclosure
+            # ------------------------------------------------
+
             if not image_url:
+
                 enclosures = entry.get(
                     "enclosures",
                     []
                 )
 
                 for enclosure in enclosures:
-                    media_url = enclosure.get(
-                        "href",
-                        ""
-                    ) or enclosure.get(
-                        "url",
-                        ""
+
+                    media_url = clean_url(
+                        enclosure.get(
+                            "href",
+                            ""
+                        )
+                        or enclosure.get(
+                            "url",
+                            ""
+                        )
                     )
 
                     media_type = enclosure.get(
@@ -2026,8 +2757,40 @@ def collect_feed(category, url, is_google=False):
                             media_url
                         )
                     ):
+
                         image_url = media_url
+
                         break
+
+            # ------------------------------------------------
+            # Google News source metadata
+            # ------------------------------------------------
+
+            source_name = ""
+            source_url = ""
+
+            source = entry.get(
+                "source"
+            )
+
+            if isinstance(
+                source,
+                dict
+            ):
+
+                source_name = normalize_space(
+                    source.get(
+                        "title",
+                        ""
+                    )
+                )
+
+                source_url = clean_url(
+                    source.get(
+                        "href",
+                        ""
+                    )
+                )
 
             candidate = {
                 "category": category,
@@ -2039,8 +2802,11 @@ def collect_feed(category, url, is_google=False):
                 "video_url": "",
                 "is_google": is_google,
                 "resolved_link": "",
+                "source_name": source_name,
+                "source_url": source_url,
                 "article_text": "",
                 "importance": 0,
+                "cluster_size": 1,
             }
 
             candidates.append(
@@ -2048,6 +2814,7 @@ def collect_feed(category, url, is_google=False):
             )
 
     except Exception as e:
+
         print(
             f"RSS ERROR: {category} | "
             f"{url} | {e}"
@@ -2057,14 +2824,229 @@ def collect_feed(category, url, is_google=False):
 
 
 # ============================================================
+# CLUSTERING
+# ============================================================
+
+def detect_cross_source_bonus(
+    candidate,
+    candidates
+):
+    bonus = 0
+
+    checked = 0
+
+    for other in candidates:
+
+        if other is candidate:
+            continue
+
+        checked += 1
+
+        if checked > 120:
+            break
+
+        similarity = story_similarity(
+            candidate.get(
+                "title",
+                ""
+            ),
+            other.get(
+                "title",
+                ""
+            )
+        )
+
+        if similarity >= 0.75:
+            bonus += 5
+
+        elif similarity >= 0.62:
+            bonus += 2
+
+    return min(
+        bonus,
+        10
+    )
+
+
+def choose_cluster_representative(
+    cluster
+):
+    if not cluster:
+        return None
+
+    def score(item):
+
+        value = 0
+
+        value += publisher_quality(
+            item.get(
+                "link",
+                ""
+            )
+        )
+
+        # Direct publishers beat Google discovery.
+        if item.get(
+            "is_google"
+        ):
+            value -= 25
+
+        if item.get(
+            "resolved_link"
+        ):
+            value += 8
+
+        if item.get(
+            "article_text"
+        ):
+            value += 5
+
+        if item.get(
+            "image_url"
+        ):
+            value += 3
+
+        if item.get(
+            "video_url"
+        ):
+            value += 4
+
+        value += item.get(
+            "importance",
+            0
+        )
+
+        return value
+
+    return max(
+        cluster,
+        key=score
+    )
+
+
+def cluster_candidates(
+    candidates
+):
+    clusters = []
+
+    # Sort better sources first.
+    ordered = sorted(
+        candidates,
+        key=lambda x: (
+            publisher_quality(
+                x.get(
+                    "link",
+                    ""
+                )
+            ),
+            x.get(
+                "published_at"
+            ) or datetime.min.replace(
+                tzinfo=timezone.utc
+            )
+        ),
+        reverse=True
+    )
+
+    for candidate in ordered:
+
+        placed = False
+
+        for cluster in clusters:
+
+            # Compare against every item in the cluster,
+            # not just cluster[0].
+            for existing in cluster:
+
+                if same_story(
+                    candidate,
+                    existing
+                ):
+
+                    cluster.append(
+                        candidate
+                    )
+
+                    placed = True
+
+                    break
+
+            if placed:
+                break
+
+        if not placed:
+            clusters.append(
+                [candidate]
+            )
+
+    result = []
+
+    for cluster in clusters:
+
+        representative = choose_cluster_representative(
+            cluster
+        )
+
+        if not representative:
+            continue
+
+        representative["cluster_size"] = len(
+            cluster
+        )
+
+        # Transfer useful metadata from other versions.
+        for item in cluster:
+
+            if (
+                not representative.get(
+                    "summary"
+                )
+                and item.get(
+                    "summary"
+                )
+            ):
+                representative["summary"] = item[
+                    "summary"
+                ]
+
+            if (
+                not representative.get(
+                    "image_url"
+                )
+                and item.get(
+                    "image_url"
+                )
+                and not is_google_host(
+                    item.get(
+                        "image_url",
+                        ""
+                    )
+                )
+            ):
+                representative["image_url"] = item[
+                    "image_url"
+                ]
+
+        result.append(
+            representative
+        )
+
+    return result
+
+
+# ============================================================
 # COLLECT ALL
 # ============================================================
 
 def collect_candidates():
     all_candidates = []
 
-    # Direct sources
+    # --------------------------------------------------------
+    # Direct publishers
+    # --------------------------------------------------------
+
     for category, url in DIRECT_RSS_FEEDS:
+
         items = collect_feed(
             category,
             url,
@@ -2075,8 +3057,12 @@ def collect_candidates():
             items
         )
 
-    # Google News
+    # --------------------------------------------------------
+    # Google News discovery
+    # --------------------------------------------------------
+
     for category, url in GOOGLE_NEWS_FEEDS:
+
         items = collect_feed(
             category,
             url,
@@ -2093,19 +3079,26 @@ def collect_candidates():
     )
 
     # --------------------------------------------------------
-    # Remove exact duplicate links/titles
+    # Exact duplicate removal
     # --------------------------------------------------------
 
     unique = {}
 
     for item in all_candidates:
+
         key = (
             normalize_space(
-                item.get("title", "")
+                item.get(
+                    "title",
+                    ""
+                )
             ).lower()
             + "|"
             + normalize_space(
-                item.get("link", "")
+                item.get(
+                    "link",
+                    ""
+                )
             ).lower()
         )
 
@@ -2117,16 +3110,17 @@ def collect_candidates():
     )
 
     # --------------------------------------------------------
-    # First importance calculation
+    # Initial importance
     # --------------------------------------------------------
 
     for item in all_candidates:
+
         item["importance"] = calculate_importance(
             item
         )
 
     # --------------------------------------------------------
-    # Cluster similar stories
+    # Cluster stories
     # --------------------------------------------------------
 
     clustered = cluster_candidates(
@@ -2139,102 +3133,143 @@ def collect_candidates():
     )
 
     # --------------------------------------------------------
-    # Resolve only Google/social candidates
-    # that have a realistic chance of being selected.
-    # This avoids resolving hundreds of URLs.
+    # Resolve only promising Google items.
     # --------------------------------------------------------
 
     clustered.sort(
         key=lambda x: (
-            x.get("importance", 0),
-            x.get("published_at") or datetime.min.replace(
+            x.get(
+                "importance",
+                0
+            ),
+            x.get(
+                "published_at"
+            ) or datetime.min.replace(
                 tzinfo=timezone.utc
             )
         ),
         reverse=True
     )
 
-    for item in clustered[:50]:
-        link = item.get("link", "")
+    for item in clustered[:70]:
 
-        if item.get("is_google"):
+        if not item.get(
+            "is_google"
+        ):
+            continue
 
-            resolved = resolve_google_news_url(
-                link
+        link = item.get(
+            "link",
+            ""
+        )
+
+        resolved = resolve_google_news_url(
+            link
+        )
+
+        if resolved:
+
+            item["resolved_link"] = resolved
+
+            # Replace only with real publisher URLs.
+            if (
+                not is_social_host(
+                    resolved
+                )
+                and not is_google_host(
+                    resolved
+                )
+            ):
+
+                item["link"] = resolved
+
+        # If Google could not resolve to a real
+        # publisher, try the source href.
+        if (
+            not item.get(
+                "resolved_link"
+            )
+            and item.get(
+                "source_url"
+            )
+        ):
+
+            source_url = item.get(
+                "source_url"
             )
 
-            if resolved:
-                item["resolved_link"] = resolved
+            if (
+                not is_google_host(
+                    source_url
+                )
+                and not is_social_host(
+                    source_url
+                )
+            ):
 
-                # Prefer publisher URL
-                if not is_social_host(resolved):
-                    item["link"] = resolved
-
-        elif is_social_host(link):
-            resolved = resolve_google_news_url(
-                link
-            )
-
-            if resolved:
-                item["resolved_link"] = resolved
+                item["resolved_link"] = source_url
 
     # --------------------------------------------------------
-    # Recalculate quality after resolving URLs
+    # Recalculate quality.
     # --------------------------------------------------------
 
     for item in clustered:
 
-        if item.get("resolved_link"):
+        if item.get(
+            "resolved_link"
+        ):
+
             item["importance"] += 8
 
-            # Direct publisher is much better
-            if not is_social_host(
-                item["resolved_link"]
+            if (
+                not is_social_host(
+                    item["resolved_link"]
+                )
+                and not is_google_host(
+                    item["resolved_link"]
+                )
             ):
                 item["importance"] += 10
 
-        if is_social_host(
-            item.get("link", "")
-        ):
-            item["importance"] -= 20
+        item["importance"] += detect_cross_source_bonus(
+            item,
+            clustered
+        )
 
-        if is_google_host(
-            item.get("link", "")
-        ):
-            item["importance"] -= 15
-
-        item["importance"] += (
-            detect_cross_source_bonus(
-                item,
-                clustered
-            )
+        item["importance"] = calculate_importance(
+            item
         )
 
     # --------------------------------------------------------
-    # Remove duplicate stories again after resolution
+    # Final story clustering after URL resolution.
     # --------------------------------------------------------
 
-    final = []
+    clustered = cluster_candidates(
+        clustered
+    )
+
+    # --------------------------------------------------------
+    # Final importance
+    # --------------------------------------------------------
 
     for item in clustered:
+        item["importance"] = calculate_importance(
+            item
+        )
 
-        duplicate = False
+    # --------------------------------------------------------
+    # Final sort
+    # --------------------------------------------------------
 
-        for existing in final:
-            if same_story(
-                item,
-                existing
-            ):
-                duplicate = True
-                break
-
-        if not duplicate:
-            final.append(item)
-
-    final.sort(
+    clustered.sort(
         key=lambda x: (
-            x.get("importance", 0),
-            x.get("published_at") or datetime.min.replace(
+            x.get(
+                "importance",
+                0
+            ),
+            x.get(
+                "published_at"
+            ) or datetime.min.replace(
                 tzinfo=timezone.utc
             )
         ),
@@ -2242,26 +3277,107 @@ def collect_candidates():
     )
 
     print(
-        f"Candidates found: {len(final)}"
+        f"Candidates found: "
+        f"{len(clustered)}"
     )
 
-    print("\nTOP PRIORITY NEWS:")
+    print(
+        "\nTOP PRIORITY NEWS:"
+    )
 
-    for item in final[:10]:
+    for item in clustered[:15]:
+
         print(
             f"[{item.get('importance', 0)}] "
             f"{item.get('category', '')} - "
             f"{item.get('title', '')}"
         )
 
-    return final
+    return clustered
+
+
+# ============================================================
+# CATEGORY DIVERSITY
+# ============================================================
+
+def category_family(category):
+    category = normalize_space(
+        category
+    )
+
+    mapping = {
+        "خبر فوری": "ایران",
+        "حوادث": "حوادث",
+        "ایران": "ایران",
+        "جهان": "جهان",
+        "اقتصاد": "اقتصاد",
+        "دلار": "بازار",
+        "ارز": "بازار",
+        "طلا": "بازار",
+        "سکه": "بازار",
+        "بورس": "بازار",
+        "نفت": "انرژی",
+        "هوش مصنوعی": "فناوری",
+        "فناوری": "فناوری",
+        "موبایل": "فناوری",
+        "خودرو": "خودرو",
+        "ورزش": "ورزش",
+        "سلامت": "سلامت",
+        "علم": "علم",
+        "فرهنگ": "فرهنگ",
+        "جامعه": "جامعه",
+        "کریپتو": "بازار",
+    }
+
+    return mapping.get(
+        category,
+        category
+    )
+
+
+def violates_run_diversity(
+    candidate,
+    selected
+):
+    family = category_family(
+        candidate.get(
+            "category",
+            ""
+        )
+    )
+
+    same_family_count = 0
+
+    for item in selected:
+
+        if category_family(
+            item.get(
+                "category",
+                ""
+            )
+        ) == family:
+
+            same_family_count += 1
+
+    # Do not let the 4 posts become four copies
+    # of the same subject area.
+    #
+    # One family may have up to 2 posts normally.
+    if same_family_count >= 2:
+        return True
+
+    return False
 
 
 # ============================================================
 # PROCESS NEWS
 # ============================================================
 
-def process_news(candidate, history):
+def process_news(
+    candidate,
+    hash_history,
+    title_history
+):
     original_title = candidate.get(
         "title",
         ""
@@ -2273,44 +3389,73 @@ def process_news(candidate, history):
     )
 
     print(
-        f"\nProcessing: {original_title}"
+        f"\nProcessing: "
+        f"{original_title}"
     )
+
+    # --------------------------------------------------------
+    # Old exact hash check
+    # --------------------------------------------------------
 
     history_key = make_history_key(
         original_title,
         link
     )
 
-    if history_key in history:
+    if history_key in hash_history:
+
         print(
-            "SKIPPED: already published"
+            "SKIPPED: old hash history"
         )
+
         return False
 
     # --------------------------------------------------------
-    # Determine best article URL
+    # NEW semantic history check
+    # --------------------------------------------------------
+
+    if history_contains_story(
+        original_title,
+        title_history
+    ):
+
+        print(
+            "SKIPPED: semantic history"
+        )
+
+        return False
+
+    # --------------------------------------------------------
+    # Best article URL
     # --------------------------------------------------------
 
     article_url = (
-        candidate.get("resolved_link")
-        or candidate.get("link")
+        candidate.get(
+            "resolved_link"
+        )
+        or candidate.get(
+            "link"
+        )
     )
 
-    # If resolved URL is still social/Google,
-    # do not use it as the article.
-    if is_google_host(article_url):
-        article_url = ""
-
-    if is_social_host(article_url):
+    if (
+        is_google_host(
+            article_url
+        )
+        or is_social_host(
+            article_url
+        )
+    ):
         article_url = ""
 
     # --------------------------------------------------------
-    # Fetch article
+    # Article text
     # --------------------------------------------------------
 
     article_text = ""
 
     if article_url:
+
         article_text = fetch_article(
             article_url
         )
@@ -2318,6 +3463,7 @@ def process_news(candidate, history):
     candidate["article_text"] = article_text
 
     if article_text:
+
         print(
             f"Article text: "
             f"{len(article_text)} chars"
@@ -2329,8 +3475,6 @@ def process_news(candidate, history):
 
     image_url = ""
 
-    # Existing RSS image is accepted ONLY if
-    # it does not look like Google/social garbage.
     rss_image = candidate.get(
         "image_url",
         ""
@@ -2341,32 +3485,39 @@ def process_news(candidate, history):
     ):
         image_url = rss_image
 
-    # For Google News, ALWAYS prefer actual publisher image.
-    if candidate.get("is_google"):
+    # Google News NEVER supplies the final image.
+    if candidate.get(
+        "is_google"
+    ):
 
-        publisher_image = ""
+        image_url = ""
 
         if article_url:
+
             publisher_image = extract_image_from_article(
                 article_url
             )
 
-        if publisher_image:
-            image_url = publisher_image
-        else:
-            # Critical:
-            # DO NOT use Google News thumbnail.
-            image_url = ""
+            if publisher_image:
+                image_url = publisher_image
 
     else:
-        # Direct RSS can also be upgraded with article image
+
+        # Direct RSS can be upgraded with article image.
         if article_url:
+
             article_image = extract_image_from_article(
                 article_url
             )
 
             if article_image:
                 image_url = article_image
+
+    # Final safety.
+    if not image_is_acceptable(
+        image_url
+    ):
+        image_url = ""
 
     # --------------------------------------------------------
     # Video
@@ -2375,12 +3526,13 @@ def process_news(candidate, history):
     video_url = ""
 
     if article_url:
+
         video_url = extract_video_from_article(
             article_url
         )
 
-    # If RSS supplied a real video URL
     if not video_url:
+
         rss_video = candidate.get(
             "video_url",
             ""
@@ -2391,12 +3543,21 @@ def process_news(candidate, history):
         ):
             video_url = rss_video
 
-    # HLS is not directly sent to Telegram
-    if is_hls_url(video_url):
-        print(
-            "HLS video skipped:"
-            f" {video_url}"
+    if (
+        is_hls_url(
+            video_url
         )
+        or is_bad_media_url(
+            video_url
+        )
+    ):
+
+        if video_url:
+            print(
+                f"Video skipped: "
+                f"{video_url}"
+            )
+
         video_url = ""
 
     # --------------------------------------------------------
@@ -2405,19 +3566,24 @@ def process_news(candidate, history):
 
     source_text = (
         article_text
-        or candidate.get("summary", "")
+        or candidate.get(
+            "summary",
+            ""
+        )
         or original_title
     )
 
     ai_result = None
 
     if AI_API_KEY:
+
         ai_result = gemini_request(
             original_title,
             source_text
         )
 
     if ai_result:
+
         final_title = ai_result.get(
             "title",
             ""
@@ -2429,10 +3595,12 @@ def process_news(candidate, history):
         )
 
         print(
-            f"Gemini title: {final_title}"
+            f"Gemini title: "
+            f"{final_title}"
         )
 
     else:
+
         print(
             "Using local news engine."
         )
@@ -2442,10 +3610,18 @@ def process_news(candidate, history):
             source_text
         )
 
-        final_title = local["title"]
-        final_summary = local["summary"]
+        final_title = local[
+            "title"
+        ]
 
-    # Safety cleaning
+        final_summary = local[
+            "summary"
+        ]
+
+    # --------------------------------------------------------
+    # Final cleaning
+    # --------------------------------------------------------
+
     final_title = clean_title(
         final_title
     )
@@ -2455,20 +3631,42 @@ def process_news(candidate, history):
     )
 
     if not final_title:
+
         final_title = clean_title(
             original_title
         )
+
+    # --------------------------------------------------------
+    # SECOND semantic check
+    #
+    # Important:
+    # Gemini may rewrite the title.
+    # Check the final title too.
+    # --------------------------------------------------------
+
+    if history_contains_story(
+        final_title,
+        title_history
+    ):
+
+        print(
+            "SKIPPED: final Gemini title "
+            "matches recent history"
+        )
+
+        return False
 
     caption = build_caption(
         final_title,
         final_summary
     )
 
-    # --------------------------------------------------------
+    # ========================================================
     # VIDEO FIRST
-    # --------------------------------------------------------
+    # ========================================================
 
     if video_url:
+
         print(
             f"Downloading video: "
             f"{video_url}"
@@ -2503,23 +3701,31 @@ def process_news(candidate, history):
                 pass
 
             if success:
-                history.add(
+
+                hash_history.add(
                     history_key
                 )
 
+                record_semantic_history(
+                    final_title,
+                    title_history
+                )
+
                 save_history(
-                    history
+                    hash_history,
+                    title_history
                 )
 
                 print(
-                    f"PUBLISHED: {final_title}"
+                    f"PUBLISHED: "
+                    f"{final_title}"
                 )
 
                 return True
 
-    # --------------------------------------------------------
+    # ========================================================
     # PHOTO
-    # --------------------------------------------------------
+    # ========================================================
 
     if image_url:
 
@@ -2545,7 +3751,7 @@ def process_news(candidate, history):
         if downloaded:
 
             try:
-                # Verify image
+
                 img = Image.open(
                     downloaded
                 )
@@ -2578,32 +3784,46 @@ def process_news(candidate, history):
                     pass
 
                 try:
-                    if watermarked != downloaded:
+
+                    if (
+                        watermarked
+                        != downloaded
+                    ):
                         os.remove(
                             watermarked
                         )
+
                 except Exception:
                     pass
 
                 if success:
 
-                    history.add(
+                    hash_history.add(
                         history_key
                     )
 
+                    record_semantic_history(
+                        final_title,
+                        title_history
+                    )
+
                     save_history(
-                        history
+                        hash_history,
+                        title_history
                     )
 
                     print(
-                        f"PUBLISHED: {final_title}"
+                        f"PUBLISHED: "
+                        f"{final_title}"
                     )
 
                     return True
 
             except Exception as e:
+
                 print(
-                    f"Image processing error: {e}"
+                    f"Image processing error: "
+                    f"{e}"
                 )
 
                 try:
@@ -2613,9 +3833,9 @@ def process_news(candidate, history):
                 except Exception:
                     pass
 
-    # --------------------------------------------------------
+    # ========================================================
     # TEXT FALLBACK
-    # --------------------------------------------------------
+    # ========================================================
 
     success = send_message(
         caption
@@ -2623,16 +3843,23 @@ def process_news(candidate, history):
 
     if success:
 
-        history.add(
+        hash_history.add(
             history_key
         )
 
+        record_semantic_history(
+            final_title,
+            title_history
+        )
+
         save_history(
-            history
+            hash_history,
+            title_history
         )
 
         print(
-            f"PUBLISHED TEXT: {final_title}"
+            f"PUBLISHED TEXT: "
+            f"{final_title}"
         )
 
         return True
@@ -2652,24 +3879,38 @@ def main():
 
     start_time = time.time()
 
-    history = load_history()
+    hash_history, title_history = load_history()
 
     print(
-        f"History entries: "
-        f"{len(history)}"
+        f"Old hash history: "
+        f"{len(hash_history)}"
+    )
+
+    print(
+        f"Semantic history: "
+        f"{len(title_history)}"
     )
 
     candidates = collect_candidates()
 
     if not candidates:
+
         print(
             "No candidates found."
         )
+
         return
 
     published = 0
 
-    used_titles = []
+    selected = []
+
+    # --------------------------------------------------------
+    # IMPORTANT:
+    # We do not simply take candidates[:4].
+    # We scan further to find fresh + non-repeated
+    # + reasonably diverse news.
+    # --------------------------------------------------------
 
     for candidate in candidates:
 
@@ -2681,21 +3922,23 @@ def main():
             ""
         )
 
-        # Do not publish two extremely similar
-        # stories during the same run.
+        # ----------------------------------------------------
+        # Semantic duplicate inside current run
+        # ----------------------------------------------------
+
         duplicate_current_run = False
 
-        for used in used_titles:
+        for used in selected:
 
-            if title_similarity(
-                title,
+            if same_story(
+                candidate,
                 used
-            ) >= 0.68:
+            ):
 
                 duplicate_current_run = True
 
                 print(
-                    f"SKIPPED SAME RUN: "
+                    f"SKIPPED SAME STORY: "
                     f"{title}"
                 )
 
@@ -2704,25 +3947,130 @@ def main():
         if duplicate_current_run:
             continue
 
+        # ----------------------------------------------------
+        # Recent history
+        # ----------------------------------------------------
+
+        if history_contains_story(
+            title,
+            title_history
+        ):
+
+            print(
+                f"SKIPPED RECENT HISTORY: "
+                f"{title}"
+            )
+
+            continue
+
+        # ----------------------------------------------------
+        # Diversity
+        # ----------------------------------------------------
+
+        if violates_run_diversity(
+            candidate,
+            selected
+        ):
+
+            print(
+                f"SKIPPED CATEGORY DENSITY: "
+                f"{title}"
+            )
+
+            continue
+
+        # ----------------------------------------------------
+        # Publish
+        # ----------------------------------------------------
+
         success = process_news(
             candidate,
-            history
+            hash_history,
+            title_history
         )
 
         if success:
 
             published += 1
 
-            used_titles.append(
-                title
+            selected.append(
+                candidate
             )
 
-            # Small pause to avoid hammering APIs
-            time.sleep(1)
+            time.sleep(
+                1
+            )
 
-    elapsed = time.time() - start_time
+    # --------------------------------------------------------
+    # If diversity prevented 4 posts,
+    # make a second pass without the category restriction.
+    # This prevents the channel from becoming artificially empty.
+    # --------------------------------------------------------
 
-    print("\n" + "=" * 60)
+    if published < MAX_NEWS_PER_RUN:
+
+        for candidate in candidates:
+
+            if published >= MAX_NEWS_PER_RUN:
+                break
+
+            if candidate in selected:
+                continue
+
+            title = candidate.get(
+                "title",
+                ""
+            )
+
+            duplicate = False
+
+            for used in selected:
+
+                if same_story(
+                    candidate,
+                    used
+                ):
+
+                    duplicate = True
+
+                    break
+
+            if duplicate:
+                continue
+
+            if history_contains_story(
+                title,
+                title_history
+            ):
+                continue
+
+            success = process_news(
+                candidate,
+                hash_history,
+                title_history
+            )
+
+            if success:
+
+                published += 1
+
+                selected.append(
+                    candidate
+                )
+
+                time.sleep(
+                    1
+                )
+
+    elapsed = (
+        time.time()
+        - start_time
+    )
+
+    print(
+        "\n"
+        + "=" * 64
+    )
 
     print(
         f"FINISHED - Published: "
@@ -2730,10 +4078,18 @@ def main():
     )
 
     print(
-        f"Runtime: {elapsed:.1f}s"
+        f"Runtime: "
+        f"{elapsed:.1f}s"
     )
 
-    print("=" * 60)
+    print(
+        f"Semantic history now: "
+        f"{len(title_history)}"
+    )
+
+    print(
+        "=" * 64
+    )
 
 
 if __name__ == "__main__":
