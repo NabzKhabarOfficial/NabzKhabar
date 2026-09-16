@@ -33,15 +33,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run bot script
+      - name: Run bot script (v12)
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           MAX_NEWS_PER_RUN: '4'
         run: |
-          python main.py
+          python v12_runner.py
 
-      - name: Safely update sent_news.txt
+      - name: Safely update bot state
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -62,19 +62,17 @@ jobs:
             mv /tmp/merged_sent_news.txt sent_news.txt
           fi
 
-          git add sent_news.txt
+          git add sent_news.txt main.py
 
           # Create a commit only if there are actual changes
           if git diff --cached --quiet; then
-            echo "No sent_news.txt changes to commit."
+            echo "No bot state changes to commit."
             exit 0
           fi
 
-          git commit -m "Update sent_news.txt [skip ci]"
+          git commit -m "Apply NabzKhabar v12 and update sent_news.txt [skip ci]"
 
           # Rebase onto latest main.
-          # Since local and remote sent_news.txt were merged above,
-          # this should not produce the previous conflict.
           git rebase origin/main
 
           # Push the result
