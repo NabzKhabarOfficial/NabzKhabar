@@ -1092,6 +1092,15 @@ def make_legacy_history_key(title, link):
     ).hexdigest()
 
 
+def make_title_history_key(title):
+    """Stable exact-title identity, independent of the source URL."""
+    normalized = normalize_space(normalize_digits(title or ""))
+    normalized = normalized.replace("ي", "ی").replace("ى", "ی").replace("ك", "ک")
+    normalized = normalized.lower()
+    value = "TITLE_EXACT|" + normalized
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
 def history_key_exists(title, link, hash_history):
     """Check both the new URL-only identity and old stored identity."""
     primary = make_history_key(title, link)
@@ -1099,7 +1108,13 @@ def history_key_exists(title, link, hash_history):
         return True
 
     legacy = make_legacy_history_key(title, link)
-    return legacy in hash_history
+    if legacy in hash_history:
+        return True
+
+    # Exact title identity blocks the same published headline even when
+    # the publisher/Google News supplies a different URL.
+    title_key = make_title_history_key(title)
+    return title_key in hash_history
 
 
 # ============================================================
@@ -4745,6 +4760,12 @@ def process_news(
                 hash_history.add(
                     history_key
                 )
+                hash_history.add(
+                    make_title_history_key(original_title)
+                )
+                hash_history.add(
+                    make_title_history_key(final_title)
+                )
 
                 if canonical_article_url:
                     hash_history.add(
@@ -4868,6 +4889,12 @@ def process_news(
                     hash_history.add(
                         history_key
                     )
+                    hash_history.add(
+                        make_title_history_key(original_title)
+                    )
+                    hash_history.add(
+                        make_title_history_key(final_title)
+                    )
 
                     record_semantic_history(
                         original_title,
@@ -4917,6 +4944,12 @@ def process_news(
 
         hash_history.add(
             history_key
+        )
+        hash_history.add(
+            make_title_history_key(original_title)
+        )
+        hash_history.add(
+            make_title_history_key(final_title)
         )
 
         record_semantic_history(
