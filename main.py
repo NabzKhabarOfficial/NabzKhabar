@@ -21,14 +21,14 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 # ============================================================
-# NABZ KHABAR BOT v11
+# NABZ KHABAR BOT v12
 # STRONG SEMANTIC DEDUPLICATION
 # GOOGLE NEWS DISCOVERY
 # GEMINI + VIDEO + PHOTO + TEXT + WATERMARK
 # ============================================================
 
 print("=" * 64)
-print("NABZ KHABAR BOT v11")
+print("NABZ KHABAR BOT v12")
 print("STRONG DUPLICATE PROTECTION + FRESH NEWS")
 print("GEMINI + GOOGLE NEWS + VIDEO + PHOTO")
 print("WATERMARK + SOURCE QUALITY")
@@ -646,6 +646,12 @@ SOURCE_PHRASES = [
     "طبق اعلام",
     "بر اساس اعلام",
     "براساس اعلام",
+    "روابط عمومی",
+    "روابط‌عمومی",
+    "در اطلاعیه ای",
+    "در اطلاعیه‌ای",
+    "در بیانیه ای",
+    "در بیانیه‌ای",
 ]
 
 
@@ -691,6 +697,40 @@ def clean_content(text):
         text,
         flags=re.I
     )
+
+    # Remove common PR / promotional boilerplate.
+    promotional_patterns = [
+        r"برای کسب اطلاعات بیشتر",
+        r"جهت کسب اطلاعات بیشتر",
+        r"برای خرید",
+        r"جهت خرید",
+        r"ثبت ?نام کنید",
+        r"همین حالا",
+        r"کلیک کنید",
+        r"لینک زیر",
+        r"با ما همراه باشید",
+        r"ما را دنبال کنید",
+        r"اسپانسر",
+        r"تبلیغات",
+    ]
+
+    for pattern in promotional_patterns:
+        text = re.sub(pattern, "", text, flags=re.I)
+
+    # Remove dateline / attribution fragments left after source cleanup.
+    text = re.sub(
+        r"^(?:[آ-یA-Za-z]+\s*){1,4}[,:-]\s*",
+        "",
+        text,
+        count=1
+    )
+
+    # Repair repeated punctuation and spacing.
+    text = re.sub(r"[ ]{2,}", " ", text)
+    text = re.sub(r"([،,:؛])\1+", r"\1", text)
+    text = re.sub(r"([.!؟])\1+", r"\1", text)
+    text = re.sub(r"\s+([،,:؛.!؟])", r"\1", text)
+    text = re.sub(r"([،,:؛])(?=[آ-یA-Za-z])", r"\1 ", text)
 
     text = normalize_space(
         text
@@ -745,6 +785,13 @@ def clean_title(title):
         title,
         flags=re.I
     )
+
+    # Remove repeated urgency / source punctuation artifacts.
+    title = re.sub(r"(?:^|\s)(فوری)(?:\s+فوری)+", r" \1", title)
+    title = re.sub(r"\s*[|｜]+\s*", " - ", title)
+    title = re.sub(r"\s*[-–—:]\s*$", "", title)
+    title = re.sub(r"[.!؟]+$", "", title)
+    title = re.sub(r"\s{2,}", " ", title)
 
     return normalize_space(
         title
@@ -2771,11 +2818,13 @@ def build_caption(
         return (
             f"📰 {title}\n\n"
             f"{body}\n\n"
+            f"📡 @NabzKhabarOfficial\n"
             f"#نبض_خبر"
         )
 
     return (
         f"📰 {title}\n\n"
+        f"📡 @NabzKhabarOfficial\n"
         f"#نبض_خبر"
     )
 
@@ -2813,12 +2862,14 @@ def gemini_request(
 وظیفه:
 1. یک تیتر خبری کوتاه، دقیق و طبیعی فارسی بنویس.
 2. متن را بدون اضافه کردن هیچ واقعیت جدیدی در حداکثر 3 جمله خلاصه کن.
-3. نام رسانه، نام خبرگزاری، لینک، عبارت «به گزارش»، عبارت‌های تبلیغاتی و منبع را حذف کن.
+3. نام رسانه، نام خبرگزاری، لینک، عبارت «به گزارش»، تاریخ‌گذاری ابتدای خبر، عبارت‌های روابط عمومی، بیانیه و اطلاعیه، متن تبلیغاتی و فراخوان‌های تبلیغاتی را حذف کن.
 4. اگر متن ناقص است، چیزی را حدس نزن.
 5. لحن کاملاً خبری، خنثی و حرفه‌ای باشد.
 6. از اغراق، کلیک‌بیت و نظر شخصی خودداری کن.
 7. اگر عنوان اصلی مناسب است، آن را بی‌دلیل تغییر نده.
 8. فقط اطلاعات موجود در متن را استفاده کن.
+9. هیچ نام، عدد، علت، نقل‌قول یا جزئیات جدیدی اختراع نکن.
+10. متن را از عبارت‌های تبلیغاتی، روابط عمومی و معرفی خدمات پاک نگه دار.
 
 فقط JSON معتبر برگردان:
 
