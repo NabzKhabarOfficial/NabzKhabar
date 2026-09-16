@@ -1,25 +1,19 @@
 import os
-import io
 import re
 import html
 import time
-import json
 import hashlib
-from pathlib import Path
-from datetime import datetime
-from zoneinfo import ZoneInfo
-from difflib import SequenceMatcher
-from urllib.parse import urljoin
+import difflib
+from urllib.parse import urljoin, urlparse
 
 import requests
 import feedparser
 from bs4 import BeautifulSoup
-from PIL import Image, ImageDraw, ImageFont
 
 
-# =========================================================
-# NABZ KHABAR - AUTOMATIC NEWS BOT
-# =========================================================
+# ============================================================
+# CONFIG
+# ============================================================
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 AI_API_KEY = os.getenv("AI_API_KEY")
@@ -27,348 +21,90 @@ AI_API_KEY = os.getenv("AI_API_KEY")
 CHAT_ID = "@NabzKhabarOfficial"
 HISTORY_FILE = "sent_news.txt"
 
-BASE_DIR = Path(__file__).resolve().parent
-
-FONT_BOLD = BASE_DIR / "Vazirmatn-Bold.ttf"
-FONT_REGULAR = BASE_DIR / "Vazirmatn-Regular.ttf"
-
 MAX_NEWS_PER_RUN = int(os.getenv("MAX_NEWS_PER_RUN", "4"))
-MAX_ENTRIES_PER_FEED = 8
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
 
-REQUEST_TIMEOUT = 15
-VIDEO_MAX_SIZE = 50 * 1024 * 1024
+CHANNEL_USERNAME = "@NabzKhabarOfficial"
 
-TEHRAN_TZ = ZoneInfo("Asia/Tehran")
+REQUEST_TIMEOUT = 18
+ARTICLE_TIMEOUT = 15
+MAX_ARTICLE_CHARS = 12000
+MAX_CAPTION_CHARS = 3900
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/128.0 Safari/537.36"
+    ),
+    "Accept-Language": "fa-IR,fa;q=0.9,en;q=0.7",
+}
 
 
-# =========================================================
+# ============================================================
 # RSS SOURCES
-# =========================================================
+# ============================================================
 
-RSS_FEEDS = {
+RSS_FEEDS = [
+    # خبر
+    ("یورونیوز فارسی", "https://parsi.euronews.com/rss"),
+    ("ایسنا", "https://www.isna.ir/rss"),
+    ("ایرنا", "https://www.irna.ir/rss"),
+    ("مهر", "https://www.mehrnews.com/rss"),
+    ("باشگاه خبرنگاران جوان", "https://www.yjc.ir/fa/rss/allnews"),
+    ("تابناک", "https://www.tabnak.ir/fa/rss/allnews"),
+    ("همشهری", "https://www.hamshahrionline.ir/rss"),
+    ("خبرآنلاین", "https://www.khabaronline.ir/rss"),
+    ("تسنیم", "https://www.tasnimnews.com/fa/rss/feed/0/8/0"),
+    ("مشرق", "https://www.mashreghnews.ir/rss"),
+    ("رجانیوز", "https://www.rajanews.com/rss"),
 
-    # -------------------------
-    # ایران / عمومی
-    # -------------------------
-
-    "تسنیم - عمومی":
-        "https://www.tasnimnews.com/fa/rss/feed/0/0/0/",
-
-    "تسنیم - اقتصاد":
-        "https://www.tasnimnews.com/fa/rss/feed/0/8/0/",
-
-    "تسنیم - بین‌الملل":
-        "https://www.tasnimnews.com/fa/rss/feed/0/3/0/",
-
-    "ایسنا":
-        "https://www.isna.ir/rss",
-
-    "مهر":
-        "https://www.mehrnews.com/rss",
-
-    "ایرنا":
-        "https://www.irna.ir/rss",
-
-    "خبرآنلاین":
-        "https://www.khabaronline.ir/rss",
-
-    # -------------------------
-    # اقتصاد / بازار
-    # -------------------------
-
-    "گوگل نیوز - اقتصاد":
-        "https://news.google.com/rss/search?q=اقتصاد+بورس+دلار+طلا+سکه&hl=fa&gl=IR&ceid=IR:fa",
-
-    "گوگل نیوز - بازار":
-        "https://news.google.com/rss/search?q=دلار+طلا+سکه+بورس+ارز&hl=fa&gl=IR&ceid=IR:fa",
-
-    # -------------------------
     # ورزش
-    # -------------------------
+    ("ورزش سه", "https://www.varzesh3.com/rss"),
+    ("ایسنا ورزش", "https://www.isna.ir/rss/service/sports"),
+    ("مهر ورزش", "https://www.mehrnews.com/rss/service/sport"),
 
-    "ورزش سه":
-        "https://www.varzesh3.com/rss/all",
-
-    "گوگل نیوز - ورزش":
-        "https://news.google.com/rss/search?q=ورزش+فوتبال+استقلال+پرسپولیس+تیم+ملی&hl=fa&gl=IR&ceid=IR:fa",
-
-    # -------------------------
     # فناوری
-    # -------------------------
-
-    "دیجیاتو":
-        "https://digiato.com/feed",
-
-    "زومیت":
-        "https://www.zoomit.ir/feed/",
-
-    "گوگل نیوز - فناوری":
-        "https://news.google.com/rss/search?q=فناوری+هوش+مصنوعی+موبایل+اینترنت+تکنولوژی&hl=fa&gl=IR&ceid=IR:fa",
-
-    # -------------------------
-    # حوادث
-    # -------------------------
-
-    "گوگل نیوز - حوادث":
-        "https://news.google.com/rss/search?q=حادثه+تصادف+آتش+سوزی+زلزله+انفجار&hl=fa&gl=IR&ceid=IR:fa",
-
-    # -------------------------
-    # سلامت
-    # -------------------------
-
-    "گوگل نیوز - سلامت":
-        "https://news.google.com/rss/search?q=سلامت+پزشکی+بیماری+درمان+بهداشت&hl=fa&gl=IR&ceid=IR:fa",
-
-    # -------------------------
-    # خودرو
-    # -------------------------
-
-    "گوگل نیوز - خودرو":
-        "https://news.google.com/rss/search?q=خودرو+ماشین+خودروسازی+قیمت+خودرو&hl=fa&gl=IR&ceid=IR:fa",
-
-    # -------------------------
-    # علم
-    # -------------------------
-
-    "گوگل نیوز - علم":
-        "https://news.google.com/rss/search?q=علم+فضا+نجوم+پژوهش+دانشگاه&hl=fa&gl=IR&ceid=IR:fa",
-
-    # -------------------------
-    # فرهنگ و هنر
-    # -------------------------
-
-    "گوگل نیوز - فرهنگ":
-        "https://news.google.com/rss/search?q=سینما+موسیقی+هنر+فرهنگ+تلویزیون&hl=fa&gl=IR&ceid=IR:fa",
-
-    # -------------------------
-    # اجتماعی
-    # -------------------------
-
-    "گوگل نیوز - اجتماعی":
-        "https://news.google.com/rss/search?q=اجتماعی+آموزش+دانشگاه+جامعه&hl=fa&gl=IR&ceid=IR:fa",
-
-    # -------------------------
-    # جهان
-    # -------------------------
-
-    "گوگل نیوز - جهان":
-        "https://news.google.com/rss/search?q=جهان+بین‌الملل+اروپا+آمریکا+آسیا&hl=fa&gl=IR&ceid=IR:fa",
-
-    # -------------------------
-    # خبر عمومی
-    # -------------------------
-
-    "گوگل نیوز - عمومی":
-        "https://news.google.com/rss?hl=fa&gl=IR&ceid=IR:fa",
-}
-
-
-# =========================================================
-# CATEGORY DETECTION
-# =========================================================
-
-CATEGORY_RULES = {
-
-    "ورزش": [
-        "فوتبال", "ورزش", "استقلال", "پرسپولیس",
-        "تیم ملی", "لیگ", "جام جهانی", "والیبال",
-        "بسکتبال", "تنیس", "کشتی", "المپیک"
-    ],
-
-    "اقتصاد": [
-        "دلار", "یورو", "طلا", "سکه", "بورس",
-        "اقتصاد", "بانک", "تورم", "ارز",
-        "بازار", "سهام", "قیمت", "نفت"
-    ],
-
-    "فناوری": [
-        "فناوری", "تکنولوژی", "هوش مصنوعی",
-        "موبایل", "اینترنت", "گوگل", "اپل",
-        "مایکروسافت", "سامسونگ", "آیفون",
-        "اندروید", "کامپیوتر", "نرم‌افزار"
-    ],
-
-    "حوادث": [
-        "تصادف", "حادثه", "انفجار", "آتش‌سوزی",
-        "زلزله", "سیل", "سقوط", "واژگونی",
-        "مفقود", "نجات", "فوت", "جان باخت"
-    ],
-
-    "سلامت": [
-        "سلامت", "پزشکی", "بیماری", "درمان",
-        "دارو", "بیمارستان", "پزشک", "بهداشت",
-        "ویروس", "واکسن"
-    ],
-
-    "خودرو": [
-        "خودرو", "ماشین", "خودروسازی",
-        "ایران خودرو", "سایپا", "خودروی",
-        "قیمت خودرو"
-    ],
-
-    "علم": [
-        "علم", "دانشمند", "پژوهش", "تحقیقات",
-        "فضا", "ناسا", "نجوم", "سیاره",
-        "دانشگاه", "کشف"
-    ],
-
-    "فرهنگ": [
-        "سینما", "فیلم", "سریال", "موسیقی",
-        "خواننده", "بازیگر", "فرهنگ", "هنر",
-        "تلویزیون"
-    ],
-
-    "جهان": [
-        "آمریکا", "اروپا", "روسیه", "چین",
-        "اوکراین", "اسرائیل", "جهان",
-        "بین‌الملل", "لندن", "واشنگتن"
-    ],
-
-    "اجتماعی": [
-        "اجتماعی", "آموزش", "مدرسه", "دانشگاه",
-        "جامعه", "شهرداری", "وزارت", "کارگران"
-    ],
-}
-
-
-IMPORTANT_KEYWORDS = [
-    "فوری",
-    "هشدار",
-    "زلزله",
-    "انفجار",
-    "آتش‌سوزی",
-    "تصادف",
-    "سقوط",
-    "جان باخت",
-    "کشته",
-    "مفقود",
-    "حادثه",
-    "حمله",
-    "درگیری",
+    ("زومیت", "https://www.zoomit.ir/feed/"),
+    ("دیجیاتو", "https://digiato.com/feed"),
+    ("پیوست", "https://peivast.com/feed"),
 ]
 
 
-CATEGORY_ICONS = {
-    "فوری": "🚨",
-    "ورزش": "⚽",
-    "اقتصاد": "💰",
-    "فناوری": "💻",
-    "حوادث": "🚨",
-    "سلامت": "🏥",
-    "خودرو": "🚗",
-    "علم": "🔬",
-    "فرهنگ": "🎬",
-    "جهان": "🌍",
-    "اجتماعی": "🏙️",
-    "ایران": "🇮🇷",
-    "عمومی": "📰",
-}
+# ============================================================
+# HTTP SESSION
+# ============================================================
+
+session = requests.Session()
+session.headers.update(HEADERS)
 
 
-# =========================================================
-# HTTP
-# =========================================================
+# ============================================================
+# BASIC HELPERS
+# ============================================================
 
-SESSION = requests.Session()
-
-SESSION.headers.update({
-    "User-Agent":
-        "Mozilla/5.0 (compatible; NabzKhabarBot/2.0)"
-})
-
-
-def http_get(url, timeout=REQUEST_TIMEOUT, **kwargs):
-
-    for attempt in range(3):
-
-        try:
-
-            response = SESSION.get(
-                url,
-                timeout=timeout,
-                **kwargs
-            )
-
-            if response.status_code == 200:
-                return response
-
-            print(
-                f"HTTP {response.status_code}: {url}"
-            )
-
-        except Exception as e:
-
-            print(
-                f"HTTP attempt {attempt + 1} failed: {e}"
-            )
-
-        time.sleep(1.5 * (attempt + 1))
-
-    return None
-
-
-# =========================================================
-# TEXT CLEANING
-# =========================================================
-
-def clean_text(text, is_title=False):
-
+def clean_spaces(text):
     if not text:
         return ""
 
-    soup = BeautifulSoup(
-        str(text),
-        "html.parser"
-    )
+    text = html.unescape(text)
+    text = text.replace("\xa0", " ")
+    text = text.replace("\u200c", "‌")
+    text = text.replace("\u200f", "")
+    text = text.replace("\u200e", "")
 
-    # Remove scripts/styles.
-    for tag in soup([
-        "script",
-        "style",
-        "noscript"
-    ]):
-        tag.decompose()
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r"\n[ \t]+", "\n", text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
 
-    text = soup.get_text(
-        separator=" ",
-        strip=True
-    )
-
-    text = re.sub(
-        r"The post.*?appeared first on.*",
-        "",
-        text,
-        flags=re.I
-    )
-
-    text = re.sub(
-        r"appeared first on.*",
-        "",
-        text,
-        flags=re.I
-    )
-
-    if is_title:
-
-        text = re.sub(
-            r"\s*[\(\[]?\s*(عکس|تصاویر|جدول|فیلم|ویدیو|صوت|گزارش تصویری)\s*[\)\]]?",
-            "",
-            text,
-            flags=re.I
-        )
-
-    text = re.sub(
-        r"\s+",
-        " ",
-        text
-    ).strip()
-
-    return text
+    return text.strip()
 
 
-def normalize_text(text):
+def normalize_persian(text):
+    if not text:
+        return ""
 
-    text = clean_text(text)
+    text = str(text)
 
     replacements = {
         "ي": "ی",
@@ -379,408 +115,376 @@ def normalize_text(text):
         "ؤ": "و",
         "إ": "ا",
         "أ": "ا",
-        "‌": " ",
+        "ٱ": "ا",
+        "ـ": "",
     }
 
-    for old, new in replacements.items():
-        text = text.replace(old, new)
+    for a, b in replacements.items():
+        text = text.replace(a, b)
 
-    text = re.sub(
-        r"[^\w\s\u0600-\u06FF]",
-        " ",
-        text
+    text = re.sub(r"[\u064B-\u065F\u0670]", "", text)
+
+    text = text.lower()
+
+    return clean_spaces(text)
+
+
+def meaningful_words(text):
+    text = normalize_persian(text)
+
+    words = re.findall(r"[آ-یA-Za-z0-9]+", text)
+
+    stopwords = {
+        "از", "به", "در", "با", "برای", "که", "این", "آن",
+        "یک", "و", "یا", "را", "های", "ها", "است", "شد",
+        "شده", "می", "شود", "کرد", "کرده", "روی", "بر",
+        "تا", "اما", "اگر", "هم", "نیز", "او", "آنها",
+        "the", "and", "for", "with", "from", "this", "that",
+        "a", "an", "of", "to", "in", "on",
+    }
+
+    return {
+        w for w in words
+        if len(w) >= 3 and w not in stopwords
+    }
+
+
+# ============================================================
+# DUPLICATE DETECTION
+# ============================================================
+
+def normalize_title(title):
+    title = normalize_persian(title)
+
+    title = re.sub(
+        r"^(خبر فوری|فوری|لحظه‌ای|لحظه اي|اختصاصی)\s*[:\-–—]?\s*",
+        "",
+        title,
     )
 
-    text = re.sub(
-        r"\s+",
-        " ",
-        text
-    )
+    title = re.sub(r"[^\w\sآ-ی]", " ", title)
+    title = re.sub(r"\s+", " ", title)
 
-    return text.strip().lower()
+    return title.strip()
 
 
-# =========================================================
-# HISTORY
-# =========================================================
+def title_similarity(title1, title2):
+    a = normalize_title(title1)
+    b = normalize_title(title2)
 
-def load_sent_news():
+    if not a or not b:
+        return 0.0
 
-    if not os.path.exists(HISTORY_FILE):
-        return []
+    seq = difflib.SequenceMatcher(None, a, b).ratio()
 
-    try:
+    wa = meaningful_words(a)
+    wb = meaningful_words(b)
 
-        with open(
-            HISTORY_FILE,
-            "r",
-            encoding="utf-8"
-        ) as f:
+    if not wa or not wb:
+        return seq
 
-            return [
-                line.strip()
-                for line in f
-                if line.strip()
-            ]
+    overlap = len(wa & wb) / max(1, min(len(wa), len(wb)))
 
-    except Exception as e:
-
-        print(
-            f"History read error: {e}"
-        )
-
-        return []
+    return max(seq, overlap)
 
 
-def save_sent_news(history):
+def content_similarity(text1, text2):
+    a = meaningful_words(text1)
+    b = meaningful_words(text2)
 
-    history = list(
-        dict.fromkeys(history)
-    )
+    if not a or not b:
+        return 0.0
 
-    history = history[-500:]
-
-    try:
-
-        with open(
-            HISTORY_FILE,
-            "w",
-            encoding="utf-8"
-        ) as f:
-
-            for item in history:
-                f.write(
-                    item + "\n"
-                )
-
-    except Exception as e:
-
-        print(
-            f"History save error: {e}"
-        )
+    return len(a & b) / max(1, min(len(a), len(b)))
 
 
-# =========================================================
-# NEWS ID
-# =========================================================
+def is_same_story(item1, item2):
+    title1 = item1.get("title", "")
+    title2 = item2.get("title", "")
 
-def make_news_id(
-    entry,
-    source_name
-):
+    body1 = item1.get("body", "")
+    body2 = item2.get("body", "")
 
-    link = (
-        entry.get("link", "")
-        or ""
-    ).strip()
+    ts = title_similarity(title1, title2)
 
-    if link:
-        return link
+    # عنوان تقریباً یکسان
+    if ts >= 0.78:
+        return True
 
-    guid = (
-        entry.get("id", "")
-        or ""
-    ).strip()
+    cs = content_similarity(body1, body2)
 
-    if guid:
-        return guid
+    # عنوان نسبتاً مشابه + متن مشابه
+    if ts >= 0.55 and cs >= 0.30:
+        return True
 
-    title = normalize_text(
-        entry.get("title", "")
-    )
+    # متن تقریباً یکسان حتی با عنوان متفاوت
+    if cs >= 0.58:
+        return True
 
-    raw = (
-        f"{source_name}|"
-        f"{title}"
-    )
+    return False
+
+
+def make_news_id(link, title):
+    raw = f"{normalize_title(title)}|{link.strip()}"
 
     return hashlib.sha256(
         raw.encode("utf-8")
     ).hexdigest()
 
 
-# =========================================================
-# STRONG DUPLICATE DETECTION
-# =========================================================
+# ============================================================
+# HISTORY
+# ============================================================
 
-STOP_WORDS = {
-    "از",
-    "به",
-    "در",
-    "با",
-    "برای",
-    "که",
-    "و",
-    "را",
-    "این",
-    "آن",
-    "یک",
-    "شد",
-    "شده",
-    "کرد",
-    "کرده",
-    "است",
-    "هست",
-    "می",
-    "شود",
-    "شدند",
-    "خواهد",
-    "خبر",
-    "گزارش",
-    "اعلام",
-}
+def load_history():
+    if not os.path.exists(HISTORY_FILE):
+        return set()
+
+    try:
+        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+            return {
+                line.strip()
+                for line in f
+                if line.strip()
+            }
+    except Exception:
+        return set()
 
 
-def meaningful_words(text):
-
-    normalized = normalize_text(text)
-
-    words = normalized.split()
-
-    return {
-        word
-        for word in words
-        if len(word) >= 3
-        and word not in STOP_WORDS
-    }
+def save_history(history):
+    try:
+        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+            for item in list(history)[-5000:]:
+                f.write(item + "\n")
+    except Exception as e:
+        print("History save error:", repr(e))
 
 
-def title_similarity(
-    title1,
-    title2
-):
+# ============================================================
+# RSS
+# ============================================================
 
-    a = normalize_text(title1)
-    b = normalize_text(title2)
-
-    if not a or not b:
-        return 0.0
-
-    sequence_score = SequenceMatcher(
-        None,
-        a,
-        b
-    ).ratio()
-
-    words_a = meaningful_words(a)
-    words_b = meaningful_words(b)
-
-    if not words_a or not words_b:
-        word_score = 0.0
-
-    else:
-
-        intersection = (
-            words_a & words_b
+def get_feed(name, url):
+    try:
+        response = session.get(
+            url,
+            timeout=REQUEST_TIMEOUT,
         )
 
-        word_score = (
-            len(intersection)
-            /
-            max(
-                len(words_a),
-                len(words_b)
-            )
-        )
+        response.raise_for_status()
 
-    return max(
-        sequence_score,
-        word_score
+        parsed = feedparser.parse(response.content)
+
+        if not parsed.entries:
+            print(f"NO ENTRIES: {name}")
+            return []
+
+        return parsed.entries
+
+    except Exception as e:
+        print(f"RSS ERROR [{name}]: {repr(e)}")
+        return []
+
+
+def get_entry_link(entry):
+    link = entry.get("link", "")
+
+    if not link:
+        links = entry.get("links", [])
+
+        for item in links:
+            href = item.get("href")
+
+            if href:
+                link = href
+                break
+
+    return link.strip()
+
+
+def get_entry_summary(entry):
+    parts = []
+
+    for key in [
+        "summary",
+        "description",
+        "subtitle",
+        "content",
+    ]:
+        value = entry.get(key)
+
+        if isinstance(value, list):
+            for item in value:
+                if isinstance(item, dict):
+                    value = item.get("value", "")
+                    break
+
+        if value:
+            if isinstance(value, str):
+                parts.append(value)
+
+    text = "\n".join(parts)
+
+    soup = BeautifulSoup(text, "html.parser")
+
+    return clean_spaces(
+        soup.get_text("\n", strip=True)
     )
 
 
-def is_similar_title(
-    title1,
-    title2
-):
+# ============================================================
+# ARTICLE TEXT EXTRACTION
+# ============================================================
 
-    score = title_similarity(
-        title1,
-        title2
-    )
-
-    return score >= 0.72
-
-
-def content_similarity(
-    text1,
-    text2
-):
-
-    words_a = meaningful_words(text1)
-    words_b = meaningful_words(text2)
-
-    if not words_a or not words_b:
-        return 0.0
-
-    intersection = (
-        words_a & words_b
-    )
-
-    return (
-        len(intersection)
-        /
-        max(
-            len(words_a),
-            len(words_b)
-        )
-    )
+BAD_TEXT_PATTERNS = [
+    r"کپی\s*شد",
+    r"کپی\s*لینک",
+    r"دریافت\s*\d+\s*mb",
+    r"دانلود\s*\d+\s*mb",
+    r"کد\s*مطلب",
+    r"کد خبر",
+    r"انتهای پیام",
+    r"بیشتر بخوانید",
+    r"مطالب مرتبط",
+    r"اخبار مرتبط",
+    r"آخرین اخبار",
+    r"پیشنهاد سردبیر",
+    r"پربازدید",
+    r"محبوب ترین",
+    r"نظرات کاربران",
+    r"ارسال نظر",
+    r"دیدگاه",
+    r"عضویت در خبرنامه",
+    r"تبلیغات",
+]
 
 
-def is_same_story(
-    item1,
-    item2
-):
+def is_bad_line(text):
+    line = normalize_persian(text)
 
-    title_score = title_similarity(
-        item1.get("title", ""),
-        item2.get("title", "")
-    )
-
-    if title_score >= 0.72:
+    if not line:
         return True
 
-    body1 = item1.get(
-        "raw_text",
-        ""
-    )
+    if len(line) < 3:
+        return True
 
-    body2 = item2.get(
-        "raw_text",
-        ""
-    )
-
-    if body1 and body2:
-
-        body_score = content_similarity(
-            body1,
-            body2
-        )
-
-        if (
-            title_score >= 0.55
-            and body_score >= 0.30
-        ):
+    for pattern in BAD_TEXT_PATTERNS:
+        if re.search(pattern, line, re.IGNORECASE):
             return True
 
-        if body_score >= 0.52:
-            return True
+    # لینک‌های تنها
+    if re.fullmatch(r"https?://\S+", line):
+        return True
 
     return False
 
 
-# =========================================================
-# CATEGORY
-# =========================================================
+def clean_article_lines(lines):
+    cleaned = []
 
-def detect_category(
-    title,
-    source_name=""
-):
+    for line in lines:
+        line = clean_spaces(line)
 
-    text = normalize_text(
-        f"{title} {source_name}"
-    )
+        if is_bad_line(line):
+            continue
 
-    if any(
-        keyword in text
-        for keyword in IMPORTANT_KEYWORDS
-    ):
-        return "فوری"
+        # خطوط خیلی کوتاه که معمولاً منو/دسته‌بندی هستند
+        if len(line) < 12:
+            continue
 
-    for category, keywords in CATEGORY_RULES.items():
+        # کد مطلب / اعداد تنها
+        if re.fullmatch(r"[\d\s:/\-]+", line):
+            continue
 
-        if any(
-            normalize_text(keyword)
-            in text
-            for keyword in keywords
-        ):
-            return category
+        cleaned.append(line)
 
-    if (
-        "تسنیم" in source_name
-        or "ایسنا" in source_name
-        or "مهر" in source_name
-        or "ایرنا" in source_name
-    ):
+    # حذف تکرارهای پشت‌سرهم
+    final = []
 
-        return "ایران"
+    for line in cleaned:
+        if final and normalize_persian(line) == normalize_persian(final[-1]):
+            continue
 
-    return "عمومی"
+        final.append(line)
+
+    return final
 
 
-# =========================================================
-# RSS FETCH
-# =========================================================
-
-def fetch_feed(feed_url):
-
-    response = http_get(
-        feed_url,
-        timeout=REQUEST_TIMEOUT
-    )
-
-    if not response:
-        return None
-
-    try:
-
-        return feedparser.parse(
-            response.content
-        )
-
-    except Exception as e:
-
-        print(
-            f"Feed parse error: {e}"
-        )
-
-        return None
-
-
-# =========================================================
-# FULL ARTICLE TEXT EXTRACTION
-# =========================================================
-
-def extract_article_text(
-    article_url
-):
-
-    page = http_get(
-        article_url,
-        timeout=12
-    )
-
-    if not page:
+def extract_article_text(url):
+    if not url:
         return ""
 
     try:
-
-        soup = BeautifulSoup(
-            page.text,
-            "html.parser"
+        response = session.get(
+            url,
+            timeout=ARTICLE_TIMEOUT,
+            allow_redirects=True,
         )
 
-        # Remove unwanted page elements.
+        response.raise_for_status()
+
+        soup = BeautifulSoup(
+            response.content,
+            "html.parser",
+        )
+
+        # حذف قطعی بخش‌هایی که خبر نیستند
         for tag in soup([
             "script",
             "style",
             "noscript",
+            "svg",
+            "iframe",
+            "form",
             "nav",
             "footer",
             "header",
             "aside",
-            "form"
+            "button",
         ]):
-
             tag.decompose()
 
-        candidates = []
+        # حذف کلاس‌ها و idهای متداول برای محتوای اضافی
+        bad_keywords = [
+            "related",
+            "recommend",
+            "recommended",
+            "sidebar",
+            "footer",
+            "header",
+            "menu",
+            "navigation",
+            "comment",
+            "comments",
+            "share",
+            "social",
+            "advert",
+            "ads",
+            "banner",
+            "newsletter",
+            "tag",
+            "tags",
+            "breadcrumb",
+        ]
 
-        # Common article containers.
+        for tag in soup.find_all(True):
+            classes = " ".join(tag.get("class", []))
+            tag_id = tag.get("id", "")
+
+            identifier = (
+                f"{classes} {tag_id}"
+            ).lower()
+
+            if any(word in identifier for word in bad_keywords):
+                try:
+                    tag.decompose()
+                except Exception:
+                    pass
+
+        # اولویت با articleBody
         selectors = [
-            "article",
             "[itemprop='articleBody']",
+            "article",
             ".article-body",
             ".article__body",
             ".article-content",
@@ -788,1824 +492,1106 @@ def extract_article_text(
             ".post-content",
             ".entry-content",
             ".news-content",
-            ".content",
-            "main"
+            ".news-detail",
+            ".content-news",
+            "main",
         ]
 
+        candidates = []
+
         for selector in selectors:
-
             try:
-
-                nodes = soup.select(
-                    selector
-                )
-
-                for node in nodes:
-
-                    text = clean_text(
-                        node.get_text(
-                            " ",
-                            strip=True
-                        )
+                for node in soup.select(selector):
+                    text = node.get_text(
+                        "\n",
+                        strip=True,
                     )
 
-                    if len(text) >= 200:
-
-                        candidates.append(
-                            text
-                        )
-
+                    if len(text) > 250:
+                        candidates.append(text)
             except Exception:
-                continue
+                pass
+
+        # اگر ساختار اختصاصی پیدا نشد
+        if not candidates:
+            body = soup.body
+
+            if body:
+                candidates.append(
+                    body.get_text(
+                        "\n",
+                        strip=True,
+                    )
+                )
 
         if not candidates:
             return ""
 
-        # Pick the longest meaningful article body.
+        # بهترین candidate
         candidates.sort(
-            key=len,
-            reverse=True
+            key=lambda x: len(x),
+            reverse=True,
         )
 
-        text = candidates[0]
+        raw = candidates[0]
 
-        # Remove common source/footer clutter.
-        remove_patterns = [
-            r"کپی لینک",
-            r"منبع:",
-            r"انتهای پیام",
-            r"بیشتر بخوانید",
-            r"اخبار مرتبط",
-            r"مطالب مرتبط",
-            r"گزارش تصویری",
-            r"©.*",
-        ]
+        lines = raw.splitlines()
 
-        for pattern in remove_patterns:
+        lines = clean_article_lines(lines)
 
-            text = re.sub(
-                pattern,
-                "",
-                text,
-                flags=re.I
-            )
+        # تشخیص آلودگی با تیترهای زیاد
+        if len(lines) > 10:
+            suspicious = 0
 
+            for line in lines:
+                # تیترهای خیلی کوتاه در میان متن
+                if 12 <= len(line) <= 65:
+                    if not line.endswith(
+                        (".", "؟", "!", "؛", "،", ":")
+                    ):
+                        suspicious += 1
+
+            if suspicious > max(8, len(lines) * 0.60):
+                print("ARTICLE REJECTED: suspicious page structure")
+                return ""
+
+        text = "\n\n".join(lines)
+
+        text = clean_spaces(text)
+
+        # حذف لینک‌ها
         text = re.sub(
-            r"\s+",
-            " ",
-            text
-        ).strip()
+            r"https?://\S+",
+            "",
+            text,
+        )
 
-        # Avoid accidentally treating an enormous page
-        # as the article body.
-        return text[:12000]
+        # حذف باقی‌مانده کدها
+        text = re.sub(
+            r"کد\s*(?:مطلب|خبر)\s*[:：]?\s*\d+",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
+
+        # حذف تاریخ‌های تنها
+        text = re.sub(
+            r"\b\d{1,2}\s+(?:شهریور|مهر|آبان|آذر|دی|بهمن|اسفند|فروردین|اردیبهشت|خرداد|تیر|مرداد)\s+\d{4}\b",
+            "",
+            text,
+        )
+
+        text = clean_spaces(text)
+
+        return text[:MAX_ARTICLE_CHARS]
 
     except Exception as e:
-
         print(
-            f"Article text extraction error: {e}"
+            f"ARTICLE ERROR [{url}]: {repr(e)}"
         )
-
         return ""
 
 
-# =========================================================
+# ============================================================
 # MEDIA EXTRACTION
-# =========================================================
+# ============================================================
 
-def extract_media(
-    entry,
-    article_url
-):
+def absolute_url(base, value):
+    if not value:
+        return ""
 
-    video_url = None
-    image_url = None
+    value = value.strip()
 
-    try:
+    if value.startswith("//"):
+        return "https:" + value
 
-        # -------------------------
-        # Enclosures
-        # -------------------------
+    return urljoin(base, value)
 
-        for enclosure in entry.get(
-            "enclosures",
-            []
-        ):
 
-            href = enclosure.get(
-                "href"
+def is_video_url(url):
+    if not url:
+        return False
+
+    lower = url.lower()
+
+    return any(
+        ext in lower
+        for ext in [
+            ".mp4",
+            ".mov",
+            ".m4v",
+            ".webm",
+            ".mkv",
+        ]
+    )
+
+
+def is_image_url(url):
+    if not url:
+        return False
+
+    lower = url.lower()
+
+    return any(
+        ext in lower
+        for ext in [
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".webp",
+        ]
+    )
+
+
+def extract_media(entry, article_url):
+    media = []
+
+    # RSS enclosures
+    for enclosure in entry.get("enclosures", []):
+        href = enclosure.get("href") or enclosure.get("url")
+
+        if href:
+            media.append(
+                absolute_url(article_url, href)
             )
 
-            enc_type = (
-                enclosure.get(
-                    "type",
-                    ""
-                )
-                or ""
-            ).lower()
-
-            if not href:
-                continue
-
-            href = urljoin(
-                article_url,
-                href
-            )
-
-            if "video" in enc_type:
-                video_url = href
-                break
-
-            if (
-                "image" in enc_type
-                and not image_url
-            ):
-                image_url = href
-
-        # -------------------------
-        # Media content
-        # -------------------------
-
-        for media in entry.get(
-            "media_content",
-            []
-        ):
-
-            url = media.get(
-                "url"
-            )
-
-            media_type = (
-                media.get(
-                    "type",
-                    ""
-                )
-                or media.get(
-                    "medium",
-                    ""
-                )
-                or ""
-            ).lower()
-
-            if not url:
-                continue
-
-            url = urljoin(
-                article_url,
-                url
-            )
-
-            if (
-                "video" in media_type
-                and not video_url
-            ):
-                video_url = url
-
-            elif (
-                "image" in media_type
-                and not image_url
-            ):
-                image_url = url
-
-        # -------------------------
-        # RSS HTML
-        # -------------------------
-
-        raw = entry.get(
-            "summary",
-            entry.get(
-                "description",
-                ""
-            )
+    # media_content
+    for item in entry.get("media_content", []):
+        href = (
+            item.get("url")
+            or item.get("href")
         )
+
+        if href:
+            media.append(
+                absolute_url(article_url, href)
+            )
+
+    # media_thumbnail
+    for item in entry.get("media_thumbnail", []):
+        href = item.get("url")
+
+        if href:
+            media.append(
+                absolute_url(article_url, href)
+            )
+
+    # خود صفحه
+    try:
+        response = session.get(
+            article_url,
+            timeout=ARTICLE_TIMEOUT,
+        )
+
+        response.raise_for_status()
 
         soup = BeautifulSoup(
-            raw,
-            "html.parser"
+            response.content,
+            "html.parser",
         )
 
-        if not video_url:
-
-            video_tag = soup.find(
-                "video"
+        # OpenGraph image
+        for prop in [
+            "og:image",
+            "twitter:image",
+        ]:
+            tag = soup.find(
+                "meta",
+                attrs={
+                    "property": prop
+                },
             )
 
-            if video_tag:
+            if not tag:
+                tag = soup.find(
+                    "meta",
+                    attrs={
+                        "name": prop
+                    },
+                )
 
-                src = (
-                    video_tag.get("src")
-                    or video_tag.get(
-                        "data-src"
-                    )
-                    or video_tag.get(
-                        "data-video"
+            if tag and tag.get("content"):
+                media.append(
+                    absolute_url(
+                        article_url,
+                        tag["content"],
                     )
                 )
 
-                if src:
+        # OpenGraph video
+        for prop in [
+            "og:video",
+            "og:video:url",
+            "og:video:secure_url",
+        ]:
+            tag = soup.find(
+                "meta",
+                attrs={
+                    "property": prop
+                },
+            )
 
-                    video_url = urljoin(
-                        article_url,
-                        src
-                    )
+            if tag and tag.get("content"):
+                value = absolute_url(
+                    article_url,
+                    tag["content"],
+                )
 
-                else:
+                if is_video_url(value):
+                    media.insert(0, value)
 
-                    source = video_tag.find(
-                        "source"
-                    )
+        # video/source
+        for tag in soup.find_all([
+            "video",
+            "source",
+        ]):
+            for attr in [
+                "src",
+                "data-src",
+                "data-video",
+            ]:
+                value = tag.get(attr)
 
-                    if source and source.get("src"):
-
-                        video_url = urljoin(
+                if value:
+                    media.append(
+                        absolute_url(
                             article_url,
-                            source.get("src")
+                            value,
                         )
+                    )
 
-        if not image_url:
+        # لینک مستقیم ویدئو
+        for tag in soup.find_all("a"):
+            href = tag.get("href")
 
-            img = soup.find(
-                "img"
-            )
-
-            if img:
-
-                src = (
-                    img.get("src")
-                    or img.get("data-src")
-                    or img.get("data-original")
-                    or img.get("data-lazy-src")
+            if href:
+                full = absolute_url(
+                    article_url,
+                    href,
                 )
 
-                if src:
-
-                    image_url = urljoin(
-                        article_url,
-                        src
-                    )
+                if is_video_url(full):
+                    media.insert(0, full)
 
     except Exception as e:
-
         print(
-            f"RSS media extraction error: {e}"
+            f"MEDIA ERROR [{article_url}]: {repr(e)}"
         )
 
-    # -----------------------------------------------------
-    # Inspect article page when needed.
-    # -----------------------------------------------------
+    # unique
+    result = []
 
-    if (
-        not video_url
-        or not image_url
-    ):
+    for item in media:
+        if not item:
+            continue
 
-        page = http_get(
-            article_url,
-            timeout=12
-        )
+        if item not in result:
+            result.append(item)
 
-        if page:
+    # اول ویدئو
+    videos = [
+        x for x in result
+        if is_video_url(x)
+    ]
 
-            try:
+    images = [
+        x for x in result
+        if is_image_url(x)
+    ]
 
-                soup = BeautifulSoup(
-                    page.text,
-                    "html.parser"
-                )
+    return videos + images
 
-                # -------------------------
-                # OpenGraph image
-                # -------------------------
 
-                if not image_url:
+# ============================================================
+# CATEGORY
+# ============================================================
 
-                    for prop in [
-                        "og:image",
-                        "twitter:image"
-                    ]:
-
-                        tag = soup.find(
-                            "meta",
-                            property=prop
-                        )
-
-                        if not tag:
-
-                            tag = soup.find(
-                                "meta",
-                                attrs={
-                                    "name": prop
-                                }
-                            )
-
-                        if (
-                            tag
-                            and tag.get("content")
-                        ):
-
-                            image_url = urljoin(
-                                article_url,
-                                tag["content"]
-                            )
-
-                            break
-
-                # -------------------------
-                # OpenGraph video
-                # -------------------------
-
-                if not video_url:
-
-                    for prop in [
-                        "og:video",
-                        "og:video:url",
-                        "og:video:secure_url"
-                    ]:
-
-                        tag = soup.find(
-                            "meta",
-                            property=prop
-                        )
-
-                        if (
-                            tag
-                            and tag.get("content")
-                        ):
-
-                            candidate = urljoin(
-                                article_url,
-                                tag["content"]
-                            )
-
-                            if re.search(
-                                r"\.(mp4|mov|m4v|webm)(\?|$)",
-                                candidate,
-                                flags=re.I
-                            ):
-
-                                video_url = candidate
-                                break
-
-                # -------------------------
-                # Video tags
-                # -------------------------
-
-                if not video_url:
-
-                    for video in soup.find_all(
-                        "video"
-                    ):
-
-                        src = (
-                            video.get("src")
-                            or video.get(
-                                "data-src"
-                            )
-                            or video.get(
-                                "data-video"
-                            )
-                        )
-
-                        if src:
-
-                            video_url = urljoin(
-                                article_url,
-                                src
-                            )
-
-                            break
-
-                        source = video.find(
-                            "source"
-                        )
-
-                        if (
-                            source
-                            and source.get("src")
-                        ):
-
-                            video_url = urljoin(
-                                article_url,
-                                source["src"]
-                            )
-
-                            break
-
-                # -------------------------
-                # Direct video links
-                # -------------------------
-
-                if not video_url:
-
-                    for tag in soup.find_all(
-                        [
-                            "a",
-                            "source"
-                        ]
-                    ):
-
-                        src = (
-                            tag.get("href")
-                            or tag.get("src")
-                        )
-
-                        if (
-                            src
-                            and re.search(
-                                r"\.(mp4|mov|m4v|webm)(\?|$)",
-                                src,
-                                flags=re.I
-                            )
-                        ):
-
-                            video_url = urljoin(
-                                article_url,
-                                src
-                            )
-
-                            break
-
-            except Exception as e:
-
-                print(
-                    f"Article media extraction error: {e}"
-                )
-
-    if video_url:
-
-        return (
-            video_url,
-            "video"
-        )
-
-    if image_url:
-
-        return (
-            image_url,
-            "photo"
-        )
-
-    return (
-        None,
-        None
+def detect_category(title, body):
+    text = normalize_persian(
+        f"{title} {body}"
     )
 
-
-# =========================================================
-# AI REWRITE
-# =========================================================
-
-def ai_rewrite(
-    title,
-    raw_text
-):
-
-    if not AI_API_KEY:
-        return None
-
-    model = os.getenv(
-        "GEMINI_MODEL",
-        "gemini-3.6-flash"
-    )
-
-    endpoint = (
-        "https://generativelanguage.googleapis.com/"
-        f"v1beta/models/{model}:generateContent"
-    )
-
-    prompt = f"""
-تو دبیر ارشد یک کانال خبری حرفه‌ای فارسی به نام «نبض خبر» هستی.
-
-خبر زیر را برای انتشار مستقیم داخل کانال بازنویسی کن.
-
-قوانین:
-
-1. هیچ واقعیت جدیدی اختراع نکن.
-2. نام افراد، اعداد، تاریخ‌ها، مکان‌ها و نقل‌قول‌ها را تغییر نده.
-3. اگر اطلاعاتی در متن وجود ندارد، حدس نزن.
-4. تیتر کوتاه، خبری و جذاب باشد.
-5. مهم‌ترین اطلاعات خبر در ابتدای متن بیاید.
-6. متن باید برای خواندن مستقیم داخل تلگرام مناسب باشد.
-7. بین 2 تا 4 پاراگراف کوتاه بنویس.
-8. متن‌های تبلیغاتی و عبارت‌های کلیشه‌ای حذف شوند.
-9. Markdown استفاده نکن.
-10. ایموجی استفاده نکن؛ برنامه خودش ایموجی اضافه می‌کند.
-11. اگر خبر سیاسی است، کاملاً بی‌طرف بمان.
-12. ادعاهای اشخاص را به‌عنوان واقعیت قطعی بیان نکن.
-13. هیچ لینک اینترنتی در خروجی قرار نده.
-14. نام سایت یا خبرگزاری را در متن خروجی قرار نده.
-15. متن باید تا حد امکان اطلاعات کامل خبر را منتقل کند.
-16. اگر متن خام ناقص است، آن را با حدس تکمیل نکن.
-
-خروجی فقط JSON معتبر باشد:
-
-{{
-  "title": "تیتر نهایی",
-  "body": "متن نهایی"
-}}
-
-تیتر اصلی:
-{title}
-
-متن خبر:
-{raw_text}
-"""
-
-    payload = {
-        "contents": [
-            {
-                "parts": [
-                    {
-                        "text": prompt
-                    }
-                ]
-            }
+    categories = {
+        "ورزش": [
+            "فوتبال",
+            "استقلال",
+            "پرسپولیس",
+            "سپاهان",
+            "لیگ",
+            "جام",
+            "بازیکن",
+            "مربی",
+            "گل",
+            "والیبال",
+            "بسکتبال",
+            "تنیس",
         ],
-        "generationConfig": {
-            "temperature": 0.20,
-            "maxOutputTokens": 1400,
-            "responseMimeType": "application/json"
-        }
+        "فناوری": [
+            "هوش مصنوعی",
+            "ai",
+            "گوگل",
+            "اپل",
+            "سامسونگ",
+            "مایکروسافت",
+            "آیفون",
+            "اندروید",
+            "تکنولوژی",
+            "اینترنت",
+            "فضایی",
+            "اسپیس ایکس",
+        ],
+        "اقتصاد": [
+            "دلار",
+            "یورو",
+            "طلا",
+            "سکه",
+            "بورس",
+            "اقتصاد",
+            "بانک",
+            "تورم",
+            "قیمت",
+            "بازار",
+        ],
+        "حوادث": [
+            "تصادف",
+            "حادثه",
+            "آتش سوزی",
+            "آتش‌سوزی",
+            "زلزله",
+            "مفقود",
+            "سقوط",
+            "انفجار",
+        ],
+        "سلامت": [
+            "پزشک",
+            "بیمار",
+            "سلامت",
+            "درمان",
+            "بیماری",
+            "دارو",
+            "وزارت بهداشت",
+        ],
     }
 
-    try:
+    for category, words in categories.items():
+        for word in words:
+            if normalize_persian(word) in text:
+                return category
 
-        response = SESSION.post(
-            endpoint,
+    return "خبر"
+
+
+# ============================================================
+# AI
+# ============================================================
+
+def ai_rewrite(title, body, category):
+    if not AI_API_KEY:
+        return title, body
+
+    if not body:
+        return title, body
+
+    prompt = f"""
+تو دبیر حرفه‌ای یک کانال خبری فارسی به نام «نبض خبر» هستی.
+
+عنوان خبر:
+{title}
+
+دسته:
+{category}
+
+متن خام خبر:
+{body}
+
+وظیفه:
+
+1. عنوان را حرفه‌ای، کوتاه و جذاب کن.
+2. فقط بر اساس اطلاعات موجود در متن بنویس.
+3. هیچ واقعیت، عدد، نام، نقل قول یا جزئیات جدیدی اضافه نکن.
+4. متن را به فارسی روان و طبیعی تبدیل کن.
+5. تبلیغات، منو، اخبار مرتبط، پیشنهادها، کد مطلب، تاریخ‌های تکراری،
+   «کپی شد»، لینک، نام سایت و موارد غیرخبری را حذف کن.
+6. خبر را به شکل چند پاراگراف کوتاه و خوانا تنظیم کن.
+7. متن نباید حالت ماشینی و خشک داشته باشد.
+8. اگر اطلاعاتی در متن نیست، آن را حدس نزن.
+9. هیچ لینک اینترنتی در خروجی قرار نده.
+10. نام منبع یا سایت را در خروجی قرار نده.
+11. خروجی فقط JSON معتبر باشد:
+
+{{
+  "title": "عنوان نهایی",
+  "body": "متن نهایی"
+}}
+"""
+
+    try:
+        url = (
+            "https://generativelanguage.googleapis.com/"
+            f"v1beta/models/{GEMINI_MODEL}:generateContent"
+        )
+
+        response = session.post(
+            url,
             params={
                 "key": AI_API_KEY
             },
-            json=payload,
-            timeout=30
+            json={
+                "contents": [
+                    {
+                        "parts": [
+                            {
+                                "text": prompt
+                            }
+                        ]
+                    }
+                ],
+                "generationConfig": {
+                    "temperature": 0.2,
+                    "maxOutputTokens": 2500,
+                },
+            },
+            timeout=30,
         )
 
-        if not response.ok:
-
+        if response.status_code != 200:
             print(
-                f"Gemini error "
-                f"{response.status_code}: "
-                f"{response.text[:700]}"
+                "AI ERROR:",
+                response.status_code,
+                response.text[:1000],
             )
-
-            return None
+            return title, body
 
         data = response.json()
 
         candidates = data.get(
             "candidates",
-            []
+            [],
         )
 
         if not candidates:
-            return None
+            return title, body
 
-        parts = (
-            candidates[0]
-            .get("content", {})
-            .get("parts", [])
-        )
+        parts = candidates[0].get(
+            "content",
+            {}
+        ).get("parts", [])
 
         if not parts:
-            return None
+            return title, body
 
-        result_text = parts[0].get(
+        text = parts[0].get(
             "text",
             ""
         ).strip()
 
-        result_text = re.sub(
-            r"^```(?:json)?",
+        # حذف markdown احتمالی
+        text = re.sub(
+            r"^```json\s*",
             "",
-            result_text,
-            flags=re.I
+            text,
+            flags=re.IGNORECASE,
         )
 
-        result_text = re.sub(
-            r"```$",
+        text = re.sub(
+            r"\s*```$",
             "",
-            result_text
-        ).strip()
-
-        result = json.loads(
-            result_text
+            text,
         )
 
-        new_title = clean_text(
-            result.get(
-                "title",
-                ""
-            )
+        import json
+
+        result = json.loads(text)
+
+        new_title = clean_spaces(
+            result.get("title", "")
         )
 
-        new_body = clean_text(
-            result.get(
-                "body",
-                ""
-            )
+        new_body = clean_spaces(
+            result.get("body", "")
         )
 
         if not new_title:
-
             new_title = title
 
         if not new_body:
+            new_body = body
 
-            return None
-
-        return (
-            new_title,
-            new_body
-        )
+        return new_title, new_body
 
     except Exception as e:
-
         print(
-            f"AI rewrite failed: {e}"
+            "AI PARSE/REQUEST ERROR:",
+            repr(e),
         )
+        return title, body
 
-        return None
 
+# ============================================================
+# QUALITY CONTROL
+# ============================================================
 
-# =========================================================
-# FALLBACK NEWS TEXT
-# =========================================================
+def is_valid_news(title, body):
+    title = clean_spaces(title)
+    body = clean_spaces(body)
 
-def fallback_body(
-    raw_text,
-    title
-):
+    if len(title) < 8:
+        return False
 
-    text = clean_text(
-        raw_text
+    if len(body) < 80:
+        return False
+
+    # متن‌هایی که احتمالاً صفحه آلوده است
+    bad_count = 0
+
+    bad_terms = [
+        "کد مطلب",
+        "کپی شد",
+        "مطالب مرتبط",
+        "اخبار مرتبط",
+        "پیشنهاد سردبیر",
+        "دریافت mb",
+        "دانلود mb",
+        "عضویت در خبرنامه",
+    ]
+
+    combined = normalize_persian(
+        f"{title} {body}"
     )
 
-    if not text:
-        return ""
+    for term in bad_terms:
+        if normalize_persian(term) in combined:
+            bad_count += 1
 
-    sentences = re.split(
-        r"(?<=[.!؟؛])\s+",
-        text
+    if bad_count >= 2:
+        return False
+
+    # اگر متن پر از لینک باشد
+    urls = re.findall(
+        r"https?://\S+",
+        body,
     )
 
-    useful = []
+    if len(urls) >= 2:
+        return False
 
-    for sentence in sentences:
+    return True
 
-        sentence = sentence.strip()
 
-        if len(sentence) < 35:
-            continue
+# ============================================================
+# CAPTION
+# ============================================================
 
-        if (
-            normalize_text(sentence)
-            ==
-            normalize_text(title)
-        ):
-            continue
+def make_caption(title, body, category):
+    title = clean_spaces(title)
+    body = clean_spaces(body)
 
-        useful.append(
-            sentence
-        )
-
-        if len(useful) >= 5:
-            break
-
-    if not useful:
-
-        return text[:1400]
-
-    return "\n\n".join(
-        f"🔹 {sentence}"
-        for sentence in useful
+    # حذف لینک‌ها از متن
+    body = re.sub(
+        r"https?://\S+",
+        "",
+        body,
     )
 
-
-# =========================================================
-# WATERMARK
-# =========================================================
-
-def add_watermark(
-    image_url
-):
-
-    response = http_get(
-        image_url,
-        timeout=15
+    caption = (
+        f"📰 <b>{html.escape(title)}</b>\n\n"
+        f"{html.escape(body)}\n\n"
+        f"<i>#{html.escape(category)}</i>\n\n"
+        f"<b>{CHANNEL_USERNAME}</b>"
     )
 
-    if not response:
-        return None
+    # Telegram caption limit
+    if len(caption) > MAX_CAPTION_CHARS:
+        allowed = MAX_CAPTION_CHARS - 250
 
-    try:
+        shortened = body[:allowed]
 
-        image = Image.open(
-            io.BytesIO(
-                response.content
-            )
-        ).convert("RGBA")
+        # قطع در نقطه مناسب
+        last_space = shortened.rfind(" ")
 
-        width, height = image.size
-
-        scale = max(
-            1,
-            min(
-                width,
-                height
-            ) / 900
-        )
-
-        font_size_fa = max(
-            18,
-            int(24 * scale)
-        )
-
-        font_size_en = max(
-            11,
-            int(14 * scale)
-        )
-
-        try:
-
-            font_fa = ImageFont.truetype(
-                str(FONT_BOLD),
-                font_size_fa
-            )
-
-            font_en = ImageFont.truetype(
-                str(FONT_REGULAR),
-                font_size_en
-            )
-
-        except Exception:
-
-            font_fa = ImageFont.load_default()
-            font_en = ImageFont.load_default()
-
-        overlay = Image.new(
-            "RGBA",
-            image.size,
-            (255, 255, 255, 0)
-        )
-
-        draw = ImageDraw.Draw(
-            overlay
-        )
-
-        padding = max(
-            10,
-            int(12 * scale)
-        )
-
-        text_fa = "نبض خبر"
-        text_en = "@NabzKhabarOfficial"
-
-        bbox1 = draw.textbbox(
-            (0, 0),
-            text_fa,
-            font=font_fa
-        )
-
-        bbox2 = draw.textbbox(
-            (0, 0),
-            text_en,
-            font=font_en
-        )
-
-        text_width = max(
-            bbox1[2] - bbox1[0],
-            bbox2[2] - bbox2[0]
-        )
-
-        box_width = (
-            text_width
-            + padding * 2
-        )
-
-        box_height = int(
-            62 * scale
-        )
-
-        x = (
-            width
-            - box_width
-            - int(15 * scale)
-        )
-
-        y = (
-            height
-            - box_height
-            - int(15 * scale)
-        )
-
-        draw.rounded_rectangle(
-            [
-                x,
-                y,
-                x + box_width,
-                y + box_height
-            ],
-            radius=int(
-                8 * scale
-            ),
-            fill=(
-                0,
-                0,
-                0,
-                165
-            )
-        )
-
-        draw.text(
-            (
-                x + padding,
-                y + int(5 * scale)
-            ),
-            text_fa,
-            fill=(
-                255,
-                255,
-                255,
-                245
-            ),
-            font=font_fa
-        )
-
-        draw.text(
-            (
-                x + padding,
-                y + int(35 * scale)
-            ),
-            text_en,
-            fill=(
-                220,
-                230,
-                255,
-                235
-            ),
-            font=font_en
-        )
-
-        final_image = Image.alpha_composite(
-            image,
-            overlay
-        ).convert("RGB")
-
-        output = io.BytesIO()
-
-        final_image.save(
-            output,
-            format="JPEG",
-            quality=93,
-            optimize=True
-        )
-
-        output.seek(0)
-
-        return output
-
-    except Exception as e:
-
-        print(
-            f"Watermark error: {e}"
-        )
-
-        return None
-
-
-# =========================================================
-# TELEGRAM CAPTION
-# =========================================================
-
-def make_caption(
-    title,
-    body,
-    category
-):
-
-    icon = CATEGORY_ICONS.get(
-        category,
-        "📰"
-    )
-
-    if category == "فوری":
+        if last_space > 300:
+            shortened = shortened[:last_space]
 
         caption = (
-            f"{icon} <b>فوری | "
-            f"{html.escape(title)}</b>"
-        )
-
-    else:
-
-        caption = (
-            f"{icon} <b>"
-            f"{html.escape(title)}"
-            f"</b>"
-        )
-
-    if body:
-
-        caption += (
-            "\n\n"
-            f"{html.escape(body)}"
-        )
-
-    caption += (
-        "\n\n"
-        "#نبض_خبر"
-    )
-
-    # Telegram media caption limit.
-    if len(caption) > 1000:
-
-        # Keep Telegram HTML valid.
-        safe_title = html.escape(
-            title
-        )
-
-        prefix = (
-            f"{icon} <b>"
-            f"{safe_title}"
-            f"</b>\n\n"
-        )
-
-        suffix = (
-            "\n\n#نبض_خبر"
-        )
-
-        available = (
-            1000
-            - len(prefix)
-            - len(suffix)
-            - 1
-        )
-
-        body_safe = html.escape(
-            body
-        )[:max(
-            0,
-            available
-        )]
-
-        caption = (
-            prefix
-            + body_safe
-            + "…"
-            + suffix
+            f"📰 <b>{html.escape(title)}</b>\n\n"
+            f"{html.escape(shortened)}…\n\n"
+            f"<i>#{html.escape(category)}</i>\n\n"
+            f"<b>{CHANNEL_USERNAME}</b>"
         )
 
     return caption
 
 
-# =========================================================
-# TELEGRAM API
-# =========================================================
+# ============================================================
+# TELEGRAM
+# ============================================================
 
-def telegram_request(
-    method,
-    data=None,
-    files=None,
-    timeout=30
-):
-
-    if not BOT_TOKEN:
-
-        print(
-            "BOT_TOKEN is missing."
-        )
-
-        return False
-
-    url = (
-        "https://api.telegram.org/"
+def telegram_api(method):
+    return (
+        f"https://api.telegram.org/"
         f"bot{BOT_TOKEN}/{method}"
     )
 
+
+def send_photo(photo_url, caption):
     try:
-
-        response = SESSION.post(
-            url,
-            data=data,
-            files=files,
-            timeout=timeout
+        response = session.post(
+            telegram_api("sendPhoto"),
+            data={
+                "chat_id": CHAT_ID,
+                "photo": photo_url,
+                "caption": caption,
+                "parse_mode": "HTML",
+            },
+            timeout=30,
         )
 
-        if response.ok:
-
-            result = response.json()
-
-            if result.get("ok"):
-
-                return True
-
-        print(
-            f"Telegram {method} error: "
-            f"{response.text[:1000]}"
-        )
-
-    except Exception as e:
-
-        print(
-            f"Telegram request error: {e}"
-        )
-
-    return False
-
-
-# =========================================================
-# SEND PHOTO
-# =========================================================
-
-def send_photo(
-    caption,
-    image_url
-):
-
-    processed = add_watermark(
-        image_url
-    )
-
-    if not processed:
-
-        print(
-            "Photo processing failed."
-        )
-
-        return False
-
-    files = {
-        "photo": (
-            "nabz-news.jpg",
-            processed,
-            "image/jpeg"
-        )
-    }
-
-    data = {
-        "chat_id": CHAT_ID,
-        "caption": caption,
-        "parse_mode": "HTML",
-        "disable_notification": False
-    }
-
-    return telegram_request(
-        "sendPhoto",
-        data=data,
-        files=files,
-        timeout=30
-    )
-
-
-# =========================================================
-# SEND VIDEO
-# =========================================================
-
-def send_video(
-    caption,
-    video_url
-):
-
-    print(
-        f"Downloading video: {video_url}"
-    )
-
-    try:
-
-        response = SESSION.get(
-            video_url,
-            stream=True,
-            timeout=25
-        )
-
-        if response.status_code != 200:
-
-            print(
-                f"Video download failed: "
-                f"{response.status_code}"
-            )
-
-            return False
-
-        content_length = response.headers.get(
-            "Content-Length"
-        )
-
-        if content_length:
-
-            try:
-
-                if (
-                    int(content_length)
-                    > VIDEO_MAX_SIZE
-                ):
-
-                    print(
-                        "Video is larger than "
-                        "50MB."
-                    )
-
-                    return False
-
-            except ValueError:
-
-                pass
-
-        buffer = io.BytesIO()
-
-        total = 0
-
-        for chunk in response.iter_content(
-            chunk_size=1024 * 256
-        ):
-
-            if not chunk:
-                continue
-
-            total += len(chunk)
-
-            if total > VIDEO_MAX_SIZE:
-
-                print(
-                    "Video exceeded 50MB."
-                )
-
-                return False
-
-            buffer.write(
-                chunk
-            )
-
-        if total == 0:
-
-            print(
-                "Downloaded video is empty."
-            )
-
-            return False
-
-        buffer.seek(0)
-
-        files = {
-            "video": (
-                "nabz-news.mp4",
-                buffer,
-                "video/mp4"
-            )
-        }
-
-        data = {
-            "chat_id": CHAT_ID,
-            "caption": caption,
-            "parse_mode": "HTML",
-            "supports_streaming": True,
-            "disable_notification": False
-        }
-
-        return telegram_request(
-            "sendVideo",
-            data=data,
-            files=files,
-            timeout=60
-        )
-
-    except Exception as e:
-
-        print(
-            f"Video send error: {e}"
-        )
-
-        return False
-
-
-# =========================================================
-# SEND NEWS
-# =========================================================
-
-def send_news(
-    title,
-    body,
-    category,
-    media_url,
-    media_type
-):
-
-    caption = make_caption(
-        title,
-        body,
-        category
-    )
-
-    # -------------------------
-    # VIDEO
-    # -------------------------
-
-    if media_type == "video":
-
-        print(
-            f"Trying VIDEO for: {title}"
-        )
-
-        if send_video(
-            caption,
-            media_url
-        ):
-
-            print(
-                "Video published successfully."
-            )
-
+        if response.status_code == 200:
             return True
 
         print(
-            "Video failed."
+            "PHOTO SEND ERROR:",
+            response.status_code,
+            response.text[:1000],
         )
 
-        return False
-
-    # -------------------------
-    # PHOTO
-    # -------------------------
-
-    if media_type == "photo":
-
+    except Exception as e:
         print(
-            f"Trying PHOTO for: {title}"
-        )
-
-        return send_photo(
-            caption,
-            media_url
+            "PHOTO SEND EXCEPTION:",
+            repr(e),
         )
 
     return False
 
 
-# =========================================================
-# MARKET PRICE
-# =========================================================
-
-def get_nobitex_usdt():
-
+def send_video(video_url, caption):
     try:
-
-        response = http_get(
-            "https://api.nobitex.ir/v2/orderbook/USDTIRT",
-            timeout=8
+        response = session.post(
+            telegram_api("sendVideo"),
+            data={
+                "chat_id": CHAT_ID,
+                "video": video_url,
+                "caption": caption,
+                "parse_mode": "HTML",
+                "supports_streaming": "true",
+            },
+            timeout=60,
         )
 
-        if not response:
-            return None
+        if response.status_code == 200:
+            return True
 
-        data = response.json()
-
-        value = data.get(
-            "lastTradePrice"
-        )
-
-        if value is None:
-            return None
-
-        return int(
-            float(value) / 10
+        print(
+            "VIDEO SEND ERROR:",
+            response.status_code,
+            response.text[:1000],
         )
 
     except Exception as e:
+        print(
+            "VIDEO SEND EXCEPTION:",
+            repr(e),
+        )
+
+    return False
+
+
+def send_text(caption):
+    try:
+        response = session.post(
+            telegram_api("sendMessage"),
+            data={
+                "chat_id": CHAT_ID,
+                "text": caption,
+                "parse_mode": "HTML",
+                "disable_web_page_preview": "true",
+            },
+            timeout=30,
+        )
+
+        if response.status_code == 200:
+            return True
 
         print(
-            f"USDT price error: {e}"
+            "TEXT SEND ERROR:",
+            response.status_code,
+            response.text[:1000],
         )
 
-        return None
-
-
-def send_market_prices(
-    history
-):
-
-    now = datetime.now(
-        TEHRAN_TZ
-    )
-
-    block = now.hour // 8
-
-    key = (
-        f"MARKET_"
-        f"{now.strftime('%Y-%m-%d')}_"
-        f"{block}"
-    )
-
-    if key in history:
-
-        return False
-
-    usdt = get_nobitex_usdt()
-
-    if not usdt:
-
-        return False
-
-    caption = (
-        "📊 <b>نبض بازار</b>\n\n"
-        f"💵 <b>تتر / دلار تقریبی:</b> "
-        f"{usdt:,} تومان\n\n"
-        "ℹ️ نرخ‌ها ممکن است با بازار نقدی "
-        "تفاوت داشته باشند.\n\n"
-        "#نبض_بازار"
-    )
-
-    success = telegram_request(
-        "sendMessage",
-        data={
-            "chat_id": CHAT_ID,
-            "text": caption,
-            "parse_mode": "HTML",
-            "disable_web_page_preview": True
-        },
-        timeout=15
-    )
-
-    if success:
-
-        history.append(
-            key
+    except Exception as e:
+        print(
+            "TEXT SEND EXCEPTION:",
+            repr(e),
         )
 
-        save_sent_news(
-            history
+    return False
+
+
+# ============================================================
+# DOWNLOAD MEDIA
+# ============================================================
+
+def download_media(url, filename):
+    try:
+        response = session.get(
+            url,
+            timeout=60,
+            stream=True,
         )
 
-    return success
+        response.raise_for_status()
+
+        with open(filename, "wb") as f:
+            for chunk in response.iter_content(
+                chunk_size=1024 * 256
+            ):
+                if chunk:
+                    f.write(chunk)
+
+        return filename
+
+    except Exception as e:
+        print(
+            "MEDIA DOWNLOAD ERROR:",
+            repr(e),
+        )
+
+        return ""
 
 
-# =========================================================
-# COLLECT NEWS
-# =========================================================
+# ============================================================
+# CANDIDATES
+# ============================================================
 
-def collect_candidates(
-    history
-):
-
+def collect_candidates(history):
     candidates = []
-
     seen_titles = []
 
-    sent_set = set(
-        history
-    )
+    print("Collecting news...")
 
-    for source_name, feed_url in RSS_FEEDS.items():
+    for source_name, feed_url in RSS_FEEDS:
 
-        print(
-            f"Checking: {source_name}"
+        entries = get_feed(
+            source_name,
+            feed_url,
         )
 
-        feed = fetch_feed(
-            feed_url
-        )
-
-        if not feed:
-            continue
-
-        entries = feed.entries[
-            :MAX_ENTRIES_PER_FEED
-        ]
+        # فقط تعداد معقولی از جدیدترین‌ها
+        entries = entries[:8]
 
         for entry in entries:
 
-            title = clean_text(
-                entry.get(
-                    "title",
-                    ""
-                ),
-                is_title=True
+            title = clean_spaces(
+                BeautifulSoup(
+                    str(entry.get("title", "")),
+                    "html.parser",
+                ).get_text(" ", strip=True)
             )
-
-            title = title.strip()
 
             if not title:
                 continue
 
-            article_url = (
-                entry.get(
-                    "link",
-                    ""
-                )
-                or ""
-            ).strip()
+            link = get_entry_link(entry)
 
-            if not article_url:
+            if not link:
                 continue
 
             news_id = make_news_id(
-                entry,
-                source_name
-            )
-
-            # Exact previously published item.
-            if news_id in sent_set:
-                continue
-
-            raw_text = clean_text(
-                entry.get(
-                    "summary",
-                    entry.get(
-                        "description",
-                        ""
-                    )
-                )
-            )
-
-            # Try to obtain fuller article text.
-            article_text = extract_article_text(
-                article_url
-            )
-
-            if (
-                len(article_text)
-                >
-                len(raw_text)
-            ):
-
-                raw_text = article_text
-
-            # -------------------------------------------------
-            # Strong duplicate detection inside this run.
-            # -------------------------------------------------
-
-            duplicate = False
-
-            current_item = {
-                "title": title,
-                "raw_text": raw_text
-            }
-
-            for previous in candidates:
-
-                if is_same_story(
-                    current_item,
-                    previous
-                ):
-
-                    duplicate = True
-
-                    print(
-                        "Duplicate story skipped:"
-                        f" {title}"
-                    )
-
-                    break
-
-            if duplicate:
-                continue
-
-            for previous_title in seen_titles:
-
-                if is_similar_title(
-                    title,
-                    previous_title
-                ):
-
-                    duplicate = True
-
-                    print(
-                        "Similar title skipped:"
-                        f" {title}"
-                    )
-
-                    break
-
-            if duplicate:
-                continue
-
-            # -------------------------------------------------
-            # Media
-            # -------------------------------------------------
-
-            media_url, media_type = extract_media(
-                entry,
-                article_url
-            )
-
-            if not media_url:
-
-                print(
-                    f"No media found: {title}"
-                )
-
-                continue
-
-            category = detect_category(
+                link,
                 title,
-                source_name
             )
+
+            if news_id in history:
+                continue
+
+            # جلوگیری از تکرار عنوان در همین اجرا
+            duplicate_title = False
+
+            for old_title in seen_titles:
+                if title_similarity(
+                    title,
+                    old_title,
+                ) >= 0.78:
+                    duplicate_title = True
+                    break
+
+            if duplicate_title:
+                continue
+
+            rss_body = get_entry_summary(
+                entry
+            )
+
+            # متن کامل صفحه
+            article_body = extract_article_text(
+                link
+            )
+
+            # اگر استخراج صفحه موفق بود، آن را ترجیح بده
+            if article_body:
+                body = article_body
+            else:
+                body = rss_body
+
+            # رسانه
+            media = extract_media(
+                entry,
+                link,
+            )
+
+            # برای حفظ کیفیت، خبر بدون رسانه فعلاً کنار گذاشته می‌شود
+            if not media:
+                print(
+                    f"SKIP NO MEDIA: {title[:80]}"
+                )
+                continue
 
             item = {
-                "id": news_id,
                 "title": title,
-                "raw_text": raw_text,
+                "body": body,
+                "link": link,
                 "source": source_name,
-                "url": article_url,
-                "media_url": media_url,
-                "media_type": media_type,
-                "category": category,
+                "media": media,
+                "news_id": news_id,
             }
 
-            candidates.append(
-                item
+            # کیفیت اولیه
+            if not is_valid_news(
+                title,
+                body,
+            ):
+                print(
+                    f"SKIP BAD ARTICLE: {title[:80]}"
+                )
+                continue
+
+            # بررسی با خبرهای قبلی همین اجرا
+            duplicate = False
+
+            for old_item in candidates:
+                if is_same_story(
+                    item,
+                    old_item,
+                ):
+                    duplicate = True
+                    print(
+                        "DUPLICATE BLOCKED:",
+                        title[:100],
+                    )
+                    break
+
+            if duplicate:
+                continue
+
+            candidates.append(item)
+            seen_titles.append(title)
+
+            print(
+                f"CANDIDATE: {title[:100]}"
             )
 
-            seen_titles.append(
-                title
-            )
+    print(
+        f"Candidates found: {len(candidates)}"
+    )
 
     return candidates
 
 
-# =========================================================
-# PRIORITY
-# =========================================================
+# ============================================================
+# PUBLISH
+# ============================================================
 
-def candidate_priority(
-    item
-):
-
-    category = item[
-        "category"
-    ]
-
-    score = 0
-
-    if category == "فوری":
-
-        score += 100
-
-    if item[
-        "media_type"
-    ] == "video":
-
-        score += 20
-
-    category_bonus = {
-
-        "ورزش": 8,
-        "اقتصاد": 8,
-        "فناوری": 8,
-        "حوادث": 12,
-        "سلامت": 6,
-        "خودرو": 5,
-        "علم": 4,
-        "فرهنگ": 4,
-        "جهان": 7,
-        "اجتماعی": 5,
-        "ایران": 7,
-        "عمومی": 2,
-    }
-
-    score += category_bonus.get(
-        category,
-        0
+def publish_item(item):
+    original_title = item["title"]
+    original_body = item["body"]
+    category = detect_category(
+        original_title,
+        original_body,
     )
-
-    return score
-
-
-# =========================================================
-# PREPARE NEWS
-# =========================================================
-
-def prepare_news(
-    item
-):
-
-    title = item[
-        "title"
-    ]
-
-    raw_text = item[
-        "raw_text"
-    ]
-
-    ai_result = ai_rewrite(
-        title,
-        raw_text
-    )
-
-    if ai_result:
-
-        final_title, final_body = (
-            ai_result
-        )
-
-    else:
-
-        final_title = title
-
-        final_body = fallback_body(
-            raw_text,
-            title
-        )
-
-    return (
-        final_title,
-        final_body
-    )
-
-
-# =========================================================
-# MAIN
-# =========================================================
-
-def main():
-
-    print("=" * 60)
 
     print(
-        "NABZ KHABAR BOT STARTED"
+        "Preparing:",
+        original_title[:100],
     )
 
-    print("=" * 60)
+    # AI فقط برای مرتب‌سازی
+    title, body = ai_rewrite(
+        original_title,
+        original_body,
+        category,
+    )
 
-    if not BOT_TOKEN:
+    # اگر AI خروجی خراب داد، متن اصلی
+    if not is_valid_news(
+        title,
+        body,
+    ):
+        title = original_title
+        body = original_body
+
+    # یک کنترل نهایی
+    if not is_valid_news(
+        title,
+        body,
+    ):
+        print(
+            "FINAL QUALITY CHECK FAILED:",
+            original_title[:100],
+        )
+        return False
+
+    caption = make_caption(
+        title,
+        body,
+        category,
+    )
+
+    media = item.get(
+        "media",
+        [],
+    )
+
+    # اول ویدئو
+    videos = [
+        x for x in media
+        if is_video_url(x)
+    ]
+
+    images = [
+        x for x in media
+        if is_image_url(x)
+    ]
+
+    # ----------------------------------------
+    # VIDEO
+    # ----------------------------------------
+
+    for video in videos[:3]:
 
         print(
-            "ERROR: BOT_TOKEN secret is missing."
+            "Trying VIDEO:",
+            video[:150],
         )
 
+        if send_video(
+            video,
+            caption,
+        ):
+            print(
+                "Video published successfully."
+            )
+            return True
+
+    # ----------------------------------------
+    # IMAGE
+    # ----------------------------------------
+
+    for image in images[:4]:
+
+        print(
+            "Trying PHOTO:",
+            image[:150],
+        )
+
+        if send_photo(
+            image,
+            caption,
+        ):
+            print(
+                "Photo published successfully."
+            )
+            return True
+
+    # ----------------------------------------
+    # TEXT FALLBACK
+    # ----------------------------------------
+
+    print(
+        "Media failed, trying text fallback..."
+    )
+
+    if send_text(caption):
+        print(
+            "Text published successfully."
+        )
+        return True
+
+    return False
+
+
+# ============================================================
+# MAIN
+# ============================================================
+
+def main():
+    print("NABZ KHABAR BOT STARTED")
+
+    if not BOT_TOKEN:
+        print("ERROR: BOT_TOKEN is missing.")
         return
 
-    history = load_sent_news()
+    history = load_history()
 
     print(
         f"History entries: {len(history)}"
     )
 
-    # -----------------------------------------------------
-    # Market
-    # -----------------------------------------------------
-
-    try:
-
-        send_market_prices(
-            history
-        )
-
-    except Exception as e:
-
-        print(
-            f"Market update skipped: {e}"
-        )
-
-    # -----------------------------------------------------
-    # Collect
-    # -----------------------------------------------------
-
     candidates = collect_candidates(
         history
     )
 
-    print(
-        f"Candidates found: "
-        f"{len(candidates)}"
-    )
-
-    if not candidates:
-
-        print(
-            "No publishable news found."
-        )
-
-        save_sent_news(
-            history
-        )
-
-        return
-
-    # -----------------------------------------------------
-    # Priority
-    # -----------------------------------------------------
-
-    candidates.sort(
-        key=candidate_priority,
-        reverse=True
-    )
-
     published = 0
 
-    used_categories = set()
-
-    ordered = []
-
-    # -----------------------------------------------------
-    # First pass:
-    # category diversity
-    # -----------------------------------------------------
-
     for item in candidates:
 
-        if (
-            item["category"]
-            not in used_categories
-        ):
-
-            ordered.append(
-                item
-            )
-
-            used_categories.add(
-                item["category"]
-            )
-
-    # -----------------------------------------------------
-    # Second pass:
-    # fill remaining slots
-    # -----------------------------------------------------
-
-    for item in candidates:
-
-        if item not in ordered:
-
-            ordered.append(
-                item
-            )
-
-    # -----------------------------------------------------
-    # Publish
-    # -----------------------------------------------------
-
-    for item in ordered:
-
-        if (
-            published
-            >= MAX_NEWS_PER_RUN
-        ):
+        if published >= MAX_NEWS_PER_RUN:
             break
 
-        print("-" * 60)
-
         print(
-            f"Publishing: "
-            f"{item['title']}"
+            "\n----------------------------------------"
         )
 
-        final_title, final_body = (
-            prepare_news(item)
-        )
-
-        success = send_news(
-            title=final_title,
-            body=final_body,
-            category=item[
-                "category"
-            ],
-            media_url=item[
-                "media_url"
-            ],
-            media_type=item[
-                "media_type"
-            ]
-        )
+        success = publish_item(item)
 
         if success:
 
-            history.append(
-                item["id"]
+            history.add(
+                item["news_id"]
             )
 
-            save_sent_news(
-                history
+            # همچنین hash عنوان برای جلوگیری بهتر
+            title_hash = hashlib.sha256(
+                normalize_title(
+                    item["title"]
+                ).encode("utf-8")
+            ).hexdigest()
+
+            history.add(
+                f"title:{title_hash}"
             )
 
             published += 1
 
             print(
-                f"Published successfully: "
-                f"{published}/"
-                f"{MAX_NEWS_PER_RUN}"
+                f"PUBLISHED {published}/{MAX_NEWS_PER_RUN}:",
+                item["title"][:100],
             )
 
-            time.sleep(3)
+            # کمی فاصله برای جلوگیری از فشار به Telegram
+            time.sleep(2)
 
         else:
-
             print(
-                "Publication failed; "
-                "news will NOT be marked "
-                "as sent."
+                "FAILED:",
+                item["title"][:100],
             )
 
-    save_sent_news(
-        history
-    )
-
-    print("=" * 60)
+    save_history(history)
 
     print(
-        f"FINISHED - Published: "
-        f"{published}"
+        f"\nFINISHED - Published: {published}"
     )
-
-    print("=" * 60)
 
 
 if __name__ == "__main__":
-
     main()
