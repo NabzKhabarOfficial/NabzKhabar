@@ -123,10 +123,9 @@ def patch_source_coverage(source):
     ("فرهنگ", "https://www.irna.ir/rss/service/culture"),
     ("اجتماعی", "https://www.irna.ir/rss/service/society"),
     ("جهان", "https://www.isna.ir/rss/service/world"),
-    # Additional free publisher feeds for broader coverage.
     ("ایران", "https://www.tabnak.ir/fa/rss/allnews"),
     ("ایران", "https://www.khabaronline.ir/rss"),
-    ("ایران", "https://www.tasnimnews.com/fa/rss/feed/0/8/0/%D9%85%D9%87%D9%85%D8%AA%D8%B1%DB%8C%D9%86-%D8%AE%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D8%B3%D9%86%DB%8C%D9%85"),
+    ("ایران", "https://www.tasnimnews.com/fa/rss/feed/0/8/0/%D9%85%D9%87%D9%85%D8%AA%D8%B1%DB%8C%D9%86-%D8%AE%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D8%A7%D8%B3%D9%86%DB%8C%D9%85"),
     ("ایران", "https://www.asriran.com/fa/rss/allnews"),
     ("ایران", "https://www.entekhab.ir/fa/rss/allnews"),
     ("اقتصاد", "https://donya-e-eqtesad.com/fa/feeds/?p=all"),
@@ -230,8 +229,6 @@ def patch_hot_news(source):
     candidate["is_hot"] = calculate_hot_news_signal(candidate)
 
     if candidate.get("is_hot"):
-        # Strong enough to outrank ordinary category news, but not enough
-        # to override duplicate protection or diversity rules by itself.
         score += 18'''
 
     if anchor in source and 'candidate["is_hot"] = calculate_hot_news_signal(candidate)' not in source:
@@ -287,6 +284,26 @@ def patch_hot_news(source):
 
     if call_anchor in source and 'candidate.get("is_hot", False)' not in source:
         source = source.replace(call_anchor, call_replacement, 1)
+
+    # Dedicated fast lane: only publish stories explicitly classified as hot.
+    filter_anchor = '''    clustered = final_candidates
+
+    # --------------------------------------------------------
+    # Final sort.'''
+    filter_replacement = '''    clustered = final_candidates
+
+    if os.getenv("HOT_ONLY", "0").strip() == "1":
+        clustered = [
+            item for item in clustered
+            if item.get("is_hot", False)
+        ]
+        print(f"HOT-ONLY MODE: {len(clustered)} hot candidates remain")
+
+    # --------------------------------------------------------
+    # Final sort.'''
+
+    if filter_anchor in source and 'HOT-ONLY MODE:' not in source:
+        source = source.replace(filter_anchor, filter_replacement, 1)
 
     return source
 
