@@ -1,0 +1,42 @@
+name: NabzKhabar Block Known Duplicate
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  block:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add exact headline fingerprint
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("sent_news.txt")
+          key = "848a9693d1170469a8f779204ceb2faea1c982412577714ff056b692b9da8566"
+          lines = p.read_text(encoding="utf-8").splitlines() if p.exists() else []
+          if key not in lines:
+              lines.append(key)
+              p.write_text("\n".join(lines) + "\n", encoding="utf-8")
+          PY
+
+      - name: Commit and remove temporary workflow
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          rm -f .github/workflows/_block_known_duplicate.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sent_news.txt .github/workflows/_block_known_duplicate.yml
+          git commit -m "Block known duplicate headline [skip ci]"
+          git push origin HEAD:main
