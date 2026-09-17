@@ -3,7 +3,6 @@
 import re
 import main
 
-
 FOREIGN_RSS_FEEDS = [
     ("جهان", "https://feeds.bbci.co.uk/news/world/rss.xml"),
     ("جهان", "https://www.aljazeera.com/xml/rss/all.xml"),
@@ -22,18 +21,15 @@ for feed in FOREIGN_RSS_FEEDS:
     if feed not in main.DIRECT_RSS_FEEDS:
         main.DIRECT_RSS_FEEDS.append(feed)
 
-
-# ------------------------------------------------------------
-# Foreign source priority
-# ------------------------------------------------------------
 _ORIGINAL_SOURCE_PRIORITY = main.source_priority
 
 
 def _is_foreign_host(url):
     host = main.base_domain(main.get_hostname(url))
-    if not host:
-        return False
-    return any(host == d or host.endswith("." + d) for d in FOREIGN_DIRECT_HOSTS)
+    return bool(host) and any(
+        host == d or host.endswith("." + d)
+        for d in FOREIGN_DIRECT_HOSTS
+    )
 
 
 def source_priority(url, is_google=False):
@@ -44,10 +40,6 @@ def source_priority(url, is_google=False):
 
 main.source_priority = source_priority
 
-
-# ------------------------------------------------------------
-# Global / breaking-news priority
-# ------------------------------------------------------------
 BREAKING_KEYWORDS = [
     "breaking", "خبر فوری", "فوری", "urgent", "developing", "هشدار",
     "alert", "emergency", "انفجار", "حمله", "حمله موشکی", "موشک",
@@ -71,10 +63,6 @@ MAJOR_WORLD_KEYWORDS = [
     "تحریم", "هسته ای", "هسته‌ای",
 ]
 
-
-# ------------------------------------------------------------
-# Bulletin / roundup filter
-# ------------------------------------------------------------
 BULLETIN_KEYWORDS = [
     "latest news bulletin", "news bulletin", "midday bulletin",
     "morning bulletin", "evening bulletin", "daily bulletin",
@@ -94,7 +82,6 @@ def _is_bulletin_title(title):
 def _keyword_hits(text, keywords):
     text = str(text or "").lower()
     return sum(1 for word in keywords if word.lower() in text)
-
 
 _ORIGINAL_CALCULATE_IMPORTANCE = main.calculate_importance
 
@@ -120,12 +107,8 @@ def calculate_importance(candidate):
 main.calculate_importance = calculate_importance
 
 
-# ------------------------------------------------------------
-# Stronger cross-source story identity
-# ------------------------------------------------------------
-# The existing v11 semantic matcher is preserved first. This additional
-# normalization fixes common Persian variants such as "ناو های" vs "ناوهای"
-# and makes paraphrases from different publishers converge more reliably.
+# Stronger cross-source identity. The original matcher runs first; this
+# normalization adds protection for Persian spelling variants and paraphrases.
 _ORIGINAL_SAME_STORY = main.same_story
 
 
@@ -159,18 +142,15 @@ def same_story(a, b):
 
     containment = len(common) / min(len(A), len(B))
     jaccard = len(common) / len(A | B)
-
-    # Conservative threshold: catches near-identical/paraphrased reports,
-    # while avoiding broad stories that merely share a country/topic.
     return containment >= 0.75 and jaccard >= 0.55
 
 main.same_story = same_story
 
 
-# ------------------------------------------------------------
-# Persian-only publication guard for foreign articles
-# ------------------------------------------------------------
+# Foreign publishers commonly provide English source text. Never publish a
+# fully English AI result. Retry once with an explicit Persian-only request.
 _ORIGINAL_GEMINI_REQUEST = main.gemini_request
+_LAST_ENGLISH_FAILURE = False
 
 
 def _latin_count(text):
@@ -188,8 +168,10 @@ def _is_english_heavy(text):
 
 
 def gemini_request(title, article_text):
-    result = _ORIGINAL_GEMINI_REQUEST(title, article_text)
+    global _LAST_ENGLISH_FAILURE
+    _LAST_ENGLISH_FAILURE = False
 
+    result = _ORIGINAL_GEMINI_REQUEST(title, article_text)
     if not result:
         return result
 
@@ -199,9 +181,6 @@ def gemini_request(title, article_text):
     if not (_is_english_heavy(result_title) or _is_english_heavy(result_summary)):
         return result
 
-    # One free retry with an explicit Persian-only instruction embedded in
-    # the model input. This fixes foreign RSS items whose first generation
-    # accidentally copied the English source wording.
     retry_title = (
         "فقط فارسی بنویس. هیچ کلمه یا جمله انگلیسی در خروجی ننویس. "
         "این خبر را دقیق و حرفه‌ای به فارسی ترجمه و خلاصه کن.\n"
@@ -209,20 +188,42 @@ def gemini_request(title, article_text):
     )
 
     retry = _ORIGINAL_GEMINI_REQUEST(retry_title, article_text)
+    if retry:
+        retry_title_text = retry.get("title", "")
+        retry_summary_text = retry.get("summary", "")
+        if not (_is_english_heavy(retry_title_text) or _is_english_heavy(retry_summary_text)):
+            return retry
 
-    if not retry:
-        return result
-
-    retry_title_text = retry.get("title", "")
-    retry_summary_text = retry.get("summary", "")
-
-    if _is_english_heavy(retry_title_text) or _is_english_heavy(retry_summary_text):
-        print("SKIPPED ENGLISH OUTPUT: Gemini could not produce Persian text")
-        return None
-
-    return retry
+    _LAST_ENGLISH_FAILURE = True
+    print("SKIPPED ENGLISH OUTPUT: foreign article did not receive Persian text")
+    return None
 
 main.gemini_request = gemini_request
+
+
+# If both Gemini attempts fail the language guard, prevent main.py's local
+# fallback from publishing the original English RSS text.
+class _SkipEnglishCandidate(Exception):
+    pass
+
+_ORIGINAL_LOCAL_NEWS_ENGINE = main.local_news_engine
+_ORIGINAL_PROCESS_NEWS = main.process_news
+
+
+def local_news_engine(title, body):
+    if _LAST_ENGLISH_FAILURE:
+        raise _SkipEnglishCandidate()
+    return _ORIGINAL_LOCAL_NEWS_ENGINE(title, body)
+
+
+def process_news(candidate, hash_history, title_history):
+    try:
+        return _ORIGINAL_PROCESS_NEWS(candidate, hash_history, title_history)
+    except _SkipEnglishCandidate:
+        return False
+
+main.local_news_engine = local_news_engine
+main.process_news = process_news
 
 
 print(
