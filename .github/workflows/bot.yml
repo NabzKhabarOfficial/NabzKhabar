@@ -4,23 +4,20 @@ on:
   schedule:
     - cron: '*/10 * * * *'
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: write
 
-# Never build a backlog. The newest scheduled run replaces an older slow run.
+# Prevent overlapping bot runs. A second scheduled/manual run waits for the
+# first run to finish, so it always sees the latest sent_news.txt state.
 concurrency:
   group: nabzkhabar-bot
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    # A single run must finish within one scheduling window.
-    timeout-minutes: 9
+    timeout-minutes: 8
 
     steps:
       - name: Checkout repository
