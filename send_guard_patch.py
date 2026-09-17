@@ -88,13 +88,22 @@ def _already_seen(candidate, hash_history, title_history):
     title = candidate.get("title", "") if candidate else ""
     link = _candidate_url(candidate)
 
-    # main.py does not expose history_key_exists(). Check every history key
-    # format directly so the final guard cannot crash the whole publication run.
-    exact_keys = (
-        main.make_history_key(title, link),
-        main.make_legacy_history_key(title, link),
-        main.make_title_history_key(title),
-    )
+    # Build only history keys that the current main.py actually exposes.
+    # Older patch versions referenced make_legacy_history_key(), which does
+    # not exist in the current core and caused a hard crash at send time.
+    exact_keys = []
+    for name in ("make_history_key", "make_title_history_key", "make_legacy_history_key"):
+        fn = getattr(main, name, None)
+        if fn is None:
+            continue
+        try:
+            if name == "make_title_history_key":
+                exact_keys.append(fn(title))
+            else:
+                exact_keys.append(fn(title, link))
+        except Exception as exc:
+            print(f"History key warning ({name}): {exc}")
+
     if any(key in hash_history for key in exact_keys):
         return True, "url_or_exact_title"
     if main.history_contains_story(title, title_history):
@@ -126,12 +135,25 @@ def _reserve_before_send():
         print(f"FINAL SEND BLOCKED: duplicate ({reason}) | {title}")
         return False
 
-    hash_history.add(main.make_history_key(title, link))
-    hash_history.add(main.make_legacy_history_key(title, link))
-    hash_history.add(main.make_title_history_key(title))
+    # Reserve using only functions that are present in the current core.
+    make_history_key = getattr(main, "make_history_key", None)
+    if make_history_key is not None:
+        hash_history.add(make_history_key(title, link))
+
+    make_legacy = getattr(main, "make_legacy_history_key", None)
+    if make_legacy is not None:
+        try:
+            hash_history.add(make_legacy(title, link))
+        except Exception as exc:
+            print(f"Legacy history key skipped: {exc}")
+
+    make_title_key = getattr(main, "make_title_history_key", None)
+    if make_title_key is not None:
+        hash_history.add(make_title_key(title))
+
     canonical = candidate.get("canonical_article_url", "")
-    if canonical:
-        hash_history.add(main.make_history_key(title, canonical))
+    if canonical and make_history_key is not None:
+        hash_history.add(make_history_key(title, canonical))
 
     main.record_semantic_history(title, title_history)
     main.save_history(hash_history, title_history)
