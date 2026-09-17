@@ -1,4 +1,4 @@
-name: Run NabzKhabar Bot v12 Experiment
+name: NabzKhabar News Bot
 
 on:
   schedule:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: nabzkhabar-bot-v12
+  group: nabzkhabar-bot
   cancel-in-progress: false
 
 jobs:
@@ -18,12 +18,12 @@ jobs:
     timeout-minutes: 8
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Set up Python
+      - name: Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -34,14 +34,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run v12 news engine
+      - name: Run final NABZ engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           MAX_NEWS_PER_RUN: '4'
         run: python run_bot.py
 
-      - name: Safely update sent_news.txt
+      - name: Persist sent-news history safely
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -50,41 +50,37 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
 
-          cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || :
+          cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || true
 
           for attempt in 1 2 3; do
-            echo "State sync attempt $attempt/3"
-            git fetch origin experiment-v12-news-engine
+            git fetch origin main
 
-            if git show origin/experiment-v12-news-engine:sent_news.txt > /tmp/remote_sent_news.txt 2>/dev/null; then
-              cat /tmp/remote_sent_news.txt /tmp/local_sent_news.txt 2>/dev/null \
-                | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt
+            if git show origin/main:sent_news.txt > /tmp/remote_sent_news.txt 2>/dev/null; then
+              cat /tmp/remote_sent_news.txt /tmp/local_sent_news.txt 2>/dev/null |
+                awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt
             else
-              cat /tmp/local_sent_news.txt 2>/dev/null \
-                | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt || true
+              cat /tmp/local_sent_news.txt 2>/dev/null |
+                awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt || true
             fi
 
-            git reset --hard origin/experiment-v12-news-engine
-            if [ -f /tmp/merged_sent_news.txt ]; then
-              cp /tmp/merged_sent_news.txt sent_news.txt
-            fi
+            git reset --hard origin/main
+            cp /tmp/merged_sent_news.txt sent_news.txt 2>/dev/null || true
 
             git add sent_news.txt
             if git diff --cached --quiet; then
-              echo "No bot state changes to commit."
+              echo "No history changes."
               exit 0
             fi
 
-            git commit -m "Update v12 news state [skip ci]"
+            git commit -m "Update news history [skip ci]"
 
-            if git push origin HEAD:experiment-v12-news-engine; then
-              echo "Bot state pushed successfully."
+            if git push origin HEAD:main; then
+              echo "History synchronized."
               exit 0
             fi
 
-            echo "Push raced with another update; retrying..."
             git reset --hard HEAD~1
           done
 
-          echo "ERROR: Could not safely update bot state after 3 attempts."
+          echo "Could not synchronize history after 3 attempts."
           exit 1
