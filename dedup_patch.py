@@ -34,7 +34,6 @@ def _tokens(text):
 def _numbers(text):
     return set(re.findall(r"\d+(?:[.,٬]\d+)*", main.normalize_digits(str(text or ""))))
 
-# ---------- duplicate / event protection ----------
 ACTOR_GROUPS = (
     {"ترامپ", "دونالد ترامپ", "رئیس جمهور آمریکا", "رئیس جمهوری آمریکا", "رئیس جمهور ایالات متحده"},
     {"بایدن", "جو بایدن", "رئیس جمهور سابق آمریکا"},
@@ -112,12 +111,13 @@ def strong_same_event(a_title, a_body, b_title, b_body):
 
 main.same_event = strong_same_event
 
-# ---------- breaking news ----------
+# Ordinary mentions of a war must not make a routine report "breaking".
+# Actual urgent incidents still qualify through concrete incident terms.
 BREAKING_TERMS = {
     "خبر فوری": 8, "فوری": 7, "لحظاتی پیش": 7, "همین حالا": 7, "دقایقی پیش": 7,
     "انفجار": 6, "حمله موشکی": 6, "حمله": 5, "موشک": 5, "زلزله": 6, "سونامی": 6,
     "سقوط هواپیما": 7, "سقوط": 5, "آتش سوزی": 5, "آتش‌سوزی": 5, "کشته": 5, "مفقود": 5,
-    "ترور": 6, "درگیری": 5, "جنگ": 5, "آتش بس": 5, "آتش‌بس": 5, "قطع اینترنت": 5,
+    "ترور": 6, "درگیری": 5, "آتش بس": 5, "آتش‌بس": 5, "قطع اینترنت": 5,
     "قطعی اینترنت": 5, "خاموشی گسترده": 5, "وضعیت فوق العاده": 6, "وضعیت فوق‌العاده": 6,
     "تخلیه": 5, "هشدار فوری": 7,
 }
@@ -168,9 +168,6 @@ def enhanced_calculate_importance(candidate):
 main.calculate_hot_news_signal = enhanced_hot_news_signal
 main.calculate_importance = enhanced_calculate_importance
 
-# ---------- contextual emoji ----------
-# Rules are intentionally conservative: generic words such as "گل", "تیم",
-# "قیمت" or "وزیر" are not enough by themselves to select an emoji.
 EMOJI_RULES = (
     ("🕊️", ("تشییع", "تشییع پیکر", "تدفین", "خاکسپاری", "مراسم تشییع", "وداع", "سوگواری", "یادبود", "گرامیداشت")),
     ("🌍", ("زلزله", "سونامی", "سیل", "طوفان", "گردباد", "رانش زمین")),
@@ -187,7 +184,6 @@ EMOJI_RULES = (
 
 def contextual_news_emoji(title, body):
     text = _norm(f"{title} {body}")
-    # Strong incident rules first; avoid accidental classification by generic words.
     for emoji, terms in EMOJI_RULES:
         if any(_norm(term) in text for term in terms):
             return emoji
