@@ -54,9 +54,9 @@ jobs:
             export HOT_ONLY='1'
           fi
 
-          # Load image relevance, Gemini safety, duplicate matcher, then the
-          # final persistent pre-send lock. The lock is written BEFORE Telegram.
-          python -c "import image_patch; import ai_guard_patch; import dedup_patch; import main; import send_guard_patch; main.main()"
+          # Keep main.py's original duplicate engine. Load the separate
+          # content-integrity and pre-send guards without replacing dedup logic.
+          python -c "import image_patch; import ai_guard_patch; import main; import send_guard_patch; main.main()"
 
       - name: Safely update bot state
         env:
