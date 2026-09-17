@@ -118,7 +118,6 @@ GEOPOLITICAL_KEYWORDS = [
     "پنتاگون",
     "کرملین",
     "سازمان ملل",
-    "ناتو",
     "اسرائیل",
     "ایران",
     "روسیه",
@@ -162,6 +161,43 @@ MAJOR_WORLD_KEYWORDS = [
 ]
 
 
+# These are publication-format/meta-news titles, not individual events.
+# They must not occupy a news slot even when their publisher is trusted.
+BULLETIN_KEYWORDS = [
+    "latest news bulletin",
+    "news bulletin",
+    "midday bulletin",
+    "morning bulletin",
+    "evening bulletin",
+    "daily bulletin",
+    "news roundup",
+    "news round-up",
+    "daily brief",
+    "morning brief",
+    "evening brief",
+    "midday brief",
+    "top stories",
+    "latest news roundup",
+    "بولتن خبری",
+    "بولتن نیمروز",
+    "بولتن صبح",
+    "بولتن عصر",
+    "مرور اخبار",
+    "مروری بر اخبار",
+    "مهم ترین اخبار",
+    "مهم‌ترین اخبار",
+    "آخرین اخبار جهان",
+]
+
+
+def _is_bulletin_title(title):
+    text = str(title or "").strip().lower()
+    if not text:
+        return False
+
+    return any(keyword in text for keyword in BULLETIN_KEYWORDS)
+
+
 def _keyword_hits(text, keywords):
     text = str(text or "").lower()
     return sum(1 for word in keywords if word.lower() in text)
@@ -176,6 +212,12 @@ def calculate_importance(candidate):
     title = candidate.get("title", "")
     body = candidate.get("summary", "")
     text = f"{title} {body}"
+
+    # Never let a bulletin/roundup consume one of the limited publication
+    # slots. This is intentionally title-based so real event articles from
+    # the same trusted publishers remain unaffected.
+    if _is_bulletin_title(title):
+        return -1000
 
     breaking_hits = _keyword_hits(
         text,
@@ -218,5 +260,6 @@ main.calculate_importance = calculate_importance
 
 print(
     f"Foreign direct RSS: enabled ({len(FOREIGN_RSS_FEEDS)} sources); "
-    "foreign source boost: +20; breaking/global priority: enabled"
+    "foreign source boost: +20; breaking/global priority: enabled; "
+    "bulletin filter: enabled"
 )
