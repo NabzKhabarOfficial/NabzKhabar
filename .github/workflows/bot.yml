@@ -1,9 +1,8 @@
-name: Run NabzKhabar News
+name: Run NabzKhabar Bot
 
 on:
   schedule:
-    - cron: '0,15,30,45 * * * *'
-    - cron: '2/5 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -14,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  run-news:
+  run-bot:
     runs-on: ubuntu-latest
     timeout-minutes: 8
 
@@ -35,30 +34,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run news lane
+      - name: Run original news core
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
-        run: |
-          set -e
-          MINUTE="$(date -u +%M)"
-          MINUTE_NUM=$((10#$MINUTE))
+          MAX_NEWS_PER_RUN: '4'
+        run: python main.py
 
-          if (( MINUTE_NUM % 15 == 0 )); then
-            echo "NORMAL NEWS LANE: max 4 posts"
-            export MAX_NEWS_PER_RUN='4'
-            export HOT_ONLY='0'
-          else
-            echo "HOT NEWS LANE: max 1 post"
-            export MAX_NEWS_PER_RUN='1'
-            export HOT_ONLY='1'
-          fi
-
-          # Keep main.py's original duplicate engine. Load the separate
-          # content-integrity and pre-send guards without replacing dedup logic.
-          python -c "import image_patch; import ai_guard_patch; import main; import send_guard_patch; main.main()"
-
-      - name: Safely update bot state
+      - name: Safely update sent_news.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
