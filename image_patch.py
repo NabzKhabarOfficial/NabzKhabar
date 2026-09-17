@@ -14,6 +14,9 @@ import json
 import main
 from bs4 import BeautifulSoup
 
+_ORIGINAL_IMAGE_OK = main.image_is_acceptable
+_ORIGINAL_COLLECT_FEED = main.collect_feed
+
 LOGO_WORDS = {
     "logo", "logos", "logotype", "brand", "branding", "masthead",
     "favicon", "icon", "avatar", "placeholder", "default-image",
@@ -40,7 +43,7 @@ def _bad_logo_url(url):
 
 
 def enhanced_image_is_acceptable(url):
-    if not main.image_is_acceptable(url):
+    if not _ORIGINAL_IMAGE_OK(url):
         return False
     if _bad_logo_url(url):
         return False
@@ -52,7 +55,6 @@ def enhanced_image_is_acceptable(url):
     return True
 
 
-# Keep the original validator available through this stronger wrapper.
 main.image_is_acceptable = enhanced_image_is_acceptable
 
 
@@ -192,12 +194,10 @@ def enhanced_collect_feed(category, url, is_google=False):
     """Keep feed collection network-light.
 
     RSS media URLs are retained and bad logo URLs are removed, but we do not
-    fetch each article page here. The previous implementation fetched article
-    HTML for almost every RSS candidate, including stories that would later be
-    rejected by history/quality filters. The selected story gets full image
-    relevance processing later in process_news().
+    fetch each article page here. The selected story gets full image relevance
+    processing later in process_news().
     """
-    candidates = main.collect_feed(category, url, is_google)
+    candidates = _ORIGINAL_COLLECT_FEED(category, url, is_google)
     for candidate in candidates:
         image_url = candidate.get("image_url", "")
         if image_url and _bad_logo_url(image_url):
@@ -205,9 +205,6 @@ def enhanced_collect_feed(category, url, is_google=False):
     return candidates
 
 
-# This wrapper is deliberately light: no article HTTP requests during RSS
-# discovery. It preserves the existing image-quality logic for publication.
-_original_collect_feed = main.collect_feed
 main.collect_feed = enhanced_collect_feed
 
 print("IMAGE PATCH: relevance enabled; feed discovery optimized")
