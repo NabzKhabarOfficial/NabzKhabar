@@ -54,10 +54,9 @@ jobs:
             export HOT_ONLY='1'
           fi
 
-          # Load the stronger duplicate matcher before starting the existing engine.
-          # main.py itself remains unchanged; the patch strengthens clustering,
-          # current-run duplicate checks and history checks together.
-          python -c "import dedup_patch; import main; main.main()"
+          # Load image relevance first, then the stronger duplicate matcher.
+          # Publisher logos/branding are rejected; article-specific images are preferred.
+          python -c "import image_patch; import dedup_patch; import main; main.main()"
 
       - name: Safely update bot state
         env:
@@ -68,9 +67,6 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
 
-          # Never rebase sent_news.txt. A rebase can conflict when another run
-          # has already recorded news, which previously caused the state update
-          # to fail after Telegram publication and allowed the same story to post again.
           cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || :
 
           for attempt in 1 2 3; do
@@ -85,8 +81,6 @@ jobs:
                 | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt || true
             fi
 
-            # Start from the latest remote commit, then apply only the merged
-            # bot state. This avoids sent_news.txt merge conflicts entirely.
             git reset --hard origin/main
             if [ -f /tmp/merged_sent_news.txt ]; then
               cp /tmp/merged_sent_news.txt sent_news.txt
