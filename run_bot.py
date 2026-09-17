@@ -1,6 +1,7 @@
 import re
 
 import main
+import graphics_patch
 
 
 # Keep v11 as the core. This wrapper only cleans publisher-page UI noise
