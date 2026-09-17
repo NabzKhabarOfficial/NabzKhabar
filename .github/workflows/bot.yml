@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '*/10 * * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -17,10 +20,8 @@ concurrency:
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    # The bot was previously being killed at the 8-minute workflow timeout
-    # while still processing candidates. Give it enough room to finish and
-    # publish; this does not add any paid service or API.
-    timeout-minutes: 14
+    # Allow enough time for source collection, deduplication and publishing.
+    timeout-minutes: 20
 
     steps:
       - name: Checkout repository
