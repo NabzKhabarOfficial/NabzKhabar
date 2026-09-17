@@ -1,0 +1,123 @@
+name: Restore NabzKhabar core
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore original v11 core and keep only requested additions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          git checkout f8ac4d94b1eaa3f502217313ee1b9c77702709a2 -- main.py
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('main.py')
+          s=p.read_text(encoding='utf-8')
+          old='''DIRECT_RSS_FEEDS = [
+    ("ایران", "https://www.irna.ir/rss"),
+    ("فناوری", "https://www.zoomit.ir/feed/"),
+    ("ایران", "https://www.mehrnews.com/rss"),
+    ("ایران", "https://www.isna.ir/rss"),
+    ("اقتصاد", "https://www.isna.ir/rss/service/economy"),
+    ("ورزش", "https://www.isna.ir/rss?serviceid=5"),
+    ("جهان", "https://www.irna.ir/rss/service/world"),
+    ("فناوری", "https://digiato.com/feed"),
+    ("ایران", "https://www.yjc.ir/fa/rss/allnews"),
+    ("فرهنگ", "https://www.irna.ir/rss/service/culture"),
+    ("اجتماعی", "https://www.irna.ir/rss/service/society"),
+    ("جهان", "https://www.isna.ir/rss/service/world"),
+]'''
+          new=old[:-1]+'''    # Free additional sources only; core processing is unchanged.
+    ("ایران", "https://www.tabnak.ir/fa/rss/allnews"),
+    ("ایران", "https://www.khabaronline.ir/rss"),
+    ("ایران", "https://www.tasnimnews.com/fa/rss/feed/0/8/0/%D9%85%D9%87%D9%85%D8%AA%D8%B1%DB%8C%D9%86-%D8%AE%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D8%B3%D9%86%DB%8C%D9%85"),
+    ("ایران", "https://www.asriran.com/fa/rss/allnews"),
+    ("ایران", "https://www.entekhab.ir/fa/rss/allnews"),
+    ("اقتصاد", "https://donya-e-eqtesad.com/fa/feeds/?p=all"),
+    ("بین الملل", "https://www.iranpress.com/rss"),
+    ("جهان", "https://www.theguardian.com/world/iran/rss"),
+    ("جهان", "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml"),
+]'''
+          if old not in s:
+              raise SystemExit('DIRECT_RSS_FEEDS anchor not found')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+
+          cat > .github/workflows/bot.yml <<'YAML'
+          name: Run NabzKhabar Bot
+          on:
+            schedule:
+              - cron: '*/15 * * * *'
+            workflow_dispatch:
+          permissions:
+            contents: write
+          concurrency:
+            group: nabzkhabar-bot
+            cancel-in-progress: false
+          jobs:
+            run-bot:
+              runs-on: ubuntu-latest
+              timeout-minutes: 8
+              steps:
+                - name: Checkout repository
+                  uses: actions/checkout@v4
+                  with:
+                    fetch-depth: 0
+                - name: Set up Python
+                  uses: actions/setup-python@v5
+                  with:
+                    python-version: '3.11'
+                    cache: 'pip'
+                - name: Install dependencies
+                  run: |
+                    python -m pip install --upgrade pip
+                    pip install -r requirements.txt
+                - name: Run original news core
+                  env:
+                    BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+                    AI_API_KEY: ${{ secrets.AI_API_KEY }}
+                    MAX_NEWS_PER_RUN: '4'
+                  run: python main.py
+                - name: Safely update sent_news.txt
+                  env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  run: |
+                    set -e
+                    git config --global user.name "github-actions[bot]"
+                    git config --global user.email "github-actions[bot]@users.noreply.github.com"
+                    git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+                    cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || :
+                    for attempt in 1 2 3; do
+                      git fetch origin main
+                      if git show origin/main:sent_news.txt > /tmp/remote_sent_news.txt 2>/dev/null; then
+                        cat /tmp/remote_sent_news.txt /tmp/local_sent_news.txt 2>/dev/null | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt
+                      else
+                        cat /tmp/local_sent_news.txt 2>/dev/null | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt || true
+                      fi
+                      git reset --hard origin/main
+                      [ -f /tmp/merged_sent_news.txt ] && cp /tmp/merged_sent_news.txt sent_news.txt
+                      git add sent_news.txt
+                      if git diff --cached --quiet; then exit 0; fi
+                      git commit -m "Update NabzKhabar news state [skip ci]"
+                      if git push origin HEAD:main; then exit 0; fi
+                      git reset --hard HEAD~1
+                    done
+                    exit 1
+          YAML
+
+          rm -f .github/workflows/restore-core.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add main.py .github/workflows/bot.yml .github/workflows/restore-core.yml
+          git commit -m "Restore original NabzKhabar core [skip ci]"
+          git push origin HEAD:main
