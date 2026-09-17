@@ -1,7 +1,7 @@
-"""Safety guard for Gemini rewrites.
+"""Strict AI output guard for NabzKhabar.
 
-Prevents a bad/short Gemini response from replacing a real source headline
-with an unrelated headline. No extra API calls or paid services are used.
+Gemini may rewrite wording, but it must not change the story or attach a
+summary from another article. No extra API calls or paid services are used.
 """
 
 import re
@@ -14,7 +14,7 @@ _GENERIC = {
     "مواضع", "توضیح", "انتقاد", "تاکید", "تأکید", "گفت", "گفتند", "کرد", "کردند",
     "شد", "شدند", "خواهد", "می", "شود", "است", "هست", "این", "آن", "یک", "از",
     "به", "در", "با", "برای", "و", "که", "را", "تا", "بر", "های", "ها", "هم", "نیز",
-    "مورد", "درباره", "تصمیم", "انتشار", "کرده", "شده", "شود",
+    "مورد", "درباره", "تصمیم", "انتشار", "کرده", "شده", "شود", "ایران", "آمریکا",
 }
 
 
@@ -35,42 +35,65 @@ def _numbers(text):
     return set(re.findall(r"\d+(?:[.,٬]\d+)*", main.normalize_digits(str(text or ""))))
 
 
+def _overlap(a, b):
+    ta, tb = _tokens(a), _tokens(b)
+    if not ta or not tb:
+        return 0, 0, 0.0
+    common = ta & tb
+    containment = len(common) / max(1, min(len(ta), len(tb)))
+    return len(common), len(ta), containment
+
+
 def _topic_match(source_title, source_body, generated_title):
-    """Conservative lexical/entity guard; True means Gemini stayed on topic."""
-    source = f"{source_title} {source_body}"
-    src = _tokens(source)
+    src = _tokens(f"{source_title} {source_body}")
     gen = _tokens(generated_title)
     if not gen:
         return False
 
     common = src & gen
-
-    # Preserve important numbers and named entities when present.
-    src_nums = _numbers(source)
+    src_nums = _numbers(f"{source_title} {source_body}")
     gen_nums = _numbers(generated_title)
     if gen_nums and src_nums and not (gen_nums & src_nums):
         return False
 
-    # A short source is exactly where the previous bug occurred. Require a
-    # meaningful overlap with the source title; never let a thin RSS snippet
-    # authorize a completely new topic.
-    if len(main.clean_content(source_body)) < 400:
-        title_tokens = _tokens(source_title)
-        title_common = title_tokens & gen
-        if len(title_common) >= 2:
-            return True
-        if len(title_common) == 1 and len(title_tokens) <= 3:
-            return True
-        return False
+    title_tokens = _tokens(source_title)
+    title_common = title_tokens & gen
 
+    if len(main.clean_content(source_body)) < 400:
+        return len(title_common) >= 2 or (len(title_common) == 1 and len(title_tokens) <= 3)
+
+    if len(title_common) >= 2:
+        return True
     if len(common) >= 3:
         return True
-
-    if len(common) >= 2:
-        containment = len(common) / max(1, min(len(src), len(gen)))
-        return containment >= 0.50
-
+    if len(common) >= 2 and len(common) / max(1, min(len(src), len(gen))) >= 0.50:
+        return True
     return False
+
+
+def _summary_matches_title(source_title, generated_title, generated_summary):
+    """A summary must visibly belong to the final headline."""
+    title_tokens = _tokens(f"{source_title} {generated_title}")
+    summary_tokens = _tokens(generated_summary)
+    if not title_tokens or not summary_tokens:
+        return False
+    common = title_tokens & summary_tokens
+    # Two meaningful title/entity words is the normal case. One is acceptable
+    # only when it is a long distinctive word (e.g. Einstein/Manhattan).
+    if len(common) >= 2:
+        return True
+    return any(len(w) >= 6 for w in common)
+
+
+def _summary_matches_source(source_body, generated_summary):
+    """Reject a summary that clearly belongs to another article."""
+    source_tokens = _tokens(source_body)
+    summary_tokens = _tokens(generated_summary)
+    if not source_tokens or not summary_tokens:
+        return False
+    common = source_tokens & summary_tokens
+    containment = len(common) / max(1, len(summary_tokens))
+    return len(common) >= 3 and containment >= 0.20
 
 
 def _safe_result(original_title, original_body, result):
@@ -85,15 +108,18 @@ def _safe_result(original_title, original_body, result):
 
     if not generated_title or not _topic_match(original_title, original_body, generated_title):
         print("REJECTED GEMINI TITLE: topic mismatch; using source title")
-        safe_title = main.clean_title(original_title)
-        safe_summary = main.enforce_short_summary(original_body)
-        return {"title": safe_title, "summary": safe_summary}
-
-    # If Gemini produced a title on-topic but a clearly unrelated summary,
-    # keep the safe source summary rather than publishing invented context.
-    if generated_summary and not _topic_match(original_title, original_body, generated_title + " " + generated_summary):
-        print("REJECTED GEMINI SUMMARY: topic mismatch; using source summary")
+        generated_title = main.clean_title(original_title)
         generated_summary = main.enforce_short_summary(original_body)
+
+    # The previous guard validated the title but could still allow a summary
+    # from a different story. This is the critical second half of the guard.
+    if generated_summary:
+        if not _summary_matches_title(original_title, generated_title, generated_summary):
+            print("REJECTED GEMINI SUMMARY: title-summary mismatch; using source summary")
+            generated_summary = main.enforce_short_summary(original_body)
+        elif not _summary_matches_source(original_body, generated_summary):
+            print("REJECTED GEMINI SUMMARY: source-body mismatch; using source summary")
+            generated_summary = main.enforce_short_summary(original_body)
 
     return {
         "title": generated_title,
@@ -110,9 +136,8 @@ def guarded_gemini_request(title, article_text):
             "title": main.clean_title(title),
             "summary": main.enforce_short_summary(article_text),
         }
-
     return _safe_result(title, article_text, result)
 
 
 main.gemini_request = guarded_gemini_request
-print("Gemini topic guard: enabled")
+print("Gemini strict title/body guard: enabled")
