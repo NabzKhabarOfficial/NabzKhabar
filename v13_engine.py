@@ -100,6 +100,56 @@ def safe_local_engine(title, body):
 
 main.local_news_engine = safe_local_engine
 
+# ---------- Persian localization for foreign-source stories ----------
+def _persian_ratio(text):
+    text = str(text or "")
+    letters = re.findall(r"[A-Za-z\u0600-\u06ff]", text)
+    if not letters:
+        return 1.0
+    return sum("\u0600" <= ch <= "\u06ff" for ch in letters) / len(letters)
+
+def _translate_foreign_story(title, article_text):
+    if not main.AI_API_KEY:
+        return None
+    endpoint = "https://generativelanguage.googleapis.com/v1beta/models/" + f"{main.GEMINI_MODEL}:generateContent"
+    prompt = """این خبر از یک منبع خارجی است و باید برای یک کانال خبری فارسی‌زبان آماده شود.
+عنوان اصلی:
+%s
+
+متن خبر:
+%s
+
+فقط و فقط اطلاعات موجود در متن را به فارسی روان ترجمه و خلاصه کن.
+- عنوان حتماً فارسی و خبری باشد.
+- خلاصه حداکثر ۳ جمله و فارسی باشد.
+- هیچ عدد، نام، ادعا یا واقعیت جدیدی اضافه نکن.
+- اگر عددی در متن هست، فقط همان عدد را حفظ کن.
+- نام شرکت‌ها و محصولات را در صورت نیاز به شکل رایج فارسی + نام اصلی بنویس.
+- هیچ لینک، منبع، «به گزارش» یا توضیح درباره ترجمه نده.
+
+فقط JSON معتبر:
+{"title":"تیتر فارسی","summary":"خلاصه فارسی"}
+""" % (title, str(article_text or title)[:6000])
+    try:
+        response = main.SESSION.post(endpoint, params={"key": main.AI_API_KEY}, json={"contents":[{"parts":[{"text":prompt}]}], "generationConfig":{"responseMimeType":"application/json","maxOutputTokens":500}}, timeout=30)
+        if not response.ok:
+            return None
+        raw = response.json().get("candidates", [{}])[0].get("content", {}).get("parts", [{}])[0].get("text", "").strip()
+        raw = re.sub(r"^```(?:json)?", "", raw, flags=re.I).replace("```", "").strip()
+        data = __import__("json").loads(raw)
+        out_title = clean_title(data.get("title", ""))
+        out_summary = clean_content(data.get("summary", ""))
+        if _persian_ratio(out_title) < 0.60 or _persian_ratio(out_summary) < 0.60:
+            return None
+        if not _numbers(out_title + " " + out_summary).issubset(_numbers(clean_content(article_text or title))):
+            return None
+        if _sentence_count(out_summary) > 3 or len(out_summary) > 750:
+            return None
+        return {"title": out_title, "summary": out_summary}
+    except Exception as exc:
+        print(f"V13 localization error: {exc}")
+        return None
+
 # ---------- AI safety gate ----------
 _original_gemini = main.gemini_request
 
@@ -133,6 +183,17 @@ def gemini_request(title, article_text):
     source = clean_content(article_text or title)
     out_title = clean_title(result.get("title", ""))
     out_summary = clean_content(result.get("summary", ""))
+
+    # Foreign stories must never fall back to an English headline/summary.
+    if _persian_ratio(title) < 0.60 and (_persian_ratio(out_title) < 0.60 or _persian_ratio(out_summary) < 0.60):
+        localized = _translate_foreign_story(title, source)
+        if localized:
+            out_title = localized["title"]
+            out_summary = localized["summary"]
+            print("V13 LOCALIZATION: foreign story translated to Persian.")
+        else:
+            print("V13 LOCALIZATION: translation failed; foreign story will be skipped.")
+            return None
 
     # Hard facts: the model may not introduce a number absent from source.
     if not _numbers(out_title + " " + out_summary).issubset(_numbers(source)):
