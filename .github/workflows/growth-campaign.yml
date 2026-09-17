@@ -1,0 +1,36 @@
+name: Growth Campaign
+
+on:
+  schedule:
+    - cron: '23 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nabzkhabar-growth-campaign
+  cancel-in-progress: false
+
+jobs:
+  growth-campaign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build campaign tracking data
+        run: python growth_campaign.py
+
+      - name: Save campaign state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add growth_campaigns.json
+          git diff --cached --quiet || git commit -m "Update growth campaign state"
+          git push
