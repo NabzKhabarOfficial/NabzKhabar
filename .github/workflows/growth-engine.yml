@@ -1,0 +1,48 @@
+name: NabzKhabar Growth Engine
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nabzkhabar-growth
+  cancel-in-progress: false
+
+jobs:
+  growth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: Run growth engine
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: python growth_engine.py
+
+      - name: Save growth state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add growth_stats.json
+          if git diff --cached --quiet; then
+            echo "No growth state changes."
+          else
+            git commit -m "Update growth analytics state [skip ci]"
+            git push origin HEAD:main
+          fi
