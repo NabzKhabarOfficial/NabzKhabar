@@ -2,12 +2,14 @@ name: Run NabzKhabar Bot
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
+# Prevent overlapping bot runs. A second scheduled/manual run waits for the
+# first run to finish, so it always sees the latest sent_news.txt state.
 concurrency:
   group: nabzkhabar-bot
   cancel-in-progress: false
