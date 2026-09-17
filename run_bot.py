@@ -1,6 +1,7 @@
 import re
 
 import main
+import foreign_sources
 import image_patch
 import graphics_patch
 import quality_gate_patch
