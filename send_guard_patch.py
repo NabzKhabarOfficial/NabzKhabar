@@ -1,9 +1,8 @@
 """Final pre-send duplicate lock for NabzKhabar.
 
-The important difference from ordinary history checks is timing: a story is
-reserved in sent_news.txt immediately BEFORE the Telegram API call. This
-prevents a successful Telegram send followed by a timeout/crash from losing
-the history record and being published again on the next run.
+A story is reserved in sent_news.txt immediately BEFORE the Telegram API
+request. This closes the crash/timeout window where Telegram can receive a
+post but the normal end-of-run history save never happens.
 """
 
 import main
@@ -14,16 +13,6 @@ _ORIGINAL_SEND_PHOTO = main.send_photo
 _ORIGINAL_SEND_VIDEO = main.send_video
 
 _CONTEXT = None
-
-
-def _context_candidate():
-    return _CONTEXT[0] if _CONTEXT else None
-
-
-def _context_history():
-    if not _CONTEXT:
-        return None, None
-    return _CONTEXT[1], _CONTEXT[2]
 
 
 def _candidate_url(candidate):
@@ -58,9 +47,14 @@ def _already_seen(candidate, hash_history, title_history):
 
 
 def _reserve_before_send():
-    candidate = _context_candidate()
-    hash_history, title_history = _context_history()
-    if not candidate or hash_history is None or title_history is None:
+    global _CONTEXT
+    if not _CONTEXT:
+        return True
+
+    candidate, hash_history, title_history, reserved = _CONTEXT
+    if reserved:
+        # The same process may fall back from video -> photo -> text.
+        # Do not treat its own reservation as a duplicate.
         return True
 
     title = main.clean_title(candidate.get("title", ""))
@@ -71,7 +65,6 @@ def _reserve_before_send():
         print(f"FINAL SEND BLOCKED: duplicate ({reason}) | {title}")
         return False
 
-    # Reserve every identity that can be used by a later run.
     hash_history.add(main.make_history_key(title, link))
     hash_history.add(main.make_legacy_history_key(title, link))
     hash_history.add(main.make_title_history_key(title))
@@ -81,12 +74,10 @@ def _reserve_before_send():
         hash_history.add(main.make_history_key(title, canonical))
 
     main.record_semantic_history(title, title_history)
-
-    # Persist BEFORE Telegram. If the process is killed after Telegram accepts
-    # the request, the reservation is still present on disk and the next run
-    # will refuse the same story.
     main.save_history(hash_history, title_history)
-    print(f"FINAL SEND RESERVED: {title}")
+
+    _CONTEXT = (candidate, hash_history, title_history, True)
+    print(f"FINAL SEND RESERVED BEFORE TELEGRAM: {title}")
     return True
 
 
@@ -111,9 +102,25 @@ def guarded_send_video(path, caption):
 def guarded_process_news(candidate, hash_history, title_history):
     global _CONTEXT
     previous = _CONTEXT
-    _CONTEXT = (candidate, hash_history, title_history)
+    before_hashes = set(hash_history)
+    before_titles = list(title_history)
+    _CONTEXT = (candidate, hash_history, title_history, False)
+
     try:
-        return _ORIGINAL_PROCESS_NEWS(candidate, hash_history, title_history)
+        result = _ORIGINAL_PROCESS_NEWS(candidate, hash_history, title_history)
+
+        # If no Telegram method succeeded, undo this run's reservation so a
+        # genuinely failed publication can be retried later. If the process
+        # crashes after Telegram accepts the request, this cleanup never runs,
+        # so the reservation survives and prevents a duplicate.
+        if not result:
+            hash_history.clear()
+            hash_history.update(before_hashes)
+            title_history[:] = before_titles
+            main.save_history(hash_history, title_history)
+            print("FINAL SEND RESERVATION RELEASED: publication did not succeed")
+
+        return result
     finally:
         _CONTEXT = previous
 
