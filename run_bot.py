@@ -13,6 +13,7 @@ _ORIGINAL_SEND_MESSAGE = main.send_message
 _ORIGINAL_SEND_PHOTO = main.send_photo
 _ORIGINAL_SEND_VIDEO = main.send_video
 _ORIGINAL_LOCAL_NEWS_ENGINE = main.local_news_engine
+_ORIGINAL_IS_ROUNDUP_TITLE = main.is_roundup_title
 
 SITE_CHROME_PATTERNS = [
     r"فیلم\s*>>\s*[^\s|]+",
@@ -95,6 +96,52 @@ def _channel_caption(caption):
     return str(caption).replace("#نبض_خبر", "@NabzKhabarOfficial")
 
 
+def _is_roundup_or_digest_title(title):
+    """Reject weekly/digest/roundup headlines before they reach scoring."""
+    title = re.sub(r"\s+", " ", str(title or "")).strip()
+    if not title:
+        return False
+
+    # Generic recap/digest wording that should never become a standalone post.
+    patterns = [
+        r"مروری?\s+بر",
+        r"مرور\s+(?:مهمترین|مهم‌ترین|اخبار|رویداد)",
+        r"مهمترین\s+اخبار\s+(?:هفته|روز|امروز)",
+        r"مهم‌ترین\s+اخبار\s+(?:هفته|روز|امروز)",
+        r"اخبار\s+(?:مهم|منتخب|برگزیده)\s+(?:هفته|روز|امروز)",
+        r"گزیده\s+اخبار",
+        r"جمع[‌ ]بندی\s+اخبار",
+        r"بسته\s+خبری",
+        r"مرور\s+هفتگی",
+        r"اخبار\s+هفته",
+        r"در\s+هفته(?:‌|\s)+ای\s+که\s+گذشت",
+        r"در\s+هفته\s+گذشته",
+        r"این\s+هفته\s+(?:چه|مهم|اخبار)",
+    ]
+
+    if any(re.search(pattern, title, flags=re.I) for pattern in patterns):
+        return True
+
+    # Common roundup headline form: "از X تا Y" when it also contains
+    # a multi-item marker such as نامه/اخبار/واکنش/رویداد.
+    if re.search(r"\bاز\b.+\bتا\b", title):
+        if re.search(
+            r"(?:نامه|اخبار|واکنش|رویداد|حاشیه|اظهارات|گزارش|بازیگران|خوانندگان)",
+            title,
+            flags=re.I,
+        ):
+            return True
+
+    return False
+
+
+def is_roundup_title(title):
+    return (
+        _ORIGINAL_IS_ROUNDUP_TITLE(title)
+        or _is_roundup_or_digest_title(title)
+    )
+
+
 def send_message(text):
     return _ORIGINAL_SEND_MESSAGE(_channel_caption(text))
 
@@ -110,6 +157,7 @@ def send_video(path, caption):
 # Monkey-patch only the functions used by the unchanged v11 core.
 main.clean_content = clean_content
 main.clean_title = clean_title
+main.is_roundup_title = is_roundup_title
 main.local_news_engine = _safe_extractive_local_engine
 main.send_message = send_message
 main.send_photo = send_photo
