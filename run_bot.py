@@ -5,6 +5,7 @@ import foreign_sources
 import image_patch
 import graphics_patch
 import quality_gate_patch
+import video_patch
 
 
 # Keep v11 as the core. This wrapper only cleans publisher-page UI noise,
