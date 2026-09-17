@@ -1,5 +1,6 @@
 from collections import OrderedDict
 import time
+from datetime import datetime, timezone
 import main
 
 # Reuse HTML/XML responses within one run so article text, image and video
@@ -152,7 +153,71 @@ def _diversity_penalty(candidate, selected):
 
 main.diversity_penalty = _diversity_penalty
 
-# Stage timing for the next run so the remaining bottleneck is measurable.
+# ROOT PERFORMANCE FIX -------------------------------------------------
+# collect_candidates() used an O(n^2) semantic clustering pass over ~200+
+# candidates and then repeated it. That could consume most of the run before
+# the first Telegram send. Keep a high-quality, category-balanced shortlist
+# before either expensive clustering pass. This does not change the source
+# feeds or duplicate rules; it only prevents redundant pairwise comparisons.
+_ORIGINAL_CLUSTER_CANDIDATES = main.cluster_candidates
+_CLUSTER_LIMIT = 90
+
+
+def _cluster_shortlist(candidates):
+    if len(candidates) <= _CLUSTER_LIMIT:
+        return _ORIGINAL_CLUSTER_CANDIDATES(candidates)
+
+    now = datetime.now(timezone.utc)
+    ranked = []
+    for candidate in candidates:
+        published = candidate.get("published_at")
+        if not published:
+            age_hours = 999.0
+        else:
+            try:
+                if published.tzinfo is None:
+                    published = published.replace(tzinfo=timezone.utc)
+                age_hours = max(0.0, (now - published).total_seconds() / 3600.0)
+            except Exception:
+                age_hours = 999.0
+        freshness = max(0.0, 36.0 - age_hours)
+        try:
+            importance = main.calculate_importance(candidate)
+        except Exception:
+            importance = 0
+        ranked.append((importance + freshness * 0.35, candidate))
+
+    ranked.sort(key=lambda item: item[0], reverse=True)
+
+    # Reserve room for every available category so one dominant news cycle
+    # cannot crowd sports, technology, health, science, culture, etc. out.
+    selected = []
+    seen_families = set()
+    for _, candidate in ranked:
+        family = main.category_family(candidate.get("category", ""))
+        if family and family not in seen_families:
+            selected.append(candidate)
+            seen_families.add(family)
+        if len(selected) >= min(20, _CLUSTER_LIMIT):
+            break
+
+    selected_ids = {id(item) for item in selected}
+    for _, candidate in ranked:
+        if id(candidate) in selected_ids:
+            continue
+        selected.append(candidate)
+        if len(selected) >= _CLUSTER_LIMIT:
+            break
+
+    print(
+        f"Performance guard: clustering shortlist {len(candidates)} -> {len(selected)}"
+    )
+    return _ORIGINAL_CLUSTER_CANDIDATES(selected)
+
+
+main.cluster_candidates = _cluster_shortlist
+
+# Stage timing for verification.
 _ORIGINAL_COLLECT_CANDIDATES = main.collect_candidates
 
 
@@ -167,4 +232,4 @@ def _collect_candidates_with_metrics(hash_history, title_history):
 
 
 main.collect_candidates = _collect_candidates_with_metrics
-print("Optimization patch active: GET cache + fast Google resolve + topic diversity")
+print("Optimization patch active: capped semantic clustering + GET cache + fast Google resolve + topic diversity")
