@@ -4,11 +4,13 @@ import main
 import graphics_patch
 
 
-# Keep v11 as the core. This wrapper only cleans publisher-page UI noise
-# and supplies the headline to the local graphics layer.
+# Keep v11 as the core. This wrapper only cleans publisher-page UI noise,
+# supplies the headline to the local graphics layer, and applies the
+# channel footer requested for published news captions.
 _ORIGINAL_CLEAN_CONTENT = main.clean_content
 _ORIGINAL_CLEAN_TITLE = main.clean_title
 _ORIGINAL_PROCESS_NEWS = main.process_news
+_ORIGINAL_BUILD_CAPTION = main.build_caption
 
 SITE_CHROME_PATTERNS = [
     r"فیلم\s*>>\s*[^\s|]+",
@@ -51,6 +53,11 @@ def clean_title(title):
     return re.sub(r"\s{2,}", " ", cleaned).strip()[:180]
 
 
+def build_caption(title, body):
+    caption = _ORIGINAL_BUILD_CAPTION(title, body)
+    return caption.replace("#نبض_خبر", "@NabzKhabarOfficial")
+
+
 def process_news(candidate, hash_history, title_history):
     main.CURRENT_GRAPHICS_TITLE = candidate.get("title", "")
     try:
@@ -61,6 +68,7 @@ def process_news(candidate, hash_history, title_history):
 
 main.clean_content = clean_content
 main.clean_title = clean_title
+main.build_caption = build_caption
 main.process_news = process_news
 
 
