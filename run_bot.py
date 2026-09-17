@@ -4,14 +4,15 @@ import main
 import graphics_patch
 
 
-# Keep v11 as the core. This wrapper only cleans publisher-page UI noise
-# before the existing v11 summarizer/caption pipeline sees the text.
+# Keep v11 as the core. This wrapper cleans publisher-page UI noise,
+# keeps the channel branding, and makes the AI-timeout fallback strictly
+# extractive so it cannot invent facts when Gemini is unavailable.
 _ORIGINAL_CLEAN_CONTENT = main.clean_content
 _ORIGINAL_CLEAN_TITLE = main.clean_title
 _ORIGINAL_SEND_MESSAGE = main.send_message
 _ORIGINAL_SEND_PHOTO = main.send_photo
 _ORIGINAL_SEND_VIDEO = main.send_video
-
+_ORIGINAL_LOCAL_NEWS_ENGINE = main.local_news_engine
 
 SITE_CHROME_PATTERNS = [
     r"فیلم\s*>>\s*[^\s|]+",
@@ -58,6 +59,35 @@ def clean_title(title):
     return re.sub(r"\s{2,}", " ", cleaned).strip()[:180]
 
 
+def _safe_extractive_local_engine(title, body):
+    """Fallback used only when Gemini fails. Never invents facts."""
+    title = clean_title(title)
+    body = clean_content(body)
+
+    # Remove publisher-style lead-ins and keep only source sentences.
+    sentences = re.split(r"(?<=[.!؟])\s+|(?<=[\u06d4])\s+", body)
+    sentences = [s.strip(" \t\n-") for s in sentences if len(s.strip()) >= 35]
+
+    summary = " ".join(sentences[:3]).strip()
+    if len(summary) > 850:
+        summary = summary[:850].rsplit(" ", 1)[0] + "…"
+
+    if not summary:
+        summary = body[:850].strip()
+
+    # Conservative headline: keep the factual lead, drop promotional
+    # clauses after a semicolon/colon when the fallback has no AI fact check.
+    factual_title = re.split(r"[؛;:]", title, maxsplit=1)[0].strip()
+    if len(factual_title) >= 12:
+        title = factual_title
+
+    print("SAFE EXTRACTIVE FALLBACK: Gemini unavailable; source text only")
+    return {
+        "title": title,
+        "summary": summary,
+    }
+
+
 def _channel_caption(caption):
     """Use the channel handle instead of the old hashtag."""
     if not caption:
@@ -80,6 +110,7 @@ def send_video(path, caption):
 # Monkey-patch only the functions used by the unchanged v11 core.
 main.clean_content = clean_content
 main.clean_title = clean_title
+main.local_news_engine = _safe_extractive_local_engine
 main.send_message = send_message
 main.send_photo = send_photo
 main.send_video = send_video
