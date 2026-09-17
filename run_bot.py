@@ -8,6 +8,9 @@ import graphics_patch
 # before the existing v11 summarizer/caption pipeline sees the text.
 _ORIGINAL_CLEAN_CONTENT = main.clean_content
 _ORIGINAL_CLEAN_TITLE = main.clean_title
+_ORIGINAL_SEND_MESSAGE = main.send_message
+_ORIGINAL_SEND_PHOTO = main.send_photo
+_ORIGINAL_SEND_VIDEO = main.send_video
 
 
 SITE_CHROME_PATTERNS = [
@@ -37,10 +40,7 @@ def _strip_site_chrome(text):
     for pattern in SITE_CHROME_PATTERNS:
         text = re.sub(pattern, " ", text, flags=re.I)
 
-    # Remove common navigation/media labels when they are glued to a title.
     text = re.sub(r"(?<=[\u0600-\u06ff])(?:فیلم|ویدئو|ویدیو)\s*>>", " ", text)
-
-    # Clean orphan separators left by removed metadata.
     text = re.sub(r"\s*[|｜]\s*", " ", text)
     text = re.sub(r"\s{2,}", " ", text)
 
@@ -54,16 +54,35 @@ def clean_content(text):
 def clean_title(title):
     cleaned = _ORIGINAL_CLEAN_TITLE(title)
     cleaned = _strip_site_chrome(cleaned)
-
-    # A media label glued directly to the end of a Persian headline is site UI,
-    # not part of the headline.
     cleaned = re.sub(r"(?:فیلم|ویدئو|ویدیو)\s*$", "", cleaned, flags=re.I)
     return re.sub(r"\s{2,}", " ", cleaned).strip()[:180]
 
 
-# Monkey-patch only the text-cleaning functions used by the unchanged v11 core.
+def _channel_caption(caption):
+    """Use the channel handle instead of the old hashtag."""
+    if not caption:
+        return caption
+    return str(caption).replace("#نبض_خبر", "@NabzKhabarOfficial")
+
+
+def send_message(text):
+    return _ORIGINAL_SEND_MESSAGE(_channel_caption(text))
+
+
+def send_photo(path, caption):
+    return _ORIGINAL_SEND_PHOTO(path, _channel_caption(caption))
+
+
+def send_video(path, caption):
+    return _ORIGINAL_SEND_VIDEO(path, _channel_caption(caption))
+
+
+# Monkey-patch only the functions used by the unchanged v11 core.
 main.clean_content = clean_content
 main.clean_title = clean_title
+main.send_message = send_message
+main.send_photo = send_photo
+main.send_video = send_video
 
 
 if __name__ == "__main__":
