@@ -54,9 +54,9 @@ jobs:
             export HOT_ONLY='1'
           fi
 
-          # Load image relevance first, then the stronger duplicate matcher.
+          # Load image relevance first, then Gemini safety, then duplicate matcher.
           # Publisher logos/branding are rejected; article-specific images are preferred.
-          python -c "import image_patch; import dedup_patch; import main; main.main()"
+          python -c "import image_patch; import ai_guard_patch; import dedup_patch; import main; main.main()"
 
       - name: Safely update bot state
         env:
