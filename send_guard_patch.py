@@ -58,8 +58,6 @@ def _candidate_summary_is_safe(candidate):
     if _same_topic(title, summary):
         return True
     print(f"MIXED STORY BLOCKED: RSS summary does not match title | {title}")
-    # Do not allow a summary from a different RSS item to survive into the
-    # caption. Article text, if valid, can still supply the summary later.
     candidate["summary"] = ""
     candidate["description"] = ""
     return False
@@ -90,7 +88,14 @@ def _already_seen(candidate, hash_history, title_history):
     title = candidate.get("title", "") if candidate else ""
     link = _candidate_url(candidate)
 
-    if main.history_key_exists(title, link, hash_history):
+    # main.py does not expose history_key_exists(). Check every history key
+    # format directly so the final guard cannot crash the whole publication run.
+    exact_keys = (
+        main.make_history_key(title, link),
+        main.make_legacy_history_key(title, link),
+        main.make_title_history_key(title),
+    )
+    if any(key in hash_history for key in exact_keys):
         return True, "url_or_exact_title"
     if main.history_contains_story(title, title_history):
         return True, "semantic_title"
@@ -158,10 +163,7 @@ def guarded_process_news(candidate, hash_history, title_history):
     previous = _CONTEXT
     before_hashes = set(hash_history)
     before_titles = list(title_history)
-
-    # Catch RSS-level cross-contamination before main.py fetches media or calls AI.
     _candidate_summary_is_safe(candidate)
-
     _CONTEXT = (candidate, hash_history, title_history, False)
     try:
         result = _ORIGINAL_PROCESS_NEWS(candidate, hash_history, title_history)
