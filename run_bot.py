@@ -5,10 +5,10 @@ import graphics_patch
 
 
 # Keep v11 as the core. This wrapper only cleans publisher-page UI noise
-# before the existing v11 summarizer/caption pipeline sees the text.
+# and supplies the headline to the local graphics layer.
 _ORIGINAL_CLEAN_CONTENT = main.clean_content
 _ORIGINAL_CLEAN_TITLE = main.clean_title
-
+_ORIGINAL_PROCESS_NEWS = main.process_news
 
 SITE_CHROME_PATTERNS = [
     r"فیلم\s*>>\s*[^\s|]+",
@@ -31,19 +31,12 @@ SITE_CHROME_PATTERNS = [
 def _strip_site_chrome(text):
     if not text:
         return ""
-
     text = str(text)
-
     for pattern in SITE_CHROME_PATTERNS:
         text = re.sub(pattern, " ", text, flags=re.I)
-
-    # Remove common navigation/media labels when they are glued to a title.
     text = re.sub(r"(?<=[\u0600-\u06ff])(?:فیلم|ویدئو|ویدیو)\s*>>", " ", text)
-
-    # Clean orphan separators left by removed metadata.
     text = re.sub(r"\s*[|｜]\s*", " ", text)
     text = re.sub(r"\s{2,}", " ", text)
-
     return text.strip()
 
 
@@ -54,16 +47,21 @@ def clean_content(text):
 def clean_title(title):
     cleaned = _ORIGINAL_CLEAN_TITLE(title)
     cleaned = _strip_site_chrome(cleaned)
-
-    # A media label glued directly to the end of a Persian headline is site UI,
-    # not part of the headline.
     cleaned = re.sub(r"(?:فیلم|ویدئو|ویدیو)\s*$", "", cleaned, flags=re.I)
     return re.sub(r"\s{2,}", " ", cleaned).strip()[:180]
 
 
-# Monkey-patch only the text-cleaning functions used by the unchanged v11 core.
+def process_news(candidate, hash_history, title_history):
+    main.CURRENT_GRAPHICS_TITLE = candidate.get("title", "")
+    try:
+        return _ORIGINAL_PROCESS_NEWS(candidate, hash_history, title_history)
+    finally:
+        main.CURRENT_GRAPHICS_TITLE = ""
+
+
 main.clean_content = clean_content
 main.clean_title = clean_title
+main.process_news = process_news
 
 
 if __name__ == "__main__":
