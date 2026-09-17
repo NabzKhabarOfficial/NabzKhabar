@@ -21,14 +21,14 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 # ============================================================
-# NABZ KHABAR BOT v13
+# NABZ KHABAR BOT v11
 # STRONG SEMANTIC DEDUPLICATION
 # GOOGLE NEWS DISCOVERY
 # GEMINI + VIDEO + PHOTO + TEXT + WATERMARK
 # ============================================================
 
 print("=" * 64)
-print("NABZ KHABAR BOT v12")
+print("NABZ KHABAR BOT v11")
 print("STRONG DUPLICATE PROTECTION + FRESH NEWS")
 print("GEMINI + GOOGLE NEWS + VIDEO + PHOTO")
 print("WATERMARK + SOURCE QUALITY")
@@ -362,20 +362,7 @@ DIRECT_RSS_FEEDS = [
     ("فرهنگ", "https://www.irna.ir/rss/service/culture"),
     ("اجتماعی", "https://www.irna.ir/rss/service/society"),
     ("جهان", "https://www.isna.ir/rss/service/world"),
-    # Additional free publisher feeds for broader coverage.
-    ("ایران", "https://www.tabnak.ir/fa/rss/allnews"),
-    ("ایران", "https://www.khabaronline.ir/rss"),
-    ("ایران", "https://www.tasnimnews.com/fa/rss/feed/0/8/0/%D9%85%D9%87%D9%85%D8%AA%D8%B1%DB%8C%D9%86-%D8%AE%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D8%B3%D9%86%DB%8C%D9%85"),
-    ("ایران", "https://www.asriran.com/fa/rss/allnews"),
-    ("ایران", "https://www.entekhab.ir/fa/rss/allnews"),
-    ("اقتصاد", "https://donya-e-eqtesad.com/fa/feeds/?p=all"),
-    ("بین الملل", "https://www.iranpress.com/rss"),
-    ("جهان", "https://www.iranintl.com/en/feed"),
-    ("جهان", "https://irannewsdaily.com/feed/"),
-    ("جهان", "https://www.theguardian.com/world/iran/rss"),
-    ("جهان", "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml"),
 ]
-
 
 
 # ============================================================
@@ -386,34 +373,61 @@ GOOGLE_NEWS_FEEDS = [
     ("ایران", google_news_search_url("ایران")),
     ("خبر فوری", google_news_search_url("خبر فوری ایران")),
     ("خبر مهم", google_news_search_url("خبر مهم ایران")),
-    ("رویترز", google_news_search_url("Reuters Iran world news")),
-    ("حوادث", google_news_search_url("حادثه انفجار تصادف سقوط آتش سوزی ایران")),
-    ("اقتصاد", google_news_search_url("اقتصاد ایران")),
-    ("دلار", google_news_search_url("قیمت دلار بازار ایران")),
-    ("ارز", google_news_search_url("قیمت ارز ایران")),
-    ("طلا", google_news_search_url("قیمت طلا ایران")),
-    ("سکه", google_news_search_url("قیمت سکه ایران")),
-    ("بورس", google_news_search_url("بورس ایران")),
-    ("نفت", google_news_search_url("نفت انرژی ایران")),
-    ("هوش مصنوعی", google_news_search_url("هوش مصنوعی AI")),
-    ("فناوری", google_news_search_url("فناوری تکنولوژی")),
-    ("موبایل", google_news_search_url("موبایل گوشی")),
-    ("خودرو", google_news_search_url("خودرو ماشین")),
-    ("ورزش", google_news_search_url("ورزش فوتبال")),
-    ("سلامت", google_news_search_url("سلامت پزشکی")),
-    ("علم", google_news_search_url("علم دانش")),
-    ("فرهنگ", google_news_search_url("فرهنگ هنر سینما")),
-    ("جامعه", google_news_search_url("جامعه اجتماعی")),
-    ("کریپتو", google_news_search_url("ارز دیجیتال بیت کوین کریپتو")),
-    ("مسکن", google_news_search_url("مسکن اجاره خانه ایران")),
-    ("کار", google_news_search_url("حقوق دستمزد اشتغال ایران")),
-    ("آموزش", google_news_search_url("آموزش دانشگاه مدرسه کنکور ایران")),
-    ("هواشناسی", google_news_search_url("هواشناسی ایران بارندگی")),
-    ("انرژی", google_news_search_url("برق گاز انرژی ایران")),
-    ("بانک", google_news_search_url("بانک مرکزی نرخ بهره ایران")),
-    ("گمرک", google_news_search_url("تجارت واردات صادرات ایران")),
+    ("حوادث", google_news_search_url(
+        "حادثه انفجار تصادف سقوط آتش سوزی ایران"
+    )),
+    ("اقتصاد", google_news_search_url(
+        "اقتصاد ایران"
+    )),
+    ("دلار", google_news_search_url(
+        "قیمت دلار بازار ایران"
+    )),
+    ("ارز", google_news_search_url(
+        "قیمت ارز ایران"
+    )),
+    ("طلا", google_news_search_url(
+        "قیمت طلا ایران"
+    )),
+    ("سکه", google_news_search_url(
+        "قیمت سکه ایران"
+    )),
+    ("بورس", google_news_search_url(
+        "بورس ایران"
+    )),
+    ("نفت", google_news_search_url(
+        "نفت انرژی ایران"
+    )),
+    ("هوش مصنوعی", google_news_search_url(
+        "هوش مصنوعی AI"
+    )),
+    ("فناوری", google_news_search_url(
+        "فناوری تکنولوژی"
+    )),
+    ("موبایل", google_news_search_url(
+        "موبایل گوشی"
+    )),
+    ("خودرو", google_news_search_url(
+        "خودرو ماشین"
+    )),
+    ("ورزش", google_news_search_url(
+        "ورزش فوتبال"
+    )),
+    ("سلامت", google_news_search_url(
+        "سلامت پزشکی"
+    )),
+    ("علم", google_news_search_url(
+        "علم دانش"
+    )),
+    ("فرهنگ", google_news_search_url(
+        "فرهنگ هنر سینما"
+    )),
+    ("جامعه", google_news_search_url(
+        "جامعه اجتماعی"
+    )),
+    ("کریپتو", google_news_search_url(
+        "ارز دیجیتال بیت کوین کریپتو"
+    )),
 ]
-
 
 
 # ============================================================
@@ -632,12 +646,6 @@ SOURCE_PHRASES = [
     "طبق اعلام",
     "بر اساس اعلام",
     "براساس اعلام",
-    "روابط عمومی",
-    "روابط‌عمومی",
-    "در اطلاعیه ای",
-    "در اطلاعیه‌ای",
-    "در بیانیه ای",
-    "در بیانیه‌ای",
 ]
 
 
@@ -683,40 +691,6 @@ def clean_content(text):
         text,
         flags=re.I
     )
-
-    # Remove common PR / promotional boilerplate.
-    promotional_patterns = [
-        r"برای کسب اطلاعات بیشتر",
-        r"جهت کسب اطلاعات بیشتر",
-        r"برای خرید",
-        r"جهت خرید",
-        r"ثبت ?نام کنید",
-        r"همین حالا",
-        r"کلیک کنید",
-        r"لینک زیر",
-        r"با ما همراه باشید",
-        r"ما را دنبال کنید",
-        r"اسپانسر",
-        r"تبلیغات",
-    ]
-
-    for pattern in promotional_patterns:
-        text = re.sub(pattern, "", text, flags=re.I)
-
-    # Remove dateline / attribution fragments left after source cleanup.
-    text = re.sub(
-        r"^(?:[آ-یA-Za-z]+\s*){1,4}[,:-]\s*",
-        "",
-        text,
-        count=1
-    )
-
-    # Repair repeated punctuation and spacing.
-    text = re.sub(r"[ ]{2,}", " ", text)
-    text = re.sub(r"([،,:؛])\1+", r"\1", text)
-    text = re.sub(r"([.!؟])\1+", r"\1", text)
-    text = re.sub(r"\s+([،,:؛.!؟])", r"\1", text)
-    text = re.sub(r"([،,:؛])(?=[آ-یA-Za-z])", r"\1 ", text)
 
     text = normalize_space(
         text
@@ -771,13 +745,6 @@ def clean_title(title):
         title,
         flags=re.I
     )
-
-    # Remove repeated urgency / source punctuation artifacts.
-    title = re.sub(r"(?:^|\s)(فوری)(?:\s+فوری)+", r" \1", title)
-    title = re.sub(r"\s*[|｜]+\s*", " - ", title)
-    title = re.sub(r"\s*[-–—:]\s*$", "", title)
-    title = re.sub(r"[.!؟]+$", "", title)
-    title = re.sub(r"\s{2,}", " ", title)
 
     return normalize_space(
         title
@@ -1069,52 +1036,20 @@ def make_history_key(
     title,
     link
 ):
-    """Primary identity: canonical article URL.
-    Title is deliberately excluded so Gemini title changes cannot
-    make the same article look new.
-    """
-    canonical_link = canonicalize_url(link)
 
-    if not canonical_link:
-        canonical_link = normalize_space(title)
+    canonical_link = canonicalize_url(
+        link
+    )
 
-    return hashlib.sha256(
-        canonical_link.encode("utf-8")
-    ).hexdigest()
+    value = (
+        normalize_space(title)
+        + "|"
+        + canonical_link
+    )
 
-
-def make_legacy_history_key(title, link):
-    """Old v11/v12 title+URL hash kept for backward compatibility."""
-    canonical_link = canonicalize_url(link)
-    value = normalize_space(title) + "|" + canonical_link
     return hashlib.sha256(
         value.encode("utf-8")
     ).hexdigest()
-
-
-def make_title_history_key(title):
-    """Stable exact-title identity, independent of the source URL."""
-    normalized = normalize_space(normalize_digits(title or ""))
-    normalized = normalized.replace("ي", "ی").replace("ى", "ی").replace("ك", "ک")
-    normalized = normalized.lower()
-    value = "TITLE_EXACT|" + normalized
-    return hashlib.sha256(value.encode("utf-8")).hexdigest()
-
-
-def history_key_exists(title, link, hash_history):
-    """Check both the new URL-only identity and old stored identity."""
-    primary = make_history_key(title, link)
-    if primary in hash_history:
-        return True
-
-    legacy = make_legacy_history_key(title, link)
-    if legacy in hash_history:
-        return True
-
-    # Exact title identity blocks the same published headline even when
-    # the publisher/Google News supplies a different URL.
-    title_key = make_title_history_key(title)
-    return title_key in hash_history
 
 
 # ============================================================
@@ -1326,87 +1261,6 @@ def numeric_anchors(text):
     )
 
 
-# ============================================================
-# V13 EVENT-LEVEL DUPLICATE PROTECTION
-# ============================================================
-
-EVENT_TERMS = {
-    "سیل", "زلزله", "سونامی", "بهمن", "طوفان", "گردباد", "رانش", "آتش سوزی", "آتش‌سوزی",
-    "انفجار", "تصادف", "سقوط", "هواپیما", "قطار", "کشتی", "غرق", "حمله", "موشک", "جنگ",
-    "درگیری", "آتش بس", "آتش‌بس", "ترور", "کشته", "قربانی", "تلفات", "مفقود", "بازداشت",
-    "تحریم", "زلزله", "فوت", "مرگ", "مسمومیت", "قطعی", "خاموشی", "آتش",
-}
-
-LOCATION_TERMS = {
-    "ایران", "تهران", "نپال", "چین", "هند", "پاکستان", "افغانستان", "ترکیه", "عراق", "سوریه",
-    "لبنان", "اسرائیل", "فلسطین", "غزه", "آمریکا", "روسیه", "اوکراین", "فرانسه", "آلمان",
-    "انگلیس", "بریتانیا", "ایتالیا", "اسپانیا", "ژاپن", "کره", "عربستان", "امارات", "قطر",
-    "بحرین", "عمان", "مصر", "سودان", "یمن", "لیبی", "مکزیک", "برزیل", "کانادا",
-}
-
-
-def event_numbers(text):
-    text = normalize_digits(text or "")
-    values = re.findall(r"\d+(?:[.,٬]\d+)*", text)
-    return {re.sub(r"[.,٬]", "", value) for value in values}
-
-
-def event_terms(text):
-    normalized = normalize_space(normalize_digits(text or "")).lower()
-    normalized = normalized.replace("ي", "ی").replace("ك", "ک")
-    normalized = normalized.replace("‌", " ")
-    return {
-        term for term in EVENT_TERMS
-        if term in normalized
-    }
-
-
-def location_terms(text):
-    normalized = normalize_space(normalize_digits(text or "")).lower()
-    return {
-        term for term in LOCATION_TERMS
-        if term in normalized
-    }
-
-
-def same_real_world_event(title_a, title_b):
-    """Detect the same incident when publishers use substantially different wording."""
-    combined_a = clean_title(title_a)
-    combined_b = clean_title(title_b)
-
-    events_a = event_terms(combined_a)
-    events_b = event_terms(combined_b)
-    common_events = events_a & events_b
-
-    locations_a = location_terms(combined_a)
-    locations_b = location_terms(combined_b)
-    common_locations = locations_a & locations_b
-
-    numbers_a = event_numbers(combined_a)
-    numbers_b = event_numbers(combined_b)
-    common_numbers = numbers_a & numbers_b
-
-    # Same incident type + same location + a shared key number.
-    if common_events and common_locations and common_numbers:
-        return True
-
-    # Same incident + same location is enough when both headlines are clearly
-    # describing a concrete casualty/disaster/attack event.
-    if len(common_events) >= 1 and len(common_locations) >= 1:
-        if common_numbers:
-            return True
-
-        sim = story_similarity(combined_a, combined_b)
-        if sim >= 0.30:
-            return True
-
-    # Different number formatting such as 1400 vs 1,400 is normalized above.
-    if len(common_events) >= 2 and common_numbers:
-        return True
-
-    return False
-
-
 def same_story(a, b):
 
     title_a = clean_title(
@@ -1425,11 +1279,6 @@ def same_story(a, b):
 
     if not title_a or not title_b:
         return False
-
-    # Event-level identity catches different headlines describing the same
-    # real-world incident, before ordinary token similarity is evaluated.
-    if same_real_world_event(title_a, title_b):
-        return True
 
     # Exact normalized title.
     if (
@@ -1727,26 +1576,6 @@ def source_priority(
     return score
 
 
-def calculate_hot_news_signal(candidate):
-    """Return True for fresh, high-urgency stories; avoid labeling ordinary news as hot."""
-    title = candidate.get("title", "")
-    body = candidate.get("summary", "")
-    keyword_score = calculate_keyword_importance(title, body)
-    recency_score = calculate_recency_score(candidate.get("published_at"))
-    cluster_size = candidate.get("cluster_size", 1)
-
-    if keyword_score >= 8 and recency_score >= 8:
-        return True
-
-    if keyword_score >= 16 and recency_score >= 5:
-        return True
-
-    if cluster_size >= 2 and keyword_score >= 8 and recency_score >= 5:
-        return True
-
-    return False
-
-
 def calculate_importance(
     candidate
 ):
@@ -1784,11 +1613,6 @@ def calculate_importance(
             False
         )
     )
-
-    candidate["is_hot"] = calculate_hot_news_signal(candidate)
-
-    if candidate.get("is_hot"):
-        score += 18
 
     if candidate.get(
         "video_url"
@@ -2038,73 +1862,6 @@ def fetch_article(
         )
 
         return ""
-
-
-# ============================================================
-# CANONICAL ARTICLE URL
-# ============================================================
-
-def extract_canonical_article_url(url):
-    """Return the publisher canonical URL or og:url for an article page."""
-
-    if not url or is_google_host(url) or is_social_host(url):
-        return ""
-
-    try:
-        response = SESSION.get(
-            url,
-            timeout=15,
-            allow_redirects=True,
-        )
-
-        if response.status_code != 200:
-            return ""
-
-        content_type = response.headers.get(
-            "content-type",
-            "",
-        ).lower()
-
-        if "text/html" not in content_type:
-            return ""
-
-        soup = BeautifulSoup(
-            response.text,
-            "html.parser",
-        )
-
-        canonical = soup.find(
-            "link",
-            attrs={"rel": lambda value: value and "canonical" in value},
-        )
-
-        if canonical:
-            value = canonical.get("href", "").strip()
-            value = absolute_url(value, response.url)
-            value = canonicalize_url(value)
-            if value and not is_google_host(value) and not is_social_host(value):
-                return value
-
-        og_url = soup.find(
-            "meta",
-            attrs={"property": "og:url"},
-        )
-
-        if og_url:
-            value = og_url.get("content", "").strip()
-            value = absolute_url(value, response.url)
-            value = canonicalize_url(value)
-            if value and not is_google_host(value) and not is_social_host(value):
-                return value
-
-        final_url = canonicalize_url(response.url)
-        if final_url and not is_google_host(final_url) and not is_social_host(final_url):
-            return final_url
-
-    except Exception as e:
-        print(f"Canonical URL extraction failed: {e}")
-
-    return ""
 
 
 # ============================================================
@@ -2996,67 +2753,32 @@ def send_video(
 # CAPTION
 # ============================================================
 
-def choose_news_emoji(title, body):
-    """Choose one clean emoji based on the main topic of the news."""
+def build_caption(
+    title,
+    body
+):
 
-    text = normalize_space(
-        f"{title} {body}"
-    ).lower()
+    title = clean_title(
+        title
+    )
 
-    # Urgent incidents take priority over ordinary categories.
-    urgent_keywords = [
-        "خبر فوری", "فوری", "انفجار", "حمله", "موشک", "جنگ",
-        "زلزله", "سیل", "آتش سوزی", "آتش‌سوزی", "سقوط",
-        "تصادف", "کشته", "مفقود", "ترور", "حادثه مهم"
-    ]
-    if any(k in text for k in urgent_keywords):
-        return "🚨"
-
-    categories = [
-        ("⚽", ["فوتبال", "ورزش", "لیگ", "جام جهانی", "المپیک", "تیم ملی", "بازیکن", "مربی", "آرسنال", "استقلال", "پرسپولیس"]),
-        ("💵", ["دلار", "ارز", "یورو", "پوند", "نرخ ارز"]),
-        ("🪙", ["طلا", "سکه", "اونس طلا", "طلای ۱۸", "طلای 24", "طلای ۲۴"]),
-        ("📈", ["بورس", "شاخص کل", "فرابورس", "سهام", "معاملات بورس"]),
-        ("🤖", ["هوش مصنوعی", "هوش مصنوعی", "ai", "gemini", "chatgpt", "مدل زبانی"]),
-        ("📱", ["موبایل", "گوشی", "اینترنت", "اپلیکیشن", "اندروید", "آیفون", "ios", "شبکه اجتماعی"]),
-        ("🚗", ["خودرو", "ماشین", "خودروساز", "خودروهای وارداتی", "خودرو برقی"]),
-        ("🏥", ["سلامت", "پزشکی", "بیمارستان", "دارو", "درمان", "پزشک"]),
-        ("🌦️", ["هواشناسی", "آب و هوا", "بارندگی", "بارش", "دما", "هوا"]),
-        ("₿", ["بیت کوین", "اتریوم", "ارز دیجیتال", "کریپتو", "رمزارز", "crypto"]),
-        ("🛢️", ["نفت", "گاز", "انرژی", "بنزین", "برق", "سوخت", "پالایشگاه"]),
-        ("🔬", ["علم", "دانش", "پژوهش", "فضا", "ناسا", "نجوم", "آزمایش"]),
-        ("🎬", ["سینما", "فیلم", "سریال", "بازیگر", "هنر", "موسیقی", "فرهنگ"]),
-        ("🎓", ["دانشگاه", "مدرسه", "آموزش", "دانشجو", "کنکور", "معلم"]),
-        ("🌍", ["جهان", "آمریکا", "اروپا", "روسیه", "اوکراین", "چین", "خاورمیانه", "بین‌الملل", "بین الملل"]),
-        ("🇮🇷", ["ایران", "تهران", "مجلس", "دولت", "وزارتخانه", "استاندار", "استان"]),
-    ]
-
-    for emoji, keywords in categories:
-        if any(k in text for k in keywords):
-            return emoji
-
-    return "⚡"
-
-
-
-
-def build_caption(title, body, is_hot=False):
-    title = clean_title(title)
-    body = enforce_short_summary(body)
-    emoji = choose_news_emoji(title, body)
-    hot_prefix = "🔥 " if is_hot and emoji != "🚨" else ""
+    body = enforce_short_summary(
+        body
+    )
 
     if body:
+
         return (
-            f"{hot_prefix}{emoji} {title}\n\n"
+            f"📰 {title}\n\n"
             f"{body}\n\n"
             f"#نبض_خبر"
         )
 
     return (
-        f"{hot_prefix}{emoji} {title}\n\n"
+        f"📰 {title}\n\n"
         f"#نبض_خبر"
     )
+
 
 # ============================================================
 # GEMINI
@@ -3091,14 +2813,12 @@ def gemini_request(
 وظیفه:
 1. یک تیتر خبری کوتاه، دقیق و طبیعی فارسی بنویس.
 2. متن را بدون اضافه کردن هیچ واقعیت جدیدی در حداکثر 3 جمله خلاصه کن.
-3. نام رسانه، نام خبرگزاری، لینک، عبارت «به گزارش»، تاریخ‌گذاری ابتدای خبر، عبارت‌های روابط عمومی، بیانیه و اطلاعیه، متن تبلیغاتی و فراخوان‌های تبلیغاتی را حذف کن.
+3. نام رسانه، نام خبرگزاری، لینک، عبارت «به گزارش»، عبارت‌های تبلیغاتی و منبع را حذف کن.
 4. اگر متن ناقص است، چیزی را حدس نزن.
 5. لحن کاملاً خبری، خنثی و حرفه‌ای باشد.
 6. از اغراق، کلیک‌بیت و نظر شخصی خودداری کن.
 7. اگر عنوان اصلی مناسب است، آن را بی‌دلیل تغییر نده.
 8. فقط اطلاعات موجود در متن را استفاده کن.
-9. هیچ نام، عدد، علت، نقل‌قول یا جزئیات جدیدی اختراع نکن.
-10. متن را از عبارت‌های تبلیغاتی، روابط عمومی و معرفی خدمات پاک نگه دار.
 
 فقط JSON معتبر برگردان:
 
@@ -3756,7 +3476,7 @@ def collect_candidates(
             link
         )
 
-        if history_key_exists(title, link, hash_history):
+        if old_hash in hash_history:
 
             history_skipped += 1
 
@@ -3983,7 +3703,10 @@ def collect_candidates(
         ):
             continue
 
-        if history_key_exists(title, link, hash_history):
+        if make_history_key(
+            title,
+            link
+        ) in hash_history:
             continue
 
         final_candidates.append(
@@ -3991,13 +3714,6 @@ def collect_candidates(
         )
 
     clustered = final_candidates
-
-    if os.getenv("HOT_ONLY", "0").strip() == "1":
-        clustered = [
-            item for item in clustered
-            if item.get("is_hot", False)
-        ]
-        print(f"HOT-ONLY MODE: {len(clustered)} hot candidates remain")
 
     # --------------------------------------------------------
     # Final sort.
@@ -4132,229 +3848,6 @@ def diversity_penalty(
 
 
 # ============================================================
-# V13 QUALITY GATE
-# ============================================================
-
-QUALITY_PR_PATTERNS = [
-    r"\bروابط\s*عمومی\b",
-    r"\bروابط‌عمومی\b",
-    r"\bمراسم\b",
-    r"\bگرامیداشت\b",
-    r"\bتجلیل\b",
-    r"\bتبریک\b",
-    r"\bتسلیت\b",
-    r"\bهمایش\b",
-    r"\bنشست\b",
-    r"\bدیدار\b",
-    r"\bبالندگی\b",
-    r"\bپویایی\b",
-    r"\bافتخار\b",
-    r"\bدستاوردهای\b",
-    r"\bدرخشان\b",
-    r"\bمردم‌سالاری\b",
-    r"\bمردم سالاری\b",
-]
-
-QUALITY_CONCRETE_PATTERNS = [
-    r"\bتصویب\b",
-    r"\bتصمیم\b",
-    r"\bاعلام کرد\b",
-    r"\bگفت\b",
-    r"\bآغاز\b",
-    r"\bافتتاح\b",
-    r"\bلغو\b",
-    r"\bبازداشت\b",
-    r"\bکشته\b",
-    r"\bمصدوم\b",
-    r"\bانفجار\b",
-    r"\bآتش‌سوزی\b",
-    r"\bتصادف\b",
-    r"\bسقوط\b",
-    r"\bقیمت\b",
-    r"\bافزایش\b",
-    r"\bکاهش\b",
-    r"\bتغییر\b",
-    r"\bاستخدام\b",
-    r"\bتولید\b",
-    r"\bعرضه\b",
-    r"\bممنوع\b",
-    r"\bتحریم\b",
-    r"\bآتش‌بس\b",
-    r"\bحمله\b",
-    r"\bزلزله\b",
-    r"\bسیل\b",
-]
-
-QUALITY_BAD_PATTERNS = [
-    r"برای کسب اطلاعات بیشتر",
-    r"جهت کسب اطلاعات بیشتر",
-    r"کلیک کنید",
-    r"همین حالا",
-    r"ثبت\s*نام کنید",
-    r"خرید کنید",
-    r"فروش ویژه",
-    r"تخفیف ویژه",
-    r"اسپانسر",
-    r"تبلیغات",
-    r"https?://",
-    r"www\.",
-    r"t\.me/",
-]
-
-UNEXPECTED_SCRIPT_RE = re.compile(r"[\u0370-\u03ff\u0400-\u04ff\u0530-\u058f]")
-
-
-def sanitize_public_text(text):
-    if not text:
-        return ""
-
-    text = str(text)
-    text = text.replace("\u200b", " ")
-    text = text.replace("\u200c", " ")
-    text = text.replace("\u200d", " ")
-    text = text.replace("\u200e", " ")
-    text = text.replace("\u200f", " ")
-    text = text.replace("\ufeff", " ")
-    text = text.replace("ي", "ی").replace("ى", "ی").replace("ك", "ک")
-    text = UNEXPECTED_SCRIPT_RE.sub("", text)
-    text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]", "", text)
-    text = re.sub(r"[ \t]{2,}", " ", text)
-    text = re.sub(r"\s+([،,:؛.!؟])", r"\1", text)
-    text = re.sub(r"([،,:؛])(?=[آ-یA-Za-z])", r"\1 ", text)
-    text = re.sub(r"([.!؟])\1+", r"\1", text)
-    return normalize_space(text)
-
-
-def is_low_value_story(title, body):
-    text = normalize_space(f"{title} {body}")
-    low_hits = sum(bool(re.search(p, text, flags=re.I)) for p in QUALITY_PR_PATTERNS)
-    if low_hits < 2:
-        return False
-
-    concrete = any(re.search(p, text, flags=re.I) for p in QUALITY_CONCRETE_PATTERNS)
-    return not concrete
-
-
-def quality_gate(candidate, final_title, final_summary):
-    """Return (accepted, reason) for the final publishable text."""
-    title = sanitize_public_text(final_title)
-    summary = sanitize_public_text(final_summary)
-    original = sanitize_public_text(candidate.get("title", ""))
-    article_text = sanitize_public_text(candidate.get("article_text", ""))
-
-    if not title or len(title) < 12:
-        return False, "title_too_short"
-
-    if len(title) > 180:
-        return False, "title_too_long"
-
-    if UNEXPECTED_SCRIPT_RE.search(title) or UNEXPECTED_SCRIPT_RE.search(summary):
-        return False, "unexpected_script"
-
-    for pattern in QUALITY_BAD_PATTERNS:
-        if re.search(pattern, f"{title} {summary}", flags=re.I):
-            return False, "advertising_or_link"
-
-    if re.search(r"^(خبر|گزارش|آخرین اخبار|اخبار مهم|خبر مهم)$", title, flags=re.I):
-        return False, "vague_title"
-
-    title_words = [w for w in re.split(r"\s+", title) if len(w) > 1]
-    if len(title_words) < 3 and len(original) >= 12:
-        return False, "vague_title"
-
-    if is_low_value_story(title, summary):
-        return False, "low_value_pr"
-
-    if article_text and not summary:
-        return False, "empty_summary"
-
-    if summary:
-        if len(summary) < 25 and article_text:
-            return False, "summary_too_short"
-        if len(summary) > 650:
-            return False, "summary_too_long"
-        sentences = split_sentences(summary)
-        if len(sentences) > 3:
-            return False, "too_many_sentences"
-
-    return True, "ok"
-
-
-def quality_adjustment(candidate):
-    """Deprioritize major single-source claims; do not hard-block them."""
-    keyword_score = calculate_keyword_importance(
-        candidate.get("title", ""),
-        candidate.get("summary", "")
-    )
-    if candidate.get("cluster_size", 1) == 1 and keyword_score >= 16:
-        return -3
-    return 0
-
-
-# ============================================================
-# V14 EVENT-LEVEL DUPLICATE PROTECTION
-# ============================================================
-
-EVENT_WORDS = {
-    "سیل", "زلزله", "انفجار", "آتش سوزی", "آتش‌سوزی", "سقوط", "تصادف",
-    "حمله", "جنگ", "موشک", "ترور", "کشته", "قربانی", "تلفات", "مفقود",
-    "بازداشت", "آتش بس", "آتش‌بس", "فوت", "درگذشت", "طوفان", "بارندگی",
-    "رانش", "بهمن", "حادثه", "واژگونی", "حریق",
-}
-
-GENERIC_EVENT_WORDS = {
-    "خبر", "گزارش", "اعلام", "آخرین", "جدید", "مهم", "بیشتر", "شد", "شدند",
-    "کرد", "کردند", "گفت", "گفتند", "رسید", "گذشت", "نفر", "افراد", "مقام",
-    "مقامات", "کشور", "منطقه", "استان", "شهر", "در", "از", "به", "با", "و",
-    "را", "که", "این", "آن", "یک", "هم", "نیز", "برای", "تا", "بر", "های", "ها",
-}
-
-
-def event_normalize(text):
-    text = normalize_digits(str(text or ""))
-    text = text.replace("ي", "ی").replace("ى", "ی").replace("ك", "ک")
-    text = re.sub(r"[\u200b-\u200f\ufeff]", " ", text)
-    text = re.sub(r"[،؛,:.!؟()\[\]{}\"'«»/\\|]", " ", text)
-    text = re.sub(r"\s+", " ", text)
-    return text.strip().lower()
-
-
-def event_tokens(text):
-    tokens = set(re.findall(r"[a-z0-9آ-ی]+", event_normalize(text)))
-    return {x for x in tokens if len(x) >= 2 and x not in GENERIC_EVENT_WORDS}
-
-
-
-
-
-
-def same_event(a_title, a_body, b_title, b_body):
-    a = event_tokens(f"{a_title} {a_body}")
-    b = event_tokens(f"{b_title} {b_body}")
-    common = a & b
-    numbers = event_numbers(f"{a_title} {a_body}") & event_numbers(f"{b_title} {b_body}")
-    terms = event_terms(f"{a_title} {a_body}") & event_terms(f"{b_title} {b_body}")
-    if not terms or len(common) < 2:
-        return False
-    if numbers and len(common) >= 2:
-        return True
-    return bool(terms and len(common) >= 4)
-
-
-def event_history_contains(candidate, title_history):
-    title = clean_title(candidate.get("title", ""))
-    body = normalize_space(candidate.get("summary", ""))
-    if not title:
-        return False
-    cutoff = int(datetime.now(timezone.utc).timestamp()) - int(SEMANTIC_HISTORY_DAYS * 86400)
-    for timestamp, old_title in title_history:
-        if timestamp < cutoff:
-            continue
-        if same_event(title, body, old_title, ""):
-            return True
-    return False
-
-# ============================================================
 # PROCESS NEWS
 # ============================================================
 
@@ -4392,14 +3885,10 @@ def process_news(
         link
     )
 
-    if history_key_exists(
-        original_title,
-        link,
-        hash_history
-    ):
+    if history_key in hash_history:
 
         print(
-            "SKIPPED: URL history (duplicate article)"
+            "SKIPPED: old hash history"
         )
 
         return False
@@ -4419,17 +3908,6 @@ def process_news(
 
         return False
 
-    # Event-level history guard. This is intentionally separate from
-    # title similarity so the same real-world event is blocked even when
-    # publishers or Gemini rewrite the headline differently.
-    if event_history_contains(candidate, title_history):
-
-        print(
-            "SKIPPED: event history (same real-world event)"
-        )
-
-        return False
-
     # --------------------------------------------------------
     # Article URL.
     # --------------------------------------------------------
@@ -4442,30 +3920,6 @@ def process_news(
             "link"
         )
     )
-
-    # --------------------------------------------------------
-    # Canonical article URL duplicate guard.
-    # --------------------------------------------------------
-
-    canonical_article_url = ""
-
-    if article_url:
-        canonical_article_url = extract_canonical_article_url(
-            article_url
-        )
-
-        if canonical_article_url:
-            candidate["canonical_article_url"] = canonical_article_url
-
-            if history_key_exists(
-                original_title,
-                canonical_article_url,
-                hash_history,
-            ):
-                print(
-                    "SKIPPED: canonical article URL history (duplicate article)"
-                )
-                return False
 
     if (
         is_google_host(
@@ -4664,30 +4118,6 @@ def process_news(
         )
 
     # --------------------------------------------------------
-    # V13 quality gate: never bypassed by hot-news mode.
-    # --------------------------------------------------------
-
-    quality_ok, quality_reason = quality_gate(
-        candidate,
-        final_title,
-        final_summary,
-    )
-
-    if not quality_ok:
-        print(
-            f"QUALITY GATE BLOCKED: {quality_reason} | {final_title}"
-        )
-        return False
-
-    # --------------------------------------------------------
-    # V14 event-level protection: same real-world incident, different wording.
-    # --------------------------------------------------------
-
-    if event_history_contains(candidate, title_history):
-        print(f"EVENT DUPLICATE BLOCKED: {final_title}")
-        return False
-
-    # --------------------------------------------------------
     # Final semantic protection.
     # --------------------------------------------------------
 
@@ -4711,8 +4141,7 @@ def process_news(
 
     caption = build_caption(
         final_title,
-        final_summary,
-        candidate.get("is_hot", False),
+        final_summary
     )
 
     # ========================================================
@@ -4760,34 +4189,6 @@ def process_news(
                 hash_history.add(
                     history_key
                 )
-                hash_history.add(
-                    make_title_history_key(original_title)
-                )
-                hash_history.add(
-                    make_title_history_key(final_title)
-                )
-
-                if canonical_article_url:
-                    hash_history.add(
-                        make_history_key(
-                            original_title,
-                            canonical_article_url,
-                        )
-                    )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 record_semantic_history(
                     original_title,
@@ -4889,12 +4290,6 @@ def process_news(
                     hash_history.add(
                         history_key
                     )
-                    hash_history.add(
-                        make_title_history_key(original_title)
-                    )
-                    hash_history.add(
-                        make_title_history_key(final_title)
-                    )
 
                     record_semantic_history(
                         original_title,
@@ -4944,12 +4339,6 @@ def process_news(
 
         hash_history.add(
             history_key
-        )
-        hash_history.add(
-            make_title_history_key(original_title)
-        )
-        hash_history.add(
-            make_title_history_key(final_title)
         )
 
         record_semantic_history(
@@ -5065,11 +4454,6 @@ def main():
                 title,
                 title_history
             ):
-                continue
-
-            # Event-level history guard prevents the same real-world event
-            # from being selected again under a different headline.
-            if event_history_contains(candidate, title_history):
                 continue
 
             # Effective score.
