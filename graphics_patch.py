@@ -13,7 +13,7 @@ def enhance_image(input_path, output_path):
         brand = "نبض خبر | NABZ"
         handle = "@NabzKhabarOfficial"
         brand_size = max(16, min(28, int(width * 0.020)))
-        handle_size = max(12, min(20, int(width * 0.014)))
+        handle_size = brand_size
         brand_font = main.find_font(brand_size, bold=True)
         handle_font = main.find_font(handle_size, bold=True)
         draw = ImageDraw.Draw(image, "RGBA")
@@ -43,7 +43,7 @@ def enhance_image(input_path, output_path):
         draw.text((x + 1, y + 1), brand, font=brand_font, fill=(0, 0, 0, 125))
         draw.text((x, y), brand, font=brand_font, fill=(255, 255, 255, 205))
 
-        handle_x = x + (content_w - handle_w)
+        handle_x = x + (content_w - handle_w) // 2
         handle_y = y + brand_h + gap
         draw.text((handle_x + 1, handle_y + 1), handle, font=handle_font, fill=(0, 0, 0, 125))
         draw.text((handle_x, handle_y), handle, font=handle_font, fill=(255, 255, 255, 190))
