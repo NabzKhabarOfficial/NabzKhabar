@@ -280,6 +280,30 @@ def collect_candidates(hash_history, title_history):
 
 main.collect_candidates = collect_candidates
 
+# Never publish an untranslated foreign story when AI localization is unavailable.
+class SkipForeignStory(Exception):
+    pass
+
+_original_local_news_engine = main.local_news_engine
+
+def localized_local_news_engine(title, body):
+    if _persian_ratio(title) < 0.60:
+        raise SkipForeignStory()
+    return _original_local_news_engine(title, body)
+
+main.local_news_engine = localized_local_news_engine
+
+_original_process_news = main.process_news
+
+def process_news(*args, **kwargs):
+    try:
+        return _original_process_news(*args, **kwargs)
+    except SkipForeignStory:
+        print("V13 SKIP FOREIGN: AI localization unavailable; English story not published.")
+        return False
+
+main.process_news = process_news
+
 print("=" * 64)
 print("NABZ KHABAR V13 FINAL ENGINE ACTIVE")
 print(f"Direct RSS sources: {len(V13_DIRECT_RSS_FEEDS)}")
