@@ -1,13 +1,15 @@
 import re
 
 import main
+import image_patch
 import graphics_patch
 import quality_gate_patch
 
 
 # Keep v11 as the core. This wrapper only cleans publisher-page UI noise,
-# supplies the headline to the local graphics layer, and applies the
-# channel footer requested for published news captions.
+# activates the existing image relevance layer once, supplies the headline
+# to the local graphics layer, and applies the channel footer requested for
+# published news captions.
 _ORIGINAL_CLEAN_CONTENT = main.clean_content
 _ORIGINAL_CLEAN_TITLE = main.clean_title
 _ORIGINAL_PROCESS_NEWS = main.process_news
