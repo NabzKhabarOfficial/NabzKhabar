@@ -1,17 +1,18 @@
 """NabzKhabar image relevance patch.
 Rejects publisher logos/branding and prefers article-specific images.
 No paid service or API is used.
+
+Performance note:
+Image discovery is intentionally NOT performed for every RSS candidate.
+Doing that during feed collection caused an extra HTTP request for many
+unused stories. Images are resolved later, only for stories selected for
+publication, inside main.process_news().
 """
 
 import re
 import json
 import main
 from bs4 import BeautifulSoup
-
-_ORIGINAL_IMAGE_OK = main.image_is_acceptable
-_ORIGINAL_EXTRACT_HTML = main.extract_image_from_html
-_ORIGINAL_EXTRACT_ARTICLE = main.extract_image_from_article
-_ORIGINAL_COLLECT_FEED = main.collect_feed
 
 LOGO_WORDS = {
     "logo", "logos", "logotype", "brand", "branding", "masthead",
@@ -39,7 +40,7 @@ def _bad_logo_url(url):
 
 
 def enhanced_image_is_acceptable(url):
-    if not _ORIGINAL_IMAGE_OK(url):
+    if not main.image_is_acceptable(url):
         return False
     if _bad_logo_url(url):
         return False
@@ -51,6 +52,7 @@ def enhanced_image_is_acceptable(url):
     return True
 
 
+# Keep the original validator available through this stronger wrapper.
 main.image_is_acceptable = enhanced_image_is_acceptable
 
 
@@ -187,20 +189,25 @@ main.extract_image_from_article = enhanced_extract_image_from_article
 
 
 def enhanced_collect_feed(category, url, is_google=False):
-    candidates = _ORIGINAL_COLLECT_FEED(category, url, is_google)
+    """Keep feed collection network-light.
+
+    RSS media URLs are retained and bad logo URLs are removed, but we do not
+    fetch each article page here. The previous implementation fetched article
+    HTML for almost every RSS candidate, including stories that would later be
+    rejected by history/quality filters. The selected story gets full image
+    relevance processing later in process_news().
+    """
+    candidates = main.collect_feed(category, url, is_google)
     for candidate in candidates:
         image_url = candidate.get("image_url", "")
         if image_url and _bad_logo_url(image_url):
             candidate["image_url"] = ""
-        if not candidate.get("image_url"):
-            article_url = candidate.get("resolved_link") or candidate.get("link") or ""
-            if article_url and not main.is_google_host(article_url) and not main.is_social_host(article_url):
-                article_image = enhanced_extract_image_from_article(article_url)
-                if article_image:
-                    candidate["image_url"] = article_image
     return candidates
 
 
+# This wrapper is deliberately light: no article HTTP requests during RSS
+# discovery. It preserves the existing image-quality logic for publication.
+_original_collect_feed = main.collect_feed
 main.collect_feed = enhanced_collect_feed
 
-print("IMAGE PATCH: article-relevant image selection enabled")
+print("IMAGE PATCH: relevance enabled; feed discovery optimized")
