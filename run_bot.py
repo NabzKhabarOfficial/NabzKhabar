@@ -10,13 +10,15 @@ import graphics_patch
 import quality_gate_patch
 import video_patch
 import headline_guard_patch
+import send_guard_patch
 
 
 # Keep v11 as the core. This wrapper cleans publisher-page UI noise,
 # activates the image relevance layer, supplies the headline to the local
 # graphics layer, applies the channel footer, adds topic diversity,
 # strengthens semantic event deduplication, adds performance/reliability
-# optimizations, and guards Gemini headlines.
+# optimizations, guards Gemini headlines, and applies a final pre-Telegram
+# publication guard so rewritten duplicates cannot be sent twice.
 _ORIGINAL_CLEAN_CONTENT = main.clean_content
 _ORIGINAL_CLEAN_TITLE = main.clean_title
 _ORIGINAL_PROCESS_NEWS = main.process_news
