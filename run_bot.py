@@ -2,11 +2,12 @@ import re
 
 import main
 import graphics_patch
+import v12_engine
 
 
-# Keep v11 as the core. This wrapper cleans publisher-page UI noise,
-# keeps the channel branding, and makes the AI-timeout fallback strictly
-# extractive so it cannot invent facts when Gemini is unavailable.
+# Keep v11 as the core. v12 adds a stronger source layer, roundup filtering,
+# and a conservative post-AI fact-safety guard without changing the stable
+# Telegram/media/history mechanics.
 _ORIGINAL_CLEAN_CONTENT = main.clean_content
 _ORIGINAL_CLEAN_TITLE = main.clean_title
 _ORIGINAL_SEND_MESSAGE = main.send_message
@@ -36,16 +37,12 @@ SITE_CHROME_PATTERNS = [
 def _strip_site_chrome(text):
     if not text:
         return ""
-
     text = str(text)
-
     for pattern in SITE_CHROME_PATTERNS:
         text = re.sub(pattern, " ", text, flags=re.I)
-
     text = re.sub(r"(?<=[\u0600-\u06ff])(?:فیلم|ویدئو|ویدیو)\s*>>", " ", text)
     text = re.sub(r"\s*[|｜]\s*", " ", text)
     text = re.sub(r"\s{2,}", " ", text)
-
     return text.strip()
 
 
@@ -61,48 +58,33 @@ def clean_title(title):
 
 
 def _safe_extractive_local_engine(title, body):
-    """Fallback used only when Gemini fails. Never invents facts."""
+    """Fallback used only when Gemini fails or the v12 guard rejects output."""
     title = clean_title(title)
     body = clean_content(body)
-
-    # Remove publisher-style lead-ins and keep only source sentences.
     sentences = re.split(r"(?<=[.!؟])\s+|(?<=[\u06d4])\s+", body)
     sentences = [s.strip(" \t\n-") for s in sentences if len(s.strip()) >= 35]
-
     summary = " ".join(sentences[:3]).strip()
     if len(summary) > 850:
         summary = summary[:850].rsplit(" ", 1)[0] + "…"
-
     if not summary:
         summary = body[:850].strip()
-
-    # Conservative headline: keep the factual lead, drop promotional
-    # clauses after a semicolon/colon when the fallback has no AI fact check.
     factual_title = re.split(r"[؛;:]", title, maxsplit=1)[0].strip()
     if len(factual_title) >= 12:
         title = factual_title
-
-    print("SAFE EXTRACTIVE FALLBACK: Gemini unavailable; source text only")
-    return {
-        "title": title,
-        "summary": summary,
-    }
+    print("SAFE EXTRACTIVE FALLBACK: source text only")
+    return {"title": title, "summary": summary}
 
 
 def _channel_caption(caption):
-    """Use the channel handle instead of the old hashtag."""
     if not caption:
         return caption
     return str(caption).replace("#نبض_خبر", "@NabzKhabarOfficial")
 
 
 def _is_roundup_or_digest_title(title):
-    """Reject weekly/digest/roundup headlines before they reach scoring."""
     title = re.sub(r"\s+", " ", str(title or "")).strip()
     if not title:
         return False
-
-    # Generic recap/digest wording that should never become a standalone post.
     patterns = [
         r"مروری?\s+بر",
         r"مرور\s+(?:مهمترین|مهم‌ترین|اخبار|رویداد)",
@@ -118,28 +100,15 @@ def _is_roundup_or_digest_title(title):
         r"در\s+هفته\s+گذشته",
         r"این\s+هفته\s+(?:چه|مهم|اخبار)",
     ]
-
     if any(re.search(pattern, title, flags=re.I) for pattern in patterns):
         return True
-
-    # Common roundup headline form: "از X تا Y" when it also contains
-    # a multi-item marker such as نامه/اخبار/واکنش/رویداد.
     if re.search(r"\bاز\b.+\bتا\b", title):
-        if re.search(
-            r"(?:نامه|اخبار|واکنش|رویداد|حاشیه|اظهارات|گزارش|بازیگران|خوانندگان)",
-            title,
-            flags=re.I,
-        ):
-            return True
-
+        return bool(re.search(r"(?:نامه|اخبار|واکنش|رویداد|حاشیه|اظهارات|گزارش|بازیگران|خوانندگان)", title, flags=re.I))
     return False
 
 
 def is_roundup_title(title):
-    return (
-        _ORIGINAL_IS_ROUNDUP_TITLE(title)
-        or _is_roundup_or_digest_title(title)
-    )
+    return _ORIGINAL_IS_ROUNDUP_TITLE(title) or _is_roundup_or_digest_title(title)
 
 
 def send_message(text):
@@ -154,7 +123,6 @@ def send_video(path, caption):
     return _ORIGINAL_SEND_VIDEO(path, _channel_caption(caption))
 
 
-# Monkey-patch only the functions used by the unchanged v11 core.
 main.clean_content = clean_content
 main.clean_title = clean_title
 main.is_roundup_title = is_roundup_title
