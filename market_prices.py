@@ -218,7 +218,7 @@ def main():
 
     now = datetime.now(IRAN_TIMEZONE).strftime("%H:%M")
     now = to_persian_digits(now)
-    lines += ["", f"🕐 بروزرسانی: {now} به وقت ایران", "", "#نبض_خبر"]
+    lines += ["", f"🕐 بروزرسانی: {now} به وقت ایران", "", "@NabzKhabarOfficial"]
 
     send_telegram("\n".join(lines))
     print(f"Market price post sent successfully ({found} assets).")
