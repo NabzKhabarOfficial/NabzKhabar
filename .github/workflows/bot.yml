@@ -34,12 +34,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run original news core
+      - name: Run v11 core with isolated text cleanup
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           MAX_NEWS_PER_RUN: '4'
-        run: python main.py
+        run: python run_bot.py
 
       - name: Safely update sent_news.txt
         env:
