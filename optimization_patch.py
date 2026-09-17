@@ -4,8 +4,6 @@ import time
 from datetime import datetime, timezone
 import main
 
-# Reuse HTML/XML responses within one run so article text, image and video
-# extraction do not download the same publisher page repeatedly.
 _ORIGINAL_SESSION_GET = main.SESSION.get
 _GET_CACHE = OrderedDict()
 _GET_CACHE_MAX = 80
@@ -47,7 +45,6 @@ def _cached_get(url, *args, **kwargs):
 
 main.SESSION.get = _cached_get
 
-# Google News redirects: fail fast and memoize results.
 _ORIGINAL_RESOLVE_GOOGLE = main.resolve_google_news_url
 _GOOGLE_RESOLVE_CACHE = {}
 
@@ -61,9 +58,7 @@ def _fast_resolve_google_news_url(url):
     if key in _GOOGLE_RESOLVE_CACHE:
         return _GOOGLE_RESOLVE_CACHE[key]
     try:
-        response = _ORIGINAL_SESSION_GET(
-            url, timeout=5, allow_redirects=True, stream=True
-        )
+        response = _ORIGINAL_SESSION_GET(url, timeout=5, allow_redirects=True, stream=True)
         final_url = main.canonicalize_url(response.url)
         try:
             response.close()
@@ -80,40 +75,25 @@ def _fast_resolve_google_news_url(url):
 
 main.resolve_google_news_url = _fast_resolve_google_news_url
 
-# Normalize Persian category variants for diversity selection.
 _ORIGINAL_CATEGORY_FAMILY = main.category_family
 
 
 def _category_family(category):
     value = main.normalize_space(category)
     aliases = {
-        "اجتماعی": "جامعه",
-        "جامعه و خانواده": "جامعه",
-        "خانواده": "جامعه",
-        "تکنولوژی": "فناوری",
-        "علم و فناوری": "علم",
-        "هنر و فرهنگ": "فرهنگ",
-        "سرگرمی": "فرهنگ",
-        "فوتبال": "ورزش",
-        "ورزش جهان": "ورزش",
+        "اجتماعی": "جامعه", "جامعه و خانواده": "جامعه", "خانواده": "جامعه",
+        "تکنولوژی": "فناوری", "علم و فناوری": "علم", "هنر و فرهنگ": "فرهنگ",
+        "سرگرمی": "فرهنگ", "فوتبال": "ورزش", "ورزش جهان": "ورزش",
     }
     return aliases.get(value, _ORIGINAL_CATEGORY_FAMILY(value))
 
 
 main.category_family = _category_family
 
-# Small editorial boosts for categories that tend to lose to Iran/world
-# political stories. These remain soft and do not hard-block important news.
 _ORIGINAL_CALCULATE_IMPORTANCE = main.calculate_importance
 CATEGORY_BOOSTS = {
-    "ورزش": 8,
-    "هوش مصنوعی": 7,
-    "فناوری": 5,
-    "جامعه": 6,
-    "علم": 5,
-    "فرهنگ": 4,
-    "سلامت": 4,
-    "خودرو": 3,
+    "ورزش": 8, "هوش مصنوعی": 7, "فناوری": 5, "جامعه": 6,
+    "علم": 5, "فرهنگ": 4, "سلامت": 4, "خودرو": 3,
 }
 
 
@@ -126,8 +106,6 @@ def _calculate_importance(candidate):
 
 main.calculate_importance = _calculate_importance
 
-# Stronger soft diversity: repeated families become increasingly expensive,
-# while unseen families receive a modest bonus. Breaking news can still win.
 _ORIGINAL_DIVERSITY_PENALTY = main.diversity_penalty
 
 
@@ -136,15 +114,10 @@ def _diversity_penalty(candidate, selected):
     family = main.category_family(candidate.get("category", ""))
     if not selected:
         return original
-    seen = {
-        main.category_family(item.get("category", "")) for item in selected
-    }
+    seen = {main.category_family(item.get("category", "")) for item in selected}
     if family not in seen:
         return max(0, original - 7)
-    count = sum(
-        1 for item in selected
-        if main.category_family(item.get("category", "")) == family
-    )
+    count = sum(1 for item in selected if main.category_family(item.get("category", "")) == family)
     if count == 1:
         return original + 14
     if count == 2:
@@ -154,7 +127,6 @@ def _diversity_penalty(candidate, selected):
 
 main.diversity_penalty = _diversity_penalty
 
-# ROOT PERFORMANCE FIX -------------------------------------------------
 _ORIGINAL_CLUSTER_CANDIDATES = main.cluster_candidates
 _CLUSTER_LIMIT = 90
 
@@ -162,7 +134,6 @@ _CLUSTER_LIMIT = 90
 def _cluster_shortlist(candidates):
     if len(candidates) <= _CLUSTER_LIMIT:
         return _ORIGINAL_CLUSTER_CANDIDATES(candidates)
-
     now = datetime.now(timezone.utc)
     ranked = []
     for candidate in candidates:
@@ -182,9 +153,7 @@ def _cluster_shortlist(candidates):
         except Exception:
             importance = 0
         ranked.append((importance + freshness * 0.35, candidate))
-
     ranked.sort(key=lambda item: item[0], reverse=True)
-
     selected = []
     seen_families = set()
     for _, candidate in ranked:
@@ -194,7 +163,6 @@ def _cluster_shortlist(candidates):
             seen_families.add(family)
         if len(selected) >= min(20, _CLUSTER_LIMIT):
             break
-
     selected_ids = {id(item) for item in selected}
     for _, candidate in ranked:
         if id(candidate) in selected_ids:
@@ -202,67 +170,39 @@ def _cluster_shortlist(candidates):
         selected.append(candidate)
         if len(selected) >= _CLUSTER_LIMIT:
             break
-
     print(f"Performance guard: clustering shortlist {len(candidates)} -> {len(selected)}")
     return _ORIGINAL_CLUSTER_CANDIDATES(selected)
 
 
 main.cluster_candidates = _cluster_shortlist
 
-# ROOT PERFORMANCE FIX 2 ------------------------------------------------
-# collect_candidates() fetched 12 direct RSS feeds + 21 Google RSS feeds
-# sequentially. One slow feed can therefore add its full timeout to the run.
-# Fetch feeds concurrently while keeping the existing collect_feed parser,
-# filters, scoring and duplicate logic unchanged.
+# Parallel RSS prefetch. The original collect_candidates() already contains
+# all filtering, clustering, history and scoring logic. We only replace its
+# feed collector temporarily with a cache-backed function, so every RSS feed
+# is fetched once in parallel instead of sequentially.
 _ORIGINAL_COLLECT_FEED = main.collect_feed
 _FEED_WORKERS = 8
 
 
-def _parallel_collect_feed_group(feeds, is_google):
-    results = []
+def _prefetch_feeds():
+    feed_cache = {}
+    feeds = [(c, u, False) for c, u in main.DIRECT_RSS_FEEDS]
+    feeds += [(c, u, True) for c, u in main.GOOGLE_NEWS_FEEDS]
     started = time.time()
     with ThreadPoolExecutor(max_workers=_FEED_WORKERS) as executor:
-        future_map = {
-            executor.submit(_ORIGINAL_COLLECT_FEED, category, url, is_google): (category, url)
-            for category, url in feeds
+        futures = {
+            executor.submit(_ORIGINAL_COLLECT_FEED, category, url, is_google): (category, url, is_google)
+            for category, url, is_google in feeds
         }
-        for future in as_completed(future_map):
-            category, url = future_map[future]
+        for future in as_completed(futures):
+            category, url, is_google = futures[future]
             try:
-                results.extend(future.result())
+                feed_cache[(category, url, is_google)] = future.result()
             except Exception as exc:
                 print(f"Parallel RSS worker failed: {category} | {url} | {exc}")
-    print(f"Parallel RSS: {len(feeds)} feeds in {time.time() - started:.1f}s")
-    return results
-
-
-def _parallel_collect_candidates(hash_history, title_history):
-    # Reproduce only the feed-discovery portion here; the original function's
-    # later dedup/history/clustering/Google-resolution stages are retained by
-    # calling the original function with a temporary feed collector.
-    original_collector = main.collect_feed
-
-    def collector(category, url, is_google=False):
-        return original_collector(category, url, is_google)
-
-    # The original collect_candidates loops over main.collect_feed. Replace it
-    # briefly with a deterministic batch dispatcher, so no filtering rules are
-    # duplicated here.
-    direct_cache = _parallel_collect_feed_group(main.DIRECT_RSS_FEEDS, False)
-    google_cache = _parallel_collect_feed_group(main.GOOGLE_NEWS_FEEDS, True)
-
-    # Build a lookup keyed by (category, url, google) and let the original
-    # pipeline consume the already-fetched entries without another network call.
-    buckets = {}
-    for item in direct_cache:
-        buckets.setdefault((item.get("category", ""), item.get("link", ""), False), []).append(item)
-    for item in google_cache:
-        buckets.setdefault((item.get("category", ""), item.get("link", ""), True), []).append(item)
-
-    # This wrapper is intentionally not used: the original collector needs
-    # feed URLs, not article links. Keep the parallel fetch helper available
-    # for explicit use while preserving the original pipeline below.
-    return _ORIGINAL_COLLECT_CANDIDATES(hash_history, title_history)
+                feed_cache[(category, url, is_google)] = []
+    print(f"Parallel RSS prefetch: {len(feeds)} feeds in {time.time() - started:.1f}s")
+    return feed_cache
 
 
 # Stage timing for verification.
@@ -271,7 +211,18 @@ _ORIGINAL_COLLECT_CANDIDATES = main.collect_candidates
 
 def _collect_candidates_with_metrics(hash_history, title_history):
     started = time.time()
-    result = _ORIGINAL_COLLECT_CANDIDATES(hash_history, title_history)
+    feed_cache = _prefetch_feeds()
+    original_feed_collector = main.collect_feed
+
+    def cached_collect_feed(category, url, is_google=False):
+        return feed_cache.get((category, url, is_google), [])
+
+    main.collect_feed = cached_collect_feed
+    try:
+        result = _ORIGINAL_COLLECT_CANDIDATES(hash_history, title_history)
+    finally:
+        main.collect_feed = original_feed_collector
+
     print(
         f"Optimization metrics: candidate pipeline {time.time() - started:.1f}s | "
         f"GET cache {len(_GET_CACHE)} | Google cache {len(_GOOGLE_RESOLVE_CACHE)}"
@@ -280,4 +231,4 @@ def _collect_candidates_with_metrics(hash_history, title_history):
 
 
 main.collect_candidates = _collect_candidates_with_metrics
-print("Optimization patch active: clustering guard + caches + diversity + parallel RSS helper")
+print("Optimization patch active: parallel RSS + clustering guard + caches + diversity")
