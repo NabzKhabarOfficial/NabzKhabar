@@ -5,9 +5,8 @@ import main
 BRAND = "نبض خبر | NABZ"
 CHANNEL_HANDLE = "@NabzKhabarOfficial"
 BASE_ACCENT = (38, 198, 218, 255)
-GLASS = (8, 16, 28, 112)
-WHITE = (255, 255, 255, 248)
 SOFT_WHITE = (235, 245, 248, 230)
+WHITE = (255, 255, 255, 248)
 
 CATEGORY_STYLES = [
     (("دلار", "طلا", "سکه", "بورس", "ارز", "اقتصاد", "قیمت", "بازار", "کریپتو", "بیت کوین"), "MARKET", (255, 193, 7, 255)),
@@ -51,12 +50,7 @@ def enhance_image(input_path, output_path):
         overlay = Image.new("RGBA", image.size, (0, 0, 0, 0))
         draw = ImageDraw.Draw(overlay, "RGBA")
 
-        # Glass header: translucent, so the original photo remains visible underneath.
-        band_h = max(72, min(150, int(height * 0.105)))
-        draw.rectangle([0, 0, width, band_h], fill=GLASS)
-        draw.line([(0, band_h - 1), (width, band_h - 1)], fill=(255, 255, 255, 52), width=1)
-        draw.line([(0, band_h - 3), (width, band_h - 3)], fill=accent, width=2)
-
+        # No top header: preserve the original photo and keep the design clean.
         fade_h = max(80, min(260, int(height * 0.18)))
         for i in range(fade_h):
             progress = i / max(1, fade_h - 1)
@@ -65,21 +59,6 @@ def enhance_image(input_path, output_path):
             draw.line([(0, y), (width, y)], fill=(0, 0, 0, alpha))
 
         x = max(18, int(width * 0.028))
-        brand_size = max(22, min(52, int(width * 0.034)))
-        small_size = max(15, min(28, int(width * 0.019)))
-        brand_font = _fit_brand_font(brand_size)
-        small_font = _fit_brand_font(small_size)
-        y = max(13, int(band_h * 0.19))
-
-        brand_box_right = min(width - x, x + int(width * 0.34))
-        draw.rounded_rectangle([x - 10, y - 6, brand_box_right, y + brand_size + 10], radius=14, fill=(255, 255, 255, 24), outline=(255, 255, 255, 58), width=1)
-        draw.text((x, y), BRAND, font=brand_font, fill=WHITE)
-
-        label = category_label if category_label != "NEWS" else "NEWS  •  24/7"
-        bbox = draw.textbbox((0, 0), label, font=small_font)
-        tw = bbox[2] - bbox[0]
-        draw.text((width - tw - x, y + 4), label, font=small_font, fill=SOFT_WHITE)
-
         mark_w = max(90, min(220, int(width * 0.13)))
         mark_h = max(4, min(9, int(height * 0.006)))
         mark_y = height - max(26, int(height * 0.055))
