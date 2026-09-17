@@ -1,0 +1,1 @@
+Temporary trigger for restoring the original NabzKhabar core.
