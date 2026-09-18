@@ -20,6 +20,8 @@ import feedparser
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
 
+import currents_source
+
 
 # ============================================================
 # NABZ KHABAR BOT v11
@@ -3396,6 +3398,13 @@ def collect_candidates(
         all_candidates.extend(
             items
         )
+
+    # --------------------------------------------------------
+    # Currents discovery (free tier, when CURRENTS_API_KEY exists)
+    # --------------------------------------------------------
+
+    currents_items = currents_source.collect()
+    all_candidates.extend(currents_items)
 
     # --------------------------------------------------------
     # Google discovery
