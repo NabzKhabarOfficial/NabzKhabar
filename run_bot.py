@@ -3,6 +3,7 @@ import re
 import main
 import graphics_patch
 import v13_engine
+import education
 
 # Final presentation layer: use the channel handle consistently.
 _original_send_message = main.send_message
@@ -29,3 +30,5 @@ main.send_video = send_video
 
 if __name__ == "__main__":
     main.main()
+    education.main.send_message = send_message
+    education.post_daily_education()
