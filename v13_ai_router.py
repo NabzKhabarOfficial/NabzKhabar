@@ -17,6 +17,9 @@ MODEL_CANDIDATES = (
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
 MODEL_COOLDOWN_SECONDS = 15 * 60
+AI_DISCOVERY_TIMEOUT = 10
+AI_REQUEST_TIMEOUT = 15
+_DISCOVERY_CACHE = None
 
 
 def _persian_ratio(text):
@@ -80,15 +83,24 @@ def _mark_model_success(model):
 
 
 def _available_models(main):
-    """Return candidate models that this exact API key advertises for generateContent."""
+    """Return approved candidate models, caching discovery for the current run."""
+    global _DISCOVERY_CACHE
     try:
+        if _DISCOVERY_CACHE is not None:
+            health = _load_health()
+            healthy = [m for m in _DISCOVERY_CACHE if not _model_disabled(health, m)]
+            if healthy:
+                print("V13 AI ROUTER: using cached model discovery: " + ", ".join(healthy))
+                return healthy
+        
         response = main.SESSION.get(
             API_BASE,
             params={"key": main.AI_API_KEY, "pageSize": 100},
-            timeout=20,
+            timeout=AI_DISCOVERY_TIMEOUT,
         )
         if not response.ok:
             print(f"V13 AI ROUTER: model discovery HTTP {response.status_code}; using known candidates.")
+            _DISCOVERY_CACHE = list(MODEL_CANDIDATES)
             return list(MODEL_CANDIDATES)
         data = response.json() or {}
         available = set()
@@ -102,14 +114,18 @@ def _available_models(main):
         health = _load_health()
         healthy = [m for m in ordered if not _model_disabled(health, m)]
         if healthy:
+            _DISCOVERY_CACHE = ordered
             print("V13 AI ROUTER: discovered available models: " + ", ".join(healthy))
             return healthy
         if ordered:
+            _DISCOVERY_CACHE = ordered
             print("V13 AI ROUTER: all discovered models are in cooldown; trying them as last resort.")
             return ordered
+        _DISCOVERY_CACHE = list(MODEL_CANDIDATES)
         print("V13 AI ROUTER: discovery returned no approved candidates; using fallback candidate list.")
         return list(MODEL_CANDIDATES)
     except Exception as exc:
+        _DISCOVERY_CACHE = list(MODEL_CANDIDATES)
         print(f"V13 AI ROUTER: model discovery error: {exc}; using known candidates.")
         return list(MODEL_CANDIDATES)
 
@@ -127,7 +143,7 @@ def _request_json(main, model, prompt, max_output_tokens=500):
                     "maxOutputTokens": max_output_tokens,
                 },
             },
-            timeout=30,
+            timeout=AI_REQUEST_TIMEOUT,
         )
         if response.status_code == 404:
             print(f"V13 AI ROUTER: {model} HTTP 404; model unavailable, skipping it.")
