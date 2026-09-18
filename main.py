@@ -2699,53 +2699,65 @@ def send_photo(
     return False
 
 
-def send_video(
-    path,
-    caption
-):
-
+def get_video_duration(path):
+    """Return accurate duration in whole seconds using ffprobe."""
     try:
+        probe = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "default=noprint_wrappers=1:nokey=1", path],
+            capture_output=True, text=True, timeout=15,
+        )
+        value = float((probe.stdout or "").strip())
+        if value > 0:
+            return max(1, int(round(value)))
+    except Exception as e:
+        print(f"Video duration probe failed: {e}")
+    return 0
 
-        with open(
-            path,
-            "rb"
-        ) as video:
+
+def send_video(path, caption):
+    try:
+        duration = get_video_duration(path)
+        width = 0
+        height = 0
+        try:
+            probe = subprocess.run(
+                ["ffprobe", "-v", "error", "-select_streams", "v:0",
+                 "-show_entries", "stream=width,height", "-of", "csv=p=0:s=x", path],
+                capture_output=True, text=True, timeout=15,
+            )
+            dims = (probe.stdout or "").strip().split("x")
+            if len(dims) == 2:
+                width, height = int(dims[0]), int(dims[1])
+        except Exception as e:
+            print(f"Video dimensions probe failed: {e}")
+
+        with open(path, "rb") as video:
+            data = {
+                "chat_id": CHANNEL_ID,
+                "caption": caption,
+                "supports_streaming": "true",
+            }
+            if duration:
+                data["duration"] = str(duration)
+            if width and height:
+                data["width"] = str(width)
+                data["height"] = str(height)
 
             response = SESSION.post(
-                telegram_api(
-                    "sendVideo"
-                ),
-                data={
-                    "chat_id": CHANNEL_ID,
-                    "caption": caption,
-                    "supports_streaming": "true",
-                },
-                files={
-                    "video": video
-                },
-                timeout=120
+                telegram_api("sendVideo"),
+                data=data,
+                files={"video": video},
+                timeout=120,
             )
 
         if response.ok:
-
-            print(
-                "VIDEO PUBLISHED"
-            )
-
+            print(f"VIDEO PUBLISHED | duration={duration}s | size={os.path.getsize(path)}")
             return True
 
-        print(
-            f"sendVideo failed: "
-            f"{response.status_code} "
-            f"{response.text[:500]}"
-        )
-
+        print(f"sendVideo failed: {response.status_code} {response.text[:500]}")
     except Exception as e:
-
-        print(
-            f"sendVideo error: {e}"
-        )
-
+        print(f"sendVideo error: {e}")
     return False
 
 
