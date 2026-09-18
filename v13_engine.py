@@ -176,26 +176,44 @@ def _sentence_count(text):
     return len([x for x in re.split(r"(?<=[.!؟؛])\s+", str(text or "").strip()) if x.strip()])
 
 def gemini_request(title, article_text):
+    source = clean_content(article_text or title)
+    is_foreign = _persian_ratio(title) < 0.60
+
+    # FOREIGN STORY CONTRACT:
+    # Translate first. Never allow the original-language title/body or a
+    # non-Persian fallback to reach the publication layer.
+    if is_foreign:
+        localized = _translate_foreign_story(title, source)
+        if not localized:
+            print("V13 LOCALIZATION: foreign story could not be translated; publication blocked.")
+            return None
+
+        out_title = clean_title(localized.get("title", ""))
+        out_summary = clean_content(localized.get("summary", ""))
+
+        if _persian_ratio(out_title) < 0.60 or _persian_ratio(out_summary) < 0.60:
+            print("V13 LOCALIZATION: translated output failed Persian validation; publication blocked.")
+            return None
+
+        if _bad_ai_meta(out_title) or _bad_ai_meta(out_summary):
+            print("V13 LOCALIZATION: translated output contains source boilerplate; publication blocked.")
+            return None
+
+        if _sentence_count(out_summary) > 3 or len(out_summary) > 750:
+            print("V13 LOCALIZATION: translated summary is invalid; publication blocked.")
+            return None
+
+        print("V13 LOCALIZATION: foreign story translated and validated before publication.")
+        return {"title": out_title, "summary": out_summary}
+
+    # Native Persian stories continue through the normal AI quality pipeline.
     result = _original_gemini(title, article_text)
     if not result:
         return None
 
-    source = clean_content(article_text or title)
     out_title = clean_title(result.get("title", ""))
     out_summary = clean_content(result.get("summary", ""))
 
-    # Foreign stories must never fall back to an English headline/summary.
-    if _persian_ratio(title) < 0.60 and (_persian_ratio(out_title) < 0.60 or _persian_ratio(out_summary) < 0.60):
-        localized = _translate_foreign_story(title, source)
-        if localized:
-            out_title = localized["title"]
-            out_summary = localized["summary"]
-            print("V13 LOCALIZATION: foreign story translated to Persian.")
-        else:
-            print("V13 LOCALIZATION: translation failed; foreign story will be skipped.")
-            return None
-
-    # Hard facts: the model may not introduce a number absent from source.
     if not _numbers(out_title + " " + out_summary).issubset(_numbers(source)):
         print("V13 GUARD: rejected AI output because it introduced a number.")
         return safe_local_engine(title, source)
