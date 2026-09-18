@@ -81,7 +81,8 @@ jobs:
               cp /tmp/local_ai_model_health.json ai_model_health.json
             fi
 
-            git add sent_news.txt ai_model_health.json
+            git add sent_news.txt
+            if [ -f ai_model_health.json ]; then git add ai_model_health.json; fi
             if git diff --cached --quiet; then
               echo "No history changes."
               exit 0
