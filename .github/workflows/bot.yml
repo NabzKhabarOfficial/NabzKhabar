@@ -62,6 +62,7 @@ jobs:
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
 
           cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || true
+          cp ai_model_health.json /tmp/local_ai_model_health.json 2>/dev/null || true
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -76,8 +77,11 @@ jobs:
 
             git reset --hard origin/main
             cp /tmp/merged_sent_news.txt sent_news.txt 2>/dev/null || true
+            if [ -f /tmp/local_ai_model_health.json ]; then
+              cp /tmp/local_ai_model_health.json ai_model_health.json
+            fi
 
-            git add sent_news.txt
+            git add sent_news.txt ai_model_health.json
             if git diff --cached --quiet; then
               echo "No history changes."
               exit 0
