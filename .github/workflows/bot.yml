@@ -34,7 +34,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run final NABZ engine
+      - name: Validate independent V13 syntax
+        run: |
+          python -m py_compile v13_standalone.py run_bot.py education.py
+
+      - name: Run independent V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
