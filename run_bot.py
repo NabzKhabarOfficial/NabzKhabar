@@ -4,6 +4,7 @@ import v13_standalone as main
 import v13_media_branding
 import v13_ai_router
 import v13_topic_diversity
+import currents_source
 import football_schedule
 
 # V13 is the only news runtime. main.py, v12_engine.py,
