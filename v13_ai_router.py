@@ -15,6 +15,8 @@ MODEL_CANDIDATES = (
     "gemini-2.5-flash-lite",
 )
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
+AI_HEALTH_FILE = "ai_model_health.json"
+MODEL_COOLDOWN_SECONDS = 15 * 60
 
 
 def _persian_ratio(text):
@@ -30,6 +32,51 @@ def _clean_json(raw):
     raw = re.sub(r"^\s*\`\`\`(?:json)?\s*", "", raw, flags=re.I)
     raw = re.sub(r"\s*\`\`\`\s*$", "", raw)
     return json.loads(raw.strip())
+
+
+
+def _load_health():
+    try:
+        with open(AI_HEALTH_FILE, "r", encoding="utf-8") as handle:
+            data = json.load(handle)
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def _save_health(health):
+    try:
+        with open(AI_HEALTH_FILE, "w", encoding="utf-8") as handle:
+            json.dump(health, handle, ensure_ascii=False, indent=2, sort_keys=True)
+    except Exception as exc:
+        print(f"V13 AI ROUTER: health save error: {exc}")
+
+
+def _model_disabled(health, model):
+    try:
+        until = float(health.get(model, {}).get("disabled_until", 0))
+        return until > time.time()
+    except Exception:
+        return False
+
+
+def _mark_model_failure(model, status):
+    health = _load_health()
+    entry = health.setdefault(model, {})
+    now = int(time.time())
+    cooldown = MODEL_COOLDOWN_SECONDS if status == 429 else 5 * 60
+    entry["disabled_until"] = now + cooldown
+    entry["last_failure"] = now
+    entry["last_status"] = int(status)
+    _save_health(health)
+    print(f"V13 AI ROUTER: {model} circuit-open for {cooldown}s after HTTP {status}.")
+
+
+def _mark_model_success(model):
+    health = _load_health()
+    if model in health:
+        health.pop(model, None)
+        _save_health(health)
 
 
 def _available_models(main):
@@ -52,8 +99,13 @@ def _available_models(main):
             if short and "generateContent" in actions:
                 available.add(short)
         ordered = [m for m in MODEL_CANDIDATES if m in available]
+        health = _load_health()
+        healthy = [m for m in ordered if not _model_disabled(health, m)]
+        if healthy:
+            print("V13 AI ROUTER: discovered available models: " + ", ".join(healthy))
+            return healthy
         if ordered:
-            print("V13 AI ROUTER: discovered available models: " + ", ".join(ordered))
+            print("V13 AI ROUTER: all discovered models are in cooldown; trying them as last resort.")
             return ordered
         print("V13 AI ROUTER: discovery returned no approved candidates; using fallback candidate list.")
         return list(MODEL_CANDIDATES)
@@ -81,6 +133,7 @@ def _request_json(main, model, prompt, max_output_tokens=500):
             print(f"V13 AI ROUTER: {model} HTTP 404; model unavailable, skipping it.")
             return None, False
         if response.status_code in (429, 500, 502, 503, 504):
+            _mark_model_failure(model, response.status_code)
             print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; retrying once, then failing over.")
             return None, True
         if not response.ok:
@@ -194,6 +247,7 @@ def gemini_request(main, title, article_text):
             if result:
                 validated = _validate(main, title, source, result, foreign)
                 if validated:
+                    _mark_model_success(model)
                     print(f"V13 AI ROUTER: SUCCESS via {model}")
                     return validated
                 print(f"V13 AI ROUTER: {model} returned invalid/unsafe output; failing over.")
