@@ -70,6 +70,7 @@ jobs:
           cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || true
           cp ai_model_health.json /tmp/local_ai_model_health.json 2>/dev/null || true
           cp football_schedule_history.json /tmp/local_football_schedule_history.json 2>/dev/null || true
+          cp currents_usage.json /tmp/local_currents_usage.json 2>/dev/null || true
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -86,6 +87,51 @@ jobs:
             tail -n 50000 /tmp/history_hashes.txt > /tmp/history_hashes_bounded.txt 2>/dev/null || true
             cat /tmp/history_hashes_bounded.txt /tmp/history_titles.txt 2>/dev/null > /tmp/merged_sent_news.txt || true
 
+            # Merge the Currents request counter conservatively: for the same
+            # UTC day, keep the larger observed counter; on a new day, reset.
+            if git show origin/main:currents_usage.json > /tmp/remote_currents_usage.json 2>/dev/null; then
+              python - <<'PY'
+          import json
+          from pathlib import Path
+
+          remote_path = Path("/tmp/remote_currents_usage.json")
+          local_path = Path("/tmp/local_currents_usage.json")
+          out_path = Path("/tmp/merged_currents_usage.json")
+
+          def load(path):
+              try:
+                  return json.loads(path.read_text(encoding="utf-8"))
+              except Exception:
+                  return {}
+
+          remote = load(remote_path)
+          local = load(local_path)
+
+          if remote.get("date") == local.get("date"):
+              merged = {
+                  "date": local.get("date") or remote.get("date"),
+                  "requests": max(
+                      int(remote.get("requests", 0)),
+                      int(local.get("requests", 0)),
+                  ),
+              }
+          elif local.get("date"):
+              merged = {
+                  "date": local.get("date"),
+                  "requests": int(local.get("requests", 0)),
+              }
+          else:
+              merged = remote
+
+          out_path.write_text(
+              json.dumps(merged, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+            else
+              cp /tmp/local_currents_usage.json /tmp/merged_currents_usage.json 2>/dev/null || true
+            fi
+
             git reset --hard origin/main
             cp /tmp/merged_sent_news.txt sent_news.txt 2>/dev/null || true
             if [ -f /tmp/local_ai_model_health.json ]; then
@@ -94,10 +140,14 @@ jobs:
             if [ -f /tmp/local_football_schedule_history.json ]; then
               cp /tmp/local_football_schedule_history.json football_schedule_history.json
             fi
+            if [ -f /tmp/merged_currents_usage.json ]; then
+              cp /tmp/merged_currents_usage.json currents_usage.json
+            fi
 
             git add sent_news.txt
             if [ -f ai_model_health.json ]; then git add ai_model_health.json; fi
             if [ -f football_schedule_history.json ]; then git add football_schedule_history.json; fi
+            if [ -f currents_usage.json ]; then git add currents_usage.json; fi
             if git diff --cached --quiet; then
               echo "No history changes."
               exit 0
