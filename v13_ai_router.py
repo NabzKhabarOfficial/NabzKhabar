@@ -63,8 +63,9 @@ def _request_json(main, model, prompt, max_output_tokens=500):
         return None
 
 
-def _numbers(text):
-    return set(re.findall(r"\b\d+(?:[.,]\d+)?\b", main.normalize_digits(str(text or ""))))
+def _numbers(main, text):
+    normalized = main.normalize_digits(str(text or ""))
+    return set(re.findall(r"\b\d+(?:[.,]\d+)?\b", normalized))
 
 
 def _bad_meta(text):
@@ -93,7 +94,7 @@ def _validate(main, original_title, source, data, foreign):
         return None
     if _sentence_count(summary) > 3 or len(summary) > 750:
         return None
-    if not _numbers(title + " " + summary).issubset(_numbers(source)):
+    if not _numbers(main, title + " " + summary).issubset(_numbers(main, source)):
         return None
     if foreign:
         if _persian_ratio(title) < 0.60 or _persian_ratio(summary) < 0.60:
