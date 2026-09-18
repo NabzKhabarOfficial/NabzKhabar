@@ -2662,6 +2662,21 @@ def send_photo(
             f"{response.text[:500]}"
         )
 
+        # A Telegram HTTP error is normally a definite rejection. Keep the
+        # legacy text fallback for this case.
+        return False
+
+    except requests.exceptions.Timeout as e:
+
+        # IMPORTANT: a client-side timeout is delivery-unknown. Telegram may
+        # already have accepted the upload while our client timed out waiting
+        # for the response. Never send the same story as text after this point,
+        # otherwise one story can appear twice (photo + text).
+        print(
+            f"sendPhoto delivery UNKNOWN after timeout: {e}"
+        )
+        return None
+
     except Exception as e:
 
         print(
@@ -4296,6 +4311,15 @@ def process_news(
                     )
 
                     return True
+
+                if success is None:
+                    # Delivery state is unknown after a timeout. Do NOT fall
+                    # through to text fallback; that is the duplicate-post bug.
+                    print(
+                        f"PHOTO DELIVERY UNKNOWN; "
+                        f"NO TEXT FALLBACK: {final_title}"
+                    )
+                    return False
 
             except Exception as e:
 
