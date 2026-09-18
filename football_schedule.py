@@ -457,8 +457,13 @@ def post_daily_football_schedule(send_message, send_photo=None):
     day = today_key()
     history = load_history()
 
-    # Morning publication: first successful workflow run of the Iran calendar day.
-    if history.get("morning_posted_date") != day:
+    # Morning publication: only start the new day after the previous day's
+    # final-results post has completed. This matters when the last match crosses midnight.
+    morning_date = history.get("morning_posted_date")
+    previous_final_pending = bool(
+        morning_date and morning_date != day and history.get("final_posted_date") != morning_date
+    )
+    if history.get("morning_posted_date") != day and not previous_final_pending:
         matches = select_matches(fetch_fixtures(day))
         if not matches:
             print("FOOTBALL: no important matches today; no morning post.")
