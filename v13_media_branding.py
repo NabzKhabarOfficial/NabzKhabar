@@ -174,6 +174,15 @@ def send_video(path, caption):
     # Telegram's sendVideo duration is an integer number of seconds. We
     # explicitly calculate it from the final (watermarked) file and send it.
     branded = _brand_video(path)
+    # Never let branding push a valid video over Telegram's configured limit.
+    if branded != path and os.path.getsize(branded) > 49 * 1024 * 1024:
+        print("V13 VIDEO: branded file exceeded 49 MB; using original media.")
+        try:
+            os.remove(branded)
+        except Exception:
+            pass
+        branded = path
+
     duration = _probe_duration(branded)
     width, height = _probe_dimensions(branded)
 
