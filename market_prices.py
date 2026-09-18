@@ -183,8 +183,10 @@ def main():
 
     lines += [
         "",
-        "━━━━━━━━━━━━━━━━━━━━",
-        "نبض خبر | NABZ  •  @NabzKhabarOfficial",
+        "╭──────────────────────╮",
+        "│   نبض خبر | NABZ     │",
+        "│  @NabzKhabarOfficial │",
+        "╰──────────────────────╯",
     ]
 
     send_telegram("\n".join(lines))
