@@ -370,11 +370,17 @@ def get_today_matches():
             print(f"FOOTBALL: fetch failed for {utc_date}: {exc}")
             continue
 
-        for league in leagues:
-            for match in league.get("matches") or []:
-                item = normalize_match(league, match)
-                if item:
-                    all_matches[item["id"]] = item
+        # ESPN returns already-normalized match dictionaries. The legacy
+        # FotMob fallback still returns league/match containers.
+        for entry in leagues:
+            if isinstance(entry, dict) and "kickoff" in entry and "home" in entry and "away" in entry:
+                all_matches[entry["id"]] = entry
+                continue
+            if isinstance(entry, dict):
+                for match in entry.get("matches") or []:
+                    item = normalize_match(entry, match)
+                    if item:
+                        all_matches[item["id"]] = item
 
     matches = list(all_matches.values())
     matches.sort(key=lambda x: (x["kickoff"], -x["priority"], x["league_fa"], x["home"]))
