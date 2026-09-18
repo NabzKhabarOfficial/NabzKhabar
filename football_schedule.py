@@ -10,9 +10,16 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 TEHRAN = ZoneInfo("Asia/Tehran")
-# Primary source: ESPN public scoreboard API.
-ESPN_API_BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer"
+# Primary source: API-Football official REST API.
+API_FOOTBALL_BASE = "https://v3.football.api-sports.io"
+API_FOOTBALL_KEY_ENV = "API_FOOTBALL_KEY"
 FOTMOB_API_URL = "https://www.fotmob.com/api/matches"
+# Keep a safety margin below the official 100 requests/day free quota.
+API_DAILY_BUDGET = 90
+# Football is refreshed only during the useful match window. With the 10-minute
+# GitHub schedule this stays comfortably below the free daily quota.
+FOOTBALL_REFRESH_START_HOUR = 12
+FOOTBALL_REFRESH_END_HOUR = 2
 TELEGRAM_API = "https://api.telegram.org/bot{}/{}"
 HISTORY_FILE = "football_schedule_history.json"
 REQUEST_TIMEOUT = 20
@@ -80,26 +87,6 @@ LEAGUE_FA = {
 
 LEAGUE_KEYWORDS = tuple(LEAGUE_PRIORITY.keys())
 
-ESPN_LEAGUES = {
-    "eng.1": "Premier League",
-    "esp.1": "LaLiga",
-    "ita.1": "Serie A",
-    "ger.1": "Bundesliga",
-    "fra.1": "Ligue 1",
-    "uefa.champions": "UEFA Champions League",
-    "uefa.europa": "UEFA Europa League",
-    "uefa.europa.conf": "UEFA Conference League",
-    "sau.1": "Saudi Pro League",
-    "ned.1": "Eredivisie",
-    "por.1": "Liga Portugal",
-    "tur.1": "Süper Lig",
-    "sco.1": "Scottish Premiership",
-    "usa.1": "Major League Soccer",
-    "bra.1": "Brasileirão",
-    "mex.1": "Liga MX",
-    "fifa.worldq.uefa": "FIFA World Cup Qualifying - UEFA",
-    "fifa.worldq.afc": "FIFA World Cup Qualifying - AFC",
-}
 PERSIAN_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
 
 
@@ -131,88 +118,168 @@ def local_date():
     return local_now().date()
 
 
-def _http_get_json(url, params=None):
-    response = requests.get(
-        url,
-        params=params or {},
-        headers={
-            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/126 Safari/537.36",
-            "Accept": "application/json,text/plain,*/*",
-        },
-        timeout=REQUEST_TIMEOUT,
-    )
-    response.raise_for_status()
-    payload = response.json()
-    if not isinstance(payload, dict):
-        raise ValueError("scoreboard response is not a JSON object")
-    return payload
+def _utc_quota_day():
+    return datetime.utcnow().strftime("%Y-%m-%d")
 
 
-def _fetch_espn_league(league_slug, date_value):
-    url = f"{ESPN_API_BASE}/{league_slug}/scoreboard"
-    payload = _http_get_json(url, {"dates": date_value.strftime("%Y%m%d")})
-    return payload.get("events") or []
+def _api_quota_allowed(history):
+    quota_day = _utc_quota_day()
+    if history.get("api_quota_day") != quota_day:
+        history["api_quota_day"] = quota_day
+        history["api_calls_used"] = 0
+        history["api_remaining"] = None
+
+    used = int(history.get("api_calls_used") or 0)
+    if used >= API_DAILY_BUDGET:
+        print(
+            f"FOOTBALL: API-Football safety budget reached "
+            f"({used}/{API_DAILY_BUDGET}); using cached data."
+        )
+        return False
+    return True
 
 
-def _normalize_espn_event(event, league_slug, league_label):
-    competitions = event.get("competitions") or []
-    if not competitions:
+def _api_football_get(path, params, history):
+    api_key = os.getenv(API_FOOTBALL_KEY_ENV, "").strip()
+    if not api_key:
+        print(
+            "FOOTBALL: API_FOOTBALL_KEY is missing; "
+            "API-Football cannot be queried."
+        )
         return None
-    competition = competitions[0] or {}
-    competitors = competition.get("competitors") or []
-    if len(competitors) < 2:
+
+    if not _api_quota_allowed(history):
         return None
-    home = next((x for x in competitors if x.get("homeAway") == "home"), competitors[0])
-    away = next((x for x in competitors if x.get("homeAway") == "away"), competitors[1])
-    home_team = str((home.get("team") or {}).get("displayName") or home.get("displayName") or "").strip()
-    away_team = str((away.get("team") or {}).get("displayName") or away.get("displayName") or "").strip()
-    if not home_team or not away_team:
-        return None
-    raw_date = event.get("date") or competition.get("date")
-    if not raw_date:
-        return None
+
+    # Count the attempt before the network call so repeated failures cannot
+    # silently burn through the free quota.
+    history["api_calls_used"] = int(history.get("api_calls_used") or 0) + 1
+    save_history(history)
+
+    url = f"{API_FOOTBALL_BASE}{path}"
     try:
-        kickoff = datetime.fromisoformat(str(raw_date).replace("Z", "+00:00")).astimezone(TEHRAN)
+        response = requests.get(
+            url,
+            params=params or {},
+            headers={
+                "x-apisports-key": api_key,
+                "Accept": "application/json",
+                "User-Agent": "NabzKhabar/13 football scheduler",
+            },
+            timeout=REQUEST_TIMEOUT,
+        )
+
+        remaining = response.headers.get("x-ratelimit-requests-remaining")
+        if remaining is not None:
+            try:
+                history["api_remaining"] = int(remaining)
+            except ValueError:
+                pass
+
+        payload = response.json()
+        save_history(history)
+
+        if not response.ok:
+            print(
+                f"FOOTBALL: API-Football HTTP {response.status_code}: "
+                f"{payload.get('errors') if isinstance(payload, dict) else payload}"
+            )
+            return None
+
+        if not isinstance(payload, dict):
+            print("FOOTBALL: API-Football returned non-object JSON.")
+            return None
+
+        errors = payload.get("errors")
+        if errors:
+            print(f"FOOTBALL: API-Football errors: {errors}")
+            return None
+
+        return payload.get("response") or []
+    except Exception as exc:
+        print(f"FOOTBALL: API-Football request failed: {exc}")
+        save_history(history)
+        return None
+
+
+def _normalize_api_fixture(raw):
+    fixture = raw.get("fixture") or {}
+    teams = raw.get("teams") or {}
+    league = raw.get("league") or {}
+    status = fixture.get("status") or {}
+    goals = raw.get("goals") or {}
+
+    home_obj = teams.get("home") or {}
+    away_obj = teams.get("away") or {}
+    home = str(home_obj.get("name") or "").strip()
+    away = str(away_obj.get("name") or "").strip()
+    league_name = str(league.get("name") or "").strip()
+    fixture_id = fixture.get("id")
+    raw_date = fixture.get("date")
+
+    if not fixture_id or not home or not away or not league_name or not raw_date:
+        return None
+
+    try:
+        kickoff = datetime.fromisoformat(
+            str(raw_date).replace("Z", "+00:00")
+        ).astimezone(TEHRAN)
     except Exception:
         return None
+
     if kickoff.date() != local_date():
         return None
-    status = competition.get("status") or event.get("status") or {}
-    status_type = status.get("type") or {}
-    state = str(status_type.get("state") or "").lower()
-    completed = bool(status_type.get("completed")) or state == "post"
-    cancelled = state in {"canceled", "cancelled"} or str(status_type.get("name") or "").upper() == "STATUS_CANCELED"
-    started = state == "in" or bool(status.get("period")) or bool(status.get("displayClock"))
-    if completed:
-        started = True
+
+    status_short = str(status.get("short") or "").upper()
+    cancelled = status_short in {"CANC", "ABD"}
+    finished = status_short in {"FT", "AET", "PEN"}
+    live = status_short in {"1H", "HT", "2H", "ET", "BT", "P"}
+
     if cancelled:
-        state_text = "❌ لغو شده"
-    elif completed:
-        state_text = "✅ پایان یافته"
-    elif started:
-        state_text = "🔴 زنده"
+        state = "❌ لغو شده"
+    elif finished:
+        state = "✅ پایان یافته"
+    elif live:
+        state = "🔴 زنده"
     else:
-        state_text = "⏰ برنامه‌ریزی‌شده"
-    def competitor_score(item):
-        value = item.get("score")
-        try:
-            return int(str(value).strip()) if value is not None else None
-        except Exception:
-            return None
-    home_score = competitor_score(home)
-    away_score = competitor_score(away)
-    score = f"{home_score}-{away_score}" if home_score is not None and away_score is not None else "—"
+        state = "⏰ برنامه‌ریزی‌شده"
+
+    home_score = goals.get("home")
+    away_score = goals.get("away")
+    try:
+        home_score = int(home_score) if home_score is not None else None
+    except (TypeError, ValueError):
+        home_score = None
+    try:
+        away_score = int(away_score) if away_score is not None else None
+    except (TypeError, ValueError):
+        away_score = None
+
+    score = (
+        f"{home_score}-{away_score}"
+        if home_score is not None and away_score is not None
+        else "—"
+    )
+
+    priority = LEAGUE_PRIORITY.get(league_name)
+    if priority is None:
+        lower = league_name.lower()
+        if any(k.lower() in lower for k in LEAGUE_KEYWORDS):
+            priority = 60
+        else:
+            priority = 0
+
     return {
-        "id": str(event.get("id") or f"{league_slug}-{home_team}-{away_team}-{raw_date}"),
-        "league": league_label,
-        "league_fa": LEAGUE_FA.get(league_label, league_label),
-        "home": home_team,
-        "away": away_team,
+        "id": str(fixture_id),
+        "league": league_name,
+        "league_fa": LEAGUE_FA.get(league_name, league_name),
+        "home": home,
+        "away": away,
         "kickoff": kickoff,
-        "priority": LEAGUE_PRIORITY.get(league_label, 60),
-        "state": state_text,
-        "started": started,
-        "finished": completed,
+        "priority": priority,
+        "state": state,
+        "started": live or finished,
+        "finished": finished,
         "cancelled": cancelled,
         "home_score": home_score,
         "away_score": away_score,
@@ -220,24 +287,63 @@ def _normalize_espn_event(event, league_slug, league_label):
     }
 
 
-def fetch_matches_for_utc_date(date_value):
-    """Fetch important fixtures from ESPN, with FotMob as last resort."""
-    matches = []
-    successful_sources = 0
-    for league_slug, league_label in ESPN_LEAGUES.items():
-        try:
-            events = _fetch_espn_league(league_slug, date_value)
-            successful_sources += 1
-            for event in events:
-                item = _normalize_espn_event(event, league_slug, league_label)
-                if item:
-                    matches.append(item)
-        except Exception as exc:
-            print(f"FOOTBALL: ESPN {league_slug} failed for {date_value}: {exc}")
-    if successful_sources:
-        return matches
+def _serialize_fixture(item):
+    result = dict(item)
+    result["kickoff"] = item["kickoff"].isoformat()
+    return result
+
+
+def _deserialize_fixture(item):
     try:
-        payload = _http_get_json(FOTMOB_API_URL, {"date": date_value.strftime("%Y%m%d")})
+        result = dict(item)
+        result["kickoff"] = datetime.fromisoformat(result["kickoff"]).astimezone(TEHRAN)
+        return result
+    except Exception:
+        return None
+
+
+def _is_important_fixture(item):
+    teams = f'{item["home"]} {item["away"]}'.lower()
+    return (
+        item["league"] in IMPORTANT_LEAGUES
+        or any(keyword in teams for keyword in IMPORTANT_TEAM_KEYWORDS)
+    )
+
+
+def fetch_matches_for_utc_date(date_value, history=None):
+    """API-Football primary source; FotMob remains a last-resort fallback."""
+    history = history if history is not None else load_history()
+
+    if date_value != local_date():
+        return []
+
+    api_response = _api_football_get(
+        "/fixtures",
+        {
+            "date": date_value.strftime("%Y-%m-%d"),
+            "timezone": "Asia/Tehran",
+        },
+        history,
+    )
+
+    if api_response is not None:
+        matches = []
+        for raw in api_response:
+            item = _normalize_api_fixture(raw)
+            if item and _is_important_fixture(item):
+                matches.append(item)
+        print(
+            f"FOOTBALL: API-Football returned {len(api_response)} fixtures; "
+            f"important={len(matches)}"
+        )
+        return matches
+
+    # Last-resort free fallback only. We never call ESPN anymore.
+    try:
+        payload = _http_get_json(
+            FOTMOB_API_URL,
+            {"date": date_value.strftime("%Y%m%d")},
+        )
         return payload.get("leagues", []) if isinstance(payload, dict) else []
     except Exception as exc:
         print(f"FOOTBALL: fallback source failed for {date_value}: {exc}")
@@ -359,32 +465,56 @@ def normalize_match(league, match):
 
 
 def get_today_matches():
+    history = load_history()
     today = local_date()
-    all_matches = {}
+    day_key = today.isoformat()
 
-    # Iran's local day can straddle two UTC calendar dates.
-    for utc_date in (today - timedelta(days=1), today):
-        try:
-            leagues = fetch_matches_for_utc_date(utc_date)
-        except Exception as exc:
-            print(f"FOOTBALL: fetch failed for {utc_date}: {exc}")
-            continue
+    cached = []
+    if history.get("fixtures_cache_date") == day_key:
+        cached = [
+            item
+            for raw in (history.get("fixtures_cache") or [])
+            for item in [_deserialize_fixture(raw)]
+            if item
+        ]
 
-        # ESPN returns already-normalized match dictionaries. The legacy
-        # FotMob fallback still returns league/match containers.
-        for entry in leagues:
-            if isinstance(entry, dict) and "kickoff" in entry and "home" in entry and "away" in entry:
-                all_matches[entry["id"]] = entry
-                continue
-            if isinstance(entry, dict):
-                for match in entry.get("matches") or []:
-                    item = normalize_match(entry, match)
-                    if item:
-                        all_matches[item["id"]] = item
+    # One daily fixture discovery call. It is cached in GitHub state and reused
+    # by every subsequent 10-minute run.
+    if not cached:
+        fresh = fetch_matches_for_utc_date(today, history)
+        if fresh and all(isinstance(x.get("kickoff"), datetime) for x in fresh):
+            cached = fresh
+            history["fixtures_cache_date"] = day_key
+            history["fixtures_cache"] = [_serialize_fixture(x) for x in cached]
+            save_history(history)
 
-    matches = list(all_matches.values())
-    matches.sort(key=lambda x: (x["kickoff"], -x["priority"], x["league_fa"], x["home"]))
-    return matches
+    if not cached:
+        print("FOOTBALL: no API-Football fixtures available today.")
+        return []
+
+    # Refresh the same day's fixture slate during the main football window.
+    # This updates both live scores and matches that have just finished, while
+    # remaining under the free quota because the refresh window is bounded.
+    hour = local_now().hour
+    in_refresh_window = (
+        hour >= FOOTBALL_REFRESH_START_HOUR
+        or hour < FOOTBALL_REFRESH_END_HOUR
+    )
+    if in_refresh_window:
+        refreshed = fetch_matches_for_utc_date(today, history)
+        if refreshed and all(isinstance(x.get("kickoff"), datetime) for x in refreshed):
+            by_id = {x["id"]: x for x in cached}
+            for item in refreshed:
+                by_id[item["id"]] = item
+            cached = list(by_id.values())
+            history["fixtures_cache_date"] = day_key
+            history["fixtures_cache"] = [_serialize_fixture(x) for x in cached]
+            save_history(history)
+
+    return sorted(
+        cached,
+        key=lambda x: (x["kickoff"], -x["priority"], x["league_fa"], x["home"]),
+    )
 
 
 # Only high-interest fixtures belong in the public daily table.
@@ -749,10 +879,8 @@ def post_daily_football_schedule(send_message, send_photo=None):
     current_snapshot = _snapshot(selected)
 
     if history.get("last_posted_date") != day_key or not history.get("message_id"):
-        # Only create a new daily post during the first 30 minutes of the day.
-        if now.hour != 0 or now.minute >= 30:
-            return False
-
+        # The GitHub workflow runs on UTC times rather than at Tehran midnight,
+        # so publish on the first successful run of the local calendar day.
         message_id = publish_new_message(image_path, caption)
         if not message_id:
             # Legacy fallback if direct Telegram management is unavailable.
