@@ -1,10 +1,12 @@
 """Currents API discovery adapter for Nabz Khabar.
 
-Free-tier only: one latest-news request per bot run when a key is configured.
-It is an additional discovery source; existing source quality, deduplication,
-AI localization and publication gates remain authoritative.
+Free-tier only. A local daily request budget prevents scheduled or manual runs
+from intentionally exceeding the free-plan allowance. The adapter remains an
+additional discovery source; existing source quality, deduplication, AI
+localization and publication gates remain authoritative.
 """
 
+import json
 import os
 from datetime import datetime, timezone
 
@@ -13,6 +15,54 @@ import requests
 API_URL = "https://api.currentsapi.services/v2/latest-news"
 TIMEOUT = 12
 PAGE_SIZE = 20
+
+# Keep a safety margin below the documented free-plan daily allowance.
+DAILY_REQUEST_BUDGET = 200
+USAGE_FILE = "currents_usage.json"
+
+
+def _utc_today():
+    return datetime.now(timezone.utc).date().isoformat()
+
+
+def _load_usage():
+    today = _utc_today()
+    try:
+        with open(USAGE_FILE, "r", encoding="utf-8") as handle:
+            data = json.load(handle)
+        if data.get("date") != today:
+            return {"date": today, "requests": 0}
+        return {"date": today, "requests": int(data.get("requests", 0))}
+    except Exception:
+        return {"date": today, "requests": 0}
+
+
+def _save_usage(usage):
+    temp = f"{USAGE_FILE}.tmp"
+    with open(temp, "w", encoding="utf-8") as handle:
+        json.dump(usage, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+    os.replace(temp, USAGE_FILE)
+
+
+def _reserve_request():
+    usage = _load_usage()
+    if usage["requests"] >= DAILY_REQUEST_BUDGET:
+        print(
+            f"CURRENTS: local daily safety budget reached "
+            f"({usage['requests']}/{DAILY_REQUEST_BUDGET}); skipping."
+        )
+        return False
+
+    # Reserve before the HTTP request because an attempted API call can count
+    # against the provider quota even when the response is an error/timeout.
+    usage["requests"] += 1
+    _save_usage(usage)
+    print(
+        f"CURRENTS REQUEST RESERVED: "
+        f"{usage['requests']}/{DAILY_REQUEST_BUDGET} today"
+    )
+    return True
 
 
 def _parse_published(value):
@@ -55,8 +105,11 @@ def _candidate(article):
     }
 
     category = next(
-        (category_map.get(str(x).strip().lower()) for x in categories
-         if category_map.get(str(x).strip().lower())),
+        (
+            category_map.get(str(x).strip().lower())
+            for x in categories
+            if category_map.get(str(x).strip().lower())
+        ),
         "جهان",
     )
 
@@ -82,6 +135,10 @@ def _candidate(article):
 def collect():
     key = os.getenv("CURRENTS_API_KEY", "").strip()
     if not key:
+        print("CURRENTS: API key not configured; source disabled.")
+        return []
+
+    if not _reserve_request():
         return []
 
     try:
@@ -96,7 +153,7 @@ def collect():
         )
 
         if response.status_code == 429:
-            print("CURRENTS: daily free quota reached; skipping.")
+            print("CURRENTS: provider daily free quota reached; skipping.")
             return []
 
         if response.status_code in (401, 403):
@@ -116,7 +173,11 @@ def collect():
             if item:
                 items.append(item)
 
-        print(f"CURRENTS OK: {len(items)} fresh candidates")
+        usage = _load_usage()
+        print(
+            f"CURRENTS OK: {len(items)} fresh candidates "
+            f"| requests today: {usage['requests']}/{DAILY_REQUEST_BUDGET}"
+        )
         return items
 
     except Exception as exc:
