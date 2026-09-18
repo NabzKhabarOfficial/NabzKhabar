@@ -5,12 +5,15 @@ from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 import requests
+from PIL import Image, ImageDraw, ImageFont
 
 
 TEHRAN = ZoneInfo("Asia/Tehran")
 API_URL = "https://www.fotmob.com/api/matches"
 HISTORY_FILE = "football_schedule_history.json"
 REQUEST_TIMEOUT = 20
+FONT_PATH = "Vazirmatn-Bold.ttf"
+IMAGE_PATH = "football_schedule.jpg"
 
 LEAGUE_PRIORITY = {
     "Premier League": 100,
@@ -258,7 +261,49 @@ def build_message(matches):
     return "\n".join(lines)
 
 
-def post_daily_football_schedule(send_message):
+def create_schedule_image(matches):
+    width, height = 1600, 900
+    image = Image.new("RGB", (width, height), (13, 19, 28))
+    draw = ImageDraw.Draw(image)
+    try:
+        title_font = ImageFont.truetype(FONT_PATH, 82)
+        date_font = ImageFont.truetype(FONT_PATH, 42)
+        row_font = ImageFont.truetype(FONT_PATH, 34)
+        small_font = ImageFont.truetype(FONT_PATH, 27)
+    except Exception:
+        title_font = date_font = row_font = small_font = ImageFont.load_default()
+
+    for i in range(0, width, 160):
+        draw.line((i, 0, i + 300, height), fill=(28, 42, 58), width=3)
+    draw.ellipse((1130, -180, 1770, 460), outline=(60, 83, 105), width=5)
+    draw.ellipse((1240, -70, 1660, 350), outline=(60, 83, 105), width=3)
+
+    draw.text((80, 60), "برنامه فوتبال امروز", font=title_font, fill="white")
+    draw.text((82, 160), "NABZ KHABAR  |  نبض خبر", font=date_font, fill=(185, 205, 225))
+    draw.text((82, 220), f"{fa_digits(local_date().strftime('%Y/%m/%d'))}  •  ساعت ایران", font=date_font, fill=(220, 230, 240))
+
+    y = 310
+    visible = sorted(matches, key=lambda x: x["kickoff"])[:8]
+    for item in visible:
+        if y > 785:
+            break
+        draw.rounded_rectangle((70, y, 1530, y + 105), radius=22, fill=(23, 33, 46), outline=(52, 70, 88), width=2)
+        draw.text((112, y + 27), fa_digits(item["kickoff"].strftime("%H:%M")), font=row_font, fill="white")
+        matchup = f'{item["home"]}  -  {item["away"]}'
+        if len(matchup) > 55:
+            matchup = matchup[:52] + "..."
+        draw.text((360, y + 18), matchup, font=row_font, fill="white")
+        draw.text((360, y + 62), item["league_fa"], font=small_font, fill=(180, 195, 210))
+        y += 118
+
+    if len(matches) > 8:
+        draw.text((80, 825), f"+ {fa_digits(len(matches) - 8)} مسابقه دیگر در جدول کانال", font=small_font, fill=(180, 195, 210))
+    draw.text((1190, 825), "@NabzKhabarOfficial", font=small_font, fill="white")
+    image.save(IMAGE_PATH, "JPEG", quality=94, optimize=True)
+    return IMAGE_PATH
+
+
+def post_daily_football_schedule(send_message, send_photo=None):
     now = datetime.now(TEHRAN)
     day_key = now.strftime("%Y-%m-%d")
     history = load_history()
@@ -279,8 +324,14 @@ def post_daily_football_schedule(send_message):
 
     selected = select_matches(matches)
     message = build_message(selected)
+    image_path = create_schedule_image(selected)
 
-    if not send_message(message):
+    if send_photo is not None:
+        if not send_photo(image_path, message):
+            print("FOOTBALL: photo publication failed; falling back to text.")
+            if not send_message(message):
+                return False
+    elif not send_message(message):
         print("FOOTBALL: Telegram publication failed.")
         return False
 
