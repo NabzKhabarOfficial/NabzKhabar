@@ -260,12 +260,43 @@ def get_today_matches():
     return matches
 
 
+# Only high-interest fixtures belong in the public daily table.
+# The bot deliberately excludes lower-profile domestic/second-tier games.
+IMPORTANT_TEAM_KEYWORDS = (
+    "real madrid", "barcelona", "atletico madrid", "manchester united",
+    "manchester city", "liverpool", "arsenal", "chelsea", "tottenham",
+    "bayern munich", "bayern", "borussia dortmund", "psg", "paris saint-germain",
+    "juventus", "inter", "milan", "napoli", "roma", "ajax", "psv",
+    "benfica", "porto", "galatasaray", "fenerbahce", "al hilal",
+    "al nassr", "persepolis", "esteghlal", "iran",
+)
+
+IMPORTANT_LEAGUES = {
+    "Premier League", "LaLiga", "Serie A", "Bundesliga", "Ligue 1",
+    "UEFA Champions League", "Champions League",
+    "UEFA Europa League", "Europa League",
+    "UEFA Conference League", "Conference League",
+    "Persian Gulf Pro League", "AFC Champions League",
+    "Saudi Pro League",
+}
+
 def select_matches(matches):
-    major = sorted(
+    def importance(item):
+        league_bonus = 100 if item["league"] in IMPORTANT_LEAGUES else 0
+        teams = f'{item["home"]} {item["away"]}'.lower()
+        team_bonus = 40 if any(k in teams for k in IMPORTANT_TEAM_KEYWORDS) else 0
+        # Prioritize finals/knockout games and live/finished matches so important
+        # results remain visible even after kickoff.
+        state_bonus = 20 if item["started"] or item["finished"] else 0
+        return league_bonus + team_bonus + state_bonus + item["priority"]
+
+    selected = sorted(
         matches,
-        key=lambda x: (-x["priority"], x["kickoff"], x["home"])
+        key=lambda x: (-importance(x), x["kickoff"], x["home"])
     )
-    return major[:32]
+
+    # Keep the table intentionally compact: major fixtures only.
+    return selected[:12]
 
 
 def _result_lines(matches):
