@@ -4256,13 +4256,16 @@ def process_news(
                     + ".jpg"
                 )
 
-                add_watermark(
+                # add_watermark() may intentionally return the original
+                # file for very small/unsafe images. Always use its returned
+                # path; never assume the output file was created.
+                branded_path = add_watermark(
                     downloaded,
                     watermarked
                 )
 
                 success = send_photo(
-                    watermarked,
+                    branded_path,
                     caption
                 )
 
@@ -4278,6 +4281,8 @@ def process_news(
                     if (
                         watermarked
                         != downloaded
+                        and watermarked != branded_path
+                        and os.path.exists(watermarked)
                     ):
                         os.remove(
                             watermarked
