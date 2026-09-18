@@ -44,6 +44,9 @@ def _request_json(main, model, prompt, max_output_tokens=500):
             },
             timeout=30,
         )
+        if response.status_code == 404:
+            print(f"V13 AI ROUTER: {model} HTTP 404 (model unavailable for this API key/project); trying fallback.")
+            return None
         if response.status_code in (429, 500, 502, 503, 504):
             print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; trying next model.")
             return None
