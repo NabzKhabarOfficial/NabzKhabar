@@ -125,7 +125,7 @@ def _team_is_major(name):
 
 
 def _important(item):
-    return _league_key(item) in IMPORTANT_LEAGUES or (
+    return (_league_key(item) in IMPORTANT_LEAGUES or (_norm(item["league"]), "") in IMPORTANT_LEAGUES) or (
         _team_is_major(item["home"]) or _team_is_major(item["away"])
     )
 
@@ -182,7 +182,7 @@ def fetch_today():
         item = {
             "id": str(fixture_id),
             "league": league_name,
-            "league_fa": LEAGUE_FA.get((_norm(league_name), _norm(country)), league_name),
+            "league_fa": LEAGUE_FA.get((league_name, country), LEAGUE_FA.get((league_name, ""), league_name)),
             "home": home,
             "away": away,
             "kickoff": kickoff.isoformat(),
@@ -203,7 +203,7 @@ def select_matches(matches):
         team_bonus = 45 if (
             _team_is_major(item["home"]) or _team_is_major(item["away"])
         ) else 0
-        league_bonus = 100 if _league_key(item) in IMPORTANT_LEAGUES else 0
+        league_bonus = 100 if (_league_key(item) in IMPORTANT_LEAGUES or (_norm(item["league"]), "") in IMPORTANT_LEAGUES) else 0
         return league_bonus + team_bonus + item["priority"]
 
     ranked = sorted(matches, key=lambda x: (-score(x), x["kickoff"], x["home"]))
