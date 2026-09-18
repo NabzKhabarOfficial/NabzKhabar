@@ -304,6 +304,45 @@ def process_news(*args, **kwargs):
 
 main.process_news = process_news
 
+# ---------- Final publication language gate ----------
+# This is the last line of defense: regardless of which fallback path
+# produced the caption, a foreign-language story must never reach Telegram.
+_original_send_message = main.send_message
+_original_send_photo = main.send_photo
+_original_send_video = main.send_video
+
+
+def _assert_persian_caption(caption):
+    text = str(caption or "").strip()
+    if not text:
+        return
+    # Ignore the channel handle/URL-like tokens when measuring language.
+    probe = re.sub(r"@[A-Za-z0-9_]+", " ", text)
+    probe = re.sub(r"https?://\S+", " ", probe)
+    if _persian_ratio(probe) < 0.55:
+        print("V13 FINAL LANGUAGE GATE: blocked non-Persian publication.")
+        raise SkipForeignStory()
+
+
+def send_message(text):
+    _assert_persian_caption(text)
+    return _original_send_message(text)
+
+
+def send_photo(path, caption):
+    _assert_persian_caption(caption)
+    return _original_send_photo(path, caption)
+
+
+def send_video(path, caption):
+    _assert_persian_caption(caption)
+    return _original_send_video(path, caption)
+
+
+main.send_message = send_message
+main.send_photo = send_photo
+main.send_video = send_video
+
 print("=" * 64)
 print("NABZ KHABAR V13 FINAL ENGINE ACTIVE")
 print(f"Direct RSS sources: {len(V13_DIRECT_RSS_FEEDS)}")
