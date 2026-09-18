@@ -27,6 +27,45 @@ def clean_text(text):
     return re.sub(r"\s+", " ", normalize_digits(text)).strip()
 
 
+def gregorian_to_jalali(gy, gm, gd):
+    g_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    j_days = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]
+
+    gy -= 1600
+    gm -= 1
+    gd -= 1
+
+    g_day_no = 365 * gy + (gy + 3) // 4 - (gy + 99) // 100 + (gy + 399) // 400
+    for i in range(gm):
+        g_day_no += g_days[i]
+    if gm > 1 and ((gy + 1600) % 4 == 0 and ((gy + 1600) % 100 != 0 or (gy + 1600) % 400 == 0)):
+        g_day_no += 1
+    g_day_no += gd
+
+    j_day_no = g_day_no - 79
+    j_np = j_day_no // 12053
+    j_day_no %= 12053
+
+    jy = 979 + 33 * j_np + 4 * (j_day_no // 1461)
+    j_day_no %= 1461
+
+    if j_day_no >= 366:
+        jy += (j_day_no - 1) // 365
+        j_day_no = (j_day_no - 1) % 365
+
+    jm = 1
+    while jm <= 11 and j_day_no >= j_days[jm - 1]:
+        j_day_no -= j_days[jm - 1]
+        jm += 1
+
+    return jy, jm, j_day_no + 1
+
+
+def jalali_date_text(now):
+    jy, jm, jd = gregorian_to_jalali(now.year, now.month, now.day)
+    return to_persian_digits(f"{jy:04d}/{jm:02d}/{jd:02d}")
+
+
 def format_decimal(number):
     number = str(number).replace("٬", ",")
     if "." in number:
@@ -146,7 +185,7 @@ def main():
     rows = extract_rows(fetch_prices())
     now = datetime.now(IRAN_TIMEZONE)
     time_text = to_persian_digits(now.strftime("%H:%M"))
-    date_text = to_persian_digits(now.strftime("%Y/%m/%d"))
+    date_text = jalali_date_text(now)
 
     lines = [
         "╔══════════════════════╗",
