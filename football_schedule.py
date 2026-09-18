@@ -10,7 +10,9 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 TEHRAN = ZoneInfo("Asia/Tehran")
-API_URL = "https://www.fotmob.com/api/matches"
+# Primary source: ESPN public scoreboard API.
+ESPN_API_BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer"
+FOTMOB_API_URL = "https://www.fotmob.com/api/matches"
 TELEGRAM_API = "https://api.telegram.org/bot{}/{}"
 HISTORY_FILE = "football_schedule_history.json"
 REQUEST_TIMEOUT = 20
@@ -77,6 +79,27 @@ LEAGUE_FA = {
 }
 
 LEAGUE_KEYWORDS = tuple(LEAGUE_PRIORITY.keys())
+
+ESPN_LEAGUES = {
+    "eng.1": "Premier League",
+    "esp.1": "LaLiga",
+    "ita.1": "Serie A",
+    "ger.1": "Bundesliga",
+    "fra.1": "Ligue 1",
+    "uefa.champions": "UEFA Champions League",
+    "uefa.europa": "UEFA Europa League",
+    "uefa.europa.conf": "UEFA Conference League",
+    "sau.1": "Saudi Pro League",
+    "ned.1": "Eredivisie",
+    "por.1": "Liga Portugal",
+    "tur.1": "Süper Lig",
+    "sco.1": "Scottish Premiership",
+    "usa.1": "Major League Soccer",
+    "bra.1": "Brasileirão",
+    "mex.1": "Liga MX",
+    "fifa.worldq.uefa": "FIFA World Cup Qualifying - UEFA",
+    "fifa.worldq.afc": "FIFA World Cup Qualifying - AFC",
+}
 PERSIAN_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
 
 
@@ -108,10 +131,10 @@ def local_date():
     return local_now().date()
 
 
-def fetch_matches_for_utc_date(date_value):
+def _http_get_json(url, params=None):
     response = requests.get(
-        API_URL,
-        params={"date": date_value.strftime("%Y%m%d")},
+        url,
+        params=params or {},
         headers={
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/126 Safari/537.36",
             "Accept": "application/json,text/plain,*/*",
@@ -120,7 +143,105 @@ def fetch_matches_for_utc_date(date_value):
     )
     response.raise_for_status()
     payload = response.json()
-    return payload.get("leagues", []) if isinstance(payload, dict) else []
+    if not isinstance(payload, dict):
+        raise ValueError("scoreboard response is not a JSON object")
+    return payload
+
+
+def _fetch_espn_league(league_slug, date_value):
+    url = f"{ESPN_API_BASE}/{league_slug}/scoreboard"
+    payload = _http_get_json(url, {"dates": date_value.strftime("%Y%m%d")})
+    return payload.get("events") or []
+
+
+def _normalize_espn_event(event, league_slug, league_label):
+    competitions = event.get("competitions") or []
+    if not competitions:
+        return None
+    competition = competitions[0] or {}
+    competitors = competition.get("competitors") or []
+    if len(competitors) < 2:
+        return None
+    home = next((x for x in competitors if x.get("homeAway") == "home"), competitors[0])
+    away = next((x for x in competitors if x.get("homeAway") == "away"), competitors[1])
+    home_team = str((home.get("team") or {}).get("displayName") or home.get("displayName") or "").strip()
+    away_team = str((away.get("team") or {}).get("displayName") or away.get("displayName") or "").strip()
+    if not home_team or not away_team:
+        return None
+    raw_date = event.get("date") or competition.get("date")
+    if not raw_date:
+        return None
+    try:
+        kickoff = datetime.fromisoformat(str(raw_date).replace("Z", "+00:00")).astimezone(TEHRAN)
+    except Exception:
+        return None
+    if kickoff.date() != local_date():
+        return None
+    status = competition.get("status") or event.get("status") or {}
+    status_type = status.get("type") or {}
+    state = str(status_type.get("state") or "").lower()
+    completed = bool(status_type.get("completed")) or state == "post"
+    cancelled = state in {"canceled", "cancelled"} or str(status_type.get("name") or "").upper() == "STATUS_CANCELED"
+    started = state == "in" or bool(status.get("period")) or bool(status.get("displayClock"))
+    if completed:
+        started = True
+    if cancelled:
+        state_text = "❌ لغو شده"
+    elif completed:
+        state_text = "✅ پایان یافته"
+    elif started:
+        state_text = "🔴 زنده"
+    else:
+        state_text = "⏰ برنامه‌ریزی‌شده"
+    def competitor_score(item):
+        value = item.get("score")
+        try:
+            return int(str(value).strip()) if value is not None else None
+        except Exception:
+            return None
+    home_score = competitor_score(home)
+    away_score = competitor_score(away)
+    score = f"{home_score}-{away_score}" if home_score is not None and away_score is not None else "—"
+    return {
+        "id": str(event.get("id") or f"{league_slug}-{home_team}-{away_team}-{raw_date}"),
+        "league": league_label,
+        "league_fa": LEAGUE_FA.get(league_label, league_label),
+        "home": home_team,
+        "away": away_team,
+        "kickoff": kickoff,
+        "priority": LEAGUE_PRIORITY.get(league_label, 60),
+        "state": state_text,
+        "started": started,
+        "finished": completed,
+        "cancelled": cancelled,
+        "home_score": home_score,
+        "away_score": away_score,
+        "score": score,
+    }
+
+
+def fetch_matches_for_utc_date(date_value):
+    """Fetch important fixtures from ESPN, with FotMob as last resort."""
+    matches = []
+    successful_sources = 0
+    for league_slug, league_label in ESPN_LEAGUES.items():
+        try:
+            events = _fetch_espn_league(league_slug, date_value)
+            successful_sources += 1
+            for event in events:
+                item = _normalize_espn_event(event, league_slug, league_label)
+                if item:
+                    matches.append(item)
+        except Exception as exc:
+            print(f"FOOTBALL: ESPN {league_slug} failed for {date_value}: {exc}")
+    if successful_sources:
+        return matches
+    try:
+        payload = _http_get_json(FOTMOB_API_URL, {"date": date_value.strftime("%Y%m%d")})
+        return payload.get("leagues", []) if isinstance(payload, dict) else []
+    except Exception as exc:
+        print(f"FOOTBALL: fallback source failed for {date_value}: {exc}")
+        return []
 
 
 def _score_value(value):
