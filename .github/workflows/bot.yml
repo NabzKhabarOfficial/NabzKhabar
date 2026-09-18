@@ -47,7 +47,7 @@ jobs:
 
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_topic_diversity.py currents_source.py football_schedule.py run_bot.py education.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_topic_diversity.py v13_event_dedup.py currents_source.py football_schedule.py run_bot.py education.py
 
       - name: Run independent V13 engine
         env:
@@ -87,8 +87,6 @@ jobs:
             tail -n 50000 /tmp/history_hashes.txt > /tmp/history_hashes_bounded.txt 2>/dev/null || true
             cat /tmp/history_hashes_bounded.txt /tmp/history_titles.txt 2>/dev/null > /tmp/merged_sent_news.txt || true
 
-            # Merge the Currents request counter conservatively: for the same
-            # UTC day, keep the larger observed counter; on a new day, reset.
             if git show origin/main:currents_usage.json > /tmp/remote_currents_usage.json 2>/dev/null; then
               python - <<'PY'
           import json
