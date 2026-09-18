@@ -47,13 +47,14 @@ jobs:
 
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_topic_diversity.py football_schedule.py run_bot.py education.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_topic_diversity.py currents_source.py football_schedule.py run_bot.py education.py
 
       - name: Run independent V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          CURRENTS_API_KEY: ${{ secrets.CURRENTS_API_KEY }}
           MAX_NEWS_PER_RUN: '4'
         run: python run_bot.py
 
