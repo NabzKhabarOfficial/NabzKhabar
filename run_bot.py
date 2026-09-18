@@ -1,34 +1,10 @@
-import re
-
-import main
-import graphics_patch
-import v13_engine
+import v13_standalone as main
 import education
 
-# Final presentation layer: use the channel handle consistently.
-_original_send_message = main.send_message
-_original_send_photo = main.send_photo
-_original_send_video = main.send_video
-
-def _caption(text):
-    if not text:
-        return text
-    return str(text).replace("#نبض_خبر", "@NabzKhabarOfficial")
-
-def send_message(text):
-    return _original_send_message(_caption(text))
-
-def send_photo(path, caption):
-    return _original_send_photo(path, _caption(caption))
-
-def send_video(path, caption):
-    return _original_send_video(path, _caption(caption))
-
-main.send_message = send_message
-main.send_photo = send_photo
-main.send_video = send_video
+# V13 is the only news runtime. main.py, v12_engine.py,
+# v13_engine.py and graphics_patch.py are not imported here.
 
 if __name__ == "__main__":
     main.main()
-    education.main.send_message = send_message
+    education.main.send_message = main.send_message
     education.post_daily_education()
