@@ -262,46 +262,142 @@ def build_message(matches):
 
 
 def create_schedule_image(matches):
+    """Create a genuinely football-themed daily visual with the real fixtures."""
     width, height = 1600, 900
-    image = Image.new("RGB", (width, height), (13, 19, 28))
+    image = Image.new("RGB", (width, height), (8, 16, 12))
     draw = ImageDraw.Draw(image)
+
     try:
-        title_font = ImageFont.truetype(FONT_PATH, 82)
-        date_font = ImageFont.truetype(FONT_PATH, 42)
-        row_font = ImageFont.truetype(FONT_PATH, 34)
-        small_font = ImageFont.truetype(FONT_PATH, 27)
+        title_font = ImageFont.truetype(FONT_PATH, 78)
+        date_font = ImageFont.truetype(FONT_PATH, 38)
+        row_font = ImageFont.truetype(FONT_PATH, 31)
+        small_font = ImageFont.truetype(FONT_PATH, 25)
+        tiny_font = ImageFont.truetype(FONT_PATH, 22)
     except Exception:
-        title_font = date_font = row_font = small_font = ImageFont.load_default()
+        title_font = date_font = row_font = small_font = tiny_font = ImageFont.load_default()
 
-    for i in range(0, width, 160):
-        draw.line((i, 0, i + 300, height), fill=(28, 42, 58), width=3)
-    draw.ellipse((1130, -180, 1770, 460), outline=(60, 83, 105), width=5)
-    draw.ellipse((1240, -70, 1660, 350), outline=(60, 83, 105), width=3)
+    # Football stadium / pitch background. Everything is generated locally,
+    # so the daily visual stays free, deterministic and independent of an
+    # external image host.
+    draw.rectangle((0, 0, width, height), fill=(7, 13, 11))
 
-    draw.text((80, 60), "برنامه فوتبال امروز", font=title_font, fill="white")
-    draw.text((82, 160), "NABZ KHABAR  |  نبض خبر", font=date_font, fill=(185, 205, 225))
-    draw.text((82, 220), f"{fa_digits(local_date().strftime('%Y/%m/%d'))}  •  ساعت ایران", font=date_font, fill=(220, 230, 240))
+    # Stadium stands and floodlights.
+    draw.rectangle((0, 0, width, 285), fill=(12, 20, 29))
+    for x in range(-40, width + 80, 70):
+        draw.polygon(
+            [(x, 285), (x + 35, 110), (x + 70, 285)],
+            fill=(17, 27, 36),
+        )
+    for x in (120, 410, 1190, 1480):
+        draw.line((x, 25, x - 18, 285), fill=(80, 90, 96), width=5)
+        draw.ellipse((x - 31, 18, x + 31, 55), fill=(225, 230, 220))
+        draw.ellipse((x - 20, 25, x + 20, 47), fill=(255, 255, 245))
 
-    y = 310
+    # Pitch with perspective bands.
+    pitch_top = 245
+    draw.polygon(
+        [(95, pitch_top), (1505, pitch_top), (1590, 900), (10, 900)],
+        fill=(20, 101, 53),
+    )
+    stripe_width = 176
+    for i in range(-1, 10):
+        x1 = 95 + i * stripe_width
+        x2 = x1 + stripe_width
+        if i % 2 == 0:
+            draw.polygon(
+                [(x1, pitch_top), (x2, pitch_top), (x2 + 85, 900), (x1 + 85, 900)],
+                fill=(23, 111, 58),
+            )
+
+    # Pitch markings.
+    white = (232, 238, 233)
+    draw.line((95, pitch_top, 1505, pitch_top), fill=white, width=5)
+    draw.line((10, 900, 1590, 900), fill=white, width=5)
+    draw.line((800, pitch_top, 800, 900), fill=white, width=4)
+    draw.ellipse((590, 470, 1010, 890), outline=white, width=5)
+    draw.ellipse((792, 672, 808, 688), fill=white)
+
+    # Penalty boxes and goals.
+    draw.rectangle((420, 245, 1180, 530), outline=white, width=5)
+    draw.rectangle((550, 245, 1050, 410), outline=white, width=4)
+    draw.rectangle((640, 245, 960, 330), outline=white, width=4)
+    draw.rectangle((640, 245, 960, 280), outline=(215, 225, 218), width=4)
+    draw.rectangle((660, 220, 940, 250), outline=white, width=5)
+
+    # Football in the foreground.
+    ball_cx, ball_cy, ball_r = 1350, 700, 108
+    draw.ellipse(
+        (ball_cx - ball_r, ball_cy - ball_r, ball_cx + ball_r, ball_cy + ball_r),
+        fill=(238, 241, 237),
+        outline=(38, 46, 43),
+        width=6,
+    )
+    # Simple pentagon/hexagon style panels to make the object unmistakably a ball.
+    center = (ball_cx, ball_cy)
+    pentagon = []
+    import math
+    for i in range(5):
+        a = math.radians(-90 + i * 72)
+        pentagon.append((ball_cx + 31 * math.cos(a), ball_cy + 31 * math.sin(a)))
+    draw.polygon(pentagon, fill=(25, 30, 28))
+    for i in range(5):
+        a = math.radians(-90 + i * 72)
+        px = ball_cx + 31 * math.cos(a)
+        py = ball_cy + 31 * math.sin(a)
+        draw.line((px, py, ball_cx + 72 * math.cos(a), ball_cy + 72 * math.sin(a)), fill=(50, 57, 53), width=4)
+
+    # Dark editorial panel: preserves the football scene while keeping
+    # the actual daily fixtures legible.
+    panel = (55, 300, 1285, 865)
+    overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    odraw = ImageDraw.Draw(overlay)
+    odraw.rounded_rectangle(panel, radius=32, fill=(5, 12, 10, 222), outline=(235, 240, 235, 90), width=2)
+    image = Image.alpha_composite(image.convert("RGBA"), overlay).convert("RGB")
+    draw = ImageDraw.Draw(image)
+
+    draw.text((90, 48), "⚽ برنامه فوتبال امروز", font=title_font, fill="white")
+    draw.text((92, 145), "NABZ KHABAR  |  نبض خبر", font=date_font, fill=(210, 225, 216))
+    draw.text(
+        (92, 198),
+        f"{fa_digits(local_date().strftime('%Y/%m/%d'))}  •  ساعت ایران",
+        font=date_font,
+        fill=(235, 240, 235),
+    )
+
+    # Real matches from the day's data are placed on top of the scene.
     visible = sorted(matches, key=lambda x: x["kickoff"])[:8]
-    for item in visible:
+    y = 325
+    for index, item in enumerate(visible):
         if y > 785:
             break
-        draw.rounded_rectangle((70, y, 1530, y + 105), radius=22, fill=(23, 33, 46), outline=(52, 70, 88), width=2)
-        draw.text((112, y + 27), fa_digits(item["kickoff"].strftime("%H:%M")), font=row_font, fill="white")
-        matchup = f'{item["home"]}  -  {item["away"]}'
-        if len(matchup) > 55:
-            matchup = matchup[:52] + "..."
-        draw.text((360, y + 18), matchup, font=row_font, fill="white")
-        draw.text((360, y + 62), item["league_fa"], font=small_font, fill=(180, 195, 210))
-        y += 118
+        draw.rounded_rectangle(
+            (82, y, 1258, y + 62),
+            radius=14,
+            fill=(18, 31, 24),
+            outline=(69, 105, 80),
+            width=1,
+        )
+        time_text = fa_digits(item["kickoff"].strftime("%H:%M"))
+        draw.text((110, y + 14), time_text, font=row_font, fill=(255, 255, 255))
+
+        matchup = f'{item["home"]}  🆚  {item["away"]}'
+        if len(matchup) > 52:
+            matchup = matchup[:49] + "..."
+        draw.text((300, y + 10), matchup, font=row_font, fill=(250, 252, 250))
+        draw.text((300, y + 42), item["league_fa"], font=tiny_font, fill=(181, 202, 187))
+        y += 67
 
     if len(matches) > 8:
-        draw.text((80, 825), f"+ {fa_digits(len(matches) - 8)} مسابقه دیگر در جدول کانال", font=small_font, fill=(180, 195, 210))
-    draw.text((1190, 825), "@NabzKhabarOfficial", font=small_font, fill="white")
+        draw.text(
+            (92, 812),
+            f"+ {fa_digits(len(matches) - 8)} مسابقه دیگر در جدول کانال",
+            font=small_font,
+            fill=(185, 205, 191),
+        )
+    draw.text((1030, 812), "@NabzKhabarOfficial", font=small_font, fill="white")
+
     image.save(IMAGE_PATH, "JPEG", quality=94, optimize=True)
     return IMAGE_PATH
-
 
 def post_daily_football_schedule(send_message, send_photo=None):
     now = datetime.now(TEHRAN)
