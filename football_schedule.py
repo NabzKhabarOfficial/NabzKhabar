@@ -19,6 +19,7 @@ TELEGRAM_TIMEOUT = 30
 FONT_PATH = "Vazirmatn-Bold.ttf"
 SCHEDULE_IMAGE = "football_schedule.jpg"
 RESULTS_IMAGE = "football_results.jpg"
+FOOTBALL_PHOTO_URL = "https://upload.wikimedia.org/wikipedia/commons/1/10/Wembley_Stadium_at_night.jpg"
 
 PERSIAN_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
 
@@ -129,6 +130,31 @@ def _font(size):
         return ImageFont.truetype(FONT_PATH, size)
     except Exception:
         return ImageFont.load_default()
+
+
+def _load_football_photo(width, height):
+    """Load a free/public-domain football stadium photo for the visual header."""
+    try:
+        response = requests.get(FOOTBALL_PHOTO_URL, timeout=10)
+        response.raise_for_status()
+        from io import BytesIO
+
+        photo = Image.open(BytesIO(response.content)).convert("RGB")
+        src_w, src_h = photo.size
+        target_ratio = width / height
+        src_ratio = src_w / src_h
+        if src_ratio > target_ratio:
+            crop_w = int(src_h * target_ratio)
+            left = (src_w - crop_w) // 2
+            photo = photo.crop((left, 0, left + crop_w, src_h))
+        else:
+            crop_h = int(src_w / target_ratio)
+            top = max(0, (src_h - crop_h) // 2)
+            photo = photo.crop((0, top, src_w, top + crop_h))
+        return photo.resize((width, height), Image.Resampling.LANCZOS)
+    except Exception as exc:
+        print(f"FOOTBALL: header photo unavailable, using local design: {exc}")
+        return None
 
 
 def _norm(value):
@@ -250,10 +276,19 @@ def create_table_image(matches, final=False):
     image = Image.new("RGB", (width, height), (7, 13, 11))
     draw = ImageDraw.Draw(image)
 
-    # Local football-themed background; no external image/API is used.
-    draw.rectangle((0, 0, width, 330), fill=(12, 20, 29))
-    for x in range(-40, width + 80, 70):
-        draw.polygon([(x, 330), (x + 35, 120), (x + 70, 330)], fill=(17, 27, 36))
+    # Use a free/public-domain football stadium photograph as the hero image.
+    # If the image host is unavailable, fall back to the local football design.
+    hero_h = 330
+    hero = _load_football_photo(width, hero_h)
+    if hero is not None:
+        image.paste(hero, (0, 0))
+        hero_overlay = Image.new("RGBA", (width, hero_h), (0, 0, 0, 115))
+        image = Image.alpha_composite(image.convert("RGBA"), hero_overlay).convert("RGB")
+        draw = ImageDraw.Draw(image)
+    else:
+        draw.rectangle((0, 0, width, hero_h), fill=(12, 20, 29))
+        for x in range(-40, width + 80, 70):
+            draw.polygon([(x, hero_h), (x + 35, 120), (x + 70, hero_h)], fill=(17, 27, 36))
     pitch_top = 280
     draw.polygon(
         [(95, pitch_top), (1505, pitch_top), (1590, height), (10, height)],
