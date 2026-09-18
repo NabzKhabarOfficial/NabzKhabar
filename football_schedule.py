@@ -1,8 +1,7 @@
-import hashlib
 import json
 import math
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import requests
@@ -10,22 +9,18 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 TEHRAN = ZoneInfo("Asia/Tehran")
-# Primary source: API-Football official REST API.
-API_FOOTBALL_BASE = "https://v3.football.api-sports.io"
-API_FOOTBALL_KEY_ENV = "API_FOOTBALL_KEY"
-FOTMOB_API_URL = "https://www.fotmob.com/api/matches"
-# Keep a safety margin below the official 100 requests/day free quota.
-API_DAILY_BUDGET = 90
-# Football is refreshed only during the useful match window. With the 10-minute
-# GitHub schedule this stays comfortably below the free daily quota.
-FOOTBALL_REFRESH_START_HOUR = 12
-FOOTBALL_REFRESH_END_HOUR = 2
-TELEGRAM_API = "https://api.telegram.org/bot{}/{}"
+API_BASE = "https://v3.football.api-sports.io"
+API_KEY_ENV = "API_FOOTBALL_KEY"
 HISTORY_FILE = "football_schedule_history.json"
+BOT_TOKEN_ENV = "BOT_TOKEN"
+CHANNEL = "@NabzKhabarOfficial"
 REQUEST_TIMEOUT = 20
 TELEGRAM_TIMEOUT = 30
 FONT_PATH = "Vazirmatn-Bold.ttf"
-IMAGE_PATH = "football_schedule.jpg"
+SCHEDULE_IMAGE = "football_schedule.jpg"
+RESULTS_IMAGE = "football_results.jpg"
+
+PERSIAN_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
 
 LEAGUE_PRIORITY = {
     "Premier League": 100,
@@ -39,21 +34,13 @@ LEAGUE_PRIORITY = {
     "Europa League": 92,
     "UEFA Conference League": 91,
     "Conference League": 91,
-    "Persian Gulf Pro League": 88,
+    "Persian Gulf Pro League": 90,
     "Saudi Pro League": 86,
     "Eredivisie": 84,
     "Liga Portugal": 83,
     "Primeira Liga": 83,
     "Süper Lig": 82,
-    "Scottish Premiership": 78,
-    "Belgian Pro League": 77,
-    "EFL Championship": 75,
-    "Championship": 75,
-    "Major League Soccer": 74,
-    "MLS": 74,
-    "Brasileirão": 73,
-    "Copa Libertadores": 72,
-    "AFC Champions League": 71,
+    "AFC Champions League": 81,
 }
 
 LEAGUE_FA = {
@@ -74,31 +61,37 @@ LEAGUE_FA = {
     "Liga Portugal": "لیگ پرتغال",
     "Primeira Liga": "لیگ پرتغال",
     "Süper Lig": "سوپرلیگ ترکیه",
-    "Scottish Premiership": "لیگ برتر اسکاتلند",
-    "Belgian Pro League": "لیگ برتر بلژیک",
-    "EFL Championship": "چمپیونشیپ انگلیس",
-    "Championship": "چمپیونشیپ انگلیس",
-    "Major League Soccer": "ام‌ال‌اس آمریکا",
-    "MLS": "ام‌ال‌اس آمریکا",
-    "Brasileirão": "سری‌آ برزیل",
-    "Copa Libertadores": "کوپا لیبرتادورس",
     "AFC Champions League": "لیگ قهرمانان آسیا",
 }
 
-LEAGUE_KEYWORDS = tuple(LEAGUE_PRIORITY.keys())
-
-PERSIAN_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
+IMPORTANT_LEAGUES = set(LEAGUE_PRIORITY)
+IMPORTANT_TEAMS = (
+    "real madrid", "barcelona", "atletico madrid", "manchester united",
+    "manchester city", "liverpool", "arsenal", "chelsea", "tottenham",
+    "bayern", "borussia dortmund", "psg", "paris saint-germain",
+    "juventus", "inter", "milan", "napoli", "roma", "ajax", "psv",
+    "benfica", "porto", "galatasaray", "fenerbahce", "al hilal",
+    "al nassr", "persepolis", "esteghlal", "iran",
+)
 
 
 def fa_digits(value):
     return str(value).translate(PERSIAN_DIGITS)
 
 
+def now_tehran():
+    return datetime.now(TEHRAN)
+
+
+def today_key():
+    return now_tehran().strftime("%Y-%m-%d")
+
+
 def load_history():
     try:
         with open(HISTORY_FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        return data if isinstance(data, dict) else {}
+            value = json.load(f)
+        return value if isinstance(value, dict) else {}
     except Exception:
         return {}
 
@@ -110,509 +103,6 @@ def save_history(data):
     os.replace(tmp, HISTORY_FILE)
 
 
-def local_now():
-    return datetime.now(TEHRAN)
-
-
-def local_date():
-    return local_now().date()
-
-
-def _utc_quota_day():
-    return datetime.utcnow().strftime("%Y-%m-%d")
-
-
-def _api_quota_allowed(history):
-    quota_day = _utc_quota_day()
-    if history.get("api_quota_day") != quota_day:
-        history["api_quota_day"] = quota_day
-        history["api_calls_used"] = 0
-        history["api_remaining"] = None
-
-    used = int(history.get("api_calls_used") or 0)
-    if used >= API_DAILY_BUDGET:
-        print(
-            f"FOOTBALL: API-Football safety budget reached "
-            f"({used}/{API_DAILY_BUDGET}); using cached data."
-        )
-        return False
-    return True
-
-
-def _api_football_get(path, params, history):
-    api_key = os.getenv(API_FOOTBALL_KEY_ENV, "").strip()
-    if not api_key:
-        print(
-            "FOOTBALL: API_FOOTBALL_KEY is missing; "
-            "API-Football cannot be queried."
-        )
-        return None
-
-    if not _api_quota_allowed(history):
-        return None
-
-    # Count the attempt before the network call so repeated failures cannot
-    # silently burn through the free quota.
-    history["api_calls_used"] = int(history.get("api_calls_used") or 0) + 1
-    save_history(history)
-
-    url = f"{API_FOOTBALL_BASE}{path}"
-    try:
-        response = requests.get(
-            url,
-            params=params or {},
-            headers={
-                "x-apisports-key": api_key,
-                "Accept": "application/json",
-                "User-Agent": "NabzKhabar/13 football scheduler",
-            },
-            timeout=REQUEST_TIMEOUT,
-        )
-
-        remaining = response.headers.get("x-ratelimit-requests-remaining")
-        if remaining is not None:
-            try:
-                history["api_remaining"] = int(remaining)
-            except ValueError:
-                pass
-
-        payload = response.json()
-        save_history(history)
-
-        if not response.ok:
-            print(
-                f"FOOTBALL: API-Football HTTP {response.status_code}: "
-                f"{payload.get('errors') if isinstance(payload, dict) else payload}"
-            )
-            return None
-
-        if not isinstance(payload, dict):
-            print("FOOTBALL: API-Football returned non-object JSON.")
-            return None
-
-        errors = payload.get("errors")
-        if errors:
-            print(f"FOOTBALL: API-Football errors: {errors}")
-            return None
-
-        return payload.get("response") or []
-    except Exception as exc:
-        print(f"FOOTBALL: API-Football request failed: {exc}")
-        save_history(history)
-        return None
-
-
-def _normalize_api_fixture(raw):
-    fixture = raw.get("fixture") or {}
-    teams = raw.get("teams") or {}
-    league = raw.get("league") or {}
-    status = fixture.get("status") or {}
-    goals = raw.get("goals") or {}
-
-    home_obj = teams.get("home") or {}
-    away_obj = teams.get("away") or {}
-    home = str(home_obj.get("name") or "").strip()
-    away = str(away_obj.get("name") or "").strip()
-    league_name = str(league.get("name") or "").strip()
-    fixture_id = fixture.get("id")
-    raw_date = fixture.get("date")
-
-    if not fixture_id or not home or not away or not league_name or not raw_date:
-        return None
-
-    try:
-        kickoff = datetime.fromisoformat(
-            str(raw_date).replace("Z", "+00:00")
-        ).astimezone(TEHRAN)
-    except Exception:
-        return None
-
-    if kickoff.date() != local_date():
-        return None
-
-    status_short = str(status.get("short") or "").upper()
-    cancelled = status_short in {"CANC", "ABD"}
-    finished = status_short in {"FT", "AET", "PEN"}
-    live = status_short in {"1H", "HT", "2H", "ET", "BT", "P"}
-
-    if cancelled:
-        state = "❌ لغو شده"
-    elif finished:
-        state = "✅ پایان یافته"
-    elif live:
-        state = "🔴 زنده"
-    else:
-        state = "⏰ برنامه‌ریزی‌شده"
-
-    home_score = goals.get("home")
-    away_score = goals.get("away")
-    try:
-        home_score = int(home_score) if home_score is not None else None
-    except (TypeError, ValueError):
-        home_score = None
-    try:
-        away_score = int(away_score) if away_score is not None else None
-    except (TypeError, ValueError):
-        away_score = None
-
-    score = (
-        f"{home_score}-{away_score}"
-        if home_score is not None and away_score is not None
-        else "—"
-    )
-
-    priority = LEAGUE_PRIORITY.get(league_name)
-    if priority is None:
-        lower = league_name.lower()
-        if any(k.lower() in lower for k in LEAGUE_KEYWORDS):
-            priority = 60
-        else:
-            priority = 0
-
-    return {
-        "id": str(fixture_id),
-        "league": league_name,
-        "league_fa": LEAGUE_FA.get(league_name, league_name),
-        "home": home,
-        "away": away,
-        "kickoff": kickoff,
-        "priority": priority,
-        "state": state,
-        "started": live or finished,
-        "finished": finished,
-        "cancelled": cancelled,
-        "home_score": home_score,
-        "away_score": away_score,
-        "score": score,
-    }
-
-
-def _serialize_fixture(item):
-    result = dict(item)
-    result["kickoff"] = item["kickoff"].isoformat()
-    return result
-
-
-def _deserialize_fixture(item):
-    try:
-        result = dict(item)
-        result["kickoff"] = datetime.fromisoformat(result["kickoff"]).astimezone(TEHRAN)
-        return result
-    except Exception:
-        return None
-
-
-def _is_important_fixture(item):
-    teams = f'{item["home"]} {item["away"]}'.lower()
-    return (
-        item["league"] in IMPORTANT_LEAGUES
-        or any(keyword in teams for keyword in IMPORTANT_TEAM_KEYWORDS)
-    )
-
-
-def fetch_matches_for_utc_date(date_value, history=None):
-    """API-Football primary source; FotMob remains a last-resort fallback."""
-    history = history if history is not None else load_history()
-
-    if date_value != local_date():
-        return []
-
-    api_response = _api_football_get(
-        "/fixtures",
-        {
-            "date": date_value.strftime("%Y-%m-%d"),
-            "timezone": "Asia/Tehran",
-        },
-        history,
-    )
-
-    if api_response is not None:
-        matches = []
-        for raw in api_response:
-            item = _normalize_api_fixture(raw)
-            if item and _is_important_fixture(item):
-                matches.append(item)
-        print(
-            f"FOOTBALL: API-Football returned {len(api_response)} fixtures; "
-            f"important={len(matches)}"
-        )
-        return matches
-
-    # Last-resort free fallback only. We never call ESPN anymore.
-    try:
-        payload = _http_get_json(
-            FOTMOB_API_URL,
-            {"date": date_value.strftime("%Y%m%d")},
-        )
-        return payload.get("leagues", []) if isinstance(payload, dict) else []
-    except Exception as exc:
-        print(f"FOOTBALL: fallback source failed for {date_value}: {exc}")
-        return []
-
-
-def _score_value(value):
-    if value is None:
-        return None
-    if isinstance(value, bool):
-        return None
-    if isinstance(value, (int, float)):
-        return int(value)
-    text = str(value).strip()
-    if text.isdigit():
-        return int(text)
-    return None
-
-
-def extract_score(match, status):
-    score_str = status.get("scoreStr") or status.get("score")
-    if isinstance(score_str, str):
-        # FotMob commonly exposes strings such as "2 - 1".
-        parts = score_str.replace("–", "-").replace("—", "-").split("-")
-        if len(parts) >= 2:
-            home = _score_value(parts[0].strip())
-            away = _score_value(parts[1].strip())
-            if home is not None and away is not None:
-                return home, away
-
-    home_obj = match.get("home") or {}
-    away_obj = match.get("away") or {}
-
-    home_score = (
-        _score_value(home_obj.get("score"))
-        if isinstance(home_obj, dict)
-        else None
-    )
-    away_score = (
-        _score_value(away_obj.get("score"))
-        if isinstance(away_obj, dict)
-        else None
-    )
-
-    if home_score is None:
-        home_score = _score_value(status.get("homeScore"))
-    if away_score is None:
-        away_score = _score_value(status.get("awayScore"))
-
-    return home_score, away_score
-
-
-def normalize_match(league, match):
-    status = match.get("status") or {}
-    utc_value = status.get("utcTime")
-    if not utc_value:
-        return None
-
-    try:
-        kickoff = datetime.fromisoformat(
-            str(utc_value).replace("Z", "+00:00")
-        ).astimezone(TEHRAN)
-    except Exception:
-        return None
-
-    if kickoff.date() != local_date():
-        return None
-
-    league_name = str(league.get("name") or "").strip()
-    home = str((match.get("home") or {}).get("name") or "").strip()
-    away = str((match.get("away") or {}).get("name") or "").strip()
-
-    if not league_name or not home or not away:
-        return None
-
-    priority = LEAGUE_PRIORITY.get(league_name)
-    if priority is None:
-        lower = league_name.lower()
-        if any(k.lower() in lower for k in LEAGUE_KEYWORDS):
-            priority = 60
-        else:
-            return None
-
-    started = bool(status.get("started"))
-    finished = bool(status.get("finished"))
-    cancelled = bool(status.get("cancelled"))
-    home_score, away_score = extract_score(match, status)
-
-    if cancelled:
-        state = "❌ لغو شده"
-    elif finished:
-        state = "✅ پایان یافته"
-    elif started:
-        state = "🔴 زنده"
-    else:
-        state = "⏰ برنامه‌ریزی‌شده"
-
-    if home_score is not None and away_score is not None:
-        score = f"{home_score}-{away_score}"
-    else:
-        score = "—"
-
-    return {
-        "id": str(match.get("id") or f"{home}-{away}-{utc_value}"),
-        "league": league_name,
-        "league_fa": LEAGUE_FA.get(league_name, league_name),
-        "home": home,
-        "away": away,
-        "kickoff": kickoff,
-        "priority": priority,
-        "state": state,
-        "started": started,
-        "finished": finished,
-        "cancelled": cancelled,
-        "home_score": home_score,
-        "away_score": away_score,
-        "score": score,
-    }
-
-
-def get_today_matches():
-    history = load_history()
-    today = local_date()
-    day_key = today.isoformat()
-
-    cached = []
-    if history.get("fixtures_cache_date") == day_key:
-        cached = [
-            item
-            for raw in (history.get("fixtures_cache") or [])
-            for item in [_deserialize_fixture(raw)]
-            if item
-        ]
-
-    # One daily fixture discovery call. It is cached in GitHub state and reused
-    # by every subsequent 10-minute run.
-    if not cached:
-        fresh = fetch_matches_for_utc_date(today, history)
-        if fresh and all(isinstance(x.get("kickoff"), datetime) for x in fresh):
-            cached = fresh
-            history["fixtures_cache_date"] = day_key
-            history["fixtures_cache"] = [_serialize_fixture(x) for x in cached]
-            save_history(history)
-
-    if not cached:
-        print("FOOTBALL: no API-Football fixtures available today.")
-        return []
-
-    # Refresh the same day's fixture slate during the main football window.
-    # This updates both live scores and matches that have just finished, while
-    # remaining under the free quota because the refresh window is bounded.
-    hour = local_now().hour
-    in_refresh_window = (
-        hour >= FOOTBALL_REFRESH_START_HOUR
-        or hour < FOOTBALL_REFRESH_END_HOUR
-    )
-    if in_refresh_window:
-        refreshed = fetch_matches_for_utc_date(today, history)
-        if refreshed and all(isinstance(x.get("kickoff"), datetime) for x in refreshed):
-            by_id = {x["id"]: x for x in cached}
-            for item in refreshed:
-                by_id[item["id"]] = item
-            cached = list(by_id.values())
-            history["fixtures_cache_date"] = day_key
-            history["fixtures_cache"] = [_serialize_fixture(x) for x in cached]
-            save_history(history)
-
-    return sorted(
-        cached,
-        key=lambda x: (x["kickoff"], -x["priority"], x["league_fa"], x["home"]),
-    )
-
-
-# Only high-interest fixtures belong in the public daily table.
-# The bot deliberately excludes lower-profile domestic/second-tier games.
-IMPORTANT_TEAM_KEYWORDS = (
-    "real madrid", "barcelona", "atletico madrid", "manchester united",
-    "manchester city", "liverpool", "arsenal", "chelsea", "tottenham",
-    "bayern munich", "bayern", "borussia dortmund", "psg", "paris saint-germain",
-    "juventus", "inter", "milan", "napoli", "roma", "ajax", "psv",
-    "benfica", "porto", "galatasaray", "fenerbahce", "al hilal",
-    "al nassr", "persepolis", "esteghlal", "iran",
-)
-
-IMPORTANT_LEAGUES = {
-    "Premier League", "LaLiga", "Serie A", "Bundesliga", "Ligue 1",
-    "UEFA Champions League", "Champions League",
-    "UEFA Europa League", "Europa League",
-    "UEFA Conference League", "Conference League",
-    "Persian Gulf Pro League", "AFC Champions League",
-    "Saudi Pro League",
-}
-
-def select_matches(matches):
-    def importance(item):
-        league_bonus = 100 if item["league"] in IMPORTANT_LEAGUES else 0
-        teams = f'{item["home"]} {item["away"]}'.lower()
-        team_bonus = 40 if any(k in teams for k in IMPORTANT_TEAM_KEYWORDS) else 0
-        # Prioritize finals/knockout games and live/finished matches so important
-        # results remain visible even after kickoff.
-        state_bonus = 20 if item["started"] or item["finished"] else 0
-        return league_bonus + team_bonus + state_bonus + item["priority"]
-
-    selected = sorted(
-        matches,
-        key=lambda x: (-importance(x), x["kickoff"], x["home"])
-    )
-
-    # Keep the table intentionally compact: major fixtures only.
-    return selected[:12]
-
-
-def _result_lines(matches):
-    finished = [
-        m for m in sorted(matches, key=lambda x: x["kickoff"])
-        if m["finished"] and not m["cancelled"] and m["score"] != "—"
-    ]
-    lines = ["📊 نتایج نهایی"]
-    if not finished:
-        lines.append("هنوز بازی‌ای به پایان نرسیده است.")
-        return lines
-
-    for item in finished:
-        lines.append(
-            f"• {item['home']} {item['score']} {item['away']} | {item['league_fa']}"
-        )
-    return lines
-
-
-def build_caption(matches):
-    today = local_date()
-    results = _result_lines(matches)
-
-    # Telegram photo captions are limited. Keep this caption compact; the
-    # complete fixture table is rendered inside the updated football image.
-    lines = [
-        "⚽ برنامه فوتبال امروز | نبض خبر",
-        f"📅 {fa_digits(today.strftime('%Y/%m/%d'))}",
-        "🕐 تمام ساعت‌ها به وقت ایران (تهران)",
-        "",
-    ]
-    lines.extend(results)
-
-    if any(m["started"] and not m["finished"] for m in matches):
-        lines.extend(["", "🔴 بازی‌های در حال برگزاری با نتیجه لحظه‌ای نمایش داده می‌شوند."])
-
-    lines.extend([
-        "",
-        "#فوتبال #برنامه_فوتبال #نتایج_فوتبال #نبض_خبر",
-        "🔗 کانال نبض خبر: https://t.me/NabzKhabarOfficial",
-    ])
-
-    text = "\n".join(lines)
-    # Defensive cap: never send an oversized Telegram photo caption.
-    if len(text) > 1000:
-        base = [
-            "⚽ برنامه فوتبال امروز | نبض خبر",
-            f"📅 {fa_digits(today.strftime('%Y/%m/%d'))}",
-            "🕐 ساعت‌ها به وقت ایران (تهران)",
-            "",
-            "📊 نتایج نهایی در تصویر و جدول به‌روزرسانی می‌شوند.",
-            "",
-            "#فوتبال #برنامه_فوتبال #نتایج_فوتبال #نبض_خبر",
-            "🔗 کانال نبض خبر: https://t.me/NabzKhabarOfficial",
-        ]
-        text = "\n".join(base)
-    return text
-
-
 def _font(size):
     try:
         return ImageFont.truetype(FONT_PATH, size)
@@ -620,42 +110,113 @@ def _font(size):
         return ImageFont.load_default()
 
 
-def _short(text, max_len):
-    text = str(text or "")
-    return text if len(text) <= max_len else text[: max_len - 1] + "…"
+def _important(item):
+    teams = f'{item["home"]} {item["away"]}'.lower()
+    return (
+        item["league"] in IMPORTANT_LEAGUES
+        or any(team in teams for team in IMPORTANT_TEAMS)
+    )
 
 
-def create_schedule_image(matches):
-    """Generate the daily football table locally and refresh it as scores change."""
+def fetch_today():
+    key = os.getenv(API_KEY_ENV, "").strip()
+    if not key:
+        print("FOOTBALL: API_FOOTBALL_KEY is missing.")
+        return []
+
+    try:
+        response = requests.get(
+            f"{API_BASE}/fixtures",
+            params={"date": today_key(), "timezone": "Asia/Tehran"},
+            headers={"x-apisports-key": key, "Accept": "application/json"},
+            timeout=REQUEST_TIMEOUT,
+        )
+        payload = response.json()
+        if not response.ok or payload.get("errors"):
+            print(f"FOOTBALL: API-Football failed: {response.status_code} {payload.get('errors')}")
+            return []
+    except Exception as exc:
+        print(f"FOOTBALL: API-Football request failed: {exc}")
+        return []
+
+    matches = []
+    for raw in payload.get("response") or []:
+        fixture = raw.get("fixture") or {}
+        teams = raw.get("teams") or {}
+        league = raw.get("league") or {}
+        status = fixture.get("status") or {}
+        goals = raw.get("goals") or {}
+        try:
+            kickoff = datetime.fromisoformat(
+                str(fixture.get("date")).replace("Z", "+00:00")
+            ).astimezone(TEHRAN)
+        except Exception:
+            continue
+
+        home = str((teams.get("home") or {}).get("name") or "").strip()
+        away = str((teams.get("away") or {}).get("name") or "").strip()
+        league_name = str(league.get("name") or "").strip()
+        fixture_id = fixture.get("id")
+
+        if (
+            not fixture_id
+            or not home
+            or not away
+            or not league_name
+            or kickoff.strftime("%Y-%m-%d") != today_key()
+        ):
+            continue
+
+        item = {
+            "id": str(fixture_id),
+            "league": league_name,
+            "league_fa": LEAGUE_FA.get(league_name, league_name),
+            "home": home,
+            "away": away,
+            "kickoff": kickoff.isoformat(),
+            "priority": LEAGUE_PRIORITY.get(league_name, 0),
+            "home_score": goals.get("home"),
+            "away_score": goals.get("away"),
+            "status": str(status.get("short") or "").upper(),
+        }
+        if _important(item):
+            matches.append(item)
+
+    print(f"FOOTBALL: API-Football fixtures={len(payload.get('response') or [])} important={len(matches)}")
+    return matches
+
+
+def select_matches(matches):
+    def score(item):
+        teams = f'{item["home"]} {item["away"]}'.lower()
+        team_bonus = 40 if any(team in teams for team in IMPORTANT_TEAMS) else 0
+        league_bonus = 100 if item["league"] in IMPORTANT_LEAGUES else 0
+        return league_bonus + team_bonus + item["priority"]
+
+    return sorted(matches, key=lambda x: (-score(x), x["kickoff"], x["home"]))[:12]
+
+
+def kickoff_text(item):
+    return fa_digits(datetime.fromisoformat(item["kickoff"]).strftime("%H:%M"))
+
+
+def create_table_image(matches, final=False):
     width, height = 1600, 1250
     image = Image.new("RGB", (width, height), (7, 13, 11))
     draw = ImageDraw.Draw(image)
 
-    title_font = _font(72)
-    date_font = _font(36)
-    row_font = _font(28)
-    small_font = _font(24)
-    result_font = _font(27)
-
-    # Stadium background.
+    # Local football-themed background; no external image/API is used.
     draw.rectangle((0, 0, width, 330), fill=(12, 20, 29))
     for x in range(-40, width + 80, 70):
         draw.polygon([(x, 330), (x + 35, 120), (x + 70, 330)], fill=(17, 27, 36))
-
-    for x in (120, 410, 1190, 1480):
-        draw.line((x, 25, x - 18, 320), fill=(80, 90, 96), width=5)
-        draw.ellipse((x - 31, 18, x + 31, 55), fill=(225, 230, 220))
-
-    # Pitch.
     pitch_top = 280
     draw.polygon(
         [(95, pitch_top), (1505, pitch_top), (1590, height), (10, height)],
         fill=(20, 101, 53),
     )
-    stripe_width = 176
     for i in range(-1, 10):
-        x1 = 95 + i * stripe_width
-        x2 = x1 + stripe_width
+        x1 = 95 + i * 176
+        x2 = x1 + 176
         if i % 2 == 0:
             draw.polygon(
                 [(x1, pitch_top), (x2, pitch_top), (x2 + 85, height), (x1 + 85, height)],
@@ -667,271 +228,203 @@ def create_schedule_image(matches):
     draw.line((800, pitch_top, 800, height), fill=white, width=4)
     draw.ellipse((590, 555, 1010, 975), outline=white, width=5)
 
-    # Football.
-    ball_cx, ball_cy, ball_r = 1370, 1040, 95
-    draw.ellipse(
-        (ball_cx - ball_r, ball_cy - ball_r, ball_cx + ball_r, ball_cy + ball_r),
-        fill=(238, 241, 237),
-        outline=(38, 46, 43),
-        width=6,
-    )
-    pentagon = []
-    for i in range(5):
-        a = math.radians(-90 + i * 72)
-        pentagon.append((ball_cx + 31 * math.cos(a), ball_cy + 31 * math.sin(a)))
-    draw.polygon(pentagon, fill=(25, 30, 28))
-    for i in range(5):
-        a = math.radians(-90 + i * 72)
-        px = ball_cx + 31 * math.cos(a)
-        py = ball_cy + 31 * math.sin(a)
-        draw.line(
-            (px, py, ball_cx + 72 * math.cos(a), ball_cy + 72 * math.sin(a)),
-            fill=(50, 57, 53),
-            width=4,
-        )
-
-    # Editorial panel.
     overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
-    odraw = ImageDraw.Draw(overlay)
-    odraw.rounded_rectangle(
+    od = ImageDraw.Draw(overlay)
+    od.rounded_rectangle(
         (55, 250, 1320, 1160),
         radius=30,
-        fill=(5, 12, 10, 225),
+        fill=(5, 12, 10, 230),
         outline=(235, 240, 235, 90),
         width=2,
     )
     image = Image.alpha_composite(image.convert("RGBA"), overlay).convert("RGB")
     draw = ImageDraw.Draw(image)
 
-    draw.text((90, 38), "⚽ برنامه فوتبال امروز", font=title_font, fill="white")
-    draw.text((92, 128), "NABZ KHABAR  |  نبض خبر", font=date_font, fill=(210, 225, 216))
+    title = "📊 نتایج نهایی مسابقات امروز" if final else "⚽ برنامه مسابقات مهم امروز"
+    draw.text((90, 38), title, font=_font(62), fill="white")
+    draw.text((92, 125), "NABZ KHABAR  |  نبض خبر", font=_font(34), fill=(210, 225, 216))
     draw.text(
-        (92, 178),
-        f"{fa_digits(local_date().strftime('%Y/%m/%d'))}  •  ساعت ایران",
-        font=date_font,
+        (92, 175),
+        f'{fa_digits(now_tehran().strftime("%Y/%m/%d"))}  •  ساعت ایران',
+        font=_font(34),
         fill=(235, 240, 235),
     )
 
-    # Table header.
     draw.rounded_rectangle((82, 285, 1290, 335), radius=10, fill=(29, 54, 37))
-    draw.text((110, 296), "ساعت", font=small_font, fill="white")
-    draw.text((280, 296), "مسابقه", font=small_font, fill="white")
-    draw.text((955, 296), "نتیجه / وضعیت", font=small_font, fill="white")
+    draw.text((110, 296), "ساعت", font=_font(24), fill="white")
+    draw.text((280, 296), "مسابقه", font=_font(24), fill="white")
+    draw.text((955, 296), "نتیجه", font=_font(24), fill="white")
 
-    visible = sorted(matches, key=lambda x: x["kickoff"])[:18]
     y = 345
-
-    for item in visible:
-        row_fill = (18, 31, 24)
-        if item["finished"]:
-            row_fill = (22, 43, 28)
-        elif item["started"]:
-            row_fill = (42, 45, 19)
-
+    for item in sorted(matches, key=lambda x: x["kickoff"]):
         draw.rounded_rectangle(
             (82, y, 1290, y + 62),
             radius=12,
-            fill=row_fill,
+            fill=(22, 43, 28) if final else (18, 31, 24),
             outline=(69, 105, 80),
             width=1,
         )
-
-        time_text = fa_digits(item["kickoff"].strftime("%H:%M"))
-        matchup = _short(f'{item["home"]}  🆚  {item["away"]}', 52)
-
-        if item["finished"] and item["score"] != "—":
-            result_text = f"✅ {item['score']}"
-        elif item["started"] and item["score"] != "—":
-            result_text = f"🔴 {item['score']} | زنده"
-        elif item["cancelled"]:
-            result_text = "❌ لغو"
-        else:
-            result_text = "⏰ شروع"
-
-        draw.text((110, y + 16), time_text, font=row_font, fill="white")
-        draw.text((280, y + 8), matchup, font=row_font, fill=(250, 252, 250))
+        draw.text((110, y + 16), kickoff_text(item), font=_font(27), fill="white")
+        draw.text(
+            (280, y + 8),
+            f'{item["home"]}  🆚  {item["away"]}',
+            font=_font(27),
+            fill=(250, 252, 250),
+        )
         draw.text(
             (280, y + 38),
-            _short(item["league_fa"], 34),
-            font=_font(20),
+            item["league_fa"][:34],
+            font=_font(19),
             fill=(181, 202, 187),
         )
-        draw.text((955, y + 18), result_text, font=row_font, fill="white")
+        if final:
+            score = (
+                f'{item["home_score"]}-{item["away_score"]}'
+                if item["home_score"] is not None and item["away_score"] is not None
+                else ("لغو" if item["status"] in {"CANC", "ABD"} else "نتیجه ثبت نشد")
+            )
+        else:
+            score = "⏰"
+        draw.text((955, y + 17), fa_digits(score), font=_font(27), fill="white")
         y += 68
 
-    if len(matches) > 18:
-        draw.text(
-            (92, 1085),
-            f"+ {fa_digits(len(matches) - 18)} مسابقه دیگر در جدول کامل کانال",
-            font=small_font,
-            fill=(185, 205, 191),
-        )
+    draw.text((1040, 1200), "@NabzKhabarOfficial", font=_font(24), fill="white")
+    path = RESULTS_IMAGE if final else SCHEDULE_IMAGE
+    image.save(path, "JPEG", quality=92, optimize=True)
+    return path
 
-    # Results are deliberately placed at the bottom of the visual.
-    finished = [
-        m for m in sorted(matches, key=lambda x: x["kickoff"])
-        if m["finished"] and not m["cancelled"] and m["score"] != "—"
+
+def build_caption(matches, final=False):
+    date = fa_digits(now_tehran().strftime("%Y/%m/%d"))
+    lines = [
+        "📊 نتایج نهایی مسابقات مهم امروز | نبض خبر" if final else "⚽ برنامه مسابقات مهم امروز | نبض خبر",
+        f"📅 {date}",
+        "🕐 تمام ساعت‌ها به وقت ایران (تهران)",
+        "",
     ]
-    if finished:
-        draw.text((92, 1115), "📊 نتایج نهایی امروز:", font=result_font, fill="white")
-        compact = "  |  ".join(
-            f"{_short(m['home'], 18)} {m['score']} {_short(m['away'], 18)}"
-            for m in finished[:3]
-        )
-        draw.text((380, 1115), _short(compact, 62), font=_font(22), fill=(218, 232, 220))
 
-    draw.text((1040, 1200), "@NabzKhabarOfficial", font=small_font, fill="white")
+    if final:
+        for item in sorted(matches, key=lambda x: x["kickoff"]):
+            if item["home_score"] is not None and item["away_score"] is not None:
+                result = f'{item["home"]} {item["home_score"]}-{item["away_score"]} {item["away"]}'
+            elif item["status"] in {"CANC", "ABD"}:
+                result = f'{item["home"]} — لغو شد — {item["away"]}'
+            else:
+                result = f'{item["home"]} — نتیجه ثبت نشد — {item["away"]}'
+            lines.append(f"• {result} | {item['league_fa']}")
+    else:
+        for item in sorted(matches, key=lambda x: x["kickoff"]):
+            lines.append(
+                f'• {kickoff_text(item)} | {item["home"]} 🆚 {item["away"]} | {item["league_fa"]}'
+            )
 
-    image.save(IMAGE_PATH, "JPEG", quality=92, optimize=True)
-    return IMAGE_PATH
+    lines += [
+        "",
+        "#فوتبال #نتایج_فوتبال #نبض_خبر",
+        "🔗 کانال نبض خبر: https://t.me/NabzKhabarOfficial",
+    ]
+    return "\n".join(lines)[:1024]
 
 
-def _telegram_request(method, data=None, files=None):
-    token = os.getenv("BOT_TOKEN", "").strip()
+def send_photo(image_path, caption):
+    token = os.getenv(BOT_TOKEN_ENV, "").strip()
     if not token:
-        print("FOOTBALL: BOT_TOKEN missing; cannot manage live schedule message.")
-        return None
+        print("FOOTBALL: BOT_TOKEN missing.")
+        return False
 
     try:
-        response = requests.post(
-            TELEGRAM_API.format(token=token, method=method),
-            data=data or {},
-            files=files,
-            timeout=TELEGRAM_TIMEOUT,
-        )
-        payload = response.json()
-        if not response.ok or not payload.get("ok"):
-            print(f"FOOTBALL: Telegram {method} failed: {response.status_code} {payload}")
-            return None
-        return payload.get("result")
-    except Exception as exc:
-        print(f"FOOTBALL: Telegram {method} exception: {exc}")
-        return None
-
-
-def publish_new_message(image_path, caption):
-    result = _telegram_request(
-        "sendPhoto",
-        data={
-            "chat_id": "@NabzKhabarOfficial",
-            "caption": caption,
-        },
-        files={"photo": open(image_path, "rb")},
-    )
-    if isinstance(result, dict):
-        return result.get("message_id")
-    return None
-
-
-def update_existing_message(message_id, image_path, caption):
-    media = json.dumps(
-        {
-            "type": "photo",
-            "media": "attach://photo",
-            "caption": caption,
-        },
-        ensure_ascii=False,
-    )
-    result = _telegram_request(
-        "editMessageMedia",
-        data={
-            "chat_id": "@NabzKhabarOfficial",
-            "message_id": str(message_id),
-            "media": media,
-        },
-        files={"photo": open(image_path, "rb")},
-    )
-    return isinstance(result, dict)
-
-
-def _snapshot(matches):
-    payload = []
-    for item in sorted(matches, key=lambda x: x["kickoff"]):
-        payload.append(
-            (
-                item["id"],
-                item["state"],
-                item["score"],
-                item["home_score"],
-                item["away_score"],
+        with open(image_path, "rb") as photo:
+            response = requests.post(
+                f"https://api.telegram.org/bot{token}/sendPhoto",
+                data={"chat_id": CHANNEL, "caption": caption},
+                files={"photo": photo},
+                timeout=TELEGRAM_TIMEOUT,
             )
-        )
-    raw = json.dumps(payload, ensure_ascii=False, sort_keys=True)
-    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+        payload = response.json()
+        if response.ok and payload.get("ok"):
+            return True
+        print(f"FOOTBALL: Telegram sendPhoto failed: {response.status_code} {payload}")
+    except Exception as exc:
+        print(f"FOOTBALL: Telegram sendPhoto failed: {exc}")
+    return False
+
+
+def _serialize(item):
+    return dict(item)
+
+
+def _same_day_fixture_ids(items):
+    return [str(item["id"]) for item in items]
+
+
+def _final_matches_from_morning(morning, fresh):
+    wanted = set(_same_day_fixture_ids(morning))
+    by_id = {str(item["id"]): item for item in fresh}
+    return [by_id[item_id] for item_id in _same_day_fixture_ids(morning) if item_id in by_id]
 
 
 def post_daily_football_schedule(send_message, send_photo=None):
-    now = local_now()
-    day_key = now.strftime("%Y-%m-%d")
+    """
+    Final lightweight football flow:
+      1) One morning post with the important matches of the day.
+      2) One end-of-day post containing final results for exactly those matches.
+    No live scores, no message editing, no repeated refreshes, no secondary API.
+    """
+    now = now_tehran()
+    day = today_key()
     history = load_history()
 
-    # Initial publication happens shortly after midnight Iran time.
-    # Every later workflow run on the same day refreshes the same Telegram
-    # message, so finished games acquire their final score automatically.
-    matches = get_today_matches()
-    if not matches:
-        print("FOOTBALL: no supported fixtures found; no empty post sent.")
-        return False
-
-    selected = select_matches(matches)
-    image_path = create_schedule_image(selected)
-    caption = build_caption(selected)
-    current_snapshot = _snapshot(selected)
-
-    if history.get("last_posted_date") != day_key or not history.get("message_id"):
-        # The GitHub workflow runs on UTC times rather than at Tehran midnight,
-        # so publish on the first successful run of the local calendar day.
-        message_id = publish_new_message(image_path, caption)
-        if not message_id:
-            # Legacy fallback if direct Telegram management is unavailable.
-            if send_photo is not None and send_photo(image_path, caption):
-                print("FOOTBALL: daily schedule published through core sender.")
-                return True
-            if send_message(caption):
-                return True
+    # Morning publication: first successful workflow run of the Iran calendar day.
+    if history.get("morning_posted_date") != day:
+        matches = select_matches(fetch_today())
+        if not matches:
+            print("FOOTBALL: no important matches today; no morning post.")
             return False
 
-        history.update(
-            {
-                "last_posted_date": day_key,
-                "message_id": message_id,
-                "last_snapshot": current_snapshot,
-                "last_match_count": len(selected),
-                "updated_at": now.isoformat(),
-            }
-        )
+        image = create_table_image(matches, final=False)
+        caption = build_caption(matches, final=False)
+        if not send_photo(image, caption):
+            print("FOOTBALL: morning schedule publication failed.")
+            return False
+
+        history.update({
+            "morning_posted_date": day,
+            "morning_matches": [_serialize(x) for x in matches],
+            "final_posted_date": None,
+        })
         save_history(history)
-        print(
-            f"FOOTBALL: daily schedule published | date={day_key} | "
-            f"matches={len(selected)} | message_id={message_id}"
-        )
+        print(f"FOOTBALL: morning schedule published | date={day} | matches={len(matches)}")
         return True
 
-    # Same-day refresh: edit the original post instead of creating another
-    # message. This keeps the channel clean and gives the user live scores.
-    if history.get("last_snapshot") == current_snapshot:
+    # End-of-day publication: one fresh API call, once only, using the morning list.
+    # 23:00-23:59 Tehran is the publication window; no live polling is performed.
+    if now.hour < 23 or history.get("final_posted_date") == day:
         return False
 
-    message_id = history.get("message_id")
-    if not update_existing_message(message_id, image_path, caption):
-        print("FOOTBALL: live result update failed; keeping previous post.")
+    morning = history.get("morning_matches") or []
+    if not morning:
+        history["final_posted_date"] = day
+        save_history(history)
         return False
 
-    history.update(
-        {
-            "last_snapshot": current_snapshot,
-            "last_match_count": len(selected),
-            "updated_at": now.isoformat(),
-        }
-    )
+    fresh = fetch_today()
+    final_matches = _final_matches_from_morning(morning, fresh)
+    if len(final_matches) != len(morning):
+        print(
+            f"FOOTBALL: final result set incomplete "
+            f"({len(final_matches)}/{len(morning)}); will retry next run."
+        )
+        return False
+
+    image = create_table_image(final_matches, final=True)
+    caption = build_caption(final_matches, final=True)
+    if not send_photo(image, caption):
+        print("FOOTBALL: final results publication failed; will retry next run.")
+        return False
+
+    history["final_posted_date"] = day
+    history["final_results"] = [_serialize(x) for x in final_matches]
+    history["final_posted_at"] = now.isoformat()
     save_history(history)
-
-    finished_count = sum(
-        1 for item in selected if item["finished"] and item["score"] != "—"
-    )
-    live_count = sum(1 for item in selected if item["started"] and not item["finished"])
-    print(
-        f"FOOTBALL: schedule updated | date={day_key} | "
-        f"finished={finished_count} | live={live_count} | message_id={message_id}"
-    )
+    print(f"FOOTBALL: final results published | date={day} | matches={len(final_matches)}")
     return True
