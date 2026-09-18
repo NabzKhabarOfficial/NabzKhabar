@@ -45,7 +45,10 @@ AI_API_KEY = os.getenv("AI_API_KEY", "").strip()
 
 CHANNEL_ID = "@NabzKhabarOfficial"
 
-GEMINI_MODEL = "gemini-3.5-flash-lite"
+# Free-tier, high-volume model. Override with GEMINI_MODEL if needed.
+# Google currently lists Gemini 3.1 Flash-Lite as free-of-charge on the
+# standard Gemini API tier. Free tier is quota-limited, not literally unlimited.
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
 
 MAX_NEWS_PER_RUN = int(
     os.getenv("MAX_NEWS_PER_RUN", "4")
@@ -380,17 +383,19 @@ GOOGLE_NEWS_FEEDS = [
     ("اقتصاد", google_news_search_url(
         "اقتصاد ایران"
     )),
-    ("دلار", google_news_search_url(
-        "قیمت دلار بازار ایران"
+    # Replace price-specific discovery with broader high-value topics.
+    # Market price details remain handled by the dedicated market workflow.
+    ("جنگ و بحران", google_news_search_url(
+        "جنگ بحران درگیری حمله آتش بس جهان"
     )),
-    ("ارز", google_news_search_url(
-        "قیمت ارز ایران"
+    ("جهان", google_news_search_url(
+        "مهمترین اخبار جهان بین الملل"
     )),
-    ("طلا", google_news_search_url(
-        "قیمت طلا ایران"
+    ("هوش مصنوعی", google_news_search_url(
+        "هوش مصنوعی Gemini OpenAI Anthropic NVIDIA"
     )),
-    ("سکه", google_news_search_url(
-        "قیمت سکه ایران"
+    ("ورزش", google_news_search_url(
+        "ورزش فوتبال NBA لیگ قهرمانان"
     )),
     ("بورس", google_news_search_url(
         "بورس ایران"
