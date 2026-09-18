@@ -2486,141 +2486,84 @@ def add_watermark(
     input_path,
     output_path
 ):
-
+    """
+    Add a small, fixed-size watermark safely inside the image.
+    Uses Pillow's bottom-right anchor so font bbox offsets cannot
+    push the watermark outside the image.
+    """
     try:
-
-        image = Image.open(
-            input_path
-        ).convert(
-            "RGBA"
-        )
-
-        image = resize_for_telegram(
-            image
-        )
-
+        image = Image.open(input_path).convert("RGBA")
+        image = resize_for_telegram(image)
         width, height = image.size
 
-        # Small, proportional watermark.
-        # Keep it subtle so it never covers the photo.
+        # Intentionally small: branding without covering the photo.
         if width >= 1400:
-            font_size = 14
-        elif width >= 1000:
-            font_size = 13
-        elif width >= 700:
-            font_size = 12
-        else:
             font_size = 11
+        elif width >= 1000:
+            font_size = 10
+        elif width >= 700:
+            font_size = 10
+        else:
+            font_size = 9
 
-        font = find_font(
-            font_size,
-            bold=True
-        )
+        font = find_font(font_size, bold=True)
+        draw = ImageDraw.Draw(image, "RGBA")
 
-        draw = ImageDraw.Draw(
-            image,
-            "RGBA"
-        )
+        margin = max(8, int(min(width, height) * 0.012))
+        pad_x = 4
+        pad_y = 2
 
         bbox = draw.textbbox(
             (0, 0),
             WATERMARK_TEXT,
-            font=font
+            font=font,
+            anchor="rb",
         )
+        text_width = max(1, bbox[2] - bbox[0])
+        text_height = max(1, bbox[3] - bbox[1])
 
-        text_width = (
-            bbox[2] - bbox[0]
-        )
+        text_x = width - margin
+        text_y = height - margin
 
-        text_height = (
-            bbox[3] - bbox[1]
-        )
-
-        margin = max(
-            8,
-            int(width * 0.008)
-        )
-
-        # Account for Pillow's text bounding-box offsets so
-        # the watermark is never clipped at the edge.
-        x = (
-            width
-            - text_width
-            - margin
-            - bbox[0]
-        )
-
-        y = (
-            height
-            - text_height
-            - margin
-            - bbox[1]
-        )
-
-        # Final safety clamp.
-        x = max(
-            0,
-            min(
-                x,
-                width - text_width - bbox[0]
-            )
-        )
-
-        y = max(
-            0,
-            min(
-                y,
-                height - text_height - bbox[1]
-            )
-        )
-
-        pad_x = 4
-        pad_y = 2
+        rect = [
+            max(0, text_x - text_width - pad_x),
+            max(0, text_y - text_height - pad_y),
+            min(width - 1, text_x + pad_x),
+            min(height - 1, text_y + pad_y),
+        ]
 
         draw.rounded_rectangle(
-            [
-                x - pad_x,
-                y - pad_y,
-                x + text_width + pad_x,
-                y + text_height + pad_y
-            ],
-            radius=5,
-            fill=(0, 0, 0, 55)
+            rect,
+            radius=4,
+            fill=(0, 0, 0, 45),
         )
 
         draw.text(
-            (x + 1, y + 1),
+            (text_x + 1, text_y + 1),
             WATERMARK_TEXT,
             font=font,
-            fill=(0, 0, 0, 80)
+            anchor="rb",
+            fill=(0, 0, 0, 70),
         )
 
         draw.text(
-            (x, y),
+            (text_x, text_y),
             WATERMARK_TEXT,
             font=font,
-            fill=(255, 255, 255, 165)
+            anchor="rb",
+            fill=(255, 255, 255, 135),
         )
 
-        image = image.convert(
-            "RGB"
-        )
-
-        image.save(
+        image.convert("RGB").save(
             output_path,
             "JPEG",
             quality=90,
-            optimize=True
+            optimize=True,
         )
-
         return output_path
 
     except Exception as e:
-
-        print(
-            f"Watermark error: {e}"
-        )
-
+        print(f"Watermark error: {e}")
         return input_path
 
 
