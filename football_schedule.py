@@ -1,6 +1,7 @@
+import hashlib
 import json
+import math
 import os
-import re
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -10,8 +11,10 @@ from PIL import Image, ImageDraw, ImageFont
 
 TEHRAN = ZoneInfo("Asia/Tehran")
 API_URL = "https://www.fotmob.com/api/matches"
+TELEGRAM_API = "https://api.telegram.org/bot{}/{}"
 HISTORY_FILE = "football_schedule_history.json"
 REQUEST_TIMEOUT = 20
+TELEGRAM_TIMEOUT = 30
 FONT_PATH = "Vazirmatn-Bold.ttf"
 IMAGE_PATH = "football_schedule.jpg"
 
@@ -27,6 +30,7 @@ LEAGUE_PRIORITY = {
     "Europa League": 92,
     "UEFA Conference League": 91,
     "Conference League": 91,
+    "Persian Gulf Pro League": 88,
     "Saudi Pro League": 86,
     "Eredivisie": 84,
     "Liga Portugal": 83,
@@ -41,7 +45,6 @@ LEAGUE_PRIORITY = {
     "Brasileirão": 73,
     "Copa Libertadores": 72,
     "AFC Champions League": 71,
-    "Persian Gulf Pro League": 88,
 }
 
 LEAGUE_FA = {
@@ -56,6 +59,7 @@ LEAGUE_FA = {
     "Europa League": "لیگ اروپا",
     "UEFA Conference League": "لیگ کنفرانس اروپا",
     "Conference League": "لیگ کنفرانس اروپا",
+    "Persian Gulf Pro League": "لیگ برتر ایران",
     "Saudi Pro League": "لیگ حرفه‌ای عربستان",
     "Eredivisie": "اردیویسه هلند",
     "Liga Portugal": "لیگ پرتغال",
@@ -70,13 +74,9 @@ LEAGUE_FA = {
     "Brasileirão": "سری‌آ برزیل",
     "Copa Libertadores": "کوپا لیبرتادورس",
     "AFC Champions League": "لیگ قهرمانان آسیا",
-    "Persian Gulf Pro League": "لیگ برتر ایران",
 }
 
-# Only use a broad whitelist for the daily channel post. This prevents
-# hundreds of low-interest lower-division fixtures from flooding the channel.
 LEAGUE_KEYWORDS = tuple(LEAGUE_PRIORITY.keys())
-
 PERSIAN_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
 
 
@@ -88,7 +88,7 @@ def load_history():
     try:
         with open(HISTORY_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
-            return data if isinstance(data, dict) else {}
+        return data if isinstance(data, dict) else {}
     except Exception:
         return {}
 
@@ -100,20 +100,20 @@ def save_history(data):
     os.replace(tmp, HISTORY_FILE)
 
 
+def local_now():
+    return datetime.now(TEHRAN)
+
+
 def local_date():
-    return datetime.now(TEHRAN).date()
+    return local_now().date()
 
 
 def fetch_matches_for_utc_date(date_value):
-    date_str = date_value.strftime("%Y%m%d")
     response = requests.get(
         API_URL,
-        params={"date": date_str},
+        params={"date": date_value.strftime("%Y%m%d")},
         headers={
-            "User-Agent": (
-                "Mozilla/5.0 (X11; Linux x86_64) "
-                "AppleWebKit/537.36 Chrome/126 Safari/537.36"
-            ),
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/126 Safari/537.36",
             "Accept": "application/json,text/plain,*/*",
         },
         timeout=REQUEST_TIMEOUT,
@@ -121,6 +121,52 @@ def fetch_matches_for_utc_date(date_value):
     response.raise_for_status()
     payload = response.json()
     return payload.get("leagues", []) if isinstance(payload, dict) else []
+
+
+def _score_value(value):
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        return int(value)
+    text = str(value).strip()
+    if text.isdigit():
+        return int(text)
+    return None
+
+
+def extract_score(match, status):
+    score_str = status.get("scoreStr") or status.get("score")
+    if isinstance(score_str, str):
+        # FotMob commonly exposes strings such as "2 - 1".
+        parts = score_str.replace("–", "-").replace("—", "-").split("-")
+        if len(parts) >= 2:
+            home = _score_value(parts[0].strip())
+            away = _score_value(parts[1].strip())
+            if home is not None and away is not None:
+                return home, away
+
+    home_obj = match.get("home") or {}
+    away_obj = match.get("away") or {}
+
+    home_score = (
+        _score_value(home_obj.get("score"))
+        if isinstance(home_obj, dict)
+        else None
+    )
+    away_score = (
+        _score_value(away_obj.get("score"))
+        if isinstance(away_obj, dict)
+        else None
+    )
+
+    if home_score is None:
+        home_score = _score_value(status.get("homeScore"))
+    if away_score is None:
+        away_score = _score_value(status.get("awayScore"))
+
+    return home_score, away_score
 
 
 def normalize_match(league, match):
@@ -131,7 +177,7 @@ def normalize_match(league, match):
 
     try:
         kickoff = datetime.fromisoformat(
-            utc_value.replace("Z", "+00:00")
+            str(utc_value).replace("Z", "+00:00")
         ).astimezone(TEHRAN)
     except Exception:
         return None
@@ -148,7 +194,6 @@ def normalize_match(league, match):
 
     priority = LEAGUE_PRIORITY.get(league_name)
     if priority is None:
-        # Handle small naming differences without accepting every league.
         lower = league_name.lower()
         if any(k.lower() in lower for k in LEAGUE_KEYWORDS):
             priority = 60
@@ -158,6 +203,7 @@ def normalize_match(league, match):
     started = bool(status.get("started"))
     finished = bool(status.get("finished"))
     cancelled = bool(status.get("cancelled"))
+    home_score, away_score = extract_score(match, status)
 
     if cancelled:
         state = "❌ لغو شده"
@@ -167,6 +213,11 @@ def normalize_match(league, match):
         state = "🔴 زنده"
     else:
         state = "⏰ برنامه‌ریزی‌شده"
+
+    if home_score is not None and away_score is not None:
+        score = f"{home_score}-{away_score}"
+    else:
+        score = "—"
 
     return {
         "id": str(match.get("id") or f"{home}-{away}-{utc_value}"),
@@ -179,6 +230,10 @@ def normalize_match(league, match):
         "state": state,
         "started": started,
         "finished": finished,
+        "cancelled": cancelled,
+        "home_score": home_score,
+        "away_score": away_score,
+        "score": score,
     }
 
 
@@ -186,7 +241,7 @@ def get_today_matches():
     today = local_date()
     all_matches = {}
 
-    # Query both UTC calendar dates around Iran's local day boundary.
+    # Iran's local day can straddle two UTC calendar dates.
     for utc_date in (today - timedelta(days=1), today):
         try:
             leagues = fetch_matches_for_utc_date(utc_date)
@@ -201,102 +256,112 @@ def get_today_matches():
                     all_matches[item["id"]] = item
 
     matches = list(all_matches.values())
-    matches.sort(
-        key=lambda x: (
-            x["kickoff"],
-            -x["priority"],
-            x["league_fa"],
-            x["home"],
-        )
-    )
+    matches.sort(key=lambda x: (x["kickoff"], -x["priority"], x["league_fa"], x["home"]))
     return matches
 
 
 def select_matches(matches):
-    # Professional daily post: prioritize major competitions, while still
-    # allowing a reasonable number of other notable fixtures.
     major = sorted(
         matches,
         key=lambda x: (-x["priority"], x["kickoff"], x["home"])
     )
-
-    # Keep at most 32 fixtures in one post.
     return major[:32]
 
 
-def build_message(matches):
+def _result_lines(matches):
+    finished = [
+        m for m in sorted(matches, key=lambda x: x["kickoff"])
+        if m["finished"] and not m["cancelled"] and m["score"] != "—"
+    ]
+    lines = ["📊 نتایج نهایی"]
+    if not finished:
+        lines.append("هنوز بازی‌ای به پایان نرسیده است.")
+        return lines
+
+    for item in finished:
+        lines.append(
+            f"• {item['home']} {item['score']} {item['away']} | {item['league_fa']}"
+        )
+    return lines
+
+
+def build_caption(matches):
     today = local_date()
+    results = _result_lines(matches)
+
+    # Telegram photo captions are limited. Keep this caption compact; the
+    # complete fixture table is rendered inside the updated football image.
     lines = [
         "⚽ برنامه فوتبال امروز | نبض خبر",
         f"📅 {fa_digits(today.strftime('%Y/%m/%d'))}",
         "🕐 تمام ساعت‌ها به وقت ایران (تهران)",
         "",
-        "┌────────┬────────────────────────────────────────┐",
-        "│  ساعت  │ مسابقه                                  │",
-        "├────────┼────────────────────────────────────────┤",
     ]
+    lines.extend(results)
 
-    for item in sorted(matches, key=lambda x: x["kickoff"]):
-        time_text = fa_digits(item["kickoff"].strftime("%H:%M"))
-        matchup = f'{item["home"]} 🆚 {item["away"]}'
-        if len(matchup) > 39:
-            matchup = matchup[:38] + "…"
-
-        # Avoid relying on RTL spacing for the table itself.
-        lines.append(f"│ {time_text} │ {matchup:<39} │")
-
-        status = item["state"]
-        lines.append(f"│        │ 🏆 {item['league_fa']} | {status:<18} │")
+    if any(m["started"] and not m["finished"] for m in matches):
+        lines.extend(["", "🔴 بازی‌های در حال برگزاری با نتیجه لحظه‌ای نمایش داده می‌شوند."])
 
     lines.extend([
-        "└────────┴────────────────────────────────────────┘",
         "",
-        "📌 مسابقات بر اساس ساعت ایران مرتب شده‌اند.",
-        "🔴 = در حال برگزاری   ⏰ = زمان شروع   ✅ = پایان‌یافته",
-        "",
-        "#فوتبال #برنامه_فوتبال #نبض_خبر",
-        "",
+        "#فوتبال #برنامه_فوتبال #نتایج_فوتبال #نبض_خبر",
         "🔗 کانال نبض خبر: https://t.me/NabzKhabarOfficial",
     ])
-    return "\n".join(lines)
+
+    text = "\n".join(lines)
+    # Defensive cap: never send an oversized Telegram photo caption.
+    if len(text) > 1000:
+        base = [
+            "⚽ برنامه فوتبال امروز | نبض خبر",
+            f"📅 {fa_digits(today.strftime('%Y/%m/%d'))}",
+            "🕐 ساعت‌ها به وقت ایران (تهران)",
+            "",
+            "📊 نتایج نهایی در تصویر و جدول به‌روزرسانی می‌شوند.",
+            "",
+            "#فوتبال #برنامه_فوتبال #نتایج_فوتبال #نبض_خبر",
+            "🔗 کانال نبض خبر: https://t.me/NabzKhabarOfficial",
+        ]
+        text = "\n".join(base)
+    return text
+
+
+def _font(size):
+    try:
+        return ImageFont.truetype(FONT_PATH, size)
+    except Exception:
+        return ImageFont.load_default()
+
+
+def _short(text, max_len):
+    text = str(text or "")
+    return text if len(text) <= max_len else text[: max_len - 1] + "…"
 
 
 def create_schedule_image(matches):
-    """Create a genuinely football-themed daily visual with the real fixtures."""
-    width, height = 1600, 900
-    image = Image.new("RGB", (width, height), (8, 16, 12))
+    """Generate the daily football table locally and refresh it as scores change."""
+    width, height = 1600, 1250
+    image = Image.new("RGB", (width, height), (7, 13, 11))
     draw = ImageDraw.Draw(image)
 
-    try:
-        title_font = ImageFont.truetype(FONT_PATH, 78)
-        date_font = ImageFont.truetype(FONT_PATH, 38)
-        row_font = ImageFont.truetype(FONT_PATH, 31)
-        small_font = ImageFont.truetype(FONT_PATH, 25)
-        tiny_font = ImageFont.truetype(FONT_PATH, 22)
-    except Exception:
-        title_font = date_font = row_font = small_font = tiny_font = ImageFont.load_default()
+    title_font = _font(72)
+    date_font = _font(36)
+    row_font = _font(28)
+    small_font = _font(24)
+    result_font = _font(27)
 
-    # Football stadium / pitch background. Everything is generated locally,
-    # so the daily visual stays free, deterministic and independent of an
-    # external image host.
-    draw.rectangle((0, 0, width, height), fill=(7, 13, 11))
-
-    # Stadium stands and floodlights.
-    draw.rectangle((0, 0, width, 285), fill=(12, 20, 29))
+    # Stadium background.
+    draw.rectangle((0, 0, width, 330), fill=(12, 20, 29))
     for x in range(-40, width + 80, 70):
-        draw.polygon(
-            [(x, 285), (x + 35, 110), (x + 70, 285)],
-            fill=(17, 27, 36),
-        )
-    for x in (120, 410, 1190, 1480):
-        draw.line((x, 25, x - 18, 285), fill=(80, 90, 96), width=5)
-        draw.ellipse((x - 31, 18, x + 31, 55), fill=(225, 230, 220))
-        draw.ellipse((x - 20, 25, x + 20, 47), fill=(255, 255, 245))
+        draw.polygon([(x, 330), (x + 35, 120), (x + 70, 330)], fill=(17, 27, 36))
 
-    # Pitch with perspective bands.
-    pitch_top = 245
+    for x in (120, 410, 1190, 1480):
+        draw.line((x, 25, x - 18, 320), fill=(80, 90, 96), width=5)
+        draw.ellipse((x - 31, 18, x + 31, 55), fill=(225, 230, 220))
+
+    # Pitch.
+    pitch_top = 280
     draw.polygon(
-        [(95, pitch_top), (1505, pitch_top), (1590, 900), (10, 900)],
+        [(95, pitch_top), (1505, pitch_top), (1590, height), (10, height)],
         fill=(20, 101, 53),
     )
     stripe_width = 176
@@ -305,37 +370,24 @@ def create_schedule_image(matches):
         x2 = x1 + stripe_width
         if i % 2 == 0:
             draw.polygon(
-                [(x1, pitch_top), (x2, pitch_top), (x2 + 85, 900), (x1 + 85, 900)],
+                [(x1, pitch_top), (x2, pitch_top), (x2 + 85, height), (x1 + 85, height)],
                 fill=(23, 111, 58),
             )
 
-    # Pitch markings.
     white = (232, 238, 233)
     draw.line((95, pitch_top, 1505, pitch_top), fill=white, width=5)
-    draw.line((10, 900, 1590, 900), fill=white, width=5)
-    draw.line((800, pitch_top, 800, 900), fill=white, width=4)
-    draw.ellipse((590, 470, 1010, 890), outline=white, width=5)
-    draw.ellipse((792, 672, 808, 688), fill=white)
+    draw.line((800, pitch_top, 800, height), fill=white, width=4)
+    draw.ellipse((590, 555, 1010, 975), outline=white, width=5)
 
-    # Penalty boxes and goals.
-    draw.rectangle((420, 245, 1180, 530), outline=white, width=5)
-    draw.rectangle((550, 245, 1050, 410), outline=white, width=4)
-    draw.rectangle((640, 245, 960, 330), outline=white, width=4)
-    draw.rectangle((640, 245, 960, 280), outline=(215, 225, 218), width=4)
-    draw.rectangle((660, 220, 940, 250), outline=white, width=5)
-
-    # Football in the foreground.
-    ball_cx, ball_cy, ball_r = 1350, 700, 108
+    # Football.
+    ball_cx, ball_cy, ball_r = 1370, 1040, 95
     draw.ellipse(
         (ball_cx - ball_r, ball_cy - ball_r, ball_cx + ball_r, ball_cy + ball_r),
         fill=(238, 241, 237),
         outline=(38, 46, 43),
         width=6,
     )
-    # Simple pentagon/hexagon style panels to make the object unmistakably a ball.
-    center = (ball_cx, ball_cy)
     pentagon = []
-    import math
     for i in range(5):
         a = math.radians(-90 + i * 72)
         pentagon.append((ball_cx + 31 * math.cos(a), ball_cy + 31 * math.sin(a)))
@@ -344,100 +396,256 @@ def create_schedule_image(matches):
         a = math.radians(-90 + i * 72)
         px = ball_cx + 31 * math.cos(a)
         py = ball_cy + 31 * math.sin(a)
-        draw.line((px, py, ball_cx + 72 * math.cos(a), ball_cy + 72 * math.sin(a)), fill=(50, 57, 53), width=4)
+        draw.line(
+            (px, py, ball_cx + 72 * math.cos(a), ball_cy + 72 * math.sin(a)),
+            fill=(50, 57, 53),
+            width=4,
+        )
 
-    # Dark editorial panel: preserves the football scene while keeping
-    # the actual daily fixtures legible.
-    panel = (55, 300, 1285, 865)
+    # Editorial panel.
     overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     odraw = ImageDraw.Draw(overlay)
-    odraw.rounded_rectangle(panel, radius=32, fill=(5, 12, 10, 222), outline=(235, 240, 235, 90), width=2)
+    odraw.rounded_rectangle(
+        (55, 250, 1320, 1160),
+        radius=30,
+        fill=(5, 12, 10, 225),
+        outline=(235, 240, 235, 90),
+        width=2,
+    )
     image = Image.alpha_composite(image.convert("RGBA"), overlay).convert("RGB")
     draw = ImageDraw.Draw(image)
 
-    draw.text((90, 48), "⚽ برنامه فوتبال امروز", font=title_font, fill="white")
-    draw.text((92, 145), "NABZ KHABAR  |  نبض خبر", font=date_font, fill=(210, 225, 216))
+    draw.text((90, 38), "⚽ برنامه فوتبال امروز", font=title_font, fill="white")
+    draw.text((92, 128), "NABZ KHABAR  |  نبض خبر", font=date_font, fill=(210, 225, 216))
     draw.text(
-        (92, 198),
+        (92, 178),
         f"{fa_digits(local_date().strftime('%Y/%m/%d'))}  •  ساعت ایران",
         font=date_font,
         fill=(235, 240, 235),
     )
 
-    # Real matches from the day's data are placed on top of the scene.
-    visible = sorted(matches, key=lambda x: x["kickoff"])[:8]
-    y = 325
-    for index, item in enumerate(visible):
-        if y > 785:
-            break
+    # Table header.
+    draw.rounded_rectangle((82, 285, 1290, 335), radius=10, fill=(29, 54, 37))
+    draw.text((110, 296), "ساعت", font=small_font, fill="white")
+    draw.text((280, 296), "مسابقه", font=small_font, fill="white")
+    draw.text((955, 296), "نتیجه / وضعیت", font=small_font, fill="white")
+
+    visible = sorted(matches, key=lambda x: x["kickoff"])[:18]
+    y = 345
+
+    for item in visible:
+        row_fill = (18, 31, 24)
+        if item["finished"]:
+            row_fill = (22, 43, 28)
+        elif item["started"]:
+            row_fill = (42, 45, 19)
+
         draw.rounded_rectangle(
-            (82, y, 1258, y + 62),
-            radius=14,
-            fill=(18, 31, 24),
+            (82, y, 1290, y + 62),
+            radius=12,
+            fill=row_fill,
             outline=(69, 105, 80),
             width=1,
         )
+
         time_text = fa_digits(item["kickoff"].strftime("%H:%M"))
-        draw.text((110, y + 14), time_text, font=row_font, fill=(255, 255, 255))
+        matchup = _short(f'{item["home"]}  🆚  {item["away"]}', 52)
 
-        matchup = f'{item["home"]}  🆚  {item["away"]}'
-        if len(matchup) > 52:
-            matchup = matchup[:49] + "..."
-        draw.text((300, y + 10), matchup, font=row_font, fill=(250, 252, 250))
-        draw.text((300, y + 42), item["league_fa"], font=tiny_font, fill=(181, 202, 187))
-        y += 67
+        if item["finished"] and item["score"] != "—":
+            result_text = f"✅ {item['score']}"
+        elif item["started"] and item["score"] != "—":
+            result_text = f"🔴 {item['score']} | زنده"
+        elif item["cancelled"]:
+            result_text = "❌ لغو"
+        else:
+            result_text = "⏰ شروع"
 
-    if len(matches) > 8:
+        draw.text((110, y + 16), time_text, font=row_font, fill="white")
+        draw.text((280, y + 8), matchup, font=row_font, fill=(250, 252, 250))
         draw.text(
-            (92, 812),
-            f"+ {fa_digits(len(matches) - 8)} مسابقه دیگر در جدول کانال",
+            (280, y + 38),
+            _short(item["league_fa"], 34),
+            font=_font(20),
+            fill=(181, 202, 187),
+        )
+        draw.text((955, y + 18), result_text, font=row_font, fill="white")
+        y += 68
+
+    if len(matches) > 18:
+        draw.text(
+            (92, 1085),
+            f"+ {fa_digits(len(matches) - 18)} مسابقه دیگر در جدول کامل کانال",
             font=small_font,
             fill=(185, 205, 191),
         )
-    draw.text((1030, 812), "@NabzKhabarOfficial", font=small_font, fill="white")
 
-    image.save(IMAGE_PATH, "JPEG", quality=94, optimize=True)
+    # Results are deliberately placed at the bottom of the visual.
+    finished = [
+        m for m in sorted(matches, key=lambda x: x["kickoff"])
+        if m["finished"] and not m["cancelled"] and m["score"] != "—"
+    ]
+    if finished:
+        draw.text((92, 1115), "📊 نتایج نهایی امروز:", font=result_font, fill="white")
+        compact = "  |  ".join(
+            f"{_short(m['home'], 18)} {m['score']} {_short(m['away'], 18)}"
+            for m in finished[:3]
+        )
+        draw.text((380, 1115), _short(compact, 62), font=_font(22), fill=(218, 232, 220))
+
+    draw.text((1040, 1200), "@NabzKhabarOfficial", font=small_font, fill="white")
+
+    image.save(IMAGE_PATH, "JPEG", quality=92, optimize=True)
     return IMAGE_PATH
 
+
+def _telegram_request(method, data=None, files=None):
+    token = os.getenv("BOT_TOKEN", "").strip()
+    if not token:
+        print("FOOTBALL: BOT_TOKEN missing; cannot manage live schedule message.")
+        return None
+
+    try:
+        response = requests.post(
+            TELEGRAM_API.format(token=token, method=method),
+            data=data or {},
+            files=files,
+            timeout=TELEGRAM_TIMEOUT,
+        )
+        payload = response.json()
+        if not response.ok or not payload.get("ok"):
+            print(f"FOOTBALL: Telegram {method} failed: {response.status_code} {payload}")
+            return None
+        return payload.get("result")
+    except Exception as exc:
+        print(f"FOOTBALL: Telegram {method} exception: {exc}")
+        return None
+
+
+def publish_new_message(image_path, caption):
+    result = _telegram_request(
+        "sendPhoto",
+        data={
+            "chat_id": "@NabzKhabarOfficial",
+            "caption": caption,
+        },
+        files={"photo": open(image_path, "rb")},
+    )
+    if isinstance(result, dict):
+        return result.get("message_id")
+    return None
+
+
+def update_existing_message(message_id, image_path, caption):
+    media = json.dumps(
+        {
+            "type": "photo",
+            "media": "attach://photo",
+            "caption": caption,
+        },
+        ensure_ascii=False,
+    )
+    result = _telegram_request(
+        "editMessageMedia",
+        data={
+            "chat_id": "@NabzKhabarOfficial",
+            "message_id": str(message_id),
+            "media": media,
+        },
+        files={"photo": open(image_path, "rb")},
+    )
+    return isinstance(result, dict)
+
+
+def _snapshot(matches):
+    payload = []
+    for item in sorted(matches, key=lambda x: x["kickoff"]):
+        payload.append(
+            (
+                item["id"],
+                item["state"],
+                item["score"],
+                item["home_score"],
+                item["away_score"],
+            )
+        )
+    raw = json.dumps(payload, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
 def post_daily_football_schedule(send_message, send_photo=None):
-    now = datetime.now(TEHRAN)
+    now = local_now()
     day_key = now.strftime("%Y-%m-%d")
     history = load_history()
 
-    # Post during the first 30 minutes of each Iran calendar day. The
-    # workflow runs every 10 minutes, so this tolerates a missed single run.
-    if now.hour != 0 or now.minute >= 30:
-        return False
-
-    if history.get("last_posted_date") == day_key:
-        print(f"FOOTBALL: schedule already posted for {day_key}")
-        return False
-
+    # Initial publication happens shortly after midnight Iran time.
+    # Every later workflow run on the same day refreshes the same Telegram
+    # message, so finished games acquire their final score automatically.
     matches = get_today_matches()
     if not matches:
         print("FOOTBALL: no supported fixtures found; no empty post sent.")
         return False
 
     selected = select_matches(matches)
-    message = build_message(selected)
     image_path = create_schedule_image(selected)
+    caption = build_caption(selected)
+    current_snapshot = _snapshot(selected)
 
-    if send_photo is not None:
-        if not send_photo(image_path, message):
-            print("FOOTBALL: photo publication failed; falling back to text.")
-            if not send_message(message):
-                return False
-    elif not send_message(message):
-        print("FOOTBALL: Telegram publication failed.")
+    if history.get("last_posted_date") != day_key or not history.get("message_id"):
+        # Only create a new daily post during the first 30 minutes of the day.
+        if now.hour != 0 or now.minute >= 30:
+            return False
+
+        message_id = publish_new_message(image_path, caption)
+        if not message_id:
+            # Legacy fallback if direct Telegram management is unavailable.
+            if send_photo is not None and send_photo(image_path, caption):
+                print("FOOTBALL: daily schedule published through core sender.")
+                return True
+            if send_message(caption):
+                return True
+            return False
+
+        history.update(
+            {
+                "last_posted_date": day_key,
+                "message_id": message_id,
+                "last_snapshot": current_snapshot,
+                "last_match_count": len(selected),
+                "updated_at": now.isoformat(),
+            }
+        )
+        save_history(history)
+        print(
+            f"FOOTBALL: daily schedule published | date={day_key} | "
+            f"matches={len(selected)} | message_id={message_id}"
+        )
+        return True
+
+    # Same-day refresh: edit the original post instead of creating another
+    # message. This keeps the channel clean and gives the user live scores.
+    if history.get("last_snapshot") == current_snapshot:
         return False
 
-    history["last_posted_date"] = day_key
-    history["last_match_count"] = len(selected)
-    history["updated_at"] = now.isoformat()
+    message_id = history.get("message_id")
+    if not update_existing_message(message_id, image_path, caption):
+        print("FOOTBALL: live result update failed; keeping previous post.")
+        return False
+
+    history.update(
+        {
+            "last_snapshot": current_snapshot,
+            "last_match_count": len(selected),
+            "updated_at": now.isoformat(),
+        }
+    )
     save_history(history)
 
+    finished_count = sum(
+        1 for item in selected if item["finished"] and item["score"] != "—"
+    )
+    live_count = sum(1 for item in selected if item["started"] and not item["finished"])
     print(
-        f"FOOTBALL: daily schedule published | "
-        f"date={day_key} | matches={len(selected)}"
+        f"FOOTBALL: schedule updated | date={day_key} | "
+        f"finished={finished_count} | live={live_count} | message_id={message_id}"
     )
     return True
