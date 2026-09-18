@@ -47,7 +47,7 @@ jobs:
 
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py football_schedule.py run_bot.py education.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_topic_diversity.py football_schedule.py run_bot.py education.py
 
       - name: Run independent V13 engine
         env:
@@ -81,9 +81,6 @@ jobs:
                 awk 'NF && !seen[$0]++' > /tmp/merged_all_history.txt || true
             fi
 
-            # Keep semantic TITLE records intact while bounding legacy/hash history.
-            # 50,000 non-title entries is a large rolling dedup window and prevents
-            # sent_news.txt from growing without bound over the lifetime of the bot.
             awk '/^TITLE\|/ { print > "/tmp/history_titles.txt"; next } { print > "/tmp/history_hashes.txt" }' /tmp/merged_all_history.txt
             tail -n 50000 /tmp/history_hashes.txt > /tmp/history_hashes_bounded.txt 2>/dev/null || true
             cat /tmp/history_hashes_bounded.txt /tmp/history_titles.txt 2>/dev/null > /tmp/merged_sent_news.txt || true
