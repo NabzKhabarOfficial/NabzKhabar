@@ -3,7 +3,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 CHANNEL_URL = "https://t.me/NabzKhabarOfficial"
 BRAND = "نبض خبر | NABZ"
@@ -75,19 +75,47 @@ def _watermark_image(width, height):
 
 def add_watermark(input_path, output_path):
     try:
-        image = Image.open(input_path).convert("RGBA")
-        width, height = image.size
+        # Preserve orientation and never resize/crop the source image.
+        source = Image.open(input_path)
+        source = ImageOps.exif_transpose(source)
+        width, height = source.size
+
+        # Very small images do not have enough safe area for branding.
+        if width < 420 or height < 300:
+            print("V13 WATERMARK: image too small; original preserved.")
+            return input_path
+
+        image = source.convert("RGBA")
         wm = _watermark_image(width, height)
         margin = max(16, int(min(width, height) * 0.018))
-        x = max(0, width - wm.width - margin)
-        y = max(0, height - wm.height - margin)
+
+        # Hard safety limits: watermark stays a small unobtrusive part of the image.
+        max_w = int(width * 0.34)
+        max_h = int(height * 0.22)
+        if wm.width > max_w or wm.height > max_h:
+            print("V13 WATERMARK: unsafe size for image; original preserved.")
+            return input_path
+
+        x = width - wm.width - margin
+        y = height - wm.height - margin
+        if x < 0 or y < 0:
+            print("V13 WATERMARK: insufficient safe area; original preserved.")
+            return input_path
+
         image.alpha_composite(wm, (x, y))
-        image.convert("RGB").save(output_path, "JPEG", quality=91, optimize=True)
+
+        # High-quality output with no resizing or cropping.
+        image.convert("RGB").save(
+            output_path,
+            "JPEG",
+            quality=95,
+            optimize=True,
+            subsampling=0,
+        )
         return output_path
     except Exception as exc:
         print(f"V13 branding image error: {exc}")
         return input_path
-
 
 def _probe_duration(path):
     # Prefer container duration, then video-stream duration.
