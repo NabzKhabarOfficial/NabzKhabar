@@ -248,7 +248,7 @@ def create_table_image(matches, final=False):
     overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     od = ImageDraw.Draw(overlay)
     od.rounded_rectangle(
-        (55, 250, 1320, 1160),
+        (55, 250, 1545, height - 35),
         radius=30,
         fill=(5, 12, 10, 230),
         outline=(235, 240, 235, 90),
@@ -307,7 +307,7 @@ def create_table_image(matches, final=False):
         draw.text((1170, y + 20), fa_digits(score), font=_font(27), fill="white")
         y += 78
 
-    draw.text((1040, 1200), "@NabzKhabarOfficial", font=_font(24), fill="white")
+    draw.text((1160, height - 55), "@NabzKhabarOfficial", font=_font(24), fill="white")
     path = RESULTS_IMAGE if final else SCHEDULE_IMAGE
     image.save(path, "JPEG", quality=92, optimize=True)
     return path
