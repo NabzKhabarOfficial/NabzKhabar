@@ -76,6 +76,25 @@ IMPORTANT_TEAMS = {
     "al nassr", "persepolis", "esteghlal",
 }
 
+# Only these clubs are eligible for the daily football post.
+# Being in a major league is NOT enough by itself.
+MAJOR_TEAMS_BY_LEAGUE = {
+    ("Premier League", "England"): {
+        "arsenal", "chelsea", "liverpool", "manchester city",
+        "manchester united", "tottenham",
+    },
+    ("LaLiga", "Spain"): {"real madrid", "barcelona", "atletico madrid"},
+    ("Serie A", "Italy"): {"inter milan", "ac milan", "milan", "juventus", "napoli", "roma"},
+    ("Bundesliga", "Germany"): {"bayern munich", "bayern münchen", "borussia dortmund"},
+    ("Ligue 1", "France"): {"paris saint-germain", "psg"},
+    ("Eredivisie", "Netherlands"): {"ajax", "psv eindhoven"},
+    ("Liga Portugal", "Portugal"): {"benfica", "porto"},
+    ("Primeira Liga", "Portugal"): {"benfica", "porto"},
+    ("Süper Lig", "Turkey"): {"galatasaray", "fenerbahce"},
+    ("Saudi Pro League", "Saudi-Arabia"): {"al hilal", "al nassr"},
+    ("Persian Gulf Pro League", "Iran"): {"persepolis", "esteghlal"},
+}
+
 
 def fa_digits(value):
     return str(value).translate(PERSIAN_DIGITS)
@@ -124,10 +143,20 @@ def _team_is_major(name):
     return _norm(name) in IMPORTANT_TEAMS
 
 
+def _major_team_in_league(item):
+    teams = MAJOR_TEAMS_BY_LEAGUE.get(_league_key(item))
+    if teams is None:
+        # European competitions have no single domestic country key.
+        return _team_is_major(item["home"]) or _team_is_major(item["away"])
+    return _norm(item["home"]) in teams or _norm(item["away"]) in teams
+
+
 def _important(item):
-    return (_league_key(item) in IMPORTANT_LEAGUES or (_norm(item["league"]), "") in IMPORTANT_LEAGUES) or (
-        _team_is_major(item["home"]) or _team_is_major(item["away"])
+    supported = (
+        _league_key(item) in IMPORTANT_LEAGUES
+        or (_norm(item["league"]), "") in IMPORTANT_LEAGUES
     )
+    return supported and _major_team_in_league(item)
 
 
 def fetch_today():
@@ -168,6 +197,7 @@ def fetch_today():
         home = str((teams.get("home") or {}).get("name") or "").strip()
         away = str((teams.get("away") or {}).get("name") or "").strip()
         league_name = str(league.get("name") or "").strip()
+        country = str(league.get("country") or "").strip()
         fixture_id = fixture.get("id")
 
         if (
@@ -186,7 +216,7 @@ def fetch_today():
             "home": home,
             "away": away,
             "kickoff": kickoff.isoformat(),
-            "priority": LEAGUE_PRIORITY.get(league_name, 0),
+            "priority": LEAGUE_PRIORITY.get((league_name, country), LEAGUE_PRIORITY.get((league_name, ""), 0)),
             "home_score": goals.get("home"),
             "away_score": goals.get("away"),
             "status": str(status.get("short") or "").upper(),
@@ -200,17 +230,15 @@ def fetch_today():
 
 def select_matches(matches):
     def score(item):
-        team_bonus = 45 if (
-            _team_is_major(item["home"]) or _team_is_major(item["away"])
-        ) else 0
-        league_bonus = 100 if (_league_key(item) in IMPORTANT_LEAGUES or (_norm(item["league"]), "") in IMPORTANT_LEAGUES) else 0
-        return league_bonus + team_bonus + item["priority"]
+        # Major-club presence is mandatory; this bonus orders
+        # the already-filtered fixtures by competition importance.
+        major_bonus = 1000 if _major_team_in_league(item) else 0
+        return major_bonus + item["priority"]
 
     ranked = sorted(matches, key=lambda x: (-score(x), x["kickoff"], x["home"]))
 
-    # Select only genuinely high-value fixtures. Do not fill the list
-    # with low-profile matches merely to reach a fixed count.
-    return [item for item in ranked if score(item) >= 80][:8]
+    # Never pad the list with ordinary fixtures. Publish at most 8.
+    return [item for item in ranked if _major_team_in_league(item)][:8]
 
 
 def kickoff_text(item):
