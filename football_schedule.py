@@ -496,11 +496,28 @@ def post_daily_football_schedule(send_message, send_photo=None):
     if not morning:
         return False
 
-    latest_kickoff = max(
-        (datetime.fromisoformat(item["kickoff"]) for item in morning if item.get("kickoff")),
-        default=None,
-    )
-    if latest_kickoff is None or now < latest_kickoff + timedelta(minutes=110):
+    # Dynamic finalization window:
+    # never assume a fixed clock hour. The last selected match determines
+    # when the results post can be published. We use 110 minutes (90 minutes
+    # regulation + a 20-minute buffer for stoppage time, halftime and API delay).
+    # If a match starts at 23:30, for example, the bot naturally waits until
+    # roughly 01:20 Tehran before attempting the final-results post.
+    kickoffs = [
+        datetime.fromisoformat(item["kickoff"])
+        for item in morning
+        if item.get("kickoff")
+    ]
+    latest_kickoff = max(kickoffs, default=None)
+    if latest_kickoff is None:
+        return False
+
+    final_ready_at = latest_kickoff + timedelta(minutes=110)
+    if now < final_ready_at:
+        print(
+            "FOOTBALL: final results not ready yet "
+            f"| latest_kickoff={latest_kickoff.isoformat()} "
+            f"| ready_at={final_ready_at.isoformat()}"
+        )
         return False
 
     fresh = fetch_fixtures(morning_date)
