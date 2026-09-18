@@ -26,7 +26,7 @@ if __name__ == "__main__":
     # Independent daily football schedule. It has its own history guard,
     # Iran timezone handling, and free public data source.
     try:
-        football_schedule.post_daily_football_schedule(main.send_message)
+        football_schedule.post_daily_football_schedule(main.send_message, main.send_photo)
     except Exception as exc:
         print(f"FOOTBALL SCHEDULE ERROR: {exc}", flush=True)
 
