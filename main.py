@@ -2535,7 +2535,7 @@ def add_watermark(
         draw.rounded_rectangle(
             rect,
             radius=4,
-            fill=(0, 0, 0, 45),
+            fill=(0, 0, 0, 28),
         )
 
         draw.text(
@@ -2543,7 +2543,7 @@ def add_watermark(
             WATERMARK_TEXT,
             font=font,
             anchor="rb",
-            fill=(0, 0, 0, 70),
+            fill=(0, 0, 0, 45),
         )
 
         draw.text(
@@ -2551,7 +2551,7 @@ def add_watermark(
             WATERMARK_TEXT,
             font=font,
             anchor="rb",
-            fill=(255, 255, 255, 135),
+            fill=(255, 255, 255, 185),
         )
 
         image.convert("RGB").save(
