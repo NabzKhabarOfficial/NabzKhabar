@@ -10,7 +10,6 @@ import time
 
 EVENT_HISTORY_SECONDS = 72 * 3600
 
-# Canonical organizations/actors that strongly anchor an event.
 ENTITY_ALIASES = {
     "پنتاگون": "pentagon", "pentagon": "pentagon",
     "کاخ سفید": "white_house", "white house": "white_house",
@@ -30,31 +29,38 @@ ENTITY_ALIASES = {
     "اوکراین": "ukraine", "اوکراینی": "ukraine", "ukraine": "ukraine",
 }
 
-# Event families prevent false positives between unrelated stories sharing
-# the same organization/person. Each family contains distinctive anchors.
+# Keep these event families distinctive enough to represent a concrete
+# real-world event rather than a broad editorial category.
 EVENT_FAMILIES = {
     "testosterone_testing": (
         "تستوسترون", "آزمایش تستوسترون", "testosterone", "testosterone testing",
     ),
-    "military_policy": (
-        "نظامیان", "نظامی", "ارتش", "نیروهای مسلح", "troops", "military",
-        "soldiers", "policy",
-    ),
     "ceasefire": ("آتش‌بس", "آتش بس", "ceasefire"),
-    "missile_attack": ("موشک", "حمله موشکی", "missile", "missile attack"),
+    "missile_attack": ("موشک", "حمله موشکی", "missile attack"),
     "airstrike": ("حمله هوایی", "airstrike", "air strike"),
-    "sanctions": ("تحریم", "تحریم‌ها", "sanctions", "sanction"),
-    "nuclear_enrichment": ("غنی‌سازی", "غنی سازی", "enrichment", "nuclear"),
-    "election": ("انتخابات", "رأی‌گیری", "رای‌گیری", "election", "vote"),
+    "nuclear_enrichment": ("غنی‌سازی", "غنی سازی", "enrichment"),
     "earthquake": ("زلزله", "earthquake"),
     "flood": ("سیل", "flood"),
     "fire": ("آتش‌سوزی", "آتش سوزی", "fire"),
     "explosion": ("انفجار", "explosion"),
-    "oil_supply": ("نفت", "عرضه نفت", "oil", "oil supply"),
-    "energy_price": ("قیمت انرژی", "انرژی", "energy price", "energy"),
-    "interest_rates": ("نرخ بهره", "interest rate", "rates"),
+    "interest_rates": ("نرخ بهره", "interest rate"),
     "ai_model": ("مدل هوش مصنوعی", "مدل زبانی", "ai model", "language model"),
 }
+
+POSITIVE_ACTIONS = (
+    "از سر گرفت", "ازسرگیری", "از سرگیری", "دوباره آغاز", "آغاز کرد",
+    "آغاز شد", "شروع کرد", "شروع شد", "بازگرداند", "بازگشت",
+    "احیا کرد", "احیا شد", "تایید کرد", "تأیید کرد", "تصویب کرد",
+    "resumed", "resume", "restarted", "restart", "restored", "approved",
+    "launched", "started", "began", "reinstated",
+)
+
+NEGATIVE_ACTIONS = (
+    "متوقف کرد", "متوقف شد", "تعلیق کرد", "تعلیق شد", "لغو کرد", "لغو شد",
+    "پایان داد", "پایان یافت", "ممنوع کرد", "ممنوع شد", "توقف",
+    "suspended", "suspend", "stopped", "stop", "halted", "halt",
+    "cancelled", "canceled", "banned", "ended",
+)
 
 GENERIC = {
     "خبر", "گزارش", "اعلام", "اعلام کرد", "خبر داد", "گفت", "اظهار",
@@ -99,29 +105,41 @@ def _tokens(text):
 def _numbers(text):
     return set(re.findall(r"\b\d+(?:[.,]\d+)?\b", str(text or "")))
 
+def _action_profile(text):
+    value = _norm(text)
+    positive = any(_norm(item) in value for item in POSITIVE_ACTIONS)
+    negative = any(_norm(item) in value for item in NEGATIVE_ACTIONS)
+    return positive, negative
+
+def _direction_conflict(text_a, text_b):
+    a_pos, a_neg = _action_profile(text_a)
+    b_pos, b_neg = _action_profile(text_b)
+    return (a_pos and b_neg) or (a_neg and b_pos)
+
 def event_score(title_a, title_b, summary_a="", summary_b=""):
     """Return a conservative 0..1 same-event confidence."""
     a = f"{title_a} {summary_a}"
     b = f"{title_b} {summary_b}"
+
+    # A new development in the opposite direction is not a duplicate of
+    # the previous development, even when every other anchor is identical.
+    if _direction_conflict(a, b):
+        return 0.0
 
     entities = _entities(a) & _entities(b)
     families = _families(a) & _families(b)
     tokens = _tokens(a) & _tokens(b)
     numbers = _numbers(a) & _numbers(b)
 
-    # A named event family plus a shared actor is the strongest signal.
     if families and entities and len(tokens) >= 2:
         return 0.98
     if families and entities and len(tokens) >= 1:
         return 0.95
-
-    # Distinctive event vocabulary can stand alone when sufficiently strong.
     if families and len(tokens) >= 3:
         return 0.94
     if families and len(tokens) >= 2:
         return 0.90
 
-    # Numeric anchors make otherwise similar operational events safer to join.
     if entities and len(tokens) >= 3 and numbers:
         return 0.93
     if entities and len(tokens) >= 3:
