@@ -49,6 +49,9 @@ jobs:
         run: |
           python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_topic_diversity.py v13_event_dedup.py currents_source.py football_schedule.py run_bot.py education.py
 
+      - name: Run event-dedup regression tests
+        run: python -m unittest -v test_v13_event_dedup.py
+
       - name: Run independent V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
