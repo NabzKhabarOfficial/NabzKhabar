@@ -4,16 +4,18 @@ import v13_standalone as main
 import v13_media_branding
 import v13_ai_router
 import v13_topic_diversity
+import v13_event_dedup
 import currents_source
 import football_schedule
 
 # V13 is the only news runtime. main.py, v12_engine.py,
 # v13_engine.py and graphics_patch.py are not imported here.
-# Free media branding, AI routing, and topic-level deduplication are installed
-# before the engine starts.
+# Free media branding, AI routing, topic-level deduplication, and
+# event-level duplicate protection are installed before the engine starts.
 v13_media_branding.install(main)
 v13_ai_router.install(main)
 v13_topic_diversity.install(main)
+v13_event_dedup.install(main)
 
 import education
 
