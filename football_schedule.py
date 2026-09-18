@@ -1,7 +1,7 @@
 import json
 import math
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 import requests
@@ -185,7 +185,7 @@ def _important(item):
     return supported and _major_team_in_league(item)
 
 
-def fetch_today():
+def fetch_fixtures(date_key=None):
     key = os.getenv(API_KEY_ENV, "").strip()
     if not key:
         print("FOOTBALL: API_FOOTBALL_KEY is missing.")
@@ -194,7 +194,7 @@ def fetch_today():
     try:
         response = requests.get(
             f"{API_BASE}/fixtures",
-            params={"date": today_key(), "timezone": "Asia/Tehran"},
+            params={"date": date_key or today_key(), "timezone": "Asia/Tehran"},
             headers={"x-apisports-key": key, "Accept": "application/json"},
             timeout=REQUEST_TIMEOUT,
         )
@@ -231,7 +231,7 @@ def fetch_today():
             or not home
             or not away
             or not league_name
-            or kickoff.strftime("%Y-%m-%d") != today_key()
+            or kickoff.strftime("%Y-%m-%d") != (date_key or today_key())
         ):
             continue
 
@@ -459,7 +459,7 @@ def post_daily_football_schedule(send_message, send_photo=None):
 
     # Morning publication: first successful workflow run of the Iran calendar day.
     if history.get("morning_posted_date") != day:
-        matches = select_matches(fetch_today())
+        matches = select_matches(fetch_fixtures(day))
         if not matches:
             print("FOOTBALL: no important matches today; no morning post.")
             return False
@@ -479,18 +479,26 @@ def post_daily_football_schedule(send_message, send_photo=None):
         print(f"FOOTBALL: morning schedule published | date={day} | matches={len(matches)}")
         return True
 
-    # End-of-day publication: one fresh API call, once only, using the morning list.
-    # 23:00-23:59 Tehran is the publication window; no live polling is performed.
-    if now.hour < 23 or history.get("final_posted_date") == day:
+    # Publish only after the actual latest selected kickoff has had time to finish.
+    # 90 minutes is the normal match length; +20 minutes allows for stoppage time
+    # and late finalization. This correctly moves a 22:30 match's result post
+    # to shortly after midnight instead of forcing it into a 23:00 window.
+    morning_date = history.get("morning_posted_date")
+    if not morning_date or history.get("final_posted_date") == morning_date:
         return False
 
     morning = history.get("morning_matches") or []
     if not morning:
-        history["final_posted_date"] = day
-        save_history(history)
         return False
 
-    fresh = fetch_today()
+    latest_kickoff = max(
+        (datetime.fromisoformat(item["kickoff"]) for item in morning if item.get("kickoff")),
+        default=None,
+    )
+    if latest_kickoff is None or now < latest_kickoff + timedelta(minutes=110):
+        return False
+
+    fresh = fetch_fixtures(morning_date)
     final_matches = _final_matches_from_morning(morning, fresh)
     if len(final_matches) != len(morning):
         print(
@@ -505,9 +513,9 @@ def post_daily_football_schedule(send_message, send_photo=None):
         print("FOOTBALL: final results publication failed; will retry next run.")
         return False
 
-    history["final_posted_date"] = day
+    history["final_posted_date"] = morning_date
     history["final_results"] = [_serialize(x) for x in final_matches]
     history["final_posted_at"] = now.isoformat()
     save_history(history)
-    print(f"FOOTBALL: final results published | date={day} | matches={len(final_matches)}")
+    print(f"FOOTBALL: final results published | date={morning_date} | matches={len(final_matches)}")
     return True
