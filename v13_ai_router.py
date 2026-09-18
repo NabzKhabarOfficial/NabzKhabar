@@ -9,8 +9,15 @@ import json
 import re
 import time
 
-PRIMARY_MODEL = "gemini-2.5-flash-lite"
-FALLBACK_MODEL = "gemini-3.1-flash-lite"
+# Ordered free-tier candidates. The router discovers which of these are actually available for this API key.
+MODEL_CANDIDATES = (
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",
+    "gemini-2.5-flash-lite",
+    "gemini-3.5-flash",
+    "gemini-3-flash-preview",
+    "gemini-2.5-flash",
+)
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 
 
@@ -29,6 +36,35 @@ def _clean_json(raw):
     return json.loads(raw.strip())
 
 
+def _available_models(main):
+    """Return candidate models that this exact API key advertises for generateContent."""
+    try:
+        response = main.SESSION.get(
+            API_BASE,
+            params={"key": main.AI_API_KEY, "pageSize": 100},
+            timeout=20,
+        )
+        if not response.ok:
+            print(f"V13 AI ROUTER: model discovery HTTP {response.status_code}; using known candidates.")
+            return list(MODEL_CANDIDATES)
+        data = response.json() or {}
+        available = set()
+        for item in data.get("models", []):
+            name = str(item.get("name", "")).strip()
+            short = name.split("/", 1)[1] if name.startswith("models/") else name
+            actions = item.get("supportedGenerationMethods", []) or []
+            if short and ("generateContent" in actions or not actions):
+                available.add(short)
+        ordered = [m for m in MODEL_CANDIDATES if m in available]
+        if ordered:
+            print("V13 AI ROUTER: discovered available models: " + ", ".join(ordered))
+            return ordered
+        print("V13 AI ROUTER: discovery returned no approved candidates; using fallback candidate list.")
+        return list(MODEL_CANDIDATES)
+    except Exception as exc:
+        print(f"V13 AI ROUTER: model discovery error: {exc}; using known candidates.")
+        return list(MODEL_CANDIDATES)
+
 def _request_json(main, model, prompt, max_output_tokens=500):
     endpoint = f"{API_BASE}/{model}:generateContent"
     try:
@@ -45,7 +81,7 @@ def _request_json(main, model, prompt, max_output_tokens=500):
             timeout=30,
         )
         if response.status_code == 404:
-            print(f"V13 AI ROUTER: {model} HTTP 404 (model unavailable for this API key/project); trying fallback.")
+            print(f"V13 AI ROUTER: {model} HTTP 404 (removing model from this run.")
             return None
         if response.status_code in (429, 500, 502, 503, 504):
             print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; trying next model.")
@@ -151,7 +187,7 @@ def gemini_request(main, title, article_text):
 فقط JSON معتبر:
 {"title":"تیتر فارسی","summary":"خلاصه فارسی"}""" % (title, source[:6000])
 
-    for model in (PRIMARY_MODEL, FALLBACK_MODEL):
+    for model in _available_models(main):
         for attempt in range(2):
             result = _request_json(main, model, prompt)
             if result:
@@ -174,5 +210,5 @@ def install(main):
     )
     print(
         "V13 AI ROUTER ACTIVE: "
-        f"primary={PRIMARY_MODEL}, fallback={FALLBACK_MODEL}, free-only"
+        "dynamic model discovery, free-tier candidates only, 404-safe failover"
     )
