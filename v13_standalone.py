@@ -2645,7 +2645,9 @@ def send_photo(
                 files={
                     "photo": photo
                 },
-                timeout=REQUEST_TIMEOUT
+                # Photo uploads can legitimately take longer than text
+                # requests. A longer wait reduces false client-side timeouts.
+                timeout=max(REQUEST_TIMEOUT, 90)
             )
 
         if response.ok:
