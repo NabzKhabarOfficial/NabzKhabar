@@ -221,12 +221,11 @@ def post_daily_education():
         f"{item['body']}\n\n"
         f"💡 **۳ نکته کاربردی:**\n"
         f"{tips}\n\n"
-        f"{item['tag']}  #نبض_آموزش\n"
-        f"@NabzKhabarOfficial"
+        f"━━━━━━━━━━━━━━\n"
+        f"📚 منبع: نبض خبر | NABZ\n"
+        f"📢 @NabzKhabarOfficial"
     )
 
-    # The bot's existing send_message is intentionally reused so
-    # the same Telegram credentials and channel configuration apply.
     success = main.send_message(text)
 
     if success:
