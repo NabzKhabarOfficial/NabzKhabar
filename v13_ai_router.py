@@ -1,7 +1,6 @@
 """
 NABZ KHABAR V13 — FREE AI ROUTER
-Primary: Gemini 2.5 Flash-Lite (small, high-volume, free-tier friendly)
-Fallback: Gemini 3.1 Flash-Lite
+Dynamic free-tier model discovery with ordered multi-layer failover
 No paid service, no billing dependency.
 """
 
@@ -81,7 +80,7 @@ def _request_json(main, model, prompt, max_output_tokens=500):
             timeout=30,
         )
         if response.status_code == 404:
-            print(f"V13 AI ROUTER: {model} HTTP 404 (removing model from this run.")
+            print(f"V13 AI ROUTER: {model} HTTP 404; removing model from this run.")
             return None
         if response.status_code in (429, 500, 502, 503, 504):
             print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; trying next model.")
