@@ -49,7 +49,7 @@ def _available_models(main):
             name = str(item.get("name", "")).strip()
             short = name.split("/", 1)[1] if name.startswith("models/") else name
             actions = item.get("supportedGenerationMethods", []) or []
-            if short and ("generateContent" in actions or not actions):
+            if short and "generateContent" in actions:
                 available.add(short)
         ordered = [m for m in MODEL_CANDIDATES if m in available]
         if ordered:
@@ -62,6 +62,7 @@ def _available_models(main):
         return list(MODEL_CANDIDATES)
 
 def _request_json(main, model, prompt, max_output_tokens=500):
+    """Return (parsed_json_or_none, retry_same_model)."""
     endpoint = f"{API_BASE}/{model}:generateContent"
     try:
         response = main.SESSION.post(
@@ -77,14 +78,14 @@ def _request_json(main, model, prompt, max_output_tokens=500):
             timeout=30,
         )
         if response.status_code == 404:
-            print(f"V13 AI ROUTER: {model} HTTP 404; removing model from this run.")
-            return None
+            print(f"V13 AI ROUTER: {model} HTTP 404; model unavailable, skipping it.")
+            return None, False
         if response.status_code in (429, 500, 502, 503, 504):
-            print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; trying next model.")
-            return None
+            print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; retrying once, then failing over.")
+            return None, True
         if not response.ok:
-            print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; trying next model.")
-            return None
+            print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; failing over.")
+            return None, False
         data = response.json()
         raw = (
             data.get("candidates", [{}])[0]
@@ -92,10 +93,14 @@ def _request_json(main, model, prompt, max_output_tokens=500):
             .get("parts", [{}])[0]
             .get("text", "")
         )
-        return _clean_json(raw)
+        try:
+            return _clean_json(raw), False
+        except Exception as exc:
+            print(f"V13 AI ROUTER: {model} invalid JSON: {exc}; failing over.")
+            return None, False
     except Exception as exc:
-        print(f"V13 AI ROUTER: {model} error: {exc}")
-        return None
+        print(f"V13 AI ROUTER: {model} error: {exc}; retrying once.")
+        return None, True
 
 
 def _numbers(main, text):
@@ -185,16 +190,18 @@ def gemini_request(main, title, article_text):
 
     for model in _available_models(main):
         for attempt in range(2):
-            result = _request_json(main, model, prompt)
+            result, retry_same_model = _request_json(main, model, prompt)
             if result:
                 validated = _validate(main, title, source, result, foreign)
                 if validated:
                     print(f"V13 AI ROUTER: SUCCESS via {model}")
                     return validated
-                print(f"V13 AI ROUTER: {model} returned invalid/unsafe output.")
+                print(f"V13 AI ROUTER: {model} returned invalid/unsafe output; failing over.")
                 break
-            if attempt == 0:
+            if retry_same_model and attempt == 0:
                 time.sleep(1.2)
+                continue
+            break
 
     print("V13 AI ROUTER: all free models failed; publication will use existing V13 safety rules.")
     return None
@@ -206,5 +213,5 @@ def install(main):
     )
     print(
         "V13 AI ROUTER ACTIVE: "
-        "dynamic model discovery, free-tier candidates only, 404-safe failover"
+        "dynamic model discovery, strict generateContent filter, free-tier candidates only, 404-safe failover"
     )
