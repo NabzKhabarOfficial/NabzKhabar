@@ -23,56 +23,58 @@ RESULTS_IMAGE = "football_results.jpg"
 PERSIAN_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
 
 LEAGUE_PRIORITY = {
-    "Premier League": 100,
-    "LaLiga": 98,
-    "Serie A": 96,
-    "Bundesliga": 95,
-    "Ligue 1": 94,
-    "UEFA Champions League": 93,
-    "Champions League": 93,
-    "UEFA Europa League": 92,
-    "Europa League": 92,
-    "UEFA Conference League": 91,
-    "Conference League": 91,
-    "Persian Gulf Pro League": 90,
-    "Saudi Pro League": 86,
-    "Eredivisie": 84,
-    "Liga Portugal": 83,
-    "Primeira Liga": 83,
-    "Süper Lig": 82,
-    "AFC Champions League": 81,
+    ("Premier League", "England"): 100,
+    ("LaLiga", "Spain"): 98,
+    ("Serie A", "Italy"): 96,
+    ("Bundesliga", "Germany"): 95,
+    ("Ligue 1", "France"): 94,
+    ("UEFA Champions League", ""): 93,
+    ("Champions League", ""): 93,
+    ("UEFA Europa League", ""): 92,
+    ("Europa League", ""): 92,
+    ("UEFA Conference League", ""): 91,
+    ("Conference League", ""): 91,
+    ("Persian Gulf Pro League", "Iran"): 90,
+    ("Saudi Pro League", "Saudi-Arabia"): 86,
+    ("Eredivisie", "Netherlands"): 84,
+    ("Liga Portugal", "Portugal"): 83,
+    ("Primeira Liga", "Portugal"): 83,
+    ("Süper Lig", "Turkey"): 82,
+    ("AFC Champions League", ""): 81,
 }
 
 LEAGUE_FA = {
-    "Premier League": "لیگ برتر انگلیس",
-    "LaLiga": "لالیگا اسپانیا",
-    "Serie A": "سری‌آ ایتالیا",
-    "Bundesliga": "بوندس‌لیگا آلمان",
-    "Ligue 1": "لیگ ۱ فرانسه",
-    "UEFA Champions League": "لیگ قهرمانان اروپا",
-    "Champions League": "لیگ قهرمانان اروپا",
-    "UEFA Europa League": "لیگ اروپا",
-    "Europa League": "لیگ اروپا",
-    "UEFA Conference League": "لیگ کنفرانس اروپا",
-    "Conference League": "لیگ کنفرانس اروپا",
-    "Persian Gulf Pro League": "لیگ برتر ایران",
-    "Saudi Pro League": "لیگ حرفه‌ای عربستان",
-    "Eredivisie": "اردیویسه هلند",
-    "Liga Portugal": "لیگ پرتغال",
-    "Primeira Liga": "لیگ پرتغال",
-    "Süper Lig": "سوپرلیگ ترکیه",
-    "AFC Champions League": "لیگ قهرمانان آسیا",
+    ("Premier League", "England"): "لیگ برتر انگلیس",
+    ("LaLiga", "Spain"): "لالیگا اسپانیا",
+    ("Serie A", "Italy"): "سری‌آ ایتالیا",
+    ("Bundesliga", "Germany"): "بوندس‌لیگا آلمان",
+    ("Ligue 1", "France"): "لیگ ۱ فرانسه",
+    ("UEFA Champions League", ""): "لیگ قهرمانان اروپا",
+    ("Champions League", ""): "لیگ قهرمانان اروپا",
+    ("UEFA Europa League", ""): "لیگ اروپا",
+    ("Europa League", ""): "لیگ اروپا",
+    ("UEFA Conference League", ""): "لیگ کنفرانس اروپا",
+    ("Conference League", ""): "لیگ کنفرانس اروپا",
+    ("Persian Gulf Pro League", "Iran"): "لیگ برتر ایران",
+    ("Saudi Pro League", "Saudi-Arabia"): "لیگ حرفه‌ای عربستان",
+    ("Eredivisie", "Netherlands"): "اردیویسه هلند",
+    ("Liga Portugal", "Portugal"): "لیگ پرتغال",
+    ("Primeira Liga", "Portugal"): "لیگ پرتغال",
+    ("Süper Lig", "Turkey"): "سوپرلیگ ترکیه",
+    ("AFC Champions League", ""): "لیگ قهرمانان آسیا",
 }
 
-IMPORTANT_LEAGUES = set(LEAGUE_PRIORITY)
-IMPORTANT_TEAMS = (
+IMPORTANT_LEAGUES = {tuple(k.lower() for k in key) for key in LEAGUE_PRIORITY}
+
+IMPORTANT_TEAMS = {
     "real madrid", "barcelona", "atletico madrid", "manchester united",
     "manchester city", "liverpool", "arsenal", "chelsea", "tottenham",
-    "bayern", "borussia dortmund", "psg", "paris saint-germain",
-    "juventus", "inter", "milan", "napoli", "roma", "ajax", "psv",
+    "bayern munich", "bayern münchen", "borussia dortmund",
+    "paris saint-germain", "psg", "juventus", "inter milan",
+    "ac milan", "milan", "napoli", "roma", "ajax", "psv eindhoven",
     "benfica", "porto", "galatasaray", "fenerbahce", "al hilal",
-    "al nassr", "persepolis", "esteghlal", "iran",
-)
+    "al nassr", "persepolis", "esteghlal",
+}
 
 
 def fa_digits(value):
@@ -110,11 +112,21 @@ def _font(size):
         return ImageFont.load_default()
 
 
+def _norm(value):
+    return " ".join(str(value or "").lower().replace("-", " ").split())
+
+
+def _league_key(item):
+    return (_norm(item["league"]), _norm(item["country"]))
+
+
+def _team_is_major(name):
+    return _norm(name) in IMPORTANT_TEAMS
+
+
 def _important(item):
-    teams = f'{item["home"]} {item["away"]}'.lower()
-    return (
-        item["league"] in IMPORTANT_LEAGUES
-        or any(team in teams for team in IMPORTANT_TEAMS)
+    return _league_key(item) in IMPORTANT_LEAGUES or (
+        _team_is_major(item["home"]) or _team_is_major(item["away"])
     )
 
 
@@ -170,7 +182,7 @@ def fetch_today():
         item = {
             "id": str(fixture_id),
             "league": league_name,
-            "league_fa": LEAGUE_FA.get(league_name, league_name),
+            "league_fa": LEAGUE_FA.get((_norm(league_name), _norm(country)), league_name),
             "home": home,
             "away": away,
             "kickoff": kickoff.isoformat(),
@@ -188,12 +200,17 @@ def fetch_today():
 
 def select_matches(matches):
     def score(item):
-        teams = f'{item["home"]} {item["away"]}'.lower()
-        team_bonus = 40 if any(team in teams for team in IMPORTANT_TEAMS) else 0
-        league_bonus = 100 if item["league"] in IMPORTANT_LEAGUES else 0
+        team_bonus = 45 if (
+            _team_is_major(item["home"]) or _team_is_major(item["away"])
+        ) else 0
+        league_bonus = 100 if _league_key(item) in IMPORTANT_LEAGUES else 0
         return league_bonus + team_bonus + item["priority"]
 
-    return sorted(matches, key=lambda x: (-score(x), x["kickoff"], x["home"]))[:12]
+    ranked = sorted(matches, key=lambda x: (-score(x), x["kickoff"], x["home"]))
+
+    # Select only genuinely high-value fixtures. Do not fill the list
+    # with low-profile matches merely to reach a fixed count.
+    return [item for item in ranked if score(item) >= 80][:8]
 
 
 def kickoff_text(item):
@@ -250,29 +267,30 @@ def create_table_image(matches, final=False):
         fill=(235, 240, 235),
     )
 
-    draw.rounded_rectangle((82, 285, 1290, 335), radius=10, fill=(29, 54, 37))
-    draw.text((110, 296), "ساعت", font=_font(24), fill="white")
-    draw.text((280, 296), "مسابقه", font=_font(24), fill="white")
-    draw.text((955, 296), "نتیجه", font=_font(24), fill="white")
+    draw.rounded_rectangle((82, 285, 1518, 345), radius=14, fill=(29, 54, 37))
+    draw.text((120, 302), "ساعت", font=_font(24), fill="white")
+    draw.text((315, 302), "مسابقه", font=_font(24), fill="white")
+    draw.text((1170, 302), "نتیجه", font=_font(24), fill="white")
 
     y = 345
     for item in sorted(matches, key=lambda x: x["kickoff"]):
         draw.rounded_rectangle(
-            (82, y, 1290, y + 62),
+            (82, y, 1518, y + 70),
             radius=12,
             fill=(22, 43, 28) if final else (18, 31, 24),
             outline=(69, 105, 80),
             width=1,
         )
-        draw.text((110, y + 16), kickoff_text(item), font=_font(27), fill="white")
+        draw.rounded_rectangle((105, y + 12, 255, y + 58), radius=12, fill=(36, 68, 45))
+        draw.text((135, y + 20), kickoff_text(item), font=_font(27), fill="white")
         draw.text(
-            (280, y + 8),
+            (315, y + 8),
             f'{item["home"]}  🆚  {item["away"]}',
             font=_font(27),
             fill=(250, 252, 250),
         )
         draw.text(
-            (280, y + 38),
+            (315, y + 38),
             item["league_fa"][:34],
             font=_font(19),
             fill=(181, 202, 187),
@@ -285,8 +303,9 @@ def create_table_image(matches, final=False):
             )
         else:
             score = "⏰"
-        draw.text((955, y + 17), fa_digits(score), font=_font(27), fill="white")
-        y += 68
+        draw.rounded_rectangle((1125, y + 12, 1495, y + 58), radius=12, fill=(24, 51, 32))
+        draw.text((1170, y + 20), fa_digits(score), font=_font(27), fill="white")
+        y += 78
 
     draw.text((1040, 1200), "@NabzKhabarOfficial", font=_font(24), fill="white")
     path = RESULTS_IMAGE if final else SCHEDULE_IMAGE
@@ -300,6 +319,7 @@ def build_caption(matches, final=False):
         "📊 نتایج نهایی مسابقات مهم امروز | نبض خبر" if final else "⚽ برنامه مسابقات مهم امروز | نبض خبر",
         f"📅 {date}",
         "🕐 تمام ساعت‌ها به وقت ایران (تهران)",
+        "🎯 فقط مسابقات مهم و منتخب",
         "",
     ]
 
@@ -315,7 +335,7 @@ def build_caption(matches, final=False):
     else:
         for item in sorted(matches, key=lambda x: x["kickoff"]):
             lines.append(
-                f'• {kickoff_text(item)} | {item["home"]} 🆚 {item["away"]} | {item["league_fa"]}'
+                f'• {kickoff_text(item)}  │  {item["home"]}  🆚  {item["away"]} | {item["league_fa"]}'
             )
 
     lines += [
