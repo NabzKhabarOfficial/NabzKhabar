@@ -4546,10 +4546,11 @@ V13_DIRECT_RSS_FEEDS = [
     ("جهان", "https://feeds.bbci.co.uk/news/rss.xml"),
     ("جهان", "https://www.theguardian.com/world/rss"),
     ("جهان", "https://feeds.npr.org/1001/rss.xml"),
-    ("فناوری", "https://techcrunch.com/feed/"),
-    ("فناوری", "https://feeds.arstechnica.com/arstechnica/index"),
-    ("فناوری", "https://www.wired.com/feed/rss"),
-    ("فناوری", "https://www.theverge.com/rss/index.xml"),
+    # Global news feeds: keep the feed count unchanged so polling time does not grow.
+    ("جهان", "https://www.aljazeera.com/xml/rss/all.xml"),
+    ("جهان", "https://rss.dw.com/xml/rss-en-all"),
+    ("جهان", "https://www.france24.com/en/rss"),
+    ("جهان", "https://feeds.skynews.com/feeds/rss/home.xml"),
 ]
 
 # ---------- Source policy ----------
@@ -4557,6 +4558,10 @@ DIRECT_RSS_FEEDS = V13_DIRECT_RSS_FEEDS
 for host in (
     "bbc.com", "bbc.co.uk", "theguardian.com", "npr.org",
     "techcrunch.com", "arstechnica.com", "wired.com", "theverge.com",
+    "aljazeera.com", "dw.com", "france24.com", "skynews.com",
+    # Reuters/AP are discovered through Google News; mark them as high-quality
+    # without adding extra polling requests.
+    "reuters.com", "apnews.com",
 ):
     HIGH_QUALITY_HOSTS.add(host)
 
