@@ -2501,14 +2501,16 @@ def add_watermark(
 
         width, height = image.size
 
+        # Small, proportional watermark.
+        # Keep it subtle so it never covers the photo.
         if width >= 1400:
-            font_size = 20
-        elif width >= 1000:
-            font_size = 18
-        elif width >= 700:
-            font_size = 16
-        else:
             font_size = 14
+        elif width >= 1000:
+            font_size = 13
+        elif width >= 700:
+            font_size = 12
+        else:
+            font_size = 11
 
         font = find_font(
             font_size,
@@ -2535,24 +2537,45 @@ def add_watermark(
         )
 
         margin = max(
-            10,
-            int(width * 0.012)
+            8,
+            int(width * 0.008)
         )
 
+        # Account for Pillow's text bounding-box offsets so
+        # the watermark is never clipped at the edge.
         x = (
             width
             - text_width
             - margin
+            - bbox[0]
         )
 
         y = (
             height
             - text_height
             - margin
+            - bbox[1]
         )
 
-        pad_x = 6
-        pad_y = 3
+        # Final safety clamp.
+        x = max(
+            0,
+            min(
+                x,
+                width - text_width - bbox[0]
+            )
+        )
+
+        y = max(
+            0,
+            min(
+                y,
+                height - text_height - bbox[1]
+            )
+        )
+
+        pad_x = 4
+        pad_y = 2
 
         draw.rounded_rectangle(
             [
@@ -2562,21 +2585,21 @@ def add_watermark(
                 y + text_height + pad_y
             ],
             radius=5,
-            fill=(0, 0, 0, 75)
+            fill=(0, 0, 0, 55)
         )
 
         draw.text(
             (x + 1, y + 1),
             WATERMARK_TEXT,
             font=font,
-            fill=(0, 0, 0, 120)
+            fill=(0, 0, 0, 80)
         )
 
         draw.text(
             (x, y),
             WATERMARK_TEXT,
             font=font,
-            fill=(255, 255, 255, 190)
+            fill=(255, 255, 255, 165)
         )
 
         image = image.convert(
