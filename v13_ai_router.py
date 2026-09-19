@@ -189,6 +189,14 @@ def _validate(main, original_title, source, data, foreign):
         return None
     if not _numbers(main, title + " " + summary).issubset(_numbers(main, source)):
         return None
+    # Persian-only publication contract: do not allow stray English
+    # words such as "the" to survive into the final Telegram post.
+    latin_title = re.findall(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", title)
+    latin_summary = re.findall(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", summary)
+    allowed_brand = {"NABZ"}
+    if any(x.upper() not in allowed_brand for x in latin_title + latin_summary):
+        return None
+
     if foreign:
         if _persian_ratio(title) < 0.60 or _persian_ratio(summary) < 0.60:
             return None
