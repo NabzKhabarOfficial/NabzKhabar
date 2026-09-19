@@ -51,10 +51,6 @@ CHANNEL_ID = "@NabzKhabarOfficial"
 # standard Gemini API tier. Free tier is quota-limited, not literally unlimited.
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
 
-MAX_NEWS_PER_RUN = int(
-    os.getenv("MAX_NEWS_PER_RUN", "4")
-)
-
 REQUEST_TIMEOUT = 20
 ARTICLE_TIMEOUT = 25
 
@@ -88,7 +84,6 @@ if not BOT_TOKEN:
 
 print(f"Gemini enabled: {bool(AI_API_KEY)}")
 print(f"Gemini model: {GEMINI_MODEL}")
-print(f"Max news/run: {MAX_NEWS_PER_RUN}")
 print(f"Freshness window: {MAX_NEWS_AGE_HOURS}h")
 print(f"Feed discovery window: {FEED_COLLECTION_WINDOW_MINUTES}m")
 print(f"Semantic history: {SEMANTIC_HISTORY_DAYS} days")
@@ -4526,10 +4521,10 @@ def main():
         candidates
     )
 
-    while (
-        remaining
-        and published < MAX_NEWS_PER_RUN
-    ):
+    # Publish every genuinely new, valid candidate selected by the quality,
+    # freshness, semantic-dedup, and diversity pipeline. There is no arbitrary
+    # per-run quota: 0 new stories means 0 posts; 10 valid stories means 10 posts.
+    while remaining:
 
         best = None
         best_effective_score = None
