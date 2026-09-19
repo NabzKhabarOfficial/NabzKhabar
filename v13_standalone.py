@@ -57,7 +57,7 @@ MAX_NEWS_PER_RUN = int(
 REQUEST_TIMEOUT = 20
 ARTICLE_TIMEOUT = 25
 # RSS feeds are discovery inputs; keep slow sources from consuming the whole run.
-RSS_TIMEOUT = 8
+RSS_TIMEOUT = 10
 
 MAX_VIDEO_MB = 49
 MAX_IMAGE_MB = 12
