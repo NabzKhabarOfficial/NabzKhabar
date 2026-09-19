@@ -95,7 +95,7 @@ def format_price(value):
     def repl(match):
         raw = match.group(0).replace(",", "").replace("٬", "")
         try:
-            return f"{int(raw):,}"
+            return f"{int(raw):,}".replace(",", "٬")
         except Exception:
             return raw
     value = re.sub(r"\d[\d,٬]*", repl, value)
