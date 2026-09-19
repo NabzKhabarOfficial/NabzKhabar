@@ -145,12 +145,15 @@ jobs:
             if [ -f /tmp/merged_currents_usage.json ]; then
               cp /tmp/merged_currents_usage.json currents_usage.json
             fi
+            if [ -f /tmp/local_car_price_history.json ]; then
+              cp /tmp/local_car_price_history.json car_price_history.json
+            fi
 
             git add sent_news.txt
             if [ -f ai_model_health.json ]; then git add ai_model_health.json; fi
             if [ -f football_schedule_history.json ]; then git add football_schedule_history.json; fi
-            if [ -f currents_usage.json ]; then git add currents_usage.json
-            if [ -f car_price_history.json ]; then git add car_price_history.json; fi; fi
+            if [ -f currents_usage.json ]; then git add currents_usage.json; fi
+            if [ -f car_price_history.json ]; then git add car_price_history.json; fi
             if git diff --cached --quiet; then
               echo "No history changes."
               exit 0
