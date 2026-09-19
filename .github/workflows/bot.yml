@@ -47,7 +47,7 @@ jobs:
 
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_topic_diversity.py v13_event_dedup.py currents_source.py football_schedule.py run_bot.py education.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_topic_diversity.py v13_event_dedup.py currents_source.py football_schedule.py car_prices.py run_bot.py education.py
 
       - name: Run event-dedup regression tests
         run: python -m unittest -v test_v13_event_dedup.py
@@ -74,6 +74,7 @@ jobs:
           cp ai_model_health.json /tmp/local_ai_model_health.json 2>/dev/null || true
           cp football_schedule_history.json /tmp/local_football_schedule_history.json 2>/dev/null || true
           cp currents_usage.json /tmp/local_currents_usage.json 2>/dev/null || true
+          cp car_price_history.json /tmp/local_car_price_history.json 2>/dev/null || true
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -148,7 +149,8 @@ jobs:
             git add sent_news.txt
             if [ -f ai_model_health.json ]; then git add ai_model_health.json; fi
             if [ -f football_schedule_history.json ]; then git add football_schedule_history.json; fi
-            if [ -f currents_usage.json ]; then git add currents_usage.json; fi
+            if [ -f currents_usage.json ]; then git add currents_usage.json
+            if [ -f car_price_history.json ]; then git add car_price_history.json; fi; fi
             if git diff --cached --quiet; then
               echo "No history changes."
               exit 0
