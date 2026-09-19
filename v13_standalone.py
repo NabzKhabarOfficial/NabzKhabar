@@ -17,6 +17,7 @@ from urllib.parse import (
 
 import requests
 import feedparser
+from concurrent.futures import ThreadPoolExecutor
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
 
@@ -372,6 +373,19 @@ DIRECT_RSS_FEEDS = [
     ("فرهنگ", "https://www.irna.ir/rss/service/culture"),
     ("اجتماعی", "https://www.irna.ir/rss/service/society"),
     ("جهان", "https://www.isna.ir/rss/service/world"),
+
+    # Additional fast, free RSS sources. The 30-minute window below
+    # prevents old entries from reaching the expensive processing stages.
+    ("هوش مصنوعی", "https://techcrunch.com/category/artificial-intelligence/feed/"),
+    ("هوش مصنوعی", "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"),
+    ("فناوری", "https://feeds.arstechnica.com/arstechnica/technology-lab"),
+    ("هوش مصنوعی", "https://www.technologyreview.com/topic/artificial-intelligence/feed/"),
+    ("هوش مصنوعی", "https://venturebeat.com/category/ai/feed/"),
+    ("هوش مصنوعی", "https://blogs.nvidia.com/feed/"),
+    ("ورزش", "https://feeds.bbci.co.uk/sport/rss.xml"),
+    ("ورزش", "https://www.espn.com/espn/rss/news"),
+    ("جهان", "https://feeds.bbci.co.uk/news/world/rss.xml"),
+    ("فناوری", "https://www.engadget.com/rss.xml"),
 ]
 
 
@@ -3461,33 +3475,47 @@ def collect_candidates(
     # Direct publishers
     # --------------------------------------------------------
 
-    for category, url in DIRECT_RSS_FEEDS:
+    def collect_one_direct(feed):
 
-        items = collect_feed(
+        category, url = feed
+
+        return collect_feed(
             category,
             url,
             is_google=False
         )
 
-        all_candidates.extend(
-            items
-        )
+    # Fetch independent feeds concurrently so adding sources does not
+    # make total network wait time grow linearly with source count.
+    with ThreadPoolExecutor(max_workers=8) as executor:
+
+        for items in executor.map(
+            collect_one_direct,
+            DIRECT_RSS_FEEDS
+        ):
+            all_candidates.extend(items)
 
     # --------------------------------------------------------
     # Google discovery
     # --------------------------------------------------------
 
-    for category, url in GOOGLE_NEWS_FEEDS:
+    def collect_one_google(feed):
 
-        items = collect_feed(
+        category, url = feed
+
+        return collect_feed(
             category,
             url,
             is_google=True
         )
 
-        all_candidates.extend(
-            items
-        )
+    with ThreadPoolExecutor(max_workers=8) as executor:
+
+        for items in executor.map(
+            collect_one_google,
+            GOOGLE_NEWS_FEEDS
+        ):
+            all_candidates.extend(items)
 
     print(
         f"Raw candidates found: "
