@@ -43,7 +43,7 @@ jobs:
 
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py football_schedule.py run_bot.py education.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py run_bot.py education.py
 
       - name: Run independent V13 engine
         env:
@@ -63,7 +63,6 @@ jobs:
 
           cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || true
           cp ai_model_health.json /tmp/local_ai_model_health.json 2>/dev/null || true
-          cp football_schedule_history.json /tmp/local_football_schedule_history.json 2>/dev/null || true
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -81,13 +80,9 @@ jobs:
             if [ -f /tmp/local_ai_model_health.json ]; then
               cp /tmp/local_ai_model_health.json ai_model_health.json
             fi
-            if [ -f /tmp/local_football_schedule_history.json ]; then
-              cp /tmp/local_football_schedule_history.json football_schedule_history.json
-            fi
 
             git add sent_news.txt
             if [ -f ai_model_health.json ]; then git add ai_model_health.json; fi
-            if [ -f football_schedule_history.json ]; then git add football_schedule_history.json; fi
             if git diff --cached --quiet; then
               echo "No history changes."
               exit 0
