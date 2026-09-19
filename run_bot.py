@@ -6,8 +6,7 @@ import v13_ai_router
 import v13_topic_diversity
 import football_schedule
 
-# V13 is the only news runtime. main.py, v12_engine.py,
-# v13_engine.py and graphics_patch.py are not imported here.
+# V13 is the only news runtime.
 # Free media branding, AI routing, and topic-level deduplication are installed
 # before the engine starts.
 v13_media_branding.install(main)
@@ -32,7 +31,7 @@ if __name__ == "__main__":
         print(f"FOOTBALL SCHEDULE ERROR: {exc}", flush=True)
 
     try:
-        education.main.send_message = main.send_message
+        education.configure(main)
         education.post_daily_education()
     except Exception as exc:
         print(f"EDUCATION ERROR: {exc}", flush=True)
