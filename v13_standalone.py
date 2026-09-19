@@ -442,6 +442,9 @@ GOOGLE_NEWS_FEEDS = [
     ("فرهنگ", google_news_search_url(
         "فرهنگ هنر سینما"
     )),
+    ("فیلم و سریال", google_news_search_url(
+        "site:variety.com film OR series OR television OR streaming"
+    )),
     ("جامعه", google_news_search_url(
         "جامعه اجتماعی"
     )),
@@ -542,6 +545,7 @@ HIGH_QUALITY_HOSTS = {
     "apnews.com",
     "aljazeera.com",
     "euronews.com",
+    "variety.com",
 }
 
 
