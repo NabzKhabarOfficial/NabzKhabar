@@ -30,7 +30,8 @@ if __name__ == "__main__":
         print(f"EDUCATION ERROR: {exc}", flush=True)
 
     try:
-        car_prices.send_telegram = main.send_message
+        # Car prices are an independent daily board, so they must use their
+        # own Telegram sender rather than the V13 news language gate.
         car_prices.main()
     except Exception as exc:
         print(f"CAR PRICES ERROR: {exc}", flush=True)
