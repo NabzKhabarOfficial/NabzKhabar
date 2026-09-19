@@ -4239,13 +4239,17 @@ def process_news(
                     + ".jpg"
                 )
 
-                add_watermark(
+                # add_watermark() may intentionally return the original
+                # image when the watermark is unsafe/too large. Always use
+                # the returned path so we never try to upload a file that
+                # was not created.
+                branded_path = add_watermark(
                     downloaded,
                     watermarked
                 )
 
                 success = send_photo(
-                    watermarked,
+                    branded_path,
                     caption
                 )
 
