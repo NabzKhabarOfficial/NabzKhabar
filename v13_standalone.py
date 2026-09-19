@@ -20,8 +20,6 @@ import feedparser
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
 
-import currents_source
-
 
 # ============================================================
 # NABZ KHABAR BOT v11
@@ -376,14 +374,65 @@ DIRECT_RSS_FEEDS = [
 # ============================================================
 
 GOOGLE_NEWS_FEEDS = [
-    ("جهان", google_news_search_url("world international breaking news")),
-    ("ایران", google_news_search_url("Iran latest Reuters AP BBC AFP")),
-    ("جنگ و بحران", google_news_search_url("war conflict Reuters AP BBC AFP")),
-    ("اقتصاد", google_news_search_url("world economy markets Reuters AP BBC")),
-    ("فناوری", google_news_search_url("AI technology Reuters AP BBC TechCrunch")),
-    ("ورزش", google_news_search_url("football sports ESPN Reuters AP")),
-    ("سلامت و علم", google_news_search_url("health science Reuters AP BBC")),
-    ("فوری", google_news_search_url("breaking news Reuters AP BBC AFP")),
+    ("ایران", google_news_search_url("ایران")),
+    ("خبر فوری", google_news_search_url("خبر فوری ایران")),
+    ("خبر مهم", google_news_search_url("خبر مهم ایران")),
+    ("حوادث", google_news_search_url(
+        "حادثه انفجار تصادف سقوط آتش سوزی ایران"
+    )),
+    ("اقتصاد", google_news_search_url(
+        "اقتصاد ایران"
+    )),
+    # Replace price-specific discovery with broader high-value topics.
+    # Market price details remain handled by the dedicated market workflow.
+    ("جنگ و بحران", google_news_search_url(
+        "جنگ بحران درگیری حمله آتش بس جهان"
+    )),
+    ("جهان", google_news_search_url(
+        "مهمترین اخبار جهان بین الملل"
+    )),
+    ("هوش مصنوعی", google_news_search_url(
+        "هوش مصنوعی Gemini OpenAI Anthropic NVIDIA"
+    )),
+    ("ورزش", google_news_search_url(
+        "ورزش فوتبال NBA لیگ قهرمانان"
+    )),
+    ("بورس", google_news_search_url(
+        "بورس ایران"
+    )),
+    ("نفت", google_news_search_url(
+        "نفت انرژی ایران"
+    )),
+    ("هوش مصنوعی", google_news_search_url(
+        "هوش مصنوعی AI"
+    )),
+    ("فناوری", google_news_search_url(
+        "فناوری تکنولوژی"
+    )),
+    ("موبایل", google_news_search_url(
+        "موبایل گوشی"
+    )),
+    ("خودرو", google_news_search_url(
+        "خودرو ماشین"
+    )),
+    ("ورزش", google_news_search_url(
+        "ورزش فوتبال"
+    )),
+    ("سلامت", google_news_search_url(
+        "سلامت پزشکی"
+    )),
+    ("علم", google_news_search_url(
+        "علم دانش"
+    )),
+    ("فرهنگ", google_news_search_url(
+        "فرهنگ هنر سینما"
+    )),
+    ("جامعه", google_news_search_url(
+        "جامعه اجتماعی"
+    )),
+    ("کریپتو", google_news_search_url(
+        "ارز دیجیتال بیت کوین کریپتو"
+    )),
 ]
 
 
@@ -3349,13 +3398,6 @@ def collect_candidates(
         )
 
     # --------------------------------------------------------
-    # Currents discovery (free tier, when CURRENTS_API_KEY exists)
-    # --------------------------------------------------------
-
-    currents_items = currents_source.collect()
-    all_candidates.extend(currents_items)
-
-    # --------------------------------------------------------
     # Google discovery
     # --------------------------------------------------------
 
@@ -4535,35 +4577,17 @@ import re
 # ============================================================
 
 V13_DIRECT_RSS_FEEDS = [
+    ("ایران", "https://www.yjc.ir/fa/rss/allnews"),
+    ("فناوری", "https://digiato.com/feed"),
     ("جهان", "https://feeds.bbci.co.uk/news/rss.xml"),
+    ("جهان", "https://www.theguardian.com/world/rss"),
+    ("جهان", "https://feeds.npr.org/1001/rss.xml"),
+    # Global news feeds: keep the feed count unchanged so polling time does not grow.
     ("جهان", "https://www.aljazeera.com/xml/rss/all.xml"),
     ("جهان", "https://rss.dw.com/xml/rss-en-all"),
     ("جهان", "https://www.france24.com/en/rss"),
+    ("جهان", "https://feeds.skynews.com/feeds/rss/home.xml"),
 ]
-
-# Strict foreign-source policy: only a small set of established international
-# publishers is allowed into the news pipeline. Iranian/local publishers and
-# generic aggregator domains are intentionally excluded.
-ALLOWED_FOREIGN_HOSTS = {
-    "reuters.com",
-    "apnews.com",
-    "bbc.com",
-    "bbc.co.uk",
-    "afp.com",
-    "aljazeera.com",
-    "dw.com",
-    "france24.com",
-    "espn.com",
-    "techcrunch.com",
-    "arstechnica.com",
-    "theverge.com",
-}
-
-# ---------- Source policy ----------
-DIRECT_RSS_FEEDS = V13_DIRECT_RSS_FEEDS
-for host in ALLOWED_FOREIGN_HOSTS:
-    HIGH_QUALITY_HOSTS.add(host)
-
 
 # ---------- Source policy ----------
 DIRECT_RSS_FEEDS = V13_DIRECT_RSS_FEEDS
@@ -4816,18 +4840,12 @@ image_is_acceptable = image_is_acceptable
 # ---------- Candidate quality gate ----------
 _original_collect_candidates = collect_candidates
 
-def _allowed_foreign_source(url):
-    host = base_domain(get_hostname(url))
-    return any(host == domain or host.endswith("." + domain) for domain in ALLOWED_FOREIGN_HOSTS)
-
 def collect_candidates(hash_history, title_history):
     candidates = _original_collect_candidates(hash_history, title_history)
     clean = []
     seen = set()
 
     for c in candidates:
-        if not _allowed_foreign_source(c.get("link", "")):
-            continue
         title = clean_title(c.get("title", ""))
         link = canonicalize_url(c.get("link", ""))
         if not title or len(title) < 12 or not link:
