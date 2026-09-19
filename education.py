@@ -1,7 +1,16 @@
 import os
 from datetime import datetime, timezone
 
-import main
+
+# Runtime bindings are injected by run_bot.py so education stays independent of legacy cores.
+HISTORY_FILE = "sent_news.txt"
+send_message = None
+
+
+def configure(core):
+    global HISTORY_FILE, send_message
+    HISTORY_FILE = core.HISTORY_FILE
+    send_message = core.send_message
 
 
 EDU_HISTORY_MARKER = "EDU_POST|"
@@ -189,7 +198,7 @@ def already_posted_today(history_lines, day_key):
 def mark_posted(day_key):
     marker = EDU_HISTORY_MARKER + day_key
     try:
-        with open(main.HISTORY_FILE, "a", encoding="utf-8") as f:
+        with open(HISTORY_FILE, "a", encoding="utf-8") as f:
             f.write(marker + "\n")
         return True
     except Exception as e:
@@ -202,7 +211,7 @@ def post_daily_education():
     day_key = now.strftime("%Y-%m-%d")
 
     try:
-        with open(main.HISTORY_FILE, "r", encoding="utf-8") as f:
+        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
             history_lines = f.read().splitlines()
     except FileNotFoundError:
         history_lines = []
@@ -226,7 +235,11 @@ def post_daily_education():
         f"📢 @NabzKhabarOfficial"
     )
 
-    success = main.send_message(text)
+    if send_message is None:
+        print("EDUCATION: runtime is not configured.")
+        return False
+
+    success = send_message(text)
 
     if success:
         mark_posted(day_key)
