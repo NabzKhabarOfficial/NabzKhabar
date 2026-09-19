@@ -4880,13 +4880,37 @@ _original_send_photo = send_photo
 _original_send_video = send_video
 
 
+def _latin_words(text):
+    """
+    Return standalone Latin-script words that are not part of a URL/handle.
+    The channel's publication contract is Persian-only; the NABZ brand is
+    explicitly allowed because it is part of the fixed footer/watermark.
+    """
+    value = str(text or "")
+    value = re.sub(r"https?://\S+", " ", value)
+    value = re.sub(r"@[A-Za-z0-9_]+", " ", value)
+    words = re.findall(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", value)
+    return [word for word in words if word.upper() != "NABZ"]
+
+
 def _assert_persian_caption(caption):
     text = str(caption or "").strip()
     if not text:
         return
-    # Ignore the channel handle/URL-like tokens when measuring language.
+
+    # Ignore the fixed channel handle/URL and the NABZ brand.
     probe = re.sub(r"@[A-Za-z0-9_]+", " ", text)
     probe = re.sub(r"https?://\S+", " ", probe)
+    probe = re.sub(r"\bNABZ\b", " ", probe, flags=re.I)
+
+    latin_words = _latin_words(probe)
+    if latin_words:
+        print(
+            "V13 FINAL LANGUAGE GATE: blocked Latin words: "
+            + ", ".join(latin_words[:10])
+        )
+        raise SkipForeignStory()
+
     if _persian_ratio(probe) < 0.55:
         print("V13 FINAL LANGUAGE GATE: blocked non-Persian publication.")
         raise SkipForeignStory()
