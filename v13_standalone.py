@@ -63,6 +63,10 @@ MAX_IMAGE_MB = 12
 # Only reasonably fresh news.
 MAX_NEWS_AGE_HOURS = 36
 
+# The bot runs every 10 minutes. Keep discovery focused on a short,
+# overlapping window so delayed RSS publication does not create gaps.
+FEED_COLLECTION_WINDOW_MINUTES = 30
+
 # Semantic duplicate protection window.
 SEMANTIC_HISTORY_DAYS = 7
 
@@ -85,6 +89,7 @@ print(f"Gemini enabled: {bool(AI_API_KEY)}")
 print(f"Gemini model: {GEMINI_MODEL}")
 print(f"Max news/run: {MAX_NEWS_PER_RUN}")
 print(f"Freshness window: {MAX_NEWS_AGE_HOURS}h")
+print(f"Feed discovery window: {FEED_COLLECTION_WINDOW_MINUTES}m")
 print(f"Semantic history: {SEMANTIC_HISTORY_DAYS} days")
 
 
@@ -346,6 +351,7 @@ def google_news_search_url(query):
         f"&hl={GOOGLE_HL}"
         f"&gl={GOOGLE_GL}"
         f"&ceid={GOOGLE_CEID}"
+        f"&when={FEED_COLLECTION_WINDOW_MINUTES}m"
     )
 
 
@@ -3059,6 +3065,38 @@ def collect_feed(
 
         for entry in feed.entries[:15]:
 
+            # Google News is queried server-side with the short window above.
+            # Direct RSS feeds are filtered locally using the same window.
+            published_at = parse_entry_time(
+                entry
+            )
+
+            if (
+                published_at
+                and not is_fresh(
+                    published_at
+                )
+            ):
+                print(
+                    f"SKIPPED OLD: "
+                    f"{entry.get('title', '')}"
+                )
+                continue
+
+            if (
+                published_at
+                and (
+                    datetime.now(timezone.utc) - published_at
+                ).total_seconds() > (
+                    FEED_COLLECTION_WINDOW_MINUTES * 60
+                )
+            ):
+                print(
+                    f"SKIPPED OUTSIDE FEED WINDOW: "
+                    f"{entry.get('title', '')}"
+                )
+                continue
+
             raw_title = normalize_space(
                 entry.get(
                     "title",
@@ -3094,20 +3132,6 @@ def collect_feed(
 
                 continue
 
-            published_at = parse_entry_time(
-                entry
-            )
-
-            if not is_fresh(
-                published_at
-            ):
-
-                print(
-                    f"SKIPPED OLD: "
-                    f"{title}"
-                )
-
-                continue
 
             summary = clean_content(
                 entry.get(
