@@ -11,6 +11,7 @@ v13_media_branding.install(main)
 v13_ai_router.install(main)
 
 import education
+import car_prices
 
 
 if __name__ == "__main__":
@@ -27,6 +28,12 @@ if __name__ == "__main__":
         education.post_daily_education()
     except Exception as exc:
         print(f"EDUCATION ERROR: {exc}", flush=True)
+
+    try:
+        car_prices.send_telegram = main.send_message
+        car_prices.main()
+    except Exception as exc:
+        print(f"CAR PRICES ERROR: {exc}", flush=True)
 
     if news_failed:
         sys.exit(1)
