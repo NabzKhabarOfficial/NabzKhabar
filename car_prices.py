@@ -122,24 +122,21 @@ def fetch_page():
 
 def parse_update_date(soup):
     text = clean(soup.get_text(" ", strip=True))
-    m = re.search(r"تاریخ بروزرسانی\s*:\s*[^\d۰-۹]*([۰-۹0-9]{1,4}\s+[^\d۰-۹]+\s+[۰-۹0-9]{1,2}\s+[^\d۰-۹]+\s+[۰-۹0-9]{2,4})", text)
-    if not m:
-        # Fallback to the first heading containing "تاریخ بروزرسانی".
-        for node in soup.find_all(string=re.compile("تاریخ بروزرسانی")):
-            line = clean(node.parent.get_text(" ", strip=True))
-            mm = re.search(r"([۰-۹0-9]{4}\s+\S+\s+[۰-۹0-9]{1,2})", line)
-            if mm:
-                return clean(mm.group(1))
-    return clean(m.group(1)) if m else ""
-
-
+    patterns = (
+        r"(?:تاریخ\s+بروزرسانی\s*:\s*)?(?:شنبه|یکشنبه|دوشنبه|سه‌شنبه|سه شنبه|چهارشنبه|پنجشنبه|جمعه)?\s*([۰-۹0-9]{1,2})\s+([آ-ی‌]+)\s+([۰-۹0-9]{4})",
+        r"(?:تاریخ\s+بروزرسانی\s*:\s*)?(?:شنبه|یکشنبه|دوشنبه|سه‌شنبه|سه شنبه|چهارشنبه|پنجشنبه|جمعه)?\s*([۰-۹0-9]{4})\s+([آ-ی‌]+)\s+([۰-۹0-9]{1,2})",
+    )
+    for pattern in patterns:
+        m = re.search(pattern, text)
+        if m:
+            if len(m.group(1)) == 4:
+                return clean(f"{m.group(1)} {m.group(2)} {m.group(3)}")
+            return clean(f"{m.group(3)} {m.group(2)} {m.group(1)}")
+    return ""
 def normalize_date_text(value):
     value = clean(value)
-    value = value.replace("شنبه","").replace("یکشنبه","").replace("دوشنبه","").replace("سه‌شنبه","").replace("چهارشنبه","").replace("پنجشنبه","").replace("جمعه","")
-    value = re.sub(r"\s+", " ", value).strip()
-    return value
-
-
+    value = re.sub(r"^(شنبه|یکشنبه|دوشنبه|سه‌شنبه|سه شنبه|چهارشنبه|پنجشنبه|جمعه)\s*", "", value)
+    return re.sub(r"\s+", " ", value).strip()
 def parse_rows(html):
     soup = BeautifulSoup(html, "html.parser")
     sections = []
@@ -282,10 +279,11 @@ def main(send_func=None):
     html = fetch_page()
     soup = BeautifulSoup(html, "html.parser")
     source_date = normalize_date_text(parse_update_date(soup))
+    y, m, d = jalali_date(now)
     expected = normalize_date_text(
-        f"{to_persian_digits(str(jalali_date(now)[0]))} "
-        f"{['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'][jalali_date(now)[1]-1]} "
-        f"{to_persian_digits(str(jalali_date(now)[2]))}"
+        f"{to_persian_digits(str(d))} "
+        f"{['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'][m-1]} "
+        f"{to_persian_digits(str(y))}"
     )
 
     # Do not publish yesterday's/stale board as today's data.
