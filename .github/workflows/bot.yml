@@ -47,17 +47,13 @@ jobs:
 
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_topic_diversity.py v13_event_dedup.py currents_source.py football_schedule.py car_prices.py run_bot.py education.py
-
-      - name: Run event-dedup regression tests
-        run: python -m unittest -v test_v13_event_dedup.py test_car_prices.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_topic_diversity.py football_schedule.py run_bot.py education.py
 
       - name: Run independent V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
-          CURRENTS_API_KEY: ${{ secrets.CURRENTS_API_KEY }}
           MAX_NEWS_PER_RUN: '4'
         run: python run_bot.py
 
@@ -73,8 +69,6 @@ jobs:
           cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || true
           cp ai_model_health.json /tmp/local_ai_model_health.json 2>/dev/null || true
           cp football_schedule_history.json /tmp/local_football_schedule_history.json 2>/dev/null || true
-          cp currents_usage.json /tmp/local_currents_usage.json 2>/dev/null || true
-          cp car_price_history.json /tmp/local_car_price_history.json 2>/dev/null || true
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -91,49 +85,6 @@ jobs:
             tail -n 50000 /tmp/history_hashes.txt > /tmp/history_hashes_bounded.txt 2>/dev/null || true
             cat /tmp/history_hashes_bounded.txt /tmp/history_titles.txt 2>/dev/null > /tmp/merged_sent_news.txt || true
 
-            if git show origin/main:currents_usage.json > /tmp/remote_currents_usage.json 2>/dev/null; then
-              python - <<'PY'
-          import json
-          from pathlib import Path
-
-          remote_path = Path("/tmp/remote_currents_usage.json")
-          local_path = Path("/tmp/local_currents_usage.json")
-          out_path = Path("/tmp/merged_currents_usage.json")
-
-          def load(path):
-              try:
-                  return json.loads(path.read_text(encoding="utf-8"))
-              except Exception:
-                  return {}
-
-          remote = load(remote_path)
-          local = load(local_path)
-
-          if remote.get("date") == local.get("date"):
-              merged = {
-                  "date": local.get("date") or remote.get("date"),
-                  "requests": max(
-                      int(remote.get("requests", 0)),
-                      int(local.get("requests", 0)),
-                  ),
-              }
-          elif local.get("date"):
-              merged = {
-                  "date": local.get("date"),
-                  "requests": int(local.get("requests", 0)),
-              }
-          else:
-              merged = remote
-
-          out_path.write_text(
-              json.dumps(merged, ensure_ascii=False, indent=2) + "\n",
-              encoding="utf-8",
-          )
-          PY
-            else
-              cp /tmp/local_currents_usage.json /tmp/merged_currents_usage.json 2>/dev/null || true
-            fi
-
             git reset --hard origin/main
             cp /tmp/merged_sent_news.txt sent_news.txt 2>/dev/null || true
             if [ -f /tmp/local_ai_model_health.json ]; then
@@ -142,18 +93,10 @@ jobs:
             if [ -f /tmp/local_football_schedule_history.json ]; then
               cp /tmp/local_football_schedule_history.json football_schedule_history.json
             fi
-            if [ -f /tmp/merged_currents_usage.json ]; then
-              cp /tmp/merged_currents_usage.json currents_usage.json
-            fi
-            if [ -f /tmp/local_car_price_history.json ]; then
-              cp /tmp/local_car_price_history.json car_price_history.json
-            fi
 
             git add sent_news.txt
             if [ -f ai_model_health.json ]; then git add ai_model_health.json; fi
             if [ -f football_schedule_history.json ]; then git add football_schedule_history.json; fi
-            if [ -f currents_usage.json ]; then git add currents_usage.json; fi
-            if [ -f car_price_history.json ]; then git add car_price_history.json; fi
             if git diff --cached --quiet; then
               echo "No history changes."
               exit 0
