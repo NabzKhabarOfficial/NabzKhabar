@@ -78,10 +78,23 @@ def _parse_published(value):
         return None
 
 
+ALLOWED_HOSTS = {
+    "reuters.com", "apnews.com", "bbc.com", "bbc.co.uk", "afp.com",
+    "aljazeera.com", "dw.com", "france24.com", "espn.com",
+    "techcrunch.com", "arstechnica.com", "theverge.com",
+}
+
+def _allowed_source(url):
+    from urllib.parse import urlparse
+    host = (urlparse(str(url or "")).netloc or "").lower().split(":")[0]
+    if host.startswith("www."):
+        host = host[4:]
+    return any(host == domain or host.endswith("." + domain) for domain in ALLOWED_HOSTS)
+
 def _candidate(article):
     title = str(article.get("title") or "").strip()
     url = str(article.get("url") or "").strip()
-    if not title or not url:
+    if not title or not url or not _allowed_source(url):
         return None
 
     published_at = _parse_published(article.get("published"))
