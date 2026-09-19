@@ -683,6 +683,51 @@ def clean_content(text):
             ""
         )
 
+    # Remove publisher/navigation boilerplate that can leak from broad
+    # webpage containers (for example Digiato's membership and navigation
+    # blocks). These are not article facts and must never reach the AI.
+    BOILERPLATE_PHRASES = [
+        "عضویت در دیجیاتو",
+        "دیجیاتو را در گوگل بیشتر ببینید",
+        "در دیجیاتو ثبت نام کنید",
+        "جهت بهره مندی و دسترسی به امکانات ویژه",
+        "عضو ویژه دیجیاتو شوید",
+        "کپی لینک",
+        "عضویت در خبرنامه",
+        "اشتراک گذاری",
+        "مطالب مرتبط",
+        "بیشتر بخوانید",
+        "آخرین اخبار",
+    ]
+
+    for phrase in BOILERPLATE_PHRASES:
+        text = text.replace(phrase, " ")
+
+    # Strip common byline/date fragments that are page chrome rather than
+    # the article body. Keep dates that are actually part of a sentence.
+    text = re.sub(
+        r"\b(?:منتشر شده در|نوشته شده در)\s+"
+        r"[^|]{0,100}?\s*\d{1,2}\s+"
+        r"(?:فروردین|اردیبهشت|خرداد|تیر|مرداد|شهریور|مهر|آبان|آذر|دی|بهمن|اسفند)"
+        r"\s+\d{4}\s*\|?\s*\d{1,2}:\d{2}",
+        " ",
+        text,
+        flags=re.I
+    )
+
+    text = re.sub(
+        r"\b(?:مرتضی قانع|نویسنده)\b",
+        " ",
+        text,
+        flags=re.I
+    )
+
+    text = re.sub(
+        r"\s+#?[A-Za-z0-9_]+\s*$",
+        "",
+        text
+    )
+
     text = re.sub(
         r"\b(ایرنا|ایسنا|مهر|باشگاه خبرنگاران جوان|خبرگزاری)"
         r"\s*[:：-]",
@@ -1852,14 +1897,38 @@ def fetch_article(
         if not candidates:
             return ""
 
-        text = max(
-            candidates,
-            key=len
+        cleaned_candidates = []
+        for candidate in candidates:
+            cleaned = clean_content(candidate)
+            if len(cleaned) < 150:
+                continue
+
+            # Prefer article-like candidates and penalize obvious webpage
+            # chrome. A larger but polluted container must not win merely
+            # because it contains navigation and membership text.
+            boilerplate_hits = sum(
+                1 for phrase in (
+                    "عضویت در دیجیاتو",
+                    "کپی لینک",
+                    "در دیجیاتو ثبت نام کنید",
+                    "دیجیاتو را در گوگل بیشتر ببینید",
+                    "عضویت در خبرنامه",
+                    "مطالب مرتبط",
+                )
+                if phrase in cleaned
+            )
+            score = len(cleaned) - (boilerplate_hits * 500)
+            cleaned_candidates.append((score, cleaned))
+
+        if not cleaned_candidates:
+            return ""
+
+        _, text = max(
+            cleaned_candidates,
+            key=lambda item: item[0]
         )
 
-        return clean_content(
-            text
-        )[:6000]
+        return text[:6000]
 
     except Exception as e:
 
