@@ -180,6 +180,7 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
                 "temperature": 0.2,
                 "max_completion_tokens": max_output_tokens,
                 "response_format": {"type": "json_object"},
+                "include_reasoning": False,
             },
             timeout=30,
         )
