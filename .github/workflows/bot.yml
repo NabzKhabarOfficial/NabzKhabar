@@ -1,13 +1,9 @@
 name: NabzKhabar News Bot
-# final provider test
 
 on:
   schedule:
     - cron: '*/10 * * * *'
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/bot.yml'
 
 permissions:
   contents: write
@@ -49,62 +45,6 @@ jobs:
         run: |
           python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py run_bot.py education.py car_prices.py weather.py
 
-      - name: Run AI provider connectivity test (one-time)
-        if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, 'AI PROVIDER TEST') }}
-        continue-on-error: true
-        env:
-          AI_API_KEY: ${{ secrets.AI_API_KEY }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
-        run: |
-          python - <<'PY'
-          import json, os, requests
-
-          def call(name, url, headers, payload=None):
-              try:
-                  headers = dict(headers)
-                  headers.setdefault('User-Agent', 'NabzKhabar-V13/1.0')
-                  r = requests.post(url, headers=headers, json=payload, timeout=30) if payload is not None else requests.get(url, headers=headers, timeout=30)
-                  if not r.ok:
-                      print(f"AI PROVIDER TEST: FAIL {name} HTTP {r.status_code}: {r.text[:300]}")
-                      return False
-                  data = r.json()
-                  if not isinstance(data, dict):
-                      print(f"AI PROVIDER TEST: FAIL {name}: invalid JSON response")
-                      return False
-                  print(f"AI PROVIDER TEST: PASS {name}")
-                  return True
-              except Exception as e:
-                  print(f"AI PROVIDER TEST: FAIL {name}: {type(e).__name__}: {e}")
-                  return False
-
-          results = []
-          gemini_key = os.getenv('AI_API_KEY','').strip()
-          if gemini_key:
-              for model in ('gemini-3.6-flash','gemini-3.5-flash-lite','gemini-3.1-flash-lite'):
-                  results.append(call(f'Gemini/{model}', f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={gemini_key}', {'Content-Type':'application/json'}, {'contents':[{'parts':[{'text':'پاسخ فقط JSON: {"ok":true}'}]}], 'generationConfig':{'responseMimeType':'application/json','maxOutputTokens':20}}))
-          else:
-              print('AI PROVIDER TEST: FAIL Gemini/no API key')
-              results.append(False)
-
-          for model in ('openai/gpt-oss-20b','openai/gpt-oss-120b'):
-              key = os.getenv('GROQ_API_KEY','').strip()
-              if not key:
-                  print('AI PROVIDER TEST: FAIL Groq/no API key')
-                  results.append(False)
-                  break
-              results.append(call(f'Groq/{model}', 'https://api.groq.com/openai/v1/chat/completions', {'Authorization':f'Bearer {key}','Content-Type':'application/json'}, {'model':model,'messages':[{'role':'user','content':'Return only JSON with keys title and summary: {"title":"تست","summary":"تست اتصال مدل"}'}], 'response_format':{'type':'json_object'}, 'include_reasoning':False, 'max_completion_tokens':200}))
-
-          for model in ('gpt-oss-120b','zai-glm-4.7'):
-              key = os.getenv('CEREBRAS_API_KEY','').strip()
-              if not key:
-                  print('AI PROVIDER TEST: FAIL Cerebras/no API key')
-                  results.append(False)
-                  break
-              results.append(call(f'Cerebras/{model}', 'https://api.cerebras.ai/v1/chat/completions', {'Authorization':f'Bearer {key}','Content-Type':'application/json'}, {'model':model,'messages':[{'role':'user','content':'Return only JSON: {"ok":true}'}], 'response_format':{'type':'json_object'}, 'max_completion_tokens':20}))
-
-          print(f"AI PROVIDER TEST SUMMARY: {sum(results)}/{len(results)} provider-model checks passed")
-          PY
       - name: Run independent V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
