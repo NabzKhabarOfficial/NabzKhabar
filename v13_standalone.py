@@ -389,68 +389,66 @@ DIRECT_RSS_FEEDS = [
 # ============================================================
 
 GOOGLE_NEWS_FEEDS = [
+    # Core Iranian / breaking coverage
     ("ایران", google_news_search_url("ایران")),
-    ("خبر فوری", google_news_search_url("خبر فوری ایران")),
-    ("خبر مهم", google_news_search_url("خبر مهم ایران")),
-    ("حوادث", google_news_search_url(
-        "حادثه انفجار تصادف سقوط آتش سوزی ایران"
-    )),
-    ("اقتصاد", google_news_search_url(
-        "اقتصاد ایران"
-    )),
-    # Replace price-specific discovery with broader high-value topics.
-    # Market price details remain handled by the dedicated market workflow.
-    ("جنگ و بحران", google_news_search_url(
-        "جنگ بحران درگیری حمله آتش بس جهان"
-    )),
-    ("جهان", google_news_search_url(
-        "مهمترین اخبار جهان بین الملل"
-    )),
-    ("هوش مصنوعی", google_news_search_url(
-        "هوش مصنوعی Gemini OpenAI Anthropic NVIDIA"
-    )),
-    ("ورزش", google_news_search_url(
-        "ورزش فوتبال NBA لیگ قهرمانان"
-    )),
-    ("بورس", google_news_search_url(
-        "بورس ایران"
-    )),
-    ("نفت", google_news_search_url(
-        "نفت انرژی ایران"
-    )),
-    ("هوش مصنوعی", google_news_search_url(
-        "هوش مصنوعی AI"
-    )),
-    ("فناوری", google_news_search_url(
-        "فناوری تکنولوژی"
-    )),
-    ("موبایل", google_news_search_url(
-        "موبایل گوشی"
-    )),
-    ("خودرو", google_news_search_url(
-        "خودرو ماشین"
-    )),
-    ("ورزش", google_news_search_url(
-        "ورزش فوتبال"
-    )),
-    ("سلامت", google_news_search_url(
-        "سلامت پزشکی"
-    )),
-    ("علم", google_news_search_url(
-        "علم دانش"
-    )),
-    ("فرهنگ", google_news_search_url(
-        "فرهنگ هنر سینما"
-    )),
-    ("فیلم و سریال", google_news_search_url(
-        "site:variety.com film OR series OR television OR streaming"
-    )),
-    ("جامعه", google_news_search_url(
-        "جامعه اجتماعی"
-    )),
-    ("کریپتو", google_news_search_url(
-        "ارز دیجیتال بیت کوین کریپتو"
-    )),
+    ("خبر فوری", google_news_search_url('"خبر فوری" ایران')),
+    ("خبر مهم", google_news_search_url('"خبر مهم" ایران')),
+    ("حوادث", google_news_search_url("حادثه انفجار تصادف سقوط آتش سوزی ایران")),
+    ("اقتصاد", google_news_search_url("اقتصاد ایران")),
+    ("بازار", google_news_search_url("دلار طلا سکه بورس ایران")),
+    ("جنگ و بحران", google_news_search_url("جنگ بحران درگیری حمله آتش بس")),
+    ("جهان", google_news_search_url("مهمترین اخبار جهان بین الملل")),
+    ("ایران و جهان", google_news_search_url("ایران آمریکا اروپا روسیه چین اسرائیل")),
+    ("جامعه", google_news_search_url("جامعه اجتماعی ایران")),
+    ("سلامت", google_news_search_url("سلامت پزشکی بیمارستان دارو")),
+    ("علم", google_news_search_url("علم دانش پژوهش فضا پزشکی")),
+    ("فرهنگ", google_news_search_url("فرهنگ هنر ادبیات")),
+    ("سینما", google_news_search_url("سینما فیلم سریال تلویزیون")),
+    ("فیلم و سریال", google_news_search_url("site:variety.com film OR series OR television OR streaming")),
+
+    # AI / technology: intentionally split so one broad query does not
+    # become the bottleneck for the entire technology category.
+    ("هوش مصنوعی", google_news_search_url("هوش مصنوعی AI")),
+    ("هوش مصنوعی", google_news_search_url("OpenAI ChatGPT")),
+    ("هوش مصنوعی", google_news_search_url("Google Gemini DeepMind")),
+    ("هوش مصنوعی", google_news_search_url("Anthropic Claude")),
+    ("هوش مصنوعی", google_news_search_url("NVIDIA AI GPU")),
+    ("هوش مصنوعی", google_news_search_url("مدل زبانی LLM هوش مصنوعی مولد")),
+    ("رباتیک", google_news_search_url("رباتیک ربات انسان نما robotics")),
+    ("فناوری", google_news_search_url("فناوری تکنولوژی")),
+    ("فناوری", google_news_search_url("Microsoft Apple Google Meta Amazon")),
+    ("فناوری", google_news_search_url("تراشه پردازنده نیمه رسانا semiconductor chip")),
+    ("فناوری", google_news_search_url("امنیت سایبری هک حمله سایبری")),
+    ("موبایل", google_news_search_url("موبایل گوشی iPhone Samsung Pixel")),
+    ("اینترنت", google_news_search_url("اینترنت شبکه ارتباطات 5G")),
+
+    # World / geopolitics: separate regional queries increase coverage
+    # while the semantic deduplicator collapses reports about one event.
+    ("جهان", google_news_search_url("آمریکا کاخ سفید کنگره ترامپ")),
+    ("جهان", google_news_search_url("اروپا اتحادیه اروپا بریتانیا فرانسه آلمان")),
+    ("جهان", google_news_search_url("روسیه اوکراین جنگ")),
+    ("جهان", google_news_search_url("خاورمیانه اسرائیل فلسطین لبنان غزه")),
+    ("جهان", google_news_search_url("ایران آمریکا مذاکرات تحریم")),
+    ("جهان", google_news_search_url("چین تایوان آسیا ژاپن کره جنوبی")),
+    ("جهان", google_news_search_url("هند پاکستان افغانستان")),
+    ("جهان", google_news_search_url("آفریقا آمریکای لاتین جهان")),
+
+    # Economy / energy / markets
+    ("اقتصاد", google_news_search_url("تورم نرخ بهره اقتصاد جهانی")),
+    ("اقتصاد", google_news_search_url("بانک مرکزی فدرال رزرو ECB")),
+    ("نفت و انرژی", google_news_search_url("نفت گاز انرژی اوپک")),
+    ("بورس", google_news_search_url("بورس سهام بازارهای مالی")),
+    ("کریپتو", google_news_search_url("بیت کوین ارز دیجیتال کریپتو")),
+    ("اقتصاد", google_news_search_url("خودرو بازار خودرو قیمت خودرو ایران")),
+
+    # Sports: split by major sports rather than one overloaded query.
+    ("ورزش", google_news_search_url("ورزش فوتبال ایران")),
+    ("ورزش", google_news_search_url("لیگ قهرمانان فوتبال اروپا")),
+    ("ورزش", google_news_search_url("Premier League football")),
+    ("ورزش", google_news_search_url("NBA basketball")),
+    ("ورزش", google_news_search_url("تنیس Wimbledon ATP WTA")),
+    ("ورزش", google_news_search_url("فرمول یک Formula 1 F1")),
+    ("ورزش", google_news_search_url("UFC MMA")),
 ]
 
 
@@ -3076,7 +3074,7 @@ def collect_feed(
             f"{url}"
         )
 
-        for entry in feed.entries[:15]:
+        for entry in feed.entries[:20]:
 
             # Google News is queried server-side with the short window above.
             # Direct RSS feeds are filtered locally using the same window.
