@@ -4977,7 +4977,7 @@ def collect_candidates(hash_history, title_history):
     try:
         candidates.extend(collect_api_candidates())
     except Exception as exc:
-        print(f\"V13 API SOURCE LAYER ERROR: {exc}\")
+        print(f"V13 API SOURCE LAYER ERROR: {exc}")
 
     clean = []
     seen = set()
