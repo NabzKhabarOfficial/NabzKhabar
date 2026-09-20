@@ -5,6 +5,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import requests
+import time
 
 API_URL = "https://api.open-meteo.com/v1/forecast"
 HISTORY_FILE = Path("weather_history.json")
@@ -149,10 +150,45 @@ def _fetch_weather():
         "timezone": TIMEZONE,
         "forecast_days": 1,
     }
-    response = requests.get(API_URL, params=params, timeout=25)
-    response.raise_for_status()
-    data = response.json()
-    return data if isinstance(data, list) else [data]
+
+    # Weather is a daily independent board. A transient network/API failure
+    # should not permanently lose the day's publication, so use a small,
+    # bounded retry instead of failing immediately.
+    last_error = None
+    for attempt in range(1, 4):
+        try:
+            print(
+                f"WEATHER: Open-Meteo request attempt {attempt}/3 "
+                f"for {len(CITIES)} provinces.",
+                flush=True,
+            )
+            response = requests.get(API_URL, params=params, timeout=30)
+            if not response.ok:
+                preview = response.text[:500].replace("\\n", " ")
+                raise RuntimeError(
+                    f"HTTP {response.status_code}: {preview}"
+                )
+            data = response.json()
+            result = data if isinstance(data, list) else [data]
+            if len(result) != len(CITIES):
+                raise RuntimeError(
+                    f"incomplete API response: {len(result)}/{len(CITIES)}"
+                )
+            return result
+        except Exception as exc:
+            last_error = exc
+            print(
+                f"WEATHER: Open-Meteo attempt {attempt}/3 failed: "
+                f"{type(exc).__name__}: {exc!r}",
+                flush=True,
+            )
+            if attempt < 3:
+                time.sleep(2 * attempt)
+
+    raise RuntimeError(
+        f"Open-Meteo failed after 3 attempts: "
+        f"{type(last_error).__name__}: {last_error!r}"
+    )
 
 
 def _format_board(data, jalali_date):
@@ -234,7 +270,10 @@ def main(send_message=None):
         print(f"WEATHER: published daily board for {jalali_date}.", flush=True)
         return True
     except Exception as exc:
-        print(f"WEATHER ERROR: {exc}", flush=True)
+        print(
+            f"WEATHER ERROR: {type(exc).__name__}: {exc!r}",
+            flush=True,
+        )
         return False
 
 
