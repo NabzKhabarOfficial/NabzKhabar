@@ -1,0 +1,56 @@
+name: NABZ Instagram V1
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  instagram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Validate Instagram module
+        run: |
+          python -m py_compile instagram/*.py
+
+      - name: Dry-run integration check
+        env:
+          PYTHONPATH: .
+        run: |
+          python - <<'PY'
+          from instagram.content import build_caption, validate_caption
+          from instagram.dedupe import content_key
+
+          caption = build_caption(
+              "نمونه خبر برای تست سیستم",
+              "این فقط یک تست فنی است و منتشر نخواهد شد.",
+              "NABZ"
+          )
+          ok, reason = validate_caption(caption)
+          assert ok, reason
+          assert content_key("نمونه خبر")
+          print("Instagram V1 validation: OK")
+          print(caption)
+          PY
+
+      - name: Publish gate
+        run: |
+          echo "Publishing remains disabled until Instagram secrets are configured and dry-run is intentionally disabled."
