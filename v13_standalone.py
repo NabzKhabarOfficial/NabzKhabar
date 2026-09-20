@@ -16,6 +16,8 @@ from urllib.parse import (
 )
 
 import requests
+
+import v13_api_sources
 import feedparser
 from concurrent.futures import ThreadPoolExecutor
 from bs4 import BeautifulSoup
@@ -3504,6 +3506,19 @@ def collect_candidates(
             DIRECT_RSS_FEEDS
         ):
             all_candidates.extend(items)
+
+    # --------------------------------------------------------
+    # Free API discovery: Currents + World News API
+    # --------------------------------------------------------
+
+    try:
+        api_candidates = v13_api_sources.collect_api_candidates()
+        all_candidates.extend(api_candidates)
+        print(
+            f"API candidates added: {len(api_candidates)}"
+        )
+    except Exception as exc:
+        print(f"V13 API SOURCE LAYER ERROR: {exc}")
 
     # --------------------------------------------------------
     # Google discovery
