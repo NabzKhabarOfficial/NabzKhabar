@@ -94,7 +94,7 @@ def _parse_dt(value):
         return dt.astimezone(timezone.utc)
     except Exception:
         # Common fallback formats.
-        for fmt in ("%Y-%m-%d %H:%M:%S %z", "%Y-%m-%d %H:%M:%S"):
+        for fmt in ("%Y-%m-%d %H:%M:%S %z", "%Y-%m-%d %H:%M:%S", "%Y%m%dT%H%M%SZ", "%Y%m%dT%H%M%S%z"):
             try:
                 dt = datetime.strptime(str(value), fmt)
                 if dt.tzinfo is None:
