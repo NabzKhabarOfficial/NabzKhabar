@@ -363,7 +363,6 @@ DIRECT_RSS_FEEDS = [
     ("اقتصاد", "https://www.isna.ir/rss/service/economy"),
     ("ورزش", "https://www.isna.ir/rss?serviceid=5"),
     ("جهان", "https://www.irna.ir/rss/service/world"),
-    ("فناوری", "https://digiato.com/feed"),
     ("ایران", "https://www.yjc.ir/fa/rss/allnews"),
     ("فرهنگ", "https://www.irna.ir/rss/service/culture"),
     ("اجتماعی", "https://www.irna.ir/rss/service/society"),
@@ -4713,7 +4712,6 @@ V13_DIRECT_RSS_FEEDS = [
     # Global news feeds: keep the feed count unchanged so polling time does not grow.
     ("جهان", "https://www.aljazeera.com/xml/rss/all.xml"),
     ("جهان", "https://rss.dw.com/xml/rss-en-all"),
-    ("جهان", "https://www.france24.com/en/rss"),
     ("جهان", "https://feeds.skynews.com/feeds/rss/home.xml"),
 ]
 
