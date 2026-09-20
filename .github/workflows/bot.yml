@@ -46,7 +46,7 @@ jobs:
           python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py run_bot.py education.py car_prices.py weather.py
 
       - name: Run AI provider connectivity test (one-time)
-        if: ${{ contains(github.event.head_commit.message, 'AI PROVIDER TEST') }}
+        if: ${{ github.run_number == 782 }}
         continue-on-error: true
         env:
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
