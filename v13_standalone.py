@@ -4316,6 +4316,16 @@ def process_news(
 
                 return True
 
+        # A story that has an actual video must never silently fall back
+        # to a photo or text post if the video download/upload fails.
+        # A failed video would otherwise produce a misleading/ambiguous
+        # publication that no longer matches the source media.
+        print(
+            "VIDEO STORY BLOCKED: video could not be downloaded or published; "
+            "no photo/text fallback."
+        )
+        return False
+
     # ========================================================
     # PHOTO
     # ========================================================
