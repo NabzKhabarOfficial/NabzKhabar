@@ -2381,120 +2381,133 @@ def download_file(
     if not url:
         return ""
 
-    try:
+    # CDN/media connections can close early (IncompleteRead). Retry the
+    # complete download instead of dropping an otherwise valid story.
+    max_attempts = 3
 
-        response = SESSION.get(
-            url,
-            timeout=ARTICLE_TIMEOUT,
-            stream=True,
-            allow_redirects=True
-        )
-
-        if response.status_code != 200:
-            return ""
-
-        content_length = response.headers.get(
-            "content-length"
-        )
-
-        if content_length:
-
-            try:
-
-                size_mb = int(
-                    content_length
-                ) / (
-                    1024 * 1024
-                )
-
-                if size_mb > max_mb:
-
-                    print(
-                        f"File too large: "
-                        f"{size_mb:.1f} MB"
-                    )
-
-                    return ""
-
-            except Exception:
-                pass
-
-        total = 0
-
-        with open(
-            filename,
-            "wb"
-        ) as f:
-
-            for chunk in response.iter_content(
-                chunk_size=64 * 1024
-            ):
-
-                if not chunk:
-                    continue
-
-                total += len(
-                    chunk
-                )
-
-                if (
-                    total
-                    > max_mb
-                    * 1024
-                    * 1024
-                ):
-
-                    print(
-                        f"Download exceeded "
-                        f"{max_mb} MB"
-                    )
-
-                    try:
-                        f.close()
-                        os.remove(
-                            filename
-                        )
-                    except Exception:
-                        pass
-
-                    return ""
-
-                f.write(
-                    chunk
-                )
-
-        if total == 0:
-
-            try:
-                os.remove(
-                    filename
-                )
-            except Exception:
-                pass
-
-            return ""
-
-        return filename
-
-    except Exception as e:
-
-        print(
-            f"Download error: {e}"
-        )
+    for attempt in range(1, max_attempts + 1):
 
         try:
 
-            if os.path.exists(
-                filename
-            ):
-                os.remove(
-                    filename
+            response = SESSION.get(
+                url,
+                timeout=(10, ARTICLE_TIMEOUT),
+                stream=True,
+                allow_redirects=True,
+                headers={
+                    "Cache-Control": "no-cache",
+                    "Accept-Encoding": "identity",
+                },
+            )
+
+            if response.status_code != 200:
+                print(
+                    f"Media download HTTP {response.status_code} "
+                    f"(attempt {attempt}/{max_attempts})"
+                )
+                response.close()
+                if attempt < max_attempts:
+                    time.sleep(attempt)
+                    continue
+                return ""
+
+            content_length = response.headers.get(
+                "content-length"
+            )
+
+            if content_length:
+
+                try:
+
+                    size_mb = int(
+                        content_length
+                    ) / (
+                        1024 * 1024
+                    )
+
+                    if size_mb > max_mb:
+
+                        print(
+                            f"File too large: "
+                            f"{size_mb:.1f} MB"
+                        )
+
+                        response.close()
+                        return ""
+
+                except Exception:
+                    pass
+
+            total = 0
+
+            with open(
+                filename,
+                "wb"
+            ) as f:
+
+                for chunk in response.iter_content(
+                    chunk_size=64 * 1024
+                ):
+
+                    if not chunk:
+                        continue
+
+                    total += len(
+                        chunk
+                    )
+
+                    if (
+                        total
+                        > max_mb
+                        * 1024
+                        * 1024
+                    ):
+
+                        print(
+                            f"Download exceeded "
+                            f"{max_mb} MB"
+                        )
+
+                        return ""
+
+                    f.write(
+                        chunk
+                    )
+
+            response.close()
+
+            if total == 0:
+                raise IOError(
+                    "media download returned zero bytes"
                 )
 
-        except Exception:
-            pass
+            print(
+                f"Media download OK: "
+                f"{total / (1024 * 1024):.2f} MB "
+                f"(attempt {attempt})"
+            )
 
-        return ""
+            return filename
+
+        except Exception as e:
+
+            print(
+                f"Download error "
+                f"(attempt {attempt}/{max_attempts}): {e}"
+            )
+
+            try:
+                if os.path.exists(filename):
+                    os.remove(filename)
+            except Exception:
+                pass
+
+            if attempt < max_attempts:
+                time.sleep(attempt)
+                continue
+
+    print("Media download failed after 3 attempts.")
+    return ""
 
 
 # ============================================================
