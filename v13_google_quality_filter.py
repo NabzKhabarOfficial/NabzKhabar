@@ -17,9 +17,8 @@ GLOBAL_TERMS = (
     "trump", "white house", "congress", "pentagon", "nato", "un", "european union",
     "europe", "russia", "ukraine", "china", "taiwan", "japan", "south korea",
     "north korea", "israel", "palestine", "gaza", "lebanon", "syria", "iraq",
-    "yemen", "saudi", "turkey", "india", "pakistan", "afghanistan", "election",
-    "sanctions", "ceasefire", "war", "missile", "airstrike", "invasion",
-    "nuclear", "diplomacy", "summit", "president", "prime minister", "parliament",
+    "yemen", "saudi", "turkey", "india", "pakistan", "afghanistan", "sanctions",, "ceasefire", "war", "missile", "airstrike", "invasion",
+    "nuclear", "diplomacy", "summit", "prime minister", "parliament",
     "central bank", "federal reserve", "ecb", "opec", "oil", "gas", "inflation",
     "interest rate", "tariff", "trade war", "stock market", "bitcoin",
     "openai", "chatgpt", "gemini", "deepmind", "anthropic", "claude", "nvidia",
@@ -88,11 +87,12 @@ def _is_local_google_noise(candidate):
     has_iran = _contains(text, IRAN_TERMS)
     has_global = _has_global_signal(text)
     has_major_event = _contains(text, MAJOR_EVENT_TERMS)
+    has_region = _contains(text, ("iran", "tehran", "russia", "ukraine", "china", "taiwan", "japan", "south korea", "north korea", "israel", "palestine", "gaza", "lebanon", "syria", "iraq", "yemen", "saudi", "turkey", "india", "pakistan", "afghanistan", "european union", "nato", "united nations", "opec", "white house", "pentagon", "federal reserve", "ecb", "world cup", "olympics", "champions league", "premier league", "formula 1", "ufc", "wimbledon", "ایران", "تهران", "جهان", "بین الملل", "بین‌الملل"))
 
-    if _contains(text, LOCAL_NOISE_TERMS) and not (has_iran or has_global or has_major_event):
+    if _contains(text, LOCAL_NOISE_TERMS) and not (has_iran or has_region or has_major_event):
         return True
 
-    if any(hint in link for hint in LOCAL_HOST_HINTS) and not (has_iran or has_global or has_major_event):
+    if any(hint in link for hint in LOCAL_HOST_HINTS) and not (has_iran or has_region or has_major_event):
         return True
 
     category = str(candidate.get("category", "") or "")
@@ -100,14 +100,14 @@ def _is_local_google_noise(candidate):
     if category == "ورزش" and not (has_iran or has_global):
         return True
 
-    if category in ("فرهنگ", "سینما", "فیلم و سریال") and not (has_iran or has_global or has_major_event):
+    if category in ("فرهنگ", "سینما", "فیلم و سریال") and not (has_iran or has_region or has_major_event):
         return True
 
     if category in ("جهان", "اقتصاد", "جامعه", "سلامت", "علم", "بازار", "جهان و ایران"):
-        if not (has_iran or has_global or has_major_event):
+        if not (has_iran or has_region or has_global or has_major_event):
             return True
 
-    if re.search(r"[A-Za-z]", title) and not (has_iran or has_global or has_major_event):
+    if re.search(r"[A-Za-z]", title) and not (has_iran or has_region or has_major_event):
         return True
 
     return False
@@ -131,7 +131,15 @@ def install(main):
                 continue
             clean.append(candidate)
 
-        print(f"V13 GOOGLE QUALITY FILTER: kept={len(clean)} blocked={removed}")
+        google = [x for x in clean if x.get("is_google")]
+        non_google = [x for x in clean if not x.get("is_google")]
+        google_cap = 12
+        if len(google) > google_cap:
+            google.sort(key=lambda x: (float(x.get("importance", 0)), float(x.get("recency_score", 0)), float(x.get("source_quality", 0))), reverse=True)
+            removed += len(google) - google_cap
+            google = google[:google_cap]
+        clean = non_google + google
+        print(f"V13 GOOGLE QUALITY FILTER: kept={len(clean)} blocked={removed} google_cap={google_cap}")
         return clean
 
     main.collect_candidates = filtered_collect_candidates
