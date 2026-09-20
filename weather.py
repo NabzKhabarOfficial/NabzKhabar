@@ -204,23 +204,33 @@ def _format_board(data, jalali_date):
         rain = "—" if rain_prob is None else f"{int(round(float(rain_prob)))}٪"
         rows.append((city, fmt(temp), fmt(tmin), fmt(tmax), _weather_text(code), rain))
 
-    # Telegram has no native table layout. A Unicode box table gives a stable,
-    # clean table without requiring Markdown parsing or an external renderer.
+    # Mobile-first Telegram layout: no wide ASCII table.
+    # The lower section uses an icy/glass visual language through Unicode framing.
     lines = [
-        "🌤️ هواشناسی ۳۱ استان ایران",
-        f"📅 امروز: {jalali_date}",
+        "🌤️ **هواشناسی ۳۱ استان ایران**",
+        f"📅 **امروز: {jalali_date}**",
         "",
-        "┌────────────┬─────┬────────────┬──────────────┐",
-        "│ استان      │ دما │ کمینه/بیشینه │ وضعیت / بارش │",
-        "├────────────┼─────┼────────────┼──────────────┤",
+        "━━━━━━━━━━━━━━━━━━",
+        "🌡️ **وضعیت دمای استان‌ها**",
+        "━━━━━━━━━━━━━━━━━━",
+        "",
     ]
     for city, temp, tmin, tmax, condition, rain in rows:
-        lines.append(
-            f"│ {city:<10} │ {temp:>3} │ {tmin:>3}/{tmax:<3} │ {condition} {rain:<4} │"
-        )
+        lines.extend([
+            f"📍 **{city}**",
+            f"🌡️ {temp}  |  🔻 {tmin}  |  🔺 {tmax}",
+            f"☁️ {condition}  |  🌧️ {rain}",
+            "▫️ ───────────────",
+        ])
+
     lines.extend([
-        "└────────────┴─────┴────────────┴──────────────┘",
         "",
+        "❄️🧊 **NABZ • WEATHER** 🧊❄️",
+        "╭──────────────────╮",
+        "│  🧊 گزارش روزانه هواشناسی  │",
+        "╰──────────────────╯",
+        "",
+        "📌 **نبض خبر | NABZ**",
         "@NabzKhabarOfficial",
     ])
     return "\n".join(lines)
