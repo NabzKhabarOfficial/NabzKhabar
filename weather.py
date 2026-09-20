@@ -97,41 +97,33 @@ def _save_history(data):
 
 
 def _jalali_date(dt):
-    # Dependency-free Gregorian -> Jalali conversion so the weather module
-    # stays completely free and does not add another package to the workflow.
-    gy, gm, gd = dt.year, dt.month, dt.day
-    g_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    j_days = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]
+    """Accurate dependency-free Gregorian -> Jalali conversion."""
+    g_month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    gy = dt.year - 1600
+    gm = dt.month - 1
+    gd = dt.day - 1
 
-    gy2 = gy + 1 if gm > 2 else gy
-    days = (
-        365 * gy
-        + (gy2 + 3) // 4
-        - (gy2 + 99) // 100
-        + (gy2 + 399) // 400
-        - 80
-        + gd
-    )
-    for i in range(gm - 1):
-        days += g_days[i]
-    if gm > 2 and ((gy % 4 == 0 and gy % 100 != 0) or gy % 400 == 0):
-        days += 1
+    g_day_no = 365 * gy + (gy + 3) // 4 - (gy + 99) // 100 + (gy + 399) // 400
+    g_day_no += sum(g_month_days[:gm])
+    if gm > 1 and ((dt.year % 4 == 0 and dt.year % 100 != 0) or dt.year % 400 == 0):
+        g_day_no += 1
+    g_day_no += gd
 
-    jy = 979 + 33 * (days // 12053)
-    days %= 12053
-    jy += 4 * (days // 1461)
-    days %= 1461
-    if days > 365:
-        jy += (days - 1) // 365
-        days = (days - 1) % 365
+    j_day_no = g_day_no - 79
+    j_np = j_day_no // 12053
+    j_day_no %= 12053
+    jy = 979 + 33 * j_np + 4 * (j_day_no // 1461)
+    j_day_no %= 1461
+    if j_day_no >= 366:
+        jy += (j_day_no - 1) // 365
+        j_day_no = (j_day_no - 1) % 365
 
-    if days < 186:
-        jm = 1 + days // 31
-        jd = 1 + days % 31
+    if j_day_no < 186:
+        jm = 1 + j_day_no // 31
+        jd = 1 + j_day_no % 31
     else:
-        jm = 7 + (days - 186) // 30
-        jd = 1 + (days - 186) % 30
-
+        jm = 7 + (j_day_no - 186) // 30
+        jd = 1 + (j_day_no - 186) % 30
     return f"{jy:04d}/{jm:02d}/{jd:02d}"
 
 
@@ -195,44 +187,42 @@ def _fetch_weather():
 
 
 def _format_board(data, jalali_date):
-    lines = [
-        "🌤️ **هواشناسی ۳۱ استان ایران**",
-        f"📅 امروز: {jalali_date}",
-        "",
-        "🌡️ دمای فعلی | 🔺 بیشینه | 🔻 کمینه | 🌧️ احتمال بارش",
-        "━━━━━━━━━━━━━━━━━━━━",
-    ]
-
+    rows = []
     for idx, (city, _, _) in enumerate(CITIES):
         item = data[idx]
         current = item.get("current") or {}
         daily = item.get("daily") or {}
-
         code = current.get("weather_code", 0)
         temp = current.get("temperature_2m")
         tmax = (daily.get("temperature_2m_max") or [None])[0]
         tmin = (daily.get("temperature_2m_min") or [None])[0]
         rain_prob = (daily.get("precipitation_probability_max") or [None])[0]
 
-        def fmt(value, suffix="°"):
-            return "—" if value is None else f"{float(value):.0f}{suffix}"
+        def fmt(value):
+            return "—" if value is None else f"{float(value):.0f}°"
 
         rain = "—" if rain_prob is None else f"{int(round(float(rain_prob)))}٪"
+        rows.append((city, fmt(temp), fmt(tmin), fmt(tmax), _weather_text(code), rain))
 
+    # Telegram has no native table layout. A Unicode box table gives a stable,
+    # clean table without requiring Markdown parsing or an external renderer.
+    lines = [
+        "🌤️ هواشناسی ۳۱ استان ایران",
+        f"📅 امروز: {jalali_date}",
+        "",
+        "┌────────────┬─────┬────────────┬──────────────┐",
+        "│ استان      │ دما │ کمینه/بیشینه │ وضعیت / بارش │",
+        "├────────────┼─────┼────────────┼──────────────┤",
+    ]
+    for city, temp, tmin, tmax, condition, rain in rows:
         lines.append(
-            f"📍 **{city}** | {fmt(temp)} | "
-            f"🔺{fmt(tmax)} 🔻{fmt(tmin)} | "
-            f"{_weather_text(code)} | 🌧️{rain}"
+            f"│ {city:<10} │ {temp:>3} │ {tmin:>3}/{tmax:<3} │ {condition} {rain:<4} │"
         )
-
-    lines.extend(
-        [
-            "",
-            "ℹ️ منبع داده: Open-Meteo",
-            "",
-            "@NabzKhabarOfficial",
-        ]
-    )
+    lines.extend([
+        "└────────────┴─────┴────────────┴──────────────┘",
+        "",
+        "@NabzKhabarOfficial",
+    ])
     return "\n".join(lines)
 
 
