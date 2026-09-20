@@ -186,12 +186,33 @@ def _fetch_weather():
     )
 
 
+def _weather_icon(code):
+    code = int(code)
+    if code == 0:
+        return "☀️"
+    if code in (1, 2):
+        return "🌤️"
+    if code == 3:
+        return "☁️"
+    if code in (45, 48):
+        return "🌫️"
+    if code in (51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82):
+        return "🌧️"
+    if code in (71, 73, 75, 77, 85, 86):
+        return "❄️"
+    if code in (95, 96, 99):
+        return "⛈️"
+    return "🌡️"
+
+
 def _format_board(data, jalali_date):
     rows = []
+
     for idx, (city, _, _) in enumerate(CITIES):
         item = data[idx]
         current = item.get("current") or {}
         daily = item.get("daily") or {}
+
         code = current.get("weather_code", 0)
         temp = current.get("temperature_2m")
         tmax = (daily.get("temperature_2m_max") or [None])[0]
@@ -202,27 +223,51 @@ def _format_board(data, jalali_date):
             return "—" if value is None else f"{float(value):.0f}°"
 
         rain = "—" if rain_prob is None else f"{int(round(float(rain_prob)))}٪"
-        rows.append((city, fmt(temp), fmt(tmin), fmt(tmax), _weather_text(code), rain))
-
-    # Telegram has no native table layout. A Unicode box table gives a stable,
-    # clean table without requiring Markdown parsing or an external renderer.
-    lines = [
-        "🌤️ هواشناسی ۳۱ استان ایران",
-        f"📅 امروز: {jalali_date}",
-        "",
-        "┌────────────┬─────┬────────────┬──────────────┐",
-        "│ استان      │ دما │ کمینه/بیشینه │ وضعیت / بارش │",
-        "├────────────┼─────┼────────────┼──────────────┤",
-    ]
-    for city, temp, tmin, tmax, condition, rain in rows:
-        lines.append(
-            f"│ {city:<10} │ {temp:>3} │ {tmin:>3}/{tmax:<3} │ {condition} {rain:<4} │"
+        rows.append(
+            (
+                city,
+                fmt(temp),
+                fmt(tmin),
+                fmt(tmax),
+                _weather_text(code),
+                rain,
+                _weather_icon(code),
+            )
         )
-    lines.extend([
-        "└────────────┴─────┴────────────┴──────────────┘",
+
+    # Mobile-first Telegram layout: compact cards instead of a wide ASCII table.
+    # This remains readable on narrow screens and avoids alignment problems with
+    # mixed Persian/Latin glyph widths.
+    lines = [
+        "❄️🧊  **NABZ • WEATHER**  🧊❄️",
+        "╭──────────────────────────╮",
+        "│  🌤️ گزارش هواشناسی ایران  │",
+        "╰──────────────────────────╯",
+        f"📅 امروز | {jalali_date}",
         "",
+        "🌡️ دما   🔻 کمینه   🔺 بیشینه   🌧️ بارش",
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━",
+    ]
+
+    for city, temp, tmin, tmax, condition, rain, icon in rows:
+        lines.append(f"📍 **{city}**")
+        lines.append(
+            f"   {icon} {condition}  │  🌡️ {temp}  │  🔻 {tmin}  🔺 {tmax}"
+        )
+        lines.append(
+            f"   🌧️ احتمال بارش: {rain}"
+        )
+        lines.append("")
+
+    lines.extend([
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        "🧊 **NABZ • پیش‌بینی روزانه ۳۱ استان**",
+        "☁️ منبع داده: Open-Meteo",
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        "📌 **نبض خبر | NABZ**",
         "@NabzKhabarOfficial",
     ])
+
     return "\n".join(lines)
 
 
