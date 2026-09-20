@@ -92,7 +92,7 @@ jobs:
                   print('AI PROVIDER TEST: FAIL Groq/no API key')
                   results.append(False)
                   break
-              results.append(call(f'Groq/{model}', 'https://api.groq.com/openai/v1/chat/completions', {'Authorization':f'Bearer {key}','Content-Type':'application/json'}, {'model':model,'messages':[{'role':'user','content':'Return only JSON: {"ok":true}'}], 'response_format':{'type':'json_object'}, 'max_completion_tokens':20}))
+              results.append(call(f'Groq/{model}', 'https://api.groq.com/openai/v1/chat/completions', {'Authorization':f'Bearer {key}','Content-Type':'application/json'}, {'model':model,'messages':[{'role':'user','content':'Return only JSON with keys title and summary: {"title":"تست","summary":"تست اتصال مدل"}'}], 'response_format':{'type':'json_object'}, 'include_reasoning':False, 'max_completion_tokens':200}))
 
           for model in ('gpt-oss-120b','zai-glm-4.7'):
               key = os.getenv('CEREBRAS_API_KEY','').strip()
