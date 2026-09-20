@@ -509,7 +509,6 @@ HIGH_QUALITY_HOSTS = {
     "digiato.com",
     "tasnimnews.com",
     "farsnews.ir",
-    "khabaronline.ir",
     "irinn.ir",
     "snn.ir",
     "tabnak.ir",
