@@ -17,7 +17,7 @@ GLOBAL_TERMS = (
     "trump", "white house", "congress", "pentagon", "nato", "un", "european union",
     "europe", "russia", "ukraine", "china", "taiwan", "japan", "south korea",
     "north korea", "israel", "palestine", "gaza", "lebanon", "syria", "iraq",
-    "yemen", "saudi", "turkey", "india", "pakistan", "afghanistan", "sanctions",, "ceasefire", "war", "missile", "airstrike", "invasion",
+    "yemen", "saudi", "turkey", "india", "pakistan", "afghanistan", "sanctions", "ceasefire", "war", "missile", "airstrike", "invasion",
     "nuclear", "diplomacy", "summit", "prime minister", "parliament",
     "central bank", "federal reserve", "ecb", "opec", "oil", "gas", "inflation",
     "interest rate", "tariff", "trade war", "stock market", "bitcoin",
@@ -69,7 +69,7 @@ def _has_global_signal(text):
     if _contains(text, GLOBAL_TERMS):
         return True
     # Avoid substring false positives from short tokens such as "AI", "UN", etc.
-    return bool(re.search(r"(?<![A-Za-z])(?:ai|un|f1)(?![A-Za-z])", text, re.I))
+    return bool(re.search(r"(?<![A-Za-z])(?:ai|un|f1|worldwide|international|global)(?![A-Za-z])", text, re.I))
 
 
 def _is_local_google_noise(candidate):
@@ -97,7 +97,7 @@ def _is_local_google_noise(candidate):
 
     category = str(candidate.get("category", "") or "")
 
-    if category == "ورزش" and not (has_iran or has_global):
+    if category == "ورزش" and not (has_iran or has_region or has_major_event):
         return True
 
     if category in ("فرهنگ", "سینما", "فیلم و سریال") and not (has_iran or has_region or has_major_event):
@@ -107,7 +107,7 @@ def _is_local_google_noise(candidate):
         if not (has_iran or has_region or has_global or has_major_event):
             return True
 
-    if re.search(r"[A-Za-z]", title) and not (has_iran or has_region or has_major_event):
+    if re.search(r"[A-Za-z]", title) and not (has_iran or has_region or has_global or has_major_event):
         return True
 
     return False
