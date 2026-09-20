@@ -261,10 +261,6 @@ def _format_board(data, jalali_date):
 
     lines.extend([
         "━━━━━━━━━━━━━━━━━━━━━━━━━━",
-        "🧊 **NABZ • پیش‌بینی روزانه ۳۱ استان**",
-        "☁️ منبع داده: Open-Meteo",
-        "━━━━━━━━━━━━━━━━━━━━━━━━━━",
-        "📌 **نبض خبر | NABZ**",
         "@NabzKhabarOfficial",
     ])
 
