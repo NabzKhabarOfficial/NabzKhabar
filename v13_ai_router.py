@@ -20,11 +20,8 @@ AI_HEALTH_FILE = "ai_model_health.json"
 MODEL_COOLDOWN_SECONDS = 15 * 60
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
-CEREBRAS_API_KEY = os.getenv("CEREBRAS_API_KEY", "").strip()
 GROQ_MODELS = ("openai/gpt-oss-20b", "openai/gpt-oss-120b")
-CEREBRAS_MODELS = ("gpt-oss-120b", "zai-glm-4.7")
 GROQ_BASE = "https://api.groq.com/openai/v1"
-CEREBRAS_BASE = "https://api.cerebras.ai/v1"
 
 
 def _persian_ratio(text):
@@ -342,13 +339,6 @@ def gemini_request(main, title, article_text):
 
     result = _fallback_provider_request(
         main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
-        prompt, title, source, foreign
-    )
-    if result:
-        return result
-
-    result = _fallback_provider_request(
-        main, "Cerebras", CEREBRAS_MODELS, CEREBRAS_BASE, CEREBRAS_API_KEY,
         prompt, title, source, foreign
     )
     if result:
