@@ -72,13 +72,42 @@ def _save_history(data):
 
 
 def _jalali_date(dt):
-    # Keep the board date aligned with the same Persian-calendar convention
-    # used by the other daily independent publishers.
-    try:
-        from khayyam import JalaliDate
-        return str(JalaliDate(dt.date()))
-    except Exception:
-        return dt.strftime("%Y-%m-%d")
+    # Dependency-free Gregorian -> Jalali conversion so the weather module
+    # stays completely free and does not add another package to the workflow.
+    gy, gm, gd = dt.year, dt.month, dt.day
+    g_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    j_days = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]
+
+    gy2 = gy + 1 if gm > 2 else gy
+    days = (
+        365 * gy
+        + (gy2 + 3) // 4
+        - (gy2 + 99) // 100
+        + (gy2 + 399) // 400
+        - 80
+        + gd
+    )
+    for i in range(gm - 1):
+        days += g_days[i]
+    if gm > 2 and ((gy % 4 == 0 and gy % 100 != 0) or gy % 400 == 0):
+        days += 1
+
+    jy = 979 + 33 * (days // 12053)
+    days %= 12053
+    jy += 4 * (days // 1461)
+    days %= 1461
+    if days > 365:
+        jy += (days - 1) // 365
+        days = (days - 1) % 365
+
+    if days < 186:
+        jm = 1 + days // 31
+        jd = 1 + days % 31
+    else:
+        jm = 7 + (days - 186) // 30
+        jd = 1 + (days - 186) % 30
+
+    return f"{jy:04d}/{jm:02d}/{jd:02d}"
 
 
 def _weather_text(code):
