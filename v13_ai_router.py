@@ -11,9 +11,9 @@ import time
 
 # Ordered free-tier candidates. The router discovers which of these are actually available for this API key.
 MODEL_CANDIDATES = (
+    "gemini-3.6-flash",
     "gemini-3.5-flash-lite",
     "gemini-3.1-flash-lite",
-    "gemini-2.5-flash",
 )
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
@@ -170,7 +170,7 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
     try:
         response = main.SESSION.post(
             endpoint,
-            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json", "User-Agent": "NabzKhabar-V13/1.0"},
             json={
                 "model": model,
                 "messages": [
