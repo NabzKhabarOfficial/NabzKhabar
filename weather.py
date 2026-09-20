@@ -18,11 +18,32 @@ CITIES = [
     ("اصفهان", 32.6546, 51.6680),
     ("شیراز", 29.5918, 52.5837),
     ("تبریز", 38.0962, 46.2738),
+    ("کرج", 35.8400, 50.9391),
     ("اهواز", 31.3183, 48.6706),
-    ("رشت", 37.2808, 49.5832),
+    ("قم", 34.6416, 50.8746),
     ("کرمانشاه", 34.3142, 47.0650),
+    ("ارومیه", 37.5527, 45.0761),
+    ("رشت", 37.2808, 49.5832),
+    ("زاهدان", 29.4963, 60.8629),
+    ("همدان", 34.7982, 48.5146),
     ("کرمان", 30.2839, 57.0834),
+    ("یزد", 31.8974, 54.3569),
+    ("اردبیل", 38.2498, 48.2933),
     ("بندرعباس", 27.1832, 56.2666),
+    ("اراک", 34.0917, 49.6892),
+    ("سنندج", 35.3219, 46.9862),
+    ("قزوین", 36.2688, 50.0041),
+    ("زنجان", 36.6736, 48.4787),
+    ("خرم‌آباد", 33.4878, 48.3558),
+    ("ساری", 36.5633, 53.0601),
+    ("گرگان", 36.8456, 54.4393),
+    ("بجنورد", 37.4750, 57.3333),
+    ("بیرجند", 32.8663, 59.2211),
+    ("بوشهر", 28.9234, 50.8203),
+    ("ایلام", 33.6374, 46.4227),
+    ("شهرکرد", 32.3256, 50.8644),
+    ("یاسوج", 30.6682, 51.5870),
+    ("سمنان", 35.5729, 53.3971),
 ]
 
 WEATHER_CODES = {
@@ -136,9 +157,11 @@ def _fetch_weather():
 
 def _format_board(data, jalali_date):
     lines = [
-        "🌤️ **هواشناسی امروز ایران**",
-        f"📅 {jalali_date}",
+        "🌤️ **هواشناسی ۳۱ استان ایران**",
+        f"📅 امروز: {jalali_date}",
         "",
+        "🌡️ دمای فعلی | 🔺 بیشینه | 🔻 کمینه | 🌧️ احتمال بارش",
+        "━━━━━━━━━━━━━━━━━━━━",
     ]
 
     for idx, (city, _, _) in enumerate(CITIES):
@@ -146,34 +169,27 @@ def _format_board(data, jalali_date):
         current = item.get("current") or {}
         daily = item.get("daily") or {}
 
-        code = current.get("weather_code")
+        code = current.get("weather_code", 0)
         temp = current.get("temperature_2m")
-        wind = current.get("wind_speed_10m")
-
         tmax = (daily.get("temperature_2m_max") or [None])[0]
         tmin = (daily.get("temperature_2m_min") or [None])[0]
         rain_prob = (daily.get("precipitation_probability_max") or [None])[0]
 
-        def fmt_temp(value):
-            return "—" if value is None else f"{float(value):.0f}°"
+        def fmt(value, suffix="°"):
+            return "—" if value is None else f"{float(value):.0f}{suffix}"
 
         rain = "—" if rain_prob is None else f"{int(round(float(rain_prob)))}٪"
-        wind_text = "—" if wind is None else f"{float(wind):.0f} km/h"
 
-        lines.extend(
-            [
-                f"📍 **{city}**",
-                f"   🌡️ اکنون: {fmt_temp(temp)} | {_weather_text(code or 0)}",
-                f"   🔺 بیشینه: {fmt_temp(tmax)} | 🔻 کمینه: {fmt_temp(tmin)}",
-                f"   🌧️ احتمال بارش: {rain} | 💨 باد: {wind_text}",
-                "────────────────────",
-            ]
+        lines.append(
+            f"📍 **{city}** | {fmt(temp)} | "
+            f"🔺{fmt(tmax)} 🔻{fmt(tmin)} | "
+            f"{_weather_text(code)} | 🌧️{rain}"
         )
 
     lines.extend(
         [
             "",
-            "ℹ️ داده‌های هواشناسی: Open-Meteo",
+            "ℹ️ منبع داده: Open-Meteo",
             "",
             "@NabzKhabarOfficial",
         ]
