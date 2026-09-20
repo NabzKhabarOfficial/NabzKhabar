@@ -25,8 +25,6 @@ def _rich_prompt(prompt):
     if not _is_guide(value):
         return value
 
-    # Preserve the original source/title and safety requirements, but change
-    # the output contract for practical guide/market content.
     value = re.sub(
         r"خلاصه حداکثر ۳ جمله و ۷۵۰ نویسه باشد\.",
         "خلاصه حداکثر ۵ جمله و ۹۰۰ نویسه باشد.",
@@ -51,10 +49,25 @@ def _rich_prompt(prompt):
     return value + "\n" + extra
 
 
+def _safe_media_caption(caption):
+    value = str(caption or "")
+    if len(value) <= 1000:
+        return value
+
+    # Telegram media captions allow at most 1024 characters.
+    # Keep a small safety margin for entity parsing and the footer.
+    cut = value[:1000]
+    boundary = max(cut.rfind("؟"), cut.rfind("."), cut.rfind("؛"), cut.rfind("\n"))
+    if boundary >= 600:
+        cut = cut[:boundary]
+    return cut.rstrip()
+
+
 def install(main, router):
     original_request_json = router._request_json
     original_validate = router._validate
-    original_enforce = main.enforce_short_summary
+    original_send_photo = main.send_photo
+    original_send_video = main.send_video
 
     def request_json(main_obj, model, prompt, max_output_tokens=500):
         return original_request_json(
@@ -68,9 +81,6 @@ def install(main, router):
         if result:
             return result
 
-        # The stock validator is intentionally strict at 3 sentences/750 chars.
-        # For guide/market stories, allow the richer contract while retaining
-        # every other safety check from the original validator.
         if not _is_guide(str(original_title) + " " + str(source)):
             return None
         if not isinstance(data, dict):
@@ -90,13 +100,21 @@ def install(main, router):
         if len(re.findall(r"(?<=[.!؟؛])\s+", summary.strip())) + 1 > 5:
             return None
 
-        # Every number in the AI output must exist in the source.
-        src_nums = set(re.findall(r"\b\d+(?:[.,]\d+)?\b", main_obj.normalize_digits(str(source))))
-        out_nums = set(re.findall(r"\b\d+(?:[.,]\d+)?\b", main_obj.normalize_digits(title + " " + summary)))
+        src_nums = set(re.findall(
+            r"\b\d+(?:[.,]\d+)?\b",
+            main_obj.normalize_digits(str(source)),
+        ))
+        out_nums = set(re.findall(
+            r"\b\d+(?:[.,]\d+)?\b",
+            main_obj.normalize_digits(title + " " + summary),
+        ))
         if not out_nums.issubset(src_nums):
             return None
 
-        latin = re.findall(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", title + " " + summary)
+        latin = re.findall(
+            r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])",
+            title + " " + summary,
+        )
         if any(x.upper() != "NABZ" for x in latin):
             return None
 
@@ -118,9 +136,17 @@ def install(main, router):
                 selected.append(sentence)
         return " ".join(selected).strip()[:900]
 
+    def send_photo_safe(path, caption):
+        return original_send_photo(path, _safe_media_caption(caption))
+
+    def send_video_safe(path, caption):
+        return original_send_video(path, _safe_media_caption(caption))
+
     router._request_json = request_json
     router._validate = validate
     main.enforce_short_summary = rich_enforce
+    main.send_photo = send_photo_safe
+    main.send_video = send_video_safe
 
     print("V13 CONTENT ENHANCER ACTIVE: guide/market content is enriched automatically.")
 
