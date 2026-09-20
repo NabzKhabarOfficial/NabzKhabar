@@ -43,13 +43,19 @@ jobs:
 
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py run_bot.py education.py car_prices.py weather.py
+          python -m py_compile v13_standalone.py v13_api_sources.py v13_media_branding.py v13_ai_router.py run_bot.py education.py car_prices.py weather.py
 
       - name: Run independent V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CURRENTS_API_KEY: ${{ secrets.CURRENTS_API_KEY }}
+          WORLDNEWS_API_KEY: ${{ secrets.WORLDNEWS_API_KEY }}
+          NEWSDATA_API_KEY: ${{ secrets.NEWSDATA_API_KEY }}
+          GNEWS_API_KEY: ${{ secrets.GNEWS_API_KEY }}
+          NEWSDATA_REALTIME: ${{ secrets.NEWSDATA_REALTIME }}
+          GNEWS_REALTIME: ${{ secrets.GNEWS_REALTIME }}
         run: python run_bot.py
 
       - name: Persist sent-news history safely
@@ -66,6 +72,7 @@ jobs:
           cp ai_model_health.json /tmp/local_ai_model_health.json 2>/dev/null || true
           cp car_prices_history.json /tmp/local_car_prices_history.json 2>/dev/null || true
           cp weather_history.json /tmp/local_weather_history.json 2>/dev/null || true
+          cp api_usage_state.json /tmp/local_api_usage_state.json 2>/dev/null || true
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -90,6 +97,12 @@ jobs:
               cp /tmp/remote_car_prices_history.json car_prices_history.json
             fi
 
+            if [ -f /tmp/local_api_usage_state.json ]; then
+              cp /tmp/local_api_usage_state.json api_usage_state.json
+            elif git show origin/main:api_usage_state.json > /tmp/remote_api_usage_state.json 2>/dev/null; then
+              cp /tmp/remote_api_usage_state.json api_usage_state.json
+            fi
+
             if [ -f /tmp/local_weather_history.json ]; then
               cp /tmp/local_weather_history.json weather_history.json
             elif git show origin/main:weather_history.json > /tmp/remote_weather_history.json 2>/dev/null; then
@@ -100,6 +113,7 @@ jobs:
             if [ -f ai_model_health.json ]; then git add ai_model_health.json; fi
             if [ -f car_prices_history.json ]; then git add car_prices_history.json; fi
             if [ -f weather_history.json ]; then git add weather_history.json; fi
+            if [ -f api_usage_state.json ]; then git add api_usage_state.json; fi
             if git diff --cached --quiet; then
               echo "No history changes."
               exit 0
