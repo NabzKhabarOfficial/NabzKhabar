@@ -4966,6 +4966,21 @@ def image_is_acceptable(url):
 image_is_acceptable = image_is_acceptable
 
 # ---------- Candidate quality gate ----------
+# Explicit source blocklist: IRIB / صداوسیما is not an approved NABZ source.
+# Block it globally, including stories arriving through Google News/API aggregators.
+BLOCKED_SOURCE_HOSTS = {
+    "iribnews.ir",
+    "www.iribnews.ir",
+    "irinn.ir",
+    "www.irinn.ir",
+    "irib.ir",
+    "www.irib.ir",
+}
+
+def _is_blocked_source(url):
+    host = base_domain(get_hostname(url))
+    return any(host == d or host.endswith("." + d) for d in BLOCKED_SOURCE_HOSTS)
+
 _original_collect_candidates = collect_candidates
 
 def collect_candidates(hash_history, title_history):
@@ -4985,6 +5000,9 @@ def collect_candidates(hash_history, title_history):
     for c in candidates:
         title = clean_title(c.get("title", ""))
         link = canonicalize_url(c.get("link", ""))
+        if _is_blocked_source(link) or _is_blocked_source(c.get("resolved_link", "")) or _is_blocked_source(c.get("source_url", "")):
+            print(f"V13 SKIP BLOCKED SOURCE: {link or c.get('source_url', '')}")
+            continue
         if not title or len(title) < 12 or not link:
             continue
         if is_roundup_title(title):
