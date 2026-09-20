@@ -5,15 +5,18 @@ import v13_media_branding
 import v13_ai_router
 import v13_content_enhancer
 import v13_ad_filter
+import v13_google_quality_filter
 
 # V13 is the only news runtime. main.py, v12_engine.py,
 # v13_engine.py and graphics_patch.py are not imported here.
-# Branding/media fixes, the free AI router, and automatic content enrichment
-# are installed before the engine starts.
+# Branding/media fixes, the free AI router, automatic content enrichment,
+# ad filtering, and Google discovery quality filtering are installed before
+# the engine starts.
 v13_media_branding.install(main)
 v13_ai_router.install(main)
 v13_content_enhancer.install(main, v13_ai_router)
 v13_ad_filter.install(main)
+v13_google_quality_filter.install(main)
 
 import education
 import car_prices
