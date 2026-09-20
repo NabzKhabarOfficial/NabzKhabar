@@ -3506,7 +3506,9 @@ def collect_candidates(
             is_google=True
         )
 
-    with ThreadPoolExecutor(max_workers=8) as executor:
+    # More Google queries are now used for breadth, so keep discovery
+    # parallelized to avoid making network wait grow with query count.
+    with ThreadPoolExecutor(max_workers=12) as executor:
 
         for items in executor.map(
             collect_one_google,
