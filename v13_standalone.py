@@ -5028,6 +5028,23 @@ def process_news(*args, **kwargs):
 
 process_news = process_news
 
+# ---------- Final Persian digit normalization ----------
+# Normalize mixed Latin/Arabic/Persian digits in Telegram captions while
+# leaving URLs/handles untouched. This prevents output such as ۱00 or ۸0.
+_DIGIT_TRANSLATION = str.maketrans(
+    "0123456789٠١٢٣٤٥٦٧٨٩",
+    "۰۱۲۳۴۵۶۷۸۹۰۱۲۳۴۵۶۷۸۹"
+)
+
+
+def _normalize_persian_digits(text):
+    value = str(text or "")
+    parts = re.split(r"(https?://\\S+)", value)
+    for i in range(0, len(parts), 2):
+        parts[i] = parts[i].translate(_DIGIT_TRANSLATION)
+    return "".join(parts)
+
+
 # ---------- Final publication language gate ----------
 # This is the last line of defense: regardless of which fallback path
 # produced the caption, a foreign-language story must never reach Telegram.
