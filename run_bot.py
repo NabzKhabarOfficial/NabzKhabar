@@ -14,6 +14,7 @@ v13_ad_filter.install(main)
 
 import education
 import car_prices
+import weather
 
 
 if __name__ == "__main__":
@@ -37,6 +38,12 @@ if __name__ == "__main__":
         car_prices.main()
     except Exception as exc:
         print(f"CAR PRICES ERROR: {exc}", flush=True)
+
+    try:
+        # Weather is an independent daily board, just like car prices.
+        weather.main(send_message=main.send_message)
+    except Exception as exc:
+        print(f"WEATHER ERROR: {exc}", flush=True)
 
     if news_failed:
         sys.exit(1)
