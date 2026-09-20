@@ -24,7 +24,7 @@ GLOBAL_TERMS = (
     "interest rate", "tariff", "trade war", "stock market", "bitcoin",
     "openai", "chatgpt", "gemini", "deepmind", "anthropic", "claude", "nvidia",
     "microsoft", "apple", "google", "meta", "amazon", "tesla", "spacex",
-    "artificial intelligence", "ai", "robotics", "semiconductor", "chip",
+    "artificial intelligence", "robotics", "semiconductor", "chip",
     "cybersecurity", "cyber attack", "5g", "iphone", "android",
     "world cup", "olympics", "champions league", "premier league", "fifa",
     "nba", "nfl", "formula 1", "f1", "ufc", "wimbledon", "atp", "wta",
@@ -49,11 +49,9 @@ LOCAL_NOISE_TERMS = (
     "jazz festival", "farmers market", "county fair",
 )
 
-# Publisher patterns that are overwhelmingly local/regional. This is only
-# applied to Google-discovered foreign stories; direct feeds are unchanged.
 LOCAL_HOST_HINTS = (
     "wsmv", "wdtv", "kait", "kplc", "1011now", "localnews",
-    "fox", "abc", "cbs", "nbc", "wxyz", "wspa", "wreg", "wbtv",
+    "wxyz", "wspa", "wreg", "wbtv",
 )
 
 
@@ -66,6 +64,13 @@ def _text(candidate):
 
 def _contains(text, terms):
     return any(term in text for term in terms)
+
+
+def _has_global_signal(text):
+    if _contains(text, GLOBAL_TERMS):
+        return True
+    # Avoid substring false positives from short tokens such as "AI", "UN", etc.
+    return bool(re.search(r"(?<![A-Za-z])(?:ai|un|f1)(?![A-Za-z])", text, re.I))
 
 
 def _is_local_google_noise(candidate):
@@ -81,38 +86,27 @@ def _is_local_google_noise(candidate):
     ).lower()
 
     has_iran = _contains(text, IRAN_TERMS)
-    has_global = _contains(text, GLOBAL_TERMS)
+    has_global = _has_global_signal(text)
     has_major_event = _contains(text, MAJOR_EVENT_TERMS)
 
-    # Explicit local-only language is enough to reject a Google discovery
-    # result unless the same story is clearly Iran/global relevant.
     if _contains(text, LOCAL_NOISE_TERMS) and not (has_iran or has_global or has_major_event):
         return True
 
-    # Local/regional publisher + no Iran/global signal = reject.
     if any(hint in link for hint in LOCAL_HOST_HINTS) and not (has_iran or has_global or has_major_event):
         return True
 
     category = str(candidate.get("category", "") or "")
 
-    # Sports: keep major international competitions/teams, reject routine
-    # local U.S. sports and personalities.
     if category == "ورزش" and not (has_iran or has_global):
         return True
 
-    # Culture/entertainment: keep Iran-related or clearly global events;
-    # reject celebrity/local lifestyle filler from broad Google queries.
     if category in ("فرهنگ", "سینما", "فیلم و سریال") and not (has_iran or has_global or has_major_event):
         return True
 
-    # General world/economy/society/health/science results need a concrete
-    # Iran or international/global signal. This is the main noise barrier.
     if category in ("جهان", "اقتصاد", "جامعه", "سلامت", "علم", "بازار", "جهان و ایران"):
         if not (has_iran or has_global or has_major_event):
             return True
 
-    # A broad Google query can still return a purely local English headline.
-    # If it has no Persian text and no recognized global/Iran signal, reject it.
     if re.search(r"[A-Za-z]", title) and not (has_iran or has_global or has_major_event):
         return True
 
@@ -137,9 +131,7 @@ def install(main):
                 continue
             clean.append(candidate)
 
-        print(
-            f"V13 GOOGLE QUALITY FILTER: kept={len(clean)} blocked={removed}"
-        )
+        print(f"V13 GOOGLE QUALITY FILTER: kept={len(clean)} blocked={removed}")
         return clean
 
     main.collect_candidates = filtered_collect_candidates
