@@ -5090,16 +5090,19 @@ def _assert_persian_caption(caption):
 
 
 def send_message(text):
+    text = _normalize_persian_digits(text)
     _assert_persian_caption(text)
     return _original_send_message(text)
 
 
 def send_photo(path, caption):
+    caption = _normalize_persian_digits(caption)
     _assert_persian_caption(caption)
     return _original_send_photo(path, caption)
 
 
 def send_video(path, caption):
+    caption = _normalize_persian_digits(caption)
     _assert_persian_caption(caption)
     return _original_send_video(path, caption)
 
