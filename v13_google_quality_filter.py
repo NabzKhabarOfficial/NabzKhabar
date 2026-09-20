@@ -66,10 +66,25 @@ def _contains(text, terms):
 
 
 def _has_global_signal(text):
-    if _contains(text, GLOBAL_TERMS):
+    # Only allow genuinely international/major-story signals.
+    # Ordinary country names, local elections, local weather, local sports,
+    # local business and local crime must NOT qualify a story as global.
+    strict_global_terms = (
+        "white house", "congress", "pentagon", "nato", "united nations",
+        "european union", "federal reserve", "ecb", "opec",
+        "sanctions", "ceasefire", "war", "missile", "airstrike", "invasion",
+        "nuclear", "diplomacy", "summit", "trade war",
+        "interest rate", "tariff", "stock market", "bitcoin",
+        "artificial intelligence", "robotics", "semiconductor", "cybersecurity",
+        "cyber attack", "world cup", "olympics", "champions league",
+        "premier league", "formula 1", "ufc", "wimbledon",
+    )
+    if _contains(text, strict_global_terms):
         return True
-    # Avoid substring false positives from short tokens such as "AI", "UN", etc.
-    return bool(re.search(r"(?<![A-Za-z])(?:ai|un|f1|worldwide|international|global)(?![A-Za-z])", text, re.I))
+    return bool(re.search(
+        r"(?<![A-Za-z])(?:ai|un|f1|worldwide|international|global)(?![A-Za-z])",
+        text, re.I
+    ))
 
 
 def _is_local_google_noise(candidate):
@@ -87,7 +102,17 @@ def _is_local_google_noise(candidate):
     has_iran = _contains(text, IRAN_TERMS)
     has_global = _has_global_signal(text)
     has_major_event = _contains(text, MAJOR_EVENT_TERMS)
-    has_region = _contains(text, ("iran", "tehran", "russia", "ukraine", "china", "taiwan", "japan", "south korea", "north korea", "israel", "palestine", "gaza", "lebanon", "syria", "iraq", "yemen", "saudi", "turkey", "india", "pakistan", "afghanistan", "european union", "nato", "united nations", "opec", "white house", "pentagon", "federal reserve", "ecb", "world cup", "olympics", "champions league", "premier league", "formula 1", "ufc", "wimbledon", "ایران", "تهران", "جهان", "بین الملل", "بین‌الملل"))
+    has_region = _contains(text, (
+        "iran", "tehran", "iranian", "ایران", "تهران", "ایرانی",
+        "middle east", "خاورمیانه", "gulf", "persian gulf", "خلیج فارس",
+        "iraq", "syria", "lebanon", "yemen", "saudi", "israel", "palestine", "gaza",
+        "turkey", "afghanistan", "pakistan",
+        "european union", "nato", "united nations", "opec",
+        "white house", "pentagon", "federal reserve", "ecb",
+        "world cup", "olympics", "champions league", "premier league",
+        "formula 1", "ufc", "wimbledon",
+        "جهان", "بین الملل", "بین‌الملل"
+    ))
 
     if _contains(text, LOCAL_NOISE_TERMS) and not (has_iran or has_region or has_major_event):
         return True
