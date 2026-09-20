@@ -5,6 +5,7 @@ No paid service, no billing dependency.
 """
 
 import json
+import os
 import re
 import time
 
@@ -17,6 +18,13 @@ MODEL_CANDIDATES = (
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
 MODEL_COOLDOWN_SECONDS = 15 * 60
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
+CEREBRAS_API_KEY = os.getenv("CEREBRAS_API_KEY", "").strip()
+GROQ_MODELS = ("openai/gpt-oss-20b", "openai/gpt-oss-120b")
+CEREBRAS_MODELS = ("gpt-oss-120b", "zai-glm-4.7")
+GROQ_BASE = "https://api.groq.com/openai/v1"
+CEREBRAS_BASE = "https://api.cerebras.ai/v1"
 
 
 def _persian_ratio(text):
@@ -156,6 +164,70 @@ def _request_json(main, model, prompt, max_output_tokens=500):
         return None, True
 
 
+
+def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, max_output_tokens=500):
+    endpoint = f"{base_url}/chat/completions"
+    try:
+        response = main.SESSION.post(
+            endpoint,
+            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+            json={
+                "model": model,
+                "messages": [
+                    {"role": "system", "content": "خروجی فقط JSON معتبر با دو کلید title و summary باشد."},
+                    {"role": "user", "content": prompt},
+                ],
+                "temperature": 0.2,
+                "max_completion_tokens": max_output_tokens,
+                "response_format": {"type": "json_object"},
+            },
+            timeout=30,
+        )
+        if response.status_code == 404:
+            print(f"V13 AI ROUTER: {provider}/{model} HTTP 404; skipping.")
+            return None, False
+        if response.status_code in (401, 403):
+            print(f"V13 AI ROUTER: {provider} authentication/permission HTTP {response.status_code}; disabled for this run.")
+            return None, False
+        if response.status_code in (429, 500, 502, 503, 504):
+            print(f"V13 AI ROUTER: {provider}/{model} HTTP {response.status_code}; failing over.")
+            return None, False
+        if not response.ok:
+            print(f"V13 AI ROUTER: {provider}/{model} HTTP {response.status_code}; failing over.")
+            return None, False
+        data = response.json() or {}
+        raw = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+        try:
+            return _clean_json(raw), False
+        except Exception as exc:
+            print(f"V13 AI ROUTER: {provider}/{model} invalid JSON: {exc}; failing over.")
+            return None, False
+    except Exception as exc:
+        print(f"V13 AI ROUTER: {provider}/{model} error: {exc}; failing over.")
+        return None, False
+
+
+def _fallback_provider_request(main, provider, models, base_url, api_key, prompt, title, source, foreign):
+    if not api_key:
+        return None
+    for model in models:
+        for attempt in range(2):
+            result, retry_same_model = _openai_compatible_json(
+                main, provider, base_url, api_key, model, prompt
+            )
+            if result:
+                validated = _validate(main, title, source, result, foreign)
+                if validated:
+                    print(f"V13 AI ROUTER: SUCCESS via {provider}/{model}")
+                    return validated
+                print(f"V13 AI ROUTER: {provider}/{model} returned invalid/unsafe output; failing over.")
+                break
+            if retry_same_model and attempt == 0:
+                time.sleep(1.2)
+                continue
+            break
+    return None
+
 def _numbers(main, text):
     normalized = main.normalize_digits(str(text or ""))
     return set(re.findall(r"\b\d+(?:[.,]\d+)?\b", normalized))
@@ -258,16 +330,30 @@ def gemini_request(main, title, article_text):
                 validated = _validate(main, title, source, result, foreign)
                 if validated:
                     _mark_model_success(model)
-                    print(f"V13 AI ROUTER: SUCCESS via {model}")
+                    print(f"V13 AI ROUTER: SUCCESS via Gemini/{model}")
                     return validated
-                print(f"V13 AI ROUTER: {model} returned invalid/unsafe output; failing over.")
+                print(f"V13 AI ROUTER: Gemini/{model} returned invalid/unsafe output; failing over.")
                 break
             if retry_same_model and attempt == 0:
                 time.sleep(1.2)
                 continue
             break
 
-    print("V13 AI ROUTER: all free models failed; publication will use existing V13 safety rules.")
+    result = _fallback_provider_request(
+        main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
+        prompt, title, source, foreign
+    )
+    if result:
+        return result
+
+    result = _fallback_provider_request(
+        main, "Cerebras", CEREBRAS_MODELS, CEREBRAS_BASE, CEREBRAS_API_KEY,
+        prompt, title, source, foreign
+    )
+    if result:
+        return result
+
+    print("V13 AI ROUTER: all configured AI providers failed/unavailable; publication will use existing V13 safety rules.")
     return None
 
 
