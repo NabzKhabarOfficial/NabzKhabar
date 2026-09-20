@@ -21,6 +21,8 @@ from concurrent.futures import ThreadPoolExecutor
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
 
+from v13_api_sources import collect_api_candidates
+
 
 # ============================================================
 # NABZ KHABAR BOT v11
@@ -4968,6 +4970,15 @@ _original_collect_candidates = collect_candidates
 
 def collect_candidates(hash_history, title_history):
     candidates = _original_collect_candidates(hash_history, title_history)
+
+    # V13 API layer: add only articles published in the last 30 minutes.
+    # The adapter applies provider-specific free-tier quota guards before
+    # making calls; API failures never stop the RSS/Google pipeline.
+    try:
+        candidates.extend(collect_api_candidates())
+    except Exception as exc:
+        print(f\"V13 API SOURCE LAYER ERROR: {exc}\")
+
     clean = []
     seen = set()
 
