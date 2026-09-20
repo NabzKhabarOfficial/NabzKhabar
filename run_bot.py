@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     try:
         # Weather is an independent daily board, just like car prices.
-        weather.main(send_message=main.send_message)
+        weather.main()
     except Exception as exc:
         print(f"WEATHER ERROR: {exc}", flush=True)
 
