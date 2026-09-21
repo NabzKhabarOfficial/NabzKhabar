@@ -180,8 +180,7 @@ def _numeric_values(text):
     # Keep unambiguous single-word values too, but never treat Persian "یک"
     # as a factual number because Argos commonly uses it for "a/an".
     values.update(en.get(x) for x in re.findall(r"\b[a-z]+\b", value) if x in en)
-    values.update(fa.get(x) for x in fa if x in value)
-    values.discard(None)
+    # Match Persian number words as whole tokens only. Substring matching\n    # falsely turns ordinary words containing "سی"/"چهار" into numbers.\n    fa_tokens = re.findall(r"[\\u0600-\\u06ff]+", value)\n    values.update(fa.get(x) for x in fa_tokens if x in fa)\n    values.discard(None)
     return values
 
 def _sentence_list(text):
