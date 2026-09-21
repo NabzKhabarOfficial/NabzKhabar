@@ -17,18 +17,43 @@ TARGET_MODELS = [
     ("پژو ۲۰۷", ("پژو 207",)),
     ("دنا پلاس", ("دنا پلاس",)),
     ("تارا اتوماتیک", ("تارا اتوماتیک",)),
+    ("تارا دستی", ("تارا دستی",)),
     ("ری‌را", ("ری را",)),
     ("سمند سورن", ("سمند سورن",)),
     ("شاهین", ("شاهین",)),
+    ("شاهین اتوماتیک", ("شاهین اتوماتیک",)),
     ("ساینا S", ("ساینا S",)),
+    ("ساینا", ("ساینا",)),
     ("اطلس", ("اطلس دنده ای", "اطلس")),
+    ("کوییک", ("کوییک",)),
+    ("کوییک R", ("کوییک R",)),
     ("پراید ۱۵۱", ("پراید 151",)),
     ("آریسان ۲", ("آریسان 2",)),
+    ("وانت آریسان", ("آریسان",)),
     ("ام‌وی‌ام X33 کراس", ("ام وی ام X33 کراس",)),
     ("ام‌وی‌ام X55 PRO", ("ام وی ام X55 PRO",)),
+    ("ام‌وی‌ام X22 PRO", ("ام وی ام X22 PRO",)),
     ("اکستریم LX", ("اکستریم LX",)),
-    ("ریسپکت پرایم", ("ریسپکت پرایم",)),
+    ("اکستریم TXL", ("اکستریم TXL",)),
+    ("اکستریم VX", ("اکستریم VX",)),
+    ("فونیکس FX", ("فونیکس FX",)),
+    ("فونیکس تیگو ۷ پرو", ("تیگو 7 پرو",)),
+    ("فونیکس تیگو ۸ پرو", ("تیگو 8 پرو",)),
+    ("آریزو ۵", ("آریزو 5",)),
+    ("آریزو ۶", ("آریزو 6",)),
+    ("رسپکت پرایم", ("ریسپکت پرایم", "رسپکت پرایم")),
     ("بایک BJ30", ("بایک BJ30",)),
+    ("لاماری ایما", ("لاماری ایما",)),
+    ("فیدلیتی پرایم", ("فیدلیتی پرایم",)),
+    ("دیگنیتی پرایم", ("دیگنیتی پرایم",)),
+    ("KMC J7", ("KMC J7",)),
+    ("KMC T8", ("KMC T8",)),
+    ("KMC X5", ("KMC X5",)),
+    ("هایما S5", ("هایما S5",)),
+    ("هایما S7", ("هایما S7",)),
+    ("هایما 8S", ("هایما 8S",)),
+    ("چانگان CS35", ("چانگان CS35",)),
+    ("چانگان CS55", ("چانگان CS55",)),
 ]
 
 JALALI_MONTHS = (
@@ -177,16 +202,16 @@ def format_price_block(label, item):
     change = item.get("change")
 
     lines = [
-        f"🚗 {label}",
-        f"   💰 بازار: {market} تومان",
+        f"🚗 **{label}**",
+        f"💰 بازار: {market} تومان",
     ]
     if factory:
-        lines.append(f"   🏭 کارخانه: {factory} تومان")
+        lines.append(f"🏭 کارخانه: {factory} تومان")
     else:
-        lines.append("   🏭 کارخانه: —")
+        lines.append("🏭 کارخانه: —")
 
     if change and change != "—":
-        lines.append(f"   📊 تغییر: {change}")
+        lines.append(f"📊 تغییر: {change}")
 
     return "\n".join(lines)
 
@@ -231,33 +256,34 @@ def main():
     found = extract_models(html)
 
     lines = [
-        "╔══════════════════════════╗",
-        "║     🚗 قیمت روز خودرو     ║",
-        "║        NABZ AUTO         ║",
-        "╚══════════════════════════╝",
-        f"📅 آخرین بروزرسانی: {update_date}",
-        "━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        "🚗 قیمت روز خودرو | NABZ AUTO",
+        f"📅 بروزرسانی: {update_date}",
+        "",
     ]
 
     count = 0
     for label, aliases in TARGET_MODELS:
         item = choose_model(found, aliases)
         if item:
+            if count:
+                lines.append("──────────────")
             lines.append(format_price_block(label, item))
-            lines.append("──────────────────────────")
             count += 1
 
     if count == 0:
         raise RuntimeError("No supported car prices were found")
 
     lines += [
-        "📊 بازار و کارخانه",
-        f"🚘 {count} مدل منتخب",
         "",
-        "@NabzKhabarOfficial",
+        "🔗 @NabzKhabarOfficial",
     ]
 
-    send_telegram("\n".join(lines))
+    # Keep the mobile layout compact and readable while allowing a larger list.
+    text = "\n".join(lines)
+    if len(text) > 3900:
+        text = "\n".join(text.splitlines()[:1] + text.splitlines()[1:])
+
+    send_telegram(text)
     state["last_published_date"] = today
     state["source_update_date"] = update_date
     state["published_at"] = now.isoformat()
