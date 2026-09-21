@@ -5069,7 +5069,7 @@ image_is_acceptable = image_is_acceptable
 # NABZ news is intentionally selective: routine announcements, minor local
 # items, generic statements and promotional/cultural filler are rejected.
 # Price/education/weather pipelines are independent and are not affected.
-STRICT_NEWS_MIN_SCORE = 2
+STRICT_NEWS_MIN_SCORE = 3
 
 STRICT_HIGH_IMPACT_TERMS = (
     "جنگ", "حمله", "موشک", "انفجار", "زلزله", "سیل", "آتش سوزی", "آتش‌سوزی",
@@ -5082,11 +5082,11 @@ STRICT_HIGH_IMPACT_TERMS = (
 )
 
 STRICT_MEDIUM_IMPACT_TERMS = (
-    "تصمیم", "مصوبه", "قانون", "ابلاغ", "وزارت", "دولت", "مجلس", "بانک مرکزی",
-    "رئیس جمهور", "رئیس‌جمهور", "استاندار", "محدودیت", "ممنوعیت", "آغاز ثبت نام",
-    "اختلال", "قطعی", "فراخوان", "هشدار", "بیماری", "واکسن", "دارو", "درمان",
-    "کشف", "پژوهش", "فضا", "ماهواره", "ربات", "اپل", "گوگل", "مایکروسافت",
-    "متا", "انویدیا", "اوپن ای آی", "OpenAI", "Google", "Apple", "Microsoft",
+    "مصوبه", "قانون", "ابلاغ", "محدودیت", "ممنوعیت", "آغاز ثبت نام", "اختلال",
+    "قطعی", "فراخوان", "هشدار", "بیماری", "واکسن", "دارو", "درمان", "کشف",
+    "پژوهش", "فضا", "ماهواره", "ربات", "اپل", "گوگل", "مایکروسافت", "متا",
+    "انویدیا", "اوپن ای آی", "OpenAI", "Google", "Apple", "Microsoft",
+    "رئیس جمهور", "رئیس‌جمهور", "مجلس", "دولت", "بانک مرکزی", "وزارت",
 )
 
 STRICT_ROUTINE_TERMS = (
@@ -5103,34 +5103,53 @@ STRICT_LOW_VALUE_TERMS = (
     "تبریک تولد", "تولد", "درگذشت", "چهره", "بازیگر", "خواننده", "اینستاگرام",
 )
 
-
+# Importance is title-led: generic body words such as «دولت» or «وزارت»
+# must not turn a routine announcement into a publishable story.
 def strict_news_value(candidate):
-    text = normalize_space(" ".join(
-        str(candidate.get(k, "") or "")
-        for k in ("title", "summary", "description")
-    ))
     title = normalize_space(candidate.get("title", ""))
+    body = normalize_space(" ".join(
+        str(candidate.get(k, "") or "") for k in ("summary", "description")
+    ))
+    title_l = title.lower()
+    body_l = body.lower()
     score = 0
 
-    for term in STRICT_HIGH_IMPACT_TERMS:
-        if term.lower() in text.lower():
-            score += 2
-            break
+    high_title = [t for t in STRICT_HIGH_IMPACT_TERMS if t.lower() in title_l]
+    medium_title = [t for t in STRICT_MEDIUM_IMPACT_TERMS if t.lower() in title_l]
+    routine_hits = sum(1 for t in STRICT_ROUTINE_TERMS if t.lower() in title_l)
+    low_hits = sum(1 for t in STRICT_LOW_VALUE_TERMS if t.lower() in title_l)
 
-    medium_hits = sum(1 for term in STRICT_MEDIUM_IMPACT_TERMS if term.lower() in text.lower())
-    score += min(medium_hits, 2)
+    if high_title:
+        score += 4
 
-    routine_hits = sum(1 for term in STRICT_ROUTINE_TERMS if term.lower() in title.lower())
-    low_hits = sum(1 for term in STRICT_LOW_VALUE_TERMS if term.lower() in title.lower())
+    if medium_title:
+        score += min(len(medium_title), 2)
 
-    # Concrete measurable impact gets extra weight.
-    if re.search(r"\\b\\d{1,3}(?:[.,]\\d{3})*(?:\\s*(?:میلیون|میلیارد|درصد|نفر|کشته|زخمی))?\\b", text):
+    if re.search(r"\d{1,3}(?:[.,]\d{3})*(?:\s*(?:میلیون|میلیارد|همت|درصد|نفر|کشته|زخمی|واحد|کیلومتر))", title):
+        score += 2
+
+    if re.search(r"(?:قیمت|افزایش|کاهش|سقوط|رشد|صعود|بودجه|اعتبار|مالیات|نرخ)\s+[^،؛.]{0,55}(?:درصد|میلیارد|میلیون|همت|تومان|دلار|یورو|واحد)", title_l):
+        score += 2
+
+    if re.search(r"(?:آغاز|شروع|توقف|تعلیق|ممنوع|محدود|قطع|وصل|اختلال|فراخوان|اجرای|ابلاغ)\b", title_l):
+        score += 2
+
+    if re.search(r"(?:مصوبه|قانون|ابلاغ|ممنوعیت|محدودیت|اختلال|هشدار|حمله|کشته|زخمی|بودجه|مالیات|قیمت)", body_l):
         score += 1
-    if re.search(r"(?:قیمت|افزایش|کاهش|سقوط|رشد|صعود)\\s+[^،؛.]{0,45}(?:درصد|میلیارد|میلیون|تومان|دلار|یورو)", text):
-        score += 1
 
-    score -= min(routine_hits, 2)
-    score -= min(low_hits * 2, 4)
+    score -= min(routine_hits * 2, 4)
+    score -= min(low_hits * 3, 6)
+
+    statement_like = bool(re.search(
+        r"(?:گفت|اظهار|تاکید|تأکید|واکنش|حمایت|امیدوار|توصیه|خواستار|اعلام کرد)\b",
+        title_l,
+    ))
+    concrete = bool(re.search(
+        r"(?:قانون|مصوبه|ممنوع|محدود|آغاز|توقف|قطع|بودجه|مالیات|قیمت|درصد|میلیارد|همت|حمله|جنگ|انفجار|زلزله|کشته|تحریم|مذاکرات)",
+        title_l,
+    ))
+    if statement_like and not concrete:
+        score -= 3
 
     return score
 
@@ -5151,7 +5170,6 @@ def is_strictly_useful_news(candidate):
         return False
 
     return True
-
 
 # ---------- Candidate quality gate ----------
 _original_collect_candidates = collect_candidates
