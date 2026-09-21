@@ -74,17 +74,17 @@ def format_decimal(number):
     return to_persian_digits(number)
 
 
-def format_market_value(value):
+def format_market_value(value, unit="تومان"):
     value = clean_text(value)
     if not value:
         return ""
     compact = re.fullmatch(r"([0-9]+(?:\.[0-9]+)?)\s*م\s*[\.:]?\s*([ند])", value)
     if compact:
-        unit = "میلیون" if compact.group(2) == "ن" else "میلیارد"
-        return f"{format_decimal(compact.group(1))} {unit} تومان"
+        unit_name = "میلیون" if compact.group(2) == "ن" else "میلیارد"
+        return f"{format_decimal(compact.group(1))} {unit_name} {unit}".strip()
     explicit = re.fullmatch(r"([0-9]+(?:\.[0-9]+)?)\s*(میلیون|میلیارد)\s*(?:تومان)?", value)
     if explicit:
-        return f"{format_decimal(explicit.group(1))} {explicit.group(2)} تومان"
+        return f"{format_decimal(explicit.group(1))} {explicit.group(2)} {unit}".strip()
     plain = value.replace(",", "").replace("٬", "").replace(" ", "")
     if re.fullmatch(r"[0-9]+(?:\.[0-9]+)?", plain):
         if "." in plain:
@@ -92,8 +92,13 @@ def format_market_value(value):
             formatted = f"{int(integer):,}.{fraction}"
         else:
             formatted = f"{int(plain):,}"
-        return f"{to_persian_digits(formatted.replace(',', '٬').replace('.', '٫'))} تومان"
-    return f"{to_persian_digits(value)} تومان"
+        return f"{formatted} {unit}".strip()
+    return f"{value} {unit}".strip()
+
+
+def format_market_display(value, symbol):
+    unit = "دلار" if symbol in {"XAU", "XAG"} else "تومان"
+    return format_market_value(value, unit)
 
 
 def format_change(value):
@@ -127,7 +132,7 @@ def extract_rows(html):
     soup = BeautifulSoup(html, "html.parser")
     rows = {}
     symbols = (
-        "USDT|XAUT|BTC|ETH|XRP|LTC|EOS|PAXG|BNB|BCH|GOLD18|SILVER999|GOLD24|GOLD18M|"
+        "USDT|XAUT|XAU|XAG|BTC|ETH|XRP|LTC|EOS|PAXG|BNB|BCH|GOLD18|SILVER999|SILVER925|GOLD24|GOLD18M|"
         "SEKE|SEKEN|SEKER|SEKB|SEKEB86|SEKEB86N|SEKEB86R|SEKG|"
         "USD|EUR|AED|RUB|BHD|MYR|CHF|IQD|SGD|AUD|AFN|KWD|NOK|GBP|SAR|INR|QAR|HKD|AZN|"
         "THB|AMD|TRY|OMR|DKK|JPY|CAD|CNY|SEK"
@@ -166,7 +171,7 @@ def market_line(rows, emoji, label, symbol):
     if not value:
         return None
     change = change_for(rows, symbol)
-    return f"{emoji} {label}  |  {format_market_value(value)}" + (f"  {change}" if change else "")
+    return f"{emoji} {label}: {format_market_display(value, symbol)}" + (f"  {change}" if change else "")
 
 
 def section(rows, title, items):
@@ -188,46 +193,49 @@ def main():
     date_text = jalali_date_text(now)
 
     lines = [
-        "╔══════════════════════╗",
-        "║   📊  نـبـض بـازار   ║",
-        "║      NABZ MARKET     ║",
-        "╚══════════════════════╝",
-        f"🕐 {time_text}   •   📅 {date_text}",
+        "#قیمت لحظه ای #طلا ، #دلار و #ارز📝",
+        "",
+        f"⏰ {to_persian_digits(now.day)} {['ژانویه','فوریه','مارس','آوریل','مه','ژوئن','ژوئیه','اوت','سپتامبر','اکتبر','نوامبر','دسامبر'][now.month-1]} ماه {to_persian_digits(now.year)} - ساعت {time_text}",
+        "",
+        "ᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒ",
         "",
     ]
 
-    lines += section(rows, "ارزهای جهانی", [
-        ("💵", "دلار آمریکا", "USD"),
-        ("💶", "یورو", "EUR"),
-        ("🇬🇧", "پوند انگلیس", "GBP"),
-        ("🇦🇪", "درهم امارات", "AED"),
-    ])
+    for emoji, label, symbol in [
+        ("🇺🇸", "دلار آمریکا", "USD"), ("🇪🇺", "یورو", "EUR"),
+        ("🇬🇧", "پوند انگلیس", "GBP"), ("🇹🇷", "لیر ترکیه", "TRY"),
+        ("🇦🇺", "دلار استرالیا", "AUD"), ("🇸🇬", "دلار سنگاپور", "SGD"),
+        ("🇨🇦", "دلار کانادا", "CAD"), ("🇦🇪", "درهم امارات", "AED"),
+        ("🇮🇶", "۱۰۰ دینار عراق", "IQD"), ("🇶🇦", "ریال قطر", "QAR"),
+        ("🇦🇫", "افغانی", "AFN"), ("🇨🇳", "یوان چین", "CNY"),
+        ("💵", "تتر", "USDT"),
+    ]:
+        line = market_line(rows, emoji, label, symbol)
+        if line:
+            lines.append(line)
 
-    lines += [""] + section(rows, "طلا و سکه", [
-        ("🥇", "طلای ۱۸ عیار", "GOLD18"),
-        ("✨", "طلای ۲۴ عیار", "GOLD24"),
-        ("⚪", "نقره ۹۹۹", "SILVER999"),
-        ("🪙", "سکه امامی", "SEKE"),
-        ("🔸", "نیم‌سکه", "SEKEN"),
-        ("🔹", "ربع‌سکه", "SEKER"),
-    ])
+    lines += ["", "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", ""]
+    for emoji, label, symbol in [
+        ("🟡", "طلا ۱۸ عیار", "GOLD18"), ("🟠", "طلا ۲۴ عیار", "GOLD24"),
+        ("🟡", "گرم طلا دست۲", "GOLD18M"), ("🟡", "اونس طلا", "XAU"),
+        ("🪙", "اونس نقره", "XAG"), ("🪙", "نقره عیار ۹۹۹", "SILVER999"),
+        ("🪙", "نقره ۹۲۵", "SILVER925"),
+    ]:
+        line = market_line(rows, emoji, label, symbol)
+        if line:
+            lines.append(line)
 
-    lines += [""] + section(rows, "رمزارزهای شاخص", [
-        ("💲", "تتر", "USDT"),
-        ("₿", "بیت‌کوین", "BTC"),
-    ])
+    lines += ["", "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", ""]
+    for emoji, label, symbol in [
+        ("🌕", "سکه امامی", "SEKE"), ("🌕", "سکه بهار", "SEKB"),
+        ("🌕", "نیم سکه", "SEKEN"), ("🌕", "ربع سکه", "SEKER"),
+        ("🌕", "سکه گرمی", "SEKG"),
+    ]:
+        line = market_line(rows, emoji, label, symbol)
+        if line:
+            lines.append(line)
 
-    if len(lines) <= 7:
-        raise RuntimeError("No supported market prices were found")
-
-    lines += [
-        "",
-        "╭──────────────────────╮",
-        "│   نبض خبر | NABZ     │",
-        "│  @NabzKhabarOfficial │",
-        "╰──────────────────────╯",
-    ]
-
+    lines += ["", "@NabzKhabarOfficial", ""]
     send_telegram("\n".join(lines))
     print("NABZ MARKET BOARD sent successfully.")
 
