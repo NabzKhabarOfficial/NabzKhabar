@@ -47,13 +47,14 @@ ROUTINE = (
 )
 
 HIGH_IMPACT_SECURITY_SIGNALS = (
-    "تهدید", "اولتیماتوم", "تهدید نظامی", "حمله نظامی", "حمله هوایی",
-    "حمله زمینی", "حمله دریایی", "حمله موشکی", "بمباران", "عملیات نظامی",
-    "عملیات هوایی", "درگیری نظامی", "تشدید درگیری", "تشدید تنش",
-    "تنش نظامی", "پاسخ نظامی", "پاسخ تلافی", "تلافی", "شلیک",
-    "آتش گشود", "هدف قرار داد", "هدف قرار دادن", "مواضع نظامی",
-    "پایگاه نظامی", "آماده باش", "آماده‌باش", "تحرک نظامی",
-    "هشدار امنیتی", "حمله به", "درگیری", "تجاوز نظامی",
+    "تهدید", "اولتیماتوم", "تهدید نظامی", "تهدید کرد", "حمله نظامی",
+    "حمله هوایی", "حمله زمینی", "حمله دریایی", "حمله موشکی", "بمباران",
+    "عملیات نظامی", "عملیات هوایی", "درگیری نظامی", "تشدید درگیری",
+    "تشدید تنش", "تشدید حملات", "تنش نظامی", "پاسخ نظامی", "پاسخ تلافی",
+    "تلافی", "شلیک", "آتش گشود", "هدف قرار داد", "هدف قرار دادن",
+    "مورد حمله قرار گرفت", "مواضع نظامی", "پایگاه نظامی", "آماده باش",
+    "آماده‌باش", "تحرک نظامی", "هشدار امنیتی", "حمله به", "درگیری",
+    "تجاوز نظامی", "پرتابه", "طوفان", "تخلیه",
 )
 
 HIGH_IMPACT_ACTORS = (
@@ -153,13 +154,21 @@ def _high_impact_security_override(candidate):
     title_signals = sum(x.lower() in title for x in HIGH_IMPACT_SECURITY_SIGNALS)
     actor_hits = sum(x.lower() in title for x in HIGH_IMPACT_ACTORS)
     strong_topic = any(x.lower() in title for x in HIGH_IMPACT)
-    if title_signals == 0 or not strong_topic:
-        return False
-    military_action = any(x.lower() in title for x in (
-        "حمله", "بمباران", "عملیات نظامی", "عملیات هوایی", "شلیک",
-        "آتش گشود", "هدف قرار", "مواضع نظامی", "پایگاه نظامی", "درگیری",
+    disaster_topic = any(x.lower() in title for x in (
+        "زلزله", "سیل", "طوفان", "سونامی", "رانش زمین", "آتش سوزی",
+        "آتش‌سوزی", "تخلیه", "هواپیما", "کشتی", "نفتکش",
     ))
-    return actor_hits > 0 or military_action
+    english_event = any(x in title for x in (
+        "attack", "strike", "missile", "bombing", "explosion", "earthquake",
+        "flood", "storm", "typhoon", "tsunami", "evacuat", "escalat",
+        "military", "threat", "wildfire", "landslide", "shooting",
+        "crash", "wounded", "killed",
+    ))
+    if title_signals == 0 and not disaster_topic and not english_event:
+        return False
+    if disaster_topic or english_event:
+        return True
+    return strong_topic and (actor_hits > 0 or title_signals > 0)
 
 
 def is_publishable(main, candidate):
@@ -295,6 +304,7 @@ def install(main):
     original_collect = main.collect_candidates
     original_process = main.process_news
     original_strict_gate = getattr(main, "is_strictly_useful_news", None)
+    strict_rejection_records = []
 
     if original_strict_gate is not None:
         def _intelligence_strict_gate(candidate):
@@ -305,7 +315,15 @@ def install(main):
                     flush=True,
                 )
                 return True
-            return original_strict_gate(candidate)
+            result = original_strict_gate(candidate)
+            if not result:
+                strict_rejection_records.append(
+                    _rejected_record(
+                        main, candidate, 0, "strict-pre-intelligence",
+                        stage="strict_gate",
+                    )
+                )
+            return result
         main.is_strictly_useful_news = _intelligence_strict_gate
 
     state = {
@@ -325,6 +343,13 @@ def install(main):
     def intelligent_collect(hash_history, title_history):
         candidates = original_collect(hash_history, title_history)
         state["raw_candidates"] = len(candidates)
+
+        if strict_rejection_records:
+            history = _load_rejected_history()
+            history.extend(strict_rejection_records)
+            _save_rejected_history(history)
+            state["rejected_news_this_run"].extend(strict_rejection_records)
+            strict_rejection_records.clear()
 
         filtered = []
         rejected = Counter()
@@ -351,7 +376,7 @@ def install(main):
             )
             filtered.append(candidate)
 
-        state["strict_rejected"] = sum(rejected.values())
+        state["strict_rejected"] = sum(rejected.values()) + len(state["rejected_news_this_run"])
         state["rejected_news_this_run"] = rejected_records
 
         history = _load_rejected_history()
