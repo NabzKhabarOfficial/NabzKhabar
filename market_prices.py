@@ -190,12 +190,14 @@ def main():
     rows = extract_rows(fetch_prices())
     now = datetime.now(IRAN_TIMEZONE)
     time_text = to_persian_digits(now.strftime("%H:%M"))
-    date_text = jalali_date_text(now)
+    jy, jm, jd = gregorian_to_jalali(now.year, now.month, now.day)
+    jalali_months = ("فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند")
+    date_text = f"{to_persian_digits(jd)} {jalali_months[jm - 1]} ماه {to_persian_digits(jy)}"
 
     lines = [
         "#قیمت لحظه ای #طلا ، #دلار و #ارز📝",
         "",
-        f"⏰ {to_persian_digits(now.day)} {['ژانویه','فوریه','مارس','آوریل','مه','ژوئن','ژوئیه','اوت','سپتامبر','اکتبر','نوامبر','دسامبر'][now.month-1]} ماه {to_persian_digits(now.year)} - ساعت {time_text}",
+        f"⏰ {date_text} - ساعت {time_text}",
         "",
         "ᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒ",
         "",
