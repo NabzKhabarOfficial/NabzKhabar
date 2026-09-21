@@ -50,24 +50,138 @@ _FA_NUMBER_WORDS = {
 }
 
 def _numeric_values(text):
-    """Extract comparable numeric values without rejecting translated number words.
+    """Extract semantic numeric values, including compound number words.
 
-    Argos may legitimately turn an English number word such as "six" into the
-    Persian digit "۶". The old digit-only check treated that as a hallucinated
-    number and incorrectly rejected the translation.
+    This prevents false rejections when Argos translates:
+      twenty-five -> ۲۵
+      two hundred and two -> ۲۰۲
+      four hundred -> ۴۰۰
     """
-    value = str(text or "").translate(str.maketrans(
+    value = str(text or "").lower()
+    normalized = value.translate(str.maketrans(
         "۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789"
     ))
-    values = {int(x.replace(",", "").replace(".", "")) for x in re.findall(
-        r"(?<![A-Za-z\u0600-\u06ff])\d+(?:[.,]\d+)?(?![A-Za-z\u0600-\u06ff])", value
-    )}
-    for word in re.findall(r"[A-Za-z]+", value.lower()):
-        if word in _EN_NUMBER_WORDS:
-            values.add(_EN_NUMBER_WORDS[word])
-    for word in re.findall(r"[\u0600-\u06ff]+", value):
-        if word in _FA_NUMBER_WORDS:
-            values.add(_FA_NUMBER_WORDS[word])
+
+    values = set()
+    # Explicit Arabic/Persian/Latin digits.
+    for match in re.findall(r"(?<!\d)\d+(?:[.,]\d+)?(?!\d)", normalized):
+        try:
+            values.add(int(match.replace(",", "").split(".", 1)[0]))
+        except Exception:
+            pass
+
+    en = {
+        "zero":0,"one":1,"two":2,"three":3,"four":4,"five":5,"six":6,
+        "seven":7,"eight":8,"nine":9,"ten":10,"eleven":11,"twelve":12,
+        "thirteen":13,"fourteen":14,"fifteen":15,"sixteen":16,
+        "seventeen":17,"eighteen":18,"nineteen":19,"twenty":20,
+        "thirty":30,"forty":40,"fifty":50,"sixty":60,"seventy":70,
+        "eighty":80,"ninety":90,
+    }
+    fa = {
+        "صفر":0,"دو":2,"سه":3,"چهار":4,"پنج":5,"شش":6,"هفت":7,"هشت":8,
+        "نه":9,"ده":10,"یازده":11,"دوازده":12,"سیزده":13,"چهارده":14,
+        "پانزده":15,"شانزده":16,"هفده":17,"هجده":18,"نوزده":19,"بیست":20,
+        "سی":30,"چهل":40,"پنجاه":50,"شصت":60,"هفتاد":70,"هشتاد":80,"نود":90,
+    }
+
+    def parse_en(tokens):
+        total = 0
+        current = 0
+        found = False
+        for token in tokens:
+            if token == "and":
+                continue
+            if token in en:
+                current += en[token]
+                found = True
+            elif token == "hundred":
+                current = max(1, current) * 100
+                found = True
+            elif token in ("thousand", "million"):
+                scale = 1000 if token == "thousand" else 1000000
+                current = max(1, current) * scale
+                total += current
+                current = 0
+            else:
+                return None if not found else total + current
+        return (total + current) if found else None
+
+    def parse_fa(tokens):
+        units = {"صد":100, "هزار":1000, "میلیون":1000000}
+        total = 0
+        current = 0
+        found = False
+        for token in tokens:
+            if token in ("و",):
+                continue
+            if token in fa:
+                current += fa[token]
+                found = True
+            elif token in units:
+                current = max(1, current) * units[token]
+                if units[token] >= 1000:
+                    total += current
+                    current = 0
+                found = True
+            else:
+                return None if not found else total + current
+        return (total + current) if found else None
+
+    # English compound phrases.
+    en_words = re.findall(
+        r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
+        r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|"
+        r"eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|"
+        r"eighty|ninety|hundred|thousand|million|and)\b",
+        value,
+    )
+    if en_words:
+        run=[]
+        for token in en_words:
+            if token == "and" and not run:
+                continue
+            if token == "and" and run:
+                run.append(token)
+                continue
+            if run and token not in en and token not in ("hundred","thousand","million"):
+                parsed=parse_en(run)
+                if parsed is not None: values.add(parsed)
+                run=[]
+            run.append(token)
+        if run:
+            parsed=parse_en(run)
+            if parsed is not None: values.add(parsed)
+
+    # Persian compound phrases.
+    fa_words = re.findall(
+        r"(?:صفر|دو|سه|چهار|پنج|شش|هفت|هشت|نه|ده|یازده|دوازده|سیزده|"
+        r"چهارده|پانزده|شانزده|هفده|هجده|نوزده|بیست|سی|چهل|پنجاه|شصت|"
+        r"هفتاد|هشتاد|نود|صد|هزار|میلیون|و)",
+        value,
+    )
+    if fa_words:
+        run=[]
+        for token in fa_words:
+            if token == "و" and not run:
+                continue
+            if token == "و" and run:
+                run.append(token)
+                continue
+            if run and token not in fa and token not in ("صد","هزار","میلیون"):
+                parsed=parse_fa(run)
+                if parsed is not None: values.add(parsed)
+                run=[]
+            run.append(token)
+        if run:
+            parsed=parse_fa(run)
+            if parsed is not None: values.add(parsed)
+
+    # Keep unambiguous single-word values too, but never treat Persian "یک"
+    # as a factual number because Argos commonly uses it for "a/an".
+    values.update(en.get(x) for x in re.findall(r"\b[a-z]+\b", value) if x in en)
+    values.update(fa.get(x) for x in fa if x in value)
+    values.discard(None)
     return values
 
 def _sentence_list(text):
