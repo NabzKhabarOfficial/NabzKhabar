@@ -1639,9 +1639,14 @@ def calculate_keyword_importance(
         if word in text:
             score += 3
 
+    # Major international events must compete fairly with local stories
+    # even when the source/headline is in English.
+    if _has_global_high_impact(text):
+        score += 14
+
     return min(
         score,
-        40
+        55
     )
 
 
@@ -1767,8 +1772,10 @@ def calculate_importance(
 # ============================================================
 
 GOOGLE_RESOLVE_TIMEOUT = 6
-GOOGLE_RESOLVE_WORKERS = 16
-GOOGLE_RESOLVE_MAX_CANDIDATES = 90
+GOOGLE_RESOLVE_WORKERS = 20
+# Resolve a wider slice of Google discovery candidates so global breaking
+# stories are not lost before their publisher URL is resolved.
+GOOGLE_RESOLVE_MAX_CANDIDATES = 180
 
 
 def resolve_google_news_url(
@@ -3794,16 +3801,9 @@ def collect_candidates(
             # RSS summary; ordinary unresolved Google items are still dropped.
             google_title = normalize_space(item.get("title", "")).lower()
             google_summary = normalize_space(item.get("summary", ""))
-            high_priority_google = bool(re.search(
-                r"(?:حمله|موشک|بمباران|انفجار|زلزله|سیل|سونامی|"
-                r"سقوط هواپیما|کشته|زخمی|مفقود|ترور|آتش.?بس|"
-                r"قطع اینترنت|حمله سایبری|نفتکش|پرتابه|درگیری نظامی|"
-                r"جنگ|تحریم|tanker|missile|attack|strike|bombing|"
-                r"explosion|earthquake|flood|tsunami|crash|killed|"
-                r"wounded|military|tanker)",
-                google_title,
-                re.I,
-            ))
+            high_priority_google = _has_global_high_impact(
+                google_title + " " + google_summary
+            )
             if high_priority_google and len(google_summary) >= 120:
                 item["_unresolved_google_high_impact"] = True
                 print(
@@ -4838,6 +4838,18 @@ def is_roundup_title(title):
 
 is_roundup_title = is_roundup_title
 
+# ---------- Global high-impact coverage ----------
+# English-language world feeds need their own importance anchors; otherwise
+# major foreign events can score below routine Persian/local stories.
+GLOBAL_HIGH_IMPACT_PATTERNS = [
+    r"\b(?:war|invasion|attack|strike|missile|rocket|bombing|explosion|shooting|earthquake|tsunami|typhoon|hurricane|wildfire|flood|landslide|volcano|crash|plane crash|helicopter crash|killed|dead|deaths|wounded|missing|hostage|evacuation|emergency|disaster|ceasefire|sanctions|nuclear|military|troops|terror|outbreak|pandemic|summit|president|prime minister|government|parliament|coup)\b",
+    r"جنگ|تهاجم|حمله|حملات|موشک|پرتاب|بمباران|انفجار|تیراندازی|زلزله|سونامی|تایفون|طوفان|هاریکن|آتش.?سوزی|سیل|رانش زمین|آتشفشان|سقوط هواپیما|سقوط بالگرد|کشته|فوت|جان باخت|زخمی|مفقود|گروگان|تخلیه|وضعیت اضطراری|فاجعه|آتش.?بس|تحریم|هسته.?ای|نظامی|تروریستی|شیوع|همه.?گیری|نشست|رئیس جمهور|نخست.?وزیر|دولت|پارلمان|کودتا",
+]
+
+def _has_global_high_impact(text):
+    value = str(text or "")
+    return any(re.search(p, value, re.I) for p in GLOBAL_HIGH_IMPACT_PATTERNS)
+
 # ---------- Source scope filters ----------
 # Keep Iran/local Iranian reporting eligible. For foreign sources, reject
 # routine city/state/province/country-local stories unless the headline
@@ -4926,7 +4938,10 @@ def _foreign_local_only(candidate):
     has_local = any(re.search(p, text, re.I) for p in FOREIGN_LOCAL_TERMS)
     if not has_local:
         return False
-    has_international = any(re.search(p, text, re.I) for p in INTERNATIONAL_SCOPE_TERMS)
+    has_international = (
+        _has_global_high_impact(text)
+        or any(re.search(p, text, re.I) for p in INTERNATIONAL_SCOPE_TERMS)
+    )
     return not has_international
 
 def _filter_foreign_local_scope(candidates):
