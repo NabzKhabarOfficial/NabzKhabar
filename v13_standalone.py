@@ -5065,6 +5065,94 @@ def image_is_acceptable(url):
 
 image_is_acceptable = image_is_acceptable
 
+# ---------- Strict important/useful news gate ----------
+# NABZ news is intentionally selective: routine announcements, minor local
+# items, generic statements and promotional/cultural filler are rejected.
+# Price/education/weather pipelines are independent and are not affected.
+STRICT_NEWS_MIN_SCORE = 2
+
+STRICT_HIGH_IMPACT_TERMS = (
+    "جنگ", "حمله", "موشک", "انفجار", "زلزله", "سیل", "آتش سوزی", "آتش‌سوزی",
+    "سقوط هواپیما", "کشته", "مفقود", "ترور", "آتش بس", "آتش‌بس", "تحریم",
+    "مذاکرات", "هسته ای", "هسته‌ای", "قطع اینترنت", "قطعی اینترنت",
+    "قیمت دلار", "دلار", "طلا", "سکه", "تورم", "نرخ بهره", "بنزین", "نفت",
+    "برق", "گاز", "بودجه", "مالیات", "بازنشستگی", "حقوق", "دستمزد",
+    "هوش مصنوعی", "مدل هوش مصنوعی", "تراشه", "امنیت سایبری", "حمله سایبری",
+    "فوتبال", "لیگ قهرمانان", "جام جهانی", "المپیک", "قهرمانی", "فینال",
+)
+
+STRICT_MEDIUM_IMPACT_TERMS = (
+    "تصمیم", "مصوبه", "قانون", "ابلاغ", "وزارت", "دولت", "مجلس", "بانک مرکزی",
+    "رئیس جمهور", "رئیس‌جمهور", "استاندار", "محدودیت", "ممنوعیت", "آغاز ثبت نام",
+    "اختلال", "قطعی", "فراخوان", "هشدار", "بیماری", "واکسن", "دارو", "درمان",
+    "کشف", "پژوهش", "فضا", "ماهواره", "ربات", "اپل", "گوگل", "مایکروسافت",
+    "متا", "انویدیا", "اوپن ای آی", "OpenAI", "Google", "Apple", "Microsoft",
+)
+
+STRICT_ROUTINE_TERMS = (
+    "نشست", "جلسه", "دیدار", "تجلیل", "گرامیداشت", "تقدیر", "افتتاح", "کلنگ زنی",
+    "کلنگ‌زنی", "رونمایی از کتاب", "انتشار کتاب", "صدور پروانه ساخت", "مراسم",
+    "واکنش نشان داد", "اظهارات", "گفت: ", "گفت که", "تبریک", "تسلیت", "پیام تبریک",
+    "توصیه کرد", "تاکید کرد", "تأکید کرد", "قرار است", "امیدواریم", "می خواهیم",
+    "می‌خواهیم", "عکس", "فیلم", "تصاویر", "حاشیه", "کلیپ", "ویدئو",
+)
+
+STRICT_LOW_VALUE_TERMS = (
+    "آگهی", "فروش", "تخفیف", "جشنواره فروش", "قرعه کشی", "قرعه‌کشی", "استخدام",
+    "اطلاعیه روابط عمومی", "تبلیغ", "رپرتاژ", "سبک زندگی", "فال", "طالع بینی",
+    "تبریک تولد", "تولد", "درگذشت", "چهره", "بازیگر", "خواننده", "اینستاگرام",
+)
+
+
+def strict_news_value(candidate):
+    text = normalize_space(" ".join(
+        str(candidate.get(k, "") or "")
+        for k in ("title", "summary", "description")
+    ))
+    title = normalize_space(candidate.get("title", ""))
+    score = 0
+
+    for term in STRICT_HIGH_IMPACT_TERMS:
+        if term.lower() in text.lower():
+            score += 2
+            break
+
+    medium_hits = sum(1 for term in STRICT_MEDIUM_IMPACT_TERMS if term.lower() in text.lower())
+    score += min(medium_hits, 2)
+
+    routine_hits = sum(1 for term in STRICT_ROUTINE_TERMS if term.lower() in title.lower())
+    low_hits = sum(1 for term in STRICT_LOW_VALUE_TERMS if term.lower() in title.lower())
+
+    # Concrete measurable impact gets extra weight.
+    if re.search(r"\\b\\d{1,3}(?:[.,]\\d{3})*(?:\\s*(?:میلیون|میلیارد|درصد|نفر|کشته|زخمی))?\\b", text):
+        score += 1
+    if re.search(r"(?:قیمت|افزایش|کاهش|سقوط|رشد|صعود)\\s+[^،؛.]{0,45}(?:درصد|میلیارد|میلیون|تومان|دلار|یورو)", text):
+        score += 1
+
+    score -= min(routine_hits, 2)
+    score -= min(low_hits * 2, 4)
+
+    return score
+
+
+def is_strictly_useful_news(candidate):
+    title = normalize_space(candidate.get("title", ""))
+    value = strict_news_value(candidate)
+
+    if not title or len(title) < 12:
+        return False
+
+    if any(term.lower() in title.lower() for term in STRICT_LOW_VALUE_TERMS):
+        print(f"V13 SKIP LOW VALUE: {title}")
+        return False
+
+    if value < STRICT_NEWS_MIN_SCORE:
+        print(f"V13 SKIP NOT IMPORTANT: [{value}] {title}")
+        return False
+
+    return True
+
+
 # ---------- Candidate quality gate ----------
 _original_collect_candidates = collect_candidates
 
@@ -5080,6 +5168,8 @@ def collect_candidates(hash_history, title_history):
             continue
         if is_roundup_title(title):
             print(f"V13 SKIP ROUNDUP: {title}")
+            continue
+        if not is_strictly_useful_news(c):
             continue
         key = (title.lower(), link)
         if key in seen:
