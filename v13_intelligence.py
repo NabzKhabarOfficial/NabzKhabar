@@ -183,6 +183,9 @@ def _global_consequential_override(candidate):
         "approved", "approves", "passed", "passes", "banned", "ban", "sanction",
         "sanctions", "blocked", "blocks", "suspended", "suspends", "resigned",
         "arrested", "charged", "indicted", "ruled", "court", "lawsuit",
+        "signed", "signs", "declaration", "declared", "orders", "ordered",
+        "requires", "required", "restricts", "restricted", "introduces",
+        "introduced", "implements", "implemented", "joins", "joined",
         "settlement", "acquired", "acquisition", "merger", "recall", "raises",
         "cuts", "rate", "inflation", "tariff", "ceasefire", "agreement",
         "deal", "withdraw", "deploy", "election", "government", "parliament",
@@ -196,7 +199,7 @@ def _global_consequential_override(candidate):
         "us", "u.s.", "united states", "white house", "trump", "china", "russia",
         "ukraine", "israel", "iran", "european union", "eu", "nato", "uk",
         "britain", "france", "germany", "japan", "south korea", "north korea",
-        "india", "australia", "saudi", "un", "imf", "fed", "ecb", "congress",
+        "india", "australia", "saudi", "albanese", "un", "imf", "fed", "ecb", "congress",
         "supreme court", "government", "president", "prime minister", "parliament",
         "ایران", "آمریکا", "چین", "روسیه", "اوکراین", "اسرائیل", "اتحادیه اروپا",
         "ناتو", "بریتانیا", "فرانسه", "آلمان", "ژاپن", "هند", "عربستان",
@@ -208,7 +211,7 @@ def _global_consequential_override(candidate):
     topic_hit = any(x in text for x in (
         "sanction", "tariff", "interest rate", "inflation", "lawsuit", "antitrust",
         "merger", "acquisition", "ceasefire", "military", "nuclear", "outage",
-        "artificial intelligence", "chip", "هوش مصنوعی", "تحریم", "نرخ بهره",
+        "artificial intelligence", "smartglasses", "chip", "هوش مصنوعی", "تحریم", "نرخ بهره",
         "تورم", "دادگاه", "انحصار", "ادغام", "تملک", "آتش‌بس", "هسته‌ای",
         "اختلال گسترده", "قطع گسترده",
     ))
