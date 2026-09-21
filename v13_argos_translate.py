@@ -299,8 +299,8 @@ def translate_foreign_story(title, article_text):
     # URLs, tracking parameters, article IDs, phone numbers, or other metadata.
     # Strip URLs before extracting values and ignore implausibly long identifiers.
     def _numeric_validation_text(value):
-        value = re.sub(r"https?://\\S+|www\\.\\S+", " ", str(value or ""), flags=re.I)
-        value = re.sub(r"(?<!\\d)\\d{7,}(?!\\d)", " ", value)
+        value = re.sub(r"https?://\S+|www\.\S+", " ", str(value or ""), flags=re.I)
+        value = re.sub(r"(?<!\d)\d{7,}(?!\d)", " ", value)
         value = re.sub(r"[@#][A-Za-z0-9_./-]+", " ", value)
         return value
 
