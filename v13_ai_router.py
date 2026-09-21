@@ -19,23 +19,10 @@ API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
 MODEL_COOLDOWN_SECONDS = 15 * 60
 
-# Groq is kept as an optional emergency layer, but is OFF by default.
-# The current configured Groq models were returning HTTP 400 in production;
-# do not waste runtime or fall through to an unhealthy provider unless it is
-# explicitly enabled. Gemini remains the primary free-only router.
-ENABLE_GROQ_FALLBACK = os.getenv("ENABLE_GROQ_FALLBACK", "0").strip() == "1"
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
-GROQ_MODELS = ("openai/gpt-oss-20b", "openai/gpt-oss-120b")
-GROQ_BASE = "https://api.groq.com/openai/v1"
-
 # Optional OpenRouter free-only fallback. Never selects paid models.
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"
-OPENROUTER_MODEL = "openrouter/free"
-
 ENABLE_OPENROUTER_FALLBACK = os.getenv("ENABLE_OPENROUTER_FALLBACK", "1").strip() == "1"
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
-OPENROUTER_BASE = "https://openrouter.ai/api/v1"
 OPENROUTER_MODELS_CACHE_SECONDS = 15 * 60
 _openrouter_models_cache = {"at": 0.0, "models": []}
 
@@ -403,18 +390,7 @@ def gemini_request(main, title, article_text):
     else:
         print("V13 AI ROUTER: OpenRouter free fallback unavailable (missing key or disabled).")
 
-    # Provider 3: Groq remains opt-in because previous production runs returned HTTP 400.
-    if ENABLE_GROQ_FALLBACK and GROQ_API_KEY:
-        result = _fallback_provider_request(
-            main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
-            prompt, title, source, foreign
-        )
-        if result:
-            return result
-    else:
-        print("V13 AI ROUTER: Groq fallback disabled; continuing with free-provider safety path.")
-
-    print("V13 AI ROUTER: all enabled AI providers failed/unavailable; publication will use existing V13 safety rules.")
+    print("V13 AI ROUTER: Gemini and OpenRouter free providers failed/unavailable; publication will use existing V13 safety rules.")
     return None
 
 
@@ -424,5 +400,5 @@ def install(main):
     )
     print(
         "V13 AI ROUTER ACTIVE: "
-        "multi-provider free router: Gemini -> OpenRouter :free -> optional Groq, strict validation, 404-safe failover"
+        "multi-provider free router: Gemini -> OpenRouter :free, strict validation, 404-safe failover"
     )
