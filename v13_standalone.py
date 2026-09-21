@@ -3735,6 +3735,16 @@ def collect_candidates(
 
     for item in clustered:
 
+        # Re-check the actual resolved publisher after Google News URL
+        # resolution. This closes the loophole where source_url is only
+        # metadata and the real article belongs to an Iranian publisher.
+        if _is_iranian_blocked_source(item):
+            print(
+                f"SKIPPED IRANIAN PUBLISHER: "
+                f"{item.get('title', '')}"
+            )
+            continue
+
         if (
             item.get(
                 "is_google"
@@ -4704,9 +4714,8 @@ import re
 # ============================================================
 
 V13_DIRECT_RSS_FEEDS = [
-    # Iranian direct RSS: exactly two sources.
+    # Iranian direct RSS: YJC is the only Iranian direct publisher.
     ("ایران", "https://www.yjc.ir/fa/rss/allnews"),
-    ("ایران", "https://www.irna.ir/rss"),
     ("جهان", "https://feeds.bbci.co.uk/news/rss.xml"),
     ("جهان", "https://www.theguardian.com/world/rss"),
     ("جهان", "https://feeds.npr.org/1001/rss.xml"),
@@ -4808,9 +4817,43 @@ IRAN_TERMS = [
     r"خوزستان|آذربایجان|فارس|مازندران|گیلان|البرز|خراسان",
 ]
 
+# Iranian publisher policy:
+# YJC is the only allowed Iranian news publisher. Google News discovery may
+# still surface other Iranian outlets, so publisher-domain filtering is
+# mandatory and is based on the resolved/source URL, never on story topic.
+IRANIAN_ALLOWED_HOSTS = {"yjc.ir"}
+IRANIAN_BLOCKED_DOMAINS = {
+    "irna.ir", "isna.ir", "mehrnews.com", "tasnimnews.com", "farsnews.ir",
+    "snn.ir", "tabnak.ir", "khabaronline.ir", "tejaratnews.com",
+    "donya-e-eqtesad.com", "ecoiran.com", "zoomit.ir", "varzesh3.com",
+    "khabarfoori.com", "asriran.com", "aftabnews.ir", "jamaran.news",
+    "entekhab.ir", "fararu.com", "khabarban.com", "rokna.net",
+}
+
+def _candidate_hosts(candidate):
+    hosts = set()
+    for key in ("resolved_link", "source_url", "link"):
+        value = str(candidate.get(key, "") or "").strip()
+        host = base_domain(get_hostname(value))
+        if host:
+            hosts.add(host)
+    return hosts
+
+def _is_iranian_blocked_source(candidate):
+    for host in _candidate_hosts(candidate):
+        if host in IRANIAN_ALLOWED_HOSTS:
+            continue
+        if host.endswith(".ir"):
+            return True
+        if any(host == d or host.endswith("." + d) for d in IRANIAN_BLOCKED_DOMAINS):
+            return True
+    return False
+
 def _is_iran_source(candidate):
-    source = " ".join(str(candidate.get(k, "") or "") for k in ("source_url", "source_name", "link")).lower()
-    return "yjc.ir" in source or any(re.search(p, source, re.I) for p in IRAN_TERMS)
+    return any(
+        host in IRANIAN_ALLOWED_HOSTS
+        for host in _candidate_hosts(candidate)
+    )
 
 def _foreign_local_only(candidate):
     if _is_iran_source(candidate):
@@ -5060,7 +5103,17 @@ def collect_candidates(hash_history, title_history):
         reverse=True,
     )
     clean = _filter_foreign_local_scope(clean)
-    return clean
+
+    # Hard publisher gate: do not let Google News re-introduce Iranian
+    # publishers that are not the single approved direct source (YJC).
+    filtered_publishers = []
+    for c in clean:
+        if _is_iranian_blocked_source(c):
+            print(f"V13 SKIP IRANIAN PUBLISHER: {clean_title(c.get('title', ''))}")
+            continue
+        filtered_publishers.append(c)
+
+    return filtered_publishers
 
 collect_candidates = collect_candidates
 
