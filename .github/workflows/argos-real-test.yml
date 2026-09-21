@@ -1,0 +1,71 @@
+name: V13 Argos Real Translation Test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/argos-real-test.yml"
+      - "v13_argos_translate.py"
+      - "requirements.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  argos-real-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Argos dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Real English to Persian translation
+        env:
+          ARGOS_PACKAGES_DIR: ${{ github.workspace }}/.argos-packages
+        run: |
+          python - <<'PY'
+          import os
+          import v13_argos_translate as argos
+
+          english_title = "Major earthquake hits the region, authorities report emergency response."
+          english_body = (
+              "A major earthquake hit the region on Monday, causing damage to several buildings. "
+              "Emergency teams were deployed and authorities said they were assessing the situation."
+          )
+
+          print("ARGOS_TEST: starting real en->fa translation")
+          result = argos.translate_foreign_story(english_title, english_body)
+
+          if not result:
+              raise SystemExit("ARGOS_TEST_FAILED: no valid Persian translation returned")
+
+          title = result["title"]
+          summary = result["summary"]
+          print("ARGOS_TEST_TITLE:", title)
+          print("ARGOS_TEST_SUMMARY:", summary)
+
+          ratio_title = argos._persian_ratio(title)
+          ratio_summary = argos._persian_ratio(summary)
+          print("ARGOS_TEST_PERSIAN_RATIO:", ratio_title, ratio_summary)
+
+          if ratio_title < 0.60 or ratio_summary < 0.60:
+              raise SystemExit("ARGOS_TEST_FAILED: Persian validation below 60%")
+
+          if not title.strip() or not summary.strip():
+              raise SystemExit("ARGOS_TEST_FAILED: empty translation")
+
+          print("ARGOS_TEST_PASSED: real English -> Persian translation is operational")
+          PY
