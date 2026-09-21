@@ -6,10 +6,9 @@ import v13_ai_router
 import v13_content_enhancer
 import v13_ad_filter
 
-# V13 is the only news runtime. main.py, v12_engine.py,
-# v13_engine.py and graphics_patch.py are not imported here.
+# V13 is the only news runtime. Obsolete legacy engines and patches were removed.
 # Branding/media fixes, the free AI router, and automatic content enrichment
-# are installed before the engine starts.
+# are installed on the V13 runtime before the engine starts.
 v13_media_branding.install(main)
 v13_ai_router.install(main)
 v13_content_enhancer.install(main, v13_ai_router)
