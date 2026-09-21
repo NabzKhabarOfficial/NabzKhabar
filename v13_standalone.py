@@ -58,12 +58,13 @@ ARTICLE_TIMEOUT = 25
 MAX_VIDEO_MB = 49
 MAX_IMAGE_MB = 12
 
-# Only reasonably fresh news.
-# News discovery/publication freshness is intentionally identical to the 30-minute feed window.\nMAX_NEWS_AGE_HOURS = FEED_COLLECTION_WINDOW_MINUTES / 60
-
 # The bot runs every 10 minutes. Keep discovery focused on a short,
 # overlapping window so delayed RSS publication does not create gaps.
 FEED_COLLECTION_WINDOW_MINUTES = 30
+
+# News discovery/publication freshness is intentionally identical
+# to the 30-minute feed window.
+MAX_NEWS_AGE_HOURS = FEED_COLLECTION_WINDOW_MINUTES / 60
 
 # Semantic duplicate protection window.
 SEMANTIC_HISTORY_DAYS = 7
