@@ -3,6 +3,7 @@ import sys
 import v13_standalone as main
 import v13_media_branding
 import v13_ai_router
+import v13_argos_translate
 import v13_content_enhancer
 import v13_ad_filter
 import v13_intelligence
@@ -12,6 +13,7 @@ import v13_intelligence
 # are installed on the V13 runtime before the engine starts.
 v13_media_branding.install(main)
 v13_ai_router.install(main)
+v13_argos_translate.install(main)
 v13_content_enhancer.install(main, v13_ai_router)
 v13_ad_filter.install(main)
 v13_intelligence.install(main)
