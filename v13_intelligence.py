@@ -12,6 +12,8 @@ from collections import Counter
 from datetime import datetime, timezone
 
 HEALTH_FILE = "v13_health.json"
+REJECTED_NEWS_FILE = "v13_rejected_news.json"
+MAX_REJECTED_NEWS_HISTORY = 500
 MAX_NEWS_PER_RUN = 4
 MIN_EVENT_SCORE = 5
 
@@ -44,14 +46,6 @@ ROUTINE = (
     "تسلیت", "تبریک", "پیام", "قرار است", "برنامه دارد", "تصمیم دارد",
 )
 
-
-# High-impact geopolitical/security override.
-# The normal V13 strict gate intentionally rejects generic statements that
-# lack a concrete-event marker. That is correct for routine commentary, but
-# it can incorrectly drop major threats, airstrikes, military operations and
-# escalations whose headline is phrased as a warning/decision rather than a
-# completed physical event. This override only applies when a strong
-# geopolitical/security signal is paired with a relevant actor/location.
 HIGH_IMPACT_SECURITY_SIGNALS = (
     "تهدید", "اولتیماتوم", "تهدید نظامی", "حمله نظامی", "حمله هوایی",
     "حمله زمینی", "حمله دریایی", "حمله موشکی", "بمباران", "عملیات نظامی",
@@ -111,7 +105,6 @@ def _source_host(main, candidate):
 
 
 def source_reliability(main, candidate):
-    """Return a bounded 0..10 source score for ranking only."""
     quality = main.publisher_quality(
         candidate.get("resolved_link") or candidate.get("link") or ""
     )
@@ -156,15 +149,10 @@ def event_score(main, candidate):
 
 
 def _high_impact_security_override(candidate):
-    """Allow major security/geopolitical events past the generic event gate."""
     title = _norm(candidate.get("title", "")).lower()
-    body = _text(candidate).lower()
     title_signals = sum(x.lower() in title for x in HIGH_IMPACT_SECURITY_SIGNALS)
     actor_hits = sum(x.lower() in title for x in HIGH_IMPACT_ACTORS)
     strong_topic = any(x.lower() in title for x in HIGH_IMPACT)
-    # Keep routine political commentary out: require the security signal in
-    # the headline itself, plus either a relevant actor/location or an
-    # unmistakably military action.
     if title_signals == 0 or not strong_topic:
         return False
     military_action = any(x.lower() in title for x in (
@@ -188,8 +176,6 @@ def is_publishable(main, candidate):
 
     score = event_score(main, candidate)
     if _high_impact_security_override(candidate):
-        # Preserve the normal score/ranking, but do not let the generic
-        # "concrete event" gate discard a major threat/attack/escalation.
         score = max(score, MIN_EVENT_SCORE + 2)
         return True, score, "high-impact-security-override"
 
@@ -215,22 +201,17 @@ def _tokens(main, title):
 def same_event(main, a, b):
     if main.same_story(a, b):
         return True
-
     ta = _tokens(main, a.get("title", ""))
     tb = _tokens(main, b.get("title", ""))
     if not ta or not tb:
         return False
-
     common = ta & tb
     if len(common) < 3:
         return False
-
-    # Require either a strong overlap or a shared event anchor.
     ratio = len(common) / max(1, min(len(ta), len(tb)))
     nums_a = set(re.findall(r"\d+", main.normalize_digits(a.get("title", ""))))
     nums_b = set(re.findall(r"\d+", main.normalize_digits(b.get("title", ""))))
     shared_number = bool(nums_a & nums_b)
-
     return ratio >= 0.78 or (ratio >= 0.62 and shared_number)
 
 
@@ -271,14 +252,50 @@ def _write_health(state):
         print(f"V13 HEALTH WRITE ERROR: {exc}", flush=True)
 
 
+def _load_rejected_history():
+    try:
+        with open(REJECTED_NEWS_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else []
+    except Exception:
+        return []
+
+
+def _save_rejected_history(history):
+    try:
+        history = history[-MAX_REJECTED_NEWS_HISTORY:]
+        with open(REJECTED_NEWS_FILE, "w", encoding="utf-8") as f:
+            json.dump(history, f, ensure_ascii=False, indent=2)
+    except Exception as exc:
+        print(f"V13 REJECTED NEWS WRITE ERROR: {exc}", flush=True)
+
+
+def _rejected_record(main, candidate, score, reason, stage="intelligence_filter"):
+    title = _norm(candidate.get("title", ""))
+    published_at = candidate.get("published_at")
+    if hasattr(published_at, "isoformat"):
+        published_at = published_at.isoformat()
+    url = candidate.get("resolved_link") or candidate.get("link") or ""
+    return {
+        "checked_at": datetime.now(timezone.utc).isoformat(),
+        "title": title,
+        "source": _source_host(main, candidate) or candidate.get("source", "") or "unknown",
+        "category": candidate.get("category", ""),
+        "published_at": published_at or "",
+        "url": url,
+        "age_seconds": candidate.get("age_seconds"),
+        "intelligence_score": score,
+        "reason": reason,
+        "stage": stage,
+        "high_impact_security_candidate": _high_impact_security_override(candidate),
+    }
+
+
 def install(main):
     original_collect = main.collect_candidates
     original_process = main.process_news
-
-    # The standalone core has its own strict gate. Patch that module-level
-    # function before calling the original collector so high-impact
-    # geopolitical/security events are evaluated by the override above.
     original_strict_gate = getattr(main, "is_strictly_useful_news", None)
+
     if original_strict_gate is not None:
         def _intelligence_strict_gate(candidate):
             if _high_impact_security_override(candidate):
@@ -289,7 +306,6 @@ def install(main):
                 )
                 return True
             return original_strict_gate(candidate)
-
         main.is_strictly_useful_news = _intelligence_strict_gate
 
     state = {
@@ -303,6 +319,7 @@ def install(main):
         "failed_publications": 0,
         "top_sources": {},
         "last_errors": [],
+        "rejected_news_this_run": [],
     }
 
     def intelligent_collect(hash_history, title_history):
@@ -311,11 +328,17 @@ def install(main):
 
         filtered = []
         rejected = Counter()
+        rejected_records = []
+        evaluated = []
+
         for candidate in candidates:
             ok, score, reason = is_publishable(main, candidate)
             candidate["intelligence_score"] = score
+            evaluated.append((candidate, ok, score, reason))
             if not ok:
                 rejected[reason] += 1
+                record = _rejected_record(main, candidate, score, reason)
+                rejected_records.append(record)
                 print(
                     f"V13 INTELLIGENCE: rejected [{reason}] "
                     f"{candidate.get('title', '')}",
@@ -329,10 +352,17 @@ def install(main):
             filtered.append(candidate)
 
         state["strict_rejected"] = sum(rejected.values())
+        state["rejected_news_this_run"] = rejected_records
+
+        history = _load_rejected_history()
+        history.extend(rejected_records)
+        _save_rejected_history(history)
+
+        publishable_before_dedup = sum(1 for _, ok, _, _ in evaluated if ok)
         filtered = _dedup_events(main, filtered)
-        state["event_duplicates_removed"] = max(0, len(
-            [x for x in candidates if is_publishable(main, x)[0]]
-        ) - len(filtered))
+        state["event_duplicates_removed"] = max(
+            0, publishable_before_dedup - len(filtered)
+        )
 
         filtered.sort(
             key=lambda c: (
@@ -344,8 +374,6 @@ def install(main):
             reverse=True,
         )
 
-        # Diversity-aware cap: no more than two stories from one category
-        # unless the score is exceptional.
         selected = []
         families = Counter()
         for candidate in filtered:
@@ -390,8 +418,6 @@ def install(main):
     main.collect_candidates = intelligent_collect
     main.process_news = tracked_process
 
-    # Final run status is recorded without changing the behavior of the
-    # existing run_bot orchestration.
     original_main = main.main
 
     def tracked_main():
@@ -415,6 +441,7 @@ def install(main):
     main.main = tracked_main
     print(
         "V13 INTELLIGENCE ACTIVE: event scoring + semantic event dedup + "
-        f"source reliability + max {MAX_NEWS_PER_RUN} news/run + health monitor",
+        f"source reliability + max {MAX_NEWS_PER_RUN} news/run + health monitor "
+        "+ rejected-news audit",
         flush=True,
     )
