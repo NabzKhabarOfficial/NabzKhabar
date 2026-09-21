@@ -53,6 +53,24 @@ jobs:
         run: |
           python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_argos_translate.py v13_intelligence.py run_bot.py education.py car_prices.py weather.py
 
+      - name: Real Argos English to Persian test
+        env:
+          ARGOS_PACKAGES_DIR: ${{ github.workspace }}/.argos-packages
+        run: |
+          python - <<'PY'
+          import v13_argos_translate as a
+          result = a.translate_foreign_story(
+              "Major earthquake strikes the region, officials say",
+              "Officials reported that a major earthquake struck the region on Monday. Emergency teams were sent to the affected areas."
+          )
+          print("V13 ARGOS REAL TEST RESULT:", result)
+          if not result:
+              raise SystemExit("REAL ARGOS TEST FAILED")
+          if a._persian_ratio(result["title"]) < 0.60:
+              raise SystemExit("REAL ARGOS TEST FAILED: title is not Persian")
+          print("V13 ARGOS REAL TEST: PASS")
+          PY
+
       - name: Run independent V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
