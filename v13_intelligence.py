@@ -44,6 +44,32 @@ ROUTINE = (
     "تسلیت", "تبریک", "پیام", "قرار است", "برنامه دارد", "تصمیم دارد",
 )
 
+
+# High-impact geopolitical/security override.
+# The normal V13 strict gate intentionally rejects generic statements that
+# lack a concrete-event marker. That is correct for routine commentary, but
+# it can incorrectly drop major threats, airstrikes, military operations and
+# escalations whose headline is phrased as a warning/decision rather than a
+# completed physical event. This override only applies when a strong
+# geopolitical/security signal is paired with a relevant actor/location.
+HIGH_IMPACT_SECURITY_SIGNALS = (
+    "تهدید", "اولتیماتوم", "تهدید نظامی", "حمله نظامی", "حمله هوایی",
+    "حمله زمینی", "حمله دریایی", "حمله موشکی", "بمباران", "عملیات نظامی",
+    "عملیات هوایی", "درگیری نظامی", "تشدید درگیری", "تشدید تنش",
+    "تنش نظامی", "پاسخ نظامی", "پاسخ تلافی", "تلافی", "شلیک",
+    "آتش گشود", "هدف قرار داد", "هدف قرار دادن", "مواضع نظامی",
+    "پایگاه نظامی", "آماده باش", "آماده‌باش", "تحرک نظامی",
+    "هشدار امنیتی", "حمله به", "درگیری", "تجاوز نظامی",
+)
+
+HIGH_IMPACT_ACTORS = (
+    "ایران", "ترامپ", "آمریکا", "اسرائیل", "سوریه", "عراق", "لبنان",
+    "فلسطین", "غزه", "یمن", "عربستان", "ترکیه", "روسیه", "اوکراین",
+    "چین", "تایوان", "کره جنوبی", "کره شمالی", "ناتو", "بریتانیا",
+    "فرانسه", "آلمان", "دونالد ترامپ", "پنتاگون", "کاخ سفید",
+    "سپاه", "ارتش", "نیروی هوایی", "نیروی دریایی",
+)
+
 LOW_VALUE = (
     "تخفیف", "فروش ویژه", "قرعه کشی", "قرعه‌کشی", "استخدام", "فال",
     "طالع بینی", "تولد", "اینستاگرام", "چهره", "سلبریتی", "رپورتاژ",
@@ -129,6 +155,25 @@ def event_score(main, candidate):
     return score
 
 
+def _high_impact_security_override(candidate):
+    """Allow major security/geopolitical events past the generic event gate."""
+    title = _norm(candidate.get("title", "")).lower()
+    body = _text(candidate).lower()
+    title_signals = sum(x.lower() in title for x in HIGH_IMPACT_SECURITY_SIGNALS)
+    actor_hits = sum(x.lower() in title for x in HIGH_IMPACT_ACTORS)
+    strong_topic = any(x.lower() in title for x in HIGH_IMPACT)
+    # Keep routine political commentary out: require the security signal in
+    # the headline itself, plus either a relevant actor/location or an
+    # unmistakably military action.
+    if title_signals == 0 or not strong_topic:
+        return False
+    military_action = any(x.lower() in title for x in (
+        "حمله", "بمباران", "عملیات نظامی", "عملیات هوایی", "شلیک",
+        "آتش گشود", "هدف قرار", "مواضع نظامی", "پایگاه نظامی", "درگیری",
+    ))
+    return actor_hits > 0 or military_action
+
+
 def is_publishable(main, candidate):
     title = _norm(candidate.get("title", ""))
     if len(title) < 12:
@@ -140,10 +185,17 @@ def is_publishable(main, candidate):
 
     body = _text(candidate).lower()
     has_event = any(x.lower() in lower or x.lower() in body[:3000] for x in HIGH_IMPACT + ACTION_TERMS)
+
+    score = event_score(main, candidate)
+    if _high_impact_security_override(candidate):
+        # Preserve the normal score/ranking, but do not let the generic
+        # "concrete event" gate discard a major threat/attack/escalation.
+        score = max(score, MIN_EVENT_SCORE + 2)
+        return True, score, "high-impact-security-override"
+
     if not has_event:
         return False, 0, "no-concrete-event"
 
-    score = event_score(main, candidate)
     if score < MIN_EVENT_SCORE:
         return False, score, "below-event-threshold"
 
@@ -222,6 +274,23 @@ def _write_health(state):
 def install(main):
     original_collect = main.collect_candidates
     original_process = main.process_news
+
+    # The standalone core has its own strict gate. Patch that module-level
+    # function before calling the original collector so high-impact
+    # geopolitical/security events are evaluated by the override above.
+    original_strict_gate = getattr(main, "is_strictly_useful_news", None)
+    if original_strict_gate is not None:
+        def _intelligence_strict_gate(candidate):
+            if _high_impact_security_override(candidate):
+                print(
+                    "V13 INTELLIGENCE: high-impact security override -> "
+                    f"{candidate.get('title', '')}",
+                    flush=True,
+                )
+                return True
+            return original_strict_gate(candidate)
+
+        main.is_strictly_useful_news = _intelligence_strict_gate
 
     state = {
         "status": "starting",
