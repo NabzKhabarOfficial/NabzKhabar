@@ -5067,45 +5067,75 @@ def image_is_acceptable(url):
 image_is_acceptable = image_is_acceptable
 
 # ---------- Strict important/useful news gate ----------
-# NABZ news is intentionally selective: routine announcements, minor local
-# items, generic statements and promotional/cultural filler are rejected.
-# Price/education/weather pipelines are independent and are not affected.
-STRICT_NEWS_MIN_SCORE = 3
+# NABZ news is event-led and deliberately selective. A story must describe a
+# concrete, consequential event/change rather than merely mention an important
+# person, country, ministry, company, sport, or topic.
+# Price/education/weather/car-price pipelines are independent and are not affected.
+
+STRICT_NEWS_MIN_SCORE = 5
 
 STRICT_HIGH_IMPACT_TERMS = (
-    "جنگ", "حمله", "موشک", "انفجار", "زلزله", "سیل", "آتش سوزی", "آتش‌سوزی",
-    "سقوط هواپیما", "کشته", "مفقود", "ترور", "آتش بس", "آتش‌بس", "تحریم",
-    "مذاکرات", "هسته ای", "هسته‌ای", "قطع اینترنت", "قطعی اینترنت",
-    "قیمت دلار", "دلار", "طلا", "سکه", "تورم", "نرخ بهره", "بنزین", "نفت",
-    "برق", "گاز", "بودجه", "مالیات", "بازنشستگی", "حقوق", "دستمزد",
-    "هوش مصنوعی", "مدل هوش مصنوعی", "تراشه", "امنیت سایبری", "حمله سایبری",
-    "فوتبال", "لیگ قهرمانان", "جام جهانی", "المپیک", "قهرمانی", "فینال",
+    "جنگ", "حمله", "حمله موشکی", "موشک", "انفجار", "زلزله", "سیل",
+    "آتش سوزی", "آتش‌سوزی", "سقوط هواپیما", "کشته", "مفقود", "ترور",
+    "آتش بس", "آتش‌بس", "تحریم", "مذاکرات", "هسته ای", "هسته‌ای",
+    "قطع اینترنت", "قطعی اینترنت", "بحران", "حمله سایبری", "هک گسترده",
+    "فاجعه", "فوری", "اضطراری", "تعلیق", "توقف", "ممنوعیت", "محدودیت",
+    "فراخوان", "قطعی برق", "قطعی گاز", "قطعی آب", "کمبود سوخت",
+    "افزایش قیمت", "کاهش قیمت", "سقوط قیمت", "جهش قیمت", "تورم",
+    "نرخ بهره", "بودجه", "مالیات", "بنزین", "نفت", "گاز",
+    "هوش مصنوعی", "مدل هوش مصنوعی", "تراشه", "فناوری جدید",
+    "جام جهانی", "المپیک", "فینال", "قهرمانی",
 )
 
 STRICT_MEDIUM_IMPACT_TERMS = (
-    "مصوبه", "قانون", "ابلاغ", "محدودیت", "ممنوعیت", "آغاز ثبت نام", "اختلال",
-    "قطعی", "فراخوان", "هشدار", "بیماری", "واکسن", "دارو", "درمان", "کشف",
-    "پژوهش", "فضا", "ماهواره", "ربات", "اپل", "گوگل", "مایکروسافت", "متا",
-    "انویدیا", "اوپن ای آی", "OpenAI", "Google", "Apple", "Microsoft",
-    "رئیس جمهور", "رئیس‌جمهور", "مجلس", "دولت", "بانک مرکزی", "وزارت",
+    "مصوبه", "قانون", "ابلاغ", "اختلال", "هشدار", "بیماری", "شیوع",
+    "واکسن", "دارو", "درمان", "کشف", "پژوهش", "فضا", "ماهواره", "ربات",
+    "اپل", "گوگل", "مایکروسافت", "متا", "انویدیا", "اوپن ای آی",
+    "OpenAI", "Google", "Apple", "Microsoft", "رئیس جمهور", "رئیس‌جمهور",
+    "مجلس", "دولت", "بانک مرکزی", "وزارت",
 )
 
 STRICT_ROUTINE_TERMS = (
-    "نشست", "جلسه", "دیدار", "تجلیل", "گرامیداشت", "تقدیر", "افتتاح", "کلنگ زنی",
-    "کلنگ‌زنی", "رونمایی از کتاب", "انتشار کتاب", "صدور پروانه ساخت", "مراسم",
-    "واکنش نشان داد", "اظهارات", "گفت: ", "گفت که", "تبریک", "تسلیت", "پیام تبریک",
-    "توصیه کرد", "تاکید کرد", "تأکید کرد", "قرار است", "امیدواریم", "می خواهیم",
+    "نشست", "جلسه", "دیدار", "تجلیل", "گرامیداشت", "تقدیر", "افتتاح",
+    "کلنگ زنی", "کلنگ‌زنی", "رونمایی از کتاب", "انتشار کتاب",
+    "صدور پروانه ساخت", "مراسم", "واکنش نشان داد", "اظهارات",
+    "گفت: ", "گفت که", "تبریک", "تسلیت", "پیام تبریک", "توصیه کرد",
+    "تاکید کرد", "تأکید کرد", "قرار است", "امیدواریم", "می خواهیم",
     "می‌خواهیم", "عکس", "فیلم", "تصاویر", "حاشیه", "کلیپ", "ویدئو",
 )
 
 STRICT_LOW_VALUE_TERMS = (
-    "آگهی", "فروش", "تخفیف", "جشنواره فروش", "قرعه کشی", "قرعه‌کشی", "استخدام",
-    "اطلاعیه روابط عمومی", "تبلیغ", "رپرتاژ", "سبک زندگی", "فال", "طالع بینی",
-    "تبریک تولد", "تولد", "درگذشت", "چهره", "بازیگر", "خواننده", "اینستاگرام",
+    "آگهی", "فروش", "تخفیف", "جشنواره فروش", "قرعه کشی", "قرعه‌کشی",
+    "استخدام", "اطلاعیه روابط عمومی", "تبلیغ", "رپرتاژ", "سبک زندگی",
+    "فال", "طالع بینی", "تبریک تولد", "تولد", "درگذشت", "چهره",
+    "اینستاگرام", "خاطره", "مصاحبه اختصاصی", "گفتگو با",
 )
 
-# Importance is title-led: generic body words such as «دولت» or «وزارت»
-# must not turn a routine announcement into a publishable story.
+# Event-impact signals. These are deliberately descriptive and do not rank
+# political actors; they only identify concrete consequences or major events.
+STRICT_EVENT_ACTIONS = (
+    "کشته", "زخمی", "مفقود", "بازداشت", "دستگیر", "تخلیه", "توقف",
+    "تعلیق", "ممنوع", "محدود", "قطع", "وصل", "اختلال", "فراخوان",
+    "آغاز", "پایان", "لغو", "تصویب", "رد شد", "اجرا", "ابلاغ", "اعلام شد",
+    "افزایش", "کاهش", "سقوط", "رشد", "جهش", "تحریم", "آتش بس", "آتش‌بس",
+)
+
+STRICT_IMPACT_ENTITIES = (
+    "ایران", "تهران", "خوزستان", "کرمان", "سیستان", "بلوچستان", "آذربایجان",
+    "عراق", "سوریه", "لبنان", "فلسطین", "غزه", "اسرائیل", "یمن", "ترکیه",
+    "آمریکا", "روسیه", "اوکراین", "چین", "تایوان", "اروپا", "اتحادیه اروپا",
+    "ناتو", "هند", "پاکستان", "افغانستان", "کره جنوبی", "کره شمالی",
+    "ژاپن", "بریتانیا", "فرانسه", "آلمان",
+)
+
+STRICT_CONCRETE_EVENT_RE = re.compile(
+    r"(?:کشته|زخمی|مفقود|انفجار|زلزله|سیل|آتش.?سوزی|سقوط|حمله|موشک|جنگ|"
+    r"تحریم|ممنوع|محدود|تعلیق|توقف|قطعی|اختلال|فراخوان|تصویب|ابلاغ|لغو|"
+    r"افزایش|کاهش|سقوط|رشد|جهش|شیوع|آتش.?بس|بودجه|مالیات|قیمت|نرخ|"
+    r"کمبود|هک|حمله سایبری|فوتبال|جام جهانی|المپیک|فینال|قهرمانی)",
+    re.I,
+)
+
 def strict_news_value(candidate):
     title = normalize_space(candidate.get("title", ""))
     body = normalize_space(" ".join(
@@ -5119,38 +5149,50 @@ def strict_news_value(candidate):
     medium_title = [t for t in STRICT_MEDIUM_IMPACT_TERMS if t.lower() in title_l]
     routine_hits = sum(1 for t in STRICT_ROUTINE_TERMS if t.lower() in title_l)
     low_hits = sum(1 for t in STRICT_LOW_VALUE_TERMS if t.lower() in title_l)
+    action_hits = sum(1 for t in STRICT_EVENT_ACTIONS if t.lower() in title_l)
+    entity_hits = sum(1 for t in STRICT_IMPACT_ENTITIES if t.lower() in title_l)
 
     if high_title:
-        score += 4
-
+        score += 5
     if medium_title:
         score += min(len(medium_title), 2)
+    if action_hits:
+        score += min(action_hits * 2, 4)
+    if entity_hits and action_hits:
+        score += 1
 
-    if re.search(r"\d{1,3}(?:[.,]\d{3})*(?:\s*(?:میلیون|میلیارد|همت|درصد|نفر|کشته|زخمی|واحد|کیلومتر))", title):
+    # Concrete numbers matter only when attached to an event/economic change.
+    if re.search(
+        r"\d{1,3}(?:[.,]\d{3})*(?:\s*(?:میلیون|میلیارد|همت|درصد|نفر|کشته|زخمی|واحد|کیلومتر))",
+        title,
+    ):
         score += 2
 
-    if re.search(r"(?:قیمت|افزایش|کاهش|سقوط|رشد|صعود|بودجه|اعتبار|مالیات|نرخ)\s+[^،؛.]{0,55}(?:درصد|میلیارد|میلیون|همت|تومان|دلار|یورو|واحد)", title_l):
+    if re.search(
+        r"(?:قیمت|افزایش|کاهش|سقوط|رشد|صعود|بودجه|اعتبار|مالیات|نرخ)\s+[^،؛.]{0,55}"
+        r"(?:درصد|میلیارد|میلیون|همت|تومان|دلار|یورو|واحد)",
+        title_l,
+    ):
         score += 2
 
-    if re.search(r"(?:آغاز|شروع|توقف|تعلیق|ممنوع|محدود|قطع|وصل|اختلال|فراخوان|اجرای|ابلاغ)\b", title_l):
-        score += 2
+    if _source := candidate.get("link"):
+        if publisher_quality(_source) >= 25:
+            score += 1
 
-    if re.search(r"(?:مصوبه|قانون|ابلاغ|ممنوعیت|محدودیت|اختلال|هشدار|حمله|کشته|زخمی|بودجه|مالیات|قیمت)", body_l):
+    if re.search(r"(?:مصوبه|قانون|ابلاغ|ممنوعیت|محدودیت|اختلال|هشدار|حمله|"
+                 r"کشته|زخمی|بودجه|مالیات|قیمت|شیوع|کمبود)", body_l):
         score += 1
 
     score -= min(routine_hits * 2, 4)
-    score -= min(low_hits * 3, 6)
+    score -= min(low_hits * 4, 8)
 
     statement_like = bool(re.search(
         r"(?:گفت|اظهار|تاکید|تأکید|واکنش|حمایت|امیدوار|توصیه|خواستار|اعلام کرد)\b",
         title_l,
     ))
-    concrete = bool(re.search(
-        r"(?:قانون|مصوبه|ممنوع|محدود|آغاز|توقف|قطع|بودجه|مالیات|قیمت|درصد|میلیارد|همت|حمله|جنگ|انفجار|زلزله|کشته|تحریم|مذاکرات)",
-        title_l,
-    ))
+    concrete = bool(STRICT_CONCRETE_EVENT_RE.search(title_l))
     if statement_like and not concrete:
-        score -= 3
+        score -= 5
 
     return score
 
@@ -5164,6 +5206,18 @@ def is_strictly_useful_news(candidate):
 
     if any(term.lower() in title.lower() for term in STRICT_LOW_VALUE_TERMS):
         print(f"V13 SKIP LOW VALUE: {title}")
+        return False
+
+    # A topic alone is not enough. Require a concrete event/change in the
+    # headline or a very strong body-confirmed consequence.
+    title_has_event = bool(STRICT_CONCRETE_EVENT_RE.search(title))
+    body = normalize_space(" ".join(
+        str(candidate.get(k, "") or "") for k in ("summary", "description")
+    ))
+    body_has_event = bool(STRICT_CONCRETE_EVENT_RE.search(body))
+
+    if not title_has_event and not body_has_event:
+        print(f"V13 SKIP NO CONCRETE EVENT: {title}")
         return False
 
     if value < STRICT_NEWS_MIN_SCORE:
