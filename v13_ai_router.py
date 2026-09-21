@@ -403,17 +403,6 @@ def gemini_request(main, title, article_text):
     else:
         print("V13 AI ROUTER: OpenRouter free fallback unavailable (missing key or disabled).")
 
-    # Provider 2: OpenRouter explicit free-model router.
-    if OPENROUTER_API_KEY:
-        result = _fallback_provider_request(
-            main, "OpenRouter", (OPENROUTER_MODEL,), OPENROUTER_BASE,
-            OPENROUTER_API_KEY, prompt, title, source, foreign
-        )
-        if result:
-            return result
-    else:
-        print("V13 AI ROUTER: OpenRouter free fallback not configured; continuing.")
-
     # Provider 3: Groq remains opt-in because previous production runs returned HTTP 400.
     if ENABLE_GROQ_FALLBACK and GROQ_API_KEY:
         result = _fallback_provider_request(
