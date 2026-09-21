@@ -2854,6 +2854,7 @@ def build_caption(
     if body:
         parts.append(body)
     parts.append("#نبض_خبر")
+    parts.append("🔗 کانال نبض خبر: https://t.me/NabzKhabarOfficial")
     return "\n\n".join(parts)
 
 
