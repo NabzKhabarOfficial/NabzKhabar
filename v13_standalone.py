@@ -2837,18 +2837,29 @@ def send_video(path, caption):
 # CAPTION
 # ============================================================
 
+def _sanitize_caption_text(text):
+    """Final caption safety: remove source/link boilerplate before Telegram."""
+    value = str(text or "")
+    value = re.sub(r"https?://\\S+", " ", value, flags=re.I)
+    value = re.sub(r"www\\.\\S+", " ", value, flags=re.I)
+    value = re.sub(
+        r"(?:📡\\s*)?(?:منبع|منبع خبر|منبع اصلی)\\s*[:：-]?\\s*[^\\n]+",
+        " ",
+        value,
+        flags=re.I,
+    )
+    value = re.sub(r"\\b(?:باشگاه خبرنگاران جوان|yjc\\.ir)\\b", " ", value, flags=re.I)
+    value = re.sub(r"\\s{2,}", " ", value).strip()
+    return value
+
+
 def build_caption(
     title,
     body
 ):
-    """Single canonical V13 news caption formatter.
-
-    News captions intentionally do not expose raw source URLs or a
-    separate source line. Source attribution belongs to the article
-    content/metadata and must never bypass the canonical Telegram format.
-    """
-    title = clean_title(title)
-    body = enforce_short_summary(body)
+    """Single canonical V13 news caption formatter."""
+    title = _sanitize_caption_text(clean_title(title))
+    body = _sanitize_caption_text(enforce_short_summary(body))
 
     parts = [f"📰 {title}"]
     if body:
