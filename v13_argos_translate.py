@@ -29,59 +29,24 @@ def _persian_ratio(text):
     return sum("\u0600" <= ch <= "\u06ff" for ch in letters) / len(letters)
 
 
-_EN_NUMBER_WORDS = {
-    "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4,
-    "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
-    "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13,
-    "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17,
-    "eighteen": 18, "nineteen": 19, "twenty": 20, "thirty": 30,
-    "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70,
-    "eighty": 80, "ninety": 90,
-}
-
-_FA_NUMBER_WORDS = {
-    # "یک" is intentionally excluded because Argos frequently uses it for
-    # the English indefinite article ("a/an"), not a factual number.
-    "صفر": 0, "دو": 2, "سه": 3, "چهار": 4, "پنج": 5, "شش": 6,
-    "هفت": 7, "هشت": 8, "نه": 9, "ده": 10, "یازده": 11,
-    "دوازده": 12, "سیزده": 13, "چهارده": 14, "پانزده": 15,
-    "شانزده": 16, "هفده": 17, "هجده": 18, "نوزده": 19,
-    "بیست": 20, "سی": 30, "چهل": 40, "پنجاه": 50, "شصت": 60,
-    "هفتاد": 70, "هشتاد": 80, "نود": 90,
-}
-
-
 def _numeric_values(text):
-    """Extract explicit digits and unambiguous whole-word numbers only.
+    """Extract only explicit numeric digits for hard safety validation.
 
-    Deliberately avoids fuzzy/substring matching. Compound number parsing is
-    kept simple to prevent ordinary Persian words from becoming numbers.
+    Argos is a machine translator and legitimately converts written numbers
+    such as "four hundred" into Persian words such as "چهارصد". Comparing
+    number words across languages caused repeated false rejections. Explicit
+    digits remain enforceable; written-out numbers are deliberately ignored.
     """
-    value = str(text or "").lower()
+    value = str(text or "")
     normalized = value.translate(str.maketrans(
         "۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789"
     ))
-
     values = set()
-
-    # Explicit Arabic/Persian/Latin digits.
     for match in re.findall(r"(?<!\d)\d+(?:[.,]\d+)?(?!\d)", normalized):
         try:
             values.add(int(match.replace(",", "").split(".", 1)[0]))
         except Exception:
             pass
-
-    # Whole English number words only.
-    for token in re.findall(r"\b[a-z]+(?:-[a-z]+)?\b", value):
-        if token in _EN_NUMBER_WORDS:
-            values.add(_EN_NUMBER_WORDS[token])
-
-    # Whole Persian number words only. No lookbehind/lookahead regex and no
-    # substring matching: split into Persian-script tokens and exact-match.
-    for token in re.findall(r"[\u0600-\u06ff]+", value):
-        if token in _FA_NUMBER_WORDS:
-            values.add(_FA_NUMBER_WORDS[token])
-
     return values
 
 
@@ -218,7 +183,8 @@ def translate_foreign_story(title, article_text):
         print("V13 ARGOS: Persian validation failed.")
         return None
 
-    # Numeric safety checks only explicit digits and exact number words.
+    # Numeric safety checks use explicit digits only.
+    # Written number words are language-dependent and are not compared.
     # URLs, tracking IDs, handles, and long article IDs are excluded.
     def _numeric_validation_text(value):
         value = re.sub(
