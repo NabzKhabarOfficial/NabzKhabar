@@ -509,6 +509,33 @@ IMPORTANT_KEYWORDS = [
     "چین",
 ]
 
+# Important-news rescue: the normal feed window stays 30 minutes, but
+# high-impact stories are allowed a short grace period so delayed RSS
+# timestamps cannot silently discard major events before intelligence scoring.
+IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES = 180
+
+IMPORTANT_RESCUE_PATTERNS = [
+    "جنگ", "حمله", "حمله موشکی", "بمباران", "انفجار", "زلزله", "سیل",
+    "سونامی", "طوفان", "رانش زمین", "سقوط هواپیما", "سقوط بالگرد",
+    "کشته", "کشته شد", "زخمی", "مفقود", "ترور", "تیراندازی", "بازداشت",
+    "موشک", "پرتابه", "درگیری نظامی", "عملیات نظامی", "آتش بس", "آتش‌بس",
+    "تحریم", "قطع اینترنت", "اختلال گسترده", "قطع برق", "قطع گاز",
+    "مذاکرات", "توافق", "فراخوان", "فوری",
+    "attack", "strike", "missile", "bombing", "explosion", "earthquake",
+    "flood", "tsunami", "storm", "landslide", "crash", "killed", "wounded",
+    "shooting", "military", "ceasefire", "sanction", "internet outage",
+]
+
+
+def is_important_news_rescue_candidate(title):
+    """Return True when a slightly stale RSS item is still worth intelligence scoring."""
+    value = normalize_space(title).lower()
+    if not value:
+        return False
+    hits = sum(1 for pattern in IMPORTANT_RESCUE_PATTERNS if pattern.lower() in value)
+    return hits >= 1
+
+
 
 # ============================================================
 # SOURCE QUALITY
@@ -3117,14 +3144,24 @@ def collect_feed(
                     continue
                 age_seconds = 0
 
-            if age_seconds > (
-                FEED_COLLECTION_WINDOW_MINUTES * 60
-            ):
-                print(
-                    f"SKIPPED OUTSIDE 30M WINDOW: "
-                    f"{entry.get('title', '')}"
-                )
-                continue
+            if age_seconds > (FEED_COLLECTION_WINDOW_MINUTES * 60):
+                raw_entry_title = normalize_space(entry.get("title", ""))
+                rescue_limit = IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES * 60
+
+                if (
+                    age_seconds <= rescue_limit
+                    and is_important_news_rescue_candidate(raw_entry_title)
+                ):
+                    print(
+                        "V13 IMPORTANT NEWS RESCUE: "
+                        f"{raw_entry_title} | age={int(age_seconds // 60)}m"
+                    )
+                else:
+                    print(
+                        f"SKIPPED OUTSIDE {FEED_COLLECTION_WINDOW_MINUTES}M WINDOW: "
+                        f"{raw_entry_title}"
+                    )
+                    continue
 
             raw_title = normalize_space(
                 entry.get(
