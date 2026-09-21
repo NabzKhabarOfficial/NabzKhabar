@@ -5414,12 +5414,49 @@ def _latin_words(text):
     return [word for word in words if word.upper() != "NABZ"]
 
 
-def _assert_persian_caption(caption):
+def _sanitize_final_caption(caption):
+    """
+    Repair harmless Latin-script artifacts without weakening the Persian gate.
+    A Persian caption can contain a stray token such as "AS" from scraped
+    publisher markup. Such a token must not destroy an otherwise publishable
+    important story.
+    """
     text = str(caption or "").strip()
     if not text:
-        return
+        return text
 
-    # Ignore the fixed channel handle/URL and the NABZ brand.
+    # Fixed Telegram handle/URL and NABZ brand are outside the language probe.
+    probe = re.sub(r"@[A-Za-z0-9_]+", " ", text)
+    probe = re.sub(r"https?://\S+", " ", probe)
+    probe = re.sub(r"\bNABZ\b", " ", probe, flags=re.I)
+
+    ratio = _persian_ratio(probe)
+    latin_words = _latin_words(probe)
+
+    # Only repair a very small number of isolated Latin artifacts when the
+    # caption is already overwhelmingly Persian. This cannot turn an English
+    # story into an apparently valid Persian post.
+    if latin_words and ratio >= 0.70 and len(latin_words) <= 3:
+        repaired = re.sub(
+            r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])",
+            " ",
+            text,
+        )
+        repaired = normalize_space(repaired)
+        print(
+            "V13 FINAL LANGUAGE REPAIR: removed harmless Latin artifact(s): "
+            + ", ".join(latin_words[:10])
+        )
+        return repaired
+
+    return text
+
+
+def _assert_persian_caption(caption):
+    text = _sanitize_final_caption(caption)
+    if not text:
+        return text
+
     probe = re.sub(r"@[A-Za-z0-9_]+", " ", text)
     probe = re.sub(r"https?://\S+", " ", probe)
     probe = re.sub(r"\bNABZ\b", " ", probe, flags=re.I)
@@ -5436,19 +5473,21 @@ def _assert_persian_caption(caption):
         print("V13 FINAL LANGUAGE GATE: blocked non-Persian publication.")
         raise SkipForeignStory()
 
+    return text
+
 
 def send_message(text):
-    _assert_persian_caption(text)
+    text = _assert_persian_caption(text)
     return _original_send_message(text)
 
 
 def send_photo(path, caption):
-    _assert_persian_caption(caption)
+    caption = _assert_persian_caption(caption)
     return _original_send_photo(path, caption)
 
 
 def send_video(path, caption):
-    _assert_persian_caption(caption)
+    caption = _assert_persian_caption(caption)
     return _original_send_video(path, caption)
 
 
