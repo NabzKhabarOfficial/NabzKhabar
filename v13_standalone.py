@@ -4866,9 +4866,14 @@ INTERNATIONAL_SCOPE_TERMS = [
     r"\b(?:global|worldwide|international|world|nato|united\s+nations|un|g7|g20|"
     r"war|conflict|invasion|sanctions|summit|ceasefire|missile|nuclear|"
     r"china|iran|russia|ukraine|israel|gaza|middle\s+east|europe|"
-    r"ai|artificial\s+intelligence|openai|google|gemini|technology)\b",
+    r"ai|artificial\s+intelligence|openai|google|gemini|technology|"
+    r"typhoon|hurricane|earthquake|flood|wildfire|landslide|tsunami|"
+    r"explosion|shooting|crash|emergency|evacuation|disaster|"
+    r"killed|wounded|missing|hostage|attack|strike|military|outbreak)\b",
     r"جهانی|بین.?المللی|دنیا|ناتو|سازمان\s+ملل|جنگ|درگیری|حمله|تحریم|نشست|آتش.?بس|موشک|هسته.?ای|"
-    r"چین|ایران|روسیه|اوکراین|اسرائیل|غزه|خاورمیانه|اروپا|هوش\s+مصنوعی|فناوری",
+    r"چین|ایران|روسیه|اوکراین|اسرائیل|غزه|خاورمیانه|اروپا|هوش\s+مصنوعی|فناوری|"
+    r"طوفان|تایفون|هاریکن|زلزله|سیل|آتش.?سوزی|رانش زمین|سونامی|انفجار|تیراندازی|"
+    r"سقوط|اضطراری|تخلیه|فاجعه|کشته|زخمی|مفقود|گروگان|حمله|حملات|بمباران|نظامی",
 ]
 
 IRAN_TERMS = [
