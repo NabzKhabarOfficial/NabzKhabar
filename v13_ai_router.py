@@ -340,12 +340,8 @@ def gemini_request(main, title, article_text):
     foreign = _persian_ratio(title) < 0.60
 
     if foreign:
-        # Argos is the primary foreign-news translator and requires no AI key.
-        argos_result = _argos_foreign_translation(title, source)
-        if argos_result:
-            validated = _validate(main, title, source, argos_result, True)
-            if validated:
-                return validated
+        # AI providers are preferred for quality. Argos is the final local
+        # fallback so the channel remains fully functional without paid APIs.
         prompt = """این خبر از یک منبع خارجی است و باید برای یک کانال خبری فارسی‌زبان آماده شود.
 عنوان اصلی:
 %s
@@ -428,5 +424,5 @@ def install(main):
     )
     print(
         "V13 AI ROUTER ACTIVE: "
-        "multi-provider free router: Gemini -> OpenRouter :free, strict validation, 404-safe failover"
+        "multi-provider free router: Gemini -> OpenRouter :free -> Argos, strict validation, 404-safe failover"
     )
