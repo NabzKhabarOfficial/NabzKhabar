@@ -4768,34 +4768,62 @@ def is_roundup_title(title):
 is_roundup_title = is_roundup_title
 
 # ---------- Source scope filters ----------
-# Guardian is kept as a global source, but routine Australia-only stories
-# are excluded before expensive AI/media processing. International stories
-# involving Australia remain eligible.
-AUSTRALIA_ONLY_PATTERNS = [
-    r"\b(?:australia|australian|sydney|melbourne|brisbane|perth|adelaide|canberra|queensland|victoria|new\s+south\s+wales|western\s+australia|south\s+australia|tasmania|northern\s+territory)\b",
-    r"استرالیا|سیدنی|ملبورن|بریزبن|پرت|آدلاید|کانبرا|کوئینزلند|ویکتوریا|تاسمانی",
-]
-AUSTRALIA_GLOBAL_PATTERNS = [
-    r"\b(?:china|united\s+states|usa|uk|britain|europe|iran|russia|ukraine|israel|gaza|middle\s+east|nato|un|global|world|international)\b",
-    r"چین|آمریکا|ایالات\s+متحده|بریتانیا|اروپا|ایران|روسیه|اوکراین|اسرائیل|غزه|خاورمیانه|ناتو|سازمان\s+ملل|جهانی|بین.?المللی",
+# Keep Iran/local Iranian reporting eligible. For foreign sources, reject
+# routine city/state/province/country-local stories unless the headline
+# clearly signals a broader international event.
+FOREIGN_LOCAL_TERMS = [
+    r"\b(?:australia|australian|sydney|melbourne|brisbane|perth|adelaide|canberra|queensland|victoria|tasmania|"
+    r"united\s+kingdom|britain|british|london|england|scotland|wales|"
+    r"united\s+states|american|washington|new\s+york|california|texas|florida|"
+    r"canada|canadian|toronto|vancouver|"
+    r"germany|german|berlin|france|french|paris|italy|italian|rome|spain|spanish|madrid|"
+    r"turkey|turkish|ankara|istanbul|"
+    r"japan|japanese|tokyo|south\s+korea|seoul|"
+    r"india|indian|delhi|mumbai|"
+    r"brazil|brazilian|mexico|mexican|"
+    r"new\s+south\s+wales|western\s+australia|south\s+australia|northern\s+territory)\b",
+    r"استرالیا|استرالیایی|سیدنی|ملبورن|بریزبن|پرت|آدلاید|کانبرا|کوئینزلند|ویکتوریا|تاسمانی|"
+    r"بریتانیا|انگلستان|اسکاتلند|ولز|لندن|"
+    r"آمریکا|ایالات\s+متحده|واشنگتن|نیویورک|کالیفرنیا|تگزاس|فلوریدا|"
+    r"کانادا|تورنتو|ونکوور|"
+    r"آلمان|برلین|فرانسه|پاریس|ایتالیا|رم|اسپانیا|مادرید|"
+    r"ترکیه|آنکارا|استانبول|ژاپن|توکیو|کره\s+جنوبی|سئول|"
+    r"هند|دهلی|بمبئی|برزیل|مکزیک",
 ]
 
-def _guardian_australia_only(candidate):
-    source = str(candidate.get("source_url") or candidate.get("source_name") or "").lower()
-    if "theguardian.com" not in source:
+INTERNATIONAL_SCOPE_TERMS = [
+    r"\b(?:global|worldwide|international|world|nato|united\s+nations|un|g7|g20|"
+    r"war|conflict|invasion|sanctions|summit|ceasefire|missile|nuclear|"
+    r"china|iran|russia|ukraine|israel|gaza|middle\s+east|europe|"
+    r"ai|artificial\s+intelligence|openai|google|gemini|technology)\b",
+    r"جهانی|بین.?المللی|دنیا|ناتو|سازمان\s+ملل|جنگ|درگیری|حمله|تحریم|نشست|آتش.?بس|موشک|هسته.?ای|"
+    r"چین|ایران|روسیه|اوکراین|اسرائیل|غزه|خاورمیانه|اروپا|هوش\s+مصنوعی|فناوری",
+]
+
+IRAN_TERMS = [
+    r"ایران|ایرانی|تهران|مشهد|اصفهان|شیراز|تبریز|قم|کرج|اهواز|رشت|کرمان|یزد|"
+    r"خوزستان|آذربایجان|فارس|مازندران|گیلان|البرز|خراسان",
+]
+
+def _is_iran_source(candidate):
+    source = " ".join(str(candidate.get(k, "") or "") for k in ("source_url", "source_name", "link")).lower()
+    return "yjc.ir" in source or any(re.search(p, source, re.I) for p in IRAN_TERMS)
+
+def _foreign_local_only(candidate):
+    if _is_iran_source(candidate):
         return False
     text = " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description"))
-    has_au = any(re.search(p, text, re.I) for p in AUSTRALIA_ONLY_PATTERNS)
-    if not has_au:
+    has_local = any(re.search(p, text, re.I) for p in FOREIGN_LOCAL_TERMS)
+    if not has_local:
         return False
-    has_global = any(re.search(p, text, re.I) for p in AUSTRALIA_GLOBAL_PATTERNS)
-    return not has_global
+    has_international = any(re.search(p, text, re.I) for p in INTERNATIONAL_SCOPE_TERMS)
+    return not has_international
 
-def _filter_guardian_scope(candidates):
+def _filter_foreign_local_scope(candidates):
     kept = []
     for c in candidates:
-        if _guardian_australia_only(c):
-            print(f"V13 SKIP GUARDIAN AUSTRALIA-ONLY: {clean_title(c.get('title', ''))}")
+        if _foreign_local_only(c):
+            print(f"V13 SKIP FOREIGN LOCAL: {clean_title(c.get('title', ''))}")
             continue
         kept.append(c)
     return kept
@@ -5028,7 +5056,7 @@ def collect_candidates(hash_history, title_history):
         ),
         reverse=True,
     )
-    clean = _filter_guardian_scope(clean)
+    clean = _filter_foreign_local_scope(clean)
     return clean
 
 collect_candidates = collect_candidates
