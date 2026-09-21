@@ -27,11 +27,45 @@ def _persian_ratio(text):
         return 1.0
     return sum("\u0600" <= ch <= "\u06ff" for ch in letters) / len(letters)
 
-def _numbers(text):
+_EN_NUMBER_WORDS = {
+    "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4,
+    "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
+    "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13,
+    "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17,
+    "eighteen": 18, "nineteen": 19, "twenty": 20,
+    "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
+    "seventy": 70, "eighty": 80, "ninety": 90,
+}
+
+_FA_NUMBER_WORDS = {
+    "صفر": 0, "یک": 1, "دو": 2, "سه": 3, "چهار": 4, "پنج": 5,
+    "شش": 6, "هفت": 7, "هشت": 8, "نه": 9, "ده": 10,
+    "یازده": 11, "دوازده": 12, "سیزده": 13, "چهارده": 14,
+    "پانزده": 15, "شانزده": 16, "هفده": 17, "هجده": 18,
+    "نوزده": 19, "بیست": 20, "سی": 30, "چهل": 40, "پنجاه": 50,
+    "شصت": 60, "هفتاد": 70, "هشتاد": 80, "نود": 90,
+}
+
+def _numeric_values(text):
+    """Extract comparable numeric values without rejecting translated number words.
+
+    Argos may legitimately turn an English number word such as "six" into the
+    Persian digit "۶". The old digit-only check treated that as a hallucinated
+    number and incorrectly rejected the translation.
+    """
     value = str(text or "").translate(str.maketrans(
         "۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789"
     ))
-    return set(re.findall(r"\b\d+(?:[.,]\d+)?\b", value))
+    values = {int(x.replace(",", "").replace(".", "")) for x in re.findall(
+        r"(?<![A-Za-z\u0600-\u06ff])\d+(?:[.,]\d+)?(?![A-Za-z\u0600-\u06ff])", value
+    )}
+    for word in re.findall(r"[A-Za-z]+", value.lower()):
+        if word in _EN_NUMBER_WORDS:
+            values.add(_EN_NUMBER_WORDS[word])
+    for word in re.findall(r"[\u0600-\u06ff]+", value):
+        if word in _FA_NUMBER_WORDS:
+            values.add(_FA_NUMBER_WORDS[word])
+    return values
 
 def _sentence_list(text):
     return [s.strip() for s in re.split(r"(?<=[.!؟؛])\s+", str(text or "").strip()) if s.strip()]
@@ -144,10 +178,13 @@ def translate_foreign_story(title, article_text):
     if _persian_ratio(fa_title) < 0.60 or _persian_ratio(fa_body) < 0.60:
         print("V13 ARGOS: Persian validation failed.")
         return None
-    original_numbers = _numbers(title + " " + source)
-    translated_numbers = _numbers(fa_title + " " + fa_body)
+    original_numbers = _numeric_values(title + " " + source)
+    translated_numbers = _numeric_values(fa_title + " " + fa_body)
     if not translated_numbers.issubset(original_numbers):
-        print("V13 ARGOS: rejected translation because it introduced a number.")
+        print(
+            "V13 ARGOS: rejected translation because it introduced "
+            f"unmatched number value(s): {sorted(translated_numbers - original_numbers)}"
+        )
         return None
     summary = " ".join(_sentence_list(fa_body)[:3]).strip()
     if len(summary) > 750:
