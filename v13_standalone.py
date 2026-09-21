@@ -5190,6 +5190,17 @@ def strict_news_value(candidate):
     ):
         score += 2
 
+    # Major corporate/legal events (e.g. large mergers, acquisitions,
+    # antitrust settlements) are consequential even when the headline does
+    # not contain a generic Persian event verb.
+    if re.search(
+        r"(?:ادغام|ادغام شد|تملک|تصاحب|خرید|دعوی قضایی|شکایت|حل و فصل|رقابت|انحصار|"
+        r"merger|acquisition|acquired|lawsuit|settlement|antitrust)",
+        title_l,
+        re.I,
+    ):
+        score += 5
+
     if _source := candidate.get("link"):
         if publisher_quality(_source) >= 25:
             score += 1
