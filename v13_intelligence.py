@@ -188,6 +188,34 @@ def _high_impact_security_override(candidate):
         return True
     return strong_topic and (actor_hits > 0 or title_signals > 0)
 
+def _publication_tier(candidate):
+    """Classify editorial importance so routine warnings cannot displace major news."""
+    title = _norm(candidate.get("title", "")).lower()
+    body = _text(candidate).lower()
+    security = _high_impact_security_override(candidate)
+    major_business = _major_business_legal_override(candidate)
+    critical = any(x.lower() in title for x in (
+        "جنگ", "حمله", "حمله موشکی", "بمباران", "انفجار بزرگ", "زلزله",
+        "سیل", "سونامی", "سقوط هواپیما", "کشته", "مفقود", "ترور",
+        "آتش بس", "آتش‌بس", "تحریم", "قطع اینترنت", "حمله سایبری",
+        "پرتابه", "نفتکش", "درگیری نظامی", "عملیات نظامی",
+        "attack", "strike", "missile", "bombing", "explosion", "earthquake",
+        "flood", "tsunami", "crash", "killed", "wounded", "tanker",
+    ))
+    major = any(x.lower() in title or x.lower() in body[:4000] for x in (
+        "ادغام", "تملک", "تصاحب", "دعوی قضایی", "شکایت", "انحصار",
+        "نرخ بهره", "تورم", "بانک مرکزی", "قیمت نفت", "کمبود سوخت",
+        "هوش مصنوعی", "تراشه", "اختلال گسترده", "قطع برق", "قطع گاز",
+        "قانون", "تصویب", "ممنوعیت", "فراخوان", "major", "merger",
+        "acquisition", "lawsuit", "antitrust", "interest rate", "inflation",
+        "oil price", "ai", "chip",
+    ))
+    if security or critical:
+        return 3
+    if major_business or major:
+        return 2
+    return 1
+
 
 def is_publishable(main, candidate):
     title = _norm(candidate.get("title", ""))
@@ -422,9 +450,27 @@ def install(main):
             reverse=True,
         )
 
+        # Editorial priority gate:
+        # Never fill the channel with routine/low-tier stories when a major
+        # or critical event is available. If no major story exists at all,
+        # publish nothing rather than substituting a weak story.
+        for candidate in filtered:
+            candidate["publication_tier"] = _publication_tier(candidate)
+
+        highest_tier = max(
+            (int(c.get("publication_tier", 1) or 1) for c in filtered),
+            default=0,
+        )
+        if highest_tier >= 3:
+            eligible = [c for c in filtered if int(c.get("publication_tier", 1) or 1) >= 3]
+        elif highest_tier >= 2:
+            eligible = [c for c in filtered if int(c.get("publication_tier", 1) or 1) >= 2]
+        else:
+            eligible = []
+
         selected = []
         families = Counter()
-        for candidate in filtered:
+        for candidate in eligible:
             family = main.category_family(candidate.get("category", ""))
             if families[family] >= 2 and candidate.get("intelligence_score", 0) < 12:
                 continue
