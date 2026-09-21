@@ -4705,7 +4705,9 @@ import re
 # ============================================================
 
 V13_DIRECT_RSS_FEEDS = [
+    # Iranian direct RSS: exactly two sources.
     ("ایران", "https://www.yjc.ir/fa/rss/allnews"),
+    ("ایران", "https://www.irna.ir/rss"),
     ("جهان", "https://feeds.bbci.co.uk/news/rss.xml"),
     ("جهان", "https://www.theguardian.com/world/rss"),
     ("جهان", "https://feeds.npr.org/1001/rss.xml"),
