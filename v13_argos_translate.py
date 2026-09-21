@@ -295,12 +295,26 @@ def translate_foreign_story(title, article_text):
     if _persian_ratio(fa_title) < 0.60 or _persian_ratio(fa_body) < 0.60:
         print("V13 ARGOS: Persian validation failed.")
         return None
-    original_numbers = _numeric_values(title + " " + source)
-    translated_numbers = _numeric_values(fa_title + " " + fa_body)
-    if not translated_numbers.issubset(original_numbers):
+    # Numeric safety must validate factual numbers, not identifiers embedded in
+    # URLs, tracking parameters, article IDs, phone numbers, or other metadata.
+    # Strip URLs before extracting values and ignore implausibly long identifiers.
+    def _numeric_validation_text(value):
+        value = re.sub(r"https?://\\S+|www\\.\\S+", " ", str(value or ""), flags=re.I)
+        value = re.sub(r"(?<!\\d)\\d{7,}(?!\\d)", " ", value)
+        value = re.sub(r"[@#][A-Za-z0-9_./-]+", " ", value)
+        return value
+
+    original_numbers = _numeric_values(
+        _numeric_validation_text(title) + " " + _numeric_validation_text(source)
+    )
+    translated_numbers = _numeric_values(
+        _numeric_validation_text(fa_title) + " " + _numeric_validation_text(fa_body)
+    )
+    unmatched = translated_numbers - original_numbers
+    if unmatched:
         print(
             "V13 ARGOS: rejected translation because it introduced "
-            f"unmatched number value(s): {sorted(translated_numbers - original_numbers)}"
+            f"unmatched factual number value(s): {sorted(unmatched)}"
         )
         return None
     summary = " ".join(_sentence_list(fa_body)[:3]).strip()
