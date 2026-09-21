@@ -21,41 +21,41 @@ os.environ.setdefault("ARGOS_PACKAGES_DIR", ARGOS_PACKAGES_DIR)
 _READY = False
 _FAILED = False
 
+
 def _persian_ratio(text):
     letters = re.findall(r"[A-Za-z\u0600-\u06ff]", str(text or ""))
     if not letters:
         return 1.0
     return sum("\u0600" <= ch <= "\u06ff" for ch in letters) / len(letters)
 
+
 _EN_NUMBER_WORDS = {
     "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4,
     "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
     "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13,
     "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17,
-    "eighteen": 18, "nineteen": 19, "twenty": 20,
-    "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
-    "seventy": 70, "eighty": 80, "ninety": 90,
+    "eighteen": 18, "nineteen": 19, "twenty": 20, "thirty": 30,
+    "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70,
+    "eighty": 80, "ninety": 90,
 }
 
 _FA_NUMBER_WORDS = {
-    # "یک" is intentionally excluded: Argos frequently uses it for the
-    # English indefinite article ("a/an"), which is not a factual number.
-    # Numeric safety still tracks explicit digits and unambiguous number words.
-    "صفر": 0, "دو": 2, "سه": 3, "چهار": 4, "پنج": 5,
-    "شش": 6, "هفت": 7, "هشت": 8, "نه": 9, "ده": 10,
-    "یازده": 11, "دوازده": 12, "سیزده": 13, "چهارده": 14,
-    "پانزده": 15, "شانزده": 16, "هفده": 17, "هجده": 18,
-    "نوزده": 19, "بیست": 20, "سی": 30, "چهل": 40, "پنجاه": 50,
-    "شصت": 60, "هفتاد": 70, "هشتاد": 80, "نود": 90,
+    # "یک" is intentionally excluded because Argos frequently uses it for
+    # the English indefinite article ("a/an"), not a factual number.
+    "صفر": 0, "دو": 2, "سه": 3, "چهار": 4, "پنج": 5, "شش": 6,
+    "هفت": 7, "هشت": 8, "نه": 9, "ده": 10, "یازده": 11,
+    "دوازده": 12, "سیزده": 13, "چهارده": 14, "پانزده": 15,
+    "شانزده": 16, "هفده": 17, "هجده": 18, "نوزده": 19,
+    "بیست": 20, "سی": 30, "چهل": 40, "پنجاه": 50, "شصت": 60,
+    "هفتاد": 70, "هشتاد": 80, "نود": 90,
 }
 
-def _numeric_values(text):
-    """Extract semantic numeric values, including compound number words.
 
-    This prevents false rejections when Argos translates:
-      twenty-five -> ۲۵
-      two hundred and two -> ۲۰۲
-      four hundred -> ۴۰۰
+def _numeric_values(text):
+    """Extract explicit digits and unambiguous whole-word numbers only.
+
+    Deliberately avoids fuzzy/substring matching. Compound number parsing is
+    kept simple to prevent ordinary Persian words from becoming numbers.
     """
     value = str(text or "").lower()
     normalized = value.translate(str.maketrans(
@@ -63,6 +63,7 @@ def _numeric_values(text):
     ))
 
     values = set()
+
     # Explicit Arabic/Persian/Latin digits.
     for match in re.findall(r"(?<!\d)\d+(?:[.,]\d+)?(?!\d)", normalized):
         try:
@@ -70,125 +71,31 @@ def _numeric_values(text):
         except Exception:
             pass
 
-    en = {
-        "zero":0,"one":1,"two":2,"three":3,"four":4,"five":5,"six":6,
-        "seven":7,"eight":8,"nine":9,"ten":10,"eleven":11,"twelve":12,
-        "thirteen":13,"fourteen":14,"fifteen":15,"sixteen":16,
-        "seventeen":17,"eighteen":18,"nineteen":19,"twenty":20,
-        "thirty":30,"forty":40,"fifty":50,"sixty":60,"seventy":70,
-        "eighty":80,"ninety":90,
-    }
-    fa = {
-        "صفر":0,"دو":2,"سه":3,"چهار":4,"پنج":5,"شش":6,"هفت":7,"هشت":8,
-        "نه":9,"ده":10,"یازده":11,"دوازده":12,"سیزده":13,"چهارده":14,
-        "پانزده":15,"شانزده":16,"هفده":17,"هجده":18,"نوزده":19,"بیست":20,
-        "سی":30,"چهل":40,"پنجاه":50,"شصت":60,"هفتاد":70,"هشتاد":80,"نود":90,
-    }
+    # Whole English number words only.
+    for token in re.findall(r"\b[a-z]+(?:-[a-z]+)?\b", value):
+        if token in _EN_NUMBER_WORDS:
+            values.add(_EN_NUMBER_WORDS[token])
 
-    def parse_en(tokens):
-        total = 0
-        current = 0
-        found = False
-        for token in tokens:
-            if token == "and":
-                continue
-            if token in en:
-                current += en[token]
-                found = True
-            elif token == "hundred":
-                current = max(1, current) * 100
-                found = True
-            elif token in ("thousand", "million"):
-                scale = 1000 if token == "thousand" else 1000000
-                current = max(1, current) * scale
-                total += current
-                current = 0
-            else:
-                return None if not found else total + current
-        return (total + current) if found else None
+    # Whole Persian number words only. No lookbehind/lookahead regex and no
+    # substring matching: split into Persian-script tokens and exact-match.
+    for token in re.findall(r"[\u0600-\u06ff]+", value):
+        if token in _FA_NUMBER_WORDS:
+            values.add(_FA_NUMBER_WORDS[token])
 
-    def parse_fa(tokens):
-        units = {"صد":100, "هزار":1000, "میلیون":1000000}
-        total = 0
-        current = 0
-        found = False
-        for token in tokens:
-            if token in ("و",):
-                continue
-            if token in fa:
-                current += fa[token]
-                found = True
-            elif token in units:
-                current = max(1, current) * units[token]
-                if units[token] >= 1000:
-                    total += current
-                    current = 0
-                found = True
-            else:
-                return None if not found else total + current
-        return (total + current) if found else None
-
-    # English compound phrases.
-    en_words = re.findall(
-        r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
-        r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|"
-        r"eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|"
-        r"eighty|ninety|hundred|thousand|million|and)\b",
-        value,
-    )
-    if en_words:
-        run=[]
-        for token in en_words:
-            if token == "and" and not run:
-                continue
-            if token == "and" and run:
-                run.append(token)
-                continue
-            if run and token not in en and token not in ("hundred","thousand","million"):
-                parsed=parse_en(run)
-                if parsed is not None: values.add(parsed)
-                run=[]
-            run.append(token)
-        if run:
-            parsed=parse_en(run)
-            if parsed is not None: values.add(parsed)
-
-    # Persian compound phrases.
-    # Match Persian number words only as complete tokens; never as substrings.
-    fa_words = re.findall(
-        r"(?<![\u0600-\u06ff])(?:صفر|دو|سه|چهار|پنج|شش|هفت|هشت|نه|ده|یازده|دوازده|سیزده|"
-        r"چهارده|پانزده|شانزده|هفده|هجده|نوزده|بیست|سی|چهل|پنجاه|شصت|"
-        r"هفتاد|هشتاد|نود|صد|هزار|میلیون|و)(?![\\u0600-\\u06ff])",
-        value,
-    )
-    if fa_words:
-        run=[]
-        for token in fa_words:
-            if token == "و" and not run:
-                continue
-            if token == "و" and run:
-                run.append(token)
-                continue
-            if run and token not in fa and token not in ("صد","هزار","میلیون"):
-                parsed=parse_fa(run)
-                if parsed is not None: values.add(parsed)
-                run=[]
-            run.append(token)
-        if run:
-            parsed=parse_fa(run)
-            if parsed is not None: values.add(parsed)
-
-    # Keep unambiguous single-word values too, but never treat Persian "یک"
-    # as a factual number because Argos commonly uses it for "a/an".
-    values.update(en.get(x) for x in re.findall(r"\b[a-z]+\b", value) if x in en)
-    # Match Persian number words as whole tokens only. Substring matching\n    # falsely turns ordinary words containing "سی"/"چهار" into numbers.\n    fa_tokens = re.findall(r"[\u0600-\u06ff]+", value)\n    values.update(fa.get(x) for x in fa_tokens if x in fa)\n    values.discard(None)
     return values
 
+
 def _sentence_list(text):
-    return [s.strip() for s in re.split(r"(?<=[.!؟؛])\s+", str(text or "").strip()) if s.strip()]
+    return [
+        s.strip()
+        for s in re.split(r"(?<=[.!؟؛])\s+", str(text or "").strip())
+        if s.strip()
+    ]
+
 
 def _translation_pair_ready():
     import argostranslate.translate
+
     installed = argostranslate.translate.get_installed_languages()
     en = next((x for x in installed if x.code == "en"), None)
     fa = next((x for x in installed if x.code == "fa"), None)
@@ -198,6 +105,7 @@ def _translation_pair_ready():
         return bool(en.get_translation(fa))
     except Exception:
         return False
+
 
 def _ensure_model():
     global _READY, _FAILED
@@ -217,7 +125,9 @@ def _ensure_model():
         print("V13 ARGOS: preparing cached en->fa package...")
         os.makedirs(ARGOS_PACKAGES_DIR, exist_ok=True)
 
-        cached_models = sorted(Path(ARGOS_PACKAGES_DIR).glob("translate-en_fa-*.argosmodel"))
+        cached_models = sorted(
+            Path(ARGOS_PACKAGES_DIR).glob("translate-en_fa-*.argosmodel")
+        )
         if cached_models:
             cached = cached_models[-1]
             print(f"V13 ARGOS: found cached model {cached.name}; installing it.")
@@ -227,10 +137,6 @@ def _ensure_model():
                 print("V13 ARGOS: cached en->fa model installed and ready.")
                 return True
 
-        # Keep Argos' own package-index/cache location separate from the
-        # persistent model directory. Pointing XDG_CACHE_HOME inside
-        # ARGOS_PACKAGES_DIR causes Argos 1.11 to expect a metadata.json file
-        # that is not present on a fresh GitHub Actions runner.
         argostranslate.package.update_package_index()
         packages = argostranslate.package.get_available_packages()
         package = next(
@@ -260,56 +166,82 @@ def _ensure_model():
         print(f"V13 ARGOS: unavailable; AI fallback remains active: {exc}")
         return False
 
+
 def translate_en_to_fa(text):
     """Translate English text locally. Returns empty string on failure."""
     if not text or not _ensure_model():
         return ""
     try:
         import argostranslate.translate
+
         value = str(text).strip()
         chunks, current, current_len = [], [], 0
         for sentence in _sentence_list(value):
             if current and current_len + len(sentence) > 1800:
-                chunks.append(" ".join(current)); current=[]; current_len=0
-            current.append(sentence); current_len += len(sentence) + 1
+                chunks.append(" ".join(current))
+                current = []
+                current_len = 0
+            current.append(sentence)
+            current_len += len(sentence) + 1
         if current:
             chunks.append(" ".join(current))
         if not chunks:
             chunks = [value[:1800]]
-        translated = [argostranslate.translate.translate(chunk, "en", "fa") for chunk in chunks]
-        return " ".join(x.strip() for x in translated if x and x.strip()).strip()
+
+        translated = [
+            argostranslate.translate.translate(chunk, "en", "fa")
+            for chunk in chunks
+        ]
+        return " ".join(
+            x.strip() for x in translated if x and x.strip()
+        ).strip()
     except Exception as exc:
         print(f"V13 ARGOS: translation error: {exc}")
         return ""
+
 
 def translate_foreign_story(title, article_text):
     """Translate an English foreign story using Argos only; no AI/API call."""
     title = str(title or "").strip()
     source = str(article_text or title).strip()
+
     if _persian_ratio(title) >= 0.60:
         return None
+
     fa_title = translate_en_to_fa(title)
     fa_body = translate_en_to_fa(source[:6000])
+
     if not fa_title or not fa_body:
         return None
+
     if _persian_ratio(fa_title) < 0.60 or _persian_ratio(fa_body) < 0.60:
         print("V13 ARGOS: Persian validation failed.")
         return None
-    # Numeric safety must validate factual numbers, not identifiers embedded in
-    # URLs, tracking parameters, article IDs, phone numbers, or other metadata.
-    # Strip URLs before extracting values and ignore implausibly long identifiers.
+
+    # Numeric safety checks only explicit digits and exact number words.
+    # URLs, tracking IDs, handles, and long article IDs are excluded.
     def _numeric_validation_text(value):
-        value = re.sub(r"https?://\S+|www\.\S+", " ", str(value or ""), flags=re.I)
+        value = re.sub(
+            r"https?://\S+|www\.\S+",
+            " ",
+            str(value or ""),
+            flags=re.I,
+        )
         value = re.sub(r"(?<!\d)\d{7,}(?!\d)", " ", value)
         value = re.sub(r"[@#][A-Za-z0-9_./-]+", " ", value)
         return value
 
     original_numbers = _numeric_values(
-        _numeric_validation_text(title) + " " + _numeric_validation_text(source)
+        _numeric_validation_text(title)
+        + " "
+        + _numeric_validation_text(source)
     )
     translated_numbers = _numeric_values(
-        _numeric_validation_text(fa_title) + " " + _numeric_validation_text(fa_body)
+        _numeric_validation_text(fa_title)
+        + " "
+        + _numeric_validation_text(fa_body)
     )
+
     unmatched = translated_numbers - original_numbers
     if unmatched:
         print(
@@ -317,15 +249,22 @@ def translate_foreign_story(title, article_text):
             f"unmatched factual number value(s): {sorted(unmatched)}"
         )
         return None
+
     summary = " ".join(_sentence_list(fa_body)[:3]).strip()
     if len(summary) > 750:
         summary = summary[:750].rsplit(" ", 1)[0] + "…"
     if not summary:
         return None
-    return {"title": fa_title[:180].strip(), "summary": summary}
+
+    return {
+        "title": fa_title[:180].strip(),
+        "summary": summary,
+    }
+
 
 def healthcheck():
     return _ensure_model()
+
 
 def install(main):
     """Install the independent Argos layer without changing the news engine."""
