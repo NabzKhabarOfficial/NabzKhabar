@@ -319,6 +319,19 @@ def _validate(main, original_title, source, data, foreign):
     return {"title": title, "summary": summary}
 
 
+def _argos_foreign_translation(title, source):
+    """Primary non-AI localization path for English foreign stories."""
+    try:
+        from v13_argos_translate import translate_foreign_story
+        result = translate_foreign_story(title, source)
+        if result:
+            print("V13 AI ROUTER: foreign story translated via local Argos Translate.")
+            return result
+    except Exception as exc:
+        print(f"V13 AI ROUTER: Argos layer error; continuing to AI fallback: {exc}")
+    return None
+
+
 def gemini_request(main, title, article_text):
     if not main.AI_API_KEY:
         return None
@@ -327,6 +340,12 @@ def gemini_request(main, title, article_text):
     foreign = _persian_ratio(title) < 0.60
 
     if foreign:
+        # Argos is the primary foreign-news translator and requires no AI key.
+        argos_result = _argos_foreign_translation(title, source)
+        if argos_result:
+            validated = _validate(main, title, source, argos_result, True)
+            if validated:
+                return validated
         prompt = """این خبر از یک منبع خارجی است و باید برای یک کانال خبری فارسی‌زبان آماده شود.
 عنوان اصلی:
 %s
