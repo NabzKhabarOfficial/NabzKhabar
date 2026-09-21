@@ -1798,30 +1798,69 @@ def resolve_google_news_url(
             url,
             timeout=GOOGLE_RESOLVE_TIMEOUT,
             allow_redirects=True,
-            stream=True
+            headers={
+                "Accept": "text/html,application/xhtml+xml",
+                "Referer": "https://news.google.com/",
+            },
         )
 
-        final_url = response.url
+        final_url = canonicalize_url(response.url)
 
-        try:
-            response.close()
-        except Exception:
-            pass
-
-        final_url = canonicalize_url(
-            final_url
-        )
-
+        # Normal HTTP redirects are preferred.
         if (
             final_url
-            and not is_google_host(
-                final_url
-            )
-            and not is_social_host(
-                final_url
-            )
+            and not is_google_host(final_url)
+            and not is_social_host(final_url)
         ):
             return final_url
+
+        # Google News sometimes leaves the request on a Google host and
+        # embeds the publisher URL in the returned HTML instead of issuing a
+        # normal redirect. Recover canonical/OG/external links before giving
+        # up, while explicitly rejecting Google/social destinations.
+        html = response.text or ""
+        soup = BeautifulSoup(html, "html.parser")
+
+        embedded = []
+        for selector in (
+            "link[rel='canonical']",
+            "meta[property='og:url']",
+            "meta[name='twitter:url']",
+        ):
+            for node in soup.select(selector):
+                value = node.get("href") or node.get("content") or ""
+                if value:
+                    embedded.append(urljoin(response.url, value))
+
+        for anchor in soup.select("a[href]"):
+            embedded.append(urljoin(response.url, anchor.get("href", "")))
+
+        for candidate in embedded:
+            candidate = canonicalize_url(candidate)
+            if (
+                candidate
+                and not is_google_host(candidate)
+                and not is_social_host(candidate)
+                and get_hostname(candidate)
+                and not candidate.startswith("javascript:")
+            ):
+                return candidate
+
+        # Last-resort extraction for pages where BeautifulSoup does not see
+        # a usable anchor/canonical element.
+        for match in re.findall(
+            r'https?://[^\s"\'<>\\]+',
+            html,
+            flags=re.I,
+        ):
+            candidate = canonicalize_url(match.rstrip(").,;"))
+            if (
+                candidate
+                and not is_google_host(candidate)
+                and not is_social_host(candidate)
+                and get_hostname(candidate)
+            ):
+                return candidate
 
     except Exception as e:
 
