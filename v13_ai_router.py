@@ -333,8 +333,8 @@ def _argos_foreign_translation(title, source):
 
 
 def gemini_request(main, title, article_text):
-    if not main.AI_API_KEY:
-        return None
+    # AI providers are attempted first when an AI key is configured.
+    # Argos remains available as the final local translation fallback.
 
     source = main.clean_content(article_text or title)
     foreign = _persian_ratio(title) < 0.60
@@ -409,7 +409,16 @@ def gemini_request(main, title, article_text):
     else:
         print("V13 AI ROUTER: OpenRouter free fallback unavailable (missing key or disabled).")
 
-    print("V13 AI ROUTER: Gemini and OpenRouter free providers failed/unavailable; publication will use existing V13 safety rules.")
+    # Final fallback: local Argos Translate, after all AI providers fail.
+    if foreign:
+        argos_result = _argos_foreign_translation(title, source)
+        if argos_result:
+            validated = _validate(main, title, source, argos_result, True)
+            if validated:
+                print("V13 AI ROUTER: SUCCESS via Argos Translate (final fallback).")
+                return validated
+
+    print("V13 AI ROUTER: Gemini/OpenRouter failed; Argos unavailable or rejected; publication will use existing V13 safety rules.")
     return None
 
 
