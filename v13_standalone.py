@@ -59,7 +59,7 @@ MAX_VIDEO_MB = 49
 MAX_IMAGE_MB = 12
 
 # Only reasonably fresh news.
-MAX_NEWS_AGE_HOURS = 36
+# News discovery/publication freshness is intentionally identical to the 30-minute feed window.\nMAX_NEWS_AGE_HOURS = FEED_COLLECTION_WINDOW_MINUTES / 60
 
 # The bot runs every 10 minutes. Keep discovery focused on a short,
 # overlapping window so delayed RSS publication does not create gaps.
