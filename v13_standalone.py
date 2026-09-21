@@ -360,7 +360,6 @@ DIRECT_RSS_FEEDS = [
     # Iranian direct RSS: keep exactly two sources to reduce polling and
     # duplicate candidates while preserving broad domestic coverage.
     ("ایران", "https://www.yjc.ir/fa/rss/allnews"),
-    ("ایران", "https://www.irna.ir/rss"),
 
     # International / specialist RSS sources remain available below.
     ("هوش مصنوعی", "https://techcrunch.com/category/artificial-intelligence/feed/"),
