@@ -253,9 +253,23 @@ def send_video(path, caption):
                 pass
 
 
+def _sanitize_caption_text(text):
+    value = str(text or "")
+    value = re.sub(r"https?://\\S+", " ", value, flags=re.I)
+    value = re.sub(r"www\\.\\S+", " ", value, flags=re.I)
+    value = re.sub(
+        r"(?:📡\\s*)?(?:منبع|منبع خبر|منبع اصلی)\\s*[:：-]?\\s*[^\\n]+",
+        " ",
+        value,
+        flags=re.I,
+    )
+    value = re.sub(r"\\b(?:باشگاه خبرنگاران جوان|yjc\\.ir)\\b", " ", value, flags=re.I)
+    return re.sub(r"\\s{2,}", " ", value).strip()
+
+
 def build_caption(title, body):
-    title = str(title or "").strip()
-    body = str(body or "").strip()
+    title = _sanitize_caption_text(title)
+    body = _sanitize_caption_text(body)
     parts = [f"📰 {title}"]
     if body:
         parts.append(body)
