@@ -36,6 +36,14 @@ jobs:
           ffprobe -version
           ffmpeg -version
 
+      - name: Cache Argos Translate model
+        uses: actions/cache@v4
+        with:
+          path: .argos-packages
+          key: ${{ runner.os }}-nabz-argos-en-fa-v1
+          restore-keys: |
+            ${{ runner.os }}-nabz-argos-en-fa-
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -43,13 +51,14 @@ jobs:
 
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_intelligence.py run_bot.py education.py car_prices.py weather.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_argos_translate.py v13_intelligence.py run_bot.py education.py car_prices.py weather.py
 
       - name: Run independent V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          ARGOS_PACKAGES_DIR: ${{ github.workspace }}/.argos-packages
         run: python run_bot.py
 
       - name: Persist sent-news history safely
