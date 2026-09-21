@@ -361,6 +361,7 @@ DIRECT_RSS_FEEDS = [
     # Iranian direct RSS: keep exactly two sources to reduce polling and
     # duplicate candidates while preserving broad domestic coverage.
     ("ایران", "https://www.yjc.ir/fa/rss/allnews"),
+    ("ایران", "https://www.irna.ir/rss"),
 
     # International / specialist RSS sources remain available below.
     ("هوش مصنوعی", "https://techcrunch.com/category/artificial-intelligence/feed/"),
@@ -4819,9 +4820,9 @@ IRAN_TERMS = [
 # YJC is the only allowed Iranian news publisher. Google News discovery may
 # still surface other Iranian outlets, so publisher-domain filtering is
 # mandatory and is based on the resolved/source URL, never on story topic.
-IRANIAN_ALLOWED_HOSTS = {"yjc.ir"}
+IRANIAN_ALLOWED_HOSTS = {"yjc.ir", "irna.ir"}
 IRANIAN_BLOCKED_DOMAINS = {
-    "irna.ir", "isna.ir", "mehrnews.com", "tasnimnews.com", "farsnews.ir",
+    "isna.ir", "mehrnews.com", "tasnimnews.com", "farsnews.ir",
     "snn.ir", "tabnak.ir", "khabaronline.ir", "tejaratnews.com",
     "donya-e-eqtesad.com", "ecoiran.com", "zoomit.ir", "varzesh3.com",
     "khabarfoori.com", "asriran.com", "aftabnews.ir", "jamaran.news",
