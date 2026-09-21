@@ -154,10 +154,11 @@ def _numeric_values(text):
             if parsed is not None: values.add(parsed)
 
     # Persian compound phrases.
+    # Match Persian number words only as complete tokens; never as substrings.
     fa_words = re.findall(
-        r"(?:صفر|دو|سه|چهار|پنج|شش|هفت|هشت|نه|ده|یازده|دوازده|سیزده|"
+        r"(?<![\\u0600-\\u06ff])(?:صفر|دو|سه|چهار|پنج|شش|هفت|هشت|نه|ده|یازده|دوازده|سیزده|"
         r"چهارده|پانزده|شانزده|هفده|هجده|نوزده|بیست|سی|چهل|پنجاه|شصت|"
-        r"هفتاد|هشتاد|نود|صد|هزار|میلیون|و)",
+        r"هفتاد|هشتاد|نود|صد|هزار|میلیون|و)(?![\\u0600-\\u06ff])",
         value,
     )
     if fa_words:
