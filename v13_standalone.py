@@ -5141,6 +5141,8 @@ STRICT_CONCRETE_EVENT_RE = re.compile(
     r"محدود|تعلیق|توقف|قطعی|اختلال|فراخوان|تصویب|ابلاغ|لغو|افزایش|"
     r"کاهش|سقوط|رشد|جهش|شیوع|آتش.?بس|بودجه|مالیات|قیمت|نرخ|کمبود|"
     r"هک|حمله سایبری|فوتبال|جام جهانی|المپیک|فینال|قهرمانی|"
+    r"ادغام|ادغام شد|تملک|تصاحب|خرید|دعوی قضایی|شکایت|حل و فصل|رقابت|انحصار|"
+    r"merger|acquisition|acquired|lawsuit|settlement|antitrust|"
     r"attack(?:ed)?|missile|strike|bombing|explosion|earthquake|flood|"
     r"storm|typhoon|tsunami|killed|wounded|missing|evacuat(?:e|ed|ion)|"
     r"escalat(?:e|ed|ion)|military|threat|sanction|ceasefire|outage|"
@@ -5229,7 +5231,13 @@ def is_strictly_useful_news(candidate):
     ))
     body_has_event = bool(STRICT_CONCRETE_EVENT_RE.search(body))
 
-    if not title_has_event and not body_has_event:
+    business_legal = bool(re.search(
+        r"(?:ادغام|ادغام شد|تملک|تصاحب|خرید|دعوی قضایی|شکایت|حل و فصل|رقابت|انحصار|"
+        r"merger|acquisition|acquired|lawsuit|settlement|antitrust)",
+        title,
+        re.I,
+    ))
+    if not title_has_event and not body_has_event and not business_legal:
         print(f"V13 SKIP NO CONCRETE EVENT: {title}")
         return False
 
