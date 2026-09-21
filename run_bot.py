@@ -7,6 +7,7 @@ import v13_argos_translate
 import v13_content_enhancer
 import v13_ad_filter
 import v13_intelligence
+import v13_freshness_rescue
 
 # V13 is the only news runtime. Obsolete legacy engines and patches were removed.
 # Branding/media fixes, the free AI router, and automatic content enrichment
@@ -17,6 +18,7 @@ v13_argos_translate.install(main)
 v13_content_enhancer.install(main, v13_ai_router)
 v13_ad_filter.install(main)
 v13_intelligence.install(main)
+v13_freshness_rescue.install(main)
 
 import education
 import car_prices
