@@ -167,6 +167,54 @@ def _major_business_legal_override(candidate):
     return event and concrete
 
 
+def _global_consequential_override(candidate):
+    """Allow consequential world news beyond disasters/casualties.
+
+    This is deliberately conservative: a global political, legal, economic,
+    diplomatic, technology, or infrastructure story needs an explicit action
+    plus a strong actor/topic signal. Routine statements and meetings do not
+    qualify.
+    """
+    title = _norm(candidate.get("title", "")).lower()
+    body = _text(candidate).lower()
+    text = title + " " + body[:3500]
+
+    actions = (
+        "approved", "approves", "passed", "passes", "banned", "ban", "sanction",
+        "sanctions", "blocked", "blocks", "suspended", "suspends", "resigned",
+        "arrested", "charged", "indicted", "ruled", "court", "lawsuit",
+        "settlement", "acquired", "acquisition", "merger", "recall", "raises",
+        "cuts", "rate", "inflation", "tariff", "ceasefire", "agreement",
+        "deal", "withdraw", "deploy", "election", "government", "parliament",
+        "central bank", "outage", "shutdown", "launch", "released", "release",
+        "chip", "artificial intelligence", "ai", "هوش مصنوعی", "قانون", "تصویب",
+        "ممنوع", "تحریم", "بازداشت", "دادگاه", "شکایت", "توافق", "توقف",
+        "تعلیق", "استعفا", "انتخابات", "دولت", "مجلس", "بانک مرکزی", "نرخ بهره",
+        "تورم", "ادغام", "تملک", "قطع گسترده", "اختلال گسترده", "عرضه شد",
+    )
+    actors = (
+        "us", "u.s.", "united states", "white house", "trump", "china", "russia",
+        "ukraine", "israel", "iran", "european union", "eu", "nato", "uk",
+        "britain", "france", "germany", "japan", "south korea", "north korea",
+        "india", "australia", "saudi", "un", "imf", "fed", "ecb", "congress",
+        "supreme court", "government", "president", "prime minister", "parliament",
+        "ایران", "آمریکا", "چین", "روسیه", "اوکراین", "اسرائیل", "اتحادیه اروپا",
+        "ناتو", "بریتانیا", "فرانسه", "آلمان", "ژاپن", "هند", "عربستان",
+        "دولت", "رئیس جمهور", "رئیس‌جمهور", "مجلس", "دادگاه", "بانک مرکزی",
+    )
+    action_hit = any(x in text for x in actions)
+    actor_hit = any(x in title for x in actors)
+    # Strong global topics can qualify even when the actor is in the body.
+    topic_hit = any(x in text for x in (
+        "sanction", "tariff", "interest rate", "inflation", "lawsuit", "antitrust",
+        "merger", "acquisition", "ceasefire", "military", "nuclear", "outage",
+        "artificial intelligence", "chip", "هوش مصنوعی", "تحریم", "نرخ بهره",
+        "تورم", "دادگاه", "انحصار", "ادغام", "تملک", "آتش‌بس", "هسته‌ای",
+        "اختلال گسترده", "قطع گسترده",
+    ))
+    return action_hit and (actor_hit or topic_hit)
+
+
 def _high_impact_security_override(candidate):
     title = _norm(candidate.get("title", "")).lower()
     title_signals = sum(x.lower() in title for x in HIGH_IMPACT_SECURITY_SIGNALS)
@@ -237,6 +285,10 @@ def is_publishable(main, candidate):
     if _major_business_legal_override(candidate):
         score = max(score, MIN_EVENT_SCORE + 1)
         return True, score, "major-business-legal-override"
+
+    if _global_consequential_override(candidate):
+        score = max(score, MIN_EVENT_SCORE + 1)
+        return True, score, "global-consequential-event"
 
     if not has_event:
         return False, 0, "no-concrete-event"
