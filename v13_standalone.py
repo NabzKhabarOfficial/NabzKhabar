@@ -4767,6 +4767,39 @@ def is_roundup_title(title):
 
 is_roundup_title = is_roundup_title
 
+# ---------- Source scope filters ----------
+# Guardian is kept as a global source, but routine Australia-only stories
+# are excluded before expensive AI/media processing. International stories
+# involving Australia remain eligible.
+AUSTRALIA_ONLY_PATTERNS = [
+    r"\b(?:australia|australian|sydney|melbourne|brisbane|perth|adelaide|canberra|queensland|victoria|new\s+south\s+wales|western\s+australia|south\s+australia|tasmania|northern\s+territory)\b",
+    r"استرالیا|سیدنی|ملبورن|بریزبن|پرت|آدلاید|کانبرا|کوئینزلند|ویکتوریا|تاسمانی",
+]
+AUSTRALIA_GLOBAL_PATTERNS = [
+    r"\b(?:china|united\s+states|usa|uk|britain|europe|iran|russia|ukraine|israel|gaza|middle\s+east|nato|un|global|world|international)\b",
+    r"چین|آمریکا|ایالات\s+متحده|بریتانیا|اروپا|ایران|روسیه|اوکراین|اسرائیل|غزه|خاورمیانه|ناتو|سازمان\s+ملل|جهانی|بین.?المللی",
+]
+
+def _guardian_australia_only(candidate):
+    source = str(candidate.get("source_url") or candidate.get("source_name") or "").lower()
+    if "theguardian.com" not in source:
+        return False
+    text = " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description"))
+    has_au = any(re.search(p, text, re.I) for p in AUSTRALIA_ONLY_PATTERNS)
+    if not has_au:
+        return False
+    has_global = any(re.search(p, text, re.I) for p in AUSTRALIA_GLOBAL_PATTERNS)
+    return not has_global
+
+def _filter_guardian_scope(candidates):
+    kept = []
+    for c in candidates:
+        if _guardian_australia_only(c):
+            print(f"V13 SKIP GUARDIAN AUSTRALIA-ONLY: {clean_title(c.get('title', ''))}")
+            continue
+        kept.append(c)
+    return kept
+
 # ---------- Content sanitation ----------
 _original_clean_title = clean_title
 _original_clean_content = clean_content
@@ -4995,6 +5028,7 @@ def collect_candidates(hash_history, title_history):
         ),
         reverse=True,
     )
+    clean = _filter_guardian_scope(clean)
     return clean
 
 collect_candidates = collect_candidates
