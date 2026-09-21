@@ -27,6 +27,14 @@ jobs:
           python-version: "3.11"
           cache: "pip"
 
+      - name: Cache Argos en-fa model
+        uses: actions/cache@v4
+        with:
+          path: .argos-packages
+          key: argos-en-fa-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            argos-en-fa-${{ runner.os }}-
+
       - name: Install Argos dependencies
         run: |
           python -m pip install --upgrade pip
@@ -37,7 +45,6 @@ jobs:
           ARGOS_PACKAGES_DIR: ${{ github.workspace }}/.argos-packages
         run: |
           python - <<'PY'
-          import os
           import v13_argos_translate as argos
 
           english_title = "Major earthquake hits the region, authorities report emergency response."

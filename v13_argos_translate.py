@@ -17,7 +17,6 @@ os.environ.setdefault("ARGOS_COMPUTE_TYPE", "int8_float32")
 os.environ.setdefault("ARGOS_INTER_THREADS", "1")
 os.environ.setdefault("ARGOS_INTRA_THREADS", "0")
 os.environ.setdefault("ARGOS_PACKAGES_DIR", ARGOS_PACKAGES_DIR)
-os.environ.setdefault("XDG_CACHE_HOME", os.path.join(ARGOS_PACKAGES_DIR, "_cache"))
 
 _READY = False
 _FAILED = False
@@ -37,6 +36,18 @@ def _numbers(text):
 def _sentence_list(text):
     return [s.strip() for s in re.split(r"(?<=[.!؟؛])\s+", str(text or "").strip()) if s.strip()]
 
+def _translation_pair_ready():
+    import argostranslate.translate
+    installed = argostranslate.translate.get_installed_languages()
+    en = next((x for x in installed if x.code == "en"), None)
+    fa = next((x for x in installed if x.code == "fa"), None)
+    if not en or not fa:
+        return False
+    try:
+        return bool(en.get_translation(fa))
+    except Exception:
+        return False
+
 def _ensure_model():
     global _READY, _FAILED
     if _READY:
@@ -46,48 +57,50 @@ def _ensure_model():
     try:
         import argostranslate.package
         import argostranslate.translate
-        installed = argostranslate.translate.get_installed_languages()
-        en = next((x for x in installed if x.code == "en"), None)
-        fa = next((x for x in installed if x.code == "fa"), None)
-        if en and fa:
-            try:
-                en.get_translation(fa)
-                _READY = True
-                print("V13 ARGOS: en->fa package already installed.")
-                return True
-            except Exception:
-                pass
+
+        if _translation_pair_ready():
+            _READY = True
+            print("V13 ARGOS: en->fa package already installed.")
+            return True
+
         print("V13 ARGOS: preparing cached en->fa package...")
         os.makedirs(ARGOS_PACKAGES_DIR, exist_ok=True)
+
         cached_models = sorted(Path(ARGOS_PACKAGES_DIR).glob("translate-en_fa-*.argosmodel"))
         if cached_models:
-            print(f"V13 ARGOS: found cached model {cached_models[-1].name}; installing it.")
-            argostranslate.package.install_from_path(cached_models[-1])
-            installed = argostranslate.translate.get_installed_languages()
-            en = next((x for x in installed if x.code == "en"), None)
-            fa = next((x for x in installed if x.code == "fa"), None)
-            if en and fa and en.get_translation(fa):
+            cached = cached_models[-1]
+            print(f"V13 ARGOS: found cached model {cached.name}; installing it.")
+            argostranslate.package.install_from_path(cached)
+            if _translation_pair_ready():
                 _READY = True
                 print("V13 ARGOS: cached en->fa model installed and ready.")
                 return True
+
+        # Keep Argos' own package-index/cache location separate from the
+        # persistent model directory. Pointing XDG_CACHE_HOME inside
+        # ARGOS_PACKAGES_DIR causes Argos 1.11 to expect a metadata.json file
+        # that is not present on a fresh GitHub Actions runner.
         argostranslate.package.update_package_index()
         packages = argostranslate.package.get_available_packages()
-        package = next((p for p in packages if p.from_code == "en" and p.to_code == "fa"), None)
+        package = next(
+            (p for p in packages if p.from_code == "en" and p.to_code == "fa"),
+            None,
+        )
         if package is None:
             raise RuntimeError("Argos en->fa package not found in package index.")
+
         download_path = Path(package.download())
         cached_path = Path(ARGOS_PACKAGES_DIR) / download_path.name
         if download_path.resolve() != cached_path.resolve():
             import shutil
             shutil.copy2(download_path, cached_path)
+
         argostranslate.package.install_from_path(cached_path)
         print(f"V13 ARGOS: model cached at {cached_path}")
-        installed = argostranslate.translate.get_installed_languages()
-        en = next((x for x in installed if x.code == "en"), None)
-        fa = next((x for x in installed if x.code == "fa"), None)
-        if not en or not fa:
-            raise RuntimeError("Argos en->fa languages unavailable after install.")
-        en.get_translation(fa)
+
+        if not _translation_pair_ready():
+            raise RuntimeError("Argos en->fa translation pair unavailable after install.")
+
         _READY = True
         print("V13 ARGOS: en->fa translation layer ready.")
         return True
@@ -145,7 +158,6 @@ def translate_foreign_story(title, article_text):
 
 def healthcheck():
     return _ensure_model()
-
 
 def install(main):
     """Install the independent Argos layer without changing the news engine."""
