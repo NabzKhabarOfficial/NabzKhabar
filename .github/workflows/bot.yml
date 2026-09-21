@@ -65,6 +65,7 @@ jobs:
           cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || true
           cp ai_model_health.json /tmp/local_ai_model_health.json 2>/dev/null || true
           cp v13_health.json /tmp/local_v13_health.json 2>/dev/null || true
+          cp v13_rejected_news.json /tmp/local_v13_rejected_news.json 2>/dev/null || true
           cp car_prices_history.json /tmp/local_car_prices_history.json 2>/dev/null || true
           cp weather_history.json /tmp/local_weather_history.json 2>/dev/null || true
 
@@ -81,6 +82,7 @@ jobs:
 
             git reset --hard origin/main
             cp /tmp/merged_sent_news.txt sent_news.txt 2>/dev/null || true
+
             if [ -f /tmp/local_ai_model_health.json ]; then
               cp /tmp/local_ai_model_health.json ai_model_health.json
             fi
@@ -89,6 +91,12 @@ jobs:
               cp /tmp/local_v13_health.json v13_health.json
             elif git show origin/main:v13_health.json > /tmp/remote_v13_health.json 2>/dev/null; then
               cp /tmp/remote_v13_health.json v13_health.json
+            fi
+
+            if [ -f /tmp/local_v13_rejected_news.json ]; then
+              cp /tmp/local_v13_rejected_news.json v13_rejected_news.json
+            elif git show origin/main:v13_rejected_news.json > /tmp/remote_v13_rejected_news.json 2>/dev/null; then
+              cp /tmp/remote_v13_rejected_news.json v13_rejected_news.json
             fi
 
             if [ -f /tmp/local_car_prices_history.json ]; then
@@ -106,8 +114,10 @@ jobs:
             git add sent_news.txt
             if [ -f ai_model_health.json ]; then git add ai_model_health.json; fi
             if [ -f v13_health.json ]; then git add v13_health.json; fi
+            if [ -f v13_rejected_news.json ]; then git add v13_rejected_news.json; fi
             if [ -f car_prices_history.json ]; then git add car_prices_history.json; fi
             if [ -f weather_history.json ]; then git add weather_history.json; fi
+
             if git diff --cached --quiet; then
               echo "No history changes."
               exit 0
