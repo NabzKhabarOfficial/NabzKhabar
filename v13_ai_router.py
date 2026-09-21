@@ -19,6 +19,11 @@ API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
 MODEL_COOLDOWN_SECONDS = 15 * 60
 
+# Groq is kept as an optional emergency layer, but is OFF by default.
+# The current configured Groq models were returning HTTP 400 in production;
+# do not waste runtime or fall through to an unhealthy provider unless it is
+# explicitly enabled. Gemini remains the primary free-only router.
+ENABLE_GROQ_FALLBACK = os.getenv("ENABLE_GROQ_FALLBACK", "0").strip() == "1"
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
 GROQ_MODELS = ("openai/gpt-oss-20b", "openai/gpt-oss-120b")
 GROQ_BASE = "https://api.groq.com/openai/v1"
@@ -337,14 +342,17 @@ def gemini_request(main, title, article_text):
                 continue
             break
 
-    result = _fallback_provider_request(
-        main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
-        prompt, title, source, foreign
-    )
-    if result:
-        return result
+    if ENABLE_GROQ_FALLBACK and GROQ_API_KEY:
+        result = _fallback_provider_request(
+            main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
+            prompt, title, source, foreign
+        )
+        if result:
+            return result
+    else:
+        print("V13 AI ROUTER: Groq fallback disabled; continuing with Gemini-only free-tier safety path.")
 
-    print("V13 AI ROUTER: all configured AI providers failed/unavailable; publication will use existing V13 safety rules.")
+    print("V13 AI ROUTER: all enabled AI providers failed/unavailable; publication will use existing V13 safety rules.")
     return None
 
 
