@@ -1,7 +1,7 @@
 import os
 from datetime import datetime, timezone
 
-import main
+import v13_standalone as main
 
 
 EDU_HISTORY_MARKER = "EDU_POST|"
