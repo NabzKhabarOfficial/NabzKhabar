@@ -2841,27 +2841,20 @@ def build_caption(
     title,
     body
 ):
+    """Single canonical V13 news caption formatter.
 
-    title = clean_title(
-        title
-    )
+    News captions intentionally do not expose raw source URLs or a
+    separate source line. Source attribution belongs to the article
+    content/metadata and must never bypass the canonical Telegram format.
+    """
+    title = clean_title(title)
+    body = enforce_short_summary(body)
 
-    body = enforce_short_summary(
-        body
-    )
-
+    parts = [f"📰 {title}"]
     if body:
-
-        return (
-            f"📰 {title}\n\n"
-            f"{body}\n\n"
-            f"#نبض_خبر"
-        )
-
-    return (
-        f"📰 {title}\n\n"
-        f"#نبض_خبر"
-    )
+        parts.append(body)
+    parts.append("#نبض_خبر")
+    return "\n\n".join(parts)
 
 
 # ============================================================
