@@ -127,3 +127,9 @@ def translate_foreign_story(title, article_text):
 
 def healthcheck():
     return _ensure_model()
+
+
+def install(main):
+    """Install the independent Argos layer without changing the news engine."""
+    main.argos_translate_foreign_story = translate_foreign_story
+    print("V13 ARGOS TRANSLATE ACTIVE: independent English -> Persian local fallback")
