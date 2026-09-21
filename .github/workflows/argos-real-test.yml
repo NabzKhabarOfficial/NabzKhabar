@@ -47,10 +47,12 @@ jobs:
           python - <<'PY'
           import v13_argos_translate as argos
 
-          english_title = "Major earthquake hits the region, authorities report emergency response."
+          # Deliberately include number words so the real test verifies the
+          # V13 semantic-number validation fix (e.g. "six" -> "شش"/"۶").
+          english_title = "Six people were injured after a major earthquake."
           english_body = (
-              "A major earthquake hit the region on Monday, causing damage to several buildings. "
-              "Emergency teams were deployed and authorities said they were assessing the situation."
+              "Six people were injured and two buildings were damaged. "
+              "Emergency teams were deployed to the area."
           )
 
           print("ARGOS_TEST: starting real en->fa translation")
@@ -74,5 +76,16 @@ jobs:
           if not title.strip() or not summary.strip():
               raise SystemExit("ARGOS_TEST_FAILED: empty translation")
 
-          print("ARGOS_TEST_PASSED: real English -> Persian translation is operational")
+          original_numbers = argos._numeric_values(english_title + " " + english_body)
+          translated_numbers = argos._numeric_values(title + " " + summary)
+          print("ARGOS_TEST_NUMBERS:", sorted(original_numbers), sorted(translated_numbers))
+
+          if not {2, 6}.issubset(original_numbers):
+              raise SystemExit("ARGOS_TEST_FAILED: numeric fixture is invalid")
+          if not translated_numbers.issubset(original_numbers):
+              raise SystemExit(
+                  "ARGOS_TEST_FAILED: translation introduced an unmatched number"
+              )
+
+          print("ARGOS_TEST_PASSED: real English -> Persian translation and numeric validation are operational")
           PY
