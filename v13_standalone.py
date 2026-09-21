@@ -1737,6 +1737,11 @@ def calculate_importance(
 # GOOGLE NEWS RESOLUTION
 # ============================================================
 
+GOOGLE_RESOLVE_TIMEOUT = 6
+GOOGLE_RESOLVE_WORKERS = 16
+GOOGLE_RESOLVE_MAX_CANDIDATES = 90
+
+
 def resolve_google_news_url(
     url
 ):
@@ -1755,7 +1760,7 @@ def resolve_google_news_url(
 
         response = SESSION.get(
             url,
-            timeout=12,
+            timeout=GOOGLE_RESOLVE_TIMEOUT,
             allow_redirects=True,
             stream=True
         )
@@ -3679,46 +3684,38 @@ def collect_candidates(
     resolved_count = 0
     removed_google = 0
 
-    for item in clustered[:90]:
+    # Google News redirect resolution used to run serially. With many
+    # discovery queries, a handful of slow Google redirects could consume
+    # most of the 10-minute workflow interval. Resolve them concurrently
+    # with a short hard timeout so one bad redirect cannot stall the run.
+    google_items = [
+        item for item in clustered[:GOOGLE_RESOLVE_MAX_CANDIDATES]
+        if item.get("is_google")
+    ]
 
-        if not item.get(
-            "is_google"
+    def resolve_one_google(item):
+        link = item.get("link", "")
+        return item, resolve_google_news_url(link)
+
+    with ThreadPoolExecutor(max_workers=GOOGLE_RESOLVE_WORKERS) as executor:
+        for item, resolved in executor.map(
+            resolve_one_google,
+            google_items
         ):
-            continue
+            if resolved:
+                item["resolved_link"] = resolved
 
-        link = item.get(
-            "link",
-            ""
-        )
+                if (
+                    not is_social_host(resolved)
+                    and not is_google_host(resolved)
+                ):
+                    item["link"] = resolved
+                    resolved_count += 1
 
-        resolved = resolve_google_news_url(
-            link
-        )
-
-        if resolved:
-
-            item["resolved_link"] = resolved
-
-            if (
-                not is_social_host(
-                    resolved
-                )
-                and not is_google_host(
-                    resolved
-                )
-            ):
-
-                item["link"] = resolved
-
-                resolved_count += 1
-
-        # DO NOT use source_url as an article URL.
-        # Google source_url is often just publisher homepage.
-        if not item.get(
-            "resolved_link"
-        ):
-
-            item["_unresolved_google"] = True
+            # DO NOT use source_url as an article URL.
+            # Google source_url is often just publisher homepage.
+            if not item.get("resolved_link"):
+                item["_unresolved_google"] = True
 
     print(
         f"Google articles resolved: "
