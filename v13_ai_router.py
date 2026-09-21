@@ -28,6 +28,11 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
 GROQ_MODELS = ("openai/gpt-oss-20b", "openai/gpt-oss-120b")
 GROQ_BASE = "https://api.groq.com/openai/v1"
 
+# Optional OpenRouter free-only fallback. Never selects paid models.
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
+OPENROUTER_BASE = "https://openrouter.ai/api/v1"
+OPENROUTER_MODEL = "openrouter/free"
+
 ENABLE_OPENROUTER_FALLBACK = os.getenv("ENABLE_OPENROUTER_FALLBACK", "1").strip() == "1"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"
@@ -398,6 +403,18 @@ def gemini_request(main, title, article_text):
     else:
         print("V13 AI ROUTER: OpenRouter free fallback unavailable (missing key or disabled).")
 
+    # Provider 2: OpenRouter explicit free-model router.
+    if OPENROUTER_API_KEY:
+        result = _fallback_provider_request(
+            main, "OpenRouter", (OPENROUTER_MODEL,), OPENROUTER_BASE,
+            OPENROUTER_API_KEY, prompt, title, source, foreign
+        )
+        if result:
+            return result
+    else:
+        print("V13 AI ROUTER: OpenRouter free fallback not configured; continuing.")
+
+    # Provider 3: Groq remains opt-in because previous production runs returned HTTP 400.
     if ENABLE_GROQ_FALLBACK and GROQ_API_KEY:
         result = _fallback_provider_request(
             main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
@@ -406,7 +423,7 @@ def gemini_request(main, title, article_text):
         if result:
             return result
     else:
-        print("V13 AI ROUTER: Groq fallback disabled; continuing with free-tier safety path.")
+        print("V13 AI ROUTER: Groq fallback disabled; continuing with free-provider safety path.")
 
     print("V13 AI ROUTER: all enabled AI providers failed/unavailable; publication will use existing V13 safety rules.")
     return None
