@@ -357,20 +357,12 @@ def google_news_search_url(query):
 # ============================================================
 
 DIRECT_RSS_FEEDS = [
-    ("ایران", "https://www.irna.ir/rss"),
-    ("فناوری", "https://www.zoomit.ir/feed/"),
-    ("ایران", "https://www.mehrnews.com/rss"),
-    ("ایران", "https://www.isna.ir/rss"),
-    ("اقتصاد", "https://www.isna.ir/rss/service/economy"),
-    ("ورزش", "https://www.isna.ir/rss?serviceid=5"),
-    ("جهان", "https://www.irna.ir/rss/service/world"),
+    # Iranian direct RSS: keep exactly two sources to reduce polling and
+    # duplicate candidates while preserving broad domestic coverage.
     ("ایران", "https://www.yjc.ir/fa/rss/allnews"),
-    ("فرهنگ", "https://www.irna.ir/rss/service/culture"),
-    ("اجتماعی", "https://www.irna.ir/rss/service/society"),
-    ("جهان", "https://www.isna.ir/rss/service/world"),
+    ("ایران", "https://www.irna.ir/rss"),
 
-    # Additional fast, free RSS sources. The 30-minute window below
-    # prevents old entries from reaching the expensive processing stages.
+    # International / specialist RSS sources remain available below.
     ("هوش مصنوعی", "https://techcrunch.com/category/artificial-intelligence/feed/"),
     ("هوش مصنوعی", "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"),
     ("فناوری", "https://feeds.arstechnica.com/arstechnica/technology-lab"),
