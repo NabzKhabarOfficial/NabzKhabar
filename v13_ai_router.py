@@ -28,6 +28,12 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
 GROQ_MODELS = ("openai/gpt-oss-20b", "openai/gpt-oss-120b")
 GROQ_BASE = "https://api.groq.com/openai/v1"
 
+ENABLE_OPENROUTER_FALLBACK = os.getenv("ENABLE_OPENROUTER_FALLBACK", "1").strip() == "1"
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
+OPENROUTER_BASE = "https://openrouter.ai/api/v1"
+OPENROUTER_MODELS_CACHE_SECONDS = 15 * 60
+_openrouter_models_cache = {"at": 0.0, "models": []}
+
 
 def _persian_ratio(text):
     text = str(text or "")
@@ -210,6 +216,46 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
         return None, False
 
 
+def _openrouter_free_models(main):
+    """Discover OpenRouter's currently listed zero-cost chat models."""
+    global _openrouter_models_cache
+    now = time.time()
+    if now - float(_openrouter_models_cache.get("at", 0)) < OPENROUTER_MODELS_CACHE_SECONDS:
+        return list(_openrouter_models_cache.get("models", []))
+    try:
+        response = main.SESSION.get(
+            f"{OPENROUTER_BASE}/models",
+            timeout=15,
+            headers={"User-Agent": "NabzKhabar-V13/1.0"},
+        )
+        if not response.ok:
+            print(f"V13 AI ROUTER: OpenRouter model discovery HTTP {response.status_code}; skipping provider.")
+            return []
+        models = []
+        for item in (response.json() or {}).get("data", []):
+            model_id = str(item.get("id", "")).strip()
+            pricing = item.get("pricing") or {}
+            if not model_id.endswith(":free"):
+                continue
+            if str(pricing.get("prompt", "")).strip() not in ("0", "0.0", "0.00"):
+                continue
+            if str(pricing.get("completion", "")).strip() not in ("0", "0.0", "0.00"):
+                continue
+            supported = item.get("supported_parameters") or []
+            priority = 0 if "response_format" in supported else 10
+            if any(x in model_id.lower() for x in ("qwen", "llama", "gemma", "mistral")):
+                priority -= 2
+            models.append((priority, model_id))
+        models.sort(key=lambda x: (x[0], x[1]))
+        selected = [model_id for _, model_id in models[:8]]
+        _openrouter_models_cache = {"at": now, "models": selected}
+        print("V13 AI ROUTER: OpenRouter free models: " + (", ".join(selected) if selected else "none"))
+        return selected
+    except Exception as exc:
+        print(f"V13 AI ROUTER: OpenRouter discovery error: {exc}; skipping provider.")
+        return []
+
+
 def _fallback_provider_request(main, provider, models, base_url, api_key, prompt, title, source, foreign):
     if not api_key:
         return None
@@ -342,6 +388,16 @@ def gemini_request(main, title, article_text):
                 continue
             break
 
+    if ENABLE_OPENROUTER_FALLBACK and OPENROUTER_API_KEY:
+        result = _fallback_provider_request(
+            main, "OpenRouter", _openrouter_free_models(main), OPENROUTER_BASE,
+            OPENROUTER_API_KEY, prompt, title, source, foreign
+        )
+        if result:
+            return result
+    else:
+        print("V13 AI ROUTER: OpenRouter free fallback unavailable (missing key or disabled).")
+
     if ENABLE_GROQ_FALLBACK and GROQ_API_KEY:
         result = _fallback_provider_request(
             main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
@@ -350,7 +406,7 @@ def gemini_request(main, title, article_text):
         if result:
             return result
     else:
-        print("V13 AI ROUTER: Groq fallback disabled; continuing with Gemini-only free-tier safety path.")
+        print("V13 AI ROUTER: Groq fallback disabled; continuing with free-tier safety path.")
 
     print("V13 AI ROUTER: all enabled AI providers failed/unavailable; publication will use existing V13 safety rules.")
     return None
@@ -362,5 +418,5 @@ def install(main):
     )
     print(
         "V13 AI ROUTER ACTIVE: "
-        "dynamic model discovery, strict generateContent filter, free-tier candidates only, 404-safe failover"
+        "multi-provider free router: Gemini -> OpenRouter :free -> optional Groq, strict validation, 404-safe failover"
     )
