@@ -4721,7 +4721,7 @@ DIRECT_RSS_FEEDS = V13_DIRECT_RSS_FEEDS
 for host in (
     "bbc.com", "bbc.co.uk", "theguardian.com", "npr.org",
     "techcrunch.com", "arstechnica.com", "wired.com", "theverge.com",
-    "aljazeera.com", "dw.com", "france24.com", "skynews.com",
+    "aljazeera.com", "dw.com", "skynews.com",
     # Specialist / major publishers used through Google News discovery.
     "espn.com", "skysports.com", "theathletic.com",
     "technologyreview.com", "techcrunch.com", "arstechnica.com",
