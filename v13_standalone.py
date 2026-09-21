@@ -3084,34 +3084,40 @@ def collect_feed(
 
         for entry in feed.entries[:20]:
 
-            # Google News is queried server-side with the short window above.
-            # Direct RSS feeds are filtered locally using the same window.
+            # Strict freshness gate: only entries with a reliable publication
+            # timestamp from the source are allowed into processing. This keeps
+            # stale RSS items from consuming network/AI/media resources.
             published_at = parse_entry_time(
                 entry
             )
 
-            if (
-                published_at
-                and not is_fresh(
-                    published_at
-                )
-            ):
+            if not published_at:
                 print(
-                    f"SKIPPED OLD: "
+                    f"SKIPPED NO TIMESTAMP: "
                     f"{entry.get('title', '')}"
                 )
                 continue
 
-            if (
-                published_at
-                and (
-                    datetime.now(timezone.utc) - published_at
-                ).total_seconds() > (
-                    FEED_COLLECTION_WINDOW_MINUTES * 60
-                )
+            age_seconds = (
+                datetime.now(timezone.utc) - published_at
+            ).total_seconds()
+
+            if age_seconds < 0:
+                # Small clock skew is tolerated, but clearly future-dated
+                # entries are not allowed to bypass the freshness gate.
+                if age_seconds < -300:
+                    print(
+                        f"SKIPPED INVALID FUTURE TIMESTAMP: "
+                        f"{entry.get('title', '')}"
+                    )
+                    continue
+                age_seconds = 0
+
+            if age_seconds > (
+                FEED_COLLECTION_WINDOW_MINUTES * 60
             ):
                 print(
-                    f"SKIPPED OUTSIDE FEED WINDOW: "
+                    f"SKIPPED OUTSIDE 30M WINDOW: "
                     f"{entry.get('title', '')}"
                 )
                 continue
