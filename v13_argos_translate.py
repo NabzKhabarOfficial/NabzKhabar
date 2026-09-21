@@ -38,7 +38,10 @@ _EN_NUMBER_WORDS = {
 }
 
 _FA_NUMBER_WORDS = {
-    "صفر": 0, "یک": 1, "دو": 2, "سه": 3, "چهار": 4, "پنج": 5,
+    # "یک" is intentionally excluded: Argos frequently uses it for the
+    # English indefinite article ("a/an"), which is not a factual number.
+    # Numeric safety still tracks explicit digits and unambiguous number words.
+    "صفر": 0, "دو": 2, "سه": 3, "چهار": 4, "پنج": 5,
     "شش": 6, "هفت": 7, "هشت": 8, "نه": 9, "ده": 10,
     "یازده": 11, "دوازده": 12, "سیزده": 13, "چهارده": 14,
     "پانزده": 15, "شانزده": 16, "هفده": 17, "هجده": 18,
