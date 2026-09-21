@@ -3752,6 +3752,29 @@ def collect_candidates(
                 "resolved_link"
             )
         ):
+            # A failed Google redirect must not erase a genuinely breaking
+            # story. Keep only clearly high-impact headlines with a useful
+            # RSS summary; ordinary unresolved Google items are still dropped.
+            google_title = normalize_space(item.get("title", "")).lower()
+            google_summary = normalize_space(item.get("summary", ""))
+            high_priority_google = bool(re.search(
+                r"(?:حمله|موشک|بمباران|انفجار|زلزله|سیل|سونامی|"
+                r"سقوط هواپیما|کشته|زخمی|مفقود|ترور|آتش.?بس|"
+                r"قطع اینترنت|حمله سایبری|نفتکش|پرتابه|درگیری نظامی|"
+                r"جنگ|تحریم|tanker|missile|attack|strike|bombing|"
+                r"explosion|earthquake|flood|tsunami|crash|killed|"
+                r"wounded|military|tanker)",
+                google_title,
+                re.I,
+            ))
+            if high_priority_google and len(google_summary) >= 120:
+                item["_unresolved_google_high_impact"] = True
+                print(
+                    f"KEEP UNRESOLVED HIGH-IMPACT GOOGLE: "
+                    f"{item.get('title', '')}"
+                )
+                cleaned.append(item)
+                continue
 
             removed_google += 1
 
