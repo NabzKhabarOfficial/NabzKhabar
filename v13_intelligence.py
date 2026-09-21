@@ -150,6 +150,23 @@ def event_score(main, candidate):
     return score
 
 
+def _major_business_legal_override(candidate):
+    title = _norm(candidate.get("title", "")).lower()
+    event = any(x in title for x in (
+        "ادغام", "ادغام شد", "تملک", "تصاحب", "خرید", "دعوی قضایی",
+        "شکایت", "حل و فصل", "رقابت", "انحصار",
+        "merger", "acquisition", "acquired", "lawsuit", "settlement", "antitrust",
+    ))
+    concrete = bool(re.search(
+        r"(?:\$?\d[\d,.]*\s*(?:میلیارد|million|billion)|"
+        r"میلیارد|میلیون|%|درصد|states|state|دادگاه|دادستان|regulator|regulators|"
+        r"lawsuit|settlement|antitrust)",
+        title,
+        re.I,
+    ))
+    return event and concrete
+
+
 def _high_impact_security_override(candidate):
     title = _norm(candidate.get("title", "")).lower()
     title_signals = sum(x.lower() in title for x in HIGH_IMPACT_SECURITY_SIGNALS)
@@ -188,6 +205,10 @@ def is_publishable(main, candidate):
     if _high_impact_security_override(candidate):
         score = max(score, MIN_EVENT_SCORE + 2)
         return True, score, "high-impact-security-override"
+
+    if _major_business_legal_override(candidate):
+        score = max(score, MIN_EVENT_SCORE + 1)
+        return True, score, "major-business-legal-override"
 
     if not has_event:
         return False, 0, "no-concrete-event"
@@ -298,6 +319,7 @@ def _rejected_record(main, candidate, score, reason, stage="intelligence_filter"
         "reason": reason,
         "stage": stage,
         "high_impact_security_candidate": _high_impact_security_override(candidate),
+        "major_business_legal_candidate": _major_business_legal_override(candidate),
     }
 
 
