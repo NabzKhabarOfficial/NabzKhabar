@@ -5,6 +5,7 @@ import v13_media_branding
 import v13_ai_router
 import v13_content_enhancer
 import v13_ad_filter
+import v13_intelligence
 
 # V13 is the only news runtime. Obsolete legacy engines and patches were removed.
 # Branding/media fixes, the free AI router, and automatic content enrichment
@@ -13,6 +14,7 @@ v13_media_branding.install(main)
 v13_ai_router.install(main)
 v13_content_enhancer.install(main, v13_ai_router)
 v13_ad_filter.install(main)
+v13_intelligence.install(main)
 
 import education
 import car_prices
