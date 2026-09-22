@@ -176,12 +176,31 @@ def translate_foreign_story(title, article_text):
     fa_title = translate_en_to_fa(title)
     fa_body = translate_en_to_fa(source[:6000])
 
+    # Important foreign stories must not be lost because a long/messy article
+    # body produces a weak Argos translation. Retry with a compact source
+    # window before declaring localization unavailable.
+    if not fa_title:
+        print("V13 ARGOS: title translation failed; trying compact retry.")
+        fa_title = translate_en_to_fa(title[:500])
+
+    if not fa_body:
+        print("V13 ARGOS: full-body translation failed; trying compact retry.")
+        fa_body = translate_en_to_fa(source[:1800])
+
     if not fa_title or not fa_body:
-        return None
+        # Last-resort safe localization: a translated headline can still
+        # prevent an important foreign event from being silently discarded.
+        if fa_title and _persian_ratio(fa_title) >= 0.60:
+            fa_body = fa_title
+        else:
+            return None
 
     if _persian_ratio(fa_title) < 0.60 or _persian_ratio(fa_body) < 0.60:
-        print("V13 ARGOS: Persian validation failed.")
-        return None
+        print("V13 ARGOS: Persian validation failed; trying title-only safety fallback.")
+        if _persian_ratio(fa_title) >= 0.60:
+            fa_body = fa_title
+        else:
+            return None
 
     # Numeric safety checks use explicit digits only.
     # Written number words are language-dependent and are not compared.
