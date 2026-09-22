@@ -415,8 +415,23 @@ def gemini_request(main, title, article_text):
             # into Persian words/digits. Re-validating here caused valid Argos
             # translations to be discarded and the story to be reported as
             # "AI localization unavailable".
-            argos_title = main.clean_title(argos_result.get("title", ""))
-            argos_summary = main.clean_content(argos_result.get("summary", ""))
+            def _sanitize_argos_text(value):
+                text = str(value or "")
+                # Argos can translate source-page metadata along with the article.
+                # Remove navigation/source artifacts instead of discarding an
+                # otherwise valid Persian emergency translation.
+                text = re.sub(r"https?://\\S+|www\\.\\S+", " ", text, flags=re.I)
+                text = re.sub(
+                    r"(?:^|[\\n|])\\s*(?:منبع|source|منبع خبر|لینک|link)\\s*[:：].*$",
+                    " ",
+                    text,
+                    flags=re.I | re.M,
+                )
+                text = re.sub(r"\\s+", " ", text).strip()
+                return text
+
+            argos_title = main.clean_title(_sanitize_argos_text(argos_result.get("title", "")))
+            argos_summary = main.clean_content(_sanitize_argos_text(argos_result.get("summary", "")))
             # Argos already passed its dedicated translation safety checks.
             # Keep only publication-level structural/language checks here.
             # Do not apply AI-specific content heuristics to the local fallback.
