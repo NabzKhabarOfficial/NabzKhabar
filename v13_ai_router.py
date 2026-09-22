@@ -420,14 +420,21 @@ def gemini_request(main, title, article_text):
                 # Argos can translate source-page metadata along with the article.
                 # Remove navigation/source artifacts instead of discarding an
                 # otherwise valid Persian emergency translation.
-                text = re.sub(r"https?://\\S+|www\\.\\S+", " ", text, flags=re.I)
+                text = re.sub(r"https?://\S+|www\.\S+", " ", text, flags=re.I)
+                # Remove source/navigation labels on their own line or inline.
                 text = re.sub(
-                    r"(?:^|[\\n|])\\s*(?:منبع|source|منبع خبر|لینک|link)\\s*[:：].*$",
+                    r"(?:^|[\n|])\s*(?:منبع|source|منبع خبر|لینک|link)\s*[:：].*$",
                     " ",
                     text,
                     flags=re.I | re.M,
                 )
-                text = re.sub(r"\\s+", " ", text).strip()
+                text = re.sub(
+                    r"\s+(?:منبع|source|منبع خبر|لینک|link)\s*[:：].*$",
+                    " ",
+                    text,
+                    flags=re.I,
+                )
+                text = re.sub(r"\s+", " ", text).strip()
                 return text
 
             argos_title = main.clean_title(_sanitize_argos_text(argos_result.get("title", "")))
