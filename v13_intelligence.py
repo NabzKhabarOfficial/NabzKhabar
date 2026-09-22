@@ -483,6 +483,7 @@ def is_publishable(main, candidate):
         return False, 0, "routine-metaphorical-topic"
 
     has_event = any(x.lower() in lower or x.lower() in body[:3000] for x in HIGH_IMPACT + ACTION_TERMS)
+    score = event_score(main, candidate)
 
     if _unga_breaking_override(candidate):
         score = max(event_score(main, candidate), MIN_EVENT_SCORE + 3)
