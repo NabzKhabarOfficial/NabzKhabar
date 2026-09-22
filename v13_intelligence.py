@@ -182,6 +182,8 @@ def _global_consequential_override(candidate):
     actions = (
         "approved", "approves", "passed", "passes", "banned", "ban", "sanction",
         "sanctions", "blocked", "blocks", "suspended", "suspends", "resigned",
+        "halted", "halts", "disrupted", "disruption", "ground stop", "stopped",
+        "outage", "failed", "failure", "severed", "repaired", "restored",
         "arrested", "charged", "indicted", "ruled", "court", "lawsuit",
         "signed", "signs", "declaration", "declared", "orders", "ordered",
         "requires", "required", "restricts", "restricted", "introduces",
@@ -190,6 +192,8 @@ def _global_consequential_override(candidate):
         "cuts", "rate", "inflation", "tariff", "ceasefire", "agreement",
         "deal", "withdraw", "deploy", "election", "government", "parliament",
         "central bank", "outage", "shutdown", "launch", "released", "release",
+        "leaders", "world leaders", "joint statement", "pledge",
+        "urges", "urge", "calls on", "call for",
         "chip", "artificial intelligence", "ai", "هوش مصنوعی", "قانون", "تصویب",
         "ممنوع", "تحریم", "بازداشت", "دادگاه", "شکایت", "توافق", "توقف",
         "تعلیق", "استعفا", "انتخابات", "دولت", "مجلس", "بانک مرکزی", "نرخ بهره",
@@ -201,6 +205,9 @@ def _global_consequential_override(candidate):
         "britain", "france", "germany", "japan", "south korea", "north korea",
         "india", "australia", "saudi", "albanese", "un", "imf", "fed", "ecb", "congress",
         "supreme court", "government", "president", "prime minister", "parliament",
+        "faa", "federal aviation administration", "airports", "flights", "air traffic",
+        "telecom", "telecommunications", "fiber", "infrastructure", "verizon",
+        "un general assembly", "united nations", "world leaders", "leaders",
         "ایران", "آمریکا", "چین", "روسیه", "اوکراین", "اسرائیل", "اتحادیه اروپا",
         "ناتو", "بریتانیا", "فرانسه", "آلمان", "ژاپن", "هند", "عربستان",
         "دولت", "رئیس جمهور", "رئیس‌جمهور", "مجلس", "دادگاه", "بانک مرکزی",
@@ -211,7 +218,9 @@ def _global_consequential_override(candidate):
     topic_hit = any(x in text for x in (
         "sanction", "tariff", "interest rate", "inflation", "lawsuit", "antitrust",
         "merger", "acquisition", "ceasefire", "military", "nuclear", "outage",
-        "artificial intelligence", "smartglasses", "chip", "هوش مصنوعی", "تحریم", "نرخ بهره",
+        "artificial intelligence", "smartglasses", "chip", "ai governance", "ai safety",
+        "ai safeguards", "human control", "human oversight", "هوش مصنوعی", "تحریم", "نرخ بهره",
+        "پرواز", "فرودگاه", "هوانوردی", "اختلال مخابراتی", "قطعی مخابرات",
         "تورم", "دادگاه", "انحصار", "ادغام", "تملک", "آتش‌بس", "هسته‌ای",
         "اختلال گسترده", "قطع گسترده",
     ))
@@ -417,6 +426,13 @@ def install(main):
             if _high_impact_security_override(candidate):
                 print(
                     "V13 INTELLIGENCE: high-impact security override -> "
+                    f"{candidate.get('title', '')}",
+                    flush=True,
+                )
+                return True
+            if _global_consequential_override(candidate):
+                print(
+                    "V13 INTELLIGENCE: global consequential override -> "
                     f"{candidate.get('title', '')}",
                     flush=True,
                 )
