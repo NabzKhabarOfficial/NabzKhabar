@@ -4899,8 +4899,8 @@ is_roundup_title = is_roundup_title
 # English-language world feeds need their own importance anchors; otherwise
 # major foreign events can score below routine Persian/local stories.
 GLOBAL_HIGH_IMPACT_PATTERNS = [
-    r"\b(?:war|invasion|attack|strike|missile|rocket|bombing|explosion|shooting|earthquake|tsunami|typhoon|hurricane|wildfire|flood|landslide|volcano|crash|plane crash|helicopter crash|killed|dead|deaths|wounded|missing|hostage|evacuation|emergency|disaster|ceasefire|sanctions|nuclear|military|troops|terror|outbreak|pandemic|summit|president|prime minister|government|parliament|coup|united nations|un general assembly|unga|general debate|world leaders|guterres)\b",
-    r"جنگ|تهاجم|حمله|حملات|موشک|پرتاب|بمباران|انفجار|تیراندازی|زلزله|سونامی|تایفون|طوفان|هاریکن|آتش.?سوزی|سیل|رانش زمین|آتشفشان|سقوط هواپیما|سقوط بالگرد|کشته|فوت|جان باخت|زخمی|مفقود|گروگان|تخلیه|وضعیت اضطراری|فاجعه|آتش.?بس|تحریم|هسته.?ای|نظامی|تروریستی|شیوع|همه.?گیری|نشست|رئیس جمهور|نخست.?وزیر|دولت|پارلمان|کودتا|سازمان ملل|مجمع عمومی|مناظره عمومی|رهبران جهان|گوترش",
+    r"\b(?:war|invasion|attack|strike|missile|rocket|bombing|explosion|shooting|earthquake|tsunami|typhoon|hurricane|wildfire|flood|landslide|volcano|crash|plane crash|helicopter crash|killed|dead|deaths|wounded|missing|hostage|evacuation|emergency|disaster|ceasefire|sanctions|sanction|tariff|tariffs|lawsuit|court|verdict|convicted|guilty|agreement|deal|resigned|resignation|election|coup|nuclear|military|troops|terror|outbreak|pandemic|summit|president|prime minister|government|parliament|united nations|un general assembly|unga|general debate|world leaders|guterres)\b",
+    r"جنگ|تهاجم|حمله|حملات|موشک|پرتاب|بمباران|انفجار|تیراندازی|زلزله|سونامی|تایفون|طوفان|هاریکن|آتش.?سوزی|سیل|رانش زمین|آتشفشان|سقوط هواپیما|سقوط بالگرد|کشته|فوت|جان باخت|زخمی|مفقود|گروگان|تخلیه|وضعیت اضطراری|فاجعه|آتش.?بس|تحریم|تحریم‌ها|تعرفه|دادخواست|دادگاه|حکم|محکوم|مجرم|توافق|قرارداد|استعفا|انتخابات|کودتا|هسته.?ای|نظامی|تروریستی|شیوع|همه.?گیری|نشست|رئیس جمهور|نخست.?وزیر|دولت|پارلمان|سازمان ملل|مجمع عمومی|مناظره عمومی|رهبران جهان|گوترش",
 ]
 
 def _has_global_high_impact(text):
