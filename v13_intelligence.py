@@ -406,6 +406,8 @@ def _publication_tier(candidate):
     body = _text(candidate).lower()
     security = _high_impact_security_override(candidate)
     major_business = _major_business_legal_override(candidate)
+    global_consequential = _global_consequential_override(candidate)
+    unga_breaking = _unga_breaking_override(candidate)
     critical = any(x.lower() in title for x in (
         "جنگ", "حمله", "حمله موشکی", "بمباران", "انفجار بزرگ", "زلزله",
         "سیل", "سونامی", "سقوط هواپیما", "کشته", "مفقود", "ترور",
@@ -428,7 +430,10 @@ def _publication_tier(candidate):
         "عرضه", "توافق", "تملک", "ادغام", "ایمنی", "حکمرانی", "قطعی", "اختلال",
     ))
     major = major or ai_major_action
-    if security or critical:
+    # Consequential world news gets the same protected queue position as
+    # other breaking stories. It must never be displaced simply because its
+    # impact is diplomatic, legal, economic, technological or infrastructural.
+    if security or critical or global_consequential or unga_breaking:
         return 3
     if major_business or major:
         return 2
