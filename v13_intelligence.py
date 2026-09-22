@@ -272,6 +272,20 @@ def _global_consequential_override(candidate):
 
 def _high_impact_security_override(candidate):
     title = _norm(candidate.get("title", "")).lower()
+
+    # Ceremonies, memorials, federation/athlete remarks and routine visa
+    # disputes are not security incidents merely because they mention a
+    # martyr, a country, a military actor, or a security-related word.
+    ceremonial_or_routine = (
+        "تشییع", "تشییع پیکر", "مراسم", "یادبود", "گرامیداشت",
+        "شهید گمنام", "دهکده فرشتگان", "فدراسیون کشتی", "کشتی گیر",
+        "کشتی‌گیر", "کشتی گیران", "کشتی‌گیران",
+        "روادید", "ویزا", "ویزای", "گردش مالی",
+        "ceremony", "funeral", "memorial", "wrestler", "wrestling federation",
+        "visa", "financial turnover",
+    )
+    if any(x in title for x in ceremonial_or_routine):
+        return False
     title_signals = sum(x.lower() in title for x in HIGH_IMPACT_SECURITY_SIGNALS)
     actor_hits = sum(x.lower() in title for x in HIGH_IMPACT_ACTORS)
     strong_topic = any(x.lower() in title for x in HIGH_IMPACT)
