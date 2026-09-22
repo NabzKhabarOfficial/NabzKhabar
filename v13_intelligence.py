@@ -217,7 +217,7 @@ def _global_consequential_override(candidate):
         "signed", "signs", "declared", "orders", "ordered", "requires", "required",
         "restricts", "restricted", "introduces", "introduced", "implements",
         "implemented", "joined", "settlement", "acquired", "acquisition",
-        "merged", "merger", "recalled", "recall", "raises", "cuts", "increased",
+        "merged", "merger", "recalled", "recall", "convicted", "guilty", "verdict", "raises", "cuts", "increased",
         "decreased", "withdraw", "withdrew", "deployed", "deploy", "launched",
         "launches", "released", "release", "closed", "opens", "opened",
         "calls on", "call for", "urges", "urge", "pledges", "pledged",
@@ -253,9 +253,9 @@ def _global_consequential_override(candidate):
     ))
     concrete_topic = any(x in title for x in (
         "sanction", "sanctions", "tariff", "tariffs", "interest rate", "inflation",
-        "lawsuit", "antitrust", "merger", "acquisition", "ceasefire", "nuclear",
+        "lawsuit", "antitrust", "merger", "acquisition", "ceasefire", "nuclear", "convicted", "guilty", "verdict", "bombing", "terrorist attack",
         "outage", "shutdown", "disruption", "اختلال گسترده", "قطع گسترده",
-        "تحریم", "نرخ بهره", "تورم", "دادگاه", "انحصار", "ادغام", "تملک", "آتش‌بس",
+        "تحریم", "نرخ بهره", "تورم", "دادگاه", "انحصار", "ادغام", "تملک", "محکوم", "مجرم شناخته شد", "حکم دادگاه", "بمب‌گذاری", "بمب گذاری", "حمله تروریستی", "آتش‌بس",
     ))
     ai_concrete_action = any(x in title for x in (
         "regulation", "regulations", "regulated", "regulate", "banned", "ban",
@@ -697,6 +697,9 @@ def install(main):
         else:
             eligible = []
 
+        # Pass several strong candidates forward so downstream failures
+        # (translation, duplicate validation, media, publication) have a
+        # fallback instead of turning the whole run into Published: 0.
         selected = []
         families = Counter()
         for candidate in eligible:
