@@ -691,7 +691,10 @@ def install(main):
             default=0,
         )
         if highest_tier >= 3:
-            eligible = [c for c in filtered if int(c.get("publication_tier", 1) or 1) >= 3]
+            # Keep tier-2 consequential stories in the fallback queue. A
+            # critical story can fail later (duplicate, translation, media);
+            # the next major story must still get a chance in the same run.
+            eligible = [c for c in filtered if int(c.get("publication_tier", 1) or 1) >= 2]
         elif highest_tier >= 2:
             eligible = [c for c in filtered if int(c.get("publication_tier", 1) or 1) >= 2]
         else:
