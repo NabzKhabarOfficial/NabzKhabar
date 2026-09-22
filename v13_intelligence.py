@@ -193,25 +193,39 @@ def _global_consequential_override(candidate):
     if any(x in title for x in routine_exclusion):
         return False
 
+    # Routine sports/personality stories are not global consequential news.
+    # Keep finals/titles/results elsewhere in the normal editorial pipeline,
+    # but do not let a generic appointment/challenge/profile story bypass it.
+    sports_routine = (
+        "challenge as", "appointed as", "named as", "takes charge",
+        "floundering", "struggles", "struggling", "could become",
+        "set to become", "coach", "manager", "boss",
+        "سرمربی", "مربی", "انتخاب شد", "منصوب شد", "چالش",
+        "دچار مشکل", "در آستانه", "احتمالا", "احتمالاً",
+    )
+    if any(x in title for x in sports_routine):
+        return False
+
+    # Only concrete verbs/actions belong here. Broad topics (AI, government,
+    # parliament, court, inflation, etc.) are deliberately NOT actions.
     actions = (
         "approved", "approves", "passed", "passes", "banned", "ban", "sanction",
         "sanctions", "blocked", "blocks", "suspended", "suspends", "resigned",
         "halted", "halts", "disrupted", "disruption", "ground stop", "stopped",
         "outage", "failed", "failure", "severed", "repaired", "restored",
-        "arrested", "charged", "indicted", "ruled", "court", "lawsuit",
-        "signed", "signs", "declaration", "declared", "orders", "ordered",
-        "requires", "required", "restricts", "restricted", "introduces",
-        "introduced", "implements", "implemented", "joins", "joined",
-        "settlement", "acquired", "acquisition", "merger", "recall", "raises",
-        "cuts", "rate", "inflation", "tariff", "ceasefire", "agreement",
-        "deal", "withdraw", "deploy", "election", "government", "parliament",
-        "central bank", "outage", "shutdown", "launch", "released", "release",
-        "leaders", "world leaders", "joint statement", "pledge",
-        "urges", "urge", "calls on", "call for",
-        "chip", "artificial intelligence", "ai", "هوش مصنوعی", "قانون", "تصویب",
-        "ممنوع", "تحریم", "بازداشت", "دادگاه", "شکایت", "توافق", "توقف",
-        "تعلیق", "استعفا", "انتخابات", "دولت", "مجلس", "بانک مرکزی", "نرخ بهره",
-        "تورم", "ادغام", "تملک", "قطع گسترده", "اختلال گسترده", "عرضه شد",
+        "arrested", "charged", "indicted", "ruled", "sued", "convicted",
+        "signed", "signs", "declared", "orders", "ordered", "requires", "required",
+        "restricts", "restricted", "introduces", "introduced", "implements",
+        "implemented", "joined", "settlement", "acquired", "acquisition",
+        "merged", "merger", "recalled", "recall", "raises", "cuts", "increased",
+        "decreased", "withdraw", "withdrew", "deployed", "deploy", "launched",
+        "launches", "released", "release", "closed", "opens", "opened",
+        "calls on", "call for", "urges", "urge", "pledges", "pledged",
+        "تایید", "تأیید", "تصویب", "ممنوع", "تحریم", "بازداشت", "محکوم",
+        "امضا", "امضا کرد", "اعلام کرد", "دستور داد", "محدود کرد", "محدودیت",
+        "تعلیق", "تعلیق کرد", "توقف", "متوقف کرد", "لغو", "لغو کرد",
+        "افزایش", "افزایش داد", "کاهش", "کاهش داد", "ادغام", "تملک",
+        "عرضه کرد", "رونمایی کرد", "قطع شد", "مختل شد", "بازداشت شد",
     )
     actors = (
         "us", "u.s.", "united states", "white house", "trump", "china", "russia",
@@ -247,9 +261,9 @@ def _global_consequential_override(candidate):
         "regulation", "regulations", "regulated", "regulate", "banned", "ban",
         "approved", "approves", "launch", "launched", "released", "release",
         "acquired", "acquisition", "deal", "agreement", "safety", "safeguard",
-        "governance", "chips", "chip", "outage", "shutdown",
+        "governance", "outage", "shutdown", "rolls out", "rolled out",
         "مقررات", "قانون", "ممنوع", "تصویب", "عرضه", "رونمایی", "توافق",
-        "تملک", "ادغام", "ایمنی", "امنیت", "حکمرانی", "تراشه", "قطعی", "اختلال",
+        "تملک", "ادغام", "ایمنی", "امنیت", "حکمرانی", "قطعی", "اختلال",
     ))
     if topic_hit and not concrete_topic and not ai_concrete_action and not actor_hit:
         return False
