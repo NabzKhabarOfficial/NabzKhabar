@@ -270,6 +270,31 @@ def _global_consequential_override(candidate):
     return action_hit and (actor_hit or concrete_topic or ai_concrete_action)
 
 
+def _unga_breaking_override(candidate):
+    """Protect substantive UN General Assembly breaking coverage from generic gates."""
+    title = _norm(candidate.get("title", "")).lower()
+    body = _text(candidate).lower()
+    text = title + " " + body[:3500]
+    anchors = (
+        "un general assembly", "united nations general assembly", "unga",
+        "general debate", "مجمع عمومی سازمان ملل", "مجمع عمومی", "مناظره عمومی",
+    )
+    if not any(x in text for x in anchors):
+        return False
+    substantive = (
+        "war", "conflict", "attack", "strike", "iran", "israel", "gaza",
+        "ukraine", "russia", "yemen", "sanctions", "nuclear", "ceasefire",
+        "peace", "ai", "artificial intelligence", "climate", "pandemic",
+        "reform", "security", "humanitarian", "threat", "warn", "warning",
+        "calls for", "calls on", "urges", "demands", "announces", "pledges",
+        "speech", "address", "remarks", "vows", "condemns",
+        "جنگ", "درگیری", "حمله", "ایران", "اسرائیل", "غزه", "اوکراین",
+        "روسیه", "یمن", "تحریم", "هسته‌ای", "آتش‌بس", "صلح", "هوش مصنوعی",
+        "اقلیم", "همه‌گیری", "اصلاح", "امنیت", "بشردوستانه", "تهدید",
+        "هشدار", "خواستار", "محکوم", "اعلام کرد", "سخنرانی", "اظهارات",
+    )
+    return any(x in text for x in substantive)
+
 def _high_impact_security_override(candidate):
     title = _norm(candidate.get("title", "")).lower()
 
@@ -447,6 +472,10 @@ def is_publishable(main, candidate):
 
     has_event = any(x.lower() in lower or x.lower() in body[:3000] for x in HIGH_IMPACT + ACTION_TERMS)
 
+    if _unga_breaking_override(candidate):
+        score = max(event_score(main, candidate), MIN_EVENT_SCORE + 3)
+        return True, score, "unga-breaking-override"
+
     score = event_score(main, candidate)
     if _high_impact_security_override(candidate):
         score = max(score, MIN_EVENT_SCORE + 2)
@@ -581,6 +610,13 @@ def install(main):
 
     if original_strict_gate is not None:
         def _intelligence_strict_gate(candidate):
+            if _unga_breaking_override(candidate):
+                print(
+                    "V13 INTELLIGENCE: UNGA breaking override -> "
+                    f"{candidate.get('title', '')}",
+                    flush=True,
+                )
+                return True
             if _high_impact_security_override(candidate):
                 print(
                     "V13 INTELLIGENCE: high-impact security override -> "
