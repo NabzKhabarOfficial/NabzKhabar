@@ -385,6 +385,31 @@ def is_publishable(main, candidate):
         return False, 0, "low-value"
 
     body = _text(candidate).lower()
+
+    # Block metaphorical/routine uses of high-impact words (for example
+    # "جنگ تکالیف") before they can trigger the security override.
+    metaphorical_routine = (
+        "تکلیف", "تکالیف", "مدرسه", "دانش آموز", "دانش‌آموز", "فرزند",
+        "والد", "خانواده", "خانه", "آموزش", "آموزشی", "درس", "امتحان",
+        "مدیریت زمان", "مهارت", "روانشناسی", "روان‌شناسی", "سبک زندگی",
+        "زندگی روزمره", "ورزش", "مسابقه", "بازی", "سرگرمی",
+        "homework", "school", "student", "parenting", "parent", "family",
+        "education", "educational", "lesson", "exam", "self-help",
+        "lifestyle", "everyday life", "sports", "game", "entertainment",
+    )
+    concrete_security_event = (
+        "کشته", "زخمی", "مجروح", "مفقود", "انفجار", "بمباران", "موشک",
+        "حمله", "درگیری", "تیراندازی", "ترور", "زلزله", "سیل", "سونامی",
+        "طوفان", "تخلیه", "آتش سوزی", "آتش‌سوزی", "سقوط هواپیما",
+        "attack", "strike", "missile", "bombing", "explosion", "shooting",
+        "earthquake", "flood", "tsunami", "typhoon", "evacuation",
+        "killed", "wounded", "missing", "crash",
+    )
+    if any(x in lower for x in metaphorical_routine) and not any(
+        x in lower for x in concrete_security_event
+    ):
+        return False, 0, "routine-metaphorical-topic"
+
     has_event = any(x.lower() in lower or x.lower() in body[:3000] for x in HIGH_IMPACT + ACTION_TERMS)
 
     score = event_score(main, candidate)
