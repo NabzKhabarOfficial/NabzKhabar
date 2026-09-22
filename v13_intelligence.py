@@ -287,6 +287,41 @@ def _high_impact_security_override(candidate):
     if any(x in title for x in ceremonial_or_routine):
         return False
 
+    # Sports headlines must not enter the security/crisis override merely
+    # because they contain words such as "victory", "attack", or "stormy".
+    # Keep the override for genuine public-safety incidents involving sports.
+    sports_routine = (
+        "کبدی", "فوتبال", "فوتسال", "والیبال", "بسکتبال", "تنیس",
+        "کریکت", "هندبال", "دوومیدانی", "شنا", "بوکس", "کشتی",
+        "جودو", "کاراته", "قهرمانی", "قهرمان", "مسابقه", "پیروزی",
+        "شکست", "لیگ", "جام", "مدال", "تیم", "بازیکن",
+        "kabaddi", "football", "futsal", "volleyball", "basketball",
+        "tennis", "cricket", "handball", "athletics", "boxing",
+        "wrestling", "judo", "karate", "championship", "champion",
+        "match", "victory", "defeat", "league", "cup", "medal",
+        "team", "player",
+    )
+    sports_public_safety = (
+        "کشته", "جان باخت", "زخمی", "مجروح", "فوت", "مفقود",
+        "انفجار", "تیراندازی", "حمله تروریستی", "حادثه مرگبار",
+        "killed", "dead", "fatal", "wounded", "injured", "missing",
+        "explosion", "shooting", "terrorist attack", "fatal crash",
+    )
+    if any(x in title for x in sports_routine) and not any(
+        x in title for x in sports_public_safety
+    ):
+        return False
+
+    # Weekly/recap/roundup pieces are not breaking-news events.
+    recap_routine = (
+        "weekly", "week in review", "weekly review", "roundup", "recap",
+        "this week", "what happened this week", "مروری هفتگی", "مرور هفتگی",
+        "جمع‌بندی هفتگی", "جمع بندی هفتگی", "گزارش هفتگی", "اخبار هفته",
+        "مرور اخبار", "جمع‌بندی اخبار", "جمع بندی اخبار",
+    )
+    if any(x in title for x in recap_routine):
+        return False
+
     # Historical retrospectives and commemorative pieces must not enter the
     # breaking-news security path merely because the old event was serious.
     historical_or_commemorative = (
