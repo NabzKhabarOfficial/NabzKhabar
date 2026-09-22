@@ -39,7 +39,7 @@ jobs:
           pip install -r requirements.txt
           python -m py_compile v13_argos_translate.py
 
-      - name: Real Argos translation and numeric validation test
+      - name: Real Argos translation and numeric safety test
         env:
           ARGOS_PACKAGES_DIR: ${{ github.workspace }}/.argos-packages
         run: |
@@ -82,6 +82,12 @@ jobs:
           print("EXPLICIT DIGIT VALUES:", values)
           if 25 not in values:
               raise SystemExit("FAIL: Persian digit ۲۵ was not detected")
+
+          print("5) Written-number compatibility check...")
+          written = a._numeric_values("twenty-three people were rescued")
+          print("WRITTEN NUMBER VALUES:", written)
+          if written:
+              raise SystemExit("FAIL: written number words must not be treated as explicit digits")
 
           print("=== V13 ARGOS STANDALONE TEST: PASS ===")
           PY
