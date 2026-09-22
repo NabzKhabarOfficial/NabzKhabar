@@ -1436,6 +1436,34 @@ def same_story(a, b):
     ):
         return True
 
+    # Strong event-anchor duplicate guard. Different publishers often phrase
+    # the same breaking event very differently (e.g. "students injured" vs
+    # "11 killed and wounded"). If a concrete event/location pair and the same
+    # numeric casualty count are present, treat it as the same story even when
+    # generic token similarity is below the normal threshold.
+    event_anchors = (
+        "تیراندازی", "انفجار", "زلزله", "سیل", "سونامی", "طوفان",
+        "حمله", "حملات", "درگیری", "سقوط", "آتش سوزی", "آتش‌سوزی",
+        "shooting", "explosion", "earthquake", "flood", "tsunami",
+        "typhoon", "attack", "strike", "crash", "fire",
+    )
+    location_anchors = (
+        "ترکیه", "اوکراین", "روسیه", "ژاپن", "ایران", "عربستان",
+        "آمریکا", "آمریکا", "اسرائیل", "یمن", "لبنان",
+        "turkey", "ukraine", "russia", "japan", "iran", "saudi",
+        "america", "israel", "yemen", "lebanon",
+    )
+    event_a = {x for x in event_anchors if x in title_a.lower()}
+    event_b = {x for x in event_anchors if x in title_b.lower()}
+    loc_a = {x for x in location_anchors if x in title_a.lower()}
+    loc_b = {x for x in location_anchors if x in title_b.lower()}
+    if (
+        common_numbers
+        and (event_a & event_b)
+        and (loc_a & loc_b)
+    ):
+        return True
+
     return False
 
 
