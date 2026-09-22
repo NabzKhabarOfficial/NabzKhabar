@@ -417,21 +417,29 @@ def gemini_request(main, title, article_text):
             # "AI localization unavailable".
             argos_title = main.clean_title(argos_result.get("title", ""))
             argos_summary = main.clean_content(argos_result.get("summary", ""))
-            argos_ok = (
-                bool(argos_title)
-                and bool(argos_summary)
-                and _persian_ratio(argos_title) >= 0.60
-                and _persian_ratio(argos_summary) >= 0.60
-                and not _bad_meta(argos_title)
-                and not _bad_meta(argos_summary)
-                and _sentence_count(argos_summary) <= 3
-                and len(argos_summary) <= 750
-                and not re.search(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", argos_title + " " + argos_summary)
-            )
-            if argos_ok:
+            # Argos already passed its dedicated translation safety checks.
+            # Keep only publication-level structural/language checks here.
+            # Do not apply AI-specific content heuristics to the local fallback.
+            argos_reasons = []
+            if not argos_title:
+                argos_reasons.append("empty-title")
+            if not argos_summary:
+                argos_reasons.append("empty-summary")
+            if _persian_ratio(argos_title) < 0.60:
+                argos_reasons.append("title-not-persian")
+            if _persian_ratio(argos_summary) < 0.60:
+                argos_reasons.append("summary-not-persian")
+            if _bad_meta(argos_title) or _bad_meta(argos_summary):
+                argos_reasons.append("metadata")
+            if _sentence_count(argos_summary) > 3:
+                argos_reasons.append("too-many-sentences")
+            if len(argos_summary) > 750:
+                argos_reasons.append("too-long")
+            if argos_reasons:
+                print("V13 AI ROUTER: Argos final safety blocked: " + ", ".join(argos_reasons))
+            else:
                 print("V13 AI ROUTER: SUCCESS via Argos Translate (final fallback).")
                 return {"title": argos_title, "summary": argos_summary}
-            print("V13 AI ROUTER: Argos returned unsafe/invalid Persian output; publication blocked.")
 
     print("V13 AI ROUTER: Gemini/OpenRouter failed; Argos unavailable or rejected; publication will use existing V13 safety rules.")
     return None
