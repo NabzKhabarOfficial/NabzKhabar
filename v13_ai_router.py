@@ -409,10 +409,29 @@ def gemini_request(main, title, article_text):
     if foreign:
         argos_result = _argos_foreign_translation(title, source)
         if argos_result:
-            validated = _validate(main, title, source, argos_result, True)
-            if validated:
+            # Argos has its own dedicated safety validation. Do not run the
+            # stricter AI numeric validator again: it compares explicit digits
+            # only, while Argos legitimately converts written English numbers
+            # into Persian words/digits. Re-validating here caused valid Argos
+            # translations to be discarded and the story to be reported as
+            # "AI localization unavailable".
+            argos_title = main.clean_title(argos_result.get("title", ""))
+            argos_summary = main.clean_content(argos_result.get("summary", ""))
+            argos_ok = (
+                bool(argos_title)
+                and bool(argos_summary)
+                and _persian_ratio(argos_title) >= 0.60
+                and _persian_ratio(argos_summary) >= 0.60
+                and not _bad_meta(argos_title)
+                and not _bad_meta(argos_summary)
+                and _sentence_count(argos_summary) <= 3
+                and len(argos_summary) <= 750
+                and not re.search(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", argos_title + " " + argos_summary)
+            )
+            if argos_ok:
                 print("V13 AI ROUTER: SUCCESS via Argos Translate (final fallback).")
-                return validated
+                return {"title": argos_title, "summary": argos_summary}
+            print("V13 AI ROUTER: Argos returned unsafe/invalid Persian output; publication blocked.")
 
     print("V13 AI ROUTER: Gemini/OpenRouter failed; Argos unavailable or rejected; publication will use existing V13 safety rules.")
     return None
