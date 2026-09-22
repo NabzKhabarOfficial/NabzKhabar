@@ -153,13 +153,22 @@ def translate_en_to_fa(text):
         if not chunks:
             chunks = [value[:1800]]
 
-        translated = [
-            argostranslate.translate.translate(chunk, "en", "fa")
-            for chunk in chunks
-        ]
-        return " ".join(
-            x.strip() for x in translated if x and x.strip()
-        ).strip()
+        translated = []
+        for chunk in chunks:
+            value_out = ""
+            for attempt in range(2):
+                try:
+                    value_out = argostranslate.translate.translate(chunk, "en", "fa")
+                except Exception as exc:
+                    print(f"V13 ARGOS: chunk translation attempt {attempt + 1} failed: {exc}")
+                    value_out = ""
+                if value_out and value_out.strip():
+                    break
+                if attempt == 0:
+                    time.sleep(0.25)
+            if value_out and value_out.strip():
+                translated.append(value_out.strip())
+        return " ".join(translated).strip()
     except Exception as exc:
         print(f"V13 ARGOS: translation error: {exc}")
         return ""
