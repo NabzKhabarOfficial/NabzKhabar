@@ -451,7 +451,22 @@ def gemini_request(main, title, article_text):
                 argos_reasons.append("title-not-persian")
             if _persian_ratio(argos_summary) < 0.60:
                 argos_reasons.append("summary-not-persian")
-            if _bad_meta(argos_title) or _bad_meta(argos_summary):
+            # Argos translations may legitimately contain Persian prose such as
+            # «به گزارش ...» when that phrase exists in the source. The generic
+            # AI metadata gate treats that phrase as metadata and was therefore
+            # discarding otherwise valid fallback translations. At this stage
+            # only block actual URL/source-label artifacts that should never
+            # survive the sanitizer above.
+            def _argos_bad_meta(value):
+                text = str(value or "")
+                if re.search(r"https?://\S+|www\.\S+", text, flags=re.I):
+                    return True
+                return bool(re.search(
+                    r"(?:^|[\n|])\s*(?:منبع|source|منبع خبر|لینک|link)\s*[:：]",
+                    text,
+                    flags=re.I,
+                ))
+            if _argos_bad_meta(argos_title) or _argos_bad_meta(argos_summary):
                 argos_reasons.append("metadata")
             if _sentence_count(argos_summary) > 3:
                 argos_reasons.append("too-many-sentences")
