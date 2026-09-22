@@ -4565,21 +4565,11 @@ def process_news(
                     pass
 
     # ========================================================
-    # MEDIA INTEGRITY GATE
-    # ========================================================
-    # V13 news posts must have usable visual media. A text-only fallback
-    # can turn a visual/reporting story into an ambiguous publication.
-    # Education, market-price, and other independent pipelines are not
-    # affected because they do not call this news process.
-    print(
-        "MEDIA INTEGRITY GATE: no usable photo/video; "
-        "news publication blocked."
-    )
-    return False
-
-    # ========================================================
     # TEXT FALLBACK
     # ========================================================
+    # Media is preferred, but missing/broken article media must never
+    # silently discard an otherwise valid news story. Video stories remain
+    # protected above and are not converted to a misleading text post.
 
     success = send_message(
         caption
