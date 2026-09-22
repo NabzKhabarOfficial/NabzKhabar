@@ -217,15 +217,19 @@ def _global_consequential_override(candidate):
         "signed", "signs", "declared", "orders", "ordered", "requires", "required",
         "restricts", "restricted", "introduces", "introduced", "implements",
         "implemented", "joined", "settlement", "acquired", "acquisition",
-        "merged", "merger", "recalled", "recall", "convicted", "guilty", "verdict", "raises", "cuts", "increased",
-        "decreased", "withdraw", "withdrew", "deployed", "deploy", "launched",
-        "launches", "released", "release", "closed", "opens", "opened",
-        "calls on", "call for", "urges", "urge", "pledges", "pledged",
+        "merged", "merger", "recalled", "recall", "guilty", "verdict", "raises",
+        "cuts", "increased", "decreased", "withdraw", "withdrew", "deployed",
+        "deploy", "launched", "launches", "released", "release", "closed",
+        "opens", "opened", "calls on", "call for", "urges", "urge", "pledges",
+        "pledged", "criticizes", "criticised", "warns", "warned", "demands",
+        "demanded", "announces", "announced", "says", "said",
         "تایید", "تأیید", "تصویب", "ممنوع", "تحریم", "بازداشت", "محکوم",
-        "امضا", "امضا کرد", "اعلام کرد", "دستور داد", "محدود کرد", "محدودیت",
-        "تعلیق", "تعلیق کرد", "توقف", "متوقف کرد", "لغو", "لغو کرد",
+        "امضا", "امضا کرد", "اعلام کرد", "اعلام", "دستور داد", "محدود کرد",
+        "محدودیت", "تعلیق", "تعلیق کرد", "توقف", "متوقف کرد", "لغو", "لغو کرد",
         "افزایش", "افزایش داد", "کاهش", "کاهش داد", "ادغام", "تملک",
         "عرضه کرد", "رونمایی کرد", "قطع شد", "مختل شد", "بازداشت شد",
+        "خواستار", "هشدار داد", "هشدار", "محکوم کرد", "درخواست کرد",
+        "درخواست", "انتقاد کرد", "انتقاد", "گفت",
     )
     actors = (
         "us", "u.s.", "united states", "white house", "trump", "china", "russia",
@@ -253,9 +257,12 @@ def _global_consequential_override(candidate):
     ))
     concrete_topic = any(x in title for x in (
         "sanction", "sanctions", "tariff", "tariffs", "interest rate", "inflation",
-        "lawsuit", "antitrust", "merger", "acquisition", "ceasefire", "nuclear", "convicted", "guilty", "verdict", "bombing", "terrorist attack",
+        "lawsuit", "antitrust", "merger", "acquisition", "ceasefire", "nuclear",
+        "convicted", "guilty", "verdict", "bombing", "terrorist attack",
         "outage", "shutdown", "disruption", "اختلال گسترده", "قطع گسترده",
-        "تحریم", "نرخ بهره", "تورم", "دادگاه", "انحصار", "ادغام", "تملک", "محکوم", "مجرم شناخته شد", "حکم دادگاه", "بمب‌گذاری", "بمب گذاری", "حمله تروریستی", "آتش‌بس",
+        "تحریم", "نرخ بهره", "تورم", "دادگاه", "انحصار", "ادغام", "تملک",
+        "محکوم", "مجرم شناخته شد", "حکم دادگاه", "بمب‌گذاری", "بمب گذاری",
+        "حمله تروریستی", "آتش‌بس", "جنگ", "حمله", "درگیری", "تهدید",
     ))
     ai_concrete_action = any(x in title for x in (
         "regulation", "regulations", "regulated", "regulate", "banned", "ban",
