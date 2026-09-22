@@ -286,6 +286,41 @@ def _high_impact_security_override(candidate):
     )
     if any(x in title for x in ceremonial_or_routine):
         return False
+
+    # Historical retrospectives and commemorative pieces must not enter the
+    # breaking-news security path merely because the old event was serious.
+    historical_or_commemorative = (
+        "مروری به", "مرور حمله", "مرور حادثه", "روایت حمله", "روایت حادثه",
+        "به مناسبت", "به‌یاد", "به یاد", "سالگرد", "هشتمین سال", "هفتمین سال",
+        "ششمین سال", "پنجمین سال", "چهارمین سال", "سومین سال", "دومین سال",
+        "سال ۱۳۹۷", "سال ۱۳۹۶", "سال ۱۳۹۵", "سال ۱۳۹۴", "سال ۱۳۹۳",
+        "سال ۱۳۹۲", "سال ۱۳۹۱", "سال ۱۳۹۰", "۱۳۹۷", "۱۳۹۶", "۱۳۹۵",
+        "۱۳۹۴", "۱۳۹۳", "۱۳۹۲", "۱۳۹۱", "۱۳۹۰",
+        "years ago", "anniversary", "in 2018", "in 2019", "in 2020",
+        "retrospective", "remembering", "on this day",
+    )
+    if any(x in title for x in historical_or_commemorative):
+        return False
+
+    # A sports/personality accident is not a security incident unless the
+    # headline itself contains a concrete mass-casualty or public-safety
+    # signal. This keeps athlete crashes from bypassing editorial filtering.
+    sports_personal_routine = (
+        "ufc", "champion", "fighter", "strickland", "pereira",
+        "footballer", "football player", "wrestler", "athlete",
+        "ورزشکار", "قهرمان", "کشتی‌گیر", "کشتی گیر", "فوتبالیست",
+    )
+    sports_accident = (
+        "crash", "accident", "حادثه", "تصادف", "سقوط",
+    )
+    if any(x in title for x in sports_personal_routine) and any(x in title for x in sports_accident):
+        public_safety = any(x in title for x in (
+            "killed", "dead", "deaths", "fatal", "fatalities", "wounded",
+            "injured", "mass casualty", "کشته", "جان باخت", "فوت", "زخمی",
+            "مجروح", "قربانی",
+        ))
+        if not public_safety:
+            return False
     title_signals = sum(x.lower() in title for x in HIGH_IMPACT_SECURITY_SIGNALS)
     actor_hits = sum(x.lower() in title for x in HIGH_IMPACT_ACTORS)
     strong_topic = any(x.lower() in title for x in HIGH_IMPACT)
