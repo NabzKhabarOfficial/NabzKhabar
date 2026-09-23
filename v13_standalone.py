@@ -60,7 +60,7 @@ MAX_IMAGE_MB = 12
 
 # The bot runs every 10 minutes. Keep discovery focused on a short,
 # overlapping window so delayed RSS publication does not create gaps.
-FEED_COLLECTION_WINDOW_MINUTES = 30
+FEED_COLLECTION_WINDOW_MINUTES = 60
 
 # News discovery/publication freshness is intentionally identical
 # to the 30-minute feed window.
@@ -87,6 +87,7 @@ if not BOT_TOKEN:
 print(f"Gemini enabled: {bool(AI_API_KEY)}")
 print(f"Gemini model: {GEMINI_MODEL}")
 print(f"Freshness window: {MAX_NEWS_AGE_HOURS}h")
+print(f"Important-news rescue window: {IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES}m")
 print(f"Feed discovery window: {FEED_COLLECTION_WINDOW_MINUTES}m")
 print(f"Semantic history: {SEMANTIC_HISTORY_DAYS} days")
 
@@ -512,7 +513,7 @@ IMPORTANT_KEYWORDS = [
 # Important-news rescue: the normal feed window stays 30 minutes, but
 # high-impact stories are allowed a short grace period so delayed RSS
 # timestamps cannot silently discard major events before intelligence scoring.
-IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES = 180
+IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES = 360
 
 IMPORTANT_RESCUE_PATTERNS = [
     "جنگ", "حمله", "حمله موشکی", "بمباران", "انفجار", "زلزله", "سیل",
@@ -3170,11 +3171,31 @@ def collect_feed(
 
     try:
 
-        response = SESSION.get(
-            url,
-            timeout=REQUEST_TIMEOUT
-        )
-
+        response = None
+        for attempt in range(3):
+            try:
+                response = SESSION.get(
+                    url,
+                    timeout=REQUEST_TIMEOUT
+                )
+                if response.status_code not in (429, 500, 502, 503, 504):
+                    break
+                wait_seconds = 1.5 * (2 ** attempt)
+                print(
+                    f"V13 RSS RETRY: {category} | HTTP {response.status_code} | "
+                    f"attempt={attempt + 1}/3 | wait={wait_seconds:.1f}s"
+                )
+                if attempt < 2:
+                    time.sleep(wait_seconds)
+            except requests.RequestException as exc:
+                print(
+                    f"V13 RSS RETRY: {category} | {type(exc).__name__} | "
+                    f"attempt={attempt + 1}/3"
+                )
+                if attempt < 2:
+                    time.sleep(1.5 * (2 ** attempt))
+        if response is None:
+            raise RuntimeError("RSS request returned no response")
         response.raise_for_status()
 
         feed = feedparser.parse(
@@ -3637,7 +3658,7 @@ def collect_candidates(
 
     # More Google queries are now used for breadth, so keep discovery
     # parallelized to avoid making network wait grow with query count.
-    with ThreadPoolExecutor(max_workers=12) as executor:
+    with ThreadPoolExecutor(max_workers=6) as executor:
 
         for items in executor.map(
             collect_one_google,
@@ -4991,31 +5012,40 @@ def _is_iran_source(candidate):
 # internationally relevant. Routine domestic politics, courts, policing,
 # elections, weather, business and local accidents must stay out of NABZ.
 # Only explicit cross-border/global signals can override this filter.
+# Foreign-local scope guard:
+# A country/city mention alone must never turn routine domestic reporting
+# into a NABZ international story. A local foreign story is allowed only when
+# there is a genuine cross-border/global signal, or an objectively large-scale
+# event with nationwide/mass-casualty consequences.
 FOREIGN_LOCAL_GLOBAL_OVERRIDE_TERMS = [
     r"\b(?:global|worldwide|international|cross[- ]border|multinational|"
     r"united\s+nations|\bun\b|nato|g7|g20|"
-    r"war|invasion|conflict|ceasefire|sanctions?|tariffs?|"
-    r"missile|nuclear|military|troops|airstrike|air\s+strike|"
     r"iran|russia|ukraine|israel|gaza|china|taiwan|north\s+korea|"
-    r"middle\s+east|european\s+union|eu|"
-    r"terror(?:ism|ist)?|hostage|"
+    r"middle\s+east|european\s+union|\beu\b|"
+    r"war|invasion|international\s+court|icc|"
     r"pandemic|epidemic|outbreak|"
-    r"earthquake|tsunami|hurricane|typhoon|major\s+wildfire|"
     r"mass\s+casualt(?:y|ies)|mass\s+evacuation)\b",
     r"جهانی|بین.?المللی|فرامرزی|چندملیتی|سازمان\s+ملل|ناتو|گروه.?های?\s*۷|گروه.?های?\s*۲۰|"
-    r"جنگ|تهاجم|درگیری|آتش.?بس|تحریم|تعرفه|موشک|هسته.?ای|نظامی|نیروهای?\s+نظامی|حمله هوایی|"
     r"ایران|روسیه|اوکراین|اسرائیل|غزه|چین|تایوان|کره\s+شمالی|خاورمیانه|اتحادیه اروپا|"
-    r"تروریسم|تروریستی|گروگان|همه.?گیری|اپیدمی|شیوع|"
-    r"زلزله|سونامی|هاریکن|تایفون|آتش.?سوزی گسترده|"
-    r"تلفات گسترده|تخلیه گسترده",
+    r"جنگ|تهاجم|درگیری|آتش.?بس|تحریم|تعرفه|دادگاه بین.?المللی|دیوان کیفری بین.?المللی|"
+    r"همه.?گیری|اپیدمی|شیوع|تلفات گسترده|تخلیه گسترده",
+]
+
+FOREIGN_LOCAL_SEVERE_EVENT_TERMS = [
+    r"\b(?:mass[- ]casualt(?:y|ies)|major disaster|national emergency|"
+    r"dozens killed|dozens injured|hundreds killed|hundreds injured|"
+    r"multiple fatalities|large[- ]scale evacuation|nationwide outage)\b",
+    r"تلفات گسترده|کشته شدن ده.?ها نفر|زخمی شدن ده.?ها نفر|صدها کشته|صدها زخمی|"
+    r"فاجعه بزرگ|وضعیت اضطراری ملی|تخلیه گسترده|اختلال سراسری|قطعی سراسری",
 ]
 
 def _has_foreign_global_override(text):
     value = str(text or "")
-    return any(
-        re.search(pattern, value, re.I)
-        for pattern in FOREIGN_LOCAL_GLOBAL_OVERRIDE_TERMS
-    )
+    return any(re.search(pattern, value, re.I) for pattern in FOREIGN_LOCAL_GLOBAL_OVERRIDE_TERMS)
+
+def _has_foreign_severe_scale(text):
+    value = str(text or "")
+    return any(re.search(pattern, value, re.I) for pattern in FOREIGN_LOCAL_SEVERE_EVENT_TERMS)
 
 def _foreign_local_only(candidate):
     if _is_iran_source(candidate):
@@ -5026,19 +5056,21 @@ def _foreign_local_only(candidate):
         for k in ("title", "summary", "description")
     )
 
-    has_local = any(
-        re.search(pattern, text, re.I)
-        for pattern in FOREIGN_LOCAL_TERMS
-    )
+    has_local = any(re.search(pattern, text, re.I) for pattern in FOREIGN_LOCAL_TERMS)
     if not has_local:
         return False
 
-    # Do NOT use the broad GLOBAL_HIGH_IMPACT_PATTERNS here. Terms such as
-    # "government", "president", "parliament", "court", "election",
-    # "emergency" and "attack" routinely occur in purely domestic stories.
-    # A foreign-local story is allowed through only when there is an
-    # explicit cross-border/global signal.
-    return not _has_foreign_global_override(text)
+    # Crucial fix: words such as attack, crash, military, emergency,
+    # president, election, police or government are NOT global signals.
+    # This blocks routine UK/Australia/US domestic stories while retaining
+    # genuinely cross-border stories and objectively large-scale disasters.
+    if _has_foreign_global_override(text):
+        return False
+
+    if _has_foreign_severe_scale(text):
+        return False
+
+    return True
 
 def _filter_foreign_local_scope(candidates):
     kept = []
