@@ -4992,19 +4992,19 @@ def _is_iran_source(candidate):
 # elections, weather, business and local accidents must stay out of NABZ.
 # Only explicit cross-border/global signals can override this filter.
 FOREIGN_LOCAL_GLOBAL_OVERRIDE_TERMS = [
-    r"\\b(?:global|worldwide|international|cross[- ]border|multinational|"
-    r"united\\s+nations|\\bun\\b|nato|g7|g20|"
+    r"\b(?:global|worldwide|international|cross[- ]border|multinational|"
+    r"united\s+nations|\bun\b|nato|g7|g20|"
     r"war|invasion|conflict|ceasefire|sanctions?|tariffs?|"
-    r"missile|nuclear|military|troops|airstrike|air\\s+strike|"
-    r"iran|russia|ukraine|israel|gaza|china|taiwan|north\\s+korea|"
-    r"middle\\s+east|european\\s+union|eu|"
+    r"missile|nuclear|military|troops|airstrike|air\s+strike|"
+    r"iran|russia|ukraine|israel|gaza|china|taiwan|north\s+korea|"
+    r"middle\s+east|european\s+union|eu|"
     r"terror(?:ism|ist)?|hostage|"
     r"pandemic|epidemic|outbreak|"
-    r"earthquake|tsunami|hurricane|typhoon|major\\s+wildfire|"
-    r"mass\\s+casualt(?:y|ies)|mass\\s+evacuation)\\b",
-    r"جهانی|بین.?المللی|فرامرزی|چندملیتی|سازمان\\s+ملل|ناتو|گروه.?های?\\s*۷|گروه.?های?\\s*۲۰|"
-    r"جنگ|تهاجم|درگیری|آتش.?بس|تحریم|تعرفه|موشک|هسته.?ای|نظامی|نیروهای?\\s+نظامی|حمله هوایی|"
-    r"ایران|روسیه|اوکراین|اسرائیل|غزه|چین|تایوان|کره\\s+شمالی|خاورمیانه|اتحادیه اروپا|"
+    r"earthquake|tsunami|hurricane|typhoon|major\s+wildfire|"
+    r"mass\s+casualt(?:y|ies)|mass\s+evacuation)\b",
+    r"جهانی|بین.?المللی|فرامرزی|چندملیتی|سازمان\s+ملل|ناتو|گروه.?های?\s*۷|گروه.?های?\s*۲۰|"
+    r"جنگ|تهاجم|درگیری|آتش.?بس|تحریم|تعرفه|موشک|هسته.?ای|نظامی|نیروهای?\s+نظامی|حمله هوایی|"
+    r"ایران|روسیه|اوکراین|اسرائیل|غزه|چین|تایوان|کره\s+شمالی|خاورمیانه|اتحادیه اروپا|"
     r"تروریسم|تروریستی|گروگان|همه.?گیری|اپیدمی|شیوع|"
     r"زلزله|سونامی|هاریکن|تایفون|آتش.?سوزی گسترده|"
     r"تلفات گسترده|تخلیه گسترده",
