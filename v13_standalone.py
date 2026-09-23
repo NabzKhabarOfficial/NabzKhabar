@@ -4987,18 +4987,58 @@ def _is_iran_source(candidate):
         for host in _candidate_hosts(candidate)
     )
 
+# A foreign country/city/state mention is NOT enough to make a story
+# internationally relevant. Routine domestic politics, courts, policing,
+# elections, weather, business and local accidents must stay out of NABZ.
+# Only explicit cross-border/global signals can override this filter.
+FOREIGN_LOCAL_GLOBAL_OVERRIDE_TERMS = [
+    r"\\b(?:global|worldwide|international|cross[- ]border|multinational|"
+    r"united\\s+nations|\\bun\\b|nato|g7|g20|"
+    r"war|invasion|conflict|ceasefire|sanctions?|tariffs?|"
+    r"missile|nuclear|military|troops|airstrike|air\\s+strike|"
+    r"iran|russia|ukraine|israel|gaza|china|taiwan|north\\s+korea|"
+    r"middle\\s+east|european\\s+union|eu|"
+    r"terror(?:ism|ist)?|hostage|"
+    r"pandemic|epidemic|outbreak|"
+    r"earthquake|tsunami|hurricane|typhoon|major\\s+wildfire|"
+    r"mass\\s+casualt(?:y|ies)|mass\\s+evacuation)\\b",
+    r"جهانی|بین.?المللی|فرامرزی|چندملیتی|سازمان\\s+ملل|ناتو|گروه.?های?\\s*۷|گروه.?های?\\s*۲۰|"
+    r"جنگ|تهاجم|درگیری|آتش.?بس|تحریم|تعرفه|موشک|هسته.?ای|نظامی|نیروهای?\\s+نظامی|حمله هوایی|"
+    r"ایران|روسیه|اوکراین|اسرائیل|غزه|چین|تایوان|کره\\s+شمالی|خاورمیانه|اتحادیه اروپا|"
+    r"تروریسم|تروریستی|گروگان|همه.?گیری|اپیدمی|شیوع|"
+    r"زلزله|سونامی|هاریکن|تایفون|آتش.?سوزی گسترده|"
+    r"تلفات گسترده|تخلیه گسترده",
+]
+
+def _has_foreign_global_override(text):
+    value = str(text or "")
+    return any(
+        re.search(pattern, value, re.I)
+        for pattern in FOREIGN_LOCAL_GLOBAL_OVERRIDE_TERMS
+    )
+
 def _foreign_local_only(candidate):
     if _is_iran_source(candidate):
         return False
-    text = " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description"))
-    has_local = any(re.search(p, text, re.I) for p in FOREIGN_LOCAL_TERMS)
+
+    text = " ".join(
+        str(candidate.get(k, "") or "")
+        for k in ("title", "summary", "description")
+    )
+
+    has_local = any(
+        re.search(pattern, text, re.I)
+        for pattern in FOREIGN_LOCAL_TERMS
+    )
     if not has_local:
         return False
-    has_international = (
-        _has_global_high_impact(text)
-        or any(re.search(p, text, re.I) for p in INTERNATIONAL_SCOPE_TERMS)
-    )
-    return not has_international
+
+    # Do NOT use the broad GLOBAL_HIGH_IMPACT_PATTERNS here. Terms such as
+    # "government", "president", "parliament", "court", "election",
+    # "emergency" and "attack" routinely occur in purely domestic stories.
+    # A foreign-local story is allowed through only when there is an
+    # explicit cross-border/global signal.
+    return not _has_foreign_global_override(text)
 
 def _filter_foreign_local_scope(candidates):
     kept = []
