@@ -62,6 +62,10 @@ MAX_IMAGE_MB = 12
 # overlapping window so delayed RSS publication does not create gaps.
 FEED_COLLECTION_WINDOW_MINUTES = 60
 
+# Important stories may be older than the normal feed window when RSS delivery is delayed.
+# Rescue only high-impact events; routine foreign-local stories remain blocked.
+IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES = 360
+
 # News discovery/publication freshness is intentionally identical
 # to the 30-minute feed window.
 MAX_NEWS_AGE_HOURS = FEED_COLLECTION_WINDOW_MINUTES / 60
