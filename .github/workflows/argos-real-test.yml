@@ -2,8 +2,7 @@ name: V13 Argos Real Translation Test
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - ".github/workflows/argos-real-test.yml"
       - "v13_argos_translate.py"
@@ -43,12 +42,10 @@ jobs:
           python - <<'PY'
           import v13_argos_translate as argos
 
-          # Explicit digits are used for hard numeric-preservation validation.
-          # Written number words are intentionally not compared by production.
-          english_title = "6 people were injured after a major earthquake."
+          english_title = "6 people were injured after a major earthquake in Oleshky."
           english_body = (
               "6 people were injured and 2 buildings were damaged. "
-              "Emergency teams were deployed to Oleshky."
+              "Emergency teams were deployed to Oleshky. Delcy Rodriguez spoke to AFP."
           )
 
           print("ARGOS_TEST: starting real en->fa translation")
@@ -56,50 +53,34 @@ jobs:
           if not result:
               raise SystemExit("ARGOS_TEST_FAILED: no valid Persian translation returned")
 
-          title = result["title"]
-          summary = result["summary"]
+          title, summary = result["title"], result["summary"]
           print("ARGOS_TEST_TITLE:", title)
           print("ARGOS_TEST_SUMMARY:", summary)
 
-          ratio_title = argos._persian_ratio(title)
-          ratio_summary = argos._persian_ratio(summary)
-          print("ARGOS_TEST_PERSIAN_RATIO:", ratio_title, ratio_summary)
-          if ratio_title < 0.60 or ratio_summary < 0.60:
+          if argos._persian_ratio(title) < 0.60 or argos._persian_ratio(summary) < 0.60:
               raise SystemExit("ARGOS_TEST_FAILED: Persian validation below 60%")
-          if not title.strip() or not summary.strip():
-              raise SystemExit("ARGOS_TEST_FAILED: empty translation")
-
           latin = argos._latin_tokens(title + " " + summary)
           print("ARGOS_TEST_LATIN_TOKENS:", latin)
           if latin:
-              raise SystemExit(
-                  "ARGOS_TEST_FAILED: residual Latin tokens: " + ", ".join(latin)
-              )
+              raise SystemExit("ARGOS_TEST_FAILED: residual Latin tokens: " + ", ".join(latin))
 
           original_numbers = argos._numeric_values(english_title + " " + english_body)
           translated_numbers = argos._numeric_values(title + " " + summary)
           print("ARGOS_TEST_NUMBERS:", sorted(original_numbers), sorted(translated_numbers))
-          if not {2, 6}.issubset(original_numbers):
-              raise SystemExit("ARGOS_TEST_FAILED: numeric fixture is invalid")
-          if translated_numbers != original_numbers:
-              raise SystemExit(
-                  "ARGOS_TEST_FAILED: numeric values changed "
-                  f"(expected {sorted(original_numbers)}, got {sorted(translated_numbers)})"
-              )
+          if original_numbers != {2, 6} or translated_numbers != original_numbers:
+              raise SystemExit("ARGOS_TEST_FAILED: numeric values changed")
 
+          # Explicitly test the unknown-name path, not just dictionary entries.
           repaired = argos._repair_argos_residuals(
-              "Famine in Oleshky threatens Ukraine."
+              "Delcy Rodriguez spoke to AFP about the Oleshky emergency."
           )
           repaired_latin = argos._latin_tokens(repaired)
-          print("ARGOS_TEST_RESIDUAL_REPAIR:", repaired)
+          print("ARGOS_TEST_UNKNOWN_NAME_REPAIR:", repaired)
           if repaired_latin:
               raise SystemExit(
-                  "ARGOS_TEST_FAILED: residual repair left Latin tokens: "
+                  "ARGOS_TEST_FAILED: unknown-name rescue left Latin tokens: "
                   + ", ".join(repaired_latin)
               )
 
-          print(
-              "ARGOS_TEST_PASSED: real English -> Persian translation, "
-              "Persian-only output, numeric preservation, and residual cleanup are operational"
-          )
+          print("ARGOS_TEST_PASSED: translation, Persian-only output, numeric preservation, and unknown-name rescue are operational")
           PY
