@@ -5131,8 +5131,8 @@ def gemini_request(title, article_text):
             print("V13 LOCALIZATION: foreign story could not be translated; publication blocked.")
             return None
 
-        out_title = clean_title(localized.get("title", ""))
-        out_summary = clean_content(localized.get("summary", ""))
+        out_title = clean_title(_repair_argos_residual_words(localized.get("title", "")))
+        out_summary = clean_content(_repair_argos_residual_words(localized.get("summary", "")))
 
         if _persian_ratio(out_title) < 0.60 or _persian_ratio(out_summary) < 0.60:
             print("V13 LOCALIZATION: translated output failed Persian validation; publication blocked.")
