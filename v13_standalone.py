@@ -4463,15 +4463,14 @@ def process_news(
 
                 return True
 
-        # A story that has an actual video must never silently fall back
-        # to a photo or text post if the video download/upload fails.
-        # A failed video would otherwise produce a misleading/ambiguous
-        # publication that no longer matches the source media.
+        # Video is optional media, not a publication requirement.
+        # If a selected story is important but its video is too large,
+        # unavailable, or rejected by Telegram, continue through the normal
+        # photo -> text fallback so the news event itself is never silently lost.
         print(
-            "VIDEO STORY BLOCKED: video could not be downloaded or published; "
-            "no photo/text fallback."
+            "VIDEO FALLBACK: video unavailable/failed; "
+            "continuing with photo/text fallback."
         )
-        return False
 
     # ========================================================
     # PHOTO
@@ -5469,6 +5468,29 @@ def process_news(*args, **kwargs):
         return False
 
 process_news = process_news
+
+# ---------- Argos residual Latin cleanup ----------
+# Argos can occasionally leave an isolated English lexical item or place-name
+# inside an otherwise Persian translation. Keep this deterministic and local:
+# no paid/API dependency is introduced. The final language gate remains active.
+ARGOS_RESIDUAL_MAP = {
+    "famine": "قحطی",
+    "kherson": "خرسون",
+    "oleshky": "اولشکی",
+    "russia": "روسیه",
+    "ukraine": "اوکراین",
+    "humanitarian": "بشردوستانه",
+    "evacuation": "تخلیه",
+    "corridor": "راهرو",
+    "delays": "به تأخیر انداخته است",
+    "threatens": "تهدید می‌کند",
+}
+
+def _repair_argos_residual_words(text):
+    value = str(text or "")
+    for src, dst in ARGOS_RESIDUAL_MAP.items():
+        value = re.sub(r"(?i)(?<![A-Za-z])" + re.escape(src) + r"(?![A-Za-z])", dst, value)
+    return normalize_space(value)
 
 # ---------- Final publication language gate ----------
 # This is the last line of defense: regardless of which fallback path
