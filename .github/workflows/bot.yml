@@ -57,6 +57,46 @@ jobs:
         run: |
           python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_argos_translate.py v13_intelligence.py run_bot.py education.py car_prices.py weather.py
 
+      - name: V13 scope and freshness regression test
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          AI_API_KEY: ""
+        run: |
+          python - <<'PY'
+          import v13_standalone as v
+          from datetime import datetime, timezone, timedelta
+
+          cases = [
+              ("Watch: Moment pilots eject as RAF jet crashes in Anglesey", True),
+              ("Groceries rise across Australian supermarket chains", True),
+              ("Russia attacks Ukraine after talks with Trump", False),
+              ("Iran and US officials discuss regional ceasefire", False),
+              ("Major earthquake kills dozens and triggers mass evacuation", False),
+          ]
+
+          for title, expected_skip in cases:
+              candidate = {"title": title, "summary": "", "description": "", "link": "https://example.com/news"}
+              actual = v._foreign_local_only(candidate)
+              if actual != expected_skip:
+                  raise SystemExit(
+                      f"V13 SCOPE TEST FAILED: {title!r} -> {actual}, expected {expected_skip}"
+                  )
+
+          if v.FEED_COLLECTION_WINDOW_MINUTES != 60:
+              raise SystemExit("V13 FRESHNESS TEST FAILED: feed window is not 60 minutes")
+          if v.IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES != 360:
+              raise SystemExit("V13 FRESHNESS TEST FAILED: rescue window is not 360 minutes")
+
+          fresh = datetime.now(timezone.utc) - timedelta(minutes=50)
+          stale = datetime.now(timezone.utc) - timedelta(minutes=70)
+          if not v.is_fresh(fresh):
+              raise SystemExit("V13 FRESHNESS TEST FAILED: 50-minute story was rejected")
+          if v.is_fresh(stale):
+              raise SystemExit("V13 FRESHNESS TEST FAILED: 70-minute story was accepted")
+
+          print("V13 REGRESSION TEST PASSED: foreign-local scope and freshness policy are consistent.")
+          PY
+
       - name: Real Argos English to Persian test
         env:
           ARGOS_PACKAGES_DIR: ${{ github.workspace }}/.argos-packages
