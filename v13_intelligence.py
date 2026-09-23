@@ -222,14 +222,14 @@ def _global_consequential_override(candidate):
         "deploy", "launched", "launches", "released", "release", "closed",
         "opens", "opened", "calls on", "call for", "urges", "urge", "pledges",
         "pledged", "criticizes", "criticised", "warns", "warned", "demands",
-        "demanded", "announces", "announced", "says", "said",
+        "demanded", "announces", "announced", "says", "said", "review", "reviews", "reviewed", "reconsider", "reconsiders", "reconsidered", "delays", "delayed", "resumes", "resumed",
         "تایید", "تأیید", "تصویب", "ممنوع", "تحریم", "بازداشت", "محکوم",
         "امضا", "امضا کرد", "اعلام کرد", "اعلام", "دستور داد", "محدود کرد",
         "محدودیت", "تعلیق", "تعلیق کرد", "توقف", "متوقف کرد", "لغو", "لغو کرد",
         "افزایش", "افزایش داد", "کاهش", "کاهش داد", "ادغام", "تملک",
         "عرضه کرد", "رونمایی کرد", "قطع شد", "مختل شد", "بازداشت شد",
         "خواستار", "هشدار داد", "هشدار", "محکوم کرد", "درخواست کرد",
-        "درخواست", "انتقاد کرد", "انتقاد", "گفت",
+        "درخواست", "انتقاد کرد", "انتقاد", "گفت", "بررسی", "بازبینی", "بازنگری", "تجدیدنظر", "به تعویق انداخت", "تعویق", "ازسرگیری", "از سر گرفت",
     )
     actors = (
         "us", "u.s.", "united states", "white house", "trump", "china", "russia",
