@@ -51,6 +51,38 @@ def _numeric_values(text):
     return values
 
 
+def _latin_tokens(text):
+    """Return standalone Latin tokens that Argos left in an otherwise Persian result."""
+    value = re.sub(r"https?://\\S+|www\\.\\S+", " ", str(text or ""), flags=re.I)
+    return re.findall(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", value)
+
+
+# Deterministic local rescue for common names/terms that Argos may leave intact.
+# This never calls an external service and is followed by the strict Latin gate.
+ARGOS_RESIDUAL_MAP = {
+    "famine": "قحطی", "kherson": "خرسون", "oleshky": "اولشکی",
+    "russia": "روسیه", "ukraine": "اوکراین", "humanitarian": "بشردوستانه",
+    "evacuation": "تخلیه", "corridor": "راهرو", "delays": "به تأخیر انداختن",
+    "threatens": "تهدید می‌کند", "threatened": "تهدید کرد", "threat": "تهدید",
+    "nato": "ناتو", "un": "سازمان ملل", "gaza": "غزه", "israel": "اسرائیل",
+    "iran": "ایران", "china": "چین", "taiwan": "تایوان", "qatar": "قطر",
+    "poland": "لهستان", "syria": "سوریه", "lebanon": "لبنان",
+    "north": "شمال", "south": "جنوب", "region": "منطقه",
+    "borsch": "برش", "borscht": "برش", "reuters": "رویترز",
+}
+
+
+def _repair_argos_residuals(text):
+    value = str(text or "")
+    for src, dst in ARGOS_RESIDUAL_MAP.items():
+        value = re.sub(
+            r"(?i)(?<![A-Za-z])" + re.escape(src) + r"(?![A-Za-z])",
+            dst,
+            value,
+        )
+    return re.sub(r"\\s+", " ", value).strip()
+
+
 def _sentence_list(text):
     return [
         s.strip()
@@ -183,19 +215,19 @@ def translate_foreign_story(title, article_text):
     if _persian_ratio(title) >= 0.60:
         return None
 
-    fa_title = translate_en_to_fa(title)
-    fa_body = translate_en_to_fa(source[:6000])
+    fa_title = _repair_argos_residuals(translate_en_to_fa(title))
+    fa_body = _repair_argos_residuals(translate_en_to_fa(source[:6000]))
 
     # Important foreign stories must not be lost because a long/messy article
     # body produces a weak Argos translation. Retry with a compact source
     # window before declaring localization unavailable.
     if not fa_title:
         print("V13 ARGOS: title translation failed; trying compact retry.")
-        fa_title = translate_en_to_fa(title[:500])
+        fa_title = _repair_argos_residuals(translate_en_to_fa(title[:500]))
 
     if not fa_body:
         print("V13 ARGOS: full-body translation failed; trying compact retry.")
-        fa_body = translate_en_to_fa(source[:1800])
+        fa_body = _repair_argos_residuals(translate_en_to_fa(source[:1800]))
 
     if not fa_title or not fa_body:
         # Last-resort safe localization: a translated headline can still
