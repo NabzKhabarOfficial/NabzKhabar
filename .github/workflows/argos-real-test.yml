@@ -20,13 +20,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
-
       - name: Cache Argos en-fa model
         uses: actions/cache@v4
         with:
@@ -34,12 +32,10 @@ jobs:
           key: argos-en-fa-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             argos-en-fa-${{ runner.os }}-
-
       - name: Install Argos dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
       - name: Real English to Persian translation
         env:
           ARGOS_PACKAGES_DIR: ${{ github.workspace }}/.argos-packages
@@ -47,17 +43,16 @@ jobs:
           python - <<'PY'
           import v13_argos_translate as argos
 
-          # Deliberately include number words so the real test verifies the
-          # V13 semantic-number validation fix (e.g. "six" -> "شش"/"۶").
-          english_title = "Six people were injured after a major earthquake."
+          # Explicit digits are used for hard numeric-preservation validation.
+          # Written number words are intentionally not compared by production.
+          english_title = "6 people were injured after a major earthquake."
           english_body = (
-              "Six people were injured and two buildings were damaged. "
-              "Emergency teams were deployed to the area."
+              "6 people were injured and 2 buildings were damaged. "
+              "Emergency teams were deployed to Oleshky."
           )
 
           print("ARGOS_TEST: starting real en->fa translation")
           result = argos.translate_foreign_story(english_title, english_body)
-
           if not result:
               raise SystemExit("ARGOS_TEST_FAILED: no valid Persian translation returned")
 
@@ -69,23 +64,42 @@ jobs:
           ratio_title = argos._persian_ratio(title)
           ratio_summary = argos._persian_ratio(summary)
           print("ARGOS_TEST_PERSIAN_RATIO:", ratio_title, ratio_summary)
-
           if ratio_title < 0.60 or ratio_summary < 0.60:
               raise SystemExit("ARGOS_TEST_FAILED: Persian validation below 60%")
-
           if not title.strip() or not summary.strip():
               raise SystemExit("ARGOS_TEST_FAILED: empty translation")
+
+          latin = argos._latin_tokens(title + " " + summary)
+          print("ARGOS_TEST_LATIN_TOKENS:", latin)
+          if latin:
+              raise SystemExit(
+                  "ARGOS_TEST_FAILED: residual Latin tokens: " + ", ".join(latin)
+              )
 
           original_numbers = argos._numeric_values(english_title + " " + english_body)
           translated_numbers = argos._numeric_values(title + " " + summary)
           print("ARGOS_TEST_NUMBERS:", sorted(original_numbers), sorted(translated_numbers))
-
           if not {2, 6}.issubset(original_numbers):
               raise SystemExit("ARGOS_TEST_FAILED: numeric fixture is invalid")
-          if not translated_numbers.issubset(original_numbers):
+          if translated_numbers != original_numbers:
               raise SystemExit(
-                  "ARGOS_TEST_FAILED: translation introduced an unmatched number"
+                  "ARGOS_TEST_FAILED: numeric values changed "
+                  f"(expected {sorted(original_numbers)}, got {sorted(translated_numbers)})"
               )
 
-          print("ARGOS_TEST_PASSED: real English -> Persian translation and numeric validation are operational")
+          repaired = argos._repair_argos_residuals(
+              "Famine in Oleshky threatens Ukraine."
+          )
+          repaired_latin = argos._latin_tokens(repaired)
+          print("ARGOS_TEST_RESIDUAL_REPAIR:", repaired)
+          if repaired_latin:
+              raise SystemExit(
+                  "ARGOS_TEST_FAILED: residual repair left Latin tokens: "
+                  + ", ".join(repaired_latin)
+              )
+
+          print(
+              "ARGOS_TEST_PASSED: real English -> Persian translation, "
+              "Persian-only output, numeric preservation, and residual cleanup are operational"
+          )
           PY
