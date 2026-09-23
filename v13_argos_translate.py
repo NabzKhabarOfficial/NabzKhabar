@@ -53,7 +53,7 @@ def _numeric_values(text):
 
 def _latin_tokens(text):
     """Return standalone Latin tokens that Argos left in an otherwise Persian result."""
-    value = re.sub(r"https?://\\S+|www\\.\\S+", " ", str(text or ""), flags=re.I)
+    value = re.sub(r"https?://\S+|www\.\S+", " ", str(text or ""), flags=re.I)
     return re.findall(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", value)
 
 
@@ -74,13 +74,39 @@ ARGOS_RESIDUAL_MAP = {
 
 def _repair_argos_residuals(text):
     value = str(text or "")
+
     for src, dst in ARGOS_RESIDUAL_MAP.items():
         value = re.sub(
             r"(?i)(?<![A-Za-z])" + re.escape(src) + r"(?![A-Za-z])",
             dst,
             value,
         )
-    return re.sub(r"\\s+", " ", value).strip()
+
+    # Unknown proper names get one local Argos retry. If the token still
+    # cannot be converted to Persian, leave it intact for the final gate.
+    residuals = list(dict.fromkeys(_latin_tokens(value)))
+    if residuals and _translation_pair_ready():
+        try:
+            import argostranslate.translate
+            for token in residuals[:12]:
+                if token.lower() in {"the", "and", "for", "with", "from", "as"}:
+                    continue
+                try:
+                    candidate = str(
+                        argostranslate.translate.translate(token, "en", "fa") or ""
+                    ).strip()
+                except Exception:
+                    candidate = ""
+                if candidate and not _latin_tokens(candidate) and _persian_ratio(candidate) >= 0.50:
+                    value = re.sub(
+                        r"(?i)(?<![A-Za-z])" + re.escape(token) + r"(?![A-Za-z])",
+                        candidate,
+                        value,
+                    )
+        except Exception as exc:
+            print(f"V13 ARGOS: residual-token rescue unavailable: {exc}")
+
+    return re.sub(r"\s+", " ", value).strip()
 
 
 def _sentence_list(text):
