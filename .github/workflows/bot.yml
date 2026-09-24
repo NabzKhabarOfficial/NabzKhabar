@@ -63,7 +63,10 @@ jobs:
           AI_API_KEY: ""
         run: |
           python - <<'PY'
-          # Telemetry endpoints are never valid publication URLs.
+          import v13_intelligence as intelligence
+          import v13_policy_guard as policy
+          from datetime import datetime, timezone, timedelta
+
           telemetry = {
               "title": "OpenAI product update",
               "summary": "A product update was reported.",
@@ -71,14 +74,10 @@ jobs:
               "link": "https://google-analytics.com/analytics.js",
               "resolved_link": "https://google-analytics.com/analytics.js",
           }
-          if not intelligence.is_publishable(v, telemetry)[0]:
-              print("V13 TELEMETRY URL TEST: PASS")
-          else:
+          ok, _, reason = intelligence.is_publishable(v, telemetry)
+          if ok:
               raise SystemExit("V13 TELEMETRY URL TEST FAILED: analytics endpoint was publishable")
-
-          cases = [
-          import v13_intelligence as intelligence
-          from datetime import datetime, timezone, timedelta
+          print("V13 TELEMETRY URL TEST: PASS", reason)
 
           cases = [
               ("Watch: British pilots eject as RAF jet crashes in Wales", True),
@@ -98,7 +97,6 @@ jobs:
                       f"V13 FINAL SCOPE TEST FAILED: {title!r} -> {actual}, expected {expected_skip}"
                   )
 
-          # Iranian publishers must not bypass the final scope gate.
           iran_source_local = {
               "title": "نگاهی به مهمترین عناوین روزنامه های بریتانیا",
               "summary": "",
@@ -114,11 +112,12 @@ jobs:
           if policy.CRITICAL_RESCUE_MAX_HOURS != 6:
               raise SystemExit("V13 FRESHNESS TEST FAILED: critical rescue window is not 6 hours")
 
-          fresh = datetime.now(timezone.utc) - timedelta(minutes=20)
-          stale = datetime.now(timezone.utc) - timedelta(minutes=40)
-          if (datetime.now(timezone.utc) - fresh).total_seconds() / 60 > policy.NORMAL_WINDOW_MINUTES:
+          now = datetime.now(timezone.utc)
+          fresh = now - timedelta(minutes=20)
+          stale = now - timedelta(minutes=40)
+          if (now - fresh).total_seconds() / 60 > policy.NORMAL_WINDOW_MINUTES:
               raise SystemExit("V13 FRESHNESS TEST FAILED: fresh story exceeded the normal window")
-          if (datetime.now(timezone.utc) - stale).total_seconds() / 60 <= policy.NORMAL_WINDOW_MINUTES:
+          if (now - stale).total_seconds() / 60 <= policy.NORMAL_WINDOW_MINUTES:
               raise SystemExit("V13 FRESHNESS TEST FAILED: stale story remained inside the normal window")
 
           print("V13 FINAL REGRESSION TEST PASSED: foreign-local scope, roundup blocking, publisher bypass, and 30-minute freshness policy are consistent.")
