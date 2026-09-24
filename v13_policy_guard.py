@@ -42,7 +42,7 @@ SEVERE_SCALE = re.compile(
 FOREIGN_LOCAL_MARKERS = re.compile(
     r"\b(?:raf|nhs|met police|council|county council|local council|school district|local school|mayor|shire|borough|"
     r"training jet|local election|local court|local hospital|football club|premier league|championship|پلیس محلی|"
-    r"شورای شهر|شهرداری|مدرسه|بیمارستان محلی|انتخابات محلی|باشگاه فوتبال|لیگ برتر)\b",
+    r"شورای شهر|شهرداری|مدرسه|بیمارستان محلی|انتخابات محلی|باشگاه فوتبال|لیگ برتر)",
     re.I,
 )
 
@@ -90,8 +90,8 @@ def _foreign_local_only(candidate):
     text = _text(candidate)
     if not text:
         return False
-    if _is_iranian_publisher(candidate):
-        return False
+    if ROUNDUP.search(text):
+        return True
     if FOREIGN_LOCAL_MARKERS.search(text):
         if GLOBAL_OVERRIDE.search(text) or SEVERE_SCALE.search(text):
             return False
