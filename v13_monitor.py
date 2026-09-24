@@ -72,11 +72,13 @@ def build_report():
             "One or more publication attempts returned failure/exception."
         )
 
-    if not selected and health.get("raw_candidates", 0):
+    if not selected and health.get("raw_candidates", 0) and not health.get("published", 0):
         report["status"] = "no_publication_candidate"
         report["diagnostics"].append(
             "Candidates were collected but none reached the publication queue."
         )
+    elif report["published"] > 0 and not report["failed_publications"]:
+        report["status"] = "healthy"
 
     if health.get("status") == "failed":
         report["status"] = "runtime_failure"
