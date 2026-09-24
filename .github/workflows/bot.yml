@@ -96,6 +96,15 @@ jobs:
           if not policy._foreign_local_only(iran_source_local):
               raise SystemExit("V13 FINAL SCOPE TEST FAILED: Iranian publisher bypassed foreign-local gate")
 
+          iran_source_global = {
+              "title": "Iran and US officials discuss regional ceasefire",
+              "summary": "", "description": "",
+              "link": "https://www.yjc.ir/fa/news/example",
+              "resolved_link": "https://www.yjc.ir/fa/news/example",
+          }
+          if policy._foreign_local_only(iran_source_global):
+              raise SystemExit("V13 FINAL SCOPE TEST FAILED: Iranian publisher global story was dropped")
+
           if policy.NORMAL_WINDOW_MINUTES != 30:
               raise SystemExit("V13 FRESHNESS TEST FAILED: final normal window is not 30 minutes")
           if policy.CRITICAL_RESCUE_MAX_HOURS != 6:
