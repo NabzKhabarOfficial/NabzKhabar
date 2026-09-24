@@ -28,7 +28,8 @@ def build_report():
     if not selected and attempts:
         selected = [
             {"title": x.get("title", ""), "source": x.get("source", ""), "url": x.get("url", "")}
-            for x in attempts if x.get("title")
+            for x in attempts
+            if x.get("title") and x.get("result") != "skipped_duplicate"
         ]
 
     published = {
@@ -45,6 +46,9 @@ def build_report():
     failed_attempts = [
         x for x in attempts if x.get("result") in ("failed", "exception")
     ]
+    skipped_duplicates = [
+        x for x in attempts if x.get("result") == "skipped_duplicate"
+    ]
 
     report = {
         "checked_at": datetime.now(timezone.utc).isoformat(),
@@ -57,6 +61,7 @@ def build_report():
         "failed_publications": health.get("failed_publications", 0),
         "missed_selected_stories": missed,
         "failed_publication_attempts": failed_attempts,
+        "skipped_duplicate_attempts": skipped_duplicates,
         "last_errors": health.get("last_errors", []),
         "diagnostics": [],
     }
@@ -83,9 +88,9 @@ def build_report():
 
     print("V13 MONITOR STATUS:", report["status"], flush=True)
     print(
-        "V13 MONITOR: selected=%s published=%s failed=%s missed=%s"
+        "V13 MONITOR: selected=%s published=%s failed=%s missed=%s duplicates=%s"
         % (report["selected_for_publication"], report["published"],
-           report["failed_publications"], len(missed)),
+           report["failed_publications"], len(missed), len(skipped_duplicates)),
         flush=True,
     )
     for story in missed:
