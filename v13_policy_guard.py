@@ -1,4 +1,4 @@
-"""NABZ-V13 final policy guard.
+"""NABZ V13 final policy guard.
 
 This module is intentionally independent from the large legacy/engine file.
 It is installed last so no later plugin can accidentally re-open a candidate
@@ -68,34 +68,25 @@ ROUNDUP = re.compile(
 
 
 def _text(candidate):
-    return " ".join(
-        str(candidate.get(k, "") or "")
-        for k in ("title", "summary", "description")
-    ).strip()
+    return " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description")).strip()
 
 
 def _foreign_local_only(candidate):
-    """Return True when a foreign-local story must be rejected."""
     text = _text(candidate)
-    if not text or not FOREIGN_LOCAL_TERMS.search(text):
+    if not text:
         return False
 
-    # A foreign publisher is not the only source of this problem: an Iranian
-    # outlet can republish a routine UK/Australia/US local story. Therefore the
-    # source domain must NEVER bypass this final content-scope gate.
-    if GLOBAL_OVERRIDE.search(text):
-        return False
-    if SEVERE_SCALE.search(text):
-        return False
-    # Foreign local markers must not be rescued merely because the article
-    # contains a generic high-impact word such as "crash" or "warning".
     if FOREIGN_LOCAL_MARKERS.search(text):
+        if GLOBAL_OVERRIDE.search(text) or SEVERE_SCALE.search(text):
+            return False
         return True
+
+    if not FOREIGN_LOCAL_TERMS.search(text):
         return False
 
-    # Newspaper roundups and local press digests are especially noisy and are
-    # never a valid standalone international story unless they have an explicit
-    # cross-border/global signal above.
+    if GLOBAL_OVERRIDE.search(text) or SEVERE_SCALE.search(text):
+        return False
+
     return True
 
 
@@ -103,10 +94,7 @@ def _filter(candidates):
     kept = []
     for candidate in candidates:
         if _foreign_local_only(candidate):
-            print(
-                "V13 FINAL SCOPE DROP: "
-                + str(candidate.get("title", ""))
-            )
+            print("V13 FINAL SCOPE DROP: " + str(candidate.get("title", "")))
             continue
         kept.append(candidate)
     return kept
@@ -122,7 +110,6 @@ def _age_minutes(dt):
 
 
 def install(main):
-    """Install the final, last-in-chain publication guard."""
     main.FEED_COLLECTION_WINDOW_MINUTES = NORMAL_WINDOW_MINUTES
     main.MAX_NEWS_AGE_HOURS = NORMAL_WINDOW_MINUTES / 60.0
     main.IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES = CRITICAL_RESCUE_MAX_HOURS * 60
@@ -130,13 +117,9 @@ def install(main):
     original_filter = getattr(main, "_filter_foreign_local_scope", None)
     if original_filter is not None:
         def final_filter(candidates):
-            # First retain the engine's existing safety filters, then apply the
-            # independent final guard so an Iranian publisher cannot bypass it.
             return _filter(original_filter(candidates))
         main._filter_foreign_local_scope = final_filter
 
-    # Final wrapper around the selected-candidate gate, if present. This is a
-    # second line of defence against plugins that construct/restore candidates.
     original_select = getattr(main, "select_best_candidate", None)
     if original_select is not None:
         def guarded_select(candidates, *args, **kwargs):
