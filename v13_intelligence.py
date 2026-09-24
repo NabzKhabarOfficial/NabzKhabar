@@ -447,8 +447,36 @@ def _publication_tier(candidate):
     return 1
 
 
+def _invalid_publisher_endpoint(main, candidate):
+    """Reject telemetry/asset endpoints that masquerade as news articles."""
+    url = candidate.get("resolved_link") or candidate.get("link") or ""
+    try:
+        host = main.base_domain(main.get_hostname(url))
+    except Exception:
+        from urllib.parse import urlparse
+        host = urlparse(url).netloc.lower().split(":")[0].removeprefix("www.")
+    path = url.split(host, 1)[-1].lower() if host else url.lower()
+    blocked_hosts = (
+        "google-analytics.com", "analytics.google.com", "googletagmanager.com",
+        "doubleclick.net", "googlesyndication.com", "googleadservices.com",
+        "facebook.net", "connect.facebook.net", "pixel.facebook.com",
+        "segment.io", "segment.com", "hotjar.com", "clarity.ms",
+    )
+    blocked_paths = (
+        "/analytics.js", "/gtag/js", "/gtm.js", "/pixel", "/collect",
+        "/beacon", "/tracking", "/track", "/events", "/analytics",
+    )
+    return (
+        host in blocked_hosts
+        or any(host.endswith("." + x) for x in blocked_hosts)
+        or any(token in path for token in blocked_paths)
+    )
+
+
 def is_publishable(main, candidate):
     title = _norm(candidate.get("title", ""))
+    if _invalid_publisher_endpoint(main, candidate):
+        return False, 0, "invalid-publisher-endpoint"
     if len(title) < 12:
         return False, 0, "short-title"
 
