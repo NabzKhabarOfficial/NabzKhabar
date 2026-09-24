@@ -15,8 +15,7 @@ REPORT_FILE = "v13_monitor.json"
 def _load(path, default):
     try:
         with open(path, "r", encoding="utf-8") as f:
-            value = json.load(f)
-        return value
+            return json.load(f)
     except Exception:
         return default
 
@@ -25,24 +24,26 @@ def build_report():
     health = _load(HEALTH_FILE, {})
     selected = health.get("selected_news_this_run") or []
     attempts = health.get("publication_attempts") or []
+
+    if not selected and attempts:
+        selected = [
+            {"title": x.get("title", ""), "source": x.get("source", ""), "url": x.get("url", "")}
+            for x in attempts if x.get("title")
+        ]
+
     published = {
         str(x.get("title", "")).strip()
-        for x in attempts
-        if x.get("result") == "published"
+        for x in attempts if x.get("result") == "published"
     }
 
     missed = []
     for story in selected:
         title = str(story.get("title", "")).strip()
         if title and title not in published:
-            missed.append({
-                **story,
-                "monitor_reason": "selected-but-not-published",
-            })
+            missed.append({**story, "monitor_reason": "selected-but-not-published"})
 
     failed_attempts = [
-        x for x in attempts
-        if x.get("result") in ("failed", "exception")
+        x for x in attempts if x.get("result") in ("failed", "exception")
     ]
 
     report = {
@@ -60,24 +61,17 @@ def build_report():
         "diagnostics": [],
     }
 
-    if missed:
+    if missed or report["failed_publications"]:
         report["status"] = "publication_failure"
-        report["diagnostics"].append(
-            "Selected stories did not reach confirmed publication."
-        )
-
-    if report["failed_publications"]:
-        report["status"] = "publication_failure"
-        report["diagnostics"].append(
-            "One or more publication attempts returned failure/exception."
-        )
+        if missed:
+            report["diagnostics"].append("Selected stories did not reach confirmed publication.")
+        if report["failed_publications"]:
+            report["diagnostics"].append("One or more publication attempts returned failure/exception.")
 
     if not selected and health.get("raw_candidates", 0) and not health.get("published", 0):
         report["status"] = "no_publication_candidate"
-        report["diagnostics"].append(
-            "Candidates were collected but none reached the publication queue."
-        )
-    elif report["published"] > 0 and not report["failed_publications"]:
+        report["diagnostics"].append("Candidates were collected but none reached the publication queue.")
+    elif report["published"] > 0 and not report["failed_publications"] and not missed:
         report["status"] = "healthy"
 
     if health.get("status") == "failed":
@@ -90,24 +84,14 @@ def build_report():
     print("V13 MONITOR STATUS:", report["status"], flush=True)
     print(
         "V13 MONITOR: selected=%s published=%s failed=%s missed=%s"
-        % (
-            report["selected_for_publication"],
-            report["published"],
-            report["failed_publications"],
-            len(missed),
-        ),
+        % (report["selected_for_publication"], report["published"],
+           report["failed_publications"], len(missed)),
         flush=True,
     )
     for story in missed:
-        print(
-            "V13 MONITOR MISSED: %s | %s | %s"
-            % (
-                story.get("source", "unknown"),
-                story.get("title", ""),
-                story.get("url", ""),
-            ),
-            flush=True,
-        )
+        print("V13 MONITOR MISSED: %s | %s | %s" % (
+            story.get("source", "unknown"), story.get("title", ""), story.get("url", "")
+        ), flush=True)
 
     return report
 
