@@ -821,6 +821,9 @@ def install(main):
             if result:
                 state["published"] += 1
                 attempt["result"] = "published"
+            elif candidate.get("publication_status") == "skipped_duplicate":
+                attempt["result"] = "skipped_duplicate"
+                attempt["reason"] = "recent-semantic-history"
             else:
                 state["failed_publications"] += 1
                 attempt["result"] = "failed"
