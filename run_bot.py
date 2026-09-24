@@ -8,10 +8,13 @@ import v13_content_enhancer
 import v13_ad_filter
 import v13_intelligence
 import v13_freshness_rescue
+import v13_policy_guard
 
 # V13 is the only news runtime. Obsolete legacy engines and patches were removed.
-# Branding/media fixes, the free AI router, and automatic content enrichment
-# are installed on the V13 runtime before the engine starts.
+# Branding/media fixes, the free AI router, automatic content enrichment,
+# freshness rescue, and the final publication policy guard are installed before
+# the engine starts. The policy guard is intentionally installed LAST so no
+# later module can re-introduce a rejected foreign-local story.
 v13_media_branding.install(main)
 v13_ai_router.install(main)
 v13_argos_translate.install(main)
@@ -19,6 +22,7 @@ v13_content_enhancer.install(main, v13_ai_router)
 v13_ad_filter.install(main)
 v13_intelligence.install(main)
 v13_freshness_rescue.install(main)
+v13_policy_guard.install(main)
 
 import education
 import car_prices
