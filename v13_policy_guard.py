@@ -46,6 +46,16 @@ SEVERE_SCALE = re.compile(
     re.I,
 )
 
+FOREIGN_LOCAL_MARKERS = re.compile(
+    r"\b(?:raf|nhs|met police|council|county council|local council|"
+    r"school district|local school|mayor|shire|borough|"
+    r"training jet|local election|local court|local hospital|"
+    r"football club|premier league|championship|"
+    r"پلیس محلی|شورای شهر|شهرداری|مدرسه|بیمارستان محلی|"
+    r"انتخابات محلی|باشگاه فوتبال|لیگ برتر)\b",
+    re.I,
+)
+
 ROUNDUP = re.compile(
     r"(?:چه خبر|مرور مهمترین|مرور مهم‌ترین|مهمترین اخبار|مهم‌ترین اخبار|"
     r"مهمترین عناوین|مهم‌ترین عناوین|اخبار مهم امروز|اخبار مهم|آخرین اخبار|"
@@ -76,6 +86,11 @@ def _foreign_local_only(candidate):
     if GLOBAL_OVERRIDE.search(text):
         return False
     if SEVERE_SCALE.search(text):
+        return False
+    # Foreign local markers must not be rescued merely because the article
+    # contains a generic high-impact word such as "crash" or "warning".
+    if FOREIGN_LOCAL_MARKERS.search(text):
+        return True
         return False
 
     # Newspaper roundups and local press digests are especially noisy and are
