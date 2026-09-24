@@ -55,7 +55,7 @@ jobs:
 
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_argos_translate.py v13_intelligence.py v13_policy_guard.py run_bot.py education.py car_prices.py weather.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_argos_translate.py v13_intelligence.py v13_policy_guard.py v13_monitor.py run_bot.py education.py car_prices.py weather.py
 
       - name: V13 final scope and freshness regression test
         env:
@@ -144,6 +144,11 @@ jobs:
           ARGOS_PACKAGES_DIR: ${{ github.workspace }}/.argos-packages
         run: python run_bot.py
 
+      - name: V13 runtime monitoring
+        if: ${{ always() }}
+        run: |
+          python v13_monitor.py
+
       - name: Persist sent-news history safely
         if: ${{ always() }}
         env:
@@ -158,6 +163,7 @@ jobs:
           cp ai_model_health.json /tmp/local_ai_model_health.json 2>/dev/null || true
           cp v13_health.json /tmp/local_v13_health.json 2>/dev/null || true
           cp v13_rejected_news.json /tmp/local_v13_rejected_news.json 2>/dev/null || true
+          cp v13_monitor.json /tmp/local_v13_monitor.json 2>/dev/null || true
           cp car_prices_history.json /tmp/local_car_prices_history.json 2>/dev/null || true
           cp weather_history.json /tmp/local_weather_history.json 2>/dev/null || true
 
@@ -173,10 +179,11 @@ jobs:
             [ ! -f /tmp/local_ai_model_health.json ] || cp /tmp/local_ai_model_health.json ai_model_health.json
             [ ! -f /tmp/local_v13_health.json ] || cp /tmp/local_v13_health.json v13_health.json
             [ ! -f /tmp/local_v13_rejected_news.json ] || cp /tmp/local_v13_rejected_news.json v13_rejected_news.json
+            [ ! -f /tmp/local_v13_monitor.json ] || cp /tmp/local_v13_monitor.json v13_monitor.json
             [ ! -f /tmp/local_car_prices_history.json ] || cp /tmp/local_car_prices_history.json car_prices_history.json
             [ ! -f /tmp/local_weather_history.json ] || cp /tmp/local_weather_history.json weather_history.json
             git add sent_news.txt
-            for f in ai_model_health.json v13_health.json v13_rejected_news.json car_prices_history.json weather_history.json; do
+            for f in ai_model_health.json v13_health.json v13_rejected_news.json v13_monitor.json car_prices_history.json weather_history.json; do
               [ ! -f "$f" ] || git add "$f"
             done
             if git diff --cached --quiet; then
