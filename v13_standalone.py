@@ -4403,10 +4403,10 @@ def process_news(
     ):
 
         print(
-            "SKIPPED: final Gemini title "
+            "SKIPPED DUPLICATE: final Gemini title "
             "matches recent history"
         )
-
+        candidate["publication_status"] = "skipped_duplicate"
         return False
 
     # --------------------------------------------------------
@@ -5052,29 +5052,29 @@ def _has_foreign_severe_scale(text):
     return any(re.search(pattern, value, re.I) for pattern in FOREIGN_LOCAL_SEVERE_EVENT_TERMS)
 
 def _foreign_local_only(candidate):
-    if _is_iran_source(candidate):
+    text = " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description"))
+    if not text:
         return False
-
-    text = " ".join(
-        str(candidate.get(k, "") or "")
-        for k in ("title", "summary", "description")
-    )
-
+    if is_roundup_title(candidate.get("title", "")):
+        return True
     has_local = any(re.search(pattern, text, re.I) for pattern in FOREIGN_LOCAL_TERMS)
     if not has_local:
         return False
-
-    # Crucial fix: words such as attack, crash, military, emergency,
-    # president, election, police or government are NOT global signals.
-    # This blocks routine UK/Australia/US domestic stories while retaining
-    # genuinely cross-border stories and objectively large-scale disasters.
-    if _has_foreign_global_override(text):
+    if _has_foreign_global_override(text) or _has_foreign_severe_scale(text):
         return False
-
-    if _has_foreign_severe_scale(text):
+    consequential = re.search(
+        r"\b(?:hurricane|typhoon|earthquake|tsunami|volcan|wildfire|deadly attack|terror attack|mass shooting|major explosion|major fire|large[- ]scale evacuation|dozens killed|hundreds killed|dozens injured|hundreds injured)\b|"
+        r"هاریکن|تایفون|زلزله شدید|سونامی|آتشفشان|حمله مرگبار|حمله تروریستی|انفجار بزرگ|آتش‌سوزی گسترده|تخلیه گسترده|ده.?ها کشته|صدها کشته|ده.?ها زخمی|صدها زخمی",
+        text, re.I
+    )
+    if consequential:
         return False
-
-    return True
+    country_hits = re.findall(
+        r"\b(?:australia|britain|united kingdom|america|united states|canada|germany|france|italy|spain|japan|south korea|india|pakistan|afghanistan|turkey|china|taiwan|russia|ukraine|israel|mexico|brazil)\b|"
+        r"استرالیا|بریتانیا|انگلیس|آمریکا|کانادا|آلمان|فرانسه|ایتالیا|اسپانیا|ژاپن|کره جنوبی|هند|پاکستان|افغانستان|ترکیه|چین|تایوان|روسیه|اوکراین|اسرائیل|مکزیک|برزیل",
+        text, re.I
+    )
+    return len({x.lower() for x in country_hits}) < 2
 
 def _filter_foreign_local_scope(candidates):
     kept = []
