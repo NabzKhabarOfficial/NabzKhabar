@@ -63,8 +63,21 @@ jobs:
           AI_API_KEY: ""
         run: |
           python - <<'PY'
-          import v13_standalone as v
-          import v13_policy_guard as policy
+          # Telemetry endpoints are never valid publication URLs.
+          telemetry = {
+              "title": "OpenAI product update",
+              "summary": "A product update was reported.",
+              "description": "",
+              "link": "https://google-analytics.com/analytics.js",
+              "resolved_link": "https://google-analytics.com/analytics.js",
+          }
+          if not intelligence.is_publishable(v, telemetry)[0]:
+              print("V13 TELEMETRY URL TEST: PASS")
+          else:
+              raise SystemExit("V13 TELEMETRY URL TEST FAILED: analytics endpoint was publishable")
+
+          cases = [
+          import v13_intelligence as intelligence
           from datetime import datetime, timezone, timedelta
 
           cases = [
