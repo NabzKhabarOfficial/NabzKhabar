@@ -87,6 +87,7 @@ def _is_iranian_publisher(candidate):
 
 
 def _foreign_local_only(candidate):
+    """Reject routine foreign-local reporting, but keep consequential global events."""
     text = _text(candidate)
     if not text:
         return False
@@ -100,8 +101,19 @@ def _foreign_local_only(candidate):
         return False
     if GLOBAL_OVERRIDE.search(text) or SEVERE_SCALE.search(text):
         return False
-    return True
-
+    consequential_event = re.search(
+        r"\b(?:hurricane|typhoon|earthquake|tsunami|volcan|wildfire|deadly attack|terror attack|mass shooting|major explosion|major fire|large[- ]scale evacuation|dozens killed|hundreds killed|dozens injured|hundreds injured)\b|"
+        r"هاریکن|تایفون|زلزله شدید|سونامی|آتشفشان|حمله مرگبار|حمله تروریستی|انفجار بزرگ|آتش‌سوزی گسترده|تخلیه گسترده|ده.?ها کشته|صدها کشته|ده.?ها زخمی|صدها زخمی",
+        text, re.I,
+    )
+    if consequential_event:
+        return False
+    country_hits = re.findall(
+        r"\b(?:australia|britain|united kingdom|america|united states|canada|germany|france|italy|spain|japan|south korea|india|pakistan|afghanistan|turkey|china|taiwan|russia|ukraine|israel|mexico|brazil)\b|"
+        r"استرالیا|بریتانیا|انگلیس|آمریکا|کانادا|آلمان|فرانسه|ایتالیا|اسپانیا|ژاپن|کره جنوبی|هند|پاکستان|افغانستان|ترکیه|چین|تایوان|روسیه|اوکراین|اسرائیل|مکزیک|برزیل",
+        text, re.I
+    )
+    return len({x.lower() for x in country_hits}) < 2
 
 def _opinion_only(candidate):
     text = _text(candidate)
