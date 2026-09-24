@@ -667,6 +667,8 @@ def install(main):
         "top_sources": {},
         "last_errors": [],
         "rejected_news_this_run": [],
+        "selected_news_this_run": [],
+        "publication_attempts": [],
     }
 
     def intelligent_collect(hash_history, title_history):
@@ -778,16 +780,32 @@ def install(main):
         return selected
 
     def tracked_process(candidate, hash_history, title_history):
+        attempt = {
+            "title": _norm(candidate.get("title", "")),
+            "source": _source_host(main, candidate) or candidate.get("source", "") or "unknown",
+            "url": candidate.get("resolved_link") or candidate.get("link") or "",
+            "started_at": datetime.now(timezone.utc).isoformat(),
+            "result": "unknown",
+            "error": "",
+        }
         try:
             result = original_process(candidate, hash_history, title_history)
             if result:
                 state["published"] += 1
+                attempt["result"] = "published"
             else:
                 state["failed_publications"] += 1
+                attempt["result"] = "failed"
+            state["publication_attempts"].append(attempt)
+            state["publication_attempts"] = state["publication_attempts"][-10:]
             _write_health(state)
             return result
         except Exception as exc:
             state["failed_publications"] += 1
+            attempt["result"] = "exception"
+            attempt["error"] = str(exc)[:500]
+            state["publication_attempts"].append(attempt)
+            state["publication_attempts"] = state["publication_attempts"][-10:]
             state["last_errors"].append(str(exc)[:300])
             state["last_errors"] = state["last_errors"][-5:]
             _write_health(state)
