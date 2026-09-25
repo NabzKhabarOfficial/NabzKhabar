@@ -106,8 +106,8 @@ def _foreign_local_only(candidate):
     # Foreign-city/local-crime rule: routine court, offender, bail and
     # victims-commissioner stories tied to one foreign city are local reporting,
     # even when the source article contains broader commentary.
-    if re.search(r"\\b(?:london|sydney|melbourne|toronto|vancouver|paris|berlin|rome|madrid|tokyo|seoul|delhi|istanbul|new york|washington)\\b", text, re.I):
-        if re.search(r"\\b(?:criminal justice system|victims? commissioner|crown court|magistrates court|bail|sex offender|offender|sentenced|sentencing|local police|playground)\\b", text, re.I):
+    if re.search(r"\b(?:london|sydney|melbourne|toronto|vancouver|paris|berlin|rome|madrid|tokyo|seoul|delhi|istanbul|new york|washington)\b", text, re.I):
+        if re.search(r"\b(?:criminal justice system|victims? commissioner|crown court|magistrates court|bail|sex offender|offender|sentenced|sentencing|local police|playground)\b", text, re.I):
             if not GLOBAL_OVERRIDE.search(text) and not SEVERE_SCALE.search(text):
                 return True
 
