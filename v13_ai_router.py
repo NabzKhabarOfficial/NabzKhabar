@@ -294,6 +294,53 @@ TRANSLATION_QUALITY_BAD_PATTERNS = (
 )
 
 
+# High-salience proper-name anchors used only for the local Argos fallback.
+# These prevent a fluent-looking machine translation from silently changing
+# the identity of the main subject. The gate is intentionally conservative:
+# it only activates when the English source contains one of these exact names.
+ARGOS_NAME_ANCHORS = {
+    "pezeshkian": ("پزشکیان", "مسعود پزشکیان"),
+    "masoud pezeshkian": ("پزشکیان", "مسعود پزشکیان"),
+    "trump": ("ترامپ", "دونالد ترامپ"),
+    "donald trump": ("ترامپ", "دونالد ترامپ"),
+    "putin": ("پوتین", "ولادیمیر پوتین"),
+    "vladimir putin": ("پوتین", "ولادیمیر پوتین"),
+    "zelenskyy": ("زلنسکی", "ولودیمیر زلنسکی"),
+    "zelensky": ("زلنسکی", "ولودیمیر زلنسکی"),
+    "netanyahu": ("نتانیاهو", "بنیامین نتانیاهو"),
+    "starmer": ("استارمر", "کر استارمر"),
+    "macron": ("مکرون", "امانوئل مکرون"),
+    "xi jinping": ("شی جین‌پینگ", "شی جین پینگ"),
+    "erdogan": ("اردوغان", "رجب طیب اردوغان"),
+    "modi": ("مودی", "نارندرا مودی"),
+}
+
+ARGOS_SEMANTIC_BAD_PATTERNS = (
+    # Literal/page-artifact constructions that are not acceptable Persian news.
+    re.compile(r"\b(?:با|برای|به)\s+(?:تصویر|عکس|ونگا|نگا)\b", re.I),
+    re.compile(r"لحن\s+[^.؟!]{0,80}\bبه\s+نیویورک\b", re.I),
+)
+
+
+def _argos_semantic_gate(original_title, original_source, translated_title, translated_summary):
+    """Reject high-confidence Argos meaning corruption without an AI call."""
+    source = str(original_title or "") + " " + str(original_source or "")
+    title = str(translated_title or "")
+    summary = str(translated_summary or "")
+    source_lower = source.lower()
+
+    for source_name, aliases in ARGOS_NAME_ANCHORS.items():
+        if source_name in source_lower:
+            if not any(alias in title or alias in summary for alias in aliases):
+                return False, "missing-name-anchor:" + source_name
+
+    for pattern in ARGOS_SEMANTIC_BAD_PATTERNS:
+        if pattern.search(title) or pattern.search(summary):
+            return False, "literal-corruption-pattern"
+
+    return True, ""
+
+
 def _translation_quality_bad(text):
     value = str(text or "").strip()
     if not value:
