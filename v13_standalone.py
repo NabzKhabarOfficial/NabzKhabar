@@ -5062,18 +5062,19 @@ def _foreign_local_only(candidate):
     # foreign-local markers can reject an otherwise consequential story.
     national_policy_impact = (
         re.search(
-            r"\b(?:football association|national football association|governing body|stadium accreditation|"
-            r"safety rules?|safety regulations?|regulations?|rules?)\b",
+            r"\b(?:football association|national football association|governing body|regulator|regulatory authority|"
+            r"national health service|health regulator|nhs|stadium accreditation|safety rules?|safety regulations?|"
+            r"regulations?|rules?|government review|national inquiry|nationwide)\b",
             text, re.I,
         )
         and re.search(
-            r"\b(?:changed|changes|updated|update|banned|ban|prohibited|introduced|revised|"
-            r"affected|clubs?|all levels|national league|169 clubs?)\b",
+            r"\b(?:changed|changes|updated|update|banned|ban|prohibited|introduced|revised|review|investigation|"
+            r"affected|clubs?|patients?|cases?|all levels|national league|nationwide|thousands?|hundreds?|169 clubs?)\b",
             text, re.I,
         )
         and re.search(
-            r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|"
-            r"مرگ|جان باخت|کشته|فوت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|ممنوع|اصلاح|تغییر)\b",
+            r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|unnecessary surgery|"
+            r"patient harm|safety|مرگ|جان باخت|کشته|فوت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|ممنوع|اصلاح|تغییر|بیمار)\b",
             text, re.I,
         )
     )
