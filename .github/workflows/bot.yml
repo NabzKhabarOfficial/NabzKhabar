@@ -58,6 +58,7 @@ jobs:
           import v13_standalone as v
           import v13_intelligence as intelligence
           import v13_policy_guard as policy
+          import v13_ai_router
           from datetime import datetime, timezone, timedelta
 
           telemetry = {
@@ -113,6 +114,15 @@ jobs:
               raise SystemExit("V13 FRESHNESS TEST FAILED: final normal window is not 30 minutes")
           if policy.CRITICAL_RESCUE_MAX_HOURS != 6:
               raise SystemExit("V13 FRESHNESS TEST FAILED: critical rescue window is not 6 hours")
+          if v.FEED_COLLECTION_WINDOW_MINUTES != 30:
+              raise SystemExit("V13 FRESHNESS TEST FAILED: standalone collection/publication window is not 30 minutes")
+
+          bad_translation = "برچسب های رهبر نپال سیل یک جنگ به جهان را ویران می کند"
+          if not v13_ai_router._translation_quality_bad(bad_translation):
+              raise SystemExit("V13 TRANSLATION TEST FAILED: malformed Persian translation was accepted")
+          good_translation = "نخست وزیر نپال سیل ویرانگر را هشداری برای جهان خواند"
+          if v13_ai_router._translation_quality_bad(good_translation):
+              raise SystemExit("V13 TRANSLATION TEST FAILED: valid Persian headline was rejected")
           now = datetime.now(timezone.utc)
           fresh = now - timedelta(minutes=20)
           stale = now - timedelta(minutes=40)
