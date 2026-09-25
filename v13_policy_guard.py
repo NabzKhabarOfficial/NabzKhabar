@@ -98,6 +98,11 @@ def _foreign_local_only(candidate):
         if re.search(r"\b(?:police|police force|staff|employee|data breach|cyber attack|cyberattack|non-emergency|local council|shire|borough)\b", text, re.I):
             if not GLOBAL_OVERRIDE.search(text) and not SEVERE_SCALE.search(text):
                 return True
+    # Explicit national-health rule: nationwide NHS reviews/investigations are
+    # not ordinary foreign-local reporting.
+    if re.search(r"\b(?:nhs|national health service)\b", text, re.I) and re.search(r"\b(?:nationwide|national)\b", text, re.I) and re.search(r"\b(?:review|investigation|cases|patients?)\b", text, re.I):
+        return False
+
     # Evaluate nationally significant regulatory/safety changes before generic
     # local markers such as "football club" can reject them.
     national_policy_impact = (
