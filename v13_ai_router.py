@@ -284,6 +284,9 @@ TRANSLATION_QUALITY_BAD_PATTERNS = (
     re.compile(r"برچسب(?:\s|‌)+(?:های|ها)(?:\s|‌).{0,45}(?:رهبر|سیل|دولت|کشور)", re.I),
     re.compile(r"جنگ(?:\s|‌)+به(?:\s|‌)+جهان", re.I),
     re.compile(r"(?:در انگلیسای|انگلیسای|ثی پلوگ|خاکستری گری|تی آی خاکستری)", re.I),
+    # Production artifacts observed in the final Telegram output. These are
+    # not valid Persian spellings and must never reach publication.
+    re.compile(r"پیزیسلکیان|پیزیشکیان|پیزشکیلیان", re.I),
     re.compile(r"منبع\s*تصویر|عنوان\s*[,،:]|بست\s+به\s+روز\s+رسانی|منتشر\s+شده\s+\d{1,2}\s+سپتامبر", re.I),
     re.compile(r"\b(\S+)\s+\1\b", re.I),
     re.compile(r"(?:بی\s*بی\s*سی){2,}|(?:لندن){2,}", re.I),
@@ -497,6 +500,11 @@ def gemini_request(main, title, article_text):
                 argos_reasons.append("title-not-persian")
             if _persian_ratio(argos_summary) < 0.60:
                 argos_reasons.append("summary-not-persian")
+            # The local Argos fallback must obey the same malformed-translation
+            # gate as AI output. This blocks known machine-translation artifacts
+            # without applying semantic heuristics to the fallback.
+            if _translation_quality_bad(argos_title) or _translation_quality_bad(argos_summary):
+                argos_reasons.append("malformed-persian")
             # Argos translations may legitimately contain Persian prose such as
             # «به گزارش ...» when that phrase exists in the source. The generic
             # AI metadata gate treats that phrase as metadata and was therefore
