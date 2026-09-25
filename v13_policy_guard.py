@@ -18,16 +18,18 @@ FOREIGN_LOCAL_TERMS = re.compile(
     r"california|texas|florida|canada|canadian|toronto|vancouver|germany|german|berlin|france|french|paris|italy|"
     r"italian|rome|spain|spanish|madrid|japan|japanese|tokyo|south korea|korean|seoul|india|indian|delhi|pakistan|"
     r"pakistani|islamabad|afghanistan|afghan|turkey|turkish|ankara|istanbul|netherlands|dutch|amsterdam|sweden|"
-    r"swedish|norway|norwegian|denmark|danish|poland|polish|uk|آمریکا|امریکا|بریتانی|بریتانیا|انگلیس|لندن|انگلستان|"
-    r"اسکاتلند|ولز|استرالیا|سیدنی|کانادا|تورنتو|آلمان|برلین|فرانسه|پاریس|ایتالیا|رم|اسپانیا|ژاپن|توکیو|"
-    r"کره جنوبی|سئول|هند|دهلی|پاکستان|اسلام آباد|افغانستان|ترکیه|آنکارا|استانبول)\b",
+    r"swedish|norway|norwegian|denmark|danish|poland|polish|uk|mexico|mexican|brazil|brazilian|china|chinese|taiwan|"
+    r"russia|russian|ukraine|ukrainian|israel|israeli|gaza|oman|bangladesh|bangladeshi|dhaka|"
+    r"آمریکا|امریکا|بریتانی|بریتانیا|انگلیس|لندن|انگلستان|اسکاتلند|ولز|استرالیا|سیدنی|کانادا|تورنتو|آلمان|برلین|"
+    r"فرانسه|پاریس|ایتالیا|رم|اسپانیا|ژاپن|توکیو|کره جنوبی|سئول|هند|دهلی|پاکستان|اسلام آباد|افغانستان|ترکیه|"
+    r"آنکارا|استانبول|چین|تایوان|روسیه|اوکراین|اسرائیل|غزه|مکزیک|برزیل|عمان|بنگلادش|دکا)\b",
     re.I,
 )
 
 GLOBAL_OVERRIDE = re.compile(
     r"\b(?:global|worldwide|international|cross[- ]border|multinational|united nations|un general assembly|unga|nato|g7|g20|"
     r"icc|international court|iran|russia|ukraine|israel|gaza|china|taiwan|north korea|middle east|european union|eu|"
-    r"war|invasion|ceasefire|sanctions|tariffs|سازمان ملل|مجمع عمومی|بین المللی|بین‌المللی|فرامرزی|چندملیتی|ایران|"
+    r"war|invasion|ceasefire|sanctions|tariffs|brics|سازمان ملل|مجمع عمومی|بین المللی|بین‌المللی|فرامرزی|چندملیتی|ایران|"
     r"روسیه|اوکراین|اسرائیل|غزه|چین|تایوان|کره شمالی|خاورمیانه|اتحادیه اروپا|جنگ|تهاجم|آتش بس|آتش‌بس|تحریم|تعرفه)\b",
     re.I,
 )
@@ -46,9 +48,6 @@ FOREIGN_LOCAL_MARKERS = re.compile(
     re.I,
 )
 
-# Opinion/commentary is not breaking news by itself. Require a concrete event
-# before allowing headlines built around analysts, commentators, presenters,
-# or rhetorical "attacks"/responses to pass the final gate.
 OPINION_ONLY = re.compile(
     r"(?:تحلیلگر|تحلیل‌گر|کارشناس|اندیشمند|مجری|فعال|نویسنده|استاد|commentator|analyst|expert|host|presenter|"
     r"response|responds|slams|criticizes|criticises|calls out|hits back|"
@@ -109,11 +108,12 @@ def _foreign_local_only(candidate):
     if consequential_event:
         return False
     country_hits = re.findall(
-        r"\b(?:australia|britain|united kingdom|america|united states|canada|germany|france|italy|spain|japan|south korea|india|pakistan|afghanistan|turkey|china|taiwan|russia|ukraine|israel|mexico|brazil)\b|"
-        r"استرالیا|بریتانیا|انگلیس|آمریکا|کانادا|آلمان|فرانسه|ایتالیا|اسپانیا|ژاپن|کره جنوبی|هند|پاکستان|افغانستان|ترکیه|چین|تایوان|روسیه|اوکراین|اسرائیل|مکزیک|برزیل",
+        r"\b(?:australia|britain|united kingdom|america|united states|canada|germany|france|italy|spain|japan|south korea|india|pakistan|afghanistan|turkey|china|taiwan|russia|ukraine|israel|mexico|brazil|oman|bangladesh)\b|"
+        r"استرالیا|بریتانیا|انگلیس|آمریکا|کانادا|آلمان|فرانسه|ایتالیا|اسپانیا|ژاپن|کره جنوبی|هند|پاکستان|افغانستان|ترکیه|چین|تایوان|روسیه|اوکراین|اسرائیل|مکزیک|برزیل|عمان|بنگلادش",
         text, re.I
     )
     return len({x.lower() for x in country_hits}) < 2
+
 
 def _opinion_only(candidate):
     text = _text(candidate)
