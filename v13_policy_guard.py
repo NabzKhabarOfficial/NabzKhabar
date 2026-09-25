@@ -42,7 +42,7 @@ SEVERE_SCALE = re.compile(
 )
 
 FOREIGN_LOCAL_MARKERS = re.compile(
-    r"\b(?:raf|nhs|met police|council|county council|local council|school district|local school|mayor|shire|borough|"
+    r"\b(?:raf|nhs|met police|police force|police department|police service|staff information|employee information|data breach|cyber attack|cyberattack|non-emergency systems?|council|county council|local council|school district|local school|mayor|shire|borough|"
     r"training jet|local election|local court|local hospital|football club|premier league|championship|پلیس محلی|"
     r"شورای شهر|شهرداری|مدرسه|بیمارستان محلی|انتخابات محلی|باشگاه فوتبال|لیگ برتر)",
     re.I,
@@ -92,6 +92,12 @@ def _foreign_local_only(candidate):
         return False
     if ROUNDUP.search(text):
         return True
+    # Explicit domestic-institution rule. This remains active even if a later
+    # layer translates the headline before publication.
+    if re.search(r"\b(?:wales|welsh|england|scotland|britain|british|united kingdom)\b", text, re.I):
+        if re.search(r"\b(?:police|police force|staff|employee|data breach|cyber attack|cyberattack|non-emergency|local council|shire|borough)\b", text, re.I):
+            if not GLOBAL_OVERRIDE.search(text) and not SEVERE_SCALE.search(text):
+                return True
     # Evaluate nationally significant regulatory/safety changes before generic
     # local markers such as "football club" can reject them.
     national_policy_impact = (
@@ -180,4 +186,13 @@ def install(main):
         def guarded_select(candidates, *args, **kwargs):
             return original_select(_filter(candidates), *args, **kwargs)
         main.select_best_candidate = guarded_select
+    original_process = getattr(main, "process_news", None)
+    if original_process is not None:
+        def guarded_process(candidate, *args, **kwargs):
+            if _foreign_local_only(candidate):
+                print("V13 FINAL PUBLICATION SCOPE DROP: " + str(candidate.get("title", "") or ""))
+                return False
+            return original_process(candidate, *args, **kwargs)
+        main.process_news = guarded_process
+
     print(f"V13 FINAL POLICY GUARD ACTIVE: fresh={NORMAL_WINDOW_MINUTES}m, rescue={CRITICAL_RESCUE_MAX_HOURS}h")
