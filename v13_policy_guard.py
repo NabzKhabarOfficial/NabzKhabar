@@ -42,7 +42,7 @@ SEVERE_SCALE = re.compile(
 )
 
 FOREIGN_LOCAL_MARKERS = re.compile(
-    r"\b(?:raf|nhs|met police|police force|police department|police service|staff information|employee information|data breach|cyber attack|cyberattack|non-emergency systems?|council|county council|local council|school district|local school|mayor|shire|borough|"
+    r"\b(?:raf|nhs|met police|police force|police department|police service|staff information|employee information|data breach|cyber attack|cyberattack|non-emergency systems?|council|county council|local council|school district|local school|mayor|shire|borough|victims? commissioner|criminal justice system|crown court|magistrates court|bail|sex offender|offender|sentenced|sentencing|playground|"
     r"training jet|local election|local court|local hospital|football club|premier league|championship|پلیس محلی|"
     r"شورای شهر|شهرداری|مدرسه|بیمارستان محلی|انتخابات محلی|باشگاه فوتبال|لیگ برتر)",
     re.I,
@@ -102,6 +102,14 @@ def _foreign_local_only(candidate):
     # not ordinary foreign-local reporting.
     if re.search(r"\b(?:nhs|national health service)\b", text, re.I) and re.search(r"\b(?:nationwide|national)\b", text, re.I) and re.search(r"\b(?:review|investigation|cases|patients?)\b", text, re.I):
         return False
+
+    # Foreign-city/local-crime rule: routine court, offender, bail and
+    # victims-commissioner stories tied to one foreign city are local reporting,
+    # even when the source article contains broader commentary.
+    if re.search(r"\\b(?:london|sydney|melbourne|toronto|vancouver|paris|berlin|rome|madrid|tokyo|seoul|delhi|istanbul|new york|washington)\\b", text, re.I):
+        if re.search(r"\\b(?:criminal justice system|victims? commissioner|crown court|magistrates court|bail|sex offender|offender|sentenced|sentencing|local police|playground)\\b", text, re.I):
+            if not GLOBAL_OVERRIDE.search(text) and not SEVERE_SCALE.search(text):
+                return True
 
     # Evaluate nationally significant regulatory/safety changes before generic
     # local markers such as "football club" can reject them.
