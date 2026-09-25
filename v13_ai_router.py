@@ -324,13 +324,16 @@ ARGOS_SEMANTIC_BAD_PATTERNS = (
 
 def _argos_semantic_gate(original_title, original_source, translated_title, translated_summary):
     """Reject high-confidence Argos meaning corruption without an AI call."""
-    source = str(original_title or "") + " " + str(original_source or "")
+    source_title = str(original_title or "")
     title = str(translated_title or "")
     summary = str(translated_summary or "")
-    source_lower = source.lower()
+    source_title_lower = source_title.lower()
 
+    # Only enforce a name anchor when the name is actually in the original
+    # headline. Searching the full article body caused false rejections when a
+    # secondary person was merely mentioned in the story.
     for source_name, aliases in ARGOS_NAME_ANCHORS.items():
-        if source_name in source_lower:
+        if source_name in source_title_lower:
             if not any(alias in title or alias in summary for alias in aliases):
                 return False, "missing-name-anchor:" + source_name
 
