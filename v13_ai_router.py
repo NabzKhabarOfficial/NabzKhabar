@@ -276,6 +276,9 @@ def _numbers(main, text):
 
 TRANSLATION_QUALITY_BAD_PATTERNS = (
     # Known machine-translation artifacts observed in production logs.
+    re.compile(r"(?<![\u0600-\u06ff])تحق(?![\u0600-\u06ff])", re.I),
+    re.compile(r"اطلاعات(?:\s|‌)+کارکنان.{0,80}(?:می\s*توان|میتوان).{0,30}(?:دانست|در\s*نظر)", re.I),
+    # Known machine-translation artifacts observed in production logs.
     # These are deliberately narrow: they block malformed Persian phrasing,
     # not legitimate foreign names or ordinary news vocabulary.
     re.compile(r"برچسب(?:\s|‌)+(?:های|ها)(?:\s|‌).{0,45}(?:رهبر|سیل|دولت|کشور)", re.I),
