@@ -4333,12 +4333,19 @@ def process_news(
 
     ai_result = None
 
-    if AI_API_KEY:
-
+    # Always enter the V13 router. It owns the free fallback chain
+    # (Argos -> configured AI providers -> Argos final fallback). The old
+    # AI_API_KEY gate bypassed Argos entirely whenever the Gemini key was
+    # absent, which could block every foreign story despite local translation
+    # being available.
+    try:
         ai_result = gemini_request(
             original_title,
             source_text
         )
+    except Exception as exc:
+        print(f"V13 AI ROUTER ERROR: {exc}", flush=True)
+        ai_result = None
 
     if ai_result:
 
