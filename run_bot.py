@@ -9,13 +9,12 @@ import v13_ad_filter
 import v13_intelligence
 import v13_freshness_rescue
 import v13_critical_rescue
+import v13_editorial_formatter
 import v13_policy_guard
 
 # V13 is the only news runtime. Obsolete legacy engines and patches were removed.
-# Branding/media fixes, the free AI router, automatic content enrichment,
-# freshness rescue, critical editorial rescue, and the final publication policy
-# guard are installed before the engine starts. The policy guard is intentionally
-# installed LAST so no later module can re-introduce a rejected foreign-local story.
+# The final editorial formatter runs immediately before the policy guard so the
+# text that reaches Telegram is mobile-first, source-clean, concise and complete.
 v13_media_branding.install(main)
 v13_ai_router.install(main)
 v13_argos_translate.install(main)
@@ -24,6 +23,7 @@ v13_ad_filter.install(main)
 v13_intelligence.install(main)
 v13_freshness_rescue.install(main)
 v13_critical_rescue.install()
+v13_editorial_formatter.install(main)
 v13_policy_guard.install(main)
 
 import education
