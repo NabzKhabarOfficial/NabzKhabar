@@ -26,6 +26,9 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
+          cache-dependency-path: |
+            requirements.txt
+            requirements-cpu.txt
       - name: Verify media tools
         run: |
           set -e
@@ -39,16 +42,25 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .argos-packages
-          key: ${{ runner.os }}-nabz-argos-en-fa-v1
+          key: ${{ runner.os }}-nabz-argos-en-fa-v2
           restore-keys: |
             ${{ runner.os }}-nabz-argos-en-fa-
       - name: Install dependencies
         run: |
+          set -e
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu --no-deps -r requirements-cpu.txt
+          python -m pip install -r requirements.txt
+          python - <<'PY'
+          import torch
+          print("PyTorch:", torch.__version__)
+          print("CUDA available:", torch.cuda.is_available())
+          if torch.cuda.is_available():
+              raise SystemExit("CUDA build installed unexpectedly")
+          PY
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_argos_translate.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_freshness_rescue.py v13_policy_guard.py v13_monitor.py run_bot.py education.py car_prices.py weather.py sitecustomize.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_argos_translate.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_freshness_rescue.py v13_critical_rescue.py v13_policy_guard.py v13_monitor.py run_bot.py education.py car_prices.py weather.py sitecustomize.py
       - name: V13 final scope and freshness regression test
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
@@ -58,14 +70,13 @@ jobs:
           import v13_standalone as v
           import v13_intelligence as intelligence
           import v13_policy_guard as policy
+          import v13_critical_rescue as critical
           import v13_ai_router
           from datetime import datetime, timezone, timedelta
 
           telemetry = {
-              "title": "OpenAI product update",
-              "summary": "A product update was reported.",
-              "description": "",
-              "link": "https://google-analytics.com/analytics.js",
+              "title": "OpenAI product update", "summary": "A product update was reported.",
+              "description": "", "link": "https://google-analytics.com/analytics.js",
               "resolved_link": "https://google-analytics.com/analytics.js",
           }
           ok, _, reason = intelligence.is_publishable(v, telemetry)
@@ -81,9 +92,9 @@ jobs:
               ("Iran and US officials discuss regional ceasefire", False),
               ("Major earthquake kills dozens and triggers mass evacuation", False),
               ("UN General Assembly leaders meet over the Iran conflict", False),
-                    ("Hurricane Polo brings fears of heavy rain and landslides in Mexico", False),
-                    ("Deadly attack on Indian cargo ship off coast of Oman", False),
-                    ("Tensions between India and Bangladesh are in focus after Dhaka skipped the BRICS summit in Delhi", False),
+              ("Hurricane Polo brings fears of heavy rain and landslides in Mexico", False),
+              ("Deadly attack on Indian cargo ship off coast of Oman", False),
+              ("Tensions between India and Bangladesh are in focus after Dhaka skipped the BRICS summit in Delhi", False),
               ("Parents of Billy Vigar criticise the Football Association after his death as safety rules are changed for 169 clubs", False),
               ("NHS announces nationwide review of 4,500 breast cancer cases after unnecessary surgeries found", False),
               ("Police force says staff information may be compromised after cyber attack in Wales", True),
@@ -95,46 +106,41 @@ jobs:
               if actual != expected_skip:
                   raise SystemExit(f"V13 FINAL SCOPE TEST FAILED: {title!r} -> {actual}, expected {expected_skip}")
 
-          iran_source_local = {
-              "title": "نگاهی به مهمترین عناوین روزنامه های بریتانیا",
-              "summary": "", "description": "",
-              "link": "https://www.yjc.ir/fa/news/example",
-              "resolved_link": "https://www.yjc.ir/fa/news/example",
-          }
+          # Critical rescue must keep consequential geopolitical stories even
+          # when the numeric event scorer cannot see a casualty/disaster verb.
+          geopolitical_cases = [
+              "Why is Canada’s PM Carney not ruling out a possible war with the US",
+              "US seeking to revive Russia-Ukraine ceasefire talks",
+              "Iran pitches seven-day roadmap to end conflict with US",
+              "At Trump meeting, Xi Jinping lays out terms to avoid US-China military conflict",
+          ]
+          for title in geopolitical_cases:
+              candidate = {"title": title, "summary": "", "description": "", "link": "https://example.com/news"}
+              if policy._foreign_local_only(candidate):
+                  raise SystemExit(f"V13 CRITICAL TEST FAILED: geopolitical story treated as foreign-local: {title}")
+
+          iran_source_local = {"title": "نگاهی به مهمترین عناوین روزنامه های بریتانیا", "summary": "", "description": "", "link": "https://www.yjc.ir/fa/news/example", "resolved_link": "https://www.yjc.ir/fa/news/example"}
           if not policy._foreign_local_only(iran_source_local):
               raise SystemExit("V13 FINAL SCOPE TEST FAILED: Iranian publisher bypassed foreign-local gate")
-
-          iran_source_global = {
-              "title": "Iran and US officials discuss regional ceasefire",
-              "summary": "", "description": "",
-              "link": "https://www.yjc.ir/fa/news/example",
-              "resolved_link": "https://www.yjc.ir/fa/news/example",
-          }
+          iran_source_global = {"title": "Iran and US officials discuss regional ceasefire", "summary": "", "description": "", "link": "https://www.yjc.ir/fa/news/example", "resolved_link": "https://www.yjc.ir/fa/news/example"}
           if policy._foreign_local_only(iran_source_global):
               raise SystemExit("V13 FINAL SCOPE TEST FAILED: Iranian publisher global story was dropped")
 
-          if policy.NORMAL_WINDOW_MINUTES != 30:
-              raise SystemExit("V13 FRESHNESS TEST FAILED: final normal window is not 30 minutes")
-          if policy.CRITICAL_RESCUE_MAX_HOURS != 6:
-              raise SystemExit("V13 FRESHNESS TEST FAILED: critical rescue window is not 6 hours")
-          if v.FEED_COLLECTION_WINDOW_MINUTES != 30:
-              raise SystemExit("V13 FRESHNESS TEST FAILED: standalone collection/publication window is not 30 minutes")
+          if policy.NORMAL_WINDOW_MINUTES != 30 or policy.CRITICAL_RESCUE_MAX_HOURS != 6 or v.FEED_COLLECTION_WINDOW_MINUTES != 30:
+              raise SystemExit("V13 FRESHNESS TEST FAILED: freshness windows changed unexpectedly")
 
           bad_translation = "برچسب های رهبر نپال سیل یک جنگ به جهان را ویران می کند"
-          if not v13_ai_router._translation_quality_bad(bad_translation):
-              raise SystemExit("V13 TRANSLATION TEST FAILED: malformed Persian translation was accepted")
           malformed_wales = "نیروی پلیس می گوید اطلاعات کارکنان را می توان پس از حمله سایبری تحق دانست."
-          if not v13_ai_router._translation_quality_bad(malformed_wales):
-              raise SystemExit("V13 TRANSLATION TEST FAILED: malformed cyber-attack translation was accepted")
           good_translation = "نخست وزیر نپال سیل ویرانگر را هشداری برای جهان خواند"
+          if not v13_ai_router._translation_quality_bad(bad_translation) or not v13_ai_router._translation_quality_bad(malformed_wales):
+              raise SystemExit("V13 TRANSLATION TEST FAILED: known malformed Persian was accepted")
           if v13_ai_router._translation_quality_bad(good_translation):
               raise SystemExit("V13 TRANSLATION TEST FAILED: valid Persian headline was rejected")
+
           now = datetime.now(timezone.utc)
-          fresh = now - timedelta(minutes=20)
-          stale = now - timedelta(minutes=40)
-          if (now - fresh).total_seconds() / 60 > policy.NORMAL_WINDOW_MINUTES:
+          if (now - (now - timedelta(minutes=20))).total_seconds() / 60 > policy.NORMAL_WINDOW_MINUTES:
               raise SystemExit("V13 FRESHNESS TEST FAILED: fresh story exceeded the normal window")
-          if (now - stale).total_seconds() / 60 <= policy.NORMAL_WINDOW_MINUTES:
+          if (now - (now - timedelta(minutes=40))).total_seconds() / 60 <= policy.NORMAL_WINDOW_MINUTES:
               raise SystemExit("V13 FRESHNESS TEST FAILED: stale story remained inside the normal window")
           print("V13 FINAL REGRESSION TEST PASSED")
           PY
