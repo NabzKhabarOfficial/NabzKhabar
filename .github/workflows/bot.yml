@@ -86,6 +86,7 @@ jobs:
                     ("Tensions between India and Bangladesh are in focus after Dhaka skipped the BRICS summit in Delhi", False),
               ("Parents of Billy Vigar criticise the Football Association after his death as safety rules are changed for 169 clubs", False),
               ("NHS announces nationwide review of 4,500 breast cancer cases after unnecessary surgeries found", False),
+              ("Police force says staff information may be compromised after cyber attack in Wales", True),
               ("Premier League club appoints new manager after poor run", True),
           ]
           for title, expected_skip in cases:
@@ -122,6 +123,9 @@ jobs:
           bad_translation = "برچسب های رهبر نپال سیل یک جنگ به جهان را ویران می کند"
           if not v13_ai_router._translation_quality_bad(bad_translation):
               raise SystemExit("V13 TRANSLATION TEST FAILED: malformed Persian translation was accepted")
+          malformed_wales = "نیروی پلیس می گوید اطلاعات کارکنان را می توان پس از حمله سایبری تحق دانست."
+          if not v13_ai_router._translation_quality_bad(malformed_wales):
+              raise SystemExit("V13 TRANSLATION TEST FAILED: malformed cyber-attack translation was accepted")
           good_translation = "نخست وزیر نپال سیل ویرانگر را هشداری برای جهان خواند"
           if v13_ai_router._translation_quality_bad(good_translation):
               raise SystemExit("V13 TRANSLATION TEST FAILED: valid Persian headline was rejected")
