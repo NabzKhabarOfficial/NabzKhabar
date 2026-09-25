@@ -370,6 +370,7 @@ def gemini_request(main, title, article_text):
     source = main.clean_content(article_text or title)
     foreign = _persian_ratio(title) < 0.60
 
+    argos_result = None
     if foreign:
         argos_result = _argos_foreign_translation(title, source)
         if argos_result:
@@ -445,7 +446,8 @@ def gemini_request(main, title, article_text):
 
     # Final fallback: local Argos Translate, after all AI providers fail.
     if foreign:
-        argos_result = _argos_foreign_translation(title, source)
+        if not argos_result:
+            argos_result = _argos_foreign_translation(title, source)
         if argos_result:
             # Argos has its own dedicated safety validation. Do not run the
             # stricter AI numeric validator again: it compares explicit digits
