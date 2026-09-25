@@ -107,7 +107,7 @@ def _foreign_local_only(candidate):
             text, re.I,
         )
         and re.search(
-            r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|unnecessary surgery|"
+            r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|unnecessary surger(?:y|ies)|"
             r"patient harm|safety|مرگ|جان باخت|کشته|فوت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|ممنوع|اصلاح|تغییر|بیمار)\b",
             text, re.I,
         )
