@@ -274,6 +274,32 @@ def _numbers(main, text):
     return set(re.findall(r"\b\d+(?:[.,]\d+)?\b", normalized))
 
 
+TRANSLATION_QUALITY_BAD_PATTERNS = (
+    # Known machine-translation artifacts observed in production logs.
+    # These are deliberately narrow: they block malformed Persian phrasing,
+    # not legitimate foreign names or ordinary news vocabulary.
+    re.compile(r"برچسب(?:\s|‌)+(?:های|ها)(?:\s|‌).{0,45}(?:رهبر|سیل|دولت|کشور)", re.I),
+    re.compile(r"جنگ(?:\s|‌)+به(?:\s|‌)+جهان", re.I),
+    re.compile(r"(?:در انگلیسای|انگلیسای|ثی پلوگ|خاکستری گری|تی آی خاکستری)", re.I),
+    re.compile(r"\b(\S+)\s+\1\s+\1\b", re.I),
+)
+
+
+def _translation_quality_bad(text):
+    value = str(text or "").strip()
+    if not value:
+        return True
+    for pattern in TRANSLATION_QUALITY_BAD_PATTERNS:
+        if pattern.search(value):
+            return True
+    # A title with an excessive number of very short fragments is usually a
+    # broken literal translation rather than a normal Persian news headline.
+    words = [x for x in re.split(r"\s+", value) if x]
+    if len(words) >= 10 and sum(len(x) <= 2 for x in words) >= 5:
+        return True
+    return False
+
+
 def _bad_meta(text):
     value = str(text or "").lower()
     return any(x in value for x in (
@@ -297,6 +323,9 @@ def _validate(main, original_title, source, data, foreign):
     if not title or not summary:
         return None
     if _bad_meta(title) or _bad_meta(summary):
+        return None
+    if _translation_quality_bad(title) or _translation_quality_bad(summary):
+        print("V13 AI ROUTER: translation quality gate rejected malformed Persian output.")
         return None
     if _sentence_count(summary) > 3 or len(summary) > 750:
         return None
@@ -333,15 +362,24 @@ def _argos_foreign_translation(title, source):
 
 
 def gemini_request(main, title, article_text):
-    # AI providers are attempted first when an AI key is configured.
-    # Argos remains available as the final local translation fallback.
+    # For foreign stories, try the local Argos en->fa engine first.
+    # This makes translation independent of quotas and avoids publishing a
+    # fluent-looking but semantically broken AI translation. AI providers
+    # remain the fallback when Argos is unavailable or fails validation.
 
     source = main.clean_content(article_text or title)
     foreign = _persian_ratio(title) < 0.60
 
     if foreign:
-        # AI providers are preferred for quality. Argos is the final local
-        # fallback so the channel remains fully functional without paid APIs.
+        argos_result = _argos_foreign_translation(title, source)
+        if argos_result:
+            validated_argos = _validate(main, title, source, argos_result, foreign)
+            if validated_argos:
+                print("V13 AI ROUTER: foreign story accepted via local Argos before AI fallback.")
+                return validated_argos
+            print("V13 AI ROUTER: Argos output failed publication-quality validation; trying AI fallback.")
+
+        # AI is the quality fallback when local translation is unavailable.
         prompt = """این خبر از یک منبع خارجی است و باید برای یک کانال خبری فارسی‌زبان آماده شود.
 عنوان اصلی:
 %s
