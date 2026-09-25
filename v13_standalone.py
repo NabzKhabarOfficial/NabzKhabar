@@ -5057,6 +5057,27 @@ def _foreign_local_only(candidate):
         return False
     if is_roundup_title(candidate.get("title", "")):
         return True
+    # National safety/regulatory changes must be evaluated before generic
+    # foreign-local markers can reject an otherwise consequential story.
+    national_policy_impact = (
+        re.search(
+            r"\b(?:football association|national football association|governing body|stadium accreditation|"
+            r"safety rules?|safety regulations?|regulations?|rules?)\b",
+            text, re.I,
+        )
+        and re.search(
+            r"\b(?:changed|changes|updated|update|banned|ban|prohibited|introduced|revised|"
+            r"affected|clubs?|all levels|national league|169 clubs?)\b",
+            text, re.I,
+        )
+        and re.search(
+            r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|"
+            r"مرگ|جان باخت|کشته|فوت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|ممنوع|اصلاح|تغییر)\b",
+            text, re.I,
+        )
+    )
+    if national_policy_impact:
+        return False
     has_local = any(re.search(pattern, text, re.I) for pattern in FOREIGN_LOCAL_TERMS)
     if not has_local:
         return False
