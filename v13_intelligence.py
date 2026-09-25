@@ -15,7 +15,7 @@ HEALTH_FILE = "v13_health.json"
 REJECTED_NEWS_FILE = "v13_rejected_news.json"
 MAX_REJECTED_NEWS_HISTORY = 500
 MAX_NEWS_PER_RUN = 4
-MIN_EVENT_SCORE = 5
+MIN_EVENT_SCORE = 7
 
 HIGH_IMPACT = (
     "جنگ", "حمله", "موشک", "انفجار", "زلزله", "سیل", "آتش سوزی",
@@ -532,6 +532,29 @@ def is_publishable(main, candidate):
 
     if not has_event:
         return False, 0, "no-concrete-event"
+
+    # Routine statements/meetings/visits/ceremonies and personality reactions
+    # are not important-news by themselves; require a concrete consequence.
+    routine_statement = bool(re.search(
+        r"(?:واکنش|اظهارات|گفت|تأکید|تاکید|دیدار|سفر|مراسم|گرامیداشت|تسلیت|تبریک|پیام|"
+        r"responds|says|said|remarks|meeting|visit|ceremony|memorial|appointed|named as)",
+        title, re.I,
+    ))
+    concrete_change = bool(re.search(
+        r"(?:کشته|زخمی|مفقود|بازداشت|انفجار|زلزله|سیل|آتش.?سوزی|سقوط|حمله|موشک|"
+        r"تحریم|آتش.?بس|تعلیق|ممنوع|قطع|اختلال|تصویب|ابلاغ|لغو|افزایش|کاهش|جهش|"
+        r"قانون|نرخ بهره|تورم|تملک|ادغام|دعوی قضایی|شکایت|قهرمانی|فینال|رکورد|"
+        r"attack|strike|missile|explosion|earthquake|flood|killed|wounded|arrested|"
+        r"sanction|ceasefire|outage|approved|banned|suspended|merger|acquisition|lawsuit|final|champion|record)",
+        title, re.I,
+    ))
+    if routine_statement and not concrete_change and not (
+        _high_impact_security_override(candidate)
+        or _global_consequential_override(candidate)
+        or _major_business_legal_override(candidate)
+        or _unga_breaking_override(candidate)
+    ):
+        return False, score, "routine-statement"
 
     if score < MIN_EVENT_SCORE:
         return False, score, "below-event-threshold"
