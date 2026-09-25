@@ -58,17 +58,18 @@ ARTICLE_TIMEOUT = 25
 MAX_VIDEO_MB = 49
 MAX_IMAGE_MB = 12
 
-# The bot runs every 10 minutes. Keep discovery focused on a short,
-# overlapping window so delayed RSS publication does not create gaps.
-FEED_COLLECTION_WINDOW_MINUTES = 60
+# The normal publication freshness contract is 30 minutes. Critical-news
+# rescue temporarily expands feed collection to 6 hours in the dedicated
+# freshness-rescue layer; routine stories never use that wider window.
+FEED_COLLECTION_WINDOW_MINUTES = 30
 
 # Important stories may be older than the normal feed window when RSS delivery is delayed.
 # Rescue only high-impact events; routine foreign-local stories remain blocked.
 IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES = 360
 
-# News discovery/publication freshness is intentionally identical
-# to the 30-minute feed window.
-MAX_NEWS_AGE_HOURS = FEED_COLLECTION_WINDOW_MINUTES / 60
+# Normal publication freshness is 30 minutes. Do not silently widen this
+# value: delayed high-impact stories are handled only by v13_freshness_rescue.
+MAX_NEWS_AGE_HOURS = 0.5
 
 # Semantic duplicate protection window.
 SEMANTIC_HISTORY_DAYS = 7
