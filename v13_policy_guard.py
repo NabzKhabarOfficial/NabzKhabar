@@ -92,6 +92,23 @@ def _foreign_local_only(candidate):
         return False
     if ROUNDUP.search(text):
         return True
+    # Evaluate nationally significant regulatory/safety changes before generic
+    # local markers such as "football club" can reject them.
+    national_policy_impact = re.search(
+        r"\b(?:football association|national football association|governing body|stadium accreditation|"
+        r"safety rules?|safety regulations?|regulations?|rules?)\b",
+        text, re.I,
+    ) and re.search(
+        r"\b(?:changed|changes|updated|update|banned|ban|prohibited|introduced|revised|"
+        r"affected|clubs?|all levels|national league|169 clubs?)\b",
+        text, re.I,
+    ) and re.search(
+        r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|"
+        r"مرگ|جان باخت|کشته|فوت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|ممنوع|اصلاح|تغییر)\b",
+        text, re.I,
+    )
+    if national_policy_impact:
+        return False
     if FOREIGN_LOCAL_MARKERS.search(text):
         if GLOBAL_OVERRIDE.search(text) or SEVERE_SCALE.search(text):
             return False
