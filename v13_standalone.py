@@ -5062,12 +5062,32 @@ def _foreign_local_only(candidate):
         return False
     if _has_foreign_global_override(text) or _has_foreign_severe_scale(text):
         return False
+    # A foreign domestic story can still be nationally consequential when a
+    # national governing body changes safety/regulatory rules after a serious
+    # incident, especially when the change affects many clubs or a whole league system.
+    national_policy_impact = (
+        re.search(
+            r"\b(?:football association|national football association|governing body|stadium accreditation|"
+            r"safety rules?|safety regulations?|regulations?|rules?)\b",
+            text, re.I,
+        )
+        and re.search(
+            r"\b(?:changed|changes|updated|update|banned|ban|prohibited|introduced|revised|"
+            r"affected|clubs?|all levels|national league|169 clubs?)\b",
+            text, re.I,
+        )
+        and re.search(
+            r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|"
+            r"مرگ|جان باخت|کشته|فوت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|ممنوع|اصلاح|تغییر)\b",
+            text, re.I,
+        )
+    )
     consequential = re.search(
         r"\b(?:hurricane|typhoon|earthquake|tsunami|volcan|wildfire|deadly attack|terror attack|mass shooting|major explosion|major fire|large[- ]scale evacuation|dozens killed|hundreds killed|dozens injured|hundreds injured)\b|"
         r"هاریکن|تایفون|زلزله شدید|سونامی|آتشفشان|حمله مرگبار|حمله تروریستی|انفجار بزرگ|آتش‌سوزی گسترده|تخلیه گسترده|ده.?ها کشته|صدها کشته|ده.?ها زخمی|صدها زخمی",
         text, re.I
     )
-    if consequential:
+    if consequential or national_policy_impact:
         return False
     country_hits = re.findall(
         r"\b(?:australia|britain|united kingdom|america|united states|canada|germany|france|italy|spain|japan|south korea|india|pakistan|afghanistan|turkey|china|taiwan|russia|ukraine|israel|mexico|brazil)\b|"
