@@ -94,18 +94,23 @@ def _foreign_local_only(candidate):
         return True
     # Evaluate nationally significant regulatory/safety changes before generic
     # local markers such as "football club" can reject them.
-    national_policy_impact = re.search(
-        r"\b(?:football association|national football association|governing body|stadium accreditation|"
-        r"safety rules?|safety regulations?|regulations?|rules?)\b",
-        text, re.I,
-    ) and re.search(
-        r"\b(?:changed|changes|updated|update|banned|ban|prohibited|introduced|revised|"
-        r"affected|clubs?|all levels|national league|169 clubs?)\b",
-        text, re.I,
-    ) and re.search(
-        r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|"
-        r"مرگ|جان باخت|کشته|فوت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|ممنوع|اصلاح|تغییر)\b",
-        text, re.I,
+    national_policy_impact = (
+        re.search(
+            r"\b(?:football association|national football association|governing body|regulator|regulatory authority|"
+            r"national health service|health regulator|nhs|stadium accreditation|safety rules?|safety regulations?|"
+            r"regulations?|rules?|government review|national inquiry|nationwide)\b",
+            text, re.I,
+        )
+        and re.search(
+            r"\b(?:changed|changes|updated|update|banned|ban|prohibited|introduced|revised|review|investigation|"
+            r"affected|clubs?|patients?|cases?|all levels|national league|nationwide|thousands?|hundreds?|169 clubs?)\b",
+            text, re.I,
+        )
+        and re.search(
+            r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|unnecessary surgery|"
+            r"patient harm|safety|مرگ|جان باخت|کشته|فوت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|ممنوع|اصلاح|تغییر|بیمار)\b",
+            text, re.I,
+        )
     )
     if national_policy_impact:
         return False
@@ -117,23 +122,6 @@ def _foreign_local_only(candidate):
         return False
     if GLOBAL_OVERRIDE.search(text) or SEVERE_SCALE.search(text):
         return False
-    # National-level safety/regulatory consequences are not routine local news.
-    # Example: a national governing body changes safety rules after a fatality,
-    # affecting many clubs or an entire competition system.
-    national_policy_impact = re.search(
-        r"\b(?:football association|national football association|governing body|stadium accreditation|"
-        r"safety rules?|safety regulations?|regulations?|rules?)\b",
-        text, re.I,
-    ) and re.search(
-        r"\b(?:changed|changes|updated|update|banned|ban|prohibited|introduced|revised|"
-        r"affected|clubs?|all levels|national league|169 clubs?)\b",
-        text, re.I,
-    ) and re.search(
-        r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|"
-        r"مرگ|جان باخت|کشته|فوت|جان.?باخت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|"
-        r"ممنوع|اصلاح|تغییر)\b",
-        text, re.I,
-    )
     consequential_event = re.search(
         r"\b(?:hurricane|typhoon|earthquake|tsunami|volcan|wildfire|deadly attack|terror attack|mass shooting|major explosion|major fire|large[- ]scale evacuation|dozens killed|hundreds killed|dozens injured|hundreds injured)\b|"
         r"هاریکن|تایفون|زلزله شدید|سونامی|آتشفشان|حمله مرگبار|حمله تروریستی|انفجار بزرگ|آتش‌سوزی گسترده|تخلیه گسترده|ده.?ها کشته|صدها کشته|ده.?ها زخمی|صدها زخمی",
