@@ -2,11 +2,12 @@
 
 A narrow safety net for consequential geopolitical headlines that can score low
 because they describe diplomacy/roadmaps/agreements rather than casualties.
-It wraps the existing intelligence gate instead of replacing it.
+It runs before final policy publication, so it must never promote foreign-local
+stories into the translation queue.
 """
 
-import re
 import v13_intelligence
+import v13_policy_guard
 
 CRITICAL_PAIRS = (
     ("iran", ("united states", "u.s.", "us", "america", "washington")),
@@ -14,15 +15,16 @@ CRITICAL_PAIRS = (
     ("russia", ("ukraine", "nato", "united states", "europe")),
     ("china", ("taiwan", "united states", "philippines")),
     ("north korea", ("south korea", "japan", "united states")),
+    ("canada", ("united states", "u.s.", "us", "america", "washington")),
 )
 
 CRITICAL_ACTIONS = (
     "roadmap", "talks", "negotiations", "negotiation", "agreement", "deal",
     "ceasefire", "truce", "nuclear", "conflict", "war", "sanctions",
     "sanction", "tariff", "tariffs", "military", "attack", "strike",
-    "missile", "invasion", "ultimatum", "peace plan", "peace proposal",
+    "missile", "invasion", "ultimatum", "peace plan", "peace proposal", "summit",
     "مذاکرات", "مذاکره", "توافق", "آتش بس", "آتش‌بس", "هسته ای", "هسته‌ای",
-    "تحریم", "جنگ", "درگیری", "حمله", "موشک", "نقشه راه", "طرح صلح",
+    "تحریم", "جنگ", "درگیری", "حمله", "موشک", "نقشه راه", "طرح صلح", "نشست",
 )
 
 
@@ -30,7 +32,6 @@ def _critical_geopolitical(candidate):
     title = str(candidate.get("title", "") or "").lower()
     if len(title) < 20:
         return False
-    # Avoid rescuing generic statements, meetings, profiles or opinions.
     routine = (
         "said", "says", "remarks", "meeting", "visit", "visited", "speech",
         "opinion", "analysis", "profile", "گفت", "اظهارات", "دیدار", "سفر",
@@ -39,18 +40,29 @@ def _critical_geopolitical(candidate):
     action = any(x in title for x in CRITICAL_ACTIONS)
     if not action:
         return False
+    # A concrete geopolitical pair is strongest.
     for primary, partners in CRITICAL_PAIRS:
         if primary in title and any(p in title for p in partners):
             return True
-    # A single major global actor plus a concrete crisis/action is sufficient.
-    actors = ("trump", "putin", "zelensky", "netanyahu", "nato", "united nations", "ایران", "ترامپ", "پوتین", "زلنسکی", "نتانیاهو", "ناتو")
-    return any(a in title for a in actors) and action
+    # Other major global actors can qualify only with a concrete crisis/action.
+    actors = (
+        "trump", "putin", "zelensky", "netanyahu", "nato", "united nations",
+        "united states", "washington", "canada", "ایران", "ترامپ", "پوتین",
+        "زلنسکی", "نتانیاهو", "ناتو",
+    )
+    return any(a in title for a in actors) and action and not any(x in title for x in routine)
 
 
 def install():
     original = v13_intelligence.is_publishable
 
     def wrapped(main, candidate):
+        # Scope must be decided BEFORE scoring/selection. This prevents a local
+        # foreign story such as a UK crime/weather item from consuming a slot,
+        # triggering Argos, and failing only at the final policy gate.
+        if v13_policy_guard._foreign_local_only(candidate):
+            return False, 0, "foreign-local-preselection"
+
         ok, score, reason = original(main, candidate)
         if ok or not _critical_geopolitical(candidate):
             return ok, score, reason
