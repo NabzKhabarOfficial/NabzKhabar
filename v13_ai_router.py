@@ -552,6 +552,11 @@ def gemini_request(main, title, article_text):
             # without applying semantic heuristics to the fallback.
             if _translation_quality_bad(argos_title) or _translation_quality_bad(argos_summary):
                 argos_reasons.append("malformed-persian")
+            argos_semantic_ok, argos_semantic_reason = _argos_semantic_gate(
+                title, source, argos_title, argos_summary
+            )
+            if not argos_semantic_ok:
+                argos_reasons.append(argos_semantic_reason)
             # Argos translations may legitimately contain Persian prose such as
             # «به گزارش ...» when that phrase exists in the source. The generic
             # AI metadata gate treats that phrase as metadata and was therefore
