@@ -276,7 +276,8 @@ def main():
 
     candidates = collect()
     posted = set(state.get("posted", []))
-    candidate = next((item for item in candidates if item["key"] not in posted), None)
+    posted_titles = {clean(x).casefold() for x in state.get("posted_titles", []) if x}
+    candidate = next((item for item in candidates if item["key"] not in posted and clean(item["title"]).casefold() not in posted_titles), None)
     if not candidate:
         print("IG: no new candidate")
         return 0
@@ -304,6 +305,9 @@ def main():
 
     posted.add(candidate["key"])
     state["posted"] = list(posted)[-200:]
+    titles = list(state.get("posted_titles", []))
+    titles.append(candidate["title"])
+    state["posted_titles"] = titles[-200:]
     state["daily"][day] = daily_count + 1
     # Keep the state compact and discard daily counters older than 7 days.
     state["daily"] = {k: v for k, v in state["daily"].items() if k >= day}
