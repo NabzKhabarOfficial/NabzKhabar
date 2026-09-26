@@ -128,6 +128,24 @@ jobs:
                   raise SystemExit(f"V13 FRESHNESS RESCUE TEST FAILED: {title!r} -> {actual}, expected {expected}")
           print("V13 FRESHNESS RESCUE REGRESSION: PASS")
 
+          # Ceremonial/symbolic stories must never enter an important-news slot,
+          # even when they are just outside the 30-minute window.
+          ceremonial = {
+              "title": "سردار کارگر: تندیس فرماندهان شهید جنگ اخیر در باغ موزه ها نصب شود",
+              "summary": "در بازدید از باغ موزه همدان بر نصب تندیس در باغ موزه های کشور تاکید شد.",
+              "description": "", "link": "https://www.irna.ir/news/example",
+              "resolved_link": "https://www.irna.ir/news/example",
+              "freshness_rescued": True,
+          }
+          if freshness._is_critical(ceremonial):
+              raise SystemExit("V13 CEREMONIAL RESCUE TEST FAILED: symbolic story was rescued")
+          ok, score, reason = intelligence.is_publishable(v, ceremonial)
+          if ok or reason != "ceremonial-non-news":
+              raise SystemExit(f"V13 CEREMONIAL FILTER TEST FAILED: {ok}, {score}, {reason}")
+          if intelligence._publication_tier(ceremonial) >= 3:
+              raise SystemExit("V13 CEREMONIAL TIER TEST FAILED: freshness rescue inflated a routine story")
+          print("V13 CEREMONIAL/RESCUE REGRESSION: PASS")
+
           cases = [
               ("Watch: British pilots eject as RAF jet crashes in Wales", True),
               ("Groceries rise across Australian supermarket chains", True),
