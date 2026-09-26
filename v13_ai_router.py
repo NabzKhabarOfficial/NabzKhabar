@@ -9,11 +9,12 @@ import os
 import re
 import time
 
-# Ordered free-tier candidates. The router discovers which of these are actually available for this API key.
+# Low-cost/free-tier Gemini candidates, ordered from lighter to stronger.
+# The router discovers which models are actually available for this API key.
 MODEL_CANDIDATES = (
-    "gemini-3.5-flash-lite",
     "gemini-3.1-flash-lite",
-    "gemini-3.6-flash",
+    "gemini-3.5-flash-lite",
+    "gemini-2.5-flash-lite",
 )
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
@@ -21,7 +22,7 @@ MODEL_COOLDOWN_SECONDS = 15 * 60
 
 # Multi-provider free-tier AI pool.
 # Providers are optional: a missing secret never stops the news pipeline.
-# Order is intentional: Groq -> Mistral -> Gemini -> OpenRouter.
+# Order is intentional: Groq -> Gemini (light models) -> OpenRouter.
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
 GROQ_BASE = "https://api.groq.com/openai/v1"
 GROQ_MODELS = (
@@ -504,7 +505,7 @@ def gemini_request(main, title, article_text):
 {"title":"تیتر فارسی","summary":"خلاصه فارسی"}""" % (title, source[:6000])
 
     # AI POOL: one attempt per provider/model, no blind retries.
-    # Groq is primary; Mistral is independent fallback; Gemini follows; OpenRouter is last.
+    # Groq is primary; lightweight Gemini models are the next fallback; OpenRouter is last.
     result = _fallback_provider_request(
         main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
         prompt, title, source, foreign
