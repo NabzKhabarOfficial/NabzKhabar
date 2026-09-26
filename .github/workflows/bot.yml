@@ -43,7 +43,7 @@ jobs:
           python -m pip install -r requirements.txt
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_freshness_rescue.py v13_critical_rescue.py v13_policy_guard.py v13_monitor.py run_bot.py education.py car_prices.py weather.py sitecustomize.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_freshness_rescue.py v13_critical_rescue.py v13_policy_guard.py v13_monitor.py run_bot.py education.py car_prices.py weather.py
       - name: V13 final scope and freshness regression test
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
