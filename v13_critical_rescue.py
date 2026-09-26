@@ -60,7 +60,11 @@ def install():
         # Scope must be decided BEFORE scoring/selection. This prevents a local
         # foreign story such as a UK crime/weather item from consuming a slot,
         if v13_policy_guard._foreign_local_only(candidate):
-            return False, 0, "foreign-local-preselection"
+            # A major public-safety/security event is globally relevant even
+            # when the publisher is foreign-local. Keep routine foreign-local
+            # items blocked, but allow verified high-impact disasters/incidents.
+            if not v13_intelligence._high_impact_security_override(candidate):
+                return False, 0, "foreign-local-preselection"
 
         ok, score, reason = original(main, candidate)
         if ok or not _critical_geopolitical(candidate):
