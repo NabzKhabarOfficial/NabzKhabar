@@ -232,7 +232,7 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
                 "temperature": 0.2,
                 "max_tokens": max_output_tokens,
             },
-            timeout=30,
+            timeout=AI_HTTP_TIMEOUT_SECONDS,
         )
         if response.status_code == 400:
             detail = str(getattr(response, "text", "") or "").replace("\n", " ")[:500]
