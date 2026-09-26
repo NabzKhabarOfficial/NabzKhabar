@@ -45,12 +45,93 @@ def _text(candidate):
     return " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description")).strip()
 
 
+CONSEQUENTIAL_ACTIONS = (
+    "approved", "passed", "banned", "sanctioned", "suspended", "halted",
+    "closed", "reopened", "blocked", "restricted", "introduced", "signed",
+    "ordered", "required", "raised", "cut", "increased", "decreased",
+    "withdrew", "deployed", "launched", "released", "acquired", "merged",
+    "resigned", "arrested", "charged", "ruled", "sued", "declared",
+    "announced", "warned", "demanded", "pledged", "agreed", "rejects",
+    "accepted", "rejected", "resume", "resumed", "delayed", "reviewed",
+    "توافق", "توافق کرد", "تصویب", "ممنوع", "تحریم", "تعلیق", "تعلیق کرد",
+    "متوقف", "متوقف کرد", "تعطیل", "بازگشایی", "محدود", "محدود کرد",
+    "امضا", "امضا کرد", "دستور داد", "اعلام کرد", "هشدار داد", "خواستار",
+    "افزایش", "کاهش", "افزایش داد", "کاهش داد", "لغو", "لغو کرد",
+    "بازداشت", "محکوم", "تملک", "ادغام", "ازسرگیری", "از سر گرفت",
+)
+
+CONSEQUENTIAL_ACTORS = (
+    "iran", "u.s.", "us", "united states", "trump", "white house",
+    "china", "russia", "ukraine", "israel", "gaza", "nato", "european union",
+    "eu", "united nations", "un general assembly", "congress", "government",
+    "president", "prime minister", "parliament", "central bank", "fed", "ecb",
+    "faa", "آمریکا", "ایران", "چین", "روسیه", "اوکراین", "اسرائیل",
+    "غزه", "ناتو", "اتحادیه اروپا", "سازمان ملل", "مجلس", "دولت",
+    "رئیس جمهور", "رئیس‌جمهور", "نخست وزیر", "بانک مرکزی",
+)
+
+CONSEQUENTIAL_TOPICS = (
+    "tariff", "tariffs", "sanction", "sanctions", "ceasefire", "nuclear",
+    "interest rate", "inflation", "oil", "gas", "outage", "shutdown",
+    "telecom", "internet", "airport", "flight", "airspace", "shipping",
+    "strait", "artificial intelligence", "ai", "chip", "technology",
+    "تعرفه", "تحریم", "آتش بس", "آتش‌بس", "هسته‌ای", "نرخ بهره", "تورم",
+    "نفت", "گاز", "قطعی", "اختلال", "مخابرات", "اینترنت", "فرودگاه",
+    "پرواز", "حریم هوایی", "کشتیرانی", "تنگه", "هوش مصنوعی", "تراشه",
+)
+
+RESCUE_ROUTINE_EXCLUSIONS = (
+    "opinion", "analysis", "commentary", "review", "explainer", "tutorial",
+    "home purchase", "real estate", "celebrity", "lifestyle",
+    "تحلیل", "دیدگاه", "نظر", "راهنما", "آموزشی", "خرید خانه", "ملک",
+    "سلبریتی", "سبک زندگی",
+)
+
+def _contains_any(value, terms):
+    return any(term.lower() in value for term in terms)
+
 def _is_critical(candidate):
+    """Return True only for high-impact events or consequential world actions."""
     title = str(candidate.get("title", "") or "").lower()
     body = _text(candidate).lower()
-    if not any(term.lower() in title for term in CRITICAL_TERMS):
+    if not title:
         return False
-    return any(term.lower() in body for term in EVENT_TERMS)
+    text = f"{title} {body[:4000]}"
+
+    if _contains_any(title, RESCUE_ROUTINE_EXCLUSIONS):
+        return False
+
+    if _contains_any(title, CRITICAL_TERMS) and _contains_any(text, EVENT_TERMS):
+        return True
+
+    action_hit = _contains_any(title, CONSEQUENTIAL_ACTIONS)
+    actor_or_topic_hit = (
+        _contains_any(title, CONSEQUENTIAL_ACTORS)
+        or _contains_any(title, CONSEQUENTIAL_TOPICS)
+    )
+    if action_hit and actor_or_topic_hit:
+        return True
+
+    diplomatic_actions = (
+        "awaits response", "await response", "offers", "offer", "roadmap",
+        "calls for", "calls on", "urges", "urge", "proposes", "proposal",
+        "talks", "negotiations", "negotiation", "response",
+        "در انتظار پاسخ", "پاسخ آمریکا", "پاسخ ایالات متحده", "نقشه راه",
+        "پیشنهاد", "مذاکرات", "مذاکره", "خواستار", "درخواست",
+    )
+    diplomatic_topics = (
+        "war", "conflict", "ceasefire", "sanctions", "nuclear", "military",
+        "strait", "security", "crisis", "جنگ", "درگیری", "آتش بس", "آتش‌بس",
+        "تحریم", "هسته‌ای", "نظامی", "تنگه", "امنیت", "بحران",
+    )
+    if (
+        _contains_any(title, diplomatic_actions)
+        and _contains_any(title, CONSEQUENTIAL_ACTORS)
+        and _contains_any(text, diplomatic_topics)
+    ):
+        return True
+
+    return False
 
 
 def _age_seconds(published_at):
@@ -67,11 +148,17 @@ def install(main):
 
     def rescued_collect_feed(category, url, is_google=False):
         old_window = main.FEED_COLLECTION_WINDOW_MINUTES
+        old_rescue_predicate = getattr(
+            main, "is_important_news_rescue_candidate", None
+        )
         try:
             main.FEED_COLLECTION_WINDOW_MINUTES = CRITICAL_RESCUE_MAX_HOURS * 60
+            main.is_important_news_rescue_candidate = lambda title: True
             candidates = original_collect_feed(category, url, is_google=is_google)
         finally:
             main.FEED_COLLECTION_WINDOW_MINUTES = old_window
+            if old_rescue_predicate is not None:
+                main.is_important_news_rescue_candidate = old_rescue_predicate
 
         kept = []
         rescued = 0
