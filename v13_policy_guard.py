@@ -164,14 +164,14 @@ def _foreign_local_only(candidate):
 
 
 FINAL_GLOBAL_SECURITY = re.compile(
-    r"\\b(?:major explosion|building explosion|large explosion|mass shooting|terror attack|"
+    r"\b(?:major explosion|building explosion|large explosion|mass shooting|terror attack|"
     r"deadly attack|major fire|wildfire|earthquake|tsunami|volcanic eruption|volcano|"
     r"plane crash|air crash|train crash|bridge collapse|building collapse|"
-    r"\\d+\\s+(?:dead|killed|injured|wounded|missing)|"
-    r"(?:six|seven|eight|nine|ten|eleven|twelve|dozens|hundreds)\\s+(?:dead|killed|injured|wounded|missing))\\b|"
+    r"\d+\\s+(?:dead|killed|injured|wounded|missing)|"
+    r"(?:six|seven|eight|nine|ten|eleven|twelve|dozens|hundreds)\s+(?:dead|killed|injured|wounded|missing))\b|"
     r"انفجار بزرگ|انفجار ساختمان|انفجار مرگبار|تیراندازی مرگبار|حمله مرگبار|آتش.?سوزی گسترده|"
     r"زلزله شدید|سونامی|فوران آتشفشان|سقوط هواپیما|سقوط قطار|فروریختن ساختمان|"
-    r"\\d+\\s*(?:کشته|جان باخته|زخمی|مجروح|مفقود)|(?:ده.?ها|صدها)\\s*(?:کشته|زخمی|مجروح|مفقود)",
+    r"\d+\\s*(?:کشته|جان باخته|زخمی|مجروح|مفقود)|(?:ده.?ها|صدها)\s*(?:کشته|زخمی|مجروح|مفقود)",
     re.I,
 )
 
