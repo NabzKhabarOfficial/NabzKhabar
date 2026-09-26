@@ -57,7 +57,11 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- instagram_state.json; then
+          if [ ! -f instagram_state.json ]; then
+            echo "IG: state file was not created; nothing to persist"
+            exit 0
+          fi
+          if git diff --quiet -- instagram_state.json && git ls-files --error-unmatch instagram_state.json >/dev/null 2>&1; then
             echo "IG: no state changes"
             exit 0
           fi
