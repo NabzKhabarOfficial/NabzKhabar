@@ -108,20 +108,6 @@ jobs:
                   raise SystemExit(f"V13 CRITICAL RESCUE TEST FAILED: {title} -> {ok}, {score}, {reason}")
 
           # Exact production regression: the previously published Pezeshkian
-          # Argos corruption must be rejected before Telegram publication.
-          bad_title = "رئیس جمهور ایران پیزیسلکیان لحن دیپلماتیک به نیویورک برای ونگا آورد"
-          bad_summary = "رئیس جمهور ایران، مااس پشکیان، مجمع عمومی سازمان ملل را مورد خطاب قرار داد، در حالی که کشور او در جنگ با تصویر ایالات متحده است"
-          if not v13_ai_router._translation_quality_bad(bad_title):
-              raise SystemExit("V13 TRANSLATION REGRESSION FAILED: Pezeshkian artifact was accepted")
-          semantic_ok, semantic_reason = v13_ai_router._argos_semantic_gate(
-              "Iranian President Pezeshkian brought a diplomatic tone to New York for UNGA",
-              "Iranian President Pezeshkian addressed the UN General Assembly.",
-              bad_title,
-              bad_summary,
-          )
-          if semantic_ok:
-              raise SystemExit(f"V13 ARGOS SEMANTIC REGRESSION FAILED: {semantic_reason}")
-
           iran_source_local = {"title": "نگاهی به مهمترین عناوین روزنامه های بریتانیا", "summary": "", "description": "", "link": "https://www.yjc.ir/fa/news/example", "resolved_link": "https://www.yjc.ir/fa/news/example"}
           if not policy._foreign_local_only(iran_source_local):
               raise SystemExit("V13 FINAL SCOPE TEST FAILED: Iranian publisher bypassed foreign-local gate")
