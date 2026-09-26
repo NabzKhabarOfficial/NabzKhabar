@@ -408,8 +408,12 @@ def _high_impact_security_override(candidate):
     return strong_topic and (actor_hits > 0 or title_signals > 0)
 
 def _publication_tier(candidate):
-    """Classify editorial importance so routine warnings cannot displace major news."""
+    """Classify editorial importance so protected rescue events win final selection."""
     title = _norm(candidate.get("title", "")).lower()
+    if str(candidate.get("intelligence_reason", "")).lower() == "critical-geopolitical-rescue":
+        return 4
+    if candidate.get("freshness_rescued"):
+        return 4
     body = _text(candidate).lower()
     security = _high_impact_security_override(candidate)
     major_business = _major_business_legal_override(candidate)
@@ -746,6 +750,7 @@ def install(main):
         for candidate in candidates:
             ok, score, reason = is_publishable(main, candidate)
             candidate["intelligence_score"] = score
+            candidate["intelligence_reason"] = reason
             evaluated.append((candidate, ok, score, reason))
             if not ok:
                 rejected[reason] += 1
@@ -803,10 +808,16 @@ def install(main):
             (int(c.get("publication_tier", 1) or 1) for c in filtered),
             default=0,
         )
-        if highest_tier >= 3:
-            # Keep tier-2 consequential stories in the fallback queue. A
-            # critical story can fail later (duplicate, translation, media);
-            # the next major story must still get a chance in the same run.
+        if highest_tier >= 4:
+            # Protected rescue candidates get first refusal. Strong tier-3/2
+            # candidates remain available only as downstream fallbacks.
+            eligible = [c for c in filtered if int(c.get("publication_tier", 1) or 1) >= 4]
+            if len(eligible) < 2:
+                eligible.extend(
+                    c for c in filtered
+                    if int(c.get("publication_tier", 1) or 1) >= 2 and c not in eligible
+                )
+        elif highest_tier >= 3:
             eligible = [c for c in filtered if int(c.get("publication_tier", 1) or 1) >= 2]
         elif highest_tier >= 2:
             eligible = [c for c in filtered if int(c.get("publication_tier", 1) or 1) >= 2]
