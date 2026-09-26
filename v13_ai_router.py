@@ -135,8 +135,9 @@ def _available_models(main):
         return list(MODEL_CANDIDATES)
 
 def _request_json(main, model, prompt, max_output_tokens=500):
-    """Return (parsed_json_or_none, retry_same_model)."""
+    """One Gemini attempt; provider health is tracked independently."""
     endpoint = f"{API_BASE}/{model}:generateContent"
+    health_key = f"gemini:{model}"
     try:
         response = main.SESSION.post(
             endpoint,
@@ -154,7 +155,7 @@ def _request_json(main, model, prompt, max_output_tokens=500):
             print(f"V13 AI ROUTER: {model} HTTP 404; model unavailable, skipping it.")
             return None, False
         if response.status_code in (429, 500, 502, 503, 504):
-            _mark_model_failure(model, response.status_code)
+            _mark_model_failure(health_key, response.status_code)
             print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; retrying once, then failing over.")
             return None, True
         if not response.ok:
