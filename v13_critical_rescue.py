@@ -59,7 +59,6 @@ def install():
     def wrapped(main, candidate):
         # Scope must be decided BEFORE scoring/selection. This prevents a local
         # foreign story such as a UK crime/weather item from consuming a slot,
-        # triggering Argos, and failing only at the final policy gate.
         if v13_policy_guard._foreign_local_only(candidate):
             return False, 0, "foreign-local-preselection"
 
