@@ -11,6 +11,11 @@ from datetime import datetime, timezone
 HEALTH_FILE = "v13_health.json"
 REPORT_FILE = "v13_monitor.json"
 
+# Neutral monitoring threshold: this is a review signal, not an editorial
+# override. A story is "important missed" when intelligence scored it strongly
+# or an independent consequential/security/business/UNGA override recognized it.
+IMPORTANT_MISSED_SCORE = 12
+
 
 def _load(path, default):
     try:
@@ -20,10 +25,22 @@ def _load(path, default):
         return default
 
 
+def _is_important_missed(story):
+    score = int(story.get("intelligence_score", 0) or 0)
+    return bool(
+        score >= IMPORTANT_MISSED_SCORE
+        or story.get("high_impact_security_candidate")
+        or story.get("major_business_legal_candidate")
+        or story.get("global_consequential_candidate")
+        or story.get("unga_breaking_candidate")
+    )
+
+
 def build_report():
     health = _load(HEALTH_FILE, {})
     selected = health.get("selected_news_this_run") or []
     attempts = health.get("publication_attempts") or []
+    rejected = health.get("rejected_news_this_run") or []
 
     if not selected and attempts:
         selected = [
@@ -50,6 +67,24 @@ def build_report():
         x for x in attempts if x.get("result") == "skipped_duplicate"
     ]
 
+    important_missed = []
+    seen = set()
+    for story in rejected:
+        title = str(story.get("title", "")).strip()
+        if not title or not _is_important_missed(story):
+            continue
+        key = title.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        important_missed.append({
+            **story,
+            "monitor_reason": "important-candidate-rejected",
+        })
+
+    # Do not turn a review signal into a runtime failure. It is specifically
+    # there so the next audit can identify potentially important losses without
+    # forcing the editorial engine to publish them blindly.
     report = {
         "checked_at": datetime.now(timezone.utc).isoformat(),
         "status": "healthy",
@@ -60,6 +95,7 @@ def build_report():
         "published": health.get("published", 0),
         "failed_publications": health.get("failed_publications", 0),
         "missed_selected_stories": missed,
+        "important_missed_news": important_missed,
         "failed_publication_attempts": failed_attempts,
         "skipped_duplicate_attempts": skipped_duplicates,
         "last_errors": health.get("last_errors", []),
@@ -73,10 +109,17 @@ def build_report():
         if report["failed_publications"]:
             report["diagnostics"].append("One or more publication attempts returned failure/exception.")
 
+    if important_missed:
+        report["diagnostics"].append(
+            f"{len(important_missed)} potentially important candidate(s) were rejected; review reasons before changing gates."
+        )
+
     if not selected and health.get("raw_candidates", 0) and not health.get("published", 0):
         report["status"] = "no_publication_candidate"
         report["diagnostics"].append("Candidates were collected but none reached the publication queue.")
     elif report["published"] > 0 and not report["failed_publications"] and not missed:
+        # Keep the run technically healthy even when important-missed review
+        # signals exist.
         report["status"] = "healthy"
 
     if health.get("status") == "failed":
@@ -88,15 +131,31 @@ def build_report():
 
     print("V13 MONITOR STATUS:", report["status"], flush=True)
     print(
-        "V13 MONITOR: selected=%s published=%s failed=%s missed=%s duplicates=%s"
-        % (report["selected_for_publication"], report["published"],
-           report["failed_publications"], len(missed), len(skipped_duplicates)),
+        "V13 MONITOR: selected=%s published=%s failed=%s missed=%s duplicates=%s important_missed=%s"
+        % (
+            report["selected_for_publication"],
+            report["published"],
+            report["failed_publications"],
+            len(missed),
+            len(skipped_duplicates),
+            len(important_missed),
+        ),
         flush=True,
     )
+
     for story in missed:
         print("V13 MONITOR MISSED: %s | %s | %s" % (
             story.get("source", "unknown"), story.get("title", ""), story.get("url", "")
         ), flush=True)
+
+    for story in important_missed[:10]:
+        print(
+            "V13 MONITOR IMPORTANT MISSED: "
+            f"[score={story.get('intelligence_score', 0)}] "
+            f"[reason={story.get('reason', 'unknown')}] "
+            f"{story.get('title', '')} | {story.get('url', '')}",
+            flush=True,
+        )
 
     return report
 
