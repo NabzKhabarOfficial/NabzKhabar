@@ -211,7 +211,22 @@ def make_caption(item):
     body = body[:500].rstrip(" .")
     if not title or not body:
         return ""
-    return f"📰 {title}\n\n{body}\n\n🔗 {CHANNEL_URL}\n\n#نبض_خبر #NABZ"
+    hashtag_pool = [
+        "#نبض_خبر", "#اخبار", "#خبر", "#اخبار_ایران", "#اخبار_جهان",
+        "#خبر_فوری", "#خبر_روز", "#ایران", "#جهان", "#اخبار_مهم"
+    ]
+    category_tags = {
+        "فناوری": ["#فناوری", "#تکنولوژی", "#هوش_مصنوعی", "#اخبار_فناوری"],
+        "ورزش": ["#ورزش", "#اخبار_ورزشی", "#فوتبال"],
+        "ایران": ["#ایران", "#اخبار_ایران", "#خبر_فوری"],
+        "جهان": ["#جهان", "#اخبار_جهان", "#خبر_فوری"],
+    }
+    hashtags = []
+    for tag in ["#نبض_خبر", "#NABZ", *category_tags.get(item["category"], []), *hashtag_pool]:
+        if tag not in hashtags:
+            hashtags.append(tag)
+    hashtags = hashtags[:8]
+    return f"📰 {title}\n\n{body}\n\n🔗 {CHANNEL_URL}\n\n" + " ".join(hashtags)
 
 
 def download_image(url, key):
