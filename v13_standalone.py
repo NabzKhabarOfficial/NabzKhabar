@@ -4897,3 +4897,85 @@ def main():
                 candidate,
                 selected
             )
+            effective_score = (
+                base_score
+                - penalty
+            )
+
+            if (
+                best is None
+                or effective_score
+                > best_effective_score
+            ):
+
+                best = candidate
+                best_effective_score = effective_score
+
+        if best is None:
+            break
+
+        remaining.remove(
+            best
+        )
+
+        print(
+            f"\nSELECTED: "
+            f"[{best.get('importance', 0)}] "
+            f"{best.get('category', '')} - "
+            f"{best.get('title', '')}"
+        )
+
+        success = process_news(
+            best,
+            hash_history,
+            title_history
+        )
+
+        if success:
+
+            published += 1
+
+            selected.append(
+                best
+            )
+
+            time.sleep(
+                1
+            )
+
+    # ========================================================
+    # FINAL STATS
+    # ========================================================
+
+    elapsed = (
+        time.time()
+        - start_time
+    )
+
+    print(
+        "\n"
+        + "=" * 64
+    )
+
+    print(
+        f"FINISHED - Published: "
+        f"{published}"
+    )
+
+    print(
+        f"Runtime: "
+        f"{elapsed:.1f}s"
+    )
+
+    print(
+        f"Semantic history now: "
+        f"{len(title_history)}"
+    )
+
+    print(
+        "=" * 64
+    )
+
+
+
+# ============================================================
