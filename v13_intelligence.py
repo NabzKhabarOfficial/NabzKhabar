@@ -462,7 +462,11 @@ def _publication_tier(candidate):
     # Consequential world news gets the same protected queue position as
     # other breaking stories. It must never be displaced simply because its
     # impact is diplomatic, legal, economic, technological or infrastructural.
-    if security or critical or global_consequential or unga_breaking:
+    # Concrete high-impact public-safety/security events get the highest
+    # protected publication tier so they outrank routine consequential news.
+    if security:
+        return 4
+    if critical or global_consequential or unga_breaking:
         return 3
     if major_business or major:
         return 2
