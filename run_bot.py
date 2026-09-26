@@ -5,7 +5,6 @@ import time
 import v13_standalone as main
 import v13_media_branding
 import v13_ai_router
-import v13_argos_translate
 import v13_content_enhancer
 import v13_ad_filter
 import v13_intelligence
@@ -100,7 +99,6 @@ v13_policy_guard._foreign_local_only = _hardened_policy_scope
 # text that reaches Telegram is mobile-first, source-clean, concise and complete.
 v13_media_branding.install(main)
 v13_ai_router.install(main)
-v13_argos_translate.install(main)
 v13_content_enhancer.install(main, v13_ai_router)
 v13_ad_filter.install(main)
 v13_intelligence.install(main)
