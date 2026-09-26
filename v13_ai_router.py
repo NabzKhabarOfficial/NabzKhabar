@@ -358,56 +358,6 @@ TRANSLATION_QUALITY_BAD_PATTERNS = (
 )
 
 
-# High-salience proper-name anchors used only for the local Argos fallback.
-# These prevent a fluent-looking machine translation from silently changing
-# the identity of the main subject. The gate is intentionally conservative:
-# it only activates when the English source contains one of these exact names.
-ARGOS_NAME_ANCHORS = {
-    "pezeshkian": ("پزشکیان", "مسعود پزشکیان"),
-    "masoud pezeshkian": ("پزشکیان", "مسعود پزشکیان"),
-    "trump": ("ترامپ", "دونالد ترامپ"),
-    "donald trump": ("ترامپ", "دونالد ترامپ"),
-    "putin": ("پوتین", "ولادیمیر پوتین"),
-    "vladimir putin": ("پوتین", "ولادیمیر پوتین"),
-    "zelenskyy": ("زلنسکی", "ولودیمیر زلنسکی"),
-    "zelensky": ("زلنسکی", "ولودیمیر زلنسکی"),
-    "netanyahu": ("نتانیاهو", "بنیامین نتانیاهو"),
-    "starmer": ("استارمر", "کر استارمر"),
-    "macron": ("مکرون", "امانوئل مکرون"),
-    "xi jinping": ("شی جین‌پینگ", "شی جین پینگ"),
-    "erdogan": ("اردوغان", "رجب طیب اردوغان"),
-    "modi": ("مودی", "نارندرا مودی"),
-}
-
-ARGOS_SEMANTIC_BAD_PATTERNS = (
-    # Literal/page-artifact constructions that are not acceptable Persian news.
-    re.compile(r"\b(?:با|برای|به)\s+(?:تصویر|عکس|ونگا|نگا)\b", re.I),
-    re.compile(r"لحن\s+[^.؟!]{0,80}\bبه\s+نیویورک\b", re.I),
-)
-
-
-def _argos_semantic_gate(original_title, original_source, translated_title, translated_summary):
-    """Reject high-confidence Argos meaning corruption without an AI call."""
-    source_title = str(original_title or "")
-    title = str(translated_title or "")
-    summary = str(translated_summary or "")
-    source_title_lower = source_title.lower()
-
-    # Only enforce a name anchor when the name is actually in the original
-    # headline. Searching the full article body caused false rejections when a
-    # secondary person was merely mentioned in the story.
-    for source_name, aliases in ARGOS_NAME_ANCHORS.items():
-        if source_name in source_title_lower:
-            if not any(alias in title or alias in summary for alias in aliases):
-                return False, "missing-name-anchor:" + source_name
-
-    for pattern in ARGOS_SEMANTIC_BAD_PATTERNS:
-        if pattern.search(title) or pattern.search(summary):
-            return False, "literal-corruption-pattern"
-
-    return True, ""
-
-
 def _translation_quality_bad(text):
     value = str(text or "").strip()
     if not value:
@@ -474,39 +424,11 @@ def _validate(main, original_title, source, data, foreign):
     return {"title": title, "summary": summary}
 
 
-def _argos_foreign_translation(title, source):
-    """Primary non-AI localization path for English foreign stories."""
-    try:
-        from v13_argos_translate import translate_foreign_story
-        result = translate_foreign_story(title, source)
-        if result:
-            print("V13 AI ROUTER: foreign story translated via local Argos Translate.")
-            return result
-    except Exception as exc:
-        print(f"V13 AI ROUTER: Argos layer error; continuing to AI fallback: {exc}")
-    return None
-
-
 def gemini_request(main, title, article_text):
-    # For foreign stories, try the local Argos en->fa engine first.
-    # This makes translation independent of quotas and avoids publishing a
-    # fluent-looking but semantically broken AI translation. AI providers
-    # remain the fallback when Argos is unavailable or fails validation.
-
     source = main.clean_content(article_text or title)
     foreign = _persian_ratio(title) < 0.60
 
-    argos_result = None
     if foreign:
-        argos_result = _argos_foreign_translation(title, source)
-        if argos_result:
-            validated_argos = _validate(main, title, source, argos_result, foreign)
-            if validated_argos:
-                print("V13 AI ROUTER: foreign story accepted via local Argos before AI fallback.")
-                return validated_argos
-            print("V13 AI ROUTER: Argos output failed publication-quality validation; trying AI fallback.")
-
-        # AI is the quality fallback when local translation is unavailable.
         prompt = """این خبر از یک منبع خارجی است و باید برای یک کانال خبری فارسی‌زبان آماده شود.
 عنوان اصلی:
 %s
@@ -518,12 +440,9 @@ def gemini_request(main, title, article_text):
 - عنوان کوتاه، دقیق و خبری باشد.
 - خلاصه حداکثر ۳ جمله و ۷۵۰ نویسه باشد.
 - هیچ عدد، نام، ادعا یا واقعیت جدیدی اضافه نکن.
-- همه اعداد موجود را فقط در صورت وجود در متن اصلی حفظ کن.
-- نام شرکت‌ها، افراد و محصولات را دقیق نگه دار.
 - هیچ لینک، منبع، «به گزارش» یا توضیح درباره ترجمه نده.
-- در خروجی از الفبای لاتین استفاده نکن؛ نام شرکت‌ها و محصولات را نیز به شکل فارسی‌نویسی‌شده بیاور.
-
-فقط JSON معتبر:
+- نام افراد، کشورها و سازمان‌ها را دقیق حفظ کن.
+- فقط JSON معتبر:
 {"title":"تیتر فارسی","summary":"خلاصه فارسی"}""" % (title, source[:6000])
     else:
         prompt = """این خبر فارسی را برای کانال خبری حرفه‌ای بازنویسی کن.
@@ -538,14 +457,12 @@ def gemini_request(main, title, article_text):
 - خلاصه حداکثر ۳ جمله و ۷۵۰ نویسه باشد.
 - هیچ عدد، نام، ادعا یا واقعیت جدیدی اضافه نکن.
 - هیچ لینک، منبع یا عبارت «به گزارش» اضافه نکن.
-- در خروجی از الفبای لاتین استفاده نکن؛ نام شرکت‌ها و محصولات را نیز به شکل فارسی‌نویسی‌شده بیاور.
 - فقط اطلاعات موجود در متن را حفظ کن.
 
 فقط JSON معتبر:
 {"title":"تیتر فارسی","summary":"خلاصه فارسی"}""" % (title, source[:6000])
 
-    # AI POOL: one attempt per provider/model, no blind retries.
-    # Groq is primary; lightweight Gemini models are the next fallback; OpenRouter is last.
+    # Free AI pool only. No local machine-translation fallback.
     result = _fallback_provider_request(
         main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
         prompt, title, source, foreign
@@ -578,101 +495,13 @@ def gemini_request(main, title, article_text):
     else:
         print("V13 AI ROUTER: OpenRouter free fallback unavailable (missing key or disabled).")
 
-
-
-    # Final fallback: local Argos Translate, after all AI providers fail.
-    if foreign:
-        if not argos_result:
-            argos_result = _argos_foreign_translation(title, source)
-        if argos_result:
-            # Argos has its own dedicated safety validation. Do not run the
-            # stricter AI numeric validator again: it compares explicit digits
-            # only, while Argos legitimately converts written English numbers
-            # into Persian words/digits. Re-validating here caused valid Argos
-            # translations to be discarded and the story to be reported as
-            # "AI localization unavailable".
-            def _sanitize_argos_text(value):
-                text = str(value or "")
-                # Argos can translate source-page metadata along with the article.
-                # Remove navigation/source artifacts instead of discarding an
-                # otherwise valid Persian emergency translation.
-                text = re.sub(r"https?://\S+|www\.\S+", " ", text, flags=re.I)
-                # Remove source/navigation labels on their own line or inline.
-                text = re.sub(
-                    r"(?:^|[\n|])\s*(?:منبع|source|منبع خبر|لینک|link)\s*[:：].*$",
-                    " ",
-                    text,
-                    flags=re.I | re.M,
-                )
-                text = re.sub(
-                    r"\s+(?:منبع|source|منبع خبر|لینک|link)\s*[:：].*$",
-                    " ",
-                    text,
-                    flags=re.I,
-                )
-                text = re.sub(r"\s+", " ", text).strip()
-                return text
-
-            argos_title = main.clean_title(_sanitize_argos_text(argos_result.get("title", "")))
-            argos_summary = main.clean_content(_sanitize_argos_text(argos_result.get("summary", "")))
-            # Argos already passed its dedicated translation safety checks.
-            # Keep only publication-level structural/language checks here.
-            # Do not apply AI-specific content heuristics to the local fallback.
-            argos_reasons = []
-            if not argos_title:
-                argos_reasons.append("empty-title")
-            if not argos_summary:
-                argos_reasons.append("empty-summary")
-            if _persian_ratio(argos_title) < 0.60:
-                argos_reasons.append("title-not-persian")
-            if _persian_ratio(argos_summary) < 0.60:
-                argos_reasons.append("summary-not-persian")
-            # The local Argos fallback must obey the same malformed-translation
-            # gate as AI output. This blocks known machine-translation artifacts
-            # without applying semantic heuristics to the fallback.
-            if _translation_quality_bad(argos_title) or _translation_quality_bad(argos_summary):
-                argos_reasons.append("malformed-persian")
-            argos_semantic_ok, argos_semantic_reason = _argos_semantic_gate(
-                title, source, argos_title, argos_summary
-            )
-            if not argos_semantic_ok:
-                argos_reasons.append(argos_semantic_reason)
-            # Argos translations may legitimately contain Persian prose such as
-            # «به گزارش ...» when that phrase exists in the source. The generic
-            # AI metadata gate treats that phrase as metadata and was therefore
-            # discarding otherwise valid fallback translations. At this stage
-            # only block actual URL/source-label artifacts that should never
-            # survive the sanitizer above.
-            def _argos_bad_meta(value):
-                text = str(value or "")
-                if re.search(r"https?://\S+|www\.\S+", text, flags=re.I):
-                    return True
-                return bool(re.search(
-                    r"(?:^|[\n|])\s*(?:منبع|source|منبع خبر|لینک|link)\s*[:：]",
-                    text,
-                    flags=re.I,
-                ))
-            if _argos_bad_meta(argos_title) or _argos_bad_meta(argos_summary):
-                argos_reasons.append("metadata")
-            if _sentence_count(argos_summary) > 3:
-                argos_reasons.append("too-many-sentences")
-            if len(argos_summary) > 750:
-                argos_reasons.append("too-long")
-            if argos_reasons:
-                print("V13 AI ROUTER: Argos final safety blocked: " + ", ".join(argos_reasons))
-            else:
-                print("V13 AI ROUTER: SUCCESS via Argos Translate (final fallback).")
-                return {"title": argos_title, "summary": argos_summary}
-
-    print("V13 AI ROUTER: Gemini/OpenRouter failed; Argos unavailable or rejected; publication will use existing V13 safety rules.")
+    print("V13 AI ROUTER: all configured free AI providers failed; publication blocked.")
     return None
-
 
 def install(main):
     main.gemini_request = lambda title, article_text: gemini_request(
         main, title, article_text
     )
     print(
-        "V13 AI ROUTER ACTIVE: "
-        "multi-provider free router: Gemini -> OpenRouter :free -> Argos, strict validation, 404-safe failover"
+        "V13 AI ROUTER ACTIVE: multi-provider free AI pool with strict validation and no machine-translation fallback"
     )
