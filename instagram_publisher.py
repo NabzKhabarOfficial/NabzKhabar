@@ -147,7 +147,7 @@ def collect():
                     # translated by the optional free AI layer below.
                     pass
                 key = hashlib.sha256((title.lower() + "|" + link).encode("utf-8")).hexdigest()
-                items.append({"key": key, "title": title, "summary": summary, "link": link, "category": category, "published_at": published})
+                items.append({"key": key, "title": title, "summary": summary, "link": link, "category": category, "published_at": published, "entry": entry})
         except Exception as exc:
             print(f"IG RSS: {url} -> {exc}")
     unique = {}
@@ -230,17 +230,35 @@ def login_client():
     username = os.getenv("IG_USERNAME", "").strip()
     password = os.getenv("IG_PASSWORD", "")
     session_b64 = os.getenv("IG_SESSION_B64", "").strip()
+    allow_relogin = os.getenv("IG_ALLOW_RELOGIN", "0").strip().lower() in {"1", "true", "yes"}
     if not username:
         raise RuntimeError("IG_USERNAME is missing")
     if session_b64:
-        SESSION_FILE.write_bytes(base64.b64decode(session_b64))
+        try:
+            SESSION_FILE.write_bytes(base64.b64decode(session_b64, validate=True))
+        except Exception as exc:
+            raise RuntimeError(f"IG_SESSION_B64 is invalid: {exc}") from exc
+
     client = Client()
     if SESSION_FILE.exists():
         client.load_settings(str(SESSION_FILE))
+        try:
+            client.login(username, "")
+            client.dump_settings(str(SESSION_FILE))
+            print("IG: saved session validated and reused")
+            return client
+        except Exception as exc:
+            if not allow_relogin:
+                raise RuntimeError(
+                    f"IG session could not be reused; automatic relogin is disabled: {type(exc).__name__}: {exc}"
+                ) from exc
+
+    if not password:
+        raise RuntimeError("IG_PASSWORD is missing and no reusable session is available")
     client.login(username, password)
     client.dump_settings(str(SESSION_FILE))
+    print("IG: fresh login completed")
     return client
-
 
 def main():
     state = load_state()
@@ -257,10 +275,7 @@ def main():
         print("IG: no new candidate")
         return 0
 
-    image = image_url(feedparser.FeedParserDict(), candidate["link"])
-    if not image:
-        # Fetch the article itself for og:image when the feed had no media field.
-        image = image_url(feedparser.FeedParserDict(), candidate["link"])
+    image = image_url(candidate.get("entry", feedparser.FeedParserDict()), candidate["link"])
     if not image:
         print("IG: candidate has no usable image; leaving it unposted")
         return 0
