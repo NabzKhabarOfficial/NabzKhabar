@@ -131,6 +131,14 @@ def _repair_argos_residuals(text):
 
 def _clean_source_for_translation(source):
     value=re.sub(r"https?://\S+|www\.\S+"," ",str(source or ""),flags=re.I)
+    # Remove common international-news webpage chrome before offline translation.
+    # Without this, Argos translates UI/caption text such as "Listen", "Share"
+    # and image credits and can produce fluent-looking but unusable Telegram copy.
+    value=re.sub(r"(?is)\bListen\s*\(\s*\d+\s*mins?\s*\)", " ", value)
+    value=re.sub(r"(?is)\bShare\s+.+?\s+on\s+social\s+media\b", " ", value)
+    value=re.sub(r"(?is)\b(?:By|Image|Photo|File)\s*:\s*[^.]{0,180}", " ", value)
+    value=re.sub(r"(?is)\b(?:Al Jazeera Staff|Reuters Staff|AFP Staff)\b", " ", value)
+    value=re.sub(r"(?is)\bPublished\s+(?:on|at)\s+\d{1,2}\s+\w+\s+\d{4}", " ", value)
     return re.sub(r"\s+"," ",value).strip()[:2400]
 
 
