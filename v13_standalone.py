@@ -1844,6 +1844,33 @@ GOOGLE_RESOLVE_WORKERS = 20
 GOOGLE_RESOLVE_MAX_CANDIDATES = 180
 
 
+def _has_global_high_impact(text):
+    """True for objectively high-impact global events used by Google fallback."""
+    value = normalize_space(str(text or "")).lower()
+    if not value:
+        return False
+    critical = (
+        "war", "conflict", "ceasefire", "invasion", "missile", "airstrike",
+        "bombing", "explosion", "earthquake", "tsunami", "hurricane",
+        "wildfire", "mass shooting", "hostage", "terror attack", "nuclear",
+        "sanction", "tariff", "strait of hormuz", "airspace", "nationwide outage",
+        "emergency", "evacuation", "کشته", "زخمی", "انفجار", "زلزله", "سیل",
+        "حمله", "جنگ", "درگیری", "موشک", "بمباران", "آتش‌بس", "تحریم",
+        "تعرفه", "هسته‌ای", "تنگه هرمز", "وضعیت اضطراری", "تخلیه",
+    )
+    actors = (
+        "iran", "united states", "u.s.", "china", "russia", "ukraine",
+        "israel", "nato", "united nations", "un general assembly",
+        "آمریکا", "ایران", "چین", "روسیه", "اوکراین", "اسرائیل",
+        "ناتو", "سازمان ملل", "مجمع عمومی",
+    )
+    def hit(term):
+        if any("\u0600" <= ch <= "\u06ff" for ch in term):
+            return term in value
+        return bool(re.search(r"(?<![a-z0-9])" + re.escape(term) + r"(?![a-z0-9])", value, re.I))
+    return any(hit(x) for x in critical) and any(hit(x) for x in actors)
+
+
 def _is_telemetry_or_tracking_url(url):
     """Reject analytics/tracking endpoints during Google News resolution."""
     try:
