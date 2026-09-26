@@ -68,6 +68,11 @@ jobs:
               "v13_editorial_formatter", "v13_monitor", "run_bot",
               "education", "car_prices", "weather",
           ]
+          import os
+          # Import smoke-test only: the real engine requires a Telegram token at
+          # startup, so use a harmless sentinel to validate module wiring without
+          # contacting Telegram or publishing anything.
+          os.environ.setdefault("BOT_TOKEN", "V13_IMPORT_SMOKE_TEST")
           for name in modules:
               importlib.import_module(name)
           import v13_standalone as v
