@@ -776,9 +776,16 @@ def install(main):
             0, publishable_before_dedup - len(filtered)
         )
 
+        # Editorial priority gate:
+        # Never fill the channel with routine/low-tier stories when a major
+        # or critical event is available. If no major story exists at all,
+        # publish nothing rather than substituting a weak story.
+        for candidate in filtered:
+            candidate["publication_tier"] = _publication_tier(candidate)
+
         # Editorial ranking is deliberately tier-first: a critical or
         # consequential event must be considered before an ordinary incident.
-        # Within the same tier, retain the upstream priority and intelligence
+        # Within the same tier, retain upstream priority and intelligence
         # score so important breaking stories are not displaced by routine
         # local accidents simply because they contain a strong event keyword.
         filtered.sort(
@@ -791,13 +798,6 @@ def install(main):
             ),
             reverse=True,
         )
-
-        # Editorial priority gate:
-        # Never fill the channel with routine/low-tier stories when a major
-        # or critical event is available. If no major story exists at all,
-        # publish nothing rather than substituting a weak story.
-        for candidate in filtered:
-            candidate["publication_tier"] = _publication_tier(candidate)
 
         highest_tier = max(
             (int(c.get("publication_tier", 1) or 1) for c in filtered),
