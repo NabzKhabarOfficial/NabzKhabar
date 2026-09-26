@@ -14,7 +14,6 @@ import time
 MODEL_CANDIDATES = (
     "gemini-3.5-flash-lite",
     "gemini-3.1-flash-lite",
-    "gemini-2.5-flash-lite",
 )
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
@@ -46,10 +45,40 @@ def _persian_ratio(text):
 
 
 def _clean_json(raw):
+    """Parse provider JSON even when a free model wraps it in prose/code fences."""
     raw = str(raw or "").strip()
     raw = re.sub(r"^\s*\`\`\`(?:json)?\s*", "", raw, flags=re.I)
     raw = re.sub(r"\s*\`\`\`\s*$", "", raw)
-    return json.loads(raw.strip())
+    try:
+        return json.loads(raw.strip())
+    except Exception:
+        # Some free models emit a short preamble around the JSON. Extract the
+        # first balanced top-level JSON object instead of rejecting it.
+        start = raw.find("{")
+        if start < 0:
+            raise
+        depth = 0
+        in_string = False
+        escaped = False
+        for idx in range(start, len(raw)):
+            ch = raw[idx]
+            if in_string:
+                if escaped:
+                    escaped = False
+                elif ch == "\\":
+                    escaped = True
+                elif ch == '"':
+                    in_string = False
+                continue
+            if ch == '"':
+                in_string = True
+            elif ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    return json.loads(raw[start:idx + 1])
+        raise
 
 
 
@@ -382,10 +411,11 @@ def _translation_quality_bad(text):
     for pattern in TRANSLATION_QUALITY_BAD_PATTERNS:
         if pattern.search(value):
             return True
-    # A title with an excessive number of very short fragments is usually a
-    # broken literal translation rather than a normal Persian news headline.
-    words = [x for x in re.split(r"\s+", value) if x]
-    if len(words) >= 10 and sum(len(x) <= 2 for x in words) >= 5:
+    # Do not reject ordinary Persian because of short function words such as
+    # «به»، «در»، «که»، «از». Only flag dense one-letter fragments.
+    words = [x.strip("،؛:!?()[]{}«»'") for x in re.split(r"\s+", value) if x]
+    one_char = [x for x in words if len(x) == 1 and re.search(r"[\u0600-\u06ff]", x)]
+    if len(words) >= 12 and len(one_char) >= 4:
         return True
     return False
 
