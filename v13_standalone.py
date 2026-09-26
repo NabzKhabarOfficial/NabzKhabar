@@ -4501,7 +4501,9 @@ def process_news(
         # the publisher's existing Persian text; for foreign content, AI is
         # mandatory because we must not publish untranslated English.
         if _persian_ratio(original_title) >= 0.60:
-            print("V13 AI FALLBACK: AI pool unavailable; using source Persian title safely.")
+            candidate["publication_status"] = "ai_unavailable_persian_fallback"
+            print("V13 AI FALLBACK: AI providers unavailable; using publisher Persian text (no AI output).")
+            print("V13 AI FALLBACK: status=SOURCE_PERSIAN_FALLBACK")
             final_title = clean_title(original_title)
 
             source_clean = clean_content(source_text)
