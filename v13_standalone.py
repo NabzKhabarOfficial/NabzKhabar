@@ -724,6 +724,23 @@ def clean_content(text):
         text
     )
 
+    # Remove a leading reporter/byline fragment such as
+    # "سید محمدعلی سجادی - سرهنگ کاظمی رئیس پلیس راه ...".
+    # This is deliberately limited to a short leading fragment followed by
+    # an attribution/official-role phrase, so ordinary factual sentences
+    # are not accidentally truncated.
+    text = re.sub(
+        r"^[^|،؛.!؟]{2,60}\s*[-–—]\s*(?="
+        r"(?:سرهنگ|سردار|سرتیپ|رئیس|مدیر|فرمانده|استاندار|وزیر|معاون|"
+        r"نماینده|سخنگو|مسئول|او\s+افزود|وی\s+افزود|وی\s+گفت|"
+        r"گفت|افزود|اظهار\s+کرد|اعلام\s+کرد)"
+        r")",
+        "",
+        text,
+        count=1,
+        flags=re.I
+    )
+
     text = re.sub(
         r"^(مشهد|تهران|قم|تبریز|اصفهان|شیراز|کرج|اهواز|بغداد|واشنگتن|لندن)"
         r"\s*[-–—:]\s*",
