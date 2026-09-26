@@ -51,7 +51,7 @@ CONSEQUENTIAL_ACTIONS = (
     "ordered", "required", "raised", "cut", "increased", "decreased",
     "withdrew", "deployed", "launched", "released", "acquired", "merged",
     "resigned", "arrested", "charged", "ruled", "sued", "declared",
-    "announced", "warned", "demanded", "pledged", "agreed", "rejects",
+    "announced", "warned", "warns", "warn", "demanded", "pledged", "agreed", "rejects",
     "accepted", "rejected", "resume", "resumed", "delayed", "reviewed",
     "توافق", "توافق کرد", "تصویب", "ممنوع", "تحریم", "تعلیق", "تعلیق کرد",
     "متوقف", "متوقف کرد", "تعطیل", "بازگشایی", "محدود", "محدود کرد",
