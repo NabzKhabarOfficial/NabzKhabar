@@ -50,7 +50,7 @@ CHANNEL_ID = "@NabzKhabarOfficial"
 # Free-tier, high-volume model. Override with GEMINI_MODEL if needed.
 # Google currently lists Gemini 3.1 Flash-Lite as free-of-charge on the
 # standard Gemini API tier. Free tier is quota-limited, not literally unlimited.
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
 
 REQUEST_TIMEOUT = 20
 ARTICLE_TIMEOUT = 25
