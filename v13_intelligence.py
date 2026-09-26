@@ -65,6 +65,24 @@ HIGH_IMPACT_ACTORS = (
     "سپاه", "ارتش", "نیروی هوایی", "نیروی دریایی",
 )
 
+EDITORIAL_NON_NEWS = (
+    "تندیس", "مجسمه", "یادمان", "یادبود", "باغ موزه", "نصب تندیس", "نصب مجسمه",
+    "نصب یادمان", "statue", "memorial statue", "monument",
+)
+
+
+def _ceremonial_non_news(candidate):
+    title = _norm(candidate.get("title", "")).lower()
+    if not title or not any(x in title for x in EDITORIAL_NON_NEWS):
+        return False
+    return not any(x in title for x in (
+        "ممنوع", "ممنوعیت", "قانون", "تصویب", "ابلاغ", "لغو", "تعلیق", "کشته", "زخمی",
+        "بازداشت", "انفجار", "حمله", "درگیری", "تخلیه", "approved", "banned", "ban",
+        "law", "passed", "suspended", "cancelled", "canceled", "killed", "injured",
+        "attack", "explosion",
+    ))
+
+
 LOW_VALUE = (
     "تخفیف", "فروش ویژه", "قرعه کشی", "قرعه‌کشی", "استخدام", "فال",
     "طالع بینی", "تولد", "اینستاگرام", "چهره", "سلبریتی", "رپورتاژ",
@@ -430,7 +448,9 @@ def _publication_tier(candidate):
     title = _norm(candidate.get("title", "")).lower()
     if str(candidate.get("intelligence_reason", "")).lower() == "critical-geopolitical-rescue":
         return 4
-    if candidate.get("freshness_rescued"):
+    if candidate.get("freshness_rescued") and (
+        security or global_consequential or unga_breaking or major_business
+    ):
         return 4
     body = _text(candidate).lower()
     security = _high_impact_security_override(candidate)
@@ -507,6 +527,8 @@ def is_publishable(main, candidate):
         return False, 0, "short-title"
 
     lower = title.lower()
+    if _ceremonial_non_news(candidate):
+        return False, 0, "ceremonial-non-news"
     if any(x.lower() in lower for x in LOW_VALUE):
         return False, 0, "low-value"
 
