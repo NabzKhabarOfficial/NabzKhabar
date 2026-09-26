@@ -797,8 +797,7 @@ def clean_content(text):
 
     text = re.sub(
         r"\s+#?[A-Za-z0-9_]+\s*$",
-        "",
-        text
+        "",        text
     )
 
     text = re.sub(
@@ -1597,7 +1596,6 @@ def parse_entry_time(entry):
                 "updated_parsed"
             )
         )
-
         if parsed:
 
             return datetime(
@@ -1846,6 +1844,30 @@ GOOGLE_RESOLVE_WORKERS = 20
 GOOGLE_RESOLVE_MAX_CANDIDATES = 180
 
 
+def _is_telemetry_or_tracking_url(url):
+    """Reject analytics/tracking endpoints during Google News resolution."""
+    try:
+        host = base_domain(get_hostname(url))
+        path = urlparse(url).path.lower()
+    except Exception:
+        return False
+    blocked_hosts = (
+        "google-analytics.com", "analytics.google.com", "googletagmanager.com",
+        "doubleclick.net", "googlesyndication.com", "googleadservices.com",
+        "facebook.net", "connect.facebook.net", "pixel.facebook.com",
+        "segment.io", "segment.com", "hotjar.com", "clarity.ms",
+    )
+    blocked_paths = (
+        "/analytics.js", "/gtag/js", "/gtm.js", "/pixel", "/collect",
+        "/beacon", "/tracking", "/track", "/events", "/analytics",
+    )
+    return (
+        host in blocked_hosts
+        or any(host.endswith("." + x) for x in blocked_hosts)
+        or any(token in path for token in blocked_paths)
+    )
+
+
 def resolve_google_news_url(
     url
 ):
@@ -1879,6 +1901,7 @@ def resolve_google_news_url(
             final_url
             and not is_google_host(final_url)
             and not is_social_host(final_url)
+            and not _is_telemetry_or_tracking_url(final_url)
         ):
             return final_url
 
@@ -1909,6 +1932,7 @@ def resolve_google_news_url(
                 candidate
                 and not is_google_host(candidate)
                 and not is_social_host(candidate)
+                and not _is_telemetry_or_tracking_url(candidate)
                 and get_hostname(candidate)
                 and not candidate.startswith("javascript:")
             ):
@@ -1926,6 +1950,7 @@ def resolve_google_news_url(
                 candidate
                 and not is_google_host(candidate)
                 and not is_social_host(candidate)
+                and not _is_telemetry_or_tracking_url(candidate)
                 and get_hostname(candidate)
             ):
                 return candidate
@@ -2398,7 +2423,6 @@ def extract_video_from_html(
                 )
             ):
                 return url
-
         for script in soup.find_all(
             "script",
             attrs={
@@ -3197,8 +3221,7 @@ def local_news_engine(
 
 
 # ============================================================
-# RSS COLLECTION
-# ============================================================
+# RSS COLLECTION# ============================================================
 
 def collect_feed(
     category,
@@ -3997,7 +4020,6 @@ def collect_candidates(
     final_candidates = []
 
     for item in clustered:
-
         title = item.get(
             "title",
             ""
@@ -4798,590 +4820,3 @@ def main():
                 candidate,
                 selected
             )
-
-            effective_score = (
-                base_score
-                - penalty
-            )
-
-            if (
-                best is None
-                or effective_score
-                > best_effective_score
-            ):
-
-                best = candidate
-                best_effective_score = effective_score
-
-        if best is None:
-            break
-
-        remaining.remove(
-            best
-        )
-
-        print(
-            f"\nSELECTED: "
-            f"[{best.get('importance', 0)}] "
-            f"{best.get('category', '')} - "
-            f"{best.get('title', '')}"
-        )
-
-        success = process_news(
-            best,
-            hash_history,
-            title_history
-        )
-
-        if success:
-
-            published += 1
-
-            selected.append(
-                best
-            )
-
-            time.sleep(
-                1
-            )
-
-    # ========================================================
-    # FINAL STATS
-    # ========================================================
-
-    elapsed = (
-        time.time()
-        - start_time
-    )
-
-    print(
-        "\n"
-        + "=" * 64
-    )
-
-    print(
-        f"FINISHED - Published: "
-        f"{published}"
-    )
-
-    print(
-        f"Runtime: "
-        f"{elapsed:.1f}s"
-    )
-
-    print(
-        f"Semantic history now: "
-        f"{len(title_history)}"
-    )
-
-    print(
-        "=" * 64
-    )
-
-
-
-# ============================================================
-# V13 INDEPENDENT QUALITY / SAFETY LAYER
-# This file is self-contained. It does not import main.py.
-# ============================================================
-
-import re
-# ============================================================
-# NABZ KHABAR V13 — INDEPENDENT NEWS ENGINE
-# One coherent safety/orchestration layer over the stable v11 core.
-# Free-only: public RSS, Google News RSS, GitHub Actions, Telegram,
-# Gemini only when the existing secret is configured.
-# ============================================================
-
-V13_DIRECT_RSS_FEEDS = [
-    # Iranian direct RSS: YJC is the only Iranian direct publisher.
-    ("ایران", "https://www.yjc.ir/fa/rss/allnews"),
-    ("جهان", "https://feeds.bbci.co.uk/news/rss.xml"),
-    ("جهان", "https://www.theguardian.com/world/rss"),
-    ("جهان", "https://feeds.npr.org/1001/rss.xml"),
-    # Global news feeds: keep the feed count unchanged so polling time does not grow.
-    ("جهان", "https://www.aljazeera.com/xml/rss/all.xml"),
-    ("جهان", "https://rss.dw.com/xml/rss-en-all"),
-    ("جهان", "https://feeds.skynews.com/feeds/rss/home.xml"),
-]
-
-# ---------- Source policy ----------
-DIRECT_RSS_FEEDS = V13_DIRECT_RSS_FEEDS
-for host in (
-    "bbc.com", "bbc.co.uk", "theguardian.com", "npr.org",
-    "techcrunch.com", "arstechnica.com", "wired.com", "theverge.com",
-    "aljazeera.com", "dw.com", "skynews.com",
-    # Specialist / major publishers used through Google News discovery.
-    "espn.com", "skysports.com", "theathletic.com",
-    "technologyreview.com", "techcrunch.com", "arstechnica.com",
-    "wired.com", "theverge.com",
-    # Reuters/AP are discovered through Google News; mark them as high-quality
-    # without adding extra polling requests.
-    "reuters.com", "apnews.com",
-):
-    HIGH_QUALITY_HOSTS.add(host)
-
-# ---------- Roundup / digest rejection ----------
-_original_roundup = is_roundup_title
-
-ROUNDUP_PATTERNS = [
-    r"مروری?\s+بر",
-    r"مرور\s+(?:مهمترین|مهم‌ترین|اخبار|رویداد)",
-    r"(?:مهمترین|مهم‌ترین)\s+اخبار\s+(?:هفته|روز|امروز)",
-    r"اخبار\s+(?:مهم|منتخب|برگزیده)\s+(?:هفته|روز|امروز)",
-    r"گزیده\s+اخبار",
-    r"جمع[‌ ]بندی\s+اخبار",
-    r"بسته\s+خبری",
-    r"مرور\s+هفتگی",
-    r"اخبار\s+هفته",
-    r"در\s+هفته(?:‌|\s)+ای\s+که\s+گذشت",
-    r"در\s+هفته\s+گذشته",
-    r"weekly\s+(?:roundup|recap|review)",
-    r"news\s+roundup",
-    r"week\s+in\s+(?:review|news)",
-]
-
-def is_roundup_title(title):
-    title = re.sub(r"\s+", " ", str(title or "")).strip()
-    if not title:
-        return False
-    if _original_roundup(title):
-        return True
-    if any(re.search(p, title, re.I) for p in ROUNDUP_PATTERNS):
-        return True
-    # "A to B" list headlines are frequently digests rather than a single event.
-    if re.search(r"\bاز\b.+\bتا\b", title):
-        return bool(re.search(
-            r"(?:نامه|اخبار|واکنش|رویداد|حاشیه|اظهارات|گزارش|بازیگران|خوانندگان)",
-            title, re.I
-        ))
-    return False
-
-is_roundup_title = is_roundup_title
-
-# ---------- Global high-impact coverage ----------
-# English-language world feeds need their own importance anchors; otherwise
-# major foreign events can score below routine Persian/local stories.
-GLOBAL_HIGH_IMPACT_PATTERNS = [
-    r"\b(?:war|invasion|attack|strike|missile|rocket|bombing|explosion|shooting|earthquake|tsunami|typhoon|hurricane|wildfire|flood|landslide|volcano|crash|plane crash|helicopter crash|killed|dead|deaths|wounded|missing|hostage|evacuation|emergency|disaster|ceasefire|sanctions|sanction|tariff|tariffs|lawsuit|court|verdict|convicted|guilty|agreement|deal|resigned|resignation|election|coup|nuclear|military|troops|terror|outbreak|pandemic|summit|president|prime minister|government|parliament|united nations|un general assembly|unga|general debate|world leaders|guterres)\b",
-    r"جنگ|تهاجم|حمله|حملات|موشک|پرتاب|بمباران|انفجار|تیراندازی|زلزله|سونامی|تایفون|طوفان|هاریکن|آتش.?سوزی|سیل|رانش زمین|آتشفشان|سقوط هواپیما|سقوط بالگرد|کشته|فوت|جان باخت|زخمی|مفقود|گروگان|تخلیه|وضعیت اضطراری|فاجعه|آتش.?بس|تحریم|تحریم‌ها|تعرفه|دادخواست|دادگاه|حکم|محکوم|مجرم|توافق|قرارداد|استعفا|انتخابات|کودتا|هسته.?ای|نظامی|تروریستی|شیوع|همه.?گیری|نشست|رئیس جمهور|نخست.?وزیر|دولت|پارلمان|سازمان ملل|مجمع عمومی|مناظره عمومی|رهبران جهان|گوترش",
-]
-
-def _has_global_high_impact(text):
-    value = str(text or "")
-    return any(re.search(p, value, re.I) for p in GLOBAL_HIGH_IMPACT_PATTERNS)
-
-# ---------- Source scope filters ----------
-# Keep Iran/local Iranian reporting eligible. For foreign sources, reject
-# routine city/state/province/country-local stories unless the headline
-# clearly signals a broader international event.
-FOREIGN_LOCAL_TERMS = [
-    r"\b(?:australia|australian|sydney|melbourne|brisbane|perth|adelaide|canberra|queensland|victoria|tasmania|"
-    r"united\s+kingdom|britain|british|london|england|scotland|wales|"
-    r"united\s+states|american|washington|new\s+york|california|texas|florida|"
-    r"canada|canadian|toronto|vancouver|"
-    r"germany|german|berlin|france|french|paris|italy|italian|rome|spain|spanish|madrid|"
-    r"turkey|turkish|ankara|istanbul|"
-    r"japan|japanese|tokyo|south\s+korea|seoul|"
-    r"india|indian|delhi|mumbai|"
-    r"brazil|brazilian|mexico|mexican|"
-    r"new\s+south\s+wales|western\s+australia|south\s+australia|northern\s+territory)\b",
-    r"استرالیا|استرالیایی|سیدنی|ملبورن|بریزبن|پرت|آدلاید|کانبرا|کوئینزلند|ویکتوریا|تاسمانی|"
-    r"بریتانیا|انگلستان|اسکاتلند|ولز|لندن|"
-    r"آمریکا|ایالات\s+متحده|واشنگتن|نیویورک|کالیفرنیا|تگزاس|فلوریدا|"
-    r"کانادا|تورنتو|ونکوور|"
-    r"آلمان|برلین|فرانسه|پاریس|ایتالیا|رم|اسپانیا|مادرید|"
-    r"ترکیه|آنکارا|استانبول|ژاپن|توکیو|کره\s+جنوبی|سئول|"
-    r"هند|دهلی|بمبئی|برزیل|مکزیک",
-]
-
-INTERNATIONAL_SCOPE_TERMS = [
-    r"\b(?:global|worldwide|international|world|nato|united\s+nations|un|g7|g20|"
-    r"war|conflict|invasion|sanctions|summit|ceasefire|missile|nuclear|"
-    r"china|iran|russia|ukraine|israel|gaza|middle\s+east|europe|"
-    r"ai|artificial\s+intelligence|openai|google|gemini|technology|"
-    r"typhoon|hurricane|earthquake|flood|wildfire|landslide|tsunami|"
-    r"explosion|shooting|crash|emergency|evacuation|disaster|"
-    r"killed|wounded|missing|hostage|attack|strike|military|outbreak)\b",
-    r"جهانی|بین.?المللی|دنیا|ناتو|سازمان\s+ملل|جنگ|درگیری|حمله|تحریم|نشست|آتش.?بس|موشک|هسته.?ای|"
-    r"چین|ایران|روسیه|اوکراین|اسرائیل|غزه|خاورمیانه|اروپا|هوش\s+مصنوعی|فناوری|"
-    r"طوفان|تایفون|هاریکن|زلزله|سیل|آتش.?سوزی|رانش زمین|سونامی|انفجار|تیراندازی|"
-    r"سقوط|اضطراری|تخلیه|فاجعه|کشته|زخمی|مفقود|گروگان|حمله|حملات|بمباران|نظامی",
-]
-
-IRAN_TERMS = [
-    r"ایران|ایرانی|تهران|مشهد|اصفهان|شیراز|تبریز|قم|کرج|اهواز|رشت|کرمان|یزد|"
-    r"خوزستان|آذربایجان|فارس|مازندران|گیلان|البرز|خراسان",
-]
-
-# Iranian publisher policy:
-# YJC is the only allowed Iranian news publisher. Google News discovery may
-# still surface other Iranian outlets, so publisher-domain filtering is
-# mandatory and is based on the resolved/source URL, never on story topic.
-IRANIAN_ALLOWED_HOSTS = {"yjc.ir", "irna.ir"}
-IRANIAN_BLOCKED_DOMAINS = {
-    "isna.ir", "mehrnews.com", "tasnimnews.com", "farsnews.ir",
-    "snn.ir", "tabnak.ir", "khabaronline.ir", "tejaratnews.com",
-    "donya-e-eqtesad.com", "ecoiran.com", "zoomit.ir", "varzesh3.com",
-    "khabarfoori.com", "asriran.com", "aftabnews.ir", "jamaran.news",
-    "entekhab.ir", "fararu.com", "khabarban.com", "rokna.net",
-}
-
-def _candidate_hosts(candidate):
-    hosts = set()
-    for key in ("resolved_link", "source_url", "link"):
-        value = str(candidate.get(key, "") or "").strip()
-        host = base_domain(get_hostname(value))
-        if host:
-            hosts.add(host)
-    return hosts
-
-def _is_iranian_blocked_source(candidate):
-    for host in _candidate_hosts(candidate):
-        if host in IRANIAN_ALLOWED_HOSTS:
-            continue
-        if host.endswith(".ir"):
-            return True
-        if any(host == d or host.endswith("." + d) for d in IRANIAN_BLOCKED_DOMAINS):
-            return True
-    return False
-
-def _is_iran_source(candidate):
-    return any(
-        host in IRANIAN_ALLOWED_HOSTS
-        for host in _candidate_hosts(candidate)
-    )
-
-# A foreign country/city/state mention is NOT enough to make a story
-# internationally relevant. Routine domestic politics, courts, policing,
-# elections, weather, business and local accidents must stay out of NABZ.
-# Only explicit cross-border/global signals can override this filter.
-# Foreign-local scope guard:
-# A country/city mention alone must never turn routine domestic reporting
-# into a NABZ international story. A local foreign story is allowed only when
-# there is a genuine cross-border/global signal, or an objectively large-scale
-# event with nationwide/mass-casualty consequences.
-FOREIGN_LOCAL_GLOBAL_OVERRIDE_TERMS = [
-    r"\b(?:global|worldwide|international|cross[- ]border|multinational|"
-    r"united\s+nations|\bun\b|nato|g7|g20|"
-    r"iran|russia|ukraine|israel|gaza|china|taiwan|north\s+korea|"
-    r"middle\s+east|european\s+union|\beu\b|"
-    r"war|invasion|international\s+court|icc|"
-    r"pandemic|epidemic|outbreak|"
-    r"mass\s+casualt(?:y|ies)|mass\s+evacuation)\b",
-    r"جهانی|بین.?المللی|فرامرزی|چندملیتی|سازمان\s+ملل|ناتو|گروه.?های?\s*۷|گروه.?های?\s*۲۰|"
-    r"ایران|روسیه|اوکراین|اسرائیل|غزه|چین|تایوان|کره\s+شمالی|خاورمیانه|اتحادیه اروپا|"
-    r"جنگ|تهاجم|درگیری|آتش.?بس|تحریم|تعرفه|دادگاه بین.?المللی|دیوان کیفری بین.?المللی|"
-    r"همه.?گیری|اپیدمی|شیوع|تلفات گسترده|تخلیه گسترده",
-]
-
-FOREIGN_LOCAL_SEVERE_EVENT_TERMS = [
-    r"\b(?:mass[- ]casualt(?:y|ies)|major disaster|national emergency|"
-    r"dozens killed|dozens injured|hundreds killed|hundreds injured|"
-    r"multiple fatalities|large[- ]scale evacuation|nationwide outage)\b",
-    r"تلفات گسترده|کشته شدن ده.?ها نفر|زخمی شدن ده.?ها نفر|صدها کشته|صدها زخمی|"
-    r"فاجعه بزرگ|وضعیت اضطراری ملی|تخلیه گسترده|اختلال سراسری|قطعی سراسری",
-]
-
-def _has_foreign_global_override(text):
-    value = str(text or "")
-    return any(re.search(pattern, value, re.I) for pattern in FOREIGN_LOCAL_GLOBAL_OVERRIDE_TERMS)
-
-def _has_foreign_severe_scale(text):
-    value = str(text or "")
-    return any(re.search(pattern, value, re.I) for pattern in FOREIGN_LOCAL_SEVERE_EVENT_TERMS)
-
-def _foreign_local_only(candidate):
-    text = " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description"))
-    if not text:
-        return False
-    if is_roundup_title(candidate.get("title", "")):
-        return True
-    # National safety/regulatory changes must be evaluated before generic
-    # foreign-local markers can reject an otherwise consequential story.
-    national_policy_impact = (
-        re.search(
-            r"\b(?:football association|national football association|governing body|regulator|regulatory authority|"
-            r"national health service|health regulator|nhs|stadium accreditation|safety rules?|safety regulations?|"
-            r"regulations?|rules?|government review|national inquiry|nationwide)\b",
-            text, re.I,
-        )
-        and re.search(
-            r"\b(?:changed|changes|updated|update|banned|ban|prohibited|introduced|revised|review|investigation|"
-            r"affected|clubs?|patients?|cases?|all levels|national league|nationwide|thousands?|hundreds?|169 clubs?)\b",
-            text, re.I,
-        )
-        and re.search(
-            r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|unnecessary surgery|"
-            r"patient harm|safety|مرگ|جان باخت|کشته|فوت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|ممنوع|اصلاح|تغییر|بیمار)\b",
-            text, re.I,
-        )
-    )
-    if national_policy_impact:
-        return False
-    has_local = any(re.search(pattern, text, re.I) for pattern in FOREIGN_LOCAL_TERMS)
-    if not has_local:
-        return False
-    if _has_foreign_global_override(text) or _has_foreign_severe_scale(text):
-        return False
-    # A foreign domestic story can still be nationally consequential when a
-    # national governing body changes safety/regulatory rules after a serious
-    # incident, especially when the change affects many clubs or a whole league system.
-    national_policy_impact = (
-        re.search(
-            r"\b(?:football association|national football association|governing body|stadium accreditation|"
-            r"safety rules?|safety regulations?|regulations?|rules?)\b",
-            text, re.I,
-        )
-        and re.search(
-            r"\b(?:changed|changes|updated|update|banned|ban|prohibited|introduced|revised|"
-            r"affected|clubs?|all levels|national league|169 clubs?)\b",
-            text, re.I,
-        )
-        and re.search(
-            r"\b(?:death|died|killed|fatal|fatality|serious injury|injured|accident|collision|"
-            r"مرگ|جان باخت|کشته|فوت|مصدومیت شدید|آسیب شدید|حادثه|ایمنی|قوانین|مقررات|ممنوع|اصلاح|تغییر)\b",
-            text, re.I,
-        )
-    )
-    consequential = re.search(
-        r"\b(?:hurricane|typhoon|earthquake|tsunami|volcan|wildfire|deadly attack|terror attack|mass shooting|major explosion|major fire|large[- ]scale evacuation|dozens killed|hundreds killed|dozens injured|hundreds injured)\b|"
-        r"هاریکن|تایفون|زلزله شدید|سونامی|آتشفشان|حمله مرگبار|حمله تروریستی|انفجار بزرگ|آتش‌سوزی گسترده|تخلیه گسترده|ده.?ها کشته|صدها کشته|ده.?ها زخمی|صدها زخمی",
-        text, re.I
-    )
-    if consequential or national_policy_impact:
-        return False
-    country_hits = re.findall(
-        r"\b(?:australia|britain|united kingdom|america|united states|canada|germany|france|italy|spain|japan|south korea|india|pakistan|afghanistan|turkey|china|taiwan|russia|ukraine|israel|mexico|brazil)\b|"
-        r"استرالیا|بریتانیا|انگلیس|آمریکا|کانادا|آلمان|فرانسه|ایتالیا|اسپانیا|ژاپن|کره جنوبی|هند|پاکستان|افغانستان|ترکیه|چین|تایوان|روسیه|اوکراین|اسرائیل|مکزیک|برزیل",
-        text, re.I
-    )
-    return len({x.lower() for x in country_hits}) < 2
-
-def _filter_foreign_local_scope(candidates):
-    kept = []
-    for c in candidates:
-        if _foreign_local_only(c):
-            print(f"V13 SKIP FOREIGN LOCAL: {clean_title(c.get('title', ''))}")
-            continue
-        kept.append(c)
-    return kept
-
-# ---------- Content sanitation ----------
-_original_clean_title = clean_title
-_original_clean_content = clean_content
-
-def clean_title(title):
-    value = _original_clean_title(title)
-    value = re.sub(r"\b(?:فیلم|ویدئو|ویدیو)\s*>>.*$", "", value, flags=re.I)
-    value = re.sub(r"\s{2,}", " ", value).strip()
-    return value[:180]
-
-def clean_content(text):
-    value = _original_clean_content(text)
-    value = re.sub(r"(?:فیلم|ویدئو|ویدیو)\s*>>\s*[^|]+", " ", value, flags=re.I)
-    value = re.sub(r"\s{2,}", " ", value).strip()
-    return value[:6000]
-
-clean_title = clean_title
-clean_content = clean_content
-
-# ---------- Safe extractive fallback ----------
-def safe_local_engine(title, body):
-    title = clean_title(title)
-    body = clean_content(body)
-    sentences = re.split(r"(?<=[.!؟؛])\s+", body)
-    sentences = [s.strip(" -\t\n") for s in sentences if len(s.strip()) >= 25]
-    summary = " ".join(sentences[:3]).strip()
-    if len(summary) > 700:
-        summary = summary[:700].rsplit(" ", 1)[0] + "…"
-    if not summary:
-        summary = body[:700].strip()
-    return {"title": title, "summary": summary}
-
-local_news_engine = safe_local_engine
-
-# ---------- AI safety gate ----------
-_original_gemini = gemini_request
-
-def _numbers(text):
-    return set(re.findall(r"\b\d+(?:[.,]\d+)?\b", normalize_digits(str(text or ""))))
-
-def _anchors(text):
-    return {
-        x.lower() for x in re.findall(
-            r"[\u0600-\u06ffA-Za-z][\u0600-\u06ffA-Za-z0-9_-]{2,}",
-            normalize_digits(str(text or "")).lower()
-        )
-    }
-
-def _bad_ai_meta(text):
-    t = str(text or "").lower()
-    return any(x in t for x in (
-        "http://", "https://", "www.", "منبع:",
-        "طبق گزارش ما", "به گفته منابع ما", "منابع ما"
-    ))
-
-def _sentence_count(text):
-    return len([x for x in re.split(r"(?<=[.!؟؛])\s+", str(text or "").strip()) if x.strip()])
-
-def gemini_request(title, article_text):
-    result = _original_gemini(title, article_text)
-    if not result:
-        return None
-
-    source = clean_content(article_text or title)
-    out_title = clean_title(result.get("title", ""))
-    out_summary = clean_content(result.get("summary", ""))
-
-    if not out_title or not out_summary:
-        return None
-    if _persian_ratio(out_title) < 0.60 or _persian_ratio(out_summary) < 0.60:
-        print("V13 GUARD: rejected non-Persian AI output.")
-        return None
-    if _bad_ai_meta(out_title) or _bad_ai_meta(out_summary):
-        print("V13 GUARD: rejected source/link boilerplate.")
-        return None
-    if not _numbers(out_title + " " + out_summary).issubset(_numbers(source)):
-        print("V13 GUARD: rejected AI output because it introduced a number.")
-        return None
-    if len(out_title) < 8 or _sentence_count(out_summary) > 3 or len(out_summary) > 750:
-        print("V13 GUARD: rejected structurally invalid AI output.")
-        return None
-
-    if re.search(r"[\u0600-\u06ff]", title + " " + article_text) and re.search(r"[\u0600-\u06ff]", out_title):
-        src = _anchors(title + " " + source[:3000])
-        out = _anchors(out_title)
-        if out and len(src & out) < max(1, min(3, len(out) // 2)):
-            print("V13 GUARD: rejected headline drift.")
-            out_title = clean_title(title)
-
-    return {"title": out_title, "summary": out_summary}
-
-# ---------- Final publication language gate ----------
-# This is the last line of defense: regardless of which fallback path
-# produced the caption, a foreign-language story must never reach Telegram.
-_original_send_message = send_message
-_original_send_photo = send_photo
-_original_send_video = send_video
-
-
-def _latin_words(text):
-    """
-    Return standalone Latin-script words that are not part of a URL/handle.
-    The channel's publication contract is Persian-only; the NABZ brand is
-    explicitly allowed because it is part of the fixed footer/watermark.
-    """
-    value = str(text or "")
-    value = re.sub(r"https?://\S+", " ", value)
-    value = re.sub(r"@[A-Za-z0-9_]+", " ", value)
-    words = re.findall(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", value)
-    return [word for word in words if word.upper() != "NABZ"]
-
-
-def _sanitize_final_caption(caption):
-    """
-    Repair harmless Latin-script artifacts without weakening the Persian gate.
-    A Persian caption can contain a stray token such as "AS" from scraped
-    publisher markup. Such a token must not destroy an otherwise publishable
-    important story.
-    """
-    text = str(caption or "").strip()
-    if not text:
-        return text
-
-    # Fixed Telegram handle/URL and NABZ brand are outside the language probe.
-    probe = re.sub(r"@[A-Za-z0-9_]+", " ", text)
-    probe = re.sub(r"https?://\S+", " ", probe)
-    probe = re.sub(r"\bNABZ\b", " ", probe, flags=re.I)
-
-    ratio = _persian_ratio(probe)
-    latin_words = _latin_words(probe)
-
-    # Only repair a very small number of isolated Latin artifacts when the
-    # caption is already overwhelmingly Persian. This cannot turn an English
-    # story into an apparently valid Persian post.
-    if latin_words and ratio >= 0.70 and len(latin_words) <= 3:
-        repaired = re.sub(
-            r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])",
-            " ",
-            text,
-        )
-        repaired = normalize_space(repaired)
-        print(
-            "V13 FINAL LANGUAGE REPAIR: removed harmless Latin artifact(s): "
-            + ", ".join(latin_words[:10])
-        )
-        return repaired
-
-    return text
-
-
-def _assert_persian_caption(caption):
-    text = _sanitize_final_caption(caption)
-    if not text:
-        return text
-
-    probe = re.sub(r"@[A-Za-z0-9_]+", " ", text)
-    probe = re.sub(r"https?://\S+", " ", probe)
-    probe = re.sub(r"\bNABZ\b", " ", probe, flags=re.I)
-
-    latin_words = _latin_words(probe)
-    if latin_words:
-        print(
-            "V13 FINAL LANGUAGE GATE: blocked Latin words: "
-            + ", ".join(latin_words[:10])
-        )
-        raise SkipForeignStory()
-
-    if _persian_ratio(probe) < 0.55:
-        print("V13 FINAL LANGUAGE GATE: blocked non-Persian publication.")
-        raise SkipForeignStory()
-
-    return text
-
-
-def send_message(text):
-    try:
-        text = _assert_persian_caption(text)
-        return _original_send_message(text)
-    except SkipForeignStory:
-        print("V13 FINAL LANGUAGE GATE: skipped candidate instead of failing the runtime.")
-        return False
-
-
-def send_photo(path, caption):
-    try:
-        caption = _assert_persian_caption(caption)
-        return _original_send_photo(path, caption)
-    except SkipForeignStory:
-        print("V13 FINAL LANGUAGE GATE: skipped photo candidate instead of failing the runtime.")
-        return False
-
-
-def send_video(path, caption):
-    try:
-        caption = _assert_persian_caption(caption)
-        return _original_send_video(path, caption)
-    except SkipForeignStory:
-        print("V13 FINAL LANGUAGE GATE: skipped video candidate instead of failing the runtime.")
-        return False
-
-
-send_message = send_message
-send_photo = send_photo
-send_video = send_video
-
-print("=" * 64)
-print("NABZ KHABAR V13 FINAL ENGINE ACTIVE")
-print(f"Direct RSS sources: {len(V13_DIRECT_RSS_FEEDS)}")
-print("Roundup filter: ON")
-print("AI fact-safety gate: ON")
-print("Image safety gate: ON")
-print("Multi-layer history/dedup: inherited from stable core")
-print("Telegram/media/branding: inherited from stable core")
-print("=" * 64)
-
-
-if __name__ == "__main__":
-    main()
