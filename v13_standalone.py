@@ -52,8 +52,8 @@ CHANNEL_ID = "@NabzKhabarOfficial"
 # standard Gemini API tier. Free tier is quota-limited, not literally unlimited.
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
 
-REQUEST_TIMEOUT = 20
-ARTICLE_TIMEOUT = 25
+REQUEST_TIMEOUT = 12
+ARTICLE_TIMEOUT = 8
 
 MAX_VIDEO_MB = 49
 MAX_IMAGE_MB = 12
