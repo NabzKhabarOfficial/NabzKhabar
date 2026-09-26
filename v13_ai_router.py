@@ -522,6 +522,21 @@ def gemini_request(main, title, article_text):
     if result:
         return result
 
+    for model in _available_models(main):
+        health_key = f"gemini:{model}"
+        if _model_disabled(_load_health(), health_key):
+            print(f"V13 AI ROUTER: Gemini/{model} is in cooldown; skipping.")
+            continue
+        result, _ = _request_json(main, model, prompt)
+        if result:
+            validated = _validate(main, title, source, result, foreign)
+            if validated:
+                _mark_model_success(health_key)
+                print(f"V13 AI ROUTER: SUCCESS via Gemini/{model}")
+                return validated
+            print(f"V13 AI ROUTER: Gemini/{model} returned invalid/unsafe output; failing over.")
+            _mark_model_failure(health_key, 422)
+
     if ENABLE_OPENROUTER_FALLBACK and OPENROUTER_API_KEY:
         result = _fallback_provider_request(
             main, "OpenRouter", _openrouter_free_models(main), OPENROUTER_BASE,
@@ -533,21 +548,6 @@ def gemini_request(main, title, article_text):
         print("V13 AI ROUTER: OpenRouter free fallback unavailable (missing key or disabled).")
 
 
-    for model in _available_models(main):
-        for attempt in range(2):
-            result, retry_same_model = _request_json(main, model, prompt)
-            if result:
-                validated = _validate(main, title, source, result, foreign)
-                if validated:
-                    _mark_model_success(model)
-                    print(f"V13 AI ROUTER: SUCCESS via Gemini/{model}")
-                    return validated
-                print(f"V13 AI ROUTER: Gemini/{model} returned invalid/unsafe output; failing over.")
-                break
-            if retry_same_model and attempt == 0:
-                time.sleep(1.2)
-                continue
-            break
 
     # Final fallback: local Argos Translate, after all AI providers fail.
     if foreign:
