@@ -113,6 +113,8 @@ try:
     _installed_policy_scope = v13_policy_guard._foreign_local_only
     def _final_hardened_scope(candidate):
         text = " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description"))
+        if v13_policy_guard._final_global_security_override(candidate):
+            return False
         if _GLOBAL_CRITICAL_SCOPE.search(text) and _GLOBAL_CRITICAL_EVENT.search(text):
             return False
         return _installed_policy_scope(candidate)
