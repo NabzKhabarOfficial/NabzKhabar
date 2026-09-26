@@ -190,6 +190,21 @@ jobs:
           if v13_ai_router._translation_quality_bad(good_translation):
               raise SystemExit("V13 TRANSLATION TEST FAILED: valid Persian headline was rejected")
 
+          # Media-claim regression: source/AI labels such as "فیلم/" must
+          # never survive when no actual video is available for publication.
+          media_cases = [
+              ("فیلم/ روایت حمله موشکی به مجتمع تفریحی اهواز به نقل از شاهد", "روایت حمله موشکی به مجتمع تفریحی اهواز به نقل از شاهد"),
+              ("ویدئو: انفجار در محل حادثه", "انفجار در محل حادثه"),
+              ("روایت حادثه + فیلم", "روایت حادثه"),
+          ]
+          for raw, expected in media_cases:
+              actual = v.media_consistent_text(raw, has_video=False)
+              if actual != expected:
+                  raise SystemExit(f"V13 MEDIA CLAIM TEST FAILED: {raw!r} -> {actual!r}")
+          if v.media_consistent_text("فیلم/ گزارش حادثه", has_video=True) != "فیلم/ گزارش حادثه":
+              raise SystemExit("V13 MEDIA CLAIM TEST FAILED: real-video label was stripped")
+          print("V13 MEDIA CLAIM CONSISTENCY: PASS")
+
           # Editorial ranking regression: when multiple feeds describe the
           # same event, the high-priority upstream story must not be replaced
           # by a lower-priority variant merely because of event_score().
