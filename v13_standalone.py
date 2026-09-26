@@ -5169,56 +5169,6 @@ def safe_local_engine(title, body):
 
 local_news_engine = safe_local_engine
 
-# ---------- Persian localization for foreign-source stories ----------
-def _persian_ratio(text):
-    text = str(text or "")
-    letters = re.findall(r"[A-Za-z\u0600-\u06ff]", text)
-    if not letters:
-        return 1.0
-    return sum("\u0600" <= ch <= "\u06ff" for ch in letters) / len(letters)
-
-def _translate_foreign_story(title, article_text):
-    if not AI_API_KEY:
-        return None
-    endpoint = "https://generativelanguage.googleapis.com/v1beta/models/" + f"{GEMINI_MODEL}:generateContent"
-    prompt = """این خبر از یک منبع خارجی است و باید برای یک کانال خبری فارسی‌زبان آماده شود.
-عنوان اصلی:
-%s
-
-متن خبر:
-%s
-
-فقط و فقط اطلاعات موجود در متن را به فارسی روان ترجمه و خلاصه کن.
-- عنوان حتماً فارسی و خبری باشد.
-- خلاصه حداکثر ۳ جمله و فارسی باشد.
-- هیچ عدد، نام، ادعا یا واقعیت جدیدی اضافه نکن.
-- اگر عددی در متن هست، فقط همان عدد را حفظ کن.
-- نام شرکت‌ها و محصولات را در صورت نیاز به شکل رایج فارسی + نام اصلی بنویس.
-- هیچ لینک، منبع، «به گزارش» یا توضیح درباره ترجمه نده.
-
-فقط JSON معتبر:
-{"title":"تیتر فارسی","summary":"خلاصه فارسی"}
-""" % (title, str(article_text or title)[:6000])
-    try:
-        response = SESSION.post(endpoint, params={"key": AI_API_KEY}, json={"contents":[{"parts":[{"text":prompt}]}], "generationConfig":{"responseMimeType":"application/json","maxOutputTokens":500}}, timeout=30)
-        if not response.ok:
-            return None
-        raw = response.json().get("candidates", [{}])[0].get("content", {}).get("parts", [{}])[0].get("text", "").strip()
-        raw = re.sub(r"^```(?:json)?", "", raw, flags=re.I).replace("```", "").strip()
-        data = __import__("json").loads(raw)
-        out_title = clean_title(data.get("title", ""))
-        out_summary = clean_content(data.get("summary", ""))
-        if _persian_ratio(out_title) < 0.60 or _persian_ratio(out_summary) < 0.60:
-            return None
-        if not _numbers(out_title + " " + out_summary).issubset(_numbers(clean_content(article_text or title))):
-            return None
-        if _sentence_count(out_summary) > 3 or len(out_summary) > 750:
-            return None
-        return {"title": out_title, "summary": out_summary}
-    except Exception as exc:
-        print(f"V13 localization error: {exc}")
-        return None
-
 # ---------- AI safety gate ----------
 _original_gemini = gemini_request
 
@@ -5226,7 +5176,6 @@ def _numbers(text):
     return set(re.findall(r"\b\d+(?:[.,]\d+)?\b", normalize_digits(str(text or ""))))
 
 def _anchors(text):
-    # Named/factual anchors. This is intentionally conservative.
     return {
         x.lower() for x in re.findall(
             r"[\u0600-\u06ffA-Za-z][\u0600-\u06ffA-Za-z0-9_-]{2,}",
@@ -5237,7 +5186,7 @@ def _anchors(text):
 def _bad_ai_meta(text):
     t = str(text or "").lower()
     return any(x in t for x in (
-        "http://", "https://", "www.", "منبع:", "به گزارش",
+        "http://", "https://", "www.", "منبع:",
         "طبق گزارش ما", "به گفته منابع ما", "منابع ما"
     ))
 
@@ -5245,61 +5194,29 @@ def _sentence_count(text):
     return len([x for x in re.split(r"(?<=[.!؟؛])\s+", str(text or "").strip()) if x.strip()])
 
 def gemini_request(title, article_text):
-    source = clean_content(article_text or title)
-    is_foreign = _persian_ratio(title) < 0.60
-
-    # FOREIGN STORY CONTRACT:
-    # Translate first. Never allow the original-language title/body or a
-    # non-Persian fallback to reach the publication layer.
-    if is_foreign:
-        localized = _translate_foreign_story(title, source)
-        if not localized:
-            print("V13 LOCALIZATION: foreign story could not be translated; publication blocked.")
-            return None
-
-        out_title = clean_title(_repair_argos_residual_words(localized.get("title", "")))
-        out_summary = clean_content(_repair_argos_residual_words(localized.get("summary", "")))
-
-        if _persian_ratio(out_title) < 0.60 or _persian_ratio(out_summary) < 0.60:
-            print("V13 LOCALIZATION: translated output failed Persian validation; publication blocked.")
-            return None
-
-        if _bad_ai_meta(out_title) or _bad_ai_meta(out_summary):
-            print("V13 LOCALIZATION: translated output contains source boilerplate; publication blocked.")
-            return None
-
-        if _sentence_count(out_summary) > 3 or len(out_summary) > 750:
-            print("V13 LOCALIZATION: translated summary is invalid; publication blocked.")
-            return None
-
-        print("V13 LOCALIZATION: foreign story translated and validated before publication.")
-        return {"title": out_title, "summary": out_summary}
-
-    # Native Persian stories continue through the normal AI quality pipeline.
     result = _original_gemini(title, article_text)
     if not result:
         return None
 
+    source = clean_content(article_text or title)
     out_title = clean_title(result.get("title", ""))
     out_summary = clean_content(result.get("summary", ""))
 
-    if not _numbers(out_title + " " + out_summary).issubset(_numbers(source)):
-        print("V13 GUARD: rejected AI output because it introduced a number.")
-        return safe_local_engine(title, source)
-
+    if not out_title or not out_summary:
+        return None
+    if _persian_ratio(out_title) < 0.60 or _persian_ratio(out_summary) < 0.60:
+        print("V13 GUARD: rejected non-Persian AI output.")
+        return None
     if _bad_ai_meta(out_title) or _bad_ai_meta(out_summary):
         print("V13 GUARD: rejected source/link boilerplate.")
-        return safe_local_engine(title, source)
+        return None
+    if not _numbers(out_title + " " + out_summary).issubset(_numbers(source)):
+        print("V13 GUARD: rejected AI output because it introduced a number.")
+        return None
+    if len(out_title) < 8 or _sentence_count(out_summary) > 3 or len(out_summary) > 750:
+        print("V13 GUARD: rejected structurally invalid AI output.")
+        return None
 
-    if not out_title or len(out_title) < 8:
-        return safe_local_engine(title, source)
-
-    if _sentence_count(out_summary) > 3 or len(out_summary) > 750:
-        print("V13 GUARD: rejected oversized summary.")
-        return safe_local_engine(title, source)
-
-    # For Persian stories, require the generated headline to retain
-    # meaningful source anchors. This prevents entity/event drift.
     if re.search(r"[\u0600-\u06ff]", title + " " + article_text) and re.search(r"[\u0600-\u06ff]", out_title):
         src = _anchors(title + " " + source[:3000])
         out = _anchors(out_title)
@@ -5308,315 +5225,6 @@ def gemini_request(title, article_text):
             out_title = clean_title(title)
 
     return {"title": out_title, "summary": out_summary}
-
-gemini_request = gemini_request
-
-# ---------- Image safety ----------
-_original_image_ok = image_is_acceptable
-
-def image_is_acceptable(url):
-    if not url or is_bad_media_url(url):
-        return False
-    lowered = str(url).lower()
-    blocked = (
-        "logo", "favicon", "avatar", "profile", "sprite",
-        "placeholder", "default-image", "default_image",
-        ".svg", "data:image", "blob:"
-    )
-    if any(x in lowered for x in blocked):
-        return False
-    return _original_image_ok(url)
-
-image_is_acceptable = image_is_acceptable
-
-# ---------- Strict important/useful news gate ----------
-# NABZ news is event-led and deliberately selective. A story must describe a
-# concrete, consequential event/change rather than merely mention an important
-# person, country, ministry, company, sport, or topic.
-# Price/education/weather/car-price pipelines are independent and are not affected.
-
-STRICT_NEWS_MIN_SCORE = 5
-
-STRICT_HIGH_IMPACT_TERMS = (
-    "جنگ", "حمله", "حملات", "حمله موشکی", "موشک", "پرتابه", "انفجار",
-    "هدف قرار گرفت", "هدف قرار دادن", "تشدید حملات", "تهدید نظامی",
-    "درگیری نظامی", "عملیات نظامی", "بمباران", "زلزله", "سیل", "طوفان",
-    "سونامی", "رانش زمین", "آتش سوزی", "آتش‌سوزی", "سقوط هواپیما",
-    "کشته", "مفقود", "ترور", "آتش بس", "آتش‌بس", "تحریم", "مذاکرات",
-    "هسته ای", "هسته‌ای", "قطع اینترنت", "قطعی اینترنت", "بحران",
-    "حمله سایبری", "فاجعه", "فوری", "اضطراری", "تعلیق", "توقف",
-    "ممنوعیت", "محدودیت", "فراخوان", "تخلیه", "هشدار تخلیه",
-    "وضعیت اضطراری", "قطعی برق", "قطعی گاز", "قطعی آب", "کمبود سوخت",
-    "افزایش قیمت", "کاهش قیمت", "سقوط قیمت", "جهش قیمت", "تورم",
-    "نرخ بهره", "بودجه", "مالیات", "بنزین", "نفت", "گاز",
-    "هوش مصنوعی", "تراشه", "جام جهانی", "المپیک", "فینال", "قهرمانی",
-)
- 
-STRICT_MEDIUM_IMPACT_TERMS = (
-    "مصوبه", "قانون", "ابلاغ", "اختلال", "هشدار", "بیماری", "شیوع",
-    "واکسن", "دارو", "درمان", "کشف", "پژوهش", "فضا", "ماهواره", "ربات",
-    "اپل", "گوگل", "مایکروسافت", "متا", "انویدیا", "اوپن ای آی",
-    "OpenAI", "Google", "Apple", "Microsoft", "رئیس جمهور", "رئیس‌جمهور",
-    "مجلس", "دولت", "بانک مرکزی", "وزارت",
-)
-
-STRICT_ROUTINE_TERMS = (
-    "نشست", "جلسه", "دیدار", "تجلیل", "گرامیداشت", "تقدیر", "افتتاح",
-    "کلنگ زنی", "کلنگ‌زنی", "رونمایی از کتاب", "انتشار کتاب",
-    "صدور پروانه ساخت", "مراسم", "واکنش نشان داد", "اظهارات",
-    "گفت: ", "گفت که", "تبریک", "تسلیت", "پیام تبریک", "توصیه کرد",
-    "تاکید کرد", "تأکید کرد", "قرار است", "امیدواریم", "می خواهیم",
-    "می‌خواهیم", "عکس", "فیلم", "تصاویر", "حاشیه", "کلیپ", "ویدئو",
-)
-
-STRICT_LOW_VALUE_TERMS = (
-    "آگهی", "فروش", "تخفیف", "اکران", "مستند", "رونمایی هنری", "کنسرت",
-    "جشنواره فیلم", "قرعه کشی", "قرعه‌کشی", "استخدام", "اطلاعیه روابط عمومی",
-    "تبلیغ", "رپرتاژ", "سبک زندگی", "فال", "طالع بینی", "تبریک تولد",
-    "تولد", "درگذشت", "چهره", "اینستاگرام", "خاطره", "مصاحبه اختصاصی",
-    "گفتگو با",
-)
-
-# Event-impact signals. These are deliberately descriptive and do not rank
-# political actors; they only identify concrete consequences or major events.
-STRICT_EVENT_ACTIONS = (
-    "کشته", "زخمی", "مفقود", "بازداشت", "دستگیر", "تخلیه",
-    "هدف قرار", "هدف قرار گرفت", "هدف قرار داد", "مورد حمله قرار گرفت",
-    "تشدید حملات", "تهدید کرد", "شلیک", "پرتابه", "توقف", "تعلیق",
-    "ممنوع", "محدود", "قطع", "وصل", "اختلال", "فراخوان", "آغاز",
-    "پایان", "لغو", "تصویب", "رد شد", "اجرا", "ابلاغ", "اعلام شد",
-    "افزایش", "کاهش", "سقوط", "رشد", "جهش", "تحریم", "آتش بس", "آتش‌بس",
-)
- 
-STRICT_IMPACT_ENTITIES = (
-    "ایران", "تهران", "خوزستان", "کرمان", "سیستان", "بلوچستان", "آذربایجان",
-    "عراق", "سوریه", "لبنان", "فلسطین", "غزه", "اسرائیل", "یمن", "ترکیه",
-    "آمریکا", "روسیه", "اوکراین", "چین", "تایوان", "اروپا", "اتحادیه اروپا",
-    "ناتو", "هند", "پاکستان", "افغانستان", "کره جنوبی", "کره شمالی",
-    "ژاپن", "بریتانیا", "فرانسه", "آلمان",
-)
-
-STRICT_CONCRETE_EVENT_RE = re.compile(
-    r"(?:کشته|زخمی|مفقود|بازداشت|تخلیه|انفجار|زلزله|سیل|طوفان|سونامی|"
-    r"آتش.?سوزی|سقوط|حمله|حملات|موشک|پرتابه|جنگ|تهدید|درگیری|بمباران|"
-    r"هدف قرار|مورد حمله قرار|تشدید حملات|عملیات نظامی|تحریم|ممنوع|"
-    r"محدود|تعلیق|توقف|قطعی|اختلال|فراخوان|تصویب|ابلاغ|لغو|افزایش|"
-    r"کاهش|سقوط|رشد|جهش|شیوع|آتش.?بس|بودجه|مالیات|قیمت|نرخ|کمبود|"
-    r"هک|حمله سایبری|فوتبال|جام جهانی|المپیک|فینال|قهرمانی|"
-    r"ادغام|ادغام شد|تملک|تصاحب|خرید|دعوی قضایی|شکایت|حل و فصل|رقابت|انحصار|"
-    r"merger|acquisition|acquired|lawsuit|settlement|antitrust|"
-    r"attack(?:ed)?|missile|strike|bombing|explosion|earthquake|flood|"
-    r"storm|typhoon|tsunami|killed|wounded|missing|evacuat(?:e|ed|ion)|"
-    r"escalat(?:e|ed|ion)|military|threat|sanction|ceasefire|outage|"
-    r"crash|emergency|wildfire|landslide|shooting|hostage|arrested|"
-    r"suspended|banned|disrupted)",
-    re.I,
-)
-
-def strict_news_value(candidate):
-    title = normalize_space(candidate.get("title", ""))
-    body = normalize_space(" ".join(
-        str(candidate.get(k, "") or "") for k in ("summary", "description")
-    ))
-    title_l = title.lower()
-    body_l = body.lower()
-    score = 0
-
-    high_title = [t for t in STRICT_HIGH_IMPACT_TERMS if t.lower() in title_l]
-    medium_title = [t for t in STRICT_MEDIUM_IMPACT_TERMS if t.lower() in title_l]
-    routine_hits = sum(1 for t in STRICT_ROUTINE_TERMS if t.lower() in title_l)
-    low_hits = sum(1 for t in STRICT_LOW_VALUE_TERMS if t.lower() in title_l)
-    action_hits = sum(1 for t in STRICT_EVENT_ACTIONS if t.lower() in title_l)
-    entity_hits = sum(1 for t in STRICT_IMPACT_ENTITIES if t.lower() in title_l)
-
-    if high_title:
-        score += 5
-    if medium_title:
-        score += min(len(medium_title), 2)
-    if action_hits:
-        score += min(action_hits * 2, 4)
-    if entity_hits and action_hits:
-        score += 1
-
-    # Concrete numbers matter only when attached to an event/economic change.
-    if re.search(
-        r"\d{1,3}(?:[.,]\d{3})*(?:\s*(?:میلیون|میلیارد|همت|درصد|نفر|کشته|زخمی|واحد|کیلومتر))",
-        title,
-    ):
-        score += 2
-
-    if re.search(
-        r"(?:قیمت|افزایش|کاهش|سقوط|رشد|صعود|بودجه|اعتبار|مالیات|نرخ)\s+[^،؛.]{0,55}"
-        r"(?:درصد|میلیارد|میلیون|همت|تومان|دلار|یورو|واحد)",
-        title_l,
-    ):
-        score += 2
-
-    # Major corporate/legal events (e.g. large mergers, acquisitions,
-    # antitrust settlements) are consequential even when the headline does
-    # not contain a generic Persian event verb.
-    if re.search(
-        r"(?:ادغام|ادغام شد|تملک|تصاحب|خرید|دعوی قضایی|شکایت|حل و فصل|رقابت|انحصار|"
-        r"merger|acquisition|acquired|lawsuit|settlement|antitrust)",
-        title_l,
-        re.I,
-    ):
-        score += 5
-
-    if _source := candidate.get("link"):
-        if publisher_quality(_source) >= 25:
-            score += 1
-
-    if re.search(r"(?:مصوبه|قانون|ابلاغ|ممنوعیت|محدودیت|اختلال|هشدار|حمله|"
-                 r"کشته|زخمی|بودجه|مالیات|قیمت|شیوع|کمبود)", body_l):
-        score += 1
-
-    score -= min(routine_hits * 2, 4)
-    score -= min(low_hits * 4, 8)
-
-    statement_like = bool(re.search(
-        r"(?:گفت|اظهار|تاکید|تأکید|واکنش|حمایت|امیدوار|توصیه|خواستار|اعلام کرد)\b",
-        title_l,
-    ))
-    concrete = bool(STRICT_CONCRETE_EVENT_RE.search(title_l))
-    if statement_like and not concrete:
-        score -= 5
-
-    return score
-
-
-def is_strictly_useful_news(candidate):
-    title = normalize_space(candidate.get("title", ""))
-    value = strict_news_value(candidate)
-
-    if not title or len(title) < 12:
-        return False
-
-    if any(term.lower() in title.lower() for term in STRICT_LOW_VALUE_TERMS):
-        print(f"V13 SKIP LOW VALUE: {title}")
-        return False
-
-    # A topic alone is not enough. Require a concrete event/change in the
-    # headline or a very strong body-confirmed consequence.
-    title_has_event = bool(STRICT_CONCRETE_EVENT_RE.search(title))
-    body = normalize_space(" ".join(
-        str(candidate.get(k, "") or "") for k in ("summary", "description")
-    ))
-    body_has_event = bool(STRICT_CONCRETE_EVENT_RE.search(body))
-
-    business_legal = bool(re.search(
-        r"(?:ادغام|ادغام شد|تملک|تصاحب|خرید|دعوی قضایی|شکایت|حل و فصل|رقابت|انحصار|"
-        r"merger|acquisition|acquired|lawsuit|settlement|antitrust)",
-        title,
-        re.I,
-    ))
-    if not title_has_event and not body_has_event and not business_legal:
-        print(f"V13 SKIP NO CONCRETE EVENT: {title}")
-        return False
-
-    if value < STRICT_NEWS_MIN_SCORE:
-        print(f"V13 SKIP NOT IMPORTANT: [{value}] {title}")
-        return False
-
-    return True
-
-# ---------- Candidate quality gate ----------
-_original_collect_candidates = collect_candidates
-
-def collect_candidates(hash_history, title_history):
-    candidates = _original_collect_candidates(hash_history, title_history)
-    clean = []
-    seen = set()
-
-    for c in candidates:
-        title = clean_title(c.get("title", ""))
-        link = canonicalize_url(c.get("link", ""))
-        if not title or len(title) < 12 or not link:
-            continue
-        if is_roundup_title(title):
-            print(f"V13 SKIP ROUNDUP: {title}")
-            continue
-        if not is_strictly_useful_news(c):
-            continue
-        key = (title.lower(), link)
-        if key in seen:
-            continue
-        seen.add(key)
-        c["title"] = title
-        c["link"] = link
-        clean.append(c)
-
-    # Preserve source/event diversity without imposing a political or
-    # editorial viewpoint: do not allow one category to consume the run.
-    clean.sort(
-        key=lambda c: (
-            float(c.get("importance", 0)),
-            float(c.get("recency_score", 0)),
-            float(c.get("source_quality", 0)),
-        ),
-        reverse=True,
-    )
-    clean = _filter_foreign_local_scope(clean)
-
-    # Hard publisher gate: do not let Google News re-introduce Iranian
-    # publishers that are not the single approved direct source (YJC).
-    filtered_publishers = []
-    for c in clean:
-        if _is_iranian_blocked_source(c):
-            print(f"V13 SKIP IRANIAN PUBLISHER: {clean_title(c.get('title', ''))}")
-            continue
-        filtered_publishers.append(c)
-
-    return filtered_publishers
-
-collect_candidates = collect_candidates
-
-# Never publish an untranslated foreign story when AI localization is unavailable.
-class SkipForeignStory(Exception):
-    pass
-
-_original_local_news_engine = local_news_engine
-
-def localized_local_news_engine(title, body):
-    if _persian_ratio(title) < 0.60:
-        raise SkipForeignStory()
-    return _original_local_news_engine(title, body)
-
-local_news_engine = localized_local_news_engine
-
-_original_process_news = process_news
-
-def process_news(*args, **kwargs):
-    try:
-        return _original_process_news(*args, **kwargs)
-    except SkipForeignStory:
-        print("V13 SKIP FOREIGN: AI localization unavailable; English story not published.")
-        return False
-
-process_news = process_news
-
-# ---------- Argos residual Latin cleanup ----------
-# Argos can occasionally leave an isolated English lexical item or place-name
-# inside an otherwise Persian translation. Keep this deterministic and local:
-# no paid/API dependency is introduced. The final language gate remains active.
-ARGOS_RESIDUAL_MAP = {
-    "famine": "قحطی",
-    "kherson": "خرسون",
-    "oleshky": "اولشکی",
-    "russia": "روسیه",
-    "ukraine": "اوکراین",
-    "humanitarian": "بشردوستانه",
-    "evacuation": "تخلیه",
-    "corridor": "راهرو",
-    "delays": "به تأخیر انداخته است",
-    "threatens": "تهدید می‌کند",
-}
-
-def _repair_argos_residual_words(text):
-    value = str(text or "")
-    for src, dst in ARGOS_RESIDUAL_MAP.items():
-        value = re.sub(r"(?i)(?<![A-Za-z])" + re.escape(src) + r"(?![A-Za-z])", dst, value)
-    return normalize_space(value)
 
 # ---------- Final publication language gate ----------
 # This is the last line of defense: regardless of which fallback path
