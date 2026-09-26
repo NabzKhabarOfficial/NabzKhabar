@@ -3001,9 +3001,14 @@ def send_message(
 
     except Exception as e:
 
+        # Telegram may have accepted the request before the client timed out.
+        # Never treat an ambiguous transport error as a safe reason to retry
+        # through another publication path.
         print(
-            f"sendMessage error: {e}"
+            f"sendMessage ambiguous transport error: {e}"
         )
+
+        return None
 
     return False
 
@@ -3050,9 +3055,14 @@ def send_photo(
 
     except Exception as e:
 
+        # A timeout can happen after Telegram has already accepted sendPhoto.
+        # Returning False here would incorrectly trigger a text fallback and
+        # can create the exact photo+text duplicate we are trying to prevent.
         print(
-            f"sendPhoto error: {e}"
+            f"sendPhoto ambiguous transport error: {e}"
         )
+
+        return None
 
     return False
 
@@ -3115,7 +3125,10 @@ def send_video(path, caption):
 
         print(f"sendVideo failed: {response.status_code} {response.text[:500]}")
     except Exception as e:
-        print(f"sendVideo error: {e}")
+        # The server may have accepted the video before the client timed out.
+        # Do not fall back to photo/text after an ambiguous transport result.
+        print(f"sendVideo ambiguous transport error: {e}")
+        return None
     return False
 
 
@@ -4654,6 +4667,18 @@ def process_news(
                 caption
             )
 
+            if success is None:
+                candidate["publication_status"] = "publication_ambiguous"
+                print(
+                    "V13 PUBLICATION AMBIGUOUS: sendVideo transport timed out; "
+                    "stopping fallback to prevent duplicate publication."
+                )
+                try:
+                    os.remove(downloaded)
+                except Exception:
+                    pass
+                return False
+
             try:
                 os.remove(
                     downloaded
@@ -4760,6 +4785,23 @@ def process_news(
                     caption
                 )
 
+                if success is None:
+                    candidate["publication_status"] = "publication_ambiguous"
+                    print(
+                        "V13 PUBLICATION AMBIGUOUS: sendPhoto transport timed out; "
+                        "stopping text fallback to prevent photo+text duplicate."
+                    )
+                    try:
+                        os.remove(downloaded)
+                    except Exception:
+                        pass
+                    if watermarked != downloaded:
+                        try:
+                            os.remove(watermarked)
+                        except Exception:
+                            pass
+                    return False
+
                 try:
                     os.remove(
                         downloaded
@@ -4832,6 +4874,14 @@ def process_news(
     success = send_message(
         caption
     )
+
+    if success is None:
+        candidate["publication_status"] = "publication_ambiguous"
+        print(
+            "V13 PUBLICATION AMBIGUOUS: sendMessage transport error; "
+            "no retry will be attempted."
+        )
+        return False
 
     if success:
 
