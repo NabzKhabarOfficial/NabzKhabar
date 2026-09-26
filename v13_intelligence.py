@@ -746,6 +746,8 @@ def _rejected_record(main, candidate, score, reason, stage="intelligence_filter"
         "stage": stage,
         "high_impact_security_candidate": _high_impact_security_override(candidate),
         "major_business_legal_candidate": _major_business_legal_override(candidate),
+        "global_consequential_candidate": _global_consequential_override(candidate),
+        "unga_breaking_candidate": _unga_breaking_override(candidate),
     }
 
 
