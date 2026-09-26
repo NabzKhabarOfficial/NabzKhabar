@@ -179,6 +179,18 @@ jobs:
               if policy._foreign_local_only({"title": title, "summary": "", "description": "", "link": "https://www.aljazeera.com/news/example"}):
                   raise SystemExit(f"V13 GLOBAL SCOPE TEST FAILED: {title}")
 
+          # Production regression: a major foreign-local casualty event must
+          # survive the final scope guard after intelligence has selected it.
+          athens = {
+              "title": "British national among six dead in building explosion close to Acropolis in Athens",
+              "summary": "Six people were killed in a building explosion near the Acropolis in Athens.",
+              "description": "",
+              "link": "https://www.example.com/news/athens-explosion",
+              "resolved_link": "https://www.example.com/news/athens-explosion",
+          }
+          if policy._foreign_local_only(athens):
+              raise SystemExit("V13 FINAL SCOPE TEST FAILED: major global casualty event was dropped")
+
           if policy.NORMAL_WINDOW_MINUTES != 30 or policy.CRITICAL_RESCUE_MAX_HOURS != 6 or v.FEED_COLLECTION_WINDOW_MINUTES != 30:
               raise SystemExit("V13 FRESHNESS TEST FAILED: freshness windows changed unexpectedly")
 
