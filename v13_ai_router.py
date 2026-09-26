@@ -121,7 +121,7 @@ def _available_models(main):
                 available.add(short)
         ordered = [m for m in MODEL_CANDIDATES if m in available]
         health = _load_health()
-        healthy = [m for m in ordered if not _model_disabled(health, m)]
+        healthy = [m for m in ordered if not _model_disabled(health, f"gemini:{m}")]
         if healthy:
             print("V13 AI ROUTER: discovered available models: " + ", ".join(healthy))
             return healthy
@@ -156,8 +156,8 @@ def _request_json(main, model, prompt, max_output_tokens=500):
             return None, False
         if response.status_code in (429, 500, 502, 503, 504):
             _mark_model_failure(health_key, response.status_code)
-            print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; retrying once, then failing over.")
-            return None, True
+            print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; failing over without retry.")
+            return None, False
         if not response.ok:
             print(f"V13 AI ROUTER: {model} HTTP {response.status_code}; failing over.")
             return None, False
@@ -174,8 +174,8 @@ def _request_json(main, model, prompt, max_output_tokens=500):
             print(f"V13 AI ROUTER: {model} invalid JSON: {exc}; failing over.")
             return None, False
     except Exception as exc:
-        print(f"V13 AI ROUTER: {model} error: {exc}; retrying once.")
-        return None, True
+        print(f"V13 AI ROUTER: {model} error: {exc}; failing over without retry.")
+        return None, False
 
 
 
