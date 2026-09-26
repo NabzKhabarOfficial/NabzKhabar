@@ -44,6 +44,37 @@ jobs:
       - name: Validate independent V13 syntax
         run: |
           python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_freshness_rescue.py v13_critical_rescue.py v13_policy_guard.py v13_monitor.py run_bot.py education.py car_prices.py weather.py
+      - name: V13 cleanup and runtime integrity check
+        run: |
+          set -e
+          # These files/modules were intentionally removed from V13 and must never
+          # return as hidden runtime dependencies.
+          for path in v13_argos_translate.py sitecustomize.py requirements-cpu.txt .github/workflows/argos-real-test.yml .github/workflows/argos-standalone-test.yml; do
+            if [ -e "$path" ]; then
+              echo "V13 CLEANUP CHECK FAILED: obsolete path exists: $path"
+              exit 1
+            fi
+          done
+          if git grep -n -E 'argostranslate|v13_argos_translate|requirements-cpu|sitecustomize\.py' -- ':!*.json' ':!sent_news.txt' ':!v13_rejected_news.json' ':!v13_health.json' ':!v13_monitor.json'; then
+            echo "V13 CLEANUP CHECK FAILED: stale removed-component reference found"
+            exit 1
+          fi
+          python - <<'PY'
+          import importlib
+          modules = [
+              "v13_standalone", "v13_media_branding", "v13_ai_router",
+              "v13_content_enhancer", "v13_ad_filter", "v13_intelligence",
+              "v13_freshness_rescue", "v13_critical_rescue", "v13_policy_guard",
+              "v13_editorial_formatter", "v13_monitor", "run_bot",
+              "education", "car_prices", "weather",
+          ]
+          for name in modules:
+              importlib.import_module(name)
+          import v13_standalone as v
+          assert hasattr(v, "SkipForeignStory"), "SkipForeignStory missing"
+          assert callable(v._persian_ratio), "_persian_ratio missing"
+          print("V13 CLEANUP/RUNTIME INTEGRITY: PASS")
+          PY
       - name: V13 final scope and freshness regression test
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
