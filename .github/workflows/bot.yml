@@ -55,7 +55,7 @@ jobs:
               exit 1
             fi
           done
-          if git grep -n -E 'argostranslate|v13_argos_translate|requirements-cpu|sitecustomize\.py' -- ':!*.json' ':!sent_news.txt' ':!v13_rejected_news.json' ':!v13_health.json' ':!v13_monitor.json'; then
+          if git grep -n -E 'argostranslate|v13_argos_translate|requirements-cpu|sitecustomize\.py' -- ':!*.json' ':!sent_news.txt' ':!v13_rejected_news.json' ':!v13_health.json' ':!v13_monitor.json' ':!.github/workflows/bot.yml'; then
             echo "V13 CLEANUP CHECK FAILED: stale removed-component reference found"
             exit 1
           fi
