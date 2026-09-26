@@ -574,6 +574,29 @@ def is_publishable(main, candidate):
         r"sanction|ceasefire|outage|approved|banned|suspended|merger|acquisition|lawsuit|final|champion|record)",
         title, re.I,
     ))
+    commentary_only = bool(re.search(
+        r"(?:تمجید|تمجید کرد|تحسین|تحسین کرد|حمایت از|حمایت کرد|"
+        r"تقدیر از|تقدیر کرد|دفاع از|دفاع کرد|ابراز خرسندی|ابراز نگرانی|"
+        r"مواضع .* را شجاعانه|مواضع .* را مهم|مواضع .* را مثبت|"
+        r"praise|praised|support for|supported|congratulated|commended|"
+        r"welcomed|expressed concern|expressed support|backed|endorsed)",
+        title, re.I,
+    ))
+    concrete_editorial_change = bool(re.search(
+        r"(?:تصمیم گرفت|دستور داد|اعلام کرد که .* اجرا|اقدام کرد|امضا کرد|"
+        r"توافق کرد|پیشنهاد داد|اولتیماتوم|هشدار داد|تهدید کرد|"
+        r"approved|signed|agreed|proposed|ordered|announced .* will|"
+        r"warned|threatened|ultimatum)",
+        title, re.I,
+    ))
+    if commentary_only and not concrete_editorial_change and not (
+        _high_impact_security_override(candidate)
+        or _global_consequential_override(candidate)
+        or _major_business_legal_override(candidate)
+        or _unga_breaking_override(candidate)
+    ):
+        return False, score, "commentary-only"
+
     if routine_statement and not concrete_change and not (
         _high_impact_security_override(candidate)
         or _global_consequential_override(candidate)
