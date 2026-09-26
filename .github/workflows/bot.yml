@@ -162,6 +162,14 @@ jobs:
           if v13_ai_router._translation_quality_bad(good_translation):
               raise SystemExit("V13 TRANSLATION TEST FAILED: valid Persian headline was rejected")
 
+          # Regression guard: the Persian-ratio helper must actually recognize
+          # Persian Unicode letters. A double-escaped regex here can silently
+          # turn every valid Persian caption into a language-gate failure.
+          if v._persian_ratio("زلزله شدید در ایران") < 0.90:
+              raise SystemExit("V13 LANGUAGE RATIO TEST FAILED: Persian text was not recognized")
+          if v._persian_ratio("Major earthquake in Iran") > 0.20:
+              raise SystemExit("V13 LANGUAGE RATIO TEST FAILED: English text was over-counted")
+
           now = datetime.now(timezone.utc)
           if (now - (now - timedelta(minutes=20))).total_seconds() / 60 > policy.NORMAL_WINDOW_MINUTES:
               raise SystemExit("V13 FRESHNESS TEST FAILED: fresh story exceeded the normal window")
