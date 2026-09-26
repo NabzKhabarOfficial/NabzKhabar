@@ -477,16 +477,6 @@ def gemini_request(main, title, article_text):
     if result:
         return result
 
-    if time.monotonic() >= deadline:
-        print("V13 AI ROUTER: story budget exhausted before Gemini.")
-        return None
-    result = _fallback_provider_request(
-        main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
-        prompt, title, source, foreign
-    )
-    if result:
-        return result
-
     for model in _available_models(main):
         if time.monotonic() >= deadline:
             print("V13 AI ROUTER: story budget exhausted; skipping remaining Gemini models.")
