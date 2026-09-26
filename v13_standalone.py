@@ -1485,6 +1485,30 @@ def numeric_anchors(text):
     )
 
 
+def _high_confidence_event_duplicate(title_a, title_b):
+    """Catch the same high-impact event when media/title wording differs."""
+    a = normalize_space(title_a).lower()
+    b = normalize_space(title_b).lower()
+    event_groups = (
+        (
+            ("شورای عالی امنیت ملی", "supreme national security council"),
+            ("محدودیت های هوایی", "محدودیت‌های هوایی", "محدودیت هوایی"),
+            ("اقدام نظامی", "مقابله به مثل نظامی", "مقابله‌به‌مثل نظامی"),
+        ),
+        (
+            ("تنگه هرمز", "هرمز"),
+            ("بازگشایی", "باز شود", "بازگشایی فوری", "reopen", "reopening"),
+            ("پیشنهاد ایران", "iran proposal", "پیشنهاد تهران"),
+        ),
+    )
+    for groups in event_groups:
+        hits_a = sum(any(x in a for x in group) for group in groups)
+        hits_b = sum(any(x in b for x in group) for group in groups)
+        if hits_a >= 2 and hits_b >= 2:
+            return True
+    return False
+
+
 def same_story(a, b):
 
     title_a = clean_title(
@@ -1503,6 +1527,11 @@ def same_story(a, b):
 
     if not title_a or not title_b:
         return False
+
+    # High-confidence event signatures survive title rewrites and media changes.
+    # This prevents one event from being posted once as photo and again as text.
+    if _high_confidence_event_duplicate(title_a, title_b):
+        return True
 
     # Exact normalized title.
     if (
