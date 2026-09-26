@@ -446,17 +446,24 @@ def _high_impact_security_override(candidate):
 def _publication_tier(candidate):
     """Classify editorial importance so protected rescue events win final selection."""
     title = _norm(candidate.get("title", "")).lower()
+    # Compute all override predicates before any freshness/tier decision.
+    body = _text(candidate).lower()
+    security = _high_impact_security_override(candidate)
+    major_business = _major_business_legal_override(candidate)
+    global_consequential = _global_consequential_override(candidate)
+    unga_breaking = _unga_breaking_override(candidate)
+
+    # A symbolic/ceremonial story is never promoted merely because it contains
+    # a conflict keyword or arrived late enough to trigger collection rescue.
+    if _ceremonial_non_news(candidate):
+        return 1
+
     if str(candidate.get("intelligence_reason", "")).lower() == "critical-geopolitical-rescue":
         return 4
     if candidate.get("freshness_rescued") and (
         security or global_consequential or unga_breaking or major_business
     ):
         return 4
-    body = _text(candidate).lower()
-    security = _high_impact_security_override(candidate)
-    major_business = _major_business_legal_override(candidate)
-    global_consequential = _global_consequential_override(candidate)
-    unga_breaking = _unga_breaking_override(candidate)
     critical = any(x.lower() in title for x in (
         "جنگ", "حمله", "حمله موشکی", "بمباران", "انفجار بزرگ", "زلزله",
         "سیل", "سونامی", "سقوط هواپیما", "کشته", "مفقود", "ترور",
