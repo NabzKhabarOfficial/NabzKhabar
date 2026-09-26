@@ -90,6 +90,7 @@ jobs:
           import v13_intelligence as intelligence
           import v13_policy_guard as policy
           import v13_critical_rescue as critical
+          import v13_freshness_rescue as freshness
           import v13_ai_router
           from datetime import datetime, timezone, timedelta
 
@@ -105,6 +106,25 @@ jobs:
           if ok:
               raise SystemExit("V13 TELEMETRY URL TEST FAILED: analytics endpoint was publishable")
           print("V13 TELEMETRY URL TEST: PASS", reason)
+          if not v._is_telemetry_or_tracking_url("https://google-analytics.com/analytics.js"):
+              raise SystemExit("V13 TELEMETRY URL HELPER TEST FAILED")
+          if v._is_telemetry_or_tracking_url("https://www.bbc.com/news/world/example"):
+              raise SystemExit("V13 TELEMETRY URL HELPER TEST FAILED: real article was blocked")
+
+          rescue_cases = [
+              ("Iran offers US deal to reopen Strait of Hormuz in seven days", True),
+              ("Iran says it awaits US response on seven-day roadmap to end war", True),
+              ("Major earthquake kills dozens and triggers mass evacuation", True),
+              ("Pope Leo XIV warns AI could undermine humanity during France visit", True),
+              ("Free the Strip! Melburnians fight back over a picnic spot", False),
+              ("Could an iced coffee freeze you out of the job market?", False),
+          ]
+          for title, expected in rescue_cases:
+              candidate = {"title": title, "summary": title, "description": ""}
+              actual = freshness._is_critical(candidate)
+              if actual != expected:
+                  raise SystemExit(f"V13 FRESHNESS RESCUE TEST FAILED: {title!r} -> {actual}, expected {expected}")
+          print("V13 FRESHNESS RESCUE REGRESSION: PASS")
 
           cases = [
               ("Watch: British pilots eject as RAF jet crashes in Wales", True),
@@ -150,6 +170,12 @@ jobs:
           iran_source_global = {"title": "Iran and US officials discuss regional ceasefire", "summary": "", "description": "", "link": "https://www.yjc.ir/fa/news/example", "resolved_link": "https://www.yjc.ir/fa/news/example"}
           if policy._foreign_local_only(iran_source_global):
               raise SystemExit("V13 FINAL SCOPE TEST FAILED: Iranian publisher global story was dropped")
+          for title in (
+              "UNGA81: Why has Africa’s Security Council reform push remained unresolved?",
+              "Pope Leo XIV warns AI could undermine humanity during France visit",
+          ):
+              if policy._foreign_local_only({"title": title, "summary": "", "description": "", "link": "https://www.aljazeera.com/news/example"}):
+                  raise SystemExit(f"V13 GLOBAL SCOPE TEST FAILED: {title}")
 
           if policy.NORMAL_WINDOW_MINUTES != 30 or policy.CRITICAL_RESCUE_MAX_HOURS != 6 or v.FEED_COLLECTION_WINDOW_MINUTES != 30:
               raise SystemExit("V13 FRESHNESS TEST FAILED: freshness windows changed unexpectedly")
