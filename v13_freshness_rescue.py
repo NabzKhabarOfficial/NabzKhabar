@@ -88,7 +88,18 @@ RESCUE_ROUTINE_EXCLUSIONS = (
 )
 
 def _contains_any(value, terms):
-    return any(term.lower() in value for term in terms)
+    value = str(value or "").lower()
+    for term in terms:
+        term = str(term or "").strip().lower()
+        if not term:
+            continue
+        # Avoid substring false positives such as "war" in "Warriors".
+        if re.search(r"(?<![a-z0-9])" + re.escape(term) + r"(?![a-z0-9])", value, re.I):
+            return True
+        # Persian terms do not have the same ASCII word-boundary behavior.
+        if any("\u0600" <= ch <= "\u06ff" for ch in term) and term in value:
+            return True
+    return False
 
 def _is_critical(candidate):
     """Return True only for high-impact events or consequential world actions."""
