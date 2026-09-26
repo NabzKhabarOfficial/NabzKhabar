@@ -949,11 +949,30 @@ def strip_unbacked_media_labels(text):
 
 
 def media_consistent_text(text, has_video=False):
-    """Media labels are allowed only when a real video is available."""
+    """Media claims are allowed only when a real video is actually published."""
     value = normalize_space(str(text or ""))
     if not value:
         return ""
-    return value if has_video else strip_unbacked_media_labels(value)
+
+    if has_video:
+        return value
+
+    value = strip_unbacked_media_labels(value)
+
+    # Remove standalone sentences that claim a video exists. This catches
+    # AI/source summaries such as "فیلم این حادثه منتشر شد" even when the
+    # headline itself contains no media marker.
+    sentences = re.split(r"(?<=[.!؟?؛])\s+|\n+", value)
+    kept = []
+    for sentence in sentences:
+        sentence = normalize_space(sentence)
+        if not sentence:
+            continue
+        if re.search(r"(?:فیلم|ویدئو|ویدیو)", sentence, flags=re.I):
+            continue
+        kept.append(sentence)
+
+    return normalize_space(" ".join(kept))
 
 
 # ============================================================
