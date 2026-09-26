@@ -93,6 +93,7 @@ jobs:
           import v13_critical_rescue as critical
           import v13_freshness_rescue as freshness
           import v13_ai_router
+          import v13_monitor as monitor
           from datetime import datetime, timezone, timedelta
 
           # Exercise the same rescue wrapper used by production before asserting it.
@@ -146,6 +147,28 @@ jobs:
           if intelligence._publication_tier(ceremonial) >= 3:
               raise SystemExit("V13 CEREMONIAL TIER TEST FAILED: freshness rescue inflated a routine story")
           print("V13 CEREMONIAL/RESCUE REGRESSION: PASS")
+
+          # Cross-media duplicate regression: the same high-impact aviation/security
+          # event must remain one story even when one publication has a photo and
+          # the other is text-only / rewritten by the AI title pass.
+          dup_a = "شورای عالی امنیت ملی ایران: علیه محدودیت های هوایی اقدام نظامی نخواهیم کرد"
+          dup_b = "شورای عالی امنیت ملی: علیه محدودیت‌های هوایی اقدام نظامی نخواهیم کرد"
+          if not v._high_confidence_event_duplicate(dup_a, dup_b):
+              raise SystemExit("V13 CROSS-MEDIA DUPLICATE TEST FAILED")
+          if not v.same_story({"title": dup_a}, {"title": dup_b}):
+              raise SystemExit("V13 SEMANTIC DUPLICATE TEST FAILED")
+          print("V13 CROSS-MEDIA DUPLICATE REGRESSION: PASS")
+
+          # Important-missed monitoring must flag consequential global stories
+          # that were rejected before the normal intelligence score was assigned.
+          monitor_cases = [
+              "گاردین: جزئیات توافق نفتی آمریکا و ونزوئلا، ادعا های بزرگ ترامپ را زیر سؤال می برد",
+              "آلمان پیشنهاد تشکیل نیروی واکنش سریع اروپایی برای مقابله با بحران های مهاجرتی را مطرح کرد",
+          ]
+          for title in monitor_cases:
+              if not monitor._is_important_missed({"title": title, "intelligence_score": 0, "reason": "foreign-local-preselection"}):
+                  raise SystemExit(f"V13 IMPORTANT MISSED MONITOR TEST FAILED: {title}")
+          print("V13 IMPORTANT MISSED MONITOR REGRESSION: PASS")
 
           cases = [
               ("Watch: British pilots eject as RAF jet crashes in Wales", True),
