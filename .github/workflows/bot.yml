@@ -181,10 +181,30 @@ jobs:
               print("V13 ARGOS REAL TEST: PASS")
           PY
           exit 0
+      - name: Check AI Pool configuration
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          python - <<'PY'
+          import os
+          providers = {
+              "Groq": bool(os.getenv("GROQ_API_KEY", "").strip()),
+              "Mistral": bool(os.getenv("MISTRAL_API_KEY", "").strip()),
+              "Gemini": bool(os.getenv("AI_API_KEY", "").strip()),
+              "OpenRouter": bool(os.getenv("OPENROUTER_API_KEY", "").strip()),
+          }
+          print("V13 AI POOL CONFIG:", ", ".join(f"{k}={'READY' if v else 'MISSING'}" for k, v in providers.items()))
+          print("V13 AI POOL ORDER: Groq -> Mistral -> Gemini -> OpenRouter")
+          PY
       - name: Run independent V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           ARGOS_PACKAGES_DIR: ${{ github.workspace }}/.argos-packages
         run: python run_bot.py
