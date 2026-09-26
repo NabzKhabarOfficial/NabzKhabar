@@ -190,6 +190,51 @@ jobs:
           if v13_ai_router._translation_quality_bad(good_translation):
               raise SystemExit("V13 TRANSLATION TEST FAILED: valid Persian headline was rejected")
 
+          # Editorial ranking regression: when multiple feeds describe the
+          # same event, the high-priority upstream story must not be replaced
+          # by a lower-priority variant merely because of event_score().
+          class _RankingStub:
+              @staticmethod
+              def same_story(a, b):
+                  return "same-event" in a.get("title", "") and "same-event" in b.get("title", "")
+              @staticmethod
+              def story_tokens(title):
+                  return set(str(title).lower().split())
+              @staticmethod
+              def base_domain(url):
+                  return "example.com"
+              @staticmethod
+              def get_hostname(url):
+                  return "example.com"
+              @staticmethod
+              def publisher_quality(url):
+                  return 10
+              @staticmethod
+              def category_family(category):
+                  return category or "unknown"
+
+          ranking_main = _RankingStub()
+          high_priority = {
+              "title": "same-event: major national decision",
+              "summary": "", "description": "", "link": "https://example.com/a",
+              "resolved_link": "https://example.com/a", "importance": 72,
+              "intelligence_score": 10, "category": "ایران",
+          }
+          lower_variant = {
+              "title": "same-event: local incident",
+              "summary": "", "description": "", "link": "https://example.com/b",
+              "resolved_link": "https://example.com/b", "importance": 58,
+              "intelligence_score": 15, "category": "ایران",
+          }
+          deduped = intelligence._dedup_events(
+              ranking_main, [lower_variant, high_priority]
+          )
+          if len(deduped) != 1 or deduped[0].get("importance") != 72:
+              raise SystemExit(
+                  "V13 EDITORIAL RANKING TEST FAILED: high-priority event variant was displaced"
+              )
+          print("V13 EDITORIAL RANKING REGRESSION: PASS")
+
           # Regression guard: the Persian-ratio helper must actually recognize
           # Persian Unicode letters. A double-escaped regex here can silently
           # turn every valid Persian caption into a language-gate failure.
