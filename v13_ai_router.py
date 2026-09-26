@@ -19,7 +19,20 @@ API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
 MODEL_COOLDOWN_SECONDS = 15 * 60
 
-# Optional OpenRouter free-only fallback. Never selects paid models.
+# Multi-provider free-tier AI pool.
+# Providers are optional: a missing secret never stops the news pipeline.
+# Order is intentional: Groq -> Mistral -> Gemini -> OpenRouter.
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
+GROQ_BASE = "https://api.groq.com/openai/v1"
+GROQ_MODELS = (
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+)
+
+MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "").strip()
+MISTRAL_BASE = "https://api.mistral.ai/v1"
+MISTRAL_MODELS = ("mistral-small-latest",)
+
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"
 ENABLE_OPENROUTER_FALLBACK = os.getenv("ENABLE_OPENROUTER_FALLBACK", "1").strip() == "1"
@@ -166,47 +179,64 @@ def _request_json(main, model, prompt, max_output_tokens=500):
 
 
 def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, max_output_tokens=500):
+    """One provider attempt. Provider failures are isolated and never abort V13."""
     endpoint = f"{base_url}/chat/completions"
+    health_key = f"{provider.lower()}:{model}"
     try:
         response = main.SESSION.post(
             endpoint,
-            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json", "User-Agent": "NabzKhabar-V13/1.0"},
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+                "User-Agent": "NabzKhabar-V13/1.0",
+            },
             json={
                 "model": model,
                 "messages": [
-                    {"role": "system", "content": "خروجی فقط JSON معتبر با دو کلید title و summary باشد."},
+                    {
+                        "role": "system",
+                        "content": "خروجی فقط یک JSON معتبر با دو کلید title و summary باشد؛ هیچ متن دیگری تولید نکن.",
+                    },
                     {"role": "user", "content": prompt},
                 ],
                 "temperature": 0.2,
-                "max_completion_tokens": max_output_tokens,
+                "max_tokens": max_output_tokens,
                 "response_format": {"type": "json_object"},
-                "include_reasoning": False,
             },
             timeout=30,
         )
         if response.status_code == 404:
             print(f"V13 AI ROUTER: {provider}/{model} HTTP 404; skipping.")
+            _mark_model_failure(health_key, 404)
             return None, False
         if response.status_code in (401, 403):
-            print(f"V13 AI ROUTER: {provider} authentication/permission HTTP {response.status_code}; disabled for this run.")
+            print(f"V13 AI ROUTER: {provider} authentication/permission HTTP {response.status_code}; skipping.")
+            _mark_model_failure(health_key, response.status_code)
             return None, False
         if response.status_code in (429, 500, 502, 503, 504):
-            print(f"V13 AI ROUTER: {provider}/{model} HTTP {response.status_code}; failing over.")
+            _mark_model_failure(health_key, response.status_code)
+            print(f"V13 AI ROUTER: {provider}/{model} HTTP {response.status_code}; failing over without retry.")
             return None, False
         if not response.ok:
             print(f"V13 AI ROUTER: {provider}/{model} HTTP {response.status_code}; failing over.")
+            _mark_model_failure(health_key, response.status_code)
             return None, False
         data = response.json() or {}
         raw = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+        if isinstance(raw, list):
+            raw = "".join(str(x.get("text", "")) if isinstance(x, dict) else str(x) for x in raw)
         try:
-            return _clean_json(raw), False
+            result = _clean_json(raw)
         except Exception as exc:
             print(f"V13 AI ROUTER: {provider}/{model} invalid JSON: {exc}; failing over.")
+            _mark_model_failure(health_key, 422)
             return None, False
+        _mark_model_success(health_key)
+        return result, False
     except Exception as exc:
         print(f"V13 AI ROUTER: {provider}/{model} error: {exc}; failing over.")
+        _mark_model_failure(health_key, 599)
         return None, False
-
 
 def _openrouter_free_models(main):
     """Discover OpenRouter's currently listed zero-cost chat models."""
@@ -250,23 +280,22 @@ def _openrouter_free_models(main):
 
 def _fallback_provider_request(main, provider, models, base_url, api_key, prompt, title, source, foreign):
     if not api_key:
+        print(f"V13 AI ROUTER: {provider} unavailable (missing API key).")
         return None
+    health = _load_health()
     for model in models:
-        for attempt in range(2):
-            result, retry_same_model = _openai_compatible_json(
-                main, provider, base_url, api_key, model, prompt
-            )
-            if result:
-                validated = _validate(main, title, source, result, foreign)
-                if validated:
-                    print(f"V13 AI ROUTER: SUCCESS via {provider}/{model}")
-                    return validated
-                print(f"V13 AI ROUTER: {provider}/{model} returned invalid/unsafe output; failing over.")
-                break
-            if retry_same_model and attempt == 0:
-                time.sleep(1.2)
-                continue
-            break
+        health_key = f"{provider.lower()}:{model}"
+        if _model_disabled(health, health_key):
+            print(f"V13 AI ROUTER: {provider}/{model} is in cooldown; skipping.")
+            continue
+        result, _ = _openai_compatible_json(main, provider, base_url, api_key, model, prompt)
+        if result:
+            validated = _validate(main, title, source, result, foreign)
+            if validated:
+                print(f"V13 AI ROUTER: SUCCESS via {provider}/{model}")
+                return validated
+            print(f"V13 AI ROUTER: {provider}/{model} returned invalid/unsafe output; failing over.")
+            _mark_model_failure(health_key, 422)
     return None
 
 def _numbers(main, text):
@@ -492,6 +521,22 @@ def gemini_request(main, title, article_text):
                 time.sleep(1.2)
                 continue
             break
+
+    # AI POOL: one attempt per provider/model, no blind retries.
+    # Groq is primary; Mistral is independent fallback; Gemini follows; OpenRouter is last.
+    result = _fallback_provider_request(
+        main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
+        prompt, title, source, foreign
+    )
+    if result:
+        return result
+
+    result = _fallback_provider_request(
+        main, "Mistral", MISTRAL_MODELS, MISTRAL_BASE, MISTRAL_API_KEY,
+        prompt, title, source, foreign
+    )
+    if result:
+        return result
 
     if ENABLE_OPENROUTER_FALLBACK and OPENROUTER_API_KEY:
         result = _fallback_provider_request(
