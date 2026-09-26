@@ -241,16 +241,22 @@ def login_client():
 
     client = Client()
     if SESSION_FILE.exists():
-        client.load_settings(str(SESSION_FILE))
         try:
-            client.login(username, "")
+            client.load_settings(str(SESSION_FILE))
+            # Do not call login(username, ""): instagrapi 3.x treats that as
+            # a normal credential login and rejects the empty password.
+            # The saved settings already contain the authenticated session,
+            # device profile and user id. Validate that session directly.
+            if not getattr(client, "user_id", None):
+                raise RuntimeError("saved session has no user_id")
+            client.user_info(client.user_id)
             client.dump_settings(str(SESSION_FILE))
-            print("IG: saved session validated and reused")
+            print("IG: saved session validated and reused without relogin")
             return client
         except Exception as exc:
             if not allow_relogin:
                 raise RuntimeError(
-                    f"IG session could not be reused; automatic relogin is disabled: {type(exc).__name__}: {exc}"
+                    f"IG session could not be validated; automatic relogin is disabled: {type(exc).__name__}: {exc}"
                 ) from exc
 
     if not password:
