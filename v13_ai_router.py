@@ -506,22 +506,6 @@ def gemini_request(main, title, article_text):
 فقط JSON معتبر:
 {"title":"تیتر فارسی","summary":"خلاصه فارسی"}""" % (title, source[:6000])
 
-    for model in _available_models(main):
-        for attempt in range(2):
-            result, retry_same_model = _request_json(main, model, prompt)
-            if result:
-                validated = _validate(main, title, source, result, foreign)
-                if validated:
-                    _mark_model_success(model)
-                    print(f"V13 AI ROUTER: SUCCESS via Gemini/{model}")
-                    return validated
-                print(f"V13 AI ROUTER: Gemini/{model} returned invalid/unsafe output; failing over.")
-                break
-            if retry_same_model and attempt == 0:
-                time.sleep(1.2)
-                continue
-            break
-
     # AI POOL: one attempt per provider/model, no blind retries.
     # Groq is primary; Mistral is independent fallback; Gemini follows; OpenRouter is last.
     result = _fallback_provider_request(
@@ -547,6 +531,23 @@ def gemini_request(main, title, article_text):
             return result
     else:
         print("V13 AI ROUTER: OpenRouter free fallback unavailable (missing key or disabled).")
+
+
+    for model in _available_models(main):
+        for attempt in range(2):
+            result, retry_same_model = _request_json(main, model, prompt)
+            if result:
+                validated = _validate(main, title, source, result, foreign)
+                if validated:
+                    _mark_model_success(model)
+                    print(f"V13 AI ROUTER: SUCCESS via Gemini/{model}")
+                    return validated
+                print(f"V13 AI ROUTER: Gemini/{model} returned invalid/unsafe output; failing over.")
+                break
+            if retry_same_model and attempt == 0:
+                time.sleep(1.2)
+                continue
+            break
 
     # Final fallback: local Argos Translate, after all AI providers fail.
     if foreign:
