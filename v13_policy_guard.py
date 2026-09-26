@@ -27,10 +27,12 @@ FOREIGN_LOCAL_TERMS = re.compile(
 )
 
 GLOBAL_OVERRIDE = re.compile(
-    r"\b(?:global|worldwide|international|cross[- ]border|multinational|united nations|un general assembly|unga|nato|g7|g20|"
-    r"icc|international court|iran|russia|ukraine|israel|gaza|china|taiwan|north korea|middle east|european union|eu|"
-    r"war|invasion|ceasefire|sanctions|tariffs|brics|سازمان ملل|مجمع عمومی|بین المللی|بین‌المللی|فرامرزی|چندملیتی|ایران|"
-    r"روسیه|اوکراین|اسرائیل|غزه|چین|تایوان|کره شمالی|خاورمیانه|اتحادیه اروپا|جنگ|تهاجم|آتش بس|آتش‌بس|تحریم|تعرفه)\b",
+    r"\b(?:global|worldwide|international|cross[- ]border|multinational|united nations|un general assembly|unga|"
+    r"security council|nato|g7|g20|icc|international court|iran|russia|ukraine|israel|gaza|china|taiwan|north korea|"
+    r"middle east|european union|eu|war|invasion|ceasefire|sanctions|tariffs|brics|artificial intelligence|"
+    r"\bai\b|global technology|global economy|سازمان ملل|مجمع عمومی|شورای امنیت|بین المللی|بین‌المللی|فرامرزی|"
+    r"چندملیتی|ایران|روسیه|اوکراین|اسرائیل|غزه|چین|تایوان|کره شمالی|خاورمیانه|اتحادیه اروپا|جنگ|تهاجم|"
+    r"آتش بس|آتش‌بس|تحریم|تعرفه|هوش مصنوعی)\b",
     re.I,
 )
 
