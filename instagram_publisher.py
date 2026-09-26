@@ -201,14 +201,17 @@ def free_ai_rewrite(title, summary):
 
 
 def make_caption(item):
-    title, body = item["title"], item["summary"]
-    if persian_ratio(title) < 0.60 or persian_ratio(body) < 0.45:
-        title, body = free_ai_rewrite(title, body)
-        if not title:
-            return ""
-    body = body[:650].rstrip(" .")
-    source = urlparse(item["link"]).netloc.replace("www.", "")
-    return f"📰 {title}\n\n{body}\n\n📡 منبع: {source}\n🔗 {CHANNEL_URL}\n\n#نبض_خبر #NABZ"
+    # Always try to turn raw feed text into short, natural Instagram copy.
+    title, body = free_ai_rewrite(item["title"], item["summary"])
+    if not title:
+        title = clean(item["title"])
+    if not body:
+        body = clean(item["summary"])
+    body = re.sub(r"\s+", " ", body).strip(" .")
+    body = body[:500].rstrip(" .")
+    if not title or not body:
+        return ""
+    return f"📰 {title}\n\n{body}\n\n🔗 {CHANNEL_URL}\n\n#نبض_خبر #NABZ"
 
 
 def download_image(url, key):
@@ -220,8 +223,30 @@ def download_image(url, key):
     raw.write_bytes(r.content)
     with Image.open(raw) as image:
         image = image.convert("RGB")
-        image.thumbnail((1440, 1440), Image.Resampling.LANCZOS)
-        image.save(out, "JPEG", quality=88, optimize=True, progressive=True)
+        # Instagram-friendly 4:5 portrait canvas; keep the full source image
+        # visible instead of allowing an aggressive crop/zoom.
+        target_w, target_h = 1080, 1350
+        src_w, src_h = image.size
+        scale = min(target_w / src_w, target_h / src_h)
+        new_w = max(1, int(src_w * scale))
+        new_h = max(1, int(src_h * scale))
+
+        # Soft enlarged background avoids ugly black bars while preserving
+        # the complete original image in the foreground.
+        bg_scale = max(target_w / src_w, target_h / src_h)
+        bg_w = max(target_w, int(src_w * bg_scale))
+        bg_h = max(target_h, int(src_h * bg_scale))
+        background = image.resize((bg_w, bg_h), Image.Resampling.LANCZOS)
+        left = max(0, (bg_w - target_w) // 2)
+        top = max(0, (bg_h - target_h) // 2)
+        background = background.crop((left, top, left + target_w, top + target_h))
+        background = background.filter(__import__("PIL.ImageFilter", fromlist=["GaussianBlur"]).GaussianBlur(radius=18))
+
+        foreground = image.resize((new_w, new_h), Image.Resampling.LANCZOS)
+        x = (target_w - new_w) // 2
+        y = (target_h - new_h) // 2
+        background.paste(foreground, (x, y))
+        background.save(out, "JPEG", quality=92, optimize=True, progressive=True)
     raw.unlink(missing_ok=True)
     return out
 
