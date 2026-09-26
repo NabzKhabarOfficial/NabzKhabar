@@ -112,7 +112,27 @@ def _is_critical(candidate):
     if _contains_any(title, RESCUE_ROUTINE_EXCLUSIONS):
         return False
 
-    if _contains_any(title, CRITICAL_TERMS) and _contains_any(text, EVENT_TERMS):
+    # Do not treat a topic word appearing twice (e.g. "جنگ" in a
+    # commemorative/ceremonial story) as a breaking event. Rescue requires a
+    # distinct concrete incident signal or a consequential action.
+    rescue_concrete_events = (
+        "کشته", "زخمی", "مفقود", "انفجار", "حمله", "حملات", "موشک", "بمباران",
+        "سقوط", "زلزله", "سیل", "سونامی", "طوفان", "رانش", "آتش سوزی", "آتش‌سوزی",
+        "ترور", "تخلیه", "قطعی", "اختلال", "تعلیق", "توقف", "ممنوع", "آتش بس", "آتش‌بس",
+        "تحریم", "شلیک", "گروگان", "missile", "attack", "attacks", "strike", "bombing",
+        "explosion", "earthquake", "flood", "storm", "typhoon", "hurricane", "tsunami",
+        "landslide", "killed", "wounded", "missing", "crash", "shooting", "hostage",
+        "evacuat", "outage", "suspended", "banned", "sanction", "sanctions", "coup",
+    )
+    rescue_symbolic_exclusions = (
+        "تندیس", "مجسمه", "یادمان", "یادبود", "باغ موزه", "گرامیداشت", "مراسم",
+        "statue", "memorial", "monument", "ceremony",
+    )
+    if _contains_any(title, rescue_symbolic_exclusions) and not _contains_any(
+        title, rescue_concrete_events
+    ):
+        return False
+    if _contains_any(title, CRITICAL_TERMS) and _contains_any(title, rescue_concrete_events):
         return True
 
     action_hit = _contains_any(title, CONSEQUENTIAL_ACTIONS)
