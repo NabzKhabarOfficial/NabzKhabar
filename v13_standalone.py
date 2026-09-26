@@ -164,6 +164,11 @@ def _persian_ratio(text):
     return sum("\\u0600" <= ch <= "\\u06ff" for ch in letters) / len(letters)
 
 
+class SkipForeignStory(Exception):
+    """Signal that a candidate must be skipped without failing the whole run."""
+    pass
+
+
 # ============================================================
 # URL CANONICALIZATION
 # ============================================================
@@ -5318,18 +5323,30 @@ def _assert_persian_caption(caption):
 
 
 def send_message(text):
-    text = _assert_persian_caption(text)
-    return _original_send_message(text)
+    try:
+        text = _assert_persian_caption(text)
+        return _original_send_message(text)
+    except SkipForeignStory:
+        print("V13 FINAL LANGUAGE GATE: skipped candidate instead of failing the runtime.")
+        return False
 
 
 def send_photo(path, caption):
-    caption = _assert_persian_caption(caption)
-    return _original_send_photo(path, caption)
+    try:
+        caption = _assert_persian_caption(caption)
+        return _original_send_photo(path, caption)
+    except SkipForeignStory:
+        print("V13 FINAL LANGUAGE GATE: skipped photo candidate instead of failing the runtime.")
+        return False
 
 
 def send_video(path, caption):
-    caption = _assert_persian_caption(caption)
-    return _original_send_video(path, caption)
+    try:
+        caption = _assert_persian_caption(caption)
+        return _original_send_video(path, caption)
+    except SkipForeignStory:
+        print("V13 FINAL LANGUAGE GATE: skipped video candidate instead of failing the runtime.")
+        return False
 
 
 send_message = send_message
