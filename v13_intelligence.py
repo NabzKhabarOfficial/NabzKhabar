@@ -800,6 +800,7 @@ def install(main):
         "selected_for_publication": 0,
         "published": 0,
         "failed_publications": 0,
+        "ambiguous_publications": 0,
         "top_sources": {},
         "last_errors": [],
         "rejected_news_this_run": [],
@@ -972,6 +973,10 @@ def install(main):
             elif candidate.get("publication_status") == "skipped_duplicate":
                 attempt["result"] = "skipped_duplicate"
                 attempt["reason"] = "recent-semantic-history"
+            elif candidate.get("publication_status") == "publication_ambiguous":
+                state["ambiguous_publications"] += 1
+                attempt["result"] = "ambiguous"
+                attempt["reason"] = "telegram-transport-uncertain-no-retry"
             else:
                 state["failed_publications"] += 1
                 attempt["result"] = "failed"
