@@ -606,9 +606,14 @@ def _dedup_events(main, candidates):
         best = max(
             group,
             key=lambda c: (
-                event_score(main, c),
+                # Preserve the upstream editorial priority when multiple
+                # feeds describe the same event.  The previous implementation
+                # preferred only event_score(), which could replace a genuinely
+                # high-priority story with a lower-value local variant.
+                int(c.get("importance", 0) or 0),
+                int(c.get("intelligence_score", 0) or event_score(main, c)),
+                _publication_tier(c),
                 source_reliability(main, c),
-                c.get("importance", 0),
                 c.get("published_at") or datetime.min.replace(tzinfo=timezone.utc),
             ),
         )
@@ -771,10 +776,16 @@ def install(main):
             0, publishable_before_dedup - len(filtered)
         )
 
+        # Editorial ranking is deliberately tier-first: a critical or
+        # consequential event must be considered before an ordinary incident.
+        # Within the same tier, retain the upstream priority and intelligence
+        # score so important breaking stories are not displaced by routine
+        # local accidents simply because they contain a strong event keyword.
         filtered.sort(
             key=lambda c: (
-                int(c.get("intelligence_score", 0)),
-                int(c.get("importance", 0)),
+                int(c.get("publication_tier", 1) or 1),
+                int(c.get("intelligence_score", 0) or 0),
+                int(c.get("importance", 0) or 0),
                 source_reliability(main, c),
                 c.get("published_at") or datetime.min.replace(tzinfo=timezone.utc),
             ),
