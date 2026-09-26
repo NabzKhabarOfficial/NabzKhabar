@@ -222,14 +222,17 @@ def _global_consequential_override(candidate):
         "deploy", "launched", "launches", "released", "release", "closed",
         "opens", "opened", "calls on", "call for", "urges", "urge", "pledges",
         "pledged", "criticizes", "criticised", "warns", "warned", "demands",
-        "demanded", "announces", "announced", "says", "said", "review", "reviews", "reviewed", "reconsider", "reconsiders", "reconsidered", "delays", "delayed", "resumes", "resumed",
+        "demanded", "announces", "announced", "offers", "offered", "proposes",
+        "proposed", "agrees", "agreed", "review", "reviews", "reviewed",
+        "reconsider", "reconsiders", "reconsidered", "delays", "delayed",
+        "resumes", "resumed",
         "تایید", "تأیید", "تصویب", "ممنوع", "تحریم", "بازداشت", "محکوم",
         "امضا", "امضا کرد", "اعلام کرد", "اعلام", "دستور داد", "محدود کرد",
         "محدودیت", "تعلیق", "تعلیق کرد", "توقف", "متوقف کرد", "لغو", "لغو کرد",
         "افزایش", "افزایش داد", "کاهش", "کاهش داد", "ادغام", "تملک",
         "عرضه کرد", "رونمایی کرد", "قطع شد", "مختل شد", "بازداشت شد",
         "خواستار", "هشدار داد", "هشدار", "محکوم کرد", "درخواست کرد",
-        "درخواست", "انتقاد کرد", "انتقاد", "گفت", "بررسی", "بازبینی", "بازنگری", "تجدیدنظر", "به تعویق انداخت", "تعویق", "ازسرگیری", "از سر گرفت",
+        "درخواست", "پیشنهاد داد", "پیشنهاد", "توافق کرد", "توافق", "گفت", "بررسی", "بازبینی", "بازنگری", "تجدیدنظر", "به تعویق انداخت", "تعویق", "ازسرگیری", "از سر گرفت",
     )
     actors = (
         "us", "u.s.", "united states", "white house", "trump", "china", "russia",
@@ -246,6 +249,19 @@ def _global_consequential_override(candidate):
     )
     action_hit = any(x in title for x in actions)
     actor_hit = any(x in title for x in actors)
+
+    # A quote/remark alone is not a consequential event. It must contain a
+    # concrete warning, proposal, agreement, announcement or policy/action.
+    statement_only = any(x in title for x in (
+        " says ", " said ", "remarks", "commented", "گفت", "اظهارات",
+        "بیانیه", "سخنان", "دیدگاه",
+    )) and not any(x in title for x in (
+        "warns", "warned", "threat", "threatens", "ultimatum",
+        "offers", "offered", "proposes", "proposed", "agrees", "agreed",
+        "announces", "announced", "signed", "signs",
+        "هشدار", "تهدید", "اولتیماتوم", "پیشنهاد", "توافق", "امضا", "اعلام",
+    ))
+
     topic_hit = any(x in title for x in (
         "sanction", "tariff", "interest rate", "inflation", "lawsuit", "antitrust",
         "merger", "acquisition", "ceasefire", "military", "nuclear", "outage",
@@ -272,6 +288,8 @@ def _global_consequential_override(candidate):
         "مقررات", "قانون", "ممنوع", "تصویب", "عرضه", "رونمایی", "توافق",
         "تملک", "ادغام", "ایمنی", "امنیت", "حکمرانی", "قطعی", "اختلال",
     ))
+    if statement_only:
+        return False
     if topic_hit and not concrete_topic and not ai_concrete_action and not actor_hit:
         return False
     return action_hit and (actor_hit or concrete_topic or ai_concrete_action)
@@ -829,14 +847,41 @@ def install(main):
         # fallback instead of turning the whole run into Published: 0.
         selected = []
         families = Counter()
-        for candidate in eligible:
+
+        # Protected/consequential candidates receive the first two slots.
+        # Ordinary incidents can fill remaining slots only after that queue.
+        protected = [
+            c for c in eligible
+            if int(c.get("publication_tier", 1) or 1) >= 3
+        ]
+        normal = [c for c in eligible if c not in protected]
+
+        for candidate in protected:
+            family = main.category_family(candidate.get("category", ""))
+            selected.append(candidate)
+            families[family] += 1
+            if len(selected) >= min(2, MAX_NEWS_PER_RUN):
+                break
+
+        for candidate in protected:
+            if len(selected) >= MAX_NEWS_PER_RUN:
+                break
+            if candidate in selected:
+                continue
             family = main.category_family(candidate.get("category", ""))
             if families[family] >= 2 and candidate.get("intelligence_score", 0) < 12:
                 continue
             selected.append(candidate)
             families[family] += 1
+
+        for candidate in normal:
             if len(selected) >= MAX_NEWS_PER_RUN:
                 break
+            family = main.category_family(candidate.get("category", ""))
+            if families[family] >= 2 and candidate.get("intelligence_score", 0) < 12:
+                continue
+            selected.append(candidate)
+            families[family] += 1
 
         state["selected_for_publication"] = len(selected)
         state["top_sources"] = dict(Counter(
