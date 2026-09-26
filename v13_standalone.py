@@ -158,10 +158,10 @@ def base_domain(host):
 
 def _persian_ratio(text):
     """Return the share of alphabetic characters that are Persian/Arabic."""
-    letters = re.findall(r"[A-Za-z\\u0600-\\u06ff]", str(text or ""))
+    letters = re.findall(r"[A-Za-z\u0600-\u06ff]", str(text or ""))
     if not letters:
         return 1.0
-    return sum("\\u0600" <= ch <= "\\u06ff" for ch in letters) / len(letters)
+    return sum("\u0600" <= ch <= "\u06ff" for ch in letters) / len(letters)
 
 
 class SkipForeignStory(Exception):
