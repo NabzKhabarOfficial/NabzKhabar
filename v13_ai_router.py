@@ -12,13 +12,13 @@ import time
 # Low-cost/free-tier Gemini candidates, ordered from lighter to stronger.
 # The router discovers which models are actually available for this API key.
 MODEL_CANDIDATES = (
-    "gemini-3.1-flash-lite",
     "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",
     "gemini-2.5-flash-lite",
 )
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
-MODEL_COOLDOWN_SECONDS = 15 * 60
+MODEL_COOLDOWN_SECONDS = 5 * 60
 
 # Multi-provider free-tier AI pool.
 # Providers are optional: a missing secret never stops the news pipeline.
