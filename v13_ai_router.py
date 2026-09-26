@@ -199,10 +199,14 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
                 ],
                 "temperature": 0.2,
                 "max_tokens": max_output_tokens,
-                "response_format": {"type": "json_object"},
             },
             timeout=30,
         )
+        if response.status_code == 400:
+            detail = str(getattr(response, "text", "") or "").replace("\n", " ")[:500]
+            print(f"V13 AI ROUTER: {provider}/{model} HTTP 400; provider rejected request: {detail}")
+            _mark_model_failure(health_key, 400)
+            return None, False
         if response.status_code == 404:
             print(f"V13 AI ROUTER: {provider}/{model} HTTP 404; skipping.")
             _mark_model_failure(health_key, 404)
@@ -412,6 +416,8 @@ def _validate(main, original_title, source, data, foreign):
         return None
     if _translation_quality_bad(title) or _translation_quality_bad(summary):
         print("V13 AI ROUTER: translation quality gate rejected malformed Persian output.")
+        print(f"V13 AI ROUTER: rejected title={title[:180]!r}")
+        print(f"V13 AI ROUTER: rejected summary={summary[:500]!r}")
         return None
     if _sentence_count(summary) > 3 or len(summary) > 750:
         return None
