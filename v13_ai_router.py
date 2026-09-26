@@ -18,6 +18,9 @@ MODEL_CANDIDATES = (
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
 MODEL_COOLDOWN_SECONDS = 5 * 60
+# Hard upper bound per selected story so slow/free providers cannot hold the scheduled workflow hostage.
+AI_STORY_BUDGET_SECONDS = 75
+AI_HTTP_TIMEOUT_SECONDS = 12
 
 # Multi-provider free-tier AI pool.
 # Providers are optional: a missing secret never stops the news pipeline.
@@ -132,7 +135,7 @@ def _available_models(main):
         response = main.SESSION.get(
             API_BASE,
             params={"key": main.AI_API_KEY, "pageSize": 100},
-            timeout=20,
+            timeout=8,
         )
         if not response.ok:
             print(f"V13 AI ROUTER: model discovery HTTP {response.status_code}; using known candidates.")
@@ -175,7 +178,7 @@ def _request_json(main, model, prompt, max_output_tokens=500):
                     "maxOutputTokens": max_output_tokens,
                 },
             },
-            timeout=30,
+            timeout=AI_HTTP_TIMEOUT_SECONDS,
         )
         if response.status_code == 404:
             print(f"V13 AI ROUTER: {model} HTTP 404; model unavailable, skipping it.")
@@ -278,7 +281,7 @@ def _openrouter_free_models(main):
     try:
         response = main.SESSION.get(
             f"{OPENROUTER_BASE}/models",
-            timeout=15,
+            timeout=8,
             headers={"User-Agent": "NabzKhabar-V13/1.0"},
         )
         if not response.ok:
@@ -300,7 +303,7 @@ def _openrouter_free_models(main):
                 priority -= 2
             models.append((priority, model_id))
         models.sort(key=lambda x: (x[0], x[1]))
-        selected = [model_id for _, model_id in models[:8]]
+        selected = [model_id for _, model_id in models[:3]]
         _openrouter_models_cache = {"at": now, "models": selected}
         print("V13 AI ROUTER: OpenRouter free models: " + (", ".join(selected) if selected else "none"))
         return selected
@@ -309,12 +312,15 @@ def _openrouter_free_models(main):
         return []
 
 
-def _fallback_provider_request(main, provider, models, base_url, api_key, prompt, title, source, foreign):
+def _fallback_provider_request(main, provider, models, base_url, api_key, prompt, title, source, foreign, deadline=None):
     if not api_key:
         print(f"V13 AI ROUTER: {provider} unavailable (missing API key).")
         return None
     health = _load_health()
-    for model in models:
+    for model in list(models)[:3]:
+        if deadline is not None and time.monotonic() >= deadline:
+            print(f"V13 AI ROUTER: {provider} stopped by per-story budget.")
+            return None
         health_key = f"{provider.lower()}:{model}"
         if _model_disabled(health, health_key):
             print(f"V13 AI ROUTER: {provider}/{model} is in cooldown; skipping.")
@@ -328,7 +334,6 @@ def _fallback_provider_request(main, provider, models, base_url, api_key, prompt
             print(f"V13 AI ROUTER: {provider}/{model} returned invalid/unsafe output; failing over.")
             _mark_model_failure(health_key, 422)
     return None
-
 def _numbers(main, text):
     normalized = main.normalize_digits(str(text or ""))
     return set(re.findall(r"\b\d+(?:[.,]\d+)?\b", normalized))
@@ -463,6 +468,18 @@ def gemini_request(main, title, article_text):
 {"title":"تیتر فارسی","summary":"خلاصه فارسی"}""" % (title, source[:6000])
 
     # Free AI pool only. No local machine-translation fallback.
+    # Strict wall-clock budget prevents a slow provider from consuming the whole cycle.
+    deadline = time.monotonic() + AI_STORY_BUDGET_SECONDS
+    result = _fallback_provider_request(
+        main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
+        prompt, title, source, foreign, deadline
+    )
+    if result:
+        return result
+
+    if time.monotonic() >= deadline:
+        print("V13 AI ROUTER: story budget exhausted before Gemini.")
+        return None
     result = _fallback_provider_request(
         main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
         prompt, title, source, foreign
@@ -471,6 +488,9 @@ def gemini_request(main, title, article_text):
         return result
 
     for model in _available_models(main):
+        if time.monotonic() >= deadline:
+            print("V13 AI ROUTER: story budget exhausted; skipping remaining Gemini models.")
+            break
         health_key = f"gemini:{model}"
         if _model_disabled(_load_health(), health_key):
             print(f"V13 AI ROUTER: Gemini/{model} is in cooldown; skipping.")
@@ -488,7 +508,7 @@ def gemini_request(main, title, article_text):
     if ENABLE_OPENROUTER_FALLBACK and OPENROUTER_API_KEY:
         result = _fallback_provider_request(
             main, "OpenRouter", _openrouter_free_models(main), OPENROUTER_BASE,
-            OPENROUTER_API_KEY, prompt, title, source, foreign
+            OPENROUTER_API_KEY, prompt, title, source, foreign, deadline
         )
         if result:
             return result
