@@ -92,6 +92,11 @@ def _foreign_local_only(candidate):
     text = _text(candidate)
     if not text:
         return False
+    # Final-stage escape hatch for major global public-safety events.
+    # This is intentionally narrower than the general global override: it
+    # requires a concrete incident/casualty signal.
+    if _final_global_security_override(candidate):
+        return False
     if ROUNDUP.search(text):
         return True
     # Explicit domestic-institution rule. This remains active even if a later
