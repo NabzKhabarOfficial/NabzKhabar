@@ -630,6 +630,56 @@ def publisher_quality(url):
     return 5
 
 
+
+# ============================================================
+# IRANIAN PUBLISHER SCOPE
+# ============================================================
+# Keep only the explicitly allowed Iranian publishers. Google News may
+# surface many other .ir outlets, so this check must run AFTER Google
+# redirect resolution and must use all candidate URL fields.
+IRANIAN_ALLOWED_HOSTS = {"yjc.ir", "irna.ir"}
+
+IRANIAN_BLOCKED_DOMAINS = {
+    "isna.ir", "mehrnews.com", "tasnimnews.com", "farsnews.ir",
+    "snn.ir", "tabnak.ir", "khabaronline.ir", "tejaratnews.com",
+    "donya-e-eqtesad.com", "ecoiran.com", "zoomit.ir", "varzesh3.com",
+    "khabarfoori.com", "asriran.com", "aftabnews.ir", "jamaran.news",
+    "entekhab.ir", "fararu.com", "khabarban.com", "rokna.net",
+}
+
+
+def _candidate_hosts(candidate):
+    hosts = set()
+    for key in ("resolved_link", "source_url", "link"):
+        value = str(candidate.get(key, "") or "").strip()
+        host = base_domain(get_hostname(value))
+        if host:
+            hosts.add(host)
+    return hosts
+
+
+def _is_iranian_blocked_source(candidate):
+    """Return True only for disallowed Iranian publishers."""
+    for host in _candidate_hosts(candidate):
+        if host in IRANIAN_ALLOWED_HOSTS:
+            continue
+        if host.endswith(".ir"):
+            return True
+        if any(
+            host == domain or host.endswith("." + domain)
+            for domain in IRANIAN_BLOCKED_DOMAINS
+        ):
+            return True
+    return False
+
+
+def _is_iran_source(candidate):
+    return any(
+        host in IRANIAN_ALLOWED_HOSTS
+        for host in _candidate_hosts(candidate)
+    )
+
+
 # ============================================================
 # HTTP
 # ============================================================
