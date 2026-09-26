@@ -4379,22 +4379,24 @@ def process_news(
 
     else:
 
-        print(
-            "Using local news engine."
-        )
+        # AI is optional for already-Persian publisher content. If the free
+        # AI pool is temporarily exhausted/cooling down, never lose a valid
+        # Iranian/Persian news event just because rewriting failed. Use only
+        # the publisher's existing Persian text; for foreign content, AI is
+        # mandatory because we must not publish untranslated English.
+        if _persian_ratio(original_title) >= 0.60:
+            print("V13 AI FALLBACK: AI pool unavailable; using source Persian title safely.")
+            final_title = clean_title(original_title)
 
-        local = local_news_engine(
-            original_title,
-            source_text
-        )
-
-        final_title = local[
-            "title"
-        ]
-
-        final_summary = local[
-            "summary"
-        ]
+            source_clean = clean_content(source_text)
+            if _persian_ratio(source_clean) >= 0.55:
+                final_summary = enforce_short_summary(source_clean)
+            else:
+                final_summary = ""
+        else:
+            print("V13 AI FALLBACK: foreign story blocked because no translation model is available.")
+            candidate["publication_status"] = "ai_unavailable_foreign"
+            return False
 
     # --------------------------------------------------------
     # Final cleaning.
