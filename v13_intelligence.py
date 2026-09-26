@@ -259,6 +259,7 @@ def _global_consequential_override(candidate):
         "india", "australia", "saudi", "albanese", "un", "imf", "fed", "ecb", "congress",
         "supreme court", "government", "president", "prime minister", "parliament",
         "faa", "federal aviation administration", "airports", "flights", "air traffic",
+        "venezuela", "caracas", "venezuelan", "ونزوئلا", "کاراکاس",
         "telecom", "telecommunications", "fiber", "infrastructure", "verizon",
         "un general assembly", "united nations", "world leaders", "leaders",
         "ایران", "آمریکا", "چین", "روسیه", "اوکراین", "اسرائیل", "اتحادیه اروپا",
@@ -287,7 +288,7 @@ def _global_consequential_override(candidate):
         "ai safeguards", "human control", "human oversight", "هوش مصنوعی", "تحریم", "نرخ بهره",
         "پرواز", "فرودگاه", "هوانوردی", "اختلال مخابراتی", "قطعی مخابرات",
         "تورم", "دادگاه", "انحصار", "ادغام", "تملک", "آتش‌بس", "هسته‌ای",
-        "اختلال گسترده", "قطع گسترده",
+        "اختلال گسترده", "قطع گسترده", "نفت", "انرژی", "بحران مهاجرتی", "مهاجرت",
     ))
     concrete_topic = any(x in title for x in (
         "sanction", "sanctions", "tariff", "tariffs", "interest rate", "inflation",
