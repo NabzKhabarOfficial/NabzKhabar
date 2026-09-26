@@ -919,9 +919,41 @@ def clean_title(title):
         flags=re.I
     )
 
+    title = strip_unbacked_media_labels(title)
+
     return normalize_space(
         title
     )[:180]
+
+
+# ============================================================
+# MEDIA CLAIM CONSISTENCY
+# ============================================================
+
+def strip_unbacked_media_labels(text):
+    """Remove false video labels when no video is actually published."""
+    value = normalize_space(str(text or ""))
+    if not value:
+        return ""
+    patterns = (
+        r"^\s*(?:🎬\s*)?(?:فیلم|ویدئو|ویدیو)\s*[/|:：-]\s*",
+        r"^\s*[/|:：-]+\s*(?:فیلم|ویدئو|ویدیو)\s*[/|:：-]\s*",
+        r"\s*[+＋]\s*(?:فیلم|ویدئو|ویدیو)\s*$",
+        r"\s*[-|]\s*(?:فیلم|ویدئو|ویدیو)\s*$",
+        r"\[\s*(?:فیلم|ویدئو|ویدیو)\s*\]\s*",
+    )
+    for pattern in patterns:
+        value = re.sub(pattern, " ", value, flags=re.I)
+    value = re.sub(r"^\s*[/|:：-]+\s*", "", value)
+    return normalize_space(value)
+
+
+def media_consistent_text(text, has_video=False):
+    """Media labels are allowed only when a real video is available."""
+    value = normalize_space(str(text or ""))
+    if not value:
+        return ""
+    return value if has_video else strip_unbacked_media_labels(value)
 
 
 # ============================================================
@@ -4524,8 +4556,18 @@ def process_news(
         final_title
     )
 
+    final_title = media_consistent_text(
+        final_title,
+        has_video=bool(video_url)
+    )
+
     final_summary = enforce_short_summary(
         final_summary
+    )
+
+    final_summary = media_consistent_text(
+        final_summary,
+        has_video=bool(video_url)
     )
 
     if not final_title:
@@ -4633,9 +4675,13 @@ def process_news(
         # If a selected story is important but its video is too large,
         # unavailable, or rejected by Telegram, continue through the normal
         # photo -> text fallback so the news event itself is never silently lost.
+        final_title = media_consistent_text(final_title, has_video=False)
+        final_summary = media_consistent_text(final_summary, has_video=False)
+        caption = build_caption(final_title, final_summary)
+
         print(
             "VIDEO FALLBACK: video unavailable/failed; "
-            "continuing with photo/text fallback."
+            "media claim removed; continuing with photo/text fallback."
         )
 
     # ========================================================
