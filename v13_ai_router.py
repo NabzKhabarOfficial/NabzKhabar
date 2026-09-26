@@ -348,6 +348,10 @@ TRANSLATION_QUALITY_BAD_PATTERNS = (
     # not valid Persian spellings and must never reach publication.
     re.compile(r"پیزیسلکیان|پیزیشکیان|پیزشکیلیان", re.I),
     re.compile(r"منبع\s*تصویر|عنوان\s*[,،:]|بست\s+به\s+روز\s+رسانی|منتشر\s+شده\s+\d{1,2}\s+سپتامبر", re.I),
+    # Reject webpage/navigation chrome leaked by scraped international pages.
+    re.compile(r"گوش\s+دادن\s*\(\s*\d+\s*دقیقه", re.I),
+    re.compile(r"صرفه\s*جویی|رسانه\s*های\s*اجتماعی", re.I),
+    re.compile(r"(?:به|در)\s+الجزیره\b.*?(?:کارکنان|افپ|ا\s*پ)", re.I),
     re.compile(r"\b(\S+)\s+\1\b", re.I),
     re.compile(r"(?:بی\s*بی\s*سی){2,}|(?:لندن){2,}", re.I),
     re.compile(r"\b(\S+)\s+\1\s+\1\b", re.I),
