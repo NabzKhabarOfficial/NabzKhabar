@@ -94,6 +94,7 @@ def build_report():
         "selected_for_publication": len(selected),
         "published": health.get("published", 0),
         "failed_publications": health.get("failed_publications", 0),
+        "ambiguous_publications": health.get("ambiguous_publications", 0),
         "missed_selected_stories": missed,
         "important_missed_news": important_missed,
         "failed_publication_attempts": failed_attempts,
@@ -102,12 +103,16 @@ def build_report():
         "diagnostics": [],
     }
 
-    if missed or report["failed_publications"]:
+    if missed or report["failed_publications"] or report["ambiguous_publications"]:
         report["status"] = "publication_failure"
         if missed:
             report["diagnostics"].append("Selected stories did not reach confirmed publication.")
         if report["failed_publications"]:
             report["diagnostics"].append("One or more publication attempts returned failure/exception.")
+        if report["ambiguous_publications"]:
+            report["diagnostics"].append(
+                "One or more Telegram sends had ambiguous transport results; fallback was intentionally blocked to prevent duplicates."
+            )
 
     if important_missed:
         report["diagnostics"].append(
@@ -131,11 +136,12 @@ def build_report():
 
     print("V13 MONITOR STATUS:", report["status"], flush=True)
     print(
-        "V13 MONITOR: selected=%s published=%s failed=%s missed=%s duplicates=%s important_missed=%s"
+        "V13 MONITOR: selected=%s published=%s failed=%s ambiguous=%s missed=%s duplicates=%s important_missed=%s"
         % (
             report["selected_for_publication"],
             report["published"],
             report["failed_publications"],
+            report["ambiguous_publications"],
             len(missed),
             len(skipped_duplicates),
             len(important_missed),
