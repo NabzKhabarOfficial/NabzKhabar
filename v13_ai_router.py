@@ -29,10 +29,6 @@ GROQ_MODELS = (
     "openai/gpt-oss-20b",
 )
 
-MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "").strip()
-MISTRAL_BASE = "https://api.mistral.ai/v1"
-MISTRAL_MODELS = ("mistral-small-latest",)
-
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"
 ENABLE_OPENROUTER_FALLBACK = os.getenv("ENABLE_OPENROUTER_FALLBACK", "1").strip() == "1"
@@ -511,13 +507,6 @@ def gemini_request(main, title, article_text):
     # Groq is primary; Mistral is independent fallback; Gemini follows; OpenRouter is last.
     result = _fallback_provider_request(
         main, "Groq", GROQ_MODELS, GROQ_BASE, GROQ_API_KEY,
-        prompt, title, source, foreign
-    )
-    if result:
-        return result
-
-    result = _fallback_provider_request(
-        main, "Mistral", MISTRAL_MODELS, MISTRAL_BASE, MISTRAL_API_KEY,
         prompt, title, source, foreign
     )
     if result:
