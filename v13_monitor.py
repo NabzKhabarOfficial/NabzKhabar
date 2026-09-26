@@ -6,6 +6,7 @@ messages and never changes editorial decisions.
 """
 
 import json
+import re
 from datetime import datetime, timezone
 
 HEALTH_FILE = "v13_health.json"
@@ -25,6 +26,32 @@ def _load(path, default):
         return default
 
 
+GLOBAL_MONITOR_SIGNALS = (
+    "توافق", "توافقنامه", "موافقت", "قرارداد", "پیشنهاد", "پیشنهاد داد",
+    "ممنوعیت", "محدودیت", "تحریم", "تعلیق", "لغو", "ازسرگیری", "از سرگیری",
+    "توقف", "اختلال گسترده", "بحران", "نفت", "انرژی", "فرودگاه",
+    "venezuela", "caracas", "germany", "european", "oil", "agreement",
+    "deal", "sanction", "restricted", "suspended", "halted", "proposal",
+)
+GLOBAL_MONITOR_ACTORS = (
+    "ایران", "آمریکا", "چین", "روسیه", "اوکراین", "اسرائیل", "عراق", "عربستان",
+    "ونزوئلا", "آلمان", "اتحادیه اروپا", "سازمان ملل",
+    "iran", "united states", "u.s.", "china", "russia", "ukraine", "israel",
+    "iraq", "saudi", "venezuela", "germany", "european union", "united nations",
+)
+
+
+def _monitor_global_consequential(story):
+    title = str(story.get("title", "") or "").lower()
+    if not title:
+        return False
+    signal_hits = sum(x in title for x in GLOBAL_MONITOR_SIGNALS)
+    actor_hits = sum(x in title for x in GLOBAL_MONITOR_ACTORS)
+    # Two independent action/topic signals plus a major actor are enough for
+    # monitoring review. This is intentionally broader than publication gates.
+    return signal_hits >= 2 and actor_hits >= 1
+
+
 def _is_important_missed(story):
     score = int(story.get("intelligence_score", 0) or 0)
     return bool(
@@ -33,6 +60,7 @@ def _is_important_missed(story):
         or story.get("major_business_legal_candidate")
         or story.get("global_consequential_candidate")
         or story.get("unga_breaking_candidate")
+        or _monitor_global_consequential(story)
     )
 
 
