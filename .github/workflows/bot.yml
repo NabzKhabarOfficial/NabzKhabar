@@ -159,6 +159,27 @@ jobs:
               raise SystemExit("V13 SEMANTIC DUPLICATE TEST FAILED")
           print("V13 CROSS-MEDIA DUPLICATE REGRESSION: PASS")
 
+          # Rescue/intelligence coherence: a concrete rejection/response is
+          # an event even when the headline also contains a generic "says".
+          response_case = {
+              "title": "Government says it will wait for official response after proposal is rejected",
+              "summary": "", "description": "",
+              "link": "https://example.com/news/response",
+          }
+          ok, score, reason = intelligence.is_publishable(v, response_case)
+          if not ok:
+              raise SystemExit(f"V13 RESPONSE EVENT TEST FAILED: {ok}, {score}, {reason}")
+
+          # Public-safety monitoring must flag a modest-score casualty event.
+          helicopter_case = {
+              "title": "Four killed in helicopter crash near major city",
+              "intelligence_score": 13,
+              "reason": "no-concrete-event",
+          }
+          if not monitor._is_important_missed(helicopter_case):
+              raise SystemExit("V13 PUBLIC SAFETY MISSED TEST FAILED")
+          print("V13 RESCUE/MISSED NEWS REGRESSION: PASS")
+
           # Important-missed monitoring must flag consequential global stories
           # that were rejected before the normal intelligence score was assigned.
           monitor_cases = [
