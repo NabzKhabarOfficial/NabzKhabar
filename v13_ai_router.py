@@ -18,6 +18,7 @@ MODEL_CANDIDATES = (
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
 MODEL_COOLDOWN_SECONDS = 5 * 60
+QUALITY_COOLDOWN_SECONDS = 90
 # Hard upper bound per selected story so slow/free providers cannot hold the scheduled workflow hostage.
 AI_STORY_BUDGET_SECONDS = 75
 AI_HTTP_TIMEOUT_SECONDS = 12
@@ -114,7 +115,12 @@ def _mark_model_failure(model, status):
     health = _load_health()
     entry = health.setdefault(model, {})
     now = int(time.time())
-    cooldown = MODEL_COOLDOWN_SECONDS if status == 429 else 5 * 60
+    if status == 422:
+        cooldown = QUALITY_COOLDOWN_SECONDS
+    elif status == 429:
+        cooldown = MODEL_COOLDOWN_SECONDS
+    else:
+        cooldown = MODEL_COOLDOWN_SECONDS
     entry["disabled_until"] = now + cooldown
     entry["last_failure"] = now
     entry["last_status"] = int(status)
@@ -229,8 +235,9 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
                     },
                     {"role": "user", "content": prompt},
                 ],
-                "temperature": 0.2,
+                "temperature": 0.15,
                 "max_tokens": max_output_tokens,
+                **({"response_format": {"type": "json_object"}} if provider.lower() == "openrouter" else {}),
             },
             timeout=AI_HTTP_TIMEOUT_SECONDS,
         )
@@ -355,11 +362,8 @@ TRANSLATION_QUALITY_BAD_PATTERNS = (
     re.compile(r"منبع\s*تصویر|عنوان\s*[,،:]|بست\s+به\s+روز\s+رسانی|منتشر\s+شده\s+\d{1,2}\s+سپتامبر", re.I),
     # Reject webpage/navigation chrome leaked by scraped international pages.
     re.compile(r"گوش\s+دادن\s*\(\s*\d+\s*دقیقه", re.I),
-    re.compile(r"صرفه\s*جویی|رسانه\s*های\s*اجتماعی", re.I),
     re.compile(r"(?:به|در)\s+الجزیره\b.*?(?:کارکنان|افپ|ا\s*پ)", re.I),
-    re.compile(r"\b(\S+)\s+\1\b", re.I),
     re.compile(r"(?:بی\s*بی\s*سی){2,}|(?:لندن){2,}", re.I),
-    re.compile(r"\b(\S+)\s+\1\s+\1\b", re.I),
 )
 
 
@@ -370,6 +374,13 @@ def _translation_quality_bad(text):
     for pattern in TRANSLATION_QUALITY_BAD_PATTERNS:
         if pattern.search(value):
             return True
+    # Only flag an obviously duplicated long token. Generic repeated-word
+    # regexes caused false positives in legitimate Persian news.
+    word_list = [x.strip("،؛:!?()[]{}«»'") for x in re.split(r"\s+", value) if x]
+    for left, right in zip(word_list, word_list[1:]):
+        if len(left) >= 6 and left == right:
+            return True
+
     # Do not reject ordinary Persian because of short function words such as
     # «به»، «در»، «که»، «از». Only flag dense one-letter fragments.
     words = [x.strip("،؛:!?()[]{}«»'") for x in re.split(r"\s+", value) if x]
