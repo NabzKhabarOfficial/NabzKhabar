@@ -207,6 +207,7 @@ def _request_json(main, model, prompt, max_output_tokens=500):
             return _clean_json(raw), False
         except Exception as exc:
             print(f"V13 AI ROUTER: {model} invalid JSON: {exc}; failing over.")
+            _mark_model_failure(health_key, 422)
             return None, False
     except Exception as exc:
         print(f"V13 AI ROUTER: {model} error: {exc}; failing over without retry.")
