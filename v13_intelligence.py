@@ -126,6 +126,24 @@ def _commentary_only_news(candidate):
     # A current, verifiable consequence in the body can rescue a headline
     # whose title starts with a generic institutional statement.
     body_consequence = any(x.lower() in body[:2500] for x in EDITORIAL_CONCRETE_EVENT_MARKERS)
+
+    # Institutional speeches/appeals often contain a generic action verb
+    # ("called for", "emphasized", "urged") but no observable event.
+    # Treat explicit awareness/media/cultural-war appeals as commentary even
+    # when the headline uses a slightly different wording.
+    generic_appeal = bool(re.search(
+        r"(?:نقش\s+(?:محوری|مهم)|"
+        r"سهم\s+(?:عظیمی|مهم)|"
+        r"بر\s+(?:لزوم|ضرورت|اهمیت)\s+[^،:؛]+(?:تأکید|تاکید)|"
+        r"آگاهی.?بخشی|هوشیاری|"
+        r"جنگ\s+(?:فرهنگی|ترکیبی)|"
+        r"(?:نقش|سهم)\s+رسانه)",
+        title + " " + body[:1200],
+        re.I,
+    ))
+    if generic_appeal and not concrete and not body_consequence:
+        return True
+
     if concrete or body_consequence:
         return False
     return True
