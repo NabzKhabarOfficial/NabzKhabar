@@ -83,12 +83,7 @@ v13_policy_guard._foreign_local_only = _hardened_policy_scope
 
 
 def _history_rescue_candidate(candidate):
-    """Only bypass history for a late, objectively critical rescue candidate.
-
-    Ordinary fresh stories and already-published critical stories remain protected
-    by the normal seven-day semantic history. The bypass is intentionally tied to
-    freshness_rescued so a missed late-breaking event can enter scoring once.
-    """
+    """Only bypass history for a late, objectively critical rescue candidate."""
     if not candidate.get("freshness_rescued"):
         return False
     try:
@@ -101,27 +96,15 @@ def _history_rescue_candidate(candidate):
 
 
 def _patch_history_rescue_pipeline():
-    """Patch V13's pre-scoring history gate without weakening final dedup.
-
-    Previous runs showed that the freshness/global rescue correctly recovered
-    important stories, but collect_candidates removed them again before the
-    intelligence layer could score them. This patch marks only late critical
-    rescues and lets them reach scoring. process_news bypasses only its two
-    initial history checks for that same marker; the final AI-title duplicate
-    check remains untouched.
-    """
+    """Patch pre-scoring history without weakening final AI duplicate protection."""
     collect_source = inspect.getsource(main.collect_candidates)
     old_collect_hash = '''        if old_hash in hash_history:\n\n            history_skipped += 1\n\n            print(\n                f"PRE-SKIPPED OLD HASH: "\n                f"{title}"\n            )\n\n            continue\n'''
-    new_collect_hash = '''        if old_hash in hash_history:\n\n            if _history_rescue_candidate(item):\n                item["_history_rescue_bypass"] = True\n                print(\n                    f"V13 HISTORY RESCUE BYPASS: old hash -> "\n                    f"{title}"\n                )\n            else:\n                history_skipped += 1\n                print(\n                    f"PRE-SKIPPED OLD HASH: "\n                    f"{title}"\n                )\n                continue\n'''
+    new_collect_hash = '''        if old_hash in hash_history:\n\n            if _history_rescue_candidate(item):\n                item["_history_rescue_bypass"] = True\n                print(f"V13 HISTORY RESCUE BYPASS: old hash -> {title}")\n            else:\n                history_skipped += 1\n                print(f"PRE-SKIPPED OLD HASH: {title}")\n                continue\n'''
     old_collect_semantic = '''        if history_contains_story(\n            title,\n            title_history\n        ):\n\n            history_skipped += 1\n\n            print(\n                f"PRE-SKIPPED SEMANTIC: "\n                f"{title}"\n            )\n\n            continue\n'''
-    new_collect_semantic = '''        if history_contains_story(\n            title,\n            title_history\n        ):\n\n            if _history_rescue_candidate(item):\n                item["_history_rescue_bypass"] = True\n                print(\n                    f"V13 HISTORY RESCUE BYPASS: semantic -> "\n                    f"{title}"\n                )\n            else:\n                history_skipped += 1\n                print(\n                    f"PRE-SKIPPED SEMANTIC: "\n                    f"{title}"\n                )\n                continue\n'''
+    new_collect_semantic = '''        if history_contains_story(\n            title,\n            title_history\n        ):\n\n            if _history_rescue_candidate(item):\n                item["_history_rescue_bypass"] = True\n                print(f"V13 HISTORY RESCUE BYPASS: semantic -> {title}")\n            else:\n                history_skipped += 1\n                print(f"PRE-SKIPPED SEMANTIC: {title}")\n                continue\n'''
     old_collect_final = '''        if history_contains_story(\n            title,\n            title_history\n        ):\n            continue\n\n        if make_history_key(\n            title,\n            link\n        ) in hash_history:\n            continue\n'''
     new_collect_final = '''        if history_contains_story(\n            title,\n            title_history\n        ) and not item.get("_history_rescue_bypass"):\n            continue\n\n        if (\n            make_history_key(\n                title,\n                link\n            ) in hash_history\n            and not item.get("_history_rescue_bypass")\n        ):\n            continue\n'''
-    for old, new, label in (
-        (old_collect_hash, new_collect_hash, "collect hash history"),
-        (old_collect_semantic, new_collect_semantic, "collect semantic history"),
-        (old_collect_final, new_collect_final, "final collect history"),
-    ):
+    for old, new, label in ((old_collect_hash, new_collect_hash, "collect hash"), (old_collect_semantic, new_collect_semantic, "collect semantic"), (old_collect_final, new_collect_final, "final collect")):
         if old not in collect_source:
             raise RuntimeError(f"V13 HISTORY PATCH FAILED: {label} anchor missing")
         collect_source = collect_source.replace(old, new, 1)
@@ -131,77 +114,49 @@ def _patch_history_rescue_pipeline():
     new_process_hash = '''    if history_key in hash_history and not candidate.get("_history_rescue_bypass"):\n\n        print(\n            "SKIPPED: old hash history"\n        )\n\n        return False\n'''
     old_process_semantic = '''    if history_contains_story(\n        original_title,\n        title_history\n    ):\n\n        print(\n            "SKIPPED: semantic history"\n        )\n\n        return False\n'''
     new_process_semantic = '''    if (\n        history_contains_story(\n            original_title,\n            title_history\n        )\n        and not candidate.get("_history_rescue_bypass")\n    ):\n\n        print(\n            "SKIPPED: semantic history"\n        )\n\n        return False\n'''
-    for old, new, label in (
-        (old_process_hash, new_process_hash, "process hash history"),
-        (old_process_semantic, new_process_semantic, "process semantic history"),
-    ):
+    for old, new, label in ((old_process_hash, new_process_hash, "process hash"), (old_process_semantic, new_process_semantic, "process semantic")):
         if old not in process_source:
             raise RuntimeError(f"V13 HISTORY PATCH FAILED: {label} anchor missing")
         process_source = process_source.replace(old, new, 1)
 
     filename = inspect.getsourcefile(main.collect_candidates) or "v13_standalone.py"
     namespace = main.__dict__
+    namespace["_history_rescue_candidate"] = _history_rescue_candidate
     exec(compile(collect_source, filename, "exec"), namespace)
     exec(compile(process_source, filename, "exec"), namespace)
 
-    # Correct source-family metadata before intelligence selection. A feed's
-    # configured category must never make a clearly foreign geopolitical event
-    # look like domestic Iranian news.
     original_collect = main.collect_candidates
     def _editorial_category_normalized_collect(hash_history, title_history):
         candidates = original_collect(hash_history, title_history)
         for item in candidates:
             title = str(item.get("title", "") or "").lower()
-            if any(x in title for x in (
-                "serbia", "serbian", "vucic", "بلگراد", "صربستان", "ووجیچ",
-            )):
+            if any(x in title for x in ("serbia", "serbian", "vucic", "بلگراد", "صربستان", "ووجیچ")):
                 item["category"] = "جهان"
-            elif any(x in title for x in (
-                "un general assembly", "unga", "سازمان ملل", "مجمع عمومی",
-            )):
+            elif any(x in title for x in ("un general assembly", "unga", "سازمان ملل", "مجمع عمومی")):
                 item["category"] = "جهان"
         return candidates
     main.collect_candidates = _editorial_category_normalized_collect
-
     print("V13 HISTORY/EDITORIAL PRIORITY PATCH: active", flush=True)
 
 
 _patch_history_rescue_pipeline()
 
-# Install source/media/AI layers. History rescue must be patched BEFORE
-# intelligence captures collect_candidates/process_news.
 v13_media_branding.install(main)
 v13_ai_router.install(main)
 v13_content_enhancer.install(main, v13_ai_router)
 v13_ad_filter.install(main)
 v13_intelligence.install(main)
 
-# Promote objectively critical rescued events and major political changes.
 _original_publication_tier = v13_intelligence._publication_tier
 
 def _priority_publication_tier(candidate):
     tier = int(_original_publication_tier(candidate) or 1)
     title = str(candidate.get("title", "") or "").lower()
-    critical_rescue = bool(
-        candidate.get("freshness_rescued")
-        and (
-            v13_freshness_rescue._is_critical(candidate)
-            or v13_global_rescue._is_global_critical(candidate)
-        )
-    )
-    casualty_or_public_safety = any(x in title for x in (
-        "کشته", "زخمی", "مفقود", "به شهادت رسید", "به شهادت رسیدند",
-        "تیراندازی", "انفجار", "حمله", "زلزله", "سیل",
-        "killed", "dead", "wounded", "missing", "mass shooting", "explosion",
-    ))
-    major_political_change = any(x in title for x in (
-        "استعفا", "کناره گیری", "کناره‌گیری", "انتخابات زودهنگام",
-        "resign", "resigned", "resignation", "snap election",
-    )) and any(x in title for x in (
-        "رئیس جمهور", "رئیس‌جمهور", "نخست وزیر", "دولت", "پارلمان", "president",
-        "prime minister", "government", "parliament",
-    ))
-    if critical_rescue or (casualty_or_public_safety and any(x in title for x in ("ایران", "آمریکا", "روسیه", "اوکراین", "اسرائیل", "صربستان", "britain", "serbia", "iran", "russia", "ukraine", "israel"))):
+    critical_rescue = bool(candidate.get("freshness_rescued") and (v13_freshness_rescue._is_critical(candidate) or v13_global_rescue._is_global_critical(candidate)))
+    casualty_or_public_safety = any(x in title for x in ("کشته", "زخمی", "مفقود", "به شهادت رسید", "به شهادت رسیدند", "تیراندازی", "انفجار", "حمله", "زلزله", "سیل", "killed", "dead", "wounded", "missing", "mass shooting", "explosion"))
+    major_political_change = any(x in title for x in ("استعفا", "کناره گیری", "کناره‌گیری", "انتخابات زودهنگام", "resign", "resigned", "resignation", "snap election")) and any(x in title for x in ("رئیس جمهور", "رئیس‌جمهور", "نخست وزیر", "دولت", "پارلمان", "president", "prime minister", "government", "parliament"))
+    major_actor = any(x in title for x in ("ایران", "آمریکا", "روسیه", "اوکراین", "اسرائیل", "صربستان", "britain", "serbia", "iran", "russia", "ukraine", "israel"))
+    if critical_rescue or (casualty_or_public_safety and major_actor):
         return max(tier, 4)
     if major_political_change:
         return max(tier, 3)
