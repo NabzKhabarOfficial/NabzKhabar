@@ -1,8 +1,6 @@
 name: NabzKhabar News Bot
 
 on:
-  push:
-    branches: [main]
   schedule:
     - cron: '*/10 * * * *'
   workflow_dispatch:
@@ -12,8 +10,7 @@ permissions:
 
 concurrency:
   group: nabzkhabar-bot
-  queue: max
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   run-bot:
