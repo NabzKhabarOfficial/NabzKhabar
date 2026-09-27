@@ -36,7 +36,7 @@ MEDIUM_IMPACT = (
 ACTION_TERMS = (
     "کشته", "زخمی", "مفقود", "بازداشت", "تخلیه", "متوقف", "تعلیق",
     "ممنوع", "محدود", "قطع", "بازگشت", "فراخوان", "لغو", "تصویب",
-    "رد", "اجرا", "ابلاغ", "اعلام", "افزایش", "کاهش", "سقوط", "رشد",
+    "رد", "رد کرد", "رد شد", "اجرا", "ابلاغ", "اعلام", "افزایش", "کاهش", "سقوط", "رشد",
     "جهش", "تحریم", "حمله", "انفجار", "آتش بس", "آتش‌بس",
 )
 
@@ -237,7 +237,8 @@ def _global_consequential_override(candidate):
         "implemented", "joined", "settlement", "acquired", "acquisition",
         "merged", "merger", "recalled", "recall", "guilty", "verdict", "raises",
         "cuts", "increased", "decreased", "withdraw", "withdrew", "deployed",
-        "deploy", "launched", "launches", "released", "release", "closed",
+        "deploy", "rejected", "rejects", "declined", "declines",
+        "launched", "launches", "released", "release", "closed",
         "opens", "opened", "calls on", "call for", "urges", "urge", "pledges",
         "pledged", "criticizes", "criticised", "warns", "warned", "demands",
         "demanded", "announces", "announced", "offers", "offered", "proposes",
@@ -250,7 +251,8 @@ def _global_consequential_override(candidate):
         "افزایش", "افزایش داد", "کاهش", "کاهش داد", "ادغام", "تملک",
         "عرضه کرد", "رونمایی کرد", "قطع شد", "مختل شد", "بازداشت شد",
         "خواستار", "هشدار داد", "هشدار", "محکوم کرد", "درخواست کرد",
-        "درخواست", "پیشنهاد داد", "پیشنهاد", "توافق کرد", "توافق", "گفت", "بررسی", "بازبینی", "بازنگری", "تجدیدنظر", "به تعویق انداخت", "تعویق", "ازسرگیری", "از سر گرفت",
+        "درخواست", "پیشنهاد داد", "پیشنهاد", "توافق کرد", "توافق", "رد کرد", "رد شد",
+        "گفت", "بررسی", "بازبینی", "بازنگری", "تجدیدنظر", "به تعویق انداخت", "تعویق", "ازسرگیری", "از سر گرفت",
     )
     actors = (
         "us", "u.s.", "united states", "white house", "trump", "china", "russia",
@@ -277,8 +279,9 @@ def _global_consequential_override(candidate):
     )) and not any(x in title for x in (
         "warns", "warned", "threat", "threatens", "ultimatum",
         "offers", "offered", "proposes", "proposed", "agrees", "agreed",
+        "rejects", "rejected", "declines", "declined",
         "announces", "announced", "signed", "signs",
-        "هشدار", "تهدید", "اولتیماتوم", "پیشنهاد", "توافق", "امضا", "اعلام",
+        "هشدار", "تهدید", "اولتیماتوم", "پیشنهاد", "توافق", "امضا", "اعلام", "رد کرد", "رد شد",
     ))
 
     topic_hit = any(x in title for x in (
