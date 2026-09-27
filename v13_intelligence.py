@@ -690,8 +690,12 @@ def is_publishable(main, candidate):
         r"(?:تمجید|تمجید کرد|تحسین|تحسین کرد|حمایت از|حمایت کرد|"
         r"تقدیر از|تقدیر کرد|دفاع از|دفاع کرد|ابراز خرسندی|ابراز نگرانی|"
         r"مواضع .* را شجاعانه|مواضع .* را مهم|مواضع .* را مثبت|"
+        r"تأکید بر|تاکید بر|تأکید کرد|تاکید کرد|"
+        r"خواستار .* شد|خواستار .* است|"
+        r"نقش محوری|لزوم هوشیاری|"
         r"praise|praised|support for|supported|congratulated|commended|"
-        r"welcomed|expressed concern|expressed support|backed|endorsed)",
+        r"welcomed|expressed concern|expressed support|backed|endorsed|"
+        r"called for|calls for)",
         title, re.I,
     ))
     concrete_editorial_change = bool(re.search(
