@@ -15,7 +15,16 @@ REPORT_FILE = "v13_monitor.json"
 # Neutral monitoring threshold: this is a review signal, not an editorial
 # override. A story is "important missed" when intelligence scored it strongly
 # or an independent consequential/security/business/UNGA override recognized it.
-IMPORTANT_MISSED_SCORE = 12
+IMPORTANT_MISSED_SCORE = 10
+
+PUBLIC_SAFETY_IMPORTANT = (
+    "کشته", "جان باخت", "جان‌باخت", "زخمی", "مجروح", "مفقود",
+    "سقوط بالگرد", "سقوط هلیکوپتر", "سقوط هواپیما", "انفجار",
+    "تیراندازی", "حمله مرگبار", "حادثه مرگبار",
+    "killed", "dead", "deaths", "injured", "wounded", "missing",
+    "helicopter crash", "plane crash", "air crash", "explosion", "shooting",
+    "fatal crash", "mass casualty",
+)
 
 
 def _load(path, default):
@@ -54,8 +63,11 @@ def _monitor_global_consequential(story):
 
 def _is_important_missed(story):
     score = int(story.get("intelligence_score", 0) or 0)
+    title = str(story.get("title", "") or "").lower()
+    public_safety = any(x in title for x in PUBLIC_SAFETY_IMPORTANT)
     return bool(
-        score >= IMPORTANT_MISSED_SCORE
+        public_safety
+        or score >= IMPORTANT_MISSED_SCORE
         or story.get("high_impact_security_candidate")
         or story.get("major_business_legal_candidate")
         or story.get("global_consequential_candidate")
