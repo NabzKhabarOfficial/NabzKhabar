@@ -232,6 +232,27 @@ jobs:
               if policy._foreign_local_only({"title": title, "summary": "", "description": "", "link": "https://www.aljazeera.com/news/example"}):
                   raise SystemExit(f"V13 GLOBAL SCOPE TEST FAILED: {title}")
 
+          south_africa = {
+              "title": "Two mass shootings in South Africa leave 27 dead",
+              "summary": "Two mass shootings left 27 people dead.",
+              "description": "", "link": "https://www.bbc.com/news/example",
+              "resolved_link": "https://www.bbc.com/news/example",
+          }
+          if not policy._final_global_security_override(south_africa):
+              raise SystemExit("V13 GLOBAL CASUALTY RESCUE TEST FAILED: mass shooting")
+          if policy._foreign_local_only(south_africa):
+              raise SystemExit("V13 GLOBAL CASUALTY SCOPE TEST FAILED: mass shooting")
+          avalanche = {
+              "title": "Ten climbers missing after avalanche hits Himalayan base camp",
+              "summary": "Ten climbers are missing after an avalanche.",
+              "description": "", "link": "https://www.bbc.com/news/example2",
+              "resolved_link": "https://www.bbc.com/news/example2",
+          }
+          if not policy._final_global_security_override(avalanche):
+              raise SystemExit("V13 GLOBAL CASUALTY RESCUE TEST FAILED: missing climbers")
+          if policy._foreign_local_only(avalanche):
+              raise SystemExit("V13 GLOBAL CASUALTY SCOPE TEST FAILED: missing climbers")
+
           athens = {
               "title": "British national among six dead in building explosion close to Acropolis in Athens",
               "summary": "Six people were killed in a building explosion near the Acropolis in Athens.",
@@ -247,6 +268,9 @@ jobs:
           bad_translation = "برچسب های رهبر نپال سیل یک جنگ به جهان را ویران می کند"
           malformed_wales = "نیروی پلیس می گوید اطلاعات کارکنان را می توان پس از حمله سایبری تحق دانست."
           good_translation = "نخست وزیر نپال سیل ویرانگر را هشداری برای جهان خواند"
+          legitimate_social_media = "این مقام گفت استفاده از رسانه های اجتماعی پس از حادثه ادامه دارد."
+          if v13_ai_router._translation_quality_bad(legitimate_social_media):
+              raise SystemExit("V13 TRANSLATION TEST FAILED: legitimate Persian phrase was rejected")
           if not v13_ai_router._translation_quality_bad(bad_translation) or not v13_ai_router._translation_quality_bad(malformed_wales):
               raise SystemExit("V13 TRANSLATION TEST FAILED: known malformed Persian was accepted")
           if v13_ai_router._translation_quality_bad(good_translation):
