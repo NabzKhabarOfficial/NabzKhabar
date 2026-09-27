@@ -22,7 +22,6 @@ PERSIAN_RSS_FEEDS = [
     ("جهان", "https://rss.dw.com/xml/rss-fa-all"),
     ("جهان", "https://www.radiofarda.com/api/z-pqpiev-qpp"),
 ]
-
 existing_rss = {(str(name), str(url)) for name, url in getattr(main, "DIRECT_RSS_FEEDS", [])}
 for feed in PERSIAN_RSS_FEEDS:
     if feed not in existing_rss:
@@ -64,14 +63,8 @@ def _hardened_mark_model_failure(model, status):
 v13_ai_router._mark_model_failure = _hardened_mark_model_failure
 
 _original_policy_scope = v13_policy_guard._foreign_local_only
-_GLOBAL_CRITICAL_SCOPE = re.compile(
-    r"(?:saudi\s+arabia|saudi|mecca|makkah|medina|madinah|red\s+sea|hormuz|strait\s+of\s+hormuz|"
-    r"حوثی|عربستان|مکه|مدینه|دریای\s+سرخ|تنگه\s+هرمز|تنگه هرمز)", re.I,
-)
-_GLOBAL_CRITICAL_EVENT = re.compile(
-    r"(?:attack|strike|missile|drone|war|conflict|ceasefire|red\s+line|military|evacuation|"
-    r"حمله|حمله موشکی|موشک|پهپاد|جنگ|درگیری|آتش\s*بس|خط\s*قرمز|نظامی|تخلیه)", re.I,
-)
+_GLOBAL_CRITICAL_SCOPE = re.compile(r"(?:saudi\s+arabia|saudi|mecca|makkah|medina|madinah|red\s+sea|hormuz|strait\s+of\s+hormuz|حوثی|عربستان|مکه|مدینه|دریای\s+سرخ|تنگه\s+هرمز|تنگه هرمز)", re.I)
+_GLOBAL_CRITICAL_EVENT = re.compile(r"(?:attack|strike|missile|drone|war|conflict|ceasefire|red\s+line|military|evacuation|حمله|حمله موشکی|موشک|پهپاد|جنگ|درگیری|آتش\s*بس|خط\s*قرمز|نظامی|تخلیه)", re.I)
 
 def _hardened_policy_scope(candidate):
     text = " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description"))
@@ -81,22 +74,40 @@ def _hardened_policy_scope(candidate):
 
 v13_policy_guard._foreign_local_only = _hardened_policy_scope
 
+# Editorial criticality is broader than casualty/security alone. A president's
+# resignation, snap-election trigger, ceasefire decision or major strategic
+# diplomatic change must be eligible for the 6-hour rescue window.
+_original_freshness_critical = v13_freshness_rescue._is_critical
+_MAJOR_POLITICAL_CHANGE = re.compile(r"(?:استعفا|کناره\s*گیری|انتخابات\s+زودهنگام|resign|resigned|resignation|snap\s+election|early\s+election)", re.I)
+_MAJOR_POLITICAL_ACTOR = re.compile(r"(?:رئیس\s*جمهور|رئیس‌جمهور|نخست\s*وزیر|دولت|پارلمان|president|prime\s+minister|government|parliament)", re.I)
+_STRATEGIC_CHANGE = re.compile(r"(?:تنگه\s+هرمز|مذاکره|آتش\s*بس|صلح|پیشنهاد|راه\s*حل|جنگ|حمله|استارلینک|Hormuz|negotiat|ceasefire|peace\s+plan|roadmap|conflict|attack)", re.I)
+_STRATEGIC_ACTOR = re.compile(r"(?:ایران|آمریکا|اسرائیل|روسیه|اوکراین|صربستان|serbia|iran|us|u\.s\.|israel|russia|ukraine)", re.I)
+
+def _editorial_freshness_critical(candidate):
+    if _original_freshness_critical(candidate):
+        return True
+    title = str(candidate.get("title", "") or "")
+    summary = str(candidate.get("summary", "") or "")
+    text = f"{title} {summary}"
+    if _MAJOR_POLITICAL_CHANGE.search(text) and _MAJOR_POLITICAL_ACTOR.search(text):
+        return True
+    if _STRATEGIC_CHANGE.search(text) and _STRATEGIC_ACTOR.search(text):
+        return True
+    return False
+
+v13_freshness_rescue._is_critical = _editorial_freshness_critical
+
 
 def _history_rescue_candidate(candidate):
-    """Only bypass history for a late, objectively critical rescue candidate."""
     if not candidate.get("freshness_rescued"):
         return False
     try:
-        return bool(
-            v13_freshness_rescue._is_critical(candidate)
-            or v13_global_rescue._is_global_critical(candidate)
-        )
+        return bool(v13_freshness_rescue._is_critical(candidate) or v13_global_rescue._is_global_critical(candidate))
     except Exception:
         return False
 
 
 def _patch_history_rescue_pipeline():
-    """Patch pre-scoring history without weakening final AI duplicate protection."""
     collect_source = inspect.getsource(main.collect_candidates)
     old_collect_hash = '''        if old_hash in hash_history:\n\n            history_skipped += 1\n\n            print(\n                f"PRE-SKIPPED OLD HASH: "\n                f"{title}"\n            )\n\n            continue\n'''
     new_collect_hash = '''        if old_hash in hash_history:\n\n            if _history_rescue_candidate(item):\n                item["_history_rescue_bypass"] = True\n                print(f"V13 HISTORY RESCUE BYPASS: old hash -> {title}")\n            else:\n                history_skipped += 1\n                print(f"PRE-SKIPPED OLD HASH: {title}")\n                continue\n'''
@@ -154,12 +165,11 @@ def _priority_publication_tier(candidate):
     title = str(candidate.get("title", "") or "").lower()
     critical_rescue = bool(candidate.get("freshness_rescued") and (v13_freshness_rescue._is_critical(candidate) or v13_global_rescue._is_global_critical(candidate)))
     casualty_or_public_safety = any(x in title for x in ("کشته", "زخمی", "مفقود", "به شهادت رسید", "به شهادت رسیدند", "تیراندازی", "انفجار", "حمله", "زلزله", "سیل", "killed", "dead", "wounded", "missing", "mass shooting", "explosion"))
-    major_political_change = any(x in title for x in ("استعفا", "کناره گیری", "کناره‌گیری", "انتخابات زودهنگام", "resign", "resigned", "resignation", "snap election")) and any(x in title for x in ("رئیس جمهور", "رئیس‌جمهور", "نخست وزیر", "دولت", "پارلمان", "president", "prime minister", "government", "parliament"))
+    major_political_change = bool(_MAJOR_POLITICAL_CHANGE.search(title) and _MAJOR_POLITICAL_ACTOR.search(title))
+    strategic_change = bool(_STRATEGIC_CHANGE.search(title) and _STRATEGIC_ACTOR.search(title))
     major_actor = any(x in title for x in ("ایران", "آمریکا", "روسیه", "اوکراین", "اسرائیل", "صربستان", "britain", "serbia", "iran", "russia", "ukraine", "israel"))
-    if critical_rescue or (casualty_or_public_safety and major_actor):
+    if critical_rescue or major_political_change or strategic_change or (casualty_or_public_safety and major_actor):
         return max(tier, 4)
-    if major_political_change:
-        return max(tier, 3)
     return tier
 
 v13_intelligence._publication_tier = _priority_publication_tier
