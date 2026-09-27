@@ -46,43 +46,338 @@ jobs:
           python -m pip install -r requirements.txt
       - name: Validate independent V13 syntax
         run: |
-          python -m py_compile *.py tests/*.py
-      - name: Run V13 regression suite
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_quality_gate.py v13_freshness_rescue.py v13_critical_rescue.py v13_global_rescue.py v13_policy_guard.py v13_editorial_formatter.py v13_byline_cleaner.py v13_monitor.py run_bot.py education.py car_prices.py weather.py
+      - name: V13 cleanup and runtime integrity check
+        run: |
+          set -e
+          for path in v13_argos_translate.py sitecustomize.py requirements-cpu.txt .github/workflows/argos-real-test.yml .github/workflows/argos-standalone-test.yml; do
+            if [ -e "$path" ]; then
+              echo "V13 CLEANUP CHECK FAILED: obsolete path exists: $path"
+              exit 1
+            fi
+          done
+          if git grep -n -E 'argostranslate|v13_argos_translate|requirements-cpu|sitecustomize\.py' -- ':!*.json' ':!sent_news.txt' ':!v13_rejected_news.json' ':!v13_health.json' ':!v13_monitor.json' ':!.github/workflows/bot.yml'; then
+            echo "V13 CLEANUP CHECK FAILED: stale removed-component reference found"
+            exit 1
+          fi
+          python - <<'PY'
+          import importlib
+          modules = [
+              "v13_standalone", "v13_media_branding", "v13_ai_router",
+              "v13_content_enhancer", "v13_ad_filter", "v13_intelligence",
+              "v13_quality_gate", "v13_freshness_rescue", "v13_critical_rescue",
+              "v13_global_rescue", "v13_policy_guard", "v13_editorial_formatter",
+              "v13_byline_cleaner", "v13_monitor", "run_bot", "education", "car_prices", "weather",
+          ]
+          import os
+          os.environ.setdefault("BOT_TOKEN", "V13_IMPORT_SMOKE_TEST")
+          for name in modules:
+              importlib.import_module(name)
+          import v13_standalone as v
+          assert hasattr(v, "SkipForeignStory"), "SkipForeignStory missing"
+          assert callable(v._persian_ratio), "_persian_ratio missing"
+          print("V13 CLEANUP/RUNTIME INTEGRITY: PASS")
+          PY
+      - name: V13 final scope and freshness regression test
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          AI_API_KEY: ""
         run: |
           python - <<'PY'
+          import v13_standalone as v
           import v13_intelligence as intelligence
-          import v13_global_rescue as global_rescue
-          import v13_quality_gate as quality
+          import v13_policy_guard as policy
+          import v13_critical_rescue as critical
+          import v13_freshness_rescue as freshness
+          import v13_ai_router
+          import v13_monitor as monitor
+          from datetime import datetime, timezone, timedelta
 
-          class Dummy: pass
-          v = Dummy()
+          critical.install()
+
+          telemetry = {
+              "title": "OpenAI product update", "summary": "A product update was reported.",
+              "description": "", "link": "https://google-analytics.com/analytics.js",
+              "resolved_link": "https://google-analytics.com/analytics.js",
+          }
+          ok, _, reason = intelligence.is_publishable(v, telemetry)
+          if ok:
+              raise SystemExit("V13 TELEMETRY URL TEST FAILED: analytics endpoint was publishable")
+          print("V13 TELEMETRY URL TEST: PASS", reason)
+          if not v._is_telemetry_or_tracking_url("https://google-analytics.com/analytics.js"):
+              raise SystemExit("V13 TELEMETRY URL HELPER TEST FAILED")
+          if v._is_telemetry_or_tracking_url("https://www.bbc.com/news/world/example"):
+              raise SystemExit("V13 TELEMETRY URL HELPER TEST FAILED: real article was blocked")
+
+          rescue_cases = [
+              ("Iran offers US deal to reopen Strait of Hormuz in seven days", True),
+              ("Iran says it awaits US response on seven-day roadmap to end war", True),
+              ("Major earthquake kills dozens and triggers mass evacuation", True),
+              ("Pope Leo XIV warns AI could undermine humanity during France visit", True),
+              ("Stephen Curry signs two-year extension with Warriors", False),
+              ("Warriors reach agreement on new contract", False),
+              ("Free the Strip! Melburnians fight back over a picnic spot", False),
+              ("Could an iced coffee freeze you out of the job market?", False),
+          ]
+          for title, expected in rescue_cases:
+              candidate = {"title": title, "summary": title, "description": ""}
+              actual = freshness._is_critical(candidate)
+              if actual != expected:
+                  raise SystemExit(f"V13 FRESHNESS RESCUE TEST FAILED: {title!r} -> {actual}, expected {expected}")
+          print("V13 FRESHNESS RESCUE REGRESSION: PASS")
+
+          ceremonial = {
+              "title": "سردار کارگر: تندیس فرماندهان شهید جنگ اخیر در باغ موزه ها نصب شود",
+              "summary": "در بازدید از باغ موزه همدان بر نصب تندیس در باغ موزه های کشور تاکید شد.",
+              "description": "", "link": "https://www.irna.ir/news/example",
+              "resolved_link": "https://www.irna.ir/news/example",
+              "freshness_rescued": True,
+          }
+          if freshness._is_critical(ceremonial):
+              raise SystemExit("V13 CEREMONIAL RESCUE TEST FAILED: symbolic story was rescued")
+          ok, score, reason = intelligence.is_publishable(v, ceremonial)
+          if ok or reason != "ceremonial-non-news":
+              raise SystemExit(f"V13 CEREMONIAL FILTER TEST FAILED: {ok}, {score}, {reason}")
+          if intelligence._publication_tier(ceremonial) >= 3:
+              raise SystemExit("V13 CEREMONIAL TIER TEST FAILED: freshness rescue inflated a routine story")
+          print("V13 CEREMONIAL/RESCUE REGRESSION: PASS")
+
+          commentary_case = {
+              "title": "تاکید امام جمعه بیرجند بر نقش محوری رسانه ها در جنگ فرهنگی",
+              "summary": "نماینده ولی فقیه در خراسان جنوبی با اشاره به نقش رسانه ها در جنگ ترکیبی و فرهنگی، اعلام کرد که بخش بزرگی از آگاهی بخشی به جامعه بر عهده آن هاست. وی خواستار جلوگیری از تبدیل فرزندان کشور به ابزار دست دشمن شد.",
+              "description": "", "link": "https://example.com/news/commentary-case",
+              "resolved_link": "https://example.com/news/commentary-case",
+          }
+          ok, score, reason = intelligence.is_publishable(v, commentary_case)
+          if ok or reason != "commentary-only":
+              raise SystemExit(f"V13 COMMENTARY FILTER TEST FAILED: {ok}, {score}, {reason}")
+          print("V13 COMMENTARY-ONLY NEWS REGRESSION: PASS")
+
+          dup_a = "شورای عالی امنیت ملی ایران: علیه محدودیت های هوایی اقدام نظامی نخواهیم کرد"
+          dup_b = "شورای عالی امنیت ملی: علیه محدودیت‌های هوایی اقدام نظامی نخواهیم کرد"
+          if not v._high_confidence_event_duplicate(dup_a, dup_b):
+              raise SystemExit("V13 CROSS-MEDIA DUPLICATE TEST FAILED")
+          if not v.same_story({"title": dup_a}, {"title": dup_b}):
+              raise SystemExit("V13 SEMANTIC DUPLICATE TEST FAILED")
+          print("V13 CROSS-MEDIA DUPLICATE REGRESSION: PASS")
+
+          response_case = {
+              "title": "Government says it will wait for official response after proposal is rejected",
+              "summary": "", "description": "", "link": "https://example.com/news/response",
+          }
+          ok, score, reason = intelligence.is_publishable(v, response_case)
+          if not ok:
+              raise SystemExit(f"V13 RESPONSE EVENT TEST FAILED: {ok}, {score}, {reason}")
+
+          helicopter_case = {
+              "title": "Four killed in helicopter crash near major city",
+              "intelligence_score": 13,
+              "reason": "no-concrete-event",
+          }
+          if not monitor._is_important_missed(helicopter_case):
+              raise SystemExit("V13 PUBLIC SAFETY MISSED TEST FAILED")
+          print("V13 RESCUE/MISSED NEWS REGRESSION: PASS")
+
+          monitor_cases = [
+              "گاردین: جزئیات توافق نفتی آمریکا و ونزوئلا، ادعا های بزرگ ترامپ را زیر سؤال می برد",
+              "آلمان پیشنهاد تشکیل نیروی واکنش سریع اروپایی برای مقابله با بحران های مهاجرتی را مطرح کرد",
+          ]
+          for title in monitor_cases:
+              if not monitor._is_important_missed({"title": title, "intelligence_score": 0, "reason": "foreign-local-preselection"}):
+                  raise SystemExit(f"V13 IMPORTANT MISSED MONITOR TEST FAILED: {title}")
+          print("V13 IMPORTANT MISSED MONITOR REGRESSION: PASS")
+
+          cases = [
+              ("Watch: British pilots eject as RAF jet crashes in Wales", True),
+              ("Groceries rise across Australian supermarket chains", True),
+              ("نگاهی به مهمترین عناوین روزنامه های بریتانیا", True),
+              ("Russia attacks Ukraine after talks with Trump", False),
+              ("Iran and US officials discuss regional ceasefire", False),
+              ("Major earthquake kills dozens and triggers mass evacuation", False),
+              ("UN General Assembly leaders meet over the Iran conflict", False),
+              ("Hurricane Polo brings fears of heavy rain and landslides in Mexico", False),
+              ("Deadly attack on Indian cargo ship off coast of Oman", False),
+              ("Tensions between India and Bangladesh are in focus after Dhaka skipped the BRICS summit in Delhi", False),
+              ("Parents of Billy Vigar criticise the Football Association after his death as safety rules are changed for 169 clubs", False),
+              ("NHS announces nationwide review of 4,500 breast cancer cases after unnecessary surgeries found", False),
+              ("Police force says staff information may be compromised after cyber attack in Wales", True),
+              ("Premier League club appoints new manager after poor run", True),
+          ]
+          for title, expected_skip in cases:
+              candidate = {"title": title, "summary": "", "description": "", "link": "https://example.com/news"}
+              actual = policy._foreign_local_only(candidate)
+              if actual != expected_skip:
+                  raise SystemExit(f"V13 FINAL SCOPE TEST FAILED: {title!r} -> {actual}, expected {expected_skip}")
+
           geopolitical_cases = [
-              "حمله موشکی به یک پایگاه نظامی در منطقه",
-              "زلزله شدید دهها کشته بر جای گذاشت",
-              "درگیری نظامی در مرز اوکراین و روسیه",
-              "Mass shooting leaves 27 dead",
-              "Major explosion kills 30 people",
+              "Why is Canada’s PM Carney not ruling out a possible war with the US",
+              "US seeking to revive Russia-Ukraine ceasefire talks",
+              "Iran pitches seven-day roadmap to end conflict with US",
+              "At Trump meeting, Xi Jinping lays out terms to avoid US-China military conflict",
+              "Poland boosts air defence after Russian provocations amid Ukraine war",
           ]
           for title in geopolitical_cases:
               candidate = {"title": title, "summary": "", "description": "", "link": "https://example.com/news"}
               ok, score, reason = intelligence.is_publishable(v, candidate)
               if not ok or "rescue" not in reason and "override" not in reason and score < intelligence.MIN_EVENT_SCORE:
                   raise SystemExit(f"V13 CRITICAL RESCUE TEST FAILED: {title} -> {ok}, {score}, {reason}")
-          print("V13 REGRESSION: PASS")
+
+          iran_source_local = {"title": "نگاهی به مهمترین عناوین روزنامه های بریتانیا", "summary": "", "description": "", "link": "https://www.yjc.ir/fa/news/example", "resolved_link": "https://www.yjc.ir/fa/news/example"}
+          if not policy._foreign_local_only(iran_source_local):
+              raise SystemExit("V13 FINAL SCOPE TEST FAILED: Iranian publisher bypassed foreign-local gate")
+          iran_source_global = {"title": "Iran and US officials discuss regional ceasefire", "summary": "", "description": "", "link": "https://www.yjc.ir/fa/news/example", "resolved_link": "https://www.yjc.ir/fa/news/example"}
+          if policy._foreign_local_only(iran_source_global):
+              raise SystemExit("V13 FINAL SCOPE TEST FAILED: Iranian publisher global story was dropped")
+          for title in (
+              "UNGA81: Why has Africa’s Security Council reform push remained unresolved?",
+              "Pope Leo XIV warns AI could undermine humanity during France visit",
+          ):
+              if policy._foreign_local_only({"title": title, "summary": "", "description": "", "link": "https://www.aljazeera.com/news/example"}):
+                  raise SystemExit(f"V13 GLOBAL SCOPE TEST FAILED: {title}")
+
+          athens = {
+              "title": "British national among six dead in building explosion close to Acropolis in Athens",
+              "summary": "Six people were killed in a building explosion near the Acropolis in Athens.",
+              "description": "", "link": "https://www.example.com/news/athens-explosion",
+              "resolved_link": "https://www.example.com/news/athens-explosion",
+          }
+          if policy._foreign_local_only(athens):
+              raise SystemExit("V13 FINAL SCOPE TEST FAILED: major global casualty event was dropped")
+
+          if policy.NORMAL_WINDOW_MINUTES != 30 or policy.CRITICAL_RESCUE_MAX_HOURS != 6 or v.FEED_COLLECTION_WINDOW_MINUTES != 30:
+              raise SystemExit("V13 FRESHNESS TEST FAILED: freshness windows changed unexpectedly")
+
+          bad_translation = "برچسب های رهبر نپال سیل یک جنگ به جهان را ویران می کند"
+          malformed_wales = "نیروی پلیس می گوید اطلاعات کارکنان را می توان پس از حمله سایبری تحق دانست."
+          good_translation = "نخست وزیر نپال سیل ویرانگر را هشداری برای جهان خواند"
+          if not v13_ai_router._translation_quality_bad(bad_translation) or not v13_ai_router._translation_quality_bad(malformed_wales):
+              raise SystemExit("V13 TRANSLATION TEST FAILED: known malformed Persian was accepted")
+          if v13_ai_router._translation_quality_bad(good_translation):
+              raise SystemExit("V13 TRANSLATION TEST FAILED: valid Persian headline was rejected")
+
+          media_cases = [
+              ("فیلم/ روایت حمله موشکی به مجتمع تفریحی اهواز به نقل از شاهد", "روایت حمله موشکی به مجتمع تفریحی اهواز به نقل از شاهد"),
+              ("ویدئو: انفجار در محل حادثه", "انفجار در محل حادثه"),
+              ("روایت حادثه + فیلم", "روایت حادثه"),
+              ("عملیات امداد پایان یافت. فیلم این حادثه در شبکه‌های اجتماعی منتشر شد.", "عملیات امداد پایان یافت."),
+          ]
+          for raw, expected in media_cases:
+              actual = v.media_consistent_text(raw, has_video=False)
+              if actual != expected:
+                  raise SystemExit(f"V13 MEDIA CLAIM TEST FAILED: {raw!r} -> {actual!r}")
+          if v.media_consistent_text("فیلم/ گزارش حادثه", has_video=True) != "فیلم/ گزارش حادثه":
+              raise SystemExit("V13 MEDIA CLAIM TEST FAILED: real-video label was stripped")
+          print("V13 MEDIA CLAIM CONSISTENCY: PASS")
+
+          class _RankingStub:
+              @staticmethod
+              def same_story(a, b):
+                  return "same-event" in a.get("title", "") and "same-event" in b.get("title", "")
+              @staticmethod
+              def story_tokens(title):
+                  return set(str(title).lower().split())
+              @staticmethod
+              def base_domain(url):
+                  return "example.com"
+              @staticmethod
+              def get_hostname(url):
+                  return "example.com"
+              @staticmethod
+              def publisher_quality(url):
+                  return 10
+              @staticmethod
+              def category_family(category):
+                  return category or "unknown"
+
+          ranking_main = _RankingStub()
+          high_priority = {
+              "title": "same-event: major national decision", "summary": "", "description": "", "link": "https://example.com/a",
+              "resolved_link": "https://example.com/a", "importance": 72, "intelligence_score": 10, "category": "ایران",
+          }
+          lower_variant = {
+              "title": "same-event: local incident", "summary": "", "description": "", "link": "https://example.com/b",
+              "resolved_link": "https://example.com/b", "importance": 58, "intelligence_score": 15, "category": "ایران",
+          }
+          deduped = intelligence._dedup_events(ranking_main, [lower_variant, high_priority])
+          if len(deduped) != 1 or deduped[0].get("importance") != 72:
+              raise SystemExit("V13 EDITORIAL RANKING TEST FAILED: high-priority event variant was displaced")
+          print("V13 EDITORIAL RANKING REGRESSION: PASS")
+
+          if v._persian_ratio("زلزله شدید در ایران") < 0.90:
+              raise SystemExit("V13 LANGUAGE RATIO TEST FAILED: Persian text was not recognized")
+          if v._persian_ratio("Major earthquake in Iran") > 0.20:
+              raise SystemExit("V13 LANGUAGE RATIO TEST FAILED: English text was over-counted")
+
+          now = datetime.now(timezone.utc)
+          if (now - (now - timedelta(minutes=20))).total_seconds() / 60 > policy.NORMAL_WINDOW_MINUTES:
+              raise SystemExit("V13 FRESHNESS TEST FAILED: fresh story exceeded the normal window")
+          if (now - (now - timedelta(minutes=40))).total_seconds() / 60 <= policy.NORMAL_WINDOW_MINUTES:
+              raise SystemExit("V13 FRESHNESS TEST FAILED: stale story remained inside the normal window")
+          print("V13 FINAL REGRESSION TEST PASSED")
           PY
-      - name: Run bot
+      - name: Check AI Pool configuration
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          CURRENTS_API_KEY: ${{ secrets.CURRENTS_API_KEY }}
-        run: python run_bot.py
-      - name: Commit runtime state
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
-          git config user.name 'Nabz V13 Bot'
-          git config user.email 'actions@users.noreply.github.com'
-          git add sent_news.txt v13_health.json v13_monitor.json v13_rejected_news.json ai_model_health.json instagram_state.json
-          git diff --cached --quiet || git commit -m 'chore: update V13 runtime state'
-          git push
+          python - <<'PY'
+          import os
+          providers = {
+              "Groq": bool(os.getenv("GROQ_API_KEY", "").strip()),
+              "Gemini": bool(os.getenv("AI_API_KEY", "").strip()),
+              "OpenRouter": bool(os.getenv("OPENROUTER_API_KEY", "").strip()),
+          }
+          print("V13 AI POOL CONFIG:", ", ".join(f"{k}={'READY' if v else 'MISSING'}" for k, v in providers.items()))
+          print("V13 AI POOL ORDER: Groq -> Gemini -> OpenRouter")
+          PY
+      - name: Run independent V13 engine
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python run_bot.py
+      - name: V13 runtime monitoring
+        if: ${{ always() }}
+        run: python v13_monitor.py
+      - name: Persist sent-news history safely
+        if: ${{ always() }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          cp sent_news.txt /tmp/local_sent_news.txt 2>/dev/null || true
+          cp ai_model_health.json /tmp/local_ai_model_health.json 2>/dev/null || true
+          cp v13_health.json /tmp/local_v13_health.json 2>/dev/null || true
+          cp v13_rejected_news.json /tmp/local_v13_rejected_news.json 2>/dev/null || true
+          cp v13_monitor.json /tmp/local_v13_monitor.json 2>/dev/null || true
+          cp car_prices_history.json /tmp/local_car_prices_history.json 2>/dev/null || true
+          cp weather_history.json /tmp/local_weather_history.json 2>/dev/null || true
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git show origin/main:sent_news.txt > /tmp/remote_sent_news.txt 2>/dev/null; then
+              cat /tmp/remote_sent_news.txt /tmp/local_sent_news.txt 2>/dev/null | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt
+            else
+              cat /tmp/local_sent_news.txt 2>/dev/null | awk 'NF && !seen[$0]++' > /tmp/merged_sent_news.txt || true
+            fi
+            git reset --hard origin/main
+            cp /tmp/merged_sent_news.txt sent_news.txt 2>/dev/null || true
+            [ ! -f /tmp/local_ai_model_health.json ] || cp /tmp/local_ai_model_health.json ai_model_health.json
+            [ ! -f /tmp/local_v13_health.json ] || cp /tmp/local_v13_health.json v13_health.json
+            [ ! -f /tmp/local_v13_rejected_news.json ] || cp /tmp/local_v13_rejected_news.json v13_rejected_news.json
+            [ ! -f /tmp/local_v13_monitor.json ] || cp /tmp/local_v13_monitor.json v13_monitor.json
+            [ ! -f /tmp/local_car_prices_history.json ] || cp /tmp/local_car_prices_history.json car_prices_history.json
+            [ ! -f /tmp/local_weather_history.json ] || cp /tmp/local_weather_history.json weather_history.json
+            git add sent_news.txt
+            for f in ai_model_health.json v13_health.json v13_rejected_news.json v13_monitor.json car_prices_history.json weather_history.json; do [ ! -f "$f" ] || git add "$f"; done
+            if git diff --cached --quiet; then echo "No history changes."; exit 0; fi
+            git commit -m "Update news history [skip ci]"
+            if git push origin HEAD:main; then echo "History synchronized."; exit 0; fi
+            git reset --hard HEAD~1
+          done
+          echo "Could not synchronize history after 3 attempts."
+          exit 1
