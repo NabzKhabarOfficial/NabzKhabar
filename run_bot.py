@@ -11,6 +11,7 @@ import v13_intelligence
 import v13_freshness_rescue
 import v13_critical_rescue
 import v13_editorial_formatter
+import v13_byline_cleaner
 import v13_policy_guard
 
 # ---------------------------------------------------------------------------
@@ -31,8 +32,6 @@ for feed in PERSIAN_RSS_FEEDS:
         main.DIRECT_RSS_FEEDS.append(feed)
         existing_rss.add(feed)
 
-# Add Persian-language Google News discovery as a second path. This improves
-# coverage without introducing another API or another paid dependency.
 PERSIAN_GOOGLE_QUERIES = [
     ("جهان", "site:bbc.com/persian اخبار جهان"),
     ("جهان", "site:dw.com/fa-ir اخبار جهان"),
@@ -49,10 +48,6 @@ for category, query in PERSIAN_GOOGLE_QUERIES:
         main.GOOGLE_NEWS_FEEDS.append(feed)
         existing_google.add(feed)
 
-# The previous run showed Gemini 429/503 churn every ~15 minutes. Extend the
-# persisted cooldown for rate-limit/server failures so ten-minute scheduled
-# runs do not repeatedly hammer unhealthy models. This is only a circuit
-# breaker; it does not disable healthy models permanently.
 _original_mark_model_failure = v13_ai_router._mark_model_failure
 
 def _hardened_mark_model_failure(model, status):
@@ -71,9 +66,6 @@ def _hardened_mark_model_failure(model, status):
 
 v13_ai_router._mark_model_failure = _hardened_mark_model_failure
 
-# Final scope correction: a Saudi/Red Sea/Hormuz geopolitical event must never
-# be mistaken for routine foreign-local reporting merely because only one
-# country appears in the headline. Routine city/local stories remain blocked.
 _original_policy_scope = v13_policy_guard._foreign_local_only
 _GLOBAL_CRITICAL_SCOPE = re.compile(
     r"(?:saudi\s+arabia|saudi|mecca|makkah|medina|madinah|red\s+sea|hormuz|strait\s+of\s+hormuz|"
@@ -94,9 +86,9 @@ def _hardened_policy_scope(candidate):
 
 v13_policy_guard._foreign_local_only = _hardened_policy_scope
 
-# V13 is the only news runtime. Obsolete legacy engines and patches were removed.
-# The final editorial formatter runs immediately before the policy guard so the
-# text that reaches Telegram is mobile-first, source-clean, concise and complete.
+# V13 is the only news runtime. The final editorial formatter is followed by
+# a deterministic byline cleaner so publisher/reporter credits never reach
+# Telegram as the opening of a normal news post.
 v13_media_branding.install(main)
 v13_ai_router.install(main)
 v13_content_enhancer.install(main, v13_ai_router)
@@ -105,10 +97,9 @@ v13_intelligence.install(main)
 v13_freshness_rescue.install(main)
 v13_critical_rescue.install()
 v13_editorial_formatter.install(main)
+v13_byline_cleaner.install(main)
 v13_policy_guard.install(main)
 
-# Re-apply the hardened scope after policy_guard.install(), because that
-# installer may replace main's scope callback with its own wrapper.
 try:
     _installed_policy_scope = v13_policy_guard._foreign_local_only
     def _final_hardened_scope(candidate):
@@ -143,14 +134,11 @@ if __name__ == "__main__":
         print(f"EDUCATION ERROR: {exc}", flush=True)
 
     try:
-        # Car prices are an independent daily board, so they must use their
-        # own Telegram sender rather than the V13 news language gate.
         car_prices.main()
     except Exception as exc:
         print(f"CAR PRICES ERROR: {exc}", flush=True)
 
     try:
-        # Weather is an independent daily board, just like car prices.
         weather.main()
     except Exception as exc:
         print(f"WEATHER ERROR: {exc}", flush=True)
