@@ -71,6 +71,65 @@ EDITORIAL_NON_NEWS = (
 )
 
 
+EDITORIAL_COMMENTARY_MARKERS = (
+    "تأکید بر", "تاکید بر", "تأکید کرد", "تاکید کرد",
+    "اشاره به", "اشاره کرد", "نقش محوری", "نقش مهم",
+    "ضرورت", "لزوم", "خواستار", "درخواست کرد", "دعوت کرد",
+    "توصیه کرد", "ابراز نگرانی", "ابراز خرسندی", "ابراز امیدواری",
+    "حمایت از", "حمایت کرد", "دفاع از", "دفاع کرد",
+    "واکنش نشان داد", "موضع گرفت", "موضع گیری", "موضع‌گیری",
+    "سخنرانی", "اظهارات", "سخنان", "دیدگاه", "پیام",
+    "پیشنهاد کلی", "هوشیاری", "آگاهی بخشی", "آگاهی‌رسانی",
+    "praises", "praised", "calls for", "called for", "urges", "urged",
+    "stresses", "stressed", "emphasizes", "emphasised", "remarks",
+    "comments", "expresses concern", "expressed concern",
+)
+
+EDITORIAL_CONCRETE_EVENT_MARKERS = (
+    "کشته", "کشته شد", "زخمی", "مجروح", "مفقود", "بازداشت",
+    "انفجار", "حمله", "موشک", "بمباران", "درگیری", "آتش‌بس", "آتش بس",
+    "تحریم", "ممنوع", "ممنوعیت", "تعلیق", "لغو", "تصویب", "ابلاغ",
+    "امضا", "توافق", "تملک", "ادغام", "شکایت", "دادگاه",
+    "دستور داد", "تصمیم گرفت", "اقدام کرد", "اجرا کرد", "اعلام کرد که",
+    "افزایش", "کاهش", "جهش", "سقوط", "قطع", "اختلال", "تخلیه",
+    "قیمت", "درصد", "میلیون", "میلیارد", "دلار", "یورو",
+    "killed", "dead", "wounded", "missing", "arrested", "explosion",
+    "attack", "strike", "missile", "bombing", "ceasefire", "sanction",
+    "banned", "suspended", "cancelled", "canceled", "approved", "signed",
+    "agreed", "acquired", "merger", "lawsuit", "court", "ordered",
+    "implemented", "increased", "decreased", "outage", "evacuation",
+    "million", "billion", "percent",
+)
+
+def _commentary_only_news(candidate):
+    """Reject opinion/appeal/ceremonial commentary unless it contains a concrete event.
+    
+    News selection should privilege observable events and consequences over
+    speeches, praise, generic calls, and institutional commentary. This is a
+    neutral news-value gate, not a political-content filter.
+    """
+    title = _norm(candidate.get("title", "")).lower()
+    body = _text(candidate).lower()
+    if not title:
+        return False
+    marker = any(x.lower() in title for x in EDITORIAL_COMMENTARY_MARKERS)
+    if not marker:
+        return False
+    concrete = any(x.lower() in title for x in EDITORIAL_CONCRETE_EVENT_MARKERS)
+    # Numeric/scale evidence is itself a useful concrete-event signal.
+    concrete = concrete or bool(re.search(
+        r"\d+[٫,.]?\d*\s*(?:نفر|درصد|میلیون|میلیارد|دلار|یورو|سال|روز|"
+        r"people|percent|million|billion|dollars?|euros?|days?|years?)",
+        title,
+        re.I,
+    ))
+    # A current, verifiable consequence in the body can rescue a headline
+    # whose title starts with a generic institutional statement.
+    body_consequence = any(x.lower() in body[:2500] for x in EDITORIAL_CONCRETE_EVENT_MARKERS)
+    if concrete or body_consequence:
+        return False
+    return True
+
 def _ceremonial_non_news(candidate):
     title = _norm(candidate.get("title", "")).lower()
     if not title or not any(x in title for x in EDITORIAL_NON_NEWS):
@@ -540,6 +599,8 @@ def is_publishable(main, candidate):
     lower = title.lower()
     if _ceremonial_non_news(candidate):
         return False, 0, "ceremonial-non-news"
+    if _commentary_only_news(candidate):
+        return False, 0, "commentary-only"
     if any(x.lower() in lower for x in LOW_VALUE):
         return False, 0, "low-value"
 
