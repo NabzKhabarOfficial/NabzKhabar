@@ -76,6 +76,26 @@ def _is_important_missed(story):
     )
 
 
+def _ai_pool_status():
+    health = _load("ai_model_health.json", {})
+    if not isinstance(health, dict) or not health:
+        return {"status": "unknown", "models": 0, "disabled": 0, "active": 0}
+    now = int(datetime.now(timezone.utc).timestamp())
+    disabled = 0
+    for entry in health.values():
+        if isinstance(entry, dict) and int(entry.get("disabled_until", 0) or 0) > now:
+            disabled += 1
+    total = len(health)
+    active = max(0, total - disabled)
+    if active == 0:
+        status = "degraded_all_disabled"
+    elif disabled:
+        status = "degraded_partial"
+    else:
+        status = "healthy"
+    return {"status": status, "models": total, "disabled": disabled, "active": active}
+
+
 def build_report():
     health = _load(HEALTH_FILE, {})
     selected = health.get("selected_news_this_run") or []
@@ -125,6 +145,8 @@ def build_report():
     # Do not turn a review signal into a runtime failure. It is specifically
     # there so the next audit can identify potentially important losses without
     # forcing the editorial engine to publish them blindly.
+    ai_pool = _ai_pool_status()
+
     report = {
         "checked_at": datetime.now(timezone.utc).isoformat(),
         "status": "healthy",
@@ -140,8 +162,16 @@ def build_report():
         "failed_publication_attempts": failed_attempts,
         "skipped_duplicate_attempts": skipped_duplicates,
         "last_errors": health.get("last_errors", []),
+        "ai_pool": ai_pool,
         "diagnostics": [],
     }
+
+    if ai_pool["status"] == "degraded_all_disabled":
+        report["diagnostics"].append("All configured AI models are currently cooling down or disabled; foreign-story translation may be blocked.")
+    elif ai_pool["status"] == "degraded_partial":
+        report["diagnostics"].append(
+            f"{ai_pool['disabled']}/{ai_pool['models']} configured AI models are cooling down or disabled."
+        )
 
     if missed or report["failed_publications"] or report["ambiguous_publications"]:
         report["status"] = "publication_failure"
@@ -175,6 +205,10 @@ def build_report():
         json.dump(report, f, ensure_ascii=False, indent=2)
 
     print("V13 MONITOR STATUS:", report["status"], flush=True)
+    print("V13 MONITOR AI POOL: status=%s active=%s disabled=%s total=%s" % (
+        ai_pool["status"], ai_pool["active"], ai_pool["disabled"], ai_pool["models"]
+    ), flush=True)
+
     print(
         "V13 MONITOR: selected=%s published=%s failed=%s ambiguous=%s missed=%s duplicates=%s important_missed=%s"
         % (
