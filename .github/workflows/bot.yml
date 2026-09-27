@@ -148,6 +148,21 @@ jobs:
               raise SystemExit("V13 CEREMONIAL TIER TEST FAILED: freshness rescue inflated a routine story")
           print("V13 CEREMONIAL/RESCUE REGRESSION: PASS")
 
+          # Regression: institutional commentary without a concrete event must never
+          # occupy an important-news slot. This protects against speeches, praise,
+          # generic warnings, and calls for awareness being scored as breaking news.
+          commentary_case = {
+              "title": "امام جمعه بیرجند: سهم عظیمی از آگاهی سازی جامعه در جنگ فرهنگی بر عهده رسانه هاست",
+              "summary": "نماینده ولی فقیه در خراسان جنوبی با اشاره به نقش رسانه ها در جنگ ترکیبی و فرهنگی، بر لزوم هوشیاری و آگاهی بخشی تاکید کرد.",
+              "description": "",
+              "link": "https://example.com/news/commentary-case",
+              "resolved_link": "https://example.com/news/commentary-case",
+          }
+          ok, score, reason = intelligence.is_publishable(v, commentary_case)
+          if ok or reason != "commentary-only":
+              raise SystemExit(f"V13 COMMENTARY FILTER TEST FAILED: {ok}, {score}, {reason}")
+          print("V13 COMMENTARY-ONLY NEWS REGRESSION: PASS")
+
           # Cross-media duplicate regression: the same high-impact aviation/security
           # event must remain one story even when one publication has a photo and
           # the other is text-only / rewritten by the AI title pass.
