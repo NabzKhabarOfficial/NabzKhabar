@@ -8,6 +8,7 @@ import v13_ai_router
 import v13_content_enhancer
 import v13_ad_filter
 import v13_intelligence
+import v13_quality_gate
 import v13_freshness_rescue
 import v13_critical_rescue
 import v13_global_rescue
@@ -84,6 +85,7 @@ v13_ai_router.install(main)
 v13_content_enhancer.install(main, v13_ai_router)
 v13_ad_filter.install(main)
 v13_intelligence.install(main)
+v13_quality_gate.install()
 v13_freshness_rescue.install(main)
 v13_critical_rescue.install()
 v13_global_rescue.install()
