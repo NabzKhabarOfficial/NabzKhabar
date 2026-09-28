@@ -5026,10 +5026,16 @@ def main():
             if duplicate:
                 continue
 
-            # Recent history.
-            if history_contains_story(
-                title,
-                title_history
+            # Recent history. Critical/freshness-rescued stories may
+            # intentionally bypass semantic history; the same bypass must be
+            # honored by the final selection loop or the rescue is silently
+            # discarded after intelligence has selected it.
+            if (
+                history_contains_story(
+                    title,
+                    title_history
+                )
+                and not candidate.get("_history_rescue_bypass")
             ):
                 continue
 
