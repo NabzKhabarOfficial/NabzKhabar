@@ -1,22 +1,87 @@
 {
-  "checked_at": "2026-09-29T16:58:38.041706+00:00",
-  "status": "healthy",
+  "checked_at": "2026-09-29T17:17:52.406200+00:00",
+  "status": "publication_failure",
   "run_status": "success",
-  "raw_candidates": 30,
-  "strict_rejected": 18,
+  "raw_candidates": 41,
+  "strict_rejected": 26,
   "selected_for_publication": 2,
-  "published": 2,
-  "failed_publications": 0,
+  "published": 0,
+  "failed_publications": 2,
   "ambiguous_publications": 0,
-  "missed_selected_stories": [],
-  "important_missed_news": [],
-  "failed_publication_attempts": [],
-  "skipped_duplicate_attempts": [
+  "missed_selected_stories": [
+    {
+      "title": "Senate report claims Iran is using Tether's stablecoin to evade sanctions",
+      "source": "engadget.com",
+      "url": "https://engadget.com/2272053/senate-report-claims-iran-is-using-tethers-stablecoin-to-evade-sanctions",
+      "monitor_reason": "selected-but-not-published"
+    },
     {
       "title": "US ban on Canadian alcohol and dairy takes effect as trade war drags on",
       "source": "bbc.co.uk",
       "url": "https://bbc.co.uk/news/articles/cm1j43y146d2o?at_campaign=rss&at_medium=RSS",
-      "started_at": "2026-09-29T16:58:35.402294+00:00",
+      "monitor_reason": "selected-but-not-published"
+    }
+  ],
+  "important_missed_news": [
+    {
+      "checked_at": "2026-09-29T17:17:24.079955+00:00",
+      "title": "Man City guilty of 'sham' contracts and misleading accounts",
+      "source": "bbc.co.uk",
+      "category": "ورزش",
+      "published_at": "2026-09-29T16:51:14+00:00",
+      "url": "https://bbc.co.uk/sport/football/articles/c63reg93xwzro?at_campaign=rss&at_medium=RSS",
+      "age_seconds": null,
+      "intelligence_score": 0,
+      "reason": "foreign-local-preselection",
+      "stage": "intelligence_filter",
+      "high_impact_security_candidate": false,
+      "major_business_legal_candidate": false,
+      "global_consequential_candidate": true,
+      "unga_breaking_candidate": false,
+      "monitor_reason": "important-candidate-rejected"
+    },
+    {
+      "checked_at": "2026-09-29T17:17:24.085461+00:00",
+      "title": "‘Sham’—Premier League Stun Man City With Scathing Official Guilty Verdict - LiveScore",
+      "source": "fonts.googleapis.com",
+      "category": "ورزش",
+      "published_at": "2026-09-29T16:50:04+00:00",
+      "url": "https://fonts.googleapis.com/css?family=Google+Sans+Text%3A400%2C500%2C700%2C400i%2C500i%2C700i",
+      "age_seconds": null,
+      "intelligence_score": 0,
+      "reason": "foreign-local-preselection",
+      "stage": "intelligence_filter",
+      "high_impact_security_candidate": false,
+      "major_business_legal_candidate": false,
+      "global_consequential_candidate": true,
+      "unga_breaking_candidate": false,
+      "monitor_reason": "important-candidate-rejected"
+    }
+  ],
+  "failed_publication_attempts": [
+    {
+      "title": "Senate report claims Iran is using Tether's stablecoin to evade sanctions",
+      "source": "engadget.com",
+      "url": "https://engadget.com/2272053/senate-report-claims-iran-is-using-tethers-stablecoin-to-evade-sanctions",
+      "started_at": "2026-09-29T17:17:47.764736+00:00",
+      "result": "failed",
+      "error": ""
+    },
+    {
+      "title": "US ban on Canadian alcohol and dairy takes effect as trade war drags on",
+      "source": "bbc.co.uk",
+      "url": "https://bbc.co.uk/news/articles/cm1j43y146d2o?at_campaign=rss&at_medium=RSS",
+      "started_at": "2026-09-29T17:17:50.816484+00:00",
+      "result": "failed",
+      "error": ""
+    }
+  ],
+  "skipped_duplicate_attempts": [
+    {
+      "title": "تیراندازی در ایرانشهر؛ گزارش ها از درگیری نیروهای نظامی با افراد مسلح",
+      "source": "yjc.ir",
+      "url": "https://yjc.ir/fa/news/9134277/تیراندازی-در-ایرانشهر-گزارش‌ها-از-درگیری-نیروهای-نظامی-با-افراد-مسلح-فیلم",
+      "started_at": "2026-09-29T17:17:26.626080+00:00",
       "result": "skipped_duplicate",
       "error": "",
       "reason": "recent-semantic-history"
@@ -25,11 +90,14 @@
   "last_errors": [],
   "ai_pool": {
     "status": "degraded_partial",
-    "models": 11,
-    "disabled": 2,
-    "active": 9
+    "models": 12,
+    "disabled": 7,
+    "active": 5
   },
   "diagnostics": [
-    "2/11 configured AI models are cooling down or disabled."
+    "7/12 configured AI models are cooling down or disabled.",
+    "Selected stories did not reach confirmed publication.",
+    "One or more publication attempts returned failure/exception.",
+    "2 potentially important candidate(s) were rejected; review reasons before changing gates."
   ]
 }
