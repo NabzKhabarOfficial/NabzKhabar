@@ -1,17 +1,24 @@
 {
-  "checked_at": "2026-09-29T14:39:54.100238+00:00",
-  "status": "healthy",
+  "checked_at": "2026-09-29T14:58:38.561937+00:00",
+  "status": "publication_failure",
   "run_status": "success",
-  "raw_candidates": 37,
-  "strict_rejected": 20,
+  "raw_candidates": 38,
+  "strict_rejected": 23,
   "selected_for_publication": 2,
-  "published": 2,
-  "failed_publications": 0,
+  "published": 1,
+  "failed_publications": 1,
   "ambiguous_publications": 0,
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "title": "US ban on Canadian alcohol and dairy takes effect as trade war drags on",
+      "source": "bbc.co.uk",
+      "url": "https://bbc.co.uk/news/articles/cm1j43y146d2o?at_campaign=rss&at_medium=RSS",
+      "monitor_reason": "selected-but-not-published"
+    }
+  ],
   "important_missed_news": [
     {
-      "checked_at": "2026-09-29T14:39:00.211920+00:00",
+      "checked_at": "2026-09-29T14:57:42.957529+00:00",
       "title": "پایان مأموریت «استارشیپ» با انفجار در خلیج مکزیک",
       "source": "yjc.ir",
       "category": "ایران",
@@ -26,15 +33,41 @@
       "global_consequential_candidate": false,
       "unga_breaking_candidate": false,
       "monitor_reason": "important-candidate-rejected"
+    },
+    {
+      "checked_at": "2026-09-29T14:57:42.970084+00:00",
+      "title": "UFC Announces First Official 2027 UFC Fight Night Location & Date - Sports Illustrated",
+      "source": "fonts.googleapis.com",
+      "category": "ورزش",
+      "published_at": "2026-09-29T14:54:28+00:00",
+      "url": "https://fonts.googleapis.com/css?family=Google+Sans+Text%3A400%2C500%2C700%2C400i%2C500i%2C700i",
+      "age_seconds": null,
+      "intelligence_score": 0,
+      "reason": "routine-metaphorical-topic",
+      "stage": "intelligence_filter",
+      "high_impact_security_candidate": false,
+      "major_business_legal_candidate": false,
+      "global_consequential_candidate": true,
+      "unga_breaking_candidate": false,
+      "monitor_reason": "important-candidate-rejected"
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "title": "US ban on Canadian alcohol and dairy takes effect as trade war drags on",
+      "source": "bbc.co.uk",
+      "url": "https://bbc.co.uk/news/articles/cm1j43y146d2o?at_campaign=rss&at_medium=RSS",
+      "started_at": "2026-09-29T14:58:06.809287+00:00",
+      "result": "failed",
+      "error": ""
+    }
+  ],
   "skipped_duplicate_attempts": [
     {
       "title": "سقوط هواپیمای نظامی روسیه ۶ کشته بر جا گذاشت",
       "source": "yjc.ir",
       "url": "https://yjc.ir/fa/news/9134239/سقوط-هواپیمای-نظامی-روسیه-۶-کشته-بر-جا-گذاشت",
-      "started_at": "2026-09-29T14:39:02.855677+00:00",
+      "started_at": "2026-09-29T14:57:44.173927+00:00",
       "result": "skipped_duplicate",
       "error": "",
       "reason": "recent-semantic-history"
@@ -44,11 +77,13 @@
   "ai_pool": {
     "status": "degraded_partial",
     "models": 11,
-    "disabled": 4,
-    "active": 7
+    "disabled": 6,
+    "active": 5
   },
   "diagnostics": [
-    "4/11 configured AI models are cooling down or disabled.",
-    "1 potentially important candidate(s) were rejected; review reasons before changing gates."
+    "6/11 configured AI models are cooling down or disabled.",
+    "Selected stories did not reach confirmed publication.",
+    "One or more publication attempts returned failure/exception.",
+    "2 potentially important candidate(s) were rejected; review reasons before changing gates."
   ]
 }
