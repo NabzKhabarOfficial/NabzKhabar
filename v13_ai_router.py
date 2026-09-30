@@ -238,7 +238,7 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
                 ],
                 "temperature": 0.15,
                 "max_tokens": max_output_tokens,
-                **({"response_format": {"type": "json_object"}} if provider.lower() == "openrouter" else {}),
+                **({"response_format": {"type": "json_object"}} if provider.lower() in ("openrouter", "groq") else {}),
             },
             timeout=AI_HTTP_TIMEOUT_SECONDS,
         )
