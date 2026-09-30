@@ -78,6 +78,25 @@ jobs:
         if: ${{ always() }}
         run: python v13_monitor.py
 
+      - name: Enforce publication health
+        if: ${{ always() }}
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          p=pathlib.Path('v13_monitor.json')
+          if not p.exists():
+              print('V13 MONITOR: missing telemetry')
+              sys.exit(1)
+          data=json.loads(p.read_text(encoding='utf-8'))
+          status=str(data.get('status','')).strip().lower()
+          failed=int(data.get('failed_publications',0) or 0)
+          ambiguous=int(data.get('ambiguous_publications',0) or 0)
+          missed=int(data.get('important_missed_news',0) or 0)
+          print(f'V13 PUBLICATION HEALTH: status={status}, failed={failed}, ambiguous={ambiguous}, important_missed={missed}')
+          if status == 'publication_failure' or failed > 0 or ambiguous > 0:
+              sys.exit(1)
+          PY
+
       - name: Persist runtime state without rewriting code
         if: ${{ always() }}
         env:
