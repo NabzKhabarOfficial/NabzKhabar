@@ -238,7 +238,7 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
                 ],
                 "temperature": 0.15,
                 "max_tokens": max_output_tokens,
-                **({"response_format": {"type": "json_object"}} if provider.lower() in ("openrouter", "groq") else {}),
+                **({"response_format": {"type": "json_schema", "json_schema": {"name": "nabz_news", "strict": True, "schema": {"type": "object", "properties": {"title": {"type": "string"}, "summary": {"type": "string"}}, "required": ["title", "summary"], "additionalProperties": False}}} if provider.lower() == "groq" else ({"response_format": {"type": "json_object"}} if provider.lower() == "openrouter" else {})),
             },
             timeout=AI_HTTP_TIMEOUT_SECONDS,
         )
