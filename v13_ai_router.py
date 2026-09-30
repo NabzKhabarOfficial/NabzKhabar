@@ -377,8 +377,26 @@ def _fallback_provider_request(main, provider, models, base_url, api_key, prompt
             if validated:
                 print(f"V13 AI ROUTER: SUCCESS via {provider}/{model}")
                 return validated
-            print(f"V13 AI ROUTER: {provider}/{model} failed V13 content validation; failing over.")
+            print(f"V13 AI ROUTER: {provider}/{model} failed V13 content validation; attempting one strict retry.")
             _record_quality_failure(health_key)
+            if deadline is not None and time.monotonic() < deadline:
+                retry_prompt = prompt + """
+RETRY — خروجی قبلی رد شد. این بار فقط بازنویسی تحت‌اللفظی انجام بده:
+- هیچ عددی تولید نکن مگر اینکه دقیقاً همان عدد در متن ورودی آمده باشد.
+- هیچ نام، تاریخ، درصد، شمارش یا جزئیات جدید نساز.
+- اگر درباره یک عدد یا جزئیات مطمئن نیستی، آن بخش را حذف کن.
+- فقط دو فیلد title و summary را برگردان و هیچ توضیح دیگری نده.
+"""
+                retry_result, _ = _openai_compatible_json(
+                    main, provider, base_url, api_key, model, retry_prompt
+                )
+                if retry_result:
+                    retry_validated = _validate(main, title, source, retry_result, foreign)
+                    if retry_validated:
+                        print(f"V13 AI ROUTER: SUCCESS via {provider}/{model} strict retry")
+                        return retry_validated
+                    print(f"V13 AI ROUTER: {provider}/{model} strict retry also failed content validation.")
+                    _record_quality_failure(health_key)
     return None
 def _numbers(main, text):
     normalized = main.normalize_digits(str(text or ""))
@@ -444,38 +462,55 @@ def _sentence_count(text):
     ])
 
 
-def _validate(main, original_title, source, data, foreign):
-    if not isinstance(data, dict):
-        return None
-    title = main.clean_title(data.get("title", ""))
-    summary = main.clean_content(data.get("summary", ""))
+def _validation_reasons(main, title, summary, source, foreign):
+    reasons = []
     if not title or not summary:
-        return None
+        reasons.append("empty_title_or_summary")
+        return reasons
     if _bad_meta(title) or _bad_meta(summary):
-        return None
+        reasons.append("metadata_or_source_phrase")
     if _translation_quality_bad(title) or _translation_quality_bad(summary):
-        print("V13 AI ROUTER: translation quality gate rejected malformed Persian output.")
-        print(f"V13 AI ROUTER: rejected title={title[:180]!r}")
-        print(f"V13 AI ROUTER: rejected summary={summary[:500]!r}")
-        return None
-    if _sentence_count(summary) > 3 or len(summary) > 750:
-        return None
-    if not _numbers(main, title + " " + summary).issubset(_numbers(main, source)):
-        return None
-    # Persian-only publication contract: do not allow stray English
-    # words such as "the" to survive into the final Telegram post.
+        reasons.append("translation_quality_artifact")
+    if _sentence_count(summary) > 3:
+        reasons.append("summary_more_than_3_sentences")
+    if len(summary) > 750:
+        reasons.append("summary_over_750_chars")
+    source_numbers = _numbers(main, source)
+    output_numbers = _numbers(main, title + " " + summary)
+    missing_numbers = sorted(output_numbers - source_numbers)
+    if missing_numbers:
+        reasons.append("new_numbers:" + ",".join(missing_numbers[:8]))
     latin_title = re.findall(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", title)
     latin_summary = re.findall(r"(?<![A-Za-z])[A-Za-z]{2,}(?![A-Za-z])", summary)
     allowed_brand = {"NABZ"}
-    if any(x.upper() not in allowed_brand for x in latin_title + latin_summary):
-        return None
-
+    stray_latin = [x for x in latin_title + latin_summary if x.upper() not in allowed_brand]
+    if stray_latin:
+        reasons.append("stray_latin:" + ",".join(stray_latin[:8]))
     if foreign:
-        if _persian_ratio(title) < 0.60 or _persian_ratio(summary) < 0.60:
-            return None
+        if _persian_ratio(title) < 0.60:
+            reasons.append("foreign_title_persian_ratio_low")
+        if _persian_ratio(summary) < 0.60:
+            reasons.append("foreign_summary_persian_ratio_low")
     else:
-        if _persian_ratio(title) < 0.60 or _persian_ratio(summary) < 0.45:
-            return None
+        if _persian_ratio(title) < 0.60:
+            reasons.append("local_title_persian_ratio_low")
+        if _persian_ratio(summary) < 0.45:
+            reasons.append("local_summary_persian_ratio_low")
+    return reasons
+
+
+def _validate(main, original_title, source, data, foreign):
+    if not isinstance(data, dict):
+        print("V13 AI ROUTER: validation rejected non-dict provider output.")
+        return None
+    title = main.clean_title(data.get("title", ""))
+    summary = main.clean_content(data.get("summary", ""))
+    reasons = _validation_reasons(main, title, summary, source, foreign)
+    if reasons:
+        print("V13 AI ROUTER: content validation rejected: " + " | ".join(reasons))
+        print(f"V13 AI ROUTER: rejected title={title[:180]!r}")
+        print(f"V13 AI ROUTER: rejected summary={summary[:500]!r}")
+        return None
     return {"title": title, "summary": summary}
 
 
