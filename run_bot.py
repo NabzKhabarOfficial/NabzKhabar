@@ -44,6 +44,12 @@ for category, query in PERSIAN_GOOGLE_QUERIES:
         main.GOOGLE_NEWS_FEEDS.append(feed)
         existing_google.add(feed)
 
+# ------------------------------------------------------------
+# AI HEALTH: bounded cooldowns
+# ------------------------------------------------------------
+# Free-tier 429s are temporary rate limits, not permanent model failures.
+# The previous 60-minute cooldown unnecessarily reduced the pool during
+# normal quota bursts. Keep the pool adaptive and recoverable.
 _original_mark_model_failure = v13_ai_router._mark_model_failure
 
 def _hardened_mark_model_failure(model, status):
@@ -52,15 +58,42 @@ def _hardened_mark_model_failure(model, status):
         health = v13_ai_router._load_health()
         entry = health.setdefault(model, {})
         now = int(time.time())
-        if int(status) == 429:
-            entry["disabled_until"] = max(float(entry.get("disabled_until", 0)), now + 60 * 60)
-        elif int(status) in (500, 502, 503, 504):
-            entry["disabled_until"] = max(float(entry.get("disabled_until", 0)), now + 20 * 60)
+        code = int(status)
+        if code == 429:
+            entry["disabled_until"] = max(float(entry.get("disabled_until", 0)), now + 10 * 60)
+        elif code in (500, 502, 503, 504, 599):
+            entry["disabled_until"] = max(float(entry.get("disabled_until", 0)), now + 5 * 60)
+        elif code in (400, 401, 403, 404, 422):
+            entry["disabled_until"] = max(float(entry.get("disabled_until", 0)), now + 60)
         v13_ai_router._save_health(health)
     except Exception as exc:
         print(f"V13 AI ROUTER: hardened cooldown save warning: {exc}")
 
 v13_ai_router._mark_model_failure = _hardened_mark_model_failure
+
+# ------------------------------------------------------------
+# TELEGRAM PUBLICATION RELIABILITY
+# ------------------------------------------------------------
+# The low-level Telegram methods already distinguish explicit HTTP failure
+# (False) from ambiguous transport failure (None). Retry ONLY explicit HTTP
+# failures once. This is safe because Telegram rejected the request; an
+# ambiguous timeout is never retried and therefore cannot create duplicates.
+def _bounded_explicit_retry(original, label, attempts=2):
+    def wrapped(*args, **kwargs):
+        for attempt in range(1, attempts + 1):
+            result = original(*args, **kwargs)
+            if result is not False:
+                return result
+            if attempt < attempts:
+                delay = attempt * 2
+                print(f"V13 PUBLICATION RETRY: {label} explicit failure; retry {attempt + 1}/{attempts} after {delay}s")
+                time.sleep(delay)
+        return False
+    return wrapped
+
+main.send_message = _bounded_explicit_retry(main.send_message, "sendMessage")
+main.send_photo = _bounded_explicit_retry(main.send_photo, "sendPhoto")
+main.send_video = _bounded_explicit_retry(main.send_video, "sendVideo")
 
 _original_policy_scope = v13_policy_guard._foreign_local_only
 _GLOBAL_CRITICAL_SCOPE = re.compile(r"(?:saudi\s+arabia|saudi|mecca|makkah|medina|madinah|red\s+sea|hormuz|strait\s+of\s+hormuz|حوثی|عربستان|مکه|مدینه|دریای\s+سرخ|تنگه\s+هرمز|تنگه هرمز)", re.I)
@@ -74,9 +107,6 @@ def _hardened_policy_scope(candidate):
 
 v13_policy_guard._foreign_local_only = _hardened_policy_scope
 
-# Editorial criticality is broader than casualty/security alone. A president's
-# resignation, snap-election trigger, ceasefire decision or major strategic
-# diplomatic change must be eligible for the 6-hour rescue window.
 _original_freshness_critical = v13_freshness_rescue._is_critical
 _MAJOR_POLITICAL_CHANGE = re.compile(r"(?:استعفا|کناره\s*گیری|انتخابات\s+زودهنگام|resign|resigned|resignation|snap\s+election|early\s+election)", re.I)
 _MAJOR_POLITICAL_ACTOR = re.compile(r"(?:رئیس\s*جمهور|رئیس‌جمهور|نخست\s*وزیر|دولت|پارلمان|president|prime\s+minister|government|parliament)", re.I)
