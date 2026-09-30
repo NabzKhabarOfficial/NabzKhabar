@@ -321,7 +321,10 @@ def _global_consequential_override(candidate):
         "demanded", "announces", "announced", "offers", "offered", "proposes",
         "proposed", "agrees", "agreed", "review", "reviews", "reviewed",
         "reconsider", "reconsiders", "reconsidered", "delays", "delayed",
-        "resumes", "resumed",
+        "resumes", "resumed", "execution", "executed", "execution halted", "execution stayed",
+        "stay of execution", "death penalty", "lethal injection", "supreme court",
+        "valuation", "valued at", "valuation doubled", "valuation rises", "funding round",
+        "raised", "raises valuation",
         "تایید", "تأیید", "تصویب", "ممنوع", "تحریم", "بازداشت", "محکوم",
         "امضا", "امضا کرد", "اعلام کرد", "اعلام", "دستور داد", "محدود کرد",
         "محدودیت", "تعلیق", "تعلیق کرد", "توقف", "متوقف کرد", "لغو", "لغو کرد",
@@ -376,8 +379,10 @@ def _global_consequential_override(candidate):
         "convicted", "guilty", "verdict", "bombing", "terrorist attack",
         "outage", "shutdown", "disruption", "اختلال گسترده", "قطع گسترده",
         "تحریم", "نرخ بهره", "تورم", "دادگاه", "انحصار", "ادغام", "تملک",
-        "محکوم", "مجرم شناخته شد", "حکم دادگاه", "بمب‌گذاری", "بمب گذاری",
+        "محکوم", "مجرم شناخته شد", "حکم دادگاه", "اعدام", "مجازات اعدام",
+        "توقف اعدام", "تعلیق اعدام", "حکم اعدام", "بمب‌گذاری", "بمب گذاری",
         "حمله تروریستی", "آتش‌بس", "جنگ", "حمله", "درگیری", "تهدید",
+        "execution", "death penalty", "supreme court", "valuation", "funding round",
     ))
     ai_concrete_action = any(x in title for x in (
         "regulation", "regulations", "regulated", "regulate", "banned", "ban",
@@ -386,6 +391,7 @@ def _global_consequential_override(candidate):
         "governance", "outage", "shutdown", "rolls out", "rolled out",
         "مقررات", "قانون", "ممنوع", "تصویب", "عرضه", "رونمایی", "توافق",
         "تملک", "ادغام", "ایمنی", "امنیت", "حکمرانی", "قطعی", "اختلال",
+        "ارزش‌گذاری", "ارزش گذاری", "سرمایه‌گذاری", "سرمایه گذاری", "تأمین مالی", "تامین مالی",
     ))
     if statement_only:
         return False
