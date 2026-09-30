@@ -68,6 +68,9 @@ jobs:
           print('V13 AI POOL CONFIG:', ', '.join(f'{k}={"READY" if os.getenv(v," ").strip() else "MISSING"}' for k,v in p.items()))
           PY
 
+      - name: Reset per-run telemetry
+        run: python -c "from pathlib import Path; [p.unlink() for p in (Path('v13_health.json'), Path('v13_monitor.json')) if p.exists()]" 
+
       - name: Run independent V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
