@@ -65,6 +65,36 @@ def _hardened_mark_model_failure(model, status):
 
 v13_ai_router._mark_model_failure = _hardened_mark_model_failure
 
+def _install_v13_stack():
+    """Install the V13 editorial/runtime layers explicitly and exactly once."""
+    if getattr(main, "_v13_stack_installed", False):
+        return
+
+    # Base integrations first; later layers wrap the already-installed base
+    # functions so the final execution path is deterministic.
+    v13_media_branding.install(main)
+    v13_ai_router.install(main)
+    v13_content_enhancer.install(main, v13_ai_router)
+    v13_ad_filter.install(main)
+    v13_freshness_rescue.install(main)
+    v13_editorial_formatter.install(main)
+    v13_byline_cleaner.install(main)
+    v13_policy_guard.install(main)
+
+    # Quality scoring must wrap the intelligence scorer before intelligence
+    # installs its candidate-selection/health wrapper.
+    v13_quality_gate.install()
+    v13_intelligence.install(main)
+
+    # Rescue layers are deliberately last: they may reopen only the narrowly
+    # defined critical/global cases after the normal intelligence gate.
+    v13_critical_rescue.install()
+    v13_global_rescue.install()
+
+    main._v13_stack_installed = True
+    print("V13 STACK: all editorial, rescue, media, AI, and health layers installed", flush=True)
+
+
 _original_openai_compatible_json = v13_ai_router._openai_compatible_json
 
 def _hardened_openai_compatible_json(main_obj, provider, base_url, api_key, model, prompt, max_output_tokens=900):
@@ -177,6 +207,7 @@ def _patch_history_rescue_pipeline():
 
 
 if __name__ == "__main__":
+    _install_v13_stack()
     _patch_history_rescue_pipeline()
     print("V13 ENGINE LAUNCH: run_bot -> v13_standalone.main()", flush=True)
     result = main.main()
