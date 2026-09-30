@@ -65,10 +65,33 @@ def _is_important_missed(story):
     score = int(story.get("intelligence_score", 0) or 0)
     title = str(story.get("title", "") or "").lower()
     reason = str(story.get("reason", "") or "").lower()
+    url = str(story.get("url", "") or "").lower()
+    category = str(story.get("category", "") or "").lower()
     public_safety = any(x in title for x in PUBLIC_SAFETY_IMPORTANT)
 
-    # foreign-local-preselection is deliberately broad. Generic global flags
-    # on ordinary overseas/local stories must not create false missed alerts.
+    # Never let a stale/over-broad upstream flag turn routine sports or web
+    # assets into an "important missed" alert. These are monitoring-only
+    # diagnostics, so false positives are more harmful than a second review.
+    sports_terms = (
+        "premier league", "league", "football", "soccer", "basketball",
+        "tennis", "handball", "cricket", "golf", "formula 1", "f1",
+        "ufc", "mma", "brighton", "arsenal", "manchester city",
+    )
+    asset_url = (
+        url.endswith((".css", ".js", ".woff", ".woff2", ".ttf", ".ico"))
+        or "/css?" in url
+        or "fonts.googleapis.com" in url
+        or "fonts.gstatic.com" in url
+    )
+    routine_sports = any(term in title for term in sports_terms) and not public_safety
+
+    if asset_url or routine_sports:
+        return False
+
+    # foreign-local-preselection is deliberately broad. Do not trust the
+    # upstream global_consequential_candidate flag by itself; require an
+    # independently recognizable consequential event or an explicit safety,
+    # legal/business, or UN override.
     if reason == "foreign-local-preselection":
         return bool(
             public_safety
@@ -76,6 +99,7 @@ def _is_important_missed(story):
             or story.get("high_impact_security_candidate")
             or story.get("major_business_legal_candidate")
             or story.get("unga_breaking_candidate")
+            or _monitor_global_consequential(story)
         )
 
     return bool(
