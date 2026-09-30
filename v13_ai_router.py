@@ -220,6 +220,44 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
     endpoint = f"{base_url}/chat/completions"
     health_key = f"{provider.lower()}:{model}"
     try:
+        provider_name = provider.lower()
+        response_format = {}
+        if provider_name == "groq":
+            response_format = {
+                "response_format": {
+                    "type": "json_schema",
+                    "json_schema": {
+                        "name": "nabz_news",
+                        "strict": True,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {"type": "string"},
+                                "summary": {"type": "string"},
+                            },
+                            "required": ["title", "summary"],
+                            "additionalProperties": False,
+                        },
+                    },
+                }
+            }
+        elif provider_name == "openrouter":
+            response_format = {"response_format": {"type": "json_object"}}
+
+        request_payload = {
+            "model": model,
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "خروجی فقط یک JSON معتبر با دو کلید title و summary باشد؛ هیچ متن دیگری تولید نکن.",
+                },
+                {"role": "user", "content": prompt},
+            ],
+            "temperature": 0.15,
+            "max_tokens": max_output_tokens,
+        }
+        request_payload.update(response_format)
+
         response = main.SESSION.post(
             endpoint,
             headers={
@@ -227,19 +265,7 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
                 "Content-Type": "application/json",
                 "User-Agent": "NabzKhabar-V13/1.0",
             },
-            json={
-                "model": model,
-                "messages": [
-                    {
-                        "role": "system",
-                        "content": "خروجی فقط یک JSON معتبر با دو کلید title و summary باشد؛ هیچ متن دیگری تولید نکن.",
-                    },
-                    {"role": "user", "content": prompt},
-                ],
-                "temperature": 0.15,
-                "max_tokens": max_output_tokens,
-                **({"response_format": {"type": "json_schema", "json_schema": {"name": "nabz_news", "strict": True, "schema": {"type": "object", "properties": {"title": {"type": "string"}, "summary": {"type": "string"}}, "required": ["title", "summary"], "additionalProperties": False}}} if provider.lower() == "groq" else {"response_format": {"type": "json_object"}} if provider.lower() == "openrouter" else {}),
-            },
+            json=request_payload,
             timeout=AI_HTTP_TIMEOUT_SECONDS,
         )
         if response.status_code == 400:
