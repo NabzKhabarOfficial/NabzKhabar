@@ -116,7 +116,7 @@ jobs:
           done
           for attempt in 1 2 3; do
             git fetch origin main
-            git merge --ff-only origin/main || true
+            git reset --hard origin/main
             for f in sent_news.txt ai_model_health.json v13_health.json v13_rejected_news.json v13_monitor.json car_prices_history.json weather_history.json; do
               test ! -f "/tmp/v13-state/$f" || cp "/tmp/v13-state/$f" "$f"
             done
@@ -130,8 +130,7 @@ jobs:
               echo 'Runtime state synchronized without rewriting code.'
               exit 0
             fi
-            git reset --soft HEAD~1
-            git reset
+            git reset --hard origin/main
             sleep 2
           done
           echo 'Runtime state synchronization failed.'
