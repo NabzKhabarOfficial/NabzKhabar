@@ -64,7 +64,20 @@ def _monitor_global_consequential(story):
 def _is_important_missed(story):
     score = int(story.get("intelligence_score", 0) or 0)
     title = str(story.get("title", "") or "").lower()
+    reason = str(story.get("reason", "") or "").lower()
     public_safety = any(x in title for x in PUBLIC_SAFETY_IMPORTANT)
+
+    # foreign-local-preselection is deliberately broad. Generic global flags
+    # on ordinary overseas/local stories must not create false missed alerts.
+    if reason == "foreign-local-preselection":
+        return bool(
+            public_safety
+            or score >= IMPORTANT_MISSED_SCORE
+            or story.get("high_impact_security_candidate")
+            or story.get("major_business_legal_candidate")
+            or story.get("unga_breaking_candidate")
+        )
+
     return bool(
         public_safety
         or score >= IMPORTANT_MISSED_SCORE
