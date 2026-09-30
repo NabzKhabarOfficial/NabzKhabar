@@ -71,6 +71,18 @@ def _hardened_mark_model_failure(model, status):
 
 v13_ai_router._mark_model_failure = _hardened_mark_model_failure
 
+# Groq GPT-OSS structured-output requests need enough completion budget to
+# finish the JSON document. Keep the router's normal Gemini budget unchanged.
+_original_openai_compatible_json = v13_ai_router._openai_compatible_json
+
+def _hardened_openai_compatible_json(main_obj, provider, base_url, api_key, model, prompt, max_output_tokens=900):
+    return _original_openai_compatible_json(
+        main_obj, provider, base_url, api_key, model, prompt,
+        max_output_tokens=max_output_tokens,
+    )
+
+v13_ai_router._openai_compatible_json = _hardened_openai_compatible_json
+
 # ------------------------------------------------------------
 # TELEGRAM PUBLICATION RELIABILITY
 # ------------------------------------------------------------
@@ -178,76 +190,3 @@ def _patch_history_rescue_pipeline():
         return candidates
     main.collect_candidates = _editorial_category_normalized_collect
     print("V13 HISTORY/EDITORIAL PRIORITY PATCH: active", flush=True)
-
-
-_patch_history_rescue_pipeline()
-
-v13_media_branding.install(main)
-v13_ai_router.install(main)
-v13_content_enhancer.install(main, v13_ai_router)
-v13_ad_filter.install(main)
-v13_intelligence.install(main)
-
-_original_publication_tier = v13_intelligence._publication_tier
-
-def _priority_publication_tier(candidate):
-    tier = int(_original_publication_tier(candidate) or 1)
-    title = str(candidate.get("title", "") or "").lower()
-    critical_rescue = bool(candidate.get("freshness_rescued") and (v13_freshness_rescue._is_critical(candidate) or v13_global_rescue._is_global_critical(candidate)))
-    casualty_or_public_safety = any(x in title for x in ("کشته", "زخمی", "مفقود", "به شهادت رسید", "به شهادت رسیدند", "تیراندازی", "انفجار", "حمله", "زلزله", "سیل", "killed", "dead", "wounded", "missing", "mass shooting", "explosion"))
-    major_political_change = bool(_MAJOR_POLITICAL_CHANGE.search(title) and _MAJOR_POLITICAL_ACTOR.search(title))
-    strategic_change = bool(_STRATEGIC_CHANGE.search(title) and _STRATEGIC_ACTOR.search(title))
-    major_actor = any(x in title for x in ("ایران", "آمریکا", "روسیه", "اوکراین", "اسرائیل", "صربستان", "britain", "serbia", "iran", "russia", "ukraine", "israel"))
-    if critical_rescue or major_political_change or strategic_change or (casualty_or_public_safety and major_actor):
-        return max(tier, 4)
-    return tier
-
-v13_intelligence._publication_tier = _priority_publication_tier
-
-v13_quality_gate.install()
-v13_freshness_rescue.install(main)
-v13_critical_rescue.install()
-v13_global_rescue.install()
-v13_editorial_formatter.install(main)
-v13_byline_cleaner.install(main)
-v13_policy_guard.install(main)
-
-try:
-    _installed_policy_scope = v13_policy_guard._foreign_local_only
-    def _final_hardened_scope(candidate):
-        text = " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description"))
-        if v13_policy_guard._final_global_security_override(candidate):
-            return False
-        if _GLOBAL_CRITICAL_SCOPE.search(text) and _GLOBAL_CRITICAL_EVENT.search(text):
-            return False
-        return _installed_policy_scope(candidate)
-    v13_policy_guard._foreign_local_only = _final_hardened_scope
-except Exception as exc:
-    print(f"V13 SCOPE HARDENING WARNING: {exc}")
-
-import education
-import car_prices
-import weather
-
-if __name__ == "__main__":
-    news_failed = False
-    try:
-        main.main()
-    except Exception as exc:
-        news_failed = True
-        print(f"NEWS RUNTIME ERROR: {exc}", flush=True)
-    try:
-        education.main.send_message = main.send_message
-        education.post_daily_education()
-    except Exception as exc:
-        print(f"EDUCATION ERROR: {exc}", flush=True)
-    try:
-        car_prices.main()
-    except Exception as exc:
-        print(f"CAR PRICES ERROR: {exc}", flush=True)
-    try:
-        weather.main()
-    except Exception as exc:
-        print(f"WEATHER ERROR: {exc}", flush=True)
-    if news_failed:
-        sys.exit(1)
