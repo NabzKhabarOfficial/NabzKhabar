@@ -4948,47 +4948,12 @@ def process_news(
 
 
 # ============================================================
-# RUNTIME HEALTH TELEMETRY
-# ============================================================
-HEALTH_FILE = "v13_health.json"
-
-
-def _fresh_health_state():
-    return {
-        "status": "running",
-        "started_at": datetime.now(timezone.utc).isoformat(),
-        "raw_candidates": 0,
-        "strict_rejected": 0,
-        "selected_news_this_run": [],
-        "publication_attempts": [],
-        "rejected_news_this_run": [],
-        "published": 0,
-        "failed_publications": 0,
-        "ambiguous_publications": 0,
-        "last_errors": [],
-    }
-
-
-def _write_health(state):
-    try:
-        with open(HEALTH_FILE, "w", encoding="utf-8") as f:
-            json.dump(state, f, ensure_ascii=False, indent=2)
-    except Exception as exc:
-        print(f"V13 HEALTH WRITE WARNING: {exc}", flush=True)
-
-
-# ============================================================
 # MAIN
 # ============================================================
 
 def main():
 
     start_time = time.time()
-
-    # Fresh telemetry for every execution: monitoring must never consume
-    # publication attempts left by a previous run.
-    health = _fresh_health_state()
-    _write_health(health)
 
     hash_history, title_history = load_history()
 
@@ -5006,17 +4971,12 @@ def main():
         hash_history,
         title_history
     )
-    health["raw_candidates"] = len(candidates)
-    _write_health(health)
 
     if not candidates:
 
         print(
             "No fresh unused candidates found."
         )
-        health["status"] = "healthy"
-        health["finished_at"] = datetime.now(timezone.utc).isoformat()
-        _write_health(health)
 
         return
 
@@ -5117,62 +5077,23 @@ def main():
             f"{best.get('title', '')}"
         )
 
-        # Record the exact candidate before Telegram publication. This list
-        # belongs only to this run and is the authoritative monitor input.
-        health["selected_news_this_run"].append({
-            "title": str(best.get("title", "") or ""),
-            "source": str(best.get("source", "") or ""),
-            "url": str(best.get("url", "") or ""),
-            "category": str(best.get("category", "") or ""),
-            "importance": best.get("importance", 0),
-        })
-        _write_health(health)
-
         success = process_news(
             best,
             hash_history,
             title_history
         )
 
-        publication_status = str(best.get("publication_status", "") or "")
         if success:
 
             published += 1
-            health["published"] = published
-            health["publication_attempts"].append({
-                "title": str(best.get("title", "") or ""),
-                "source": str(best.get("source", "") or ""),
-                "url": str(best.get("url", "") or ""),
-                "result": "published",
-            })
 
             selected.append(
                 best
             )
 
-            _write_health(health)
             time.sleep(
                 1
             )
-        else:
-            result = "ambiguous" if publication_status == "publication_ambiguous" else "failed"
-            health["publication_attempts"].append({
-                "title": str(best.get("title", "") or ""),
-                "source": str(best.get("source", "") or ""),
-                "url": str(best.get("url", "") or ""),
-                "result": result,
-                "publication_status": publication_status,
-            })
-            if result == "ambiguous":
-                health["ambiguous_publications"] += 1
-            else:
-                health["failed_publications"] += 1
-            health["last_errors"].append({
-                "title": str(best.get("title", "") or ""),
-                "result": result,
-                "publication_status": publication_status,
-            })
-            _write_health(health)
 
     # ========================================================
     # FINAL STATS
@@ -5202,11 +5123,6 @@ def main():
         f"Semantic history now: "
         f"{len(title_history)}"
     )
-
-    health["published"] = published
-    health["status"] = "healthy"
-    health["finished_at"] = datetime.now(timezone.utc).isoformat()
-    _write_health(health)
 
     print(
         "=" * 64
