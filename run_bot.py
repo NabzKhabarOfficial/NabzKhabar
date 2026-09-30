@@ -44,12 +44,6 @@ for category, query in PERSIAN_GOOGLE_QUERIES:
         main.GOOGLE_NEWS_FEEDS.append(feed)
         existing_google.add(feed)
 
-# ------------------------------------------------------------
-# AI HEALTH: bounded cooldowns
-# ------------------------------------------------------------
-# Free-tier 429s are temporary rate limits, not permanent model failures.
-# The previous 60-minute cooldown unnecessarily reduced the pool during
-# normal quota bursts. Keep the pool adaptive and recoverable.
 _original_mark_model_failure = v13_ai_router._mark_model_failure
 
 def _hardened_mark_model_failure(model, status):
@@ -71,8 +65,6 @@ def _hardened_mark_model_failure(model, status):
 
 v13_ai_router._mark_model_failure = _hardened_mark_model_failure
 
-# Groq GPT-OSS structured-output requests need enough completion budget to
-# finish the JSON document. Keep the router's normal Gemini budget unchanged.
 _original_openai_compatible_json = v13_ai_router._openai_compatible_json
 
 def _hardened_openai_compatible_json(main_obj, provider, base_url, api_key, model, prompt, max_output_tokens=900):
@@ -83,13 +75,7 @@ def _hardened_openai_compatible_json(main_obj, provider, base_url, api_key, mode
 
 v13_ai_router._openai_compatible_json = _hardened_openai_compatible_json
 
-# ------------------------------------------------------------
-# TELEGRAM PUBLICATION RELIABILITY
-# ------------------------------------------------------------
-# The low-level Telegram methods already distinguish explicit HTTP failure
-# (False) from ambiguous transport failure (None). Retry ONLY explicit HTTP
-# failures once. This is safe because Telegram rejected the request; an
-# ambiguous timeout is never retried and therefore cannot create duplicates.
+
 def _bounded_explicit_retry(original, label, attempts=2):
     def wrapped(*args, **kwargs):
         for attempt in range(1, attempts + 1):
@@ -128,9 +114,7 @@ _STRATEGIC_ACTOR = re.compile(r"(?:ایران|آمریکا|اسرائیل|روس
 def _editorial_freshness_critical(candidate):
     if _original_freshness_critical(candidate):
         return True
-    title = str(candidate.get("title", "") or "")
-    summary = str(candidate.get("summary", "") or "")
-    text = f"{title} {summary}"
+    text = f"{candidate.get('title', '')} {candidate.get('summary', '')}"
     if _MAJOR_POLITICAL_CHANGE.search(text) and _MAJOR_POLITICAL_ACTOR.search(text):
         return True
     if _STRATEGIC_CHANGE.search(text) and _STRATEGIC_ACTOR.search(text):
@@ -190,3 +174,11 @@ def _patch_history_rescue_pipeline():
         return candidates
     main.collect_candidates = _editorial_category_normalized_collect
     print("V13 HISTORY/EDITORIAL PRIORITY PATCH: active", flush=True)
+
+
+if __name__ == "__main__":
+    _patch_history_rescue_pipeline()
+    print("V13 ENGINE LAUNCH: run_bot -> v13_standalone.main()", flush=True)
+    result = main.main()
+    if result is False:
+        raise SystemExit(1)
