@@ -283,7 +283,12 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
         if response.status_code == 400:
             detail = str(getattr(response, "text", "") or "").replace("\n", " ")[:500]
             print(f"V13 AI ROUTER: {provider}/{model} HTTP 400; provider rejected request: {detail}")
-            _mark_model_failure(health_key, 400)
+            # Groq json_validate_failed means generation/structured-output
+            # failure, not provider downtime. Keep the model available.
+            if "json_validate_failed" in detail or "Failed to generate JSON" in detail or "Failed to validate JSON" in detail:
+                _record_quality_failure(health_key)
+            else:
+                _mark_model_failure(health_key, 400)
             return None, False
         if response.status_code == 404:
             print(f"V13 AI ROUTER: {provider}/{model} HTTP 404; skipping.")
@@ -371,7 +376,9 @@ def _fallback_provider_request(main, provider, models, base_url, api_key, prompt
         if _model_disabled(health, health_key):
             print(f"V13 AI ROUTER: {provider}/{model} is in cooldown; skipping.")
             continue
-        result, _ = _openai_compatible_json(main, provider, base_url, api_key, model, prompt)
+        result, _ = _openai_compatible_json(
+            main, provider, base_url, api_key, model, prompt, max_output_tokens=900
+        )
         if result:
             validated = _validate(main, title, source, result, foreign)
             if validated:
