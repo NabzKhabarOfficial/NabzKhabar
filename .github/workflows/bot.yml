@@ -175,13 +175,32 @@ jobs:
               raise SystemExit("V13 PUBLIC SAFETY MISSED TEST FAILED")
           print("V13 RESCUE/MISSED NEWS REGRESSION: PASS")
 
-          monitor_cases = [
-              "گاردین: جزئیات توافق نفتی آمریکا و ونزوئلا، ادعا های بزرگ ترامپ را زیر سؤال می برد",
-              "آلمان پیشنهاد تشکیل نیروی واکنش سریع اروپایی برای مقابله با بحران های مهاجرتی را مطرح کرد",
+          monitor_false_positive_cases = [
+              {
+                  "title": "اقدام منچسترسیتی علیه لیگ برتر؛ حکم کمیسیون اتحادیه انگلیس باطل می شود؟",
+                  "intelligence_score": 0,
+                  "reason": "foreign-local-preselection",
+                  "global_consequential_candidate": True,
+              },
+              {
+                  "title": "Premier League KMI panel gives verdict on 2 Brighton-Arsenal decisions - Yahoo Sports",
+                  "intelligence_score": 0,
+                  "reason": "foreign-local-preselection",
+                  "global_consequential_candidate": True,
+              },
           ]
-          for title in monitor_cases:
-              if not monitor._is_important_missed({"title": title, "intelligence_score": 0, "reason": "foreign-local-preselection"}):
-                  raise SystemExit(f"V13 IMPORTANT MISSED MONITOR TEST FAILED: {title}")
+          for story in monitor_false_positive_cases:
+              if monitor._is_important_missed(story):
+                  raise SystemExit(f"V13 IMPORTANT MISSED FALSE-POSITIVE TEST FAILED: {story['title']}")
+          strong_monitor_case = {
+              "title": "Two mass shootings in South Africa leave 27 dead",
+              "intelligence_score": 0,
+              "reason": "foreign-local-preselection",
+              "global_consequential_candidate": True,
+              "high_impact_security_candidate": True,
+          }
+          if not monitor._is_important_missed(strong_monitor_case):
+              raise SystemExit("V13 IMPORTANT MISSED SECURITY TEST FAILED")
           print("V13 IMPORTANT MISSED MONITOR REGRESSION: PASS")
 
           cases = [
