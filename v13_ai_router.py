@@ -18,7 +18,7 @@ MODEL_CANDIDATES = (
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 AI_HEALTH_FILE = "ai_model_health.json"
 MODEL_COOLDOWN_SECONDS = 5 * 60
-QUALITY_COOLDOWN_SECONDS = 90
+QUALITY_COOLDOWN_SECONDS = 20
 # Hard upper bound per selected story so slow/free providers cannot hold the scheduled workflow hostage.
 AI_STORY_BUDGET_SECONDS = 75
 AI_HTTP_TIMEOUT_SECONDS = 12
@@ -126,6 +126,16 @@ def _mark_model_failure(model, status):
     entry["last_status"] = int(status)
     _save_health(health)
     print(f"V13 AI ROUTER: {model} circuit-open for {cooldown}s after HTTP {status}.")
+
+
+def _record_quality_failure(model):
+    health = _load_health()
+    entry = health.setdefault(model, {})
+    entry["last_quality_failure"] = int(time.time())
+    entry.pop("disabled_until", None)
+    entry["last_status"] = 422
+    _save_health(health)
+    print(f"V13 AI ROUTER: {model} content-quality failure recorded; provider remains available.")
 
 
 def _mark_model_success(model):
@@ -256,6 +266,8 @@ def _openai_compatible_json(main, provider, base_url, api_key, model, prompt, ma
             "temperature": 0.15,
             "max_tokens": max_output_tokens,
         }
+        if provider_name == "groq":
+            request_payload["include_reasoning"] = False
         request_payload.update(response_format)
 
         response = main.SESSION.post(
@@ -365,8 +377,8 @@ def _fallback_provider_request(main, provider, models, base_url, api_key, prompt
             if validated:
                 print(f"V13 AI ROUTER: SUCCESS via {provider}/{model}")
                 return validated
-            print(f"V13 AI ROUTER: {provider}/{model} returned invalid/unsafe output; failing over.")
-            _mark_model_failure(health_key, 422)
+            print(f"V13 AI ROUTER: {provider}/{model} failed V13 content validation; failing over.")
+            _record_quality_failure(health_key)
     return None
 def _numbers(main, text):
     normalized = main.normalize_digits(str(text or ""))
@@ -483,6 +495,7 @@ def gemini_request(main, title, article_text):
 - عنوان کوتاه، دقیق و خبری باشد.
 - خلاصه حداکثر ۳ جمله و ۷۵۰ نویسه باشد.
 - هیچ عدد، نام، ادعا یا واقعیت جدیدی اضافه نکن.
+- هیچ عددی را حدس نزن؛ اگر عددی عیناً در متن خبر نیست، آن را حذف کن.
 - هیچ لینک، منبع، «به گزارش» یا توضیح درباره ترجمه نده.
 - نام افراد، کشورها و سازمان‌ها را دقیق حفظ کن.
 - فقط JSON معتبر:
@@ -499,6 +512,7 @@ def gemini_request(main, title, article_text):
 - عنوان دقیق، کوتاه و خبری باشد.
 - خلاصه حداکثر ۳ جمله و ۷۵۰ نویسه باشد.
 - هیچ عدد، نام، ادعا یا واقعیت جدیدی اضافه نکن.
+- هیچ عددی را حدس نزن؛ اگر عددی عیناً در متن خبر نیست، آن را حذف کن.
 - هیچ لینک، منبع یا عبارت «به گزارش» اضافه نکن.
 - فقط اطلاعات موجود در متن را حفظ کن.
 
@@ -530,8 +544,8 @@ def gemini_request(main, title, article_text):
                 _mark_model_success(health_key)
                 print(f"V13 AI ROUTER: SUCCESS via Gemini/{model}")
                 return validated
-            print(f"V13 AI ROUTER: Gemini/{model} returned invalid/unsafe output; failing over.")
-            _mark_model_failure(health_key, 422)
+            print(f"V13 AI ROUTER: Gemini/{model} failed V13 content validation; failing over.")
+            _record_quality_failure(health_key)
 
     if ENABLE_OPENROUTER_FALLBACK and OPENROUTER_API_KEY:
         result = _fallback_provider_request(
