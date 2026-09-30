@@ -1,31 +1,38 @@
 {
-  "checked_at": "2026-09-30T07:04:54.994998+00:00",
-  "status": "healthy",
+  "checked_at": "2026-09-30T07:30:02.672371+00:00",
+  "status": "publication_failure",
   "run_status": "success",
-  "raw_candidates": 42,
-  "strict_rejected": 17,
+  "raw_candidates": 37,
+  "strict_rejected": 14,
   "selected_for_publication": 2,
-  "published": 2,
-  "failed_publications": 0,
+  "published": 1,
+  "failed_publications": 1,
   "ambiguous_publications": 0,
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "title": "Girl has multiple surgeries to control infections after strike in Gaza",
+      "source": "bbc.co.uk",
+      "url": "https://bbc.co.uk/news/videos/c8n5d0e0n6wdo?at_campaign=rss&at_medium=RSS",
+      "monitor_reason": "selected-but-not-published"
+    }
+  ],
   "important_missed_news": [],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "title": "Girl has multiple surgeries to control infections after strike in Gaza",
+      "source": "bbc.co.uk",
+      "url": "https://bbc.co.uk/news/videos/c8n5d0e0n6wdo?at_campaign=rss&at_medium=RSS",
+      "started_at": "2026-09-30T07:29:40.421362+00:00",
+      "result": "failed",
+      "error": ""
+    }
+  ],
   "skipped_duplicate_attempts": [
     {
       "title": "خروج آخرین نیروهای آمریکایی از عراق؛ ۲۳ سال پس از حمله ۲۰۰۳",
       "source": "bbc.com",
       "url": "https://bbc.com/persian/articles/cx305g2jp3r6o?at_campaign=rss&at_medium=RSS",
-      "started_at": "2026-09-30T07:04:05.488060+00:00",
-      "result": "skipped_duplicate",
-      "error": "",
-      "reason": "recent-semantic-history"
-    },
-    {
-      "title": "Girl has multiple surgeries to control infections after strike in Gaza",
-      "source": "bbc.co.uk",
-      "url": "https://bbc.co.uk/news/videos/c8n5d0e0n6wdo?at_campaign=rss&at_medium=RSS",
-      "started_at": "2026-09-30T07:04:50.492196+00:00",
+      "started_at": "2026-09-30T07:29:19.223385+00:00",
       "result": "skipped_duplicate",
       "error": "",
       "reason": "recent-semantic-history"
@@ -34,11 +41,13 @@
   "last_errors": [],
   "ai_pool": {
     "status": "degraded_partial",
-    "models": 10,
-    "disabled": 4,
-    "active": 6
+    "models": 11,
+    "disabled": 6,
+    "active": 5
   },
   "diagnostics": [
-    "4/10 configured AI models are cooling down or disabled."
+    "6/11 configured AI models are cooling down or disabled.",
+    "Selected stories did not reach confirmed publication.",
+    "One or more publication attempts returned failure/exception."
   ]
 }
