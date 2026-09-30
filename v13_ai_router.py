@@ -401,8 +401,6 @@ RETRY — خروجی قبلی از کنترل کیفیت رد شد. این با�
                 retry_result, _ = _openai_compatible_json(
                     main, provider, base_url, api_key, model, retry_prompt, max_output_tokens=1200
                 )
-                    main, provider, base_url, api_key, model, retry_prompt
-                )
                 if retry_result:
                     retry_validated = _validate(main, title, source, retry_result, foreign)
                     if retry_validated:
