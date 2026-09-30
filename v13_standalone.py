@@ -5035,8 +5035,10 @@ def main():
                     title,
                     title_history
                 )
-                and not candidate.get("_history_rescue_bypass")
             ):
+                # Rescue may bypass the old-hash gate, but NEVER bypass
+                # semantic history. A critical story already published must
+                # not consume a selection slot and then be discarded later.
                 continue
 
             # Effective score.
