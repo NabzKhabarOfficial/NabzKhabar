@@ -1030,6 +1030,16 @@ def install(main):
             families[family] += 1
 
         state["selected_for_publication"] = len(selected)
+        state["selected_news_this_run"] = [
+            {
+                "title": x.get("title", ""),
+                "source": _source_host(main, x) or x.get("source", "") or "unknown",
+                "url": x.get("resolved_link") or x.get("link") or "",
+                "intelligence_score": int(x.get("intelligence_score", 0) or 0),
+                "publication_tier": int(x.get("publication_tier", 1) or 1),
+            }
+            for x in selected
+        ]
         state["top_sources"] = dict(Counter(
             _source_host(main, x) or "unknown" for x in selected
         ))
