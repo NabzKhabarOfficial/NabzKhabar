@@ -377,24 +377,30 @@ def _fallback_provider_request(main, provider, models, base_url, api_key, prompt
             print(f"V13 AI ROUTER: {provider}/{model} is in cooldown; skipping.")
             continue
         result, _ = _openai_compatible_json(
-            main, provider, base_url, api_key, model, prompt, max_output_tokens=900
+            main, provider, base_url, api_key, model, prompt, max_output_tokens=1200
         )
         if result:
             validated = _validate(main, title, source, result, foreign)
             if validated:
                 print(f"V13 AI ROUTER: SUCCESS via {provider}/{model}")
                 return validated
-            print(f"V13 AI ROUTER: {provider}/{model} failed V13 content validation; attempting one strict retry.")
+            reasons = _validation_reasons(main, str(result.get("title", "")), str(result.get("summary", "")), source, foreign)
+            print(f"V13 AI ROUTER: {provider}/{model} failed V13 content validation; reasons=" + " | ".join(reasons) + "; attempting one strict retry.")
             _record_quality_failure(health_key)
             if deadline is not None and time.monotonic() < deadline:
                 retry_prompt = prompt + """
-RETRY — خروجی قبلی رد شد. این بار فقط بازنویسی تحت‌اللفظی انجام بده:
-- هیچ عددی تولید نکن مگر اینکه دقیقاً همان عدد در متن ورودی آمده باشد.
-- هیچ نام، تاریخ، درصد، شمارش یا جزئیات جدید نساز.
-- اگر درباره یک عدد یا جزئیات مطمئن نیستی، آن بخش را حذف کن.
+RETRY — خروجی قبلی از کنترل کیفیت رد شد. این بار بسیار محافظه‌کارانه عمل کن:
+- فقط فارسی طبیعی و رایج و روزنامه‌نگارانه بنویس؛ ترجمه تحت‌اللفظی یا عبارت ماشینی ممنوع.
+- نام افراد، کشورها و سازمان‌ها را با شکل رایج فارسی بنویس؛ آوانویسی عجیب یا تکرار نام ممنوع.
+- فقط اطلاعات صریح ورودی را حفظ کن و هیچ عدد، نام، تاریخ، درصد یا جزئیات تازه‌ای نساز.
+- اگر بخشی مبهم است، آن بخش را حذف کن.
+- هیچ متن ناوبری صفحه، نام رسانه، «به گزارش»، لینک یا توضیح درباره ترجمه تولید نکن.
+- خلاصه حداکثر ۳ جمله و ۷۵۰ نویسه باشد.
 - فقط دو فیلد title و summary را برگردان و هیچ توضیح دیگری نده.
 """
                 retry_result, _ = _openai_compatible_json(
+                    main, provider, base_url, api_key, model, retry_prompt, max_output_tokens=1200
+                )
                     main, provider, base_url, api_key, model, retry_prompt
                 )
                 if retry_result:
@@ -526,7 +532,7 @@ def gemini_request(main, title, article_text):
     foreign = _persian_ratio(title) < 0.60
 
     if foreign:
-        prompt = """این خبر از یک منبع خارجی است و باید برای یک کانال خبری فارسی‌زبان آماده شود.
+        prompt = """این خبر از یک منبع خارجی است و باید برای یک کانال خبری فارسی‌زبان آماده شود.\nمهم: فارسی باید کاملاً طبیعی و روزنامه‌نگارانه باشد؛ ترجمه تحت‌اللفظی، آوانویسی عجیب، تکرار واژه‌ها و عبارت‌های ماشینی ممنوع است.
 عنوان اصلی:
 %s
 
