@@ -207,8 +207,10 @@ def _patch_history_rescue_pipeline():
 
 
 if __name__ == "__main__":
-    _install_v13_stack()
+    # Patch the core engine before wrapper layers are installed. inspect.getsource
+    # must see the real collect/process functions, not Intelligence wrappers.
     _patch_history_rescue_pipeline()
+    _install_v13_stack()
     print("V13 ENGINE LAUNCH: run_bot -> v13_standalone.main()", flush=True)
     result = main.main()
     if result is False:
