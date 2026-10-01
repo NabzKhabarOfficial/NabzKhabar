@@ -24,6 +24,12 @@ CHROME_PATTERNS = (
     r"منبع\s*تصویر\s*[,：:]?.*$",
 )
 
+# Punctuation that shows a sentence was cut off.
+INCOMPLETE_ENDINGS = ("…", "...", "….", "،", ":", "؛")
+# Connector words that cannot end a sentence. Matched as whole final words:
+# a raw suffix check rejected valid words such as «دارو» or «اردو».
+DANGLING_FINAL_WORDS = {"و", "اما", "که", "در", "برای"}
+
 
 def _clean(value):
     value = str(value or "")
@@ -50,7 +56,9 @@ def _is_incomplete(text):
     value = str(text or "").strip()
     if not value:
         return True
-    if value.endswith(("…", "...", "….", "،", ":", "؛", "و", "اما", "که", "در", "برای")):
+    if value.endswith(INCOMPLETE_ENDINGS):
+        return True
+    if value.split()[-1] in DANGLING_FINAL_WORDS:
         return True
     # Obvious webpage truncation markers.
     if re.search(r"(?:ادامه دارد|ادامه…|در سطوح)$", value, flags=re.I):

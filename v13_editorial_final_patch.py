@@ -13,18 +13,28 @@ import v13_intelligence
 # extended rescue window.
 v13_freshness_rescue.CRITICAL_RESCUE_MAX_HOURS = 12
 
+# Short Latin tokens (ai, us, meta, u.s.) must be word-bounded; otherwise
+# "said", "business" or "metal" are misread as AI / United States / Meta.
+CRITICAL_ACTORS = re.compile(r"(?:google|gemini|openai|anthropic|nvidia|microsoft|(?<![a-z])meta(?![a-z])|alphabet|elevenlabs|(?<![a-z])ai(?![a-z])|artificial intelligence|گوگل|جمنای|اوپن.?ای.?آی|آنتروپیک|انویدیا|مایکروسافت|متا|هوش مصنوعی)", re.I)
+CRITICAL_ACTIONS = re.compile(r"(?:launch(?:es|ed)?|release(?:s|d)?|unveil(?:s|ed)?|valuation|valued|funding|funded|raised|doubles|regulation|regulated|banned|approved|acquired|acquisition|outage|disrupt(?:s|ed)?|رونمایی|عرضه|ارزش.?گذاری|تأمین مالی|سرمایه.?گذاری|معرفی|مقررات|ممنوع|تصویب|تملک|اختلال)", re.I)
+CRITICAL_GEOPOLITICAL = re.compile(r"(?:iran|israel|russia|ukraine|(?<![a-z])us(?![a-z])|(?<![a-z])u\.s\.|china|nato|united nations|trump|president|prime minister|اسرائیل|روسیه|اوکراین|آمریکا|چین|ناتو|سازمان ملل|ترامپ|رئیس.?جمهور|نخست.?وزیر)", re.I)
+CRITICAL_STRATEGIC = re.compile(r"(?:war|attack|strike|missile|drone|conflict|ceasefire|sanction|nuclear|military|outage|shutdown|tariff|airspace|flight|جنگ|حمله|موشک|پهپاد|درگیری|آتش.?بس|تحریم|هسته.?ای|نظامی|اختلال|تعرفه|حریم هوایی|پرواز)", re.I)
+
 _original_critical = v13_freshness_rescue._is_critical
+
+
+def _title_is_major_global_event(title):
+    title = str(title or "")
+    return bool(
+        (CRITICAL_ACTORS.search(title) and CRITICAL_ACTIONS.search(title))
+        or (CRITICAL_GEOPOLITICAL.search(title) and CRITICAL_STRATEGIC.search(title))
+    )
+
 
 def _critical_with_major_global_events(candidate):
     if _original_critical(candidate):
         return True
-    title = str(candidate.get("title", "") or "")
-    text = (title + " " + str(candidate.get("summary", "") or ""))[:5000].lower()
-    actors = re.compile(r"(?:google|gemini|openai|anthropic|nvidia|microsoft|meta|alphabet|elevenlabs|ai|artificial intelligence|گوگل|جمنای|اوپن.?ای.?آی|آنتروپیک|انویدیا|مایکروسافت|متا|هوش مصنوعی)", re.I)
-    actions = re.compile(r"(?:launch(?:es|ed)?|release(?:s|d)?|unveil(?:s|ed)?|valuation|valued|funding|funded|raised|doubles|regulation|regulated|banned|approved|acquired|acquisition|outage|disrupt(?:s|ed)?|رونمایی|عرضه|ارزش.?گذاری|تأمین مالی|سرمایه.?گذاری|معرفی|مقررات|ممنوع|تصویب|تملک|اختلال)", re.I)
-    geopolitical = re.compile(r"(?:iran|israel|russia|ukraine|us|u\.s\.|china|nato|united nations|trump|president|prime minister|iran|اسرائیل|روسیه|اوکراین|آمریکا|چین|ناتو|سازمان ملل|ترامپ|رئیس.?جمهور|نخست.?وزیر)", re.I)
-    strategic = re.compile(r"(?:war|attack|strike|missile|drone|conflict|ceasefire|sanction|nuclear|military|outage|shutdown|tariff|airspace|flight|جنگ|حمله|موشک|پهپاد|درگیری|آتش.?بس|تحریم|هسته.?ای|نظامی|اختلال|تعرفه|حریم هوایی|پرواز)", re.I)
-    return bool((actors.search(title) and actions.search(title)) or (geopolitical.search(title) and strategic.search(title)))
+    return _title_is_major_global_event(candidate.get("title", ""))
 
 v13_freshness_rescue._is_critical = _critical_with_major_global_events
 

@@ -77,11 +77,13 @@ ACTION_TERMS = (
 )
 
 # Phrases that strongly indicate an intermediary/reseller or a route to buy.
+# Text is normalized first (ZWNJ -> space), so whitespace must be matched with
+# \s+. Distances are bounded so unrelated words far apart cannot combine.
 RESELLER_PATTERNS = (
-    r"خدمات?s+واسطه",
-    r"واسطه(?:‌|s)+داخلی",
-    r"ازs+(?:طریق|طریقِ)s+.*(?:تهیه|خرید)",
-    r"(?:می‌توانید|میتوانید|میs+توانید).{0,80}(?:خرید|تهیه|سفارش)",
+    r"خدمات?\s+واسطه",
+    r"واسطه\s+داخلی",
+    r"از\s+(?:طریق|طریقِ)\s+(?:سایت|وبسایت|وب\s+سایت|فروشگاه|لینک|ربات|پیج|اپلیکیشن)(?:\s+ما)?\b.{0,50}?(?:تهیه|خرید|سفارش)",
+    r"(?:می\s*توانید).{0,80}(?:خرید|تهیه|سفارش)",
     r"(?:تهیه|خرید).{0,80}(?:اکانت|اشتراک|سرویس|پلن)",
 )
 

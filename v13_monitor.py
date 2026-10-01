@@ -12,6 +12,9 @@ from datetime import datetime, timezone
 HEALTH_FILE = "v13_health.json"
 REPORT_FILE = "v13_monitor.json"
 
+# Attempt results that are deliberate editorial outcomes, not lost publications.
+NON_FAILURE_RESULTS = ("skipped_duplicate", "editorial_blocked")
+
 # Neutral monitoring threshold: this is a review signal, not an editorial
 # override. A story is "important missed" when intelligence scored it strongly
 # or an independent consequential/security/business/UNGA override recognized it.
@@ -116,12 +119,16 @@ def _ai_pool_status():
     health = _load("ai_model_health.json", {})
     if not isinstance(health, dict) or not health:
         return {"status": "unknown", "models": 0, "disabled": 0, "active": 0}
+    # Keys starting with "_" are bookkeeping (e.g. _editorial_blocks), not models.
+    models = {k: v for k, v in health.items() if not str(k).startswith("_")}
+    if not models:
+        return {"status": "unknown", "models": 0, "disabled": 0, "active": 0}
     now = int(datetime.now(timezone.utc).timestamp())
     disabled = 0
-    for entry in health.values():
+    for entry in models.values():
         if isinstance(entry, dict) and int(entry.get("disabled_until", 0) or 0) > now:
             disabled += 1
-    total = len(health)
+    total = len(models)
     active = max(0, total - disabled)
     if active == 0:
         status = "degraded_all_disabled"
@@ -142,18 +149,24 @@ def build_report():
         selected = [
             {"title": x.get("title", ""), "source": x.get("source", ""), "url": x.get("url", "")}
             for x in attempts
-            if x.get("title") and x.get("result") != "skipped_duplicate"
+            if x.get("title") and x.get("result") not in NON_FAILURE_RESULTS
         ]
 
     published = {
         str(x.get("title", "")).strip()
         for x in attempts if x.get("result") == "published"
     }
+    # A selected story that was deliberately skipped (duplicate) or blocked
+    # by an editorial gate (no Telegram request made) is not a lost story.
+    handled = published | {
+        str(x.get("title", "")).strip()
+        for x in attempts if x.get("result") in NON_FAILURE_RESULTS
+    }
 
     missed = []
     for story in selected:
         title = str(story.get("title", "")).strip()
-        if title and title not in published:
+        if title and title not in handled:
             missed.append({**story, "monitor_reason": "selected-but-not-published"})
 
     failed_attempts = [
@@ -161,6 +174,9 @@ def build_report():
     ]
     skipped_duplicates = [
         x for x in attempts if x.get("result") == "skipped_duplicate"
+    ]
+    editorial_blocked = [
+        x for x in attempts if x.get("result") == "editorial_blocked"
     ]
 
     important_missed = []
@@ -193,10 +209,12 @@ def build_report():
         "published": health.get("published", 0),
         "failed_publications": health.get("failed_publications", 0),
         "ambiguous_publications": health.get("ambiguous_publications", 0),
+        "editorial_blocked_publications": len(editorial_blocked),
         "missed_selected_stories": missed,
         "important_missed_news": important_missed,
         "failed_publication_attempts": failed_attempts,
         "skipped_duplicate_attempts": skipped_duplicates,
+        "editorial_blocked_attempts": editorial_blocked,
         "last_errors": health.get("last_errors", []),
         "ai_pool": ai_pool,
         "diagnostics": [],
@@ -207,6 +225,11 @@ def build_report():
     elif ai_pool["status"] == "degraded_partial":
         report["diagnostics"].append(
             f"{ai_pool['disabled']}/{ai_pool['models']} configured AI models are cooling down or disabled."
+        )
+
+    if editorial_blocked:
+        report["diagnostics"].append(
+            f"{len(editorial_blocked)} selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure)."
         )
 
     if missed or report["failed_publications"] or report["ambiguous_publications"]:
@@ -246,12 +269,13 @@ def build_report():
     ), flush=True)
 
     print(
-        "V13 MONITOR: selected=%s published=%s failed=%s ambiguous=%s missed=%s duplicates=%s important_missed=%s"
+        "V13 MONITOR: selected=%s published=%s failed=%s ambiguous=%s editorial_blocked=%s missed=%s duplicates=%s important_missed=%s"
         % (
             report["selected_for_publication"],
             report["published"],
             report["failed_publications"],
             report["ambiguous_publications"],
+            len(editorial_blocked),
             len(missed),
             len(skipped_duplicates),
             len(important_missed),
@@ -262,6 +286,11 @@ def build_report():
     for story in missed:
         print("V13 MONITOR MISSED: %s | %s | %s" % (
             story.get("source", "unknown"), story.get("title", ""), story.get("url", "")
+        ), flush=True)
+
+    for story in editorial_blocked:
+        print("V13 MONITOR EDITORIAL BLOCK: [%s] %s" % (
+            story.get("reason", "unknown"), story.get("title", "")
         ), flush=True)
 
     for story in important_missed[:10]:

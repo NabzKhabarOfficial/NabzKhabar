@@ -13,6 +13,9 @@ PRICES_URL = "https://gheymat.online/prices"
 PERSIAN_DIGITS = "۰۱۲۳۴۵۶۷۸۹"
 ENGLISH_DIGITS = "0123456789"
 IRAN_TIMEZONE = ZoneInfo("Asia/Tehran")
+# If the source layout changes, refuse to publish a near-empty board.
+MIN_PRICE_LINES = 5
+REQUIRED_SYMBOLS = ("USD",)
 
 
 def normalize_digits(text):
@@ -157,6 +160,11 @@ def change_for(rows, symbol):
     return format_change(cells[3]) if cells and len(cells) >= 4 else ""
 
 
+def has_numeric_value(rows, symbol):
+    value = value_for(rows, symbol)
+    return bool(value and re.search(r"[0-9]", clean_text(value)))
+
+
 def send_telegram(text):
     response = requests.post(
         f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
@@ -188,6 +196,10 @@ def main():
         raise RuntimeError("BOT_TOKEN is missing")
 
     rows = extract_rows(fetch_prices())
+    missing = [s for s in REQUIRED_SYMBOLS if not has_numeric_value(rows, s)]
+    if missing:
+        raise RuntimeError(f"MARKET: source layout changed or incomplete; missing {', '.join(missing)}")
+
     now = datetime.now(IRAN_TIMEZONE)
     time_text = to_persian_digits(now.strftime("%H:%M"))
     jy, jm, jd = gregorian_to_jalali(now.year, now.month, now.day)
@@ -202,6 +214,7 @@ def main():
         "ᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒᨒ",
         "",
     ]
+    price_lines = 0
 
     for emoji, label, symbol in [
         ("🇺🇸", "دلار آمریکا", "USD"), ("🇪🇺", "یورو", "EUR"),
@@ -215,6 +228,7 @@ def main():
         line = market_line(rows, emoji, label, symbol)
         if line:
             lines.append(line)
+            price_lines += 1
 
     lines += ["", "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", ""]
     for emoji, label, symbol in [
@@ -226,6 +240,7 @@ def main():
         line = market_line(rows, emoji, label, symbol)
         if line:
             lines.append(line)
+            price_lines += 1
 
     lines += ["", "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", ""]
     for emoji, label, symbol in [
@@ -236,10 +251,14 @@ def main():
         line = market_line(rows, emoji, label, symbol)
         if line:
             lines.append(line)
+            price_lines += 1
+
+    if price_lines < MIN_PRICE_LINES:
+        raise RuntimeError(f"MARKET: only {price_lines} price lines parsed; refusing to publish a partial board")
 
     lines += ["", "@NabzKhabarOfficial", ""]
     send_telegram("\n".join(lines))
-    print("NABZ MARKET BOARD sent successfully.")
+    print(f"NABZ MARKET BOARD sent successfully ({price_lines} prices).")
 
 
 if __name__ == "__main__":
