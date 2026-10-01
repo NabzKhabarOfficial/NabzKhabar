@@ -11,6 +11,10 @@ BRAND = "نبض خبر | NABZ"
 HANDLE = "@NabzKhabarOfficial"
 FONT_PATH = "Vazirmatn-Bold.ttf"
 
+# Watermark must stay a small, unobtrusive part of any media.
+MAX_WATERMARK_WIDTH_RATIO = 0.34
+MAX_WATERMARK_HEIGHT_RATIO = 0.22
+
 
 def _font(size):
     try:
@@ -74,6 +78,13 @@ def _watermark_image(width, height):
     return canvas
 
 
+def _watermark_fits(width, height, wm):
+    return (
+        wm.width <= int(width * MAX_WATERMARK_WIDTH_RATIO)
+        and wm.height <= int(height * MAX_WATERMARK_HEIGHT_RATIO)
+    )
+
+
 def add_watermark(input_path, output_path):
     try:
         # Preserve orientation and never resize/crop the source image.
@@ -91,9 +102,7 @@ def add_watermark(input_path, output_path):
         margin = max(16, int(min(width, height) * 0.018))
 
         # Hard safety limits: watermark stays a small unobtrusive part of the image.
-        max_w = int(width * 0.34)
-        max_h = int(height * 0.22)
-        if wm.width > max_w or wm.height > max_h:
+        if not _watermark_fits(width, height, wm):
             print("V13 WATERMARK: unsafe size for image; original preserved.")
             return input_path
 
@@ -159,6 +168,10 @@ def _brand_video(input_path):
             return input_path
 
         wm = _watermark_image(width, height)
+        # Same safety rule as images: small videos keep the original frame.
+        if not _watermark_fits(width, height, wm):
+            print("V13 VIDEO WATERMARK: unsafe size for video; original preserved.")
+            return input_path
         margin = max(16, int(min(width, height) * 0.018))
         x = max(0, width - wm.width - margin)
         y = max(0, height - wm.height - margin)
@@ -200,8 +213,12 @@ def _brand_video(input_path):
 
 
 def send_video(path, caption):
-    # Telegram's sendVideo duration is an integer number of seconds. We
-    # explicitly calculate it from the final (watermarked) file and send it.
+    """Publish a branded video.
+
+    Returns True on confirmed success, False on an explicit Telegram rejection
+    (safe to retry), and None when the transport failed after the upload may
+    already have been accepted (ambiguous: never retry automatically).
+    """
     branded = _brand_video(path)
     # Never let branding push a valid video over Telegram's configured limit.
     if branded != path and os.path.getsize(branded) > 49 * 1024 * 1024:
@@ -230,12 +247,18 @@ def send_video(path, caption):
                 data["width"] = str(width)
                 data["height"] = str(height)
 
-            response = core.SESSION.post(
-                core.telegram_api("sendVideo"),
-                data=data,
-                files={"video": video},
-                timeout=120,
-            )
+            try:
+                response = core.SESSION.post(
+                    core.telegram_api("sendVideo"),
+                    data=data,
+                    files={"video": video},
+                    timeout=120,
+                )
+            except Exception as exc:
+                # Do not print the exception text: it can contain the request
+                # URL, which embeds the bot token.
+                print(f"V13 sendVideo ambiguous transport error: {type(exc).__name__}")
+                return None
 
         if response.ok:
             print(f"V13 VIDEO PUBLISHED | duration={duration}s | {width}x{height}")
@@ -244,7 +267,7 @@ def send_video(path, caption):
         print(f"V13 sendVideo failed: {response.status_code} {response.text[:500]}")
         return False
     except Exception as exc:
-        print(f"V13 sendVideo error: {exc}")
+        print(f"V13 sendVideo error: {type(exc).__name__}: {exc}")
         return False
     finally:
         if branded != path:
@@ -256,16 +279,18 @@ def send_video(path, caption):
 
 def _sanitize_caption_text(text):
     value = str(text or "")
-    value = re.sub(r"https?://\\S+", " ", value, flags=re.I)
-    value = re.sub(r"www\\.\\S+", " ", value, flags=re.I)
+    value = re.sub(r"https?://\S+", " ", value, flags=re.I)
+    value = re.sub(r"www\.\S+", " ", value, flags=re.I)
     value = re.sub(
-        r"(?:📡\\s*)?(?:منبع|منبع خبر|منبع اصلی)\\s*[:：-]?\\s*[^\\n]+",
+        r"(?:📡\s*)?(?:منبع|منبع خبر|منبع اصلی)\s*[:：-]?\s*[^\n]+",
         " ",
         value,
         flags=re.I,
     )
-    value = re.sub(r"\\b(?:باشگاه خبرنگاران جوان|yjc\\.ir)\\b", " ", value, flags=re.I)
-    return re.sub(r"\\s{2,}", " ", value).strip()
+    value = re.sub(r"\b(?:باشگاه خبرنگاران جوان|yjc\.ir)\b", " ", value, flags=re.I)
+    # Collapse runs of spaces/tabs but keep intentional line breaks.
+    value = re.sub(r"[ \t]{2,}", " ", value)
+    return value.strip()
 
 
 def build_caption(title, body):

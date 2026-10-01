@@ -12,6 +12,8 @@ CHANNEL_ID = "@NabzKhabarOfficial"
 SOURCE_URL = "https://1car.ir/price"
 STATE_FILE = "car_prices_history.json"
 IRAN_TIMEZONE = ZoneInfo("Asia/Tehran")
+# Telegram's hard limit is 4096 characters; keep a safety margin.
+MAX_MESSAGE_CHARS = 3900
 
 TARGET_MODELS = [
     ("پژو ۲۰۷", ("پژو 207",)),
@@ -56,6 +58,8 @@ TARGET_MODELS = [
     ("چانگان CS55", ("چانگان CS55",)),
 ]
 
+ALL_ALIASES = tuple(alias.lower() for _, aliases in TARGET_MODELS for alias in aliases)
+
 JALALI_MONTHS = (
     "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور",
     "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند",
@@ -79,8 +83,10 @@ def load_state():
 
 
 def save_state(state):
-    with open(STATE_FILE, "w", encoding="utf-8") as f:
+    tmp = STATE_FILE + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
         json.dump(state, f, ensure_ascii=False, indent=2)
+    os.replace(tmp, STATE_FILE)
 
 
 def fetch_source():
@@ -180,11 +186,24 @@ def extract_models(html):
     return found
 
 
+def _more_specific_aliases(aliases):
+    """Aliases of other targets that contain one of ours (e.g. شاهین -> شاهین اتوماتیک)."""
+    own = {alias.lower() for alias in aliases}
+    return tuple(
+        other for other in ALL_ALIASES
+        if other not in own and any(alias in other for alias in own)
+    )
+
+
 def choose_model(found, aliases):
+    own = [alias.lower() for alias in aliases]
+    exclude = _more_specific_aliases(aliases)
     matches = [
         item for model, item in found.items()
-        if any(alias.lower() in model.lower() for alias in aliases)
-        and item.get("market")
+        if item.get("market")
+        and any(alias in model.lower() for alias in own)
+        # A base label must not steal a variant's price.
+        and not any(specific in model.lower() for specific in exclude)
     ]
     if not matches:
         return None
@@ -201,8 +220,9 @@ def format_price_block(label, item):
     factory = item.get("factory")
     change = item.get("change")
 
+    # Plain text (no parse_mode): Markdown markers would show up literally.
     lines = [
-        f"🚗 **{label}**",
+        f"🚗 {label}",
         f"💰 بازار: {market} تومان",
     ]
     if factory:
@@ -227,6 +247,36 @@ def send_telegram(text):
         timeout=20,
     )
     response.raise_for_status()
+
+
+def build_board(update_date, found, limit=MAX_MESSAGE_CHARS):
+    """Return (text, count). Whole model blocks are dropped once the limit is near."""
+    header = [
+        "🚗 قیمت روز خودرو | NABZ AUTO",
+        f"📅 بروزرسانی: {update_date}",
+        "",
+    ]
+    footer = [
+        "",
+        "🔗 @NabzKhabarOfficial",
+    ]
+    body = []
+    count = 0
+    skipped = 0
+    for label, aliases in TARGET_MODELS:
+        item = choose_model(found, aliases)
+        if not item:
+            continue
+        block = ([] if not count else ["──────────────"]) + [format_price_block(label, item)]
+        candidate = "\n".join(header + body + block + footer)
+        if len(candidate) > limit:
+            skipped += 1
+            continue
+        body.extend(block)
+        count += 1
+    if skipped:
+        print(f"CAR PRICES: {skipped} model(s) omitted to respect Telegram length limit.")
+    return "\n".join(header + body + footer), count
 
 
 def main():
@@ -254,34 +304,10 @@ def main():
         return
 
     found = extract_models(html)
-
-    lines = [
-        "🚗 قیمت روز خودرو | NABZ AUTO",
-        f"📅 بروزرسانی: {update_date}",
-        "",
-    ]
-
-    count = 0
-    for label, aliases in TARGET_MODELS:
-        item = choose_model(found, aliases)
-        if item:
-            if count:
-                lines.append("──────────────")
-            lines.append(format_price_block(label, item))
-            count += 1
+    text, count = build_board(update_date, found)
 
     if count == 0:
         raise RuntimeError("No supported car prices were found")
-
-    lines += [
-        "",
-        "🔗 @NabzKhabarOfficial",
-    ]
-
-    # Keep the mobile layout compact and readable while allowing a larger list.
-    text = "\n".join(lines)
-    if len(text) > 3900:
-        text = "\n".join(text.splitlines()[:1] + text.splitlines()[1:])
 
     send_telegram(text)
     state["last_published_date"] = today
