@@ -543,7 +543,13 @@ def _validation_reasons(main, title, summary, source, foreign):
         reasons.append("summary_more_than_3_sentences")
     if len(summary) > 750:
         reasons.append("summary_over_750_chars")
-    source_numbers = _numbers(main, source)
+    # Validate against both the article body and the original headline.
+    # Foreign RSS/article extraction can legitimately omit a number that is
+    # present in the source headline (for example "$16 billion"), while the
+    # translated Persian output preserves that exact fact. Rejecting it here
+    # creates a false "new_numbers" failure and can exhaust the whole AI pool.
+    numeric_source = f"{source} {original_title}"
+    source_numbers = _numbers(main, numeric_source)
     output_numbers = _numbers(main, title + " " + summary)
     missing_numbers = sorted(output_numbers - source_numbers)
     if missing_numbers:
