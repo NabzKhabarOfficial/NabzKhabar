@@ -326,7 +326,8 @@ def _styled_request(self, method, url, *args, **kwargs):
     is_text = match.group(1) == "sendMessage"
     text = payload.get("text" if is_text else "caption")
     plan = _plan_for(text)
-    if not plan or "parse_mode" in payload or "reply_markup" in payload:
+    if (not plan or "parse_mode" in payload or "reply_markup" in payload
+            or "entities" in payload or "caption_entities" in payload):
         response = _original_request(self, method, url, *args, **kwargs)
         _cleanup_old_buttons(self, url, match.group(1), payload, response)
         return response
@@ -594,6 +595,13 @@ def install(core, formatter):
         v13_relevance_gate.install(core, _CURRENT)
     except Exception as exc:
         print(f"V13 RELEVANCE GATE: not installed ({type(exc).__name__}: {exc})", flush=True)
+
+    # Growth: website pages + nightly digest (outermost, records real sends).
+    try:
+        import v13_growth
+        v13_growth.install(core, _CURRENT, _plan_for)
+    except Exception as exc:
+        print(f"V13 GROWTH: not installed ({type(exc).__name__}: {exc})", flush=True)
 
     # 4) Caption entities at the transport level (+ one-time button cleanup).
     if requests.Session.request is not _styled_request:
