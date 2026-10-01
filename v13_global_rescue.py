@@ -6,6 +6,7 @@ No API or paid service is used.
 """
 import re
 import v13_intelligence
+import v13_policy_guard
 
 CRITICAL_TERMS = re.compile(
     r"(?:"
@@ -45,6 +46,16 @@ def _is_global_critical(candidate):
     return bool(MAJOR_ACTORS.search(text) or quantified)
 
 
+def _final_scope_rejects(candidate):
+    """Same predicate the final policy guard applies in process_news."""
+    try:
+        # Looked up at call time so run_bot's hardened version is used.
+        return bool(v13_policy_guard._foreign_local_only(candidate))
+    except Exception as exc:
+        print(f"V13 FINAL SCOPE PRESELECTION warning: {type(exc).__name__}: {exc}")
+        return False
+
+
 def install():
     original = v13_intelligence.is_publishable
 
@@ -56,5 +67,16 @@ def install():
         print(f"V13 GLOBAL CRITICAL RESCUE: {candidate.get('title', '')}")
         return True, rescued, "global-critical-rescue"
 
-    v13_intelligence.is_publishable = wrapped
-    print("V13 GLOBAL CRITICAL RESCUE ACTIVE")
+    def final_scope_gate(main, candidate):
+        # Apply the final policy-guard scope rule *before* selection. Without
+        # this, a story could be selected (or rescued) here and only rejected
+        # later inside process_news, where it was counted as a failed
+        # publication and turned the whole workflow run red.
+        ok, score, reason = wrapped(main, candidate)
+        if ok and _final_scope_rejects(candidate):
+            print(f"V13 FINAL SCOPE PRESELECTION DROP: {candidate.get('title', '')}")
+            return False, 0, "final-scope-preselection"
+        return ok, score, reason
+
+    v13_intelligence.is_publishable = final_scope_gate
+    print("V13 GLOBAL CRITICAL RESCUE ACTIVE (with final-scope preselection gate)")
