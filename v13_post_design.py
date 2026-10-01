@@ -86,8 +86,27 @@ def _norm(value):
     return re.sub(r"\s+", " ", value).strip()
 
 
+BREAKING_WORDS = (
+    "حمله", "انفجار", "کشته", "زلزله", "ترور", "سقوط هواپیما", "بمباران",
+    "موشک", "استعفا", "آتش بس", "اعلام جنگ", "کودتا", "تیراندازی",
+)
+BREAKING_MAX_AGE_SECONDS = 90 * 60
+
+
+def _age_seconds(candidate):
+    try:
+        value = candidate.get("age_seconds")
+        return None if value is None else float(value)
+    except Exception:
+        return None
+
+
 def classify(title, candidate=None):
-    """Return (level 1..5, category emoji, category label)."""
+    """Return (level 1..5, urgent flag, category emoji, category label).
+
+    "فوری" is reserved for real breaking news: a hard-breaking event word in
+    the title, a high editorial tier, and (when known) a fresh story.
+    """
     text = _norm(title)
     candidate = candidate or {}
     try:
@@ -95,12 +114,19 @@ def classify(title, candidate=None):
         score = int(candidate.get("intelligence_score") or 0)
     except Exception:
         tier, score = 0, 0
-    if tier:
-        level = {4: 5, 3: 4}.get(tier, 3)
-        if score >= 15:
-            level = min(5, level + 1)
+    breaking_word = any(w in text for w in BREAKING_WORDS)
+    age = _age_seconds(candidate)
+    fresh = age is None or age <= BREAKING_MAX_AGE_SECONDS
+    urgent = breaking_word and fresh and tier >= 3
+
+    if urgent:
+        level = 5
+    elif tier >= 4 or score >= 15:
+        level = 4
+    elif tier == 3:
+        level = 3 + (1 if score >= 12 else 0)
     else:
-        level = 4 if any(w in text for w in URGENT_WORDS) else 3
+        level = 3
 
     emoji, label = "🌍", "جهان"
     cat = _norm(candidate.get("category", ""))
@@ -111,24 +137,24 @@ def classify(title, candidate=None):
             if any(t in text for t in terms):
                 emoji, label = e, l
                 break
-    return level, emoji, label
+    return level, urgent, emoji, label
 
 
 def hashtags(title, limit=2):
     text = _norm(title)
-    tags = ["#نبض_خبر"]
+    tags = []
     for word, tag in TOPIC_TAGS:
         if word in text and tag not in tags:
             tags.append(tag)
-        if len(tags) > limit:
+        if len(tags) >= limit:
             break
     return " ".join(tags)
 
 
-def header_line(level, emoji, label):
-    if level >= 5:
+def header_line(level, urgent, emoji, label):
+    if urgent:
         return f"🔴 فوری · {emoji} {label}"
-    if level == 4:
+    if level >= 4:
         return f"🟠 مهم · {emoji} {label}"
     return f"{emoji} {label}"
 
@@ -157,13 +183,12 @@ def build_caption(title, body, formatter):
     if not sentences:
         return ""
 
-    level, emoji, label = classify(title, _CURRENT.get("candidate"))
-    header = header_line(level, emoji, label)
+    level, urgent, emoji, label = classify(title, _CURRENT.get("candidate"))
+    header = header_line(level, urgent, emoji, label)
     lead = f"⚡️ {sentences[0]}"
     details = sentences[1:4]
-    footer = "\n".join([
-        f"💓 نبض خبر: {meter(level)}",
-        hashtags(title),
+    tags = hashtags(title)
+    footer = "\n".join([f"💓 نبض خبر: {meter(level)}"] + ([tags] if tags else []) + [
         "━━━━━━━━━━",
         f"🔗 {SHORT_URL}",
     ])
@@ -179,7 +204,7 @@ def build_caption(title, body, formatter):
         return ""
 
     _PLANS.append({"title": title, "quote": quote, "header": header,
-                   "level": level, "label": label})
+                   "level": level, "urgent": urgent, "label": label})
     del _PLANS[:-20]
     return caption
 
@@ -310,7 +335,7 @@ def _pulse(draw, x_right, y_mid, w, h, width):
     draw.line(poly, fill=ACCENT + (255,), width=width, joint="curve")
 
 
-def render_card(src_path, out_path, title, level=3, label="جهان", font_path=None):
+def render_card(src_path, out_path, title, level=3, label="جهان", font_path=None, urgent=False):
     """Draw the NABZ news card. Returns True only when out_path was written."""
     img = Image.open(src_path)
     img = ImageOps.exif_transpose(img).convert("RGB")
@@ -380,14 +405,14 @@ def render_card(src_path, out_path, title, level=3, label="جهان", font_path=
     d.text((margin, y_mid), HANDLE, font=handle_font, fill=(210, 216, 226, 230), anchor="lm")
 
     # Top-right badge: live "فوری" for breaking news, otherwise the category.
-    badge = "فوری" if level >= 5 else label
+    badge = "فوری" if urgent else label
     pad_x, pad_y = int(22 * u), int(12 * u)
     tw = d.textlength(badge, font=badge_font, direction="rtl")
-    dot = int(14 * u) if level >= 5 else 0
+    dot = int(14 * u) if urgent else 0
     bx2, by1 = W - margin, margin
     bx1 = bx2 - int(tw) - 2 * pad_x - (dot + int(12 * u) if dot else 0)
     by2 = by1 + int(30 * u) + 2 * pad_y
-    fill = ACCENT + (240,) if level >= 5 else (8, 12, 18, 170)
+    fill = ACCENT + (240,) if urgent else (8, 12, 18, 170)
     d.rounded_rectangle((bx1, by1, bx2, by2), radius=int(14 * u), fill=fill,
                         outline=(255, 255, 255, 90), width=max(1, int(2 * u)))
     cy = (by1 + by2) // 2
@@ -461,7 +486,8 @@ def install(core, formatter):
                 done = False
                 if plan:
                     try:
-                        done = render_card(path, temp, plan["title"], plan["level"], plan["label"])
+                        done = render_card(path, temp, plan["title"], plan["level"], plan["label"],
+                                           urgent=bool(plan.get("urgent")))
                     except Exception as exc:
                         print(f"V13 NEWS CARD: render failed ({type(exc).__name__}); classic watermark.", flush=True)
                 if done:
