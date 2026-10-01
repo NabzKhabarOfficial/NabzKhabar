@@ -384,7 +384,7 @@ def _fallback_provider_request(main, provider, models, base_url, api_key, prompt
             if validated:
                 print(f"V13 AI ROUTER: SUCCESS via {provider}/{model}")
                 return validated
-            reasons = _validation_reasons(main, str(result.get("title", "")), str(result.get("summary", "")), source, foreign)
+            reasons = _validation_reasons(main, str(result.get("title", "")), str(result.get("summary", "")), source, foreign, title)
             print(f"V13 AI ROUTER: {provider}/{model} failed V13 content validation; reasons=" + " | ".join(reasons) + "; attempting one strict retry.")
             _record_quality_failure(health_key)
             if deadline is not None and time.monotonic() < deadline:
@@ -530,7 +530,7 @@ def _persianize_proper_names(text):
         value = re.sub(r"(?<![A-Za-z])" + re.escape(latin) + r"(?![A-Za-z])", persian, value, flags=re.I)
     return value
 
-def _validation_reasons(main, title, summary, source, foreign):
+def _validation_reasons(main, title, summary, source, foreign, original_title=""):
     reasons = []
     if not title or not summary:
         reasons.append("empty_title_or_summary")
@@ -548,7 +548,7 @@ def _validation_reasons(main, title, summary, source, foreign):
     # present in the source headline (for example "$16 billion"), while the
     # translated Persian output preserves that exact fact. Rejecting it here
     # creates a false "new_numbers" failure and can exhaust the whole AI pool.
-    numeric_source = f"{source} {original_title}"
+    numeric_source = f"{source} {original_title}" if original_title else source
     source_numbers = _numbers(main, numeric_source)
     output_numbers = _numbers(main, title + " " + summary)
     missing_numbers = sorted(output_numbers - source_numbers)
@@ -579,7 +579,7 @@ def _validate(main, original_title, source, data, foreign):
         return None
     title = _persianize_proper_names(main.clean_title(data.get("title", "")))
     summary = _persianize_proper_names(main.clean_content(data.get("summary", "")))
-    reasons = _validation_reasons(main, title, summary, source, foreign)
+    reasons = _validation_reasons(main, title, summary, source, foreign, original_title)
     if reasons:
         print("V13 AI ROUTER: content validation rejected: " + " | ".join(reasons))
         print(f"V13 AI ROUTER: rejected title={title[:180]!r}")
