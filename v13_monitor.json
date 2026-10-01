@@ -1,25 +1,45 @@
 {
-  "checked_at": "2026-10-01T00:05:31.547450+00:00",
-  "status": "healthy",
+  "checked_at": "2026-10-01T00:08:40.240364+00:00",
+  "status": "publication_failure",
   "run_status": "success",
-  "raw_candidates": 12,
+  "raw_candidates": 11,
   "strict_rejected": 2,
-  "selected_for_publication": 2,
-  "published": 2,
-  "failed_publications": 0,
+  "selected_for_publication": 1,
+  "published": 0,
+  "failed_publications": 1,
   "ambiguous_publications": 0,
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "title": "Google releases Gemini 4 Argon, called its most powerful model yet",
+      "source": "techcrunch.com",
+      "url": "https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet",
+      "intelligence_score": 8,
+      "publication_tier": 3,
+      "monitor_reason": "selected-but-not-published"
+    }
+  ],
   "important_missed_news": [],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "title": "Google releases Gemini 4 Argon, called its most powerful model yet",
+      "source": "techcrunch.com",
+      "url": "https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet",
+      "started_at": "2026-10-01T00:08:00.886992+00:00",
+      "result": "failed",
+      "error": ""
+    }
+  ],
   "skipped_duplicate_attempts": [],
   "last_errors": [],
   "ai_pool": {
     "status": "degraded_partial",
-    "models": 11,
-    "disabled": 2,
+    "models": 12,
+    "disabled": 3,
     "active": 9
   },
   "diagnostics": [
-    "2/11 configured AI models are cooling down or disabled."
+    "3/12 configured AI models are cooling down or disabled.",
+    "Selected stories did not reach confirmed publication.",
+    "One or more publication attempts returned failure/exception."
   ]
 }
