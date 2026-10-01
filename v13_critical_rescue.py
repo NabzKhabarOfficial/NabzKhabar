@@ -76,12 +76,25 @@ def _local_routine_only(candidate):
         for marker in LOCAL_ROUTINE_MARKERS
     )
     local_place = any(x in title for x in LOCAL_PLACE_MARKERS)
-    consequence = any(x in text for x in NATIONAL_OR_GLOBAL_CONSEQUENCE)
+    # Routine local stories must not become "important" merely because they
+    # mention broad words such as جنگ/دولت/میلیارد/فناوری. A mayoral quote
+    # about the war is still local routine unless the headline contains a
+    # concrete national-scale event.
+    strong_local_event = (
+        "کشته", "زخمی", "مفقود", "انفجار", "حمله موشکی", "حمله تروریستی",
+        "موشک", "بمباران", "سقوط هواپیما", "زلزله", "سیل", "سونامی",
+        "آتش‌سوزی", "آتش سوزی", "تخلیه", "قطعی گسترده", "اختلال گسترده",
+        "قطع اینترنت", "حمله سایبری", "وضعیت اضطراری", "بحران ملی",
+        "تحریم", "ممنوعیت سراسری", "قانون جدید", "تصویب قانون",
+        "national emergency", "missile attack", "terrorist attack", "earthquake",
+        "flood", "wildfire", "cyberattack", "nationwide outage",
+    )
+    strong_consequence = any(x in text for x in strong_local_event)
     if not routine:
         return False
-    if local_place and not consequence:
-        return True
-    return not consequence
+    if local_place:
+        return not strong_consequence
+    return not strong_consequence
 
 
 def _critical_geopolitical(candidate):
