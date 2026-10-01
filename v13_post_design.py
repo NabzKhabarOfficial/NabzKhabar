@@ -557,6 +557,13 @@ def install(core, formatter):
 
     core.send_photo = send_photo
 
+    # Content-level duplicate guard, outermost around the senders.
+    try:
+        import v13_story_dedup
+        v13_story_dedup.install(core, _CURRENT)
+    except Exception as exc:
+        print(f"V13 STORY DEDUP: not installed ({type(exc).__name__}: {exc})", flush=True)
+
     # 4) Caption entities at the transport level (+ one-time button cleanup).
     if requests.Session.request is not _styled_request:
         requests.Session.request = _styled_request
