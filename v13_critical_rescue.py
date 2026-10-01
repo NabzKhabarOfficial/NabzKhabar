@@ -6,6 +6,7 @@ It runs before final policy publication, so it must never promote foreign-local
 stories into the translation queue.
 """
 
+import re
 import v13_intelligence
 import v13_policy_guard
 
@@ -27,6 +28,61 @@ CRITICAL_ACTIONS = (
     "تحریم", "جنگ", "درگیری", "حمله", "موشک", "نقشه راه", "طرح صلح", "نشست",
 )
 
+LOCAL_ROUTINE_MARKERS = (
+    "شهرداری", "شهردار", "شورای شهر", "فرماندار", "فرمانداری", "بخشدار",
+    "دهیاری", "امام جمعه", "تندیس", "مجسمه", "یادمان", "یادبود",
+    "مراسم", "گرامیداشت", "افتتاح پروژه", "کلنگ زنی", "کلنگ‌زنی",
+    "جشنواره", "نمایشگاه محلی", "همایش", "نشست خبری", "تجلیل",
+    "مدیرکل", "اداره کل", "دانشگاه .* منصوب", "رئیس دانشگاه .* منصوب",
+    "پارک", "بوستان", "میدان", "خیابان", "آسفالت", "روکش آسفالت",
+    "آب و فاضلاب .* خبر", "قطعی آب .* شهرستان", "پروژه عمرانی",
+    "local mayor", "mayor", "municipality", "city council", "governor",
+    "municipal", "ceremony", "memorial", "statue", "monument", "festival",
+)
+
+LOCAL_PLACE_MARKERS = (
+    "تهران", "مشهد", "اصفهان", "شیراز", "تبریز", "کرمان", "رشت", "اهواز",
+    "قم", "یزد", "کرمانشاه", "همدان", "ارومیه", "سنندج", "زاهدان", "بیرجند",
+    "ساری", "گرگان", "بوشهر", "بندرعباس", "اراک", "قزوین", "اردبیل",
+    "خرم‌آباد", "خرم آباد", "ایلام", "زنجان", "کاشان", "دزفول", "آبادان",
+)
+
+NATIONAL_OR_GLOBAL_CONSEQUENCE = (
+    "جنگ", "حمله", "موشک", "بمباران", "انفجار", "ترور", "کشته", "زخمی",
+    "آتش‌بس", "آتش بس", "تحریم", "هسته‌ای", "هسته ای", "حمله سایبری",
+    "قطعی اینترنت", "اختلال گسترده", "قطع گسترده", "بحران", "زلزله", "سیل",
+    "سونامی", "طوفان", "هواپیما سقوط", "سقوط هواپیما", "نفت", "گاز", "بنزین",
+    "تورم", "نرخ بهره", "قیمت نفت", "بانک مرکزی", "مجلس", "دولت", "رئیس جمهور",
+    "قانون", "تصویب", "ممنوعیت", "تحریم", "توافق", "مذاکرات", "روابط ایران",
+    "آمریکا", "اسرائیل", "روسیه", "اوکراین", "چین", "ناتو", "سازمان ملل",
+    "هوش مصنوعی", "تراشه", "فناوری", "میلیارد", "میلیون",
+    "attack", "strike", "missile", "bombing", "explosion", "killed", "wounded",
+    "sanction", "ceasefire", "nuclear", "outage", "inflation", "interest rate",
+    "oil", "gas", "government", "parliament", "president", "united nations",
+    "artificial intelligence", "chip", "billion", "million",
+)
+
+
+def _norm(text):
+    return re.sub(r"\s+", " ", str(text or "").replace("ي", "ی").replace("ك", "ک")).strip().lower()
+
+
+def _local_routine_only(candidate):
+    title = _norm(candidate.get("title", ""))
+    body = _norm(" ".join(str(candidate.get(k, "") or "") for k in ("summary", "description")))
+    text = title + " " + body[:1800]
+    routine = any(
+        (re.search(marker, title, re.I) if ".*" in marker else marker in title)
+        for marker in LOCAL_ROUTINE_MARKERS
+    )
+    local_place = any(x in title for x in LOCAL_PLACE_MARKERS)
+    consequence = any(x in text for x in NATIONAL_OR_GLOBAL_CONSEQUENCE)
+    if not routine:
+        return False
+    if local_place and not consequence:
+        return True
+    return not consequence
+
 
 def _critical_geopolitical(candidate):
     title = str(candidate.get("title", "") or "").lower()
@@ -40,11 +96,9 @@ def _critical_geopolitical(candidate):
     action = any(x in title for x in CRITICAL_ACTIONS)
     if not action:
         return False
-    # A concrete geopolitical pair is strongest.
     for primary, partners in CRITICAL_PAIRS:
         if primary in title and any(p in title for p in partners):
             return True
-    # Other major global actors can qualify only with a concrete crisis/action.
     actors = (
         "trump", "putin", "zelensky", "netanyahu", "nato", "united nations",
         "united states", "washington", "canada", "ایران", "ترامپ", "پوتین",
@@ -57,12 +111,14 @@ def install():
     original = v13_intelligence.is_publishable
 
     def wrapped(main, candidate):
-        # Scope must be decided BEFORE scoring/selection. This prevents a local
-        # foreign story such as a UK crime/weather item from consuming a slot,
+        if _local_routine_only(candidate):
+            print(
+                f"V13 EDITORIAL QUALITY: rejected [local-routine-low-value] {candidate.get('title', '')}",
+                flush=True,
+            )
+            return False, 0, "local-routine-low-value"
+
         if v13_policy_guard._foreign_local_only(candidate):
-            # A major public-safety/security event is globally relevant even
-            # when the publisher is foreign-local. Keep routine foreign-local
-            # items blocked, but allow verified high-impact disasters/incidents.
             if not v13_intelligence._high_impact_security_override(candidate):
                 return False, 0, "foreign-local-preselection"
 
@@ -70,8 +126,8 @@ def install():
         if ok or not _critical_geopolitical(candidate):
             return ok, score, reason
         rescued_score = max(int(score or 0), v13_intelligence.MIN_EVENT_SCORE + 6)
-        print(f"V13 CRITICAL EDITORIAL RESCUE: {candidate.get('title', '')}")
+        print(f"V13 CRITICAL EDITORIAL RESCUE: {candidate.get('title', '')}", flush=True)
         return True, rescued_score, "critical-geopolitical-rescue"
 
     v13_intelligence.is_publishable = wrapped
-    print("V13 CRITICAL EDITORIAL RESCUE ACTIVE")
+    print("V13 CRITICAL EDITORIAL RESCUE ACTIVE", flush=True)
