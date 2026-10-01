@@ -1,58 +1,195 @@
-"""NABZ V13 — relevance and publish-quality gate.
+"""NABZ V13 — relevance, sports and publish-quality gate.
 
-1) Foreign "soft local" news (a university strike in Cameroon, a city-council
-   row abroad...) is rejected at selection time unless it is tied to Iran or
-   is a real security/casualty event.
-2) A finished post is refused when its text is visibly broken: a truncated
-   lead ("۳ نفتکش در آخرین"), a too-thin body, or a headline built around an
-   unexplained Latin acronym ("... لیست عدم سازگاری PGSA"). Refused posts are
-   labelled as editorial blocks, so they never turn a run red.
+1) Unimportant local news is rejected at selection time:
+   * foreign "soft local" stories (a university strike in Cameroon, a city
+     council row, a festival, a single local crime abroad);
+   * Iranian provincial/city routine (a governor's visit, a local office
+     opening) unless it carries a national or public-safety signal.
+2) Major sports news is let in: Iran national teams and Iranian athletes on
+   the world stage, decisive stages of major tournaments, the Tehran derby,
+   world records and the Ballon d'Or. Routine league games, rumours and
+   interviews stay out. Sports get editorial tier 2 (3 for decisive Iran
+   national-team results), so they never displace war or crisis news.
+3) A finished post is refused when its text is visibly broken: a truncated
+   lead, a too-thin body, or a headline built around an unexplained Latin
+   acronym. Refused posts are labelled editorial blocks (never a red run).
 """
 
 import re
 import sys
 
-SOFT_LOCAL_TOPICS = (
-    "دانشگاه", "سال تحصیلی", "مدرسه", "مدارس", "دانش آموز", "دانشجو", "معلم",
-    "استادان", "اساتید", "کنکور", "امتحان", "اعتصاب", "اتحادیه", "شهرداری",
-    "شهردار", "شورای شهر", "ترافیک", "جشنواره", "کنسرت",
-    "university", "universities", "academic year", "school", "students",
-    "teachers", "lecturers", "professors", "exam", "mayor", "city council",
-    "municipal", "festival", "concert", "labour union", "labor union",
+PERSIAN = r"\u0600-\u06FF"
+
+
+def _word_re(words):
+    alt = "|".join(re.escape(w) for w in sorted(words, key=len, reverse=True))
+    return re.compile(rf"(?<![\w{PERSIAN}])(?:{alt})(?![\w{PERSIAN}])", re.I)
+
+
+def _norm(text):
+    text = str(text or "").replace("\u200c", " ").replace("ي", "ی").replace("ك", "ک")
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _title(candidate):
+    return _norm(candidate.get("title", "")).lower()
+
+
+def _text(candidate, limit=800):
+    extra = _norm(candidate.get("summary", "") or candidate.get("description", "")).lower()[:limit]
+    return _title(candidate) + " " + extra
+
+
+IRAN_LINK = _word_re(("ایران", "ایرانی", "تهران", "iran", "iranian", "tehran"))
+
+# --------------------------------------------------------------------------
+# Foreign soft-local news
+# --------------------------------------------------------------------------
+
+SOFT_LOCAL = _word_re((
+    "دانشگاه", "دانشگاه ها", "سال تحصیلی", "مدرسه", "مدارس", "دانش آموز", "دانش آموزان",
+    "دانشجو", "دانشجویان", "معلم", "معلمان", "استادان", "اساتید", "کنکور", "امتحان",
+    "اعتصاب", "اتحادیه", "شهرداری", "شهردار", "شورای شهر", "ترافیک", "جشنواره",
+    "کنسرت", "خواننده", "بازیگر", "سلبریتی", "ازدواج", "طلاق", "باغ وحش", "پیش بینی هوا",
+    "انتخابات محلی", "university", "universities", "academic year", "school", "schools",
+    "students", "teachers", "lecturers", "professors", "exam", "mayor", "city council",
+    "municipal", "festival", "concert", "celebrity", "singer", "actor", "actress",
+    "wedding", "divorce", "zoo", "local election", "labour union", "labor union",
+))
+LOCAL_CRIME = _word_re((
+    "پلیس", "دادگاه", "سرقت", "دزدی", "قتل", "تصادف", "زندان", "محکوم", "بازداشت",
+    "police", "court", "theft", "robbery", "murder", "accident", "jail", "prison",
+    "sentenced", "arrested",
+))
+GLOBAL_ACTOR = _word_re((
+    "آمریکا", "روسیه", "چین", "اسرائیل", "سازمان ملل", "ترامپ", "پوتین", "ناتو",
+    "اتحادیه اروپا", "دیوان بین المللی", "دادگاه لاهه", "شورای امنیت",
+    "united states", "russia", "china", "israel", "united nations", "trump", "putin",
+    "nato", "european union", "icc", "icj", "security council",
+))
+MASS_EVENT = re.compile(
+    r"(?:حمله|انفجار|تیراندازی|گروگان|ترور|زلزله|سیل|سونامی|ده ?ها کشته|صدها کشته|"
+    r"[۵-۹\d]{1,}\s*(?:نفر\s*)?کشته|attack|explosion|shooting|hostage|terror|earthquake|"
+    r"flood|tsunami|dozens killed|hundreds killed|\b(?:[5-9]|\d{2,})\s+(?:people\s+)?killed)",
+    re.I,
 )
-IRAN_LINK = ("ایران", "تهران", "iran", "tehran")
-HARD_EVENT = (
-    "کشته", "زخمی", "حمله", "انفجار", "تیراندازی", "گروگان", "آتش سوزی",
-    "killed", "dead", "wounded", "attack", "explosion", "shooting", "hostage",
+
+
+def foreign_soft_local(candidate):
+    title = _title(candidate)
+    if not title:
+        return False
+    text = _text(candidate)
+    if IRAN_LINK.search(text) or MASS_EVENT.search(title):
+        return False
+    if SOFT_LOCAL.search(title):
+        return True
+    if LOCAL_CRIME.search(title) and not GLOBAL_ACTOR.search(text):
+        return True
+    return False
+
+# --------------------------------------------------------------------------
+# Iranian provincial / city routine
+# --------------------------------------------------------------------------
+
+IRAN_LOCAL = _word_re((
+    "استان", "استانداری", "استاندار", "معاون استاندار", "فرماندار", "فرمانداری",
+    "بخشدار", "بخشداری", "دهیار", "دهیاری", "شهرستان", "شهردار", "شهرداری",
+    "شورای شهر", "مدیرکل", "اداره کل", "امام جمعه", "نماینده مردم",
+    "آذربایجان شرقی", "آذربایجان غربی", "اردبیل", "البرز", "ایلام", "بوشهر",
+    "چهارمحال", "خراسان", "خراسان رضوی", "خراسان جنوبی", "خراسان شمالی", "خوزستان",
+    "زنجان", "سمنان", "سیستان و بلوچستان", "استان فارس", "قزوین", "کردستان", "کرمان",
+    "کرمانشاه", "کهگیلویه", "گلستان", "گیلان", "لرستان", "مازندران", "استان مرکزی",
+    "هرمزگان", "همدان", "یزد", "تبریز", "ارومیه", "شیراز", "اهواز", "کرج", "رشت",
+    "ساری", "گرگان", "یاسوج", "بیرجند", "بجنورد", "زاهدان", "سنندج", "خرم آباد",
+    "اراک", "بندرعباس", "شهرکرد", "دزفول", "آبادان", "کاشان", "قشم", "کیش",
+))
+IRAN_LOCAL_EXCEPTION = re.compile(
+    r"(?:کشته|جان باخت|زخمی|زلزله|سیل|انفجار|آتش ?سوزی|حمله|تیراندازی|ترور|اعتراض|تجمع|"
+    r"سراسری|کشوری|ملی|دولت|مجلس|رئیس ?جمهور|وزیر|تحریم|هسته|موشک|پهپاد|نفت|گاز|"
+    r"قطعی برق|قطع برق|قطعی آب|کمبود|اعدام|میلیارد|تنگه هرمز|خلیج فارس|ریزگرد|آلودگی شدید)",
+    re.I,
 )
+
+
+def iran_local_routine(candidate):
+    title = _title(candidate)
+    if not title or not IRAN_LOCAL.search(title):
+        return False
+    return not IRAN_LOCAL_EXCEPTION.search(title)
+
+# --------------------------------------------------------------------------
+# Major sports
+# --------------------------------------------------------------------------
+
+SPORT = _word_re((
+    "فوتبال", "والیبال", "کشتی آزاد", "کشتی فرنگی", "کشتی گیر", "کشتی گیران",
+    "بسکتبال", "فوتسال", "تنیس", "وزنه برداری", "تکواندو", "المپیک", "پارالمپیک",
+    "جام جهانی", "لیگ قهرمانان", "لیگ قهرمانان اروپا", "لیگ قهرمانان آسیا",
+    "جام ملت های اروپا", "کوپا آمریکا", "جام ملت های آسیا", "بازی های آسیایی",
+    "قهرمانی جهان", "رکورد جهان", "توپ طلا", "پرسپولیس", "استقلال تهران", "سپاهان",
+    "دربی", "تیم ملی", "ملی پوش", "سرمربی",
+    "football", "soccer", "volleyball", "wrestling", "basketball", "olympic", "olympics",
+    "world cup", "champions league", "euro 2028", "copa america", "asian cup",
+    "asian games", "world championship", "world record", "ballon d'or",
+))
+BIG_STAGE = _word_re((
+    "جام جهانی", "المپیک", "پارالمپیک", "لیگ قهرمانان", "جام ملت های اروپا", "کوپا آمریکا",
+    "جام ملت های آسیا", "بازی های آسیایی", "قهرمانی جهان",
+    "world cup", "olympic", "olympics", "champions league", "copa america", "asian cup",
+    "asian games", "world championship",
+))
+DECISIVE = _word_re((
+    "فینال", "قهرمان", "قهرمانی", "صعود", "صعود کرد", "حذف", "حذف شد", "نیمه نهایی",
+    "یک چهارم نهایی", "مدال", "مدال طلا", "طلای", "نقره", "برنز", "قرعه کشی", "رکورد",
+    "final", "champion", "champions", "title", "qualify", "qualified", "qualifies",
+    "knocked out", "eliminated", "semi-final", "semifinal", "quarter-final", "medal",
+    "gold", "record", "draw",
+))
+RESULT = _word_re((
+    "پیروز", "پیروزی", "برد", "شکست", "باخت", "مساوی", "تساوی", "نتیجه", "صعود",
+    "حذف", "قهرمان", "قهرمانی", "مدال", "سرمربی", "گلزنی",
+    "beat", "beats", "won", "wins", "lost", "loses", "drew", "result", "coach", "appointed",
+))
+SINGULAR = re.compile(r"(?:توپ طلا|رکورد جهان|ballon d'or|world record)", re.I)
+DERBY = re.compile(r"(?:دربی|پرسپولیس.*استقلال|استقلال.*پرسپولیس)", re.I)
+SPORT_NOISE = re.compile(
+    r"(?:شایعه|احتمال|احتمالا|مذاکره با|در آستانه|نقل و انتقالات|مصاحبه|واکنش|گفت|"
+    r"ادعا|انتقاد|عکس|ویدیو|فیلم|حاشیه|rumou?r|could|might|linked with|talks with|"
+    r"interview|reacts|says|said|photo|video)",
+    re.I,
+)
+IRAN_TEAM = re.compile(r"(?:تیم ملی|ملی پوش|ایران|iran)", re.I)
+
+
+def major_sports(candidate):
+    """Return 0 (not major), 2 (major) or 3 (decisive Iran national result)."""
+    title = _title(candidate)
+    if not title or not SPORT.search(title) or SPORT_NOISE.search(title):
+        return 0
+    if SINGULAR.search(title):
+        return 2
+    iran = bool(IRAN_TEAM.search(title))
+    if iran and RESULT.search(title):
+        return 3 if (BIG_STAGE.search(title) or DECISIVE.search(title)) else 2
+    if BIG_STAGE.search(title) and DECISIVE.search(title):
+        return 2
+    if DERBY.search(title) and RESULT.search(title):
+        return 2
+    return 0
+
+# --------------------------------------------------------------------------
+# Post text quality
+# --------------------------------------------------------------------------
 
 KNOWN_ACRONYMS = {
     "NATO", "OPEC", "IAEA", "UN", "EU", "US", "USA", "UK", "AI", "FBI", "CIA",
     "BBC", "CNN", "IMF", "WHO", "FIFA", "UEFA", "NASA", "BRICS", "G7", "G20",
     "CEO", "GDP", "NBA", "UFC", "SpaceX", "NABZ", "ICC", "ICJ", "WTO", "OIC",
-    "ASEAN", "SCO", "CPI", "UAE", "IRGC", "AFP", "AP",
+    "ASEAN", "SCO", "CPI", "UAE", "IRGC", "AFP", "AP", "AFC", "VAR", "MMA",
 }
 
 PROBLEM_STATUS = "quality_blocked"
-SOFT_LOCAL_REASON = "foreign-soft-local"
-
-
-def _norm(text):
-    return re.sub(r"\s+", " ", str(text or "").replace("\u200c", " ")).strip()
-
-
-def foreign_soft_local(candidate):
-    title = _norm(candidate.get("title", "")).lower()
-    if not title or not any(t in title for t in SOFT_LOCAL_TOPICS):
-        return False
-    text = title + " " + _norm(candidate.get("summary", "") or candidate.get("description", "")).lower()[:600]
-    if any(x in text for x in IRAN_LINK):
-        return False
-    if any(x in title for x in HARD_EVENT):
-        return False
-    return True
-
-
 _VERBISH_END = re.compile(r"(?:[.!؟?»\")]|(?:د|ت|ست|ند|ید|یم))$")
 
 
@@ -75,6 +212,19 @@ def caption_problem(title, sentences):
         return "body-truncated"
     return ""
 
+# --------------------------------------------------------------------------
+# Install
+# --------------------------------------------------------------------------
+
+SPORTS_GOOGLE_QUERIES = (
+    ("ورزش", "تیم ملی فوتبال ایران"),
+    ("ورزش", "تیم ملی والیبال ایران"),
+    ("ورزش", "کشتی ایران قهرمانی جهان"),
+    ("ورزش", "site:varzesh3.com"),
+    ("ورزش", "جام جهانی فوتبال"),
+    ("ورزش", "لیگ قهرمانان اروپا"),
+)
+
 
 def _register_statuses():
     main_mod = sys.modules.get("__main__")
@@ -83,17 +233,75 @@ def _register_statuses():
         statuses.add(PROBLEM_STATUS)
 
 
+def _add_sports_feeds(core):
+    feeds = getattr(core, "GOOGLE_NEWS_FEEDS", None)
+    builder = getattr(core, "google_news_search_url", None)
+    if not isinstance(feeds, list) or not callable(builder):
+        return 0
+    existing = {(str(a), str(b)) for a, b in feeds}
+    added = 0
+    for category, query in SPORTS_GOOGLE_QUERIES:
+        try:
+            feed = (category, builder(query))
+        except Exception:
+            continue
+        if feed[1] and feed not in existing:
+            feeds.append(feed)
+            existing.add(feed)
+            added += 1
+    return added
+
+
 def install(core, current):
     import v13_intelligence
+    import v13_policy_guard
 
+    min_score = int(getattr(v13_intelligence, "MIN_EVENT_SCORE", 7))
     previous = v13_intelligence.is_publishable
 
     def relevance_gate(main_obj, candidate):
         ok, score, reason = previous(main_obj, candidate)
-        if ok and foreign_soft_local(candidate):
-            return False, 0, SOFT_LOCAL_REASON
+        sports = major_sports(candidate)
+        if sports:
+            if reason == "recent-editorial-block":
+                return ok, score, reason
+            candidate["_major_sports"] = sports
+            return True, max(int(score or 0), min_score + 3), "major-sports"
+        if not ok:
+            return ok, score, reason
+        if foreign_soft_local(candidate):
+            return False, 0, "foreign-soft-local"
+        if iran_local_routine(candidate):
+            return False, 0, "iran-local-routine"
         return ok, score, reason
 
     v13_intelligence.is_publishable = relevance_gate
+
+    previous_tier = v13_intelligence._publication_tier
+
+    def sports_tier(candidate):
+        tier = previous_tier(candidate)
+        sports = candidate.get("_major_sports") or major_sports(candidate)
+        return max(tier, sports) if sports else tier
+
+    v13_intelligence._publication_tier = sports_tier
+
+    previous_scope = v13_policy_guard._foreign_local_only
+
+    def sports_scope(candidate):
+        if major_sports(candidate):
+            return False
+        return previous_scope(candidate)
+
+    v13_policy_guard._foreign_local_only = sports_scope
+
+    strict = getattr(core, "is_strictly_useful_news", None)
+    if callable(strict):
+        def sports_strict(candidate):
+            return True if major_sports(candidate) else strict(candidate)
+        core.is_strictly_useful_news = sports_strict
+
     _register_statuses()
-    print("V13 RELEVANCE GATE ACTIVE: foreign soft-local news + broken post text are blocked.", flush=True)
+    added = _add_sports_feeds(core)
+    print(f"V13 RELEVANCE GATE ACTIVE: local news blocked, major sports allowed (+{added} sports feeds), "
+          "broken post text blocked.", flush=True)

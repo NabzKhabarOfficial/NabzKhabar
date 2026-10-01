@@ -135,7 +135,9 @@ def classify(title, candidate=None):
 
     emoji, label = "🌍", "جهان"
     cat = _norm(candidate.get("category", ""))
-    if "ایران" in cat:
+    if candidate.get("_major_sports") or "ورزش" in cat:
+        emoji, label = "⚽", "ورزش"
+    elif "ایران" in cat:
         emoji, label = "🇮🇷", "ایران"
     else:
         for terms, e, l in CATEGORIES:
