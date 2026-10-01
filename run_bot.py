@@ -79,6 +79,9 @@ def _install_v13_stack():
     v13_editorial_formatter.install(main)
     v13_byline_cleaner.install(main)
     v13_policy_guard.install(main)
+    # Must sit *inside* v13_intelligence's tracked_process (installed below)
+    # so editorial blocks can be told apart from real Telegram failures.
+    _install_editorial_block_classifier()
     v13_quality_gate.install()
     v13_intelligence.install(main)
     v13_critical_rescue.install()
@@ -90,8 +93,135 @@ def _install_v13_stack():
     # its inner retry is still active and wrapping again would double-retry.
     _ensure_publication_retry(only=("send_video",))
 
+    # Outermost selection gate: skip stories that were editorially blocked in
+    # a recent run (e.g. no AI translation passed validation), so the same
+    # story is not re-selected and re-failed on every run.
+    _install_recent_block_selection_gate()
+
     main._v13_stack_installed = True
     print("V13 STACK: all editorial, rescue, media, AI, and health layers installed", flush=True)
+
+
+# --- Editorial blocks vs. real publication failures -------------------------
+# v13_intelligence.tracked_process counts every False from process_news as a
+# failed publication, even when no Telegram request was made (final policy
+# scope drop, foreign story with no valid AI translation). Those runs then
+# failed the "Enforce publication health" step with error "" and the same
+# story was re-selected on every run. We classify these editorial blocks,
+# correct the telemetry after the run, and remember them for a few hours.
+import json as _json
+
+EDITORIAL_BLOCK_STATUSES = {"ai_unavailable_foreign", "policy_scope_blocked"}
+_EDITORIAL_BLOCK_KEY = "_editorial_blocks"  # stored in ai_model_health.json (persisted)
+_EDITORIAL_BLOCK_TTL_SECONDS = 6 * 60 * 60
+_EDITORIAL_BLOCK_MAX = 300
+_HEALTH_FILE = "v13_health.json"
+_editorial_blocks_this_run = {}
+
+
+def _norm_title(title):
+    try:
+        return str(v13_intelligence._norm(title or "")).strip().lower()
+    except Exception:
+        return re.sub(r"\s+", " ", str(title or "")).strip().lower()
+
+
+def _load_recent_blocks():
+    try:
+        blocks = v13_ai_router._load_health().get(_EDITORIAL_BLOCK_KEY) or {}
+        now = time.time()
+        return {
+            k: v for k, v in blocks.items()
+            if isinstance(v, dict) and float(v.get("until", 0) or 0) > now
+        }
+    except Exception as exc:
+        print(f"V13 EDITORIAL BLOCKS: load warning: {type(exc).__name__}: {exc}")
+        return {}
+
+
+def _save_recent_blocks(new_blocks):
+    if not new_blocks:
+        return
+    try:
+        health = v13_ai_router._load_health()
+        blocks = _load_recent_blocks()
+        until = time.time() + _EDITORIAL_BLOCK_TTL_SECONDS
+        for title, reason in new_blocks.items():
+            blocks[title] = {"until": until, "reason": reason}
+        if len(blocks) > _EDITORIAL_BLOCK_MAX:
+            newest = sorted(blocks.items(), key=lambda kv: kv[1].get("until", 0))[-_EDITORIAL_BLOCK_MAX:]
+            blocks = dict(newest)
+        health[_EDITORIAL_BLOCK_KEY] = blocks
+        v13_ai_router._save_health(health)
+    except Exception as exc:
+        print(f"V13 EDITORIAL BLOCKS: save warning: {type(exc).__name__}: {exc}")
+
+
+def _install_editorial_block_classifier():
+    inner = main.process_news
+
+    def classified_process(candidate, *args, **kwargs):
+        title = _norm_title(candidate.get("title", ""))
+        try:
+            scope_blocked = bool(v13_policy_guard._foreign_local_only(candidate))
+        except Exception:
+            scope_blocked = False
+        if scope_blocked:
+            # Same decision v13_policy_guard makes, but labelled.
+            candidate["publication_status"] = "policy_scope_blocked"
+            print("V13 FINAL PUBLICATION SCOPE DROP: " + str(candidate.get("title", "") or ""), flush=True)
+            _editorial_blocks_this_run[title] = "policy_scope_blocked"
+            return False
+        result = inner(candidate, *args, **kwargs)
+        status = candidate.get("publication_status")
+        if not result and status in EDITORIAL_BLOCK_STATUSES:
+            _editorial_blocks_this_run[title] = status
+        return result
+
+    main.process_news = classified_process
+
+
+def _install_recent_block_selection_gate():
+    recent = _load_recent_blocks()
+    if recent:
+        print(f"V13 EDITORIAL BLOCKS: {len(recent)} recently blocked stor(y/ies) will not be re-selected", flush=True)
+    previous = v13_intelligence.is_publishable
+
+    def recent_block_gate(main_obj, candidate):
+        ok, score, reason = previous(main_obj, candidate)
+        if ok and recent and _norm_title(candidate.get("title", "")) in recent:
+            return False, 0, "recent-editorial-block"
+        return ok, score, reason
+
+    v13_intelligence.is_publishable = recent_block_gate
+
+
+def _reclassify_editorial_blocks():
+    """Persist this run's editorial blocks and fix the run telemetry."""
+    if not _editorial_blocks_this_run:
+        return
+    _save_recent_blocks(_editorial_blocks_this_run)
+    try:
+        with open(_HEALTH_FILE, "r", encoding="utf-8") as f:
+            health = _json.load(f)
+    except Exception as exc:
+        print(f"V13 EDITORIAL BLOCKS: telemetry read warning: {type(exc).__name__}: {exc}")
+        return
+    corrected = 0
+    for attempt in health.get("publication_attempts") or []:
+        if attempt.get("result") != "failed":
+            continue
+        reason = _editorial_blocks_this_run.get(_norm_title(attempt.get("title", "")))
+        if reason:
+            attempt["result"] = "editorial_blocked"
+            attempt["reason"] = reason
+            corrected += 1
+    if corrected:
+        health["failed_publications"] = max(0, int(health.get("failed_publications", 0) or 0) - corrected)
+        health["editorial_blocked_publications"] = int(health.get("editorial_blocked_publications", 0) or 0) + corrected
+        with open(_HEALTH_FILE, "w", encoding="utf-8") as f:
+            _json.dump(health, f, ensure_ascii=False, indent=2)
+        print(f"V13 EDITORIAL BLOCKS: {corrected} attempt(s) reclassified from failed to editorial_blocked", flush=True)
 
 
 _original_openai_compatible_json = v13_ai_router._openai_compatible_json
@@ -233,6 +363,9 @@ if __name__ == "__main__":
     _patch_history_rescue_pipeline()
     _install_v13_stack()
     print("V13 ENGINE LAUNCH: run_bot -> v13_standalone.main()", flush=True)
-    result = main.main()
+    try:
+        result = main.main()
+    finally:
+        _reclassify_editorial_blocks()
     if result is False:
         raise SystemExit(1)
