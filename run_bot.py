@@ -23,6 +23,18 @@ PERSIAN_RSS_FEEDS = [
     ("جهان", "https://rss.dw.com/xml/rss-fa-all"),
     ("جهان", "https://www.radiofarda.com/api/z-pqpiev-qpp"),
 ]
+
+# Fast international breaking-news wires (verified live RSS, 2026-10-01).
+# Foreign stories still go through AI translation, the foreign-local policy
+# filter and semantic dedup, so these add speed/coverage, not noise.
+WORLD_BREAKING_RSS_FEEDS = [
+    ("جهان", "https://www.aljazeera.com/xml/rss/all.xml"),
+    ("جهان", "https://feeds.skynews.com/feeds/rss/world.xml"),
+    ("جهان", "http://www.france24.com/en/top-stories/rss"),
+    ("جهان", "https://www.theguardian.com/world/rss"),
+    ("جهان", "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"),
+]
+PERSIAN_RSS_FEEDS = PERSIAN_RSS_FEEDS + WORLD_BREAKING_RSS_FEEDS
 existing_rss = {(str(name), str(url)) for name, url in getattr(main, "DIRECT_RSS_FEEDS", [])}
 for feed in PERSIAN_RSS_FEEDS:
     if feed not in existing_rss:
@@ -33,6 +45,9 @@ PERSIAN_GOOGLE_QUERIES = [
     ("جهان", "site:bbc.com/persian اخبار جهان"),
     ("جهان", "site:dw.com/fa-ir اخبار جهان"),
     ("جهان", "site:radiofarda.com جهان"),
+    # Reuters and AP have no public RSS; Google News is the standard route.
+    ("جهان", "site:reuters.com world"),
+    ("جهان", "site:apnews.com world"),
 ]
 existing_google = {(str(name), str(url)) for name, url in getattr(main, "GOOGLE_NEWS_FEEDS", [])}
 for category, query in PERSIAN_GOOGLE_QUERIES:
