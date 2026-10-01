@@ -84,10 +84,11 @@ def _install_v13_stack():
     v13_critical_rescue.install()
     v13_global_rescue.install()
 
-    # Some layers (e.g. media branding) replace a sender outright, which used
-    # to silently drop the bounded retry installed at import time. Re-apply it
-    # to any sender that is no longer wrapped.
-    _ensure_publication_retry()
+    # v13_media_branding replaces send_video outright, which silently dropped
+    # the bounded retry installed at import time. Re-apply it to send_video
+    # only: send_photo is *wrapped* (not replaced) by v13_content_enhancer, so
+    # its inner retry is still active and wrapping again would double-retry.
+    _ensure_publication_retry(only=("send_video",))
 
     main._v13_stack_installed = True
     print("V13 STACK: all editorial, rescue, media, AI, and health layers installed", flush=True)
@@ -133,8 +134,10 @@ def _bounded_explicit_retry(original, label, attempts=2):
 _PUBLICATION_SENDERS = (("send_message", "sendMessage"), ("send_photo", "sendPhoto"), ("send_video", "sendVideo"))
 
 
-def _ensure_publication_retry():
+def _ensure_publication_retry(only=None):
     for attr, label in _PUBLICATION_SENDERS:
+        if only is not None and attr not in only:
+            continue
         fn = getattr(main, attr, None)
         if fn is not None and not getattr(fn, "_v13_retry_wrapped", False):
             setattr(main, attr, _bounded_explicit_retry(fn, label))

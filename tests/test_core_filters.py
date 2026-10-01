@@ -89,3 +89,13 @@ def test_short_latin_tokens_are_word_bounded():
     assert not patch._title_is_major_global_event("Business leaders said review is due")
     assert patch._title_is_major_global_event("US strikes militia sites")
     assert patch._title_is_major_global_event("OpenAI launches new model")
+
+
+# --- editorial formatter ---------------------------------------------------
+
+def test_incomplete_check_uses_whole_final_word():
+    import v13_editorial_formatter as fmt
+    assert fmt._is_incomplete("داروی جدید عرضه شد و")
+    assert fmt._is_incomplete("وزیر گفت که")
+    assert not fmt._is_incomplete("بیمار به دارو")
+    assert not fmt._is_incomplete("خبر کامل است.")
