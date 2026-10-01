@@ -107,7 +107,6 @@ def _is_important_missed(story):
         or score >= IMPORTANT_MISSED_SCORE
         or story.get("high_impact_security_candidate")
         or story.get("major_business_legal_candidate")
-        or story.get("global_consequential_candidate")
         or story.get("unga_breaking_candidate")
         or _monitor_global_consequential(story)
     )
