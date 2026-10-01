@@ -473,6 +473,34 @@ def _sentence_count(text):
     ])
 
 
+# Deterministic Persian rendering for recurring foreign proper names.
+# This runs before the Persian-only gate so a provider cannot lose an otherwise
+# publishable story merely because it preserved brand/company/model names in Latin.
+PERSIAN_PROPER_NAME_MAP = {
+    "Gemini": "جمنای", "Argon": "آرگون", "Alphabet": "آلفابت",
+    "OpenAI": "اوپن‌ای‌آی", "Anthropic": "آنتروپیک", "GPT": "جی‌پی‌تی",
+    "Fairwind": "فیر ویند", "ElevenLabs": "الون لبز",
+    "Flow Engineering": "فلو انجینیرینگ", "Flow": "فلو", "Engineering": "انجینیرینگ",
+    "Valor Equity Partners": "والور اکویتی پارتنرز", "Valor": "والور",
+    "Atreides Management": "آتریادس منیجمنت", "Atreides": "آتریادس",
+    "Sequoia Capital": "سکویا کپیتال", "Sequoia": "سکویا",
+    "Anduril": "اندوریل", "Rivian": "ریویان", "Joby Aviation": "جوبی اوییشن",
+    "General Motors": "جنرال موتورز", "Wellington": "ولینگتون",
+    "T. Rowe Price": "تی. رو پرایس", "Rowe": "رو", "Price": "پرایس",
+    "Valar": "والار", "Fairwind": "فیر ویند",
+    "Microsoft": "مایکروسافت", "Google": "گوگل", "Meta": "متا",
+    "Amazon": "آمازون", "NVIDIA": "انویدیا", "Apple": "اپل",
+    "Samsung": "سامسونگ", "ChatGPT": "چت‌جی‌پی‌تی", "Claude": "کلود",
+    "AI": "هوش مصنوعی", "LLM": "مدل زبانی", "CAD": "کَد",
+}
+
+def _persianize_proper_names(text):
+    value = str(text or "")
+    # Longest phrases first to avoid partially replacing company names.
+    for latin, persian in sorted(PERSIAN_PROPER_NAME_MAP.items(), key=lambda x: len(x[0]), reverse=True):
+        value = re.sub(r"(?<![A-Za-z])" + re.escape(latin) + r"(?![A-Za-z])", persian, value, flags=re.I)
+    return value
+
 def _validation_reasons(main, title, summary, source, foreign):
     reasons = []
     if not title or not summary:
@@ -514,8 +542,8 @@ def _validate(main, original_title, source, data, foreign):
     if not isinstance(data, dict):
         print("V13 AI ROUTER: validation rejected non-dict provider output.")
         return None
-    title = main.clean_title(data.get("title", ""))
-    summary = main.clean_content(data.get("summary", ""))
+    title = _persianize_proper_names(main.clean_title(data.get("title", "")))
+    summary = _persianize_proper_names(main.clean_content(data.get("summary", "")))
     reasons = _validation_reasons(main, title, summary, source, foreign)
     if reasons:
         print("V13 AI ROUTER: content validation rejected: " + " | ".join(reasons))
@@ -543,6 +571,7 @@ def gemini_request(main, title, article_text):
 - هیچ عدد، نام، ادعا یا واقعیت جدیدی اضافه نکن.
 - هیچ عددی را حدس نزن؛ اگر عددی عیناً در متن خبر نیست، آن را حذف کن.
 - هیچ لینک، منبع، «به گزارش» یا توضیح درباره ترجمه نده.
+- نام‌های خاص لاتین را تا حد ممکن با شکل رایج فارسی بنویس؛ خروجی نهایی نباید واژه انگلیسی عمومی داشته باشد.
 - نام افراد، کشورها و سازمان‌ها را دقیق حفظ کن.
 - فقط JSON معتبر:
 {"title":"تیتر فارسی","summary":"خلاصه فارسی"}""" % (title, source[:6000])
