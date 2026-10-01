@@ -39,7 +39,7 @@ CLEANUP_FLAG = "_join_button_cleanup_done"  # persisted in ai_model_health.json
 CLEANUP_LOOKBACK = 60
 MAX_CAPTION = 980  # below content_enhancer's 1000-char cut, so it never trims us
 
-_CURRENT = {"candidate": None}
+_CURRENT = {"candidate": None, "blocked": ""}
 _PLANS = []          # most recent caption plans (title, quote, header)
 _UNBRANDED = set()   # photo paths whose branding is deferred to send time
 
@@ -183,8 +183,22 @@ def build_caption(title, body, formatter):
     title = formatter.format_title(title)
     body = formatter.format_body(body)
     if not title or not body:
+        if _CURRENT.get("candidate") is not None:
+            # A news story that cannot be formatted cleanly is not published
+            # in the old raw layout either.
+            _CURRENT["blocked"] = "unformattable-text"
         return ""
     sentences = _split(body)
+    try:
+        import v13_relevance_gate
+        problem = v13_relevance_gate.caption_problem(title, sentences)
+    except Exception:
+        problem = ""
+    if problem:
+        # Block the whole post; the sender guard refuses it (no fallback text).
+        _CURRENT["blocked"] = problem
+        print(f"V13 POST QUALITY: blocked ({problem}) -> {title}", flush=True)
+        return ""
     if not sentences:
         return ""
 
@@ -395,32 +409,37 @@ def render_card(src_path, out_path, title, level=3, label="جهان", font_path=
     if abs(factor - 1) > 0.02:
         img = img.resize((max(1, int(w * factor)), max(1, int(h * factor))), Image.LANCZOS)
     W, H = img.size
-    u = W / 1080.0
-    margin = int(54 * u)
+    # Scale type by the *height* on wide photos so the title never swallows
+    # a landscape image (sea, crowds, skylines stay visible).
+    u = min(W, H * 1.25) / 1080.0
+    margin = int(40 * u)
 
     probe = ImageDraw.Draw(img)
-    size = int(62 * u)
-    min_size = int(40 * u)
+    size = int(46 * u)
+    min_size = int(36 * u)
+    max_lines = 2
+    lines = []
     while True:
         tfont = _font(size, font_path)
         lines = _wrap(probe, title, tfont, W - 2 * margin)
-        if len(lines) <= 3 or size <= min_size:
+        if len(lines) <= max_lines or size <= min_size:
             break
         size = int(size * 0.92)
-    if len(lines) > 3:
-        lines = lines[:3]
-        lines[2] = lines[2].rsplit(" ", 1)[0] + " …"
-    line_h = int(size * 1.45)
+    if len(lines) > max_lines:
+        lines = []  # too long for a tidy card: brand bar only, title stays in the caption
+    line_h = int(size * 1.4)
 
-    brand_font = _font(int(30 * u), font_path)
-    handle_font = _font(int(24 * u), font_path)
-    badge_font = _font(int(30 * u), font_path)
+    brand_font = _font(int(24 * u), font_path)
+    handle_font = _font(int(20 * u), font_path)
+    badge_font = _font(int(24 * u), font_path)
 
-    brand_row = int(64 * u)
-    block_h = int(26 * u) + len(lines) * line_h + int(22 * u) + brand_row + margin // 2
-    band_h = min(int(H * 0.82), max(int(H * 0.46), block_h + int(120 * u)))
-    if block_h > band_h:
-        return False
+    brand_row = int(50 * u)
+    title_h = (int(20 * u) + len(lines) * line_h) if lines else 0
+    block_h = title_h + int(16 * u) + brand_row + margin // 2
+    if block_h > int(H * 0.40) and lines:
+        lines, title_h = [], 0
+        block_h = int(16 * u) + brand_row + margin // 2
+    band_h = min(int(H * 0.48), block_h + int(70 * u))
 
     # Dark gradient for legibility.
     overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -428,38 +447,39 @@ def render_card(src_path, out_path, title, level=3, label="جهان", font_path=
     top = H - band_h
     for y in range(top, H):
         t = (y - top) / max(1, band_h)
-        od.line([(0, y), (W, y)], fill=(6, 8, 14, int(246 * min(1.0, t * 1.25) ** 1.1)))
+        od.line([(0, y), (W, y)], fill=(6, 8, 14, int(225 * min(1.0, t * 1.2) ** 1.3)))
     base = img.convert("RGBA")
     base.alpha_composite(overlay)
     d = ImageDraw.Draw(base, "RGBA")
 
     right = W - margin
     y = H - block_h
-    # Red accent bar above the title.
-    d.rounded_rectangle((right - int(96 * u), y, right, y + max(5, int(7 * u))),
-                        radius=4, fill=ACCENT + (255,))
-    y += int(26 * u)
-    for line in lines:
-        d.text((right + 2, y + 3), line, font=tfont, fill=(0, 0, 0, 150), anchor="ra", direction="rtl")
-        d.text((right, y), line, font=tfont, fill=(255, 255, 255, 255), anchor="ra", direction="rtl")
-        y += line_h
-    y += int(10 * u)
-    d.line([(margin, y), (right, y)], fill=(255, 255, 255, 60), width=max(1, int(2 * u)))
-    y_mid = y + brand_row // 2 + int(6 * u)
+    if lines:
+        # Red accent bar above the title.
+        d.rounded_rectangle((right - int(80 * u), y, right, y + max(4, int(6 * u))),
+                            radius=3, fill=ACCENT + (255,))
+        y += int(20 * u)
+        for line in lines:
+            d.text((right + 2, y + 2), line, font=tfont, fill=(0, 0, 0, 150), anchor="ra", direction="rtl")
+            d.text((right, y), line, font=tfont, fill=(255, 255, 255, 255), anchor="ra", direction="rtl")
+            y += line_h
+    y += int(6 * u)
+    d.line([(margin, y), (right, y)], fill=(255, 255, 255, 55), width=max(1, int(2 * u)))
+    y_mid = y + brand_row // 2 + int(4 * u)
     d.text((right, y_mid), BRAND_FA, font=brand_font, fill=(255, 255, 255, 245),
            anchor="rm", direction="rtl")
     bw = d.textlength(BRAND_FA, font=brand_font, direction="rtl")
-    _pulse(d, right - bw - int(18 * u), y_mid, int(120 * u), int(34 * u), max(3, int(4 * u)))
+    _pulse(d, right - bw - int(14 * u), y_mid, int(96 * u), int(28 * u), max(2, int(3 * u)))
     d.text((margin, y_mid), HANDLE, font=handle_font, fill=(210, 216, 226, 230), anchor="lm")
 
     # Top-right badge: live "فوری" for breaking news, otherwise the category.
     badge = "فوری" if urgent else label
-    pad_x, pad_y = int(22 * u), int(12 * u)
+    pad_x, pad_y = int(18 * u), int(9 * u)
     tw = d.textlength(badge, font=badge_font, direction="rtl")
-    dot = int(14 * u) if urgent else 0
+    dot = int(11 * u) if urgent else 0
     bx2, by1 = W - margin, margin
-    bx1 = bx2 - int(tw) - 2 * pad_x - (dot + int(12 * u) if dot else 0)
-    by2 = by1 + int(30 * u) + 2 * pad_y
+    bx1 = bx2 - int(tw) - 2 * pad_x - (dot + int(10 * u) if dot else 0)
+    by2 = by1 + int(26 * u) + 2 * pad_y
     fill = ACCENT + (240,) if urgent else (8, 12, 18, 170)
     d.rounded_rectangle((bx1, by1, bx2, by2), radius=int(14 * u), fill=fill,
                         outline=(255, 255, 255, 90), width=max(1, int(2 * u)))
@@ -499,10 +519,12 @@ def install(core, formatter):
 
     def process_news(candidate, *args, **kwargs):
         _CURRENT["candidate"] = candidate if isinstance(candidate, dict) else None
+        _CURRENT["blocked"] = ""
         try:
             return inner_process(candidate, *args, **kwargs)
         finally:
             _CURRENT["candidate"] = None
+            _CURRENT["blocked"] = ""
 
     core.process_news = process_news
 
@@ -563,6 +585,13 @@ def install(core, formatter):
         v13_story_dedup.install(core, _CURRENT)
     except Exception as exc:
         print(f"V13 STORY DEDUP: not installed ({type(exc).__name__}: {exc})", flush=True)
+
+    # Relevance (foreign soft-local) + post-quality gate.
+    try:
+        import v13_relevance_gate
+        v13_relevance_gate.install(core, _CURRENT)
+    except Exception as exc:
+        print(f"V13 RELEVANCE GATE: not installed ({type(exc).__name__}: {exc})", flush=True)
 
     # 4) Caption entities at the transport level (+ one-time button cleanup).
     if requests.Session.request is not _styled_request:

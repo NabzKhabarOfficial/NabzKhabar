@@ -161,6 +161,13 @@ def install(core, current):
             else:
                 text = kwargs.get("caption", kwargs.get("text", ""))
             text = str(text or "")
+            blocked = current.get("blocked")
+            if blocked:
+                cand = current.get("candidate")
+                if isinstance(cand, dict):
+                    cand["publication_status"] = "quality_blocked"
+                print(f"V13 POST QUALITY: publication refused ({blocked}).", flush=True)
+                return False
             if CHANNEL_MARK in text:
                 match = find_duplicate(text)
                 if match:
