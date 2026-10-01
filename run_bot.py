@@ -16,6 +16,7 @@ import v13_global_rescue
 import v13_editorial_formatter
 import v13_byline_cleaner
 import v13_policy_guard
+import v13_editorial_final_patch
 
 PERSIAN_RSS_FEEDS = [
     ("جهان", "https://feeds.bbci.co.uk/persian/rss.xml"),
@@ -70,8 +71,6 @@ def _install_v13_stack():
     if getattr(main, "_v13_stack_installed", False):
         return
 
-    # Base integrations first; later layers wrap the already-installed base
-    # functions so the final execution path is deterministic.
     v13_media_branding.install(main)
     v13_ai_router.install(main)
     v13_content_enhancer.install(main, v13_ai_router)
@@ -80,14 +79,8 @@ def _install_v13_stack():
     v13_editorial_formatter.install(main)
     v13_byline_cleaner.install(main)
     v13_policy_guard.install(main)
-
-    # Quality scoring must wrap the intelligence scorer before intelligence
-    # installs its candidate-selection/health wrapper.
     v13_quality_gate.install()
     v13_intelligence.install(main)
-
-    # Rescue layers are deliberately last: they may reopen only the narrowly
-    # defined critical/global cases after the normal intelligence gate.
     v13_critical_rescue.install()
     v13_global_rescue.install()
 
@@ -168,7 +161,7 @@ def _patch_history_rescue_pipeline():
     old_collect_hash = '''        if old_hash in hash_history:\n\n            history_skipped += 1\n\n            print(\n                f"PRE-SKIPPED OLD HASH: "\n                f"{title}"\n            )\n\n            continue\n'''
     new_collect_hash = '''        if old_hash in hash_history:\n\n            if _history_rescue_candidate(item):\n                item["_history_rescue_bypass"] = True\n                print(f"V13 HISTORY RESCUE BYPASS: old hash -> {title}")\n            else:\n                history_skipped += 1\n                print(f"PRE-SKIPPED OLD HASH: {title}")\n                continue\n'''
     old_collect_semantic = '''        if history_contains_story(\n            title,\n            title_history\n        ):\n\n            history_skipped += 1\n\n            print(\n                f"PRE-SKIPPED SEMANTIC: "\n                f"{title}"\n            )\n\n            continue\n'''
-    new_collect_semantic = '''        if history_contains_story(\n            title,\n            title_history\n        ):\n\n            # Semantic history is a hard duplicate boundary. Critical/freshness\n            # rescue may bypass an old hash, but must never resurrect a story\n            # that has already been published under a different URL/title.\n            history_skipped += 1\n            print(f"PRE-SKIPPED SEMANTIC: {title}")\n            continue\n'''
+    new_collect_semantic = '''        if history_contains_story(\n            title,\n            title_history\n        ):\n\n            history_skipped += 1\n            print(f"PRE-SKIPPED SEMANTIC: {title}")\n            continue\n'''
     old_collect_final = '''        if history_contains_story(\n            title,\n            title_history\n        ):\n            continue\n\n        if make_history_key(\n            title,\n            link\n        ) in hash_history:\n            continue\n'''
     new_collect_final = '''        if history_contains_story(\n            title,\n            title_history\n        ):\n            continue\n\n        if (\n            make_history_key(\n                title,\n                link\n            ) in hash_history\n            and not item.get("_history_rescue_bypass")\n        ):\n            continue\n'''
     for old, new, label in ((old_collect_hash, new_collect_hash, "collect hash"), (old_collect_semantic, new_collect_semantic, "collect semantic"), (old_collect_final, new_collect_final, "final collect")):
@@ -180,7 +173,7 @@ def _patch_history_rescue_pipeline():
     old_process_hash = '''    if history_key in hash_history:\n\n        print(\n            "SKIPPED: old hash history"\n        )\n\n        return False\n'''
     new_process_hash = '''    if history_key in hash_history and not candidate.get("_history_rescue_bypass"):\n\n        print(\n            "SKIPPED: old hash history"\n        )\n\n        return False\n'''
     old_process_semantic = '''    if history_contains_story(\n        original_title,\n        title_history\n    ):\n\n        print(\n            "SKIPPED: semantic history"\n        )\n\n        return False\n'''
-    new_process_semantic = '''    if history_contains_story(\n        original_title,\n        title_history\n    ):\n\n        print(\n            "SKIPPED: semantic history"\n        )\n\n        return False\n'''
+    new_process_semantic = old_process_semantic
     for old, new, label in ((old_process_hash, new_process_hash, "process hash"), (old_process_semantic, new_process_semantic, "process semantic")):
         if old not in process_source:
             raise RuntimeError(f"V13 HISTORY PATCH FAILED: {label} anchor missing")
@@ -207,8 +200,6 @@ def _patch_history_rescue_pipeline():
 
 
 if __name__ == "__main__":
-    # Patch the core engine before wrapper layers are installed. inspect.getsource
-    # must see the real collect/process functions, not Intelligence wrappers.
     _patch_history_rescue_pipeline()
     _install_v13_stack()
     print("V13 ENGINE LAUNCH: run_bot -> v13_standalone.main()", flush=True)
