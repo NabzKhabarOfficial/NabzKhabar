@@ -112,13 +112,16 @@ jobs:
           for f in sent_news.txt ai_model_health.json v13_health.json v13_rejected_news.json v13_monitor.json car_prices_history.json weather_history.json; do
             test ! -f "$f" || cp "$f" "/tmp/v13-state/$f"
           done
+          test ! -d docs || cp -r docs /tmp/v13-state/docs
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
             for f in sent_news.txt ai_model_health.json v13_health.json v13_rejected_news.json v13_monitor.json car_prices_history.json weather_history.json; do
               test ! -f "/tmp/v13-state/$f" || cp "/tmp/v13-state/$f" "$f"
             done
+            if [ -d /tmp/v13-state/docs ]; then rm -rf docs; cp -r /tmp/v13-state/docs docs; fi
             git add sent_news.txt ai_model_health.json v13_health.json v13_rejected_news.json v13_monitor.json car_prices_history.json weather_history.json 2>/dev/null || true
+            git add docs 2>/dev/null || true
             if git diff --cached --quiet; then
               echo 'No runtime-state changes.'
               exit 0
