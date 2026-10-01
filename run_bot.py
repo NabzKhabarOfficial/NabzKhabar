@@ -34,7 +34,22 @@ WORLD_BREAKING_RSS_FEEDS = [
     ("جهان", "https://www.theguardian.com/world/rss"),
     ("جهان", "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"),
 ]
-PERSIAN_RSS_FEEDS = PERSIAN_RSS_FEEDS + WORLD_BREAKING_RSS_FEEDS
+# Extra Persian agencies for faster Iran coverage (verified live 2026-10-01).
+# These hosts were blocked by default; they are unblocked below but held to a
+# stricter importance bar (see _install_new_source_quality_gate) so routine
+# and local items never reach the channel.
+STRICT_IRANIAN_RSS_FEEDS = [
+    ("ایران", "https://www.isna.ir/rss"),
+    ("ایران", "https://www.mehrnews.com/rss"),
+    ("ایران", "https://www.independentpersian.com/rss.xml"),
+]
+STRICT_SOURCE_HOSTS = {"isna.ir", "mehrnews.com", "independentpersian.com"}
+PERSIAN_RSS_FEEDS = PERSIAN_RSS_FEEDS + WORLD_BREAKING_RSS_FEEDS + STRICT_IRANIAN_RSS_FEEDS
+
+# Unblock only these hosts (sets are read at call time by the source filters).
+for _allowed in (getattr(main, "IRANIAN_ALLOWED_HOSTS", None), getattr(v13_policy_guard, "IRANIAN_ALLOWED_HOSTS", None)):
+    if isinstance(_allowed, set):
+        _allowed.update(STRICT_SOURCE_HOSTS)
 existing_rss = {(str(name), str(url)) for name, url in getattr(main, "DIRECT_RSS_FEEDS", [])}
 for feed in PERSIAN_RSS_FEEDS:
     if feed not in existing_rss:
@@ -112,6 +127,9 @@ def _install_v13_stack():
     # a recent run (e.g. no AI translation passed validation), so the same
     # story is not re-selected and re-failed on every run.
     _install_recent_block_selection_gate()
+
+    # Stricter bar for the newly unblocked Iranian agencies.
+    _install_new_source_quality_gate()
 
     main._v13_stack_installed = True
     print("V13 STACK: all editorial, rescue, media, AI, and health layers installed", flush=True)
@@ -209,6 +227,52 @@ def _install_recent_block_selection_gate():
         return ok, score, reason
 
     v13_intelligence.is_publishable = recent_block_gate
+
+
+# A story from a STRICT_SOURCE_HOSTS publisher is only publishable when it is
+# clearly important: intelligence score at least MIN_EVENT_SCORE + 3 (the same
+# "important" level the monitor uses) and never a routine local item.
+STRICT_SOURCE_MIN_SCORE_BONUS = 3
+
+
+def _candidate_host(candidate):
+    from urllib.parse import urlparse
+    for key in ("resolved_link", "link", "source_url"):
+        try:
+            host = (urlparse(str(candidate.get(key, "") or "")).hostname or "").lower()
+        except Exception:
+            host = ""
+        if host:
+            return host[4:] if host.startswith("www.") else host
+    return ""
+
+
+def _is_strict_source(candidate):
+    host = _candidate_host(candidate)
+    return any(host == h or host.endswith("." + h) for h in STRICT_SOURCE_HOSTS)
+
+
+def _install_new_source_quality_gate():
+    previous = v13_intelligence.is_publishable
+    min_score = int(getattr(v13_intelligence, "MIN_EVENT_SCORE", 7)) + STRICT_SOURCE_MIN_SCORE_BONUS
+
+    def strict_source_gate(main_obj, candidate):
+        ok, score, reason = previous(main_obj, candidate)
+        if not ok or not _is_strict_source(candidate):
+            return ok, score, reason
+        title = str(candidate.get("title", "") or "")
+        try:
+            routine_local = v13_editorial_final_patch._routine_local(title)
+        except Exception:
+            routine_local = False
+        if routine_local:
+            return False, 0, "strict-source-local-routine"
+        if int(score or 0) < min_score:
+            return False, score, f"strict-source-below-importance({score}<{min_score})"
+        return ok, score, reason
+
+    v13_intelligence.is_publishable = strict_source_gate
+    print(f"V13 STRICT SOURCES: {', '.join(sorted(STRICT_SOURCE_HOSTS))} require score>={min_score}", flush=True)
 
 
 def _reclassify_editorial_blocks():
