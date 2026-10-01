@@ -316,6 +316,44 @@ def _history_rescue_candidate(candidate):
         return False
 
 
+# The Google News resolver sometimes picks a page asset (e.g. a
+# fonts.googleapis.com stylesheet) instead of the publisher URL. Such a
+# candidate can never be fetched or published, but it was still selected on
+# every run, wasting one of the (max 2) publication slots.
+_ASSET_HOSTS = (
+    "fonts.googleapis.com", "fonts.gstatic.com", "gstatic.com",
+    "ajax.googleapis.com", "apis.google.com", "googletagmanager.com",
+    "google-analytics.com",
+)
+_ASSET_EXTENSIONS = (".css", ".js", ".woff", ".woff2", ".ttf", ".otf", ".ico")
+
+
+def _is_asset_link(url):
+    try:
+        from urllib.parse import urlparse
+        parsed = urlparse(str(url or "").strip())
+    except Exception:
+        return False
+    host = (parsed.hostname or "").lower()
+    if not host:
+        return False
+    if any(host == h or host.endswith("." + h) for h in _ASSET_HOSTS):
+        return True
+    path = (parsed.path or "").lower()
+    return path.endswith(_ASSET_EXTENSIONS) or "/css" == path
+
+
+def _drop_asset_link_candidates(candidates):
+    kept = []
+    for item in candidates:
+        link = item.get("resolved_link") or item.get("link") or ""
+        if _is_asset_link(link):
+            print(f"V13 ASSET LINK DROP: {item.get('title', '')} | {link[:120]}", flush=True)
+            continue
+        kept.append(item)
+    return kept
+
+
 def _patch_history_rescue_pipeline():
     collect_source = inspect.getsource(main.collect_candidates)
     old_collect_hash = '''        if old_hash in hash_history:\n\n            history_skipped += 1\n\n            print(\n                f"PRE-SKIPPED OLD HASH: "\n                f"{title}"\n            )\n\n            continue\n'''
@@ -347,7 +385,7 @@ def _patch_history_rescue_pipeline():
 
     original_collect = main.collect_candidates
     def _editorial_category_normalized_collect(hash_history, title_history):
-        candidates = original_collect(hash_history, title_history)
+        candidates = _drop_asset_link_candidates(original_collect(hash_history, title_history))
         for item in candidates:
             title = str(item.get("title", "") or "").lower()
             if any(x in title for x in ("serbia", "serbian", "vucic", "بلگراد", "صربستان", "ووجیچ")):
