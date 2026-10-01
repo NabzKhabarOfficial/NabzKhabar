@@ -410,8 +410,31 @@ RETRY — خروجی قبلی از کنترل کیفیت رد شد. این با�
                     _record_quality_failure(health_key)
     return None
 def _numbers(main, text):
+    """Extract numeric facts without splitting thousands separators.
+    
+    Providers often render 700,000 as 700٬000 or 700،000 and may abbreviate
+    60,000 as 60 thousand. The previous regex treated separator fragments such
+    as "000" as new numbers, creating false validation failures.
+    """
     normalized = main.normalize_digits(str(text or ""))
-    return set(re.findall(r"\b\d+(?:[.,]\d+)?\b", normalized))
+    raw = re.findall(r"(?<!\w)\d+(?:[.,٬،]\d+)*(?!\w)", normalized)
+    values = set()
+    for token in raw:
+        compact = re.sub(r"[.,٬،\s]", "", token)
+        if not compact:
+            continue
+        values.add(compact)
+        # Allow a source value such as 60,000 / 700,000 to match the common
+        # newsroom shorthand 60 / 700 when the trailing groups are zeros.
+        try:
+            n = int(compact)
+            if n >= 1000:
+                for divisor in (1000, 1000000, 1000000000):
+                    if n % divisor == 0:
+                        values.add(str(n // divisor))
+        except ValueError:
+            pass
+    return values
 
 
 TRANSLATION_QUALITY_BAD_PATTERNS = (
