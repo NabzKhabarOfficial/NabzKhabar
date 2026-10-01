@@ -452,8 +452,12 @@ def _translation_quality_bad(text):
     # Do not reject ordinary Persian because of short function words such as
     # «به»، «در»، «که»، «از». Only flag dense one-letter fragments.
     words = [x.strip("،؛:!?()[]{}«»'") for x in re.split(r"\s+", value) if x]
+    # Single-character Persian tokens are common in natural news ("و").
+    # Only treat a dense cluster of unusual one-character fragments as an
+    # artifact; the previous broad rule caused valid summaries to be rejected.
     one_char = [x for x in words if len(x) == 1 and re.search(r"[\u0600-\u06ff]", x)]
-    if len(words) >= 12 and len(one_char) >= 4:
+    unusual_one_char = [x for x in one_char if x not in {"و", "ی"}]
+    if len(words) >= 16 and len(unusual_one_char) >= 4:
         return True
     return False
 
@@ -478,6 +482,8 @@ def _sentence_count(text):
 # publishable story merely because it preserved brand/company/model names in Latin.
 PERSIAN_PROPER_NAME_MAP = {
     "Gemini": "جمنای", "Argon": "آرگون", "Alphabet": "آلفابت",
+    "Astra": "آسترا", "Fable": "فیبل", "Opus": "اوپوس", "Jev": "جِو",
+    "Google DeepMind": "گوگل دیپ‌مایند", "DeepMind": "دیپ‌مایند",
     "OpenAI": "اوپن‌ای‌آی", "Anthropic": "آنتروپیک", "GPT": "جی‌پی‌تی",
     "Fairwind": "فیر ویند", "ElevenLabs": "الون لبز",
     "Flow Engineering": "فلو انجینیرینگ", "Flow": "فلو", "Engineering": "انجینیرینگ",
