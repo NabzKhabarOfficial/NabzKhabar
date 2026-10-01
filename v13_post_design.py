@@ -8,7 +8,8 @@ engine:
   channel link footer. No source is ever mentioned.
 * Telegram formatting is sent as message *entities* (never parse_mode), so no
   text escaping is needed and a rejected style can fall back to plain text.
-* Inline "join" button under each post; it travels with forwards.
+* No inline button (removed at the owner's request); a one-time cleanup
+  strips the join button from the few posts that already carried it.
 * News card: title rendered on the photo over a dark gradient, red NABZ pulse
   bar and urgency badge. Any failure falls back to the classic watermark.
 
@@ -21,6 +22,7 @@ import os
 import re
 import shutil
 import tempfile
+import time
 
 import requests
 from PIL import Image, ImageDraw, ImageFont, ImageOps, features
@@ -32,6 +34,9 @@ BRAND_FA = "نبض خبر"
 FONT_PATH = "Vazirmatn-Bold.ttf"
 BUTTON_TEXT = "💓 عضویت در نبض خبر"
 ACCENT = (229, 28, 45)
+JOIN_BUTTON = False  # owner asked to remove the button under posts
+CLEANUP_FLAG = "_join_button_cleanup_done"  # persisted in ai_model_health.json
+CLEANUP_LOOKBACK = 60
 MAX_CAPTION = 980  # below content_enhancer's 1000-char cut, so it never trims us
 
 _CURRENT = {"candidate": None}
@@ -238,7 +243,7 @@ def entities_for(text, plan):
 
 
 # --------------------------------------------------------------------------
-# Telegram transport: add entities + join button, fall back to plain on 400
+# Telegram transport: add caption entities, fall back to plain on 400
 # --------------------------------------------------------------------------
 
 _SEND_RE = re.compile(r"/bot[^/]+/(sendPhoto|sendVideo|sendMessage)(?:$|\?)")
@@ -253,6 +258,40 @@ def _rewind(files):
                 obj.seek(0)
             except Exception:
                 pass
+
+
+def _cleanup_old_buttons(session, url, method_name, payload, response):
+    """One time: remove the join button from posts published while it existed."""
+    try:
+        import v13_ai_router
+        health = v13_ai_router._load_health()
+        if health.get(CLEANUP_FLAG):
+            return
+        if getattr(response, "status_code", 0) != 200:
+            return
+        import v13_standalone
+        if str(payload.get("chat_id")) != str(getattr(v13_standalone, "CHANNEL_ID", "")):
+            return  # only clean the news channel itself
+        message_id = int(response.json()["result"]["message_id"])
+        edit_url = str(url).replace(method_name, "editMessageReplyMarkup")
+        empty = json.dumps({"inline_keyboard": []})
+        cleared = 0
+        for mid in range(message_id - 1, max(0, message_id - 1 - CLEANUP_LOOKBACK), -1):
+            try:
+                r = _original_request(session, "POST", edit_url, data={
+                    "chat_id": payload.get("chat_id"), "message_id": mid, "reply_markup": empty,
+                }, timeout=10)
+                if getattr(r, "status_code", 0) == 200:
+                    cleared += 1
+            except Exception:
+                pass
+            time.sleep(0.1)
+        health = v13_ai_router._load_health()
+        health[CLEANUP_FLAG] = True
+        v13_ai_router._save_health(health)
+        print(f"V13 POST DESIGN: join button removed from {cleared} earlier post(s).", flush=True)
+    except Exception as exc:
+        print(f"V13 POST DESIGN: button cleanup skipped ({type(exc).__name__}).", flush=True)
 
 
 def _styled_request(self, method, url, *args, **kwargs):
@@ -272,12 +311,20 @@ def _styled_request(self, method, url, *args, **kwargs):
     text = payload.get("text" if is_text else "caption")
     plan = _plan_for(text)
     if not plan or "parse_mode" in payload or "reply_markup" in payload:
-        return _original_request(self, method, url, *args, **kwargs)
+        response = _original_request(self, method, url, *args, **kwargs)
+        _cleanup_old_buttons(self, url, match.group(1), payload, response)
+        return response
 
-    extra = {"reply_markup": {"inline_keyboard": [[{"text": BUTTON_TEXT, "url": CHANNEL_URL}]]}}
+    extra = {}
+    if JOIN_BUTTON:
+        extra["reply_markup"] = {"inline_keyboard": [[{"text": BUTTON_TEXT, "url": CHANNEL_URL}]]}
     ents = entities_for(str(text), plan)
     if ents:
         extra["entities" if is_text else "caption_entities"] = ents
+    if not extra:
+        response = _original_request(self, method, url, *args, **kwargs)
+        _cleanup_old_buttons(self, url, match.group(1), payload, response)
+        return response
     styled = dict(payload)
     for k, v in extra.items():
         styled[k] = json.dumps(v, ensure_ascii=False) if key == "data" else v
@@ -289,7 +336,8 @@ def _styled_request(self, method, url, *args, **kwargs):
         # 400 means nothing was published, so a plain resend cannot duplicate.
         print("V13 POST DESIGN: styled post rejected (400); resending plain.", flush=True)
         _rewind(kwargs.get("files"))
-        return _original_request(self, method, url, *args, **kwargs)
+        response = _original_request(self, method, url, *args, **kwargs)
+    _cleanup_old_buttons(self, url, match.group(1), payload, response)
     return response
 
 
@@ -509,8 +557,8 @@ def install(core, formatter):
 
     core.send_photo = send_photo
 
-    # 4) Entities + join button at the transport level.
+    # 4) Caption entities at the transport level (+ one-time button cleanup).
     if requests.Session.request is not _styled_request:
         requests.Session.request = _styled_request
 
-    print("V13 POST DESIGN ACTIVE: news card + signature caption + join button.", flush=True)
+    print("V13 POST DESIGN ACTIVE: news card + signature caption (no join button).", flush=True)
