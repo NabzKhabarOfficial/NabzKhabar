@@ -36,7 +36,7 @@ GROQ_MODELS = (
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"
 ENABLE_OPENROUTER_FALLBACK = os.getenv("ENABLE_OPENROUTER_FALLBACK", "1").strip() == "1"
-OPENROUTER_MODELS_CACHE_SECONDS = 15 * 60
+OPENROUTER_MODELS_CACHE_SECONDS = 5 * 60
 _openrouter_models_cache = {"at": 0.0, "models": []}
 
 
@@ -354,7 +354,10 @@ def _openrouter_free_models(main):
                 priority -= 2
             models.append((priority, model_id))
         models.sort(key=lambda x: (x[0], x[1]))
-        selected = [model_id for _, model_id in models[:3]]
+        # Prefer the provider-managed free router first. It dynamically
+        # selects among currently available free models and is less brittle
+        # than relying on a fixed three-model snapshot.
+        selected = ["openrouter/free"] + [model_id for _, model_id in models if model_id != "openrouter/free"][:5]
         _openrouter_models_cache = {"at": now, "models": selected}
         print("V13 AI ROUTER: OpenRouter free models: " + (", ".join(selected) if selected else "none"))
         return selected
@@ -368,7 +371,7 @@ def _fallback_provider_request(main, provider, models, base_url, api_key, prompt
         print(f"V13 AI ROUTER: {provider} unavailable (missing API key).")
         return None
     health = _load_health()
-    for model in list(models)[:3]:
+    for model in list(models)[:6]:
         if deadline is not None and time.monotonic() >= deadline:
             print(f"V13 AI ROUTER: {provider} stopped by per-story budget.")
             return None
