@@ -84,6 +84,11 @@ def _install_v13_stack():
     v13_critical_rescue.install()
     v13_global_rescue.install()
 
+    # Some layers (e.g. media branding) replace a sender outright, which used
+    # to silently drop the bounded retry installed at import time. Re-apply it
+    # to any sender that is no longer wrapped.
+    _ensure_publication_retry()
+
     main._v13_stack_installed = True
     print("V13 STACK: all editorial, rescue, media, AI, and health layers installed", flush=True)
 
@@ -91,15 +96,27 @@ def _install_v13_stack():
 _original_openai_compatible_json = v13_ai_router._openai_compatible_json
 
 def _hardened_openai_compatible_json(main_obj, provider, base_url, api_key, model, prompt, max_output_tokens=900):
-    return _original_openai_compatible_json(
+    """Reject non-object JSON (string/list) so the router fails over instead of crashing."""
+    result, flag = _original_openai_compatible_json(
         main_obj, provider, base_url, api_key, model, prompt,
         max_output_tokens=max_output_tokens,
     )
+    if result is not None and not isinstance(result, dict):
+        print(f"V13 AI ROUTER: {provider}/{model} returned non-object JSON ({type(result).__name__}); failing over.")
+        try:
+            v13_ai_router._record_quality_failure(f"{str(provider).lower()}:{model}")
+        except Exception:
+            pass
+        return None, flag
+    return result, flag
 
 v13_ai_router._openai_compatible_json = _hardened_openai_compatible_json
 
 
 def _bounded_explicit_retry(original, label, attempts=2):
+    # Only an explicit False (Telegram rejected the request) is retried.
+    # None means an ambiguous transport outcome and is never retried, to
+    # avoid duplicate publications.
     def wrapped(*args, **kwargs):
         for attempt in range(1, attempts + 1):
             result = original(*args, **kwargs)
@@ -110,11 +127,20 @@ def _bounded_explicit_retry(original, label, attempts=2):
                 print(f"V13 PUBLICATION RETRY: {label} explicit failure; retry {attempt + 1}/{attempts} after {delay}s")
                 time.sleep(delay)
         return False
+    wrapped._v13_retry_wrapped = True
     return wrapped
 
-main.send_message = _bounded_explicit_retry(main.send_message, "sendMessage")
-main.send_photo = _bounded_explicit_retry(main.send_photo, "sendPhoto")
-main.send_video = _bounded_explicit_retry(main.send_video, "sendVideo")
+_PUBLICATION_SENDERS = (("send_message", "sendMessage"), ("send_photo", "sendPhoto"), ("send_video", "sendVideo"))
+
+
+def _ensure_publication_retry():
+    for attr, label in _PUBLICATION_SENDERS:
+        fn = getattr(main, attr, None)
+        if fn is not None and not getattr(fn, "_v13_retry_wrapped", False):
+            setattr(main, attr, _bounded_explicit_retry(fn, label))
+            print(f"V13 PUBLICATION RETRY: re-applied to {attr}", flush=True)
+
+_ensure_publication_retry()
 
 _original_policy_scope = v13_policy_guard._foreign_local_only
 _GLOBAL_CRITICAL_SCOPE = re.compile(r"(?:saudi\s+arabia|saudi|mecca|makkah|medina|madinah|red\s+sea|hormuz|strait\s+of\s+hormuz|حوثی|عربستان|مکه|مدینه|دریای\s+سرخ|تنگه\s+هرمز|تنگه هرمز)", re.I)
@@ -132,7 +158,8 @@ _original_freshness_critical = v13_freshness_rescue._is_critical
 _MAJOR_POLITICAL_CHANGE = re.compile(r"(?:استعفا|کناره\s*گیری|انتخابات\s+زودهنگام|resign|resigned|resignation|snap\s+election|early\s+election)", re.I)
 _MAJOR_POLITICAL_ACTOR = re.compile(r"(?:رئیس\s*جمهور|رئیس‌جمهور|نخست\s*وزیر|دولت|پارلمان|president|prime\s+minister|government|parliament)", re.I)
 _STRATEGIC_CHANGE = re.compile(r"(?:تنگه\s+هرمز|مذاکره|آتش\s*بس|صلح|پیشنهاد|راه\s*حل|جنگ|حمله|استارلینک|Hormuz|negotiat|ceasefire|peace\s+plan|roadmap|conflict|attack)", re.I)
-_STRATEGIC_ACTOR = re.compile(r"(?:ایران|آمریکا|اسرائیل|روسیه|اوکراین|صربستان|serbia|iran|us|u\.s\.|israel|russia|ukraine)", re.I)
+# Short Latin actors are word-bounded so "us" does not match inside "business".
+_STRATEGIC_ACTOR = re.compile(r"(?:ایران|آمریکا|اسرائیل|روسیه|اوکراین|صربستان|serbia|iran|(?<![a-z])us(?![a-z])|(?<![a-z])u\.s\.|israel|russia|ukraine)", re.I)
 
 def _editorial_freshness_critical(candidate):
     if _original_freshness_critical(candidate):
