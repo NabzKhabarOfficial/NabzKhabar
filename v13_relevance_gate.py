@@ -142,14 +142,12 @@ RHETORIC = re.compile(
     r"(?:سردرگم|ناکام|توهم|ذلت|پشیمان|زانو|شکست خورده|محکوم به شکست|از پای نخواهد نشست|"
     r"جرأت|جرات|تحقیر|شکست خواهد|استکبار|خون ?خواهی|نابود خواهد|به خاک سیاه|توطئه|"
     r"جنگ ترکیبی|سنگر|دشمن|ایدئولوژیک|محاسبات .{0,20}(?:غلط|اشتباه)|فراتر از محاسبات|"
-    r"همخوانی نداشت|موفق نخواهند|نخواهد توانست)"
-)
+    r"همخوانی نداشت|موفق نخواهند|نخواهد توانست)")
 # A concrete event inside a speech keeps it as news ("IRGC: enemy drone shot down").
 CONCRETE_EVENT = re.compile(
     r"(?:سرنگون|شلیک|کشته|زخمی|حمله|توقیف|بازداشت|دستگیر|اعزام|رهگیری|منهدم|هدف قرار|"
     r"امضا|تصویب|استعفا|برکنار|منصوب|اعدام|آزاد شد|آزادی|تحریم کرد|لغو|تعلیق|بسته شد|"
-    r"\d{2,}|[۰-۹]{2,})"
-)
+    r"\d{2,}|[۰-۹]{2,})")
 # Friday-prayer sermons and religious speeches: never news for this channel.
 SERMON = re.compile(r"(?:امام جمعه|ائمه جمعه|امامان جمعه|خطیب جمعه|خطیب نماز|نماز جمعه|خطبه|خطبه های)")
 # Drills and exercises ("flood drill held") are rehearsals, not events. Big
@@ -165,6 +163,15 @@ CEREMONY = re.compile(r"(?:تشییع|مراسم|بزرگداشت|سالگرد|�
 TOP_FIGURE = re.compile(r"(?:رهبر|رئیس ?جمهور|نخست ?وزیر|دبیرکل|فرمانده کل|پاپ|پادشاه|ملکه|شاه )")
 # Individual MPs' general remarks ("province needs attention").
 MP_REMARK = re.compile(r"(?:^|\s)(?:نماینده مجلس|نماینده مردم|نمایندگان مردم|عضو کمیسیون|نماینده)(?:\s|:)")
+# Culture-scene and conference news (galleries, museums, seminars, art loans):
+# soft news for this channel unless something actually happened.
+CULTURE_SOFT = re.compile(
+    r"(?:نگارخانه|هنرهای تجسمی|هنر های تجسمی|گالری|تابلو(?:ی|های| های)? نقاشی|آثار هنری|"
+    r"هم ?اندیشی|سمینار|وبینار|کارگاه آموزشی|نشست (?:ملی|تخصصی|علمی))"
+)
+# Weaker culture words count only in the headline.
+CULTURE_TITLE = re.compile(r"(?:موزه|نمایشگاه|جشنواره|همایش)")
+CULTURE_HARD = re.compile(r"(?:سرقت|دزدی|غارت|آتش ?سوزی|تخریب شد|ویران|خسارت|کشته|جان باخت|بازداشت|اسکار|نخل طلا|خرس طلا|شیر طلا)")
 # Analysis / prescription / opinion framings in the headline.
 ANALYSIS_TITLE = re.compile(
     r"(?:^|\s)(?:راهکار|راهکارهای|راه حل|ضرورت|چرا|چگونه|پیامدهای|قضیه|قضیۀ|بررسی|"
@@ -181,6 +188,10 @@ def noise_reason(title, lead=""):
         return "drill-or-exercise"
     if title and LOCAL_FOLLOWUP.search(title) and IRAN_LOCAL.search(title) and not HARD_TOLL.search(title):
         return "local-police-followup"
+    # Checked before the mass-event bypass: "flood warning for the art museum"
+    # inside a gallery conference is still a conference story.
+    if title and (CULTURE_SOFT.search(text) or CULTURE_TITLE.search(title)) and not CULTURE_HARD.search(text):
+        return "culture-or-conference"
     if not title or MASS_EVENT.search(title):
         return ""
     if SERMON.search(text):
@@ -294,7 +305,7 @@ KNOWN_ACRONYMS = {
 }
 
 PROBLEM_STATUS = "quality_blocked"
-_VERBISH_END = re.compile(r"(?:[.!؟?»\")]|(?:د|ت|ست|ند|ید|یم))$")
+_VERBISH_END = re.compile(r"(?:[.!؟؟»\")]|(?:د|ت|ست|ند|ید|یم))$")
 
 
 def caption_problem(title, sentences):
