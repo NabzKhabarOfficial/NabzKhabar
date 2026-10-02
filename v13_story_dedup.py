@@ -98,6 +98,27 @@ def _recent(health):
     return [x for x in items if isinstance(x, dict) and now - float(x.get("t", 0) or 0) <= WINDOW_SECONDS]
 
 
+RARE_DF = 2          # a word seen in at most this many recent stories is "rare"
+RARE_SHARED = 5      # follow-ups share several rare names (people, places, firms)
+# Everyday news words never count as "rare", however few stories used them.
+COMMON_WORDS = """
+ترامپ دونالد ایران ایرانی آمریکا آمریکایی اسرائیل اسرائیلی صهیونیستی رژیم جنگ رئیس جمهور
+هسته ای ادعا نظامی حمله هواپیما مسافران پرواز پروازها عربستان روسیه اوکراین چین غزه سپاه
+ارتش دولت وزیر مجلس تهران کشته زخمی نیروهای قیمت نفت تحریم اروپا امارات عراق سوریه لبنان
+منطقه کشور مردم مقامات منابع خبری بین المللی امنیتی سیاسی اقتصادی رسانه انفجار سقوط
+""".split()
+COMMON = {_key(w) for w in (_norm(x) for x in COMMON_WORDS) if len(w) >= 3}
+
+
+def is_follow_up(a, b, df):
+    """Same incident retold from a new angle ("captain says...", "probe...")."""
+    shared = a & b
+    if len(shared) < 6:
+        return False
+    rare = [k for k in shared if k not in COMMON and df.get(k, 0) <= RARE_DF]
+    return len(rare) >= RARE_SHARED
+
+
 def find_duplicate(caption):
     fp = fingerprint(story_text(caption))
     if len(fp) < 4:
@@ -106,8 +127,14 @@ def find_duplicate(caption):
         _, health = _health()
     except Exception:
         return None
-    for item in reversed(_recent(health)):
-        if is_same_story(fp, set(item.get("k") or [])):
+    recent = _recent(health)
+    df = {}
+    for item in recent:
+        for k in set(item.get("k") or []):
+            df[k] = df.get(k, 0) + 1
+    for item in reversed(recent):
+        keys = set(item.get("k") or [])
+        if is_same_story(fp, keys) or is_follow_up(fp, keys, df):
             return item
     return None
 
