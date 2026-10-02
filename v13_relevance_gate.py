@@ -112,8 +112,43 @@ IRAN_LOCAL_EXCEPTION = re.compile(
 )
 
 
+SERVICE_SCHEDULE = re.compile(
+    r"(?:جدول|برنامه|زمان ?بندی|ساعات|ساعت های)\s*(?:\S+\s+){0,3}?(?:قطع|قطعی|خاموشی|خاموشی های|محدودیت)"
+    r"|(?:قطع|قطعی|خاموشی)\s*(?:برق|آب|گاز)\s*(?:\S+\s+){0,6}?(?:جدول|برنامه ریزی شده|زمان ?بندی)"
+    r"|power cut schedule|outage schedule|load ?shedding schedule",
+    re.I,
+)
+LOW_VALUE = _word_re((
+    "یادداشت", "سرمقاله", "دیدگاه", "تحلیل", "تحلیلگر", "اندیشکده", "نیویورکر",
+    "درس هایی از", "روایت", "گفت و گو با", "مصاحبه با", "پادکست", "معرفی کتاب",
+    "هدفون", "ایربادز", "ایرباد", "گلکسی بادز", "ایرپادز", "ساعت هوشمند", "رونمایی از گوشی",
+    "قیمت گوشی", "بررسی گوشی", "حراج",
+    "opinion", "analysis", "op-ed", "editorial", "think tank", "new yorker", "podcast",
+    "earbuds", "earphones", "smartwatch", "hands-on", "review:",
+))
+MISSING_CONTENT = _word_re((
+    "لینک", "از طریق لینک", "دریافت فایل", "فایل جدول", "فایل پیوست", "دانلود",
+    "جدول زیر", "تصاویر زیر", "تصویر زیر", "ویدیو زیر", "ویدئو زیر", "فیلم زیر",
+    "در ادامه ببینید", "اینجا کلیک", "کلیک کنید", "اینفوگرافیک زیر",
+    "link below", "click here", "download",
+))
+
+
+def service_schedule(candidate):
+    return bool(SERVICE_SCHEDULE.search(_text(candidate, 300)))
+
+
+def low_value(candidate):
+    title = _title(candidate)
+    if not title or MASS_EVENT.search(title):
+        return False
+    return bool(LOW_VALUE.search(title))
+
+
 def iran_local_routine(candidate):
     title = _title(candidate)
+    if service_schedule(candidate):
+        return True
     if not title or not IRAN_LOCAL.search(title):
         return False
     return not IRAN_LOCAL_EXCEPTION.search(title)
@@ -208,6 +243,10 @@ def caption_problem(title, sentences):
         return "body-too-thin"
     if len(sentences[0].split()) < 6:
         return "lead-fragment"
+    if MISSING_CONTENT.search(title + " " + body):
+        return "refers-to-missing-content"
+    if SERVICE_SCHEDULE.search(title):
+        return "service-schedule"
     if not _VERBISH_END.search(sentences[-1].strip()):
         return "body-truncated"
     return ""
@@ -271,8 +310,12 @@ def install(core, current):
             return ok, score, reason
         if foreign_soft_local(candidate):
             return False, 0, "foreign-soft-local"
+        if service_schedule(candidate):
+            return False, 0, "service-schedule"
         if iran_local_routine(candidate):
             return False, 0, "iran-local-routine"
+        if low_value(candidate):
+            return False, 0, "low-value-opinion-or-product"
         return ok, score, reason
 
     v13_intelligence.is_publishable = relevance_gate
