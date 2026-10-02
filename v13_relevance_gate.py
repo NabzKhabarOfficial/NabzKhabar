@@ -156,6 +156,10 @@ SERMON = re.compile(r"(?:امام جمعه|ائمه جمعه|امامان جمع
 # national military exercises (رزمایش) stay news unless they are local.
 DRILL = re.compile(r"(?:مانور|تمرین امداد|شبیه ?سازی (?:زلزله|سیل|حادثه))")
 LOCAL_EXERCISE = re.compile(r"رزمایش.{0,40}(?:شهرستان|بخش|استان|شهرداری|مدارس|دانش ?آموز|هلال احمر|آتش ?نشانی|بسیج)")
+# Local police "follow-ups" (clues found, special order to arrest) with no
+# casualties: provincial routine, even when the word "attack" appears.
+LOCAL_FOLLOWUP = re.compile(r"(?:دستورکار|دستور کار|سرنخ|در حال پیگیری|پیگیری ویژه|پیگیری پرونده|در دست بررسی)")
+HARD_TOLL = re.compile(r"(?:کشته|جان باخت|جان سپرد|انفجار|تیراندازی|گروگان)")
 # Funerals, memorials and anniversaries: news only for top national figures.
 CEREMONY = re.compile(r"(?:تشییع|مراسم|بزرگداشت|سالگرد|یادبود|گرامیداشت|چهلم|ختم|سوگواری)")
 TOP_FIGURE = re.compile(r"(?:رهبر|رئیس ?جمهور|نخست ?وزیر|دبیرکل|فرمانده کل|پاپ|پادشاه|ملکه|شاه )")
@@ -175,6 +179,8 @@ def noise_reason(title, lead=""):
     text = f"{title} {lead}"
     if title and (DRILL.search(title) or LOCAL_EXERCISE.search(title)):
         return "drill-or-exercise"
+    if title and LOCAL_FOLLOWUP.search(title) and IRAN_LOCAL.search(title) and not HARD_TOLL.search(title):
+        return "local-police-followup"
     if not title or MASS_EVENT.search(title):
         return ""
     if SERMON.search(text):
