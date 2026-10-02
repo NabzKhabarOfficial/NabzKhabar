@@ -1,18 +1,18 @@
 {
-  "checked_at": "2026-10-02T18:43:21.041302+00:00",
+  "checked_at": "2026-10-02T19:03:44.799557+00:00",
   "status": "healthy",
   "run_status": "success",
-  "raw_candidates": 55,
-  "strict_rejected": 34,
+  "raw_candidates": 50,
+  "strict_rejected": 30,
   "selected_for_publication": 4,
-  "published": 1,
+  "published": 0,
   "failed_publications": 0,
   "ambiguous_publications": 0,
   "editorial_blocked_publications": 3,
   "missed_selected_stories": [],
   "important_missed_news": [
     {
-      "checked_at": "2026-10-02T18:43:07.518524+00:00",
+      "checked_at": "2026-10-02T19:03:38.741396+00:00",
       "title": "French cyclist Auge in induced coma after crash",
       "source": "bbc.co.uk",
       "category": "ورزش",
@@ -30,24 +30,26 @@
     }
   ],
   "failed_publication_attempts": [],
-  "skipped_duplicate_attempts": [],
+  "skipped_duplicate_attempts": [
+    {
+      "title": "Mass Shootings Surge in South Africa as Illegal Guns Flood Streets",
+      "source": "nytimes.com",
+      "url": "https://nytimes.com/2026/10/02/world/africa/south-africa-mass-shootings-guns.html",
+      "started_at": "2026-10-02T19:03:42.228759+00:00",
+      "result": "skipped_duplicate",
+      "error": "",
+      "reason": "recent-semantic-history"
+    }
+  ],
   "editorial_blocked_attempts": [
     {
       "title": "Spain’s parliament rejects gov’t housing decrees amid mass protests",
       "source": "aljazeera.com",
       "url": "https://aljazeera.com/news/2026/10/2/spains-parliament-rejects-govt-housing-decrees-amid-mass-protests?traffic_source=rss",
-      "started_at": "2026-10-02T18:43:20.693447+00:00",
+      "started_at": "2026-10-02T19:03:41.755391+00:00",
       "result": "editorial_blocked",
       "error": "",
       "reason": "policy_scope_blocked"
-    },
-    {
-      "title": "یحیی سریع: یمن هدف ۱۳۵۰ حمله هوایی و موشکی سعودی قرار گرفته است",
-      "source": "",
-      "url": "",
-      "result": "editorial_blocked",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: آمار کلی و پروپاگاندای نظامی فاقد رویداد فوری و کلیدی",
-      "error": ""
     },
     {
       "title": "رویترز: عربستان گزینه های حمله به یمن را بررسی می کند",
@@ -56,16 +58,25 @@
       "result": "editorial_blocked",
       "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: Plans not executed yet, future possibility",
       "error": ""
+    },
+    {
+      "title": "ادامه بازداشت مردم سوریه توسط اسرائیل در جنوب",
+      "source": "",
+      "url": "",
+      "result": "editorial_blocked",
+      "reason": "editor_gate: ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: Small cross‑border raid, limited impact",
+      "error": ""
     }
   ],
   "last_errors": [],
   "ai_pool": {
-    "status": "healthy",
+    "status": "degraded_partial",
     "models": 12,
-    "disabled": 0,
-    "active": 12
+    "disabled": 1,
+    "active": 11
   },
   "diagnostics": [
+    "1/12 configured AI models are cooling down or disabled.",
     "3 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure).",
     "1 potentially important candidate(s) were rejected; review reasons before changing gates."
   ]
