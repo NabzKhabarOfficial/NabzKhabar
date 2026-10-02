@@ -106,6 +106,8 @@ FOREIGN_TERMS = (
     "آلمان", "فرانسه", "انگلیس", "بریتانیا", "ژاپن", "هند", "پاکستان", "افغانستان",
     "برزیل", "ونزوئلا", "مکزیک", "کانادا", "استرالیا", "مصر", "قطر", "امارات", "کره",
     "ناتو", "سازمان ملل", "اتحادیه اروپا", "آفریقا", "کامرون", "تایوان",
+    "صهیونیست", "فلسطین", "حماس", "حزب الله", "تل آویو", "کرانه", "بغداد", "دمشق", "بیروت",
+    "ریاض", "مسکو", "واشنگتن", "پکن", "لندن", "پاریس", "برلین", "کی یف", "سئول",
 )
 _FOREIGN_RE = re.compile(
     r"(?<![\u0600-\u06FF\w])(?:" + "|".join(re.escape(t) for t in FOREIGN_TERMS)
@@ -174,12 +176,38 @@ def hashtags(title, limit=2):
     return " ".join(tags)
 
 
-def header_line(level, urgent, emoji, label):
-    if urgent:
-        return f"🔴 فوری · {emoji} {label}"
-    if level >= 4:
-        return f"🟠 مهم · {emoji} {label}"
-    return f"{emoji} {label}"
+# Topic tag: each post gets a label describing what the story is about,
+# instead of generic "urgent"/"important" stamps (owner's request).
+TOPICS = (
+    ("⚔️", "نظامی", ("حمله", "موشک", "پهپاد", "بمباران", "ارتش", "نظامی", "ناو", "تفنگدار",
+                     "جنگ", "پایگاه", "یورش", "ترور", "شلیک", "درگیری", "آتش بس", "سپاه")),
+    ("🚨", "حادثه", ("انفجار", "آتش سوزی", "سقوط", "زلزله", "سیل", "تصادف", "مصدوم",
+                     "غرق", "ریزش", "طوفان", "حادثه")),
+    ("⚖️", "قضایی", ("دادگاه", "اعدام", "دیوان", "حکم", "محاکمه", "بازداشت", "زندان", "قوه قضاییه")),
+    ("🏛", "سیاست", ("وزیر", "سفارت", "سفیر", "دیپلماتیک", "مذاکره", "رئیس جمهور", "مجلس",
+                     "انتخابات", "تحریم", "سازمان ملل", "دولت", "پارلمان", "نخست وزیر", "کنگره")),
+    ("💰", "اقتصاد", ECON_TERMS + ("نفت", "صادرات", "واردات", "دیزل", "گازوئیل", "تجارت", "میلیارد")),
+    ("💻", "فناوری", TECH_TERMS),
+    ("🩺", "سلامت", ("بیماری", "واکسن", "ویروس", "بیمارستان", "سلامت", "دارو", "شیوع")),
+    ("🌦", "آب و هوا", ("هواشناسی", "بارش", "باران", "برف", "گرما", "سرما", "خشکسالی")),
+)
+
+
+def topic_of(title, label):
+    text = _norm(title)
+    if label == "ورزش":
+        return "⚽", "ورزش"
+    for emoji, name, words in TOPICS:
+        if any(w in text for w in words):
+            return emoji, name
+    return "📰", "خبر"
+
+
+def header_line(level, urgent, emoji, label, title=""):
+    t_emoji, t_name = topic_of(title, label)
+    if label == "ورزش":
+        return f"{t_emoji} {t_name}"
+    return f"{emoji} {label} · {t_emoji} {t_name}"
 
 
 def meter(level):
@@ -221,7 +249,9 @@ def build_caption(title, body, formatter):
         return ""
 
     level, urgent, emoji, label = classify(title, _CURRENT.get("candidate"))
-    header = header_line(level, urgent, emoji, label)
+    urgent = False  # no "urgent"/"important" stamps; the topic tag says what it is
+    header = header_line(level, urgent, emoji, label, title)
+    card_label = topic_of(title, label)[1]
     lead = f"⚡️ {sentences[0]}"
     details = sentences[1:4]
     tags = hashtags(title)
@@ -241,7 +271,7 @@ def build_caption(title, body, formatter):
         return ""
 
     _PLANS.append({"title": title, "quote": quote, "header": header,
-                   "level": level, "urgent": urgent, "label": label})
+                   "level": level, "urgent": urgent, "label": card_label})
     del _PLANS[:-20]
     return caption
 
