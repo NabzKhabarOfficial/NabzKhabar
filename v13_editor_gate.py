@@ -80,6 +80,51 @@ STRATEGIC = re.compile(
 )
 
 
+# --------------------------------------------------------------------------
+# 1b) Rescue: upstream keyword filters also kill real first-tier stories
+# (e.g. "13 dead in Saveh-Hamadan bus crash" -> no-concrete-event). Stories
+# with a strong event signal get a second chance; the AI editor below still
+# has the final say, so junk cannot sneak in through this path.
+# --------------------------------------------------------------------------
+RESCUABLE_REASONS = (
+    "no-concrete-event", "final-scope-preselection", "foreign-local-preselection",
+    "below-event-threshold", "analysis-or-opinion", "foreign-soft-local",
+    "routine-statement", "strict-source-below-importance",
+)
+STRONG_EVENT = re.compile(
+    r"(?:هدف قرار (?:داد|دادند|گرفت)|حمله (?:کرد|کردند)|حملات|حمله به|تجاوز|ربود|"
+    r"اعزام [^،؛]{0,30}نیرو|هزاران نیرو|ناو هواپیمابر|ناو جنگی|"
+    r"(?:تسلط|تصرف|کنترل) [^،؛]{0,25}(?:شهر|منطقه|بندر)|"
+    r"بانک مرکزی|نرخ (?:ارز|دلار)|قیمت (?:دلار|بنزین|نفت|طلا)|تحریم|آتش ?بس|مذاکرات|توافق|"
+    r"استعفا|برکنار|بازداشت|اعدام|تنگه هرمز|ممنوعیت|لغو شد|تصویب شد|رد کرد|"
+    r"تهدید|زخمی|مجروح|اعتراض|کودتا|"
+    r"\bstrikes?\b|struck|attack|troops|aircraft carrier|deploy|sanction|ceasefire|captur|seiz|"
+    r"intercept|suspend|\bbans?\b|banned|reject|protest|detain|arrest|injur|wound|"
+    r"hostage|coup|resign)",
+    re.I,
+)
+SPORT_WORDS = re.compile(
+    r"(?:فوتبال|فوتسال|والیبال|بسکتبال|لیگ|جام |تیم |گل |cycling|football|league|cup\b|match)", re.I)
+
+
+def rescue_tier(candidate, reason):
+    """0 = no rescue; 3/4 = publication tier for a rescued strong story."""
+    reason = str(reason or "")
+    if not any(reason.startswith(r) for r in RESCUABLE_REASONS):
+        return 0
+    title = _norm(candidate.get("title", ""))
+    if not title or deterministic_veto(candidate):
+        return 0
+    hard = bool(HARD_HAPPENED.search(title))
+    if SPORT_WORDS.search(title) and not hard:
+        return 0
+    if hard:
+        return 4
+    if STRONG_EVENT.search(title):
+        return 3
+    return 0
+
+
 def deterministic_veto(candidate):
     """Reason string when the story can never be first-tier news, else ""."""
     title = _norm(candidate.get("title", ""))
@@ -348,13 +393,25 @@ def install(main):
     def editor_publishable(main_obj, candidate):
         ok, score, reason = previous_publishable(main_obj, candidate)
         if not ok:
-            return ok, score, reason
+            tier = rescue_tier(candidate, reason)
+            if not tier:
+                return ok, score, reason
+            candidate["editor_rescue_tier"] = tier
+            print(f"V13 EDITOR GATE: rescue tier {tier} [{reason}] {candidate.get('title', '')}", flush=True)
+            return True, max(int(score or 0), 14 if tier >= 4 else 11), "editor-rescue:" + str(reason)[:60]
         veto = deterministic_veto(candidate)
         if veto:
             return False, 0, veto
         return ok, score, reason
 
     intel.is_publishable = editor_publishable
+
+    previous_tier = intel._publication_tier
+
+    def editor_tier(candidate):
+        return max(int(previous_tier(candidate) or 1), int(candidate.get("editor_rescue_tier", 0) or 0))
+
+    intel._publication_tier = editor_tier
 
     previous_collect = main.collect_candidates
 
