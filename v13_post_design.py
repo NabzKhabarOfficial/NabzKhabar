@@ -178,29 +178,92 @@ def hashtags(title, limit=2):
 
 # Topic tag: each post gets a label describing what the story is about,
 # instead of generic "urgent"/"important" stamps (owner's request).
+#
+# Logic (in order):
+#   1. Sports stories are always sports.
+#   2. A *statement* (speaker prefix "X: ..." or a speech verb) only gets a
+#      hard-news topic when it reports a concrete event (strong signal);
+#      rhetoric and opinions get "🗣 موضع‌گیری".
+#   3. Military needs a concrete military signal (attack, missile, deployment,
+#      clash...). The bare word "جنگ"/"نظامی" alone is weak: it only counts
+#      when nothing else describes the story.
+TOPIC_SPORT = ("⚽", "ورزش")
+TOPIC_STATEMENT = ("🗣", "موضع‌گیری")
+TOPIC_DEFAULT = ("📰", "خبر")
+MILITARY_STRONG = (
+    "حمله کرد", "حمله به", "حملات", "حمله هوایی", "حمله موشکی", "حمله پهپادی", "موشک",
+    "پهپاد", "بمباران", "ناو", "تفنگدار", "اعزام نیرو", "اعزام شد", "رزمایش", "پایگاه",
+    "یورش", "شلیک", "عملیات نظامی", "جنگنده", "سرنگون",
+    "رهگیری", "استقرار", "نیروی دریایی", "نیروی هوایی", "ترور", "کشته شد", "کشته شدند",
+    "درگیری مسلحانه", "درگیری ها", "درگیری های",
+)
+MILITARY_WEAK = ("جنگ", "نظامی", "ارتش", "سپاه", "آتش بس")
+ACCIDENT = ("انفجار", "آتش سوزی", "سقوط", "زلزله", "سیل", "تصادف", "مصدوم", "غرق",
+            "ریزش", "طوفان", "حادثه")
 TOPICS = (
-    ("⚔️", "نظامی", ("حمله", "موشک", "پهپاد", "بمباران", "ارتش", "نظامی", "ناو", "تفنگدار",
-                     "جنگ", "پایگاه", "یورش", "ترور", "شلیک", "درگیری", "آتش بس", "سپاه")),
-    ("🚨", "حادثه", ("انفجار", "آتش سوزی", "سقوط", "زلزله", "سیل", "تصادف", "مصدوم",
-                     "غرق", "ریزش", "طوفان", "حادثه")),
     ("⚖️", "قضایی", ("دادگاه", "اعدام", "دیوان", "حکم", "محاکمه", "بازداشت", "زندان", "قوه قضاییه")),
-    ("🏛", "سیاست", ("وزیر", "سفارت", "سفیر", "دیپلماتیک", "مذاکره", "رئیس جمهور", "مجلس",
-                     "انتخابات", "تحریم", "سازمان ملل", "دولت", "پارلمان", "نخست وزیر", "کنگره")),
     ("💰", "اقتصاد", ECON_TERMS + ("نفت", "صادرات", "واردات", "دیزل", "گازوئیل", "تجارت", "میلیارد")),
     ("💻", "فناوری", TECH_TERMS),
     ("🩺", "سلامت", ("بیماری", "واکسن", "ویروس", "بیمارستان", "سلامت", "دارو", "شیوع")),
     ("🌦", "آب و هوا", ("هواشناسی", "بارش", "باران", "برف", "گرما", "سرما", "خشکسالی")),
+    ("🏛", "سیاست", ("وزیر", "سفارت", "سفیر", "دیپلماتیک", "مذاکره", "رئیس جمهور", "مجلس",
+                     "انتخابات", "تحریم", "سازمان ملل", "دولت", "پارلمان", "نخست وزیر", "کنگره",
+                     "قطعنامه", "توافق", "نظرسنجی", "مذاکرات", "گفتگو", "گفت و گو")),
 )
+_SPEAKER_PREFIX = re.compile(r"^[^:؛«»]{2,45}:\s")
+SPEECH_VERBS = (
+    "گفت", "اظهار کرد", "اظهار داشت", "تاکید کرد", "تأکید کرد", "خواستار", "ادعا کرد",
+    "معتقد است", "واکنش", "هشدار داد", "تهدید کرد", "خطاب به", "افزود", "بیان کرد",
+    "ادعا", "می گوید", "گفته است", "اعلام کرد", "مدعی شد", "سخنرانی", "خطبه",
+)
+RHETORIC = (
+    "سردرگم", "ناکام", "توهم", "ذلت", "خواب", "رویا", "پشیمان", "زانو", "شکست خورده",
+    "محکوم به شکست", "از پای نخواهد نشست", "عقب نشینی خواهد", "جرأت", "جرات", "تحقیر",
+    "شکست خواهد", "مقاومت مردم", "دشمن", "استکبار",
+)
+
+
+def _has(text, words):
+    return any(w in text for w in words)
+
+
+_SPEECH_RE = re.compile(
+    r"(?<![\u0600-\u06FF])(?:" + "|".join(re.escape(v) for v in SPEECH_VERBS) + r")(?![\u0600-\u06FF])")
+
+
+def is_statement(title):
+    text = _norm(title)
+    return bool(_SPEAKER_PREFIX.search(text)) or bool(_SPEECH_RE.search(text))
 
 
 def topic_of(title, label):
     text = _norm(title)
     if label == "ورزش":
-        return "⚽", "ورزش"
+        return TOPIC_SPORT
+    if "نظرسنجی" in text:
+        return "🏛", "سیاست"
+    statement = is_statement(text)
+    rhetoric = _has(text, RHETORIC)
+    strong_mil = _has(text, MILITARY_STRONG)
+    if statement and (rhetoric or not strong_mil):
+        # A speech: name a hard topic only when it is clearly about one.
+        if not rhetoric:
+            for emoji, name, words in TOPICS:
+                if _has(text, words):
+                    return emoji, name
+        return TOPIC_STATEMENT
+    if _has(text, ACCIDENT) and not strong_mil:
+        return "🚨", "حادثه"
+    if strong_mil:
+        return "⚔️", "نظامی"
     for emoji, name, words in TOPICS:
-        if any(w in text for w in words):
+        if _has(text, words):
             return emoji, name
-    return "📰", "خبر"
+    if _has(text, ACCIDENT):
+        return "🚨", "حادثه"
+    if _has(text, MILITARY_WEAK):
+        return "⚔️", "نظامی"
+    return TOPIC_DEFAULT
 
 
 def header_line(level, urgent, emoji, label, title=""):
