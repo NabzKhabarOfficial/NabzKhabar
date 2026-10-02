@@ -152,6 +152,10 @@ CONCRETE_EVENT = re.compile(
 )
 # Friday-prayer sermons and religious speeches: never news for this channel.
 SERMON = re.compile(r"(?:امام جمعه|ائمه جمعه|امامان جمعه|خطیب جمعه|خطیب نماز|نماز جمعه|خطبه|خطبه های)")
+# Drills and exercises ("flood drill held") are rehearsals, not events. Big
+# national military exercises (رزمایش) stay news unless they are local.
+DRILL = re.compile(r"(?:مانور|تمرین امداد|شبیه ?سازی (?:زلزله|سیل|حادثه))")
+LOCAL_EXERCISE = re.compile(r"رزمایش.{0,40}(?:شهرستان|بخش|استان|شهرداری|مدارس|دانش ?آموز|هلال احمر|آتش ?نشانی|بسیج)")
 # Funerals, memorials and anniversaries: news only for top national figures.
 CEREMONY = re.compile(r"(?:تشییع|مراسم|بزرگداشت|سالگرد|یادبود|گرامیداشت|چهلم|ختم|سوگواری)")
 TOP_FIGURE = re.compile(r"(?:رهبر|رئیس ?جمهور|نخست ?وزیر|دبیرکل|فرمانده کل|پاپ|پادشاه|ملکه|شاه )")
@@ -169,6 +173,8 @@ def noise_reason(title, lead=""):
     title = _norm(title).lower()
     lead = _norm(lead).lower()
     text = f"{title} {lead}"
+    if title and (DRILL.search(title) or LOCAL_EXERCISE.search(title)):
+        return "drill-or-exercise"
     if not title or MASS_EVENT.search(title):
         return ""
     if SERMON.search(text):
