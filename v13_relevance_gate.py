@@ -152,6 +152,11 @@ CONCRETE_EVENT = re.compile(
 )
 # Friday-prayer sermons and religious speeches: never news for this channel.
 SERMON = re.compile(r"(?:امام جمعه|ائمه جمعه|امامان جمعه|خطیب جمعه|خطیب نماز|نماز جمعه|خطبه|خطبه های)")
+# Funerals, memorials and anniversaries: news only for top national figures.
+CEREMONY = re.compile(r"(?:تشییع|مراسم|بزرگداشت|سالگرد|یادبود|گرامیداشت|چهلم|ختم|سوگواری)")
+TOP_FIGURE = re.compile(r"(?:رهبر|رئیس ?جمهور|نخست ?وزیر|دبیرکل|فرمانده کل|پاپ|پادشاه|ملکه|شاه )")
+# Individual MPs' general remarks ("province needs attention").
+MP_REMARK = re.compile(r"(?:^|\s)(?:نماینده مجلس|نماینده مردم|نمایندگان مردم|عضو کمیسیون|نماینده)(?:\s|:)")
 # Analysis / prescription / opinion framings in the headline.
 ANALYSIS_TITLE = re.compile(
     r"(?:^|\s)(?:راهکار|راهکارهای|راه حل|ضرورت|چرا|چگونه|پیامدهای|قضیه|قضیۀ|بررسی|"
@@ -174,6 +179,10 @@ def noise_reason(title, lead=""):
         return "rhetoric-statement"
     if ANALYSIS_TITLE.search(title):
         return "analysis-or-opinion"
+    if CEREMONY.search(title) and not TOP_FIGURE.search(title):
+        return "ceremony"
+    if MP_REMARK.search(title) and not CONCRETE_EVENT.search(title):
+        return "mp-remark"
     return ""
 
 
