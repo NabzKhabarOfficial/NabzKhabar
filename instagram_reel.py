@@ -98,10 +98,9 @@ def _foreground(photo):
     return photo
 
 
-def _overlay(title, topic, fg_bottom):
+def _overlay(title, topic, lead, fg_bottom):
     ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(ov)
-    # Top brand bar.
     top_shade = Image.new("RGBA", (W, 260), (0, 0, 0, 0))
     td = ImageDraw.Draw(top_shade)
     for y in range(260):
@@ -114,7 +113,7 @@ def _overlay(title, topic, fg_bottom):
     _pulse(d, right - bw - 24, 150, 170, 52, 6)
     d.text((SAFE_LEFT, 150), HANDLE, font=_font(30), fill=(215, 220, 230, 235), anchor="lm")
 
-    # Headline block, kept inside the Reels safe area.
+    # The lead is a second editorial layer, so this is not merely a photo with a resized caption.
     max_w = W - SAFE_LEFT - SAFE_RIGHT
     size, lines = 70, []
     while True:
@@ -126,7 +125,6 @@ def _overlay(title, topic, fg_bottom):
     lines = lines[:4]
     line_h = int(size * 1.45)
     block_h = 90 + len(lines) * line_h + 110
-    # Start just over the photo's lower edge, never below the Reels UI zone.
     y0 = min(fg_bottom - 50, 1500 - block_h)
     shade_top = y0 - 170
     shade = Image.new("RGBA", (W, H - shade_top), (0, 0, 0, 0))
@@ -136,7 +134,6 @@ def _overlay(title, topic, fg_bottom):
         sd.line([(0, y), (W, y)], fill=(6, 8, 14, int(225 * t)))
     ov.alpha_composite(shade, (0, shade_top))
     rx = W - SAFE_RIGHT
-    # Topic pill.
     pill_font = _font(34)
     pw = d.textlength(topic, font=pill_font, direction="rtl")
     d.rounded_rectangle((rx - pw - 44, y0, rx, y0 + 62), radius=31, fill=ACCENT + (245,))
@@ -148,6 +145,11 @@ def _overlay(title, topic, fg_bottom):
         y += line_h
     y += 24
     d.rounded_rectangle((rx - 110, y, rx, y + 8), radius=4, fill=ACCENT + (255,))
+    lead_font = _font(32)
+    lead_lines = _wrap(d, lead, lead_font, max_w)
+    for line in lead_lines[:2]:
+        y += 52
+        d.text((rx, y), line, font=lead_font, fill=(225, 230, 238, 240), anchor="ra", direction="rtl")
     d.text((rx, y + 50), CTA, font=_font(34), fill=(225, 230, 238, 240), anchor="rm", direction="rtl")
     return ov
 
@@ -157,7 +159,6 @@ AUDIO = (
     "+0.38*sin(2*PI*46*t)*exp(-16*mod(t-0.24,0.9))*gte(mod(t,0.9),0.24)"
     "+0.035*sin(2*PI*220*t)*(0.6+0.4*sin(2*PI*0.25*t))':s=44100:d={d}"
 )
-
 
 TOPICS = (
     ("نظامی", ("حمله", "موشک", "پهپاد", "بمباران", "ارتش", "نظامی", "ناو", "تفنگدار", "جنگ", "پایگاه", "یورش", "سپاه")),
@@ -178,7 +179,7 @@ def topic_of(title, category=""):
     return {"ورزش": "ورزش", "فناوری": "فناوری"}.get(category, "خبر")
 
 
-def render_reel(photo_path, title, topic, out_dir):
+def render_reel(photo_path, title, topic, out_dir, lead=""):
     """Return (video_path, cover_path) or None."""
     if not supported() or not title:
         return None
@@ -195,7 +196,7 @@ def render_reel(photo_path, title, topic, out_dir):
         fg = _foreground(photo)
         fg.save(fg_p, quality=94)
         fg_y = FG_TOP
-        ov = _overlay(title, topic or "خبر", fg_y + fg.height)
+        ov = _overlay(title, topic or "خبر", lead or "خلاصه خبر را در چند ثانیه ببینید", fg_y + fg.height)
         ov.save(ov_p)
 
         cover = Image.open(base_p).convert("RGBA")
