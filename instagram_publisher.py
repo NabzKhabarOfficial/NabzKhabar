@@ -3,6 +3,7 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import sys
 import time
 from datetime import datetime, timezone
@@ -343,6 +344,7 @@ def make_caption(item, recent_tags=None):
     if not title or not body:
         return "", []
     tags = build_hashtags(item, title, body, ai_tags, recent_tags)
+    item["_ig_title"] = title
     norm_title = _norm_fa(title)
     emoji = next((e for words, e in TOPIC_EMOJI if any(w in norm_title for w in words)), "📰")
     caption = (
@@ -464,16 +466,55 @@ def main():
         print("IG: language/AI gate blocked candidate")
         return 0
 
-    path = download_image(image, candidate["key"])
+    # Reels reach Explore far more often than photos: post the story as an
+    # 8 second branded reel, and fall back to the classic photo when the reel
+    # cannot be rendered.
+    reel = None
+    reel_dir = MEDIA_DIR / f"{candidate['key']}_reel"
+    reel_src = MEDIA_DIR / f"{candidate['key']}.reel.src"
+    want_reel = os.getenv("IG_FORMAT", "reel").strip().lower() == "reel"
+    if want_reel and time.time() >= float(state.get("reel_disabled_until", 0) or 0):
+        try:
+            import instagram_reel
+            MEDIA_DIR.mkdir(parents=True, exist_ok=True)
+            reel_src.write_bytes(_bounded_get(image, MAX_IMAGE_BYTES))
+            title = candidate.get("_ig_title") or clean(candidate["title"])
+            reel = instagram_reel.render_reel(
+                reel_src, title, instagram_reel.topic_of(title, candidate.get("category", "")), reel_dir)
+            if reel and not instagram_reel.patch_instagrapi_analyzer():
+                print("IG REEL: instagrapi analyzer not patchable; posting photo instead")
+                reel = None
+        except Exception as exc:
+            print(f"IG REEL: skipped ({type(exc).__name__}: {exc})")
+            reel = None
+
+    path = None if reel else download_image(image, candidate["key"])
     client = login_client()
     try:
-        media = client.photo_upload(str(path), caption=caption)
-        print(f"IG: published {media.pk} -> {candidate['title']}")
+        if reel:
+            video, cover = reel
+            try:
+                media = client.clip_upload(video, caption=caption, thumbnail=cover)
+                print(f"IG: published reel {media.pk} -> {candidate['title']}")
+            except Exception as exc:
+                # Never retry the same story as a photo: the reel may have gone
+                # through. Skip the story and use photos for the next 24 hours.
+                print(f"IG REEL: upload failed ({type(exc).__name__}: {exc}); photos for 24h")
+                state["reel_disabled_until"] = time.time() + 24 * 3600
+                state["posted"] = (list(state.get("posted", [])) + [candidate["key"]])[-200:]
+                save_state(state)
+                return 0
+        else:
+            media = client.photo_upload(str(path), caption=caption)
+            print(f"IG: published {media.pk} -> {candidate['title']}")
     finally:
-        try:
-            path.unlink(missing_ok=True)
-        except Exception:
-            pass
+        for p in [path, reel_src] + (list(reel) if reel else []):
+            try:
+                if p:
+                    Path(p).unlink(missing_ok=True)
+            except Exception:
+                pass
+        shutil.rmtree(reel_dir, ignore_errors=True)
 
     # Keep insertion order so trimming drops the oldest keys, not random ones
     # (a set has no stable order).
