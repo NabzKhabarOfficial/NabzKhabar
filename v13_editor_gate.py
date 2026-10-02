@@ -243,6 +243,39 @@ def _cache_put(key, entry):
         print(f"V13 EDITOR GATE: cache warning {exc}", flush=True)
 
 
+# Stories this gate rejected after selection, so telemetry can count them as
+# deliberate editorial blocks instead of "selected but not published".
+REJECTED_THIS_RUN = {}
+
+
+def record_blocks(health_file="v13_health.json"):
+    """Write this run's editor-gate rejections into the health file as editorial_blocked attempts."""
+    if not REJECTED_THIS_RUN:
+        return 0
+    import json
+    try:
+        with open(health_file, "r", encoding="utf-8") as f:
+            health = json.load(f)
+    except Exception as exc:
+        print(f"V13 EDITOR GATE: telemetry read warning {type(exc).__name__}: {exc}", flush=True)
+        return 0
+    attempts = health.setdefault("publication_attempts", [])
+    have = {str(x.get("title", "")).strip() for x in attempts}
+    added = 0
+    for title, (candidate, reason) in REJECTED_THIS_RUN.items():
+        if title in have:
+            continue
+        attempts.append({"title": title, "source": candidate.get("source", ""), "url": candidate.get("url", ""),
+                         "result": "editorial_blocked", "reason": "editor_gate: " + reason[:180], "error": ""})
+        added += 1
+    if added:
+        health["editorial_blocked_publications"] = int(health.get("editorial_blocked_publications", 0) or 0) + added
+        with open(health_file, "w", encoding="utf-8") as f:
+            json.dump(health, f, ensure_ascii=False, indent=2)
+        print(f"V13 EDITOR GATE: {added} rejected selection(s) recorded as editorial_blocked", flush=True)
+    return added
+
+
 def _audit(main, candidate, score, reason):
     try:
         import v13_intelligence as intel
@@ -335,9 +368,12 @@ def install(main):
                 kept.append(candidate)
             else:
                 _audit(main, candidate, int(candidate.get("intelligence_score", 0) or 0), reason[:200])
+                REJECTED_THIS_RUN[str(candidate.get("title", "")).strip()] = (candidate, reason)
         print(f"V13 EDITOR GATE: {len(selected)} selected -> {len(kept)} approved", flush=True)
         return kept
 
     main.collect_candidates = editor_collect
+    import atexit
+    atexit.register(record_blocks)  # runs after the engine has written v13_health.json
     _patch_topic_label()
     print(f"V13 EDITOR GATE ACTIVE: deterministic veto + AI editor (score>={MIN_AI_SCORE}, happened, not local), fail-closed", flush=True)
