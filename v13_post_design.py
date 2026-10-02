@@ -96,6 +96,20 @@ BREAKING_WORDS = (
     "موشک", "استعفا", "آتش بس", "اعلام جنگ", "کودتا", "تیراندازی",
 )
 BREAKING_MAX_AGE_SECONDS = 90 * 60
+NOT_BREAKING_WORDS = (
+    "تشییع", "مراسم", "سالگرد", "یادبود", "بزرگداشت", "گرامیداشت", "هشدار", "تهدید",
+    "احتمال", "سالروز", "خاطره", "روایت", "تحلیل", "یادداشت", "مصاحبه", "واکنش",
+)
+FOREIGN_TERMS = (
+    "آمریکا", "ترامپ", "اسرائیل", "نتانیاهو", "روسیه", "پوتین", "اوکراین", "غزه",
+    "کرانه باختری", "لبنان", "سوریه", "عراق", "یمن", "عربستان", "چین", "ترکیه", "اروپا",
+    "آلمان", "فرانسه", "انگلیس", "بریتانیا", "ژاپن", "هند", "پاکستان", "افغانستان",
+    "برزیل", "ونزوئلا", "مکزیک", "کانادا", "استرالیا", "مصر", "قطر", "امارات", "کره",
+    "ناتو", "سازمان ملل", "اتحادیه اروپا", "آفریقا", "کامرون", "تایوان",
+)
+_FOREIGN_RE = re.compile(
+    r"(?<![\u0600-\u06FF\w])(?:" + "|".join(re.escape(t) for t in FOREIGN_TERMS)
+    + r")(?:ی|ها|ای)?(?![\u0600-\u06FF\w])")
 
 
 def _age_seconds(candidate):
@@ -122,11 +136,12 @@ def classify(title, candidate=None):
     breaking_word = any(w in text for w in BREAKING_WORDS)
     age = _age_seconds(candidate)
     fresh = age is None or age <= BREAKING_MAX_AGE_SECONDS
-    urgent = breaking_word and fresh and tier >= 3
+    calm = any(w in text for w in NOT_BREAKING_WORDS)
+    urgent = breaking_word and fresh and tier >= 3 and not calm
 
     if urgent:
         level = 5
-    elif tier >= 4 or score >= 15:
+    elif (tier >= 4 and score >= 12) or score >= 16:
         level = 4
     elif tier == 3:
         level = 3 + (1 if score >= 12 else 0)
@@ -137,7 +152,8 @@ def classify(title, candidate=None):
     cat = _norm(candidate.get("category", ""))
     if candidate.get("_major_sports") or "ورزش" in cat:
         emoji, label = "⚽", "ورزش"
-    elif "ایران" in cat:
+    elif any(t in text for t in IRAN_TERMS) or (
+            "ایران" in cat and not _FOREIGN_RE.search(text)):
         emoji, label = "🇮🇷", "ایران"
     else:
         for terms, e, l in CATEGORIES:
