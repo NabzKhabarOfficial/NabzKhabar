@@ -6,7 +6,7 @@ import re
 import shutil
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
@@ -148,8 +148,25 @@ def save_state(state):
     os.replace(tmp, STATE_FILE)
 
 
+TEHRAN = timezone(timedelta(hours=3, minutes=30))  # Iran has no DST since 2022
+# Post when the Iranian audience is online (evening peak), not right after
+# midnight UTC (03:30 Tehran) when nobody sees the first-hour engagement.
+POST_WINDOW = os.getenv("IG_POST_WINDOW", "19:30-22:30")
+
+
 def today_key():
-    return datetime.now(timezone.utc).date().isoformat()
+    return datetime.now(TEHRAN).date().isoformat()
+
+
+def in_post_window(now=None):
+    try:
+        start, end = [tuple(int(x) for x in part.split(":")) for part in POST_WINDOW.split("-")]
+    except Exception:
+        return True
+    now = now or datetime.now(TEHRAN)
+    minutes = now.hour * 60 + now.minute
+    a, b = start[0] * 60 + start[1], end[0] * 60 + end[1]
+    return a <= minutes <= b if a <= b else (minutes >= a or minutes <= b)
 
 
 def collect():
@@ -441,6 +458,9 @@ def login_client():
     return client
 
 def main():
+    if not in_post_window():
+        print(f"IG: outside posting window {POST_WINDOW} (Tehran)")
+        return 0
     state = load_state()
     day = today_key()
     daily_count = int(state.setdefault("daily", {}).get(day, 0))
