@@ -198,6 +198,9 @@ MILITARY_STRONG = (
     "درگیری مسلحانه", "درگیری ها", "درگیری های",
 )
 MILITARY_WEAK = ("جنگ", "نظامی", "ارتش", "سپاه", "آتش بس")
+# An explosion/crash at a military site is a military story, not an accident.
+MILITARY_SITE = ("فرودگاه نظامی", "پایگاه نظامی", "پایگاه هوایی", "پادگان", "انبار مهمات",
+                 "تاسیسات نظامی", "ناو", "مقر ")
 ACCIDENT = ("انفجار", "آتش سوزی", "سقوط", "زلزله", "سیل", "تصادف", "مصدوم", "غرق",
             "ریزش", "طوفان", "حادثه")
 TOPICS = (
@@ -252,9 +255,9 @@ def topic_of(title, label):
                 if _has(text, words):
                     return emoji, name
         return TOPIC_STATEMENT
-    if _has(text, ACCIDENT) and not strong_mil:
+    if _has(text, ACCIDENT) and not strong_mil and not _has(text, MILITARY_SITE):
         return "🚨", "حادثه"
-    if strong_mil:
+    if strong_mil or (_has(text, ACCIDENT) and _has(text, MILITARY_SITE)):
         return "⚔️", "نظامی"
     for emoji, name, words in TOPICS:
         if _has(text, words):
