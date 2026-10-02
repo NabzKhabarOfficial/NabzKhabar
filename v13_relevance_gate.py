@@ -134,6 +134,54 @@ MISSING_CONTENT = _word_re((
 ))
 
 
+# Speeches made of slogans ("the enemy is confused", "will never rest") carry
+# no new fact; they are blocked unless they announce a concrete event.
+SPEAKER_PREFIX = re.compile(r"^[^:؛«»]{2,45}:\s")
+SPEECH_VERB = re.compile(r"(?:گفت|اظهار کرد|اظهار داشت|تاکید کرد|تأکید کرد|ادعا|خطبه|سخنرانی|خطاب به)")
+RHETORIC = re.compile(
+    r"(?:سردرگم|ناکام|توهم|ذلت|پشیمان|زانو|شکست خورده|محکوم به شکست|از پای نخواهد نشست|"
+    r"جرأت|جرات|تحقیر|شکست خواهد|استکبار|خون ?خواهی|نابود خواهد|به خاک سیاه|توطئه|"
+    r"جنگ ترکیبی|سنگر|دشمن|ایدئولوژیک|محاسبات .{0,20}(?:غلط|اشتباه)|فراتر از محاسبات|"
+    r"همخوانی نداشت|موفق نخواهند|نخواهد توانست)"
+)
+# A concrete event inside a speech keeps it as news ("IRGC: enemy drone shot down").
+CONCRETE_EVENT = re.compile(
+    r"(?:سرنگون|شلیک|کشته|زخمی|حمله|توقیف|بازداشت|دستگیر|اعزام|رهگیری|منهدم|هدف قرار|"
+    r"امضا|تصویب|استعفا|برکنار|منصوب|اعدام|آزاد شد|آزادی|تحریم کرد|لغو|تعلیق|بسته شد|"
+    r"\d{2,}|[۰-۹]{2,})"
+)
+# Friday-prayer sermons and religious speeches: never news for this channel.
+SERMON = re.compile(r"(?:امام جمعه|ائمه جمعه|امامان جمعه|خطیب جمعه|خطیب نماز|نماز جمعه|خطبه|خطبه های)")
+# Analysis / prescription / opinion framings in the headline.
+ANALYSIS_TITLE = re.compile(
+    r"(?:^|\s)(?:راهکار|راهکارهای|راه حل|ضرورت|چرا|چگونه|پیامدهای|قضیه|قضیۀ|بررسی|"
+    r"نگاهی به|درس های|شانس .{0,30}کم|بدون برنامه)(?:\s|$)"
+)
+
+
+def noise_reason(title, lead=""):
+    """Why a story is editorial noise (sermon, slogan speech, analysis), or ""."""
+    title = _norm(title).lower()
+    lead = _norm(lead).lower()
+    text = f"{title} {lead}"
+    if not title or MASS_EVENT.search(title):
+        return ""
+    if SERMON.search(text):
+        return "sermon"
+    speech = (bool(SPEAKER_PREFIX.search(title)) or bool(SPEECH_VERB.search(text))
+              or "اعلام کرد" in lead or "بیان کرد" in lead)
+    if speech and RHETORIC.search(text) and not CONCRETE_EVENT.search(title):
+        return "rhetoric-statement"
+    if ANALYSIS_TITLE.search(title):
+        return "analysis-or-opinion"
+    return ""
+
+
+def rhetoric_statement(candidate):
+    return bool(noise_reason(candidate.get("title", ""),
+                             candidate.get("summary", "") or candidate.get("description", "")))
+
+
 def service_schedule(candidate):
     return bool(SERVICE_SCHEDULE.search(_text(candidate, 300)))
 
@@ -247,6 +295,9 @@ def caption_problem(title, sentences):
         return "refers-to-missing-content"
     if SERVICE_SCHEDULE.search(title):
         return "service-schedule"
+    noise = noise_reason(title, sentences[0])
+    if noise:
+        return noise
     if not _VERBISH_END.search(sentences[-1].strip()):
         return "body-truncated"
     return ""
@@ -316,6 +367,10 @@ def install(core, current):
             return False, 0, "iran-local-routine"
         if low_value(candidate):
             return False, 0, "low-value-opinion-or-product"
+        noise = noise_reason(candidate.get("title", ""),
+                             candidate.get("summary", "") or candidate.get("description", ""))
+        if noise:
+            return False, 0, noise
         return ok, score, reason
 
     v13_intelligence.is_publishable = relevance_gate
