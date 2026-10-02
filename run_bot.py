@@ -18,6 +18,7 @@ import v13_byline_cleaner
 import v13_policy_guard
 import v13_editorial_final_patch
 import v13_post_design
+import v13_editor_gate
 
 PERSIAN_RSS_FEEDS = [
     ("جهان", "https://feeds.bbci.co.uk/persian/rss.xml"),
@@ -134,6 +135,9 @@ def _install_v13_stack():
 
     # Visual layer last: wraps the final caption, photo sender and story.
     v13_post_design.install(main, v13_editorial_formatter)
+
+    # Final editor: installed last so no override/rescue layer can bypass it.
+    v13_editor_gate.install(main)
 
     main._v13_stack_installed = True
     print("V13 STACK: all editorial, rescue, media, AI, and health layers installed", flush=True)
