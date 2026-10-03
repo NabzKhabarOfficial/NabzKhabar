@@ -485,6 +485,13 @@ def _patch_history_rescue_pipeline():
 
 
 if __name__ == "__main__":
+    # Daily boards (weather, car prices, education) are independent of the
+    # news engine and must never block or fail it.
+    try:
+        import daily_boards
+        daily_boards.run()
+    except Exception as exc:
+        print(f"DAILY BOARDS: launcher error: {type(exc).__name__}: {exc}", flush=True)
     _patch_history_rescue_pipeline()
     _install_v13_stack()
     print("V13 ENGINE LAUNCH: run_bot -> v13_standalone.main()", flush=True)
