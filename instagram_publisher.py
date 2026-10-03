@@ -457,11 +457,49 @@ def login_client():
     print("IG: fresh login completed")
     return client
 
+
+# --------------------------------------------------------------------------
+# Account safety: never hammer Instagram after it pushes back.
+# --------------------------------------------------------------------------
+# The publisher may be started many times inside the posting window. If the
+# saved session is rejected, or Instagram answers with a challenge / rate
+# limit, every further attempt looks like a bot retrying a blocked login,
+# which is exactly what gets accounts locked. So any login or upload
+# refusal pauses the publisher for PAUSE_HOURS instead of retrying.
+PAUSE_HOURS = int(os.getenv("IG_PAUSE_HOURS", "24"))
+BLOCK_WORDS = ("challenge", "feedback", "login_required", "loginrequired", "please wait",
+               "rate", "spam", "checkpoint", "401", "403", "429")
+
+
+def is_block(exc):
+    text = f"{type(exc).__name__} {exc}".lower()
+    return any(w in text for w in BLOCK_WORDS)
+
+
+def paused_until(state):
+    try:
+        return float(state.get("paused_until", 0) or 0)
+    except Exception:
+        return 0.0
+
+
+def pause(state, reason):
+    state["paused_until"] = time.time() + PAUSE_HOURS * 3600
+    state["pause_reason"] = str(reason)[:300]
+    save_state(state)
+    until = datetime.fromtimestamp(state["paused_until"], TEHRAN).strftime("%Y-%m-%d %H:%M")
+    print(f"IG SAFETY: paused until {until} Tehran ({reason})")
+
+
 def main():
     if not in_post_window():
         print(f"IG: outside posting window {POST_WINDOW} (Tehran)")
         return 0
     state = load_state()
+    if time.time() < paused_until(state):
+        until = datetime.fromtimestamp(paused_until(state), TEHRAN).strftime("%Y-%m-%d %H:%M")
+        print(f"IG SAFETY: paused until {until} Tehran ({state.get('pause_reason', '')}); not touching the account")
+        return 0
     day = today_key()
     daily_count = int(state.setdefault("daily", {}).get(day, 0))
     if daily_count >= MAX_POSTS_PER_DAY:
@@ -509,7 +547,17 @@ def main():
             reel = None
 
     path = None if reel else download_image(image, candidate["key"])
-    client = login_client()
+    try:
+        client = login_client()
+    except Exception as exc:
+        # Session rejected: do NOT retry every few minutes. Pause and wait for
+        # a fresh IG_SESSION_B64 from the owner's own device.
+        pause(state, f"login refused: {type(exc).__name__}: {exc}")
+        for p in [path, reel_src]:
+            if p:
+                Path(p).unlink(missing_ok=True)
+        shutil.rmtree(reel_dir, ignore_errors=True)
+        return 0
     try:
         if reel:
             video, cover = reel
@@ -522,10 +570,19 @@ def main():
                 print(f"IG REEL: upload failed ({type(exc).__name__}: {exc}); photos for 24h")
                 state["reel_disabled_until"] = time.time() + 24 * 3600
                 state["posted"] = (list(state.get("posted", [])) + [candidate["key"]])[-200:]
-                save_state(state)
+                if is_block(exc):
+                    pause(state, f"reel upload refused: {type(exc).__name__}: {exc}")
+                else:
+                    save_state(state)
                 return 0
         else:
-            media = client.photo_upload(str(path), caption=caption)
+            try:
+                media = client.photo_upload(str(path), caption=caption)
+            except Exception as exc:
+                # The photo may or may not have gone through; never retry it.
+                state["posted"] = (list(state.get("posted", [])) + [candidate["key"]])[-200:]
+                pause(state, f"photo upload refused: {type(exc).__name__}: {exc}")
+                return 0
             print(f"IG: published {media.pk} -> {candidate['title']}")
     finally:
         for p in [path, reel_src] + (list(reel) if reel else []):
@@ -548,6 +605,7 @@ def main():
     state["daily"][day] = daily_count + 1
     # Keep the state compact and discard daily counters older than 7 days.
     state["daily"] = {k: v for k, v in state["daily"].items() if k >= day}
+    state.pop("pause_reason", None)
     save_state(state)
     return 0
 
