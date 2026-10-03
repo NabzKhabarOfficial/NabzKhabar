@@ -69,6 +69,14 @@ def tlen(d, text, f):
     return d.textlength(text, font=f, direction="rtl")
 
 
+def _fit(d, text, size, kind, max_w, min_size=20):
+    f = font(size, kind)
+    while tlen(d, text, f) > max_w and size > min_size:
+        size -= 1
+        f = font(size, kind)
+    return f
+
+
 def _background(h, top, bottom):
     img = Image.new("RGB", (W, h), bottom)
     d = ImageDraw.Draw(img)
@@ -223,8 +231,10 @@ def render_weather(rows, jalali_date, out_path, weather_text=None):
             d.rounded_rectangle([x0, 300, x1, 420], radius=24, fill=CARD, outline=LINE, width=2)
             d.rounded_rectangle([x1 - 10, 320, x1 - 4, 400], radius=3, fill=col)
             rtl(d, (x1 - 28, 316), label, font(24, "regular"), MUTED)
-            rtl(d, (x1 - 28, 352), city, font(34), INK)
-            d.text((x0 + 24, 360), val, font=font(44), fill=col, anchor="lm")
+            vf = font(44)
+            vw = d.textlength(val, font=vf)
+            rtl(d, (x1 - 28, 352), city, _fit(d, city, 34, "bold", cw - 28 - vw - 48, 20), INK)
+            d.text((x0 + 24, 360), val, font=vf, fill=col, anchor="lm")
 
         x0, x1 = 60, W - 60
         hy = top + 22
@@ -237,10 +247,12 @@ def render_weather(rows, jalali_date, out_path, weather_text=None):
             y0 = top + 50 + idx * row_h
             d.rounded_rectangle([x0, y0, x1, y0 + row_h - 10], radius=18, fill=CARD if idx % 2 == 0 else CARD2)
             cy = y0 + (row_h - 10) / 2
-            rtl(d, (x1 - 24, cy - 2), r["city"], font(30), INK, "rm")
-            cw_city = tlen(d, r["city"], font(30))
+            avail = 270 - 24 - 21 - 18  # space between the row edge and the weather icon
+            cf = _fit(d, r["city"], 30, "bold", avail, 22)
+            rtl(d, (x1 - 24, cy - 2), r["city"], cf, INK, "rm")
+            cw_city = tlen(d, r["city"], cf)
             cond = weather_text(r.get("code", 0))
-            if cond:
+            if cond and cw_city + 12 + tlen(d, cond, font(19, "regular")) <= avail:
                 rtl(d, (x1 - 36 - cw_city, cy + 2), cond, font(19, "regular"), MUTED, "rm")
             icon(d, _kind(r.get("code", 0)), x1 - 270, cy, 21)
             d.rounded_rectangle([bx0, cy - 5, bx1, cy + 5], radius=5, fill=LINE)
@@ -281,6 +293,23 @@ def _change_kind(change):
     return 1
 
 
+def _millions(text):
+    """'1,630,000,000تا 2,620,000,000' -> '۱٬۶۳۰ تا ۲٬۶۲۰' (million toman). '' when no number."""
+    s = str(text or "").translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789"))
+    nums = [int(n.replace(",", "").replace("٬", "")) for n in re.findall(r"\d[\d,٬]*", s)]
+    nums = [n for n in nums if n >= 1_000_000]
+    if not nums:
+        return ""
+
+    def one(n):
+        m = n / 1_000_000
+        txt = f"{m:,.0f}" if m >= 100 or m == int(m) else f"{m:,.1f}"
+        return fa(txt.replace(",", "٬"))
+
+    lo, hi = min(nums[:2]), max(nums[:2])
+    return one(lo) if lo == hi else f"{one(lo)} تا {one(hi)}"
+
+
 def render_cars(items, update_date, out_path):
     """items: list of (label, market, factory, change). Returns path or None."""
     try:
@@ -291,25 +320,31 @@ def render_cars(items, update_date, out_path):
         img = _background(h, (52, 18, 26), (9, 11, 18))
         _glow(img, (W - 140, 110), 220, (229, 28, 45), 55)
         date_short = re.sub(r"\s+امروز.*$", "", str(update_date)).strip() or str(update_date)
-        _header(img, "قیمت روز خودرو", "بازار آزاد و کارخانه · به تومان", fa(date_short)[:28], ACCENT)
+        _header(img, "قیمت روز خودرو", "بازار آزاد و کارخانه · ارقام به میلیون تومان", fa(date_short)[:28], ACCENT)
         d = ImageDraw.Draw(img)
 
-        xm, xf, xc = W - 470, W - 730, 90  # right edges of columns (market, factory) and change x
-        hy = top + 20
+        # column boxes (right edge, max width) so no value can run into its neighbour
+        name_r, name_w = W - 90, 230
+        mk_r, mk_w = W - 410, 250
+        fc_r, fc_w = W - 690, 190
+        xc = 84
+        hy = top + 28
         d.rounded_rectangle([60, top, W - 60, top + 56], radius=18, fill=(40, 22, 30))
-        rtl(d, (W - 90, hy + 8), "خودرو", font(26), MUTED, "rm")
-        rtl(d, (xm, hy + 8), "بازار", font(26), MUTED, "rm")
-        rtl(d, (xf, hy + 8), "کارخانه", font(26), MUTED, "rm")
-        d.text((xc, hy + 8), "تغییر", font=font(26), fill=MUTED, anchor="lm")
+        rtl(d, (name_r, hy), "خودرو", font(26), MUTED, "rm")
+        rtl(d, (mk_r, hy), "بازار", font(26), MUTED, "rm")
+        rtl(d, (fc_r, hy), "کارخانه", font(26), MUTED, "rm")
+        d.text((xc, hy), "تغییر", font=font(26), fill=MUTED, anchor="lm")
 
         y = top + 70
         for i, (label, market, factory, change) in enumerate(items):
             if i % 2 == 0:
                 d.rounded_rectangle([60, y, W - 60, y + row_h - 8], radius=16, fill=CARD)
             cy = y + (row_h - 8) / 2
-            rtl(d, (W - 90, cy), label, font(30), INK, "rm")
-            rtl(d, (xm, cy), fa(market or "—"), font(30), (255, 214, 102), "rm")
-            rtl(d, (xf, cy), fa(factory or "—"), font(26, "regular"), MUTED, "rm")
+            rtl(d, (name_r, cy), label, _fit(d, label, 30, "bold", name_w), INK, "rm")
+            mt = _millions(market) or "—"
+            rtl(d, (mk_r, cy), mt, _fit(d, mt, 32, "bold", mk_w), (255, 214, 102), "rm")
+            ft = _millions(factory) or "—"
+            rtl(d, (fc_r, cy), ft, _fit(d, ft, 26, "regular", fc_w), MUTED, "rm")
             k = _change_kind(change)
             if k:
                 col = (52, 211, 120) if k > 0 else (248, 92, 92)
@@ -317,9 +352,10 @@ def render_cars(items, update_date, out_path):
                       [(xc, cy - 8), (xc + 18, cy - 8), (xc + 9, cy + 8)]
                 d.polygon(tri, fill=col)
                 txt = re.sub(r"[+\-−▲▼]", "", str(change)).strip()
-                d.text((xc + 30, cy), fa(txt)[:14], font=font(24), fill=col, anchor="lm")
+                txt = fa(txt)[:8]
+                d.text((xc + 28, cy), txt, font=_fit(d, txt, 24, "bold", 92), fill=col, anchor="lm")
             else:
-                d.text((xc, cy), "بدون تغییر" if change else "—", font=font(22, "regular"), fill=MUTED, anchor="lm")
+                d.text((xc, cy), "—", font=font(24, "regular"), fill=MUTED, anchor="lm")
             y += row_h
         _footer(img, h - 110, "منبع: 1car.ir · قیمت‌ها تقریبی است")
         img.save(out_path, quality=92)
