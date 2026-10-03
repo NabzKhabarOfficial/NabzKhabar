@@ -1,6 +1,6 @@
 """Independent daily boards for the NabzKhabar channel.
 
-Weather, car prices, the day's important matches and the education tip are not news: they bypass every V13
+Weather, car prices, the day's important matches (plus their end-of-day results) and the education tip are not news: they bypass every V13
 news gate and are sent once per Tehran day. Weather and car prices are sent as
 designed image cards (daily_cards); if rendering or the photo upload fails the
 classic text board is sent instead. Each board is isolated so a failure in one
@@ -195,7 +195,8 @@ def _run_sports(now):
     if state.get("sports_last_date") == today:
         _log(f"sports schedule already handled today ({today})")
         return
-    rows = daily_sports.select(daily_sports.fetch(), now)
+    data = daily_sports.fetch()
+    rows = daily_sports.select(data, now)
     jalali = weather._jalali_date(now)
     sent = False
     if not rows:
@@ -219,8 +220,76 @@ def _run_sports(now):
     state = _load_json(STATE_FILE)
     state["sports_last_date"] = today
     state["sports_matches"] = len(rows)
+    if rows:
+        try:
+            import sports_results
+            kept = sports_results.remember(state, today, data, rows)
+            _log(f"remembered {kept} matches for the evening results")
+        except Exception as exc:
+            _log(f"could not remember matches for results: {type(exc).__name__}: {exc}")
     _save_json(STATE_FILE, state)
     _log(f"sports schedule handled: {len(rows)} matches")
+
+
+# ------------------------------------------------------------------ sports results (end of day)
+def _render_results(rows, jalali, path):
+    import daily_cards
+    original = daily_cards._header
+
+    def header(img, title, subtitle, date_text, accent):
+        return original(img, "نتایج مسابقات امروز", "نتیجه نهایی بازی‌های مهمی که صبح معرفی شد", date_text, accent)
+
+    daily_cards._header = header
+    try:
+        return daily_cards.render_sports(rows, jalali, path)
+    finally:
+        daily_cards._header = original
+
+
+def _run_sports_results(now):
+    import daily_cards
+    import sports_results
+    import weather
+    state = _load_json(STATE_FILE)
+    for day, board, give_up in sports_results.pending(state, now):
+        results, open_matches = {}, 0
+        for m in board["matches"]:
+            try:
+                res = sports_results.parse_result(m, sports_results.fetch_match(m))
+            except Exception as exc:
+                _log(f"result fetch failed for {m['host']} - {m['guest']}: {type(exc).__name__}")
+                res = None
+            if res:
+                results[m["id"]] = res
+            if not res or res["status"] != sports_results.FINISHED:
+                open_matches += 1
+        if open_matches and not give_up:
+            _log(f"results for {day}: waiting, {open_matches} match(es) not final yet")
+            continue
+        rows = sports_results.card_rows(board, results)
+        sent = not rows
+        if rows:
+            jalali = weather._jalali_date(datetime.fromisoformat(day + "T12:00:00").replace(tzinfo=TEHRAN))
+            caption = sports_results.caption(rows, jalali, daily_cards.fa)
+            with tempfile.TemporaryDirectory() as tmp:
+                card = _render_results(rows, jalali, os.path.join(tmp, "results.jpg"))
+                if card:
+                    sent = send_photo(card, caption)
+                    _log("results card sent" if sent else "results card failed, falling back to text")
+            if not sent:
+                sent = weather._send_weather_message(caption)
+        if not sent:
+            _log(f"results for {day}: publication failed, will retry")
+            continue
+        state = _load_json(STATE_FILE)
+        boards = state.get("sports_boards") or {}
+        if day in boards:
+            boards[day]["results_sent"] = True
+            boards[day]["results_count"] = len(rows)
+            boards[day]["results_at"] = now.isoformat()
+        state["sports_boards"] = boards
+        _save_json(STATE_FILE, state)
+        _log(f"results for {day}: {len(rows)} final scores published" if rows else f"results for {day}: none final, skipped")
 
 
 # ------------------------------------------------------------------ education
@@ -255,6 +324,8 @@ def _run_education(now):
 
 
 BOARDS = (
+    # results first: they may belong to yesterday's board and must go out before a new morning board
+    ("sports results", 0, _run_sports_results),
     ("weather", WEATHER_HOUR, _run_weather),
     ("sports schedule", SPORTS_HOUR, _run_sports),
     ("car prices", CAR_PRICES_HOUR, _run_car_prices),
