@@ -119,6 +119,15 @@ def _install_v13_stack():
     v13_critical_rescue.install()
     v13_global_rescue.install()
 
+    # Major sports desk: Iran's teams and athletes, decisive big-stage
+    # results and the Tehran derby. Without it every sports story was
+    # rejected as "no-concrete-event". The final AI editor still decides.
+    try:
+        import v13_sports_desk
+        v13_sports_desk.install(main)
+    except Exception as exc:
+        print(f"V13 SPORTS DESK: install skipped: {type(exc).__name__}: {exc}", flush=True)
+
     # v13_media_branding replaces send_video outright, which silently dropped
     # the bounded retry installed at import time. Re-apply it to send_video
     # only: send_photo is *wrapped* (not replaced) by v13_content_enhancer, so

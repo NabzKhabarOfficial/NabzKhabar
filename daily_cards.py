@@ -327,3 +327,57 @@ def render_cars(items, update_date, out_path):
     except Exception as exc:
         print(f"DAILY CARDS: car render failed: {type(exc).__name__}: {exc}", flush=True)
         return None
+
+
+# ------------------------------------------------------------------ sports
+def render_sports(rows, jalali_date, out_path):
+    """rows from daily_sports.select(). Returns path or None."""
+    try:
+        if not supported() or not rows:
+            return None
+        row_h, top = 128, 330
+        h = top + len(rows) * row_h + 150
+        img = _background(h, (10, 58, 40), (8, 12, 20))
+        _glow(img, (W - 150, 110), 230, (34, 197, 94), 55)
+        _header(img, "مسابقات مهم امروز", "ساعت‌ها به وقت تهران", fa(jalali_date), (22, 163, 74))
+        d = ImageDraw.Draw(img)
+        y = top
+        for i, r in enumerate(rows):
+            x0, x1 = 60, W - 60
+            d.rounded_rectangle([x0, y, x1, y + row_h - 16], radius=22, fill=CARD if i % 2 == 0 else CARD2)
+            if r.get("iran"):
+                for k, col in enumerate(((35, 159, 64), (240, 240, 240), (218, 0, 0))):
+                    d.rectangle([x1 - 8, y + 14 + k * 30, x1 - 2, y + 14 + (k + 1) * 30], fill=col)
+            cy = y + (row_h - 16) / 2
+            league = r["league"] if r["league"].startswith(r["sport"]) else r["sport"] + " · " + r["league"]
+            meta = league + ((" · " + r["stage"]) if r.get("stage") else "")
+            rtl(d, (x1 - 28, cy - 30), meta[:60], font(22, "regular"), MUTED, "rm")
+            match = f"{r['host']}  –  {r['guest']}"
+            f = font(34)
+            while tlen(d, match, f) > 640 and f.size > 24:
+                f = font(f.size - 2)
+            rtl(d, (x1 - 28, cy + 14), match, f, INK, "rm")
+            # time / score block on the left
+            bx0, bx1 = x0 + 20, x0 + 230
+            if r.get("live") or r.get("finished"):
+                col = (248, 92, 92) if r.get("live") else (120, 130, 150)
+                d.rounded_rectangle([bx0, cy - 40, bx1, cy + 8], radius=16, fill=col)
+                d.text(((bx0 + bx1) / 2, cy - 16), fa(r.get("score") or "—"), font=font(30), fill=(255, 255, 255), anchor="mm")
+                tag = "زنده" if r.get("live") else "پایان"
+                rtl(d, ((bx0 + bx1) / 2, cy + 30), tag, font(20, "regular"), MUTED, "mm")
+            else:
+                d.rounded_rectangle([bx0, cy - 40, bx1, cy + 8], radius=16, fill=(22, 163, 74))
+                d.text(((bx0 + bx1) / 2, cy - 16), fa(r["time"]), font=font(34), fill=(255, 255, 255), anchor="mm")
+                if r.get("broadcast"):
+                    b = r["broadcast"]
+                    bf = font(19, "regular")
+                    while tlen(d, b, bf) > 240 and len(b) > 8:
+                        b = b[:-2]
+                    rtl(d, ((bx0 + bx1) / 2, cy + 30), b, bf, (134, 239, 172), "mm")
+            y += row_h
+        _footer(img, h - 110, "منبع: ورزش سه · پخش آنلاین: آنتن")
+        img.save(out_path, quality=92)
+        return out_path
+    except Exception as exc:
+        print(f"DAILY CARDS: sports render failed: {type(exc).__name__}: {exc}", flush=True)
+        return None

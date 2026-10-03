@@ -1,13 +1,13 @@
 """Independent daily boards for the NabzKhabar channel.
 
-Weather, car prices and the education tip are not news: they bypass every V13
+Weather, car prices, the day's important matches and the education tip are not news: they bypass every V13
 news gate and are sent once per Tehran day. Weather and car prices are sent as
 designed image cards (daily_cards); if rendering or the photo upload fails the
 classic text board is sent instead. Each board is isolated so a failure in one
 never affects the others or the news engine.
 
 State lives in files the workflow already persists:
-  weather_history.json   (weather + education keys)
+  weather_history.json   (weather, sports schedule and education keys)
   car_prices_history.json
 """
 from __future__ import annotations
@@ -25,6 +25,7 @@ TEHRAN = ZoneInfo("Asia/Tehran")
 WEATHER_HOUR = 7      # morning board
 CAR_PRICES_HOUR = 11  # source usually updates late morning
 EDUCATION_HOUR = 19   # evening tip
+SPORTS_HOUR = 8       # important matches of the day, before the first kick-off
 STATE_FILE = Path("weather_history.json")
 CHANNEL_ID = "@NabzKhabarOfficial"
 
@@ -184,6 +185,44 @@ def _run_car_prices(now):
     _log(f"car prices published: {len(items)} models")
 
 
+# ------------------------------------------------------------------ sports schedule
+def _run_sports(now):
+    import daily_cards
+    import daily_sports
+    import weather
+    today = now.date().isoformat()
+    state = _load_json(STATE_FILE)
+    if state.get("sports_last_date") == today:
+        _log(f"sports schedule already handled today ({today})")
+        return
+    rows = daily_sports.select(daily_sports.fetch(), now)
+    jalali = weather._jalali_date(now)
+    sent = False
+    if not rows:
+        _log("no important matches today")
+    else:
+        with tempfile.TemporaryDirectory() as tmp:
+            card = daily_cards.render_sports(rows, jalali, os.path.join(tmp, "sports.jpg"))
+            if card:
+                sent = send_photo(card, daily_sports.caption(rows, jalali, daily_cards.fa))
+                _log("sports card sent" if sent else "sports card failed, falling back to text")
+        if not sent:
+            lines = [f"🏟 برنامه مسابقات مهم امروز | {jalali}", ""]
+            for r in rows:
+                extra = f" | {r['broadcast']}" if r.get("broadcast") else ""
+                lines.append(f"⏰ {r['time']} | {r['host']} - {r['guest']} ({r['league']}){extra}")
+            lines += ["", "📢 @NabzKhabarOfficial"]
+            sent = weather._send_weather_message("\n".join(lines))
+        if not sent:
+            _log("sports schedule publication failed")
+            return
+    state = _load_json(STATE_FILE)
+    state["sports_last_date"] = today
+    state["sports_matches"] = len(rows)
+    _save_json(STATE_FILE, state)
+    _log(f"sports schedule handled: {len(rows)} matches")
+
+
 # ------------------------------------------------------------------ education
 def _run_education(now):
     import education
@@ -217,6 +256,7 @@ def _run_education(now):
 
 BOARDS = (
     ("weather", WEATHER_HOUR, _run_weather),
+    ("sports schedule", SPORTS_HOUR, _run_sports),
     ("car prices", CAR_PRICES_HOUR, _run_car_prices),
     ("education", EDUCATION_HOUR, _run_education),
 )
