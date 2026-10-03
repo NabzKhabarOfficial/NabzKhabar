@@ -29,8 +29,10 @@ AI rejected all 4 (often weak "tier-4" local items), the run published
 nothing, while real first-tier stories ranked 5th-10th were never even
 judged. Now the engine is asked for a wider pool (POOL_SIZE) and the gate
 walks down it in rank order until it has approved the normal per-run
-number of stories. Unjudged extras are removed from the run's telemetry so
-the monitor does not count them as lost publications.
+number of stories. Plain (tier-1) event-valid stories are admitted as
+reserves too, because the ranker alone often offered only 4. Unjudged
+extras are removed from the run's telemetry so the monitor does not count
+them as lost publications.
 """
 
 import json
@@ -44,7 +46,7 @@ CACHE_TTL = 24 * 3600
 CACHE_MAX = 600
 AI_TIMEOUT = 15
 AI_BUDGET_PER_STORY = 40
-POOL_SIZE = 10          # how many ranked stories the gate may walk through
+POOL_SIZE = 20          # how many ranked stories the gate may walk through
 JUDGE_BUDGET = 180      # seconds of AI judging per run (job timeout is 12 min)
 
 GROQ_MODELS = ("openai/gpt-oss-120b", "openai/gpt-oss-20b")
@@ -454,9 +456,22 @@ def install(main):
     intel.is_publishable = editor_publishable
 
     previous_tier = intel._publication_tier
+    reserve_mode = {"on": False}
+
+    def real_tier(candidate):
+        return max(int(previous_tier(candidate) or 1), int(candidate.get("editor_rescue_tier", 0) or 0))
 
     def editor_tier(candidate):
-        return max(int(previous_tier(candidate) or 1), int(candidate.get("editor_rescue_tier", 0) or 0))
+        real = real_tier(candidate)
+        if reserve_mode["on"]:
+            # The ranker only lets tier-4 stories through when two of them
+            # exist, and never plain tier-1 stories, so the gate used to see
+            # just the same 4 weak picks. While the gate collects, every
+            # event-valid story is eligible; the real tier is restored and
+            # used for ranking right after, and the AI editor judges each one.
+            candidate["_editor_real_tier"] = real
+            return 4
+        return real
 
     intel._publication_tier = editor_tier
 
@@ -466,12 +481,20 @@ def install(main):
         target = int(getattr(intel, "MAX_NEWS_PER_RUN", 4) or 4)
         original_cap = getattr(intel, "MAX_NEWS_PER_RUN", 4)
         intel.MAX_NEWS_PER_RUN = max(target, POOL_SIZE)  # ask the ranker for reserves
+        reserve_mode["on"] = True
         try:
-            pool = previous_collect(hash_history, title_history)
+            pool = list(previous_collect(hash_history, title_history) or [])
         finally:
             intel.MAX_NEWS_PER_RUN = original_cap
-        kept = gate_pool(main, list(pool or []), target)
-        print(f"V13 EDITOR GATE: pool {len(pool or [])} -> judged {len(pool or []) - len(UNUSED_RESERVES)} "
+            reserve_mode["on"] = False
+        for candidate in pool:
+            if "_editor_real_tier" in candidate:
+                candidate["publication_tier"] = candidate.pop("_editor_real_tier")
+        # Real editorial priority: tier first, then the intelligence score.
+        pool.sort(key=lambda c: (int(c.get("publication_tier", 1) or 1),
+                                 int(c.get("intelligence_score", 0) or 0)), reverse=True)
+        kept = gate_pool(main, pool, target)
+        print(f"V13 EDITOR GATE: pool {len(pool)} -> judged {len(pool) - len(UNUSED_RESERVES)} "
               f"-> {len(kept)} approved (target {target})", flush=True)
         return kept
 
