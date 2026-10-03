@@ -15,12 +15,22 @@ bypass it:
 1. Deterministic veto (every candidate): non-events (courses, training,
    drills, preparedness, conferences, ceremonies, inaugurations, visits,
    plans) and city/county-level stories, unless a hard event really happened.
-2. AI editor-in-chief (only the few stories selected for this run): scores
-   0-10 against a strict "front page of BBC/Reuters, or nationwide Iran news"
-   rubric. Published only if score >= 7, the event happened, scope not local.
+2. AI editor-in-chief: scores 0-10 against a strict "front page of
+   BBC/Reuters, or nationwide Iran news" rubric. Published only if
+   score >= 7, the event happened, scope not local.
 3. If every AI provider fails: fail closed; only clearly hard, already
    happened, non-local events pass.
 Decisions are cached for 24h so a rejected story never costs AI again.
+
+Backfill (root-cause fix, Oct 2026)
+-----------------------------------
+The selection engine used to hand this gate only its top 4 stories. When the
+AI rejected all 4 (often weak "tier-4" local items), the run published
+nothing, while real first-tier stories ranked 5th-10th were never even
+judged. Now the engine is asked for a wider pool (POOL_SIZE) and the gate
+walks down it in rank order until it has approved the normal per-run
+number of stories. Unjudged extras are removed from the run's telemetry so
+the monitor does not count them as lost publications.
 """
 
 import json
@@ -34,6 +44,8 @@ CACHE_TTL = 24 * 3600
 CACHE_MAX = 600
 AI_TIMEOUT = 15
 AI_BUDGET_PER_STORY = 40
+POOL_SIZE = 10          # how many ranked stories the gate may walk through
+JUDGE_BUDGET = 180      # seconds of AI judging per run (job timeout is 12 min)
 
 GROQ_MODELS = ("openai/gpt-oss-120b", "openai/gpt-oss-20b")
 GEMINI_MODELS = ("gemini-3.5-flash-lite", "gemini-3.1-flash-lite")
@@ -82,14 +94,15 @@ STRATEGIC = re.compile(
 
 # --------------------------------------------------------------------------
 # 1b) Rescue: upstream keyword filters also kill real first-tier stories
-# (e.g. "13 dead in Saveh-Hamadan bus crash" -> no-concrete-event). Stories
-# with a strong event signal get a second chance; the AI editor below still
-# has the final say, so junk cannot sneak in through this path.
+# (e.g. "13 dead in Saveh-Hamadan bus crash" -> no-concrete-event, or
+# "Russia strikes second major bridge in Kyiv" -> local-routine-low-value).
+# Stories with a strong event signal get a second chance; the AI editor
+# below still has the final say, so junk cannot sneak in through this path.
 # --------------------------------------------------------------------------
 RESCUABLE_REASONS = (
     "no-concrete-event", "final-scope-preselection", "foreign-local-preselection",
     "below-event-threshold", "analysis-or-opinion", "foreign-soft-local",
-    "routine-statement", "strict-source-below-importance",
+    "routine-statement", "strict-source-below-importance", "local-routine-low-value",
 )
 STRONG_EVENT = re.compile(
     r"(?:هدف قرار (?:داد|دادند|گرفت)|حمله (?:کرد|کردند)|حملات|حمله به|تجاوز|ربود|"
@@ -97,10 +110,10 @@ STRONG_EVENT = re.compile(
     r"(?:تسلط|تصرف|کنترل) [^،؛]{0,25}(?:شهر|منطقه|بندر)|"
     r"بانک مرکزی|نرخ (?:ارز|دلار)|قیمت (?:دلار|بنزین|نفت|طلا)|تحریم|آتش ?بس|مذاکرات|توافق|"
     r"استعفا|برکنار|بازداشت|اعدام|تنگه هرمز|ممنوعیت|لغو شد|تصویب شد|رد کرد|"
-    r"تهدید|زخمی|مجروح|اعتراض|کودتا|"
+    r"تهدید|زخمی|مجروح|اعتراض|کودتا|آشوب|شورش|ازسرگیری|از سر گرفت|"
     r"\bstrikes?\b|struck|attack|troops|aircraft carrier|deploy|sanction|ceasefire|captur|seiz|"
     r"intercept|suspend|\bbans?\b|banned|reject|protest|detain|arrest|injur|wound|"
-    r"hostage|coup|resign)",
+    r"hostage|coup|resign|riot|resum|permission to)",
     re.I,
 )
 SPORT_WORDS = re.compile(
@@ -291,19 +304,30 @@ def _cache_put(key, entry):
 # Stories this gate rejected after selection, so telemetry can count them as
 # deliberate editorial blocks instead of "selected but not published".
 REJECTED_THIS_RUN = {}
+# Pool stories that were never judged (enough approved / time budget used).
+# They were only backfill reserves, so they are removed from the run's
+# "selected" telemetry instead of being reported as lost publications.
+UNUSED_RESERVES = set()
 
 
 def record_blocks(health_file="v13_health.json"):
-    """Write this run's editor-gate rejections into the health file as editorial_blocked attempts."""
-    if not REJECTED_THIS_RUN:
+    """Fix this run's telemetry: rejections -> editorial_blocked, reserves -> not selected."""
+    if not REJECTED_THIS_RUN and not UNUSED_RESERVES:
         return 0
-    import json
     try:
         with open(health_file, "r", encoding="utf-8") as f:
             health = json.load(f)
     except Exception as exc:
         print(f"V13 EDITOR GATE: telemetry read warning {type(exc).__name__}: {exc}", flush=True)
         return 0
+    changed = False
+    if UNUSED_RESERVES:
+        selected = health.get("selected_news_this_run") or []
+        kept = [x for x in selected if str(x.get("title", "")).strip() not in UNUSED_RESERVES]
+        if len(kept) != len(selected):
+            health["selected_news_this_run"] = kept
+            health["selected_for_publication"] = len(kept)
+            changed = True
     attempts = health.setdefault("publication_attempts", [])
     have = {str(x.get("title", "")).strip() for x in attempts}
     added = 0
@@ -315,9 +339,12 @@ def record_blocks(health_file="v13_health.json"):
         added += 1
     if added:
         health["editorial_blocked_publications"] = int(health.get("editorial_blocked_publications", 0) or 0) + added
+        changed = True
+    if changed:
         with open(health_file, "w", encoding="utf-8") as f:
             json.dump(health, f, ensure_ascii=False, indent=2)
-        print(f"V13 EDITOR GATE: {added} rejected selection(s) recorded as editorial_blocked", flush=True)
+        print(f"V13 EDITOR GATE: telemetry fixed ({added} editorial_blocked, "
+              f"{len(UNUSED_RESERVES)} unused reserve(s) removed)", flush=True)
     return added
 
 
@@ -349,6 +376,26 @@ def judge(main, candidate):
         return ok, reason
     ok = fallback_accepts(candidate)
     return ok, "no-ai-fallback-" + ("hard-event" if ok else "fail-closed")
+
+
+def gate_pool(main, pool, target, budget=JUDGE_BUDGET, judge_fn=None):
+    """Walk the ranked pool until `target` stories are approved. Returns approved list."""
+    judge_fn = judge_fn or judge
+    kept = []
+    started = time.monotonic()
+    for index, candidate in enumerate(pool):
+        title = str(candidate.get("title", "")).strip()
+        if len(kept) >= target or time.monotonic() - started > budget:
+            UNUSED_RESERVES.update(str(c.get("title", "")).strip() for c in pool[index:])
+            break
+        ok, reason = judge_fn(main, candidate)
+        print(f"V13 EDITOR GATE: {'PUBLISH' if ok else 'REJECT'} [{reason}] {candidate.get('title', '')}", flush=True)
+        if ok:
+            kept.append(candidate)
+        else:
+            _audit(main, candidate, int(candidate.get("intelligence_score", 0) or 0), reason[:200])
+            REJECTED_THIS_RUN[title] = (candidate, reason)
+    return kept
 
 
 # --------------------------------------------------------------------------
@@ -416,21 +463,21 @@ def install(main):
     previous_collect = main.collect_candidates
 
     def editor_collect(hash_history, title_history):
-        selected = previous_collect(hash_history, title_history)
-        kept = []
-        for candidate in selected:
-            ok, reason = judge(main, candidate)
-            print(f"V13 EDITOR GATE: {'PUBLISH' if ok else 'REJECT'} [{reason}] {candidate.get('title', '')}", flush=True)
-            if ok:
-                kept.append(candidate)
-            else:
-                _audit(main, candidate, int(candidate.get("intelligence_score", 0) or 0), reason[:200])
-                REJECTED_THIS_RUN[str(candidate.get("title", "")).strip()] = (candidate, reason)
-        print(f"V13 EDITOR GATE: {len(selected)} selected -> {len(kept)} approved", flush=True)
+        target = int(getattr(intel, "MAX_NEWS_PER_RUN", 4) or 4)
+        original_cap = getattr(intel, "MAX_NEWS_PER_RUN", 4)
+        intel.MAX_NEWS_PER_RUN = max(target, POOL_SIZE)  # ask the ranker for reserves
+        try:
+            pool = previous_collect(hash_history, title_history)
+        finally:
+            intel.MAX_NEWS_PER_RUN = original_cap
+        kept = gate_pool(main, list(pool or []), target)
+        print(f"V13 EDITOR GATE: pool {len(pool or [])} -> judged {len(pool or []) - len(UNUSED_RESERVES)} "
+              f"-> {len(kept)} approved (target {target})", flush=True)
         return kept
 
     main.collect_candidates = editor_collect
     import atexit
     atexit.register(record_blocks)  # runs after the engine has written v13_health.json
     _patch_topic_label()
-    print(f"V13 EDITOR GATE ACTIVE: deterministic veto + AI editor (score>={MIN_AI_SCORE}, happened, not local), fail-closed", flush=True)
+    print(f"V13 EDITOR GATE ACTIVE: deterministic veto + AI editor (score>={MIN_AI_SCORE}, happened, not local), "
+          f"fail-closed, backfill pool {POOL_SIZE}", flush=True)
