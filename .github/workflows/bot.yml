@@ -145,6 +145,7 @@ jobs:
       # run only every 20-35 min, and none at all for 3 hours on 3 Oct).
       # Each run therefore starts the next one itself, ~10 minutes after it
       # began. The cron above stays as a backup if this chain ever breaks.
+      # During the Instagram window it also starts the Instagram publisher.
       - name: Keep the 10-minute cycle alive
         if: ${{ always() }}
         env:
@@ -157,3 +158,9 @@ jobs:
             sleep "$wait"
           fi
           gh workflow run bot.yml --ref main -R "${{ github.repository }}" || echo 'Keep-alive dispatch failed; the cron backup will continue.'
+          # Instagram posts only 19:30-22:30 Tehran; nudge it every cycle in that
+          # window so dropped GitHub schedules cannot skip the daily post.
+          hm=$(TZ=Asia/Tehran date +%H%M)
+          if [ "$hm" -ge 1930 ] && [ "$hm" -le 2230 ]; then
+            gh workflow run instagram.yml --ref main -R "${{ github.repository }}" || echo 'Instagram nudge failed; its own cron will continue.'
+          fi
