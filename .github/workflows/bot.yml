@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: nabzkhabar-bot
@@ -15,8 +16,11 @@ concurrency:
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 14
     steps:
+      - name: Record start time
+        run: echo "RUN_START=$(date +%s)" >> "$GITHUB_ENV"
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -42,7 +46,7 @@ jobs:
       - name: Validate V13 before execution
         run: |
           set -e
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_quality_gate.py v13_freshness_rescue.py v13_critical_rescue.py v13_global_rescue.py v13_policy_guard.py v13_editorial_formatter.py v13_byline_cleaner.py v13_monitor.py run_bot.py education.py car_prices.py weather.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_quality_gate.py v13_freshness_rescue.py v13_critical_rescue.py v13_global_rescue.py v13_policy_guard.py v13_editorial_formatter.py v13_byline_cleaner.py v13_monitor.py v13_editor_gate.py run_bot.py education.py car_prices.py weather.py
           for path in v13_argos_translate.py sitecustomize.py requirements-cpu.txt .github/workflows/argos-real-test.yml .github/workflows/argos-standalone-test.yml; do
             test ! -e "$path" || { echo "Obsolete path exists: $path"; exit 1; }
           done
@@ -136,3 +140,20 @@ jobs:
           done
           echo 'Runtime state synchronization failed.'
           exit 1
+
+      # GitHub often delays or silently drops scheduled runs (this repo got a
+      # run only every 20-35 min, and none at all for 3 hours on 3 Oct).
+      # Each run therefore starts the next one itself, ~10 minutes after it
+      # began. The cron above stays as a backup if this chain ever breaks.
+      - name: Keep the 10-minute cycle alive
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          elapsed=$(( $(date +%s) - RUN_START ))
+          wait=$(( 570 - elapsed ))
+          if [ "$wait" -gt 0 ]; then
+            echo "Waiting ${wait}s before starting the next cycle"
+            sleep "$wait"
+          fi
+          gh workflow run bot.yml --ref main -R "${{ github.repository }}" || echo 'Keep-alive dispatch failed; the cron backup will continue.'
