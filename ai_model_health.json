@@ -1,13 +1,6 @@
 {
   "_daily_items": [
     {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1790951477.1895132,
-      "title": "کشف محموله سلاح جنگی در جنوب کرمان؛ دستگیری زن و مرد قاچاقچی",
-      "urgent": false
-    },
-    {
       "label": "حادثه",
       "level": 4,
       "t": 1790952875.462881,
@@ -376,6 +369,13 @@
       "level": 3,
       "t": 1791124235.5011847,
       "title": "پیروزی دراماتیک اوانز و کسب نخستین قهرمانی جهان در رالی",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1791125362.640898,
+      "title": "نابودی یک نسل در غزه؛ شهادت ۲۱ هزار و ۷۴۵ کودک",
       "urgent": false
     }
   ],
@@ -806,6 +806,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Upcoming US midterm elections, no event yet",
       "topic": "سیاست",
       "until": 1791207177.3369806
+    },
+    "انفجار در مغازه تعمیر دیاگ در اصفهان؛حادثه ربطی به مترو نداشت": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، محدود به شهر، اثرات ملی کم",
+      "topic": "حادثه",
+      "until": 1791211744.827709
     },
     "انفجار کنترل شده در شوشتر": {
       "ok": false,
@@ -1431,12 +1437,6 @@
       "topic": "آب و هوا",
       "until": 1791137000.9748344
     },
-    "طوفان نوح هم بیایید سناریوی وزارت نیرو در مدیریت منابع آب عوض نمی شود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Policy statement, no concrete action taken",
-      "topic": "آب و هوا",
-      "until": 1791124857.7283764
-    },
     "عامل هسته ای در دوره نظم در حال گذار و مساله بازدارندگی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: Analytical discussion, no specific event or decision reported",
@@ -1569,12 +1569,6 @@
       "topic": "نظامی",
       "until": 1791180472.3663275
     },
-    "محسنی بندپی: گردشگری در شرایط جنگی متوقف نشد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Statement, no concrete impactful event",
-      "topic": "اقتصاد",
-      "until": 1791124856.6672904
-    },
     "مدودف: جنگ علیه ایران عواقبی برای آمریکا دارد/ ایران در حین جنگ به زندگی عادی ادامه می دهد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Political statement, no concrete event, low impact",
@@ -1652,6 +1646,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Moldova summons Russian ambassador over airspace breach",
       "topic": "سیاست",
       "until": 1791152595.894141
+    },
+    "نابودی یک نسل در غزه؛ شهادت ۲۱ هزار و ۷۴۵ کودک از آغاز جنگ": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=9 happened=True scope=world: آمار تکان‌دهنده شهادت کودکان در جنگ غزه بازتاب جهانی دارد.",
+      "topic": "نظامی",
+      "until": 1791211746.3302066
     },
     "نامگذاری بزرگراه جدید به نام شهید سپهبد موسوی/ نام میدان نوبنیاد تغییر کرد": {
       "ok": false,
@@ -3527,19 +3527,46 @@
       ],
       "t": 1791124235.4968722,
       "title": "پیروزی دراماتیک اوانز و کسب نخستین قهرمانی جهان در رالی ⚡️ الفین اوانز، راننده ولزی، پس از تصادف رقیبش اولیور سولبرگ در "
+    },
+    {
+      "k": [
+        "اغز",
+        "بشر",
+        "تکنن",
+        "جنگ",
+        "حقق",
+        "رسد",
+        "زخم",
+        "شهدت",
+        "غزه",
+        "مرکز",
+        "منطق",
+        "نبد",
+        "نسل",
+        "هزر",
+        "کدک"
+      ],
+      "t": 1791125362.6364326,
+      "title": "نابودی یک نسل در غزه؛ شهادت ۲۱ هزار و ۷۴۵ کودک ⚡️ یک مرکز حقوق بشری در گزارش خود اعلام کرد که از آغاز جنگ غزه تاکنون ۲۱ "
     }
   ],
   "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1791125654.0,
+    "last_failure": 1791125354,
     "last_quality_failure": 1791123669,
+    "last_status": 503
+  },
+  "gemini:gemini-3.5-flash-lite": {
+    "last_quality_failure": 1791125354,
     "last_status": 422
   },
   "groq:openai/gpt-oss-120b": {
-    "disabled_until": 1791124258,
-    "last_failure": 1791123658,
+    "disabled_until": 1791125951,
+    "last_failure": 1791125351,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1791124232,
+    "last_quality_failure": 1791125353,
     "last_status": 422
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
@@ -3581,12 +3608,6 @@
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "disabled_until": 1790858180,
     "last_failure": 1790858120,
-    "last_status": 422
-  },
-  "openrouter:openrouter/free": {
-    "disabled_until": 1791123745,
-    "last_failure": 1791123685,
-    "last_quality_failure": 1790882927,
     "last_status": 422
   },
   "openrouter:qwen/qwen3.8-27b:free": {
