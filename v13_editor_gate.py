@@ -33,6 +33,16 @@ number of stories. Plain (tier-1) event-valid stories are admitted as
 reserves too, because the ranker alone often offered only 4. Unjudged
 extras are removed from the run's telemetry so the monitor does not count
 them as lost publications.
+
+Official positions (Oct 2026)
+-----------------------------
+"Hormuz stays closed until our seven conditions are met" (parliament speaker)
+and "a decision on Iran is coming, easy way or hard way" (US president) were
+rejected as mere "statements". On war, ceasefire, Hormuz, nuclear talks,
+sanctions and negotiations, a position announced by a top official IS the
+event. The rubric now says so, strategic keywords (Hormuz, nuclear,
+proposal, conditions...) get the rescue path, and the cache key is versioned
+so old wrong rejections are judged again. Speculation and analysis stay low.
 """
 
 import json
@@ -42,6 +52,7 @@ import time
 
 MIN_AI_SCORE = 7
 CACHE_KEY = "_editor_gate_cache"
+CACHE_VERSION = "v2"    # bump when the rubric changes: old verdicts are ignored
 CACHE_TTL = 24 * 3600
 CACHE_MAX = 600
 AI_TIMEOUT = 15
@@ -110,11 +121,13 @@ STRONG_EVENT = re.compile(
     r"(?:هدف قرار (?:داد|دادند|گرفت)|حمله (?:کرد|کردند)|حملات|حمله به|تجاوز|ربود|"
     r"اعزام [^،؛]{0,30}نیرو|هزاران نیرو|ناو هواپیمابر|ناو جنگی|"
     r"(?:تسلط|تصرف|کنترل) [^،؛]{0,25}(?:شهر|منطقه|بندر)|"
-    r"بانک مرکزی|نرخ (?:ارز|دلار)|قیمت (?:دلار|بنزین|نفت|طلا)|تحریم|آتش ?بس|مذاکرات|توافق|"
-    r"استعفا|برکنار|بازداشت|اعدام|تنگه هرمز|ممنوعیت|لغو شد|تصویب شد|رد کرد|"
+    r"بانک مرکزی|نرخ (?:ارز|دلار)|قیمت (?:دلار|بنزین|نفت|طلا)|تحریم|آتش ?بس|مذاکرات|مذاکره|توافق|"
+    r"استعفا|برکنار|بازداشت|اعدام|تنگه هرمز|هرمز|ممنوعیت|لغو شد|تصویب شد|رد کرد|"
+    r"هسته ای|برنامه هسته|پیشنهاد(?:ات|ها)? (?:جدید|آمریکا|ایران)|شروط|شرط های|اولتیماتوم|محاصره|"
     r"تهدید|زخمی|مجروح|اعتراض|کودتا|آشوب|شورش|ازسرگیری|از سر گرفت|"
     r"\bstrikes?\b|struck|attack|troops|aircraft carrier|deploy|sanction|ceasefire|captur|seiz|"
     r"intercept|suspend|\bbans?\b|banned|reject|protest|detain|arrest|injur|wound|"
+    r"hormuz|nuclear|negotiat|proposal|ultimatum|blockade|conditions|"
     r"hostage|coup|resign|riot|resum|permission to)",
     re.I,
 )
@@ -164,9 +177,16 @@ wars, attacks, military escalation; major disasters or accidents with deaths or 
 sanctions, nuclear talks, ceasefires; big economic shocks (currency, fuel price, oil, inflation); election results; death or arrest of world-famous people;
 landmark court rulings; global-scale tech/business events; finals and decisive results of top sports competitions (World Cup, Olympics, Iran national team, Champions League final).
 
+OFFICIAL POSITIONS COUNT AS EVENTS: when a head of state or government, a top negotiator, a foreign minister or their official spokesman,
+a parliament speaker or a top military commander announces a position on war, ceasefire, the Strait of Hormuz, the nuclear programme, sanctions
+or Iran-US/international negotiations, the announcement itself has happened (happened=true). Score it 7-9 when it sets, changes or confirms
+a concrete position, condition, proposal, deadline, threat of an imminent decision or a reply to the other side
+(e.g. "Hormuz will stay closed until our seven conditions are met", "the US sent new proposals through Qatar", "a decision on Iran is coming").
+
 Give a LOW score (0-4) to: local, provincial, county or city news; training courses, drills, exercises, preparedness, plans, intentions, "will be held";
-conferences, meetings, ceremonies, anniversaries, inaugurations, visits, awards; warnings or forecasts with no event yet; statements, opinions, slogans, sermons,
-routine officials' remarks; PR of organisations (Red Crescent, municipalities, ministries' routine programmes); culture/art events; minor crimes; celebrity, lifestyle, product reviews.
+conferences, meetings, ceremonies, anniversaries, inaugurations, visits, awards; warnings or forecasts with no event yet; opinions, slogans, sermons,
+routine officials' remarks on non-strategic topics; analysis, explainers or speculation about what might happen; claims by lower officials or commentators;
+PR of organisations (Red Crescent, municipalities, ministries' routine programmes); culture/art events; minor crimes; celebrity, lifestyle, product reviews.
 
 Story:
 TITLE: %s
@@ -276,6 +296,10 @@ def _health_io():
     return v13_ai_router._load_health, v13_ai_router._save_health
 
 
+def _cache_key(candidate):
+    return CACHE_VERSION + "|" + _norm(candidate.get("title", "")).lower()
+
+
 def _cache_get(key):
     try:
         load, _ = _health_io()
@@ -365,7 +389,7 @@ def judge(main, candidate):
     veto = deterministic_veto(candidate)
     if veto:
         return False, veto
-    key = _norm(candidate.get("title", "")).lower()
+    key = _cache_key(candidate)
     cached = _cache_get(key)
     if cached:
         return bool(cached.get("ok")), "cached:" + str(cached.get("reason", ""))
