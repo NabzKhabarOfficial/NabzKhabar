@@ -43,6 +43,16 @@ sanctions and negotiations, a position announced by a top official IS the
 event. The rubric now says so, strategic keywords (Hormuz, nuclear,
 proposal, conditions...) get the rescue path, and the cache key is versioned
 so old wrong rejections are judged again. Speculation and analysis stay low.
+
+War zone (Oct 2026)
+-------------------
+"Huge explosions in north Riyadh" was rejected as "local" / "unverified"
+while Yemen was striking Saudi airports and Aramco. During the regional war,
+explosions, interceptions, air-raid sirens and missile/drone attacks in the
+capitals and major cities of the countries involved (and on energy sites or
+shipping in Hormuz / Red Sea / Bab el-Mandeb) are world news, never local.
+WAR_ZONE marks them as hard events: they skip the local veto, get the rescue
+path, the rubric says so explicitly, and the AI bar for them is 5 instead of 7.
 """
 
 import json
@@ -52,7 +62,7 @@ import time
 
 MIN_AI_SCORE = 7
 CACHE_KEY = "_editor_gate_cache"
-CACHE_VERSION = "v2"    # bump when the rubric changes: old verdicts are ignored
+CACHE_VERSION = "v3"    # bump when the rubric changes: old verdicts are ignored
 CACHE_TTL = 24 * 3600
 CACHE_MAX = 600
 AI_TIMEOUT = 15
@@ -98,6 +108,31 @@ HARD_HAPPENED = re.compile(
     r"killed|dead|explosion|earthquake|airstrike|missile strike|plane crash)",
     re.I,
 )
+# Regional war: events in capitals / major cities / energy and shipping hubs of the
+# countries involved are first-tier, never "local".
+WAR_PLACES = (
+    r"(?<!\w)(?:ریاض|جده|جیزان|جازان|نجران|ابها|ینبع|رابغ|دمام|ظهران|دوحه|دبی|ابوظبی|ابو ظبی|فجیره|کویت|منامه|بحرین|مسقط|"
+    r"تل ?آویو|حیفا|اورشلیم|ایلات|بیروت|دمشق|بغداد|اربیل|کرکوک|صنعا|عدن|حدیده|موچا|تهران|اصفهان|"
+    r"شیراز|تبریز|مشهد|بندرعباس|بندر عباس|بوشهر|خارک|چابهار|کیش|قشم|هرمز|خلیج فارس|دریای سرخ|باب ?المندب|"
+    r"آرامکو|پالایشگاه|riyadh|jeddah|doha|dubai|abu dhabi|kuwait|manama|bahrain|muscat|tel aviv|haifa|"
+    r"jerusalem|eilat|beirut|damascus|baghdad|erbil|sanaa|aden|hodeidah|tehran|isfahan|bandar abbas|"
+    r"hormuz|red sea|bab el-mandeb|aramco|refinery)"
+)
+WAR_EVENT = (
+    r"(?:انفجار|صدای انفجار|آژیر|پدافند|رهگیری|سرنگون|اصابت|موشک|پهپاد|حمله(?! قلبی| مغزی)|بمباران|"
+    r"explosion|blast|siren|intercept|shot down|missile|drone|strike|attack)"
+)
+WAR_ZONE = re.compile(
+    WAR_EVENT + r"[^.؛]{0,60}" + WAR_PLACES + r"|" + WAR_PLACES + r"[^.؛]{0,60}" + WAR_EVENT,
+    re.I,
+)
+WAR_ZONE_MIN_SCORE = 5
+
+
+def war_zone(title):
+    return bool(WAR_ZONE.search(_norm(title)))
+
+
 STRATEGIC = re.compile(
     r"(?:سپاه|ارتش|نیروی دریایی|ناتو|آمریکا|اسرائیل|روسیه|چین|کره شمالی|تنگه هرمز|خلیج فارس|"
     r"شورای امنیت|سازمان ملل|nato|pentagon|navy)",
@@ -143,7 +178,7 @@ def rescue_tier(candidate, reason):
     title = _norm(candidate.get("title", ""))
     if not title or deterministic_veto(candidate):
         return 0
-    hard = bool(HARD_HAPPENED.search(title))
+    hard = bool(HARD_HAPPENED.search(title)) or war_zone(title)
     if SPORT_WORDS.search(title) and not hard:
         return 0
     if hard:
@@ -161,7 +196,7 @@ def deterministic_veto(candidate):
     hard = bool(HARD_HAPPENED.search(title))
     if NON_EVENT.search(title) and not hard and not STRATEGIC.search(title):
         return "editor-non-event"
-    if LOCAL_LEVEL.search(title) and not hard:
+    if LOCAL_LEVEL.search(title) and not hard and not war_zone(title):
         return "editor-local-level"
     return ""
 
@@ -182,6 +217,11 @@ a parliament speaker or a top military commander announces a position on war, ce
 or Iran-US/international negotiations, the announcement itself has happened (happened=true). Score it 7-9 when it sets, changes or confirms
 a concrete position, condition, proposal, deadline, threat of an imminent decision or a reply to the other side
 (e.g. "Hormuz will stay closed until our seven conditions are met", "the US sent new proposals through Qatar", "a decision on Iran is coming").
+
+REGIONAL WAR ZONE: a regional war involving Iran, the US, Israel, Saudi Arabia, the Gulf states and Yemen is under way. Explosions, air-raid sirens,
+interceptions, missile or drone strikes and fires reported in the capitals or major cities of these countries, or at oil/energy facilities and
+shipping in Hormuz, the Persian Gulf, the Red Sea or Bab el-Mandeb, are WORLD news: scope="world", happened=true when the outlet reports them
+(e.g. "explosions heard in Riyadh"), score 7-9. They are NEVER "local", even before the cause is confirmed.
 
 Give a LOW score (0-4) to: local, provincial, county or city news; training courses, drills, exercises, preparedness, plans, intentions, "will be held";
 conferences, meetings, ceremonies, anniversaries, inaugurations, visits, awards; warnings or forecasts with no event yet; opinions, slogans, sermons,
@@ -277,14 +317,19 @@ def ai_judge(main, candidate):
     return None, ""
 
 
-def ai_accepts(verdict):
-    return (int(verdict.get("score", 0)) >= MIN_AI_SCORE and verdict.get("happened")
+def ai_accepts(verdict, candidate=None):
+    score = int(verdict.get("score", 0))
+    if candidate is not None and war_zone(candidate.get("title", "")) and not NON_EVENT.search(_norm(candidate.get("title", ""))):
+        return score >= WAR_ZONE_MIN_SCORE  # war-zone reports: happened, never local
+    return (score >= MIN_AI_SCORE and verdict.get("happened")
             and verdict.get("scope") != "local")
 
 
 def fallback_accepts(candidate):
     """No AI available: only clearly hard, already-happened, non-local events."""
     title = _norm(candidate.get("title", ""))
+    if war_zone(title):
+        return True
     return bool(HARD_HAPPENED.search(title)) and not LOCAL_LEVEL.search(title) and not NON_EVENT.search(title)
 
 
@@ -395,7 +440,7 @@ def judge(main, candidate):
         return bool(cached.get("ok")), "cached:" + str(cached.get("reason", ""))
     verdict, provider = ai_judge(main, candidate)
     if verdict:
-        ok = bool(ai_accepts(verdict))
+        ok = bool(ai_accepts(verdict, candidate))
         reason = f"ai {provider} score={verdict.get('score')} happened={verdict.get('happened')} scope={verdict.get('scope')}: {verdict.get('reason', '')}"
         candidate["editor_topic"] = str(verdict.get("topic", "") or "")
         _cache_put(key, {"ok": ok, "reason": reason, "topic": candidate["editor_topic"]})
