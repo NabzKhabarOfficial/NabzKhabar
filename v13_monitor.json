@@ -1,37 +1,62 @@
 {
-  "checked_at": "2026-10-06T01:08:14.419769+00:00",
-  "status": "healthy",
+  "checked_at": "2026-10-06T01:17:32.564852+00:00",
+  "status": "publication_failure",
   "run_status": "success",
   "raw_candidates": 30,
-  "strict_rejected": 17,
-  "selected_for_publication": 9,
+  "strict_rejected": 18,
+  "selected_for_publication": 8,
   "published": 0,
   "failed_publications": 0,
-  "ambiguous_publications": 0,
+  "ambiguous_publications": 1,
   "editorial_blocked_publications": 7,
-  "missed_selected_stories": [],
-  "important_missed_news": [],
-  "failed_publication_attempts": [],
-  "skipped_duplicate_attempts": [
+  "missed_selected_stories": [
     {
-      "title": "Yemeni military says it has 'secured' Red Sea waterway",
-      "source": "bbc.co.uk",
-      "url": "https://bbc.co.uk/news/articles/cw8rzd6lp0xpo?at_campaign=rss&at_medium=RSS",
-      "started_at": "2026-10-06T01:08:05.952227+00:00",
-      "result": "skipped_duplicate",
-      "error": "",
-      "reason": "recent-semantic-history"
-    },
-    {
-      "title": "Zelensky condemns 'horrific' Russian strike on boat carrying corn in Black Sea",
-      "source": "bbc.co.uk",
-      "url": "https://bbc.co.uk/news/articles/cr0j0w3p8453o?at_campaign=rss&at_medium=RSS",
-      "started_at": "2026-10-06T01:08:10.275946+00:00",
-      "result": "skipped_duplicate",
-      "error": "",
-      "reason": "recent-semantic-history"
+      "title": "U.S. Sanctions Aim to ‘Shut Down’ Iran’s Airlines, but This Boeing Plane Is Still Flying",
+      "source": "nytimes.com",
+      "url": "https://nytimes.com/2026/10/05/world/asia/boeing-777-plane-iran-us-sanctions-flights.html",
+      "intelligence_score": 8,
+      "publication_tier": 4,
+      "monitor_reason": "selected-but-not-published"
     }
   ],
+  "important_missed_news": [
+    {
+      "checked_at": "2026-10-06T01:17:15.449628+00:00",
+      "title": "Yemeni military says it has 'secured' Red Sea waterway",
+      "source": "bbc.co.uk",
+      "category": "جهان",
+      "published_at": "2026-10-06T01:05:00+00:00",
+      "url": "https://bbc.co.uk/news/articles/cw8rzd6lp0xpo?at_campaign=rss&at_medium=RSS",
+      "age_seconds": null,
+      "intelligence_score": 0,
+      "reason": "recent-editorial-block",
+      "stage": "intelligence_filter",
+      "high_impact_security_candidate": true,
+      "major_business_legal_candidate": false,
+      "global_consequential_candidate": false,
+      "unga_breaking_candidate": false,
+      "monitor_reason": "important-candidate-rejected"
+    },
+    {
+      "checked_at": "2026-10-06T01:17:15.455512+00:00",
+      "title": "Zelensky condemns 'horrific' Russian strike on boat carrying corn in Black Sea",
+      "source": "bbc.co.uk",
+      "category": "جهان",
+      "published_at": "2026-10-05T15:17:23+00:00",
+      "url": "https://bbc.co.uk/news/articles/cr0j0w3p8453o?at_campaign=rss&at_medium=RSS",
+      "age_seconds": null,
+      "intelligence_score": 0,
+      "reason": "recent-editorial-block",
+      "stage": "intelligence_filter",
+      "high_impact_security_candidate": true,
+      "major_business_legal_candidate": false,
+      "global_consequential_candidate": false,
+      "unga_breaking_candidate": false,
+      "monitor_reason": "important-candidate-rejected"
+    }
+  ],
+  "failed_publication_attempts": [],
+  "skipped_duplicate_attempts": [],
   "editorial_blocked_attempts": [
     {
       "title": "اسرائیل آماده سرنگونی هواپیمای فلای دبی پس از حمله به خلبان بود",
@@ -70,7 +95,7 @@
       "source": "",
       "url": "",
       "result": "editorial_blocked",
-      "reason": "editor_gate: ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Just a claim, no concrete action or decision",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Just a claim, no concrete action or decision",
       "error": ""
     },
     {
@@ -98,6 +123,9 @@
     "active": 12
   },
   "diagnostics": [
-    "7 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure)."
+    "7 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure).",
+    "Selected stories did not reach confirmed publication.",
+    "One or more Telegram sends had ambiguous transport results; fallback was intentionally blocked to prevent duplicates.",
+    "2 potentially important candidate(s) were rejected; review reasons before changing gates."
   ]
 }
