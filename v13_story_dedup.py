@@ -215,3 +215,10 @@ def install(core, current):
     guard("send_video", 1)
     guard("send_message", 0)
     print("V13 STORY DEDUP ACTIVE: content-level duplicate guard (36h window).", flush=True)
+
+    # Text polish (Oct 2026): labels, filler details, AI wording, 12h incident dedup.
+    try:
+        import v13_text_polish
+        v13_text_polish.install()
+    except Exception as exc:
+        print(f"V13 TEXT POLISH: not installed ({type(exc).__name__}: {exc})", flush=True)
