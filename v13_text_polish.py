@@ -350,6 +350,88 @@ def _recent_heads(health):
 
 
 # --------------------------------------------------------------------------
+# 5) Editor gate: real security / mass-casualty / energy-attack news was
+#    rejected as "local, limited casualties" (terror attack in Golshan,
+#    10 stabbed in a Polish school, pipeline attack in Hasakah).
+# --------------------------------------------------------------------------
+
+_NUM = str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789")
+IRAN_SECURITY = re.compile(
+    r"(?:تروریست|تروریستی|اشرار|حمله مسلحانه|درگیری مسلحانه|تیراندازی|گروگان|بمب|انفجار|"
+    r"هلاکت|عملیات انتحاری|ترور)")
+CEREMONY_WORDS = re.compile(r"(?:تشییع|مراسم|سالگرد|یادبود|بزرگداشت|گرامیداشت|چهلم|رزمایش|مانور)")
+TOLL = re.compile(r"(\d+)\s*(?:نفر\s*)?(?:کشته|زخمی|مجروح|مصدوم|قربانی|جان باخته|جان باختند)"
+                  r"|(?:کشته|زخمی|مجروح|مصدوم)\s+(?:شدن\s+)?(\d+)")
+MANY_TOLL = re.compile(r"(?:ده ?ها|صدها)\s+(?:نفر\s+)?(?:کشته|زخمی|مجروح|مصدوم)")
+ENERGY_ATTACK = re.compile(
+    r"(?:حمله|انفجار|آتش|هدف قرار|اصابت|پهپاد|موشک)[^.؛]{0,40}(?:خط لوله|پالایشگاه|میدان نفتی|"
+    r"میدان گازی|تاسیسات نفتی|تأسیسات نفتی|نفتکش|نفت کش|پایانه نفتی|نیروگاه)"
+    r"|(?:خط لوله|پالایشگاه|میدان نفتی|میدان گازی|تاسیسات نفتی|تأسیسات نفتی|نفتکش|نفت کش|پایانه نفتی|نیروگاه)"
+    r"[^.؛]{0,40}(?:حمله|انفجار|آتش گرفت|هدف قرار|اصابت)")
+EDITOR_RULES = """
+SECURITY AND MASS CASUALTIES ARE NEVER "LOCAL":
+- A terrorist attack, armed clash, bombing, hostage-taking or killed attacker anywhere inside Iran is iran_national security news (happened=true, score 6-8), even in a small town.
+- An attack, shooting, stabbing, crash or disaster with 10 or more dead or injured, in any country, is world news (score 6-8).
+- An attack or explosion at an oil/gas pipeline, refinery, oil field, tanker or power plant in the Middle East is world news (score 6-8).
+Ceremonies, funerals and anniversaries of such events stay LOW.
+
+"""
+
+
+def security_kind(candidate):
+    """Why a story is first-tier security news the AI keeps underrating, or ""."""
+    try:
+        import v13_post_design as pd
+        foreign_re = pd._FOREIGN_RE
+    except Exception:
+        foreign_re = None
+    title = _norm(candidate.get("title", ""))
+    if not title or CEREMONY_WORDS.search(title):
+        return ""
+    digits = title.translate(_NUM)
+    tolls = [int(a or b) for a, b in TOLL.findall(digits) if (a or b).isdigit()]
+    if (tolls and max(tolls) >= 10) or MANY_TOLL.search(title):
+        return "mass-casualty"
+    if ENERGY_ATTACK.search(title):
+        return "energy-attack"
+    category = _norm(candidate.get("category", ""))
+    iranian = "ایران" in category or "ایران" in title
+    if iranian and IRAN_SECURITY.search(title) and not (foreign_re and foreign_re.search(title)):
+        return "iran-security"
+    return ""
+
+
+def _patch_editor_gate():
+    import v13_editor_gate as eg
+    if getattr(eg, "_text_polish", False):
+        return
+    orig_accepts = eg.ai_accepts
+
+    def ai_accepts(verdict, candidate=None):
+        if orig_accepts(verdict, candidate):
+            return True
+        if candidate is None:
+            return False
+        try:
+            if eg.NON_EVENT.search(_norm(candidate.get("title", ""))):
+                return False
+            kind = security_kind(candidate)
+            if kind and verdict.get("happened") and int(verdict.get("score", 0) or 0) >= 2:
+                print(f"V13 TEXT POLISH: editor override ({kind}) -> {candidate.get('title', '')}", flush=True)
+                return True
+        except Exception:
+            pass
+        return False
+
+    eg.ai_accepts = ai_accepts
+    if "SECURITY AND MASS CASUALTIES" not in eg.PROMPT and "Story:\nTITLE" in eg.PROMPT:
+        eg.PROMPT = eg.PROMPT.replace("Story:\nTITLE", EDITOR_RULES + "Story:\nTITLE", 1)
+    # Old cached "local" rejections must be judged again under the new rules.
+    eg.CACHE_VERSION = "v4"
+    eg._text_polish = True
+
+
+# --------------------------------------------------------------------------
 # Install
 # --------------------------------------------------------------------------
 
@@ -494,5 +576,18 @@ def install():
     except Exception as exc:
         print(f"V13 TEXT POLISH: dedup patch skipped ({type(exc).__name__}: {exc})", flush=True)
 
+    try:
+        _patch_editor_gate()
+        parts.append("editor-security-rules")
+    except Exception as exc:
+        print(f"V13 TEXT POLISH: editor gate patch skipped ({type(exc).__name__}: {exc})", flush=True)
+
     _INSTALLED["done"] = True
+    try:
+        import v13_ai_router as router_mod
+        health = router_mod._load_health()
+        health["_text_polish"] = {"active": parts, "at": int(time.time())}
+        router_mod._save_health(health)
+    except Exception:
+        pass
     print("V13 TEXT POLISH ACTIVE: " + ", ".join(parts), flush=True)
