@@ -275,7 +275,7 @@ def render_weather(rows, jalali_date, out_path, weather_text=None):
             d.ellipse([x0 + 24, cy - 8, x0 + 38, cy + 8], fill=rc)
             d.polygon([(x0 + 25, cy - 3), (x0 + 37, cy - 3), (x0 + 31, cy - 16)], fill=rc)
             d.text((x0 + 50, cy), "—" if rain is None else fa(f"{rain:.0f}٪"), font=font(26), fill=rc, anchor="lm")
-        _footer(img, h - 110, "منبع: Open-Meteo · به‌وقت تهران")
+        _footer(img, h - 110, "هواشناسی روزانه · به‌وقت تهران")
         img.save(out_path, quality=92)
         return out_path
     except Exception as exc:
@@ -357,7 +357,7 @@ def render_cars(items, update_date, out_path):
             else:
                 d.text((xc, cy), "—", font=font(24, "regular"), fill=MUTED, anchor="lm")
             y += row_h
-        _footer(img, h - 110, "منبع: 1car.ir · قیمت‌ها تقریبی است")
+        _footer(img, h - 110, "قیمت‌ها تقریبی است")
         img.save(out_path, quality=92)
         return out_path
     except Exception as exc:
@@ -411,7 +411,7 @@ def render_sports(rows, jalali_date, out_path):
                         b = b[:-2]
                     rtl(d, ((bx0 + bx1) / 2, cy + 30), b, bf, (134, 239, 172), "mm")
             y += row_h
-        _footer(img, h - 110, "منبع: ورزش سه · پخش آنلاین: آنتن")
+        _footer(img, h - 110, "ساعت‌ها به وقت تهران")
         img.save(out_path, quality=92)
         return out_path
     except Exception as exc:

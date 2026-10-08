@@ -1,7 +1,8 @@
 """«نبض آموزش»: the channel's daily practical lesson (19:00 Tehran).
 
 Every lesson is hand-written and fact-checked: a hook, a short explanation,
-three concrete steps, one "good to know" fact and its source. Lessons rotate
+three concrete steps and one "good to know" fact (src is kept for
+fact-checking only and is never shown: channel posts carry no source line). Lessons rotate
 through EDUCATIONAL_POSTS in order and never repeat until the whole bank has
 been published (ids are stored in weather_history.json by daily_boards).
 
@@ -348,7 +349,7 @@ def caption(item, number=None):
     steps = "\n".join(f"{_fa(i)}. {s}" for i, s in enumerate(item["steps"], 1))
     parts = [head, "", f"📌 {item['title']}", "", item["hook"], "", item["body"], "",
              "✅ چه کار کنیم؟", steps, "", f"💡 بدانید: {item['fact']}", "",
-             f"📚 منبع: {item['src']}", f"{tag} #نبض_آموزش", f"📢 {HANDLE}"]
+             f"{tag} #نبض_آموزش", f"📢 {HANDLE}"]
     text = "\n".join(parts)
     if len(text) > 1000:  # Telegram photo captions are limited; drop the long explanation first
         parts = parts[:6] + parts[8:]
@@ -458,7 +459,7 @@ def render_card(item, jalali_date, number, out_path):
             yy += LH_F
         y += h_fact
 
-        dc._footer(img, total - 110, f"منبع: {item['src']}"[:60])
+        dc._footer(img, total - 110, "نبض آموزش · هر روز ساعت ۱۹")
         img.save(out_path, quality=92)
         return out_path
     except Exception as exc:
