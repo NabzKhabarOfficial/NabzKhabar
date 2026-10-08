@@ -222,3 +222,10 @@ def install(core, current):
         v13_text_polish.install()
     except Exception as exc:
         print(f"V13 TEXT POLISH: not installed ({type(exc).__name__}: {exc})", flush=True)
+
+    # Same incident, different wording (Oct 9): same event + same city/region within 8h.
+    try:
+        import v13_incident_dedup
+        v13_incident_dedup.install()
+    except Exception as exc:
+        print(f"V13 INCIDENT DEDUP: not installed ({type(exc).__name__}: {exc})", flush=True)
