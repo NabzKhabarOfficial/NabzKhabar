@@ -18,6 +18,10 @@ news engine. Everything is fail-safe: any error falls back to the old path.
 4) Duplicates: the same incident retold within 12 hours (same title+lead
    names) is caught even when the story is so hot that its names are no
    longer "rare" for the 36h guard.
+6) Header (owner's request, Oct 8): the «🇮🇷 ایران · ⚔️ نظامی» line is gone
+   (the region was often wrong, e.g. a Syrian pipeline marked «ایران»). The
+   post now opens with the channel's own signature, «💓 نبض خبر ▰▰▰▰▱», and
+   the duplicate pulse line in the footer is dropped.
 """
 
 import re
@@ -432,6 +436,30 @@ def _patch_editor_gate():
 
 
 # --------------------------------------------------------------------------
+# 6) Signature header instead of region/topic labels
+# --------------------------------------------------------------------------
+
+BRAND_HEADER = "💓 نبض خبر"
+_FOOTER_PULSE = re.compile(r"(?m)^💓 نبض خبر: [▰▱]+\n?")
+
+
+def signature_header(level, urgent=False, emoji="", label="", title=""):
+    try:
+        import v13_post_design as pd
+        bar = pd.meter(level)
+    except Exception:
+        bar = "▰▰▰▱▱"
+    return f"{BRAND_HEADER} {bar}"
+
+
+def drop_footer_pulse(caption):
+    caption = str(caption or "")
+    if not caption.startswith(BRAND_HEADER):
+        return caption
+    return _FOOTER_PULSE.sub("", caption)
+
+
+# --------------------------------------------------------------------------
 # Install
 # --------------------------------------------------------------------------
 
@@ -487,14 +515,16 @@ def install():
             except Exception as exc:
                 print(f"V13 TEXT POLISH: detail filter skipped ({type(exc).__name__}).", flush=True)
             try:
-                return orig_build(title, body, formatter)
+                return drop_footer_pulse(orig_build(title, body, formatter))
             finally:
                 _CTX["lead"] = ""
 
         pd.classify = classify
         pd.topic_of = topic_of
         pd.build_caption = build_caption
+        pd.header_line = signature_header
         parts.append("labels+details")
+        parts.append("signature-header")
     except Exception as exc:
         print(f"V13 TEXT POLISH: post design patch skipped ({type(exc).__name__}: {exc})", flush=True)
 
