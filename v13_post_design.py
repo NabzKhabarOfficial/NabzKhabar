@@ -35,6 +35,9 @@ FONT_PATH = "Vazirmatn-Bold.ttf"
 BUTTON_TEXT = "💓 عضویت در نبض خبر"
 ACCENT = (229, 28, 45)
 JOIN_BUTTON = False  # owner asked to remove the button under posts
+# Topic badge on the photo (top-right): removed at the owner's request (Oct 8), it often
+# did not match the story. A real "فوری" badge would still show if urgent is ever enabled.
+CARD_BADGE = False
 CLEANUP_FLAG = "_join_button_cleanup_done"  # persisted in ai_model_health.json
 CLEANUP_LOOKBACK = 60
 MAX_CAPTION = 980  # below content_enhancer's 1000-char cut, so it never trims us
@@ -595,7 +598,10 @@ def render_card(src_path, out_path, title, level=3, label="جهان", font_path=
     d.text((margin, y_mid), HANDLE, font=handle_font, fill=(210, 216, 226, 230), anchor="lm")
 
     # Top-right badge: live "فوری" for breaking news, otherwise the category.
-    badge = "فوری" if urgent else label
+    badge = "فوری" if urgent else (label if CARD_BADGE else "")
+    if not badge:
+        base.convert("RGB").save(out_path, "JPEG", quality=92, optimize=True)
+        return True
     pad_x, pad_y = int(18 * u), int(9 * u)
     tw = d.textlength(badge, font=badge_font, direction="rtl")
     dot = int(11 * u) if urgent else 0
