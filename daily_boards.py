@@ -1,7 +1,7 @@
 """Independent daily boards for the NabzKhabar channel.
 
 Weather, car prices, the day's important matches (plus their end-of-day results) and the education tip are not news: they bypass every V13
-news gate and are sent once per Tehran day. Weather and car prices are sent as
+news gate and are sent once per Tehran day. Weather, car prices, sports and education are sent as
 designed image cards (daily_cards); if rendering or the photo upload fails the
 classic text board is sent instead. Each board is isolated so a failure in one
 never affects the others or the news engine.
@@ -301,26 +301,27 @@ def _run_education(now):
     if state.get("education_last_date") == today:
         _log(f"education already published today ({today})")
         return
-    posts = education.EDUCATIONAL_POSTS
-    item = posts[now.toordinal() % len(posts)]
-    tips = "\n".join(f"• {tip}" for tip in item["tips"])
-    text = (
-        f"🎓 نبض آموزش | {item['title']}\n\n"
-        f"{item['body']}\n\n"
-        f"💡 ۳ نکته کاربردی:\n"
-        f"{tips}\n\n"
-        f"━━━━━━━━━━━━━━\n"
-        f"{item.get('tag', '')}\n"
-        f"📢 @NabzKhabarOfficial"
-    )
-    if not weather._send_weather_message(text):
+    item = education.pick(state)
+    number = int(state.get("education_count") or 0) + 1
+    jalali = weather._jalali_date(now)
+    caption = education.caption(item, number)
+    sent = False
+    with tempfile.TemporaryDirectory() as tmp:
+        card = education.render_card(item, jalali, number, os.path.join(tmp, "education.jpg"))
+        if card:
+            sent = send_photo(card, caption)
+            _log("education card sent" if sent else "education card failed, falling back to text")
+    if not sent:
+        sent = weather._send_weather_message(caption)
+    if not sent:
         _log("education publication failed")
         return
     state = _load_json(STATE_FILE)
+    education.mark_done(state, item, number)
     state["education_last_date"] = today
     state["education_title"] = item["title"]
     _save_json(STATE_FILE, state)
-    _log(f"education published: {item['title']}")
+    _log(f"education #{number} published: {item['title']}")
 
 
 BOARDS = (
