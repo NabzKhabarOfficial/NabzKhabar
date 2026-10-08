@@ -1,18 +1,37 @@
 {
-  "checked_at": "2026-10-08T05:25:50.002962+00:00",
+  "checked_at": "2026-10-08T05:34:48.853580+00:00",
   "status": "healthy",
   "run_status": "success",
-  "raw_candidates": 66,
-  "strict_rejected": 40,
-  "selected_for_publication": 9,
+  "raw_candidates": 78,
+  "strict_rejected": 44,
+  "selected_for_publication": 14,
   "published": 0,
   "failed_publications": 0,
   "ambiguous_publications": 0,
-  "editorial_blocked_publications": 9,
+  "editorial_blocked_publications": 12,
   "missed_selected_stories": [],
   "important_missed_news": [],
   "failed_publication_attempts": [],
-  "skipped_duplicate_attempts": [],
+  "skipped_duplicate_attempts": [
+    {
+      "title": "حمله موشکی به فرودگاه ملک خالد ریاض؛ هشدار انصارالله به ایرلاین ها",
+      "source": "isna.ir",
+      "url": "https://isna.ir/news/1405071610442/%D8%AD%D9%85%D9%84%D9%87-%D9%85%D9%88%D8%B4%DA%A9%DB%8C-%D8%A8%D9%87-%D9%81%D8%B1%D9%88%D8%AF%DA%AF%D8%A7%D9%87-%D9%85%D9%84%DA%A9-%D8%AE%D8%A7%D9%84%D8%AF-%D8%B1%DB%8C%D8%A7%D8%B6-%D9%87%D8%B4%D8%AF%D8%A7%D8%B1-%D8%A7%D9%86%D8%B5%D8%A7%D8%B1%D8%A7%D9%84%D9%84%D9%87-%D8%A8%D9%87-%D8%A7%DB%8C%D8%B1%D9%84%D8%A7%DB%8C%D9%86-%D9%87%D8%A7",
+      "started_at": "2026-10-08T05:34:40.568982+00:00",
+      "result": "skipped_duplicate",
+      "error": "",
+      "reason": "recent-semantic-history"
+    },
+    {
+      "title": "روند صعودی قیمت نفت ادامه یافت",
+      "source": "isna.ir",
+      "url": "https://isna.ir/news/1405071610446/%D8%B1%D9%88%D9%86%D8%AF-%D8%B5%D8%B9%D9%88%D8%AF%DB%8C-%D9%82%DB%8C%D9%85%D8%AA-%D9%86%D9%81%D8%AA-%D8%A7%D8%AF%D8%A7%D9%85%D9%87-%DB%8C%D8%A7%D9%81%D8%AA",
+      "started_at": "2026-10-08T05:34:46.348995+00:00",
+      "result": "skipped_duplicate",
+      "error": "",
+      "reason": "recent-semantic-history"
+    }
+  ],
   "editorial_blocked_attempts": [
     {
       "title": "Global protests mark October 7 attack with calls for Gaza ceasefire",
@@ -20,6 +39,14 @@
       "url": "",
       "result": "editorial_blocked",
       "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: Global protests after Oct 7 attack, demand ceasefire",
+      "error": ""
+    },
+    {
+      "title": "مذاکره ایران و آمریکا فعلا در بن بست؛ دیپلماسی ناممکن زیر سایه فشار و تهدید",
+      "source": "",
+      "url": "",
+      "result": "editorial_blocked",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: مقاله و تحلیل درباره مذاکرات، فقدان رویداد مشخص",
       "error": ""
     },
     {
@@ -47,6 +74,22 @@
       "error": ""
     },
     {
+      "title": "یمن: در صورت از سرگیری جنگ غزه، به جبهه پشتیبانی برمی گردیم",
+      "source": "",
+      "url": "",
+      "result": "editorial_blocked",
+      "reason": "editor_gate: ai groq/openai/gpt-oss-20b score=8 happened=False scope=world: Yemen signals support if Gaza war resumes",
+      "error": ""
+    },
+    {
+      "title": "از تراشه تا طلا؛ هوش مصنوعی، منبع تغذیه تازه برای جهش فلز زرد",
+      "source": "",
+      "url": "",
+      "result": "editorial_blocked",
+      "reason": "editor_gate: ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: AI boosts global gold demand trend",
+      "error": ""
+    },
+    {
       "title": "'It's still unclear whether Netanyahu will pay for what happened during his time in office'",
       "source": "",
       "url": "",
@@ -59,7 +102,7 @@
       "source": "",
       "url": "",
       "result": "editorial_blocked",
-      "reason": "editor_gate: ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: قیمت طلا افزایش یافت، اثر محدود اقتصادی",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: قیمت طلا افزایش یافت، اثر محدود اقتصادی",
       "error": ""
     },
     {
@@ -89,12 +132,13 @@
   ],
   "last_errors": [],
   "ai_pool": {
-    "status": "healthy",
+    "status": "degraded_partial",
     "models": 11,
-    "disabled": 0,
-    "active": 11
+    "disabled": 1,
+    "active": 10
   },
   "diagnostics": [
-    "9 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure)."
+    "1/11 configured AI models are cooling down or disabled.",
+    "12 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure)."
   ]
 }
