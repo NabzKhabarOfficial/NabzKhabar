@@ -35,6 +35,11 @@ WORLD_BREAKING_RSS_FEEDS = [
     ("جهان", "http://www.france24.com/en/top-stories/rss"),
     ("جهان", "https://www.theguardian.com/world/rss"),
     ("جهان", "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"),
+    # Earthquakes M4.5+ worldwide (USGS, official, minutes after the event). Only quakes in or
+    # near Iran, or M6+ anywhere, are kept (see _keep_quake); the rest never become candidates.
+    ("جهان", "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.atom"),
+    # Major international sport (Olympics, World Cup, big finals); the sports desk decides.
+    ("جهان", "https://feeds.bbci.co.uk/sport/rss.xml"),
 ]
 # Extra Persian agencies for faster Iran coverage (verified live 2026-10-01).
 # These hosts were blocked by default; they are unblocked below but held to a
@@ -45,7 +50,20 @@ STRICT_IRANIAN_RSS_FEEDS = [
     ("ایران", "https://www.mehrnews.com/rss"),
     ("ایران", "https://www.independentpersian.com/rss.xml"),
 ]
-STRICT_SOURCE_HOSTS = {"isna.ir", "mehrnews.com", "independentpersian.com"}
+# Added Oct 9 2026 (owner's choice) to fill coverage gaps: economy (prices, markets),
+# non-state domestic outlets, Iranian sport and technology. Same strict importance bar.
+NEW_IRANIAN_RSS_FEEDS = [
+    ("ایران", "https://www.khabaronline.ir/rss"),
+    ("ایران", "https://www.entekhab.ir/fa/rss/allnews"),
+    ("ایران", "https://fararu.com/fa/rss/allnews"),
+    ("ایران", "https://www.eghtesadnews.com/fa/rss/allnews"),
+    ("ایران", "https://www.varzesh3.com/rss/all"),
+    ("ایران", "https://digiato.com/feed"),
+]
+STRICT_IRANIAN_RSS_FEEDS = STRICT_IRANIAN_RSS_FEEDS + NEW_IRANIAN_RSS_FEEDS
+STRICT_SOURCE_HOSTS = {"isna.ir", "mehrnews.com", "independentpersian.com",
+                       "khabaronline.ir", "entekhab.ir", "fararu.com", "eghtesadnews.com",
+                       "donya-e-eqtesad.com", "ecoiran.com", "varzesh3.com", "digiato.com", "zoomit.ir"}
 PERSIAN_RSS_FEEDS = PERSIAN_RSS_FEEDS + WORLD_BREAKING_RSS_FEEDS + STRICT_IRANIAN_RSS_FEEDS
 
 # Unblock only these hosts (sets are read at call time by the source filters).
@@ -65,6 +83,10 @@ PERSIAN_GOOGLE_QUERIES = [
     # Reuters and AP have no public RSS; Google News is the standard route.
     ("جهان", "site:reuters.com world"),
     ("جهان", "site:apnews.com world"),
+    # Economy and tech outlets without a reliable public RSS (Oct 9 2026).
+    ("ایران", "site:donya-e-eqtesad.com"),
+    ("ایران", "site:ecoiran.com"),
+    ("ایران", "site:zoomit.ir"),
 ]
 existing_google = {(str(name), str(url)) for name, url in getattr(main, "GOOGLE_NEWS_FEEDS", [])}
 for category, query in PERSIAN_GOOGLE_QUERIES:
@@ -439,12 +461,31 @@ def _is_asset_link(url):
     return path.endswith(_ASSET_EXTENSIONS) or "/css" == path
 
 
+_QUAKE_NEAR_IRAN = re.compile(
+    r"\b(?:iran|iraq|turkey|t[uü]rkiye|afghanistan|pakistan|turkmenistan|azerbaijan|armenia|"
+    r"kuwait|bahrain|qatar|united arab emirates|uae|oman|saudi|caspian|persian gulf)\b", re.I)
+_QUAKE_MAG = re.compile(r"\bM\s*([0-9]+(?:\.[0-9])?)", re.I)
+
+
+def _keep_quake(item):
+    """USGS items: keep a quake in or next to Iran, or M6+ anywhere."""
+    link = str(item.get("resolved_link") or item.get("link") or "")
+    if "earthquake.usgs.gov" not in link:
+        return True
+    title = str(item.get("title", "") or "")
+    found = _QUAKE_MAG.search(title)
+    mag = float(found.group(1)) if found else 0.0
+    return mag >= 6.0 or bool(_QUAKE_NEAR_IRAN.search(title))
+
+
 def _drop_asset_link_candidates(candidates):
     kept = []
     for item in candidates:
         link = item.get("resolved_link") or item.get("link") or ""
         if _is_asset_link(link):
             print(f"V13 ASSET LINK DROP: {item.get('title', '')} | {link[:120]}", flush=True)
+            continue
+        if not _keep_quake(item):
             continue
         kept.append(item)
     return kept
