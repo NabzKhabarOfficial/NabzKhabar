@@ -3,7 +3,8 @@
 Also strips news-site page chrome that the article extractor sometimes keeps in the body
 (Mehr/ISNA-style "۱۶ مهر ۱۴۰۵، ۲۲:۰۶ کد مطلب 6972118 بین الملل غرب آسیا ..." header with the
 section breadcrumb repeated and the headline repeated), and keeps the Persian half-space
-(ZWNJ) so words like «می‌شود» and «رسانه‌ها» are not split in two.
+(ZWNJ) so words like «می‌شود» and «رسانه‌ها» are not split in two. Loaded agency terms
+(«رژیم صهیونیستی»، «هلاکت»، «اشغالگر») are turned into neutral wording (NEUTRAL_TERMS).
 """
 import re
 
@@ -42,6 +43,48 @@ _SECTION_RE = re.compile(
     r"^\s*(?:" + "|".join(sorted((re.escape(s).replace(r"\ ", _S + "+").replace("\u200c", _S) for s in SECTIONS),
                                  key=len, reverse=True)) + r")(?=[\s\u200c،,:\-–]|$)\s*[،,:\-–]?\s*"
 )
+
+
+# ---------------------------------------------------------------- neutral wording
+# Owner rule (Oct 9 2026): wire-agency loaded terms become neutral, BBC/Reuters-style words.
+# Longest phrases first; ZWNJ and space are both accepted inside a phrase.
+NEUTRAL_TERMS = (
+    ("ارتش اشغالگر رژیم صهیونیستی", "ارتش اسرائیل"),
+    ("ارتش رژیم صهیونیستی", "ارتش اسرائیل"),
+    ("رژیم اشغالگر قدس", "اسرائیل"),
+    ("رژیم غاصب صهیونیستی", "اسرائیل"),
+    ("رژیم صهیونیستی", "اسرائیل"),
+    ("رژیم صهیونیست", "اسرائیل"),
+    ("سخنگوی صهیونیست ها", "سخنگوی اسرائیل"),
+    ("نظامیان صهیونیست", "نظامیان اسرائیلی"),
+    ("نظامی صهیونیست", "نظامی اسرائیلی"),
+    ("نظامی اشغالگر", "نظامی اسرائیلی"),
+    ("نظامیان اشغالگر", "نظامیان اسرائیلی"),
+    ("صهیونیست ها", "اسرائیلی‌ها"),
+    ("صهیونیست‌ها", "اسرائیلی‌ها"),
+    ("صهیونیستی", "اسرائیلی"),
+    ("صهیونیست", "اسرائیلی"),
+    ("به هلاکت رسیدند", "کشته شدند"),
+    ("به هلاکت رسید", "کشته شد"),
+    ("هلاک شدند", "کشته شدند"),
+    ("هلاک شد", "کشته شد"),
+    ("هلاکت", "کشته شدن"),
+)
+
+
+def _phrase_re(phrase):
+    body = re.escape(phrase).replace(r"\ ", _S + "+").replace("\u200c", _S)
+    return re.compile(r"(?<![\w\u0600-\u06FF])" + body + r"(?![\w\u0600-\u06FF])")
+
+
+_NEUTRAL = [(_phrase_re(a), b) for a, b in NEUTRAL_TERMS]
+
+
+def neutral(value):
+    text = str(value or "")
+    for pat, repl in _NEUTRAL:
+        text = pat.sub(repl, text)
+    return text
 
 
 def strip_chrome(text, title=""):
@@ -96,6 +139,6 @@ def install(core):
             continue
         def wrapped(title, body, _original=original):
             t = clean(title)
-            return _original(t, clean(strip_chrome(body, t)))
+            return _original(neutral(t), neutral(clean(strip_chrome(body, t))))
         setattr(core, name, wrapped)
-    print("V13 BYLINE CLEANER ACTIVE: generic publisher/reporter lead-ins and page headers removed.")
+    print("V13 BYLINE CLEANER ACTIVE: publisher lead-ins and page headers removed, neutral wording on.")
