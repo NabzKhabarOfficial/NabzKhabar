@@ -10,6 +10,13 @@ This layer reduces the headline + lead to an incident signature:
   * where          (city -> region, e.g. اربیل -> اقلیم کردستان / شمال عراق)
 and refuses a post whose signature matches anything published in the last
 INCIDENT_WINDOW hours (same kind of event in the same city or region).
+
+Logical exceptions (owner's request, Oct 9) - these are new news, not repeats:
+  * reactions and statements: «عراق حمله به اربیل را محکوم کرد», «عراقچی: ...»
+  * follow-ups: investigation, arrests, claim of responsibility, retaliation
+  * a real casualty update: the toll rises clearly above what was published
+  * two different cities of one region (اربیل vs سلیمانیه) are two incidents;
+    a region-only wording («شمال عراق») matches any city in that region.
 Fail-safe: any error lets the post through to the older guards.
 """
 
@@ -34,7 +41,7 @@ KIND_RX = [(k, re.compile(rf"(?<![\u0600-\u06FF]){p}")) for k, p in KINDS]
 
 # place -> region. Region-only phrases map to themselves.
 REGIONS = {
-    "iraq_north": "اربیل|اربیل عراق|سلیمانیه|دهوک|کویه|رزگاری|اقلیم کردستان|کردستان عراق|شمال عراق|"
+    "iraq_north": "اربیل|سلیمانیه|دهوک|کویه|رزگاری|اقلیم کردستان|کردستان عراق|شمال عراق|"
                   "کرکوک|موصل|سنجار|نینوا",
     "iraq_center": "بغداد|عین الاسد|الانبار|فلوجه|رمادی|سامرا|کربلا|نجف|دیاله|صلاح الدین",
     "iraq_south": "بصره|ناصریه|عماره|میسان|ذی قار",
@@ -77,6 +84,37 @@ REGIONS = {
 }
 
 
+# Names that describe a whole region, not one city.
+REGION_LEVEL = set("""
+شمال عراق|اقلیم کردستان|کردستان عراق|نینوا|الانبار|دیاله|صلاح الدین|میسان|ذی قار|ریف دمشق|جولان|
+جنوب لبنان|بقاع|نوار غزه|کرانه باختری|نقب|دریای سرخ|باب المندب|خلیج عدن|تنگه هرمز|دریای عمان|
+خلیج فارس|کردستان ایران|آذربایجان غربی|سیستان و بلوچستان|خوزستان|هرمزگان|لرستان|بلوچستان پاکستان|
+خیبر پختونخوا|وزیرستان|ننگرهار|بدخشان|پنجشیر|کریمه|قره باغ|دارفور|کشمیر
+""".replace("\n", "").split("|"))
+
+# Headlines that report a reaction or a new development of the incident.
+REACTION = re.compile(
+    r"محکوم|واکنش|بیانیه|تسلیت|ابراز نگرانی|ابراز تاسف|خواستار|هشدار داد|تهدید کرد|تماس تلفنی|"
+    r"گفت ?و ?گو|گفتگو|احضار|سخنگو|اظهار|تاکید|تأکید|گفت(?![\u0600-\u06FF])|می گوید|"
+    r"مسئولیت|مسوولیت|بر عهده گرفت|تحقیقات|بررسی علت|علت حادثه|بازداشت|دستگیر|شناسایی عاملان|"
+    r"تلافی|انتقام|شورای امنیت|سازمان ملل")
+_SPEAKER = re.compile(r"^[^:،.]{2,40}:\s")
+_TOLL = re.compile(r"(\d+)\s*(?:نفر\s*)?(?:کشته|زخمی|مجروح|مصدوم|قربانی|جان باخت|شهید|کشته و زخمی)"
+                   r"|(?:کشته|زخمی|مجروح|مصدوم|جان باختن|شهادت)\s+(?:شدن\s+)?(\d+)")
+_DIG = str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789")
+
+
+def toll(text):
+    t = _norm(text).translate(_DIG)
+    nums = [int(a or b) for a, b in _TOLL.findall(t) if (a or b).isdigit()]
+    return max(nums) if nums else 0
+
+
+def is_reaction(title):
+    t = _norm(title)
+    return bool(_SPEAKER.search(t) or REACTION.search(t))
+
+
 def _norm(text):
     try:
         import v13_story_dedup as dd
@@ -88,6 +126,7 @@ def _norm(text):
 
 _P = "\u0600-\u06FF"
 _SUF = r"(?:ی|های|ها)?"
+_REGION_LEVEL_N = {_norm(x) for x in REGION_LEVEL if x.strip()}
 _REGION_RX = []
 for _region, _alts in REGIONS.items():
     _names = sorted({_norm(a) for a in _alts.split("|") if a.strip()}, key=len, reverse=True)
@@ -107,6 +146,7 @@ def signature(text):
     if not kind:
         return None
     regions, places = set(), set()
+    cities = set()
     for region, names, rx in _REGION_RX:
         for m in rx.finditer(t):
             regions.add(region)
@@ -114,18 +154,41 @@ def signature(text):
             for n in names:
                 if word.startswith(n):
                     places.add(n)
+                    if n not in _REGION_LEVEL_N:
+                        cities.add(n)
                     break
     if not _IRAQ_KURD.search(t) and _IRAN_KURD.search(t):
         regions.add("iran_kurdistan")
     if not regions:
         return None
-    return {"kind": kind, "regions": sorted(regions), "places": sorted(places)}
+    return {"kind": kind, "regions": sorted(regions), "places": sorted(places),
+            "cities": sorted(cities), "toll": toll(t)}
 
 
 def same_incident(a, b):
     if not a or not b or a.get("kind") != b.get("kind"):
         return False
-    return bool(set(a.get("regions") or []) & set(b.get("regions") or []))
+    if not set(a.get("regions") or []) & set(b.get("regions") or []):
+        return False
+    ca, cb = set(a.get("cities") or []), set(b.get("cities") or [])
+    if ca and cb and not (ca & cb):
+        return False  # two different cities of the same region
+    return True
+
+
+def is_update(new, old):
+    """A clearly higher casualty toll is news, not a repeat."""
+    n, o = int(new.get("toll") or 0), int(old.get("toll") or 0)
+    return n >= 3 and n >= o + 3 and n >= o * 1.3
+
+
+def _title(caption):
+    for line in str(caption or "").splitlines():
+        s = line.strip()
+        if not s or s.startswith(("#", "━", "🔗", "💓", "▫", "⚡")) or "t.me/" in s:
+            continue
+        return s
+    return ""
 
 
 def _head(caption):
@@ -163,6 +226,8 @@ def _seed(health):
 
 
 def find(caption):
+    if is_reaction(_title(caption)):
+        return None
     sig = signature(_head(caption))
     if not sig:
         return None
@@ -170,11 +235,16 @@ def find(caption):
     _, health = dd._health()
     for item in reversed(_seed(health)):
         if same_incident(sig, item):
+            if is_update(sig, item):
+                print(f"V13 INCIDENT DEDUP: toll update {item.get('toll', 0)} -> {sig['toll']}, allowed.", flush=True)
+                return None
             return item
     return None
 
 
 def remember(caption):
+    if is_reaction(_title(caption)):
+        return  # reactions never block the incident itself
     sig = signature(_head(caption))
     if not sig:
         return
