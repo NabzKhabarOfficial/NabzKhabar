@@ -1,36 +1,28 @@
 {
-  "checked_at": "2026-10-08T11:02:34.899763+00:00",
+  "checked_at": "2026-10-08T11:13:25.449036+00:00",
   "status": "healthy",
   "run_status": "success",
   "raw_candidates": 71,
-  "strict_rejected": 46,
-  "selected_for_publication": 5,
+  "strict_rejected": 47,
+  "selected_for_publication": 8,
   "published": 0,
   "failed_publications": 0,
   "ambiguous_publications": 0,
-  "editorial_blocked_publications": 5,
+  "editorial_blocked_publications": 7,
   "missed_selected_stories": [],
-  "important_missed_news": [
+  "important_missed_news": [],
+  "failed_publication_attempts": [],
+  "skipped_duplicate_attempts": [
     {
-      "checked_at": "2026-10-08T11:02:33.564460+00:00",
-      "title": "Dozens killed in Russian strike on buses in Ukraine's Kramatorsk as Kyiv targets data centre",
-      "source": "france24.com",
-      "category": "جهان",
-      "published_at": "2026-10-08T10:08:12+00:00",
-      "url": "https://france24.com/en/europe/20261008-russian-strike-buses-kills-at-least-12-ukraine-kramatorsk-kyiv-targets-data-centre",
-      "age_seconds": null,
-      "intelligence_score": 0,
-      "reason": "recent-editorial-block",
-      "stage": "intelligence_filter",
-      "high_impact_security_candidate": true,
-      "major_business_legal_candidate": false,
-      "global_consequential_candidate": false,
-      "unga_breaking_candidate": false,
-      "monitor_reason": "important-candidate-rejected"
+      "title": "افزایش بهای نفت به بیش از ۱۰۵ دلار",
+      "source": "mehrnews.com",
+      "url": "https://mehrnews.com/news/6971845/%D8%A7%D9%81%D8%B2%D8%A7%DB%8C%D8%B4-%D8%A8%D9%87%D8%A7%DB%8C-%D9%86%D9%81%D8%AA-%D8%A8%D9%87-%D8%A8%DB%8C%D8%B4-%D8%A7%D8%B2-%DB%B1%DB%B0%DB%B5-%D8%AF%D9%84%D8%A7%D8%B1",
+      "started_at": "2026-10-08T11:13:17.815180+00:00",
+      "result": "skipped_duplicate",
+      "error": "",
+      "reason": "recent-semantic-history"
     }
   ],
-  "failed_publication_attempts": [],
-  "skipped_duplicate_attempts": [],
   "editorial_blocked_attempts": [
     {
       "title": "Gaza war sped up India’s shift towards Israel under Modi",
@@ -49,40 +41,55 @@
       "error": ""
     },
     {
+      "title": "۲۵ همت خسارت در جنگ های تحمیلی دوم و سوم به محیط زیست وارد شد",
+      "source": "",
+      "url": "",
+      "result": "editorial_blocked",
+      "reason": "editor_gate: ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: برآورد خسارت محیط زیستی جنگ‌های گذشته رویداد درجه یک نیست",
+      "error": ""
+    },
+    {
       "title": "احتمال شنیدن صدای انفجار در مرز مهران",
       "source": "",
       "url": "",
       "result": "editorial_blocked",
-      "reason": "editor_gate: ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: پیش‌بینی انفجار، رخداد واقعی نیست",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: پیش‌بینی انفجار، رخداد واقعی نیست",
       "error": ""
     },
     {
-      "title": "بیش از ۲۵ میلیون نفر در ایران عضو تعاونی ها هستند",
+      "title": "سرپرست وزارت دفاع: فاصله شما با ما را موشک های ما تعیین می کنند",
       "source": "",
       "url": "",
       "result": "editorial_blocked",
-      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: آمار بزرگ اما خبری مهم نیست",
+      "reason": "editor_gate: no-ai-fallback-fail-closed",
       "error": ""
     },
     {
-      "title": "'Most Israeli citizens lost confidence' in govt: Leaders 'shift' blame, 'block' commission inquiry",
+      "title": "پیام سردار عظمایی به مناسبت روز نیروی دریایی سپاه پاسداران انقلاب اسلامی",
       "source": "",
       "url": "",
       "result": "editorial_blocked",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل و نظر شخصی یک فعال سیاسی درباره وضعیت داخلی اسرائیل است.",
+      "reason": "editor_gate: ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: پیام تبریک فرماندهان به مناسبت مناسبت‌ها رویداد درجه یک محسوب نمی‌شود.",
+      "error": ""
+    },
+    {
+      "title": "خاموشی های برنامه ریزی شده بخش خانگی در قم متوقف شد",
+      "source": "",
+      "url": "",
+      "result": "editorial_blocked",
+      "reason": "editor_gate: ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: توقف خاموشی بخش خانگی در استان قم محلی و استانی است",
       "error": ""
     }
   ],
   "last_errors": [],
   "ai_pool": {
     "status": "degraded_partial",
-    "models": 12,
-    "disabled": 1,
+    "models": 13,
+    "disabled": 2,
     "active": 11
   },
   "diagnostics": [
-    "1/12 configured AI models are cooling down or disabled.",
-    "5 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure).",
-    "1 potentially important candidate(s) were rejected; review reasons before changing gates."
+    "2/13 configured AI models are cooling down or disabled.",
+    "7 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure)."
   ]
 }
