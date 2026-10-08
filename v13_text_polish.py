@@ -21,7 +21,11 @@ news engine. Everything is fail-safe: any error falls back to the old path.
 6) Header (owner's request, Oct 8): the «🇮🇷 ایران · ⚔️ نظامی» line is gone
    (the region was often wrong, e.g. a Syrian pipeline marked «ایران»). The
    post now opens with the channel's own signature, «💓 نبض خبر ▰▰▰▰▱», and
-   the duplicate pulse line in the footer is dropped.
+   the duplicate pulse line in the footer is dropped. The website pages drop
+   the topic tag too.
+7) Lead check (Oct 8): when a detail line matches the headline much better
+   than the lead does, it becomes the lead (title and lead must tell the same
+   story), and empty "this happened on Thursday" lines are dropped.
 """
 
 import re
@@ -204,10 +208,37 @@ FILLER = re.compile(
     r"|به\s+مسائل\s+دیگری?\s+(?:نیز\s+)?اشاره\s+کرد)"
 )
 _DIGITS = re.compile(r"[0-9۰-۹]+")
+# «این رویداد روز پنجشنبه رخ داد»، «این حادثه در جنوب لبنان رخ داد»: says nothing new.
+EVENT_FILLER = re.compile(r"^(?:این|چنین)\s+(?:رویداد|وضعیت|حادثه|اتفاق|موضوع|ماجرا)\s+.*"
+                          r"(?:رخ داد|رخ داده است|رخ می دهد|اتفاق افتاد|اتفاق افتاده است)\s*[.!]?$")
 
 
 def is_filler(sentence):
-    return bool(FILLER.search(_norm(sentence)))
+    s = _norm(sentence)
+    if FILLER.search(s):
+        return True
+    return bool(EVENT_FILLER.search(s)) and len(s.split()) <= 12 and not _DIGITS.search(s)
+
+
+def lead_index(title, sentences):
+    """Index of the sentence that should open the post: the lead, unless a detail line
+    clearly tells the headline's story better (lead off-topic or only background)."""
+    try:
+        import v13_story_dedup as dd
+        tkeys = dd.fingerprint(_norm(title))
+        if len(sentences) < 2 or len(tkeys) < 3:
+            return 0
+        base = len(dd.fingerprint(_norm(sentences[0])) & tkeys)
+        best, best_i = base, 0
+        for i, sentence in enumerate(sentences[1:4], start=1):
+            score = len(dd.fingerprint(_norm(sentence)) & tkeys)
+            if score > best:
+                best, best_i = score, i
+        if best_i and best >= 3 and best >= base + 2:
+            return best_i
+    except Exception:
+        pass
+    return 0
 
 
 def is_redundant(sentence, context):
@@ -258,7 +289,8 @@ FOREIGN_SCRIPT = re.compile(r"[\u0370-\u03FF\u0400-\u04FF\u0590-\u05FF\u0900-\u0
 DANGLING_LEAD = re.compile(
     r"^(?:(?:این|آن)(?!\s+(?:هفته|ماه|سال|روزها|بار|روز)\b)\s|او\s|وی\s|آنها\s|آن ها\s|در نتیجه|همچنین\s|"
     r"اما\s|ولی\s|بنابراین\s|در همین حال|به همین دلیل|در (?:این|آن|همین)\s|"
-    r"(?:گزارش داد|اعلام کرد|افزود|گفت)(?:\s|$))")
+    r"(?:گزارش داد|اعلام کرد|افزود|گفت)(?:\s|$)|"
+    r"\S+\s+(?:این|آن)\s(?!(?:هفته|ماه|سال|روز|روزها|بار)(?:\s|$)))")
 SEAS = ("دریای سیاه", "دریای سرخ", "دریای عمان", "دریای خزر", "دریای مدیترانه", "دریای بالتیک",
         "دریای چین جنوبی", "دریای عرب", "دریای آزوف", "دریای شمال", "دریای اژه", "دریای ژاپن")
 WRONG_ROLE = re.compile(r"(?:نخست ?وزیر|صدراعظم)\s+(?:اوکراین\s+)?(?:،\s*)?(?:ولودیمیر\s+)?زلنسکی"
@@ -452,6 +484,11 @@ def signature_header(level, urgent=False, emoji="", label="", title=""):
     return f"{BRAND_HEADER} {bar}"
 
 
+def site_tags(item):
+    """Website cards/pages: no topic tag (owner's request); a real breaking stamp only."""
+    return '<span class="tag urgent">فوری</span>' if item.get("urgent") else ""
+
+
 def drop_footer_pulse(caption):
     caption = str(caption or "")
     if not caption.startswith(BRAND_HEADER):
@@ -497,6 +534,12 @@ def install():
                 ftitle = formatter.format_title(title)
                 sentences = pd._split(formatter.format_body(body))
                 if sentences:
+                    first = lead_index(ftitle, sentences)
+                    if first:
+                        print("V13 TEXT POLISH: detail line matches the headline better; made it the lead.",
+                              flush=True)
+                        sentences = [sentences[first]] + sentences[:first] + sentences[first + 1:]
+                        body = " ".join(sentences)
                     _CTX["lead"] = sentences[0]
                     kept = [sentences[0]]
                     for sentence in sentences[1:]:
@@ -525,6 +568,12 @@ def install():
         pd.header_line = signature_header
         parts.append("labels+details")
         parts.append("signature-header")
+        try:
+            import v13_growth as growth
+            growth._tags = site_tags
+            parts.append("site-no-tags")
+        except Exception as exc:
+            print(f"V13 TEXT POLISH: site tag patch skipped ({type(exc).__name__})", flush=True)
     except Exception as exc:
         print(f"V13 TEXT POLISH: post design patch skipped ({type(exc).__name__}: {exc})", flush=True)
 
