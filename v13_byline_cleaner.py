@@ -227,4 +227,10 @@ def install(core):
             t = clean(title)
             return _original(neutral(t), neutral(strip_media(clean(strip_chrome(body, t)))))
         setattr(core, name, wrapped)
+    # Last line of defence after all cleanup: refuse a post that still breaks an owner rule.
+    try:
+        import v13_final_guard
+        v13_final_guard.install()
+    except Exception as exc:
+        print(f"V13 FINAL GUARD: not installed ({type(exc).__name__}: {exc})", flush=True)
     print("V13 BYLINE CLEANER ACTIVE: publisher lead-ins and page headers removed, neutral wording on, media attribution stripped in every sentence.")
