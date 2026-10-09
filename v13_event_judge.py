@@ -128,13 +128,15 @@ def _parse(raw):
         return json.loads(m.group(0)) if m else None
 
 
-def ask(prompt):
-    """One verdict from the free pool, or None."""
+def ask(prompt, skip=""):
+    """One verdict from the free pool, or None. `skip` = a model already asked."""
     deadline = time.monotonic() + BUDGET_SECONDS
     groq = os.getenv("GROQ_API_KEY", "").strip()
     gem = os.getenv("AI_API_KEY", "").strip()
     if groq:
         for model in GROQ_MODELS:
+            if f"groq/{model}" == skip:
+                continue
             if time.monotonic() >= deadline:
                 return None
             try:
@@ -153,6 +155,8 @@ def ask(prompt):
                 print(f"V13 EVENT JUDGE: groq/{model} error ({type(exc).__name__}).", flush=True)
     if gem:
         for model in GEMINI_MODELS:
+            if f"gemini/{model}" == skip:
+                continue
             if time.monotonic() >= deadline:
                 return None
             try:
@@ -169,6 +173,23 @@ def ask(prompt):
             except Exception as exc:
                 print(f"V13 EVENT JUDGE: gemini/{model} error ({type(exc).__name__}).", flush=True)
     return None
+
+
+def related(head, title):
+    """Cheap sanity check: do the two headlines share the event or several words?"""
+    try:
+        import v13_incident_dedup as inc
+        if inc.match_strength(inc.signature(head), inc.signature(title)):
+            return True
+    except Exception:
+        pass
+    dd = _dd()
+    shared = (dd.fingerprint(head) & dd.fingerprint(title)) - dd.COMMON
+    return len(shared) >= 3
+
+
+def _is_repeat(verdict):
+    return str((verdict or {}).get("verdict", "")).strip().lower() in ("repeat", "duplicate", "same")
 
 
 def _log(health, entry):
@@ -208,6 +229,14 @@ def judge(caption):
     match = items[n - 1] if 1 <= n <= len(items) else None
     entry.update({"verdict": kind, "match": match["title"] if match else "",
                   "why": str(verdict.get("why", ""))[:100], "model": verdict.get("model", "")})
+    if _is_repeat(verdict) and match and not related(head, match["title"]):
+        # No important news may be lost to one model's mistake: a "repeat" that
+        # shares nothing visible with the earlier headline needs a second model.
+        second = ask(PROMPT % (head[:400], listing), skip=entry["model"])
+        entry["confirm"] = (second or {}).get("model", "none") + ":" + str((second or {}).get("verdict", "-"))
+        if not _is_repeat(second):
+            kind = "unconfirmed-repeat"
+            entry["verdict"] = kind
     _log(health, entry)
     router._save_health(health)
     if kind in ("repeat", "duplicate", "same") and match:

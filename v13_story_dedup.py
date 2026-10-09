@@ -237,3 +237,11 @@ def install(core, current):
         v13_event_judge.install()
     except Exception as exc:
         print(f"V13 EVENT JUDGE: not installed ({type(exc).__name__}: {exc})", flush=True)
+
+    # No important news lost (Oct 9): keyword rejections get a second opinion from
+    # the same free AI editor. Installed here, before the final editor gate.
+    try:
+        import v13_importance_rescue
+        v13_importance_rescue.install(core)
+    except Exception as exc:
+        print(f"V13 AI IMPORTANCE RESCUE: not installed ({type(exc).__name__}: {exc})", flush=True)
