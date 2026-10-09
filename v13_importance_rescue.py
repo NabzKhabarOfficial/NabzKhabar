@@ -43,10 +43,11 @@ SIGNAL = re.compile(
     r"دلار|ارز|بنزین|گازوئیل|قیمت|تورم|بورس|طلا|سکه|یارانه|کالابرگ|حقوق|مالیات|بانک مرکزی|"
     r"اینترنت|فیلتر|قطعی (?:برق|آب|گاز)|خاموشی|تعطیل|کنکور|اعدام|بازداشت|حکم|دادگاه|"
     r"مجلس|دولت|وزیر|رهبر|رئیس ?جمهور|پزشکیان|عراقچی|سپاه|ارتش|ترامپ|پوتین|نتانیاهو|هسته|تحریم|"
-    r"مذاکره|توافق|آتش ?بس|تنگه هرمز|"
+    r"مذاکره|توافق|آتش ?بس|تنگه هرمز|نوبل|جایزه|برنده|قهرمان|درگذشت|استعفا|انتخابات|کودتا|"
     r"killed|dead|died|deaths|injured|earthquake|flood|storm|hurricane|typhoon|wildfire|crash|explosion|"
     r"shooting|hostage|president|prime minister|minister|election|court|ruling|sanction|oil|"
-    r"market|stocks|nuclear|ceasefire|talks|deal|record|emergency)",
+    r"market|stocks|nuclear|ceasefire|talks|deal|record|emergency|nobel|prize|wins|won|champion|"
+    r"resign|coup|dies|passed away)",
     re.I,
 )
 _DIGITS = str.maketrans("۰۱۲۳۴۵۶۷۸۹", "0123456789")
