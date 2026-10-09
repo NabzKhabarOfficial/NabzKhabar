@@ -14,6 +14,9 @@ broken-text blocks. Every refusal is logged in docs/guard_log.json (last 100, ne
 with time, reason, the offending words and the title, so the daily review can see what the
 cleaners missed and fix them at the source. Fail-safe: any error in the guard lets the post
 through unchanged.
+
+It also fixes one wrong drop on the way in (_install_lane_scope): a ship hit, seized or on fire
+in Hormuz / the Persian Gulf / the Red Sea is never "foreign local" news.
 """
 
 import json
@@ -91,6 +94,37 @@ def _log(title, found):
         print(f"V13 FINAL GUARD: log skipped ({type(exc).__name__}).", flush=True)
 
 
+# ---------------------------------------------------------------- shipping-lane scope fix
+# Oct 9: «اصابت به یک کشتی غول پیکر در تنگه هرمز» was dropped as "foreign local" because the
+# Hormuz exception in run_bot only knew words like حمله/موشک/پهپاد. A ship hit, seized, on fire
+# or sunk in Iran's shipping lanes is never local news. Duplicates are still caught later by
+# the dedup chain; this only stops the wrong "local" drop.
+LANES = re.compile(r"(?:تنگه" + _S + r"*هرمز|خلیج" + _S + r"*فارس|دریای" + _S + r"*عمان|دریای" + _S + r"*سرخ|"
+                   r"باب" + _S + r"*المندب|hormuz|persian gulf|gulf of oman|red sea|bab el-mandeb)", re.I)
+LANE_EVENT = re.compile(r"(?:اصابت|توقیف|هدف" + _S + r"*قرار|انفجار|آتش" + _S + r"*سوزی|آتش" + _S + r"*گرفت|غرق|"
+                        r"حمله|سرنگون|شلیک|ربوده|مین|کشتی|نفتکش|نفت" + _S + r"*کش|ناو|seiz|struck|hit|attack|"
+                        r"explosion|tanker|vessel|ship)", re.I)
+
+
+def _install_lane_scope():
+    import v13_policy_guard as pg
+    previous = pg._foreign_local_only
+    if getattr(previous, "_lane_scope", False):
+        return
+
+    def lane_scope(candidate):
+        try:
+            text = " ".join(str(candidate.get(k, "") or "") for k in ("title", "summary", "description"))
+            if LANES.search(text) and LANE_EVENT.search(text):
+                return False
+        except Exception:
+            pass
+        return previous(candidate)
+
+    lane_scope._lane_scope = True
+    pg._foreign_local_only = lane_scope
+
+
 _INSTALLED = {"done": False}
 
 
@@ -118,5 +152,9 @@ def install():
         return "final-guard:" + found[0][0]
 
     rg.caption_problem = caption_problem
+    try:
+        _install_lane_scope()
+    except Exception as exc:
+        print(f"V13 FINAL GUARD: lane scope fix skipped ({type(exc).__name__}).", flush=True)
     _INSTALLED["done"] = True
     print("V13 FINAL GUARD ACTIVE: no post leaves with a media source or loaded wording.", flush=True)
