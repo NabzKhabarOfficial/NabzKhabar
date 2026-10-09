@@ -1365,12 +1365,6 @@
       "topic": "ورزش",
       "until": 1791648113.5998647
     },
-    "v4|از رقبا پیشی گرفت و دل پیاتزا را برد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: عملکرد ورزشکار در مسابقات داخلی ارزش خبری سطح بالا ندارد",
-      "topic": "ورزش",
-      "until": 1791615346.4518778
-    },
     "v4|از هر ۵ آمریکایی ۴ نفر ترامپ را مقصر می دانند / ۶۴ درصد جمهوری خواهان معتقدند سیاست های رئیس جمهور باعث گرانی شده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نظرسنجی‌ها تحلیل و افکار عمومی محسوب می‌شوند و خبر دست‌اول نیستند.",
@@ -2847,6 +2841,12 @@
       "topic": "اقتصاد",
       "until": 1791648693.7138443
     },
+    "v4|سقوط آزاد سهام اپراتورهای آمریکا / ماجرا چیست؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: US telecom stocks fall, limited global impact",
+      "topic": "اقتصاد",
+      "until": 1791661995.2533996
+    },
     "v4|سقوط مرگبار مرد ۵۵ساله مشهدی از روی داربست": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: یک مرگ منفرد در حوادث ساختمانی محلی",
@@ -3044,6 +3044,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: خبر استانی و برنامه‌ریزی برای توسعه است.",
       "topic": "جامعه",
       "until": 1791637682.786873
+    },
+    "v4|طرح دوفوریتی مجلس برای برخورد با ماینرهای غیرمجاز": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: پیشنهاد قانون برای کنترل ماینرهای رمزارز",
+      "topic": "سیاست",
+      "until": 1791661995.8395808
     },
     "v4|طرح گردشگری «اسب دره شوری» در سمیرم اصفهان کلنگ زنی شد": {
       "ok": false,
@@ -4004,12 +4010,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: سخنرانی تشریفاتی رئیس‌جمهور در نشست سران کشورهای مشترک‌المنافع",
       "topic": "سیاست",
       "until": 1791623501.0878541
-    },
-    "v4|پزشکیان: گسترش همکاری ها و تقویت اعتماد و همدلی، زمینه ساز توسعه روابط دو کشور است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: General diplomatic talk, no concrete decision; low impact",
-      "topic": "سیاست",
-      "until": 1791615345.0149484
     },
     "v4|پزشکیان:اثرپذیری از آمریکا باعث از دست رفتن قدرت شانگهای وبریکس می شود": {
       "ok": true,
@@ -4974,20 +4974,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Player injury comment, not major competition or national impact",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791565790,
-      "title": "علیپور: به دلیل مصدومیت در تیم ملی نبودم"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: خبرهای روزانه در شهرستان‌های غربی",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791565791,
-      "title": "اخبار کوتاه از غرب اصفهان"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: رکوردشکنی بازیکن پرسپولیس در لیگ فوتبال، خبری داخلی و باشگاهی است.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5532,6 +5518,20 @@
       "rule": "routine-metaphorical-topic",
       "t": 1791575058,
       "title": "‫قعرنشینی تاتنهام شوخی نیست؛ باید واکنش نشان بدهیم/ دی زربی: سه هفته است چشم انتظار بازی یونایتدم"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: US telecom stocks fall, limited global impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791575595,
+      "title": "سقوط آزاد سهام اپراتورهای آمریکا / ماجرا چیست؟"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: پیشنهاد قانون برای کنترل ماینرهای رمزارز",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1791575595,
+      "title": "طرح دوفوریتی مجلس برای برخورد با ماینرهای غیرمجاز"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10267,7 +10267,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791574942
+    "at": 1791575528
   },
   "gemini:gemini-3.5-flash-lite": {
     "disabled_until": 1791575667,
