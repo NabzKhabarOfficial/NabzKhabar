@@ -4,7 +4,9 @@ Also strips news-site page chrome that the article extractor sometimes keeps in 
 (Mehr/ISNA-style "۱۶ مهر ۱۴۰۵، ۲۲:۰۶ کد مطلب 6972118 بین الملل غرب آسیا ..." header with the
 section breadcrumb repeated and the headline repeated), and keeps the Persian half-space
 (ZWNJ) so words like «می‌شود» and «رسانه‌ها» are not split in two. Loaded agency terms
-(«رژیم صهیونیستی»، «هلاکت»، «اشغالگر») are turned into neutral wording (NEUTRAL_TERMS).
+(«رژیم صهیونیستی»، «هلاکت»، «اشغالگر»، «ارتش متجاوز») are turned into neutral wording (NEUTRAL_TERMS).
+Media attributions inside the body («به گزارش خبرگزاری ...»، «به نقل از رویترز») are removed in
+every sentence, and a detail line that only says what some outlet wrote is dropped (strip_media).
 """
 import re
 
@@ -82,6 +84,14 @@ NEUTRAL_TERMS = (
     ("هلاک شدند", "کشته شدند"),
     ("هلاک شد", "کشته شد"),
     ("هلاکت", "کشته شدن"),
+    # Oct 9: loaded war wording in the newsroom's own voice (BBC/Reuters style).
+    ("ارتش متجاوز آمریکا", "ارتش آمریکا"),
+    ("ارتش متجاوز", "ارتش"),
+    ("متجاوزان آمریکایی", "نیروهای آمریکایی"),
+    ("نظامیان متجاوز", "نظامیان"),
+    ("تجاوز نظامی", "حمله نظامی"),
+    ("تجاوز آمریکا", "حمله آمریکا"),
+    ("تجاوز اسرائیل", "حمله اسرائیل"),
 )
 
 
@@ -146,6 +156,68 @@ def clean(value):
     return re.sub(r"[ \t]{2,}", " ", text).strip()
 
 
+# ---------------------------------------------------------------- attribution inside the body
+# Owner rule (Oct 9 2026): no media source anywhere in a post, not only at its start.
+# Seen on Oct 9: «به گزارش خبرگزاری مهر نیویورک تایمز، آکادمی سوئد ...» in a detail line and
+# «یک رسانه آمریکایی با اشاره به ...، ...» as a whole detail line. Officials and speakers
+# («به گفته سپاه»، «ترامپ گفت») are never touched; only media outlets are.
+_MEDIA = (
+    r"(?:خبرگزاری|خبرنگار|رسانه|روزنامه|نشریه|پایگاه" + _S + r"+خبری|سایت" + _S + r"+خبری|وب" + _S + r"*سایت|"
+    r"شبکه" + _S + r"+(?:خبری|تلویزیونی)|تلویزیون|صدا" + _S + r"*و" + _S + r"*سیما|ایسنا|ایرنا|تسنیم|ایلنا|برنا|"
+    r"بلومبرگ|رویترز|الحدث|الجزیره|العربیه|المیادین|اکسیوس|آکسیوس|آسوشیتدپرس|یورونیوز|"
+    r"سی" + _S + r"*ان" + _S + r"*ان|بی" + _S + r"*بی" + _S + r"*سی|فرانس" + _S + r"+پرس|"
+    r"نیویورک" + _S + r"+تایمز|واشنگتن" + _S + r"+پست|وال" + _S + r"+استریت" + _S + r"+ژورنال|"
+    r"فایننشال" + _S + r"+تایمز|تایمز" + _S + r"+اسرائیل|گاردین|اسکای" + _S + r"+نیوز|فاکس" + _S + r"+نیوز|"
+    r"ان" + _S + r"*بی" + _S + r"*سی|سی" + _S + r"*بی" + _S + r"*اس|اکونومیست|پولیتیکو|اسپوتنیک|تاس)"
+)
+_VIA = r"(?:به" + _S + r"+گزارش|به" + _S + r"+نقل" + _S + r"+از)"
+_LEAD_ATTR = re.compile(r"^\s*" + _VIA + r"\s*[^،,.!؟\n]{0,30}?" + _MEDIA + r"[^،,.!؟\n]{0,40}[،,]\s*")
+_MID_ATTR = re.compile(r"[،,]\s*" + _VIA + r"\s*[^،,.!؟\n]{0,30}?" + _MEDIA + r"[^،,.!؟\n]{0,30}[،,]\s*")
+_TAIL_ATTR = re.compile(r"[،,]?\s*" + _VIA + r"\s*[^،,.!؟\n]{0,30}?" + _MEDIA + r"[^،,.!؟\n]{0,30}(?=[.!؟]?\s*$)")
+# «مهر» and «فارس» are also a month and a province: only right after «به گزارش».
+_DIRECT_AGENCY = re.compile(r"(?:^|[،,])\s*" + _VIA + r"\s*(?:مهر|فارس)\s*[،,]\s*")
+_MEDIA_SUBJECT = (r"^\s*(?:یک|چند|برخی)?\s*(?:" + _MEDIA + r")(?:" + _S + r"*(?:های|ها))?")
+# «رویترز گزارش داد که ایران ...» -> «ایران ...»
+_REPORTED_THAT = re.compile(_MEDIA_SUBJECT + r"[^،,.!؟\n]{0,40}?\s(?:گزارش" + _S + r"+داد|نوشت|"
+                            r"گزارش" + _S + r"+کرد|مدعی" + _S + r"+شد|اعلام" + _S + r"+کرد)(?![\u0600-\u06FF])\s*(?:که\s+)?[،,]?\s*")
+# What clean() leaves when it removed a leading outlet name: «رویترز گزارش داد که X» -> «گزارش داد که X».
+_ORPHAN_VERB = re.compile(r"^\s*(?:گزارش" + _S + r"+داد|گزارش" + _S + r"+داده" + _S + r"+است|نوشت)(?![\u0600-\u06FF])\s*(?:که\s+)?[،,:]?\s*")
+# A detail line is dropped only when an outlet is its subject AND it is a reporting line
+# («یک رسانه آمریکایی با اشاره به ... زیر سوال برده است»). «خبرنگاران الجزیره کشته شدند» or
+# «روزنامه‌نگاران تجمع کردند» are news, not attribution, and stay.
+_MEDIA_SUBJECT_RE = re.compile(_MEDIA_SUBJECT + r"(?![\u0600-\u06FF])(?!" + _S + r"*نگار)")
+_REPORTING = re.compile(r"(?<![\u0600-\u06FF])(?:گزارش" + _S + r"+(?:داد|داده|کرد)|نوشت|نوشته|مدعی" + _S + r"+شد|"
+                        r"ادعا" + _S + r"+کرد|با" + _S + r"+اشاره" + _S + r"+به|به" + _S + r"+نقل" + _S + r"+از|"
+                        r"افشا" + _S + r"+کرد|فاش" + _S + r"+کرد|زیر" + _S + r"+سوال|زیر" + _S + r"+سؤال|"
+                        r"تحلیل" + _S + r"+کرد|مدعی" + _S + r"+است|می" + _S + r"*نویسد|می" + _S + r"*گوید)"
+                        r"(?![\u0600-\u06FF])")
+
+
+def _split_sentences(text):
+    return [p for p in re.split(r"(?<=[.!؟؛])\s+", str(text or "").strip()) if p.strip()]
+
+
+def strip_media(text):
+    """Remove media attributions from every sentence of a body. A detail sentence whose
+    subject is a media outlet (it only says what some outlet wrote) is dropped; the lead is
+    always kept so the post stays publishable."""
+    out = []
+    for i, sentence in enumerate(_split_sentences(text)):
+        s = _DIRECT_AGENCY.sub(" ", sentence)
+        s = _LEAD_ATTR.sub("", s.strip(), count=1)
+        s = _MID_ATTR.sub(" ", s)
+        s = _TAIL_ATTR.sub("", s)
+        rest = _ORPHAN_VERB.sub("", _REPORTED_THAT.sub("", s, count=1), count=1)
+        if rest != s and len(rest.split()) >= 5:
+            s = rest
+        s = re.sub(r"[ \t]{2,}", " ", s).strip()
+        if i > 0 and _MEDIA_SUBJECT_RE.search(s) and not s.lstrip().startswith("خبرنگار") and _REPORTING.search(s):
+            continue
+        if s:
+            out.append(s)
+    return " ".join(out) if out else str(text or "")
+
+
 def install(core):
     for name in ("build_caption",):
         original = getattr(core, name, None)
@@ -153,6 +225,6 @@ def install(core):
             continue
         def wrapped(title, body, _original=original):
             t = clean(title)
-            return _original(neutral(t), neutral(clean(strip_chrome(body, t))))
+            return _original(neutral(t), neutral(strip_media(clean(strip_chrome(body, t)))))
         setattr(core, name, wrapped)
-    print("V13 BYLINE CLEANER ACTIVE: publisher lead-ins and page headers removed, neutral wording on.")
+    print("V13 BYLINE CLEANER ACTIVE: publisher lead-ins and page headers removed, neutral wording on, media attribution stripped in every sentence.")
