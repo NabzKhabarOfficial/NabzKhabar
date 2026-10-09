@@ -1209,12 +1209,6 @@
       "topic": "حادثه",
       "until": 1791645784.7147658
     },
-    "v4|آتش سوزی در فرودگاه ریاض؛ حملات حوثی ها به عربستان ادامه دارد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: حمله حوثی‌ها و آتش‌سوزی در فرودگاه ریاض",
-      "topic": "نظامی",
-      "until": 1791621205.9815192
-    },
     "v4|آتش سوزی در نخلستان های مثمر اروندکنار آبادان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آتش‌سوزی محلی در نخلستان‌های آبادان؛ اخبار استانی و محلی اهمیت درجه‌یک ندارد.",
@@ -3489,6 +3483,12 @@
       "topic": "اقتصاد",
       "until": 1791632182.082627
     },
+    "v4|مسابقات قهرمانی کشور کلیستنیکس در شیراز": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: National sports event, not top-tier",
+      "topic": "ورزش",
+      "until": 1791674146.0099268
+    },
     "v4|مسابقات ورزشی فرصتی برای ترویج جوانمردی است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات استاندار اردبیل درباره مسابقات کاراته محلی است",
@@ -4447,7 +4447,7 @@
   "_editorial_blocks": {
     "attacker in flydubai flight meant to crash into israeli airport, emiratis say": {
       "reason": "policy_scope_blocked",
-      "until": 1791608757.5488403
+      "until": 1791609346.8826222
     },
     "drone strike kills 30 people in sudan’s blue nile region": {
       "reason": "ai_unavailable_foreign",
@@ -5040,13 +5040,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: تجلیل از رتبه کنکور یک رویداد محلی و فاقد اهمیت ملی است.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1791572135,
-      "title": "رتبه ۷۸ کنکور تجربی در جاسک تجلیل شد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Coach appointment, not a top-tier event",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -5598,6 +5591,13 @@
       "rule": "below-event-threshold",
       "t": 1791587156,
       "title": "فاطمه مهاجرانی هم جواب روبیو را داد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: National sports event, not top-tier",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1791587746,
+      "title": "مسابقات قهرمانی کشور کلیستنیکس در شیراز"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10294,7 +10294,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791587097
+    "at": 1791587692
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791586947.0,
