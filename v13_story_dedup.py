@@ -229,3 +229,11 @@ def install(core, current):
         v13_incident_dedup.install()
     except Exception as exc:
         print(f"V13 INCIDENT DEDUP: not installed ({type(exc).__name__}: {exc})", flush=True)
+
+    # Root fix (Oct 9): an AI judge compares the final post with every headline of
+    # the last 24h and blocks the same event in any wording. Runs last.
+    try:
+        import v13_event_judge
+        v13_event_judge.install()
+    except Exception as exc:
+        print(f"V13 EVENT JUDGE: not installed ({type(exc).__name__}: {exc})", flush=True)
