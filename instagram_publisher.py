@@ -16,6 +16,17 @@ from bs4 import BeautifulSoup
 from PIL import Image
 from instagrapi import Client
 
+# TURNED OFF (owner rule, Oct 10 2026): no Instagram posting through unofficial clients
+# (instagrapi), bots or simulated clicks; they risk the account. Instagram content is now
+# prepared as a weekly pack and scheduled by the owner in Meta Business Suite. The code is
+# kept, but main() and login_client() refuse to run unless IG_UNOFFICIAL_ENABLED=1.
+OFF_MESSAGE = "IG: turned off by the owner (no unofficial posting; schedule in Meta Business Suite)"
+
+
+def unofficial_off():
+    return os.getenv("IG_UNOFFICIAL_ENABLED", "0").strip() != "1"
+
+
 STATE_FILE = Path("instagram_state.json")
 SESSION_FILE = Path(".instagram_session.json")
 MEDIA_DIR = Path(".instagram_media")
@@ -418,6 +429,8 @@ def download_image(url, key):
 
 
 def login_client():
+    if unofficial_off():
+        raise RuntimeError(OFF_MESSAGE)
     username = os.getenv("IG_USERNAME", "").strip()
     password = os.getenv("IG_PASSWORD", "")
     session_b64 = os.getenv("IG_SESSION_B64", "").strip()
@@ -492,6 +505,9 @@ def pause(state, reason):
 
 
 def main():
+    if unofficial_off():
+        print(OFF_MESSAGE)
+        return 0
     if not in_post_window():
         print(f"IG: outside posting window {POST_WINDOW} (Tehran)")
         return 0
