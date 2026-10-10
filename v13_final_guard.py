@@ -7,7 +7,9 @@ never reach the channel:
 
 * a media source is still named («به گزارش خبرگزاری ...»، «به نقل از رویترز»، «منبع: ...»,
   or a line whose subject is an outlet that "reported" something);
-* loaded wording is still there («رژیم صهیونیستی»، «هلاکت»، «متجاوز»، «صهیونیست»).
+* loaded wording is still there («رژیم صهیونیستی»، «هلاکت»، «متجاوز»، «صهیونیست»);
+* website page chrome is still glued to the lead (section name + a «۰ نفر» counter + the
+  headline repeated), or a line is a "related story" teaser such as «: دوباره جنگ می شود ؟».
 
 A refused post is an editorial block (never a red run), exactly like the relevance gate's
 broken-text blocks. Every refusal is logged in docs/guard_log.json (last 100, newest last)
@@ -55,6 +57,17 @@ def problems(title, sentences):
         found.append(("loaded-wording", m.group(0)))
     if SOURCE_LINE.search(text):
         found.append(("source-line", "منبع:"))
+    try:
+        import v13_byline_cleaner as bc
+        sents = [str(x or "") for x in sentences or []]
+        if sents and bc.strip_echo(sents[0] + " " + " ".join(sents[1:3]), title) != sents[0] + " " + " ".join(sents[1:3]):
+            found.append(("page-chrome", sents[0][:60]))
+        for x in sents:
+            if bc._TEASER.search(x):
+                found.append(("teaser-fragment", x[:60]))
+                break
+    except Exception:
+        pass
     try:
         via_media, direct, subject, reporting = _media_patterns()
         for rx in (via_media, direct):

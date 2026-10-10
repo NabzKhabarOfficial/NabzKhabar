@@ -193,6 +193,43 @@ _REPORTING = re.compile(r"(?<![\u0600-\u06FF])(?:گزارش" + _S + r"+(?:داد
                         r"(?![\u0600-\u06FF])")
 
 
+# ---------------------------------------------------------------- page chrome without a date
+# Oct 10: «اخبار اجتماعی پلیس ۰ نفر <headline again> دادستان ...»: section breadcrumb + a like
+# counter + the repeated headline, glued in front of the real lead (no date/code, so strip_chrome
+# did not fire), and a "related story" teaser line «: دوباره جنگ می شود ؟» at the end.
+def _title_re(title):
+    words = [w for w in re.split(r"[\s\u200c]+", str(title or "").strip()) if w]
+    if len(words) < 4:
+        return None
+    return re.compile((_S + r"+").join(re.escape(w) for w in words))
+
+
+def strip_echo(text, title=""):
+    """Cut a short junk prefix that ends with the repeated headline. A body that simply starts
+    with the headline is left alone; the cut is kept only if a real lead remains."""
+    raw = str(text or "")
+    rx = _title_re(title)
+    if not rx:
+        return raw
+    m = rx.search(raw[:400])
+    if not m or m.start() == 0:
+        return raw
+    prefix = raw[:m.start()].strip()
+    if not prefix or len(prefix.split()) > 12 or re.search(r"[.!؟]", prefix):
+        return raw
+    # Only page chrome: a counter/number or a section name, and no verb of a real sentence.
+    looks_chrome = (bool(re.search(r"(?:^|\s)[0-9۰-۹]+\s*(?:نفر|بازدید|دیدگاه|نظر|لایک|پسند)(?:\s|$)", prefix))
+                    or bool(_SECTION_RE.match(prefix)))
+    if not looks_chrome or _VERBISH.search(prefix):
+        return raw
+    rest = raw[m.end():].lstrip(" .:،,-–—|/")
+    return rest if len(rest.split()) >= 12 else raw
+
+
+_VERBISH = re.compile(r"(?<![\u0600-\u06FF])(?:کرد|کردند|شد|شدند|گفت|است|اعلام|کند|کنند|می" + _S + r"*\S+|داد|دارد|بود|خواهد|افزود)(?![\u0600-\u06FF])")
+_TEASER = re.compile(r"^\s*[:：؛،,\-–—|]")
+
+
 def _split_sentences(text):
     return [p for p in re.split(r"(?<=[.!؟؛])\s+", str(text or "").strip()) if p.strip()]
 
@@ -211,6 +248,8 @@ def strip_media(text):
         if rest != s and len(rest.split()) >= 5:
             s = rest
         s = re.sub(r"[ \t]{2,}", " ", s).strip()
+        if i > 0 and _TEASER.search(s):
+            continue  # «: دوباره جنگ می شود ؟» is a link teaser, not a sentence
         if i > 0 and _MEDIA_SUBJECT_RE.search(s) and not s.lstrip().startswith("خبرنگار") and _REPORTING.search(s):
             continue
         if s:
@@ -225,7 +264,7 @@ def install(core):
             continue
         def wrapped(title, body, _original=original):
             t = clean(title)
-            return _original(neutral(t), neutral(strip_media(clean(strip_chrome(body, t)))))
+            return _original(neutral(t), neutral(strip_media(strip_echo(clean(strip_chrome(body, t)), t))))
         setattr(core, name, wrapped)
     # Last line of defence after all cleanup: refuse a post that still breaks an owner rule.
     try:
