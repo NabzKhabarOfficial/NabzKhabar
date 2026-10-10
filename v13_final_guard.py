@@ -17,6 +17,12 @@ with time, reason, the offending words and the title, so the daily review can se
 cleaners missed and fix them at the source. Fail-safe: any error in the guard lets the post
 through unchanged.
 
+Last, an AI sense check (coherence, Oct 10): a free model reads the finished headline and text
+and says whether the text contradicts the headline or itself, or is garbled (Oct 10: «آمریکا از
+اسرائیل نخواسته ...» followed by «بلکه مشخصاً خواستار حمله اسرائیل بودند»). A flag needs a
+second model to agree before the post is refused, so no news is lost to one model's mistake;
+if no model answers, the post goes out (the rule checks above have already run).
+
 It also fixes one wrong drop on the way in (_install_lane_scope): a ship hit, seized or on fire
 in Hormuz / the Persian Gulf / the Red Sea is never "foreign local" news.
 """
@@ -165,6 +171,53 @@ def _install_lane_scope():
     pg._foreign_local_only = lane_scope
 
 
+# ---------------------------------------------------------------- AI sense check
+COHERENCE_PROMPT = """You check a Persian Telegram news post right before it is published.
+
+HEADLINE: %s
+
+TEXT: %s
+
+Answer one question: can a reader understand this post without being confused?
+- "contradiction": the text says the opposite of the headline, or two sentences of the
+  text say opposite things about the same fact (e.g. "X did not ask for Y" and then
+  "X specifically asked for Y").
+- "garbled": broken or cut-off sentences, words glued together, leftover website
+  text, so the meaning is unclear.
+- "ok": clear and consistent. Different numbers from different officials, a denial
+  quoted next to a claim, or "A said X, B said not X" is ok: that is normal reporting.
+
+Answer ONLY JSON: {"verdict":"ok|contradiction|garbled","why":"<max 12 words>"}"""
+_BOARD = re.compile(r"نبض" + _S + r"*آموزش|هواشناسی|پیش" + _S + r"*بینی" + _S + r"*هوا|قیمت|برنامه" + _S + r"+(?:بازی|مسابقات)|"
+                    r"مهم" + _S + r"*ترین" + _S + r"+خبرهای" + _S + r"+امروز|نتایج|جدول")
+_BAD = ("contradiction", "garbled")
+
+
+def coherence(title, sentences):
+    """("ai-contradiction" | "ai-garbled", why) when two free models agree the post is
+    confusing, else None. Never raises."""
+    try:
+        text = " ".join(str(s or "") for s in sentences or []).strip()
+        title = str(title or "").strip()
+        if len(text.split()) < 12 or len(title) < 12 or _BOARD.search(title):
+            return None
+        import v13_event_judge as ej
+        prompt = COHERENCE_PROMPT % (title[:200], text[:900])
+        first = ej.ask(prompt)
+        kind = str((first or {}).get("verdict", "")).strip().lower()
+        if kind not in _BAD:
+            return None
+        second = ej.ask(prompt, skip=(first or {}).get("model", ""))
+        kind2 = str((second or {}).get("verdict", "")).strip().lower()
+        if kind2 not in _BAD:
+            print(f"V13 FINAL GUARD: AI sense check: one model said {kind}, the second did not; allowed.", flush=True)
+            return None
+        return ("ai-" + kind, str(first.get("why", ""))[:80] + " | " + str(first.get("model", "")))
+    except Exception as exc:
+        print(f"V13 FINAL GUARD: AI sense check skipped ({type(exc).__name__}).", flush=True)
+        return None
+
+
 _INSTALLED = {"done": False}
 
 
@@ -184,6 +237,10 @@ def install():
             found = problems(title, sentences)
         except Exception:
             return ""
+        if not found and os.getenv("NABZ_AI_SENSE_CHECK", "1") != "0":
+            flag = coherence(title, sentences)
+            if flag:
+                found = [flag]
         if not found:
             return ""
         _log(title, found)
