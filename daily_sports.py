@@ -81,6 +81,16 @@ def _broadcast(url):
     return "آنتن" + (" · " + m.group(1).replace("-", " ").strip() if m else "")
 
 
+def visual_score(host, guest):
+    """Score text for the image card, in VISUAL left-to-right order (guest - host).
+
+    The card draws the score without Persian letters, so it is laid out left-to-right, while
+    the team line "host – guest" is right-to-left with the host on the right. Writing the
+    guest first puts each number on the same side as its team (fixed Oct 11 2026: the cards
+    showed every result the wrong way round)."""
+    return f"{guest} - {host}"
+
+
 def _score(m):
     if m.get("sport") == 3:
         h, g = m.get("hostPoint", ""), m.get("guestPoint", "")
@@ -88,7 +98,7 @@ def _score(m):
         h, g = m.get("hostGoals", ""), m.get("guestGoals", "")
     if str(h) == "" or str(g) == "":
         return ""
-    return f"{h} - {g}"
+    return visual_score(h, g)
 
 
 def select(data, now=None):

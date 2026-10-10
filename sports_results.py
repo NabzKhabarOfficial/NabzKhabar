@@ -111,11 +111,12 @@ def card_rows(board, results):
         res = results.get(m["id"])
         if not res or res["status"] != FINISHED or res["h"] is None or res["g"] is None:
             continue
-        # Persian digits are laid out right-to-left on the card, so host-first puts the
-        # host's number on the right, under the host's name.
-        score = f"{res['h']} - {res['g']}"
+        # The card draws the score left-to-right (digits only, no Persian letters), while the
+        # team names run right-to-left with the host on the RIGHT. So the score text is written
+        # in visual order, guest first: the host's number lands on the right, under the host.
+        score = daily_sports.visual_score(res["h"], res["g"])
         if res.get("pens"):
-            score = f"({res['pens'][0]}-{res['pens'][1]}) " + score
+            score = f"({res['pens'][1]}-{res['pens'][0]}) " + score
         rows.append({**m, "start": datetime.fromisoformat(m["start"]), "finished": True, "live": False,
                      "score": score, "broadcast": "", "res": res})
     return rows
