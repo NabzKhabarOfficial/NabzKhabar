@@ -38,6 +38,14 @@ LOADED = re.compile(
     r"صهیونیست\S*|هلاکت|هلاک" + _S + r"+شد\S*|(?:ارتش|رژیم|دشمن|نظامیان)" + _S + r"+متجاوز|"
     r"متجاوز" + _S + r"+آمریکا\S*|متجاوزان" + _S + r"+آمریکایی|تجاوز" + _S + r"+نظامی)(?![" + _P + r"])")
 # (a bare «متجاوز» is not refused: «بازداشت متجاوز جنسی» is ordinary crime news)
+# Named outlets (brands only; generic words like «رسانه» or «تلویزیون» stay allowed).
+OUTLET_NAMES = re.compile(r"(?<![" + _P + r"])(?:بلومبرگ|رویترز|الحدث|الجزیره|العربیه|المیادین|اکسیوس|آکسیوس|"
+                          r"آسوشیتدپرس|یورونیوز|سی" + _S + r"*ان" + _S + r"*ان|بی" + _S + r"*بی" + _S + r"*سی|"
+                          r"فرانس" + _S + r"+پرس|نیویورک" + _S + r"+تایمز|واشنگتن" + _S + r"+پست|"
+                          r"وال" + _S + r"+استریت" + _S + r"+ژورنال|فایننشال" + _S + r"+تایمز|تایمز" + _S + r"+اسرائیل|"
+                          r"گاردین|اسکای" + _S + r"+نیوز|فاکس" + _S + r"+نیوز|پولیتیکو|اکونومیست|اسپوتنیک|"
+                          r"ایسنا|ایرنا|تسنیم|ایلنا|خبرگزاری" + _S + r"+\S+)(?![" + _P + r"])")
+VICTIM = re.compile(r"(?:کشته|زخمی|مجروح|بازداشت|دستگیر|ربوده|شهید|ترور|اخراج|توقیف|تعطیل|فیلتر|محکوم|زندانی)")
 SOURCE_LINE = re.compile(r"(?:^|\n)\s*(?:🔗\s*)?منبع\s*[:：]")
 
 
@@ -65,6 +73,25 @@ def problems(title, sentences):
         for x in sents:
             if bc._TEASER.search(x):
                 found.append(("teaser-fragment", x[:60]))
+                break
+    except Exception:
+        pass
+    try:
+        import v13_byline_cleaner as bc
+        sents = [str(x or "") for x in sentences or []]
+        head = " ".join(sents[:2])[:400]
+        if bc.PUBLISHED_RE.search(head) or bc.DATE_TIME_RE.search(head) or re.search(r"\s>>\s", head):
+            found.append(("page-chrome", head[:60]))
+        # Owner rule: no outlet or reporter of an outlet anywhere (Oct 10: «خبرنگار آکسیوس»).
+        reporter = re.compile(r"خبرنگار" + _S + r"*(?:ان)?" + _S + r"+[^،,.!؟:\n]{0,15}?(?:" + bc._MEDIA + r")")
+        for rx in (OUTLET_NAMES, reporter):
+            for m in rx.finditer(text):
+                around = text[max(0, m.start() - 40): m.end() + 40]
+                if VICTIM.search(around):  # «خبرنگار الجزیره کشته شد» is the news itself
+                    continue
+                found.append(("media-source", m.group(0)[:60]))
+                break
+            if found and found[-1][0] == "media-source":
                 break
     except Exception:
         pass

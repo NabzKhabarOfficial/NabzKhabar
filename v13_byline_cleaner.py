@@ -46,6 +46,16 @@ _D = r"[0-9۰-۹]"
 _MONTHS = r"(?:فروردین|اردیبهشت|خرداد|تیر|مرداد|شهریور|مهر|آبان|آذر|دی|بهمن|اسفند)"
 DATE_TIME_RE = re.compile(_D + r"{1,2}\s+" + _MONTHS + r"\s+" + _D + r"{4}\s*[،,\-–]?\s*(?:ساعت\s*)?" + _D + r"{1,2}:" + _D + r"{2}")
 CODE_RE = re.compile(r"کد" + _S + r"*(?:مطلب|خبر)\s*[:：]?\s*" + _D + r"+")
+# Oct 10: «⚡️ تاریخ انتشار: ۳۷ : ۲۲ - ۱۸ مهر ۱۴۰۵ بین الملل >> آمریکا ...»: a "published" label,
+# the time printed right-to-left with spaces around the colon, the date after it, and a
+# breadcrumb joined with ">>". DATE_TIME_RE (date first, "22:37") did not see it.
+_TIME = _D + r"{1,2}\s*:\s*" + _D + r"{2}"
+_DATE = _D + r"{1,2}\s+" + _MONTHS + r"\s+" + _D + r"{4}"
+PUBLISHED_RE = re.compile(
+    r"(?:⚡️?\s*)?(?:تاریخ" + _S + r"+(?:انتشار|انتشار" + _S + r"+خبر)|زمان" + _S + r"+انتشار|انتشار)\s*[:：]\s*"
+    r"(?:" + _TIME + r"\s*[-–،,]?\s*(?:" + _DATE + r")?|" + _DATE + r"\s*[-–،,]?\s*(?:ساعت\s*)?(?:" + _TIME + r")?)"
+    r"|" + _TIME + r"\s*[-–]\s*" + _DATE)
+CRUMB_RE = re.compile(r"^\s*(?:>>|»|›|>)\s*")
 # Section names news sites print above an article (breadcrumb). Only removed at the very
 # start of the body, never inside a sentence.
 SECTIONS = (
@@ -114,10 +124,11 @@ def strip_chrome(text, title=""):
     """Remove the page header (date/time, article code, section breadcrumb, repeated headline)
     from the start of an article body. Text that has no such header is returned unchanged."""
     raw = str(text or "")
-    if not (CODE_RE.search(raw[:400]) or DATE_TIME_RE.search(raw[:400])):
+    if not (CODE_RE.search(raw[:400]) or DATE_TIME_RE.search(raw[:400]) or PUBLISHED_RE.search(raw[:400])):
         return raw
     head, tail = raw[:400], raw[400:]
     head = CODE_RE.sub(" ", head)
+    head = PUBLISHED_RE.sub(" ", head)
     head = DATE_TIME_RE.sub(" ", head)
     head = re.sub(r"\s{2,}", " ", head).lstrip(" ⚡️|-–—:،,")
     for _ in range(12):
@@ -126,6 +137,18 @@ def strip_chrome(text, title=""):
             break
         head = new
     text = (head + tail).strip()
+    # A page header was found, so whatever short run of words stands before the repeated
+    # headline (rest of the breadcrumb «>> آمریکا», a sub-headline «خبرنگار ... دو مقام:») is
+    # page chrome too. Cut it with the headline, only if a real lead (12+ words) remains.
+    rx = _title_re(title)
+    m = rx.search(text[:450]) if rx else None
+    if m and m.start() > 0:
+        prefix = text[:m.start()]
+        if len(prefix.split()) <= 22 and not re.search(r"[.!؟]", prefix):
+            rest = text[m.end():].lstrip(" .:،,-–—|")
+            if len(rest.split()) >= 12:
+                text = rest
+    text = CRUMB_RE.sub("", text, count=1) if CRUMB_RE.match(text) and not text[:1].isalnum() else text
     t = re.sub(r"\s+", " ", str(title or "").replace("\u200c", " ")).strip()
     if len(t) >= 12:
         for _ in range(2):
@@ -234,11 +257,31 @@ def _split_sentences(text):
     return [p for p in re.split(r"(?<=[.!؟؛])\s+", str(text or "").strip()) if p.strip()]
 
 
+# Oct 10: «باراک راوید، خبرنگار آکسیوس نوشت: دو مقام ... به من گفتند که ...» -> the reporter's
+# name, desk and outlet go, and his «به من گفتند» becomes a plain «گفتند».
+_JOURNALIST_LEAD = re.compile(
+    r"(?:^|(?<=[.!؟:،]\s))\s*(?:[^\s،,.!؟:]+\s+){0,3}?[^\s،,.!؟:]+\s*[،,]\s*"
+    r"(?:خبرنگار|روزنامه" + _S + r"*نگار|تحلیلگر|سردبیر|گزارشگر|ستون" + _S + r"*نویس)" + _S + r"+"
+    r"(?:ارشد" + _S + r"+)?(?:سیاسی" + _S + r"+|نظامی" + _S + r"+|کاخ" + _S + r"+سفید" + _S + r"+)?[^،,.!؟:]{0,20}?"
+    r"(?:" + _MEDIA + r")[^،,.!؟:]{0,25}?\s+(?:نوشت|گفت|گزارش" + _S + r"+داد|افزود|مدعی" + _S + r"+شد)"
+    r"(?![\u0600-\u06FF])\s*(?:که\s+)?[:：،,]?\s*")
+_TO_ME = re.compile(r"(?<![\u0600-\u06FF])به" + _S + r"+من" + _S + r"+(گفتند|گفت|گفته" + _S + r"*اند|اطلاع" + _S + r"+دادند)(?![\u0600-\u06FF])")
+
+
+def strip_journalist(text):
+    raw = str(text or "")
+    out = _JOURNALIST_LEAD.sub(" ", raw)
+    if out != raw:  # only the removed reporter's own «به من گفتند»
+        out = _TO_ME.sub(r"\1", out, count=1)
+    return re.sub(r"[ \t]{2,}", " ", out).strip()
+
+
 def strip_media(text):
     """Remove media attributions from every sentence of a body. A detail sentence whose
     subject is a media outlet (it only says what some outlet wrote) is dropped; the lead is
     always kept so the post stays publishable."""
     out = []
+    text = strip_journalist(text)
     for i, sentence in enumerate(_split_sentences(text)):
         s = _DIRECT_AGENCY.sub(" ", sentence)
         s = _LEAD_ATTR.sub("", s.strip(), count=1)
