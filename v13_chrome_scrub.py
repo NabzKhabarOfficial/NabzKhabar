@@ -8,8 +8,8 @@ real lead, and the topic tags matched part of a word.
 * scrub_lead(title, body): removes links, a section breadcrumb (two or more section names in a
   row, or section names right before the repeated headline) and the repeated headline from the
   START of the text. A lone real word such as «ایران» or «دولت» at the start is kept.
-* leftover(sentences): the last check for v13_final_guard; a link or a doubled section name
-  that is still there blocks the post.
+* leftover(sentences): the last check for v13_final_guard; a link, a doubled section name or a
+  like/view counter widget («شما قبلا این خبر را لایک کرده اید») still there blocks the post.
 * tag_hit(word, text): whole-word match for topic tags («عراق» never matches «عراقچی»).
 Fail-safe: any doubt returns the text unchanged.
 """
@@ -34,13 +34,20 @@ _ALT = "|".join(re.escape(s) for s in sorted(SECTIONS, key=len, reverse=True))
 _SECTION_RE = re.compile(r"^(?:(?:" + _ALT + r")(?:\s+|$|\s*[|/>»،,:-]\s*))+")
 _SECTION_RUN = re.compile(_ALT)
 _EDGE = " -|/>»،,:"
+# Oct 12 (feed review): «۰ ۰ شما قبلا این خبر را لایک کرده اید .» went out as the whole lead.
+_WIDGET = re.compile(r"شما\s*قبلا\s*این\s*(?:خبر|مطلب)\s*را\s*(?:لایک|پسند)\s*کرده\s*(?:اید|ای)\s*\.?|"
+                     r"(?:تعداد\s*)?(?:بازدید|لایک|نظرات|دیدگاه)\s*[:：]\s*[۰-۹0-9]+")
+_COUNTERS = re.compile(r"^(?:[۰-۹0-9]+\s+){1,4}(?=[^۰-۹0-9\s])")
 
 
 def scrub_lead(title, body):
     """The body without website leftovers at its start (see the module notes)."""
     try:
         original = str(body or "")
-        text = re.sub(r"\s+", " ", _LINK.sub(" ", _norm(original))).strip().lstrip(_EDGE)
+        text = _LINK.sub(" ", _norm(original))
+        if _WIDGET.search(text):  # the like/view counters («۰ ۰») go only together with the widget
+            text = _COUNTERS.sub("", re.sub(r"\s+", " ", _WIDGET.sub(" ", text)).strip().lstrip(_EDGE + "."))
+        text = re.sub(r"\s+", " ", text).strip().lstrip(_EDGE)
         t = _norm(title)
         if t:
             i = text.find(t)
@@ -66,7 +73,7 @@ def leftover(sentences):
     """(reason, text) when a link or a doubled section name is still in the post, else None."""
     for s in sentences or []:
         s = _norm(s)
-        m = _LEFTOVER_LINK.search(s) or _DOUBLED.search(s)
+        m = _LEFTOVER_LINK.search(s) or _DOUBLED.search(s) or _WIDGET.search(s)
         if m:
             return ("page-chrome", s[max(0, m.start() - 10): m.end() + 30])
     return None
