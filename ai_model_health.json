@@ -1384,6 +1384,12 @@
       "topic": "سیاست",
       "until": 1791745339.3655667
     },
+    "v4|استقبال از قایقران مدال آور بوشهری در فرودگاه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: محیطی، بدون تأثیر ملی یا بین‌المللی",
+      "topic": "ورزش",
+      "until": 1791781244.4581528
+    },
     "v4|اسکای بار اینجاست!/ جذاب ترین بخش برنابئو بالاخره افتتاح شد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: افتتاح اسکای بار در برنابئو",
@@ -2080,12 +2086,6 @@
       "topic": "فناوری",
       "until": 1791737192.4513845
     },
-    "v4|تلویزیون امروز چه فوتبال هایی پخش می کند؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: جدول پخش تلویزیونی مسابقات فوتبال اهمیت درجه یک ندارد.",
-      "topic": "ورزش",
-      "until": 1791717629.3343852
-    },
     "v4|تو باید خیلی بهتر از این باشی/ حمله عجیب اسطوره های آلمان به مانوئل نویر": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: نقد عملکرد یک بازیکن فوتبال توسط پیشکسوتان، خبری غیرراهبردی و کم‌اهمیت است.",
@@ -2686,6 +2686,12 @@
       "topic": "حادثه",
       "until": 1791735530.824189
     },
+    "v4|روزنامه های اقتصادی یکشنبه ۱۹ مهر ۱۴۰۵": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Economic analysis, no concrete event",
+      "topic": "اقتصاد",
+      "until": 1791781242.6689856
+    },
     "v4|روسیه ممنوعیت صادرات گازوئیل را به طور جزئی لغو کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: لغو جزئی ممنوعیت صادرات سوخت روسیه بر بازارهای جهانی انرژی اثرگذار است.",
@@ -2913,12 +2919,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: آمار رسمی شهدای جنگ غزه از سوی وزارت بهداشت اعلام شد.",
       "topic": "نظامی",
       "until": 1791724553.443074
-    },
-    "v4|شناسایی اشخاص دارای تراکنش های مالی بالا و فاقد پرونده مالیاتی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: دستور برای شناسایی افراد مالی بدون پرونده",
-      "topic": "سیاست",
-      "until": 1791717628.5830634
     },
     "v4|شناسایی ۱۳۴۹ مورد تغییر کاربری غیرمجاز اراضی کشاورزی در قزوین": {
       "ok": false,
@@ -5025,20 +5025,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: افتتاح اسکای بار در برنابئو",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791664695,
-      "title": "اسکای بار اینجاست!/ جذاب ترین بخش برنابئو بالاخره افتتاح شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: رویداد محلی و تکراری که فاقد اهمیت ملی یا بین‌المللی است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791664698,
-      "title": "اجتماع مردم انقلابی آبدان در شب ۲۲۴"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: عملیات پیشگیرانه، بدون تلفات، اثر محدود",
       "rescued": true,
       "rule": "strict-source-below-importance(7<10)",
@@ -5583,6 +5569,20 @@
       "rule": "no-concrete-event",
       "t": 1791694204,
       "title": "توسعه زیرساخت های مرزی و تقویت دیپلماسی حمل ونقل در دستور کار تهران و عشق آباد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Economic analysis, no concrete event",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791694842,
+      "title": "روزنامه های اقتصادی یکشنبه ۱۹ مهر ۱۴۰۵"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: محیطی، بدون تأثیر ملی یا بین‌المللی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1791694844,
+      "title": "استقبال از قایقران مدال آور بوشهری در فرودگاه"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9493,7 +9493,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791694118
+    "at": 1791694706
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791694264,
