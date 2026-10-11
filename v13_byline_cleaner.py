@@ -300,6 +300,79 @@ def strip_media(text):
     return " ".join(out) if out else str(text or "")
 
 
+# ---------------------------------------------------------------- cut headlines + outlet leads
+# Oct 11: a long Entekhab headline («ترامپ ...: ...وحشتناک است/ ... دارند/ ما با حوثی ها در ار») was
+# cut at 180 characters in the middle of a word, the repeated headline was removed from the body
+# with the same cut, so the post opened with «تباط هستیم/ ...». The detail lines still carried
+# «پایگاه خبری تحلیلی انتخاب (Entekhab.ir) :» and «به گزارش انتخاب،», which no outlet list knew.
+TITLE_MAX = 180
+_SEG_END = re.compile(r"\s*[/؛|]\s*")
+_DOMAIN = re.compile(r"\(?\b[A-Za-z0-9][A-Za-z0-9-]*\.(?:ir|com|net|org|info|news|co|tv|io)\b\)?", re.I)
+_DOMAIN_LEAD = re.compile(r"^\s*[^:：\n]{0,60}?\(?\b[A-Za-z0-9][A-Za-z0-9-]*\.(?:ir|com|net|org|info|news|co|tv|io)\b\)?\s*[:：]\s*", re.I)
+_SITE_LEAD = re.compile(r"^\s*(?:پایگاه|سایت|وب" + _S + r"*سایت)" + _S + r"+(?:خبری|اطلاع" + _S + r"*رسانی|تحلیلی)[^:：\n]{0,40}[:：]\s*")
+# «به گزارش انتخاب،» (any outlet name, 1-3 words). Officials stay: «به گزارش وزارت بهداشت،» is a
+# source of the fact itself, and «به نقل از ترامپ» marks a quote, so neither is touched.
+_OFFICIAL = r"(?:وزارت|سازمان|ارتش|سپاه|پلیس|دولت|دادستان|ستاد|اداره|فرمانداری|استانداری|هلال|اورژانس|سخنگو|مرکز|نیروی|ناجا|قوه|مجلس|بانک)"
+_ANY_VIA = re.compile(r"(?:^|(?<=[.!؟:]\s))\s*به" + _S + r"+گزارش" + _S + r"+(?!" + _OFFICIAL + r")(?:[^\s،,.!؟:]+" + _S + r"+){0,2}[^\s،,.!؟:]+\s*[،,]\s*")
+_READ_ON = re.compile(r"در" + _S + r"+ادامه" + _S + r"+(?:می" + _S + r"*آید|می" + _S + r"*خوانید|آمده" + _S + r"+است|بخوانید)")
+
+
+def smart_cut(title, limit=TITLE_MAX):
+    """Shorten a long headline at a segment end («/»، «؛»), else at a word end; never mid-word."""
+    t = re.sub(r"\s+", " ", str(title or "")).strip()
+    if len(t) <= limit:
+        return t
+    head = t[:limit + 1]
+    ends = [m.start() for m in _SEG_END.finditer(head) if m.start() >= 40]
+    if ends:
+        return head[:ends[-1]].strip(" /؛|،,:")
+    return head.rsplit(" ", 1)[0].strip(" /؛|،,:")
+
+
+def looks_cut(title):
+    """A headline that some earlier step cut at the length limit (ends inside a list or word)."""
+    t = str(title or "").strip()
+    return len(t) >= TITLE_MAX - 8 and not re.search(r"[.!؟»)\]\"']$", t) and bool(_SEG_END.search(t))
+
+
+def repair_cut(title, body):
+    """Headline cut in the middle: keep its complete segments and drop the body's first sentence
+    when it is the headline's leftover tail (it contains a «/» list, which a lead never does)."""
+    if not looks_cut(title):
+        return title, body
+    ends = [m.start() for m in _SEG_END.finditer(title) if m.start() >= 40]
+    new_title = title[:ends[-1]].strip(" /؛|،,:") if ends else title.rsplit(" ", 1)[0]
+    sents = _split_sentences(body)
+    if sents and "/" in sents[0][:160] and len(" ".join(sents[1:]).split()) >= 12:
+        body = " ".join(sents[1:])
+    return new_title, body
+
+
+def _words(s):
+    return {w for w in re.split(r"[\s\u200c،,.!؟:؛]+", str(s or "")) if len(w) > 1}
+
+
+def strip_outlet_leads(text):
+    """Per sentence: «X (Site.ir) :»، «پایگاه خبری ... :» and any «به گزارش X،» go; «در ادامه
+    می آید» teasers and near-copies of an earlier sentence are dropped (the lead always stays)."""
+    out = []
+    for i, sentence in enumerate(_split_sentences(text)):
+        s = _DOMAIN_LEAD.sub("", sentence, count=1)
+        s = _SITE_LEAD.sub("", s, count=1)
+        s = _ANY_VIA.sub(" ", s)
+        s = _DOMAIN.sub(" ", s)
+        s = re.sub(r"[ \t]{2,}", " ", s).strip(" :،,")
+        if not s:
+            continue
+        if i > 0 and _READ_ON.search(s):
+            continue
+        w = _words(s)
+        if out and w and any(len(w & _words(o)) >= 0.8 * len(w) for o in out):
+            continue  # the same sentence again (the lead repeated after a site header)
+        out.append(s)
+    return " ".join(out) if out else str(text or "")
+
+
 def install(core):
     for name in ("build_caption",):
         original = getattr(core, name, None)
@@ -307,8 +380,23 @@ def install(core):
             continue
         def wrapped(title, body, _original=original):
             t = clean(title)
-            return _original(neutral(t), neutral(strip_media(strip_echo(clean(strip_chrome(body, t)), t))))
+            t, body = repair_cut(t, body)
+            b = strip_outlet_leads(strip_media(strip_echo(clean(strip_chrome(body, t)), t)))
+            return _original(neutral(t), neutral(b))
         setattr(core, name, wrapped)
+    # The formatter cut every headline at 180 characters, even in the middle of a word.
+    try:
+        import v13_editorial_formatter as ef
+        if not getattr(ef.format_title, "_smart", False):
+            plain = ef.format_title
+
+            def format_title(title, _plain=plain):
+                value = _plain(smart_cut(ef._clean(title)) if len(ef._clean(title)) > TITLE_MAX else title)
+                return value
+            format_title._smart = True
+            ef.format_title = format_title
+    except Exception as exc:
+        print(f"V13 BYLINE CLEANER: smart title cut not installed ({type(exc).__name__})", flush=True)
     # Last line of defence after all cleanup: refuse a post that still breaks an owner rule.
     try:
         import v13_final_guard

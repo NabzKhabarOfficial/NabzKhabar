@@ -101,6 +101,20 @@ def problems(title, sentences):
                 break
     except Exception:
         pass
+    try:  # Oct 11: «پایگاه خبری تحلیلی انتخاب (Entekhab.ir) :»، «به گزارش انتخاب،»
+        import v13_byline_cleaner as bc
+        for rx in (bc._DOMAIN, bc._ANY_VIA, bc._SITE_LEAD):
+            m = rx.search(text) if rx is not bc._SITE_LEAD else next(
+                (rx.match(x) for x in [str(title or "")] + [str(y or "") for y in sentences or []] if rx.match(x)), None)
+            if m:
+                found.append(("media-source", m.group(0)[:60]))
+                break
+        t = str(title or "").strip()
+        last = t.split()[-1] if t else ""
+        if len(t) >= 165 and len(last) <= 2 and last not in ("او", "ما", "شد", "را"):  # «... با حوثی ها در ار»
+            found.append(("cut-title", t[-30:]))
+    except Exception:
+        pass
     try:
         via_media, direct, subject, reporting = _media_patterns()
         for rx in (via_media, direct):
