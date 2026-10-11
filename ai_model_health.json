@@ -1182,6 +1182,12 @@
       "topic": "سیاست",
       "until": 1791727966.5515978
     },
+    "v4|آمریکا ۴ میلیون بشکه نفت از ذخایر راهبردی خود را آزاد می کند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: آمریکا ۴M بشکه نفت استراتژیک آزاد کرد",
+      "topic": "اقتصاد",
+      "until": 1791776009.1406431
+    },
     "v4|آموزش جان فدایان - ۱۸ مهر ماه ۱۴۰۵": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: خبر آموزشی و محلی بدون اهمیت ملی یا بین‌المللی",
@@ -1847,12 +1853,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: گزارش عملکرد استانی و اشتغال‌زایی محلی فاقد اهمیت ملی است.",
       "topic": "اقتصاد",
       "until": 1791747062.023913
-    },
-    "v4|تحقق ۶۸ درصدی درآمدهای خوزستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به تحقق درآمدهای خوزستان اهمیت ملی ندارد.",
-      "topic": "اقتصاد",
-      "until": 1791716439.4608953
     },
     "v4|تداوم حضور تالشی ها در میدان پس از ۲۲۴ شب": {
       "ok": false,
@@ -4444,9 +4444,9 @@
       "reason": "content_duplicate",
       "until": 1791703631.2216156
     },
-    "yemen says advancing against houthis around key bab al-mandab strait": {
-      "reason": "content_duplicate",
-      "until": 1791689250.6499188
+    "آمریکا ۴ میلیون بشکه نفت از ذخایر راهبردی خود را آزاد می کند": {
+      "reason": "policy_scope_blocked",
+      "until": 1791711214.1704307
     },
     "اذعان سنتکام به بمباران کشتی تجاری": {
       "reason": "content_duplicate",
@@ -5046,13 +5046,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: تصادف جاده‌ای کوچک با مصدومیت محدود، فاقد اهمیت ملی یا بین‌المللی.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791663006,
-      "title": "کشوری: تصادف کامیون و پراید در محور کلات ۳ مصدوم برجا گذاشت"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: General policy statement, no concrete action taken",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -5604,6 +5597,13 @@
       "rule": "no-concrete-event",
       "t": 1791688971,
       "title": "معمای قتل دانشجوی ۱۹ ساله پس از ۱۴ سال به دادگاه رسید/ شناسایی مظنون با کمک DNA/ یک بطری خون آلود و یادداشتی با جمله ای "
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: آمریکا ۴M بشکه نفت استراتژیک آزاد کرد",
+      "rescued": true,
+      "rule": "final-scope-preselection",
+      "t": 1791689609,
+      "title": "آمریکا ۴ میلیون بشکه نفت از ذخایر راهبردی خود را آزاد می کند"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9634,7 +9634,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791688908
+    "at": 1791689483
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791689077,
