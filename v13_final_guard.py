@@ -278,5 +278,10 @@ def install():
         _install_lane_scope()
     except Exception as exc:
         print(f"V13 FINAL GUARD: lane scope fix skipped ({type(exc).__name__}).", flush=True)
+    try:  # Oct 12: links, section breadcrumb and the repeated headline before the lead; whole-word tags
+        import v13_chrome_scrub
+        v13_chrome_scrub.install()
+    except Exception as exc:
+        print(f"V13 CHROME SCRUB: not installed ({type(exc).__name__}: {exc})", flush=True)
     _INSTALLED["done"] = True
     print("V13 FINAL GUARD ACTIVE: no post leaves with a media source or loaded wording.", flush=True)
