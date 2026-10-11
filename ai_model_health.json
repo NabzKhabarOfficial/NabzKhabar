@@ -2429,12 +2429,6 @@
       "topic": "قضایی",
       "until": 1791724544.9360254
     },
-    "v4|دامپزشکی تربت حیدریه با کمبود نیروی متخصص مواجه است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: کمبود نیروی دامپزشکی در تربت حیدریه خبری محلی و کم اهمیت است.",
-      "topic": "جامعه",
-      "until": 1791718182.0049324
-    },
     "v4|دانشمندان نمی دانند چرا مغز افراد مبتلا به «حمله خواب» جوان است!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: پژوهش پزشکی اولیه و علمی بدون رویداد کلان جهانی یا ملی",
@@ -2500,6 +2494,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر دانشگاهی و علمی است و ارزش خبری ملی ندارد",
       "topic": "جامعه",
       "until": 1791718777.5082357
+    },
+    "v4|درمان اوتیسم در گرو تشخیص به هنگام": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local medical advice, not major national impact",
+      "topic": "سلامت",
+      "until": 1791784722.1744874
     },
     "v4|دریادار بمانی: اقتدار دفاعی وعلمی از الزامات قدرت بازدارندگی است": {
       "ok": false,
@@ -5030,13 +5030,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: کاروان دوچرخه سواران ترکیه در تبریز",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791666447,
-      "title": "کاروان ۲۵ نفره دوچرخه سواران ترکیه در اجتماع شبانه تبریز"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: پیشنهاد آمریکا برای آزادسازی دارایی‌های مسدود شده روسیه تحولی مهم است.",
       "rescued": true,
       "rule": "strict-source-below-importance(7<10)",
@@ -5588,6 +5581,13 @@
       "rule": "foreign-local-preselection",
       "t": 1791697736,
       "title": "تجمع ایرانیان در دویست و بیست وچهارمین شب ادامه یافت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local medical advice, not major national impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1791698322,
+      "title": "درمان اوتیسم در گرو تشخیص به هنگام"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9303,7 +9303,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791697590
+    "at": 1791698168
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791697765,
