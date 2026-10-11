@@ -1,6 +1,6 @@
 # نبض خبر | NabzKhabar
 
-ربات خبری خودکار فارسی که خبرهای مهم ایران و جهان را از منابع معتبر جمع می‌کند، با چند لایه کنترل کیفیت و سردبیری هوش مصنوعی فیلتر می‌کند و در کانال تلگرام و اینستاگرام منتشر می‌کند.
+ربات خبری خودکار فارسی که خبرهای مهم ایران و جهان را از منابع معتبر جمع می‌کند، با چند لایه کنترل کیفیت و سردبیری هوش مصنوعی فیلتر می‌کند و در کانال تلگرام منتشر می‌کند.
 
 📢 تلگرام: https://t.me/NabzKhabarOfficial  
 🌐 سایت: https://nabzkhabarofficial.github.io/NabzKhabar/
@@ -25,21 +25,18 @@
 - `car_prices.py` قیمت خودرو
 - `weather.py` آب‌وهوا
 - `education.py` محتوای آموزشی
-- `instagram_publisher.py` و `instagram_reel.py` انتشار روزانه در اینستاگرام
 
 ## خودکارسازی (GitHub Actions)
 
 - `bot.yml` اجرای ربات به‌صورت دوره‌ای، با بررسی کامپایل، تست import، سلامت مدل‌ها و ذخیره‌ی وضعیت
 - `market-prices.yml` به‌روزرسانی قیمت‌ها هر ۴ ساعت
-- `instagram.yml` انتشار اینستاگرام
-- `nllb-200-test.yml` تست ترجمه (دستی)
 
-سکرت‌های اصلی: `BOT_TOKEN`، کلیدهای مدل‌های هوش مصنوعی، و در صورت نیاز سکرت‌های اینستاگرام.
+سکرت‌های اصلی: `BOT_TOKEN` و کلیدهای مدل‌های هوش مصنوعی.
 
 ## فایل‌های وضعیت
 
 این فایل‌ها توسط ربات به‌روز و کامیت می‌شوند؛ دستی ویرایششان نکن:
-`sent_news.txt`، `v13_health.json`، `v13_monitor.json`، `v13_rejected_news.json`، `ai_model_health.json`، `instagram_state.json`، فایل‌های `*_history.json`.
+`sent_news.txt`، `v13_health.json`، `v13_monitor.json`، `v13_rejected_news.json`، `ai_model_health.json`، فایل‌های `*_history.json`.
 
 ## اجرای محلی
 
