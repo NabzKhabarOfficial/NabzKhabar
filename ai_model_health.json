@@ -787,12 +787,6 @@
   ],
   "_digest_last_date": "2026-10-11",
   "_editor_gate_cache": {
-    "v4|'going bankrupt': iran shopkeepers struggle as war dims demand": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=iran_national: تورم ۹۰ درصدی و بحران اقتصادی ناشی از جنگ",
-      "topic": "اقتصاد",
-      "until": 1791797446.684757
-    },
     "v4|'if we don't do it, nobody else will': inside ukraine's wartime postal service": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=world: گزارش خبری نرم و انسانی فاقد اهمیت درجه یک جهانی",
@@ -1764,6 +1758,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=iran_national: گمانه‌زنی رسانه‌ای درباره لیست ترور بدون تایید رسمی یا رخداد عملی",
       "topic": "سیاست",
       "until": 1791822892.1146827
+    },
+    "v4|تاثیر کاهش زاد و ولد بر جمعیت دانش آموزی خلیل آباد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Local education trend, low birth rates",
+      "topic": "جامعه",
+      "until": 1791845381.988114
     },
     "v4|تاکید استاندار خراسان شمالی بر تامین سوخت جایگزین گلخانه ها پیش از زمستان": {
       "ok": false,
@@ -3343,6 +3343,12 @@
       "topic": "ورزش",
       "until": 1791802663.7825584
     },
+    "v4|مردم به ۱۴۸۰ چه می گویند؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: پرسش‌نامهٔ اجتماعی، موضوعات روانی و خانوادگی",
+      "topic": "جامعه",
+      "until": 1791845381.342706
+    },
     "v4|مرگ مرد ۷۰ ساله در آتش سوزی عمدی در نبرد جنوبی/ عامل آتش سوزی خودکشی کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: یک حادثه جنایی محلی در تهران که اهمیت ملی ندارد.",
@@ -4104,12 +4110,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: کشف خاک طلا در تبریز یک رویداد محلی و انتظامی است.",
       "topic": "اقتصاد",
       "until": 1791804958.6544766
-    },
-    "v4|کشف ذخیره جدید گازی در دریای شمال توسط شرکت اکوینور نروژ": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: کشف میدان گازی کوچک در نروژ اهمیت بین‌المللی بالایی ندارد",
-      "topic": "اقتصاد",
-      "until": 1791797447.5464818
     },
     "v4|کشف ۱۶ وسیله نقلیه سرقتی در گیلان": {
       "ok": false,
@@ -5059,20 +5059,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine statement about a provincial exhibition with no strategic impact.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791741076,
-      "title": "معاون وزیر صمت: شیراز اکسپو ظرفیت های خفته استان ها را فعال می کند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=iran_national: واکنش رسمی رئیس بانک مرکزی به ادعاهای اقتصادی وزیر خزانه‌داری آمریکا",
-      "rescued": true,
-      "rule": "below-event-threshold",
-      "t": 1791741647,
-      "title": "همتی: فروپاشی اقتصادی با بیانیه سیاسی محقق نمی شود"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی و استانی است و فاقد اهمیت ملی یا بین‌المللی است.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5617,6 +5603,20 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1791758383,
       "title": "تجدید میثاق مردم محلات با رهبر معظم انقلاب در شب ۲۲۵ حماسه و ایستادگی"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: پرسش‌نامهٔ اجتماعی، موضوعات روانی و خانوادگی",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1791758981,
+      "title": "مردم به ۱۴۸۰ چه می گویند؟"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Local education trend, low birth rates",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1791758981,
+      "title": "تاثیر کاهش زاد و ولد بر جمعیت دانش آموزی خلیل آباد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9762,7 +9762,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791758323
+    "at": 1791758892
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791758996,
