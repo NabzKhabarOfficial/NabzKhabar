@@ -1897,6 +1897,12 @@
       "topic": "سیاست",
       "until": 1791741896.2523117
     },
+    "v4|ترامپ: با انصارالله در ارتباطیم/با بن سلمان گفت وگو خواهم کرد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اظهارات دونالد ترامپ درباره انصارالله و عربستان سعودی",
+      "topic": "سیاست",
+      "until": 1791768996.799863
+    },
     "v4|ترامپ: جایزه صلح نوبل را به فردی دادند که هیچ کس تا به حال اسمش را هم نشنیده بود؛ تنها چیزی که می دانیم این است که او به شدت ضد اسرائیل است / یک جای کار در نروژ می لنگد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارنظر شخصی ترامپ درباره جایزه صلح نوبل فاقد اهمیت راهبردی است.",
@@ -2796,12 +2802,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تحلیل عملکرد یک بازیکن در مسابقات ورزشی اهمیت ملی ندارد.",
       "topic": "ورزش",
       "until": 1791738966.6591783
-    },
-    "v4|سفیر ایران مسوولیت سریلانکا در قبال شناورهای گرفتار را یادآور شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: پیگیری دیپلماتیک معمولی درباره شناورها و فاقد اهمیت درجه یک",
-      "topic": "سیاست",
-      "until": 1791715274.9682984
     },
     "v4|سقوط پرتابه در اطراف فرودگاه دمام عربستان": {
       "ok": true,
@@ -4464,8 +4464,8 @@
       "until": 1791689250.6499188
     },
     "اذعان سنتکام به بمباران کشتی تجاری": {
-      "reason": "quality_blocked",
-      "until": 1791703631.2343311
+      "reason": "content_duplicate",
+      "until": 1791704204.8089547
     },
     "انفجار در فرودگاه های «جده» و «ملک فهد» در دمام عربستان سعودی": {
       "reason": "content_duplicate",
@@ -4474,6 +4474,10 @@
     "بقائی: بی عملی اروپا در قبال تحریم دیوان بین المللی همدستی در حمله به عدالت است": {
       "reason": "content_duplicate",
       "until": 1791688617.0841713
+    },
+    "ترامپ: با انصارالله در ارتباطیم/با بن سلمان گفت وگو خواهم کرد": {
+      "reason": "policy_scope_blocked",
+      "until": 1791704215.130357
     },
     "تصاویری جدید از وسعت خرابی های ناشی از اصابت موشک یمنی به فرودگاه ملک خالد ریاض": {
       "reason": "content_duplicate",
@@ -4485,15 +4489,11 @@
     },
     "توفند «ایسایاس» در آمریکا چهار کشته بر جا گذاشت؛ صدها هزار نفر بدون برق": {
       "reason": "policy_scope_blocked",
-      "until": 1791702472.8633695
-    },
-    "در مذاکرات محرمانه مسکو و واشنگتن در حاشیه سازمان ملل، آمریکایی ها سه مشوق اقتصادی پرسود را روی میز گذاشتند تا روسیه را به پذیرش آتش بسی محدود در حوزه زیرساخت های انرژی یا در دریا": {
-      "reason": "content_duplicate",
-      "until": 1791682368.1414626
+      "until": 1791704215.130357
     },
     "روسیه ممنوعیت صادرات گازوئیل را به طور جزئی لغو کرد": {
       "reason": "content_duplicate",
-      "until": 1791682348.385626
+      "until": 1791704215.0975075
     },
     "سازمان هواپیمایی عربستان: ۱۲ نفر در حمله به فرودگاه ملک خالد در ریاض کشته شدند": {
       "reason": "content_duplicate",
@@ -5076,13 +5076,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: Routine preparedness announcement for local weather events in a province.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791660682,
-      "title": "صارمی: ۵۵ تیم عملیاتی هلال احمر خراسان شمالی در آماده باش کامل هستند"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: انتخاب عضو هیأت مدیره بانک ملی، رویداد عادی",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -5634,6 +5627,13 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1791682011,
       "title": "فردیناند خودش را به خاطر رونالدو مضحکه کرد!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اظهارات دونالد ترامپ درباره انصارالله و عربستان سعودی",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1791682596,
+      "title": "ترامپ: با انصارالله در ارتباطیم/با بن سلمان گفت وگو خواهم کرد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9863,7 +9863,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791681962
+    "at": 1791682541
   },
   "gemini:gemini-3.5-flash-lite": {
     "disabled_until": 1791682621,
@@ -9871,8 +9871,8 @@
     "last_status": 429
   },
   "groq:openai/gpt-oss-120b": {
-    "disabled_until": 1791682067,
-    "last_failure": 1791681467,
+    "disabled_until": 1791683202,
+    "last_failure": 1791682602,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
