@@ -373,6 +373,65 @@ def strip_outlet_leads(text):
     return " ".join(out) if out else str(text or "")
 
 
+# ---------------------------------------------------------------- page widgets + off-topic lines
+# Oct 11: «⚡️ ۰ ۰ شما قبلا این خبر را لایک کرده اید .» as the lead, two "related news" links
+# («ماجرای واریز سود سهام عدالت ...»، «از جنجال آفرینی تازه میرسلیم ...») as details, and
+# «کپی شد پ ، پـ» (the copy button and the font-size buttons) glued to the real sentence.
+# Root cause: the article extractor keeps the page's buttons, counters and related-story links.
+# Two rules, for every site: widget text is cut out, and a line that has nothing to do with the
+# headline is not part of the story.
+_WIDGET = re.compile(
+    r"(?:شما" + _S + r"+قبلا[^.!؟\n]{0,40}?(?:لایک|پسندیده|ذخیره)[^.!؟\n]{0,20}?(?:اید|اید" + _S + r"*\.)|"
+    r"(?:لینک" + _S + r"+)?کپی" + _S + r"+(?:شد|لینک|کردن)|لینک" + _S + r"+کوتاه|"
+    r"(?<![\u0600-\u06FF])پ" + _S + r"*[،,]?" + _S + r"*پـ(?![\u0600-\u06FF])|"
+    r"اشتراک" + _S + r"*گذاری|بیشتر" + _S + r"+بخوانید|(?:اخبار|مطالب|خبرهای)" + _S + r"+مرتبط|"
+    r"ارسال" + _S + r"+(?:نظر|دیدگاه)|تعداد" + _S + r"+(?:بازدید|نظرات)|برچسب" + _S + r"*(?:ها)?" + _S + r"*[:：]|"
+    r"پربازدید" + _S + r"*ترین" + _S + r"*ها?|نسخه" + _S + r"+چاپی|دانلود" + _S + r"+(?:فیلم|عکس)|"
+    r"^\s*(?:[0-9۰-۹]+" + _S + r"+){2,}(?=[\u0600-\u06FF]))")  # «۰ ۰ شما ...» like/comment counters
+_STOP = set("در به از که و را با این آن برای درباره تا یک هم می شد کرد است ما او خود ها های گفت اعلام "
+            "کرده شده باید بود خواهد خواهیم نیز اما یا بر پس روی وی آنها ایشان چه چرا کند کنند".split())
+
+
+def _keys(text):
+    out = set()
+    for w in re.split(r"[\s\u200c،,.!؟:؛«»\"'()\[\]/|\-–—]+", str(text or "").replace("ي", "ی").replace("ك", "ک")):
+        if len(w) < 3 or w in _STOP or w.isdigit():
+            continue
+        out.add(w[:4] if len(w) >= 5 else w)
+    return out
+
+
+def strip_widgets(text):
+    """Cut page buttons/counters out of every sentence; drop what is left if it is a scrap."""
+    out = []
+    for sentence in _split_sentences(text):
+        s = _WIDGET.sub(" ", sentence)
+        s = re.sub(r"[ \t]{2,}", " ", s).strip(" .:،,⚡️")
+        if len(s.split()) >= 4:
+            out.append(s if re.search(r"[.!؟؛»]$", s) else s + ("." if sentence.rstrip().endswith(".") else ""))
+    return " ".join(out)
+
+
+def on_topic(title, text):
+    """Keep the lines that belong to the headline's story. The lead must share at least two
+    words with the headline; a detail line at least one with the headline or the lead.
+    Returns "" when no lead belongs to the headline (the post is then not published)."""
+    tk = _keys(title)
+    if len(tk) < 3:
+        return text
+    out, lead_k = [], set()
+    for s in _split_sentences(text):
+        k = _keys(s)
+        if not out:
+            if len(k & tk) >= 2:
+                out.append(s)
+                lead_k = k
+            continue
+        if k & (tk | lead_k):
+            out.append(s)
+    return " ".join(out)
+
+
 def install(core):
     for name in ("build_caption",):
         original = getattr(core, name, None)
@@ -382,6 +441,7 @@ def install(core):
             t = clean(title)
             t, body = repair_cut(t, body)
             b = strip_outlet_leads(strip_media(strip_echo(clean(strip_chrome(body, t)), t)))
+            b = on_topic(t, strip_widgets(b))
             return _original(neutral(t), neutral(b))
         setattr(core, name, wrapped)
     # The formatter cut every headline at 180 characters, even in the middle of a word.

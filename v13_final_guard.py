@@ -109,6 +109,17 @@ def problems(title, sentences):
             if m:
                 found.append(("media-source", m.group(0)[:60]))
                 break
+        for x in [str(y or "") for y in sentences or []]:
+            w = bc._WIDGET.search(x)
+            if w:
+                found.append(("page-widget", w.group(0)[:60]))
+                break
+        body = " ".join(str(y or "") for y in sentences or [])
+        if body.count("«") != body.count("»"):  # a quote cut in the middle («ممکن است.)
+            found.append(("cut-quote", body[-60:]))
+        sents = [str(y or "") for y in sentences or []]
+        if sents and len(bc._keys(title)) >= 3 and len(bc._keys(sents[0]) & bc._keys(title)) < 2:
+            found.append(("off-topic-lead", sents[0][:60]))
         t = str(title or "").strip()
         last = t.split()[-1] if t else ""
         if len(t) >= 165 and len(last) <= 2 and last not in ("او", "ما", "شد", "را"):  # «... با حوثی ها در ار»
