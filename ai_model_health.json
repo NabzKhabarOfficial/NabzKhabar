@@ -2279,12 +2279,6 @@
       "topic": "سیاست",
       "until": 1791722815.6225872
     },
-    "v4|حاجی بابایی: همه مشکلات اقتصادی را نمی توان به جنگ نسبت داد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اظهارات روتین نایب رئیس مجلس درباره مشکلات اقتصادی و نظارت.",
-      "topic": "سیاست",
-      "until": 1791718203.794694
-    },
     "v4|حاصل ۳۰ سال تجربه ۲ گرافیست کاشانی در خدمت دانشجویان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: خبر محلی مربوط به برگزاری نمایشگاه هنری در شهر کاشان است.",
@@ -2494,6 +2488,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: اظهارات کلی و روتین نظامی درباره اهمیت قدرت بازدارندگی و علم",
       "topic": "نظامی",
       "until": 1791746516.5443141
+    },
+    "v4|دستکاری عامدانه تاریخ": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: سیاست آمریکا در خاورمیانه و ایران",
+      "topic": "سیاست",
+      "until": 1791786431.243858
     },
     "v4|دستگیری متهم ۱۰ ساله تحت تعقیب با جعل عنوان پلیس در خرم آباد": {
       "ok": false,
@@ -4465,6 +4465,14 @@
       "reason": "content_duplicate",
       "until": 1791704816.3288183
     },
+    "دستکاری عامدانه تاریخ": {
+      "reason": "quality_blocked",
+      "until": 1791721661.549755
+    },
+    "روبیو از کشته شدن یک شهروند آمریکایی در حمله به فرودگاه ریاض خبر داد": {
+      "reason": "content_duplicate",
+      "until": 1791721648.2276525
+    },
     "روسیه ممنوعیت صادرات گازوئیل را به طور جزئی لغو کرد": {
       "reason": "content_duplicate",
       "until": 1791704215.0975075
@@ -4485,6 +4493,10 @@
       "reason": "quality_blocked",
       "until": 1791721018.7222998
     },
+    "عضو ارشد انصارالله: حمله به فرودگاه ریاض، در پاسخ به تهاجم عربستان به زیرساخت های غیر نظامی در یمن انجام شده/ این حمله با هدف رساندن این پیام به جهان صورت گرفت که فرودگاه ها، بندره": {
+      "reason": "quality_blocked",
+      "until": 1791721661.549755
+    },
     "نیویورک تایمز به نقل از مقامات سعودی: در حمله انصارالله به فرودگاه ریاض، دست کم ۱۲ نفر کشته و ۵۰ تن زخمی شدند/ ادعای ترامپ: می توانیم خیلی سریع به ماجرای ایران پایان دهیم/ سازمان ع": {
       "reason": "quality_blocked",
       "until": 1791720520.5982335
@@ -4503,7 +4515,7 @@
     },
     "کشته و زخمی شدن بیش از ۳۲۰ نفر در حمله به فرودگاه ریاض": {
       "reason": "policy_scope_blocked",
-      "until": 1791721018.7222998
+      "until": 1791721661.549755
     },
     "گرگوری برو، تحلیل گر حوزه نفت: طی ۱۱ روز گذشته، ۱۶ مورد حمله در تنگه هرمز یا اطراف آن گزارش شده": {
       "reason": "quality_blocked",
@@ -5049,13 +5061,6 @@
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سیاست محلی، تأمین برق و واگذاری زمین",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791666988,
-      "title": "روانبخش:رفع مشکلات برق و واگذاری زمین در ونارچ باید با فوریت دنبال شود"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، جشن موفقیت‌های تحصیلی و ورزشی گیلان",
       "rescued": false,
@@ -5608,6 +5613,13 @@
       "rule": "strict-source-below-importance(8<10)",
       "t": 1791699397,
       "title": "هدائی: اورژانس کردستان در یک هفته ۱۴۱۹ مأموریت امدادی انجام داد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: سیاست آمریکا در خاورمیانه و ایران",
+      "rescued": true,
+      "rule": "below-event-threshold",
+      "t": 1791700031,
+      "title": "دستکاری عامدانه تاریخ"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9323,31 +9335,31 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791699324
+    "at": 1791699898
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791699507,
-    "last_failure": 1791698907,
+    "disabled_until": 1791700644,
+    "last_failure": 1791700044,
     "last_status": 429
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791699507,
-    "last_failure": 1791698907,
+    "disabled_until": 1791700644,
+    "last_failure": 1791700044,
     "last_status": 429
   },
   "groq:openai/gpt-oss-120b": {
-    "disabled_until": 1791699507,
-    "last_failure": 1791698907,
+    "disabled_until": 1791700643,
+    "last_failure": 1791700043,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
-    "disabled_until": 1791699507,
-    "last_failure": 1791698907,
+    "disabled_until": 1791700643,
+    "last_failure": 1791700043,
     "last_status": 429
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
-    "disabled_until": 1791699511,
-    "last_failure": 1791698911,
+    "disabled_until": 1791700644,
+    "last_failure": 1791700044,
     "last_status": 429
   },
   "openrouter:cohere/north-mini-code:free": {
@@ -9356,18 +9368,18 @@
     "last_status": 429
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
-    "disabled_until": 1791699511,
-    "last_failure": 1791698911,
+    "disabled_until": 1791700644,
+    "last_failure": 1791700044,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
-    "disabled_until": 1791699511,
-    "last_failure": 1791698910,
+    "disabled_until": 1791700644,
+    "last_failure": 1791700044,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
-    "disabled_until": 1791699511,
-    "last_failure": 1791698911,
+    "disabled_until": 1791700644,
+    "last_failure": 1791700044,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -9377,8 +9389,8 @@
     "last_status": 429
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
-    "disabled_until": 1791699511,
-    "last_failure": 1791698911,
+    "disabled_until": 1791700644,
+    "last_failure": 1791700044,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
@@ -9387,8 +9399,8 @@
     "last_status": 422
   },
   "openrouter:openrouter/free": {
-    "disabled_until": 1791699507,
-    "last_failure": 1791698907,
+    "disabled_until": 1791700644,
+    "last_failure": 1791700044,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
