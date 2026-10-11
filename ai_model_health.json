@@ -3078,12 +3078,6 @@
       "topic": "ورزش",
       "until": 1791745341.4162748
     },
-    "v4|طرح نیازهای صنعت برای حل مسائل امنیت سایبری در کنفرانس رمز ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار همایش‌ها و برنامه‌های دانشگاهی و انجمن‌های علمی کم‌اهمیت هستند",
-      "topic": "فناوری",
-      "until": 1791717013.6524322
-    },
     "v4|طوفان «ایسایاس» در آمریکا ۴ کشته بر جای گذاشت؛ صدها هزار نفر در خاموشی فرو رفتند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: طوفان محلی، خسارت محدود",
@@ -3263,6 +3257,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: فعالیت مدارس سما در لرستان، خبر محلی",
       "topic": "جامعه",
       "until": 1791770753.807771
+    },
+    "v4|فقط یک بازیکن شایسته توپ طلاست": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: اظهار نظر، بدون رویداد واقعی",
+      "topic": "ورزش",
+      "until": 1791778304.263116
     },
     "v4|فکت چک؛ اخباری که ۱۸ مهر ۱۴۰۵ تکذیب شدند": {
       "ok": false,
@@ -5042,13 +5042,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تظاهرات محدود اثر ملی",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1791664121,
-      "title": "تداوم حضور تالشی ها در میدان پس از ۲۲۴ شب"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقات لیگ‌های اروپایی برای مخاطب عمومی اولویت خبری ندارد.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5600,6 +5593,13 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1791691306,
       "title": "اطلاع از اخبار نیاز ذهنی شهروندان یا آسیب زننده به روان آن ها؟"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: اظهار نظر، بدون رویداد واقعی",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791691904,
+      "title": "فقط یک بازیکن شایسته توپ طلاست"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9630,7 +9630,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791691213
+    "at": 1791691796
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791691916,
