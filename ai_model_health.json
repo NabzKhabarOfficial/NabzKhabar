@@ -2371,12 +2371,6 @@
       "topic": "نظامی",
       "until": 1791831524.3778744
     },
-    "v4|ده نمکی «پرواز ۶۵۵» را با هوش مصنوعی می سازد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر تولید فیلم سینمایی اهمیت ملی ندارد",
-      "topic": "جامعه",
-      "until": 1791800367.149308
-    },
     "v4|دوروف فراخوان داد؛ تلگرام دیگر طرح های گرافیکی را نمی پذیرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تغییر سیاست فنی تلگرام برای طراحان، موضوعی تخصصی و غیر استراتژیک است.",
@@ -3049,12 +3043,6 @@
       "topic": "نظامی",
       "until": 1791832129.2821891
     },
-    "v4|غربالگری سلامت روان ۳.۲ میلیون نفر درجنگ رمضان/ ساز و کار ارایه خدمات رایگان در مراکز سراج": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: گزارش عملکرد وزارت بهداشت درباره غربالگری سلامت روان و خدمات رایگان",
-      "topic": "سلامت",
-      "until": 1791800366.2699113
-    },
     "v4|غرفه ایرنا در شیراز اکسپو؛ بازوی رسانه ای فعالان اقتصادی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine PR news about a media booth at a local exhibition.",
@@ -3270,6 +3258,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: اظهارات تحلیلی و غیرراهبردی یک مقام مسئول درباره سیاست خارجی",
       "topic": "سیاست",
       "until": 1791822888.6451485
+    },
+    "v4|محصولی که صادرات آن در دست کشاورزان چهارمحال و بختیاری است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: صادرات بادام در دست کشاورزان",
+      "topic": "اقتصاد",
+      "until": 1791867350.5782514
     },
     "v4|محموله کامیون پست در آزادراه قزوین ـ زنجان دچار حریق شد": {
       "ok": false,
@@ -3924,6 +3918,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: پخش تلویزیونی مسابقات کشتی امیدهای جهان اهمیت ملی درجه یک ندارد.",
       "topic": "ورزش",
       "until": 1791807900.1876817
+    },
+    "v4|پذیرش ۳۰ درصد نودانشجویان پزشکی از سال آینده": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: University admission postponement, limited national significance",
+      "topic": "سلامت",
+      "until": 1791867350.1076677
     },
     "v4|پرداخت ۱۵هزار میلیارد تومان از مطالبات گندم کاران استان اردبیل": {
       "ok": false,
@@ -5016,20 +5016,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: ادعای تکراری گروه‌های شبه‌نظامی درباره پرواز هواپیماهای آمریکایی بدون درگیری نظامی.",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1791746247,
-      "title": "مقاومت عراق: تداوم نقض حریم هوایی این کشور از سوی پهپادها و هواپیماهای نظامی آمریکایی / طی روز شنبه گذشته 5 فروند هواپیم"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=iran_national: Rhetorical claim, no concrete event or decision",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791746904,
-      "title": "سردار محبی: تمدن غربی با خفت به خلیج خوک ها بازخواهد گشت"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: ادامه فعالیت باشگاه‌های ورزشی، خبر کم‌اهمیت",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -5574,6 +5560,20 @@
       "rule": "below-event-threshold",
       "t": 1791780452,
       "title": "وال استریت ژورنال: روابط ترامپ-زلنسکی در پایین ترین سطح است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: University admission postponement, limited national significance",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1791780950,
+      "title": "پذیرش ۳۰ درصد نودانشجویان پزشکی از سال آینده"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: صادرات بادام در دست کشاورزان",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1791780950,
+      "title": "محصولی که صادرات آن در دست کشاورزان چهارمحال و بختیاری است"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9226,7 +9226,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791780302
+    "at": 1791780879
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791778132,
