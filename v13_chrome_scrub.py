@@ -1,18 +1,4 @@
-"""NABZ V13 — website leftovers before the lead (Oct 12 2026).
-
-Owner report: a post went out as «⚡️ https:// /x3dj3P سیاست سیاست خارجی سیاست سیاست خارجی
-<the headline again> وزیر امور خارجه ...» with the tag #عراق on a story about «عراقچی».
-The source page's short link, its section breadcrumb and the headline were glued before the
-real lead, and the topic tags matched part of a word.
-
-* scrub_lead(title, body): removes links, a section breadcrumb (two or more section names in a
-  row, or section names right before the repeated headline) and the repeated headline from the
-  START of the text. A lone real word such as «ایران» or «دولت» at the start is kept.
-* leftover(sentences): the last check for v13_final_guard; a link, a doubled section name or a
-  like/view counter widget («شما قبلا این خبر را لایک کرده اید») still there blocks the post.
-* tag_hit(word, text): whole-word match for topic tags («عراق» never matches «عراقچی»).
-Fail-safe: any doubt returns the text unchanged.
-"""
+"""NABZ V13 — website leftovers before the lead (Oct 12 2026)."""
 
 import re
 
@@ -26,18 +12,26 @@ def _norm(value):
 
 _LINK = re.compile(r"(?:https?:)?//\s*/?[A-Za-z0-9_\-./?=&%#]*|https?\S*|www\.\S+|"
                    r"(?<![A-Za-z0-9])/[A-Za-z0-9_\-]{3,}(?![A-Za-z0-9])", re.I)
-SECTIONS = ("سیاست خارجی", "سیاست داخلی", "بین الملل", "خاورمیانه", "سیاست", "اقتصاد", "اقتصادی",
+SECTIONS = ("سیاست خارجی", "سیاست داخلی", "بین الملل", "غرب آسیا و آفریقای شمالی", "خاورمیانه", "سیاست", "اقتصاد", "اقتصادی",
             "اجتماعی", "جامعه", "فرهنگی", "فرهنگ", "ورزش", "ورزشی", "حوادث", "دفاعی", "امنیتی",
-            "علمی", "فناوری", "سلامت", "استان ها", "ایران", "جهان", "اخبار", "پربازدید", "ویژه",
+            "علمی", "فناوری", "سلامت", "استان ها", "استانها", "ایران", "جهان", "اخبار", "پربازدید", "ویژه",
             "صفحه نخست", "تیتر یک", "مجلس", "دولت", "انرژی", "بازار", "بورس", "یادداشت")
 _ALT = "|".join(re.escape(s) for s in sorted(SECTIONS, key=len, reverse=True))
 _SECTION_RE = re.compile(r"^(?:(?:" + _ALT + r")(?:\s+|$|\s*[|/>»،,:-]\s*))+")
 _SECTION_RUN = re.compile(_ALT)
 _EDGE = " -|/>»،,:"
-# Oct 12 (feed review): «۰ ۰ شما قبلا این خبر را لایک کرده اید .» went out as the whole lead.
 _WIDGET = re.compile(r"شما\s*قبلا\s*این\s*(?:خبر|مطلب)\s*را\s*(?:لایک|پسند)\s*کرده\s*(?:اید|ای)\s*\.?|"
                      r"(?:تعداد\s*)?(?:بازدید|لایک|نظرات|دیدگاه)\s*[:：]\s*[۰-۹0-9]+")
 _COUNTERS = re.compile(r"^(?:[۰-۹0-9]+\s+){1,4}(?=[^۰-۹0-9\s])")
+
+
+def _repeated_prefix(prefix):
+    """True for a duplicated breadcrumb such as استانها خوزستان استانها خوزستان."""
+    words = _norm(prefix).strip(_EDGE).split()
+    if len(words) < 4 or len(words) % 2:
+        return False
+    half = len(words) // 2
+    return words[:half] == words[half:]
 
 
 def scrub_lead(title, body):
@@ -45,16 +39,19 @@ def scrub_lead(title, body):
     try:
         original = str(body or "")
         text = _LINK.sub(" ", _norm(original))
-        if _WIDGET.search(text):  # the like/view counters («۰ ۰») go only together with the widget
+        if _WIDGET.search(text):
             text = _COUNTERS.sub("", re.sub(r"\s+", " ", _WIDGET.sub(" ", text)).strip().lstrip(_EDGE + "."))
         text = re.sub(r"\s+", " ", text).strip().lstrip(_EDGE)
         t = _norm(title)
         if t:
             i = text.find(t)
-            if 0 <= i <= 120 and _SECTION_RE.sub("", text[:i]).strip(_EDGE) == "":
-                text = text[i + len(t):].lstrip(_EDGE + ".")
+            if 0 <= i <= 220:
+                prefix = text[:i]
+                clean_prefix = _SECTION_RE.sub("", prefix).strip(_EDGE)
+                if not clean_prefix or _repeated_prefix(prefix):
+                    text = text[i + len(t):].lstrip(_EDGE + ".")
         m = _SECTION_RE.match(text)
-        if m and len(_SECTION_RUN.findall(m.group(0))) >= 2:  # a breadcrumb, not one real word
+        if m and len(_SECTION_RUN.findall(m.group(0))) >= 2:
             text = text[m.end():].lstrip(_EDGE)
             if t and text.startswith(t):
                 text = text[len(t):].lstrip(_EDGE + ".")
@@ -89,8 +86,7 @@ _DONE = {"done": False}
 
 
 def install():
-    """Called by v13_final_guard.install(). Cleans the body before v13_post_design builds the
-    caption, makes its topic tags whole-word, and adds the leftover check as the last guard."""
+    """Called by v13_final_guard.install()."""
     if _DONE["done"]:
         return
     import v13_post_design as pd
@@ -132,4 +128,4 @@ def install():
 
     rg.caption_problem = caption_problem
     _DONE["done"] = True
-    print("V13 CHROME SCRUB ACTIVE: no link, section breadcrumb or repeated headline before the lead.", flush=True)
+    print("V13 CHROME SCRUB ACTIVE: duplicated breadcrumbs and page chrome are blocked.", flush=True)
