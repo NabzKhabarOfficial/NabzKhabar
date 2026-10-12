@@ -988,12 +988,6 @@
       "topic": "سیاست",
       "until": 1791875520.9727015
     },
-    "v4|zelensky confirms russian attacks followingtrump's announcement of russia-ukraine energy ceasefire": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: اظهارات ترامپ و زلنسکی درباره آتش‌بس انرژی در جنگ اوکراین",
-      "topic": "سیاست",
-      "until": 1791829807.045622
-    },
     "v4|zelensky says surprised to hear about trump's 'energy ceasefire' between ukraine and russia": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اظهارنظر زلنسکی درباره ادعای آتش‌بس انرژی با روسیه",
@@ -2542,6 +2536,12 @@
       "topic": "ورزش",
       "until": 1791845979.5615976
     },
+    "v4|رویداد «شب علم»، فرصتی برای پیوند دانش آموزان با دنیای علم": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: رویداد آموزشی و ترویجی در سطح دانشگاهی و محلی است.",
+      "topic": "جامعه",
+      "until": 1791902192.0652053
+    },
     "v4|رویداد شب علم، فرصتی برای پیوند دانش آموزان با دنیای علم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: رویداد آموزشی محلی و غیر استراتژیک است.",
@@ -3808,12 +3808,6 @@
       "topic": "سیاست",
       "until": 1791884664.0891392
     },
-    "v4|واکنش کمیته انضباطی به ضرب و شتم داور در فوتبال زیر ۱۳ سال اصفهان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر مربوط به یک مسابقه فوتبال استانی و رده سنی پایه است.",
-      "topic": "ورزش",
-      "until": 1791829803.1996412
-    },
     "v4|واکنش یرواند آبراهامیان به توصیه برخی تحلیلگران برای ساخت سلاح اتمی توسط ایران: اگر ایران سراغ ساخت سلاح اتمی برود، این به اسرائیل برای حمله اتمی به ایران چراغ سبز می دهد / بمب اتم": {
       "ok": false,
       "reason": "ai openrouter/free score=3 happened=False scope=local: Opinion by retired professor, no concrete event or decision",
@@ -3843,6 +3837,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: سخنان وزیر علوم درباره میراث مکتوب رویداد مهمی محسوب نمی شود",
       "topic": "جامعه",
       "until": 1791884657.5135388
+    },
+    "v4|وزیر فرهنگ : اقتصاد هنر می تواند به انتقال هویت فرهنگی ایران در عرصه جهانی کمک کند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: بیان درباره نمایشگاه آینده هنر",
+      "topic": "اقتصاد",
+      "until": 1791902161.547072
     },
     "v4|وزیر فرهنگ و ارشاد اسلامی وارد شیراز شد": {
       "ok": false,
@@ -5058,20 +5058,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی پلیس فتا درباره پرونده کلاهبرداری کوچک",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1791804594,
-      "title": "بازگشت مال به مالباخته کلاهبرداری جایزه در آذربایجان شرقی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر سرقت و دستگیری در سطح شهرستانی و محلی است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1791804602,
-      "title": "کشف ۱۹ فقره سرقت در کنگان؛ دستگیری ۱۱ سارق"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine praise for a cultural act is not a top-tier event.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5616,6 +5602,20 @@
       "rule": "routine-metaphorical-topic",
       "t": 1791815115,
       "title": "دوراندیش: هیات های ورزشی فارس از رویدادمحوری به برنامه محوری حرکت کنند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: بیان درباره نمایشگاه آینده هنر",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1791815761,
+      "title": "وزیر فرهنگ : اقتصاد هنر می تواند به انتقال هویت فرهنگی ایران در عرصه جهانی کمک کند"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: رویداد آموزشی و ترویجی در سطح دانشگاهی و محلی است.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1791815792,
+      "title": "رویداد «شب علم»، فرصتی برای پیوند دانش آموزان با دنیای علم"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10492,7 +10492,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791814959
+    "at": 1791815651
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791814965.0,
