@@ -815,12 +815,6 @@
   ],
   "_digest_last_date": "2026-10-11",
   "_editor_gate_cache": {
-    "v4|'if we don't do it, nobody else will': inside ukraine's wartime postal service": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=world: گزارش خبری نرم و انسانی فاقد اهمیت درجه یک جهانی",
-      "topic": "جامعه",
-      "until": 1791798642.707424
-    },
     "v4|100 درصد گرفتند و علیه ما مصاحبه کردند/ فوری: حرف های مهم زنوزی علیه بیرانوند!": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مصاحبه و واکنش بازیکن، نه نتیجه مسابقه مهم",
@@ -1462,6 +1456,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: ایران به جمع کشورهای صدور الکترونیکی اسناد می‌پیوندد.",
       "topic": "فناوری",
       "until": 1791804357.5151093
+    },
+    "v4|این ستاره، رهبر واقعی رئال مادرید است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Opinion, no concrete event, not top-tier",
+      "topic": "ورزش",
+      "until": 1791856358.58639
     },
     "v4|اینفوگرافیک؛ «جهاد سازندگی» از آبادانی روستاها تا خدمت رسانی به مردم": {
       "ok": false,
@@ -2795,6 +2795,12 @@
       "topic": "نظامی",
       "until": 1791830946.5448487
     },
+    "v4|سپاهان با انگیزه تازه در انتظار دربی اصفهان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: محیطی محلی، مسابقه باشگاهی",
+      "topic": "ورزش",
+      "until": 1791856358.989098
+    },
     "v4|سپاهان در یک شب، بیشتر از شش بازی گل زد!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: پیروزی تیم باشگاهی سپاهان خبری استانی و غیرمرتبط با تیم ملی است.",
@@ -3220,12 +3226,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: آموزش و قوانین عمومی پروازهای چارتر ارزش خبری ندارد.",
       "topic": "جامعه",
       "until": 1791804362.5511765
-    },
-    "v4|قیصری: مصرف انرژی باید درست مدیریت شود تا چرخ تولید از حرکت نایستد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Routine parliamentary remark on energy policy",
-      "topic": "اقتصاد",
-      "until": 1791799157.0424745
     },
     "v4|قیمت سکه امروز ۱۹ مهر ۱۴۰۵ در زمان بسته شدن بازار/ سکه بهار آزادی به کانال ۲۵۸ میلیون تومان برگشت + جدول": {
       "ok": false,
@@ -5024,20 +5024,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Ordinary league result, not top‑tier sports news",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791743394,
-      "title": "شکست سنگین یاران جهانبخش در لیگ هلند"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Routine travel arrangement announcement",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1791743395,
-      "title": "توضیحات فدراسیون فوتبال درباره نحوه سفر نمایندگان ایرانی برای حضور در مسابقات آسیایی"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: برنامه استانی برای ایجاد بازارچه محلی فاقد اهمیت ملی است.",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -5582,6 +5568,20 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1791769397,
       "title": "واشنگتن به شهروندان و شرکت های هواپیمایی درباره پرواز به عربستان هشدار داد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Opinion, no concrete event, not top-tier",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1791769958,
+      "title": "این ستاره، رهبر واقعی رئال مادرید است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: محیطی محلی، مسابقه باشگاهی",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1791769958,
+      "title": "سپاهان با انگیزه تازه در انتظار دربی اصفهان"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9537,7 +9537,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791769304
+    "at": 1791769898
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791770009,
