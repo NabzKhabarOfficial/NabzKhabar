@@ -1,8 +1,19 @@
-"""NABZ V13 — website leftovers before the lead (Oct 12 2026)."""
+"""NABZ V13 — website leftovers before the lead (Oct 12 2026).
+
+Oct 12 (evening): a post went out as «⚡️ چرخش ناگهانی واشنگتن به گفته امدادگران ... ▫️ تبلیغات تبلیغات
+فرارو- سازمان ...»: the feed text was another story's headline glued to a summary, then the site's ad
+labels and its dateline «فرارو-», then the real article. Now:
+* runs of ad labels («تبلیغات تبلیغات») are removed;
+* a site/city dateline («فرارو- », «ایسنا- ») at the start of a sentence starts the real article: what
+  stands before it (teaser + summary) is dropped when enough article text follows;
+* a short headline glued before «به گفته / به گزارش / به نقل از» at the start is dropped;
+* anything still left (a dateline, ad labels, an outlet name the guard list lacked) blocks the post.
+"""
 
 import re
 
 _P = "\u0600-\u06FF"
+_L = "\u0621-\u063A\u0641-\u064A\u067E\u0686\u0698\u06A9\u06AF\u06CC"  # Persian letters, no digits
 
 
 def _norm(value):
@@ -23,6 +34,19 @@ _EDGE = " -|/>»،,:"
 _WIDGET = re.compile(r"شما\s*قبلا\s*این\s*(?:خبر|مطلب)\s*را\s*(?:لایک|پسند)\s*کرده\s*(?:اید|ای)\s*\.?|"
                      r"(?:تعداد\s*)?(?:بازدید|لایک|نظرات|دیدگاه)\s*[:：]\s*[۰-۹0-9]+")
 _COUNTERS = re.compile(r"^(?:[۰-۹0-9]+\s+){1,4}(?=[^۰-۹0-9\s])")
+# Oct 12 (evening), see the module notes
+_DATE_TOKEN = r"[" + _L + r"]{2,15}(?: [" + _L + r"]{2,12})?"
+_ADS = re.compile(r"(?<![" + _P + r"])تبلیغات(?: تبلیغات)+(?![" + _P + r"])|"
+                  r"(?<![" + _P + r"])تبلیغات (?=" + _DATE_TOKEN + r" ?- )")
+_DATELINE = re.compile(r"(?:^|(?<=[.!؟»] ))(" + _DATE_TOKEN + r") ?- (?=[" + _P + r"])")
+_DATELINE_START = re.compile(r"^" + _DATE_TOKEN + r" ?- (?=[" + _P + r"])")
+_TEASER_PREFIX = re.compile(r"^((?:[^\s،,.:؛!؟«»]+ ){2,5}?)(?=به (?:گفته|گزارش|نقل از) )")
+_TIME_WORDS = re.compile(r"(?<![" + _P + r"])(?:امروز|دیروز|روز|شب|صبح|ظهر|بامداد|ساعاتی|دقایقی|لحظاتی|همچنین|"
+                         r"اما|ولی|سپس|پیش|پس|هفته|ماه|سال)(?![" + _P + r"])")
+# Persian news sites the final guard's brand list did not know (generic words stay allowed)
+_MORE_OUTLETS = re.compile(r"(?<![" + _P + r"])(?:فرارو|خبر ?آنلاین|تابناک|عصر ایران|همشهری آنلاین|اقتصاد ?نیوز|"
+                           r"جماران|رویداد ?۲۴|اعتماد ?آنلاین|دیده ?بان ایران|باشگاه خبرنگاران|انتخاب ?-)"
+                           r"(?![" + _P + r"])")
 
 
 def _repeated_prefix(prefix):
@@ -34,6 +58,18 @@ def _repeated_prefix(prefix):
     return words[:half] == words[half:]
 
 
+def _site_parts(text):
+    """Ad labels out; the real article from a site dateline on; a glued headline before «به گفته» out."""
+    text = re.sub(r"\s+", " ", _ADS.sub(" ", text)).strip()
+    m = _DATELINE.search(text[:400])
+    if m and len(text[m.end():].split()) >= 12:
+        text = text[m.end():]
+    m = _TEASER_PREFIX.match(text)
+    if m and not _TIME_WORDS.search(m.group(1)) and len(text[m.end():].split()) >= 8:
+        text = text[m.end():]
+    return text
+
+
 def scrub_lead(title, body):
     """The body without website leftovers at its start (see the module notes)."""
     try:
@@ -42,6 +78,10 @@ def scrub_lead(title, body):
         if _WIDGET.search(text):
             text = _COUNTERS.sub("", re.sub(r"\s+", " ", _WIDGET.sub(" ", text)).strip().lstrip(_EDGE + "."))
         text = re.sub(r"\s+", " ", text).strip().lstrip(_EDGE)
+        try:
+            text = _site_parts(text)
+        except Exception:
+            pass
         t = _norm(title)
         if t:
             i = text.find(t)
@@ -67,12 +107,22 @@ _DOUBLED = re.compile(r"(?<![" + _P + r"])(" + _ALT + r")\s+\1(?![" + _P + r"])"
 
 
 def leftover(sentences):
-    """(reason, text) when a link or a doubled section name is still in the post, else None."""
+    """(reason, text) when a link, a doubled section name, ad labels, a site dateline or an outlet
+    name is still in the post, else None."""
     for s in sentences or []:
-        s = _norm(s)
+        s = _norm(s).lstrip("▫️⚡️•- ")
         m = _LEFTOVER_LINK.search(s) or _DOUBLED.search(s) or _WIDGET.search(s)
         if m:
             return ("page-chrome", s[max(0, m.start() - 10): m.end() + 30])
+        m = _ADS.search(s)
+        if m:
+            return ("page-widget", s[max(0, m.start() - 10): m.end() + 30])
+        m = _DATELINE_START.match(s)
+        if m:
+            return ("media-source", m.group(0))
+        m = _MORE_OUTLETS.search(s)
+        if m:
+            return ("media-source", s[max(0, m.start() - 10): m.end() + 20])
     return None
 
 
