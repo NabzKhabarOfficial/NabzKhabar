@@ -334,11 +334,14 @@ def publish_to_site(item):
 
 def _scrub(text, is_detail=False):
     """The owner's rules on an old line: no outlet name or «به گزارش ...», neutral wording.
-    A detail line that only says what some outlet wrote is dropped ("")."""
+    A detail line that only says what some outlet wrote is dropped ("").
+    Order matters: strip_media removes the whole «به گزارش خبرگزاری مهر نیویورک تایمز،»
+    first; clean() first would cut only «به گزارش خبرگزاری مهر» and leave «نیویورک تایمز،»."""
     import v13_byline_cleaner as bc
     raw = str(text or "")
-    s = bc.clean(raw)
-    s = bc.strip_outlet_leads(bc.strip_media(s))
+    s = bc.strip_media(raw)
+    s = bc.strip_outlet_leads(s)
+    s = bc.clean(s)
     s = bc.neutral(s)
     s = re.sub(r"\s{2,}", " ", s).strip(" :،,")
     if is_detail and bc._MEDIA_SUBJECT_RE.search(s) and bc._REPORTING.search(s):
@@ -361,16 +364,15 @@ def _scrub_html(raw):
     """A page whose item is no longer in items.json: clean its headline, lead and details in place."""
     import v13_byline_cleaner as bc
 
-    def sub(rx, fn):
+    def sub(rx, fn, page):
         def rep(m):
             new = fn(html.unescape(m.group(2)))
             return f"{m.group(1)}{html.escape(new)}{m.group(3)}" if new else ""
         return rx.sub(rep, page)
 
-    page = raw
-    page = sub(_H1, _scrub_title)
-    page = sub(_LEAD, lambda s: _scrub(s) or s)
-    page = sub(_LI, lambda s: _scrub(s, True))
+    page = sub(_H1, _scrub_title, raw)
+    page = sub(_LEAD, lambda s: _scrub(s) or s, page)
+    page = sub(_LI, lambda s: _scrub(s, True), page)
     page = page.replace("<ul></ul>", "")
     return bc.neutral(page)  # <title>, meta description, og tags
 
