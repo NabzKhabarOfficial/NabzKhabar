@@ -6,6 +6,11 @@
 2) Daily digest: once a day, after 22:00 Tehran time, the channel gets a
    "top stories of today" post built from the day's published news. Digest
    posts are the most forwarded format, and every forward carries the brand.
+3) One-time cleanup (Oct 12 2026): pages published before the source/wording
+   cleaners existed (Oct 8-11) still carried outlet names («به گزارش خبرگزاری مهر»,
+   «پایگاه خبری تحلیلی انتخاب (Entekhab.ir)») and loaded words («رژیم صهیونیستی», «هلاکت»).
+   retro_clean() runs the same cleaners over every stored item once, rebuilds
+   its page, and marks docs/.retro_clean_v1 so it never runs again.
 
 All of it is best-effort: any failure is logged and never affects news
 publication. The digest state lives in ai_model_health.json (persisted).
@@ -24,6 +29,7 @@ CHANNEL_URL = "https://t.me/NabzKhabarOfficial"
 CHANNEL_MARK = "t.me/NabzKhabarOfficial"
 DOCS = "docs"
 ITEMS_FILE = os.path.join(DOCS, "items.json")
+RETRO_MARK = os.path.join(DOCS, ".retro_clean_v1")
 MAX_ITEMS = 300
 INDEX_ITEMS = 60
 
@@ -323,10 +329,102 @@ def publish_to_site(item):
 
 
 # --------------------------------------------------------------------------
+# One-time cleanup of pages published before the cleaners (Oct 12 2026)
+# --------------------------------------------------------------------------
+
+def _scrub(text, is_detail=False):
+    """The owner's rules on an old line: no outlet name or «به گزارش ...», neutral wording.
+    A detail line that only says what some outlet wrote is dropped ("")."""
+    import v13_byline_cleaner as bc
+    raw = str(text or "")
+    s = bc.clean(raw)
+    s = bc.strip_outlet_leads(bc.strip_media(s))
+    s = bc.neutral(s)
+    s = re.sub(r"\s{2,}", " ", s).strip(" :،,")
+    if is_detail and bc._MEDIA_SUBJECT_RE.search(s) and bc._REPORTING.search(s):
+        return ""
+    return s
+
+
+def _scrub_title(title):
+    import v13_byline_cleaner as bc
+    t = bc.neutral(bc.clean(str(title or ""))).strip()
+    return t or str(title or "")
+
+
+_H1 = re.compile(r"(<h1>)(.*?)(</h1>)", re.S)
+_LEAD = re.compile(r'(<p class="lead">)(.*?)(</p>)', re.S)
+_LI = re.compile(r"(<li>)(.*?)(</li>)", re.S)
+
+
+def _scrub_html(raw):
+    """A page whose item is no longer in items.json: clean its headline, lead and details in place."""
+    import v13_byline_cleaner as bc
+
+    def sub(rx, fn):
+        def rep(m):
+            new = fn(html.unescape(m.group(2)))
+            return f"{m.group(1)}{html.escape(new)}{m.group(3)}" if new else ""
+        return rx.sub(rep, page)
+
+    page = raw
+    page = sub(_H1, _scrub_title)
+    page = sub(_LEAD, lambda s: _scrub(s) or s)
+    page = sub(_LI, lambda s: _scrub(s, True))
+    page = page.replace("<ul></ul>", "")
+    return bc.neutral(page)  # <title>, meta description, og tags
+
+
+def retro_clean():
+    if os.path.exists(RETRO_MARK):
+        return
+    try:
+        items = load_items()
+        if not items:
+            return
+        changed = 0
+        for item in items:
+            if not isinstance(item, dict) or not item.get("id") or "t" not in item:
+                continue
+            before = json.dumps(item, ensure_ascii=False, sort_keys=True)
+            item["title"] = _scrub_title(item.get("title", ""))
+            lead = _scrub(item.get("lead", ""))
+            if lead:
+                item["lead"] = lead
+            item["details"] = [d for d in (_scrub(x, True) for x in item.get("details") or []) if d]
+            if json.dumps(item, ensure_ascii=False, sort_keys=True) != before:
+                _write(os.path.join(DOCS, "news", item["id"] + ".html"), render_item(item))
+                changed += 1
+        known = {x.get("id") for x in items if isinstance(x, dict)}
+        orphans = 0
+        folder = os.path.join(DOCS, "news")
+        if os.path.isdir(folder):
+            for name in sorted(os.listdir(folder)):
+                if not name.endswith(".html") or name[:-5] in known:
+                    continue
+                path = os.path.join(folder, name)
+                with open(path, "r", encoding="utf-8") as f:
+                    raw = f.read()
+                new = _scrub_html(raw)
+                if new != raw:
+                    _write(path, new)
+                    orphans += 1
+        _write(ITEMS_FILE, json.dumps(items, ensure_ascii=False, indent=1))
+        build_site(items)
+        stamp = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
+        _write(RETRO_MARK, f"{stamp} pages_cleaned={changed} older_pages_cleaned={orphans}\n")
+        print(f"V13 GROWTH: one-time cleanup done ({changed} pages + {orphans} older pages).", flush=True)
+    except Exception as exc:
+        print(f"V13 GROWTH: one-time cleanup skipped ({type(exc).__name__}: {exc})", flush=True)
+
+
+# --------------------------------------------------------------------------
 # Install
 # --------------------------------------------------------------------------
 
 def install(core, current, plan_for):
+    retro_clean()
+
     def wrap(name, text_index):
         inner = getattr(core, name, None)
         if not callable(inner):
