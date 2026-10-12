@@ -2278,6 +2278,12 @@
       "topic": "ورزش",
       "until": 1791917936.9473684
     },
+    "v4|دربی باز سپاهان با پاس گل آماده دربی!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: محلی، دربی باشگاهی، نه خبر ملی یا بین‌المللی",
+      "topic": "ورزش",
+      "until": 1791932315.7619085
+    },
     "v4|دریافت بیش از۲۰۰۰ اثر هنری در جشنواره فرهنگی هنری بحران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: برگزاری جشنواره فرهنگی هنری مدیریت بحران تهران اهمیت ملی ندارد",
@@ -2481,6 +2487,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: رونمایی از ربات پستچی رویداد فناوری رده‌پایین و تشریفاتی است",
       "topic": "فناوری",
       "until": 1791890400.0387585
+    },
+    "v4|رونوشت از نامه های آقای وکیل به استقلال/ زایتسف برگ برنده پرسپولیس در پرونده آسانی!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: نامه مهم در پرونده یاسر آسانی",
+      "topic": "قضایی",
+      "until": 1791932316.4967532
     },
     "v4|رویداد «شب علم»، فرصتی برای پیوند دانش آموزان با دنیای علم": {
       "ok": false,
@@ -2829,12 +2841,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Minor incident in a friendly football match, lacks national significance.",
       "topic": "ورزش",
       "until": 1791916210.766932
-    },
-    "v4|صدای انفجار در بندرخمیر مربوط به عملیات معدنی شرکت سیمان است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: صدای انفجار مربوط به عملیات معدنی محلی بوده و اهمیت ملی ندارد",
-      "topic": "جامعه",
-      "until": 1791876123.4306588
     },
     "v4|صعود ۳ فرنگی کار ایران به نیمه نهایی امیدهای جهان": {
       "ok": false,
@@ -3465,12 +3471,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: آموزش سایبری عمومی و توصیه امنیتی است، رویداد ملموس نیست.",
       "topic": "فناوری",
       "until": 1791877223.9101634
-    },
-    "v4|نمایش خودروهای برقی ارزان استلانتیس در نمایشگاه پاریس": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: نمایش خودروهای برقی جدید در نمایشگاه پاریس خبری تجاری و کم‌اهمیت است",
-      "topic": "فناوری",
-      "until": 1791876630.8550828
     },
     "v4|نمایشگاه خودرو منطقه آزاد مازندران در قائمشهر آغاز به کار کرد": {
       "ok": false,
@@ -4979,20 +4979,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: کشف مواد مخدر در سطح شهرستانی بوده و فاقد اهمیت ملی است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791821609,
-      "title": "کشف بیش از ۳۲۴ کیلوگرم مواد مخدر در گنبدکاووس"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Diplomatic call, no concrete decision announced",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1791822247,
-      "title": "تحولات منطقه و یمن؛ محور گفت وگوی وزیران امور خارجه ایران و عراق"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مراسم فرهنگی محلی با حضور وزیر",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -5537,6 +5523,20 @@
       "rule": "no-concrete-event",
       "t": 1791844746,
       "title": "یازدهمین نمایشگاه کتاب ناشران کشور در زنجان"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: محلی، دربی باشگاهی، نه خبر ملی یا بین‌المللی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1791845915,
+      "title": "دربی باز سپاهان با پاس گل آماده دربی!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: نامه مهم در پرونده یاسر آسانی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1791845916,
+      "title": "رونوشت از نامه های آقای وکیل به استقلال/ زایتسف برگ برنده پرسپولیس در پرونده آسانی!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10314,7 +10314,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791845230
+    "at": 1791845816
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791844802,
