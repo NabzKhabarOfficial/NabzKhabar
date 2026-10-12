@@ -8,6 +8,12 @@ labels and its dateline «فرارو-», then the real article. Now:
   stands before it (teaser + summary) is dropped when enough article text follows;
 * a short headline glued before «به گفته / به گزارش / به نقل از» at the start is dropped;
 * anything still left (a dateline, ad labels, an outlet name the guard list lacked) blocks the post.
+
+Oct 12 (night review):
+* a long headline made of two site headlines joined by « / » and cut by the feed in the middle of a word
+  («... خبر داده است / سعودی احتمالا ... برای افزایش ظرفی») keeps only its first, complete part;
+* «دونالد رئیس جمهور آمریکا» (the surname lost on the way) becomes «دونالد ترامپ رئیس جمهور آمریکا»;
+* still refused: a headline of 150+ characters, or «دونالد» with no surname after it.
 """
 
 import re
@@ -47,6 +53,43 @@ _TIME_WORDS = re.compile(r"(?<![" + _P + r"])(?:امروز|دیروز|روز|ش�
 _MORE_OUTLETS = re.compile(r"(?<![" + _P + r"])(?:فرارو|خبر ?آنلاین|تابناک|عصر ایران|همشهری آنلاین|اقتصاد ?نیوز|"
                            r"جماران|رویداد ?۲۴|اعتماد ?آنلاین|دیده ?بان ایران|باشگاه خبرنگاران|انتخاب ?-)"
                            r"(?![" + _P + r"])")
+# Oct 12 (night review), see the module notes
+_SLASH = re.compile(r"\s+/\s*|\s*/\s+")
+_DONALD_ROLE = re.compile(r"(?<![" + _P + r"])دونالد(?=\s*،?\s*رئیس\s?\u200c?جمهور)")
+_DONALD_BARE = re.compile(r"(?<![" + _P + r"])دونالد(?![" + _P + r"])(?!\s*(?:ترامپ|ترمپ|تاسک|جان|داک))")
+TITLE_MAX = 150
+
+
+def fix_title(title):
+    """A long two-part site headline («A / B», often cut inside B) keeps its first, complete part."""
+    try:
+        t = re.sub(r"\s+", " ", str(title or "")).strip()
+        if len(t) > 100 and _SLASH.search(t):
+            first = _SLASH.split(t)[0].strip(" -،,:")
+            if len(first) >= 25:
+                return first
+        return title
+    except Exception:
+        return title
+
+
+def fix_names(text):
+    """«دونالد رئیس جمهور» -> «دونالد ترامپ رئیس جمهور»."""
+    try:
+        return _DONALD_ROLE.sub("دونالد ترامپ", str(text or ""))
+    except Exception:
+        return text
+
+
+def title_problem(title):
+    """(reason, text) for a headline that is still too long (cut by the feed) or lost a surname."""
+    t = _norm(title)
+    if len(t) >= TITLE_MAX:
+        return ("cut-title", t[-30:])
+    m = _DONALD_BARE.search(t)
+    if m:
+        return ("broken-name", t[max(0, m.start() - 10): m.end() + 20])
+    return None
 
 
 def _repeated_prefix(prefix):
@@ -107,8 +150,8 @@ _DOUBLED = re.compile(r"(?<![" + _P + r"])(" + _ALT + r")\s+\1(?![" + _P + r"])"
 
 
 def leftover(sentences):
-    """(reason, text) when a link, a doubled section name, ad labels, a site dateline or an outlet
-    name is still in the post, else None."""
+    """(reason, text) when a link, a doubled section name, ad labels, a site dateline, an outlet
+    name or a lost surname is still in the post, else None."""
     for s in sentences or []:
         s = _norm(s).lstrip("▫️⚡️•- ")
         m = _LEFTOVER_LINK.search(s) or _DOUBLED.search(s) or _WIDGET.search(s)
@@ -123,6 +166,9 @@ def leftover(sentences):
         m = _MORE_OUTLETS.search(s)
         if m:
             return ("media-source", s[max(0, m.start() - 10): m.end() + 20])
+        m = _DONALD_BARE.search(s)
+        if m:
+            return ("broken-name", s[max(0, m.start() - 10): m.end() + 20])
     return None
 
 
@@ -143,7 +189,12 @@ def install():
     original_build = pd.build_caption
 
     def build_caption(title, body, formatter):
-        return original_build(title, scrub_lead(title, body), formatter)
+        body = scrub_lead(title, body)
+        new_title = fix_names(fix_title(title))
+        if new_title != title:
+            print(f"V13 CHROME SCRUB: headline repaired -> {str(new_title)[:120]}", flush=True)
+            body = scrub_lead(new_title, body)
+        return original_build(new_title, fix_names(body), formatter)
 
     pd.build_caption = build_caption
 
@@ -165,7 +216,7 @@ def install():
         reason = previous(title, sentences)
         if reason:
             return reason
-        hit = leftover(sentences)
+        hit = title_problem(title) or leftover(sentences)
         if not hit:
             return ""
         try:
