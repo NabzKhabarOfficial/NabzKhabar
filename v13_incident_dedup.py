@@ -26,6 +26,11 @@ anchors = same incident, whatever the wording; a shared known city counts too.
 Strong matches (two shared anchors) are remembered for 18 hours, a match on
 city/region alone for 8 hours (busy war zones such as غزه stay newsworthy). A casualty update passes only when the
 headline itself says the toll rose («شمار کشته‌ها به ۴۰ رسید»).
+
+Oct 12 (night review): one blast in the Galilee went out three times («انفجار در نئوت مردخای»,
+«انفجار در الجلیل؛ ...», «جزئیات انفجار مرگبار در شمال اسرائیل»). North Israel / the Galilee is
+now one region, and a place name followed by «،» or «؛» is found again (those marks sit inside the
+Arabic letter block, so the old word boundary refused «الجلیل؛»).
 Fail-safe: any error lets the post through to the older guards.
 """
 
@@ -64,8 +69,11 @@ REGIONS = {
     "lebanon_bekaa": "بقاع|بعلبک|هرمل",
     "gaza": "غزه|نوار غزه|رفح|خان یونس|دیر البلح|جبالیا|نصیرات",
     "westbank": "کرانه باختری|جنین|نابلس|رام الله|طولکرم|الخلیل|طوباس",
-    "israel_center": "تل آویو|تل اویو|یافا|اشدود|عسقلان|بئرالسبع|بئر السبع|ایلات|حیفا|عکا|نهاریا|کریات شمونه|"
-                     "صفد|قدس|بیت المقدس|دیمونا|نقب",
+    "israel_center": "تل آویو|تل اویو|یافا|اشدود|عسقلان|بئرالسبع|بئر السبع|ایلات|"
+                     "قدس|بیت المقدس|دیمونا|نقب",
+    "israel_north": "حیفا|عکا|نهاریا|کریات شمونه|صفد|طبریه|ناصره|کرمیئل|متولا|نئوت مردخای|"
+                    "الجلیل|جلیل|جلیل علیا|جلیل غربی|الجلیل الاعلی|الجلیل الغربی|شمال اسرائیل|"
+                    "شمال فلسطین اشغالی",
     "yemen": "صنعا|حدیده|عدن|مارب|تعز|صعده|مخا",
     "red_sea": "دریای سرخ|باب المندب|خلیج عدن",
     "hormuz": "تنگه هرمز|دریای عمان|خلیج فارس",
@@ -102,7 +110,8 @@ REGION_LEVEL = set("""
 شمال عراق|اقلیم کردستان|کردستان عراق|نینوا|الانبار|دیاله|صلاح الدین|میسان|ذی قار|ریف دمشق|جولان|
 جنوب لبنان|بقاع|نوار غزه|کرانه باختری|نقب|دریای سرخ|باب المندب|خلیج عدن|تنگه هرمز|دریای عمان|
 خلیج فارس|کردستان ایران|آذربایجان غربی|سیستان و بلوچستان|خوزستان|هرمزگان|لرستان|بلوچستان پاکستان|
-خیبر پختونخوا|وزیرستان|ننگرهار|بدخشان|پنجشیر|کریمه|قره باغ|دارفور|کشمیر
+خیبر پختونخوا|وزیرستان|ننگرهار|بدخشان|پنجشیر|کریمه|قره باغ|دارفور|کشمیر|
+الجلیل|جلیل|جلیل علیا|جلیل غربی|الجلیل الاعلی|الجلیل الغربی|شمال اسرائیل|شمال فلسطین اشغالی
 """.replace("\n", "").split("|"))
 
 # Headlines that report a reaction or a new development of the incident.
@@ -182,7 +191,9 @@ _UPDATE = re.compile(r"(?:شمار|آمار|تعداد|تلفات)\s+(?:\S+\s+){
                      r"|(?:افزایش|بالا رفتن)\s+(?:شمار|آمار|تعداد)?\s*(?:کشته|قربانیان|جان باختگان|تلفات)")
 
 
-_P = "\u0600-\u06FF"
+# Word boundary for place names: letters and digits only. «،» (U+060C), «؛» and «؟» sit inside the
+# Arabic block, so the old range \u0600-\u06FF refused «الجلیل؛» and «نئوت مردخای،» (Oct 12).
+_P = "\u0621-\u064A\u0660-\u0669\u066E-\u06D3\u06F0-\u06F9"
 _SUF = r"(?:ی|های|ها)?"
 _REGION_LEVEL_N = {_norm(x) for x in REGION_LEVEL if x.strip()}
 _REGION_RX = []
@@ -329,6 +340,13 @@ def find(caption):
     title = _title(caption)
     now = time.time()
     for item in reversed(_seed(health)):
+        # a remembered signature is re-read with today's place list (Oct 12: north Israel was missing)
+        try:
+            fresh = signature(item.get("title", "")) or {}
+            if fresh.get("regions") and not item.get("regions"):
+                item = dict(item, regions=fresh["regions"], cities=fresh.get("cities", []))
+        except Exception:
+            pass
         strength = match_strength(sig, item)
         if not strength:
             continue
