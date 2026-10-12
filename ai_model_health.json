@@ -2982,12 +2982,6 @@
       "topic": "سیاست",
       "until": 1791916224.3712187
     },
-    "v4|غفلت والدین؛ مانع اصلی سلامت و غربالگری کودکان همدانی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Local health screening report, no national impact",
-      "topic": "سلامت",
-      "until": 1791872566.1238377
-    },
     "v4|فارس برای اجرای نسخه ۰۳ پزشک خانواده آماده می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی درباره آمادگی اجرای نسخه جدید پزشک خانواده در فارس",
@@ -3761,6 +3755,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: هشدار رسمی وزیر کشور آلمان درباره وضعیت امنیتی و جنگ پنهان",
       "topic": "سیاست",
       "until": 1791899169.7238636
+    },
+    "v4|وزیر کشور عازم تهران شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Routine ministerial travel, no major impact",
+      "topic": "سیاست",
+      "until": 1791920772.1518166
     },
     "v4|وزیر کشور: امنیت جمهوری آذربایجان امنیت ایران است": {
       "ok": false,
@@ -5089,13 +5089,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: دیدار مدیرعامل باشگاه با وزیر یک رویداد اداری و روتین است.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1791816914,
-      "title": "مدیرعامل پرسپولیس به دیدار وزیر ورزش رفت"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: مصدومیت یک بازیکن در سطح اخبار ورزشی عمومی و غیرمهم است.",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -5647,6 +5640,13 @@
       "rule": "no-concrete-event",
       "t": 1791833809,
       "title": "۳ پیروزی و ۲ شکست فرنگی کاران ایران در آغاز رقابت های جهانی آمریکا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Routine ministerial travel, no major impact",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1791834372,
+      "title": "وزیر کشور عازم تهران شد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10888,7 +10888,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791833661
+    "at": 1791834252
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791833267,
