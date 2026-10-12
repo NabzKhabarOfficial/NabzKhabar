@@ -16,6 +16,11 @@ arrests, an official result, a clearly higher toll announced as an update.
   that is about to go out, so it costs one or two free calls per run.
 * Free providers only: Groq, then Gemini flash-lite.
 * Fail-safe: if every provider fails, the older guards have already run.
+* A "repeat" that shares no visible words with the earlier headline asks a
+  second model. Only an explicit "not a repeat" from that second model lets it
+  through; when no second model answers (quota/rate limits), the first
+  "repeat" stands (Oct 12 2026: the Galilee / Neot Mordechai blast went out
+  twice while most models were rate-limited).
 * Every verdict is logged to ai_model_health.json (_event_judge_log).
 """
 
@@ -53,6 +58,7 @@ even with different wording, angle, language, source or casualty figures?
 - "repeat": the same specific incident / attack / accident / decision / statement /
   report, retold, summarized, re-framed (e.g. "part of a wave of attacks") or with
   slightly different numbers. The same person's same statement again is a repeat.
+  The same incident named by a wider region (e.g. a town vs. its region) is a repeat.
 - "update": the same incident with a genuinely new development: a clearly higher
   official toll announced as an update, a claim of responsibility, arrests, an
   official investigation result.
@@ -232,9 +238,11 @@ def judge(caption):
     if _is_repeat(verdict) and match and not related(head, match["title"]):
         # No important news may be lost to one model's mistake: a "repeat" that
         # shares nothing visible with the earlier headline needs a second model.
+        # Only an explicit "not a repeat" lets it through; no answer = the repeat stands
+        # (posting one event twice is the owner's red line).
         second = ask(PROMPT % (head[:400], listing), skip=entry["model"])
         entry["confirm"] = (second or {}).get("model", "none") + ":" + str((second or {}).get("verdict", "-"))
-        if not _is_repeat(second):
+        if second and not _is_repeat(second):
             kind = "unconfirmed-repeat"
             entry["verdict"] = kind
     _log(health, entry)
