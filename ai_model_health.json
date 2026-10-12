@@ -1333,12 +1333,6 @@
       "topic": "جامعه",
       "until": 1791802079.2232943
     },
-    "v4|افت ۲۲ هزار واحدی شاخص کل بورس در معاملات ۱۹ مهر": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: افت شدید و ۲۲ هزار واحدی شاخص کل بورس تهران",
-      "topic": "اقتصاد",
-      "until": 1791800957.8903182
-    },
     "v4|افشای فشار واشنگتن بر کی یف برای توقف حملات علیه زیرساخت های انرژی روسیه": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: فشار رسمی آمریکا بر اوکراین برای تغییر استراتژی جنگی و انرژی",
@@ -3547,6 +3541,12 @@
       "topic": "سیاست",
       "until": 1791806123.1373346
     },
+    "v4|نرخ های رسمی مرکز مبادله؛ دلار و یورو در کانال های جدید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: Routine official exchange rate announcement",
+      "topic": "اقتصاد",
+      "until": 1791869732.2769382
+    },
     "v4|نریمانی و رسولی امشب در دانشگاه تهران مرثیه خوانی می کنند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: مراسم سوگواری محلی، اثر ملی ندارد",
@@ -5016,13 +5016,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: اظهارات غیررسمی و شعارگونه یک نماینده مجلس درباره تهدید نظامی اسرائیل",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1791746908,
-      "title": "عضو کمیسیون امنیت ملی مجلس؛ اسرائیل را شخم می زنیم و در آن گندم می کاریم!"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: اظهارات تبلیغاتی و شعارگونه سخنگوی سپاه فاقد ارزش خبری راهبردی است.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5574,6 +5567,13 @@
       "rule": "no-concrete-event",
       "t": 1791782747,
       "title": "کرمان خاستگاه کهن ترین تمدن جهان"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: Routine official exchange rate announcement",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1791783332,
+      "title": "نرخ های رسمی مرکز مبادله؛ دلار و یورو در کانال های جدید"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9226,7 +9226,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791782607
+    "at": 1791783184
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791778132,
