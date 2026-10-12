@@ -1012,6 +1012,12 @@
       "topic": "سلامت",
       "until": 1791894463.5411484
     },
+    "v4|آغاز به کار سومین نمایشگاه خودروهای منطقه آزاد مازندران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: نمایشگاه خودرو در مازندران",
+      "topic": "اقتصاد",
+      "until": 1791923709.1932628
+    },
     "v4|آغاز رسمی یادروز حافظ در قلب شیراز": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مراسم یادبود حافظ در شیراز",
@@ -1282,12 +1288,6 @@
       "topic": "جامعه",
       "until": 1791887497.0013046
     },
-    "v4|از کمبود موشک تا کسری بودجه؛ عربستان گزینه های زیادی در یمن ندارد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: گزارش وال استریت ژورنال درباره بحران نظامی و اقتصادی عربستان در یمن",
-      "topic": "نظامی",
-      "until": 1791875022.1569414
-    },
     "v4|اسبقیان: اختصاص استخر به هیات های استانی با دستور وزیر ورزش لازم الاجراست": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: دستور اداری داخلی وزارت ورزش درباره تخصیص استخر استانی",
@@ -1497,12 +1497,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: Explosion and mass casualties in a regional conflict zone.",
       "topic": "حادثه",
       "until": 1791896855.820688
-    },
-    "v4|انفجارهای نورد استریم؛ رد شواهد چگونه به اوکراین رسید؟": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: آغاز محاکمه نخستین متهم پرونده خرابکاری نورد استریم در آلمان",
-      "topic": "قضایی",
-      "until": 1791875014.4926324
     },
     "v4|انوشیروانی: ظرفیت دستگاه های اجرایی باید در خدمت ورزش قهرمانی باشد": {
       "ok": false,
@@ -2379,6 +2373,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: مقاله تحلیلی و نظری درباره مدیریت بحران، بدون رویداد مشخص.",
       "topic": "سیاست",
       "until": 1791890400.769285
+    },
+    "v4|دیدار مجمع نمایندگان استان تهران با وزیر امور خارجه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Routine ministerial briefing, no concrete decision announced",
+      "topic": "سیاست",
+      "until": 1791923708.2139628
     },
     "v4|دیدار مجمع نمایندگان استان تهران در مجلس با وزیر خارجه": {
       "ok": false,
@@ -5079,20 +5079,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر مربوط به ترکیب تیم باشگاهی است و اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1791818218,
-      "title": "۱۱ بازیکن تراکتور برای دیدار مقابل الشمال"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: درخواست استاندار برای مجوز تردد، یک پیشنهاد استانی و محلی است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791818817,
-      "title": "مجوز تردد زمینی برای بازرگانان و گردشگران صادر شود"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: کشف ماینر در یک شهرستان، خبری محلی و فاقد اهمیت ملی است.",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -5637,6 +5623,20 @@
       "rule": "no-concrete-event",
       "t": 1791836685,
       "title": "سرعت غیرمجاز در جاده طالقان قزوین چهار قربانی گرفت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Routine ministerial briefing, no concrete decision announced",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1791837308,
+      "title": "دیدار مجمع نمایندگان استان تهران با وزیر امور خارجه"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: نمایشگاه خودرو در مازندران",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1791837309,
+      "title": "آغاز به کار سومین نمایشگاه خودروهای منطقه آزاد مازندران"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10414,7 +10414,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791836560
+    "at": 1791837137
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791836760,
