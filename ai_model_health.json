@@ -1175,12 +1175,6 @@
       "topic": "جامعه",
       "until": 1791815929.6949296
     },
-    "v4|اخبار کوتاه گیلان؛ انهدام باند سارقان غیربومی تا کشف قرص های روان گردان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار محلی کشفیات پلیس و سرقت در استان گیلان",
-      "topic": "قضایی",
-      "until": 1791799160.2099788
-    },
     "v4|اختصاص ۲۵ درجه بودجه فدراسیون اسکی به استان ها/ برنامه ریزی برای راه اندازی رشته فلوربال": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر تخصیص بودجه و تجهیزات فدراسیون اسکی به استان‌ها اهمیت ملی ندارد.",
@@ -1666,6 +1660,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: برنامه مسابقات لیگ داخلی اهمیت ملی برای پوشش خبری فوری ندارد.",
       "topic": "ورزش",
       "until": 1791834999.5697925
+    },
+    "v4|برندهای فناوری که گوگل تصاحب کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: General overview, no new concrete event",
+      "topic": "فناوری",
+      "until": 1791858685.38131
     },
     "v4|برگزاری آیین نکوداشت ۶۱ سالگی تماشاخانه سنگلج/ خانه تئاتر میزبان جشن هفته ملی کودک شد": {
       "ok": false,
@@ -2512,12 +2512,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: انتصاب مدیرعامل باشگاه صنعت نفت آبادان یک خبر محلی و ورزشی است.",
       "topic": "ورزش",
       "until": 1791817630.2593048
-    },
-    "v4|روزانه ۵۰۰ تن مرغ مازندران راهی بازار تهران می شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر توزیع مرغ استانی محلی و غیرمهم برای سطح ملی است",
-      "topic": "اقتصاد",
-      "until": 1791799160.9022772
     },
     "v4|روسیه: بحران در منطقه باید از راه دیپلماتیک حل شود": {
       "ok": false,
@@ -3670,6 +3664,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Lifestyle and health advice, not a first-tier news event.",
       "topic": "سلامت",
       "until": 1791829813.5648875
+    },
+    "v4|هشدار موسسه مطالعات مالی بریتانیا درباره تاثیر جنگ ایران بر بودجه دولت": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: گزارش تحلیلی و پیش‌بینی اقتصادی است و نه یک رویداد قطعی.",
+      "topic": "اقتصاد",
+      "until": 1791858703.0983818
     },
     "v4|هشدار پژوهشگران: هوش مصنوعی در انتخاب فشارسنج دقیق نیست؛ به توصیه های آن اعتماد نکنید": {
       "ok": false,
@@ -5024,13 +5024,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر مربوط به یک مسابقه فوتبال استانی و رده سنی پایه است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791743403,
-      "title": "واکنش کمیته انضباطی به ضرب و شتم داور در فوتبال زیر ۱۳ سال اصفهان"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: آمار استانی پرستاران فاقد اهمیت ملی یا بین‌المللی است.",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -5582,6 +5575,13 @@
       "rule": "routine-statement",
       "t": 1791771674,
       "title": "انریکه در چشمان نیمار نگاه کرد و گفت اخراجی!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: General overview, no new concrete event",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1791772285,
+      "title": "برندهای فناوری که گوگل تصاحب کرد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9537,7 +9537,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791771623
+    "at": 1791772195
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791770009,
