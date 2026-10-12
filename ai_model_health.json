@@ -1513,6 +1513,12 @@
       "topic": "جامعه",
       "until": 1791826907.25909
     },
+    "v4|با او هرگز نبرده اند/ داور بدیمن ایتالیایی به بارسلونا رسید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: اعلام داور برای مسابقه روزانه",
+      "topic": "ورزش",
+      "until": 1791864529.52679
+    },
     "v4|بازار هوش مصنوعی ایران به ۵.۵ همت رسید / رئیس انجمن ملی هوش مصنوعی: شرکت های ایرانی بیش از پول به مشتری نیاز دارند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: گزارش حجم بازار هوش مصنوعی در ایران اهمیت درجه دو دارد",
@@ -2136,6 +2142,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine public appearance by a military official, lacks national strategic impact.",
       "topic": "جامعه",
       "until": 1791833782.437519
+    },
+    "v4|حضور موفق در پروژه های افغانستان نیازمند کنسرسیوم های زنجیره ارزش": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Opinion piece, no concrete decision or impact",
+      "topic": "اقتصاد",
+      "until": 1791864528.9481158
     },
     "v4|حفاظت از برندهای ایرانی/حلقه مفقوده توسعه تجارت با افغانستان": {
       "ok": false,
@@ -3571,12 +3583,6 @@
       "topic": "سیاست",
       "until": 1791832121.9329576
     },
-    "v4|نشست خبری جشنواره فیلم کوتاه تهران": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: خبرگاه محلی، جشنواره فیلم کوتاه",
-      "topic": "جامعه",
-      "until": 1791800359.4872177
-    },
     "v4|نقدی:دشمن از نبرد نظامی ناامید شده است؛امید به اختلافات داخلی بسته اند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: سخنرانی مقام نظامی درباره مسائل کلی و بدون رویداد مشخص",
@@ -4074,12 +4080,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: این یک مطلب آموزشی و عمومی است و خبر محسوب نمی‌شود.",
       "topic": "فناوری",
       "until": 1791832118.3594375
-    },
-    "v4|چهار سناریوی پیش روی ایران مقابل آمریکا از نظر محمود واعظی/ از ظرفیت های ایجادشده در عرصه نظامی برای رسیدن به نتیجه پایدار سیاسی بهره برداری شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: اظهارنظر و تحلیل یک مقام سابق درباره سناریوهای پیش‌رو",
-      "topic": "سیاست",
-      "until": 1791800360.249279
     },
     "v4|چپ پاها فوتبال اسپانیا را تسخیر کردند!": {
       "ok": false,
@@ -5016,20 +5016,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local gathering in a small city, lacks national strategic significance.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791745712,
-      "title": "روایت مهر از دویست و بیست و پنجمین حضور مردم آستانه در تجمعات"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این خبر حاشیه‌ای و مربوط به سبک مربیگری است و اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1791745715,
-      "title": "روش عجیب این مربی برای مهار بحران/ قهر ایرائولا با بازیکنان لیورپول بعد از باخت!"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: این یک مطلب آموزشی و عمومی است و خبر محسوب نمی‌شود.",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5574,6 +5560,20 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1791777513,
       "title": "مقررات اسکوتر در انتظار ابلاغ؛ آمار امسال از فوت بانوان موتورسوار"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Opinion piece, no concrete decision or impact",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1791778128,
+      "title": "حضور موفق در پروژه های افغانستان نیازمند کنسرسیوم های زنجیره ارزش"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: اعلام داور برای مسابقه روزانه",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791778129,
+      "title": "با او هرگز نبرده اند/ داور بدیمن ایتالیایی به بارسلونا رسید"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9226,7 +9226,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791777408
+    "at": 1791777990
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791778132,
