@@ -10,7 +10,9 @@
    cleaners existed (Oct 8-11) still carried outlet names («به گزارش خبرگزاری مهر»,
    «پایگاه خبری تحلیلی انتخاب (Entekhab.ir)») and loaded words («رژیم صهیونیستی», «هلاکت»).
    retro_clean() runs the same cleaners over every stored item once, rebuilds
-   its page, and marks docs/.retro_clean_v1 so it never runs again.
+   its page, and marks docs/.retro_clean_v2 so it never runs again. v2 also strips
+   page headers («۱۶ مهر ۱۴۰۵، ۲۲:۰۶ کد مطلب ... بین الملل ...»), repairs headlines cut mid-word
+   («... با حوثی ها در ار» + lead «تباط هستیم/ ...»), and drops «در ادامه می آید» teasers.
 
 All of it is best-effort: any failure is logged and never affects news
 publication. The digest state lives in ai_model_health.json (persisted).
@@ -29,7 +31,7 @@ CHANNEL_URL = "https://t.me/NabzKhabarOfficial"
 CHANNEL_MARK = "t.me/NabzKhabarOfficial"
 DOCS = "docs"
 ITEMS_FILE = os.path.join(DOCS, "items.json")
-RETRO_MARK = os.path.join(DOCS, ".retro_clean_v1")
+RETRO_MARK = os.path.join(DOCS, ".retro_clean_v2")
 MAX_ITEMS = 300
 INDEX_ITEMS = 60
 
@@ -355,6 +357,29 @@ def _scrub_title(title):
     return t or str(title or "")
 
 
+def _repair(item):
+    """v2: page header glued to the lead, a headline cut mid-word, a lead that is junk + a detail
+    line, and «در ادامه می آید» teasers. Never leaves an empty lead."""
+    import v13_byline_cleaner as bc
+    title = str(item.get("title", "") or "")
+    lead = str(item.get("lead", "") or "")
+    details = [str(d or "") for d in item.get("details") or []]
+    new = bc.strip_chrome(lead, title).strip()
+    if len(new.split()) >= 6:
+        lead = new
+    if bc.looks_cut(title):
+        ends = [m.start() for m in bc._SEG_END.finditer(title) if m.start() >= 40]
+        if ends:
+            title = title[:ends[-1]].strip(" /؛|،,:")
+    for d in details:  # «<cut headline tail> ... <detail line>»: the detail line is the real lead
+        if len(d) >= 40 and d in lead and lead.strip() != d.strip():
+            lead = d
+            details = [x for x in details if x != d]
+            break
+    details = [d for d in details if not bc._READ_ON.search(d) and d.strip() != lead.strip()]
+    item.update(title=title, lead=lead, details=details)
+
+
 _H1 = re.compile(r"(<h1>)(.*?)(</h1>)", re.S)
 _LEAD = re.compile(r'(<p class="lead">)(.*?)(</p>)', re.S)
 _LI = re.compile(r"(<li>)(.*?)(</li>)", re.S)
@@ -372,7 +397,7 @@ def _scrub_html(raw):
 
     page = sub(_H1, _scrub_title, raw)
     page = sub(_LEAD, lambda s: _scrub(s) or s, page)
-    page = sub(_LI, lambda s: _scrub(s, True), page)
+    page = sub(_LI, lambda s: "" if bc._READ_ON.search(s) else _scrub(s, True), page)
     page = page.replace("<ul></ul>", "")
     return bc.neutral(page)  # <title>, meta description, og tags
 
@@ -394,6 +419,10 @@ def retro_clean():
             if lead:
                 item["lead"] = lead
             item["details"] = [d for d in (_scrub(x, True) for x in item.get("details") or []) if d]
+            try:
+                _repair(item)
+            except Exception as exc:
+                print(f"V13 GROWTH: repair skipped for {item.get('id')} ({type(exc).__name__})", flush=True)
             if json.dumps(item, ensure_ascii=False, sort_keys=True) != before:
                 _write(os.path.join(DOCS, "news", item["id"] + ".html"), render_item(item))
                 changed += 1
