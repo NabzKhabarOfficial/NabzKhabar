@@ -13,6 +13,10 @@
    its page, and marks docs/.retro_clean_v2 so it never runs again. v2 also strips
    page headers («۱۶ مهر ۱۴۰۵، ۲۲:۰۶ کد مطلب ... بین الملل ...»), repairs headlines cut mid-word
    («... با حوثی ها در ار» + lead «تباط هستیم/ ...»), and drops «در ادامه می آید» teasers.
+4) Oct 12 (night review): the site title gets the same headline repair as the channel
+   (v13_chrome_scrub.fix_title / fix_names), and retro_fix_v3() fixes today's bad pages once
+   (docs/.retro_clean_v3): two repeats of the Galilee blast are taken off the site, and a cut
+   headline, a lost surname, page chrome and leads that start mid-sentence are repaired.
 
 All of it is best-effort: any failure is logged and never affects news
 publication. The digest state lives in ai_model_health.json (persisted).
@@ -32,6 +36,7 @@ CHANNEL_MARK = "t.me/NabzKhabarOfficial"
 DOCS = "docs"
 ITEMS_FILE = os.path.join(DOCS, "items.json")
 RETRO_MARK = os.path.join(DOCS, ".retro_clean_v2")
+RETRO_V3 = os.path.join(DOCS, ".retro_clean_v3")
 MAX_ITEMS = 300
 INDEX_ITEMS = 60
 
@@ -80,6 +85,18 @@ def fa_time(dt):
     return dt.strftime("%H:%M").translate(FA_DIGITS)
 
 
+def _repair_text(title, lead, details):
+    """Same headline/name repair as the channel post (v13_chrome_scrub)."""
+    try:
+        import v13_chrome_scrub as cs
+        title = cs.fix_names(cs.fix_title(title))
+        lead = cs.fix_names(lead)
+        details = [cs.fix_names(d) for d in details]
+    except Exception:
+        pass
+    return title, lead, details
+
+
 def parse_caption(caption, plan):
     lead, details = "", []
     for line in str(caption or "").splitlines():
@@ -88,8 +105,9 @@ def parse_caption(caption, plan):
             lead = s.lstrip("⚡️").strip()
         elif s.startswith("▫️") or s.startswith("▫"):
             details.append(s.lstrip("▫️").strip())
+    title, lead, details = _repair_text(plan.get("title", ""), lead, details)
     return {
-        "title": plan.get("title", ""),
+        "title": title,
         "lead": lead,
         "details": details,
         "label": plan.get("label", "جهان"),
@@ -449,12 +467,69 @@ def retro_clean():
         print(f"V13 GROWTH: one-time cleanup skipped ({type(exc).__name__}: {exc})", flush=True)
 
 
+# Oct 12 (night review): today's pages that broke the owner's rules.
+V3_DROP = {
+    "20261012-141808-ee5c48",  # Galilee blast, third time; the owner removed it from the channel
+    "20261012-132935-6434ea",  # Galilee blast, second time; lead was a chain of related-video links
+}
+V3_FIX = {
+    "20261012-163627-6d1abb": {"title": "عربستان امروز از برنامه های خود برای افزایش ظرفیت خط لوله راهبردی خود که تنگه هرمز را دور می زند خبر داد"},
+    "20261012-093411-a23e94": {"lead": "دونالد ترامپ، رئیس جمهور آمریکا، به طور غیرمنتظره ای از برقراری «آتش بس انرژی» میان اوکراین و روسیه خبر داد که با ابراز شگفتی کی یف و سکوت مسکو روبه رو شد."},
+    "20261012-003712-5e5c71": {"lead": "رسانه های خبری از حمله موشکی ارتش یمن به مواضع عربستان در خمیس مشیط و شهر ابها خبر دادند."},
+    "20261012-080430-03f5b3": {"lead": "سخنگوی فراجا از شناسایی و دستگیری اعضای یک تیم تروریستی مرتبط با ترورهای اخیر در استان سیستان وبلوچستان خبر داد."},
+    "20261012-001131-a11b2c": {"lead": "حمله به فرودگاه ریاض لحظه خطرناک دیگری را در منطقه ای رقم می زند که هم اکنون نیز غرق در تنش و درگیری است."},
+    "20261012-062301-8bcf1a": {"lead": "ایران اعلام کرد آمریکا برخی از شرایط صلح را پذیرفته، اما این پاسخ را ناکافی دانست."},
+    "20261012-061435-bf3bbc": {"lead": "نخست وزیر اسرائیل در پی حملات اخیر یمن به عربستان، با ریاض ابراز همدردی کرد."},
+    "20261012-073048-f4b472": {"lead": "رسانه های عبری زبان از موافقت اسرائیل با اعزام نیروهای آمریکایی به مناطق تحت کنترل ارتش اسرائیل در جنوب نوار غزه خبر دادند."},
+}
+
+
+def _gone_page():
+    body = ('<h1>این خبر برداشته شد</h1><p class="lead">این مطلب تکراری بود و از نبض خبر حذف شد.</p>'
+            f'<a class="cta" href="../index.html">آخرین خبرها</a>')
+    return _page("این خبر برداشته شد | نبض خبر", "این مطلب از نبض خبر برداشته شد.", body, SITE_URL, depth=1,
+                 extra_head='<meta name="robots" content="noindex">\n'
+                            '<meta http-equiv="refresh" content="0;url=../index.html">\n')
+
+
+def retro_fix_v3():
+    if os.path.exists(RETRO_V3):
+        return
+    try:
+        items = load_items()
+        if not items:
+            return
+        keep, dropped, fixed = [], 0, 0
+        for item in items:
+            iid = item.get("id") if isinstance(item, dict) else None
+            if iid in V3_DROP:
+                _write(os.path.join(DOCS, "news", iid + ".html"), _gone_page())
+                dropped += 1
+                continue
+            if iid in V3_FIX:
+                item.update(V3_FIX[iid])
+                t, lead, details = _repair_text(item.get("title", ""), item.get("lead", ""),
+                                                [str(d or "") for d in item.get("details") or []])
+                item.update(title=t, lead=lead, details=[d for d in details if d.strip() != lead.strip()])
+                _write(os.path.join(DOCS, "news", iid + ".html"), render_item(item))
+                fixed += 1
+            keep.append(item)
+        _write(ITEMS_FILE, json.dumps(keep, ensure_ascii=False, indent=1))
+        build_site(keep)
+        stamp = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
+        _write(RETRO_V3, f"{stamp} removed={dropped} fixed={fixed}\n")
+        print(f"V13 GROWTH: v3 fix done ({dropped} repeats removed, {fixed} pages repaired).", flush=True)
+    except Exception as exc:
+        print(f"V13 GROWTH: v3 fix skipped ({type(exc).__name__}: {exc})", flush=True)
+
+
 # --------------------------------------------------------------------------
 # Install
 # --------------------------------------------------------------------------
 
 def install(core, current, plan_for):
     retro_clean()
+    retro_fix_v3()
 
     def wrap(name, text_index):
         inner = getattr(core, name, None)
