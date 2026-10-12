@@ -9,7 +9,9 @@ never reach the channel:
   or a line whose subject is an outlet that "reported" something);
 * loaded wording is still there («رژیم صهیونیستی»، «هلاکت»، «متجاوز»، «صهیونیست»);
 * website page chrome is still glued to the lead (section name + a «۰ نفر» counter + the
-  headline repeated), or a line is a "related story" teaser such as «: دوباره جنگ می شود ؟».
+  headline repeated), or a line is a "related story" teaser such as «: دوباره جنگ می شود ؟»;
+* the text is a chain of the site's related-video links (Oct 12: «ده ها اسرائیلی زخمی شدند
+  + فیلم خبر مهم سخنگوی دولت ... + فیلم اعتراف مرشایمر ... + فیلم موزه ای ...»).
 
 A refused post is an editorial block (never a red run), exactly like the relevance gate's
 broken-text blocks. Every refusal is logged in docs/guard_log.json (last 100, newest last)
@@ -53,6 +55,8 @@ OUTLET_NAMES = re.compile(r"(?<![" + _P + r"])(?:بلومبرگ|رویترز|ا�
                           r"ایسنا|ایرنا|تسنیم|ایلنا|خبرگزاری" + _S + r"+\S+)(?![" + _P + r"])")
 VICTIM = re.compile(r"(?:کشته|زخمی|مجروح|بازداشت|دستگیر|ربوده|شهید|ترور|اخراج|توقیف|تعطیل|فیلتر|محکوم|زندانی)")
 SOURCE_LINE = re.compile(r"(?:^|\n)\s*(?:🔗\s*)?منبع\s*[:：]")
+# A news site's "related videos" strip glued to the text: «... + فیلم <other story> + فیلم ...».
+RELATED_LINK = re.compile(r"\+\s*(?:فیلم|ویدئو|ویدیو|عکس|تصاویر|اینفوگرافیک|صوت|فایل" + _S + r"+صوتی)(?![" + _P + r"])")
 
 
 def _media_patterns():
@@ -71,6 +75,9 @@ def problems(title, sentences):
         found.append(("loaded-wording", m.group(0)))
     if SOURCE_LINE.search(text):
         found.append(("source-line", "منبع:"))
+    m = RELATED_LINK.search(text)
+    if m:
+        found.append(("related-links", text[max(0, m.start() - 30): m.end() + 30]))
     try:
         import v13_byline_cleaner as bc
         sents = [str(x or "") for x in sentences or []]
@@ -152,8 +159,11 @@ def _log(title, found):
             data = {}
         items = data.get("blocked") if isinstance(data.get("blocked"), list) else []
         now = datetime.now(TEHRAN)
-        items.append({"at": now.strftime("%Y-%m-%d %H:%M"), "reasons": [r for r, _ in found],
-                      "matched": [t for _, t in found], "title": str(title or "")[:160]})
+        entry = {"at": now.strftime("%Y-%m-%d %H:%M"), "reasons": [r for r, _ in found],
+                 "matched": [t for _, t in found], "title": str(title or "")[:160]}
+        if items and all(items[-1].get(k) == entry[k] for k in ("at", "reasons", "title")):
+            return  # the same refusal twice in one minute (retry of the same candidate)
+        items.append(entry)
         data["blocked"] = items[-LOG_MAX:]
         today = now.strftime("%Y-%m-%d")
         data["today"] = {"date": today, "blocked": sum(1 for x in data["blocked"] if x["at"].startswith(today))}
@@ -208,7 +218,7 @@ Answer one question: can a reader understand this post without being confused?
   text say opposite things about the same fact (e.g. "X did not ask for Y" and then
   "X specifically asked for Y").
 - "garbled": broken or cut-off sentences, words glued together, leftover website
-  text, so the meaning is unclear.
+  text (e.g. a list of other stories' headlines), so the meaning is unclear.
 - "ok": clear and consistent. Different numbers from different officials, a denial
   quoted next to a claim, or "A said X, B said not X" is ok: that is normal reporting.
 
