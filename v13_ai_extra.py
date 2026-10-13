@@ -12,6 +12,8 @@ launcher without touching the other files:
    in the shared health file, so a dead model is not hit for every story.
 3. A story blocked only because no AI was available (ai_unavailable_foreign)
    is held for 20 minutes instead of 6 hours, so it is retried once AI is back.
+4. Optional second Gemini key (AI_API_KEY_2, another Google project): used
+   automatically by every Gemini call when the first key answers 429.
 
 Run with `python v13_ai_extra.py` (same as `python run_bot.py`, plus the above).
 If anything here fails to install, the bot runs exactly as before.
@@ -346,8 +348,71 @@ def install_payment_cooldown():
     r._v13_payment_cooldown = True
 
 
+def install_gemini_second_key():
+    """AI_API_KEY_2 = a Gemini key from a SECOND Google project (free quota is per project).
+
+    Every Gemini call in the bot (router, editor gate, event judge, guards...) goes through
+    requests, so the switch happens there: when key 1 answers 429 the same request is sent
+    again with key 2, and for the next 10 minutes key 2 is used directly.
+    """
+    k1 = os.getenv("AI_API_KEY", "").strip()
+    k2 = os.getenv("AI_API_KEY_2", "").strip()
+    if not k2 or k2 == k1:
+        print("V13 AI EXTRA: second Gemini key " + ("MISSING" if not k2 else "same as first; ignored"), flush=True)
+        return
+    import requests.sessions as rs
+    if getattr(rs.Session.request, "_v13_gemini2", False):
+        return
+    original = rs.Session.request
+    state = {"k1_rest_until": 0.0, "logged": False}
+
+    def with_key(url, kwargs, new):
+        kwargs = dict(kwargs)
+        changed = False
+        params = kwargs.get("params")
+        if isinstance(params, dict) and str(params.get("key", "")).strip() == k1:
+            params = dict(params)
+            params["key"] = new
+            kwargs["params"] = params
+            changed = True
+        headers = kwargs.get("headers")
+        if isinstance(headers, dict):
+            for name, value in list(headers.items()):
+                if name.lower() == "x-goog-api-key" and str(value).strip() == k1:
+                    headers = dict(headers)
+                    headers[name] = new
+                    kwargs["headers"] = headers
+                    changed = True
+        if "key=" + k1 in str(url):
+            url = str(url).replace("key=" + k1, "key=" + new)
+            changed = True
+        return url, kwargs, changed
+
+    def request(self, method, url, *args, **kwargs):
+        if args or "generativelanguage.googleapis.com" not in str(url):
+            return original(self, method, url, *args, **kwargs)
+        if time.time() < state["k1_rest_until"]:
+            url2, kwargs2, changed = with_key(url, kwargs, k2)
+            if changed:
+                return original(self, method, url2, **kwargs2)
+        response = original(self, method, url, **kwargs)
+        if getattr(response, "status_code", 0) == 429:
+            url2, kwargs2, changed = with_key(url, kwargs, k2)
+            if changed:
+                state["k1_rest_until"] = time.time() + 10 * 60
+                if not state["logged"]:
+                    print("V13 AI EXTRA: Gemini key 1 hit its limit (429); switching to key 2", flush=True)
+                    state["logged"] = True
+                return original(self, method, url2, **kwargs2)
+        return response
+
+    request._v13_gemini2 = True
+    rs.Session.request = request
+    print("V13 AI EXTRA: second Gemini key READY (used when key 1 answers 429)", flush=True)
+
+
 def install_all(rb):
-    for label, fn in (("402 cooldown", install_payment_cooldown), ("router", install_router), ("editor gate", install_editor_gate),
+    for label, fn in (("gemini key 2", install_gemini_second_key), ("402 cooldown", install_payment_cooldown), ("router", install_router), ("editor gate", install_editor_gate),
                       ("block ttl", lambda: install_block_ttl(rb))):
         try:
             fn()
