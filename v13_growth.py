@@ -17,6 +17,9 @@
    (v13_chrome_scrub.fix_title / fix_names), and retro_fix_v3() fixes today's bad pages once
    (docs/.retro_clean_v3): two repeats of the Galilee blast are taken off the site, and a cut
    headline, a lost surname, page chrome and leads that start mid-sentence are repaired.
+5) Oct 13 (review): retro_fix_v4() (docs/.retro_clean_v4) repairs 6 more pages once: a sticky
+   teaser before the lead, outlet names («العربی», «صداوسیما»), a 150+ character headline and
+   leads that are only a relative clause («حملاتی که ...»).
 
 All of it is best-effort: any failure is logged and never affects news
 publication. The digest state lives in ai_model_health.json (persisted).
@@ -523,6 +526,52 @@ def retro_fix_v3():
         print(f"V13 GROWTH: v3 fix skipped ({type(exc).__name__}: {exc})", flush=True)
 
 
+# Oct 13 (review): pages from Oct 12-13 that the v3 fix did not know yet (a sticky teaser, an outlet
+# name in the headline, a headline over 150 characters, leads that are only a relative clause).
+RETRO_V4 = os.path.join(DOCS, ".retro_clean_v4")
+V4_FIX = {
+    "20261012-175202-16e074": {"lead": "دولت بریتانیا روز دوشنبه از اعمال تحریم علیه دو مقام ایرانی خبر داد."},
+    "20261012-201652-14984b": {"title": "شنیده شدن صدای انفجار در پایتخت عربستان؛ سامانه های هشدار ریاض فعال شدند",
+                               "lead": "سامانه های هشدار در ریاض فعال شدند."},
+    "20261012-201639-1d3e86": {"title": "سعدالله زارعی: امارات در ترورهای روزهای اخیر شرق ایران نقش داشته است",
+                               "lead": "سعدالله زارعی، تحلیلگر سیاسی، گفت: «سیستم های پدافندی و دفاعی آمریکا در منطقه از بین رفته است و پس از جنگ با ایران نه تادها موفق شدند نه پاتریوت ها.»"},
+    "20261012-163627-6d1abb": {"title": "عربستان ظرفیت خط لوله ای را که تنگه هرمز را دور می زند افزایش می دهد",
+                               "lead": "این خط لوله تنگه هرمز را دور می زند و ظرفیت اسمی آن روزانه ۷ میلیون بشکه است."},
+    "20261012-183138-79e877": {"lead": "این توافق با اعتراض قانون گذاران هر دو حزب جمهوری خواه و دموکرات روبه رو شده است."},
+    "20261013-061428-f91cd8": {"lead": "حملات انصارالله، از جمله حمله به فرودگاه ریاض، دست کم ۱۳ کشته و بیش از ۳۰۰ زخمی بر جای گذاشت."},
+}
+_V4_OUTLET = re.compile(r"العربی|صدا ?و ?سیما|چرخش ناگهانی واشنگتن")
+
+
+def retro_fix_v4():
+    if os.path.exists(RETRO_V4):
+        return
+    try:
+        items = load_items()
+        if not items:
+            return
+        fixed = 0
+        for item in items:
+            iid = item.get("id") if isinstance(item, dict) else None
+            if iid not in V4_FIX:
+                continue
+            item.update(V4_FIX[iid])
+            t, lead, details = _repair_text(item.get("title", ""), item.get("lead", ""),
+                                            [str(d or "") for d in item.get("details") or []])
+            details = [d for d in details if d.strip() and d.strip() != lead.strip()
+                       and not _V4_OUTLET.search(d.replace("\u200c", " "))]
+            item.update(title=t, lead=lead, details=details)
+            _write(os.path.join(DOCS, "news", iid + ".html"), render_item(item))
+            fixed += 1
+        _write(ITEMS_FILE, json.dumps(items, ensure_ascii=False, indent=1))
+        build_site(items)
+        stamp = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
+        _write(RETRO_V4, f"{stamp} fixed={fixed}\n")
+        print(f"V13 GROWTH: v4 fix done ({fixed} pages repaired).", flush=True)
+    except Exception as exc:
+        print(f"V13 GROWTH: v4 fix skipped ({type(exc).__name__}: {exc})", flush=True)
+
+
 # --------------------------------------------------------------------------
 # Install
 # --------------------------------------------------------------------------
@@ -530,6 +579,7 @@ def retro_fix_v3():
 def install(core, current, plan_for):
     retro_clean()
     retro_fix_v3()
+    retro_fix_v4()
 
     def wrap(name, text_index):
         inner = getattr(core, name, None)
