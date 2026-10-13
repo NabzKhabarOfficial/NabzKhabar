@@ -1895,12 +1895,6 @@
       "topic": "نظامی",
       "until": 1791907547.468129
     },
-    "v4|تصفیه خانه آذرشهر آماده بهره برداری/آبرسانی به۱۵۰روستا": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: افتتاح تصفیه خانه در سطح شهرستان آذرشهر محلی محسوب می شود",
-      "topic": "جامعه",
-      "until": 1791878582.1544302
-    },
     "v4|تصویری از برخورد نفتکش با مین دریایی در اطراف تنگه هرمز": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: تصویر انفجار نفتکش با مین در تنگه هرمز و هشدار سپاه",
@@ -2837,11 +2831,11 @@
       "topic": "ورزش",
       "until": 1791929440.1631355
     },
-    "v4|طرح «سلام محله» در بهشهر آغاز شد/ اجرای فاز اول در ۸ محله": {
+    "v4|صفحه نخست روزنامه های خراسان رضوی سه شنبه ۲۱ مهر ۱۴۰۵": {
       "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و شهرستانی در بهشهر، فقدان اهمیت ملی",
-      "topic": "جامعه",
-      "until": 1791878577.165348
+      "reason": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=local: Front pages of local newspapers, no event.",
+      "topic": "سیاست",
+      "until": 1791950245.113705
     },
     "v4|ظفرقندی: بیش از ۱۸۰ شهید دانشجو در سال گذشته داشتیم": {
       "ok": false,
@@ -2902,6 +2896,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: تحلیل و بررسی است و رویداد مشخصی رخ نداده است",
       "topic": "سیاست",
       "until": 1791880177.9967902
+    },
+    "v4|عقیق بایگ؛ از میراث زمین تا هنر دستان و حافظه استادکاران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Local mineral/artisan feature, no major national impact",
+      "topic": "اقتصاد",
+      "until": 1791950244.3149517
     },
     "v4|علت انفجار بندر خمیر چه بود؟": {
       "ok": true,
@@ -4920,20 +4920,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Cultural statement, no significant national/international impact",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1791828040,
-      "title": "صالحی: شعر حافظ صدای ماندگار ایران در گستره تمدن فارسی است"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local cultural statement praising Hafez's poetry",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1791828041,
-      "title": "مدیرکل ارشاد جنوب کرمان:پیوند شعر حافظ با قرآن الگویی برای صیانت از هویت ادبی و نسل نو است"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر استانی و مربوط به خدمات درمانی محلی است.",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -5478,6 +5464,20 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1791862087,
       "title": "مشارکت ۱۰۰۰ همیار طبیعت و ۵۰ داوطلب محلی در حفاظت از منابع طبیعی پلدختر"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Local mineral/artisan feature, no major national impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1791863844,
+      "title": "عقیق بایگ؛ از میراث زمین تا هنر دستان و حافظه استادکاران"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=local: Front pages of local newspapers, no event.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791863845,
+      "title": "صفحه نخست روزنامه های خراسان رضوی سه شنبه ۲۱ مهر ۱۴۰۵"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9204,7 +9204,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791863190
+    "at": 1791863762
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791861598,
