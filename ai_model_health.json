@@ -1157,12 +1157,6 @@
       "topic": "قضایی",
       "until": 1791904012.3341413
     },
-    "v4|اختصاص یک هزار و ۸۰۵ میلیارد تومان تسهیلات به ۱۲ نهاد حمایتی البرز": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی و تخصیص بودجه محلی است.",
-      "topic": "اقتصاد",
-      "until": 1791878278.4662514
-    },
     "v4|اختصاص ۵۰ هزار میلیارد ریال اوراق و اعتبارات حمل ونقل شهری به اصفهان با حمایت دولت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تخصیص بودجه و اوراق مالی برای حمل و نقل اصفهان محلی است",
@@ -1402,6 +1396,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: یک ویدیو از اقدام عجیب در فضای مجازی منتشر شده است",
       "topic": "جامعه",
       "until": 1791887505.1804292
+    },
+    "v4|اقدام عربستان علیه شایعات جام ملت ها: افتتاح استادیوم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Stadium opening friendly match, low national impact",
+      "topic": "ورزش",
+      "until": 1791942163.3524406
     },
     "v4|اقلیم، تعیین کننده الگوی آسایش حرارتی در ۱۲ شهر ایران": {
       "ok": false,
@@ -4924,13 +4924,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine cultural remarks by a local official regarding a poet.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1791826351,
-      "title": "امام جمعه شیراز: راز ماندگاری حافظ، عمق کلام و پاسخ به نیازهای مخاطب است"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: ترکیب تیم‌های باشگاهی در مسابقات آسیایی خبر درجه یک محسوب نمی‌شود.",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5482,6 +5475,13 @@
       "rule": "below-event-threshold",
       "t": 1791855153,
       "title": "نحوه پیگیری کارت سوخت جامانده در جایگاه ها"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Stadium opening friendly match, low national impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1791855763,
+      "title": "اقدام عربستان علیه شایعات جام ملت ها: افتتاح استادیوم"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9208,7 +9208,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791855073
+    "at": 1791855667
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791855196,
