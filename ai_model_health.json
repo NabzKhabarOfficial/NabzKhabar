@@ -1047,6 +1047,12 @@
       "topic": "سیاست",
       "until": 1791910381.497833
     },
+    "v4|آماده باش سرپناه های شبانه کرمانشاه برای روزهای سرد سال": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: خبر محلی، فقط آماده‌سازی سرپناه‌های شبانه",
+      "topic": "جامعه",
+      "until": 1791954956.1084998
+    },
     "v4|آماده باش غرب گیلان برای مقابله با سیلاب؛ لایروبی رودخانه ها در اولویت است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: خبر محلی و آمادگی پیشگیرانه برای سیلاب",
@@ -2169,12 +2175,6 @@
       "topic": "حادثه",
       "until": 1791880172.0527604
     },
-    "v4|خسارت سیلاب گلستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=iran_national: سیل مرگبار با یک کشته و گمشدگان در گلستان",
-      "topic": "حادثه",
-      "until": 1791879115.4751866
-    },
     "v4|خشم ترامپ و روبیو از سفیر آمریکا در یونان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: احتمال تصمیم‌گیری درباره سفیر آمریکا، گمانه‌زنی و غیرقطعی است.",
@@ -2714,6 +2714,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=10 happened=True scope=world: حمله نظامی به نفتکش در تنگه هرمز و تهدید امنیت انرژی جهانی",
       "topic": "نظامی",
       "until": 1791902764.8052537
+    },
+    "v4|سکوت چهره های اثرگذار در برابر تروریسم، زمینه ساز عادی سازی ناامنی است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Opinion, no concrete event",
+      "topic": "جامعه",
+      "until": 1791954956.6342804
     },
     "v4|سیلاب اخیر گلستان بانی خیر هم شد؛ ورود ۱۵ میلیون متر مکعب آب به سدهای استان": {
       "ok": false,
@@ -3782,12 +3788,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: پروژه عمرانی محلی و فاقد اهمیت ملی یا بین‌المللی است.",
       "topic": "جامعه",
       "until": 1791913285.4445915
-    },
-    "v4|پرچمدار کاروان ایران در المپیک جوانان ۲۰۲۶ مشخص شدند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: انتخاب پرچمدار المپیک جوانان رویداد درجه اول جهانی یا ملی محسوب نمی‌شود.",
-      "topic": "ورزش",
-      "until": 1791879113.0637915
     },
     "v4|پزشکیان: «حافظ» تبلور روح انسان ایرانی و روایتگر امید در روزگار دشواری ها است": {
       "ok": false,
@@ -4909,20 +4909,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تبادل تفاهم نامه‌های همکاری تجاری",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791831523,
-      "title": "حضور هیئت های تجاری ۱۰ کشور در دومین روز «شیراز اکسپو»"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر محلی درباره قیمت بلیت مسابقه فوتبال در اصفهان است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1791831536,
-      "title": "دربی اصفهان زیر سایه گرانی بلیت/ تماشای فوتبال برای هواداران چقدر آب می خورد؟"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Club match, not national team or major competition",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5467,6 +5453,20 @@
       "rule": "routine-metaphorical-topic",
       "t": 1791867983,
       "title": "لایروبی رودخانه فصلی تنگه کنشت در مسیر میدان ظفر تا فرودگاه کرمانشاه"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: خبر محلی، فقط آماده‌سازی سرپناه‌های شبانه",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1791868556,
+      "title": "آماده باش سرپناه های شبانه کرمانشاه برای روزهای سرد سال"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Opinion, no concrete event",
+      "rescued": false,
+      "rule": "low-value",
+      "t": 1791868556,
+      "title": "سکوت چهره های اثرگذار در برابر تروریسم، زمینه ساز عادی سازی ناامنی است"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8577,7 +8577,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791867806
+    "at": 1791868386
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791868602,
