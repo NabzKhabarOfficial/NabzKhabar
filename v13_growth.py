@@ -20,6 +20,9 @@
 5) Oct 13 (review): retro_fix_v4() (docs/.retro_clean_v4) repairs 6 more pages once: a sticky
    teaser before the lead, outlet names («العربی», «صداوسیما»), a 150+ character headline and
    leads that are only a relative clause («حملاتی که ...»).
+6) Oct 14 (night review): retro_fix_v5() (docs/.retro_clean_v5) repairs 4 Oct 13 pages once: an outlet
+   name in the headline («پالتیکو»), a run of related headlines glued to the lead, another story's
+   bullet list in the lead, and a lead that opens with «وی».
 
 All of it is best-effort: any failure is logged and never affects news
 publication. The digest state lives in ai_model_health.json (persisted).
@@ -543,8 +546,9 @@ V4_FIX = {
 _V4_OUTLET = re.compile(r"العربی|صدا ?و ?سیما|چرخش ناگهانی واشنگتن")
 
 
-def retro_fix_v4():
-    if os.path.exists(RETRO_V4):
+def _retro_fix(mark, fixes, outlet_rx, label):
+    """Apply hand-checked headline/lead/details fixes to stored items once (marker file)."""
+    if os.path.exists(mark):
         return
     try:
         items = load_items()
@@ -553,23 +557,44 @@ def retro_fix_v4():
         fixed = 0
         for item in items:
             iid = item.get("id") if isinstance(item, dict) else None
-            if iid not in V4_FIX:
+            if iid not in fixes:
                 continue
-            item.update(V4_FIX[iid])
+            item.update(fixes[iid])
             t, lead, details = _repair_text(item.get("title", ""), item.get("lead", ""),
                                             [str(d or "") for d in item.get("details") or []])
             details = [d for d in details if d.strip() and d.strip() != lead.strip()
-                       and not _V4_OUTLET.search(d.replace("\u200c", " "))]
+                       and not outlet_rx.search(d.replace("\u200c", " "))]
             item.update(title=t, lead=lead, details=details)
             _write(os.path.join(DOCS, "news", iid + ".html"), render_item(item))
             fixed += 1
         _write(ITEMS_FILE, json.dumps(items, ensure_ascii=False, indent=1))
         build_site(items)
         stamp = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
-        _write(RETRO_V4, f"{stamp} fixed={fixed}\n")
-        print(f"V13 GROWTH: v4 fix done ({fixed} pages repaired).", flush=True)
+        _write(mark, f"{stamp} fixed={fixed}\n")
+        print(f"V13 GROWTH: {label} fix done ({fixed} pages repaired).", flush=True)
     except Exception as exc:
-        print(f"V13 GROWTH: v4 fix skipped ({type(exc).__name__}: {exc})", flush=True)
+        print(f"V13 GROWTH: {label} fix skipped ({type(exc).__name__}: {exc})", flush=True)
+
+
+def retro_fix_v4():
+    _retro_fix(RETRO_V4, V4_FIX, _V4_OUTLET, "v4")
+
+
+# Oct 14 (night review): Oct 13 pages that slipped through before chrome_scrub learned these patterns.
+RETRO_V5 = os.path.join(DOCS, ".retro_clean_v5")
+V5_FIX = {
+    "20261013-171202-a69598": {"title": "آمریکا هیچ هشداری به اوکراین درباره حمله موشکی روسیه نداد",
+                               "lead": "یک منبع آگاه گفت آمریکا به دلیل «شرایط بد آب و هوا» هیچ هشداری به اوکراین درباره حملات موشکی روسیه نداده است."},
+    "20261013-160357-364c37": {"lead": "نیچیروان بارزانی، رئیس اقلیم کردستان عراق، گفت: اپوزیسیون کرد ایرانی با مواضع شرم آور و غیرمسئولانه، اقلیم کردستان را به خطر انداخته است."},
+    "20261013-182919-daf69f": {"lead": "عربستان ساعاتی پس از هشدار انصارالله، تأسیسات شرکت نفت در غرب صنعا را بمباران کرد.",
+                               "details": ["انصارالله یمن هشدار داده بود در صورت حمله ائتلاف به رهبری عربستان به صنعا، سه مکان در عربستان (دفتر مرکزی آرامکو در دمام، فرودگاه ملک خالد و پالایشگاه آرامکو در ریاض) باید فوراً تخلیه شوند."]},
+    "20261013-111354-1b7361": {"lead": "رئیس جمهور لبنان تاکید کرد هدف این کشور عقب نشینی اسرائیل از مناطق اشغال شده، بازگشت آوارگان، آزادی اسرا و بازسازی لبنان است."},
+}
+_V5_OUTLET = re.compile(r"پالتیکو|پولیتیکو|از ماجرای|\*")
+
+
+def retro_fix_v5():
+    _retro_fix(RETRO_V5, V5_FIX, _V5_OUTLET, "v5")
 
 
 # --------------------------------------------------------------------------
@@ -580,6 +605,7 @@ def install(core, current, plan_for):
     retro_clean()
     retro_fix_v3()
     retro_fix_v4()
+    retro_fix_v5()
 
     def wrap(name, text_index):
         inner = getattr(core, name, None)
