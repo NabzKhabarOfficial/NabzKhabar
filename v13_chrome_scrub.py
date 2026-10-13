@@ -14,6 +14,11 @@ Oct 12 (night review):
   («... خبر داده است / سعودی احتمالا ... برای افزایش ظرفی») keeps only its first, complete part;
 * «دونالد رئیس جمهور آمریکا» (the surname lost on the way) becomes «دونالد ترامپ رئیس جمهور آمریکا»;
 * still refused: a headline of 150+ characters, or «دونالد» with no surname after it.
+
+Oct 13 (review):
+* a bare «دونالد» in a Trump story («دونالد همچنین مدعی شد») becomes «ترامپ» instead of losing the news;
+* the site's sticky teaser «چرخش ناگهانی واشنگتن» glued before the lead is removed;
+* more outlet names are refused: «العربی», and «صداوسیما» when it is the outlet («کارشناس صداوسیما»).
 """
 
 import re
@@ -51,13 +56,16 @@ _TIME_WORDS = re.compile(r"(?<![" + _P + r"])(?:امروز|دیروز|روز|ش�
                          r"اما|ولی|سپس|پیش|پس|هفته|ماه|سال)(?![" + _P + r"])")
 # Persian news sites the final guard's brand list did not know (generic words stay allowed)
 _MORE_OUTLETS = re.compile(r"(?<![" + _P + r"])(?:فرارو|خبر ?آنلاین|تابناک|عصر ایران|همشهری آنلاین|اقتصاد ?نیوز|"
-                           r"جماران|رویداد ?۲۴|اعتماد ?آنلاین|دیده ?بان ایران|باشگاه خبرنگاران|انتخاب ?-)"
+                           r"جماران|رویداد ?۲۴|اعتماد ?آنلاین|دیده ?بان ایران|باشگاه خبرنگاران|انتخاب ?-|"
+                           r"العربی(?: الجدید)?|(?:کارشناس|مجری|گزارشگر|خبرنگار|شبکه|به گزارش|گفتگو(?:یی)? (?:با|در)) صدا ?و ?سیما)"
                            r"(?![" + _P + r"])")
 # Oct 12 (night review), see the module notes
 _SLASH = re.compile(r"\s+/\s*|\s*/\s+")
 _DONALD_ROLE = re.compile(r"(?<![" + _P + r"])دونالد(?=\s*،?\s*رئیس\s?\u200c?جمهور)")
 _DONALD_BARE = re.compile(r"(?<![" + _P + r"])دونالد(?![" + _P + r"])(?!\s*(?:ترامپ|ترمپ|تاسک|جان|داک))")
 TITLE_MAX = 150
+# Oct 13 (review), see the module notes
+_STICKY_TEASERS = re.compile(r"^(?:چرخش ناگهانی واشنگتن)\s+(?=[" + _P + r"])")
 
 
 def fix_title(title):
@@ -73,10 +81,13 @@ def fix_title(title):
         return title
 
 
-def fix_names(text):
-    """«دونالد رئیس جمهور» -> «دونالد ترامپ رئیس جمهور»."""
+def fix_names(text, context=""):
+    """«دونالد رئیس جمهور» -> «دونالد ترامپ رئیس جمهور»; in a Trump story a bare «دونالد» -> «ترامپ»."""
     try:
-        return _DONALD_ROLE.sub("دونالد ترامپ", str(text or ""))
+        text = _DONALD_ROLE.sub("دونالد ترامپ", str(text or ""))
+        if "ترامپ" in _norm(str(context or "") + " " + text):
+            text = _DONALD_BARE.sub("ترامپ", text)
+        return text
     except Exception:
         return text
 
@@ -104,6 +115,7 @@ def _repeated_prefix(prefix):
 def _site_parts(text):
     """Ad labels out; the real article from a site dateline on; a glued headline before «به گفته» out."""
     text = re.sub(r"\s+", " ", _ADS.sub(" ", text)).strip()
+    text = _STICKY_TEASERS.sub("", text)
     m = _DATELINE.search(text[:400])
     if m and len(text[m.end():].split()) >= 12:
         text = text[m.end():]
@@ -190,11 +202,12 @@ def install():
 
     def build_caption(title, body, formatter):
         body = scrub_lead(title, body)
-        new_title = fix_names(fix_title(title))
+        new_title = fix_names(fix_title(title), body)
         if new_title != title:
             print(f"V13 CHROME SCRUB: headline repaired -> {str(new_title)[:120]}", flush=True)
             body = scrub_lead(new_title, body)
-        return original_build(new_title, fix_names(body), formatter)
+        body = fix_names(body, new_title)
+        return original_build(new_title, body, formatter)
 
     pd.build_caption = build_caption
 
