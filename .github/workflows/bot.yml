@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   actions: write
+  models: read
 
 concurrency:
   group: nabzkhabar-bot
@@ -46,14 +47,14 @@ jobs:
       - name: Validate V13 before execution
         run: |
           set -e
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_quality_gate.py v13_freshness_rescue.py v13_critical_rescue.py v13_global_rescue.py v13_policy_guard.py v13_editorial_formatter.py v13_byline_cleaner.py v13_final_guard.py v13_monitor.py v13_editor_gate.py v13_story_dedup.py v13_incident_dedup.py v13_event_judge.py v13_importance_rescue.py v13_text_polish.py v13_post_design.py run_bot.py education.py car_prices.py weather.py
+          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_quality_gate.py v13_freshness_rescue.py v13_critical_rescue.py v13_global_rescue.py v13_policy_guard.py v13_editorial_formatter.py v13_byline_cleaner.py v13_final_guard.py v13_monitor.py v13_editor_gate.py v13_story_dedup.py v13_incident_dedup.py v13_event_judge.py v13_importance_rescue.py v13_text_polish.py v13_post_design.py v13_ai_extra.py run_bot.py education.py car_prices.py weather.py
           for path in v13_argos_translate.py sitecustomize.py requirements-cpu.txt .github/workflows/argos-real-test.yml .github/workflows/argos-standalone-test.yml; do
             test ! -e "$path" || { echo "Obsolete path exists: $path"; exit 1; }
           done
           python - <<'PY'
           import os, importlib
           os.environ.setdefault('BOT_TOKEN','V13_IMPORT_SMOKE_TEST')
-          for name in ('v13_standalone','v13_media_branding','v13_ai_router','v13_content_enhancer','v13_ad_filter','v13_intelligence','v13_quality_gate','v13_freshness_rescue','v13_critical_rescue','v13_global_rescue','v13_policy_guard','v13_editorial_formatter','v13_byline_cleaner','v13_final_guard','v13_monitor','v13_story_dedup','v13_incident_dedup','v13_event_judge','v13_importance_rescue','v13_text_polish','run_bot'):
+          for name in ('v13_standalone','v13_media_branding','v13_ai_router','v13_content_enhancer','v13_ad_filter','v13_intelligence','v13_quality_gate','v13_freshness_rescue','v13_critical_rescue','v13_global_rescue','v13_policy_guard','v13_editorial_formatter','v13_byline_cleaner','v13_final_guard','v13_monitor','v13_story_dedup','v13_incident_dedup','v13_event_judge','v13_importance_rescue','v13_text_polish','run_bot','v13_ai_extra'):
               importlib.import_module(name)
           print('V13 PRE-RUN INTEGRITY: PASS')
           PY
@@ -63,10 +64,12 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python - <<'PY'
           import os
-          p={'Groq':'GROQ_API_KEY','Gemini':'AI_API_KEY','OpenRouter':'OPENROUTER_API_KEY'}
+          p={'Groq':'GROQ_API_KEY','Gemini':'AI_API_KEY','OpenRouter':'OPENROUTER_API_KEY','Cerebras':'CEREBRAS_API_KEY','GitHubModels':'GITHUB_TOKEN'}
           print('V13 AI POOL CONFIG:', ', '.join(f'{k}={"READY" if os.getenv(v," ").strip() else "MISSING"}' for k,v in p.items()))
           PY
 
@@ -79,7 +82,9 @@ jobs:
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: python run_bot.py
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python v13_ai_extra.py
 
       - name: Runtime monitoring
         if: ${{ always() }}
