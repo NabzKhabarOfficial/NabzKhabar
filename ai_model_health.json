@@ -977,6 +977,12 @@
       "topic": "حادثه",
       "until": 1791883496.7426584
     },
+    "v4|آثار تبعیض آموزشی در مدارس دولتی و غیردولتی را در نتایج کنکور می بینیم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Statement on educational inequality, no concrete event",
+      "topic": "جامعه",
+      "until": 1791946238.9131453
+    },
     "v4|آزادسازی یک منطقه دیگر در دونتسک توسط نیروهای روسیه": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: پیشروی نظامی روسیه و تصرف یک منطقه در دونتسک",
@@ -2339,12 +2345,6 @@
       "topic": "ورزش",
       "until": 1791901515.701119
     },
-    "v4|دوربین یک زن لحظه وحشت را ثبت کرد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: حمله موشکی مرگبار روسیه به اوکراین با تلفات بالا",
-      "topic": "حادثه",
-      "until": 1791878311.8135676
-    },
     "v4|دکترین «فرش قرمز» در روزگار غبارآلود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: مقاله تحلیلی و نظری درباره مدیریت بحران، بدون رویداد مشخص.",
@@ -2374,6 +2374,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: توصیه های بهداشتی استانی دامپزشکی درباره ذبح دام",
       "topic": "سلامت",
       "until": 1791899764.7395637
+    },
+    "v4|ذوب آهن به دنبال طلسم شکنی در داربی اصفهان/ آزمون جدی رجب زاده مقابل پیروز": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Domestic league derby, not top‑tier national/international event",
+      "topic": "ورزش",
+      "until": 1791946237.8659618
     },
     "v4|رئیس اقلیم کردستان عراق: مانع حمله گروه های معارض به ایران شدیم": {
       "ok": true,
@@ -2734,12 +2740,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=10 happened=True scope=world: حمله نظامی به نفتکش در تنگه هرمز و تهدید امنیت انرژی جهانی",
       "topic": "نظامی",
       "until": 1791902764.8052537
-    },
-    "v4|سیستمی شدن فرایند انتخاب صادرکنندگان نمونه برای کاهش دخالت سلیقه ای": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: تغییر فرایند اداری انتخاب صادرکنندگان نمونه، خبری روتین و کم اهمیت است.",
-      "topic": "اقتصاد",
-      "until": 1791878308.5385318
     },
     "v4|سیلاب اخیر گلستان بانی خیر هم شد؛ ورود ۱۵ میلیون متر مکعب آب به سدهای استان": {
       "ok": false,
@@ -4413,7 +4413,7 @@
     },
     "سیدعلی صالحی: دخترهایم را دیدم که کشته شدند!": {
       "reason": "policy_scope_blocked",
-      "until": 1791880869.0185328
+      "until": 1791881448.1741467
     },
     "شنیده شدن صدای انفجار در ریاض، دمام و خمیس مشیط": {
       "reason": "content_duplicate",
@@ -4919,20 +4919,6 @@
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine official remark regarding provincial development, lacks national strategic impact.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791826886,
-      "title": "گردشگری باید محور توسعه لرستان باشد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local environmental news in Australia lacks national or international significance.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791826887,
-      "title": "Rescued turtles return home after NSW government cut flows to wetland"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Lower division football win, not top‑tier national/international event",
       "rescued": false,
@@ -5478,6 +5464,20 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1791856926,
       "title": "غمباد ستاره های 5 میلیون دلاری الغرافه روی نیمکت!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Domestic league derby, not top‑tier national/international event",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791859837,
+      "title": "ذوب آهن به دنبال طلسم شکنی در داربی اصفهان/ آزمون جدی رجب زاده مقابل پیروز"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Statement on educational inequality, no concrete event",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1791859838,
+      "title": "آثار تبعیض آموزشی در مدارس دولتی و غیردولتی را در نتایج کنکور می بینیم"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9204,7 +9204,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791859151
+    "at": 1791859718
   },
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1791858697,
