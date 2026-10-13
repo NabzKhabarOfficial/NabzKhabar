@@ -19,6 +19,10 @@ Oct 13 (review):
 * a bare «دونالد» in a Trump story («دونالد همچنین مدعی شد») becomes «ترامپ» instead of losing the news;
 * the site's sticky teaser «چرخش ناگهانی واشنگتن» glued before the lead is removed;
 * more outlet names are refused: «العربی», and «صداوسیما» when it is the outlet («کارشناس صداوسیما»).
+
+Oct 13 (evening):
+* a lead that opens with «وی»/«او» («وی تاکید کرد ...») gets the speaker's name from a «X: ...» headline
+  («رئیس جمهور لبنان تاکید کرد ...»), so the reader knows who is speaking.
 """
 
 import re
@@ -66,6 +70,9 @@ _DONALD_BARE = re.compile(r"(?<![" + _P + r"])دونالد(?![" + _P + r"])(?!\s
 TITLE_MAX = 150
 # Oct 13 (review), see the module notes
 _STICKY_TEASERS = re.compile(r"^(?:چرخش ناگهانی واشنگتن)\s+(?=[" + _P + r"])")
+# Oct 13 (evening), see the module notes
+_SPEAKER = re.compile(r"^\s*([^:：«»\"]{3,40}?)\s*[:：]\s*\S")
+_PRONOUN_LEAD = re.compile(r"^(?:وی|او)(?=\s+[" + _P + r"])")
 
 
 def fix_title(title):
@@ -90,6 +97,24 @@ def fix_names(text, context=""):
         return text
     except Exception:
         return text
+
+
+def fix_pronoun(title, body):
+    """«وی تاکید کرد ...» under the headline «رئیس جمهور لبنان: ...» -> «رئیس جمهور لبنان تاکید کرد ...».
+    Only when the headline names a short speaker (1-5 words, no digits); otherwise unchanged."""
+    try:
+        b = str(body or "")
+        if not _PRONOUN_LEAD.match(b):
+            return body
+        m = _SPEAKER.match(str(title or ""))
+        if not m:
+            return body
+        who = m.group(1).strip(" -،,")
+        if not (1 <= len(who.split()) <= 5) or re.search(r"[0-9۰-۹]", who):
+            return body
+        return _PRONOUN_LEAD.sub(who, b, count=1)
+    except Exception:
+        return body
 
 
 def title_problem(title):
@@ -207,6 +232,10 @@ def install():
             print(f"V13 CHROME SCRUB: headline repaired -> {str(new_title)[:120]}", flush=True)
             body = scrub_lead(new_title, body)
         body = fix_names(body, new_title)
+        named = fix_pronoun(new_title, body)
+        if named != body:
+            print(f"V13 CHROME SCRUB: speaker named in the lead -> {str(named)[:80]}", flush=True)
+            body = named
         return original_build(new_title, body, formatter)
 
     pd.build_caption = build_caption
