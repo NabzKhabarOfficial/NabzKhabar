@@ -27,9 +27,51 @@ GITHUB_BASE = "https://models.github.ai/inference"
 GITHUB_MODELS = ("openai/gpt-4.1-mini", "openai/gpt-4o-mini")
 AI_UNAVAILABLE_TTL_SECONDS = 20 * 60
 EXTRA_BUDGET_SECONDS = 30
+GITHUB_TIMEOUT = 30
+PAYMENT_COOLDOWN_SECONDS = 6 * 3600
 
 _cerebras_cache = {"at": 0.0, "models": []}
 _ctx = {}
+
+
+def _note_error(hkey, text):
+    """Keep the real error text in the health file so the next check can see it."""
+    try:
+        import v13_ai_router as r
+        health = r._load_health()
+        health.setdefault(hkey, {})["last_error"] = str(text)[:300]
+        r._save_health(health)
+    except Exception:
+        pass
+
+
+def github_chat(model, messages, max_tokens=900, json_mode=True):
+    """One GitHub Models call with its own plain session. Returns text or raises RuntimeError."""
+    import requests
+    payload = {"model": model, "messages": messages, "temperature": 0.15, "max_tokens": max_tokens}
+    if json_mode:
+        payload["response_format"] = {"type": "json_object"}
+    try:
+        resp = requests.post(f"{GITHUB_BASE}/chat/completions", json=payload, timeout=GITHUB_TIMEOUT,
+                             headers={"Authorization": f"Bearer {github_key()}",
+                                      "Content-Type": "application/json",
+                                      "Accept": "application/json",
+                                      "X-GitHub-Api-Version": "2022-11-28",
+                                      "User-Agent": "NabzKhabar-V13/1.0"})
+    except Exception as exc:
+        _note_error("github:" + model, f"{type(exc).__name__}: {exc}")
+        raise RuntimeError(f"network {type(exc).__name__}: {exc}")
+    if not resp.ok:
+        _note_error("github:" + model, f"HTTP {resp.status_code}: {resp.text[:250]}")
+        raise RuntimeError(f"HTTP {resp.status_code}")
+    try:
+        content = (resp.json().get("choices") or [{}])[0].get("message", {}).get("content", "")
+    except Exception as exc:
+        _note_error("github:" + model, f"bad body {type(exc).__name__}: {resp.text[:200]}")
+        raise RuntimeError(f"bad body {type(exc).__name__}")
+    if isinstance(content, list):
+        content = "".join(str(x.get("text", "")) if isinstance(x, dict) else str(x) for x in content)
+    return str(content or "")
 
 
 def cerebras_key():
@@ -86,11 +128,31 @@ def install_router():
         key = github_key()
         if not key:
             return None
-        deadline = c.get("deadline")
-        if deadline is None or time.monotonic() >= deadline - 5:
-            deadline = time.monotonic() + EXTRA_BUDGET_SECONDS
-        return original_fpr(main, "GitHub", GITHUB_MODELS, GITHUB_BASE, key,
-                            c["prompt"], c["title"], c["source"], c["foreign"], deadline)
+        health = r._load_health()
+        system = "خروجی فقط یک JSON معتبر با دو کلید title و summary باشد؛ هیچ متن دیگری تولید نکن."
+        for model in GITHUB_MODELS:
+            hkey = "github:" + model
+            if r._model_disabled(health, hkey):
+                print(f"V13 AI ROUTER: GitHub/{model} is in cooldown; skipping.", flush=True)
+                continue
+            try:
+                raw = github_chat(model, [{"role": "system", "content": system},
+                                          {"role": "user", "content": c["prompt"]}], max_tokens=1200)
+                data = r._clean_json(raw)
+            except Exception as exc:
+                status = _status_of(exc)
+                print(f"V13 AI ROUTER: GitHub/{model} failed ({exc}); failing over.", flush=True)
+                r._mark_model_failure(hkey, status)
+                health = r._load_health()
+                continue
+            validated = r._validate(main, c["title"], c["source"], data, c["foreign"])
+            if validated:
+                r._mark_model_success(hkey)
+                print(f"V13 AI ROUTER: SUCCESS via GitHub/{model}", flush=True)
+                return validated
+            print(f"V13 AI ROUTER: GitHub/{model} failed V13 content validation.", flush=True)
+            r._record_quality_failure(hkey)
+        return None
 
     def fpr(main, provider, models, base_url, api_key, prompt, title, source, foreign, deadline=None):
         if provider == "Groq":
@@ -181,8 +243,8 @@ def install_editor_gate():
                 session, "https://openrouter.ai/api/v1/chat/completions", orouter, "openrouter/free", prompt)))
         if gh:
             for m in GITHUB_MODELS:
-                attempts.append(("github/" + m, "github:" + m, lambda m=m: g._openai_style(
-                    session, f"{GITHUB_BASE}/chat/completions", gh, m, prompt)))
+                attempts.append(("github/" + m, "github:" + m, lambda m=m: g._parse(github_chat(
+                    m, [{"role": "user", "content": prompt}], max_tokens=400))))
         health = r._load_health()
         skipped = []
         for name, hkey, call in attempts:
@@ -201,7 +263,7 @@ def install_editor_gate():
             except Exception as exc:
                 status = _status_of(exc)
                 print(f"V13 EDITOR GATE: {name} failed ({exc})", flush=True)
-                if status in (401, 403, 404, 429, 500, 502, 503, 504, 599):
+                if status in (401, 402, 403, 404, 429, 500, 502, 503, 504, 599):
                     try:
                         r._mark_model_failure(hkey, status)
                     except Exception:
@@ -261,8 +323,31 @@ def install_block_ttl(rb):
     print(f"V13 AI EXTRA: no-AI blocks held {AI_UNAVAILABLE_TTL_SECONDS // 60} min (others {int(long_ttl // 3600)} h)", flush=True)
 
 
+def install_payment_cooldown():
+    """HTTP 402 (no free quota on the account) is not a short blip: rest that model for 6 hours."""
+    import v13_ai_router as r
+    if getattr(r, "_v13_payment_cooldown", False):
+        return
+    previous = r._mark_model_failure
+
+    def mark(model, status):
+        previous(model, status)
+        try:
+            if int(status) == 402:
+                health = r._load_health()
+                entry = health.setdefault(model, {})
+                entry["disabled_until"] = max(float(entry.get("disabled_until", 0) or 0), time.time() + PAYMENT_COOLDOWN_SECONDS)
+                entry["last_error"] = "HTTP 402 payment required (no free quota on this account)"
+                r._save_health(health)
+        except Exception:
+            pass
+
+    r._mark_model_failure = mark
+    r._v13_payment_cooldown = True
+
+
 def install_all(rb):
-    for label, fn in (("router", install_router), ("editor gate", install_editor_gate),
+    for label, fn in (("402 cooldown", install_payment_cooldown), ("router", install_router), ("editor gate", install_editor_gate),
                       ("block ttl", lambda: install_block_ttl(rb))):
         try:
             fn()
