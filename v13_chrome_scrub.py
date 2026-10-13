@@ -23,6 +23,11 @@ Oct 13 (review):
 Oct 13 (evening):
 * a lead that opens with «وی»/«او» («وی تاکید کرد ...») gets the speaker's name from a «X: ...» headline
   («رئیس جمهور لبنان تاکید کرد ...»), so the reader knows who is speaking.
+
+Oct 14 (night review): three posts slipped through on Oct 13. Now refused:
+* «پالتیکو» / «پولیتیکو» (Politico) as an outlet name;
+* the site's run of related headlines glued to the lead («از ماجرای ... تا ماجرای ...», «از جنجال ... تا اظهارات ...»);
+* a bullet list or «عبارت اند از:» from another story («این سه مکان عبارت اند از: * ...»).
 """
 
 import re
@@ -61,8 +66,12 @@ _TIME_WORDS = re.compile(r"(?<![" + _P + r"])(?:امروز|دیروز|روز|ش�
 # Persian news sites the final guard's brand list did not know (generic words stay allowed)
 _MORE_OUTLETS = re.compile(r"(?<![" + _P + r"])(?:فرارو|خبر ?آنلاین|تابناک|عصر ایران|همشهری آنلاین|اقتصاد ?نیوز|"
                            r"جماران|رویداد ?۲۴|اعتماد ?آنلاین|دیده ?بان ایران|باشگاه خبرنگاران|انتخاب ?-|"
+                           r"پالتیکو|پولیتیکو|پلیتیکو|"
                            r"العربی(?: الجدید)?|(?:کارشناس|مجری|گزارشگر|خبرنگار|شبکه|به گزارش|گفتگو(?:یی)? (?:با|در)) صدا ?و ?سیما)"
                            r"(?![" + _P + r"])")
+# Oct 14 (night review), see the module notes
+_TEASER_RUN = re.compile(r"(?:^|\s)از (?:ماجرای|جنجال|ادعای|روایت)\s.{3,160}?\sتا\s(?:ماجرای|جزئیات|اظهارات|واکنش|ادعای)\s")
+_BULLETS = re.compile(r"(?:^|\s)\*\s+[" + _P + r"]|عبارت\s?(?:اند|است)\s?از\s*:")
 # Oct 12 (night review), see the module notes
 _SLASH = re.compile(r"\s+/\s*|\s*/\s+")
 _DONALD_ROLE = re.compile(r"(?<![" + _P + r"])دونالد(?=\s*،?\s*رئیس\s?\u200c?جمهور)")
@@ -118,13 +127,16 @@ def fix_pronoun(title, body):
 
 
 def title_problem(title):
-    """(reason, text) for a headline that is still too long (cut by the feed) or lost a surname."""
+    """(reason, text) for a headline that is still too long (cut by the feed), lost a surname or names an outlet."""
     t = _norm(title)
     if len(t) >= TITLE_MAX:
         return ("cut-title", t[-30:])
     m = _DONALD_BARE.search(t)
     if m:
         return ("broken-name", t[max(0, m.start() - 10): m.end() + 20])
+    m = _MORE_OUTLETS.search(t)
+    if m:
+        return ("media-source", t[max(0, m.start() - 10): m.end() + 20])
     return None
 
 
@@ -188,13 +200,13 @@ _DOUBLED = re.compile(r"(?<![" + _P + r"])(" + _ALT + r")\s+\1(?![" + _P + r"])"
 
 def leftover(sentences):
     """(reason, text) when a link, a doubled section name, ad labels, a site dateline, an outlet
-    name or a lost surname is still in the post, else None."""
+    name, a lost surname, a run of related headlines or another story's bullet list is still in the post."""
     for s in sentences or []:
         s = _norm(s).lstrip("▫️⚡️•- ")
         m = _LEFTOVER_LINK.search(s) or _DOUBLED.search(s) or _WIDGET.search(s)
         if m:
             return ("page-chrome", s[max(0, m.start() - 10): m.end() + 30])
-        m = _ADS.search(s)
+        m = _ADS.search(s) or _TEASER_RUN.search(s) or _BULLETS.search(s)
         if m:
             return ("page-widget", s[max(0, m.start() - 10): m.end() + 30])
         m = _DATELINE_START.match(s)
