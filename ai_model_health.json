@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792009979
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 7 stories",
-      "t": 1792009980
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
-      "t": 1792010810
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792010812
-    },
-    {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.5-flash-lite",
-      "t": 1792010822
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792011828
     },
@@ -159,16 +139,36 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792020559
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792021693
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792021693
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792021708
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
+      "t": 1792021708
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792021709
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 66
+      "n": 67
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 23
+      "n": 24
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-14",
@@ -180,7 +180,7 @@
     },
     "openrouter:*": {
       "day": "2026-10-14",
-      "n": 14
+      "n": 15
     }
   },
   "_ai_usage": {
@@ -194,8 +194,8 @@
         "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 94,
-        "calls": 598,
+        "429": 95,
+        "calls": 599,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 501,
@@ -253,8 +253,8 @@
         "other": 0
       },
       "openrouter:openrouter/free": {
-        "429": 14,
-        "calls": 28,
+        "429": 15,
+        "calls": 29,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 14,
         "other": 0
@@ -11085,7 +11085,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792020967
+    "at": 1792021591
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11099,9 +11099,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1792022008.0,
+    "last_failure": 1792021708,
+    "last_status": 599
+  },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792021119,
-    "last_failure": 1792020519,
+    "disabled_until": 1792022293,
+    "last_failure": 1792021693,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11118,8 +11123,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792021118,
-    "last_failure": 1792020517,
+    "disabled_until": 1792022293,
+    "last_failure": 1792021693,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
@@ -11176,8 +11181,8 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792012984.6208844,
-    "last_failure": 1792009384,
+    "disabled_until": 1792025308.8417273,
+    "last_failure": 1792021708,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
