@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.5-flash-lite",
-      "t": 1791983918
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1791984394
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: no usable verdict",
-      "t": 1791985065
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1791985067
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
-      "t": 1791985068
-    },
-    {
       "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.5-flash-lite",
       "t": 1791985072
     },
@@ -159,41 +139,61 @@
     {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1791994343
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1791994950
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
+      "t": 1791994951
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791994952
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1791994952
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1791994953
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 103,
+        "calls": 104,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 58,
-        "other": 16
+        "other": 17
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 36,
-        "calls": 528,
+        "429": 38,
+        "calls": 531,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 489,
+        "ok": 490,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 135,
-        "calls": 288,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199047, Requested 1322. Please try again in 2m39.4",
+        "429": 136,
+        "calls": 290,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198257, Requested 1791. Please try again in 20.736",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 147,
+        "ok": 148,
         "other": 6
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 84,
-        "calls": 175,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7329, Requested 1452. Please try again in 5.8575s.",
+        "429": 86,
+        "calls": 180,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199025, Requested 1861. Please try again in 6m22.75",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 41,
-        "other": 50
+        "ok": 43,
+        "other": 51
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 10,
@@ -240,13 +240,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 4,
-      "t": 1791824096.050366,
-      "title": "تعلیق و لغو پروازهای بین المللی به مقصد ریاض",
-      "urgent": false
-    },
     {
       "label": "اقتصاد",
       "level": 3,
@@ -1079,6 +1072,13 @@
       "t": 1791992643.1527631,
       "title": "انتقادات گسترده از عبدالحمید؛ چرا تروریست ها محکوم نمی شوند؟",
       "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 4,
+      "t": 1791994982.5108662,
+      "title": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-13",
@@ -1143,12 +1143,6 @@
       "topic": "نظامی",
       "until": 1792063937.3945048
     },
-    "v4|israeli attacks kill one in gaza, wound journalists in occupied west bank": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Israeli strike killed civilian, wounded journalists in West Bank",
-      "topic": "نظامی",
-      "until": 1792027966.021739
-    },
     "v4|jamaica accepts first flight of third-country deportations from us": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: توافق اخراج مهاجران بین آمریکا و جامائیکا تاثیر محدودی بر ایران دارد",
@@ -1172,12 +1166,6 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: OpenAI engineer arrested for planting recording device",
       "topic": "فناوری",
       "until": 1792027966.1178238
-    },
-    "v4|psg's luis enrique hopes man city avoid sanctions": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Luis Enrique comments on Manchester City financial sanctions",
-      "topic": "ورزش",
-      "until": 1792027966.0360925
     },
     "v4|qualcomm wins lawsuit against arm but will only receive two bucks": {
       "ok": false,
@@ -2385,6 +2373,12 @@
       "topic": "اقتصاد",
       "until": 1792055233.9330485
     },
+    "v4|تفویض اختیارات بیشتر به استان ها در دستور کار وزارت علوم/آموزش حضوری باید تداوم یابد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: اعلام سیاست تفویض اختیارات به استان‌ها",
+      "topic": "سیاست",
+      "until": 1792081351.8558414
+    },
     "v4|تقویت زیرساخت ها و تجهیزات مقابله با سیلاب در مازندران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: خبر استانی درباره اقدامات پیشگیرانه مدیریت بحران و تجهیزات سیل",
@@ -2709,6 +2703,12 @@
       "topic": "ورزش",
       "until": 1792063354.9037437
     },
+    "v4|خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: حملات روسی به تأسیسات آمریکایی در اوکراین",
+      "topic": "نظامی",
+      "until": 1792081349.4503691
+    },
     "v4|خط و نشان مدیرکل بازرسی استان کرمان برای شرکت مس و سازمان صمت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: انتقاد محلی مدیرکل بازرسی کرمان از خام‌فروشی و معادن مس",
@@ -2870,6 +2870,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: دیدار تشریفاتی رؤسای فدراسیون‌ها با وزیر ورزش اهمیت ملی ندارد",
       "topic": "ورزش",
       "until": 1792053443.8741705
+    },
+    "v4|دیدار رؤسای کل بانک های مرکزی ایران و پاکستان با محوریت توسعه همکاری های اقتصادی و تجاری": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: دیدار روسای بانک مرکزی است و تصمیم کلان فوری ندارد.",
+      "topic": "اقتصاد",
+      "until": 1792081351.114881
     },
     "v4|رئیس دانشگاه آزاد: باید فضا را برای سلیقه هایی که دل در گرو ایران دارند امن و پرامید کنیم": {
       "ok": false,
@@ -3584,12 +3590,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=False scope=world: اعلام توافق پیش‌رو میان روسیه و آمریکا",
       "topic": "اقتصاد",
       "until": 1792073209.4690483
-    },
-    "v4|فرمانده نیروی دریایی سپاه: ناو ۱۳ میلیارد دلاری آمریکا ۷۰۰ کیلومتر از تنگه هرمز فاصله گرفته/ مقام کاخ سفید به الجزیره: اطلاعات منتشرشده درباره احتمال حمله آمریکا به ایران پیش از ان": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=iran_national: IRGC navy commander claims US carrier near Hormuz",
-      "topic": "نظامی",
-      "until": 1792027966.0498357
     },
     "v4|فرمانده یکی از حوزه های بسیج خواهران در مهرستانِ سیستان و بلوچستان، در پی تیراندازی تروریست ها، به شهادت رسید": {
       "ok": true,
@@ -4801,6 +4801,11 @@
       "reason": "content_duplicate",
       "until": 1792004888.1519358
     },
+    "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ": {
+      "at": 1791994983.5949316,
+      "reason": "ai_unavailable_local",
+      "until": 1791996183.5949316
+    },
     "رشد قیمت طلا و سکه؛ طلای ۱۸ عیار به کانال ۲۶ میلیون تومانی بازگشت": {
       "reason": "content_duplicate",
       "until": 1791996269.9074204
@@ -4856,10 +4861,6 @@
       "reason": "content_duplicate",
       "until": 1792001995.900844
     },
-    "موشک ها جلسه محرمانه پادشاهی را به هم ریختند؟": {
-      "reason": "content_duplicate",
-      "until": 1791994524.0793397
-    },
     "نفت در جریان است، اما انتقال آن هیچ گاه تا این اندازه پر هزینه نبوده/ دستمزد دریانوردان عادی به چهار تا شش برابر سطح معمول افزایش یافته/ درگیری ها از دو مسیر باعث افزایش هزینه حمل": {
       "reason": "content_duplicate",
       "until": 1792000914.289067
@@ -4874,15 +4875,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "احضار نمایندگان نامزدهای انتخابات برزیل به دادگاه عالی ⚡️ دادگاه عالی انتخاباتی برزیل در آستانه دور دوم انتخاب",
-      "id": "dc1926f291",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791964232,
-      "verdict": "new",
-      "why": "This news is about the Brazilian elections and does not match any published item."
-    },
     {
       "head": "هشدار ایران درباره گسترش جنگ به زیرساخت های اینترنت و فناوری در خلیج فارس ⚡️ این هشدار به نقش راهبردی کابل های",
       "id": "59c4bd974b",
@@ -5422,30 +5414,15 @@
       "t": 1791992638,
       "verdict": "new",
       "why": "No prior item mentions Abdulhamid or same attacks"
+    },
+    {
+      "head": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ ⚡️ در حالی که دولت ترامپ برای توقف حملات اوکراین به",
+      "id": "0137be8ca3",
+      "t": 1791994970,
+      "verdict": "unavailable"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و جشنوه دانش‌آموزی در دماوند اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791981030,
-      "title": "دانش آموزان دماوندی با ۶۳ نگاه متفاوت، صدای سلامت شدند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: گزارش معمولی و تبلیغاتی وزارت نیرو درباره تامین برق صنایع",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791981031,
-      "title": "اهتمام دولت در تامین برق صنایع در تابستان ۱۴۰۵"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: دیدار تشریفاتی و تکرار مواضع معمولی درباره فلسطین",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791981032,
-      "title": "پادشاه اردن بر ضرورت تشدید تلاش های جامعه جهانی برای تحقق آرامش منطقه ای تاکید کرد"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اظهارات کلی و تکراری مقامات نظامی درباره آمادگی و پاسخ به تهدید",
       "rescued": false,
@@ -5984,61 +5961,31 @@
       "rule": "below-event-threshold",
       "t": 1791994342,
       "title": "نقشه راه و سیاست مدون صنعتی در حوزه صنعت فاوا تدوین شود"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: حملات روسی به تأسیسات آمریکایی در اوکراین",
+      "rescued": true,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1791994949,
+      "title": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: دیدار روسای بانک مرکزی است و تصمیم کلان فوری ندارد.",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1791994951,
+      "title": "دیدار رؤسای کل بانک های مرکزی ایران و پاکستان با محوریت توسعه همکاری های اقتصادی و تجاری"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: اعلام سیاست تفویض اختیارات به استان‌ها",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1791994951,
+      "title": "تفویض اختیارات بیشتر به استان ها در دستور کار وزارت علوم/آموزش حضوری باید تداوم یابد"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "بزرگ",
-        "بنک",
-        "جرم",
-        "خزن",
-        "در",
-        "دلر",
-        "دلل",
-        "دمن",
-        "قنن",
-        "مبرز",
-        "محکم",
-        "مربط",
-        "ملرد",
-        "نقض",
-        "وزرت",
-        "پردخت",
-        "پلش"
-      ],
-      "t": 1791950951.186835,
-      "title": "جریمه ۱.۲ میلیارد دلاری بانک آمریکا به دلیل نقض تحریم ها ⚡️ وزارت خزانه داری آمریکا اعلام کرد که «بانک آمریکا» به دومین "
-    },
-    {
-      "h": [
-        "برنز",
-        "برگزر",
-        "بمدد",
-        "بند",
-        "جهن",
-        "ددر",
-        "دسترد",
-        "رده",
-        "رقبت",
-        "زر",
-        "شهر",
-        "طل",
-        "فرنگ",
-        "فنل",
-        "قهرمن",
-        "لس",
-        "مدل",
-        "نخست",
-        "وزن",
-        "وگس",
-        "پنج",
-        "کلگرم"
-      ],
-      "t": 1791950970.6574664,
-      "title": "یک مدال طلا و دو برنز دستاورد ایران در پنج وزن نخست کشتی فرنگی زیر ۲۳ سال قهرمانی جهان ⚡️ دیدار های رده بندی و فینال روز"
-    },
     {
       "h": [
         "اخر",
@@ -7118,6 +7065,31 @@
       ],
       "t": 1791992643.1394737,
       "title": "انتقادات گسترده از عبدالحمید؛ چرا تروریست ها محکوم نمی شوند؟ ⚡️ پس از اجرای چند عملیات از سوی گروهک های تروریستی جنوب شر"
+    },
+    {
+      "h": [
+        "ارد",
+        "انتقد",
+        "برنگخت",
+        "تج",
+        "تسس",
+        "تقف",
+        "حل",
+        "خسرت",
+        "سفد",
+        "سکت",
+        "شرکت",
+        "فشر",
+        "قبل",
+        "مج",
+        "مسک",
+        "وشنگتن",
+        "پلشگ",
+        "کخ",
+        "کککل"
+      ],
+      "t": 1791994982.4831288,
+      "title": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ ⚡️ در حالی که دولت ترامپ برای توقف حملات اوکراین به پالایشگاه"
     }
   ],
   "_published_incidents": [
@@ -7724,6 +7696,38 @@
       "t": 1791992113.3227787,
       "title": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت ⚡️ بر اثر سقوط یک هواپیمای کوچک در ایالت ویسکانسین آمریکا، شش ",
       "toll": 6
+    },
+    {
+      "a": [
+        "ارد",
+        "انتقد",
+        "برنگخت",
+        "تسس",
+        "تقف",
+        "خسرت",
+        "سفد",
+        "سکت",
+        "شرکت",
+        "فشر",
+        "قبل",
+        "مسک",
+        "وشنگتن",
+        "پلشگ",
+        "کککل"
+      ],
+      "cities": [
+        "مسکو"
+      ],
+      "kind": "attack",
+      "places": [
+        "مسکو"
+      ],
+      "regions": [
+        "russia"
+      ],
+      "t": 1791994982.4975028,
+      "title": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ ⚡️ در حالی که دولت ترامپ برای توقف حملات اوکراین به پالایشگاه",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
@@ -11897,6 +11901,38 @@
       ],
       "t": 1791992643.1257308,
       "title": "انتقادات گسترده از عبدالحمید؛ چرا تروریست ها محکوم نمی شوند؟ ⚡️ پس از اجرای چند عملیات از سوی گروهک های تروریستی جنوب شر"
+    },
+    {
+      "k": [
+        "ارد",
+        "امرک",
+        "انتقد",
+        "اکرن",
+        "برنگخت",
+        "تج",
+        "ترمپ",
+        "تسس",
+        "تقف",
+        "حل",
+        "حمل",
+        "خسرت",
+        "دلت",
+        "دنلد",
+        "رس",
+        "سفد",
+        "سکت",
+        "شرکت",
+        "فشر",
+        "قبل",
+        "مج",
+        "مسک",
+        "وشنگتن",
+        "پلشگ",
+        "کخ",
+        "کککل"
+      ],
+      "t": 1791994982.4694521,
+      "title": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ ⚡️ در حالی که دولت ترامپ برای توقف حملات اوکراین به پالایشگاه"
     }
   ],
   "_text_polish": {
@@ -11908,7 +11944,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791994189
+    "at": 1791994765
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11923,13 +11959,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791994642.0,
-    "last_failure": 1791994342,
+    "disabled_until": 1791995252.0,
+    "last_failure": 1791994952,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791994379,
-    "last_failure": 1791993779,
+    "disabled_until": 1791995552,
+    "last_failure": 1791994952,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11946,14 +11982,14 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791997372.3015034,
+    "disabled_until": 1791998559.6996033,
     "last_failure": 1791993772,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791994382,
-    "last_failure": 1791993782,
+    "disabled_until": 1791998559.7967093,
+    "last_failure": 1791994951,
     "last_quality_failure": 1791941575,
     "last_status": 429
   },
