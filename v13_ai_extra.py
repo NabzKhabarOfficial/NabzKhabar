@@ -23,6 +23,8 @@ This launcher fixes that without touching the other files:
 7. AI pacer (Oct 15, v13_ai_pace): every AI request is counted per quota day and a
    model may only use its share of the day so far, so the free quotas last all 24 hours
    (Oct 14 they were all used by ~23:00 Tehran and the night had no editor).
+8. Guard repair (Oct 15, v13_guard_repair): an outlet name or a split quote in the text is
+   fixed instead of refusing the whole post, and a refused story is remembered for 6 h.
 
 Oct 14 (evening review): a batch answer gave the Financial Times Starlink story the verdict of a
 car-import story («ابلاغ دستورالعمل اداری ترخیص خودروهای وارداتی», score 2), so it was dropped for a
@@ -491,6 +493,7 @@ def save_usage():
         r._save_health(health)
         _usage.clear()
         _events.clear()
+        _daily_rest.clear()  # saved; the atexit call then has nothing left and does not log the pace summary twice
         print("V13 AI METER: usage saved", flush=True)
     except Exception as exc:
         print(f"V13 AI METER: save warning {type(exc).__name__}: {exc}", flush=True)
@@ -562,6 +565,7 @@ if __name__ == "__main__":
         print(f"DAILY BOARDS: launcher error: {type(exc).__name__}: {exc}", flush=True)
     rb._patch_history_rescue_pipeline()
     rb._install_v13_stack()
+    _safe("guard repair", lambda: __import__("v13_guard_repair").install())
     _safe("ai meter", install_ai_meter)
     atexit.register(save_usage)
     print("V13 ENGINE LAUNCH: v13_ai_extra -> run_bot -> v13_standalone.main()", flush=True)
