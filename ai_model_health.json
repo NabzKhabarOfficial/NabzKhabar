@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
-      "t": 1791950886
-    },
-    {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.5-flash-lite",
-      "t": 1791950888
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1791950889
-    },
-    {
       "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1791950891
     },
@@ -159,40 +147,52 @@
     {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1791958427
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791959008
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791959008
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1791959010
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
-        "429": 26,
-        "calls": 33,
+        "429": 27,
+        "calls": 35,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 6,
+        "ok": 7,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 29,
-        "calls": 34,
+        "429": 30,
+        "calls": 35,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 5,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 17,
-        "calls": 60,
+        "calls": 63,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199241, Requested 1332. Please try again in 4m7.53",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 42,
-        "other": 1
+        "ok": 44,
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 9,
-        "calls": 41,
+        "calls": 42,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198988, Requested 1415. Please try again in 2m54.09",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 21,
-        "other": 11
+        "other": 12
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 6,
@@ -239,20 +239,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 4,
-      "t": 1791785675.7873082,
-      "title": "همدردی نتانیاهو با عربستان",
-      "urgent": false
-    },
-    {
-      "label": "موضع‌گیری",
-      "level": 5,
-      "t": 1791786181.266432,
-      "title": "ایران می گوید پاسخ ایالات متحده ناکافی است؛ فرودگاه ریاض دوباره هدف حمله شد",
-      "urgent": false
-    },
     {
       "label": "اقتصاد",
       "level": 4,
@@ -1007,6 +993,13 @@
       "level": 5,
       "t": 1791953122.6790035,
       "title": "قوه قضاییه: تروریست مسلح در کرمان به دار مجازات آویخته شد",
+      "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1791959036.1091235,
+      "title": "حمله هوایی ارتش عراق به مخفیگاه های داعش در کرکوک",
       "urgent": false
     }
   ],
@@ -4624,10 +4617,20 @@
       "reason": "policy_scope_blocked",
       "until": 1791971865.5510461
     },
+    "israeli attacks kill one in gaza, wound journalists in occupied west bank": {
+      "at": 1791959049.935185,
+      "reason": "ai_unavailable_foreign",
+      "until": 1791960249.935185
+    },
     "openai employee arrested for allegedly planting a bug in a conference room": {
       "at": 1791958430.1032238,
       "reason": "ai_unavailable_foreign",
       "until": 1791959630.1032238
+    },
+    "افشای خسارات قابل توجه در عملیات حمله به آرامکو": {
+      "at": 1791959049.935185,
+      "reason": "ai_unavailable_local",
+      "until": 1791960249.935185
     },
     "اقتصاددان ارشد مؤسسه مودیز آنالیتیکس: در حال حاضر، میانگین قیمت هر گالن بنزین در آمریکا به ۴.۳۴ دلار رسیده؛ در حالی که پیش از جنگ ۲.۹۸ دلار بود / قیمت گازوئیل به دلیل اختلال در ترد": {
       "reason": "content_duplicate",
@@ -4648,10 +4651,20 @@
       "reason": "ai_unavailable_local",
       "until": 1791959076.3653662
     },
+    "حمله هوایی ارتش عراق به مخفیگاه های داعش در کرکوک": {
+      "at": 1791959049.935185,
+      "reason": "ai_unavailable_local",
+      "until": 1791960249.935185
+    },
     "عربستان: زخمی شدن ۴ نفر در ریاض بر اثر بقایای موشک های رهگیری شده توسط پدافند هوایی/ خسارات مادی جزئی به ۱۵ خانه": {
       "at": 1791957876.3653662,
       "reason": "ai_unavailable_local",
       "until": 1791959076.3653662
+    },
+    "قوه قضائیه: علی سینا مصطفوی، تروریست مسلح و عامل دشمن در جنگ ۴۰ روزه که منجر به مجروحیت تعدادی از شهروندان و یک دختر خردسال شده بود، اعدام شد": {
+      "at": 1791959049.935185,
+      "reason": "ai_unavailable_local",
+      "until": 1791960249.935185
     },
     "قیمت گاز در اروپا به بالاترین حد ۴ سال اخیر رسید": {
       "reason": "content_duplicate",
@@ -4659,15 +4672,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "عربستان درخواست اسرائیل برای مداخله نظامی در یمن را رد کرد ⚡️ عربستان سعودی درخواست اسرائیل مبنی بر مشارکت در ",
-      "id": "2003a45c90",
-      "match": "",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1791880211,
-      "verdict": "new",
-      "why": "This is a distinct diplomatic development regarding Saudi-Israeli military cooperation."
-    },
     {
       "head": "ابلاغ اختصاص سهمیه به داوطلبان آزمون سراسری آسیب دیده از جنگ ⚡️ مسعود پزشکیان، رئیس جمهور و رئیس شورای عالی ان",
       "id": "16910106de",
@@ -5156,6 +5160,15 @@
       "t": 1791953121,
       "verdict": "new",
       "why": "different execution event in Kerman"
+    },
+    {
+      "head": "حمله هوایی ارتش عراق به مخفیگاه های داعش در کرکوک ⚡️ رسانه امنیتی عراق از اجرای سه حمله هوایی با استفاده از جن",
+      "id": "6f0f30b69f",
+      "match": "",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1791959034,
+      "verdict": "new",
+      "why": "This is a specific new military operation in Kirkuk."
     }
   ],
   "_importance_rescue_log": [
@@ -5724,53 +5737,6 @@
   "_published_heads": [
     {
       "h": [
-        "ال",
-        "بلک",
-        "تفق",
-        "تنه",
-        "جهن",
-        "رسندن",
-        "سد",
-        "متحد",
-        "مسک",
-        "نفع",
-        "هدف",
-        "وشنگتن",
-        "گزل"
-      ],
-      "t": 1791910391.4354084,
-      "title": "ترامپ: توافق گازوئیل روسیه و آمریکا به نفع جهان است ⚡️ رئیس جمهور آمریکا گفت توافق گازوئیل بین واشنگتن و مسکو تنها به نف"
-    },
-    {
-      "h": [
-        "اجتمع",
-        "اکس",
-        "حث",
-        "دستر",
-        "سعد",
-        "شبک",
-        "مدع"
-      ],
-      "t": 1791910421.7324514,
-      "title": "ادعای ترامپ درباره حملات حوثی ها به عربستان به دستور ایران ⚡️ دونالد ترامپ در شبکه اجتماعی ایکس مدعی شد که حوثی ها به دس"
-    },
-    {
-      "h": [
-        "اگ",
-        "دلل",
-        "شرط",
-        "مشک",
-        "ندد",
-        "نشر",
-        "هشدر",
-        "هچ",
-        "پلتک"
-      ],
-      "t": 1791911522.011421,
-      "title": "پالتیکو: آمریکا هیچ هشداری به اوکراین درباره حمله موشکی روسیه نداد ⚡️ یک منبع آگاه به نشریه پالتیکو گفت آمریکا به دلیل «"
-    },
-    {
-      "h": [
         "ارمک",
         "بعد",
         "بمبر",
@@ -6072,22 +6038,32 @@
       ],
       "t": 1791953122.6711793,
       "title": "قوه قضاییه: تروریست مسلح در کرمان به دار مجازات آویخته شد ⚡️ قوه قضاییه اعلام کرد: حکم اعدام علی سینا مصطفوی، تروریست مس"
+    },
+    {
+      "h": [
+        "اجر",
+        "استفد",
+        "اهدف",
+        "بق",
+        "تررست",
+        "جنگند",
+        "دعش",
+        "طر",
+        "عمل",
+        "عملت",
+        "فرمنده",
+        "مخفگ",
+        "منهدم",
+        "نظر",
+        "کرکک",
+        "کمل",
+        "گر"
+      ],
+      "t": 1791959036.084824,
+      "title": "حمله هوایی ارتش عراق به مخفیگاه های داعش در کرکوک ⚡️ رسانه امنیتی عراق از اجرای سه حمله هوایی با استفاده از جنگنده های ا"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "بلغرست",
-        "مفقد"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1791892964.7122924,
-      "title": "حمله به دو کشتی در دریای سیاه و مفقود شدن ۱۱ ملوان ⚡️ مقام های بلغارستان از مفقود شدن ۱۱ ملوان در پی حمله به دو کشتی در ",
-      "toll": 0
-    },
     {
       "a": [
         "امتز",
@@ -6347,149 +6323,40 @@
       "t": 1791952013.0090275,
       "title": "تیم باید تقویت می شد/ زلزله در منچستریونایتد: لیساندرو به مدیران حمله کرد ⚡️ مارتینز که تمام ۹۰ دقیقه در زمین حضور داشت،",
       "toll": 0
+    },
+    {
+      "a": [
+        "اجر",
+        "استفد",
+        "اهدف",
+        "جنگند",
+        "دعش",
+        "عمل",
+        "عملت",
+        "فرمنده",
+        "مخفگ",
+        "منهدم",
+        "نظر",
+        "کرکک",
+        "کمل"
+      ],
+      "cities": [
+        "کرکوک"
+      ],
+      "kind": "attack",
+      "places": [
+        "کرکوک"
+      ],
+      "regions": [
+        "iraq_north"
+      ],
+      "t": 1791959036.0972357,
+      "title": "حمله هوایی ارتش عراق به مخفیگاه های داعش در کرکوک ⚡️ رسانه امنیتی عراق از اجرای سه حمله هوایی با استفاده از جنگنده های ا",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "احضر",
-        "ادع",
-        "ار",
-        "ارتبط",
-        "امنت",
-        "برتن",
-        "بزدشت",
-        "تقرب",
-        "حدث",
-        "حل",
-        "دلت",
-        "سفر",
-        "شدند",
-        "طر",
-        "فرفرد",
-        "قطع",
-        "مدع",
-        "منجر",
-        "نخست",
-        "نفر",
-        "هدت",
-        "هرگن",
-        "هفت",
-        "وزر",
-        "پگ",
-        "کشر",
-        "گذشت"
-      ],
-      "t": 1791823547.7593374,
-      "title": "ادعای دولت بریتانیا درباره هدایت حادثه امنیتی پایگاه فیرفورد توسط ایران ⚡️ نخست وزیر و وزیر کشور بریتانیا مدعی شدند حادث"
-    },
-    {
-      "k": [
-        "الملل",
-        "امر",
-        "اندخت",
-        "تعق",
-        "تعلق",
-        "دلت",
-        "رض",
-        "شرکت",
-        "فلپن",
-        "لغ",
-        "لفت",
-        "مقصد",
-        "هنز",
-        "هپم",
-        "پرز"
-      ],
-      "t": 1791824096.0338228,
-      "title": "تعلیق و لغو پروازهای بین المللی به مقصد ریاض ⚡️ شرکت های هواپیمایی امارات، دلتا، لوفت هانزا و فیلیپین پروازهای خود به مق"
-    },
-    {
-      "k": [
-        "ارتبط",
-        "افزش",
-        "اکرن",
-        "بدن",
-        "بز",
-        "بستگ",
-        "به",
-        "تنگ",
-        "جمهر",
-        "حمل",
-        "دزل",
-        "رس",
-        "زلنسک",
-        "قمت",
-        "مسدد",
-        "نش",
-        "نفت",
-        "هرمز",
-        "وضعت",
-        "ولدمر",
-        "پلشگ"
-      ],
-      "t": 1791825212.9366508,
-      "title": "زلنسکی: افزایش قیمت نفت ناشی از وضعیت تنگه هرمز است ⚡️ ولادیمیر زلنسکی، رئیس جمهور اوکراین، با رد ارتباط میان حملات به پ"
-    },
-    {
-      "k": [
-        "اتهم",
-        "ادع",
-        "ار",
-        "ارن",
-        "اغز",
-        "اقدم",
-        "امنت",
-        "انگلس",
-        "تبع",
-        "تحرم",
-        "تدم",
-        "تز",
-        "تهر",
-        "جدد",
-        "خرج",
-        "ربط",
-        "زن",
-        "فرفرد",
-        "فضسز",
-        "لندن",
-        "مطرح",
-        "نقش",
-        "همزم",
-        "وزر",
-        "وضع",
-        "پرند"
-      ],
-      "t": 1791826427.183895,
-      "title": "تداوم اتهام زنی امنیتی وزیر خارجه انگلیس علیه ایران ⚡️ وزیر خارجه انگلیس با وضع تحریم علیه دو تبعه ایرانی، ادعاهای امنیت"
-    },
-    {
-      "k": [
-        "اتهم",
-        "ار",
-        "ارتبط",
-        "ارن",
-        "اعمل",
-        "برتن",
-        "تبع",
-        "تحرم",
-        "حدث",
-        "دست",
-        "دشتن",
-        "دشنب",
-        "دلت",
-        "فرفرد",
-        "مقم",
-        "نگهن",
-        "همچن",
-        "وشنگتن",
-        "پفشر",
-        "چرخش"
-      ],
-      "t": 1791827522.708759,
-      "title": "تحریم بریتانیا علیه دو مقام ایرانی ⚡️ چرخش ناگهانی واشنگتن دولت بریتانیا روز دوشنبه از اعمال تحریم علیه دو مقام ایرانی خ"
-    },
     {
       "k": [
         "ابد",
@@ -8958,6 +8825,35 @@
       ],
       "t": 1791953122.658156,
       "title": "قوه قضاییه: تروریست مسلح در کرمان به دار مجازات آویخته شد ⚡️ قوه قضاییه اعلام کرد: حکم اعدام علی سینا مصطفوی، تروریست مس"
+    },
+    {
+      "k": [
+        "اجر",
+        "ارتش",
+        "استفد",
+        "امنت",
+        "اهدف",
+        "بق",
+        "تررست",
+        "جنگند",
+        "حمل",
+        "دعش",
+        "رسن",
+        "طر",
+        "عرق",
+        "عمل",
+        "عملت",
+        "فرمنده",
+        "مخفگ",
+        "منطق",
+        "منهدم",
+        "نظر",
+        "کرکک",
+        "کمل",
+        "گر"
+      ],
+      "t": 1791959036.0726821,
+      "title": "حمله هوایی ارتش عراق به مخفیگاه های داعش در کرکوک ⚡️ رسانه امنیتی عراق از اجرای سه حمله هوایی با استفاده از جنگنده های ا"
     }
   ],
   "_text_polish": {
@@ -8969,7 +8865,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791958226
+    "at": 1791958806
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8984,13 +8880,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791958446,
-    "last_failure": 1791957846,
+    "disabled_until": 1791959608,
+    "last_failure": 1791959008,
     "last_status": 429
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791958446,
-    "last_failure": 1791957846,
+    "disabled_until": 1791959608,
+    "last_failure": 1791959008,
     "last_quality_failure": 1791891761,
     "last_status": 429
   },
