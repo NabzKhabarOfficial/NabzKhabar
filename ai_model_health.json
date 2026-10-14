@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: no verdict for 6 stories",
-      "t": 1791993138
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
-      "t": 1791993772
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1791993773
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1791993775
     },
@@ -159,21 +147,33 @@
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
       "t": 1791998969
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791999511
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1791999512
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1791999512
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 113,
+        "calls": 114,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 58,
-        "other": 26
+        "other": 27
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 44,
-        "calls": 539,
+        "429": 45,
+        "calls": 540,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 492,
@@ -4693,18 +4693,14 @@
       "reason": "content_duplicate",
       "until": 1792001361.0087357
     },
-    "israeli air strike kills palestinian woman in gaza city": {
-      "reason": "content_duplicate",
-      "until": 1791999163.8221593
-    },
     "saudi-led coalition intercepts houthi missile launched towards riyadh": {
       "reason": "content_duplicate",
       "until": 1792003206.8734426
     },
     "settlers attack palestinian mosque near occupied east jerusalem": {
-      "at": 1791998983.3971872,
+      "at": 1791999515.02988,
       "reason": "ai_unavailable_foreign",
-      "until": 1792000183.3971872
+      "until": 1792000715.02988
     },
     "starlink restrictions affecting ukraine's front line operations, kyiv says": {
       "reason": "content_duplicate",
@@ -4784,11 +4780,6 @@
       "at": 1791998470.616459,
       "reason": "ai_unavailable_local",
       "until": 1791999670.616459
-    },
-    "روایت رئیس اورژانس استان تهران از حمله اسرائیل به جلسه شورای عالی امنیت ملی: از معاونت ریاست جمهوری تماس گرفتند که ما پزشک، جراح و متخصص ریه لازم داریم / فرمانده یگان حفاظت به من گ": {
-      "at": 1791997827.9162416,
-      "reason": "ai_unavailable_local",
-      "until": 1791999027.9162416
     },
     "زلنسکی: روسیه شب گذشته با ۳۹ موشک بالستیک و بیش از ۱۲۰ پهپاد تهاجمی، به طور مشخص زیرساخت های انرژی ما را که شامل آتش بس می شد، هدف قرار داد/ مسکو اظهارات ترامپ را قدرتمند و بازدارن": {
       "reason": "content_duplicate",
@@ -11848,7 +11839,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791998826
+    "at": 1791999401
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11863,13 +11854,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791999267,
-    "last_failure": 1791998966,
+    "disabled_until": 1791999812.0,
+    "last_failure": 1791999512,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791999054,
-    "last_failure": 1791998454,
+    "disabled_until": 1792000111,
+    "last_failure": 1791999511,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
