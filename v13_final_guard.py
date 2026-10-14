@@ -37,6 +37,16 @@ Oct 14 2026 (review of the published posts):
   cleaner's NEUTRAL table at install) and a leftover is refused here.
 * The AI sense check refused a Trump post because the text wrote "Donald" instead of
   "Trump": a different name form of the same person is now explicitly ok.
+
+Oct 14 2026, evening (root cause of loaded words that slipped through):
+* Every word-edge check in the byline cleaner and in this guard was written as "not followed
+  by a character in U+0600-U+06FF". That block also holds the Persian comma «،», semicolon
+  «؛» and question mark «؟», so «رژیم صهیونیستی،» or «رویترز،» was neither rewritten nor
+  refused. The edges now mean "not followed by a letter" (_letter_edges, applied at install to
+  the cleaner's patterns and NEUTRAL table, and used by this guard's own patterns).
+* New neutral wording: «قدس اشغالی» -> «بیت‌المقدس», «سرزمین‌های اشغالی» / «فلسطین اشغالی» ->
+  «اسرائیل», «رژیم اسرائیل» -> «اسرائیل».
+* Arabic letters «ي»/«ى»/«ك» («يسرائیل»، «آسيب») become Persian «ی»/«ک» before anything else.
 """
 
 import json
@@ -49,7 +59,9 @@ LOG_PATH = os.path.join("docs", "guard_log.json")
 LOG_MAX = 100
 TEHRAN = timezone(timedelta(hours=3, minutes=30))
 _S = r"[\s\u200c]"
-_P = "\u0600-\u06FF"
+# A "letter" for word edges: \w (all Unicode letters and digits) plus Arabic diacritics. Not the
+# whole U+0600-U+06FF block, which also holds the Persian comma, semicolon and question mark.
+_P = r"\w\u064B-\u065F\u0670"
 
 LOADED = re.compile(
     r"(?<![" + _P + r"])(?:رژیم" + _S + r"+صهیونیست\S*|رژیم" + _S + r"+اشغالگر|رژیم" + _S + r"+غاصب|"
@@ -69,13 +81,31 @@ SOURCE_LINE = re.compile(r"(?:^|\n)\s*(?:🔗\s*)?منبع\s*[:：]")
 # A news site's "related videos" strip glued to the text: «... + فیلم <other story> + فیلم ...».
 RELATED_LINK = re.compile(r"\+\s*(?:فیلم|ویدئو|ویدیو|عکس|تصاویر|اینفوگرافیک|صوت|فایل" + _S + r"+صوتی)(?![" + _P + r"])")
 
-# Oct 14: loaded words the byline cleaner's NEUTRAL table did not know yet («آمریکایی-صهیونی»).
-# Added to that table at install time, so they are rewritten before this guard looks.
+# Oct 14: loaded words the byline cleaner's NEUTRAL table did not know yet («آمریکایی-صهیونی»,
+# «قدس اشغالی»، «جنوب سرزمین های اشغالی»). Added to that table at install time, so they are
+# rewritten before this guard looks.
 EXTRA_NEUTRAL = (
     ("صهیونی ها", "اسرائیلی‌ها"),
     ("صهیونی‌ها", "اسرائیلی‌ها"),
     ("صهیونی", "اسرائیلی"),
+    ("قدس اشغالی", "بیت‌المقدس"),
+    ("سرزمین های اشغالی", "اسرائیل"),
+    ("فلسطین اشغالی", "اسرائیل"),
+    ("رژیم اسرائیل", "اسرائیل"),
 )
+# Arabic letters from some sources («يسرائیل»، «آسيب»): Persian letters, applied first.
+ARABIC_LETTERS = ((re.compile("[\u064a\u0649]"), "\u06cc"), (re.compile("\u0643"), "\u06a9"))
+_OLD_EDGES = (r"[\w\u0600-\u06FF]", r"[\u0600-\u06FF]")
+_NEW_EDGE = "[" + _P + "]"
+
+
+def _letter_edges(rx):
+    """The same pattern with its "not a Persian character" word edges turned into "not a
+    letter" edges, so a word right before «،», «؛» or «؟» still matches."""
+    p = rx.pattern
+    for old in _OLD_EDGES:
+        p = p.replace("(?<!" + old + ")", "(?<!" + _NEW_EDGE + ")").replace("(?!" + old + ")", "(?!" + _NEW_EDGE + ")")
+    return rx if p == rx.pattern else re.compile(p, rx.flags)
 
 
 def _media_patterns():
@@ -227,14 +257,30 @@ def _install_lane_scope():
 
 # ---------------------------------------------------------------- Oct 14: fix at the source
 def _install_extra_neutral():
-    """Add EXTRA_NEUTRAL to the byline cleaner's table (neutral() reads it at call time)."""
+    """Letter word edges for the byline cleaner's patterns and NEUTRAL table, EXTRA_NEUTRAL
+    added to that table, and Arabic letters made Persian first (neutral() reads the table at
+    call time, the cleaner's functions read their patterns at call time)."""
     import v13_byline_cleaner as bc
+    if getattr(bc, "_edges_fixed", False):
+        return
+    bc._NEUTRAL[:] = [(_letter_edges(p), b) for p, b in bc._NEUTRAL]
     have = {p.pattern for p, _ in bc._NEUTRAL}
     for a, b in EXTRA_NEUTRAL:
-        pat = bc._phrase_re(a)
+        pat = _letter_edges(bc._phrase_re(a))
         if pat.pattern not in have:
             bc._NEUTRAL.append((pat, b))
             have.add(pat.pattern)
+    bc._NEUTRAL[0:0] = list(ARABIC_LETTERS)
+    fixed = 0
+    for name in list(vars(bc)):
+        value = getattr(bc, name)
+        if isinstance(value, re.Pattern):
+            new = _letter_edges(value)
+            if new is not value:
+                setattr(bc, name, new)
+                fixed += 1
+    bc._edges_fixed = True
+    print(f"V13 FINAL GUARD: letter word edges on {fixed} cleaner patterns and the neutral table.", flush=True)
 
 
 def _install_outlet_line_drop():
