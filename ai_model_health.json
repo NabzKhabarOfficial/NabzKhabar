@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1791998967
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1791998968
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
       "t": 1791998969
     },
@@ -159,40 +151,48 @@
     {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1792006475
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792007093
+    },
+    {
+      "e": "EDITOR BATCH: 6/6 via gemini/gemini-3.1-flash-lite",
+      "t": 1792007106
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 148,
+        "calls": 158,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 79,
+        "ok": 89,
         "other": 40
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 57,
-        "calls": 555,
+        "429": 59,
+        "calls": 557,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 495,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 149,
-        "calls": 330,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199277, Requested 870. Please try again in 1m3.504",
+        "429": 152,
+        "calls": 334,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199319, Requested 1878. Please try again in 8m37.1",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 173,
+        "ok": 174,
         "other": 8
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 92,
-        "calls": 207,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198246, Requested 1870. Please try again in 50.112s",
+        "429": 93,
+        "calls": 210,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199026, Requested 1878. Please try again in 6m30.52",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 56,
+        "ok": 58,
         "other": 59
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -240,13 +240,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "موضع‌گیری",
-      "level": 4,
-      "t": 1791868039.3977811,
-      "title": "پاکستان: بیش از ۲۰ هزار شبه نظامی همچنان در افغانستان حضور دارند",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1079,6 +1072,13 @@
       "t": 1792006486.116937,
       "title": "قالیباف: هم مذاکره کنیم و هم بجنگیم تا بازدارندگی پایدار ایجاد کنیم",
       "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 4,
+      "t": 1792007137.591828,
+      "title": "تورم آمریکا در آستانه انتخابات میان دوره ای به ۳.۷ درصد رسید",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-14",
@@ -1160,6 +1160,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: اظهارات رئیس جمهور آمریکا درباره انتخابات میان دوره ای و راهبرد حزب.",
       "topic": "سیاست",
       "until": 1792062127.672464
+    },
+    "v4|saudi tennis ‘slam’ with alcaraz, djokovic postponed amid houthi attacks": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: تعویق یک تورنمنت نمایشی ورزشی اهمیت خبری سطح اول ندارد.",
+      "topic": "ورزش",
+      "until": 1792093506.0771039
     },
     "v4|saudi-led coalition intercepts houthi missile launched towards riyadh": {
       "ok": true,
@@ -1479,6 +1485,12 @@
       "topic": "نظامی",
       "until": 1792049497.84006
     },
+    "v4|اختتامیه پویش ملی «ایران امام رضا(ع)» در جیرفت برگزار شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: مراسم اختتامیه یک جشنواره فرهنگی محلی فاقد اهمیت ملی است.",
+      "topic": "جامعه",
+      "until": 1792093497.9100266
+    },
     "v4|اخلاقی برنامه های خود برای وزارت دفاع را در مجلس تشریح کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: تشریح برنامه‌های وزیر پیشنهادی دفاع در مجلس.",
@@ -1737,12 +1749,6 @@
       "topic": "اقتصاد",
       "until": 1792059786.6405952
     },
-    "v4|افشین: صنایع خلاق موتور محرک ارزش آفرینی فردمحور و تمدنی است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: بیان عمومی، بدون تصمیم یا رویداد خاص",
-      "topic": "اقتصاد",
-      "until": 1792042441.9378967
-    },
     "v4|الزام به پیاده سازی کشاورزی نسل چهارم و تدوین تقویم تخصصی محصولات در مازندران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی و کشاورزی؛ فاقد اهمیت ملی یا بین‌المللی.",
@@ -1892,6 +1898,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: شهادت مأمور پلیس در حمله مسلحانه داخلی، امنیت ملی محسوب می‌شود.",
       "topic": "حادثه",
       "until": 1792059786.606882
+    },
+    "v4|اولین شکست در لیگ قهرمانان: فابرگاس غافلگیر شد!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: شکست در مسابقات باشگاهی عادی اهمیت سطح اول جهانی ندارد.",
+      "topic": "ورزش",
+      "until": 1792093506.1212406
     },
     "v4|اوکراین می گوید محدودیت های استارلینک عملیات نظامی اش را مختل کرده است": {
       "ok": true,
@@ -2103,12 +2115,6 @@
       "topic": "ورزش",
       "until": 1792061538.8426101
     },
-    "v4|بلومبرگ: مقر شرکت آرامکو در شهر ظهران عربستان، دیروز در جریان حمله موشکی انصارالله هدف قرار گرفت/ این حمله باعث آتش سوزی در بخشی از این ساختمان شد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Missile attack on Aramco HQ by Houthis, causing fire",
-      "topic": "نظامی",
-      "until": 1792042447.742877
-    },
     "v4|بنادر و کریدورها؛ اهرم ایران برای مقابله با تحریم انرژی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: تحلیل کارشناسی و پیشنهاد راهبردی است و نه یک رویداد قطعی.",
@@ -2264,18 +2270,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Provincial investment plan and future projections, not a concrete event.",
       "topic": "اقتصاد",
       "until": 1792054083.4581869
-    },
-    "v4|ترافیک نیمه سنگین در چند محور منتهی به تهران": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Traffic congestion reported on major highways",
-      "topic": "جامعه",
-      "until": 1792042443.5003474
-    },
-    "v4|ترامپ آغاز غارت منابع گرینلند را اعلام کرد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Trump announces Greenland resource exploration",
-      "topic": "سیاست",
-      "until": 1792043073.5742033
     },
     "v4|ترامپ از آغاز غارت نفت و گاز گرینلند خبر داد": {
       "ok": true,
@@ -2505,12 +2499,6 @@
       "topic": "نظامی",
       "until": 1792066145.629494
     },
-    "v4|جزئیات ثبت نشانی منزل و کار در اپلیکیشن «پست من»": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: خبر معمول دولتی درباره اپلیکیشن پست و ثبت نشانی است",
-      "topic": "فناوری",
-      "until": 1792047694.540311
-    },
     "v4|جزئیات جدید از مجروحان حمله پهپادی به لنج صیادی در سیریک": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: حمله پهپادی به لنج صیادی ایرانی و مجروح شدن خدمه.",
@@ -2522,12 +2510,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: جزئیات حمله پهپادی به شناور صیادی در سیریک با سه مجروح",
       "topic": "حادثه",
       "until": 1792052933.867536
-    },
-    "v4|جشن بزرگ ازدواج دانشجویان دانشگاه علوم پزشکی تهران": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: University wedding ceremony, local event, no national significance",
-      "topic": "جامعه",
-      "until": 1792042440.2472422
     },
     "v4|جشنواره های همدان؛ عناوین پرطمطراق و جای خالی مخاطب": {
       "ok": false,
@@ -2745,6 +2727,12 @@
       "topic": "سیاست",
       "until": 1792058678.9639392
     },
+    "v4|درآمد کمتر از ۲۰ میلیون، از معیارهای پرداخت کالابرگ جدید است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: جزئیات اجرایی طرح کالابرگ، خبری روتین و غیر استراتژیک محسوب می‌شود.",
+      "topic": "اقتصاد",
+      "until": 1792093498.9107733
+    },
     "v4|درخواست ویژه پاکستان از ایران و آمریکا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: درخواست رو به عقب و تکراری خویشتنداری از سوی پاکستان",
@@ -2816,12 +2804,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=iran_national: گمانه‌زنی درباره مسابقات آینده و احتمال تقابل دو کشتی‌گیر",
       "topic": "ورزش",
       "until": 1792061055.699442
-    },
-    "v4|دوره عالی مدیریت المپیک با مجوز رسمی ioc در اراک برگزار شد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: دوره مدیریت المپیک در اراک برگزار شد",
-      "topic": "ورزش",
-      "until": 1792047106.9911747
     },
     "v4|دولت برای هر نوع فشار اقتصادی برنامه دارد": {
       "ok": false,
@@ -2991,12 +2973,6 @@
       "topic": "نظامی",
       "until": 1792063937.4220526
     },
-    "v4|رکوردشکنی دانش آموزان ایرانی با کسب ۱۸ مدال طلای المپیادهای جهانی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: آمار المپیادهای علمی، نه خبر اولویت‌دار",
-      "topic": "ورزش",
-      "until": 1792046552.4260361
-    },
     "v4|زلنسکی: اوکراین هشدار اطلاعاتی آمریکا درباره حمله موشکی را دریافت نکرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اعتراض زلنسکی به دریافت نکردن هشدار اطلاعاتی آمریکا از حمله موشکی",
@@ -3062,6 +3038,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: افتتاح ایست و بازرسی محلی اهمیت ملی ندارد.",
       "topic": "جامعه",
       "until": 1792074862.0633903
+    },
+    "v4|ستایش سناتور مکزیکی از عزت و قدرت ایران در برابر جنگ طلبی ترامپ": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: اظهارنظر یک مقام خارجی است و نه یک تصمیم استراتژیک.",
+      "topic": "سیاست",
+      "until": 1792093506.0625598
     },
     "v4|سخنگوی سپاه: احتمال حمله مجدد آمریکا به ایران پیش از انتخابات وجود دارد": {
       "ok": true,
@@ -3681,6 +3663,12 @@
       "topic": "اقتصاد",
       "until": 1792065077.3262422
     },
+    "v4|لاسک ۳ - ۶ لیورپول/ پیروزی مقتدرانه قرمز ها با اولین هت تریک بارکولا": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقات مرحله گروهی لیگ قهرمانان اروپا اهمیت خبری بالایی ندارد.",
+      "topic": "ورزش",
+      "until": 1792093499.7195435
+    },
     "v4|لاشه چهار قلاده فوک خزری در ساحل بابلسر کشف شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: کشف لاشه فوک‌ها در ساحل بابلسر؛ خبر محلی و محیط زیستی.",
@@ -3974,6 +3962,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: بررسی آسیب‌های شبکه‌های اجتماعی در حوزه سلامت، فاقد رویداد مشخص.",
       "topic": "سلامت",
       "until": 1792055800.1383052
+    },
+    "v4|نشست پرسش وپاسخ تشکل های دانشجویی دانشگاه علوم پزشکی گلستان با معاون وزیر بهداشت برگزار شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: نشست دانشجویی یک رویداد محلی و فاقد اهمیت ملی است.",
+      "topic": "جامعه",
+      "until": 1792093495.0986161
     },
     "v4|نفت خام سنگین در قاره آمریکا زمین گیر شد": {
       "ok": false,
@@ -4329,12 +4323,6 @@
       "topic": "جامعه",
       "until": 1792048857.6850765
     },
-    "v4|پورمحمدی: لایحه اصلاح قانون برنامه هفتم تقدیم مجلس می شود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Routine legislative update on budget and program law",
-      "topic": "سیاست",
-      "until": 1792047105.3235223
-    },
     "v4|پژوهشگر یمنی: با حمله به فرودگاه «ملک خالد»، بحران به داخل عربستان رسید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: نظر تحلیلگر درباره حمله به فرودگاه عربستان، خبر قطعی نیست",
@@ -4401,6 +4389,12 @@
       "topic": "سیاست",
       "until": 1792050007.482432
     },
+    "v4|کاراته قهرمانی رده های سنی جهان؛ دو دختر ایران در آستانه کسب مدال برنز": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: در آستانه کسب مدال بودن هنوز یک رویداد قطعی نیست.",
+      "topic": "ورزش",
+      "until": 1792093506.1065607
+    },
     "v4|کارخانه فناوری جوش آذربایجان پس از ۱۳ سال تعطیلی احیا شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: بازگشایی یک کارخانه استانی موضوعی محلی و فاقد اهمیت ملی است.",
@@ -4436,12 +4430,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: توضیحات وزیر درباره توزیع کتاب درسی اهمیت ملی درجه یک ندارد",
       "topic": "جامعه",
       "until": 1792055232.9406316
-    },
-    "v4|کرمانشاه مقصد بعدی طرح ملی «مهارت آموزی هوش مصنوعی»": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: آموزش مهارت‌های هوش مصنوعی در کرمانشاه",
-      "topic": "فناوری",
-      "until": 1792043073.9956174
     },
     "v4|کرملین: برای بازپس گیری دارایی های خود مبارزه خواهیم کرد": {
       "ok": true,
@@ -4533,6 +4521,12 @@
       "topic": "ورزش",
       "until": 1792069081.3910284
     },
+    "v4|گاردین: جمهوری خواهان در آستانه انتخابات میان دوره ای با بالاترین نرخ تورم از فصل بهار تاکنون روبه رو شده اند": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: گزارش رسمی نرخ تورم آمریکا یک شاخص کلان اقتصادی مهم است.",
+      "topic": "اقتصاد",
+      "until": 1792093506.0920706
+    },
     "v4|گاز آلاسکا؛ ابزار واشنگتن برای گسترش نفوذ اقتصادی و انرژی در آسیا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: قرارداد تجاری و انرژی بین تایوان و آمریکا درباره گاز آلاسکا",
@@ -4593,6 +4587,12 @@
       "topic": "نظامی",
       "until": 1792091731.2190096
     },
+    "v4|یک دهه جنگ علیه یمن؛ وقتی رنج غیرنظامیان و کودکان یمنی دیده نشد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: تحلیل و نظر رسانه‌ای است و نه یک رویداد خبری جدید.",
+      "topic": "سیاست",
+      "until": 1792093506.0461314
+    },
     "v4|۱۲ هزار کلاس درس هفته آینده تحویل آموزش و پرورش می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine administrative news regarding school infrastructure development and classroom delivery.",
@@ -4647,12 +4647,6 @@
       "topic": "اقتصاد",
       "until": 1792062720.0752869
     },
-    "v4|۴۶ درصد مددجویان کمیته امداد کاشان را سالمندان تشکیل می دهند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: نسبت سالمندان در کمک‌های اجتماعی",
-      "topic": "جامعه",
-      "until": 1792047107.5468235
-    },
     "v4|۶ محقق پژوهشگاه رویان در فهرست دو درصد دانشمندان برتر جهان قرار گرفتند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: موفقیت علمی پژوهشگران رویان ارزش خبری درجه یک ندارد",
@@ -4682,6 +4676,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: تعویق مسابقه ورزشی اهمیت سطح یک جهانی ندارد",
       "topic": "ورزش",
       "until": 1792074871.4976323
+    },
+    "v4|‫حضور معمار عصر طلایی سیتی در اتحاد/ پپ به خانه برگشت: گفتم با شما هستم!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: حضور یک مربی در ورزشگاه خبر درجه یک محسوب نمی‌شود.",
+      "topic": "ورزش",
+      "until": 1792093500.489434
     }
   },
   "_editorial_blocks": {
@@ -4715,7 +4715,7 @@
     },
     "اوکراین می گوید محدودیت های استارلینک عملیات نظامی اش را مختل کرده است": {
       "reason": "content_duplicate",
-      "until": 1792006684.1400962
+      "until": 1792028725.399108
     },
     "ایران از مرحله خطر حمله غافلگیرکننده عبور کرده است": {
       "reason": "content_duplicate",
@@ -4756,21 +4756,11 @@
       "until": 1792006627.414898
     },
     "یمن از حمله موشکی به فرودگاه بین المللی ریاض خبر داد": {
-      "at": 1792005427.414898,
-      "reason": "ai_unavailable_local",
-      "until": 1792006627.414898
+      "reason": "content_duplicate",
+      "until": 1792028717.8859494
     }
   },
   "_event_judge_log": [
-    {
-      "head": "وزیر خارجه عمان: توافق پیرامون تنگه هرمز به نتیجه مذاکرات تهران و واشنگتن بستگی دارد ⚡️ بدر البوسعیدی وزیر امو",
-      "id": "b1011b5ff1",
-      "match": "رایزنی وزرای خارجه آمریکا و انگلیس درباره امنیت تنگه هرمز",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791967711,
-      "verdict": "reaction",
-      "why": "Oman FM statement is a diplomatic reaction regarding Hormuz negotiations."
-    },
     {
       "head": "روایت امدادگر حاضر در بیت رهبری از وضعیت آیت الله مجتبی خامنه ای پس از بمباران ⚡️ نخستین امدادگر حاضر در بیت ر",
       "id": "3446e17ec2",
@@ -5296,44 +5286,18 @@
       "t": 1792006484,
       "verdict": "new",
       "why": "This is a new policy statement by Ghalibaf regarding deterrence strategy."
+    },
+    {
+      "head": "تورم آمریکا در آستانه انتخابات میان دوره ای به ۳.۷ درصد رسید ⚡️ نرخ سالانه تورم در ایالات متحده با افزایش در م",
+      "id": "b0fc3c8e61",
+      "match": "",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1792007136,
+      "verdict": "new",
+      "why": "This is a report on US inflation data, not previously covered."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر دانشگاهی و اداری مربوط به دانشجویان است و ارزش خبری ملی ندارد.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1791984391,
-      "title": "کارنامه ماندگار تندرستی برای دانشجویان صادر می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: مواضع رسمی کرملین درباره بازپس‌گیری دارایی‌های روسیه در غرب",
-      "rescued": true,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791984392,
-      "title": "کرملین: برای بازپس گیری دارایی های خود مبارزه خواهیم کرد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: کلنگ‌زنی مدارس روستایی خبر محلی و کم‌اهمیت برای کانال سراسری است.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1791984392,
-      "title": "کلنگ زنی سه مدرسه روستایی در قشم"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: شهادت فرمانده بسیج در اقدام تروریستی مسلحانه در مهرستان",
-      "rescued": true,
-      "rule": "below-event-threshold",
-      "t": 1791985060,
-      "title": "شهادت فرمانده حوزه خواهران بسیج مهرستان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بیانات استاندار درباره منطقه آزاد بوشهر محلی و رویداد نیست.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791985064,
-      "title": "استاندار بوشهر: منطقه آزاد بوشهر، فرصتی طلایی برای توسعه اقتصادی استان است"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: گفتگوی تلفنی مقامات ارشد لبنان و ایران درباره تحولات منطقه",
       "rescued": true,
@@ -5858,49 +5822,45 @@
       "rule": "below-event-threshold",
       "t": 1792006474,
       "title": "تاجرنیا: حضور استقلال در مشهد نیازمند حمایت جدی مسئولان استانی است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: نشست دانشجویی یک رویداد محلی و فاقد اهمیت ملی است.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792007095,
+      "title": "نشست پرسش وپاسخ تشکل های دانشجویی دانشگاه علوم پزشکی گلستان با معاون وزیر بهداشت برگزار شد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: مراسم اختتامیه یک جشنواره فرهنگی محلی فاقد اهمیت ملی است.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792007097,
+      "title": "اختتامیه پویش ملی «ایران امام رضا(ع)» در جیرفت برگزار شد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: جزئیات اجرایی طرح کالابرگ، خبری روتین و غیر استراتژیک محسوب می‌شود.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792007098,
+      "title": "درآمد کمتر از ۲۰ میلیون، از معیارهای پرداخت کالابرگ جدید است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقات مرحله گروهی لیگ قهرمانان اروپا اهمیت خبری بالایی ندارد.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792007099,
+      "title": "لاسک ۳ - ۶ لیورپول/ پیروزی مقتدرانه قرمز ها با اولین هت تریک بارکولا"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: حضور یک مربی در ورزشگاه خبر درجه یک محسوب نمی‌شود.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792007100,
+      "title": "‫حضور معمار عصر طلایی سیتی در اتحاد/ پپ به خانه برگشت: گفتم با شما هستم!"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "اصبت",
-        "سرک",
-        "شهرست",
-        "فرند",
-        "لنج",
-        "متعلق",
-        "محدد",
-        "نشنس",
-        "پهپد",
-        "کرگ",
-        "کله"
-      ],
-      "t": 1791963637.4310958,
-      "title": "اصابت پهپاد به یک لنج در سیریک با ۳ زخمی ⚡️ یک فروند پهپاد ناشناس در محدوده شهرستان سیریک به یک لنج متعلق به کرگان و کلا"
-    },
-    {
-      "h": [
-        "اتق",
-        "اتهم",
-        "ارشد",
-        "اپن",
-        "بزدشت",
-        "جسس",
-        "جلس",
-        "دستگ",
-        "شرکت",
-        "صد",
-        "ضبط",
-        "مدر",
-        "مهندس",
-        "پشرفت",
-        "پنه",
-        "کرمند"
-      ],
-      "t": 1791963644.15792,
-      "title": "بازداشت کارمند اوپن ای آی به اتهام جاسوسی در اتاق جلسات ⚡️ یک مهندس شرکت اوپن ای آی به اتهام جاسوسی و پنهان کردن یک دستگ"
-    },
     {
       "h": [
         "احضر",
@@ -7053,6 +7013,29 @@
       ],
       "t": 1792006486.1037235,
       "title": "قالیباف: هم مذاکره کنیم و هم بجنگیم تا بازدارندگی پایدار ایجاد کنیم ⚡️ بازدارندگی پایدار زمانی ایجاد می شود که آن قدر قو"
+    },
+    {
+      "h": [
+        "استن",
+        "افزش",
+        "ال",
+        "انتخب",
+        "بلترن",
+        "بهر",
+        "ترم",
+        "در",
+        "درصد",
+        "رسد",
+        "سطح",
+        "سلن",
+        "سپتمبر",
+        "فصل",
+        "متحد",
+        "محسب",
+        "نرخ"
+      ],
+      "t": 1792007137.5779297,
+      "title": "تورم آمریکا در آستانه انتخابات میان دوره ای به ۳.۷ درصد رسید ⚡️ نرخ سالانه تورم در ایالات متحده با افزایش در ماه سپتامبر"
     }
   ],
   "_published_incidents": [
@@ -7729,61 +7712,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ارم",
-        "اس",
-        "اسب",
-        "اشتغل",
-        "افت",
-        "افزر",
-        "افزش",
-        "اقتصد",
-        "ال",
-        "الملل",
-        "انرژ",
-        "برخ",
-        "بررد",
-        "بعث",
-        "بن",
-        "به",
-        "تثر",
-        "تحت",
-        "جرج",
-        "جمعت",
-        "جن",
-        "جهن",
-        "حذف",
-        "خند",
-        "دد",
-        "درصد",
-        "درمد",
-        "دستخش",
-        "دگرگن",
-        "رشد",
-        "رنق",
-        "سخت",
-        "سنم",
-        "صندق",
-        "مدرعمل",
-        "مشغل",
-        "مصنع",
-        "مهر",
-        "نر",
-        "نش",
-        "هش",
-        "وجد",
-        "پر",
-        "پشرفت",
-        "پل",
-        "چلش",
-        "کرستلن",
-        "کشر",
-        "کهش"
-      ],
-      "t": 1791877320.8660805,
-      "title": "صندوق بین المللی پول: هوش مصنوعی ۴۰ درصد مشاغل جهان را تحت تأثیر قرار می دهد ⚡️ کریستالینا جورجیوا، مدیرعامل صندوق بین ا"
-    },
     {
       "k": [
         "اجد",
@@ -11902,6 +11830,56 @@
       ],
       "t": 1792006486.09042,
       "title": "قالیباف: هم مذاکره کنیم و هم بجنگیم تا بازدارندگی پایدار ایجاد کنیم ⚡️ بازدارندگی پایدار زمانی ایجاد می شود که آن قدر قو"
+    },
+    {
+      "k": [
+        "استن",
+        "اصل",
+        "افزش",
+        "اقتصد",
+        "ال",
+        "امرک",
+        "انتخب",
+        "انرژ",
+        "بلترن",
+        "بنزن",
+        "بهر",
+        "ترم",
+        "ترمپ",
+        "جنگ",
+        "جهش",
+        "در",
+        "درصد",
+        "دلت",
+        "دنند",
+        "رسد",
+        "رشد",
+        "سست",
+        "سطح",
+        "سفر",
+        "سلن",
+        "سهم",
+        "سپتمبر",
+        "شرط",
+        "طبق",
+        "طر",
+        "عمل",
+        "فصل",
+        "قمت",
+        "متحد",
+        "محسب",
+        "مصرف",
+        "نرخ",
+        "نش",
+        "نظرسنج",
+        "نفت",
+        "هزن",
+        "هست",
+        "کر",
+        "کنند"
+      ],
+      "t": 1792007137.5646522,
+      "title": "تورم آمریکا در آستانه انتخابات میان دوره ای به ۳.۷ درصد رسید ⚡️ نرخ سالانه تورم در ایالات متحده با افزایش در ماه سپتامبر"
     }
   ],
   "_text_polish": {
@@ -11913,7 +11891,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792006357
+    "at": 1792006942
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11927,14 +11905,9 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792006775.0,
-    "last_failure": 1792006475,
-    "last_status": 503
-  },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792006551,
-    "last_failure": 1792005951,
+    "disabled_until": 1792007693,
+    "last_failure": 1792007093,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11951,13 +11924,13 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792010097.7383373,
+    "disabled_until": 1792010734.802186,
     "last_failure": 1792005328,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792010083.9751344,
+    "disabled_until": 1792010734.9147792,
     "last_failure": 1792003014,
     "last_quality_failure": 1791941575,
     "last_status": 429
