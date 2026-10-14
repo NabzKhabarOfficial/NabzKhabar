@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: no verdict for 6 stories",
-      "t": 1791950891
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1791951394
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1791951395
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1791952002
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1791952002
     },
@@ -159,31 +143,47 @@
     {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1791959483
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
+      "t": 1791960152
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791960152
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791960152
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1791960155
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
-        "429": 27,
-        "calls": 35,
+        "429": 28,
+        "calls": 36,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 7,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 30,
-        "calls": 35,
+        "429": 31,
+        "calls": 36,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 5,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 17,
-        "calls": 66,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199241, Requested 1332. Please try again in 4m7.53",
+        "429": 18,
+        "calls": 68,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198999, Requested 1267. Please try again in 1m54.9",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 47,
+        "ok": 48,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
@@ -2853,6 +2853,12 @@
       "topic": "حادثه",
       "until": 1792031961.0752554
     },
+    "v4|رکوردشکنی دانش آموزان ایرانی با کسب ۱۸ مدال طلای المپیادهای جهانی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: آمار المپیادهای علمی، نه خبر اولویت‌دار",
+      "topic": "ورزش",
+      "until": 1792046552.4260361
+    },
     "v4|ریابکوف: هیچ نشت اطلاعاتی از تماس های روسیه و آمریکا نخواهیم داشت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارات دیپلماتیک روتین درباره تماس‌های روسیه و آمریکا بدون تغییر راهبردی.",
@@ -3656,12 +3662,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: مذاکرات سطح بالا میان رهبران روسیه و آمریکا برای حل اختلافات",
       "topic": "سیاست",
       "until": 1791990275.014175
-    },
-    "v4|مشاور امنیت ملی عراق: بغداد تهدیدی را متوجه هیچ دولتی نکرده است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: اظهارنظر روتین مقام عراقی بدون تاثیر جدی بر تحولات",
-      "topic": "سیاست",
-      "until": 1791967671.7212398
     },
     "v4|مصدومیت، اشتباهات فردی و گل لحظه آخری/ بدشانسی های رضا عنایتی تمام نمی شود!(عکس)": {
       "ok": false,
@@ -4623,9 +4623,9 @@
       "until": 1791960249.935185
     },
     "openai employee arrested for allegedly planting a bug in a conference room": {
-      "at": 1791958430.1032238,
+      "at": 1791960169.6859083,
       "reason": "ai_unavailable_foreign",
-      "until": 1791959630.1032238
+      "until": 1791961369.6859083
     },
     "افشای خسارات قابل توجه در عملیات حمله به آرامکو": {
       "at": 1791959049.935185,
@@ -4636,6 +4636,11 @@
       "at": 1791959506.0594501,
       "reason": "ai_unavailable_local",
       "until": 1791960706.0594501
+    },
+    "اوج فشار روی کریک/ انفجار در منچستر: این چه افتضاحی بود؟!": {
+      "at": 1791960169.6859083,
+      "reason": "ai_unavailable_local",
+      "until": 1791961369.6859083
     },
     "اکسیوس: هگست و فرمانده سنتکام موافق حمله اند؛ مشاوران ترامپ فشار اقتصادی را ترجیح می دهند": {
       "at": 1791959506.0594501,
@@ -4656,6 +4661,11 @@
       "at": 1791959506.0594501,
       "reason": "ai_unavailable_local",
       "until": 1791960706.0594501
+    },
+    "عربستان: زخمی شدن ۴ نفر در ریاض بر اثر بقایای موشک های رهگیری شده توسط پدافند هوایی/ خسارات مادی جزئی به ۱۵ خانه": {
+      "at": 1791960169.6859083,
+      "reason": "ai_unavailable_local",
+      "until": 1791961369.6859083
     },
     "قوه قضائیه: علی سینا مصطفوی، تروریست مسلح و عامل دشمن در جنگ ۴۰ روزه که منجر به مجروحیت تعدادی از شهروندان و یک دختر خردسال شده بود، اعدام شد": {
       "at": 1791959049.935185,
@@ -5168,13 +5178,6 @@
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Club match, no national/international impact",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791911471,
-      "title": "تعویض طلایی فجر؛ نخستین شکست آلومینیوم را رقم زد"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: محیطی، فرهنگی، محلی، بدون تأثیر ملی یا بین‌المللی",
       "rescued": false,
@@ -5727,6 +5730,13 @@
       "rule": "routine-metaphorical-topic",
       "t": 1791956674,
       "title": "کرمانشاه مقصد بعدی طرح ملی «مهارت آموزی هوش مصنوعی»"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: آمار المپیادهای علمی، نه خبر اولویت‌دار",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1791960152,
+      "title": "رکوردشکنی دانش آموزان ایرانی با کسب ۱۸ مدال طلای المپیادهای جهانی"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8861,7 +8871,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791959380
+    "at": 1791959955
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8876,13 +8886,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791959608,
-    "last_failure": 1791959008,
+    "disabled_until": 1791960752,
+    "last_failure": 1791960152,
     "last_status": 429
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791959608,
-    "last_failure": 1791959008,
+    "disabled_until": 1791960752,
+    "last_failure": 1791960152,
     "last_quality_failure": 1791891761,
     "last_status": 429
   },
@@ -8900,8 +8910,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791959642.1972291,
-    "last_failure": 1791956042,
+    "disabled_until": 1791963752.51247,
+    "last_failure": 1791960152,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
