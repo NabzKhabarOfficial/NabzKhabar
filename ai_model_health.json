@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 6/6 via gemini/gemini-3.1-flash-lite",
-      "t": 1792007106
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
-      "t": 1792007673
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792008274
-    },
-    {
       "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.1-flash-lite",
       "t": 1792008290
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
       "t": 1792018778
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792019375
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792019375
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792019378
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 56
+      "n": 58
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 21
+      "n": 22
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-14",
@@ -187,15 +187,15 @@
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 272,
+        "calls": 274,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 201,
+        "ok": 203,
         "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 92,
-        "calls": 596,
+        "429": 93,
+        "calls": 597,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 501,
@@ -1291,6 +1291,12 @@
       "topic": "حادثه",
       "until": 1792092374.134669
     },
+    "v4|starlink restriction 'no surprise' after musk condemned ukraine strikes on russian data centres": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تحلیل و گمانه‌زنی درباره محدودیت‌های استارلینک در اوکراین بدون رویداد جدید.",
+      "topic": "فناوری",
+      "until": 1792105778.26077
+    },
     "v4|starlink restrictions affecting ukraine's front line operations, kyiv says": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تاثیر مستقیم محدودیت‌های استارلینک بر عملیات خط مقدم اوکراین",
@@ -1488,6 +1494,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: خبر محلی و ارزیابی آمادگی در برابر سیل در بهاباد.",
       "topic": "جامعه",
       "until": 1792058683.1324472
+    },
+    "v4|آمریکا تلفن همراه ایلهان عمر را ضبط کرد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: ضبط تلفن همراه یک نماینده کنگره آمریکا رویدادی سیاسی و قابل توجه است.",
+      "topic": "سیاست",
+      "until": 1792105776.8841486
     },
     "v4|آمریکا و بهای سنگین جنگ با ایران": {
       "ok": false,
@@ -2010,12 +2022,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: بازداشت رسمی یک خبرنگار خارجی به اتهام جاسوسی در سطح بین الملل مهم است.",
       "topic": "قضایی",
       "until": 1792061060.2714348
-    },
-    "v4|بازداشت یک مهندس سعودی در آمریکا به اتهام جاسوسی از یک شرکت هوش مصنوعی": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: بازداشت مهندس سعودی در آمریکا به اتهام جاسوسی از اوپن‌AI",
-      "topic": "فناوری",
-      "until": 1792051760.1354804
     },
     "v4|بازدید معاون وزیر نیرو از نیروگاه خورشیدی ۱۵ مگاواتی قم": {
       "ok": false,
@@ -4549,12 +4555,6 @@
       "topic": "نظامی",
       "until": 1792061060.2464604
     },
-    "v4|گل گهر مقابل حریف خاطره ساز پرسپولیس/ ۳۵ سال پس از فینال آزادی، المحرق دوباره مقابل ایران!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: پیش‌بازی و تحلیل مسابقه ورزشی داخلی",
-      "topic": "ورزش",
-      "until": 1792051760.1486342
-    },
     "v4|گودرزی: حضور پرشور مردم معادلات پیچیده دشمن را در هم شکست": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine political rhetoric by a parliament member without strategic impact.",
@@ -5335,13 +5335,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=iran_national: رئیس مجلس موضع رسمی و تند علیه سیاست‌های آمریکا اتخاذ کرد.",
-      "rescued": true,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1792005952,
-      "title": "قالیباف: آمریکا باید تنبیه و شیرفهم شود تا خواسته های ما را بپذیرد"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local gathering in a small town, lacks national or international significance.",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -5893,6 +5886,13 @@
       "rule": "no-concrete-event",
       "t": 1792018768,
       "title": "Jackson steps up again as Aston Villa revival continues"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: ضبط تلفن همراه یک نماینده کنگره آمریکا رویدادی سیاسی و قابل توجه است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792019376,
+      "title": "آمریکا تلفن همراه ایلهان عمر را ضبط کرد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11085,7 +11085,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792018652
+    "at": 1792019240
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11100,8 +11100,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792019364,
-    "last_failure": 1792018764,
+    "disabled_until": 1792019975,
+    "last_failure": 1792019375,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11118,8 +11118,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792019363,
-    "last_failure": 1792018763,
+    "disabled_until": 1792019975,
+    "last_failure": 1792019375,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
