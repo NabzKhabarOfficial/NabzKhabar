@@ -8,7 +8,6 @@ on:
 permissions:
   contents: write
   actions: write
-  models: read
 
 concurrency:
   group: nabzkhabar-bot
@@ -64,12 +63,10 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python - <<'PY'
           import os
-          p={'Groq':'GROQ_API_KEY','Gemini':'AI_API_KEY','OpenRouter':'OPENROUTER_API_KEY','Cerebras':'CEREBRAS_API_KEY','GitHubModels':'GITHUB_TOKEN'}
+          p={'Groq':'GROQ_API_KEY','Gemini':'AI_API_KEY','OpenRouter':'OPENROUTER_API_KEY'}
           print('V13 AI POOL CONFIG:', ', '.join(f'{k}={"READY" if os.getenv(v," ").strip() else "MISSING"}' for k,v in p.items()))
           PY
 
@@ -82,8 +79,6 @@ jobs:
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python v13_ai_extra.py
 
       - name: Runtime monitoring
