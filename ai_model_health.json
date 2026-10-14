@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.1-flash-lite",
-      "t": 1792008290
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792008824
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792009364
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792009384
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
-      "t": 1792009384
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 4 stories",
-      "t": 1792009385
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792009977
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1792009979
     },
@@ -159,16 +131,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792019378
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792020517
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792020519
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792020519
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792020529
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
+      "t": 1792020535
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792020559
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792020559
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 62
+      "n": 66
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 22
+      "n": 23
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-14",
@@ -176,7 +176,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-14",
-      "n": 146
+      "n": 150
     },
     "openrouter:*": {
       "day": "2026-10-14",
@@ -187,15 +187,15 @@
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 278,
+        "calls": 282,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 207,
+        "ok": 211,
         "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 93,
-        "calls": 597,
+        "429": 94,
+        "calls": 598,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 501,
@@ -210,12 +210,12 @@
         "other": 8
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 111,
-        "calls": 250,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199748, Requested 1817. Please try again in 11m16.0",
+        "429": 112,
+        "calls": 254,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199512, Requested 1455. Please try again in 6m57.74",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 73,
-        "other": 66
+        "ok": 74,
+        "other": 68
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 13,
@@ -1141,6 +1141,12 @@
       "topic": "جامعه",
       "until": 1792104034.4019098
     },
+    "v4|australian politics live: butler tables unchanged private health bill as coalition calls it ‘cruel’ and greens withhold support": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Internal Australian legislative procedure with no impact on Iran or global affairs.",
+      "topic": "سیاست",
+      "until": 1792106947.010518
+    },
     "v4|australian politics live: victoria labor promises free abortion care if re-elected; albanese criticises hanson’s ‘monoculture’": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: اخبار داخلی استرالیا فاقد اهمیت ملی برای ایران یا سطح جهانی است.",
@@ -1152,6 +1158,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Political accusations regarding social media influence lack major international policy impact.",
       "topic": "سیاست",
       "until": 1792098231.7621808
+    },
+    "v4|denmark pushes back as trump touts greenland oil and mineral deals": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: موضوعی حاشیه‌ای و فاقد تاثیرگذاری کلان بر تحولات جهانی یا ایران.",
+      "topic": "سیاست",
+      "until": 1792106928.856706
     },
     "v4|families of trinidadian men killed in us boat strike demand accountability": {
       "ok": false,
@@ -1188,6 +1200,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: تحلیل و بررسی روش‌های دور زدن تحریم‌ها بدون رویداد مشخص.",
       "topic": "اقتصاد",
       "until": 1792068514.5242696
+    },
+    "v4|ice pushes back on report suggesting body cameras that automatically record": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Administrative policy dispute within a US agency, lacks global or national impact.",
+      "topic": "سیاست",
+      "until": 1792106935.6321137
     },
     "v4|iran steps up hormuz surveillance: attacks soar, oil flows crash again": {
       "ok": true,
@@ -1326,6 +1344,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اظهارنظر مقام ارشد اوکراینی درباره محدودیت‌های استارلینک در جنگ",
       "topic": "فناوری",
       "until": 1792073209.526126
+    },
+    "v4|student protesters attack government buildings in albania": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=6 happened=True scope=world: Violent protests and arson at government buildings constitute significant international news.",
+      "topic": "جامعه",
+      "until": 1792106959.8079383
     },
     "v4|sudden starlink restrictions hamper ukraine just as russia escalates": {
       "ok": true,
@@ -2028,12 +2052,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: دستور بازنگری طرح نفتی توسط محیط زیست اهمیت ملی دارد اما زیر رده اول.",
       "topic": "اقتصاد",
       "until": 1792066782.96303
-    },
-    "v4|با عروسک هایتان به تئاترشهر بروید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: رویداد فرهنگی و هنری و مراسم افتتاحیه جشنواره تئاتر.",
-      "topic": "جامعه",
-      "until": 1792052362.6784768
     },
     "v4|بابایی: جهان اسلام نباید اسیر معیارهای علمی نظام سلطه شود": {
       "ok": false,
@@ -3235,6 +3253,12 @@
       "topic": "جامعه",
       "until": 1792068512.2793272
     },
+    "v4|سیل در استانبول موجب تعطیلی مدارس شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Flood in Istanbul caused school closures.",
+      "topic": "آب و هوا",
+      "until": 1792106918.6178482
+    },
     "v4|سیل ناگهانی در نپال خانه ها و پل ها را با خود برد + فیم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: سیل در منطقه ای کوچک در نپال، تلفات کلان نداشته است.",
@@ -3499,12 +3523,6 @@
       "topic": "اقتصاد",
       "until": 1792066787.5437727
     },
-    "v4|فراخوان دستیابی به دانش فنی تیکه نگاری صوتی جهت پایش رودخانه ها و کانال های آبیاری ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: فراخوان علمی و پژوهشی داخلی، فاقد اهمیت ملی و بین‌المللی",
-      "topic": "فناوری",
-      "until": 1792052361.0285215
-    },
     "v4|فراخوان پلیس آگاهی غرب تهران برای شناسایی شاکیان یک متهم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: فراخوان پلیس آگاهی شهرستان شهریار کاملاً خبری محلی و استانی است.",
@@ -3606,12 +3624,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مسابقات فوتبال باشگاهی در سطح اول جهانی قرار نمی‌گیرند.",
       "topic": "ورزش",
       "until": 1792099412.8645623
-    },
-    "v4|قم در ترکیب جهانی بوکس/ علی چهرقانی در وزن ۶۰ کیلوگرم عازم مونته نگرو شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: اعزام ورزشکار استانی به مسابقات جهانی اهمیت ملی درجه یک ندارد",
-      "topic": "ورزش",
-      "until": 1792052361.8844957
     },
     "v4|قوه قضائیه ایران می گوید علی سینا مصطفوی را «به جرم اقدام مسلحانه در حمایت از اسرائیل» اعدام کرده است": {
       "ok": true,
@@ -3787,12 +3799,6 @@
       "topic": "قضایی",
       "until": 1792074372.3859248
     },
-    "v4|معاون وزیر صمت: پایداری تولید و اشتغال واحدهای صنعتی در اولویت قرار دارد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: بیانیه و شعار اداری درباره اولویت تولید، فاقد رویداد مشخص",
-      "topic": "اقتصاد",
-      "until": 1792052364.3024356
-    },
     "v4|مقابله موثر با قاچاق حیات وحش نیازمند شناسایی گلوگاه ها و افزایش نظارت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: اظهارات مقام محیط زیست درباره لزوم مقابله با قاچاق حیات وحش",
@@ -3912,12 +3918,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=ورزش: حاشیه ورزشی و ادعای حمله در عربستان، اهمیت درجه دو",
       "topic": "ورزش",
       "until": 1792063374.2530386
-    },
-    "v4|نخستین همایش علمی ورزش و آمادگی جسمانی در مازندران برگزار شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: همایش استانی و محلی ورزش، فاقد اهمیت ملی یا بین‌المللی",
-      "topic": "ورزش",
-      "until": 1792052363.465959
     },
     "v4|نسخه های شبکه های اجتماعی، جای مشورت پزشکی را گرفته اند": {
       "ok": false,
@@ -5335,34 +5335,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine administrative news regarding school infrastructure development and classroom deliver",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792005958,
-      "title": "۱۲ هزار کلاس درس هفته آینده تحویل آموزش و پرورش می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine administrative request regarding provincial support for a sports club.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792006474,
-      "title": "تاجرنیا: حضور استقلال در مشهد نیازمند حمایت جدی مسئولان استانی است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: نشست دانشجویی یک رویداد محلی و فاقد اهمیت ملی است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792007095,
-      "title": "نشست پرسش وپاسخ تشکل های دانشجویی دانشگاه علوم پزشکی گلستان با معاون وزیر بهداشت برگزار شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: مراسم اختتامیه یک جشنواره فرهنگی محلی فاقد اهمیت ملی است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792007097,
-      "title": "اختتامیه پویش ملی «ایران امام رضا(ع)» در جیرفت برگزار شد"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: جزئیات اجرایی طرح کالابرگ، خبری روتین و غیر استراتژیک محسوب می‌شود.",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5893,6 +5865,34 @@
       "rule": "foreign-local-preselection",
       "t": 1792019940,
       "title": "Perfect PSG - Can anybody stop the defending champions?"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Flood in Istanbul caused school closures.",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1792020518,
+      "title": "سیل در استانبول موجب تعطیلی مدارس شد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: موضوعی حاشیه‌ای و فاقد تاثیرگذاری کلان بر تحولات جهانی یا ایران.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792020528,
+      "title": "Denmark pushes back as Trump touts Greenland oil and mineral deals"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Administrative policy dispute within a US agency, lacks global or national impact.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792020535,
+      "title": "ICE pushes back on report suggesting body cameras that automatically record"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Internal Australian legislative procedure with no impact on Iran or global affairs.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792020547,
+      "title": "Australian politics live: Butler tables unchanged private health bill as Coalition calls it ‘cruel’ and Greens withhold "
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11085,7 +11085,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792019826
+    "at": 1792020405
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11100,8 +11100,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792019975,
-    "last_failure": 1792019375,
+    "disabled_until": 1792021119,
+    "last_failure": 1792020519,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11118,14 +11118,14 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792019975,
-    "last_failure": 1792019375,
+    "disabled_until": 1792021118,
+    "last_failure": 1792020517,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792020074.6355555,
-    "last_failure": 1792010850,
+    "disabled_until": 1792024135.7579176,
+    "last_failure": 1792020535,
     "last_status": 429
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
