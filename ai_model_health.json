@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
-      "t": 1791998961
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1791998966
-    },
-    {
       "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1791998966
     },
@@ -159,73 +151,81 @@
     {
       "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
       "t": 1792005344
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792005951
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
+      "t": 1792005974
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 133,
+        "calls": 144,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 68,
-        "other": 36
+        "ok": 77,
+        "other": 38
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 52,
-        "calls": 550,
+        "429": 55,
+        "calls": 553,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 495,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 145,
-        "calls": 322,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199770, Requested 1849. Please try again in 11m39.",
+        "429": 147,
+        "calls": 326,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199833, Requested 1737. Please try again in 11m18.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 169,
+        "ok": 171,
         "other": 8
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 90,
-        "calls": 203,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199306, Requested 1429. Please try again in 5m17.52",
+        "429": 91,
+        "calls": 205,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199369, Requested 1851. Please try again in 8m47.04",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 56,
-        "other": 57
+        "other": 58
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 12,
-        "calls": 12,
+        "429": 13,
+        "calls": 13,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 12,
-        "calls": 12,
+        "429": 13,
+        "calls": 13,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:google/gemma-4-31b-it:free": {
-        "429": 12,
-        "calls": 12,
+        "429": 13,
+        "calls": 13,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 12,
-        "calls": 12,
+        "429": 13,
+        "calls": 13,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
-        "429": 12,
-        "calls": 12,
+        "429": 13,
+        "calls": 13,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
@@ -240,20 +240,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 5,
-      "t": 1791836199.3146594,
-      "title": "کارشناس صداوسیما: امارات در ترورهای روزهای اخیر شرق ایران نقش داشته است",
-      "urgent": false
-    },
-    {
-      "label": "هشدار",
-      "level": 4,
-      "t": 1791836212.6058471,
-      "title": "شنیده شدن صدای انفجار در پایتخت عربستان / العربی: سامانه های هشدار در ریاض فعال شدند",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 3,
@@ -1079,6 +1065,20 @@
       "t": 1792005424.0651586,
       "title": "دو فرد نقاب دار عمداً ۱۱ مورد از ۱۷ آنتن استارلینک را در یک تأسیسات محرمانه در نزدیکی صوفیه به آتش کشیدند",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1792005989.6788118,
+      "title": "قالیباف: آمریکا باید برای پذیرش خواسته های ایران تنبیه شود",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 5,
+      "t": 1792006004.5793242,
+      "title": "حمله شهرک نشینان اسرائیلی به مسجدی در نزدیکی قدس اشغالی",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-14",
@@ -1172,6 +1172,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Regional conflict incident involving religious sites and violence.",
       "topic": "حادثه",
       "until": 1792091731.2326744
+    },
+    "v4|star-studded saudi exhibition postponed after deadly attacks": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Deadly attacks in Saudi Arabia are major world security events.",
+      "topic": "حادثه",
+      "until": 1792092374.134669
     },
     "v4|starlink restrictions affecting ukraine's front line operations, kyiv says": {
       "ok": true,
@@ -1412,6 +1418,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: این متن یک تحلیل و نظر شخصی است و نه یک رویداد.",
       "topic": "سیاست",
       "until": 1792056399.6795363
+    },
+    "v4|اجتماع مردم انقلابی آبدان در شب ۲۲۸": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local gathering in a small town, lacks national or international significance.",
+      "topic": "جامعه",
+      "until": 1792092354.8462946
     },
     "v4|اجتماع مردمی «جان فدایان تمدن» در تخت جمشید": {
       "ok": false,
@@ -1892,12 +1904,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: ادعای نتانیاهو درباره طرح حمله به ایران توسط ترامپ",
       "topic": "سیاست",
       "until": 1792047700.6444383
-    },
-    "v4|اکسیوس: هگست و فرمانده سنتکام موافق حمله اند؛ مشاوران ترامپ فشار اقتصادی را ترجیح می دهند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: گزارش اکسیوس از رایزنی ترامپ و نتانیاهو درباره اقدام نظامی علیه ایران.",
-      "topic": "نظامی",
-      "until": 1792037288.892215
     },
     "v4|اگر تراشه های مغزی هک شود چه اتفاقی می افتد؟": {
       "ok": false,
@@ -2475,12 +2481,6 @@
       "topic": "نظامی",
       "until": 1792072624.0558474
     },
-    "v4|جدول پخش زنده بازی های چهارشنبه 22 مهر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: Routine sports broadcast schedule is not a first-tier news event.",
-      "topic": "ورزش",
-      "until": 1792039514.063523
-    },
     "v4|جدیدترین تصاویر از خسارت سنگین فرودگاه ملک فهد عربستان": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله به تاسیسات حیاتی و فرودگاه در عربستان سعودی",
@@ -2492,12 +2492,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: بررسی دستورالعمل جذب معلم بدون آزمون رویداد درجه یک نیست",
       "topic": "جامعه",
       "until": 1792052929.1873183
-    },
-    "v4|جریمه ۱.۲ میلیارد دلاری بانک آمریکا به دلیل نقض تحریم ها": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: جریمه ۱.۲ میلیارد دلاری بانک آمریکا توسط خزانه‌داری به دلیل نقض تحریم‌ها.",
-      "topic": "اقتصاد",
-      "until": 1792037288.8793104
     },
     "v4|جزئیات ترور افسانه عقیلا در سیستان و بلوچستان": {
       "ok": true,
@@ -2642,6 +2636,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله سنگین موشکی روسیه به نیروگاه حرارتی اوکراین و انتقاد زلنسکی",
       "topic": "نظامی",
       "until": 1792052933.8162296
+    },
+    "v4|حمله مورینیو به کمیته انضباطی: چرا الان؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Routine sports commentary and personal opinions on disciplinary decisions.",
+      "topic": "ورزش",
+      "until": 1792092374.1486342
     },
     "v4|حمله هولناک به تاسیسات نفت یمن": {
       "ok": true,
@@ -3513,6 +3513,12 @@
       "topic": "جامعه",
       "until": 1792059286.498345
     },
+    "v4|فاضلاب سنندج و ۵۰ روستا به سد ژاوه می ریزد؛آبگیری باید بازنگری شود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: Local environmental issue concerning a specific dam in Sanandaj.",
+      "topic": "جامعه",
+      "until": 1792092356.9834428
+    },
     "v4|فایننشال تایمز: نیرو های اوکراینی غافلگیر شده اند، زیرا از صبح امروز محدودیت هایی بر سامانه های اینترنت ماهواره ای استارلینک ایلان ماسک اعمال شده و عملیات های نظامی این کشور را مخت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: ابلاغ دستورالعمل اداری ترخیص خودروهای وارداتی",
@@ -3615,6 +3621,12 @@
       "topic": "سیاست",
       "until": 1792091721.846056
     },
+    "v4|قالیباف: آمریکا باید تنبیه و شیرفهم شود تا خواسته های ما را بپذیرد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=iran_national: رئیس مجلس موضع رسمی و تند علیه سیاست‌های آمریکا اتخاذ کرد.",
+      "topic": "سیاست",
+      "until": 1792092352.3923218
+    },
     "v4|قالیباف: صرف مذاکره مانع تداوم جنگ نخواهد شد همانطور که صرف جنگ هم مانع تداوم جنگ نمی شود": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Official strategic policy announcement regarding war and negotiations.",
@@ -3704,6 +3716,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: رسیدن مازاد تجاری چین به رکورد بی‌سابقه نزدیک یک تریلیون دلار.",
       "topic": "اقتصاد",
       "until": 1792055236.1642408
+    },
+    "v4|مالک خیبر: توپ دقیقه ۸۵ می توانست ما را برنده بازی کند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: اظهارات مالک باشگاه درباره یک بازی فوتبال اهمیت ملی ندارد.",
+      "topic": "ورزش",
+      "until": 1792092356.1035779
     },
     "v4|محکومیت یک شرکت نفت و گاز به خسارت آلودگی خاک در هندیجان": {
       "ok": false,
@@ -3837,12 +3855,6 @@
       "topic": "سیاست",
       "until": 1792048308.768231
     },
-    "v4|مقام روس: زلنسکی در تلاش برای تشکیل جبهه ضدآمریکایی است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: ادعای یک مقام روس درباره سیاستمدار خارجی، فاقد رویداد عینی.",
-      "topic": "سیاست",
-      "until": 1792039510.4346788
-    },
     "v4|ملونی: توافق ترامپ با پوتین برای تامین گازوئیل بسیار پرخطر است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: موضع‌گیری رسمی نخست‌وزیر ایتالیا درباره توافقات کلان انرژی بین‌المللی.",
@@ -3866,12 +3878,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: سخنان وزیر درباره اصلاح ساختار صندوق ذخیره فرهنگیان روتین است.",
       "topic": "اقتصاد",
       "until": 1792062125.3052866
-    },
-    "v4|مهمدی: مدال طلایم را به پدرم تقدیم می کنم؛ کشتی در خون ماست": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلا در مسابقات جهانی کشتی فرنگی توسط ورزشکار ایرانی",
-      "topic": "ورزش",
-      "until": 1792038401.8886073
     },
     "v4|مهندس سعودی به اتهام جاسوسی در آمریکا دستگیر شد": {
       "ok": false,
@@ -4587,11 +4593,11 @@
       "topic": "نظامی",
       "until": 1792091731.2190096
     },
-    "v4|یک مدال طلا و دو برنز دستاورد ایران در پنج وزن نخست کشتی فرنگی زیر ۲۳ سال قهرمانی جهان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: کسب مدال طلا و دو برنز توسط تیم ملی کشتی فرنگی ایران.",
-      "topic": "ورزش",
-      "until": 1792037288.9054663
+    "v4|۱۲ هزار کلاس درس هفته آینده تحویل آموزش و پرورش می شود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine administrative news regarding school infrastructure development and classroom delivery.",
+      "topic": "جامعه",
+      "until": 1792092358.9828181
     },
     "v4|۱۳۴ مجوز مشاغل خانگی غذایی در خراسان جنوبی صادر شد": {
       "ok": false,
@@ -4671,12 +4677,6 @@
       "topic": "اقتصاد",
       "until": 1792052367.0338783
     },
-    "v4|۷۷ قانونگذار آمریکایی دولت ترامپ را درباره حملات علیه غیرنظامیان ایرانی بازخواست کردند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: بازخواست دولت آمریکا توسط قانونگذاران درباره حملات به غیرنظامیان ایرانی.",
-      "topic": "سیاست",
-      "until": 1792037288.918379
-    },
     "v4|‫اعتصاب سراسری در اسپانیا تقویم یوفا را تغییر داد/ به دلیل گرانی مسکن: تعویق بازی بارسا و آرسنال!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: تعویق مسابقه ورزشی اهمیت سطح یک جهانی ندارد",
@@ -4690,25 +4690,27 @@
       "reason": "ai_unavailable_foreign",
       "until": 1792006627.414898
     },
+    "star-studded saudi exhibition postponed after deadly attacks": {
+      "at": 1792006010.5500274,
+      "reason": "ai_unavailable_foreign",
+      "until": 1792007210.5500274
+    },
     "starlink restrictions in ukraine war linked to political situation, zelensky aide says": {
       "reason": "content_duplicate",
       "until": 1792008429.763659
+    },
+    "ukraine’s vulnerability grows as starlink is restricted and russia escalates": {
+      "at": 1792006010.5500274,
+      "reason": "ai_unavailable_foreign",
+      "until": 1792007210.5500274
     },
     "ادعای نتانیاهو: پیش از انتخابات اسرائیل به دنبال حمله مجدد به ایران نیستم": {
       "reason": "content_duplicate",
       "until": 1792009586.1853068
     },
-    "انفجار در ریاض پس از حمله موشکی؛ گزارش ها از خسارت به تأسیسات نفتی": {
-      "reason": "content_duplicate",
-      "until": 1792006006.122109
-    },
     "اوکراین می گوید محدودیت های استارلینک عملیات نظامی اش را مختل کرده است": {
       "reason": "content_duplicate",
       "until": 1792006684.1400962
-    },
-    "اکسیوس: هگست و فرمانده سنتکام موافق حمله اند؛ مشاوران ترامپ فشار اقتصادی را ترجیح می دهند": {
-      "reason": "content_duplicate",
-      "until": 1792005524.9190183
     },
     "ایران از مرحله خطر حمله غافلگیرکننده عبور کرده است": {
       "reason": "content_duplicate",
@@ -4723,10 +4725,6 @@
       "reason": "content_duplicate",
       "until": 1792008470.7353783
     },
-    "جزئیات جدید از مجروحان حمله پهپادی به لنج صیادی در سیریک": {
-      "reason": "content_duplicate",
-      "until": 1792005546.1690807
-    },
     "حمله مجدد یمن به فرودگاه ریاض": {
       "at": 1792004885.0336456,
       "reason": "ai_unavailable_local",
@@ -4736,10 +4734,6 @@
       "at": 1792005427.414898,
       "reason": "ai_unavailable_local",
       "until": 1792006627.414898
-    },
-    "سخنگوی سپاه: احتمال وقوع جنگ جدید کاملاً وجود دارد/ آماده ایم به هرگونه تجاوز، با قدرتی بیش از هر زمان دیگری پاسخ دهد": {
-      "reason": "content_duplicate",
-      "until": 1792005536.309452
     },
     "مسکو: گازوییل روسیه هم به بازار جهانی و هم به آمریکا عرضه خواهد شد": {
       "reason": "content_duplicate",
@@ -4757,24 +4751,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "شکست حمله تروریست ها به خودروی پلیس در مهرستان ⚡️ رزمندگان اسلام در پی حمله تروریست های مزدور به خودروی پلیس د",
-      "id": "7ce770373f",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791967072,
-      "verdict": "new",
-      "why": "This is a new security incident in Mehrestan not listed previously."
-    },
-    {
-      "head": "روایت خاتمی از پاسخ به حامیان اسرائیل در دانشگاه هاروارد درباره تروریسم و مقاومت ⚡️ سید محمد خاتمی خاطره ای از",
-      "id": "5a9b42e3ff",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791967091,
-      "verdict": "new",
-      "why": "Seyed Mohammad Khatami's speech at Harvard University is a unique event not listed."
-    },
     {
       "head": "گوگل مدل هوش مصنوعی قدرتمند جمینای ۴ آرگون را منتشر کرد ⚡️ گوگل از مدل هوش مصنوعی جمینای ۴ آرگون با تمرکز بر ح",
       "id": "0fbb5b172e",
@@ -5294,44 +5270,24 @@
       "id": "d40b32091b",
       "t": 1792005423,
       "verdict": "unavailable"
+    },
+    {
+      "head": "قالیباف: آمریکا باید برای پذیرش خواسته های ایران تنبیه شود ⚡️ محمدباقر قالیباف رئیس مجلس شورای اسلامی اعلام کر",
+      "id": "72acac7fcc",
+      "match": "",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1792005988,
+      "verdict": "new",
+      "why": "This is a new political statement by Mohammad Bagher Ghalibaf."
+    },
+    {
+      "head": "حمله شهرک نشینان اسرائیلی به مسجدی در نزدیکی قدس اشغالی ⚡️ شهرک نشینان اسرائیلی با حمله شبانه به روستای مخماس ",
+      "id": "d9221c21a5",
+      "t": 1792006000,
+      "verdict": "unavailable"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: بررسی سینمایی و گفت‌وگو درباره ناصر تقوایی خبری فرهنگی و کم‌اهمیت است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791983913,
-      "title": "چرا ناصر تقوایی دیگر فیلم نساخت؟"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سخنرانی و توصیه های مذهبی حوزوی فاقد اهمیت ملی یا بین المللی است",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1791983914,
-      "title": "حقانی: طلاب خواهر با الگوی حضرت زینب(س) به میدان جهاد تبیین بیایند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به اصلاح قراردادهای معدنی و وصول مطالبات در یزد",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1791983914,
-      "title": "۱۵ همت تعهدات مالی از قراردادهای معدنی در یزد اصلاح شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: جریمه مربی فوتبال اهمیت ملی یا بین‌المللی درجه یک ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791983915,
-      "title": "رسمی: جریمه سنگین، آربلوا نقره داغ شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: گزارش حاشیه‌ای درباره لباس نیروهای طالبان و فاصله دستورها با واقعیت.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1791984389,
-      "title": "طالبان لباس فرم معرفی کردند؛ نظامیان همچنان تنبان و پیراهن می پوشند"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: درخواست رو به عقب و تکراری خویشتنداری از سوی پاکستان",
       "rescued": false,
@@ -5856,25 +5812,45 @@
       "rule": "foreign-local-preselection",
       "t": 1792005327,
       "title": "آرین: همیشه با لذت بردن طلا می گیرم"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=iran_national: رئیس مجلس موضع رسمی و تند علیه سیاست‌های آمریکا اتخاذ کرد.",
+      "rescued": true,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1792005952,
+      "title": "قالیباف: آمریکا باید تنبیه و شیرفهم شود تا خواسته های ما را بپذیرد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local gathering in a small town, lacks national or international significance.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792005954,
+      "title": "اجتماع مردم انقلابی آبدان در شب ۲۲۸"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: اظهارات مالک باشگاه درباره یک بازی فوتبال اهمیت ملی ندارد.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792005956,
+      "title": "مالک خیبر: توپ دقیقه ۸۵ می توانست ما را برنده بازی کند"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: Local environmental issue concerning a specific dam in Sanandaj.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792005956,
+      "title": "فاضلاب سنندج و ۵۰ روستا به سد ژاوه می ریزد؛آبگیری باید بازنگری شود"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine administrative news regarding school infrastructure development and classroom deliver",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792005958,
+      "title": "۱۲ هزار کلاس درس هفته آینده تحویل آموزش و پرورش می شود"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "بختر",
-        "برج",
-        "خبرنگر",
-        "خدر",
-        "نفر",
-        "چند",
-        "چندن",
-        "کرن",
-        "گذشت"
-      ],
-      "t": 1791962485.1119168,
-      "title": "حملات اسرائیل در غزه و کرانه باختری؛ کشته شدن یک نفر و زخمی شدن چند خبرنگار ⚡️ حمله هوایی اسرائیل به خودرویی در غزه یک ک"
-    },
     {
       "h": [
         "اتم",
@@ -7021,6 +6997,42 @@
       ],
       "t": 1792005424.0514219,
       "title": "دو فرد نقاب دار عمداً ۱۱ مورد از ۱۷ آنتن استارلینک را در یک تأسیسات محرمانه در نزدیکی صوفیه به آتش کشیدند ⚡️ این آنتن ها"
+    },
+    {
+      "h": [
+        "اسلم",
+        "بپذرد",
+        "تغر",
+        "تنب",
+        "خست",
+        "رفتر",
+        "شر",
+        "قلبف",
+        "محمدبقر",
+        "ملت",
+        "پذرش"
+      ],
+      "t": 1792005989.6652462,
+      "title": "قالیباف: آمریکا باید برای پذیرش خواسته های ایران تنبیه شود ⚡️ محمدباقر قالیباف رئیس مجلس شورای اسلامی اعلام کرد که آمریک"
+    },
+    {
+      "h": [
+        "اتش",
+        "اشغل",
+        "بخش",
+        "رست",
+        "شبن",
+        "شمل",
+        "شهرک",
+        "قدس",
+        "مخمس",
+        "مسجد",
+        "نزدک",
+        "نشن",
+        "کشدند"
+      ],
+      "t": 1792006004.5524073,
+      "title": "حمله شهرک نشینان اسرائیلی به مسجدی در نزدیکی قدس اشغالی ⚡️ شهرک نشینان اسرائیلی با حمله شبانه به روستای مخماس در شمال قد"
     }
   ],
   "_published_incidents": [
@@ -7666,32 +7678,37 @@
       "t": 1792005410.5887785,
       "title": "پایان پرونده عامل مسلح خائن به وطن در جنگ تحمیلی سوم ⚡️ مصطفوی در جریان جنگ تحمیلی سوم با دشمن آمریکایی ـ اسرائیلی همکار",
       "toll": 0
+    },
+    {
+      "a": [
+        "اتش",
+        "اشغل",
+        "رست",
+        "شبن",
+        "شهرک",
+        "قدس",
+        "مخمس",
+        "مسجد",
+        "نشن",
+        "کشدند"
+      ],
+      "cities": [
+        "قدس"
+      ],
+      "kind": "attack",
+      "places": [
+        "قدس"
+      ],
+      "regions": [
+        "israel_center"
+      ],
+      "t": 1792006004.5660882,
+      "title": "حمله شهرک نشینان اسرائیلی به مسجدی در نزدیکی قدس اشغالی ⚡️ شهرک نشینان اسرائیلی با حمله شبانه به روستای مخماس در شمال قد",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "الت",
-        "بختن",
-        "جن",
-        "خرج",
-        "رل",
-        "زخم",
-        "قطر",
-        "مسر",
-        "مسفربر",
-        "منجر",
-        "نفر",
-        "پشر",
-        "پنجب",
-        "پکست",
-        "کرچ",
-        "کشت"
-      ],
-      "t": 1791876128.8593047,
-      "title": "خروج قطار از ریل در پاکستان با ۵ کشته و ۳۰ زخمی ⚡️ خروج قطار مسافربری در مسیر کراچی به پیشاور در ایالت پنجاب پاکستان منج"
-    },
     {
       "k": [
         "ابرشم",
@@ -11873,6 +11890,81 @@
       ],
       "t": 1792005424.0378757,
       "title": "دو فرد نقاب دار عمداً ۱۱ مورد از ۱۷ آنتن استارلینک را در یک تأسیسات محرمانه در نزدیکی صوفیه به آتش کشیدند ⚡️ این آنتن ها"
+    },
+    {
+      "k": [
+        "ابزر",
+        "اجد",
+        "ار",
+        "استفد",
+        "اسلم",
+        "افزش",
+        "امرک",
+        "بزدرندگ",
+        "بپذرد",
+        "تبدل",
+        "تغر",
+        "تنب",
+        "تکد",
+        "حفظ",
+        "خست",
+        "دسترد",
+        "رس",
+        "رفتر",
+        "سس",
+        "شر",
+        "قدرت",
+        "قلبف",
+        "مجلس",
+        "محمدبقر",
+        "مذکر",
+        "مل",
+        "ملت",
+        "منفع",
+        "نظم",
+        "هدف",
+        "همزم",
+        "پدر",
+        "پذرش",
+        "پرز"
+      ],
+      "t": 1792005989.651742,
+      "title": "قالیباف: آمریکا باید برای پذیرش خواسته های ایران تنبیه شود ⚡️ محمدباقر قالیباف رئیس مجلس شورای اسلامی اعلام کرد که آمریک"
+    },
+    {
+      "k": [
+        "اتش",
+        "اسرل",
+        "اشغل",
+        "امر",
+        "امکن",
+        "بخش",
+        "تبدل",
+        "حمل",
+        "خدر",
+        "درخت",
+        "رزمر",
+        "رست",
+        "زتن",
+        "شبن",
+        "شمل",
+        "شهرک",
+        "فلسطن",
+        "قدس",
+        "مخمس",
+        "مذهب",
+        "مسجد",
+        "مسکن",
+        "منطق",
+        "مهجم",
+        "نزدک",
+        "نشن",
+        "کشد",
+        "کشدند",
+        "یرش"
+      ],
+      "t": 1792006004.539076,
+      "title": "حمله شهرک نشینان اسرائیلی به مسجدی در نزدیکی قدس اشغالی ⚡️ شهرک نشینان اسرائیلی با حمله شبانه به روستای مخماس در شمال قد"
     }
   ],
   "_text_polish": {
@@ -11884,7 +11976,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792005194
+    "at": 1792005777
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11899,13 +11991,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792005655.0,
-    "last_failure": 1792005355,
+    "disabled_until": 1792006308.0,
+    "last_failure": 1792006008,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792005462,
-    "last_failure": 1792004862,
+    "disabled_until": 1792006551,
+    "last_failure": 1792005951,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11922,13 +12014,13 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792009021.7369785,
+    "disabled_until": 1792009598.5481167,
     "last_failure": 1792005328,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792006614.070795,
+    "disabled_until": 1792009598.6195977,
     "last_failure": 1792003014,
     "last_quality_failure": 1791941575,
     "last_status": 429
@@ -11945,20 +12037,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792005476.165198,
-    "last_failure": 1792001876,
+    "disabled_until": 1792009608.6840384,
+    "last_failure": 1792006008,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792005473.998016,
-    "last_failure": 1792001874,
+    "disabled_until": 1792009608.5219746,
+    "last_failure": 1792006008,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792005474.376852,
-    "last_failure": 1792001874,
+    "disabled_until": 1792009608.6019244,
+    "last_failure": 1792006008,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -11969,14 +12061,14 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792005476.5544608,
-    "last_failure": 1792001876,
+    "disabled_until": 1792009608.7588656,
+    "last_failure": 1792006008,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792005476.7691607,
-    "last_failure": 1792001876,
+    "disabled_until": 1792009608.8593478,
+    "last_failure": 1792006008,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
