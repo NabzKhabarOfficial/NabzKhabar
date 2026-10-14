@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1791997818
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1791998454
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1791998459
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1791998460
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
       "t": 1791998961
     },
@@ -159,41 +143,57 @@
     {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1792004878
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792005325
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
+      "t": 1792005328
+    },
+    {
+      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.1-flash-lite",
+      "t": 1792005331
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
+      "t": 1792005344
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 128,
+        "calls": 133,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 65,
-        "other": 34
+        "ok": 68,
+        "other": 36
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 51,
-        "calls": 548,
+        "429": 52,
+        "calls": 550,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 494,
+        "ok": 495,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 140,
-        "calls": 311,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199689, Requested 653. Please try again in 2m27.74",
+        "429": 145,
+        "calls": 322,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199770, Requested 1849. Please try again in 11m39.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 164,
-        "other": 7
+        "ok": 169,
+        "other": 8
       },
       "groq:openai/gpt-oss-20b": {
         "429": 90,
-        "calls": 199,
+        "calls": 203,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199306, Requested 1429. Please try again in 5m17.52",
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 54,
-        "other": 55
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 56,
+        "other": 57
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 12,
@@ -231,8 +231,8 @@
         "other": 0
       },
       "openrouter:openrouter/free": {
-        "429": 12,
-        "calls": 26,
+        "429": 13,
+        "calls": 27,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 14,
         "other": 0
@@ -240,20 +240,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "موضع‌گیری",
-      "level": 3,
-      "t": 1791829864.632849,
-      "title": "غریب آبادی: ایران برای دیپلماسی و دفاع از کشور آمادگی کامل دارد",
-      "urgent": false
-    },
-    {
-      "label": "اقتصاد",
-      "level": 4,
-      "t": 1791829898.9569361,
-      "title": "ترامپ از توافق گازوئیلی با روسیه دفاع کرد؛ اعتراض دوحزبی در کنگره",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1079,6 +1065,20 @@
       "t": 1792001319.6112769,
       "title": "تداوم موج اعدام ها؛ شمار اعدام شدگان اعتراضات ملی به دست کم ۳۶ نفر رسید",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1792005410.6021512,
+      "title": "پایان پرونده عامل مسلح خائن به وطن در جنگ تحمیلی سوم",
+      "urgent": false
+    },
+    {
+      "label": "فناوری",
+      "level": 4,
+      "t": 1792005424.0651586,
+      "title": "دو فرد نقاب دار عمداً ۱۱ مورد از ۱۷ آنتن استارلینک را در یک تأسیسات محرمانه در نزدیکی صوفیه به آتش کشیدند",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-14",
@@ -1094,12 +1094,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله مرگبار حوثی‌ها به فرودگاه در عربستان و تلفات انسانی.",
       "topic": "نظامی",
       "until": 1792067436.6649492
-    },
-    "v4|family of indigenous woman found dead in melbourne mourn ‘vibrant, beautiful young girl’": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: قتل یک زن بومی در ملبورن و بازداشت متهم؛ اخبار محلی خارجی.",
-      "topic": "حادثه",
-      "until": 1792037288.85383
     },
     "v4|from allies to enemies: ethiopia and eritrea edge toward war": {
       "ok": true,
@@ -1131,12 +1125,6 @@
       "topic": "فناوری",
       "until": 1792071471.9957542
     },
-    "v4|iran war live: saudi coalition hits houthi sites; aramco office hit in east": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Aramco hit, Houthi strikes",
-      "topic": "حادثه",
-      "until": 1792031961.0910828
-    },
     "v4|israeli air strike kills palestinian woman in gaza city": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله هوایی اسرائیل و کشته شدن غیرنظامی در غزه",
@@ -1155,6 +1143,12 @@
       "topic": "ورزش",
       "until": 1792050010.1219747
     },
+    "v4|now that character.ai is going bankrupt, what happens to all of its users’ data?": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Legal intervention in a tech bankruptcy involving consumer data.",
+      "topic": "فناوری",
+      "until": 1792091731.3139358
+    },
     "v4|qualcomm wins lawsuit against arm but will only receive two bucks": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: رأی دادگاه علیه شرکت آرم با خسارت ناچیز دو دلاری.",
@@ -1172,6 +1166,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: رهگیری موشک یمنی به سمت ریاض توسط ائتلاف",
       "topic": "نظامی",
       "until": 1792067974.6069667
+    },
+    "v4|settlers attack palestinian mosque near occupied east jerusalem": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Regional conflict incident involving religious sites and violence.",
+      "topic": "حادثه",
+      "until": 1792091731.2326744
     },
     "v4|starlink restrictions affecting ukraine's front line operations, kyiv says": {
       "ok": true,
@@ -1197,6 +1197,12 @@
       "topic": "سیاست",
       "until": 1792061538.8672667
     },
+    "v4|ukraine accuses elon musk’s spacex of throttling starlink terminals": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: اختلال در زیرساخت‌های حیاتی جنگی در جریان درگیری‌های نظامی اوکراین.",
+      "topic": "فناوری",
+      "until": 1792091744.6308887
+    },
     "v4|ukraine asking us, spacex and nato to clarify starlink limitations": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: پیگیری رسمی اوکراین درباره محدودیت‌های استارلینک",
@@ -1220,6 +1226,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: تغییر جزئی در ترکیب تیم ملی راگبی انگلیس",
       "topic": "ورزش",
       "until": 1792074375.3827207
+    },
+    "v4|youtube music launches new labels as ai-generated music floods streaming platforms": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine tech platform feature update, not a global-scale business event.",
+      "topic": "فناوری",
+      "until": 1792091731.2463107
     },
     "v4|zelensky to visit u.k. as ukraine presses allies on intelligence sharing": {
       "ok": true,
@@ -1275,11 +1287,11 @@
       "topic": "سیاست",
       "until": 1792053455.88493
     },
-    "v4|آزمون بزرگ خراسان رضوی؛ آیا استان برای سیلاب آماده است؟": {
+    "v4|آرین: همیشه با لذت بردن طلا می گیرم": {
       "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: گزارش محلی و تحلیلی درباره آمادگی خراسان رضوی برای سیلاب.",
-      "topic": "آب و هوا",
-      "until": 1792037288.841088
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: موفقیت در مسابقات گرندپری تکواندو اهمیت استراتژیک ملی ندارد.",
+      "topic": "ورزش",
+      "until": 1792091727.1801245
     },
     "v4|آسنسیو برابر باشگاه سابق/ بازگشت ستاره رئالی فنرباغچه به لیگ قهرمانان": {
       "ok": false,
@@ -1508,12 +1520,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: گزارش رسانه‌ای درباره ساخت موشک توسط انصارالله با قطعات چینی.",
       "topic": "نظامی",
       "until": 1792047702.7294476
-    },
-    "v4|اذعان عربستان به هدف قرار گرفتن تأسیسات آرامکو در ظهران": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Aramco office hit, fire",
-      "topic": "حادثه",
-      "until": 1792031961.0832062
     },
     "v4|ارائه خدمات مراقبتی به بیش از ٤٨ هزار دانش آموز در جنوب غرب خوزستان": {
       "ok": false,
@@ -1875,12 +1881,6 @@
       "topic": "حادثه",
       "until": 1792059786.606882
     },
-    "v4|اولین طلای کشتی فرنگی ایران ضرب شد؛ دو فرنگی کار برنزی شدند": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Iran's Abolfazl Mehmedi wins gold at World Junior Wrestling Championships",
-      "topic": "ورزش",
-      "until": 1792036036.0441303
-    },
     "v4|اوکراین می گوید محدودیت های استارلینک عملیات نظامی اش را مختل کرده است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اختلال در عملیات نظامی اوکراین به دلیل محدودیت‌های استارلینک",
@@ -1970,6 +1970,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: بازداشت مهندس سعودی در آمریکا به اتهام جاسوسی از اوپن‌AI",
       "topic": "فناوری",
       "until": 1792051760.1354804
+    },
+    "v4|بازدید معاون وزیر نیرو از نیروگاه خورشیدی ۱۵ مگاواتی قم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بازدید رسمی، اثر محدود",
+      "topic": "اقتصاد",
+      "until": 1792091723.0043693
     },
     "v4|بازدید ۴۰ خبرنگار بین المللی از ظرفیت های صنعتی و مراکز آسیب دیده استان مرکزی": {
       "ok": false,
@@ -2169,12 +2175,6 @@
       "topic": "نظامی",
       "until": 1792068514.5357904
     },
-    "v4|تأمین ۲۲۰۰ میلیارد ریال اعتبار برای دانشگاه علوم پزشکی بابل": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: درخواست بودجه محلی برای دانشگاه، اثر محدود بر کشور",
-      "topic": "اقتصاد",
-      "until": 1792037281.4515383
-    },
     "v4|تأکید بر بازسازی خسارات جنگ، ارتقای ایمنی پروازها و تأمین مالی پروژه های فرودگاه مهرآباد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: بازدید نماینده مجلس و تاکید بر پروژه های فرودگاه مهرآباد",
@@ -2253,12 +2253,6 @@
       "topic": "اقتصاد",
       "until": 1792054083.4581869
     },
-    "v4|تدوین طرح ۶ مرحله ای برای مهار قاچاق سوخت / رصد مستمر سکوهای طلا": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: Draft plan announced to curb fuel smuggling",
-      "topic": "اقتصاد",
-      "until": 1792033169.9160914
-    },
     "v4|ترافیک نیمه سنگین در چند محور منتهی به تهران": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Traffic congestion reported on major highways",
@@ -2276,6 +2270,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: اعلام موضع رسمی دونالد ترامپ درباره آغاز بهره‌برداری از منابع گرینلند",
       "topic": "سیاست",
       "until": 1792049998.9578621
+    },
+    "v4|ترامپ بار دیگر مدعی پذیرفتن ۳۰ درصد خرید طرح گاز آلاسکا از سوی تایوان شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: ادعای تجاری غیررسمی و فاقد تاثیر استراتژیک فوری بر بازارهای جهانی.",
+      "topic": "اقتصاد",
+      "until": 1792091744.6032994
     },
     "v4|تروریسم سازمان یافته شهرک نشینان افراطی در کرانه باختری": {
       "ok": false,
@@ -2300,12 +2300,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: ترکیب تیم‌ها در مرحله گروهی لیگ قهرمانان اهمیت خبری سطح اول ندارد.",
       "topic": "ورزش",
       "until": 1792090557.2776437
-    },
-    "v4|تریتا پارسی: روبیو با اظهارات ضدایرانی به دنبال سلطه بر منطقه است/ تحریم ها جنایت جنگی است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: اظهارات تحلیلگر سیاسی درباره مواضع مقام آمریکایی.",
-      "topic": "سیاست",
-      "until": 1792037288.8666697
     },
     "v4|تشدید تنش ها بر سر هرمز و نفت؛ ترامپ ایران را به حمله ای شدید تهدید کرد": {
       "ok": true,
@@ -2522,12 +2516,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: حمله پهپادی به لنج صیادی ایرانی و مجروح شدن خدمه.",
       "topic": "حادثه",
       "until": 1792070318.398331
-    },
-    "v4|جزئیات جذب ۵۰۰ نیروی جدید در اورژانس اعلام شد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Recruitment of 500 new emergency personnel announced",
-      "topic": "سلامت",
-      "until": 1792036035.3066716
     },
     "v4|جزئیات حمله پهپادی به یک شناور صیادی در سیریک/ سه نفر زخمی شدند": {
       "ok": true,
@@ -2811,6 +2799,12 @@
       "topic": "آب و هوا",
       "until": 1792078468.171797
     },
+    "v4|دو فرد نقاب دار عمداً ۱۱ مورد از ۱۷ آنتن استارلینک را در یک تأسیسات محرمانه در نزدیکی صوفیه به آتش کشیدند / این آنتن ها از ارتباطات ماهواره ای مورد استفاده در جنگ اوکراین پشتیبانی": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Sabotage of critical infrastructure linked to the Ukraine war.",
+      "topic": "نظامی",
+      "until": 1792091731.2599998
+    },
     "v4|دوئل تاریخی سعدالله یف و یزدانی؛ خیلی دور، خیلی نزدیک": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=iran_national: گمانه‌زنی درباره مسابقات آینده و احتمال تقابل دو کشتی‌گیر",
@@ -2931,12 +2925,6 @@
       "topic": "اقتصاد",
       "until": 1792063374.2661877
     },
-    "v4|رم، دومین قربانی ایتالیایی؟/ فرار از لالیگا! بازگشت رئال به لیگ محبوبش": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Routine sports update, not major competition result",
-      "topic": "ورزش",
-      "until": 1792037284.5202253
-    },
     "v4|روایت سید محمد خاتمی از پاسخ به یهودیان در دانشگاه هاروارد: گفتم من بخش زیادی از آنچه شما «تروریسم» می نامید را «مقاومت مشروع» می دانم": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: روایت خاطره قدیمی از سوی مقام سابق، فاقد فوریت و اهمیت راهبردی روز است.",
@@ -2996,12 +2984,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله به تاسیسات نفتی آرامکو عربستان و خسارت جدی",
       "topic": "نظامی",
       "until": 1792063937.4220526
-    },
-    "v4|رویترز: شنیدن صدای انفجارهای مهیبی در ظهران، در شرق عربستان و در نزدیکی مقر شرکت آرامکو": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: Explosions near Aramco",
-      "topic": "حادثه",
-      "until": 1792031961.0752554
     },
     "v4|رکوردشکنی دانش آموزان ایرانی با کسب ۱۸ مدال طلای المپیادهای جهانی": {
       "ok": false,
@@ -3405,12 +3387,6 @@
       "topic": "اقتصاد",
       "until": 1792059282.1194644
     },
-    "v4|صفحه نخست روزنامه های استان فارس چهارشنبه ۲۲ مهرماه": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: فقط صفحه نخست روزنامه‌های استان، خبر خاصی نیست",
-      "topic": "جامعه",
-      "until": 1792037285.2895935
-    },
     "v4|صندوق بین المللی پول: کاهش پیش بینی رشد اقتصادی برای کشورهای خلیج فارس در سال ۲۰۲۶/ خاورمیانه و شمال آفریقا تنها منطقه جهان هستند که اقتصاد آن ها در سال جاری، کوچک می شود/ اگر تنگه": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: گزارش صندوق بین‌المللی پول درباره کوچک شدن اقتصاد منطقه.",
@@ -3458,12 +3434,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine provincial administrative announcement regarding industrial support policies.",
       "topic": "اقتصاد",
       "until": 1792072043.8973172
-    },
-    "v4|طلای سفید خراسان رضوی گرفتار چالش های اقلیمی و هزینه های تولید": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مسئلهٔ محلی پنبه، اهمیت ملی ندارد",
-      "topic": "اقتصاد",
-      "until": 1792037283.5996675
     },
     "v4|طوفان و رعدوبرق در شیلی؛ برق ۴۰ هزار نفر قطع شد": {
       "ok": false,
@@ -3639,17 +3609,35 @@
       "topic": "قضایی",
       "until": 1792047700.7294035
     },
-    "v4|قانونگذاران آمریکایی خواستار توضیح دولت این کشور درمورد حمله به غیرنظامیان ایرانی شدند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: نامه ۷۷ قانونگذار آمریکایی به دولت درباره تلفات غیرنظامیان ایرانی در جنگ.",
+    "v4|قالیباف: «بنست» به دلیل پیش بینی های عجیبش شایسته نوبل فیزیک نیست؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Political comment, no concrete decision or impact",
       "topic": "سیاست",
-      "until": 1792037288.8280637
+      "until": 1792091721.846056
+    },
+    "v4|قالیباف: صرف مذاکره مانع تداوم جنگ نخواهد شد همانطور که صرف جنگ هم مانع تداوم جنگ نمی شود": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Official strategic policy announcement regarding war and negotiations.",
+      "topic": "سیاست",
+      "until": 1792091731.300607
+    },
+    "v4|قالیباف: هم مذاکره کنیم و هم بجنگیم تا بازدارندگی پایدار ایجاد کنیم": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Official strategic position by the Parliament Speaker on national security.",
+      "topic": "سیاست",
+      "until": 1792091731.2872124
     },
     "v4|قم در ترکیب جهانی بوکس/ علی چهرقانی در وزن ۶۰ کیلوگرم عازم مونته نگرو شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: اعزام ورزشکار استانی به مسابقات جهانی اهمیت ملی درجه یک ندارد",
       "topic": "ورزش",
       "until": 1792052361.8844957
+    },
+    "v4|قوه قضائیه ایران می گوید علی سینا مصطفوی را «به جرم اقدام مسلحانه در حمایت از اسرائیل» اعدام کرده است": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: اجرای حکم اعدام با اتهامات امنیتی مرتبط با درگیری‌های نظامی.",
+      "topic": "قضایی",
+      "until": 1792091744.6173177
     },
     "v4|قوه قضائیه: علی سینا مصطفوی، تروریست مسلح و عامل دشمن در جنگ ۴۰ روزه که منجر به مجروحیت تعدادی از شهروندان و یک دختر خردسال شده بود، اعدام شد": {
       "ok": true,
@@ -4023,6 +4011,12 @@
       "topic": "اقتصاد",
       "until": 1792064458.2163684
     },
+    "v4|نماینده رزن و درگزین: موانع غیرقانونی تولید باید برطرف شود": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Parliamentary criticism, no concrete decision",
+      "topic": "سیاست",
+      "until": 1792091720.8594568
+    },
     "v4|نماینده ولی فقیه در مازندران: پیشرفت واقعی در گروی پیوند ناگسستنی علم و دین است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سخنان مقام محلی درباره علم و دین ارزش خبری ندارد",
@@ -4088,6 +4082,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: اظهارنظر مدیرعامل درباره عملکرد سازمان بورس",
       "topic": "اقتصاد",
       "until": 1792066787.7852511
+    },
+    "v4|هدفگذاری رسیدن به سرانه ۶.۱ مترمربع آموزشی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Educational space target, planning statement, no immediate impact",
+      "topic": "جامعه",
+      "until": 1792091724.379049
     },
     "v4|هزینه برخی داروهای وارداتی به ۳۰۰ میلیون تومان می رسد": {
       "ok": false,
@@ -4263,6 +4263,12 @@
       "topic": "سیاست",
       "until": 1792067971.3133123
     },
+    "v4|پایان پرونده عامل مسلح خائن به وطن در جنگ تحمیلی سوم": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: Execution of a high-profile security-related case in Iran.",
+      "topic": "قضایی",
+      "until": 1792091731.2737277
+    },
     "v4|پایش تندرستی ۲۴ هزار دانشجو در سال گذشته؛ ضرورت گسترش پوشش طرح در دانشگاه ها": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: پایش تندرستی دانشجویان خبر رده اول محسوب نمی شود",
@@ -4298,12 +4304,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اخبار فرهنگ و هنر و حراج آثار تجاری ارزش خبری درجه یک ندارند.",
       "topic": "جامعه",
       "until": 1792054069.3337033
-    },
-    "v4|پشت پرده ناکارآمدی تبلیغ دینی چیست؟/ سهم ۴۲ درصدی مدیریت": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Study identifies management obstacles in religious propaganda",
-      "topic": "جامعه",
-      "until": 1792036037.7224267
     },
     "v4|پل شهدای قره داغ افتتاح شد": {
       "ok": false,
@@ -4581,17 +4581,17 @@
       "topic": "نظامی",
       "until": 1792067974.5850182
     },
+    "v4|یمن از حمله موشکی به فرودگاه بین المللی ریاض خبر داد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Missile attack on a capital city's international airport is world news.",
+      "topic": "نظامی",
+      "until": 1792091731.2190096
+    },
     "v4|یک مدال طلا و دو برنز دستاورد ایران در پنج وزن نخست کشتی فرنگی زیر ۲۳ سال قهرمانی جهان": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: کسب مدال طلا و دو برنز توسط تیم ملی کشتی فرنگی ایران.",
       "topic": "ورزش",
       "until": 1792037288.9054663
-    },
-    "v4|یک کارشناس: مسکن تا حد زیادی عقب ماندگی خود را جبران کرده است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Expert opinion, no concrete event or decision",
-      "topic": "اقتصاد",
-      "until": 1792037282.5598054
     },
     "v4|۱۳۴ مجوز مشاغل خانگی غذایی در خراسان جنوبی صادر شد": {
       "ok": false,
@@ -4686,23 +4686,13 @@
   },
   "_editorial_blocks": {
     "settlers attack palestinian mosque near occupied east jerusalem": {
-      "at": 1792004885.0336456,
+      "at": 1792005427.414898,
       "reason": "ai_unavailable_foreign",
-      "until": 1792006085.0336456
-    },
-    "star-studded saudi exhibition postponed after deadly attacks": {
-      "at": 1792004173.5088255,
-      "reason": "ai_unavailable_foreign",
-      "until": 1792005373.5088255
+      "until": 1792006627.414898
     },
     "starlink restrictions in ukraine war linked to political situation, zelensky aide says": {
       "reason": "content_duplicate",
       "until": 1792008429.763659
-    },
-    "ukraine’s vulnerability grows as starlink is restricted and russia escalates": {
-      "at": 1792004173.5088255,
-      "reason": "ai_unavailable_foreign",
-      "until": 1792005373.5088255
     },
     "ادعای نتانیاهو: پیش از انتخابات اسرائیل به دنبال حمله مجدد به ایران نیستم": {
       "reason": "content_duplicate",
@@ -4742,9 +4732,10 @@
       "reason": "ai_unavailable_local",
       "until": 1792006085.0336456
     },
-    "حمله هولناک به تاسیسات نفت یمن": {
-      "reason": "content_duplicate",
-      "until": 1792004888.1519358
+    "دو فرد نقاب دار عمداً ۱۱ مورد از ۱۷ آنتن استارلینک را در یک تأسیسات محرمانه در نزدیکی صوفیه به آتش کشیدند / این آنتن ها از ارتباطات ماهواره ای مورد استفاده در جنگ اوکراین پشتیبانی": {
+      "at": 1792005427.414898,
+      "reason": "ai_unavailable_local",
+      "until": 1792006627.414898
     },
     "سخنگوی سپاه: احتمال وقوع جنگ جدید کاملاً وجود دارد/ آماده ایم به هرگونه تجاوز، با قدرتی بیش از هر زمان دیگری پاسخ دهد": {
       "reason": "content_duplicate",
@@ -4753,29 +4744,19 @@
     "مسکو: گازوییل روسیه هم به بازار جهانی و هم به آمریکا عرضه خواهد شد": {
       "reason": "content_duplicate",
       "until": 1792006013.7490463
+    },
+    "پایان پرونده عامل مسلح خائن به وطن در جنگ تحمیلی سوم": {
+      "at": 1792005427.414898,
+      "reason": "ai_unavailable_local",
+      "until": 1792006627.414898
+    },
+    "یمن از حمله موشکی به فرودگاه بین المللی ریاض خبر داد": {
+      "at": 1792005427.414898,
+      "reason": "ai_unavailable_local",
+      "until": 1792006627.414898
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "none:-",
-      "head": "حملات شدید به کشتی ها در تنگه هرمز و کاهش صادرات نفت ⚡️ کشتی ها در تنگه هرمز با شدیدترین حملات موشکی و پهپادی ",
-      "id": "6024c09696",
-      "match": "نیروی دریایی ارتش: یک فروند نفتکش متخلف در شرق تنگه هرمز دچار حریق شد",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791966559,
-      "verdict": "repeat",
-      "why": "Reports the same ship attacks and fire in the Strait of Hormuz."
-    },
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "حملات شدید به کشتی ها در تنگه هرمز و کاهش صادرات نفت ⚡️ کشتی ها در تنگه هرمز با شدیدترین حملات موشکی و پهپادی ",
-      "id": "6024c09696",
-      "match": "نیروی دریایی ارتش: یک فروند نفتکش متخلف در شرق تنگه هرمز دچار حریق شد",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791966570,
-      "verdict": "repeat",
-      "why": "Both report severe attacks on ships and tankers in the Strait of Hormuz."
-    },
     {
       "head": "شکست حمله تروریست ها به خودروی پلیس در مهرستان ⚡️ رزمندگان اسلام در پی حمله تروریست های مزدور به خودروی پلیس د",
       "id": "7ce770373f",
@@ -5298,44 +5279,24 @@
       "t": 1792001319,
       "verdict": "new",
       "why": "different topic: execution of protester"
+    },
+    {
+      "head": "پایان پرونده عامل مسلح خائن به وطن در جنگ تحمیلی سوم ⚡️ مصطفوی در جریان جنگ تحمیلی سوم با دشمن آمریکایی ـ اسرا",
+      "id": "e9bfebb22d",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1792005375,
+      "verdict": "new",
+      "why": "This is a new security case regarding an armed agent."
+    },
+    {
+      "head": "دو فرد نقاب دار عمداً ۱۱ مورد از ۱۷ آنتن استارلینک را در یک تأسیسات محرمانه در نزدیکی صوفیه به آتش کشیدند ⚡️ ا",
+      "id": "d40b32091b",
+      "t": 1792005423,
+      "verdict": "unavailable"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: بررسی هزینه های دیابت تحلیل و خبر درجه یک محسوب نمی شود",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791983274,
-      "title": "هزینه مدیریت دیابت؛ فراتر از قیمت دارو"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: سخنان مقام دولتی درباره نمایشگاه محلی و سرمایه گذاری",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791983275,
-      "title": "شیراز اکسپو باید فرصت های سرمایه گذاری را به پروژه های عملیاتی تبدیل کند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: سخنرانی و توصیه مذهبی و علمی، فاقد رویداد ملی یا بین‌المللی",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1791983276,
-      "title": "حقانی: طلاب با الگوی حضرت زینب(س) به میدان جهاد تبیین بیایند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: آغاز سرشماری نفوس و مسکن استانی و برنامه‌ریزی آینده است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791983276,
-      "title": "آغاز سرشماری عمومی نفوس و مسکن تهران از اول آبان/ سکونت حدود ۲۰ درصد جمعیت کشور در استان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحلیل و گمانه‌زنی درباره سیاست آمریکا و جنگ",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791983912,
-      "title": "چرا ارتش آمریکا از درگیری مستقیم عقب نشست؟"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: بررسی سینمایی و گفت‌وگو درباره ناصر تقوایی خبری فرهنگی و کم‌اهمیت است.",
       "rescued": false,
@@ -5860,33 +5821,45 @@
       "rule": "local-routine-low-value",
       "t": 1792004166,
       "title": "امام جمعه دشتی: دانش آموزان باید محور اصلی برنامه های ۱۳ آبان باشند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Parliamentary criticism, no concrete decision",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792005320,
+      "title": "نماینده رزن و درگزین: موانع غیرقانونی تولید باید برطرف شود"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Political comment, no concrete decision or impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792005321,
+      "title": "قالیباف: «بنست» به دلیل پیش بینی های عجیبش شایسته نوبل فیزیک نیست؟"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بازدید رسمی، اثر محدود",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792005323,
+      "title": "بازدید معاون وزیر نیرو از نیروگاه خورشیدی ۱۵ مگاواتی قم"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Educational space target, planning statement, no immediate impact",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792005324,
+      "title": "هدفگذاری رسیدن به سرانه ۶.۱ مترمربع آموزشی"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: موفقیت در مسابقات گرندپری تکواندو اهمیت استراتژیک ملی ندارد.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792005327,
+      "title": "آرین: همیشه با لذت بردن طلا می گیرم"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "اجر",
-        "استفد",
-        "اهدف",
-        "بق",
-        "تررست",
-        "جنگند",
-        "دعش",
-        "طر",
-        "عمل",
-        "عملت",
-        "فرمنده",
-        "مخفگ",
-        "منهدم",
-        "نظر",
-        "کرکک",
-        "کمل",
-        "گر"
-      ],
-      "t": 1791959036.084824,
-      "title": "حمله هوایی ارتش عراق به مخفیگاه های داعش در کرکوک ⚡️ رسانه امنیتی عراق از اجرای سه حمله هوایی با استفاده از جنگنده های ا"
-    },
     {
       "h": [
         "بختر",
@@ -6994,32 +6967,63 @@
       ],
       "t": 1792001319.5978014,
       "title": "تداوم موج اعدام ها؛ شمار اعدام شدگان اعتراضات ملی به دست کم ۳۶ نفر رسید ⚡️ او ورزشگار بود، سابقه کوهنوردی در هیمالیا را "
+    },
+    {
+      "h": [
+        "اردبهشت",
+        "ازد",
+        "امسل",
+        "بم",
+        "تحمل",
+        "ترندز",
+        "جر",
+        "خن",
+        "دشمن",
+        "سم",
+        "عمل",
+        "مد",
+        "مسلح",
+        "مصطف",
+        "همکر",
+        "وطن",
+        "پرند",
+        "پشت",
+        "کرم"
+      ],
+      "t": 1792005410.5752587,
+      "title": "پایان پرونده عامل مسلح خائن به وطن در جنگ تحمیلی سوم ⚡️ مصطفوی در جریان جنگ تحمیلی سوم با دشمن آمریکایی ـ اسرائیلی همکار"
+    },
+    {
+      "h": [
+        "اتش",
+        "ارتبط",
+        "استرلنک",
+        "استفد",
+        "ال",
+        "انتن",
+        "بلغرست",
+        "تسس",
+        "در",
+        "صف",
+        "عمد",
+        "فرد",
+        "محرمن",
+        "مرچف",
+        "مهر",
+        "نزدک",
+        "نقب",
+        "نمند",
+        "پتخت",
+        "پرلم",
+        "پشتبن",
+        "کشد",
+        "کشدند"
+      ],
+      "t": 1792005424.0514219,
+      "title": "دو فرد نقاب دار عمداً ۱۱ مورد از ۱۷ آنتن استارلینک را در یک تأسیسات محرمانه در نزدیکی صوفیه به آتش کشیدند ⚡️ این آنتن ها"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "احتمل",
-        "برنم",
-        "بعد",
-        "بلستک",
-        "ددر",
-        "ردد",
-        "رسدن",
-        "رهبر",
-        "سفر",
-        "قبلت",
-        "نمش",
-        "کره"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1791937670.3512795,
-      "title": "رهبر کره شمالی موشک بالستیک قاره پیما با قابلیت رسیدن به خاک آمریکا را به نمایش گذاشت ⚡️ رویدادی که یک روز بعد از آن رخ ",
-      "toll": 0
-    },
     {
       "a": [
         "افرد",
@@ -7632,139 +7636,40 @@
       "t": 1791994982.4975028,
       "title": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ ⚡️ در حالی که دولت ترامپ برای توقف حملات اوکراین به پالایشگاه",
       "toll": 0
+    },
+    {
+      "a": [
+        "اردبهشت",
+        "ازد",
+        "امسل",
+        "تحمل",
+        "دشمن",
+        "عمل",
+        "مسلح",
+        "مصطف",
+        "همکر",
+        "وطن",
+        "پرند",
+        "پشت",
+        "کرم"
+      ],
+      "cities": [
+        "کرمان"
+      ],
+      "kind": "attack",
+      "places": [
+        "کرمان"
+      ],
+      "regions": [
+        "iran_east"
+      ],
+      "t": 1792005410.5887785,
+      "title": "پایان پرونده عامل مسلح خائن به وطن در جنگ تحمیلی سوم ⚡️ مصطفوی در جریان جنگ تحمیلی سوم با دشمن آمریکایی ـ اسرائیلی همکار",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اغز",
-        "انصرلل",
-        "تحققت",
-        "تشخص",
-        "حمل",
-        "حملت",
-        "دست",
-        "رض",
-        "رهگر",
-        "زخم",
-        "علت",
-        "فردگ",
-        "نکم",
-        "پدفند",
-        "کشت",
-        "گذشت"
-      ],
-      "t": 1791872068.0574005,
-      "title": "ریاض تحقیقاتی را برای تشخیص علت ناکامی پدافند هوایی خود در رهگیری حملات انصارالله آغاز کرده ⚡️ حملاتی که از جمله حمله به"
-    },
-    {
-      "k": [
-        "انه",
-        "اکتبر",
-        "اکثر",
-        "اکرن",
-        "حمل",
-        "خنث",
-        "در",
-        "دردست",
-        "دشنب",
-        "دفع",
-        "رس",
-        "رسدن",
-        "سبنن",
-        "سرنگن",
-        "سرگ",
-        "سعت",
-        "سمن",
-        "شدند",
-        "شلک",
-        "شنب",
-        "شهر",
-        "شهردر",
-        "صبح",
-        "فرند",
-        "فصل",
-        "محل",
-        "مسر",
-        "مسک",
-        "منطق",
-        "منهدم",
-        "نزدک",
-        "هدف",
-        "همگ",
-        "هنگم",
-        "وقت",
-        "پتخت",
-        "پدفند",
-        "پرز",
-        "پهپد",
-        "کمک",
-        "گذشت"
-      ],
-      "t": 1791873215.6360755,
-      "title": "حمله پهپادی اوکراین به مسکو دفع شد ⚡️ شهردار مسکو اعلام کرد طی شب گذشته ۴۱۷ پهپاد اوکراینی به سمت پایتخت روسیه شلیک شد ک"
-    },
-    {
-      "k": [
-        "ارزب",
-        "اسرل",
-        "الن",
-        "امرک",
-        "امنت",
-        "انتشر",
-        "بدن",
-        "بررس",
-        "بمب",
-        "تخل",
-        "تهدد",
-        "جنب",
-        "درفت",
-        "دلت",
-        "دلل",
-        "شبک",
-        "شرکت",
-        "فردگ",
-        "فلم",
-        "مسر",
-        "منتقل",
-        "نر",
-        "نشنس",
-        "هپم",
-        "وجد",
-        "ورد",
-        "پرز",
-        "کذب",
-        "کمل",
-        "گذر",
-        "گرن"
-      ],
-      "t": 1791875516.674636,
-      "title": "انتشار اولین فیلم از هواپیمای آمریکایی با تهدید بمب گذاری در تل آویو ⚡️ نیروهای امنیتی پس از دریافت گزارش های ناشناس درب"
-    },
-    {
-      "k": [
-        "احمد",
-        "امنت",
-        "انجم",
-        "انهدم",
-        "تررست",
-        "تم",
-        "خن",
-        "زهد",
-        "عمل",
-        "عملت",
-        "منطق",
-        "منهدم",
-        "نر",
-        "هدف",
-        "پکسز",
-        "چه",
-        "کرن"
-      ],
-      "t": 1791875528.5403807,
-      "title": "انهدام یک خانه تیمی تروریستی در زاهدان ⚡️ نیروهای امنیتی در عملیاتی در منطقه چاه احمد کورین زاهدان، یک خانه تیمی تروریست"
-    },
     {
       "k": [
         "الت",
@@ -11897,6 +11802,77 @@
       ],
       "t": 1792001319.5842197,
       "title": "تداوم موج اعدام ها؛ شمار اعدام شدگان اعتراضات ملی به دست کم ۳۶ نفر رسید ⚡️ او ورزشگار بود، سابقه کوهنوردی در هیمالیا را "
+    },
+    {
+      "k": [
+        "اردبهشت",
+        "ازد",
+        "اسرل",
+        "اعترف",
+        "اقدم",
+        "امرک",
+        "امسل",
+        "برنم",
+        "بم",
+        "تحمل",
+        "ترندز",
+        "جر",
+        "جنگ",
+        "خن",
+        "دشمن",
+        "رز",
+        "سم",
+        "شلک",
+        "عمل",
+        "فردگ",
+        "مد",
+        "مردم",
+        "مسلح",
+        "مسلحن",
+        "مصطف",
+        "نر",
+        "همکر",
+        "وطن",
+        "پرند",
+        "پشت",
+        "پلس",
+        "کرم"
+      ],
+      "t": 1792005410.5619423,
+      "title": "پایان پرونده عامل مسلح خائن به وطن در جنگ تحمیلی سوم ⚡️ مصطفوی در جریان جنگ تحمیلی سوم با دشمن آمریکایی ـ اسرائیلی همکار"
+    },
+    {
+      "k": [
+        "اتش",
+        "ارتبط",
+        "استرلنک",
+        "استفد",
+        "ال",
+        "انتن",
+        "اکرن",
+        "بلغرست",
+        "تسس",
+        "تلش",
+        "جنگ",
+        "حک",
+        "در",
+        "صف",
+        "عمد",
+        "فرد",
+        "محرمن",
+        "مرچف",
+        "مهر",
+        "نزدک",
+        "نقب",
+        "نمند",
+        "پتخت",
+        "پرلم",
+        "پشتبن",
+        "کشد",
+        "کشدند"
+      ],
+      "t": 1792005424.0378757,
+      "title": "دو فرد نقاب دار عمداً ۱۱ مورد از ۱۷ آنتن استارلینک را در یک تأسیسات محرمانه در نزدیکی صوفیه به آتش کشیدند ⚡️ این آنتن ها"
     }
   ],
   "_text_polish": {
@@ -11908,7 +11884,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792004621
+    "at": 1792005194
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11923,9 +11899,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792005177.0,
-    "last_failure": 1792004877,
-    "last_status": 599
+    "disabled_until": 1792005655.0,
+    "last_failure": 1792005355,
+    "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
     "disabled_until": 1792005462,
@@ -11946,8 +11922,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792004925.2466404,
-    "last_failure": 1791998961,
+    "disabled_until": 1792009021.7369785,
+    "last_failure": 1792005328,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
@@ -12005,8 +11981,8 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792004910.611648,
-    "last_failure": 1792001310,
+    "disabled_until": 1792008956.031445,
+    "last_failure": 1792005356,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
