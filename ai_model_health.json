@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792000126
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792000128
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1792000129
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792000684
-    },
-    {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1792000684
     },
@@ -159,21 +143,37 @@
     {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1792008824
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792009364
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792009384
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
+      "t": 1792009384
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 4 stories",
+      "t": 1792009385
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 181,
+        "calls": 183,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 111,
+        "ok": 113,
         "other": 41
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 60,
-        "calls": 558,
+        "429": 61,
+        "calls": 559,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 495,
@@ -231,8 +231,8 @@
         "other": 0
       },
       "openrouter:openrouter/free": {
-        "429": 13,
-        "calls": 27,
+        "429": 14,
+        "calls": 28,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 14,
         "other": 0
@@ -2043,12 +2043,6 @@
       "topic": "نظامی",
       "until": 1792050607.895203
     },
-    "v4|بررسی راهکارهای توسعه روابط تجاری ایران و چین در «شیراز اکسپو»": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: برگزاری نشست تخصصی و نمایشگاه استانی فاقد اهمیت ملی",
-      "topic": "اقتصاد",
-      "until": 1792048302.0393023
-    },
     "v4|برنامه وزارت دفاع برای آرایش جدید جنگی دشمن چیست؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: درخواست برنامه داخلی مجلس از وزارت دفاع.",
@@ -2643,6 +2637,12 @@
       "topic": "جامعه",
       "until": 1792054615.14955
     },
+    "v4|خیابان های ایلام همچنان سنگر پایداری": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering with no national strategic impact or news value.",
+      "topic": "جامعه",
+      "until": 1792095769.2932763
+    },
     "v4|دادستان آلمان: انفجار خطوط لوله نورد استریم مصداق جنایت جنگی است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اعلام دادستانی آلمان درباره جنایت جنگی دانستن انفجار نورد استریم",
@@ -2912,12 +2912,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: تحلیل روزنامه درباره احتمال گفتگوی پوتین و ترامپ.",
       "topic": "سیاست",
       "until": 1792048857.6971083
-    },
-    "v4|روسیه به آمریکا پناه برد: کانادا زیر بار نرفت!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: برگزاری مسابقات ورزشی و تغییر میزبان فاقد اهمیت درجه یک است.",
-      "topic": "ورزش",
-      "until": 1792048302.9469512
     },
     "v4|رونویسی چینی ها از روی دست «اسپیس ایکس»": {
       "ok": false,
@@ -4473,6 +4467,12 @@
       "topic": "اقتصاد",
       "until": 1792067436.7187421
     },
+    "v4|کشف ۹۶۸ قلم کالای احتکاری در پاوه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: کشف کالای احتکاری در یک شهرستان کوچک اهمیت ملی ندارد.",
+      "topic": "اقتصاد",
+      "until": 1792095766.9154809
+    },
     "v4|کشف۱۲۰گرم طلا و جواهرات سرقتی در مراغه/ دستگیری متهم به برادرکشی در میانه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سرقت و دستگیری محلی در مراغه و میانه، فاقد اهمیت ملی.",
@@ -5272,20 +5272,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: افزایش تورم آمریکا و تأثیر بر اقتصاد جهانی و انتخابات",
-      "rescued": true,
-      "rule": "foreign-local-preselection",
-      "t": 1791987410,
-      "title": "تورم قیمت مصرف کننده در آمریکا شتاب گرفت"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر صدور مجوزهای مشاغل خانگی در یک استان محلی و کم‌اهمیت است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791987411,
-      "title": "۱۳۴ مجوز مشاغل خانگی غذایی در خراسان جنوبی صادر شد"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: کشف کالای قاچاق در یک استان محلی است.",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -5830,6 +5816,20 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792008821,
       "title": "ارائه خدمات حمایتی به ۳۴۰۰ نابینا و کم بینا در بوشهر"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: کشف کالای احتکاری در یک شهرستان کوچک اهمیت ملی ندارد.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792009366,
+      "title": "کشف ۹۶۸ قلم کالای احتکاری در پاوه"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering with no national strategic impact or news value.",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792009369,
+      "title": "خیابان های ایلام همچنان سنگر پایداری"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11864,7 +11864,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792008676
+    "at": 1792009269
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11879,13 +11879,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792009124.0,
-    "last_failure": 1792008824,
-    "last_status": 503
+    "disabled_until": 1792009684.0,
+    "last_failure": 1792009384,
+    "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792008874,
-    "last_failure": 1792008274,
+    "disabled_until": 1792009964,
+    "last_failure": 1792009364,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11961,8 +11961,8 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792008956.031445,
-    "last_failure": 1792005356,
+    "disabled_until": 1792012984.6208844,
+    "last_failure": 1792009384,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
