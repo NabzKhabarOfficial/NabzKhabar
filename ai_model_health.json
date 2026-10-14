@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1791937596
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1791937598
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1791937610
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1791937612
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1791937653
-    },
-    {
       "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
       "t": 1791937658
     },
@@ -159,77 +139,97 @@
     {
       "e": "EDITOR BATCH: no verdict for 5 stories",
       "t": 1791949043
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1791949636
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
+      "t": 1791949636
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1791949638
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
+      "t": 1791949639
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1791949639
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
-        "429": 14,
-        "calls": 17,
+        "429": 15,
+        "calls": 18,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 15,
-        "calls": 17,
+        "429": 16,
+        "calls": 18,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 2,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 8,
-        "calls": 31,
+        "calls": 33,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199732, Requested 1829. Please try again in 11m14.",
-        "ok": 23,
+        "ok": 25,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 4,
-        "calls": 18,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199990, Requested 2403. Please try again in 17m13.7",
+        "429": 5,
+        "calls": 24,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199227, Requested 1946. Please try again in 8m26.73",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
-        "other": 4
+        "ok": 13,
+        "other": 6
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:google/gemma-4-31b-it:free": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:openrouter/free": {
-        "429": 3,
-        "calls": 17,
+        "429": 4,
+        "calls": 18,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 14,
         "other": 0
@@ -1284,12 +1284,6 @@
       "topic": "جامعه",
       "until": 1791983938.7186277
     },
-    "v4|«متا» خود را پیشروترین در فناوری هوش مصنوعی معرفی کرد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: ادعای تجاری شرکت متا درباره مدل‌های جدید هوش مصنوعی",
-      "topic": "فناوری",
-      "until": 1791966579.4448364
-    },
     "v4|آتش سوزی در عرصه های منابع طبیعی استان مرکزی ۸۰ درصد کاهش یافت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: آمار استانی و محلی منابع طبیعی ارزش خبری درجه یک ندارد",
@@ -1788,6 +1782,12 @@
       "topic": "جامعه",
       "until": 1791980480.3926256
     },
+    "v4|اولین طلای کشتی فرنگی ایران ضرب شد؛ دو فرنگی کار برنزی شدند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Iran's Abolfazl Mehmedi wins gold at World Junior Wrestling Championships",
+      "topic": "ورزش",
+      "until": 1792036036.0441303
+    },
     "v4|اکسیوس افشا کرد: فشار نتانیاهو به ترامپ برای حمله به ایران پیش از انتخابات اسرائیل / هگست و سنتکام حامی شعله ور شدن مجدد جنگ هستند": {
       "ok": false,
       "reason": "ai openrouter/free score=2 happened=False scope=world: No confirmed attack or official decision",
@@ -2256,12 +2256,6 @@
       "topic": "سیاست",
       "until": 1791985635.9059963
     },
-    "v4|تکمیل زنجیره ارزش گوهرسنگ ها/ مسیر افزایش صادرات غیرنفتی است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارات مقام دولتی درباره گوهرسنگ‌ها رویداد مهم اقتصادی محسوب نمی‌شود",
-      "topic": "اقتصاد",
-      "until": 1791966580.3333378
-    },
     "v4|تکمیل ۱۱۵۹ خانه بهداشت در قالب نهضت ملی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Completion of 1159 health houses, national health infrastructure.",
@@ -2333,6 +2327,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=iran_national: مداخله بانک مرکزی در معاملات رمزارزها و توقف واریز صرافی‌های بزرگ",
       "topic": "اقتصاد",
       "until": 1791979968.9593585
+    },
+    "v4|جزئیات جذب ۵۰۰ نیروی جدید در اورژانس اعلام شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Recruitment of 500 new emergency personnel announced",
+      "topic": "سلامت",
+      "until": 1792036035.3066716
     },
     "v4|جلالی: ادعای ترامپ درباره برنامه نابودی شهرهای آمریکا بی اساس است": {
       "ok": false,
@@ -2711,12 +2711,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: افتتاح مدرسه یک رویداد محلی و فاقد اهمیت ملی یا بین‌المللی است.",
       "topic": "جامعه",
       "until": 1791982792.287808
-    },
-    "v4|دولت موفق به وصول ۱۷۶ هزار میلیارد تومان درآمد مالیاتی شده است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=iran_national: اعلام وصول درآمد مالیاتی و تحقق بودجه در کشور",
-      "topic": "اقتصاد",
-      "until": 1791966581.3802986
     },
     "v4|دکترین نوبلیست های ۲۰۲۶ در مهندسی نرخ بهره و مدیریت تورم/ رفتارهای خانوار ابزار بانک های مرکزی/مدل های «کینزی نوین» و دگرگونی بنیادهای اقتصاد کلان": {
       "ok": false,
@@ -4188,6 +4182,12 @@
       "topic": "سیاست",
       "until": 1791989143.2523658
     },
+    "v4|پشت پرده ناکارآمدی تبلیغ دینی چیست؟/ سهم ۴۲ درصدی مدیریت": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Study identifies management obstacles in religious propaganda",
+      "topic": "جامعه",
+      "until": 1792036037.7224267
+    },
     "v4|پلاک گذاری خودروهای ایرانیان مقیم خارج فعلا متوقف شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine administrative procedure regarding vehicle registration for expatriates.",
@@ -4631,9 +4631,9 @@
       "until": 1791953288.5220923
     },
     "حملات موشکی ارتش یمن به ریاض؛ ۴ تن زخمی شدند": {
-      "at": 1791947963.9028075,
+      "at": 1791949669.2883801,
       "reason": "ai_unavailable_local",
-      "until": 1791949163.9028075
+      "until": 1791950869.2883801
     },
     "حمله به یک فروند کشتی کانتینری در تنگه هرمز": {
       "at": 1791949054.681786,
@@ -4641,18 +4641,23 @@
       "until": 1791950254.681786
     },
     "رویترز: شنیدن صدای انفجارهای مهیبی در ظهران، در شرق عربستان و در نزدیکی مقر شرکت آرامکو": {
-      "at": 1791947963.9028075,
+      "at": 1791949669.2883801,
       "reason": "ai_unavailable_local",
-      "until": 1791949163.9028075
+      "until": 1791950869.2883801
     },
     "زخمی شدن ۴ نفر در ریاض بر اثر بقایای موشک های رهگیری شده توسط پدافند هوایی عربستان": {
       "reason": "content_duplicate",
       "until": 1791953916.8508854
     },
     "شنیده شدن صدای انفجار در نزدیکی دفتر مرکزی آرامکو در ظهران عربستان": {
-      "at": 1791947963.9028075,
+      "at": 1791949669.2883801,
       "reason": "ai_unavailable_local",
-      "until": 1791949163.9028075
+      "until": 1791950869.2883801
+    },
+    "عربستان حمله به دفتر آرامکو را تائید کرد": {
+      "at": 1791949669.2883801,
+      "reason": "ai_unavailable_local",
+      "until": 1791950869.2883801
     },
     "قیمت گاز در اروپا به بالاترین حد ۴ سال اخیر رسید": {
       "reason": "content_duplicate",
@@ -5168,27 +5173,6 @@
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: آمار جالب بازیکن، خبر مهم نیست",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1791907943,
-      "title": "11 کیلومتر! عددی که از اروپا می آید/ دونده ترین بازیکن تیم ملی از لیگ امارات"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: Dispute over intelligence sharing between Ukraine and the US.",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1791907947,
-      "title": "Zelensky Comment Raises Fears Over U.S. Intelligence Sharing"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: درگذشت یک چهره فرهنگی و یادداشت شخصی درباره آن اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791907952,
-      "title": "در غم درگذشت ابوالقاسم رادفر"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: ثبت ملی گویش یک شهر موضوعی فرهنگی و محلی است.",
       "rescued": false,
@@ -5727,6 +5711,27 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1791946769,
       "title": "تدوین طرح ۶ مرحله ای برای مهار قاچاق سوخت / رصد مستمر سکوهای طلا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Recruitment of 500 new emergency personnel announced",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1791949635,
+      "title": "جزئیات جذب ۵۰۰ نیروی جدید در اورژانس اعلام شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Iran's Abolfazl Mehmedi wins gold at World Junior Wrestling Championships",
+      "rescued": true,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1791949636,
+      "title": "اولین طلای کشتی فرنگی ایران ضرب شد؛ دو فرنگی کار برنزی شدند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Study identifies management obstacles in religious propaganda",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1791949637,
+      "title": "پشت پرده ناکارآمدی تبلیغ دینی چیست؟/ سهم ۴۲ درصدی مدیریت"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8924,7 +8929,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791948983
+    "at": 1791949556
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8939,13 +8944,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791949642,
-    "last_failure": 1791949042,
+    "disabled_until": 1791950244,
+    "last_failure": 1791949644,
     "last_status": 429
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791949642,
-    "last_failure": 1791949042,
+    "disabled_until": 1791950244,
+    "last_failure": 1791949644,
     "last_quality_failure": 1791891761,
     "last_status": 429
   },
@@ -8969,8 +8974,8 @@
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791949165.6834044,
-    "last_failure": 1791945565,
+    "disabled_until": 1791953239.4935393,
+    "last_failure": 1791949639,
     "last_quality_failure": 1791941575,
     "last_status": 429
   },
@@ -8986,20 +8991,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791949179.2457237,
-    "last_failure": 1791945579,
+    "disabled_until": 1791953245.0698588,
+    "last_failure": 1791949645,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791949179.0917532,
-    "last_failure": 1791945579,
+    "disabled_until": 1791953244.9213312,
+    "last_failure": 1791949644,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791949179.1778839,
-    "last_failure": 1791945579,
+    "disabled_until": 1791953244.9885323,
+    "last_failure": 1791949644,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -9010,20 +9015,20 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791949179.3134196,
-    "last_failure": 1791945579,
+    "disabled_until": 1791953245.139568,
+    "last_failure": 1791949645,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791949179.3814166,
-    "last_failure": 1791945579,
+    "disabled_until": 1791953245.212083,
+    "last_failure": 1791949645,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791949179.007432,
-    "last_failure": 1791945579,
+    "disabled_until": 1791953236.9844656,
+    "last_failure": 1791949636,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
