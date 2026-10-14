@@ -11,6 +11,8 @@ whose content overlaps strongly with anything published in the last 36 hours.
 * A blocked story is labelled skipped_duplicate (not a failed run) and kept
   out of selection for 6 hours, so it does not waste later runs.
 * State lives in ai_model_health.json, which the workflow already persists.
+* Oct 14 2026: a repeated distinctive number or the same quoted speaker within
+  2 hours, plus a few shared uncommon words, is also the same story (anchored_same).
 """
 
 import re
@@ -119,8 +121,65 @@ def is_follow_up(a, b, df):
     return len(rare) >= RARE_SHARED
 
 
+# ---------------------------------------------------------------- Oct 14: number + speaker anchors
+# Two rewrites of one story got through on Oct 14: China's trade surplus («... از ۹۳۸ میلیارد دلار
+# گذشت» at 09:07 and 13:38 UTC; digits are not in the fingerprint) and two «قالیباف: ...» posts
+# 8 minutes apart. A new post is now also the same story when
+# * it repeats a distinctive number of an earlier post (3+ digits, not a year, not a round
+#   number) and shares at least 2 uncommon words with it, or
+# * it quotes the same speaker («قالیباف:») within 2 hours and shares at least 3 uncommon words.
+# Everyday news words (COMMON) never count, so two different Trump quotes are not merged.
+_FA_DIG = str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789")
+SPEAKER_SECONDS = 2 * 3600
+_SPK = re.compile(r"^\s*([^:：\n«»<>]{2,30}?)\s*[:：]")
+
+
+def anchors(text):
+    out = set()
+    t = str(text or "").translate(_FA_DIG)
+    for m in re.finditer(r"(?<![0-9.,/])([0-9]{3,}(?:[.,/][0-9]+)?)(?![0-9])", t):
+        n = m.group(1).replace(",", "")
+        whole = n.split(".")[0].split("/")[0]
+        if re.fullmatch(r"(?:13|14|19|20)[0-9]{2}", whole):
+            continue  # a year
+        if whole.endswith("00") and "." not in n:
+            continue  # 100, 500, 1000: too common
+        out.add(n)
+    return out
+
+
+def speaker(text):
+    t = re.sub(r"<[^>]+>", "", str(text or ""))
+    t = re.sub(r"^[^\u0600-\u06FFa-zA-Z]+", "", t)
+    m = _SPK.match(t)
+    if not m:
+        return ""
+    s = m.group(1).strip()
+    return s if 1 <= len(s.split()) <= 3 else ""
+
+
+def _uncommon(shared):
+    return [k for k in shared if k not in COMMON]
+
+
+def anchored_same(fp, nums, spk, item, now=None):
+    try:
+        keys = set(item.get("k") or [])
+        rare = _uncommon(fp & keys)
+        if nums and set(item.get("n") or []) & nums and len(rare) >= 2:
+            return True
+        now = time.time() if now is None else now
+        if (spk and item.get("s") == spk and now - float(item.get("t", 0) or 0) <= SPEAKER_SECONDS
+                and len(rare) >= 3):
+            return True
+    except Exception:
+        pass
+    return False
+
+
 def find_duplicate(caption):
-    fp = fingerprint(story_text(caption))
+    story = story_text(caption)
+    fp = fingerprint(story)
     if len(fp) < 4:
         return None
     try:
@@ -132,22 +191,30 @@ def find_duplicate(caption):
     for item in recent:
         for k in set(item.get("k") or []):
             df[k] = df.get(k, 0) + 1
+    nums, spk = anchors(story), speaker(story)
     for item in reversed(recent):
         keys = set(item.get("k") or [])
-        if is_same_story(fp, keys) or is_follow_up(fp, keys, df):
+        if is_same_story(fp, keys) or is_follow_up(fp, keys, df) or anchored_same(fp, nums, spk, item):
             return item
     return None
 
 
 def remember(caption):
-    fp = fingerprint(story_text(caption))
+    story = story_text(caption)
+    fp = fingerprint(story)
     if len(fp) < 4:
         return
     try:
         router, health = _health()
         items = _recent(health)
-        title = story_text(caption)[:120]
-        items.append({"t": time.time(), "k": sorted(fp), "title": title})
+        title = story[:120]
+        entry = {"t": time.time(), "k": sorted(fp), "title": title}
+        nums, spk = anchors(story), speaker(story)
+        if nums:
+            entry["n"] = sorted(nums)[:12]
+        if spk:
+            entry["s"] = spk
+        items.append(entry)
         health[STORE_KEY] = items[-MAX_STORIES:]
         router._save_health(health)
     except Exception as exc:
