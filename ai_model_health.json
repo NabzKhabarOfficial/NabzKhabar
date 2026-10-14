@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1791992099
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1791992627
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1791992628
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 6 stories",
-      "t": 1791992628
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1791993137
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
-      "t": 1791993137
-    },
-    {
       "e": "EDITOR BATCH: no verdict for 6 stories",
       "t": 1791993138
     },
@@ -159,41 +135,65 @@
     {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1791998460
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
+      "t": 1791998961
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1791998966
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1791998966
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1791998967
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1791998968
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
+      "t": 1791998969
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 110,
+        "calls": 113,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 58,
-        "other": 23
+        "other": 26
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 42,
-        "calls": 537,
+        "429": 44,
+        "calls": 539,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 492,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 136,
-        "calls": 296,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198257, Requested 1791. Please try again in 20.736",
+        "429": 139,
+        "calls": 302,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199424, Requested 1680. Please try again in 7m56.9",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 154,
+        "ok": 157,
         "other": 6
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 86,
-        "calls": 181,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199025, Requested 1861. Please try again in 6m22.75",
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 44,
-        "other": 51
+        "429": 89,
+        "calls": 190,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199383, Requested 1878. Please try again in 9m4.751",
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 48,
+        "other": 53
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 11,
@@ -240,13 +240,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "اقتصاد",
-      "level": 3,
-      "t": 1791825212.9520433,
-      "title": "زلنسکی: افزایش قیمت نفت ناشی از وضعیت تنگه هرمز است",
-      "urgent": false
-    },
     {
       "label": "سیاست",
       "level": 3,
@@ -1079,6 +1072,13 @@
       "t": 1791994982.5108662,
       "title": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 5,
+      "t": 1791998979.0008352,
+      "title": "نتانیاهو: زمان برای حمله به ایران مناسب نیست",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-13",
@@ -1161,12 +1161,6 @@
       "topic": "ورزش",
       "until": 1792050010.1219747
     },
-    "v4|openai employee arrested for allegedly planting a bug in a conference room": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: OpenAI engineer arrested for planting recording device",
-      "topic": "فناوری",
-      "until": 1792027966.1178238
-    },
     "v4|qualcomm wins lawsuit against arm but will only receive two bucks": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: رأی دادگاه علیه شرکت آرم با خسارت ناچیز دو دلاری.",
@@ -1178,12 +1172,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: اظهارات رئیس جمهور آمریکا درباره انتخابات میان دوره ای و راهبرد حزب.",
       "topic": "سیاست",
       "until": 1792062127.672464
-    },
-    "v4|russia detains japanese journalist, accusing him of alleged spying": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Russia arrests Japanese journalist for alleged spying",
-      "topic": "قضایی",
-      "until": 1792027967.6786098
     },
     "v4|saudi-led coalition intercepts houthi missile launched towards riyadh": {
       "ok": true,
@@ -1251,6 +1239,12 @@
       "topic": "حادثه",
       "until": 1792059786.5980203
     },
+    "v4|«حماسه پرچمداران تمدن ایران زمین»؛ پاسخ مردمی در تخت جمشید به توهین های وزیر خارجه آمریکا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Public rally against US minister's insulting remarks",
+      "topic": "سیاست",
+      "until": 1792085360.7205484
+    },
     "v4|«فراز و نشیب روزگار»؛ روایتی از تلاش جمعی برای اداره دانشگاه فردوسی مشهد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رونمایی کتاب دانشگاهی رویدادی محلی و غیرمعیار است.",
@@ -1274,6 +1268,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: مباحثه کلی درباره کالابرگ و معیشت بدون تصمیم مشخص اجرایی",
       "topic": "اقتصاد",
       "until": 1792048851.1064196
+    },
+    "v4|آتش سوزی در تاسیسات سرّی استارلینک در بلغارستان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Fire at Starlink facility in Bulgaria, no casualties reported.",
+      "topic": "فناوری",
+      "until": 1792085369.0154593
     },
     "v4|آذربایجان شرقی در ایستگاه بیست ودوم سفرهای استانی دولت": {
       "ok": false,
@@ -1418,12 +1418,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: سخنان وزیر درباره همکاری‌های تجاری و طرح‌های آینده",
       "topic": "اقتصاد",
       "until": 1792070794.2869656
-    },
-    "v4|احتمال برکناری وزیر جنگ آمریکا توسط ترامپ": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=False scope=local: Speculative analysis of possible US defense secretary removal",
-      "topic": "سیاست",
-      "until": 1792027966.0904355
     },
     "v4|احتمال شنیدن صدای انفجار در رودبار کرمان": {
       "ok": true,
@@ -2289,18 +2283,6 @@
       "topic": "سیاست",
       "until": 1792049998.9578621
     },
-    "v4|ترامپ: به زلنسکی و پوتین برای پایان دادن به جنگ کمک می کنیم": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Trump claims US will help both leaders end war",
-      "topic": "سیاست",
-      "until": 1792027966.104175
-    },
-    "v4|ترس نتانیاهو از شکست در انتخابات؛ ادعاها علیه ایران و مقاومت": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Netanyahu warns of election loss, blames Iran",
-      "topic": "سیاست",
-      "until": 1792027967.6653
-    },
     "v4|تروریسم سازمان یافته شهرک نشینان افراطی در کرانه باختری": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: گزارش امنیتی درباره حملات سازمان یافته شهرک نشینان در کرانه باختری",
@@ -2330,6 +2312,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تهدید نظامی صریح ایران توسط رئیس‌جمهور آمریکا.",
       "topic": "نظامی",
       "until": 1792048857.6724908
+    },
+    "v4|تصادف زنجیره ای ۴خودرو در اتوبان کاشان-اصفهان یک فوتی و ۶مصدوم داشت": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تصادف زنجیره ای 4 خودرو، 1 فوتی، 6 مصدوم",
+      "topic": "حادثه",
+      "until": 1792085362.3273156
     },
     "v4|تصاویر ماهواره ای از وضعیت فرودگاه ملک فهد عربستان پس از حمله": {
       "ok": true,
@@ -2864,6 +2852,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: دیدار تشریفاتی رؤسای فدراسیون‌ها با وزیر ورزش اهمیت ملی ندارد",
       "topic": "ورزش",
       "until": 1792053443.8741705
+    },
+    "v4|دیدار رؤسای کل بانک های مرکزی ایران و پاکستان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: routine bilateral central bank meeting",
+      "topic": "اقتصاد",
+      "until": 1792085361.5062537
     },
     "v4|دیدار رؤسای کل بانک های مرکزی ایران و پاکستان با محوریت توسعه همکاری های اقتصادی و تجاری": {
       "ok": false,
@@ -3483,11 +3477,11 @@
       "topic": "آب و هوا",
       "until": 1792047700.7052684
     },
-    "v4|ظریف: در لامرد چهار موشک در یک منطقه غیرنظامی زدند هرکدام از اینها در نزدیکی زمین به ۱۸۰ هزار ترکش تبدیل شد؛ یعنی ۷۲۰ هزار ترکش به مردم غیرنظامی خورد / در لامرد ۷۰ درصد مردم مخالف": {
+    "v4|عبدی: حیف شد برنده نشدیم/ یک ورزشگاه مدرن در خرم آباد در حال ساخت است": {
       "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=local: Claim of missile attack, unverified",
-      "topic": "سیاست",
-      "until": 1792027967.6391063
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مبارزه محلی، نتیجه مهم نیست",
+      "topic": "ورزش",
+      "until": 1792085363.0127294
     },
     "v4|عدم تعامل باعث خسارت ۱۰ تریلیون دلاری بر اقتصاد جهانی/ پرهیز از توهم کنترل فیزیکی؛ استقلال شغلی را احیاء کنیم/سقوط آزاد مدیران میانی به گرداب کنترل": {
       "ok": false,
@@ -3686,12 +3680,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: عبور قیمت نفت از آستانه ۱۵۰ دلار در بازارهای جهانی.",
       "topic": "اقتصاد",
       "until": 1792065077.3262422
-    },
-    "v4|قیمت گاز در اروپا به بالاترین حد ۴ سال اخیر رسید": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=9 happened=True scope=world: Gas price hits 4-year high in Europe",
-      "topic": "اقتصاد",
-      "until": 1792027967.65234
     },
     "v4|لاشه چهار قلاده فوک خزری در ساحل بابلسر کشف شد": {
       "ok": false,
@@ -3938,6 +3926,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و بررسی سناریوهای انتخابات آینده اسرائیل.",
       "topic": "سیاست",
       "until": 1792070318.4529135
+    },
+    "v4|نتانیاهو: زمان برای حمله به ایران مناسب نیست": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: نیروی اسرائیل اعلام کرد حمله به ایران زمان مناسب نیست",
+      "topic": "سیاست",
+      "until": 1792085367.6480372
     },
     "v4|نتایج اولیه فلوشیپ علوم آزمایشگاهی سال ۱۴۰۵ اعلام شد؛ جزئیات مرحله دوم": {
       "ok": false,
@@ -4383,6 +4377,12 @@
       "topic": "آب و هوا",
       "until": 1792059286.4727318
     },
+    "v4|چگونه کودک غرق در بازی را پای درس بنشانیم؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: مقالهٔ مشورتی، رویداد واقعی نیست",
+      "topic": "جامعه",
+      "until": 1792085359.6692202
+    },
     "v4|چین در میانه تنش ها با آمریکا، شیلی را شریک کلیدی خود در آمریکای لاتین خواند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارات سفیر چین درباره روابط تجاری با شیلی اهمیت بین‌المللی بالایی ندارد",
@@ -4702,9 +4702,9 @@
       "until": 1792003206.8734426
     },
     "settlers attack palestinian mosque near occupied east jerusalem": {
-      "at": 1791998470.616459,
+      "at": 1791998983.3971872,
       "reason": "ai_unavailable_foreign",
-      "until": 1791999670.616459
+      "until": 1792000183.3971872
     },
     "starlink restrictions affecting ukraine's front line operations, kyiv says": {
       "reason": "content_duplicate",
@@ -4714,9 +4714,10 @@
       "reason": "content_duplicate",
       "until": 1792008429.763659
     },
-    "zelensky to visit u.k. as ukraine presses allies on intelligence sharing": {
-      "reason": "content_duplicate",
-      "until": 1791998617.414455
+    "ukraine’s vulnerability grows as starlink is restricted and russia escalates": {
+      "at": 1791998983.3971872,
+      "reason": "ai_unavailable_foreign",
+      "until": 1792000183.3971872
     },
     "ادعای نتانیاهو: پیش از انتخابات اسرائیل به دنبال حمله مجدد به ایران نیستم": {
       "reason": "content_duplicate",
@@ -4797,10 +4798,6 @@
       "reason": "content_duplicate",
       "until": 1792005536.309452
     },
-    "شهید و مجروح شدن ۵ زن و کودک در حملات عربستان به یمن": {
-      "reason": "content_duplicate",
-      "until": 1791998597.2886071
-    },
     "صندوق بین المللی پول: کاهش پیش بینی رشد اقتصادی برای کشورهای خلیج فارس در سال ۲۰۲۶/ خاورمیانه و شمال آفریقا تنها منطقه جهان هستند که اقتصاد آن ها در سال جاری، کوچک می شود/ اگر تنگه": {
       "reason": "content_duplicate",
       "until": 1792002680.504786
@@ -4822,6 +4819,11 @@
       "reason": "content_duplicate",
       "until": 1792001995.900844
     },
+    "نتانیاهو: زمان برای حمله به ایران مناسب نیست": {
+      "at": 1791998983.3971872,
+      "reason": "ai_unavailable_local",
+      "until": 1792000183.3971872
+    },
     "نفت در جریان است، اما انتقال آن هیچ گاه تا این اندازه پر هزینه نبوده/ دستمزد دریانوردان عادی به چهار تا شش برابر سطح معمول افزایش یافته/ درگیری ها از دو مسیر باعث افزایش هزینه حمل": {
       "reason": "content_duplicate",
       "until": 1792000914.289067
@@ -4836,15 +4838,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "قائم پناه: ترامپ به دنبال کنترل منابع نفتی ایران است ⚡️ دونالد ترامپ تلاش می کند با الگوبرداری از رویکرد خود د",
-      "id": "b037876e6b",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791965372,
-      "verdict": "new",
-      "why": "This is a new statement by Ghaempanah about Trump's oil plans."
-    },
     {
       "head": "قیمت دلار، طلا و سکه امروز چهارشنبه ۲۲ مهر ۱۴۰۵ ⚡️ روند نزولی قیمت دلار و طلا در بازار آزاد متوقف شد و نرخ ها ",
       "id": "0e9f0c2318",
@@ -5381,44 +5374,15 @@
       "t": 1791997191,
       "verdict": "new",
       "why": "Zelensky's betrayal claim not previously reported"
+    },
+    {
+      "head": "نتانیاهو: زمان برای حمله به ایران مناسب نیست ⚡️ بنیامین نتانیاهو مدعی شد که موافق انجام حمله پیش دستانه علیه ا",
+      "id": "e714cfb49b",
+      "t": 1791998977,
+      "verdict": "unavailable"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر کشاورزی و محلی مربوط به داراب است",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1791981568,
-      "title": "آغاز برداشت ذرت علوفه ای در داراب/ پیش بینی تولید ۵۵ هزار تن محصول"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: نمایشگاه هنری رویداد محلی و فرهنگی است و ارزش خبری درجه یک ندارد.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791981569,
-      "title": "«ورای رخ»؛ روایت سیر پرتره نگاری در آثار سه نسل از هنرمندان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: نامه محیط زیست برای بازنگری طرح نفتی، خبری اداری و غیرمهم است.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1791981570,
-      "title": "طرح مطالعات اجتماعی توسعه میدان نفتی سهراب بازنگری می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: درخواست رسمی رئیس‌جمهور پاکستان برای خویشتن‌داری ایران و آمریکا",
-      "rescued": true,
-      "rule": "no-concrete-event",
-      "t": 1791981571,
-      "title": "پاکستان از ایران و آمریکا خواست خویشتنداری کنند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: سخنرانی مقام مسئول و اظهارنظر درباره معیارهای علمی؛ فاقد ارزش خبری درجه یک.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791981572,
-      "title": "بابایی: جهان اسلام نباید اسیر معیارهای علمی نظام سلطه شود"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: گزارش نشست تخصصی و بررسی مشکلات صنعت بازی، فاقد رویداد کلان",
       "rescued": false,
@@ -5943,6 +5907,41 @@
       "rule": "no-concrete-event",
       "t": 1791997183,
       "title": "زلنسکی: به من خیانت شد!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: مقالهٔ مشورتی، رویداد واقعی نیست",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1791998959,
+      "title": "چگونه کودک غرق در بازی را پای درس بنشانیم؟"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Public rally against US minister's insulting remarks",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1791998960,
+      "title": "«حماسه پرچمداران تمدن ایران زمین»؛ پاسخ مردمی در تخت جمشید به توهین های وزیر خارجه آمریکا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: routine bilateral central bank meeting",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1791998961,
+      "title": "دیدار رؤسای کل بانک های مرکزی ایران و پاکستان"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تصادف زنجیره ای 4 خودرو، 1 فوتی، 6 مصدوم",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1791998962,
+      "title": "تصادف زنجیره ای ۴خودرو در اتوبان کاشان-اصفهان یک فوتی و ۶مصدوم داشت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مبارزه محلی، نتیجه مهم نیست",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1791998963,
+      "title": "عبدی: حیف شد برنده نشدیم/ یک ورزشگاه مدرن در خرم آباد در حال ساخت است"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -7003,6 +7002,26 @@
       ],
       "t": 1791997204.5364094,
       "title": "زلنسکی: به من خیانت شد! ⚡️ رئیس جمهور اوکراین گفت نسبت به تعاملات اخیر رئیس جمهور آمریکا با روسیه احساس «خیانت» می کند."
+    },
+    {
+      "h": [
+        "انتخب",
+        "انجم",
+        "اکتبر",
+        "بنمن",
+        "خصص",
+        "دستن",
+        "زمن",
+        "عن",
+        "مدع",
+        "مفق",
+        "منسب",
+        "نبت",
+        "نتنه",
+        "هشدر"
+      ],
+      "t": 1791998978.9897008,
+      "title": "نتانیاهو: زمان برای حمله به ایران مناسب نیست ⚡️ بنیامین نتانیاهو مدعی شد که موافق انجام حمله پیش دستانه علیه ایران پیش ا"
     }
   ],
   "_published_incidents": [
@@ -7645,91 +7664,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اتهم",
-        "اختلف",
-        "اطلع",
-        "افرط",
-        "افغنست",
-        "تحرک",
-        "ترر",
-        "تکد",
-        "حضر",
-        "درند",
-        "دشنب",
-        "دپلمس",
-        "ربط",
-        "رسن",
-        "سزم",
-        "شبه",
-        "طرف",
-        "طلب",
-        "عض",
-        "عطلل",
-        "فدرل",
-        "نظم",
-        "نفر",
-        "نگه",
-        "هزر",
-        "هستند",
-        "همچن",
-        "وزر",
-        "وگ",
-        "پخش",
-        "پرتنش",
-        "پکست",
-        "گد"
-      ],
-      "t": 1791868039.3742728,
-      "title": "پاکستان: بیش از ۲۰ هزار شبه نظامی همچنان در افغانستان حضور دارند ⚡️ «عطاالله ترار» وزیر فدرال اطلاع رسانی و پخش پاکستان "
-    },
-    {
-      "k": [
-        "ارتش",
-        "امرک",
-        "بزنشست",
-        "ترن",
-        "تمم",
-        "تکنن",
-        "جنگ",
-        "جهن",
-        "خطر",
-        "خلج",
-        "دد",
-        "در",
-        "درند",
-        "دست",
-        "دم",
-        "ذخر",
-        "زد",
-        "زمن",
-        "سخت",
-        "شبن",
-        "شرط",
-        "عل",
-        "فر",
-        "فرس",
-        "قطع",
-        "لجستک",
-        "مج",
-        "مدت",
-        "مشک",
-        "مهم",
-        "نبرد",
-        "نر",
-        "همن",
-        "وضعت",
-        "پشتبن",
-        "چهرستر",
-        "ژنرل",
-        "کفر",
-        "کهش",
-        "یک"
-      ],
-      "t": 1791869110.0084379,
-      "title": "از خطر دائمی در دریا تا قطع پشتیبانی لجستیکی در خلیج فارس و کاهش ذخایر موشکی و مهمات آمریکا! ⚡️ مک کافری ژنرال چهارستاره"
-    },
     {
       "k": [
         "اغز",
@@ -11862,6 +11796,47 @@
       ],
       "t": 1791997204.5275073,
       "title": "زلنسکی: به من خیانت شد! ⚡️ رئیس جمهور اوکراین گفت نسبت به تعاملات اخیر رئیس جمهور آمریکا با روسیه احساس «خیانت» می کند."
+    },
+    {
+      "k": [
+        "احتمل",
+        "ادع",
+        "ار",
+        "ارتش",
+        "اسرل",
+        "انتخب",
+        "انجم",
+        "انک",
+        "اکتبر",
+        "بنمن",
+        "تهر",
+        "حمل",
+        "خصص",
+        "دستن",
+        "دنبل",
+        "رد",
+        "رر",
+        "رقب",
+        "زمن",
+        "سس",
+        "صلح",
+        "عن",
+        "مبن",
+        "مدع",
+        "مصحب",
+        "مفق",
+        "منسب",
+        "نبت",
+        "نتنه",
+        "نر",
+        "نظم",
+        "هشدر",
+        "پرسش",
+        "پسخ",
+        "کر"
+      ],
+      "t": 1791998978.9771144,
+      "title": "نتانیاهو: زمان برای حمله به ایران مناسب نیست ⚡️ بنیامین نتانیاهو مدعی شد که موافق انجام حمله پیش دستانه علیه ایران پیش ا"
     }
   ],
   "_text_polish": {
@@ -11873,7 +11848,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791998244
+    "at": 1791998826
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11888,8 +11863,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791998759.0,
-    "last_failure": 1791998459,
+    "disabled_until": 1791999267,
+    "last_failure": 1791998966,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
@@ -11911,14 +11886,14 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791998559.6996033,
-    "last_failure": 1791993772,
+    "disabled_until": 1792002577.2235253,
+    "last_failure": 1791998961,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791998559.7967093,
-    "last_failure": 1791994951,
+    "disabled_until": 1792002577.3307304,
+    "last_failure": 1791998969,
     "last_quality_failure": 1791941575,
     "last_status": 429
   },
