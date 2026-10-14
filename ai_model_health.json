@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: no usable verdict",
-      "t": 1791969403
-    },
-    {
-      "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.5-flash-lite",
-      "t": 1791969407
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: no usable verdict",
-      "t": 1791969998
-    },
-    {
       "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.5-flash-lite",
       "t": 1791970005
     },
@@ -159,73 +147,85 @@
     {
       "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.5-flash-lite",
       "t": 1791985072
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1791985643
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1791985645
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 2 stories",
+      "t": 1791985646
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 86,
+        "calls": 89,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 52,
-        "other": 5
+        "ok": 54,
+        "other": 6
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 32,
-        "calls": 459,
+        "calls": 460,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 424,
+        "ok": 425,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 113,
-        "calls": 243,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199147, Requested 1782. Please try again in 6m41.3",
+        "429": 114,
+        "calls": 245,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198395, Requested 1651. Please try again in 19.872",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 124,
+        "ok": 125,
         "other": 6
       },
       "groq:openai/gpt-oss-20b": {
         "429": 70,
-        "calls": 148,
+        "calls": 149,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199309, Requested 1887. Please try again in 8m36.67",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 36,
-        "other": 42
+        "other": 43
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 7,
-        "calls": 7,
+        "429": 8,
+        "calls": 8,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 7,
-        "calls": 7,
+        "429": 8,
+        "calls": 8,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:google/gemma-4-31b-it:free": {
-        "429": 7,
-        "calls": 7,
+        "429": 8,
+        "calls": 8,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 7,
-        "calls": 7,
+        "429": 8,
+        "calls": 8,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
-        "429": 7,
-        "calls": 7,
+        "429": 8,
+        "calls": 8,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
@@ -1057,6 +1057,13 @@
       "level": 4,
       "t": 1791985103.561884,
       "title": "جهش صادرات چین با موتور محرک هوش مصنوعی؛ مازاد تجاری از ۹۳۸ میلیارد دلار گذشت",
+      "urgent": false
+    },
+    {
+      "label": "حادثه",
+      "level": 4,
+      "t": 1791985661.1551976,
+      "title": "انفجارهایی ریاض را لرزاند",
       "urgent": false
     }
   ],
@@ -2334,12 +2341,6 @@
       "topic": "سیاست",
       "until": 1792027966.104175
     },
-    "v4|ترامپ: توافق گازوئیل روسیه و آمریکا به نفع جهان است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: اظهارنظر رسمی رئیس‌جمهور آمریکا درباره توافق استراتژیک با روسیه",
-      "topic": "سیاست",
-      "until": 1791996739.9630356
-    },
     "v4|ترس نتانیاهو از شکست در انتخابات؛ ادعاها علیه ایران و مقاومت": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Netanyahu warns of election loss, blames Iran",
@@ -3408,6 +3409,12 @@
       "topic": "آب و هوا",
       "until": 1792051755.0391302
     },
+    "v4|صدور ۱۳۴ مجوز برای کارگاه های خانگی خراسان جنوبی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: صدور مجوز برای کارگاه‌های خانگی یک موضوع استانی و غیرراهبردی است.",
+      "topic": "جامعه",
+      "until": 1792072045.060752
+    },
     "v4|صعود جرکنی و یزدی به نیمه نهایی کشتی فرنگی امیدهای جهان/ شکست شمسی پور و حذف فتحی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Wrestling semi‑final qualification, not top‑tier sport event",
@@ -3461,6 +3468,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: نامه محیط زیست برای بازنگری طرح نفتی، خبری اداری و غیرمهم است.",
       "topic": "اقتصاد",
       "until": 1792067970.4629896
+    },
+    "v4|طرح های تکمیل کننده زنجیره های ارزش در اولویت دریافت حمایت های صمت است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine provincial administrative announcement regarding industrial support policies.",
+      "topic": "اقتصاد",
+      "until": 1792072043.8973172
     },
     "v4|طلای سفید خراسان رضوی گرفتار چالش های اقلیمی و هزینه های تولید": {
       "ok": false,
@@ -3575,12 +3588,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: بارندگی محلی در فارس و پیش‌بینی هواشناسی ارزش ملی ندارد.",
       "topic": "آب و هوا",
       "until": 1792058679.702033
-    },
-    "v4|فرامرزی: تجهیزات امدادی اراک برای مقابله با سیلاب آماده است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: Local preparedness report for a city, not a national event.",
-      "topic": "جامعه",
-      "until": 1791996695.0084915
     },
     "v4|فرمانده نیروی دریایی سپاه: ناو ۱۳ میلیارد دلاری آمریکا ۷۰۰ کیلومتر از تنگه هرمز فاصله گرفته/ مقام کاخ سفید به الجزیره: اطلاعات منتشرشده درباره احتمال حمله آمریکا به ایران پیش از ان": {
       "ok": false,
@@ -4664,6 +4671,11 @@
     }
   },
   "_editorial_blocks": {
+    "from allies to enemies: ethiopia and eritrea edge toward war": {
+      "at": 1791985666.0900836,
+      "reason": "ai_unavailable_foreign",
+      "until": 1791986866.0900836
+    },
     "girl rescued from flaming apartment after israeli attack on gaza": {
       "reason": "content_duplicate",
       "until": 1792002014.2185206
@@ -4684,6 +4696,11 @@
       "reason": "content_duplicate",
       "until": 1791999680.4540682
     },
+    "ukraine’s vulnerability grows as starlink is restricted and russia escalates": {
+      "at": 1791985666.0900836,
+      "reason": "ai_unavailable_foreign",
+      "until": 1791986866.0900836
+    },
     "ukrainian drones strike more than 100km into russian territory": {
       "at": 1791973413.6442916,
       "reason": "policy_scope_blocked",
@@ -4693,10 +4710,6 @@
       "reason": "content_duplicate",
       "until": 1791998617.414455
     },
-    "اخباری از حمله گسترده یمن به ریاض و الخرج": {
-      "reason": "content_duplicate",
-      "until": 1791985226.8121314
-    },
     "استانداری هرمزگان: حمله به یک لنج صیادی در شهرستان سیریک در محدوده بندر کلاهی/ سه نفر از سرنشینان مصدوم شدند": {
       "reason": "content_duplicate",
       "until": 1791985856.0813954
@@ -4705,13 +4718,14 @@
       "reason": "content_duplicate",
       "until": 1791989292.3323138
     },
-    "العربیه به نقل از یک منبع در وزارت انرژی عربستان: حمله به یک ساختمان اداری متعلق به شرکت آرامکو/ هیچ کس مجروح نشد": {
-      "reason": "content_duplicate",
-      "until": 1791982926.3981113
-    },
     "انفجار در ریاض پس از حمله موشکی؛ گزارش ها از خسارت به تأسیسات نفتی": {
       "reason": "content_duplicate",
       "until": 1792006006.122109
+    },
+    "انفجارهایی ریاض را لرزاند": {
+      "at": 1791985666.0900836,
+      "reason": "ai_unavailable_local",
+      "until": 1791986866.0900836
     },
     "اوج فشار روی کریک/ انفجار در منچستر: این چه افتضاحی بود؟!": {
       "reason": "content_duplicate",
@@ -4725,10 +4739,6 @@
       "reason": "content_duplicate",
       "until": 1792006684.1400962
     },
-    "اکسیوس به نقل از مقام اسرائیلی: نتانیاهو گفته ترامپ بحث درباره احتمال حمله به ایران پیش از انتخابات را مطرح کرده، نه او/ بر اساس این روایت، ترامپ از نتانیاهو پرسیده «آیا اسرائیل در": {
-      "reason": "content_duplicate",
-      "until": 1791984078.9034004
-    },
     "اکسیوس: هگست و فرمانده سنتکام موافق حمله اند؛ مشاوران ترامپ فشار اقتصادی را ترجیح می دهند": {
       "reason": "content_duplicate",
       "until": 1792005524.9190183
@@ -4736,10 +4746,6 @@
     "بازداشت یک مهندس سعودی در آمریکا به اتهام جاسوسی از یک شرکت هوش مصنوعی": {
       "reason": "content_duplicate",
       "until": 1791986978.9150062
-    },
-    "بلومبرگ: مقر شرکت آرامکو در شهر ظهران عربستان، دیروز در جریان حمله موشکی انصارالله هدف قرار گرفت/ این حمله باعث آتش سوزی در بخشی از این ساختمان شد": {
-      "reason": "content_duplicate",
-      "until": 1791982913.6578226
     },
     "بیمارستان میناب: حال عمومی مجروحان حمله پهپادی امروز به یک فروند لنج صیادی در سیریک خوب است / یکی از مجروحان ترکش به ناحیه سینه و شکم او برخورد کرده": {
       "reason": "content_duplicate",
@@ -4752,10 +4758,6 @@
     "تداوم موج اعدام ها؛ شمار اعدام شدگان اعتراضات ملی به دست کم ۳۶ نفر رسید": {
       "reason": "content_duplicate",
       "until": 1792000890.4270756
-    },
-    "تشدید تنش ها بر سر هرمز و نفت؛ ترامپ ایران را به حمله ای شدید تهدید کرد": {
-      "reason": "content_duplicate",
-      "until": 1791984064.4856844
     },
     "تصاویر ماهواره ای از وضعیت فرودگاه ملک فهد عربستان پس از حمله": {
       "reason": "content_duplicate",
@@ -4874,10 +4876,6 @@
       "reason": "content_duplicate",
       "until": 1791991631.1737611
     },
-    "قوه قضائیه: علی سینا مصطفوی، تروریست مسلح و عامل دشمن در جنگ ۴۰ روزه که منجر به مجروحیت تعدادی از شهروندان و یک دختر خردسال شده بود، اعدام شد": {
-      "reason": "content_duplicate",
-      "until": 1791984735.100123
-    },
     "مسکو: گازوییل روسیه هم به بازار جهانی و هم به آمریکا عرضه خواهد شد": {
       "reason": "content_duplicate",
       "until": 1792006013.7490463
@@ -4912,12 +4910,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "ندامت ترامپ از ترور مقامات ایران فریب کان ندهد/ باید منتظر ترور و درگیری های تازه باشیم ⚡️ نخست این که احتمالا",
-      "id": "2286186fdd",
-      "t": 1791946788,
-      "verdict": "unavailable"
-    },
     {
       "head": "جریمه ۱.۲ میلیارد دلاری بانک آمریکا به دلیل نقض تحریم ها ⚡️ وزارت خزانه داری آمریکا اعلام کرد که «بانک آمریکا»",
       "id": "58b78dddfd",
@@ -5455,23 +5447,18 @@
       "t": 1791985101,
       "verdict": "update",
       "why": "دومین خبر درباره مازاد تجاری چین با جزئیات جدید"
+    },
+    {
+      "head": "انفجارهایی ریاض را لرزاند ⚡️ منابع خبری بار دیگر از حملات جدید و صدای انفجارها در ریاض پایتخت عربستان خبر دادن",
+      "id": "eabcea97d2",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1791985655,
+      "verdict": "new",
+      "why": "حمله جدید به ریاض با موارد قبلی متفاوت است."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: سخنان وزیر درباره اصلاح ساختار صندوق ذخیره فرهنگیان روتین است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791975725,
-      "title": "منافع فرهنگیان در صندوق ذخیره باید به معلمان برسد/ اصلاح ساختار در دستور کار"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بازدید نظارتی محلی و توصیه‌های عادی محسوب می‌شود.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791976315,
-      "title": "از فرودگاه مهرآباد بازدید نظارتی انجام شد"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بازدید استانی دادستان و رسیدگی به کمپ ترک اعتیاد محلی",
       "rescued": false,
@@ -6017,6 +6004,20 @@
       "rule": "below-event-threshold",
       "t": 1791985069,
       "title": "پیگیری ارزش مالکانه و سهام دار شدن اعضای صندوق ذخیره فرهنگیان"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine provincial administrative announcement regarding industrial support policies.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1791985643,
+      "title": "طرح های تکمیل کننده زنجیره های ارزش در اولویت دریافت حمایت های صمت است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: صدور مجوز برای کارگاه‌های خانگی یک موضوع استانی و غیرراهبردی است.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1791985645,
+      "title": "صدور ۱۳۴ مجوز برای کارگاه های خانگی خراسان جنوبی"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -7021,6 +7022,17 @@
       ],
       "t": 1791985103.5486853,
       "title": "جهش صادرات چین با موتور محرک هوش مصنوعی؛ مازاد تجاری از ۹۳۸ میلیارد دلار گذشت ⚡️ صادرات چین در ماه سپتامبر با جهش ۳۶.۳ د"
+    },
+    {
+      "h": [
+        "بر",
+        "رض",
+        "صد",
+        "لرزند",
+        "پتخت"
+      ],
+      "t": 1791985661.1276922,
+      "title": "انفجارهایی ریاض را لرزاند ⚡️ منابع خبری بار دیگر از حملات جدید و صدای انفجارها در ریاض پایتخت عربستان خبر دادند."
     }
   ],
   "_published_incidents": [
@@ -7591,6 +7603,25 @@
       "regions": [],
       "t": 1791981062.4129574,
       "title": "یک زائر و یک بازنشسته؛ قربانیان حمله حوثی ها به فرودگاهی در عربستان ⚡️ یک زائر و یک بازنشسته در جریان حمله گروه حوثی ها ",
+      "toll": 0
+    },
+    {
+      "a": [
+        "لرزند",
+        "پتخت"
+      ],
+      "cities": [
+        "ریاض"
+      ],
+      "kind": "attack",
+      "places": [
+        "ریاض"
+      ],
+      "regions": [
+        "gulf"
+      ],
+      "t": 1791985661.141203,
+      "title": "انفجارهایی ریاض را لرزاند ⚡️ منابع خبری بار دیگر از حملات جدید و صدای انفجارها در ریاض پایتخت عربستان خبر دادند.",
       "toll": 0
     }
   ],
@@ -11361,6 +11392,22 @@
       ],
       "t": 1791985103.5354457,
       "title": "جهش صادرات چین با موتور محرک هوش مصنوعی؛ مازاد تجاری از ۹۳۸ میلیارد دلار گذشت ⚡️ صادرات چین در ماه سپتامبر با جهش ۳۶.۳ د"
+    },
+    {
+      "k": [
+        "انفجر",
+        "بر",
+        "حمل",
+        "خبر",
+        "رض",
+        "صد",
+        "عربست",
+        "لرزند",
+        "منبع",
+        "پتخت"
+      ],
+      "t": 1791985661.1142366,
+      "title": "انفجارهایی ریاض را لرزاند ⚡️ منابع خبری بار دیگر از حملات جدید و صدای انفجارها در ریاض پایتخت عربستان خبر دادند."
     }
   ],
   "_text_polish": {
@@ -11372,7 +11419,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791984870
+    "at": 1791985446
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11387,9 +11434,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791985367.0,
-    "last_failure": 1791985067,
+    "disabled_until": 1791985945.0,
+    "last_failure": 1791985645,
     "last_status": 503
+  },
+  "gemini:gemini-3.5-flash-lite": {
+    "disabled_until": 1791985943.0,
+    "last_failure": 1791985643,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -11405,7 +11457,7 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791988701.1435983,
+    "disabled_until": 1791989254.032988,
     "last_failure": 1791960152,
     "last_status": 429
   },
@@ -11428,20 +11480,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791974825.0722456,
-    "last_failure": 1791971225,
+    "disabled_until": 1791989251.4823353,
+    "last_failure": 1791985651,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791974824.9522998,
-    "last_failure": 1791971224,
+    "disabled_until": 1791989251.273652,
+    "last_failure": 1791985651,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791974825.0119724,
-    "last_failure": 1791971225,
+    "disabled_until": 1791989251.367291,
+    "last_failure": 1791985651,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -11452,14 +11504,14 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791974825.1314766,
-    "last_failure": 1791971225,
+    "disabled_until": 1791989251.5774112,
+    "last_failure": 1791985651,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791974825.194914,
-    "last_failure": 1791971225,
+    "disabled_until": 1791989251.6783385,
+    "last_failure": 1791985651,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
