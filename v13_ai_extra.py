@@ -14,8 +14,10 @@ This launcher fixes that without touching the other files:
 3. Daily-quota rest: a 429 that says the DAILY quota is used up rests that
    model until its reset (Gemini: midnight Pacific) instead of 10 minutes.
 4. Shorter translation input: article text sent for translation is capped.
-5. A story blocked only because no AI was available (ai_unavailable_foreign)
-   is held 20 minutes instead of 6 hours, so it is retried when AI is back.
+5. A story blocked only because no AI was available (foreign or Persian) is
+   an editorial block, not a "failed publication" (no Telegram request was
+   made), and is held 20 minutes instead of 6 hours, so it is retried when
+   AI is back.
 6. AI meter: calls / ok / 429 per model per day (+ last error text) are saved
    in ai_model_health.json under _ai_usage, so quota use is measured.
 
@@ -46,6 +48,7 @@ DAILY_429 = re.compile(r"per[ _-]?day|perday|daily|\bTPD\b|\bRPD\b", re.I)
 _daily_rest = {}   # health key -> unix time when its daily quota resets
 _usage = {}        # health key -> counters for this run
 _events = []       # short log of batch results and AI errors for this run
+_no_ai_titles = set()  # stories whose rewrite failed only because no AI answered
 
 
 def _event(text):
@@ -72,7 +75,10 @@ def install_router():
 
     def gemini_request(main, title, article_text):
         text = str(article_text or "")
-        return original_request(main, title, text[:TRANSLATION_SOURCE_CHARS] if text else article_text)
+        result = original_request(main, title, text[:TRANSLATION_SOURCE_CHARS] if text else article_text)
+        if result is None and title:
+            _no_ai_titles.add(str(title))
+        return result
 
     r.gemini_request = gemini_request
     r._v13_ai_extra = True
@@ -179,6 +185,13 @@ def install_editor_gate():
                         budget=g.AI_BUDGET_PER_STORY, timeout=g.AI_TIMEOUT)
 
     g.ai_judge = ai_judge
+    try:
+        # English wires write "Aramco office hit" / "refinery struck": count those as war events too
+        # ("shares hit a record" stays out: only a hit place/object counts).
+        event = g.WAR_EVENT[:-1] + r"|\b(?:was|were|been|office|site|facility|facilities|plant|refinery|airport|port|tanker|ship)\s+hit\b|\bstruck\b(?!\s+(?:an?\s+|the\s+)?(?:deal|agreement|accord|pact|balance|tone|chord)))"
+        g.WAR_ZONE = re.compile(event + r"[^.؛]{0,60}" + g.WAR_PLACES + r"|" + g.WAR_PLACES + r"[^.؛]{0,60}" + event, re.I)
+    except Exception as exc:
+        print(f"V13 AI EXTRA: war-zone verbs not extended ({exc})", flush=True)
     g._v13_ai_extra = True
     print("V13 AI EXTRA: editor gate is cooldown-aware (Groq -> Gemini -> OpenRouter)", flush=True)
 
@@ -425,7 +438,7 @@ def install_block_ttl(rb):
 
     def effective_until(v):
         until = float(v.get("until", 0) or 0)
-        if v.get("reason") == "ai_unavailable_foreign":
+        if str(v.get("reason", "")).startswith("ai_unavailable"):
             at = float(v.get("at", 0) or 0) or (until - long_ttl)
             until = min(until, at + AI_UNAVAILABLE_TTL_SECONDS)
         return until
@@ -447,7 +460,7 @@ def install_block_ttl(rb):
             blocks = _load_recent_blocks()
             now = time.time()
             for title, reason in new_blocks.items():
-                ttl = AI_UNAVAILABLE_TTL_SECONDS if reason == "ai_unavailable_foreign" else long_ttl
+                ttl = AI_UNAVAILABLE_TTL_SECONDS if str(reason).startswith("ai_unavailable") else long_ttl
                 blocks[title] = {"until": now + ttl, "at": now, "reason": reason}
             if len(blocks) > rb._EDITORIAL_BLOCK_MAX:
                 newest = sorted(blocks.items(), key=lambda kv: kv[1].get("until", 0))[-rb._EDITORIAL_BLOCK_MAX:]
@@ -489,6 +502,8 @@ if __name__ == "__main__":
     try:
         result = rb.main.main()
     finally:
+        for title in _no_ai_titles:
+            rb._editorial_blocks_this_run.setdefault(rb._norm_title(title), "ai_unavailable_local")
         rb._reclassify_editorial_blocks()
         save_usage()
     if result is False:
