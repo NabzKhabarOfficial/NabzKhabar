@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
-      "t": 1791956042
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1791956043
     },
@@ -159,6 +155,10 @@
     {
       "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
       "t": 1791964752
+    },
+    {
+      "e": "EDITOR BATCH: 5/6 via gemini/gemini-3.5-flash-lite",
+      "t": 1791965360
     }
   ],
   "_ai_usage": {
@@ -173,26 +173,26 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 32,
-        "calls": 119,
+        "calls": 131,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 87,
+        "ok": 99,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 36,
-        "calls": 102,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199007, Requested 1956. Please try again in 6m56.0",
+        "429": 38,
+        "calls": 106,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199307, Requested 1833. Please try again in 8m12.4",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 63,
+        "ok": 65,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 25,
-        "calls": 69,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198547, Requested 1956. Please try again in 3m37.29",
+        "429": 26,
+        "calls": 71,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199041, Requested 1918. Please try again in 6m54.28",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 25,
-        "other": 19
+        "other": 20
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 6,
@@ -239,13 +239,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 5,
-      "t": 1791792270.373308,
-      "title": "یک تیم تروریستی مرتبط با ترورهای اخیر در سیستان وبلوچستان منهدم شد",
-      "urgent": false
-    },
     {
       "label": "سیاست",
       "level": 4,
@@ -1008,6 +1001,20 @@
       "t": 1791964764.9316041,
       "title": "هشدار ایران درباره گسترش جنگ به زیرساخت های اینترنت و فناوری در خلیج فارس",
       "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 3,
+      "t": 1791965373.3797827,
+      "title": "قائم پناه: ترامپ به دنبال کنترل منابع نفتی ایران است",
+      "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 3,
+      "t": 1791965386.7819998,
+      "title": "قیمت دلار، طلا و سکه امروز چهارشنبه ۲۲ مهر ۱۴۰۵",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-13",
@@ -1299,12 +1306,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Club match, not national team or major event",
       "topic": "ورزش",
       "until": 1791993724.357909
-    },
-    "v4|آشکارسازی ۵۰ کیلومتر محور شهمیرزاد–چاشم–خطیرکوه پیش از فصل بارش ها": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی و روتین راهداری است",
-      "topic": "جامعه",
-      "until": 1791972970.7304103
     },
     "v4|آغاز توزیع ۵ هزار و ۳۰۰ دز واکسن آنفلوانزا در ایلام": {
       "ok": false,
@@ -1618,6 +1619,12 @@
       "topic": "نظامی",
       "until": 1791975210.976949
     },
+    "v4|اعمال قانون ۲۰۰ دستگاه خودرو هنجارشکن در طرقبه شاندیز": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و روتین پلیس ترفکی در طرقبه شاندیز",
+      "topic": "جامعه",
+      "until": 1792051754.220413
+    },
     "v4|افتتاح رویداد صنایع خلاق «مانُوین» در اصفهان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: افتتاح نمایشگاه استانی یک رویداد محلی و غیرراهبردی محسوب می‌شود.",
@@ -1659,12 +1666,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=9 happened=True scope=world: هشدار رسمی آمریکا به ایران درباره هدف قرار دادن کشتی‌های نظامی",
       "topic": "نظامی",
       "until": 1791993283.0325375
-    },
-    "v4|الجزیره: قیمت گاز طبیعی در اروپا از مرز ۸۶ یورو به ازای هر مگاوات ساعت عبور کرد و به بالاترین سطح خود از زمستان ۲۰۲۲ رسید": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: افزایش قیمت گاز اروپا به بالاترین سطح از زمستان ۲۰۲۲",
-      "topic": "اقتصاد",
-      "until": 1791972960.3274183
     },
     "v4|العربیه به نقل از یک منبع در وزارت انرژی عربستان: حمله به یک ساختمان اداری متعلق به شرکت آرامکو/ هیچ کس مجروح نشد": {
       "ok": true,
@@ -1737,12 +1738,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: قیمت طلا کمی افزایش یافت، اثر اقتصادی کلان ندارد",
       "topic": "اقتصاد",
       "until": 1791974569.884747
-    },
-    "v4|انتقاد مقتدی صدر از ممنوعیت حجاب در جمهوری آذربایجان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: انتقاد کلامی مقتدی صدر اهمیت راهبردی ندارد",
-      "topic": "سیاست",
-      "until": 1791972928.9932349
     },
     "v4|انسجام اجتماعی، سپر ذهن جامعه در برابر جنگ شناختی": {
       "ok": false,
@@ -1881,6 +1876,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: متهم شدن مهندس سعودی به اتهام جاسوسی در اوپن ای آی",
       "topic": "قضایی",
       "until": 1792047700.6931686
+    },
+    "v4|بازداشت یک مهندس سعودی در آمریکا به اتهام جاسوسی از یک شرکت هوش مصنوعی": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: بازداشت مهندس سعودی در آمریکا به اتهام جاسوسی از اوپن‌AI",
+      "topic": "فناوری",
+      "until": 1792051760.1354804
     },
     "v4|بازداشت ۲ عضو تیم قاچاق سلاح جنگی در غرب ایران/ ۱۰۹ قبضه سلاح کشف شد": {
       "ok": true,
@@ -2170,6 +2171,12 @@
       "topic": "نظامی",
       "until": 1791990315.6449878
     },
+    "v4|تحصیل بیش از ۵۹ هزاردانشجوی افغان درایران/ حمایت های بین المللی متناسب با بار میزبانی نیست": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: گزارش آماری و سخنرانی مقام مسئول در سازمان ملل",
+      "topic": "جامعه",
+      "until": 1792051760.1740694
+    },
     "v4|تحولات یمن محور گفت وگوی وزیران خارجه ایران و عمان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Diplomatic talk, no concrete decision; low impact",
@@ -2332,6 +2339,12 @@
       "topic": "سیاست",
       "until": 1792051148.4306993
     },
+    "v4|توماس پیکتی: آمریکا در حال از دست دادن کنترل جهان است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: دیدگاه و تحلیل یک اقتصاددان، رخداد عملی نیست.",
+      "topic": "سیاست",
+      "until": 1792051752.9710746
+    },
     "v4|توکلی: دشمن به دنبال تضعیف بصیرت دینی و تغییر سبک زندگی جامعه است": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Statement on enemy's cultural war, no concrete event.",
@@ -2367,12 +2380,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Coach appointment, not major competition result",
       "topic": "ورزش",
       "until": 1792003062.9780831
-    },
-    "v4|ثبت بیش از ۱۰ هزار تماس سلامت روان در سامانه ۴۰۳۰ طی جنگ رمضان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آمار منطقه‌ای تماس‌های سامانه سلامت روان در شیراز و حومه",
-      "topic": "سلامت",
-      "until": 1791972952.3308601
     },
     "v4|ثبت رکورد تاریخی ایران با کسب ۱۸ مدال طلا در المپیادهای علمی جهانی": {
       "ok": true,
@@ -3076,6 +3083,12 @@
       "topic": "ورزش",
       "until": 1792019823.77824
     },
+    "v4|سپاه پاسداران شرایط حضور بانوان در عرصه ورزش را فراهم کرد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: بیانیه مقامات درباره شرایط ورزش زنان رویداد درجه یک نیست",
+      "topic": "ورزش",
+      "until": 1792051755.7835872
+    },
     "v4|سپاه: یکی دیگر از عناصر گروگانگیر وابسته به گروهک تروریستی در کورین زاهدان به هلاکت رسید / شمار تروریستهای به هلاکت رسیده به ۶ تن رسید / درگیری با سایر عناصر باقی مانده همچنان ادام": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=iran_national: عملیات امنیتی و درگیری مسلحانه سپاه در زاهدان با تروریست‌ها",
@@ -3124,12 +3137,6 @@
       "topic": "فناوری",
       "until": 1792048851.6859736
     },
-    "v4|شناخت نیازهای فرهنگی دانشجویان به مشارکت مستقیم آنها نیاز دارد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: اظهارنظر مسئول فرهنگی دانشگاه درباره نیازهای فرهنگی دانشجویان.",
-      "topic": "جامعه",
-      "until": 1791973527.6693938
-    },
     "v4|شناسایی خودروهای دارای سرعت بحرانی و تحت تعقیب با فعالیت سامانه جدید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اعلام راه اندازی سامانه پلیس، خبری روتین و پایین تر از سطح اول است.",
@@ -3166,6 +3173,12 @@
       "topic": "اقتصاد",
       "until": 1791989667.1105673
     },
+    "v4|صادرات ۲۰۰۰ مگاوات برق ایران به افغانستان روی میز وزارت نیرو": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: بررسی پیشنهاد و طرح اولیه صادرات برق، بدون تصمیم قطعی",
+      "topic": "اقتصاد",
+      "until": 1792051760.1867697
+    },
     "v4|صدای افسانه ای برمی گردد؟/ بازگشت موتورهای 8 سیلندر به فرمول یک": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: خبر تخصصی و غیرمهم فرمول یک برای مخاطب عام",
@@ -3177,6 +3190,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial meeting, limited national impact",
       "topic": "جامعه",
       "until": 1791993228.2184215
+    },
+    "v4|صدور هشدار نارنجی هواشناسی فارس/ بارش های رگباری در راه است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: هشدار هواشناسی استانی، رویداد محلی و پیش‌بینی است",
+      "topic": "آب و هوا",
+      "until": 1792051755.0391302
     },
     "v4|صرفه جویی همگانی در مصرف گاز مانع بیکاری و تعطیلی کارخانه ها می شود": {
       "ok": false,
@@ -3202,12 +3221,6 @@
       "topic": "اقتصاد",
       "until": 1791977500.0139048
     },
-    "v4|صندوق بین المللی پول: اقتصاد ایران سال آینده ۳.۶ درصد رشد می کند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: پیش‌بینی رسمی صندوق بین‌المللی پول از رشد اقتصادی ۳.۶ درصدی ایران",
-      "topic": "اقتصاد",
-      "until": 1791972976.4629078
-    },
     "v4|صنعت تجهیزات پزشکی گرفتار تصمیمات غلط است": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Critique, no concrete event or decision taken",
@@ -3220,23 +3233,11 @@
       "topic": "اقتصاد",
       "until": 1791981659.4785936
     },
-    "v4|ضرغامی: اتصال تولیدات هنرمندان اصفهان به بازار تقویت می شود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بیانیه محلی، اثر محدود بر صنایع دستی",
-      "topic": "اقتصاد",
-      "until": 1791973523.699846
-    },
     "v4|طرح «پرستار پیگیر» بازگشت مجدد بیماران مزمن به بیمارستان را ۵۳ درصد کاهش می دهد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: اعلام اجرای یک طرح بهداشتی داخلی و رویداد روتین وزارتخانه است.",
       "topic": "سلامت",
       "until": 1792049497.8919356
-    },
-    "v4|طرح چهاربندی آمریکا و اروپا برای حل وفصل جنگ اوکراین": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: طرح پیشنهادی در مرحله بررسی است و هنوز به توافق نرسیده.",
-      "topic": "سیاست",
-      "until": 1791972943.2145538
     },
     "v4|طرح چهارمحوری آمریکا و اروپا برای پایان جنگ اوکراین": {
       "ok": false,
@@ -3454,6 +3455,12 @@
       "topic": "سلامت",
       "until": 1791994970.9550638
     },
+    "v4|قائم پناه: ترامپ به دنبال کنترل منابع نفتی ایران است": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: اظهارنظر مقام ارشد دولتی درباره اهداف ترامپ در قبال نفت ایران",
+      "topic": "سیاست",
+      "until": 1792051760.1613324
+    },
     "v4|قائم پناه: لازمه برتر بودن ایران، دانایی فرزندان است/ ایجاد ۱۱ هزار کلاس هوشمند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Statement on education policy, no concrete event.",
@@ -3490,12 +3497,6 @@
       "topic": "سیاست",
       "until": 1791973557.6505423
     },
-    "v4|قالیباف: معیشت مردم باید آخرین نقطه آسیب پذیر در جنگ اقتصادی باشد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اظهارات کلی رئیس مجلس درباره معیشت مردم و اقتصاد",
-      "topic": "اقتصاد",
-      "until": 1791972939.0094137
-    },
     "v4|قانونگذاران آمریکایی خواستار توضیح دولت این کشور درمورد حمله به غیرنظامیان ایرانی شدند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: نامه ۷۷ قانونگذار آمریکایی به دولت درباره تلفات غیرنظامیان ایرانی در جنگ.",
@@ -3519,6 +3520,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: اعلام قیمت لحظه‌ای سکه و طلا در بازار داخلی",
       "topic": "اقتصاد",
       "until": 1791978140.3042142
+    },
+    "v4|قیمت دلار، طلا و سکه امروز چهارشنبه 22 مهر 1405": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: افزایش قیمت دلار و طلا به عنوان شوک اقتصادی",
+      "topic": "اقتصاد",
+      "until": 1792051760.9458356
     },
     "v4|قیمت نفت صعودی شد": {
       "ok": true,
@@ -3639,6 +3646,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine statement by a provincial official regarding vocational training and industry.",
       "topic": "اقتصاد",
       "until": 1791992672.3906012
+    },
+    "v4|مدیرکل صمت فارس: قدرت تبدیل دانش به فناوری، موتور پیشرفت کشورهاست": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سخنان مقام استانی درباره دانش بنیان ارزش خبری ملی ندارد",
+      "topic": "فناوری",
+      "until": 1792051756.8813028
     },
     "v4|مرادی: ۳۰ هزار مگاوات نیروگاه خورشیدی طی سال آینده ایجاد می شود": {
       "ok": false,
@@ -4402,12 +4415,6 @@
       "topic": "جامعه",
       "until": 1791999057.3289332
     },
-    "v4|کیفرخواست دو نفر از اعضای «باند گانگسترها» به اتهام محاربه صادر شد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: انگشت‌گذاری در جرم محاربه",
-      "topic": "قضایی",
-      "until": 1791973524.5945046
-    },
     "v4|کیفرخواست ۲ عضو باند سرقت مسلحانه از منازل تهران به اتهام محاربه صادر شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: صدور کیفرخواست سرقت مسلحانه رویداد محلی و قضایی معمولی است.",
@@ -4480,6 +4487,12 @@
       "topic": "سیاست",
       "until": 1791974092.94972
     },
+    "v4|گل گهر مقابل حریف خاطره ساز پرسپولیس/ ۳۵ سال پس از فینال آزادی، المحرق دوباره مقابل ایران!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: پیش‌بازی و تحلیل مسابقه ورزشی داخلی",
+      "topic": "ورزش",
+      "until": 1792051760.1486342
+    },
     "v4|گله زلنسکی از متحدان غربی؛ هیچ هشداری پیش از حمله دریافت نکردیم": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: انتقاد زلنسکی از غرب پس از حمله موشکی.",
@@ -4551,12 +4564,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Technical issue with emergency lines in Tehran is a local service matter.",
       "topic": "سلامت",
       "until": 1791980508.7029347
-    },
-    "v4|۱۵۰ هزار یمنی در حملات مستقیم عربستان و امارات کشته شدند؛ جنگ از ۷ اکتبر آغاز نشد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: اظهارنظر درباره آمار قدیمی جنگ یمن رویداد جدیدی نیست",
-      "topic": "سیاست",
-      "until": 1791972920.9981925
     },
     "v4|۲۰ میلیون هکتار طرح آماده آبخیزداری داریم/ ۶۵۰ دشت در معرض خطر سیلاب قرار دارد": {
       "ok": false,
@@ -4663,6 +4670,10 @@
       "reason": "content_duplicate",
       "until": 1791983516.0168533
     },
+    "بازداشت یک مهندس سعودی در آمریکا به اتهام جاسوسی از یک شرکت هوش مصنوعی": {
+      "reason": "content_duplicate",
+      "until": 1791986978.9150062
+    },
     "بلومبرگ: مقر شرکت آرامکو در شهر ظهران عربستان، دیروز در جریان حمله موشکی انصارالله هدف قرار گرفت/ این حمله باعث آتش سوزی در بخشی از این ساختمان شد": {
       "reason": "content_duplicate",
       "until": 1791982913.6578226
@@ -4694,24 +4705,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "ثبت دادخواست جنگ ۱۲ روزه در دیوان داوری دعاوی ایران و آمریکا ⚡️ رئیس مرکز امور حقوقی بین المللی معاونت حقوقی ر",
-      "id": "b8f4e0f399",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791887182,
-      "verdict": "new",
-      "why": "Filing a lawsuit in the Iran-U.S. Claims Tribunal is a new event."
-    },
-    {
-      "head": "رایزنی وزرای خارجه آمریکا و انگلیس درباره امنیت تنگه هرمز ⚡️ مارکو روبیو وزیر امور خارجه آمریکا و اد میلیبند و",
-      "id": "9b42ed091d",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791889398,
-      "verdict": "new",
-      "why": "گفتگوی وزرای خارجه آمریکا و انگلیس خبر جدیدی است."
-    },
     {
       "head": "انهدام یک تیم گروگانگیر در سیستان و بلوچستان ⚡️ قرارگاه قدس نیروی زمینی سپاه از انهدام یک تیم گروگانگیر وابسته",
       "id": "65753526d7",
@@ -5198,44 +5191,27 @@
       "t": 1791964763,
       "verdict": "new",
       "why": "This is a new warning about regional internet and technology infrastructure."
+    },
+    {
+      "head": "قائم پناه: ترامپ به دنبال کنترل منابع نفتی ایران است ⚡️ دونالد ترامپ تلاش می کند با الگوبرداری از رویکرد خود د",
+      "id": "b037876e6b",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1791965372,
+      "verdict": "new",
+      "why": "This is a new statement by Ghaempanah about Trump's oil plans."
+    },
+    {
+      "head": "قیمت دلار، طلا و سکه امروز چهارشنبه ۲۲ مهر ۱۴۰۵ ⚡️ روند نزولی قیمت دلار و طلا در بازار آزاد متوقف شد و نرخ ها ",
+      "id": "0e9f0c2318",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1791965386,
+      "verdict": "new",
+      "why": "The new post reports on currency and gold prices, which is a different economic topic."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Low‑impact bilateral military meeting",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1791933420,
-      "title": "دیدار و رایزنی فرمانده ارشد ارتش برزیل با فرمانده ارتش پاکستان در راولپندی"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: ordinary Champions League match, no major impact",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791933421,
-      "title": "Bayern’s Michael Olise sent off for ‘super dumb’ yellows within seconds"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: خبر ورزشی درباره بازیکن لیگ برتر و اهداف فردی او کم اهمیت است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791933423,
-      "title": "سورگی، مخفیانه ترین مدعی آقای گلی لیگ برتر"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مدافع پرسپولیس بازگشت از مصدومیت",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791933424,
-      "title": "ایری مصدومیت را پشت سر گذاشت و تمرین کرد/ پرسپولیس خبر دا د: مدافع ما برگشت! (عکس)"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: اخبار داخلی استرالیا فاقد اهمیت ملی برای ایران یا سطح جهانی است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791933426,
-      "title": "Australian politics live: Hanson dismisses ‘shamed and stoned’ remark as ‘heat of moment’; PM extends ‘thoughts and pray"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: شایعه بازگشت بازیکن، بدون تصمیم رسمی",
       "rescued": false,
@@ -5760,6 +5736,41 @@
       "rule": "below-event-threshold",
       "t": 1791964750,
       "title": "استاندار خراسان رضوی: ایجاد دانشکده هنر در دانشگاه فردوسی مشهد در حال پیگیری است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: دیدگاه و تحلیل یک اقتصاددان، رخداد عملی نیست.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791965352,
+      "title": "توماس پیکتی: آمریکا در حال از دست دادن کنترل جهان است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و روتین پلیس ترفکی در طرقبه شاندیز",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1791965354,
+      "title": "اعمال قانون ۲۰۰ دستگاه خودرو هنجارشکن در طرقبه شاندیز"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: هشدار هواشناسی استانی، رویداد محلی و پیش‌بینی است",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1791965355,
+      "title": "صدور هشدار نارنجی هواشناسی فارس/ بارش های رگباری در راه است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: بیانیه مقامات درباره شرایط ورزش زنان رویداد درجه یک نیست",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1791965355,
+      "title": "سپاه پاسداران شرایط حضور بانوان در عرصه ورزش را فراهم کرد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سخنان مقام استانی درباره دانش بنیان ارزش خبری ملی ندارد",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1791965356,
+      "title": "مدیرکل صمت فارس: قدرت تبدیل دانش به فناوری، موتور پیشرفت کشورهاست"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6178,6 +6189,42 @@
       ],
       "t": 1791964764.9208446,
       "title": "هشدار ایران درباره گسترش جنگ به زیرساخت های اینترنت و فناوری در خلیج فارس ⚡️ این هشدار به نقش راهبردی کابل های زیردریایی"
+    },
+    {
+      "h": [
+        "الگبردر",
+        "انرژ",
+        "بگرد",
+        "تلش",
+        "دست",
+        "دنبل",
+        "رکرد",
+        "قم",
+        "ونزل",
+        "پن",
+        "کنترل"
+      ],
+      "t": 1791965373.3672354,
+      "title": "قائم پناه: ترامپ به دنبال کنترل منابع نفتی ایران است ⚡️ دونالد ترامپ تلاش می کند با الگوبرداری از رویکرد خود در ونزوئلا،"
+    },
+    {
+      "h": [
+        "ازد",
+        "افزش",
+        "بزر",
+        "دلر",
+        "رند",
+        "سکه",
+        "طل",
+        "متقف",
+        "مهر",
+        "نرخ",
+        "نزل",
+        "چهرشنب",
+        "یفت"
+      ],
+      "t": 1791965386.769629,
+      "title": "قیمت دلار، طلا و سکه امروز چهارشنبه ۲۲ مهر ۱۴۰۵ ⚡️ روند نزولی قیمت دلار و طلا در بازار آزاد متوقف شد و نرخ ها امروز چهار"
     }
   ],
   "_published_incidents": [
@@ -9210,6 +9257,62 @@
       ],
       "t": 1791964764.9094412,
       "title": "هشدار ایران درباره گسترش جنگ به زیرساخت های اینترنت و فناوری در خلیج فارس ⚡️ این هشدار به نقش راهبردی کابل های زیردریایی"
+    },
+    {
+      "k": [
+        "ار",
+        "الگبردر",
+        "انرژ",
+        "بگرد",
+        "ترمپ",
+        "تلش",
+        "دست",
+        "دنبل",
+        "دنلد",
+        "رکرد",
+        "قم",
+        "منبع",
+        "نفت",
+        "ونزل",
+        "پن",
+        "کنترل"
+      ],
+      "t": 1791965373.3549936,
+      "title": "قائم پناه: ترامپ به دنبال کنترل منابع نفتی ایران است ⚡️ دونالد ترامپ تلاش می کند با الگوبرداری از رویکرد خود در ونزوئلا،"
+    },
+    {
+      "k": [
+        "ازد",
+        "افزش",
+        "امم",
+        "بزر",
+        "تم",
+        "تمن",
+        "دلر",
+        "رسد",
+        "رشد",
+        "رند",
+        "سکه",
+        "طل",
+        "عر",
+        "فرش",
+        "قمت",
+        "متقف",
+        "محدد",
+        "مرز",
+        "ملن",
+        "مهر",
+        "نرخ",
+        "نزدک",
+        "نزل",
+        "نسبت",
+        "هزر",
+        "چهرشنب",
+        "گرم",
+        "یفت"
+      ],
+      "t": 1791965386.7568169,
+      "title": "قیمت دلار، طلا و سکه امروز چهارشنبه ۲۲ مهر ۱۴۰۵ ⚡️ روند نزولی قیمت دلار و طلا در بازار آزاد متوقف شد و نرخ ها امروز چهار"
     }
   ],
   "_text_polish": {
@@ -9221,7 +9324,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791964595
+    "at": 1791965170
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9249,13 +9352,13 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791968362.9707508,
+    "disabled_until": 1791968985.0896528,
     "last_failure": 1791960152,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791968363.0831265,
+    "disabled_until": 1791968985.1954532,
     "last_failure": 1791960711,
     "last_quality_failure": 1791941575,
     "last_status": 429
