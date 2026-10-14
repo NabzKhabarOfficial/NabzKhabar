@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792004155
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792004167
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1792004167
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792004862
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
       "t": 1792004877
     },
@@ -159,16 +143,32 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1792015289
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792015886
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
+      "t": 1792015897
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
+      "t": 1792015912
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
+      "t": 1792015912
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 32
+      "n": 41
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 8
+      "n": 13
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-14",
@@ -176,7 +176,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-14",
-      "n": 132
+      "n": 137
     },
     "openrouter:*": {
       "day": "2026-10-14",
@@ -187,15 +187,15 @@
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 248,
+        "calls": 257,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 177,
+        "ok": 186,
         "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 80,
-        "calls": 583,
+        "429": 85,
+        "calls": 588,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 500,
@@ -210,11 +210,11 @@
         "other": 8
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 104,
-        "calls": 236,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199293, Requested 1778. Please try again in 7m42.67",
+        "429": 108,
+        "calls": 241,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198417, Requested 1861. Please try again in 2m0.095",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 68,
+        "ok": 69,
         "other": 64
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -1213,6 +1213,12 @@
       "topic": "ورزش",
       "until": 1792101676.7811193
     },
+    "v4|psg on 'different level' - are they building greatest european dynasty?": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل و گمانه‌زنی درباره عملکرد باشگاهی که فاقد اهمیت ملی یا استراتژیک است.",
+      "topic": "ورزش",
+      "until": 1792102290.4031956
+    },
     "v4|qualcomm wins lawsuit against arm but will only receive two bucks": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: رأی دادگاه علیه شرکت آرم با خسارت ناچیز دو دلاری.",
@@ -1849,12 +1855,6 @@
       "topic": "اقتصاد",
       "until": 1792061538.858229
     },
-    "v4|انتخابات ریاست جمهوری برزیل؛ جنگ حقوقی و دیجیتال لولا و بولسونارو": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: احضار نامزدهای انتخابات ریاست جمهوری برزیل توسط دادگاه عالی.",
-      "topic": "سیاست",
-      "until": 1792050607.870735
-    },
     "v4|انتخابات میان دوره ای کنگره؛ دموکرات ها برنامه ۱۰۰ روزه پس از پیروزی نوشتند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: برنامه انتخاباتی و احتمالی حزب دموکرات برای آینده",
@@ -1957,6 +1957,12 @@
       "topic": "جامعه",
       "until": 1792054609.127017
     },
+    "v4|ایلان ماسک: کنترل استارشیلد فقط دست ارتش و رئیس جمهور آمریکاست": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: توضیح درباره کنترل زیرساخت نظامی استراتژیک با اهمیت بین‌المللی.",
+      "topic": "فناوری",
+      "until": 1792102297.515694
+    },
     "v4|این مدال را به پدرم تقدیم می کنم/ اولین حرف های پسر طلایی ایران در لاس وگاس": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلا در مسابقات جهانی کشتی فرنگی امیدها",
@@ -2058,12 +2064,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: اعلام رویه کلی و هشدار قوه قضاییه درباره تصرف بستر رودخانه‌ها",
       "topic": "قضایی",
       "until": 1792059782.4421153
-    },
-    "v4|برخورد پهپاد با لنج صیادی در محدودهٔ بندر کلاهی": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: اعلام استانداری هرمزگان درباره برخورد پهپاد با لنج صیادی.",
-      "topic": "نظامی",
-      "until": 1792050607.895203
     },
     "v4|برنامه وزارت دفاع برای آرایش جدید جنگی دشمن چیست؟": {
       "ok": false,
@@ -2431,12 +2431,6 @@
       "topic": "نظامی",
       "until": 1792066145.6091485
     },
-    "v4|توماس پیکتی: آشفتگی واشنگتن ناشی از آن است که آمریکا در حال از دست دادن کنترل خود بر جهان است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: دیدگاه و تحلیل یک اقتصاددان درباره نظم جهانی است.",
-      "topic": "سیاست",
-      "until": 1792051148.4306993
-    },
     "v4|توماس پیکتی: آمریکا در حال از دست دادن کنترل جهان است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: دیدگاه و تحلیل یک اقتصاددان، رخداد عملی نیست.",
@@ -2563,17 +2557,17 @@
       "topic": "ورزش",
       "until": 1792097221.9986277
     },
-    "v4|حمله به شناور صیادی در سیریک سه مصدوم برجا گذاشت": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: تایید حمله پهپادی به شناور صیادی و مصدومیت سه نفر در سیریک.",
-      "topic": "نظامی",
-      "until": 1792050607.8829796
-    },
     "v4|حمله به صیادان جنوب؟/ جزئیات اولیه از سیریک منتشر شد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله پهپادی ناشناس به لنج صیادی و مجروح شدن سه نفر در سیریک",
       "topic": "حادثه",
       "until": 1792052933.8294115
+    },
+    "v4|حمله دوباره عربستان به پایتخت یمن": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: حمله نظامی به پایتخت یک کشور در منطقه جنگی خبر جهانی است.",
+      "topic": "نظامی",
+      "until": 1792102297.5023699
     },
     "v4|حمله سنگین روسیه به یک نیروگاه حرارتی/ زلنسکی: متحدان غربی هیچ هشداری بیش از حمله به ما ندادند": {
       "ok": true,
@@ -2767,6 +2761,12 @@
       "topic": "ورزش",
       "until": 1792061055.699442
     },
+    "v4|دورتموند شکار جدید بودوگلیمت/ استون ویلا، فنرباغچه را در هم کوبید": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مسابقات فوتبال باشگاهی اروپا در سطح اول خبری نیست.",
+      "topic": "ورزش",
+      "until": 1792102287.612398
+    },
     "v4|دولت برای هر نوع فشار اقتصادی برنامه دارد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: اظهارات کلی مقام دولتی درباره برنامه های اقتصادی و تحریم",
@@ -2862,6 +2862,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: طرح ارزیابی ورزشگاه‌ها خبر رده اول محسوب نمی‌شود",
       "topic": "ورزش",
       "until": 1792061057.09433
+    },
+    "v4|رزمایش «جان فدایان ایران» جلوه ای از حضور مردم در سنگر خیابان است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local military drill and official remarks with no strategic impact.",
+      "topic": "نظامی",
+      "until": 1792102288.3760855
     },
     "v4|رستمی: زیرساخت های اجرایی و فناوری انتخابات در خراسان شمالی آماده است": {
       "ok": false,
@@ -3871,12 +3877,6 @@
       "topic": "سیاست",
       "until": 1792065077.2989285
     },
-    "v4|نام شهدای مدرسه میناب بر خودروی آتش نشانی شهرداری قدس ثبت شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اقدام نمادین شهرداری محلی و مرتبط با مراسم و یادبود است",
-      "topic": "جامعه",
-      "until": 1792051149.0244963
-    },
     "v4|نامزد ریاست جمهوری فرانسه: اروپا زیر آتش آمریکا است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارنظر و انتقاد سیاسی نامزد انتخابات ریاست جمهوری فرانسه",
@@ -4513,6 +4513,12 @@
       "topic": "ورزش",
       "until": 1792063359.8358514
     },
+    "v4|کوبا: روبیو برای شریک کردن جامعه بین المللی در وحشیگری علیه هاوانا تلاش می کند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارات دیپلماتیک و تنش‌های لفظی معمول بین دو کشور محسوب می‌شود.",
+      "topic": "سیاست",
+      "until": 1792102289.4302192
+    },
     "v4|کپتین بیرون غول کش اروپا را تربیت کرد/ خلبان جنگنده آمد و بهترین مربی دنیا شد!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=world: مقاله ورزشی و زندگی‌نامه فاقد اولویت درجه یک.",
@@ -4560,12 +4566,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: پیش‌بازی و تحلیل مسابقه ورزشی داخلی",
       "topic": "ورزش",
       "until": 1792051760.1486342
-    },
-    "v4|گنجینه های غارت شده؛ از زادگاه تمدن تا ویترین موزه های جهان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: گزارش فرهنگی درباره آثار تاریخی نیشابور و موزه های جهان",
-      "topic": "جامعه",
-      "until": 1792051147.7717106
     },
     "v4|یزد میزبان اردوی انتخابی تیم ملی پدل/ ۲۰ بازیکن در مسیر پوشیدن پیراهن تیم ملی": {
       "ok": false,
@@ -4768,6 +4768,10 @@
       "reason": "content_duplicate",
       "until": 1792029899.0058289
     },
+    "لفاظی های ضدایرانی ترامپ؛ از کوچک نمایی هزینه جنگ تا تکرار پایان سریع آن": {
+      "reason": "content_duplicate",
+      "until": 1792037507.8351512
+    },
     "یمن از حمله موشکی به فرودگاه بین المللی ریاض خبر داد": {
       "reason": "content_duplicate",
       "until": 1792028717.8859494
@@ -4782,25 +4786,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "دستور آماده باش در شرایط جنگی در قطر صادر شد ⚡️ شیخ تمیم بن حمد آل ثانی، امیر قطر، در پیامی خطاب به شهروندان ا",
-      "id": "78d1dc5fc1",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791972311,
-      "verdict": "new",
-      "why": "امیر قطر دستور آماده‌باش جنگی صادر کرده است و مشابهی ندارد."
-    },
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "اختلال در بازار جهانی انرژی بر اثر حملات در خاورمیانه ⚡️ حملات حوثی های یمن به فرودگاه ریاض و تهدیدهای مداوم ع",
-      "id": "8a282a0413",
-      "match": "تشکیل مراسم تشییع جنازه خدمه پروازی مصری کشته در حمله حوثی به ریاض",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791972907,
-      "verdict": "repeat",
-      "why": ""
-    },
     {
       "confirm": "none:-",
       "head": "اختلال در بازار جهانی انرژی بر اثر حملات در خاورمیانه ⚡️ حملات حوثی های یمن به فرودگاه ریاض و تهدیدهای مداوم ع",
@@ -5321,37 +5306,29 @@
       "t": 1792015287,
       "verdict": "new",
       "why": "No matching event"
+    },
+    {
+      "confirm": "none:-",
+      "head": "تکرار لفاظی های ضدایرانی ترامپ در آریزونا ⚡️ دونالد ترامپ رئیس جمهوری آمریکا در گردهمایی جمهوری خواهان در آریز",
+      "id": "a58cb4d187",
+      "match": "حمله به یک کشتی کانتینری در تنگه هرمز",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1792015905,
+      "verdict": "repeat",
+      "why": "Both posts refer to the same incident in the Strait of Hormuz."
+    },
+    {
+      "confirm": "none:-",
+      "head": "تکرار لفاظی های ضدایرانی ترامپ در آریزونا ⚡️ دونالد ترامپ رئیس جمهوری آمریکا در گردهمایی جمهوری خواهان در آریز",
+      "id": "a58cb4d187",
+      "match": "حمله به یک کشتی کانتینری در تنگه هرمز",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1792015907,
+      "verdict": "repeat",
+      "why": "Both posts refer to the same incident in the Strait of Hormuz."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: وعده انتخاباتی یک نامزد برای آینده است و تصمیم قطعی نیست.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792003016,
-      "title": "مارین لوپن: به کمک های مالی پاریس به اوکراین پایان می دهیم"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: افتتاح مرکز مشاوره در کیش محلی و کم‌اهمیت است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792003548,
-      "title": "مرکز خدمات مشاوره دولتی بهزیستی در کیش افتتاح شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تأمین بودجه برای پروژه‌های استانی یک خبر محلی و عادی است.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792003549,
-      "title": "بیش از هزار میلیارد تومان برای توسعه زیرساخت های ورزشی زنجان تأمین شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی مربوط به مصوبات عمرانی در یک بخش کوچک است.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792004156,
-      "title": "بیش از ۲۰ مصوبه عمرانی و خدماتی در سفر فرماندار دشتستان به بخش ارم"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: ترکیب تیم‌ها در مرحله گروهی لیگ قهرمانان اهمیت خبری سطح اول ندارد.",
       "rescued": false,
@@ -5883,6 +5860,34 @@
       "rule": "final-scope-preselection",
       "t": 1792015275,
       "title": "French anti-terror investigators probe True Crime Community link to school shooting"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مسابقات فوتبال باشگاهی اروپا در سطح اول خبری نیست.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792015887,
+      "title": "دورتموند شکار جدید بودوگلیمت/ استون ویلا، فنرباغچه را در هم کوبید"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local military drill and official remarks with no strategic impact.",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792015888,
+      "title": "رزمایش «جان فدایان ایران» جلوه ای از حضور مردم در سنگر خیابان است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارات دیپلماتیک و تنش‌های لفظی معمول بین دو کشور محسوب می‌شود.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792015889,
+      "title": "کوبا: روبیو برای شریک کردن جامعه بین المللی در وحشیگری علیه هاوانا تلاش می کند"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل و گمانه‌زنی درباره عملکرد باشگاهی که فاقد اهمیت ملی یا استراتژیک است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792015890,
+      "title": "PSG on 'different level' - are they building greatest European dynasty?"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11145,7 +11150,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792015200
+    "at": 1792015772
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11160,8 +11165,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792015627,
-    "last_failure": 1792015026,
+    "disabled_until": 1792016486,
+    "last_failure": 1792015886,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11184,7 +11189,7 @@
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792016029.6121204,
+    "disabled_until": 1792019507.6868663,
     "last_failure": 1792010850,
     "last_status": 429
   },
