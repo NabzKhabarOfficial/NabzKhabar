@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1791959008
-    },
-    {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1791959010
     },
@@ -159,6 +155,10 @@
     {
       "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.1-flash-lite",
       "t": 1791971171
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
+      "t": 1791971701
     }
   ],
   "_ai_usage": {
@@ -173,10 +173,10 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 32,
-        "calls": 222,
+        "calls": 228,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 188,
+        "ok": 194,
         "other": 2
       },
       "groq:openai/gpt-oss-120b": {
@@ -1142,12 +1142,6 @@
       "topic": "قضایی",
       "until": 1792027960.755829
     },
-    "v4|how protests have shaped india: from anti-hindi agitation to farm laws": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل تاریخی اعتراضات در هند و فاقد اهمیت فوری و راهبردی.",
-      "topic": "جامعه",
-      "until": 1791979949.1650827
-    },
     "v4|iran war live: saudi coalition hits houthi sites; aramco office hit in east": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Aramco hit, Houthi strikes",
@@ -1201,6 +1195,12 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Luis Enrique comments on Manchester City financial sanctions",
       "topic": "ورزش",
       "until": 1792027966.0360925
+    },
+    "v4|qualcomm wins lawsuit against arm but will only receive two bucks": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: رأی دادگاه علیه شرکت آرم با خسارت ناچیز دو دلاری.",
+      "topic": "فناوری",
+      "until": 1792058101.8186738
     },
     "v4|russia detains japanese journalist, accusing him of alleged spying": {
       "ok": true,
@@ -1334,17 +1334,17 @@
       "topic": "سیاست",
       "until": 1791990298.2156143
     },
+    "v4|آمریکا و بهای سنگین جنگ با ایران": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل، هشدار و نظر تحلیلگران غربی؛ رخداد مشخصی انجام نشده است.",
+      "topic": "سیاست",
+      "until": 1792058101.8067007
+    },
     "v4|آموزش زندانیان بی سواد در اردبیل برنامه ریزی شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine provincial administrative planning for literacy programs in prisons.",
       "topic": "جامعه",
       "until": 1791990290.1252892
-    },
-    "v4|ابراهیمی: خروج ماهانه ۲ هزار رأس گوسفند از شیروان متوقف می شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی مربوط به مدیریت دام در شهرستان شیروان است.",
-      "topic": "اقتصاد",
-      "until": 1791979306.8033423
     },
     "v4|ابلاغ سند بازآفرینی گردشگری ایران در دوره پساجنگ": {
       "ok": false,
@@ -1496,6 +1496,12 @@
       "topic": "حادثه",
       "until": 1792031961.0832062
     },
+    "v4|ارائه خدمات مراقبتی به بیش از ۴٨ هزار دانش آموز در جنوب غرب خوزستان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: ارائه خدمات بهداشتی دانش‌آموزان در آبادان خبری محلی و غیرمهم است.",
+      "topic": "سلامت",
+      "until": 1792058097.8657217
+    },
     "v4|ارتش یمن: پاسخ حمله به صنعا در ریاض خواهد بود": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: Official military threat regarding regional escalation and attacks on capital cities.",
@@ -1628,11 +1634,11 @@
       "topic": "جامعه",
       "until": 1792051754.220413
     },
-    "v4|افتتاح رویداد صنایع خلاق «مانُوین» در اصفهان": {
+    "v4|افت ۳۴ هزار واحدی شاخص کل بورس در آخرین روز کاری هفته": {
       "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: افتتاح نمایشگاه استانی یک رویداد محلی و غیرراهبردی محسوب می‌شود.",
-      "topic": "فناوری",
-      "until": 1791979921.5123143
+      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=iran_national: افت ۳۴ هزار واحدی شاخص بورس در آخرین روز کاری",
+      "topic": "اقتصاد",
+      "until": 1792058098.504819
     },
     "v4|افتتاح گذر تاریخی «دردشت» اصفهان": {
       "ok": false,
@@ -2480,12 +2486,6 @@
       "topic": "اقتصاد",
       "until": 1792037288.8793104
     },
-    "v4|جزئیات برخورد بانک مرکزی با نوبیتکس، بیت پین و 3 صرافی دیگر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=iran_national: مداخله بانک مرکزی در معاملات رمزارزها و توقف واریز صرافی‌های بزرگ",
-      "topic": "اقتصاد",
-      "until": 1791979968.9593585
-    },
     "v4|جزئیات ثبت نشانی منزل و کار در اپلیکیشن «پست من»": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: خبر معمول دولتی درباره اپلیکیشن پست و ثبت نشانی است",
@@ -2539,6 +2539,18 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=False scope=local: Opinion piece linking war motives to elections",
       "topic": "سیاست",
       "until": 1792027966.0632787
+    },
+    "v4|جهانگیر: پرداخت پاداش در شرکت های زیان ده زیر ذره بین بازرسی است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: بررسی پاداش شرکت‌های زیان‌ده توسط سازمان بازرسی، خبر اداری و روتین است.",
+      "topic": "اقتصاد",
+      "until": 1792058099.7878869
+    },
+    "v4|جهانیان:مدیریت هوشمند نگهداری جاده ها کلید طلایی کاهش هزینه ها است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: سخنان مقام مسئول درباره مدیریت جاده‌ها رویداد مهمی نیست.",
+      "topic": "اقتصاد",
+      "until": 1792058099.083732
     },
     "v4|جوانان بوکس ایران در رینگ جهانی": {
       "ok": false,
@@ -3326,6 +3338,12 @@
       "topic": "اقتصاد",
       "until": 1792052929.9837596
     },
+    "v4|عزت یار جنگی آزمون؛/ جنجال در جده: حمله به سردار و ورود فوری سعید!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: پیروزی تیم باشگاهی فوتبال و درگیری معمولی؛ اهمیت درجه اول ندارد.",
+      "topic": "ورزش",
+      "until": 1792058101.7942579
+    },
     "v4|عصبانیت جمهوری خواهان از توافق گازوئیلی آمریکا و روسیه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل سیاسی و گمانه‌زنی درباره اختلافات داخلی آمریکا بدون رویداد مشخص",
@@ -3386,12 +3404,6 @@
       "topic": "سیاست",
       "until": 1791985677.1386526
     },
-    "v4|غریب آبادی: پیامدهای تکرار اشتباهات گذشته از سوی آمریکا به فراتر از منطقه گسترش می یابد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: هشدار رسمی معاون وزیر خارجه درباره پیامدهای نظامی علیه ایران",
-      "topic": "سیاست",
-      "until": 1791979886.6652873
-    },
     "v4|غول های خفته فوتبال اروپا را بشناسید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: این یک گزارش تحلیلی و سرگرمی است و خبر مهمی محسوب نمی‌شود.",
@@ -3451,12 +3463,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: تهدید رسمی سخنگوی نیروهای مسلح یمن به حمله علیه اهداف استراتژیک عربستان",
       "topic": "نظامی",
       "until": 1791985097.7260265
-    },
-    "v4|فواد ایزدی: آمریکا به دنبال بلعیدن ایران است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=iran_national: تحلیل و نظر شخصی یک کارشناس درباره اهداف آمریکا است.",
-      "topic": "سیاست",
-      "until": 1791979904.5942357
     },
     "v4|فوری/ یک فرمانده بسیج خواهران در سیستان و بلوچستان ترور شد": {
       "ok": true,
@@ -3980,6 +3986,12 @@
       "topic": "سلامت",
       "until": 1792048310.0044017
     },
+    "v4|هزینه ۷۱ میلیارد دلاری انرژی، پاشنه آشیل تجارت ترکیه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: گزارش تحلیلی درباره هزینه انرژی و کسری تجاری ترکیه",
+      "topic": "اقتصاد",
+      "until": 1792058097.2097378
+    },
     "v4|هشدار ائتلاف سعودی برای تخلیه منطقه شرکت نفت یمن در صنعا": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: هشدار نظامی ائتلاف سعودی برای حمله به تاسیسات نفتی در یمن",
@@ -4352,12 +4364,6 @@
       "topic": "سیاست",
       "until": 1791985087.3141932
     },
-    "v4|کاهش مراجعات حضوری به دستگاه قضا با عملیاتی شدن «ضمانت الکترونیک» در لرستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر استانی و مربوط به امور اداری و اجرایی دادگستری لرستان است.",
-      "topic": "قضایی",
-      "until": 1791979300.9766407
-    },
     "v4|کاهش ۳۵ درصدی تصادفات فوتی برون شهری و ۵۰ درصدی درون شهری تویسرکان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: آمار تصادفات در شهرستان تویسرکان",
@@ -4495,12 +4501,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: گفت‌وگوی سران روسیه و امارات درباره مسائل منطقه‌ای خلیج فارس",
       "topic": "سیاست",
       "until": 1791983942.29758
-    },
-    "v4|گفت وگوی پوتین با رئیس امارات درباره تحولات منطقه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=6 happened=True scope=world: گفت‌وگوی سران روسیه و امارات درباره تحولات منطقه خلیج فارس",
-      "topic": "سیاست",
-      "until": 1791979927.052952
     },
     "v4|گفتگوی تلفنی وزرای امور خارجه ایران و ترکیه": {
       "ok": false,
@@ -4727,9 +4727,9 @@
       "until": 1791987574.4739168
     },
     "فرمانده یکی از حوزه های بسیج خواهران در مهرستانِ سیستان و بلوچستان، در پی تیراندازی تروریست ها، به شهادت رسید": {
-      "at": 1791971253.6922357,
+      "at": 1791971702.4511523,
       "reason": "policy_scope_blocked",
-      "until": 1791992853.6922357
+      "until": 1791993302.4511523
     },
     "فرودگاه ها و تأسیسات نفتی عربستان زیر آتش یمن؛ صدور هشدار تخلیه فوری": {
       "reason": "content_duplicate",
@@ -5267,41 +5267,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: مباحثه کلی درباره کالابرگ و معیشت بدون تصمیم مشخص اجرایی",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1791962451,
-      "title": "«کالابرگ» و جنگ اقتصادی؛ تأکید قالیباف بر صیانت از معیشت مردم"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اعلام رسمی برندگان جوایز نوبل سال ۲۰۲۶ در شش حوزه مختلف.",
-      "rescued": true,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791962451,
-      "title": "شش جایزه، شش حوزه اثرگذار؛ برندگان نوبل ۲۰۲۶ و دستاوردهایشان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات استاد دانشگاه درباره تاریخچه علم کوانتوم در ایران فاقد ارزش خبری درجه یک است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791962452,
-      "title": "دانشگاه فردوسی جزو سه دانشگاه پیشران کوانتوم"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بازدید خبرنگاران خارجی از استان مرکزی رویداد محلی و تشریفاتی است",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791962453,
-      "title": "بازدید ۴۰ خبرنگار بین المللی از ظرفیت های صنعتی و مراکز آسیب دیده استان مرکزی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: اظهارات مقام استانی درباره نمایشگاه و پیوند علم و صنعت",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791962453,
-      "title": "اهمیت پیوند علم و صنعت/ شیراز اکسپو، فرصتی برای شناسایی ظرفیت های دانش بنیان فارس"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارنظر نماینده درباره جایگاه علمی تبریز خبر محلی و کم‌اهمیت است.",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -5825,6 +5790,41 @@
       "rule": "below-event-threshold",
       "t": 1791971168,
       "title": "برج های دوقلوی والیبال ایران در لاس پالماس!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: گزارش تحلیلی درباره هزینه انرژی و کسری تجاری ترکیه",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791971697,
+      "title": "هزینه ۷۱ میلیارد دلاری انرژی، پاشنه آشیل تجارت ترکیه"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: ارائه خدمات بهداشتی دانش‌آموزان در آبادان خبری محلی و غیرمهم است.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1791971697,
+      "title": "ارائه خدمات مراقبتی به بیش از ۴٨ هزار دانش آموز در جنوب غرب خوزستان"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=iran_national: افت ۳۴ هزار واحدی شاخص بورس در آخرین روز کاری",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1791971698,
+      "title": "افت ۳۴ هزار واحدی شاخص کل بورس در آخرین روز کاری هفته"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: سخنان مقام مسئول درباره مدیریت جاده‌ها رویداد مهمی نیست.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1791971699,
+      "title": "جهانیان:مدیریت هوشمند نگهداری جاده ها کلید طلایی کاهش هزینه ها است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: بررسی پاداش شرکت‌های زیان‌ده توسط سازمان بازرسی، خبر اداری و روتین است.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1791971699,
+      "title": "جهانگیر: پرداخت پاداش در شرکت های زیان ده زیر ذره بین بازرسی است"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10045,7 +10045,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791970968
+    "at": 1791971539
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
