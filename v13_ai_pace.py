@@ -119,12 +119,13 @@ def save(health):
     saved = health.get(PACE_KEY) if isinstance(health.get(PACE_KEY), dict) else {}
     for pkey, row in _delta.items():
         old = saved.get(pkey) if isinstance(saved.get(pkey), dict) else {}
+        if old.get("day") != row["day"]:
+            old = _base.get(pkey) or {}  # first run of the day: start from the meter's seed
         n = int(old.get("n", 0) or 0) if old.get("day") == row["day"] else 0
         saved[pkey] = {"day": row["day"], "n": n + int(row["n"])}
-    for pkey, row in _base.items():  # first-run seeds from the meter are kept too
-        if pkey not in saved or saved[pkey].get("day") != row.get("day"):
-            if pkey not in _delta or _delta[pkey].get("day") != row.get("day"):
-                saved.setdefault(pkey, dict(row))
+    for pkey, row in _base.items():  # seeds of models not called in this run are kept too
+        if pkey not in saved:
+            saved[pkey] = dict(row)
     health[PACE_KEY] = saved
     _delta.clear()
 
