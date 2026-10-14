@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: no usable verdict",
-      "t": 1791974654
-    },
-    {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.5-flash-lite",
-      "t": 1791974660
-    },
-    {
-      "e": "EDITOR BATCH: 1/1 via gemini/gemini-3.5-flash-lite",
-      "t": 1791974661
-    },
-    {
       "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.5-flash-lite",
       "t": 1791975138
     },
@@ -159,6 +147,18 @@
     {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1791989673
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1791992083
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1791992098
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1791992099
     }
   ],
   "_ai_usage": {
@@ -173,18 +173,18 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 34,
-        "calls": 521,
+        "calls": 524,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 484,
+        "ok": 487,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
         "429": 134,
-        "calls": 277,
+        "calls": 280,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198826, Requested 1812. Please try again in 4m35.6",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 137,
+        "ok": 140,
         "other": 6
       },
       "groq:openai/gpt-oss-20b": {
@@ -240,13 +240,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 3,
-      "t": 1791822987.238042,
-      "title": "عربستان امروز از برنامه های خود برای افزایش ظرفیت خط لوله راهبردی خود که تنگه هرمز را دور می زند خبر داده است / سعودی احتمالا از یک خط لوله قدیمی می خواهد برای افزایش ظرفی",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 3,
@@ -1079,6 +1072,13 @@
       "t": 1791989690.393276,
       "title": "عوارض ۲۰۰ هزار دلاری آمریکا برای کشتی های اسپانیایی",
       "urgent": false
+    },
+    {
+      "label": "حادثه",
+      "level": 5,
+      "t": 1791992113.3363967,
+      "title": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-13",
@@ -1094,12 +1094,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله مرگبار حوثی‌ها به فرودگاه در عربستان و تلفات انسانی.",
       "topic": "نظامی",
       "until": 1792067436.6649492
-    },
-    "v4|are chromebooks still worth buying after the googlebooks release?": {
-      "ok": false,
-      "reason": "ai openrouter/free score=2 happened=False scope=local: Not a concrete event",
-      "topic": "فناوری",
-      "until": 1792023968.3731382
     },
     "v4|australian politics live: liberal mp ‘reached out’ to anne aly after saying she should be ‘shamed and stoned’, hume says": {
       "ok": false,
@@ -2859,6 +2853,12 @@
       "topic": "سیاست",
       "until": 1792071468.7675686
     },
+    "v4|دمای هوای خراسان رضوی ۳ درجه افزایش می یابد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: خبر محلی و پیش‌بینی هواشناسی استان خراسان رضوی اهمیت ملی ندارد",
+      "topic": "آب و هوا",
+      "until": 1792078468.171797
+    },
     "v4|دوئل تاریخی سعدالله یف و یزدانی؛ خیلی دور، خیلی نزدیک": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=iran_national: گمانه‌زنی درباره مسابقات آینده و احتمال تقابل دو کشتی‌گیر",
@@ -3453,6 +3453,12 @@
       "topic": "جامعه",
       "until": 1792070789.6130595
     },
+    "v4|طاهری: پیشرفت فیزیکی پروژه سورتمه گرگان به بیش از ۹۵ درصد رسید": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر شهری و محلی مربوط به پیشرفت پروژه شهرداری گرگان.",
+      "topic": "جامعه",
+      "until": 1792078467.3946323
+    },
     "v4|طرح «پرستار پیگیر» بازگشت مجدد بیماران مزمن به بیمارستان را ۵۳ درصد کاهش می دهد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: اعلام اجرای یک طرح بهداشتی داخلی و رویداد روتین وزارتخانه است.",
@@ -3542,12 +3548,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع‌گیری رسمی وزیر خارجه عمان درباره توافق تنگه هرمز و مذاکرات.",
       "topic": "سیاست",
       "until": 1792052366.9961767
-    },
-    "v4|عملیات جستجوی مفقودان در سیل نپال ادامه دارد": {
-      "ok": true,
-      "reason": "ai openrouter/free score=7 happened=True scope=world: سیل نپال ۲۰۰ خانه و ۵ پل خراب، جستجوی مفقودان",
-      "topic": "آب و هوا",
-      "until": 1792023957.3995843
     },
     "v4|عوارض ۲۰۰ هزار دلاری آمریکا برای کشتی های اسپانیایی": {
       "ok": true,
@@ -3885,12 +3885,6 @@
       "topic": "اقتصاد",
       "until": 1792062125.3052866
     },
-    "v4|مهارآتش سوزی در انبار سوخت قاچاق بروات بم": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: آتش‌سوزی انبار سوخت، خسارات محدود، بدون مرگ‌ومیر",
-      "topic": "حادثه",
-      "until": 1792023958.3217793
-    },
     "v4|مهمدی: مدال طلایم را به پدرم تقدیم می کنم؛ کشتی در خون ماست": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلا در مسابقات جهانی کشتی فرنگی توسط ورزشکار ایرانی",
@@ -4112,6 +4106,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: گزارش تحلیلی درباره هزینه انرژی و کسری تجاری ترکیه",
       "topic": "اقتصاد",
       "until": 1792058097.2097378
+    },
+    "v4|هشدار رئیس پلیس راه فراجا درباره تردد اتوبوس های دارای نقص فنی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: هشدار پلیس درباره نقص فنی اتوبوس ها رویداد مشخصی نیست",
+      "topic": "جامعه",
+      "until": 1792078466.619546
     },
     "v4|هشدار سطح نارنجی هواشناسی فارس؛ بارش های شدید و سیلابی در راه است": {
       "ok": false,
@@ -4709,6 +4709,11 @@
       "reason": "content_duplicate",
       "until": 1792008429.763659
     },
+    "ukraine’s vulnerability grows as starlink is restricted and russia escalates": {
+      "at": 1791992136.2428985,
+      "reason": "ai_unavailable_foreign",
+      "until": 1791993336.2428985
+    },
     "ukrainian drones strike more than 100km into russian territory": {
       "at": 1791973413.6442916,
       "reason": "policy_scope_blocked",
@@ -4725,11 +4730,6 @@
     "انفجار در ریاض پس از حمله موشکی؛ گزارش ها از خسارت به تأسیسات نفتی": {
       "reason": "content_duplicate",
       "until": 1792006006.122109
-    },
-    "انفجارهای جدید ریاض را لرزاند": {
-      "at": 1791989696.9651845,
-      "reason": "ai_unavailable_local",
-      "until": 1791990896.9651845
     },
     "اولین تصویر از مامور شهید حمله امروز در مهرستان": {
       "reason": "content_duplicate",
@@ -4792,34 +4792,22 @@
       "reason": "content_duplicate",
       "until": 1792005546.1690807
     },
-    "حملات موشکی و پهپادی یمن به مراکز حیاتی": {
-      "reason": "content_duplicate",
-      "until": 1791991623.8531878
-    },
     "حمله هولناک به تاسیسات نفت یمن": {
       "reason": "content_duplicate",
       "until": 1792004888.1519358
     },
-    "حمله یمن به پالایشگاه شرکت آرامکو و فرودگاه ملک خالد در ریاض": {
-      "reason": "content_duplicate",
-      "until": 1791991020.720263
-    },
     "رشد قیمت طلا و سکه؛ طلای ۱۸ عیار به کانال ۲۶ میلیون تومانی بازگشت": {
       "reason": "content_duplicate",
       "until": 1791996269.9074204
-    },
-    "زلنسکی: اوکراین هشدار اطلاعاتی آمریکا درباره حمله موشکی را دریافت نکرد": {
-      "reason": "content_duplicate",
-      "until": 1791989823.2929206
     },
     "زلنسکی: روسیه شب گذشته با ۳۹ موشک بالستیک و بیش از ۱۲۰ پهپاد تهاجمی، به طور مشخص زیرساخت های انرژی ما را که شامل آتش بس می شد، هدف قرار داد/ مسکو اظهارات ترامپ را قدرتمند و بازدارن": {
       "reason": "content_duplicate",
       "until": 1792000306.7512138
     },
     "سخنگوی سپاه: احتمال حمله مجدد آمریکا به ایران پیش از انتخابات وجود دارد": {
-      "at": 1791989166.3180122,
+      "at": 1791992136.2428985,
       "reason": "ai_unavailable_local",
-      "until": 1791990366.3180122
+      "until": 1791993336.2428985
     },
     "سخنگوی سپاه: احتمال وقوع جنگ جدید کاملاً وجود دارد": {
       "reason": "content_duplicate",
@@ -4837,6 +4825,16 @@
       "reason": "content_duplicate",
       "until": 1791993902.9060745
     },
+    "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت": {
+      "at": 1791992136.2428985,
+      "reason": "ai_unavailable_local",
+      "until": 1791993336.2428985
+    },
+    "شش کشته در حادثه سقوط هواپیما در آمریکا": {
+      "at": 1791992136.2428985,
+      "reason": "ai_unavailable_local",
+      "until": 1791993336.2428985
+    },
     "شهادت مسئول بسیج خواهران مهرستان در پی حمله تروریستی": {
       "reason": "content_duplicate",
       "until": 1791992144.4089851
@@ -4853,37 +4851,14 @@
       "reason": "content_duplicate",
       "until": 1792002673.8602161
     },
-    "عوارض ۲۰۰ هزار دلاری آمریکا برای کشتی های اسپانیایی": {
-      "at": 1791989696.9651845,
-      "reason": "ai_unavailable_local",
-      "until": 1791990896.9651845
-    },
-    "فرستاده پوتین: اولین قرارداد گازوئیل با آمریکا روزهای آتی امضا می شود": {
-      "at": 1791989166.3180122,
-      "reason": "ai_unavailable_local",
-      "until": 1791990366.3180122
-    },
     "فرمانده یکی از حوزه های بسیج خواهران در مهرستانِ سیستان و بلوچستان، در پی تیراندازی تروریست ها، به شهادت رسید": {
       "at": 1791978749.650583,
       "reason": "policy_scope_blocked",
       "until": 1792000349.650583
     },
-    "فرودگاه ها و تأسیسات نفتی عربستان زیر آتش یمن؛ صدور هشدار تخلیه فوری": {
-      "reason": "content_duplicate",
-      "until": 1791989829.7002993
-    },
-    "فوری/ یک فرمانده بسیج خواهران در سیستان و بلوچستان ترور شد": {
-      "reason": "content_duplicate",
-      "until": 1791991631.1737611
-    },
     "مسکو: گازوییل روسیه هم به بازار جهانی و هم به آمریکا عرضه خواهد شد": {
       "reason": "content_duplicate",
       "until": 1792006013.7490463
-    },
-    "مقام ارشد روس: صادرات گازوئیل روسیه تا پایان ۲۰۲۶ به سطح قبل برمی گردد": {
-      "at": 1791989166.3180122,
-      "reason": "ai_unavailable_local",
-      "until": 1791990366.3180122
     },
     "موج مخالفت سناتورهای جمهوری خواه با توافق ترامپ با پوتین": {
       "reason": "content_duplicate",
@@ -4911,16 +4886,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "حمله به ساختمان آرامکو و زخمی شدن چهار نفر در ریاض ⚡️ مقامات سعودی از زخمی شدن چهار نفر در ریاض بر اثر سقوط تر",
-      "id": "653a4d726d",
-      "match": "تشکیل مراسم تشییع جنازه خدمه پروازی مصری کشته در حمله حوثی به ریاض",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791964220,
-      "verdict": "repeat",
-      "why": "این خبر تکرار حادثه حمله به ریاض و آرامکو است"
-    },
     {
       "confirm": "gemini/gemini-3.1-flash-lite:repeat",
       "head": "حمله به ساختمان آرامکو و زخمی شدن چهار نفر در ریاض ⚡️ مقامات سعودی از زخمی شدن چهار نفر در ریاض بر اثر سقوط تر",
@@ -5461,30 +5426,18 @@
       "t": 1791989687,
       "verdict": "new",
       "why": "طرح عوارض جدید آمریکا علیه کشتی های اسپانیایی خبر جدیدی است."
+    },
+    {
+      "head": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت ⚡️ بر اثر سقوط یک هواپیمای کوچک در ایالت ویسکانسین آ",
+      "id": "6c7ac0bd76",
+      "match": "",
+      "model": "groq/openai/gpt-oss-120b",
+      "t": 1791992112,
+      "verdict": "new",
+      "why": "No similar incident in published items"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: هشدار رئیس اصناف درباره ممنونیت معاملات مسکن با ارز",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791979741,
-      "title": "معاملات دلاری مسکن تخلف است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و مربوط به فرسودگی آمبولانس‌های تربت حیدریه",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791979742,
-      "title": "۶۰ درصد آمبولانس های اورژانس تربت حیدریه فرسوده است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=iran_national: یادداشت یا شعار سیاسی بدون رویداد مشخص و ملموس",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791979743,
-      "title": "از قرارداد ننگین ترکمنچای تا پیروزی مقابل قدرتمندترین ارتش جهان"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: هشدار اتحادیه اروپا درباره بحران شدید انرژی و زمستان سخت",
       "rescued": true,
@@ -6023,43 +5976,31 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1791989673,
       "title": "لاپورتا زمان خرید/ وام ۵۱۰ میلیون یورویی، بارسلونا را زنده کرد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: هشدار پلیس درباره نقص فنی اتوبوس ها رویداد مشخصی نیست",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1791992066,
+      "title": "هشدار رئیس پلیس راه فراجا درباره تردد اتوبوس های دارای نقص فنی"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر شهری و محلی مربوط به پیشرفت پروژه شهرداری گرگان.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1791992067,
+      "title": "طاهری: پیشرفت فیزیکی پروژه سورتمه گرگان به بیش از ۹۵ درصد رسید"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: خبر محلی و پیش‌بینی هواشناسی استان خراسان رضوی اهمیت ملی ندارد",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1791992068,
+      "title": "دمای هوای خراسان رضوی ۳ درجه افزایش می یابد"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "احتمل",
-        "اخر",
-        "بشد",
-        "بشم",
-        "تثر",
-        "تحت",
-        "ترر",
-        "تز",
-        "تلفن",
-        "تمس",
-        "دبر",
-        "درگر",
-        "سبق",
-        "سخن",
-        "شر",
-        "فرب",
-        "مطرح",
-        "مل",
-        "ممکن",
-        "منتظر",
-        "نخست",
-        "ندمت",
-        "ندهد",
-        "نظر",
-        "نع",
-        "همن",
-        "کن"
-      ],
-      "t": 1791946789.4605453,
-      "title": "ندامت ترامپ از ترور مقامات ایران فریب کان ندهد/ باید منتظر ترور و درگیری های تازه باشیم ⚡️ نخست این که احتمالا رئیس جمهو"
-    },
     {
       "h": [
         "بزرگ",
@@ -7153,6 +7094,19 @@
       ],
       "t": 1791989690.3822854,
       "title": "عوارض ۲۰۰ هزار دلاری آمریکا برای کشتی های اسپانیایی ⚡️ کمیسیون فدرال دریایی آمریکا با طرح اتهاماتی علیه اسپانیا درباره م"
+    },
+    {
+      "h": [
+        "اثر",
+        "الت",
+        "سرنشن",
+        "شدند",
+        "وسکنسن",
+        "کچک",
+        "گذشت"
+      ],
+      "t": 1791992113.3088758,
+      "title": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت ⚡️ بر اثر سقوط یک هواپیمای کوچک در ایالت ویسکانسین آمریکا، شش "
     }
   ],
   "_published_incidents": [
@@ -7743,6 +7697,22 @@
       "t": 1791985661.141203,
       "title": "انفجارهایی ریاض را لرزاند ⚡️ منابع خبری بار دیگر از حملات جدید و صدای انفجارها در ریاض پایتخت عربستان خبر دادند.",
       "toll": 0
+    },
+    {
+      "a": [
+        "اثر",
+        "الت",
+        "سرنشن",
+        "وسکنسن",
+        "کچک"
+      ],
+      "cities": [],
+      "kind": "crash",
+      "places": [],
+      "regions": [],
+      "t": 1791992113.3227787,
+      "title": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت ⚡️ بر اثر سقوط یک هواپیمای کوچک در ایالت ویسکانسین آمریکا، شش ",
+      "toll": 6
     }
   ],
   "_published_incidents_v2": true,
@@ -11847,6 +11817,40 @@
       ],
       "t": 1791989690.3711462,
       "title": "عوارض ۲۰۰ هزار دلاری آمریکا برای کشتی های اسپانیایی ⚡️ کمیسیون فدرال دریایی آمریکا با طرح اتهاماتی علیه اسپانیا درباره م"
+    },
+    {
+      "k": [
+        "اثر",
+        "الت",
+        "امرک",
+        "حدث",
+        "دفتر",
+        "دلن",
+        "سرنشن",
+        "سعت",
+        "سقط",
+        "سک",
+        "شدند",
+        "شمل",
+        "شنب",
+        "شهرست",
+        "غرب",
+        "فصل",
+        "محل",
+        "مدسن",
+        "مرکز",
+        "منطق",
+        "هپم",
+        "وسکنسن",
+        "وقت",
+        "کشت",
+        "کلمتر",
+        "کلنتر",
+        "کچک",
+        "گذشت"
+      ],
+      "t": 1791992113.2945657,
+      "title": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت ⚡️ بر اثر سقوط یک هواپیمای کوچک در ایالت ویسکانسین آمریکا، شش "
     }
   ],
   "_text_polish": {
@@ -11858,7 +11862,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791989521
+    "at": 1791991869
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11873,14 +11877,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791989973.0,
-    "last_failure": 1791989673,
-    "last_status": 503
+    "disabled_until": 1791992398.0,
+    "last_failure": 1791992098,
+    "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791989741,
-    "last_failure": 1791989141,
-    "last_status": 429
+    "disabled_until": 1791992383.0,
+    "last_failure": 1791992083,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
