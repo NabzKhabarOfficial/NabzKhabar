@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.5-flash-lite",
-      "t": 1791976974
-    },
-    {
-      "e": "EDITOR BATCH: 1/1 via gemini/gemini-3.5-flash-lite",
-      "t": 1791976975
-    },
-    {
-      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.5-flash-lite",
-      "t": 1791977537
-    },
-    {
       "e": "EDITOR BATCH: 6/6 via gemini/gemini-3.5-flash-lite",
       "t": 1791978060
     },
@@ -159,6 +147,18 @@
     {
       "e": "EDITOR BATCH: no verdict for 6 stories",
       "t": 1791992628
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1791993137
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
+      "t": 1791993137
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 6 stories",
+      "t": 1791993138
     }
   ],
   "_ai_usage": {
@@ -231,8 +231,8 @@
         "other": 0
       },
       "openrouter:openrouter/free": {
-        "429": 9,
-        "calls": 23,
+        "429": 10,
+        "calls": 24,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 14,
         "other": 0
@@ -4719,6 +4719,11 @@
       "reason": "policy_scope_blocked",
       "until": 1791995013.6442916
     },
+    "what we know about the deadly six flags rollercoaster incident in georgia": {
+      "at": 1791993140.45589,
+      "reason": "ai_unavailable_foreign",
+      "until": 1791994340.45589
+    },
     "zelensky to visit u.k. as ukraine presses allies on intelligence sharing": {
       "reason": "content_duplicate",
       "until": 1791998617.414455
@@ -4882,10 +4887,6 @@
     "نفت در جریان است، اما انتقال آن هیچ گاه تا این اندازه پر هزینه نبوده/ دستمزد دریانوردان عادی به چهار تا شش برابر سطح معمول افزایش یافته/ درگیری ها از دو مسیر باعث افزایش هزینه حمل": {
       "reason": "content_duplicate",
       "until": 1792000914.289067
-    },
-    "گزارش فایننشال تایمز از شدت تنش در تنگه هرمز؛ ایران ممکن است در حال توسعه توانمندی های موشکی ضدکشتی خود باشد": {
-      "reason": "content_duplicate",
-      "until": 1791992820.9804044
     },
     "یمن از حمله موشکی به آرامکو و فرودگاه ملک خالد خبر داد": {
       "reason": "content_duplicate",
@@ -11931,7 +11932,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791992443
+    "at": 1791993022
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11946,9 +11947,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791992928.0,
-    "last_failure": 1791992628,
-    "last_status": 503
+    "disabled_until": 1791993437.0,
+    "last_failure": 1791993137,
+    "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
     "disabled_until": 1791993227,
@@ -12028,8 +12029,8 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791992742.3086152,
-    "last_failure": 1791989142,
+    "disabled_until": 1791996737.6376479,
+    "last_failure": 1791993137,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
