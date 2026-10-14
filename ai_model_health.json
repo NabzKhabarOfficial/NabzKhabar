@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1792005974
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792006475
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792007093
-    },
-    {
       "e": "EDITOR BATCH: 6/6 via gemini/gemini-3.1-flash-lite",
       "t": 1792007106
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1792018206
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792018763
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792018764
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1792018778
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 49
+      "n": 56
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 18
+      "n": 21
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-14",
@@ -176,7 +176,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-14",
-      "n": 144
+      "n": 146
     },
     "openrouter:*": {
       "day": "2026-10-14",
@@ -187,18 +187,18 @@
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 265,
+        "calls": 272,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 194,
+        "ok": 201,
         "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 90,
-        "calls": 593,
+        "429": 92,
+        "calls": 596,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 500,
+        "ok": 501,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
@@ -211,11 +211,11 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 111,
-        "calls": 248,
+        "calls": 250,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199748, Requested 1817. Please try again in 11m16.0",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 72,
-        "other": 65
+        "ok": 73,
+        "other": 66
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 13,
@@ -262,13 +262,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 5,
-      "t": 1791876128.8935618,
-      "title": "خروج قطار از ریل در پاکستان با ۵ کشته و ۳۰ زخمی",
-      "urgent": false
-    },
     {
       "label": "حادثه",
       "level": 4,
@@ -1101,6 +1094,13 @@
       "t": 1792018205.2215552,
       "title": "ایلان ماسک: اختیار سامانه نظامی استارشیلد در دست دولت آمریکا است",
       "urgent": false
+    },
+    {
+      "label": "قضایی",
+      "level": 5,
+      "t": 1792018777.8914945,
+      "title": "وکلای متهم اوکراینی: حمله به خط لوله نورد استریم اقدامی قانونی بوده است",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-14",
@@ -1201,11 +1201,29 @@
       "topic": "سیاست",
       "until": 1792097673.981781
     },
+    "v4|jackson steps up again as aston villa revival continues": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Routine football match result, not a final or decisive title.",
+      "topic": "ورزش",
+      "until": 1792105168.563244
+    },
     "v4|japan protests russia’s detention of journalist accused of spying": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اعتراض رسمی ژاپن به روسیه و احضار سفیر.",
       "topic": "سیاست",
       "until": 1792065077.3079712
+    },
+    "v4|mckinsey is making job applicants spar with a fake ai client": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تغییر در فرآیند استخدام یک شرکت مشاوره، خبری عمومی و غیرراهبردی است.",
+      "topic": "فناوری",
+      "until": 1792105167.4268825
+    },
+    "v4|nord stream may have been lawful target, argue lawyers for ukrainian accused of bombing": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: Trial begins for suspect in major international infrastructure sabotage case.",
+      "topic": "قضایی",
+      "until": 1792105169.8308487
     },
     "v4|now that character.ai is going bankrupt, what happens to all of its users’ data?": {
       "ok": false,
@@ -1681,12 +1699,6 @@
       "topic": "جامعه",
       "until": 1792066143.0896165
     },
-    "v4|از نفت تا اینترنت؛ جبهه تازه جنگ در خلیج فارس": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: هشدار رسمی مقام ارشد نظامی درباره هدف قرار گرفتن تأسیسات راهبردی",
-      "topic": "نظامی",
-      "until": 1792051152.6541622
-    },
     "v4|استاد دانشگاه علوم پزشکی تهران جایزه سازمان جهانی بهداشت را دریافت کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: دریافت جایزه علمی بین‌المللی توسط استاد دانشگاه، رویداد درجه یک محسوب نمی‌شود.",
@@ -1758,12 +1770,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: اعتراضات دانشجویی و آتش‌سوزی در آلبانی ارتباطی با ایران و اهمیت بین‌المللی ندارد.",
       "topic": "جامعه",
       "until": 1792072627.959067
-    },
-    "v4|اعمال قانون ۲۰۰ دستگاه خودرو هنجارشکن در طرقبه شاندیز": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و روتین پلیس ترفکی در طرقبه شاندیز",
-      "topic": "جامعه",
-      "until": 1792051754.220413
     },
     "v4|افت ۳۴ هزار واحدی شاخص کل بورس در آخرین روز کاری هفته": {
       "ok": false,
@@ -2034,6 +2040,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Opinion and speculation regarding a US senator's visit and regional policy.",
       "topic": "سیاست",
       "until": 1792054083.431374
+    },
+    "v4|ببینید/ کرباسچی در صداوسیما چه گفت؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارنظر و دیدگاه شخصی چهره‌های سیاسی، رویداد درجه اول محسوب نمی‌شود.",
+      "topic": "سیاست",
+      "until": 1792105164.6473691
     },
     "v4|ببینید| مرعشی: هم در ایران و هم در بین خاخام های اسرائیل، می گویند ادامه جنگ به ظهور حضرت مهدی منتهی می شود اما اگر حضرت تشریف نیاورند، چه باید کرد؟": {
       "ok": false,
@@ -2430,12 +2442,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله پهپادی به لنج در هرمزگان در منطقه جنگی.",
       "topic": "نظامی",
       "until": 1792066145.6091485
-    },
-    "v4|توماس پیکتی: آمریکا در حال از دست دادن کنترل جهان است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: دیدگاه و تحلیل یک اقتصاددان، رخداد عملی نیست.",
-      "topic": "سیاست",
-      "until": 1792051752.9710746
     },
     "v4|جادوی مورینیو از روی نیمکت/ ریمونتادای جنون آمیز رئال مادرید در هفت دقیقه!": {
       "ok": false,
@@ -3181,12 +3187,6 @@
       "topic": "ورزش",
       "until": 1792089413.9738233
     },
-    "v4|سپاه پاسداران شرایط حضور بانوان در عرصه ورزش را فراهم کرد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: بیانیه مقامات درباره شرایط ورزش زنان رویداد درجه یک نیست",
-      "topic": "ورزش",
-      "until": 1792051755.7835872
-    },
     "v4|سگ های رباتیک چینی که خود در خودرو های جنگی مستقر می شوند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: گزارش از پیشرفت‌های نظامی چین است که فاقد عملیات میدانی است.",
@@ -3342,12 +3342,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Domestic league result, not top‑tier national/international event",
       "topic": "ورزش",
       "until": 1792080170.9832873
-    },
-    "v4|صدور هشدار نارنجی هواشناسی فارس/ بارش های رگباری در راه است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: هشدار هواشناسی استانی، رویداد محلی و پیش‌بینی است",
-      "topic": "آب و هوا",
-      "until": 1792051755.0391302
     },
     "v4|صدور ۱۳۴ مجوز برای کارگاه های خانگی خراسان جنوبی": {
       "ok": false,
@@ -3708,12 +3702,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: سخنرانی مقام استانی و اظهار نظر کلی درباره دانش و فناوری",
       "topic": "فناوری",
       "until": 1792074370.4674513
-    },
-    "v4|مدیرکل صمت فارس: قدرت تبدیل دانش به فناوری، موتور پیشرفت کشورهاست": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سخنان مقام استانی درباره دانش بنیان ارزش خبری ملی ندارد",
-      "topic": "فناوری",
-      "until": 1792051756.8813028
     },
     "v4|مدیرکل فرهنگ و ارشاد اسلامی استان: ۱۱ آذر به عنوان «روز کشتی مازندران» ثبت شد": {
       "ok": false,
@@ -4567,6 +4555,18 @@
       "topic": "ورزش",
       "until": 1792051760.1486342
     },
+    "v4|گودرزی: حضور پرشور مردم معادلات پیچیده دشمن را در هم شکست": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine political rhetoric by a parliament member without strategic impact.",
+      "topic": "سیاست",
+      "until": 1792105166.5852745
+    },
+    "v4|یادواره شهدای محلات؛ طنین ۲۲۸ تجمع شبانه در مسیر ایثار": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local commemorative ceremony and routine community gathering with no national impact.",
+      "topic": "جامعه",
+      "until": 1792105165.8740509
+    },
     "v4|یزد میزبان اردوی انتخابی تیم ملی پدل/ ۲۰ بازیکن در مسیر پوشیدن پیراهن تیم ملی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اردوی انتخابی تیم ملی پدل در یزد محلی است",
@@ -4790,15 +4790,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "محاکمه یک شهروند اوکراینی در آلمان به اتهام انفجار خطوط لوله نورداستریم ⚡️ دادگاهی در هامبورگ آلمان محاکمه یک ",
-      "id": "ec2f959606",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791974688,
-      "verdict": "new",
-      "why": "No previous report covers the trial of the Ukrainian citizen in Hamburg for the Nord Stream pipeline"
-    },
     {
       "head": "احتمال شنیدن صدای انفجار در رودبار کرمان ⚡️ به دنبال این اقدام، احتمال شنیدن صدای انفجار در این محدوده وجود دا",
       "id": "27586df4a8",
@@ -5331,44 +5322,18 @@
       "t": 1792018197,
       "verdict": "new",
       "why": "No matching event"
+    },
+    {
+      "head": "وکلای متهم اوکراینی: حمله به خط لوله نورد استریم اقدامی قانونی بوده است ⚡️ وکلای یک نظامی سابق اوکراینی که مته",
+      "id": "cb4338038e",
+      "match": "محاکمه یک شهروند اوکراینی در آلمان به اتهام انفجار خطوط لوله نورداستریم",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1792018776,
+      "verdict": "update",
+      "why": "Provides new details on the ongoing trial regarding Nord Stream sabotage."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Parliamentary criticism, no concrete decision",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792005320,
-      "title": "نماینده رزن و درگزین: موانع غیرقانونی تولید باید برطرف شود"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Political comment, no concrete decision or impact",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792005321,
-      "title": "قالیباف: «بنست» به دلیل پیش بینی های عجیبش شایسته نوبل فیزیک نیست؟"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بازدید رسمی، اثر محدود",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792005323,
-      "title": "بازدید معاون وزیر نیرو از نیروگاه خورشیدی ۱۵ مگاواتی قم"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Educational space target, planning statement, no immediate impact",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792005324,
-      "title": "هدفگذاری رسیدن به سرانه ۶.۱ مترمربع آموزشی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: موفقیت در مسابقات گرندپری تکواندو اهمیت استراتژیک ملی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792005327,
-      "title": "آرین: همیشه با لذت بردن طلا می گیرم"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=iran_national: رئیس مجلس موضع رسمی و تند علیه سیاست‌های آمریکا اتخاذ کرد.",
       "rescued": true,
@@ -5893,25 +5858,45 @@
       "rule": "foreign-local-preselection",
       "t": 1792017634,
       "title": "Australia's first-ever Michelin stars go to 11 restaurants in one state"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارنظر و دیدگاه شخصی چهره‌های سیاسی، رویداد درجه اول محسوب نمی‌شود.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792018764,
+      "title": "ببینید/ کرباسچی در صداوسیما چه گفت؟"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local commemorative ceremony and routine community gathering with no national impact.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792018765,
+      "title": "یادواره شهدای محلات؛ طنین ۲۲۸ تجمع شبانه در مسیر ایثار"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine political rhetoric by a parliament member without strategic impact.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792018766,
+      "title": "گودرزی: حضور پرشور مردم معادلات پیچیده دشمن را در هم شکست"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تغییر در فرآیند استخدام یک شرکت مشاوره، خبری عمومی و غیرراهبردی است.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792018767,
+      "title": "McKinsey is making job applicants spar with a fake AI client"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Routine football match result, not a final or decisive title.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792018768,
+      "title": "Jackson steps up again as Aston Villa revival continues"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "احتمل",
-        "اقدم",
-        "دنبل",
-        "ردبر",
-        "شندن",
-        "صد",
-        "محدد",
-        "وجد",
-        "کرم"
-      ],
-      "t": 1791975156.5397587,
-      "title": "احتمال شنیدن صدای انفجار در رودبار کرمان ⚡️ به دنبال این اقدام، احتمال شنیدن صدای انفجار در این محدوده وجود دارد."
-    },
     {
       "h": [
         "الل",
@@ -6775,6 +6760,33 @@
       ],
       "t": 1792018205.2088537,
       "title": "ایلان ماسک: اختیار سامانه نظامی استارشیلد در دست دولت آمریکا است ⚡️ ایلان ماسک مالک شرکت اسپیس اکس اعلام کرد که سامانه ن"
+    },
+    {
+      "h": [
+        "استدلل",
+        "استرم",
+        "اغز",
+        "اقدم",
+        "الم",
+        "بمب",
+        "تند",
+        "ددگ",
+        "رهبر",
+        "زرسخت",
+        "سبق",
+        "عمل",
+        "قنن",
+        "لل",
+        "متجز",
+        "متهم",
+        "محسب",
+        "نرد",
+        "هدف",
+        "وکل",
+        "گذر"
+      ],
+      "t": 1792018777.8788688,
+      "title": "وکلای متهم اوکراینی: حمله به خط لوله نورد استریم اقدامی قانونی بوده است ⚡️ وکلای یک نظامی سابق اوکراینی که متهم به رهبری"
     }
   ],
   "_published_incidents": [
@@ -11031,6 +11043,37 @@
       "s": "ایلان ماسک",
       "t": 1792018205.1959686,
       "title": "ایلان ماسک: اختیار سامانه نظامی استارشیلد در دست دولت آمریکا است ⚡️ ایلان ماسک مالک شرکت اسپیس اکس اعلام کرد که سامانه ن"
+    },
+    {
+      "k": [
+        "استدلل",
+        "استرم",
+        "اغز",
+        "اقدم",
+        "الم",
+        "اکرن",
+        "بمب",
+        "تند",
+        "حمل",
+        "ددگ",
+        "رهبر",
+        "زرسخت",
+        "سبق",
+        "عمل",
+        "قنن",
+        "لل",
+        "متجز",
+        "متهم",
+        "محسب",
+        "نرد",
+        "نظم",
+        "هدف",
+        "وکل",
+        "گذر"
+      ],
+      "s": "وکلای متهم اوکراینی",
+      "t": 1792018777.8660672,
+      "title": "وکلای متهم اوکراینی: حمله به خط لوله نورد استریم اقدامی قانونی بوده است ⚡️ وکلای یک نظامی سابق اوکراینی که متهم به رهبری"
     }
   ],
   "_text_polish": {
@@ -11042,7 +11085,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792018082
+    "at": 1792018652
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11057,8 +11100,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792018221,
-    "last_failure": 1792017621,
+    "disabled_until": 1792019364,
+    "last_failure": 1792018764,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11075,8 +11118,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792018220,
-    "last_failure": 1792017620,
+    "disabled_until": 1792019363,
+    "last_failure": 1792018763,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
