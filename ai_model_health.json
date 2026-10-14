@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792004877
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1792004878
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792005325
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
       "t": 1792005328
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
       "t": 1792015912
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792016460
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
+      "t": 1792016474
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
+      "t": 1792016474
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 41
+      "n": 45
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 13
+      "n": 17
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-14",
@@ -176,7 +176,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-14",
-      "n": 137
+      "n": 142
     },
     "openrouter:*": {
       "day": "2026-10-14",
@@ -187,15 +187,15 @@
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 257,
+        "calls": 261,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 186,
+        "ok": 190,
         "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 85,
-        "calls": 588,
+        "429": 89,
+        "calls": 592,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 500,
@@ -210,12 +210,12 @@
         "other": 8
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 108,
-        "calls": 241,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198417, Requested 1861. Please try again in 2m0.095",
+        "429": 111,
+        "calls": 246,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199748, Requested 1817. Please try again in 11m16.0",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 69,
-        "other": 64
+        "ok": 70,
+        "other": 65
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 13,
@@ -3739,6 +3739,12 @@
       "topic": "جامعه",
       "until": 1792089948.0616858
     },
+    "v4|مرکز فرماندهی سپاهان در حال به روزرسانی!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر مربوط به تعویض بازیکن در یک مسابقه لیگ داخلی است.",
+      "topic": "ورزش",
+      "until": 1792102862.446267
+    },
     "v4|مرکز هوشمند «مهتاب» در صنعت برق کهگیلویه وبویراحمد به بهره برداری رسید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: افتتاح مرکز هوشمند برق استانی محلی است و اهمیت ملی ندارد",
@@ -4116,12 +4122,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: هشدار رسمی فدرال رزرو آمریکا درباره تورم و هوش مصنوعی.",
       "topic": "اقتصاد",
       "until": 1792052367.0214047
-    },
-    "v4|هشدار مسکو به توکیو درباره جاسوسی در پوشش خبرنگار": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: هشدار دیپلماتیک روسیه به ژاپن اهمیت بین‌المللی درجه یک ندارد",
-      "topic": "سیاست",
-      "until": 1792051149.9707997
     },
     "v4|هشدار پزشکی قانونی خراسان شمالی درباره افزایش خطر گازگرفتگی در نیمه دوم سال": {
       "ok": false,
@@ -4752,6 +4752,10 @@
       "reason": "content_duplicate",
       "until": 1792032448.2588782
     },
+    "حمله دوباره عربستان به پایتخت یمن": {
+      "reason": "content_duplicate",
+      "until": 1792038074.7613058
+    },
     "ریزش سنگین بورس سعودی به دنبال حمله یمن به آرامکو": {
       "reason": "content_duplicate",
       "until": 1792029922.1860898
@@ -4786,25 +4790,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "none:-",
-      "head": "اختلال در بازار جهانی انرژی بر اثر حملات در خاورمیانه ⚡️ حملات حوثی های یمن به فرودگاه ریاض و تهدیدهای مداوم ع",
-      "id": "8a282a0413",
-      "match": "تشکیل مراسم تشییع جنازه خدمه پروازی مصری کشته در حمله حوثی به ریاض",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791972913,
-      "verdict": "repeat",
-      "why": "حمله حوثی ها به فرودگاه ریاض قبلا منتشر شده است."
-    },
-    {
-      "head": "تداوم کمبود گازوئیل تا سال ۲۰۲۷ ⚡️ آژانس بین المللی انرژی از احتمال تداوم محدودیت در عرضه گازوئیل تا سال ۲۰۲۷ ",
-      "id": "91b3d5a7a6",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791972935,
-      "verdict": "new",
-      "why": "آژانس بین المللی انرژی هشدار جدیدی درباره محدودیت عرضه گازوئیل تا ۲۰۲۷ داده است."
-    },
     {
       "head": "حمله به یک کشتی کانتینری در تنگه هرمز ⚡️ یک کشتی کانتینری هنگام عبور از تنگه هرمز با یک پرتابه ناشناس هدف قرار",
       "id": "0858d6bbd4",
@@ -5326,16 +5311,29 @@
       "t": 1792015907,
       "verdict": "repeat",
       "why": "Both posts refer to the same incident in the Strait of Hormuz."
+    },
+    {
+      "confirm": "none:-",
+      "head": "حمله مجدد ائتلاف سعودی به صنعا ⚡️ ائتلاف سعودی صنعا، پایتخت یمن را هدف حملات هوایی قرار داد.",
+      "id": "f8f09b467a",
+      "match": "شهادت و مجروح شدن زنان و کودکان در یمن در پی حملات عربستان",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1792016473,
+      "verdict": "repeat",
+      "why": "The post refers to the same ongoing Saudi airstrikes in Yemen."
+    },
+    {
+      "confirm": "none:-",
+      "head": "حمله مجدد ائتلاف سعودی به صنعا ⚡️ ائتلاف سعودی صنعا، پایتخت یمن را هدف حملات هوایی قرار داد.",
+      "id": "f8f09b467a",
+      "match": "شهادت و مجروح شدن زنان و کودکان در یمن در پی حملات عربستان",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1792016474,
+      "verdict": "repeat",
+      "why": "The post refers to the same ongoing Saudi airstrikes in Yemen."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: ترکیب تیم‌ها در مرحله گروهی لیگ قهرمانان اهمیت خبری سطح اول ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792004157,
-      "title": "ترکیب رم-رئال | مورینیو در مقابل گاسپرینی"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: رویداد ورزشی محلی و غیرحرفه‌ای در سطح استانی است.",
       "rescued": false,
@@ -5888,6 +5886,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792015890,
       "title": "PSG on 'different level' - are they building greatest European dynasty?"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر مربوط به تعویض بازیکن در یک مسابقه لیگ داخلی است.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792016462,
+      "title": "مرکز فرماندهی سپاهان در حال به روزرسانی!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11150,7 +11155,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792015772
+    "at": 1792016348
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11183,13 +11188,13 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792016029.5410814,
-    "last_failure": 1792010810,
+    "disabled_until": 1792017060,
+    "last_failure": 1792016460,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792019507.6868663,
+    "disabled_until": 1792020074.6355555,
     "last_failure": 1792010850,
     "last_status": 429
   },
