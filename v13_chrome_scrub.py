@@ -28,6 +28,12 @@ Oct 14 (night review): three posts slipped through on Oct 13. Now refused:
 * «پالتیکو» / «پولیتیکو» (Politico) as an outlet name;
 * the site's run of related headlines glued to the lead («از ماجرای ... تا ماجرای ...», «از جنجال ... تا اظهارات ...»);
 * a bullet list or «عبارت اند از:» from another story («این سه مکان عبارت اند از: * ...»).
+
+Oct 14 (evening review): that refusal cost real news. Fararu glues the same related-headline strip
+(«از ماجرای جنجال ترکمانچای ظریف تا ماجرای کسر ۲۴ امتیاز از استقلال جزئیات ...») to every article, so
+«انفجارهای جدید ریاض را لرزاند» and the IRGC spokesman were refused again and again. strip_teasers() now cuts
+that strip (and a foreign bullet list) out of the text before the caption is built; the post is refused
+only when no real text (12+ words) is left. leftover() still refuses anything that survives.
 """
 
 import re
@@ -82,6 +88,7 @@ _STICKY_TEASERS = re.compile(r"^(?:چرخش ناگهانی واشنگتن)\s+(?=
 # Oct 13 (evening), see the module notes
 _SPEAKER = re.compile(r"^\s*([^:：«»\"]{3,40}?)\s*[:：]\s*\S")
 _PRONOUN_LEAD = re.compile(r"^(?:وی|او)(?=\s+[" + _P + r"])")
+_SENT_SPLIT = re.compile(r"(?<=[.!؟؛])\s+")
 
 
 def fix_title(title):
@@ -122,6 +129,38 @@ def fix_pronoun(title, body):
         if not (1 <= len(who.split()) <= 5) or re.search(r"[0-9۰-۹]", who):
             return body
         return _PRONOUN_LEAD.sub(who, b, count=1)
+    except Exception:
+        return body
+
+
+def strip_teasers(body):
+    """Oct 14 (evening): the site's run of related headlines («از ماجرای ... تا ماجرای ...») or another
+    story's bullet list is cut out of the text. A sentence keeps what stands before the strip when
+    that is a real sentence (6+ words); otherwise the sentence goes. Unchanged when less than 12
+    words of real text would remain (leftover() then refuses the post as before)."""
+    try:
+        text = str(body or "")
+        parts = [p for p in _SENT_SPLIT.split(text.strip()) if p.strip()]
+        if not parts:
+            return body
+        out, cut = [], 0
+        for s in parts:
+            n = _norm(s)
+            m = _TEASER_RUN.search(n) or _BULLETS.search(n)
+            if not m:
+                out.append(s)
+                continue
+            cut += 1
+            head = n[:m.start()].strip(_EDGE)
+            if len(head.split()) >= 6:
+                out.append(head if re.search(r"[.!؟»]$", head) else head + ".")
+        if not cut:
+            return body
+        new = " ".join(out).strip()
+        if len(new.split()) < 12:
+            return body
+        print(f"V13 CHROME SCRUB: related-headline strip cut from {cut} sentence(s)", flush=True)
+        return new
     except Exception:
         return body
 
@@ -238,7 +277,7 @@ def install():
     original_build = pd.build_caption
 
     def build_caption(title, body, formatter):
-        body = scrub_lead(title, body)
+        body = strip_teasers(scrub_lead(title, body))
         new_title = fix_names(fix_title(title), body)
         if new_title != title:
             print(f"V13 CHROME SCRUB: headline repaired -> {str(new_title)[:120]}", flush=True)
