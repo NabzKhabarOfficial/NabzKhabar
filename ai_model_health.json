@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1792002504
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792003011
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
       "t": 1792003014
     },
@@ -159,24 +151,54 @@
     {
       "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
       "t": 1792012398
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792013008
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
+      "t": 1792013016
     }
   ],
+  "_ai_pace": {
+    "gemini:gemini-3.1-flash-lite": {
+      "day": "2026-10-14",
+      "n": 6
+    },
+    "gemini:gemini-3.5-flash-lite": {
+      "day": "2026-10-14",
+      "n": 2
+    },
+    "groq:openai/gpt-oss-120b": {
+      "day": "2026-10-14",
+      "n": 196
+    },
+    "groq:openai/gpt-oss-20b": {
+      "day": "2026-10-14",
+      "n": 126
+    },
+    "openrouter:*": {
+      "day": "2026-10-14",
+      "n": 14
+    }
+  },
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 216,
+        "calls": 222,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 145,
+        "ok": 151,
         "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 74,
-        "calls": 575,
+        "429": 75,
+        "calls": 577,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 498,
+        "ok": 499,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
@@ -1353,6 +1375,12 @@
       "topic": "جامعه",
       "until": 1792067969.6252286
     },
+    "v4|آتش بازی درخشان پی اس جی در نیمه اول/ سیتی 2-4 پاریس | انتقام انریکه بعد از 458 روز": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه یک بازی فوتبال باشگاهی در سطح اول جهانی نیست.",
+      "topic": "ورزش",
+      "until": 1792099411.0990973
+    },
     "v4|آتش بازی لیورپول؛ فاینورد، ترمز کومو را کشید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مسابقات فوتبال مرحله گروهی لیگ قهرمانان اروپا اهمیت استراتژیک ندارند.",
@@ -1527,12 +1555,6 @@
       "topic": "جامعه",
       "until": 1792055231.5193207
     },
-    "v4|اخباری از حمله گسترده یمن به ریاض و الخرج": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله موشکی به پایتخت عربستان؛ رویداد جنگی منطقه‌ای با اهمیت بین‌المللی.",
-      "topic": "نظامی",
-      "until": 1792049497.84006
-    },
     "v4|اختتامیه پویش ملی «ایران امام رضا(ع)» در جیرفت برگزار شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: مراسم اختتامیه یک جشنواره فرهنگی محلی فاقد اهمیت ملی است.",
@@ -1574,12 +1596,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع‌گیری نخست‌وزیر اسرائیل درباره عدم حمله به ایران",
       "topic": "سیاست",
       "until": 1792074375.3262782
-    },
-    "v4|ادعای وال استریت ژورنال درباره استفاده ارتش یمن از قطعات چینی برای ساخت موشک بالستیک": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: گزارش و ادعای یک روزنامه خارجی است، نه یک تصمیم یا رویداد رسمی.",
-      "topic": "نظامی",
-      "until": 1792049497.8792076
     },
     "v4|ارائه خدمات حمایتی به ۳۴۰۰ نابینا و کم بینا در بوشهر": {
       "ok": false,
@@ -2007,12 +2023,6 @@
       "topic": "فناوری",
       "until": 1792062127.6523092
     },
-    "v4|بخش خصوصی در جنگ اخیر جانانه پای مردم ایستادند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: سخنان وزیر راه و تقدیر از بخش خصوصی؛ رویداد عینی محسوب نمی‌شود.",
-      "topic": "سیاست",
-      "until": 1792049497.8659148
-    },
     "v4|برای بدترین سناریو های ممکن باید آماده باشیم/ قطر در مورد جنگ علیه ایران، سه مسئولیت بر عهده گرفت: «حفاظت از حاکمیت خود»، «ایفای نقش در امنیت انرژی» و «باز نگه داشتن در های دیپلماس": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: سخنرانی، مواضع عمومی و تحلیل سناریوهای فرضی بدون تصمیم اجرایی مشخص.",
@@ -2331,12 +2341,6 @@
       "topic": "آب و هوا",
       "until": 1792051152.631264
     },
-    "v4|تقویت عضلات، حفظ تعادل و ارتباطات اجتماعی؛ سه کلید طلایی سالمندی سالم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: توصیه های پزشکی و عمومی درباره سالمندی، فاقد اهمیت ملی",
-      "topic": "سلامت",
-      "until": 1792049997.5498004
-    },
     "v4|تمدید مهلت ثبت نام دوره آموزشی «هوش مصنوعی» ویژه معلمان و فرهنگیان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تمدید مهلت ثبت‌نام دوره آموزشی معلمان خبری فرعی و کم‌اهمیت است",
@@ -2534,12 +2538,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: پیامد مستقیم حملات یمن بر رویدادهای بین‌المللی در منطقه",
       "topic": "ورزش",
       "until": 1792097221.9986277
-    },
-    "v4|حمله اوکراین به مجاورت نیروگاه اتمی زاپروژیا": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله به تاسیسات هسته‌ای زاپروژیا از اخبار مهم جهانی است.",
-      "topic": "نظامی",
-      "until": 1792049497.8528693
     },
     "v4|حمله به ساختمان آرامکو و زخمی شدن ۴ نفر در ریاض": {
       "ok": true,
@@ -2894,6 +2892,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: روایت خاطره قدیمی از سوی مقام سابق، فاقد فوریت و اهمیت راهبردی روز است.",
       "topic": "سیاست",
       "until": 1792053458.048818
+    },
+    "v4|روایت سید محمد خاتمی از پاسخ رئیس جمهور چین به پیشنهاد اتمی ایران: در زمان ریاست جمهوری خودم، سه ملاقات با جیانگ زمین، رئیس جمهور وقت چین داشتم و در هر سه مورد، پیشنهاد دادم که برا": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: روایت تاریخی و غیرراهبردی از دیدارهای گذشته که تاثیری بر وضعیت فعلی ندارد.",
+      "topic": "سیاست",
+      "until": 1792099414.06335
     },
     "v4|روایت سید محمد خاتمی از پاسخ رئیس جمهور چین به پیشنهاد اتمی ایران؛ آقای زمین به من می گفت که «دست از این پروژه بردارید»": {
       "ok": false,
@@ -3399,12 +3403,6 @@
       "topic": "جامعه",
       "until": 1792078467.3946323
     },
-    "v4|طرح «پرستار پیگیر» بازگشت مجدد بیماران مزمن به بیمارستان را ۵۳ درصد کاهش می دهد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: اعلام اجرای یک طرح بهداشتی داخلی و رویداد روتین وزارتخانه است.",
-      "topic": "سلامت",
-      "until": 1792049497.8919356
-    },
     "v4|طرح مطالعات اجتماعی توسعه میدان نفتی سهراب بازنگری می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: نامه محیط زیست برای بازنگری طرح نفتی، خبری اداری و غیرمهم است.",
@@ -3615,6 +3613,12 @@
       "topic": "سیاست",
       "until": 1792091731.2872124
     },
+    "v4|قلع وقمع منچسترسیتی توسط پاریس؛ کامبک هیجان انگیز رئال در رم": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مسابقات فوتبال باشگاهی در سطح اول جهانی قرار نمی‌گیرند.",
+      "topic": "ورزش",
+      "until": 1792099412.8645623
+    },
     "v4|قم در ترکیب جهانی بوکس/ علی چهرقانی در وزن ۶۰ کیلوگرم عازم مونته نگرو شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: اعزام ورزشکار استانی به مسابقات جهانی اهمیت ملی درجه یک ندارد",
@@ -3674,6 +3678,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: نتیجه یک مسابقه فوتبال عادی در لیگ قهرمانان اروپا اهمیت ملی ندارد.",
       "topic": "ورزش",
       "until": 1792098233.7594543
+    },
+    "v4|لیگ قهرمانان اروپا: تحقیر سیتی، کامبک باورنکردنی رئال!": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: نتایج مسابقات مرحله نهایی لیگ قهرمانان اروپا در سطح جهانی اهمیت دارد.",
+      "topic": "ورزش",
+      "until": 1792099409.8264537
     },
     "v4|مارین لوپن: به کمک های مالی پاریس به اوکراین پایان می دهیم": {
       "ok": false,
@@ -3758,6 +3768,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: اظهارات مقام وزارت نفت درباره شهدا.",
       "topic": "جامعه",
       "until": 1792055807.2521708
+    },
+    "v4|مشت مورینیو به صورت رم؛ من سیتی در اتحاد مات شد/ پاریس در قامت یک قهرمان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: نتایج مرحله گروهی لیگ قهرمانان اروپا فینال و تعیین کننده نیستند",
+      "topic": "ورزش",
+      "until": 1792099408.3471425
     },
     "v4|مطالبه بخش خصوصی آذربایجان شرقی از معاون اجرایی رئیس جمهور برای تفویض اختیارات": {
       "ok": false,
@@ -3999,12 +4015,6 @@
       "topic": "جامعه",
       "until": 1792059784.0565715
     },
-    "v4|نمایندگان اروپا خواستار مقابله با تحریم های آمریکا علیه دیوان کیفری بین المللی شدند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: نامه نمایندگان پارلمان اروپا به کمیسیون درباره تحریم‌ها.",
-      "topic": "سیاست",
-      "until": 1792049497.8252032
-    },
     "v4|نهضت احیای نخلستان های جنوب راه اندازی می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: خبر درباره طرح و برنامه است و رویداد قطعی محسوب نمی‌شود.",
@@ -4082,6 +4092,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: گزارش تحلیلی درباره هزینه انرژی و کسری تجاری ترکیه",
       "topic": "اقتصاد",
       "until": 1792058097.2097378
+    },
+    "v4|هشدار آمریکا به اتباع خود درباره خطر حمله به فرودگاه های عربستان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine security warning for citizens, lacks immediate concrete event impact.",
+      "topic": "سیاست",
+      "until": 1792099416.0320055
     },
     "v4|هشدار رئیس پلیس راه فراجا درباره تردد اتوبوس های دارای نقص فنی": {
       "ok": false,
@@ -4670,6 +4686,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=iran_national: گزارش دیوان محاسبات درباره تاخیر در تحویل خودرو به مادران.",
       "topic": "اقتصاد",
       "until": 1792052367.0338783
+    },
+    "v4|‘why did they kill him?’ mourning victims of houthi attack on a saudi airport": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Lethal attack on regional infrastructure constitutes major world security news.",
+      "topic": "نظامی",
+      "until": 1792099416.0455363
     },
     "v4|‫اعتصاب سراسری در اسپانیا تقویم یوفا را تغییر داد/ به دلیل گرانی مسکن: تعویق بازی بارسا و آرسنال!": {
       "ok": false,
@@ -5295,41 +5317,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Domestic league result, not top‑tier national/international event",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791993770,
-      "title": "صدرنشینی پرسپولیس در پایان هفته هشتم"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: General diplomatic statement, no concrete policy change",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1791993772,
-      "title": "تاکید لاوروف بر همکاری مسکو و پکن برای ایجاد ثبات در نظام بین الملل"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: روند سفر رسمی، امضای توافق‌نامه‌های سرمایه‌گذاری",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1791993772,
-      "title": "دومین روز سفر معاون اجرایی رئیس جمهور به تبریز"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: تصویب اولیه در شورای ملی تامین مالی اهمیت ملی کلان ندارد.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791993774,
-      "title": "موافقت شورای ملی تامین مالی با تشکیل صندوق املاک دولتی و توثیق دارایی های دیجیتال"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: افتتاح پروژه‌های آموزشی برنامه‌ای وزارتخانه و محلی یا درون‌سازمانی محسوب می‌شود",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1791993776,
-      "title": "بهره برداری از ۲۰۴۷ پروژه در گام نخست نهضت توسعه عدالت آموزشی"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=iran_national: Routine administrative suggestion regarding industrial policy, not a concrete decisi",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5853,6 +5840,41 @@
       "rule": "strict-source-below-importance(8<10)",
       "t": 1792012394,
       "title": "روایت سید محمد خاتمی از پاسخ رئیس جمهور چین به پیشنهاد اتمی ایران؛ آقای زمین به من می گفت که «دست از این پروژه بردارید»"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: نتایج مرحله گروهی لیگ قهرمانان اروپا فینال و تعیین کننده نیستند",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792013008,
+      "title": "مشت مورینیو به صورت رم؛ من سیتی در اتحاد مات شد/ پاریس در قامت یک قهرمان"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: نتایج مسابقات مرحله نهایی لیگ قهرمانان اروپا در سطح جهانی اهمیت دارد.",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1792013009,
+      "title": "لیگ قهرمانان اروپا: تحقیر سیتی، کامبک باورنکردنی رئال!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه یک بازی فوتبال باشگاهی در سطح اول جهانی نیست.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792013011,
+      "title": "آتش بازی درخشان پی اس جی در نیمه اول/ سیتی 2-4 پاریس | انتقام انریکه بعد از 458 روز"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مسابقات فوتبال باشگاهی در سطح اول جهانی قرار نمی‌گیرند.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792013012,
+      "title": "قلع وقمع منچسترسیتی توسط پاریس؛ کامبک هیجان انگیز رئال در رم"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: روایت تاریخی و غیرراهبردی از دیدارهای گذشته که تاثیری بر وضعیت فعلی ندارد.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792013014,
+      "title": "روایت سید محمد خاتمی از پاسخ رئیس جمهور چین به پیشنهاد اتمی ایران: در زمان ریاست جمهوری خودم، سه ملاقات با جیانگ زمین، ر"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11202,7 +11224,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792012306
+    "at": 1792012879
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11217,8 +11239,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792012428,
-    "last_failure": 1792011828,
+    "disabled_until": 1792013608,
+    "last_failure": 1792013008,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
