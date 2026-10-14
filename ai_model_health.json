@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
-      "t": 1792003014
-    },
-    {
       "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1792003017
     },
@@ -159,16 +155,20 @@
     {
       "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
       "t": 1792013016
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792014160
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 12
+      "n": 18
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 2
+      "n": 3
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-14",
@@ -187,15 +187,15 @@
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 228,
+        "calls": 234,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 157,
+        "ok": 163,
         "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 75,
-        "calls": 577,
+        "429": 76,
+        "calls": 578,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 499,
@@ -1207,6 +1207,12 @@
       "topic": "فناوری",
       "until": 1792058101.8186738
     },
+    "v4|real madrid stun roma after dramatic late comeback": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقات باشگاهی فوتبال در اولویت خبری نبز خبر نیست.",
+      "topic": "ورزش",
+      "until": 1792100566.1575193
+    },
     "v4|republicans weigh midterms strategy, pour money into campaigns even in red states": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: اظهارات رئیس جمهور آمریکا درباره انتخابات میان دوره ای و راهبرد حزب.",
@@ -1711,12 +1717,6 @@
       "topic": "جامعه",
       "until": 1792064453.3364158
     },
-    "v4|اصابت پهپاد به یک فروند لنج در محدوده شهرستان سیریک؛ ۳ نفر زخمی شدند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: اصابت پهپاد ناشناس به لنج در سیریک و زخمی شدن افراد",
-      "topic": "حادثه",
-      "until": 1792050010.1578043
-    },
     "v4|اصلاح سیاست های ارزی برای حفظ توان تولید و صادرات زنجان ضروری است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: اظهارات مقام استانی درباره سیاست ارزی و تولید زنجان محلی است.",
@@ -2005,12 +2005,6 @@
       "topic": "ورزش",
       "until": 1792099919.145015
     },
-    "v4|بازگشت ۶۲۳ میلیارد تومان از اراضی دولتی هفت باغ کرمان به بیت المال": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: رفع تصرف اراضی دولتی در کرمان، یک خبر محلی است",
-      "topic": "قضایی",
-      "until": 1792050010.1779466
-    },
     "v4|باید هر چه سریع تر از جنگ کنار بکشیم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Opinion and speculation regarding a US senator's visit and regional policy.",
@@ -2161,12 +2155,6 @@
       "topic": "جامعه",
       "until": 1792090556.0949445
     },
-    "v4|بیش از ۳۵۰۰ پرونده مرتبط با اغتشاشات و جنگ در مرکزی رسیدگی شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: گزارش عملکرد دادگستری استان مرکزی استانی و محلی است",
-      "topic": "قضایی",
-      "until": 1792050010.1422336
-    },
     "v4|بیمارستان میناب: حال عمومی مجروحان حمله پهپادی امروز به یک فروند لنج صیادی در سیریک خوب است / یکی از مجروحان ترکش به ناحیه سینه و شکم او برخورد کرده": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله پهپادی به لنج صیادی در آب‌های جنوب و مجروح شدن افراد.",
@@ -2226,6 +2214,18 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=iran_national: اعلام آمار رسمی و کلان تجارت خارجی ایران و اوراسیا.",
       "topic": "اقتصاد",
       "until": 1792073822.3809881
+    },
+    "v4|تجدید میثاق مردم خمین با رهبر معظم انقلاب در شب ۲۲۸ حماسه و ایستادگی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local ceremony with no national strategic impact or news value.",
+      "topic": "جامعه",
+      "until": 1792100563.7910602
+    },
+    "v4|تجلی حضور مردم دیار آفتاب در شب ۲۲۸ تجدید عهد با رهبری": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local ceremony with no national strategic impact.",
+      "topic": "جامعه",
+      "until": 1792100562.4333332
     },
     "v4|تحصیل بیش از ۵۹ هزاردانشجوی افغان درایران/ حمایت های بین المللی متناسب با بار میزبانی نیست": {
       "ok": false,
@@ -2304,6 +2304,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: تصویب استاندارد ملی سازمان انتقال خون، رویداد روتین اداری.",
       "topic": "سلامت",
       "until": 1792069081.4021528
+    },
+    "v4|تظاهرات یهودیان حریدی علیه خدمت نظامی در ارتش رژیم صهیونیستی ادامه دارد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تظاهرات داخلی در اسرائیل موضوعی تکراری و فاقد تاثیر راهبردی فوری است.",
+      "topic": "جامعه",
+      "until": 1792100564.9319692
     },
     "v4|تعرفه های اینترنت اپراتورهای تلفن همراه تغییر می کند؟": {
       "ok": false,
@@ -2580,12 +2586,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله هوایی به تاسیسات نفتی در یمن و منطقه جنگی",
       "topic": "نظامی",
       "until": 1792069678.435509
-    },
-    "v4|حمله پهپاد ناشناس به صیادان در سیریک/ ۳ نفر زخمی شدند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: حمله پهپادی و زخمی شدن افراد در سیریک رویداد امنیتی مهم است",
-      "topic": "حادثه",
-      "until": 1792050010.1322308
     },
     "v4|حمله یمن به پالایشگاه شرکت آرامکو و فرودگاه ملک خالد در ریاض": {
       "ok": true,
@@ -3192,12 +3192,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: گزارش از پیشرفت‌های نظامی چین است که فاقد عملیات میدانی است.",
       "topic": "فناوری",
       "until": 1792059286.5113094
-    },
-    "v4|سی ان ان : عربستان با وجود هزینه ۸۳ میلیارد دلاری برای دفاع از خود، در حفاظت از زیرساخت های کلیدی با مشکل مواجه است، زیرا نیروهای انصارالله یاد گرفته اند موشک های بالستیک و کروز را": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل سی‌ان‌ان درباره سیستم دفاعی عربستان، خبر قطعی محسوب نمی‌شود",
-      "topic": "سیاست",
-      "until": 1792050010.167892
     },
     "v4|سیدمحمد خاتمی از «معیشت مردم»، «جنگ تمدن ها» و «کودکان میناب» نوشت/ باید در پی چاره و تدبیر برای دور کردن سایه جنگ و تجاوز از کشور بود + متن بیانیه": {
       "ok": false,
@@ -3900,6 +3894,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارنظر و انتقاد سیاسی نامزد انتخابات ریاست جمهوری فرانسه",
       "topic": "سیاست",
       "until": 1792074368.8050296
+    },
+    "v4|ناکامی برابر نماینده نروژ، مثل بایرن!/ بودو ۱-۰ دورتموند | کواچ به بلای کمپانی دچار شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقه مرحله گروهی لیگ قهرمانان اروپا برای مخاطب عام اولویت ندارد.",
+      "topic": "ورزش",
+      "until": 1792100561.3906589
     },
     "v4|ناکامی تروریست های مزدور در مهرستان": {
       "ok": true,
@@ -5317,41 +5317,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اعتراض صریح زلنسکی به سیاست‌های رئیس‌جمهور آمریکا درباره روسیه",
-      "rescued": true,
-      "rule": "no-concrete-event",
-      "t": 1791997183,
-      "title": "زلنسکی: به من خیانت شد!"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: مقالهٔ مشورتی، رویداد واقعی نیست",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1791998959,
-      "title": "چگونه کودک غرق در بازی را پای درس بنشانیم؟"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Public rally against US minister's insulting remarks",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1791998960,
-      "title": "«حماسه پرچمداران تمدن ایران زمین»؛ پاسخ مردمی در تخت جمشید به توهین های وزیر خارجه آمریکا"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: routine bilateral central bank meeting",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1791998961,
-      "title": "دیدار رؤسای کل بانک های مرکزی ایران و پاکستان"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تصادف زنجیره ای 4 خودرو، 1 فوتی، 6 مصدوم",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791998962,
-      "title": "تصادف زنجیره ای ۴خودرو در اتوبان کاشان-اصفهان یک فوتی و ۶مصدوم داشت"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مبارزه محلی، نتیجه مهم نیست",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -5875,6 +5840,41 @@
       "rule": "foreign-local-preselection",
       "t": 1792013520,
       "title": "Villa rewrite the record books as they hit Fenerbahce for six"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقه مرحله گروهی لیگ قهرمانان اروپا برای مخاطب عام اولویت ندارد.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792014161,
+      "title": "ناکامی برابر نماینده نروژ، مثل بایرن!/ بودو ۱-۰ دورتموند | کواچ به بلای کمپانی دچار شد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local ceremony with no national strategic impact.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792014162,
+      "title": "تجلی حضور مردم دیار آفتاب در شب ۲۲۸ تجدید عهد با رهبری"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local ceremony with no national strategic impact or news value.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792014163,
+      "title": "تجدید میثاق مردم خمین با رهبر معظم انقلاب در شب ۲۲۸ حماسه و ایستادگی"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تظاهرات داخلی در اسرائیل موضوعی تکراری و فاقد تاثیر راهبردی فوری است.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792014164,
+      "title": "تظاهرات یهودیان حریدی علیه خدمت نظامی در ارتش رژیم صهیونیستی ادامه دارد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقات باشگاهی فوتبال در اولویت خبری نبز خبر نیست.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792014166,
+      "title": "Real Madrid stun Roma after dramatic late comeback"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11224,7 +11224,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792013447
+    "at": 1792014034
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11239,8 +11239,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792013608,
-    "last_failure": 1792013008,
+    "disabled_until": 1792014760,
+    "last_failure": 1792014160,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
