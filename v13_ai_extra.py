@@ -21,6 +21,11 @@ This launcher fixes that without touching the other files:
 6. AI meter: calls / ok / 429 per model per day (+ last error text) are saved
    in ai_model_health.json under _ai_usage, so quota use is measured.
 
+Oct 14 (evening review): a batch answer gave the Financial Times Starlink story the verdict of a
+car-import story («ابلاغ دستورالعمل اداری ترخیص خودروهای وارداتی», score 2), so it was dropped for a
+wrong reason. Every batch verdict now echoes the first words of its story's TITLE ("h"); a verdict
+whose echo does not match that story is thrown away and the story is judged on its own later.
+
 Run with `python v13_ai_extra.py` (same as `python run_bot.py`, plus the above).
 If any part fails to install, the bot runs exactly as before.
 """
@@ -203,8 +208,8 @@ BATCH_TAIL = """Stories to judge. Judge EACH story on its own with exactly the r
 
 %s
 
-Return only JSON with one entry per story, in the same order:
-{"items": [{"n": 1, "score": 0-10, "happened": true or false, "scope": "world" or "iran_national" or "local", "topic": "سیاست|نظامی|حادثه|اقتصاد|فناوری|سلامت|ورزش|قضایی|آب و هوا|جامعه", "reason": "max 12 words"}]}"""
+Return only JSON with one entry per story, in the same order. "h" is the first 3 words of that story's TITLE, copied exactly:
+{"items": [{"n": 1, "h": "first three words", "score": 0-10, "happened": true or false, "scope": "world" or "iran_national" or "local", "topic": "سیاست|نظامی|حادثه|اقتصاد|فناوری|سلامت|ورزش|قضایی|آب و هوا|جامعه", "reason": "max 12 words"}]}"""
 
 
 def _batch_prompt(g, chunk):
@@ -217,8 +222,27 @@ def _batch_prompt(g, chunk):
     return rubric + "\n\n" + BATCH_TAIL % "\n".join(lines)
 
 
-def _parse_batch(raw, size):
+_WORD_SPLIT = re.compile(r"[\s\u200c،,:؛.!؟«»\"'()\[\]/|\-]+")
+
+
+def _words(text):
+    text = str(text or "").replace("ي", "ی").replace("ك", "ک").lower()
+    return [w for w in _WORD_SPLIT.split(text) if w]
+
+
+def _head_ok(h, title):
+    """The echoed title words must belong to this story. No echo = accepted (as before Oct 14)."""
+    echo = [w for w in _words(h) if len(w) >= 2][:3]
+    if not echo:
+        return True
+    own = set(_words(title)[:8])
+    return sum(1 for w in echo if w in own) >= min(2, len(echo))
+
+
+def _parse_batch(raw, titles):
+    """titles: the chunk's titles in prompt order (or just its size, then no echo check)."""
     import v13_ai_router as r
+    size = len(titles) if isinstance(titles, (list, tuple)) else int(titles)
     try:
         data = r._clean_json(raw)
     except Exception:
@@ -227,6 +251,7 @@ def _parse_batch(raw, size):
     if not isinstance(items, list):
         return None
     out = {}
+    wrong = 0
     for pos, item in enumerate(items, 1):
         if not isinstance(item, dict) or "score" not in item:
             continue
@@ -237,12 +262,19 @@ def _parse_batch(raw, size):
             continue
         if not 1 <= n <= size:
             continue
+        if isinstance(titles, (list, tuple)) and not _head_ok(item.get("h", ""), titles[n - 1]):
+            wrong += 1
+            continue
         happened = item.get("happened")
         out[n] = {"score": score,
                   "happened": happened is True or str(happened).lower() == "true",
                   "scope": str(item.get("scope", "")).lower(),
                   "topic": str(item.get("topic", "") or ""),
                   "reason": str(item.get("reason", "") or "")[:120]}
+    if wrong:
+        print(f"V13 EDITOR BATCH: {wrong} verdict(s) did not match their story's title; dropped "
+              "(those stories are judged on their own)", flush=True)
+        _event(f"EDITOR BATCH: {wrong} mismatched verdict(s) dropped")
     return out or None
 
 
@@ -266,7 +298,8 @@ def prejudge(main, pool):
         if time.monotonic() - started > BATCH_BUDGET_SECONDS:
             break
         chunk = todo[start:start + BATCH_SIZE]
-        verdicts, provider = ask_pool(main, _batch_prompt(g, chunk), lambda raw: _parse_batch(raw, len(chunk)),
+        titles = [g._norm(c.get("title", ""))[:220] for c in chunk]
+        verdicts, provider = ask_pool(main, _batch_prompt(g, chunk), lambda raw, titles=titles: _parse_batch(raw, titles),
                                       max_tokens=BATCH_MAX_TOKENS, budget=45, timeout=40, label="EDITOR BATCH")
         if not verdicts:
             print(f"V13 EDITOR BATCH: no batch verdict for {len(chunk)} stories; single judging continues", flush=True)
