@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1791956674
-    },
-    {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1791956676
     },
@@ -159,6 +155,10 @@
     {
       "e": "EDITOR BATCH: 6/6 via gemini/gemini-3.5-flash-lite",
       "t": 1791968215
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.5-flash-lite",
+      "t": 1791968836
     }
   ],
   "_ai_usage": {
@@ -173,26 +173,26 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 32,
-        "calls": 181,
+        "calls": 190,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 147,
+        "ok": 156,
         "other": 2
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 52,
-        "calls": 131,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199351, Requested 1737. Please try again in 7m50.0",
+        "429": 54,
+        "calls": 135,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199462, Requested 1773. Please try again in 8m53.5",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 75,
+        "ok": 77,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 36,
-        "calls": 86,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199745, Requested 1935. Please try again in 12m5.76",
+        "429": 37,
+        "calls": 88,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199284, Requested 1927. Please try again in 8m43.15",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 27,
+        "ok": 28,
         "other": 23
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -240,20 +240,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 3,
-      "t": 1791795945.6109815,
-      "title": "آزادسازی منطقه لیدینو در دونتسک توسط نیروهای روسیه",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 5,
-      "t": 1791795955.5093193,
-      "title": "عنصر پشتیبان حملات تروریستی راسک و چابهار اعدام شد",
-      "urgent": false
-    },
     {
       "label": "موضع‌گیری",
       "level": 3,
@@ -1030,6 +1016,20 @@
       "t": 1791967746.016173,
       "title": "روایت امدادگر حاضر در بیت رهبری از وضعیت آیت الله مجتبی خامنه ای پس از بمباران",
       "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 3,
+      "t": 1791968846.2593224,
+      "title": "مازاد تجاری چین به مرز یک تریلیون دلار رسید",
+      "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 4,
+      "t": 1791968853.6747117,
+      "title": "تصویب و انتشار شیوه نامه شناسایی و گروه بندی اقتصادی خانوارها",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-13",
@@ -1430,6 +1430,12 @@
       "topic": "نظامی",
       "until": 1791987434.3371494
     },
+    "v4|اخبار کوتاه خراسان جنوبی؛ چهارشنبه ۲۲ مهر": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار محلی و استانی خراسان جنوبی فاقد اهمیت ملی است",
+      "topic": "جامعه",
+      "until": 1792055231.5193207
+    },
     "v4|اخباری از حمله گسترده یمن به ریاض و الخرج": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله موشکی به پایتخت عربستان؛ رویداد جنگی منطقه‌ای با اهمیت بین‌المللی.",
@@ -1507,6 +1513,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=False scope=local: موضوع خرافی و غیرخبری است و فاقد ارزش خبری ملی یا جهانی.",
       "topic": "جامعه",
       "until": 1791989133.757355
+    },
+    "v4|از بحران نقدینگی تا ناترازی انرژی؛ درد و دل تولیدکنندگان آذربایجان شرقی با دولت": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: نشست و دردل تولیدکنندگان استانی با مقام دولتی، فاقد تصمیم ملی.",
+      "topic": "اقتصاد",
+      "until": 1792055236.1510873
     },
     "v4|از تهران تا ریاض و واشنگتن؛ جنگی که سیاست و انتخابات را به هم گره زده است": {
       "ok": false,
@@ -1730,6 +1742,12 @@
       "topic": "سیاست",
       "until": 1792031957.222976
     },
+    "v4|انجام بیش از ۷۰۵ هزار نوبت پایش مرزی دامی در خوزستان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر است استانی و روتین دامپزشکی است و ارزش ملی ندارد",
+      "topic": "سلامت",
+      "until": 1792055230.872415
+    },
     "v4|انصارالله با استفاده از قطعات وارداتی از چین، در حال ساخت موشک خیبرشکن است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: گزارش رسانه ای درباره ساخت موشک توسط انصارالله یمن",
@@ -1825,12 +1843,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلا در مسابقات جهانی کشتی فرنگی امیدها",
       "topic": "ورزش",
       "until": 1792053435.0818357
-    },
-    "v4|اینتر حالا یک ابرقدرت است/ معجزه کیوو: سین سیرو به برنابئو تبدیل شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: نظر یک روزنامه نگار درباره اینتر میلان اخبار درجه یک نیست",
-      "topic": "ورزش",
-      "until": 1791976369.72279
     },
     "v4|اینفوگرافیک|افتتاح پـروژه های عمرانی و زیربنایی در سفر دولت به آذربایجان شرقی": {
       "ok": false,
@@ -2288,6 +2300,12 @@
       "topic": "ورزش",
       "until": 1791997871.1364021
     },
+    "v4|تعیین تکلیف بیش از ۷۰ هزار هکتار اراضی ملی و غیرملی در خوزستان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و استانی مربوط به اراضی خوزستان",
+      "topic": "اقتصاد",
+      "until": 1792055233.9330485
+    },
     "v4|تعیین تکلیف ۳۴۵ طرح صنعتی در شهرک های صنعتی تهران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine administrative meeting regarding local industrial projects in Tehran province.",
@@ -2630,12 +2648,6 @@
       "topic": "حادثه",
       "until": 1791978145.412196
     },
-    "v4|خط اعتباری صنایع خلاق ۱۰ برابر شد/ هشدار درباره تداوم افت رتبه نوآوری ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: افزایش وام صنایع خلاق خبری تخصصی و غیرمهم سراسری است",
-      "topic": "فناوری",
-      "until": 1791976392.4500513
-    },
     "v4|خط و نشان بارزانی برای اپوزیسیون کرد ایرانی": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=iran_national: موضع رسمی رئیس اقلیم کردستان علیه گروه‌های مسلح مخالف جمهوری اسلامی ایران",
@@ -2756,6 +2768,12 @@
       "topic": "ورزش",
       "until": 1791980489.3807988
     },
+    "v4|دستگاه های اجرایی باید با برنامه ریزی پیش از وقوع بحران آمادگی لازم را ایجاد کنند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: توصیه مقامات استانی درباره آمادگی و پدافند غیرعامل، بدون رویداد مشخص.",
+      "topic": "جامعه",
+      "until": 1792055236.1773477
+    },
     "v4|دستگیری ۳ خواهر سارق در گرمسار": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، سرقت مسکونی، بدون تلفات یا پیامدهای گسترده",
@@ -2821,12 +2839,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=iran_national: اظهارات کلی و آمادگی‌های معمول بدون وقوع رویداد مشخص و فوری",
       "topic": "سیاست",
       "until": 1791987447.4765317
-    },
-    "v4|رئیس جمهور لبنان: هدف ما عقب نشینی اسرائیل و بازسازی کشور است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: بیانیه رسمی رئیس‌جمهور لبنان درباره مذاکرات و اهداف جنگ و صلح",
-      "topic": "سیاست",
-      "until": 1791976404.3744693
     },
     "v4|رئیس پلیس راهور: خودروهای استاندارد به کاهش تلفات جاده ای کمک می کنند": {
       "ok": false,
@@ -3122,12 +3134,6 @@
       "topic": "سیاست",
       "until": 1792050010.167892
     },
-    "v4|شاسی بلند تمام برقی لی آتو رونمایی شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: رونمایی خودروی جدید در اروپا خبری تخصصی و کم اهمیت است",
-      "topic": "فناوری",
-      "until": 1791976361.5348418
-    },
     "v4|شب خوب رزاق؛/ بازگشت دراماتیک فولاد با یک بوسه آغاز شد!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine performance report of a player in a domestic league match.",
@@ -3187,6 +3193,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: آینده‌نگر، ترویج سرمایه‌گذاری، اثر محدود",
       "topic": "اقتصاد",
       "until": 1791989667.1105673
+    },
+    "v4|شیوه نامه شناسایی و گروه بندی اقتصادی خانوارها تصویب و منتشر شد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: تصویب شیوه نامه اقتصادی خانوارها توسط هیئت وزیران، تصمیم مهم دولتی.",
+      "topic": "اقتصاد",
+      "until": 1792055236.138005
     },
     "v4|صادرات ۲۰۰۰ مگاوات برق ایران به افغانستان روی میز وزارت نیرو": {
       "ok": false,
@@ -3590,6 +3602,12 @@
       "topic": "ورزش",
       "until": 1791992101.4764268
     },
+    "v4|مازاد تجاری چین به مرز یک تریلیون دلار رسید": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: رسیدن مازاد تجاری چین به رکورد بی‌سابقه نزدیک یک تریلیون دلار.",
+      "topic": "اقتصاد",
+      "until": 1792055236.1642408
+    },
     "v4|متا نخستین هوش مصنوعی پیشرفته اش را ارائه کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: عرضه نخستین هوش مصنوعی پیشرفته متا توسط واحد سوپر اینتلیجنس لب",
@@ -3625,12 +3643,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: خبر محلی و استانی مربوط به آلودگی خاک در هندیجان.",
       "topic": "قضایی",
       "until": 1792048858.635826
-    },
-    "v4|مدل های جدید هوش مصنوعی خودشان را تکثیر می کنند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحقیق درباره آینده هوش مصنوعی و رویداد قطعی نیست",
-      "topic": "فناوری",
-      "until": 1791976375.073774
     },
     "v4|مدیر تیم فوتبال سپاهان: گلایه های ما درباره دربی اصفهان، گلایه های هواداران سپاهان است": {
       "ok": false,
@@ -3697,12 +3709,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اخبار بازار بورس و اوراق در سطح کلان اهمیت درجه دو دارد",
       "topic": "اقتصاد",
       "until": 1792048305.1781416
-    },
-    "v4|معاون استاندار فارس: دومین شیراز اکسپو با هدف تکمیل زنجیره ارزش و تجاری سازی هنر برگزار شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر برگزاری نمایشگاه استانی و محلی است و اهمیت ملی ندارد.",
-      "topic": "جامعه",
-      "until": 1791976383.6271012
     },
     "v4|معاون استاندار فارس: فرصت های سرمایه گذاری باید براساس مزیت های اقتصادی تدوین شود": {
       "ok": false,
@@ -3800,12 +3806,6 @@
       "topic": "سیاست",
       "until": 1791981040.1718378
     },
-    "v4|مهار تورم در گرو تقویت پول ملی است؛ الزام مداخله فعال در بازار ارز": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: اظهارنظر کارشناسی و توصیه اقتصادی بدون رویداد مشخص",
-      "topic": "اقتصاد",
-      "until": 1791976398.1660311
-    },
     "v4|مهارآتش سوزی در انبار سوخت قاچاق بروات بم": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: آتش‌سوزی انبار سوخت، خسارات محدود، بدون مرگ‌ومیر",
@@ -3895,12 +3895,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=iran_national: افزایش قابل توجه قیمت نفت ایران به عنوان کالای استراتژیک صادراتی",
       "topic": "اقتصاد",
       "until": 1791992716.1783555
-    },
-    "v4|نمایش سلاح های قدیمی طالبان در سایه تنش با پاکستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: نمایش تجهیزات نظامی و تنش مرزی طالبان و پاکستان",
-      "topic": "نظامی",
-      "until": 1791976402.7851994
     },
     "v4|نماینده مجلس: تشکیل پرونده های حقوقی علیه آمریکا و رژیم صهیونیستی ضروری است": {
       "ok": false,
@@ -4058,12 +4052,6 @@
       "topic": "نظامی",
       "until": 1791982806.4978468
     },
-    "v4|هواشناسی اردبیل: سیل اخیر هشدار بارش های پیش رو است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: هشدار هواشناسی درباره بارش ها در سطح استانی و محلی است.",
-      "topic": "آب و هوا",
-      "until": 1791976387.7737937
-    },
     "v4|هوشمندسازی و رشد مرسولات؛ کارنامه درخشان پست خوزستان در دولت چهاردهم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: گزارش عملکرد استانی و روابط عمومی پست خوزستان است.",
@@ -4208,6 +4196,12 @@
       "topic": "جامعه",
       "until": 1792036037.7224267
     },
+    "v4|پل شهدای قره داغ افتتاح شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: افتتاح پروژه استانی و محلی اهمیت ملی ندارد",
+      "topic": "جامعه",
+      "until": 1792055232.2155247
+    },
     "v4|پلاک گذاری خودروهای ایرانیان مقیم خارج فعلا متوقف شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine administrative procedure regarding vehicle registration for expatriates.",
@@ -4339,6 +4333,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: اعلام رسمی کاهش ۴۲ درصدی درآمدهای قطر توسط امیر این کشور",
       "topic": "اقتصاد",
       "until": 1791992701.5861325
+    },
+    "v4|کتاب های درسی کسری ندارد؛ دانش آموزان جامانده به سازمان پژوهش مراجعه کنند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: توضیحات وزیر درباره توزیع کتاب درسی اهمیت ملی درجه یک ندارد",
+      "topic": "جامعه",
+      "until": 1792055232.9406316
     },
     "v4|کرمانشاه مقصد بعدی طرح ملی «مهارت آموزی هوش مصنوعی»": {
       "ok": false,
@@ -4752,25 +4752,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "none:-",
-      "head": "هشدار ائتلاف سعودی برای تخلیه منطقه ای در صنعا ⚡️ ائتلاف سعودی اعلام کرد به منظور انجام یک عملیات ویژه، هشدار ",
-      "id": "b0ff2518aa",
-      "match": "شنیده شدن صدای انفجار در پایتخت عربستان / العربی: سامانه های هشدار در ریاض فعال شدند",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1791893632,
-      "verdict": "repeat",
-      "why": "The warning in Sanaa relates to the ongoing Riyadh/Yemen security escalation."
-    },
-    {
-      "head": "بازداشت ۲ قاچاقچی و کشف ۱۰۹ قبضه سلاح جنگی در مرزهای غربی ایران ⚡️ از این تیم ۹۹ قبضه سلاح کمری، ۱۰ قبضه کلاشی",
-      "id": "8bb7ffed07",
-      "match": "",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1791894123,
-      "verdict": "new",
-      "why": "This is a distinct security operation and arms seizure event."
-    },
     {
       "head": "ارتش یمن: پاسخ حمله به صنعا در ریاض داده می شود ⚡️ سخنگوی نیروهای مسلح یمن هشدار داد که هرگونه حمله به صنعا، ب",
       "id": "b735a28286",
@@ -5259,44 +5240,27 @@
       "t": 1791967741,
       "verdict": "new",
       "why": "This is a unique event regarding an attack on the leadership."
+    },
+    {
+      "head": "مازاد تجاری چین به مرز یک تریلیون دلار رسید ⚡️ مازاد تجاری چین در نه ماه نخست سال جاری میلادی با جهش صادرات به",
+      "id": "e69a82041c",
+      "match": "",
+      "model": "groq/openai/gpt-oss-20b",
+      "t": 1791968844,
+      "verdict": "new",
+      "why": "No matching event"
+    },
+    {
+      "head": "تصویب و انتشار شیوه نامه شناسایی و گروه بندی اقتصادی خانوارها ⚡️ هیئت وزیران به پیشنهاد وزارت تعاون، کار و رفا",
+      "id": "4f2432cabb",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1791968852,
+      "verdict": "new",
+      "why": "تصویب شیوه نامه اقتصادی خانوارها خبر جدیدی است."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Routine sports update, not major competition result",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791950884,
-      "title": "رم، دومین قربانی ایتالیایی؟/ فرار از لالیگا! بازگشت رئال به لیگ محبوبش"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: فقط صفحه نخست روزنامه‌های استان، خبر خاصی نیست",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1791950885,
-      "title": "صفحه نخست روزنامه های استان فارس چهارشنبه ۲۲ مهرماه"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلا در مسابقات جهانی کشتی فرنگی توسط ورزشکار ایرانی",
-      "rescued": true,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791952001,
-      "title": "مهمدی: مدال طلایم را به پدرم تقدیم می کنم؛ کشتی در خون ماست"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: ادعای یک مقام روس درباره سیاستمدار خارجی، فاقد رویداد عینی.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791953110,
-      "title": "مقام روس: زلنسکی در تلاش برای تشکیل جبهه ضدآمریکایی است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: Routine sports broadcast schedule is not a first-tier news event.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1791953114,
-      "title": "جدول پخش زنده بازی های چهارشنبه 22 مهر"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=3 happened=False scope=iran_national: بانک ملی فروش سهام، اثر محدود بر اقتصاد ملی",
       "rescued": false,
@@ -5821,6 +5785,41 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1791968212,
       "title": "۱۴۲ قطعه شیء تاریخی در برخوار کشف شد؛دستگیری ۳ متهم"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر است استانی و روتین دامپزشکی است و ارزش ملی ندارد",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1791968830,
+      "title": "انجام بیش از ۷۰۵ هزار نوبت پایش مرزی دامی در خوزستان"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار محلی و استانی خراسان جنوبی فاقد اهمیت ملی است",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791968831,
+      "title": "اخبار کوتاه خراسان جنوبی؛ چهارشنبه ۲۲ مهر"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: افتتاح پروژه استانی و محلی اهمیت ملی ندارد",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1791968832,
+      "title": "پل شهدای قره داغ افتتاح شد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: توضیحات وزیر درباره توزیع کتاب درسی اهمیت ملی درجه یک ندارد",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791968832,
+      "title": "کتاب های درسی کسری ندارد؛ دانش آموزان جامانده به سازمان پژوهش مراجعه کنند"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و استانی مربوط به اراضی خوزستان",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1791968833,
+      "title": "تعیین تکلیف بیش از ۷۰ هزار هکتار اراضی ملی و غیرملی در خوزستان"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6377,6 +6376,46 @@
       ],
       "t": 1791967745.989703,
       "title": "روایت امدادگر حاضر در بیت رهبری از وضعیت آیت الله مجتبی خامنه ای پس از بمباران ⚡️ نخستین امدادگر حاضر در بیت رهبری پس از"
+    },
+    {
+      "h": [
+        "تجر",
+        "ترلن",
+        "جر",
+        "جهش",
+        "دلر",
+        "رسد",
+        "صدر",
+        "مرز",
+        "مزد",
+        "ملد",
+        "ملرد",
+        "نخست",
+        "نهصد",
+        "هشت"
+      ],
+      "t": 1791968846.2472932,
+      "title": "مازاد تجاری چین به مرز یک تریلیون دلار رسید ⚡️ مازاد تجاری چین در نه ماه نخست سال جاری میلادی با جهش صادرات به نهصد و سی"
+    },
+    {
+      "h": [
+        "اجتمع",
+        "انتشر",
+        "بند",
+        "تصب",
+        "تعن",
+        "خنر",
+        "رف",
+        "شنس",
+        "نم",
+        "هت",
+        "وزرت",
+        "پشنهد",
+        "کر",
+        "گر"
+      ],
+      "t": 1791968853.661861,
+      "title": "تصویب و انتشار شیوه نامه شناسایی و گروه بندی اقتصادی خانوارها ⚡️ هیئت وزیران به پیشنهاد وزارت تعاون، کار و رفاه اجتماعی،"
     }
   ],
   "_published_incidents": [
@@ -9660,6 +9699,61 @@
       ],
       "t": 1791967745.9765055,
       "title": "روایت امدادگر حاضر در بیت رهبری از وضعیت آیت الله مجتبی خامنه ای پس از بمباران ⚡️ نخستین امدادگر حاضر در بیت رهبری پس از"
+    },
+    {
+      "k": [
+        "بست",
+        "بن",
+        "تجر",
+        "ترلن",
+        "ثبت",
+        "جر",
+        "جهش",
+        "دلر",
+        "رسد",
+        "رشد",
+        "رند",
+        "رکرد",
+        "سپتمبر",
+        "صدر",
+        "عبر",
+        "فرتر",
+        "مرز",
+        "مزد",
+        "مسر",
+        "ملد",
+        "ملرد",
+        "نخست",
+        "نهصد",
+        "هزر",
+        "هشت",
+        "پنج",
+        "چن"
+      ],
+      "t": 1791968846.2346466,
+      "title": "مازاد تجاری چین به مرز یک تریلیون دلار رسید ⚡️ مازاد تجاری چین در نه ماه نخست سال جاری میلادی با جهش صادرات به نهصد و سی"
+    },
+    {
+      "k": [
+        "اجتمع",
+        "اقتصد",
+        "انتشر",
+        "بند",
+        "تصب",
+        "تعن",
+        "خنر",
+        "رف",
+        "شنس",
+        "نم",
+        "هت",
+        "وزر",
+        "وزرت",
+        "پشنهد",
+        "کر",
+        "گر"
+      ],
+      "t": 1791968853.649032,
+      "title": "تصویب و انتشار شیوه نامه شناسایی و گروه بندی اقتصادی خانوارها ⚡️ هیئت وزیران به پیشنهاد وزارت تعاون، کار و رفاه اجتماعی،"
     }
   ],
   "_text_polish": {
@@ -9671,7 +9765,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791968065
+    "at": 1791968649
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9699,13 +9793,13 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791971340.2369778,
+    "disabled_until": 1791972451.7953668,
     "last_failure": 1791960152,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791971340.3927834,
+    "disabled_until": 1791972451.8685536,
     "last_failure": 1791960711,
     "last_quality_failure": 1791941575,
     "last_status": 429
