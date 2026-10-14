@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792003564
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1792003565
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792004155
     },
@@ -159,16 +151,24 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
       "t": 1792015064
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
+      "t": 1792015276
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1792015289
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 26
+      "n": 32
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 7
+      "n": 8
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-14",
@@ -176,7 +176,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-14",
-      "n": 130
+      "n": 132
     },
     "openrouter:*": {
       "day": "2026-10-14",
@@ -187,15 +187,15 @@
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 242,
+        "calls": 248,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 171,
+        "ok": 177,
         "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 79,
-        "calls": 582,
+        "429": 80,
+        "calls": 583,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 500,
@@ -211,11 +211,11 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 104,
-        "calls": 234,
+        "calls": 236,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199293, Requested 1778. Please try again in 7m42.67",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 67,
-        "other": 63
+        "ok": 68,
+        "other": 64
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 13,
@@ -262,13 +262,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1791875516.6985865,
-      "title": "انتشار اولین فیلم از هواپیمای آمریکایی با تهدید بمب گذاری در تل آویو",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1101,6 +1094,13 @@
       "t": 1792015050.0092144,
       "title": "ارتش یمن یک جنگنده عربستان را در آسمان صعده سرنگون کرد",
       "urgent": false
+    },
+    {
+      "label": "ورزش",
+      "level": 3,
+      "t": 1792015288.6151586,
+      "title": "پیروزی ۴ بر ۲ پاری سن ژرمن مقابل منچسترسیتی در لیگ قهرمانان اروپا",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-14",
@@ -1140,6 +1140,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Minor international incident lacking major geopolitical or national impact.",
       "topic": "سیاست",
       "until": 1792098798.5129893
+    },
+    "v4|french anti-terror investigators probe true crime community link to school shooting": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: School shooting involving anti-terror investigators is a significant international security event.",
+      "topic": "حادثه",
+      "until": 1792101675.472042
     },
     "v4|from allies to enemies: ethiopia and eritrea edge toward war": {
       "ok": true,
@@ -1200,6 +1206,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Legal intervention in a tech bankruptcy involving consumer data.",
       "topic": "فناوری",
       "until": 1792091731.3139358
+    },
+    "v4|psg beat man city 4-2 in champions league thriller": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Champions League match result is a top-tier global sports event.",
+      "topic": "ورزش",
+      "until": 1792101676.7811193
     },
     "v4|qualcomm wins lawsuit against arm but will only receive two bucks": {
       "ok": false,
@@ -1704,12 +1716,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سخنرانی مقام استانی درباره وحدت ملی اهمیت ملی ندارد",
       "topic": "سیاست",
       "until": 1792063934.7895288
-    },
-    "v4|استانداری هرمزگان: حمله به یک لنج صیادی در شهرستان سیریک در محدوده بندر کلاهی/ سه نفر از سرنشینان مصدوم شدند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: حمله پهپادی به شناور ایرانی در خلیج فارس و مصدومیت سرنشینان.",
-      "topic": "نظامی",
-      "until": 1792050607.8325417
     },
     "v4|اسرائیل برای مقابله با حمله احتمالی ایران در روز انتخابات آماده می شود": {
       "ok": false,
@@ -2263,6 +2269,12 @@
       "topic": "اقتصاد",
       "until": 1792054083.4581869
     },
+    "v4|ترافیک مدارس اردبیل زیر سایه هزینه سرویس و کمبود مدرسه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: موضوع محلی مربوط به ترافیک و مدارس شهر اردبیل است.",
+      "topic": "جامعه",
+      "until": 1792101674.316143
+    },
     "v4|ترامپ بار دیگر مدعی پذیرفتن ۳۰ درصد خرید طرح گاز آلاسکا از سوی تایوان شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: ادعای تجاری غیررسمی و فاقد تاثیر استراتژیک فوری بر بازارهای جهانی.",
@@ -2437,12 +2449,6 @@
       "topic": "ورزش",
       "until": 1792099918.3844345
     },
-    "v4|جان باختن یک پدر و پسر در آتش سوزی تریلی در سوادکوه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=local: تصادف و آتش‌سوزی تریلی و فوت دو نفر در سوادکوه.",
-      "topic": "حادثه",
-      "until": 1792050607.8580956
-    },
     "v4|جان فدایان کُردِ مرزدار قصرشیرین برای دفاع از ایران به میدان آمدند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: رزمایش و آمادگی نظامی محلی در قصرشیرین اهمیت ملی ندارد",
@@ -2556,12 +2562,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: پیامد مستقیم حملات یمن بر رویدادهای بین‌المللی در منطقه",
       "topic": "ورزش",
       "until": 1792097221.9986277
-    },
-    "v4|حمله به ساختمان آرامکو و زخمی شدن ۴ نفر در ریاض": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله موشکی و پهپادی به تأسیسات آرامکو و ریاض با زخمی‌ها.",
-      "topic": "نظامی",
-      "until": 1792050607.8201475
     },
     "v4|حمله به شناور صیادی در سیریک سه مصدوم برجا گذاشت": {
       "ok": true,
@@ -3018,12 +3018,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و روتین مدیریت آرامستان قزوین",
       "topic": "جامعه",
       "until": 1792053450.156683
-    },
-    "v4|ساماندهی مسیل های سایت های مسکن خورموج": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: خبر عمرانی و محلی مربوط به ساماندهی مسیل‌ها در خورموج.",
-      "topic": "جامعه",
-      "until": 1792050607.8448334
     },
     "v4|سامانه آشکارساز ایکس ری درایست وبازرسی شهید صلاحی دشتستان افتتاح شد": {
       "ok": false,
@@ -3666,6 +3660,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: نتیجه یک مسابقه فوتبال عادی در لیگ قهرمانان اروپا اهمیت ملی ندارد.",
       "topic": "ورزش",
       "until": 1792098233.7594543
+    },
+    "v4|لفاظی های ضدایرانی ترامپ؛ از کوچک نمایی هزینه جنگ تا تکرار پایان سریع آن": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official statement by a presidential candidate regarding Iran and military conflict.",
+      "topic": "سیاست",
+      "until": 1792101676.7696538
     },
     "v4|لیگ قهرمانان اروپا: تحقیر سیتی، کامبک باورنکردنی رئال!": {
       "ok": true,
@@ -4783,15 +4783,6 @@
   },
   "_event_judge_log": [
     {
-      "head": "ملونی: توافق ترامپ با پوتین برای تامین گازوئیل بسیار پرخطر است ⚡️ نخست وزیر ایتالیا امروز در پارلمان کشورش، تو",
-      "id": "df4d398134",
-      "match": "ترامپ: توافق گازوئیل روسیه و آمریکا به نفع جهان است",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1791971251,
-      "verdict": "reaction",
-      "why": "Meloni reacts to the US-Russia diesel deal mentioned in item 35."
-    },
-    {
       "head": "دستور آماده باش در شرایط جنگی در قطر صادر شد ⚡️ شیخ تمیم بن حمد آل ثانی، امیر قطر، در پیامی خطاب به شهروندان ا",
       "id": "78d1dc5fc1",
       "match": "",
@@ -5321,23 +5312,18 @@
       "t": 1792015048,
       "verdict": "new",
       "why": "This is a specific new military engagement in Saada province."
+    },
+    {
+      "head": "پیروزی ۴ بر ۲ پاری سن ژرمن مقابل منچسترسیتی در لیگ قهرمانان اروپا ⚡️ تیم فوتبال پاری سن ژرمن در ورزشگاه اتحاد ",
+      "id": "9114a01bb7",
+      "match": "",
+      "model": "groq/openai/gpt-oss-20b",
+      "t": 1792015287,
+      "verdict": "new",
+      "why": "No matching event"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: تعیین مجوز بازگشت بازیکنان استقلال",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792003013,
-      "title": "تعلیق رای محرومیت 16 بازیکن و مربی/ حکم جنجالی علیه استقلال شکسته شد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سازماندهی محلی، برگزیدگان ورزشی",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792003013,
-      "title": "سومین دوره نشان کاوه برگزیدگان خود را شناخت"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: وعده انتخاباتی یک نامزد برای آینده است و تصمیم قطعی نیست.",
       "rescued": false,
@@ -5883,6 +5869,20 @@
       "rule": "no-concrete-event",
       "t": 1792015030,
       "title": "‘Growing ambitions’: Dr. Kendall on Houthis’ quest to be recognised as Yemen’s ‘legitimate' leaders"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: موضوع محلی مربوط به ترافیک و مدارس شهر اردبیل است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792015274,
+      "title": "ترافیک مدارس اردبیل زیر سایه هزینه سرویس و کمبود مدرسه"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: School shooting involving anti-terror investigators is a significant international security e",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1792015275,
+      "title": "French anti-terror investigators probe True Crime Community link to school shooting"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6793,6 +6793,24 @@
       ],
       "t": 1792015049.9826348,
       "title": "ارتش یمن یک جنگنده عربستان را در آسمان صعده سرنگون کرد ⚡️ نیروهای مسلح یمن یک فروند جنگنده تایفون عربستان را در آسمان اس"
+    },
+    {
+      "h": [
+        "اتحد",
+        "تم",
+        "شکست",
+        "فتبل",
+        "قهرمن",
+        "لگ",
+        "مقبل",
+        "منچسترست",
+        "نتج",
+        "ورزشگ",
+        "پر",
+        "ژرمن"
+      ],
+      "t": 1792015288.6044302,
+      "title": "پیروزی ۴ بر ۲ پاری سن ژرمن مقابل منچسترسیتی در لیگ قهرمانان اروپا ⚡️ تیم فوتبال پاری سن ژرمن در ورزشگاه اتحاد با نتیجه ۴"
     }
   ],
   "_published_incidents": [
@@ -11065,6 +11083,57 @@
       ],
       "t": 1792015049.9694796,
       "title": "ارتش یمن یک جنگنده عربستان را در آسمان صعده سرنگون کرد ⚡️ نیروهای مسلح یمن یک فروند جنگنده تایفون عربستان را در آسمان اس"
+    },
+    {
+      "k": [
+        "اتحد",
+        "ارلنگ",
+        "ارپ",
+        "افتدند",
+        "انگلس",
+        "اکلش",
+        "برتر",
+        "بز",
+        "تثبت",
+        "تم",
+        "حکم",
+        "خنگ",
+        "دبل",
+        "دزر",
+        "دلل",
+        "دمبل",
+        "شکست",
+        "صدر",
+        "عثم",
+        "فتبل",
+        "فرنس",
+        "قنن",
+        "قهرمن",
+        "لگ",
+        "محکمت",
+        "مزب",
+        "مقبل",
+        "مل",
+        "منچسترست",
+        "مگنس",
+        "نتج",
+        "نخست",
+        "نخستن",
+        "نقض",
+        "نم",
+        "نمند",
+        "هلند",
+        "همر",
+        "وتن",
+        "وجد",
+        "ورزشگ",
+        "پر",
+        "پرز",
+        "پرس",
+        "ژرمن"
+      ],
+      "t": 1792015288.593596,
+      "title": "پیروزی ۴ بر ۲ پاری سن ژرمن مقابل منچسترسیتی در لیگ قهرمانان اروپا ⚡️ تیم فوتبال پاری سن ژرمن در ورزشگاه اتحاد با نتیجه ۴"
     }
   ],
   "_text_polish": {
@@ -11076,7 +11145,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792014613
+    "at": 1792015200
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
