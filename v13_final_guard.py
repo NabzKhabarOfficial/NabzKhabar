@@ -7,7 +7,7 @@ never reach the channel:
 
 * a media source is still named («به گزارش خبرگزاری ...»، «به نقل از رویترز»، «منبع: ...»,
   or a line whose subject is an outlet that "reported" something);
-* loaded wording is still there («رژیم صهیونیستی»، «هلاکت»، «متجاوز»، «صهیونیست»);
+* loaded wording is still there («رژیم صهیونیستی»، «هلاکت»، «متجاوز»، «صهیونیست»، «صهیونی»);
 * website page chrome is still glued to the lead (section name + a «۰ نفر» counter + the
   headline repeated), or a line is a "related story" teaser such as «: دوباره جنگ می شود ؟»;
 * the text is a chain of the site's related-video links (Oct 12: «ده ها اسرائیلی زخمی شدند
@@ -27,6 +27,16 @@ if no model answers, the post goes out (the rule checks above have already run).
 
 It also fixes one wrong drop on the way in (_install_lane_scope): a ship hit, seized or on fire
 in Hormuz / the Persian Gulf / the Red Sea is never "foreign local" news.
+
+Oct 14 2026 (review of the published posts):
+* «خبرنگاران شبکه فلسطین و اسکای نوز عربی ...» went out: the misspelling «اسکای نوز» was in no
+  outlet list. Outlet names now accept common spelling variants, and a DETAIL line that names
+  an outlet is dropped before the caption is built (_install_outlet_line_drop; the lead stays,
+  so the story is still published, without the name).
+* «آمریکایی-صهیونی» went out: «صهیونی» is now neutral wording («اسرائیلی», added to the byline
+  cleaner's NEUTRAL table at install) and a leftover is refused here.
+* The AI sense check refused a Trump post because the text wrote "Donald" instead of
+  "Trump": a different name form of the same person is now explicitly ok.
 """
 
 import json
@@ -43,20 +53,29 @@ _P = "\u0600-\u06FF"
 
 LOADED = re.compile(
     r"(?<![" + _P + r"])(?:رژیم" + _S + r"+صهیونیست\S*|رژیم" + _S + r"+اشغالگر|رژیم" + _S + r"+غاصب|"
-    r"صهیونیست\S*|هلاکت|هلاک" + _S + r"+شد\S*|(?:ارتش|رژیم|دشمن|نظامیان)" + _S + r"+متجاوز|"
+    r"صهیونیست\S*|صهیونی|هلاکت|هلاک" + _S + r"+شد\S*|(?:ارتش|رژیم|دشمن|نظامیان)" + _S + r"+متجاوز|"
     r"متجاوز" + _S + r"+آمریکا\S*|متجاوزان" + _S + r"+آمریکایی|تجاوز" + _S + r"+نظامی)(?![" + _P + r"])")
 # (a bare «متجاوز» is not refused: «بازداشت متجاوز جنسی» is ordinary crime news)
 # Named outlets (brands only; generic words like «رسانه» or «تلویزیون» stay allowed).
-OUTLET_NAMES = re.compile(r"(?<![" + _P + r"])(?:بلومبرگ|رویترز|الحدث|الجزیره|العربیه|المیادین|اکسیوس|آکسیوس|"
-                          r"آسوشیتدپرس|یورونیوز|سی" + _S + r"*ان" + _S + r"*ان|بی" + _S + r"*بی" + _S + r"*سی|"
+# Oct 14: spelling variants («اسکای نوز»، «فاکس نوز»، «بلومبرگ»/«بلومبرک»، «آسوشیتد پرس»، «اسکای‌نیوز»).
+OUTLET_NAMES = re.compile(r"(?<![" + _P + r"])(?:بلومبر[گک]|رویترز|الحدث|الجزیره|العربیه|المیادین|اکسیوس|آکسیوس|"
+                          r"آسوشیتد" + _S + r"*پرس|یورو" + _S + r"*نیوز|سی" + _S + r"*ان" + _S + r"*ان|بی" + _S + r"*بی" + _S + r"*سی|"
                           r"فرانس" + _S + r"+پرس|نیویورک" + _S + r"+تایمز|واشنگتن" + _S + r"+پست|"
                           r"وال" + _S + r"+استریت" + _S + r"+ژورنال|فایننشال" + _S + r"+تایمز|تایمز" + _S + r"+اسرائیل|"
-                          r"گاردین|اسکای" + _S + r"+نیوز|فاکس" + _S + r"+نیوز|پولیتیکو|اکونومیست|اسپوتنیک|"
+                          r"گاردین|اسکای" + _S + r"*نی?وز|فاکس" + _S + r"*نی?وز|پولیتیکو|اکونومیست|اسپوتنیک|"
                           r"ایسنا|ایرنا|تسنیم|ایلنا|خبرگزاری" + _S + r"+\S+)(?![" + _P + r"])")
 VICTIM = re.compile(r"(?:کشته|زخمی|مجروح|بازداشت|دستگیر|ربوده|شهید|ترور|اخراج|توقیف|تعطیل|فیلتر|محکوم|زندانی)")
 SOURCE_LINE = re.compile(r"(?:^|\n)\s*(?:🔗\s*)?منبع\s*[:：]")
 # A news site's "related videos" strip glued to the text: «... + فیلم <other story> + فیلم ...».
 RELATED_LINK = re.compile(r"\+\s*(?:فیلم|ویدئو|ویدیو|عکس|تصاویر|اینفوگرافیک|صوت|فایل" + _S + r"+صوتی)(?![" + _P + r"])")
+
+# Oct 14: loaded words the byline cleaner's NEUTRAL table did not know yet («آمریکایی-صهیونی»).
+# Added to that table at install time, so they are rewritten before this guard looks.
+EXTRA_NEUTRAL = (
+    ("صهیونی ها", "اسرائیلی‌ها"),
+    ("صهیونی‌ها", "اسرائیلی‌ها"),
+    ("صهیونی", "اسرائیلی"),
+)
 
 
 def _media_patterns():
@@ -206,6 +225,43 @@ def _install_lane_scope():
     pg._foreign_local_only = lane_scope
 
 
+# ---------------------------------------------------------------- Oct 14: fix at the source
+def _install_extra_neutral():
+    """Add EXTRA_NEUTRAL to the byline cleaner's table (neutral() reads it at call time)."""
+    import v13_byline_cleaner as bc
+    have = {p.pattern for p, _ in bc._NEUTRAL}
+    for a, b in EXTRA_NEUTRAL:
+        pat = bc._phrase_re(a)
+        if pat.pattern not in have:
+            bc._NEUTRAL.append((pat, b))
+            have.add(pat.pattern)
+
+
+def _install_outlet_line_drop():
+    """A detail line that names an outlet is dropped before the caption is built (the lead is
+    always kept). bc.install's wrapper looks strip_media up at call time, so this applies."""
+    import v13_byline_cleaner as bc
+    previous = bc.strip_media
+    if getattr(previous, "_outlet_drop", False):
+        return
+
+    def strip_media(text):
+        out = previous(text)
+        try:
+            sents = bc._split_sentences(out)
+            if len(sents) < 2:
+                return out
+            kept = [sents[0]] + [s for s in sents[1:] if not OUTLET_NAMES.search(s)]
+            if len(kept) != len(sents):
+                print(f"V13 FINAL GUARD: dropped {len(sents) - len(kept)} detail line(s) naming an outlet.", flush=True)
+            return " ".join(kept)
+        except Exception:
+            return out
+
+    strip_media._outlet_drop = True
+    bc.strip_media = strip_media
+
+
 # ---------------------------------------------------------------- AI sense check
 COHERENCE_PROMPT = """You check a Persian Telegram news post right before it is published.
 
@@ -221,6 +277,8 @@ Answer one question: can a reader understand this post without being confused?
   text (e.g. a list of other stories' headlines), so the meaning is unclear.
 - "ok": clear and consistent. Different numbers from different officials, a denial
   quoted next to a claim, or "A said X, B said not X" is ok: that is normal reporting.
+  A different name form or spelling of the same person or place (first name vs family
+  name, a title instead of the name, two transliterations) is ok, never a contradiction.
 
 Answer ONLY JSON: {"verdict":"ok|contradiction|garbled","why":"<max 12 words>"}"""
 _BOARD = re.compile(r"نبض" + _S + r"*آموزش|هواشناسی|پیش" + _S + r"*بینی" + _S + r"*هوا|قیمت|برنامه" + _S + r"+(?:بازی|مسابقات)|"
@@ -288,6 +346,11 @@ def install():
         _install_lane_scope()
     except Exception as exc:
         print(f"V13 FINAL GUARD: lane scope fix skipped ({type(exc).__name__}).", flush=True)
+    for fix in (_install_extra_neutral, _install_outlet_line_drop):
+        try:
+            fix()
+        except Exception as exc:
+            print(f"V13 FINAL GUARD: {fix.__name__} skipped ({type(exc).__name__}: {exc}).", flush=True)
     try:  # Oct 12: links, section breadcrumb and the repeated headline before the lead; whole-word tags
         import v13_chrome_scrub
         v13_chrome_scrub.install()
