@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1791937500
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1791937501
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1791937502
-    },
-    {
       "e": "EDITOR BATCH openrouter/free: no usable verdict",
       "t": 1791937527
     },
@@ -155,38 +143,54 @@
     {
       "e": "EDITOR BATCH: 6/6 via groq/openai/gpt-oss-20b",
       "t": 1791945561
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
+      "t": 1791946770
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791946770
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791946770
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 2 stories",
+      "t": 1791946771
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
-        "429": 10,
-        "calls": 13,
+        "429": 12,
+        "calls": 15,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 11,
-        "calls": 13,
+        "429": 13,
+        "calls": 15,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 2,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 6,
-        "calls": 25,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199471, Requested 1730. Please try again in 8m38.8",
-        "ok": 19,
+        "429": 8,
+        "calls": 29,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199732, Requested 1829. Please try again in 11m14.",
+        "ok": 21,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 4,
-        "calls": 16,
+        "calls": 18,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199990, Requested 2403. Please try again in 17m13.7",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
-        "other": 3
+        "ok": 10,
+        "other": 4
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 3,
@@ -980,6 +984,13 @@
       "level": 4,
       "t": 1791945575.1188073,
       "title": "تداوم عملیات جست وجو برای مفقودان سیل در نپال",
+      "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1791946789.4849417,
+      "title": "ندامت ترامپ از ترور مقامات ایران فریب کان ندهد/ باید منتظر ترور و درگیری های تازه باشیم",
       "urgent": false
     }
   ],
@@ -2118,6 +2129,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آلودگی هوا و پیش‌بینی هواشناسی تهران برای اخبار سراسری مهم نیست.",
       "topic": "آب و هوا",
       "until": 1791971151.3688743
+    },
+    "v4|تدوین طرح ۶ مرحله ای برای مهار قاچاق سوخت / رصد مستمر سکوهای طلا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: Draft plan announced to curb fuel smuggling",
+      "topic": "اقتصاد",
+      "until": 1792033169.9160914
     },
     "v4|ترافیک بیمارستان نور شهریار با پارکینگ ۸۵۰ خودرویی حل می شود؟": {
       "ok": false,
@@ -3697,12 +3714,6 @@
       "topic": "نظامی",
       "until": 1791967666.3508692
     },
-    "v4|مقایسه قطع اینترنت در فرانسه و ایران به دلیل اعتراضات": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: مقایسه مقامات درباره قطع اینترنت و اظهارنظر روتین است",
-      "topic": "فناوری",
-      "until": 1791966578.6390603
-    },
     "v4|مقتدی صدر: ممنوعیت حجاب در جمهوری آذربایجان به افراط گرایی دامن می زند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهار نظر یک روحانی عراقی درباره حجاب در آذربایجان اهمیت راهبردی ندارد.",
@@ -4592,15 +4603,20 @@
       "reason": "policy_scope_blocked",
       "until": 1791966079.912566
     },
-    "israeli attacks kill one in gaza, wound journalists in occupied west bank": {
-      "at": 1791945004.3020873,
+    "iran war live: saudi coalition hits houthi sites; aramco office hit in east": {
+      "at": 1791946794.217397,
       "reason": "ai_unavailable_foreign",
-      "until": 1791946204.3020873
+      "until": 1791947994.217397
+    },
+    "israeli attacks kill one in gaza, wound journalists in occupied west bank": {
+      "at": 1791946794.217397,
+      "reason": "ai_unavailable_foreign",
+      "until": 1791947994.217397
     },
     "openai employee arrested for allegedly planting a bug in a conference room": {
-      "at": 1791946165.6840708,
+      "at": 1791946794.217397,
       "reason": "ai_unavailable_foreign",
-      "until": 1791947365.6840708
+      "until": 1791947994.217397
     },
     "آرامکو زیر آتش موشک های یمن؛ تخلیه فوری مقر مرکزی در ظهران": {
       "reason": "content_duplicate",
@@ -4628,16 +4644,6 @@
       "reason": "ai_unavailable_local",
       "until": 1791947365.6840708
     },
-    "حمله به یک فروند کشتی کانتینری در تنگه هرمز": {
-      "at": 1791945587.7506378,
-      "reason": "ai_unavailable_local",
-      "until": 1791946787.7506378
-    },
-    "رویترز: شنیدن صدای انفجارهای مهیبی در ظهران، در شرق عربستان و در نزدیکی مقر شرکت آرامکو": {
-      "at": 1791945587.7506378,
-      "reason": "ai_unavailable_local",
-      "until": 1791946787.7506378
-    },
     "زخمی شدن ۴ نفر در ریاض بر اثر بقایای موشک های رهگیری شده توسط پدافند هوایی عربستان": {
       "reason": "content_duplicate",
       "until": 1791953916.8508854
@@ -4651,23 +4657,13 @@
       "reason": "content_duplicate",
       "until": 1791963191.7265246
     },
-    "کشته شدن ۴ نیروی امنیتی دولت موقت سوریه توسط افراد ناشناس": {
-      "at": 1791945004.3020873,
+    "ندامت ترامپ از ترور مقامات ایران فریب کان ندهد/ باید منتظر ترور و درگیری های تازه باشیم": {
+      "at": 1791946794.217397,
       "reason": "ai_unavailable_local",
-      "until": 1791946204.3020873
+      "until": 1791947994.217397
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "none:-",
-      "head": "قراردادهای میلیاردی آمریکا برای جبران کمبود تسلیحات در پی درگیری با ایران ⚡️ درگیری جاری با ایران موجب تخلیه ذ",
-      "id": "6488f5e76a",
-      "match": "از خطر دائمی در دریا تا قطع پشتیبانی لجستیکی در خلیج فارس و کاهش ذخایر موشکی و مهمات آمریکا!",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791879037,
-      "verdict": "repeat",
-      "why": "تکرار خبر تخلیه ذخایر تسلیحاتی آمریکا در پی درگیری با ایران."
-    },
     {
       "head": "فشار ۷۴ نماینده دموکرات بر پنتاگون برای پاسخگویی درباره کشتار غیرنظامیان در ایران ⚡️ ۷۴ نماینده دموکرات مجلس ن",
       "id": "5ed76eb0ac",
@@ -5162,16 +5158,15 @@
       "t": 1791945573,
       "verdict": "new",
       "why": "different Nepal flood rescue operation, not previously reported"
+    },
+    {
+      "head": "ندامت ترامپ از ترور مقامات ایران فریب کان ندهد/ باید منتظر ترور و درگیری های تازه باشیم ⚡️ نخست این که احتمالا",
+      "id": "2286186fdd",
+      "t": 1791946788,
+      "verdict": "unavailable"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: این خبر یک رویداد ورزشی محلی و غیر استراتژیک است.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1791907330,
-      "title": "با دستور وزیر ورزش؛ بازی های «آشوریان» بعد از ۲۰ سال احیا می شود"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: آمار جالب بازیکن، خبر مهم نیست",
       "rescued": false,
@@ -5724,30 +5719,17 @@
       "rule": "no-concrete-event",
       "t": 1791945558,
       "title": "Jamaica accepts first flight of third-country deportations from US"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: Draft plan announced to curb fuel smuggling",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1791946769,
+      "title": "تدوین طرح ۶ مرحله ای برای مهار قاچاق سوخت / رصد مستمر سکوهای طلا"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "الم",
-        "تلفن",
-        "تمس",
-        "ثبت",
-        "سز",
-        "سلم",
-        "صدرعظم",
-        "فردرش",
-        "فشر",
-        "متهم",
-        "محمد",
-        "مرتس",
-        "ولعهد",
-        "وگ"
-      ],
-      "t": 1791903341.0893292,
-      "title": "فشار صدراعظم آلمان بر ایران در گفت وگو با ولیعهد عربستان ⚡️ فردریش مرتس، صدراعظم آلمان، در تماس تلفنی با محمد بن سلمان، "
-    },
     {
       "h": [
         "اشغل",
@@ -6068,36 +6050,42 @@
       ],
       "t": 1791945575.103415,
       "title": "تداوم عملیات جست وجو برای مفقودان سیل در نپال ⚡️ نیروهای امدادی در پی وقوع سیل ناگهانی و تخریب بیش از ۲۰۰ خانه و پنج پل "
+    },
+    {
+      "h": [
+        "احتمل",
+        "اخر",
+        "بشد",
+        "بشم",
+        "تثر",
+        "تحت",
+        "ترر",
+        "تز",
+        "تلفن",
+        "تمس",
+        "دبر",
+        "درگر",
+        "سبق",
+        "سخن",
+        "شر",
+        "فرب",
+        "مطرح",
+        "مل",
+        "ممکن",
+        "منتظر",
+        "نخست",
+        "ندمت",
+        "ندهد",
+        "نظر",
+        "نع",
+        "همن",
+        "کن"
+      ],
+      "t": 1791946789.4605453,
+      "title": "ندامت ترامپ از ترور مقامات ایران فریب کان ندهد/ باید منتظر ترور و درگیری های تازه باشیم ⚡️ نخست این که احتمالا رئیس جمهو"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "اطرف",
-        "اهدف",
-        "تسس",
-        "درگر",
-        "صرت",
-        "قررددن",
-        "متحدنش",
-        "ممکن",
-        "منفع",
-        "هشدر"
-      ],
-      "cities": [
-        "تهران"
-      ],
-      "kind": "attack",
-      "places": [
-        "تهران"
-      ],
-      "regions": [
-        "iran_tehran"
-      ],
-      "t": 1791881297.864724,
-      "title": "هشدار ایران درباره حمله زمینی و هدف قراردادن منافع آمریکا و متحدانش در صورت درگیری جدید ⚡️ مقام های ایرانی هشدار داده ان",
-      "toll": 0
-    },
     {
       "a": [
         "اجتمع",
@@ -6348,44 +6336,42 @@
       "t": 1791945575.1112213,
       "title": "تداوم عملیات جست وجو برای مفقودان سیل در نپال ⚡️ نیروهای امدادی در پی وقوع سیل ناگهانی و تخریب بیش از ۲۰۰ خانه و پنج پل ",
       "toll": 0
+    },
+    {
+      "a": [
+        "احتمل",
+        "اخر",
+        "بشد",
+        "بشم",
+        "تثر",
+        "تحت",
+        "تلفن",
+        "تمس",
+        "دبر",
+        "درگر",
+        "سبق",
+        "سخن",
+        "فرب",
+        "مطرح",
+        "ممکن",
+        "منتظر",
+        "نخست",
+        "ندمت",
+        "ندهد",
+        "نظر",
+        "همن"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1791946789.4729831,
+      "title": "ندامت ترامپ از ترور مقامات ایران فریب کان ندهد/ باید منتظر ترور و درگیری های تازه باشیم ⚡️ نخست این که احتمالا رئیس جمهو",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اردن",
-        "امک",
-        "بصر",
-        "تقف",
-        "جگزن",
-        "خم",
-        "درفت",
-        "دسترس",
-        "دلل",
-        "سبک",
-        "صدر",
-        "عدم",
-        "عرق",
-        "فرر",
-        "فن",
-        "مبن",
-        "متسط",
-        "مرتبط",
-        "مسل",
-        "نشد",
-        "نع",
-        "نفت",
-        "وزرت",
-        "وژگ",
-        "پذرفت",
-        "پشنهد",
-        "پلشگ",
-        "کرکک"
-      ],
-      "t": 1791816445.3153887,
-      "title": "توقف صادرات نفت عراق به اردن ⚡️ وزارت نفت عراق از توقف صادرات نفت خام به اردن به دلیل مسائل فنی مرتبط با ویژگی های این ن"
-    },
     {
       "k": [
         "اثر",
@@ -8887,6 +8873,45 @@
       ],
       "t": 1791945575.0953913,
       "title": "تداوم عملیات جست وجو برای مفقودان سیل در نپال ⚡️ نیروهای امدادی در پی وقوع سیل ناگهانی و تخریب بیش از ۲۰۰ خانه و پنج پل "
+    },
+    {
+      "k": [
+        "احتمل",
+        "اخر",
+        "ار",
+        "امنت",
+        "بشد",
+        "بشم",
+        "تثر",
+        "تحت",
+        "ترر",
+        "ترمپ",
+        "تز",
+        "تلفن",
+        "تمس",
+        "جمهر",
+        "دبر",
+        "درگر",
+        "رس",
+        "سبق",
+        "سخن",
+        "شر",
+        "فرب",
+        "مطرح",
+        "مقم",
+        "مل",
+        "ممکن",
+        "منتظر",
+        "نخست",
+        "ندمت",
+        "ندهد",
+        "نظر",
+        "نع",
+        "همن",
+        "کن"
+      ],
+      "t": 1791946789.4484005,
+      "title": "ندامت ترامپ از ترور مقامات ایران فریب کان ندهد/ باید منتظر ترور و درگیری های تازه باشیم ⚡️ نخست این که احتمالا رئیس جمهو"
     }
   ],
   "_text_polish": {
@@ -8898,7 +8923,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791946077
+    "at": 1791946656
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8913,13 +8938,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791946178,
-    "last_failure": 1791945578,
+    "disabled_until": 1791947370,
+    "last_failure": 1791946770,
     "last_status": 429
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791946765,
-    "last_failure": 1791946165,
+    "disabled_until": 1791947370,
+    "last_failure": 1791946770,
     "last_quality_failure": 1791891761,
     "last_status": 429
   },
@@ -8937,8 +8962,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791946322.9966598,
-    "last_failure": 1791942715,
+    "disabled_until": 1791950387.46691,
+    "last_failure": 1791946770,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
