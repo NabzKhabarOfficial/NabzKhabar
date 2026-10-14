@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1792000684
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792001309
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792001310
-    },
-    {
       "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
       "t": 1792001310
     },
@@ -159,21 +147,33 @@
     {
       "e": "EDITOR BATCH: no verdict for 4 stories",
       "t": 1792009385
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792009977
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792009979
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 7 stories",
+      "t": 1792009980
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 183,
+        "calls": 185,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 113,
-        "other": 41
+        "ok": 114,
+        "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 61,
-        "calls": 559,
+        "429": 62,
+        "calls": 560,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 495,
@@ -1593,12 +1593,6 @@
       "topic": "جامعه",
       "until": 1792066143.0896165
     },
-    "v4|از مسقطی سنتی لارستان تا دروازه های صادرات جهانی در «شیراز اکسپو»": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: خبر محلی و تبلیغاتی از یک فعال اقتصادی است",
-      "topic": "اقتصاد",
-      "until": 1792048303.6349216
-    },
     "v4|از نفت تا اینترنت؛ جبهه تازه جنگ در خلیج فارس": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: هشدار رسمی مقام ارشد نظامی درباره هدف قرار گرفتن تأسیسات راهبردی",
@@ -1802,6 +1796,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: برنامه انتخاباتی و احتمالی حزب دموکرات برای آینده",
       "topic": "سیاست",
       "until": 1792063374.2792404
+    },
+    "v4|انتقاد آیت الله ردایی از سپردن مسئولیت ها به افراد غیرمتخصص": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اظهارات انتقادی و کلی یک مقام محلی درباره انتصابات اداری.",
+      "topic": "سیاست",
+      "until": 1792096378.582473
     },
     "v4|انتقاد تند وزیر دفاع آلمان: ترامپ به بن بست رسیده است": {
       "ok": false,
@@ -5272,13 +5272,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: کشف کالای قاچاق در یک استان محلی است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1791987411,
-      "title": "کشف ۲۳ مورد کالای قاچاق در خراسان جنوبی"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد استانی و اظهارات مقام محلی درباره جشنواره تئاتر.",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -5830,6 +5823,13 @@
       "rule": "local-routine-low-value",
       "t": 1792009369,
       "title": "خیابان های ایلام همچنان سنگر پایداری"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اظهارات انتقادی و کلی یک مقام محلی درباره انتصابات اداری.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792009978,
+      "title": "انتقاد آیت الله ردایی از سپردن مسئولیت ها به افراد غیرمتخصص"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11864,7 +11864,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792009269
+    "at": 1792009833
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11879,13 +11879,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792009684.0,
-    "last_failure": 1792009384,
-    "last_status": 599
+    "disabled_until": 1792010279.0,
+    "last_failure": 1792009979,
+    "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792009964,
-    "last_failure": 1792009364,
+    "disabled_until": 1792010577,
+    "last_failure": 1792009977,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
