@@ -2,22 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1791993781
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per m",
-      "t": 1791993782
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1791994342
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1791994343
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1791994950
     },
     {
@@ -159,40 +143,56 @@
     {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1792000684
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792001309
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792001310
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
+      "t": 1792001310
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1792001311
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 116,
+        "calls": 117,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 58,
-        "other": 29
+        "other": 30
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 46,
-        "calls": 542,
+        "429": 47,
+        "calls": 543,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 493,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 139,
-        "calls": 305,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199424, Requested 1680. Please try again in 7m56.9",
+        "429": 140,
+        "calls": 308,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199689, Requested 653. Please try again in 2m27.74",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 159,
+        "ok": 161,
         "other": 7
       },
       "groq:openai/gpt-oss-20b": {
         "429": 89,
-        "calls": 192,
+        "calls": 193,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199383, Requested 1878. Please try again in 9m4.751",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 49,
+        "ok": 50,
         "other": 54
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -231,8 +231,8 @@
         "other": 0
       },
       "openrouter:openrouter/free": {
-        "429": 11,
-        "calls": 25,
+        "429": 12,
+        "calls": 26,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 14,
         "other": 0
@@ -1071,6 +1071,13 @@
       "level": 5,
       "t": 1792000697.7638192,
       "title": "فرمانده سپاه سلمان: عاملان ترور «افسانه عقیلا» در انتظار انتقامی سخت باشند",
+      "urgent": false
+    },
+    {
+      "label": "قضایی",
+      "level": 3,
+      "t": 1792001319.6112769,
+      "title": "تداوم موج اعدام ها؛ شمار اعدام شدگان اعتراضات ملی به دست کم ۳۶ نفر رسید",
       "urgent": false
     }
   ],
@@ -4691,9 +4698,9 @@
       "until": 1792003206.8734426
     },
     "settlers attack palestinian mosque near occupied east jerusalem": {
-      "at": 1792000703.0195231,
+      "at": 1792001328.341557,
       "reason": "ai_unavailable_foreign",
-      "until": 1792001903.0195231
+      "until": 1792002528.341557
     },
     "star-studded saudi exhibition postponed after deadly attacks": {
       "at": 1792000703.0195231,
@@ -4734,8 +4741,9 @@
       "until": 1792003737.06422
     },
     "تداوم موج اعدام ها؛ شمار اعدام شدگان اعتراضات ملی به دست کم ۳۶ نفر رسید": {
-      "reason": "content_duplicate",
-      "until": 1792000890.4270756
+      "at": 1792001328.341557,
+      "reason": "ai_unavailable_local",
+      "until": 1792002528.341557
     },
     "تهدید جنایتکارانه کاتس علیه یک میلیون شیعه لبنانی": {
       "reason": "content_duplicate",
@@ -4761,6 +4769,11 @@
     "جزئیات جدید از مجروحان حمله پهپادی به لنج صیادی در سیریک": {
       "reason": "content_duplicate",
       "until": 1792005546.1690807
+    },
+    "حمله مجدد یمن به فرودگاه ریاض": {
+      "at": 1792001328.341557,
+      "reason": "ai_unavailable_local",
+      "until": 1792002528.341557
     },
     "حمله هولناک به تاسیسات نفت یمن": {
       "reason": "content_duplicate",
@@ -4796,10 +4809,6 @@
       "reason": "content_duplicate",
       "until": 1792001995.900844
     },
-    "نفت در جریان است، اما انتقال آن هیچ گاه تا این اندازه پر هزینه نبوده/ دستمزد دریانوردان عادی به چهار تا شش برابر سطح معمول افزایش یافته/ درگیری ها از دو مسیر باعث افزایش هزینه حمل": {
-      "reason": "content_duplicate",
-      "until": 1792000914.289067
-    },
     "یمن از حمله موشکی به آرامکو و فرودگاه ملک خالد خبر داد": {
       "reason": "content_duplicate",
       "until": 1792003201.6647813
@@ -4810,15 +4819,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "پیشروی نیروهای اتیوپی به سوی مرز اریتره و نگرانی از جنگ ⚡️ نیروهای دولتی اتیوپی در راستای تحولات شاخ آفریقا به",
-      "id": "2b9890960c",
-      "match": "",
-      "model": "groq/openai/gpt-oss-20b",
-      "t": 1791965984,
-      "verdict": "new",
-      "why": "No matching event found"
-    },
     {
       "confirm": "none:-",
       "head": "حملات شدید به کشتی ها در تنگه هرمز و کاهش صادرات نفت ⚡️ کشتی ها در تنگه هرمز با شدیدترین حملات موشکی و پهپادی ",
@@ -5352,6 +5352,15 @@
       "t": 1792000693,
       "verdict": "reaction",
       "why": "Condemnation and revenge threat following the attack in Mehrestan."
+    },
+    {
+      "head": "تداوم موج اعدام ها؛ شمار اعدام شدگان اعتراضات ملی به دست کم ۳۶ نفر رسید ⚡️ او ورزشگار بود، سابقه کوهنوردی در ه",
+      "id": "9dbb72f5f6",
+      "match": "",
+      "model": "groq/openai/gpt-oss-120b",
+      "t": 1792001319,
+      "verdict": "new",
+      "why": "different topic: execution of protester"
     }
   ],
   "_importance_rescue_log": [
@@ -7026,6 +7035,28 @@
       ],
       "t": 1792000697.7531757,
       "title": "فرمانده سپاه سلمان: عاملان ترور «افسانه عقیلا» در انتظار انتقامی سخت باشند ⚡️ فرمانده سپاه سلمان سیستان و بلوچستان با صد"
+    },
+    {
+      "h": [
+        "اتهم",
+        "اعترض",
+        "اعدم",
+        "تدم",
+        "دست",
+        "رسد",
+        "سبق",
+        "شدگ",
+        "شرکت",
+        "شمر",
+        "مج",
+        "مل",
+        "نفر",
+        "همل",
+        "ورزشگر",
+        "کهنرد"
+      ],
+      "t": 1792001319.5978014,
+      "title": "تداوم موج اعدام ها؛ شمار اعدام شدگان اعتراضات ملی به دست کم ۳۶ نفر رسید ⚡️ او ورزشگار بود، سابقه کوهنوردی در هیمالیا را "
     }
   ],
   "_published_incidents": [
@@ -11875,6 +11906,60 @@
       ],
       "t": 1792000697.7422993,
       "title": "فرمانده سپاه سلمان: عاملان ترور «افسانه عقیلا» در انتظار انتقامی سخت باشند ⚡️ فرمانده سپاه سلمان سیستان و بلوچستان با صد"
+    },
+    {
+      "k": [
+        "اتهم",
+        "اجبر",
+        "اجر",
+        "ارسل",
+        "اصبت",
+        "اعترض",
+        "اعترف",
+        "اعدم",
+        "تدم",
+        "تصر",
+        "حصل",
+        "حکم",
+        "خرج",
+        "خطر",
+        "دد",
+        "دست",
+        "دفتر",
+        "دفع",
+        "رسد",
+        "رسن",
+        "رض",
+        "زر",
+        "سبق",
+        "سعت",
+        "شدگ",
+        "شرکت",
+        "شمر",
+        "شهزد",
+        "شکنج",
+        "فهرست",
+        "مج",
+        "محل",
+        "محکم",
+        "محکمتش",
+        "مصطف",
+        "مل",
+        "منتشر",
+        "نفر",
+        "نمش",
+        "نکرد",
+        "هشدر",
+        "همل",
+        "ورزشگر",
+        "وکلش",
+        "پرتب",
+        "پهل",
+        "کشر",
+        "کهنرد"
+      ],
+      "t": 1792001319.5842197,
+      "title": "تداوم موج اعدام ها؛ شمار اعدام شدگان اعتراضات ملی به دست کم ۳۶ نفر رسید ⚡️ او ورزشگار بود، سابقه کوهنوردی در هیمالیا را "
     }
   ],
   "_text_polish": {
@@ -11886,7 +11971,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792000565
+    "at": 1792001140
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11901,13 +11986,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792000984.0,
-    "last_failure": 1792000684,
+    "disabled_until": 1792001610.0,
+    "last_failure": 1792001310,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792000726,
-    "last_failure": 1792000126,
+    "disabled_until": 1792001909,
+    "last_failure": 1792001309,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11924,7 +12009,7 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792002577.2235253,
+    "disabled_until": 1792004925.2466404,
     "last_failure": 1791998961,
     "last_status": 429
   },
@@ -11983,8 +12068,8 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792000784.0987968,
-    "last_failure": 1791997184,
+    "disabled_until": 1792004910.611648,
+    "last_failure": 1792001310,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
