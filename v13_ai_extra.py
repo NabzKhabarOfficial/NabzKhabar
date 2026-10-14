@@ -20,6 +20,9 @@ This launcher fixes that without touching the other files:
    AI is back.
 6. AI meter: calls / ok / 429 per model per day (+ last error text) are saved
    in ai_model_health.json under _ai_usage, so quota use is measured.
+7. AI pacer (Oct 15, v13_ai_pace): every AI request is counted per quota day and a
+   model may only use its share of the day so far, so the free quotas last all 24 hours
+   (Oct 14 they were all used by ~23:00 Tehran and the night had no editor).
 
 Oct 14 (evening review): a batch answer gave the Financial Times Starlink story the verdict of a
 car-import story («ابلاغ دستورالعمل اداری ترخیص خودروهای وارداتی», score 2), so it was dropped for a
@@ -392,13 +395,31 @@ def _meter(response, url, kwargs):
         _daily_rest[hkey] = until
 
 
+def _paced(url, kwargs):
+    """A local 429 when this model has used its share of today's quota (v13_ai_pace), else None."""
+    try:
+        import v13_ai_pace
+        return v13_ai_pace.check(_ai_target(url, kwargs), url)
+    except Exception:
+        return None
+
+
 def install_ai_meter():
     import requests.sessions as rs
     if getattr(rs.Session.request, "_v13_meter", False):
         return
     original = rs.Session.request
+    try:
+        import v13_ai_pace
+        v13_ai_pace.load()
+    except Exception as exc:
+        print(f"V13 AI PACE: not loaded ({type(exc).__name__}: {exc})", flush=True)
 
     def request(self, method, url, *args, **kwargs):
+        if str(method).upper() == "POST":
+            held = _paced(url, kwargs)
+            if held is not None:
+                return held  # never sent; not metered (no quota used)
         response = original(self, method, url, *args, **kwargs)
         try:
             if str(method).upper() == "POST":
@@ -428,11 +449,16 @@ def install_ai_meter():
 
         r._mark_model_failure = mark
         r._v13_daily_rest = True
-    print("V13 AI EXTRA: AI meter on (calls/ok/429 per model per day -> _ai_usage)", flush=True)
+    print("V13 AI EXTRA: AI meter on (calls/ok/429 per model per day -> _ai_usage) + pacer (quota spread over 24 h)", flush=True)
 
 
 def save_usage():
-    if not _usage and not _daily_rest and not _events:
+    try:
+        import v13_ai_pace
+        pace_pending = v13_ai_pace.pending()
+    except Exception:
+        v13_ai_pace, pace_pending = None, False
+    if not _usage and not _daily_rest and not _events and not pace_pending:
         return
     try:
         import v13_ai_router as r
@@ -450,11 +476,18 @@ def save_usage():
             usage.pop(old, None)
         health[USAGE_KEY] = usage
         log = health.get(EVENTS_KEY) if isinstance(health.get(EVENTS_KEY), list) else []
+        if v13_ai_pace is not None and v13_ai_pace.summary():
+            _event("AI PACE: " + v13_ai_pace.summary())
         health[EVENTS_KEY] = (log + _events)[-EVENTS_MAX:]
         for hkey, until in _daily_rest.items():
             entry = health.setdefault(hkey, {})
             entry["disabled_until"] = max(float(entry.get("disabled_until", 0) or 0), until)
             entry["daily_quota_rest"] = True
+        if v13_ai_pace is not None:
+            try:
+                v13_ai_pace.save(health)
+            except Exception as exc:
+                print(f"V13 AI PACE: save warning {type(exc).__name__}: {exc}", flush=True)
         r._save_health(health)
         _usage.clear()
         _events.clear()
