@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1791956041
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
       "t": 1791956042
     },
@@ -159,6 +155,10 @@
     {
       "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.5-flash-lite",
       "t": 1791964207
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
+      "t": 1791964752
     }
   ],
   "_ai_usage": {
@@ -173,23 +173,23 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 32,
-        "calls": 110,
+        "calls": 119,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 78,
+        "ok": 87,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 35,
-        "calls": 99,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199599, Requested 776. Please try again in 2m42s. ",
+        "429": 36,
+        "calls": 102,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199007, Requested 1956. Please try again in 6m56.0",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 61,
+        "ok": 63,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 24,
-        "calls": 68,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199728, Requested 468. Please try again in 1m24.672",
+        "429": 25,
+        "calls": 69,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198547, Requested 1956. Please try again in 3m37.29",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 25,
         "other": 19
@@ -1001,6 +1001,13 @@
       "t": 1791964233.5816205,
       "title": "احضار نمایندگان نامزدهای انتخابات برزیل به دادگاه عالی",
       "urgent": false
+    },
+    {
+      "label": "فناوری",
+      "level": 4,
+      "t": 1791964764.9316041,
+      "title": "هشدار ایران درباره گسترش جنگ به زیرساخت های اینترنت و فناوری در خلیج فارس",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-13",
@@ -1431,12 +1438,6 @@
       "topic": "نظامی",
       "until": 1791987434.3371494
     },
-    "v4|اخبار کوتاه گیلان؛ کشف محموله پاستیل قاچاق تا دستگیری عامل آتش سوزی عمدی منزل": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: دستگیری و کشف مواد مخدر در گیلان",
-      "topic": "قضایی",
-      "until": 1791972880.4269898
-    },
     "v4|اخباری از حمله گسترده یمن به ریاض و الخرج": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله موشکی به پایتخت عربستان؛ رویداد جنگی منطقه‌ای با اهمیت بین‌المللی.",
@@ -1527,6 +1528,12 @@
       "topic": "اقتصاد",
       "until": 1792048303.6349216
     },
+    "v4|از نفت تا اینترنت؛ جبهه تازه جنگ در خلیج فارس": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: هشدار رسمی مقام ارشد نظامی درباره هدف قرار گرفتن تأسیسات راهبردی",
+      "topic": "نظامی",
+      "until": 1792051152.6541622
+    },
     "v4|از هرمز تا کی یف؛ تلاش ترامپ برای مهار قیمت جهانی انرژی به نتیجه می رسد؟": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=9 happened=True scope=world: ترامپ از توافق آتش‌بس انرژی میان روسیه و اوکراین خبر داد.",
@@ -1544,6 +1551,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine appreciation by a provincial official for a minor individual act.",
       "topic": "جامعه",
       "until": 1792015418.511005
+    },
+    "v4|استاندار خراسان رضوی: ایجاد دانشکده هنر در دانشگاه فردوسی مشهد در حال پیگیری است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: پیگیری تاسیس دانشکده هنر استانی و فاقد اهمیت ملی است",
+      "topic": "جامعه",
+      "until": 1792051150.555564
     },
     "v4|استاندار: آذربایجان شرقی در زمینه نهضت توسعه عدالت آموزشی، رتبه های قابل توجهی کسب کرد": {
       "ok": false,
@@ -1628,12 +1641,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: بیان عمومی، بدون تصمیم یا رویداد خاص",
       "topic": "اقتصاد",
       "until": 1792042441.9378967
-    },
-    "v4|اقتصاد ایران باید از افتخار به داشته ها به خلق ثروت و قدرت در بازار های جهانی برسد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: General policy speech, no concrete decision",
-      "topic": "اقتصاد",
-      "until": 1791972879.6208632
     },
     "v4|اقتصاددان ارشد مؤسسه مودیز آنالیتیکس: در حال حاضر، میانگین قیمت هر گالن بنزین در آمریکا به ۴.۳۴ دلار رسیده؛ در حالی که پیش از جنگ ۲.۹۸ دلار بود / قیمت گازوئیل به دلیل اختلال در ترد": {
       "ok": true,
@@ -2283,6 +2290,12 @@
       "topic": "اقتصاد",
       "until": 1791986854.8679957
     },
+    "v4|تقویت زیرساخت ها و تجهیزات مقابله با سیلاب در مازندران": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: خبر استانی درباره اقدامات پیشگیرانه مدیریت بحران و تجهیزات سیل",
+      "topic": "آب و هوا",
+      "until": 1792051152.631264
+    },
     "v4|تقویت عضلات، حفظ تعادل و ارتباطات اجتماعی؛ سه کلید طلایی سالمندی سالم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: توصیه های پزشکی و عمومی درباره سالمندی، فاقد اهمیت ملی",
@@ -2312,6 +2325,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و انتظامی مربوط به توقیف خودروها در اسدآباد",
       "topic": "جامعه",
       "until": 1791976969.7500098
+    },
+    "v4|توماس پیکتی: آشفتگی واشنگتن ناشی از آن است که آمریکا در حال از دست دادن کنترل خود بر جهان است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: دیدگاه و تحلیل یک اقتصاددان درباره نظم جهانی است.",
+      "topic": "سیاست",
+      "until": 1792051148.4306993
     },
     "v4|توکلی: دشمن به دنبال تضعیف بصیرت دینی و تغییر سبک زندگی جامعه است": {
       "ok": false,
@@ -2679,12 +2698,6 @@
       "topic": "جامعه",
       "until": 1792049998.1846886
     },
-    "v4|دبیر انجمن: میز مشترک برای حل مشکلات صنعت تولیدکنندگان تجهیزات پزشکی تشکیل شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: درخواست تشکیل میز مشترک برای حل مشکلات صنعتی، رویداد قطعی نیست",
-      "topic": "اقتصاد",
-      "until": 1791972902.0199084
-    },
     "v4|دبیر شورای عالی فضای مجازی: در حوادث دی ماه سال گذشته، از یکی از فناوری ها استفاده کردیم و حدود ۸۰ درصد ارتباط استارلینک در شبکه عملاً قطع شد/ ۲۰ درصد باقی مانده هم کارایی قابل توج": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=iran_national: ادعای مقام دولتی درباره اختلال اینترنت استارلینک",
@@ -2781,12 +2794,6 @@
       "topic": "نظامی",
       "until": 1792019820.729421
     },
-    "v4|رئیس اتاق اصناف ایران: برای توسعه صنعت تجهیزات پزشکی، توجه و اعتماد به بخش خصوصی لازم است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: بیانات کلی وroutine مقامات درباره توسعه صنعت پزشکی بدون رویداد مشخص",
-      "topic": "اقتصاد",
-      "until": 1791972302.5641499
-    },
     "v4|رئیس جمعیت هلال احمر: برای هر سناریو از جمله حملات هسته ای و شیمیایی آماده ایم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=iran_national: اظهارات کلی و آمادگی‌های معمول بدون وقوع رویداد مشخص و فوری",
@@ -2810,6 +2817,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارنظر نماینده درباره جایگاه علمی تبریز خبر محلی و کم‌اهمیت است.",
       "topic": "جامعه",
       "until": 1792049459.524163
+    },
+    "v4|راهپیمایی کارگران در کارآکاس؛ آمریکا تحریم های ونزوئلا را لغو کند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: راهپیمایی اعتراضی کارگران ونزوئلا علیه تحریم‌های آمریکا",
+      "topic": "سیاست",
+      "until": 1792051152.6427157
     },
     "v4|رتبه نخست آذربایجان شرقی در نظارت و تجهیز مدارس و پشتیبانی مدرسه سازی": {
       "ok": false,
@@ -3309,12 +3322,6 @@
       "topic": "سلامت",
       "until": 1791977500.6977942
     },
-    "v4|عمرو موسی: تصور فروپاشی ایران اشتباه بود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارنظر مقام سابق خارجی درباره ایران تحلیل و ارزیابی است.",
-      "topic": "سیاست",
-      "until": 1791972301.8681805
-    },
     "v4|عملکردحوزه هنری دراستفاده صنایع خلاق برای بازنمایی جنایات جنگی خوب بود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine official praise for cultural activities; lacks strategic or national impact.",
@@ -3807,6 +3814,12 @@
       "topic": "اقتصاد",
       "until": 1791974090.748586
     },
+    "v4|نام شهدای مدرسه میناب بر خودروی آتش نشانی شهرداری قدس ثبت شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اقدام نمادین شهرداری محلی و مرتبط با مراسم و یادبود است",
+      "topic": "جامعه",
+      "until": 1792051149.0244963
+    },
     "v4|نبود نمازخانه در ۳۱۱ مدرسه خراسان جنوبی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: کمبود نمازخانه مدارس در یک استان، محلی و کم‌اهمیت است.",
@@ -3848,12 +3861,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: خبر محلی و پیش‌بینی برداشت خرما در ایلام اهمیت ملی ندارد.",
       "topic": "اقتصاد",
       "until": 1792048304.3709164
-    },
-    "v4|نرخ سرویس مدارس خرم آباد اعلام شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اعلام نرخ سرویس مدارس خرم‌آباد خبری محلی و بی‌تأثیر بر کل کشور است.",
-      "topic": "جامعه",
-      "until": 1791972905.2881632
     },
     "v4|نسخه خطی «دیوان حافظ» اهدایی رهبر شهید در حرم رضوی رونمایی شد": {
       "ok": false,
@@ -3999,12 +4006,6 @@
       "topic": "نظامی",
       "until": 1791985112.376126
     },
-    "v4|هشدار جدی یمن به آمریکا در صورت ورود به جنگ": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: هشدار رسمی مقام ارشد انصارالله یمن به آمریکا درباره مداخله نظامی",
-      "topic": "نظامی",
-      "until": 1791972300.869272
-    },
     "v4|هشدار سازمان بازرسی درباره ۶۰ هزار رأی بلاتکلیف در شهرداری تهران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: گزارش اداری سازمان بازرسی درباره تخلفات شهرداری تهران اهمیت ملی ندارد",
@@ -4040,6 +4041,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=iran_national: اظهارات کلی رئیس مجلس درباره جنگ اقتصادی و معیشت، فاقد تصمیم ملموس جدید.",
       "topic": "سیاست",
       "until": 1791975217.6402023
+    },
+    "v4|هشدار مسکو به توکیو درباره جاسوسی در پوشش خبرنگار": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: هشدار دیپلماتیک روسیه به ژاپن اهمیت بین‌المللی درجه یک ندارد",
+      "topic": "سیاست",
+      "until": 1792051149.9707997
     },
     "v4|هشدار نارنجی صادر می شود اما مردم بی خیالند/ سیل های اخیر همان ال نینو است": {
       "ok": false,
@@ -4238,12 +4245,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: گزارش پیشرفت فیزیکی یک پروژه عمرانی محلی و غیر استراتژیک است.",
       "topic": "اقتصاد",
       "until": 1791981057.5201137
-    },
-    "v4|پیشنهاد تعطیلی پنجشنبه ها در مراکز جامع خدمات سلامت مطرح شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: پیشنهاد اداری وزارت بهداشت برای تعطیلی پنجشنبه‌ها اهمیت درجه یک ندارد",
-      "topic": "سلامت",
-      "until": 1791972890.6087298
     },
     "v4|پیگیری ایجاد مسیرهای جدید تجارت با ترکیه، پاکستان و چین": {
       "ok": false,
@@ -4485,6 +4486,12 @@
       "topic": "نظامی",
       "until": 1792048857.7457507
     },
+    "v4|گنجینه های غارت شده؛ از زادگاه تمدن تا ویترین موزه های جهان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: گزارش فرهنگی درباره آثار تاریخی نیشابور و موزه های جهان",
+      "topic": "جامعه",
+      "until": 1792051147.7717106
+    },
     "v4|یاسر آسانی، نزدیک و نزدیک تر به رکورد تاریخی؛ جنگ با «ریاض» علنی شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: عملکرد یک بازیکن در لیگ فوتبال اهمیت ملی یا جهانی ندارد.",
@@ -4644,6 +4651,10 @@
       "reason": "content_duplicate",
       "until": 1791982926.3981113
     },
+    "اوج فشار روی کریک/ انفجار در منچستر: این چه افتضاحی بود؟!": {
+      "reason": "content_duplicate",
+      "until": 1791986371.7920048
+    },
     "اکسیوس به نقل از مقام اسرائیلی: نتانیاهو گفته ترامپ بحث درباره احتمال حمله به ایران پیش از انتخابات را مطرح کرده، نه او/ بر اساس این روایت، ترامپ از نتانیاهو پرسیده «آیا اسرائیل در": {
       "reason": "content_duplicate",
       "until": 1791984078.9034004
@@ -4683,15 +4694,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "عبور قیمت گاز طبیعی در اروپا از مرز ۸۶ یورو ⚡️ قیمت گاز طبیعی در اروپا از مرز ۸۶ یورو به ازای هر مگاوات ساعت ع",
-      "id": "4eafdd3d2c",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791886592,
-      "verdict": "new",
-      "why": "No previously published item reports European natural gas prices exceeding 86 euros."
-    },
     {
       "head": "ثبت دادخواست جنگ ۱۲ روزه در دیوان داوری دعاوی ایران و آمریکا ⚡️ رئیس مرکز امور حقوقی بین المللی معاونت حقوقی ر",
       "id": "b8f4e0f399",
@@ -5187,44 +5189,18 @@
       "t": 1791964232,
       "verdict": "new",
       "why": "This news is about the Brazilian elections and does not match any published item."
+    },
+    {
+      "head": "هشدار ایران درباره گسترش جنگ به زیرساخت های اینترنت و فناوری در خلیج فارس ⚡️ این هشدار به نقش راهبردی کابل های",
+      "id": "59c4bd974b",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1791964763,
+      "verdict": "new",
+      "why": "This is a new warning about regional internet and technology infrastructure."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Wrestling semi‑final qualification, not top‑tier sport event",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1791930546,
-      "title": "صعود جرکنی و یزدی به نیمه نهایی کشتی فرنگی امیدهای جهان/ شکست شمسی پور و حذف فتحی"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: گروه لیگ قهرمانان، نتیجه عادی، نه‌قابل‌توجه",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1791931139,
-      "title": "طوفان بارسلونا در ترکیه و توقف عجیب بایرن مونیخ برابر وایکینگ"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: جشنواره نان در کرمان، رویداد فرهنگی محلی",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1791931139,
-      "title": "آغاز چهارمین جشنواره ملی نان در شهر کرمان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: بیماری وخیم رهبر کاتولیک‌های جهان رویدادی مهم و بین‌المللی است",
-      "rescued": true,
-      "rule": "no-concrete-event",
-      "t": 1791932300,
-      "title": "واتیکان: پاپ لئو به سرطان ریه مبتلا شده است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: رونمایی از کتاب یک رویداد فرهنگی محلی و فاقد اهمیت ملی است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1791932302,
-      "title": "رونمایی از کتاب «غرب خون» در یزد"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Low‑impact bilateral military meeting",
       "rescued": false,
@@ -5749,6 +5725,41 @@
       "rule": "below-event-threshold",
       "t": 1791964204,
       "title": "معاون وزیر صمت: حفظ پایداری تولید و سرمایه گذاری های صنعتی در اولویت است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: گزارش فرهنگی درباره آثار تاریخی نیشابور و موزه های جهان",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1791964747,
+      "title": "گنجینه های غارت شده؛ از زادگاه تمدن تا ویترین موزه های جهان"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: دیدگاه و تحلیل یک اقتصاددان درباره نظم جهانی است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1791964748,
+      "title": "توماس پیکتی: آشفتگی واشنگتن ناشی از آن است که آمریکا در حال از دست دادن کنترل خود بر جهان است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اقدام نمادین شهرداری محلی و مرتبط با مراسم و یادبود است",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1791964749,
+      "title": "نام شهدای مدرسه میناب بر خودروی آتش نشانی شهرداری قدس ثبت شد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: هشدار دیپلماتیک روسیه به ژاپن اهمیت بین‌المللی درجه یک ندارد",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1791964749,
+      "title": "هشدار مسکو به توکیو درباره جاسوسی در پوشش خبرنگار"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: پیگیری تاسیس دانشکده هنر استانی و فاقد اهمیت ملی است",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1791964750,
+      "title": "استاندار خراسان رضوی: ایجاد دانشکده هنر در دانشگاه فردوسی مشهد در حال پیگیری است"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6140,6 +6151,33 @@
       ],
       "t": 1791964233.56954,
       "title": "احضار نمایندگان نامزدهای انتخابات برزیل به دادگاه عالی ⚡️ دادگاه عالی انتخاباتی برزیل در آستانه دور دوم انتخابات ریاست ج"
+    },
+    {
+      "h": [
+        "ارتبط",
+        "اشر",
+        "انترنت",
+        "تدم",
+        "تند",
+        "خلج",
+        "دجتل",
+        "دد",
+        "درگر",
+        "رهبرد",
+        "زردر",
+        "زرسخت",
+        "فرس",
+        "فنر",
+        "متحد",
+        "مرکز",
+        "نشن",
+        "نقش",
+        "هشدر",
+        "کبل",
+        "گسترش"
+      ],
+      "t": 1791964764.9208446,
+      "title": "هشدار ایران درباره گسترش جنگ به زیرساخت های اینترنت و فناوری در خلیج فارس ⚡️ این هشدار به نقش راهبردی کابل های زیردریایی"
     }
   ],
   "_published_incidents": [
@@ -9122,6 +9160,56 @@
       ],
       "t": 1791964233.5571547,
       "title": "احضار نمایندگان نامزدهای انتخابات برزیل به دادگاه عالی ⚡️ دادگاه عالی انتخاباتی برزیل در آستانه دور دوم انتخابات ریاست ج"
+    },
+    {
+      "k": [
+        "ار",
+        "ارتبط",
+        "اشر",
+        "اقتصد",
+        "الملل",
+        "امرک",
+        "امنت",
+        "انترنت",
+        "تدم",
+        "تسس",
+        "تند",
+        "جنگ",
+        "حمل",
+        "خلج",
+        "خهند",
+        "دبر",
+        "دجتل",
+        "دد",
+        "در",
+        "درگر",
+        "رض",
+        "رهبرد",
+        "زردر",
+        "زرسخت",
+        "سرلشکر",
+        "شر",
+        "صرت",
+        "عل",
+        "فرس",
+        "فنر",
+        "متحد",
+        "محسن",
+        "مرکز",
+        "مصنع",
+        "معرض",
+        "مل",
+        "منطق",
+        "نشن",
+        "نقش",
+        "هش",
+        "هشدر",
+        "وقع",
+        "کبل",
+        "گسترش"
+      ],
+      "t": 1791964764.9094412,
+      "title": "هشدار ایران درباره گسترش جنگ به زیرساخت های اینترنت و فناوری در خلیج فارس ⚡️ این هشدار به نقش راهبردی کابل های زیردریایی"
     }
   ],
   "_text_polish": {
@@ -9133,7 +9221,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791964009
+    "at": 1791964595
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9161,13 +9249,13 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791967853.299685,
+    "disabled_until": 1791968362.9707508,
     "last_failure": 1791960152,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1791967853.3722868,
+    "disabled_until": 1791968363.0831265,
     "last_failure": 1791960711,
     "last_quality_failure": 1791941575,
     "last_status": 429
