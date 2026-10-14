@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1791988485
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 3 stories",
-      "t": 1791988485
-    },
-    {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.5-flash-lite",
-      "t": 1791989121
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1791989673
     },
@@ -159,21 +147,33 @@
     {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1791997184
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791997817
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1791997817
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1791997818
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 108,
+        "calls": 109,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 58,
-        "other": 21
+        "other": 22
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 40,
-        "calls": 535,
+        "429": 41,
+        "calls": 536,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 492,
@@ -181,10 +181,10 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 136,
-        "calls": 294,
+        "calls": 295,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198257, Requested 1791. Please try again in 20.736",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 152,
+        "ok": 153,
         "other": 6
       },
       "groq:openai/gpt-oss-20b": {
@@ -196,36 +196,36 @@
         "other": 51
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 10,
-        "calls": 10,
+        "429": 11,
+        "calls": 11,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 10,
-        "calls": 10,
+        "429": 11,
+        "calls": 11,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:google/gemma-4-31b-it:free": {
-        "429": 10,
-        "calls": 10,
+        "429": 11,
+        "calls": 11,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 10,
-        "calls": 10,
+        "429": 11,
+        "calls": 11,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
       },
       "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
-        "429": 10,
-        "calls": 10,
+        "429": 11,
+        "calls": 11,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 0,
         "other": 0
@@ -4785,9 +4785,9 @@
       "until": 1792004888.1519358
     },
     "روایت رئیس اورژانس استان تهران از حمله اسرائیل به جلسه شورای عالی امنیت ملی: از معاونت ریاست جمهوری تماس گرفتند که ما پزشک، جراح و متخصص ریه لازم داریم / فرمانده یگان حفاظت به من گ": {
-      "at": 1791996101.905977,
+      "at": 1791997827.9162416,
       "reason": "ai_unavailable_local",
-      "until": 1791997301.905977
+      "until": 1791999027.9162416
     },
     "زلنسکی: به من خیانت شد!": {
       "at": 1791997207.1080894,
@@ -4801,10 +4801,6 @@
     "سخنگوی سپاه: احتمال وقوع جنگ جدید کاملاً وجود دارد/ آماده ایم به هرگونه تجاوز، با قدرتی بیش از هر زمان دیگری پاسخ دهد": {
       "reason": "content_duplicate",
       "until": 1792005536.309452
-    },
-    "سخنگوی سپاه: ایران آماده است در برابر هرگونه تجاوز مجدد، با قدرتی بیش از گذشته پاسخ دهد/ پیامدهای حمله احتمالی، برای ایالات متحده «دردناک تر» خواهد بود": {
-      "reason": "content_duplicate",
-      "until": 1791997345.4932876
     },
     "شهید و مجروح شدن ۵ زن و کودک در حملات عربستان به یمن": {
       "reason": "content_duplicate",
@@ -11882,7 +11878,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791997090
+    "at": 1791997667
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11897,13 +11893,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791997483.0,
-    "last_failure": 1791997183,
+    "disabled_until": 1791998117.0,
+    "last_failure": 1791997817,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791997783,
-    "last_failure": 1791997183,
+    "disabled_until": 1791998417,
+    "last_failure": 1791997817,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11943,20 +11939,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791997386.7652504,
-    "last_failure": 1791993786,
+    "disabled_until": 1792001424.517115,
+    "last_failure": 1791997824,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791997386.5553763,
-    "last_failure": 1791993786,
+    "disabled_until": 1792001424.3882053,
+    "last_failure": 1791997824,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791997386.6367493,
-    "last_failure": 1791993786,
+    "disabled_until": 1792001424.4589145,
+    "last_failure": 1791997824,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -11967,14 +11963,14 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791997386.8907232,
-    "last_failure": 1791993786,
+    "disabled_until": 1792001424.586724,
+    "last_failure": 1791997824,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791997386.9673624,
-    "last_failure": 1791993786,
+    "disabled_until": 1792001424.65203,
+    "last_failure": 1791997824,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
