@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.5-flash-lite",
-      "t": 1791975138
-    },
-    {
-      "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.5-flash-lite",
-      "t": 1791975727
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1791976320
-    },
-    {
       "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.5-flash-lite",
       "t": 1791976974
     },
@@ -159,21 +147,33 @@
     {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1791992099
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791992627
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1791992628
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 6 stories",
+      "t": 1791992628
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 99,
+        "calls": 100,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 57,
-        "other": 13
+        "other": 14
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 34,
-        "calls": 524,
+        "429": 35,
+        "calls": 525,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 487,
@@ -181,10 +181,10 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 134,
-        "calls": 280,
+        "calls": 283,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198826, Requested 1812. Please try again in 4m35.6",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 140,
+        "ok": 143,
         "other": 6
       },
       "groq:openai/gpt-oss-20b": {
@@ -240,13 +240,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 3,
-      "t": 1791823547.7844028,
-      "title": "ادعای دولت بریتانیا درباره هدایت حادثه امنیتی پایگاه فیرفورد توسط ایران",
-      "urgent": false
-    },
     {
       "label": "خبر",
       "level": 4,
@@ -1078,6 +1071,13 @@
       "level": 5,
       "t": 1791992113.3363967,
       "title": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت",
+      "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1791992643.1527631,
+      "title": "انتقادات گسترده از عبدالحمید؛ چرا تروریست ها محکوم نمی شوند؟",
       "urgent": false
     }
   ],
@@ -4727,9 +4727,19 @@
       "reason": "content_duplicate",
       "until": 1792009586.1853068
     },
+    "انتقادات گسترده از عبدالحمید؛ چرا تروریست ها محکوم نمی شوند؟": {
+      "at": 1791992659.1491876,
+      "reason": "ai_unavailable_local",
+      "until": 1791993859.1491876
+    },
     "انفجار در ریاض پس از حمله موشکی؛ گزارش ها از خسارت به تأسیسات نفتی": {
       "reason": "content_duplicate",
       "until": 1792006006.122109
+    },
+    "انفجارهای جدید ریاض را لرزاند": {
+      "at": 1791992659.1491876,
+      "reason": "ai_unavailable_local",
+      "until": 1791993859.1491876
     },
     "اولین تصویر از مامور شهید حمله امروز در مهرستان": {
       "reason": "content_duplicate",
@@ -4800,6 +4810,11 @@
       "reason": "content_duplicate",
       "until": 1791996269.9074204
     },
+    "روایت رئیس اورژانس استان تهران از حمله اسرائیل به جلسه شورای عالی امنیت ملی: از معاونت ریاست جمهوری تماس گرفتند که ما پزشک، جراح و متخصص ریه لازم داریم / فرمانده یگان حفاظت به من گ": {
+      "at": 1791992659.1491876,
+      "reason": "ai_unavailable_local",
+      "until": 1791993859.1491876
+    },
     "زلنسکی: روسیه شب گذشته با ۳۹ موشک بالستیک و بیش از ۱۲۰ پهپاد تهاجمی، به طور مشخص زیرساخت های انرژی ما را که شامل آتش بس می شد، هدف قرار داد/ مسکو اظهارات ترامپ را قدرتمند و بازدارن": {
       "reason": "content_duplicate",
       "until": 1792000306.7512138
@@ -4834,10 +4849,6 @@
       "at": 1791992136.2428985,
       "reason": "ai_unavailable_local",
       "until": 1791993336.2428985
-    },
-    "شهادت مسئول بسیج خواهران مهرستان در پی حمله تروریستی": {
-      "reason": "content_duplicate",
-      "until": 1791992144.4089851
     },
     "شهید و مجروح شدن ۵ زن و کودک در حملات عربستان به یمن": {
       "reason": "content_duplicate",
@@ -4886,16 +4897,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "حمله به ساختمان آرامکو و زخمی شدن چهار نفر در ریاض ⚡️ مقامات سعودی از زخمی شدن چهار نفر در ریاض بر اثر سقوط تر",
-      "id": "653a4d726d",
-      "match": "تشکیل مراسم تشییع جنازه خدمه پروازی مصری کشته در حمله حوثی به ریاض",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791964222,
-      "verdict": "repeat",
-      "why": "Reports the same attack on Riyadh with casualties."
-    },
     {
       "head": "احضار نمایندگان نامزدهای انتخابات برزیل به دادگاه عالی ⚡️ دادگاه عالی انتخاباتی برزیل در آستانه دور دوم انتخاب",
       "id": "dc1926f291",
@@ -5435,6 +5436,15 @@
       "t": 1791992112,
       "verdict": "new",
       "why": "No similar incident in published items"
+    },
+    {
+      "head": "انتقادات گسترده از عبدالحمید؛ چرا تروریست ها محکوم نمی شوند؟ ⚡️ پس از اجرای چند عملیات از سوی گروهک های تروریس",
+      "id": "faba7b3de6",
+      "match": "",
+      "model": "groq/openai/gpt-oss-120b",
+      "t": 1791992638,
+      "verdict": "new",
+      "why": "No prior item mentions Abdulhamid or same attacks"
     }
   ],
   "_importance_rescue_log": [
@@ -7107,6 +7117,30 @@
       ],
       "t": 1791992113.3088758,
       "title": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت ⚡️ بر اثر سقوط یک هواپیمای کوچک در ایالت ویسکانسین آمریکا، شش "
+    },
+    {
+      "h": [
+        "اجر",
+        "اقدم",
+        "انتقد",
+        "تررست",
+        "جنب",
+        "شرق",
+        "صرح",
+        "عبدلحمد",
+        "عمل",
+        "محکم",
+        "محکمت",
+        "ندشت",
+        "همچن",
+        "وکنش",
+        "چر",
+        "چند",
+        "گرهک",
+        "گسترد"
+      ],
+      "t": 1791992643.1394737,
+      "title": "انتقادات گسترده از عبدالحمید؛ چرا تروریست ها محکوم نمی شوند؟ ⚡️ پس از اجرای چند عملیات از سوی گروهک های تروریستی جنوب شر"
     }
   ],
   "_published_incidents": [
@@ -11851,6 +11885,41 @@
       ],
       "t": 1791992113.2945657,
       "title": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت ⚡️ بر اثر سقوط یک هواپیمای کوچک در ایالت ویسکانسین آمریکا، شش "
+    },
+    {
+      "k": [
+        "اجر",
+        "اسرل",
+        "اقدم",
+        "انتقد",
+        "تررست",
+        "جنب",
+        "دستر",
+        "سز",
+        "شرق",
+        "صرح",
+        "طبعت",
+        "عبدلحمد",
+        "عمل",
+        "قطع",
+        "محکم",
+        "محکمت",
+        "مطرح",
+        "منطق",
+        "ندشت",
+        "نمن",
+        "هدف",
+        "همچن",
+        "وکنش",
+        "چر",
+        "چند",
+        "چهر",
+        "کمترن",
+        "گرهک",
+        "گسترد"
+      ],
+      "t": 1791992643.1257308,
+      "title": "انتقادات گسترده از عبدالحمید؛ چرا تروریست ها محکوم نمی شوند؟ ⚡️ پس از اجرای چند عملیات از سوی گروهک های تروریستی جنوب شر"
     }
   ],
   "_text_polish": {
@@ -11862,7 +11931,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791991869
+    "at": 1791992443
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11877,14 +11946,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791992398.0,
-    "last_failure": 1791992098,
-    "last_status": 599
+    "disabled_until": 1791992928.0,
+    "last_failure": 1791992628,
+    "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791992383.0,
-    "last_failure": 1791992083,
-    "last_status": 599
+    "disabled_until": 1791993227,
+    "last_failure": 1791992627,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
