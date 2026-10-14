@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
-      "t": 1792005328
-    },
-    {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.1-flash-lite",
-      "t": 1792005331
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
-      "t": 1792005344
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792005951
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
       "t": 1792016474
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792017620
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792017621
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792017635
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 45
+      "n": 47
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 17
+      "n": 18
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-14",
@@ -187,15 +187,15 @@
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 261,
+        "calls": 263,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 190,
+        "ok": 192,
         "other": 42
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 89,
-        "calls": 592,
+        "429": 90,
+        "calls": 593,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 500,
@@ -1123,6 +1123,12 @@
       "topic": "جامعه",
       "until": 1792098232.8188293
     },
+    "v4|australia's first-ever michelin stars go to 11 restaurants in one state": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر سبک زندگی و غیرسیاسی که فاقد اهمیت ملی یا جهانی است.",
+      "topic": "جامعه",
+      "until": 1792104034.4019098
+    },
     "v4|australian politics live: victoria labor promises free abortion care if re-elected; albanese criticises hanson’s ‘monoculture’": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: اخبار داخلی استرالیا فاقد اهمیت ملی برای ایران یا سطح جهانی است.",
@@ -1692,12 +1698,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بیانات استاندار درباره منطقه آزاد بوشهر محلی و رویداد نیست.",
       "topic": "اقتصاد",
       "until": 1792071464.0591238
-    },
-    "v4|استاندار خراسان رضوی: ایجاد دانشکده هنر در دانشگاه فردوسی مشهد در حال پیگیری است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: پیگیری تاسیس دانشکده هنر استانی و فاقد اهمیت ملی است",
-      "topic": "جامعه",
-      "until": 1792051150.555564
     },
     "v4|استاندار خراسان شمالی: کودکان باید به پرچم ایران افتخار کنند": {
       "ok": false,
@@ -2358,12 +2358,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: اعلام سیاست تفویض اختیارات به استان‌ها",
       "topic": "سیاست",
       "until": 1792081351.8558414
-    },
-    "v4|تقویت زیرساخت ها و تجهیزات مقابله با سیلاب در مازندران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: خبر استانی درباره اقدامات پیشگیرانه مدیریت بحران و تجهیزات سیل",
-      "topic": "آب و هوا",
-      "until": 1792051152.631264
     },
     "v4|تمدید مهلت ثبت نام دوره آموزشی «هوش مصنوعی» ویژه معلمان و فرهنگیان": {
       "ok": false,
@@ -4315,6 +4309,12 @@
       "topic": "جامعه",
       "until": 1792055232.2155247
     },
+    "v4|پنجره بسته، توفیق اجباری تیم بود/ بیانی: سهراب برگ برنده استقلال است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: تحلیل و اظهارنظر کارشناسی درباره بازی استقلال در لیگ نخبگان آسیا",
+      "topic": "ورزش",
+      "until": 1792104027.8657198
+    },
     "v4|پیروانی دستیار اول پورموسوی شد/ بازگشت مربی سرشناس ایران به صنعت نفت آبادان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: انتصاب مربی جدید در کادر فنی تیم صنعت نفت آبادان.",
@@ -5335,20 +5335,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: رویداد ورزشی محلی و غیرحرفه‌ای در سطح استانی است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792004163,
-      "title": "مسابقات قایقرانی هفته تربیت بدنی در بوشهر برگزار می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local remarks by a Friday prayer leader regarding a ceremony.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792004166,
-      "title": "امام جمعه دشتی: دانش آموزان باید محور اصلی برنامه های ۱۳ آبان باشند"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Parliamentary criticism, no concrete decision",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5893,6 +5879,20 @@
       "rule": "no-concrete-event",
       "t": 1792016462,
       "title": "مرکز فرماندهی سپاهان در حال به روزرسانی!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: تحلیل و اظهارنظر کارشناسی درباره بازی استقلال در لیگ نخبگان آسیا",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792017627,
+      "title": "پنجره بسته، توفیق اجباری تیم بود/ بیانی: سهراب برگ برنده استقلال است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر سبک زندگی و غیرسیاسی که فاقد اهمیت ملی یا جهانی است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792017634,
+      "title": "Australia's first-ever Michelin stars go to 11 restaurants in one state"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11155,7 +11155,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792016925
+    "at": 1792017515
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11170,8 +11170,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792016486,
-    "last_failure": 1792015886,
+    "disabled_until": 1792018221,
+    "last_failure": 1792017621,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11188,8 +11188,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792017060,
-    "last_failure": 1792016460,
+    "disabled_until": 1792018220,
+    "last_failure": 1792017620,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
