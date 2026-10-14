@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 6/6 via gemini/gemini-3.5-flash-lite",
-      "t": 1791986809
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1791987422
-    },
-    {
-      "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.5-flash-lite",
-      "t": 1791987975
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1791988485
-    },
-    {
       "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1791988485
     },
@@ -159,32 +143,48 @@
     {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1791996655
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1791997183
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1791997183
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
+      "t": 1791997184
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1791997184
     }
   ],
   "_ai_usage": {
     "2026-10-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 29,
-        "calls": 107,
+        "calls": 108,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 58,
-        "other": 20
+        "other": 21
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 39,
-        "calls": 533,
+        "429": 40,
+        "calls": 535,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 491,
+        "ok": 492,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
         "429": 136,
-        "calls": 292,
+        "calls": 294,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198257, Requested 1791. Please try again in 20.736",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 150,
+        "ok": 152,
         "other": 6
       },
       "groq:openai/gpt-oss-20b": {
@@ -231,8 +231,8 @@
         "other": 0
       },
       "openrouter:openrouter/free": {
-        "429": 10,
-        "calls": 24,
+        "429": 11,
+        "calls": 25,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 14,
         "other": 0
@@ -3033,6 +3033,12 @@
       "topic": "نظامی",
       "until": 1792054615.110242
     },
+    "v4|زلنسکی: به من خیانت شد!": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اعتراض صریح زلنسکی به سیاست‌های رئیس‌جمهور آمریکا درباره روسیه",
+      "topic": "سیاست",
+      "until": 1792083583.0378382
+    },
     "v4|زلنسکی: روسیه شب گذشته با ۳۹ موشک بالستیک و بیش از ۱۲۰ پهپاد تهاجمی، به طور مشخص زیرساخت های انرژی ما را که شامل آتش بس می شد، هدف قرار داد/ مسکو اظهارات ترامپ را قدرتمند و بازدارن": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله هوایی گسترده روسیه به زیرساخت‌های انرژی اوکراین.",
@@ -4065,12 +4071,6 @@
       "topic": "جامعه",
       "until": 1792061060.258891
     },
-    "v4|نیوزویک: جنگ علیه ایران ۲ هزار دلار برای خانوار آمریکایی هزینه داشته است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=local: Moody's analyst estimates war cost per US household",
-      "topic": "اقتصاد",
-      "until": 1792027966.0767071
-    },
     "v4|نیویورک تایمز: جنگ علیه ایران، صورت محبوب ترین میوه برای آمریکایی ها را کبود کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل و مقاله نیویورک تایمز درباره تأثیر جنگ",
@@ -4702,9 +4702,9 @@
       "until": 1792003206.8734426
     },
     "star-studded saudi exhibition postponed after deadly attacks": {
-      "at": 1791995544.7996418,
+      "at": 1791997207.1080894,
       "reason": "ai_unavailable_foreign",
-      "until": 1791996744.7996418
+      "until": 1791998407.1080894
     },
     "starlink restrictions affecting ukraine's front line operations, kyiv says": {
       "reason": "content_duplicate",
@@ -4715,9 +4715,9 @@
       "until": 1792008429.763659
     },
     "ukraine’s vulnerability grows as starlink is restricted and russia escalates": {
-      "at": 1791995544.7996418,
+      "at": 1791997207.1080894,
       "reason": "ai_unavailable_foreign",
-      "until": 1791996744.7996418
+      "until": 1791998407.1080894
     },
     "zelensky to visit u.k. as ukraine presses allies on intelligence sharing": {
       "reason": "content_duplicate",
@@ -4750,10 +4750,6 @@
     "تداوم موج اعدام ها؛ شمار اعدام شدگان اعتراضات ملی به دست کم ۳۶ نفر رسید": {
       "reason": "content_duplicate",
       "until": 1792000890.4270756
-    },
-    "تصاویر ماهواره ای از وضعیت فرودگاه ملک فهد عربستان پس از حمله": {
-      "reason": "content_duplicate",
-      "until": 1791996748.3573253
     },
     "تهدید جنایتکارانه کاتس علیه یک میلیون شیعه لبنانی": {
       "reason": "content_duplicate",
@@ -4788,28 +4784,19 @@
       "reason": "content_duplicate",
       "until": 1792004888.1519358
     },
-    "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ": {
-      "at": 1791994983.5949316,
-      "reason": "ai_unavailable_local",
-      "until": 1791996183.5949316
-    },
-    "رشد قیمت طلا و سکه؛ طلای ۱۸ عیار به کانال ۲۶ میلیون تومانی بازگشت": {
-      "reason": "content_duplicate",
-      "until": 1791996269.9074204
-    },
     "روایت رئیس اورژانس استان تهران از حمله اسرائیل به جلسه شورای عالی امنیت ملی: از معاونت ریاست جمهوری تماس گرفتند که ما پزشک، جراح و متخصص ریه لازم داریم / فرمانده یگان حفاظت به من گ": {
       "at": 1791996101.905977,
       "reason": "ai_unavailable_local",
       "until": 1791997301.905977
     },
+    "زلنسکی: به من خیانت شد!": {
+      "at": 1791997207.1080894,
+      "reason": "ai_unavailable_local",
+      "until": 1791998407.1080894
+    },
     "زلنسکی: روسیه شب گذشته با ۳۹ موشک بالستیک و بیش از ۱۲۰ پهپاد تهاجمی، به طور مشخص زیرساخت های انرژی ما را که شامل آتش بس می شد، هدف قرار داد/ مسکو اظهارات ترامپ را قدرتمند و بازدارن": {
       "reason": "content_duplicate",
       "until": 1792000306.7512138
-    },
-    "سخنگوی سپاه: احتمال حمله مجدد آمریکا به ایران پیش از انتخابات وجود دارد": {
-      "at": 1791995544.7996418,
-      "reason": "ai_unavailable_local",
-      "until": 1791996744.7996418
     },
     "سخنگوی سپاه: احتمال وقوع جنگ جدید کاملاً وجود دارد/ آماده ایم به هرگونه تجاوز، با قدرتی بیش از هر زمان دیگری پاسخ دهد": {
       "reason": "content_duplicate",
@@ -4858,15 +4845,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "هشدار ایران درباره گسترش جنگ به زیرساخت های اینترنت و فناوری در خلیج فارس ⚡️ این هشدار به نقش راهبردی کابل های",
-      "id": "59c4bd974b",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791964763,
-      "verdict": "new",
-      "why": "This is a new warning about regional internet and technology infrastructure."
-    },
     {
       "head": "قائم پناه: ترامپ به دنبال کنترل منابع نفتی ایران است ⚡️ دونالد ترامپ تلاش می کند با الگوبرداری از رویکرد خود د",
       "id": "b037876e6b",
@@ -5403,16 +5381,18 @@
       "id": "0137be8ca3",
       "t": 1791994970,
       "verdict": "unavailable"
+    },
+    {
+      "head": "زلنسکی: به من خیانت شد! ⚡️ رئیس جمهور اوکراین گفت نسبت به تعاملات اخیر رئیس جمهور آمریکا با روسیه احساس «خیانت",
+      "id": "eac9e2d171",
+      "match": "",
+      "model": "groq/openai/gpt-oss-120b",
+      "t": 1791997191,
+      "verdict": "new",
+      "why": "Zelensky's betrayal claim not previously reported"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: گزارش عملکرد گازرسانی روستایی استانی کم‌اهمیت است.",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1791981034,
-      "title": "گازرسانی به ۴۱۰ روستای خراسان شمالی در سایه اجرای مصوبات سفر رهبر شهید"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر کشاورزی و محلی مربوط به داراب است",
       "rescued": false,
@@ -5965,70 +5945,17 @@
       "rule": "routine-statement",
       "t": 1791996090,
       "title": "لاوروف: پوتین ماه آینده با رئیس جمهور چین دیدار می کند"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اعتراض صریح زلنسکی به سیاست‌های رئیس‌جمهور آمریکا درباره روسیه",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1791997183,
+      "title": "زلنسکی: به من خیانت شد!"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "اخر",
-        "استفد",
-        "انتقد",
-        "بشگ",
-        "تقت",
-        "تم",
-        "تمم",
-        "جسن",
-        "حضر",
-        "دقق",
-        "زلزل",
-        "زمن",
-        "شکست",
-        "فرصت",
-        "لسندر",
-        "مدر",
-        "مرتنز",
-        "مسبق",
-        "منچسترنتد",
-        "ورزش",
-        "ولککس",
-        "وژ",
-        "چهرمن"
-      ],
-      "t": 1791952012.9966216,
-      "title": "تیم باید تقویت می شد/ زلزله در منچستریونایتد: لیساندرو به مدیران حمله کرد ⚡️ مارتینز که تمام ۹۰ دقیقه در زمین حضور داشت،"
-    },
-    {
-      "h": [
-        "اخت",
-        "اعدم",
-        "تحمل",
-        "تررست",
-        "تعدد",
-        "جر",
-        "حکم",
-        "خردسل",
-        "دختر",
-        "در",
-        "دشمن",
-        "سم",
-        "سن",
-        "شهرند",
-        "صهن",
-        "عل",
-        "عمل",
-        "قض",
-        "قه",
-        "مجرحت",
-        "مجز",
-        "مسلح",
-        "مصطف",
-        "منجر",
-        "کرم"
-      ],
-      "t": 1791953122.6711793,
-      "title": "قوه قضاییه: تروریست مسلح در کرمان به دار مجازات آویخته شد ⚡️ قوه قضاییه اعلام کرد: حکم اعدام علی سینا مصطفوی، تروریست مس"
-    },
     {
       "h": [
         "اجر",
@@ -7073,6 +7000,18 @@
       ],
       "t": 1791994982.4831288,
       "title": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ ⚡️ در حالی که دولت ترامپ برای توقف حملات اوکراین به پالایشگاه"
+    },
+    {
+      "h": [
+        "احسس",
+        "اخر",
+        "تعمل",
+        "خنت",
+        "زلنسک",
+        "نسبت"
+      ],
+      "t": 1791997204.5364094,
+      "title": "زلنسکی: به من خیانت شد! ⚡️ رئیس جمهور اوکراین گفت نسبت به تعاملات اخیر رئیس جمهور آمریکا با روسیه احساس «خیانت» می کند."
     }
   ],
   "_published_incidents": [
@@ -11916,6 +11855,22 @@
       ],
       "t": 1791994982.4694521,
       "title": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ ⚡️ در حالی که دولت ترامپ برای توقف حملات اوکراین به پالایشگاه"
+    },
+    {
+      "k": [
+        "احسس",
+        "اخر",
+        "امرک",
+        "اکرن",
+        "تعمل",
+        "جمهر",
+        "خنت",
+        "رس",
+        "زلنسک",
+        "نسبت"
+      ],
+      "t": 1791997204.5275073,
+      "title": "زلنسکی: به من خیانت شد! ⚡️ رئیس جمهور اوکراین گفت نسبت به تعاملات اخیر رئیس جمهور آمریکا با روسیه احساس «خیانت» می کند."
     }
   ],
   "_text_polish": {
@@ -11927,7 +11882,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1791996520
+    "at": 1791997090
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11942,13 +11897,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1791996955.0,
-    "last_failure": 1791996655,
+    "disabled_until": 1791997483.0,
+    "last_failure": 1791997183,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1791996690,
-    "last_failure": 1791996090,
+    "disabled_until": 1791997783,
+    "last_failure": 1791997183,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -12024,8 +11979,8 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1791996737.6376479,
-    "last_failure": 1791993137,
+    "disabled_until": 1792000784.0987968,
+    "last_failure": 1791997184,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
