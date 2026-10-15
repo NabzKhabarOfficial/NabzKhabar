@@ -1,18 +1,27 @@
 {
-  "checked_at": "2026-10-15T20:34:04.977408+00:00",
-  "status": "healthy",
+  "checked_at": "2026-10-15T20:42:46.291733+00:00",
+  "status": "publication_failure",
   "run_status": "success",
-  "raw_candidates": 92,
-  "strict_rejected": 45,
-  "selected_for_publication": 14,
-  "published": 1,
+  "raw_candidates": 93,
+  "strict_rejected": 47,
+  "selected_for_publication": 15,
+  "published": 0,
   "failed_publications": 0,
-  "ambiguous_publications": 0,
-  "editorial_blocked_publications": 11,
-  "missed_selected_stories": [],
+  "ambiguous_publications": 1,
+  "editorial_blocked_publications": 13,
+  "missed_selected_stories": [
+    {
+      "title": "Israel ex-security chief sues Netanyahu over October 7 claims",
+      "source": "france24.com",
+      "url": "https://france24.com/en/video/20261015-israel-ex-security-chief-sues-netanyahu-over-october-7-claims",
+      "intelligence_score": 12,
+      "publication_tier": 4,
+      "monitor_reason": "selected-but-not-published"
+    }
+  ],
   "important_missed_news": [
     {
-      "checked_at": "2026-10-15T20:33:23.456011+00:00",
+      "checked_at": "2026-10-15T20:42:08.107770+00:00",
       "title": "یحیی سریع: یمن هدف ۲۲۸۱ حمله هوایی و موشکی سعودی قرار گرفته است",
       "source": "fararu.com",
       "category": "ایران",
@@ -35,16 +44,7 @@
       "title": "آمریکا ۱۶ فرد و ۱۰ نهاد ایرانی را در لیست تحریم های خود قرار داد",
       "source": "entekhab.ir",
       "url": "https://entekhab.ir/fa/news/943673/آمریکا-16-فرد-و-10-نهاد-ایرانی-را-در-لیست-تحریم-های-خود-قرار-داد",
-      "started_at": "2026-10-15T20:33:32.420636+00:00",
-      "result": "skipped_duplicate",
-      "error": "",
-      "reason": "recent-semantic-history"
-    },
-    {
-      "title": "'It is clear that sooner or later we will have European casualties', Romanian MEP",
-      "source": "france24.com",
-      "url": "https://france24.com/en/it-is-clear-that-sooner-or-later-we-will-have-european-casualties-romanian-mep",
-      "started_at": "2026-10-15T20:34:00.711063+00:00",
+      "started_at": "2026-10-15T20:42:19.953702+00:00",
       "result": "skipped_duplicate",
       "error": "",
       "reason": "recent-semantic-history"
@@ -55,7 +55,7 @@
       "title": "۳۳ دانش آموز و یک معلم بر اثر ریزش سقف مدرسه ای در پاکستان کشته شدند",
       "source": "bbc.com",
       "url": "https://bbc.com/persian/articles/cvde8dx3rde2o?at_campaign=rss&at_medium=RSS",
-      "started_at": "2026-10-15T20:34:00.184842+00:00",
+      "started_at": "2026-10-15T20:42:27.872652+00:00",
       "result": "editorial_blocked",
       "error": "",
       "reason": "policy_scope_blocked"
@@ -78,6 +78,14 @@
     },
     {
       "title": "رئیس جمهور کوبا تلاش های آمریکا برای تاثیرگذاری بر رأی گیری سازمان ملل را محکوم کرد",
+      "source": "",
+      "url": "",
+      "result": "editorial_blocked",
+      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "error": ""
+    },
+    {
+      "title": "Meta launches an open-weight AI model that runs on Macs",
       "source": "",
       "url": "",
       "result": "editorial_blocked",
@@ -125,7 +133,7 @@
       "error": ""
     },
     {
-      "title": "Meta launches an open-weight AI model that runs on Macs",
+      "title": "کانال ۱۶ عبری: ایران بالغ بر ۹۵ درصد ظرفیت پرتابگر های خود را احیا کرده/ نماینده چین در سازمان ملل: آمریکا و ایران باید هر چه سریع تر مذاکرات را از سر بگیرند",
       "source": "",
       "url": "",
       "result": "editorial_blocked",
@@ -134,6 +142,14 @@
     },
     {
       "title": "عملیات ضدصهیونیستی در کرانه باختری؛ یک صهیونیست زخمی شد",
+      "source": "",
+      "url": "",
+      "result": "editorial_blocked",
+      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "error": ""
+    },
+    {
+      "title": "۴ درگذشت و جایزه ای برای مردم ایران",
       "source": "",
       "url": "",
       "result": "editorial_blocked",
@@ -150,7 +166,9 @@
   },
   "diagnostics": [
     "3/25 configured AI models are cooling down or disabled.",
-    "11 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure).",
+    "13 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure).",
+    "Selected stories did not reach confirmed publication.",
+    "One or more Telegram sends had ambiguous transport results; fallback was intentionally blocked to prevent duplicates.",
     "1 potentially important candidate(s) were rejected; review reasons before changing gates."
   ]
 }
