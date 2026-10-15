@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
-      "t": 1792015289
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792015886
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1792015897
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
       "t": 1792015912
     },
@@ -159,16 +147,28 @@
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792032046
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792032648
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792032649
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792032654
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 77
+      "n": 78
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 32
+      "n": 33
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
@@ -176,7 +176,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 16
+      "n": 18
     },
     "openrouter:*": {
       "day": "2026-10-14",
@@ -263,13 +263,13 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 3,
-        "calls": 8,
+        "429": 4,
+        "calls": 9,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 5,
         "other": 0
@@ -284,11 +284,11 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 16,
+        "calls": 18,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199777, Requested 1859. Please try again in 11m46.7",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
-        "other": 9
+        "ok": 7,
+        "other": 10
       }
     }
   },
@@ -1652,6 +1652,12 @@
       "topic": "ورزش",
       "until": 1792117287.4169953
     },
+    "v4|آمریکا به دنبال کاهش تحریم نفتکش های حامل نفت ایران و روسیه است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Claim, not official decision",
+      "topic": "سیاست",
+      "until": 1792119054.2357697
+    },
     "v4|آمریکا تلفن همراه ایلهان عمر را ضبط کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: ضبط تلفن همراه یک نماینده کنگره آمریکا رویدادی سیاسی و قابل توجه است.",
@@ -1922,12 +1928,6 @@
       "topic": "اقتصاد",
       "until": 1792069075.898445
     },
-    "v4|اطلاعات تکمیلی در رابطه با حمله پهپادی به یک لنج در آب های شرق هرمزگان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Drone attack on a vessel in Iranian waters is a security incident.",
-      "topic": "نظامی",
-      "until": 1792054083.404595
-    },
     "v4|اعتراضات به آلبانی هم رسید؛ آتش سوزی در وزارت آموزش": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: اعتراضات دانشجویی و آتش‌سوزی در آلبانی ارتباطی با ایران و اهمیت بین‌المللی ندارد.",
@@ -2011,12 +2011,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: تفاهم‌نامه اداری و در مرحله پیگیری است.",
       "topic": "جامعه",
       "until": 1792059286.5616379
-    },
-    "v4|امضای چهار تفاهم نامه سرمایه گذاری با بیش از ۴۱ هزار میلیارد تومان اعتبار در آذربایجانشرقی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=local: Provincial investment agreements are routine administrative and economic news.",
-      "topic": "اقتصاد",
-      "until": 1792054083.4179633
     },
     "v4|امضای چهار تفاهم نامه سرمایه گذاری به ارزش بیش از ۴۱ هزار میلیارد تومان در آذربایجان شرقی": {
       "ok": false,
@@ -2167,6 +2161,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: سخنرانی مقام مسئول و اظهارنظر درباره معیارهای علمی؛ فاقد ارزش خبری درجه یک.",
       "topic": "جامعه",
       "until": 1792067972.07794
+    },
+    "v4|باریوس گران بهاتر از هافبک های یونایتد/ اتلتیکو یک جواهر 500 میلیون یورویی دارد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: تحلیل و نظر شخصی درباره ارزش بازیکن فوتبال است.",
+      "topic": "ورزش",
+      "until": 1792119052.6575446
     },
     "v4|بازداشت خبرنگار ژاپنی در مسکو به ظن جاسوسی": {
       "ok": false,
@@ -3037,12 +3037,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: خاطره‌گویی تاریخی از دیدارهای گذشته و فاقد تاثیر بر تحولات جاری است.",
       "topic": "سیاست",
       "until": 1792098794.2308972
-    },
-    "v4|روایت نخستین امدادگری که پس از بمباران وارد بیت رهبری شد از وضعیت جسمانی آیت الله مجتبی خامنه ای": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Routine narrative about a past event, lacks strategic national significance.",
-      "topic": "جامعه",
-      "until": 1792054083.3910408
     },
     "v4|روته: ناتو از آمریکا در برابر زیردریایی های هسته ای روسیه دفاع می کند": {
       "ok": true,
@@ -3949,6 +3943,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقه مرحله گروهی لیگ قهرمانان اروپا برای مخاطب عام اولویت ندارد.",
       "topic": "ورزش",
       "until": 1792100561.3906589
+    },
+    "v4|نتانیاهو برای موفقیت در انتخابات نیاز به جنگ دارد / در داخل کشور هم عده ای بر طبل جنگ می کوبند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Opinion, not official",
+      "topic": "سیاست",
+      "until": 1792119054.2491922
     },
     "v4|نتانیاهو می ماند یا سقوط می کند؟/پنج سناریو برای انتخابات اسرائیل": {
       "ok": false,
@@ -5376,13 +5376,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: اظهارات سرمربی پس از بازی باشگاهی اهمیت ملی یا بین‌المللی ندارد.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792011270,
-      "title": "رحمتی: کمبود تجربه باعث شکست گل گهر شد/ تیم بهتر زمین بودیم"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering with no national strategic impact or significance.",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -5934,6 +5927,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792032046,
       "title": "صفحه نخست روزنامه ها – پنج شنبه ۲۳ مهر"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: تحلیل و نظر شخصی درباره ارزش بازیکن فوتبال است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792032652,
+      "title": "باریوس گران بهاتر از هافبک های یونایتد/ اتلتیکو یک جواهر 500 میلیون یورویی دارد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10454,7 +10454,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792031974
+    "at": 1792032551
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10474,8 +10474,8 @@
     "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792032039,
-    "last_failure": 1792031439,
+    "disabled_until": 1792033249,
+    "last_failure": 1792032649,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
