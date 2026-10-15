@@ -172,7 +172,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 11
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
@@ -276,10 +276,10 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 2,
-        "calls": 11,
+        "calls": 12,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7298, Requested 1760. Please try again in 7.935s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 8,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
@@ -1177,6 +1177,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Internal Australian legislative procedure with no impact on Iran or global affairs.",
       "topic": "سیاست",
       "until": 1792106947.010518
+    },
+    "v4|australian politics live: plibersek warns one nation support ‘winding back access’ to abortion; nsw to waive stamp duty for restructuring trusts": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian policy change, low international impact",
+      "topic": "سیاست",
+      "until": 1792112068.3977025
     },
     "v4|australian politics live: victoria labor promises free abortion care if re-elected; albanese criticises hanson’s ‘monoculture’": {
       "ok": false,
@@ -4466,12 +4472,6 @@
       "topic": "سلامت",
       "until": 1792058683.222893
     },
-    "v4|کشته شدن یک نظامی ترکیه در شمال عراق": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: کشته شدن یک نظامی ترکیه در شمال عراق در درگیری",
-      "topic": "نظامی",
-      "until": 1792052933.8420606
-    },
     "v4|کشتی ها در تنگه هرمز با شدیدترین حملات از زمان آغاز جنگ روبه رو شده اند؛ وضعیتی که مالکان را به تجدیدنظر برای حمل محموله ها واداشته/ ممکن است ایران در حال توسعه توانمندی های موشکی": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: حملات شدید به کشتی‌ها و نفتکش‌ها در تنگه هرمز",
@@ -5372,13 +5372,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: ثبت یک روز در تقویم استانی، رویدادی محلی و غیرسیاسی است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792008276,
-      "title": "«روز کشتی مازندران» در تقویم تبری ثبت شد"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine government report on school construction, lacks significant national strategi",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5930,6 +5923,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792023981,
       "title": "Mexican court closes case against official over 2023 detention centre fire"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian policy change, low international impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792025668,
+      "title": "Australian politics live: Plibersek warns One Nation support ‘winding back access’ to abortion; NSW to waive stamp duty "
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11122,7 +11122,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792025019
+    "at": 1792025612
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
