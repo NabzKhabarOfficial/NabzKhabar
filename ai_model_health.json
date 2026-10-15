@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
-      "t": 1792016474
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792017620
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792017621
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792017635
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
-      "t": 1792018206
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792018763
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792018764
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
       "t": 1792018778
     },
@@ -159,12 +131,40 @@
     {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
       "t": 1792033260
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792033813
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: no usable verdict",
+      "t": 1792033815
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: no usable verdict",
+      "t": 1792033819
+    },
+    {
+      "e": "EDITOR BATCH openrouter/free: no usable verdict",
+      "t": 1792033844
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 2 stories",
+      "t": 1792033844
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792033844
+    },
+    {
+      "e": "AI PACE: openrouter:* held 1x",
+      "t": 1792033844
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 79
+      "n": 83
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
@@ -180,7 +180,7 @@
     },
     "openrouter:*": {
       "day": "2026-10-15",
-      "n": 7
+      "n": 10
     }
   },
   "_ai_usage": {
@@ -263,8 +263,8 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -324,8 +324,8 @@
       },
       "openrouter:openrouter/free": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       }
     }
@@ -2164,12 +2164,6 @@
       "topic": "نظامی",
       "until": 1792074375.3544273
     },
-    "v4|ایران در ردیف کشورهای تراز اول هدررفت غذا/ لزوم بهبود کارایی فرآوری مواد غذایی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: هشدار و آمار کلی درباره هدررفت غذا و امنیت غذایی",
-      "topic": "جامعه",
-      "until": 1792054609.127017
-    },
     "v4|ایستادگی در خیابان های زاهدان همچنان ادامه دارد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local commemorative gathering, no national impact",
@@ -2476,12 +2470,6 @@
       "topic": "قضایی",
       "until": 1792065077.3173428
     },
-    "v4|تدوین بسته سرمایه گذاری ۴۰ هزارمیلیارد ریالی برای آذربایجان غربی /اشتغالزایی برای ۸۲۰۰ نفر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Provincial investment plan and future projections, not a concrete event.",
-      "topic": "اقتصاد",
-      "until": 1792054083.4581869
-    },
     "v4|ترافیک مدارس اردبیل زیر سایه هزینه سرویس و کمبود مدرسه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: موضوع محلی مربوط به ترافیک و مدارس شهر اردبیل است.",
@@ -2577,6 +2565,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: تمرین عملیاتی و آموزشی محلی در تهران، اهمیت ملی ندارد.",
       "topic": "جامعه",
       "until": 1792059786.589599
+    },
+    "v4|تنها ۱۰ دقیقه ورزش روزانه کیفیت خواب را بهبود می بخشد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: موضوع سبک زندگی و سلامت عمومی است و اهمیت خبری بالایی ندارد.",
+      "topic": "سلامت",
+      "until": 1792120198.4163003
     },
     "v4|تهدید جدید کاتز علیه ایران و حزب الله": {
       "ok": true,
@@ -2782,17 +2776,17 @@
       "topic": "اقتصاد",
       "until": 1792061056.4202852
     },
-    "v4|خطیب زاده وارد بیروت شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: سفر دیپلماتیک مقام وزارت خارجه رویداد رده اول محسوب نمی‌شود",
-      "topic": "سیاست",
-      "until": 1792054609.9343429
-    },
     "v4|خواجه پاشا: جوایز اسکار و کن باید برای کشور آبروداری کند، نه بی آبرویی/ خطر ساخت «سرو، سپید، سرخ» زیر موشک باران می ارزید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: مصاحبه با کارگردان درباره ساخت یک سریال",
       "topic": "جامعه",
       "until": 1792054615.14955
+    },
+    "v4|خودروسازان چینی در اروپا ریشه دواندند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل روند بازار خودرو است و نه یک رویداد فوری و کلیدی.",
+      "topic": "اقتصاد",
+      "until": 1792120192.4914088
     },
     "v4|خوش رو ترین تعویضی فوتبال با پیراهن سپاهان!": {
       "ok": false,
@@ -3675,6 +3669,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=iran_national: آغاز پیش‌ثبت‌نام خودرو یک خبر تجاری و روتین است.",
       "topic": "اقتصاد",
       "until": 1792063931.6187527
+    },
+    "v4|فعالیت ساده ای که فشارخون را بهتر از ورزش ​​کاهش می دهد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: محتوای علمی و سبک زندگی که جزو اخبار فوری نیست.",
+      "topic": "سلامت",
+      "until": 1792120197.6369238
     },
     "v4|فعالیت ماهواره های ایران در جنگ و پس از آن بدون اختلال ادامه یافت": {
       "ok": true,
@@ -5369,27 +5369,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering with no national strategic impact or significance.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792011273,
-      "title": "میدان داری تبریزی ها در دویست وبیست وهشتمین اجتماع شبانه"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: شکایت حقوقی مقام امنیتی سابق اسرائیل علیه نتانیاهو در پی حملات هفت اکتبر",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792011273,
-      "title": "Israel’s former security chief sues Netanyahu for October 7 defamation"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: درخواست اپراتورها برای افزایش تعرفه هنوز یک تصمیم رسمی دولتی نیست.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1792011274,
-      "title": "همراه اول، ایرانسل و رایتل در گفتگو با دیجیاتو: ما خواستار افزایش ۱۰۰ درصدی تعرفه های اینترنت هستیم"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: اظهارات تحلیلی و غیرراهبردی نماینده یک گروه شبه‌نظامی درباره وقایع گذشته",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5927,6 +5906,27 @@
       "rule": "foreign-local-preselection",
       "t": 1792032652,
       "title": "باریوس گران بهاتر از هافبک های یونایتد/ اتلتیکو یک جواهر 500 میلیون یورویی دارد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل روند بازار خودرو است و نه یک رویداد فوری و کلیدی.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792033792,
+      "title": "خودروسازان چینی در اروپا ریشه دواندند"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: محتوای علمی و سبک زندگی که جزو اخبار فوری نیست.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792033797,
+      "title": "فعالیت ساده ای که فشارخون را بهتر از ورزش ​​کاهش می دهد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: موضوع سبک زندگی و سلامت عمومی است و اهمیت خبری بالایی ندارد.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792033798,
+      "title": "تنها ۱۰ دقیقه ورزش روزانه کیفیت خواب را بهبود می بخشد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10345,7 +10345,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792033128
+    "at": 1792033705
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10360,8 +10360,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792033537.0,
-    "last_failure": 1792033237,
+    "disabled_until": 1792034113.0,
+    "last_failure": 1792033813,
     "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
@@ -10441,9 +10441,9 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792033366,
-    "last_failure": 1792033306,
-    "last_status": 422
+    "disabled_until": 1792034444,
+    "last_failure": 1792033844,
+    "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
     "disabled_until": 1790400317,
