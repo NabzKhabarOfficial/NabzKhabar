@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792021709
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
-      "t": 1792022839
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792026839
     },
@@ -159,6 +151,14 @@
     {
       "e": "EDITOR BATCH: no verdict for 2 stories",
       "t": 1792036674
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792037268
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792037268
     }
   ],
   "_ai_pace": {
@@ -172,11 +172,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 42
+      "n": 44
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 25
+      "n": 26
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -276,18 +276,18 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 3,
-        "calls": 42,
+        "calls": 44,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197720, Requested 2418. Please try again in 59.616",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 33,
+        "ok": 35,
         "other": 6
       },
       "groq:openai/gpt-oss-20b": {
         "429": 2,
-        "calls": 25,
+        "calls": 26,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199995, Requested 1818. Please try again in 13m3.21",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 11,
         "other": 13
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -2104,6 +2104,12 @@
       "topic": "سیاست",
       "until": 1792068511.5446227
     },
+    "v4|انجمن خبرنگاران سمنان به وزنه ای در تشکل های رسانه ای کشور تبدیل شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial journalists association gaining prominence, low national impact",
+      "topic": "جامعه",
+      "until": 1792123667.357993
+    },
     "v4|انسداد کامل باب المندب در صورت ورود آمریکا به جنگ یمن/ مقام سابق قرارگاه خاتم: وضعیت داخلی آمریکا بسیار وخیم است/ تنگه هرمز در دستان نیروهای مسلح است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: مواضع ارشد نظامی درباره تنگه هرمز و تهدیدات منطقه‌ای",
@@ -2409,12 +2415,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: بازدید نماینده مجلس و تاکید بر پروژه های فرودگاه مهرآباد",
       "topic": "جامعه",
       "until": 1792067974.6392694
-    },
-    "v4|تأکید هیأت عالی جذب بر رسیدگی ۲۴ ساعته به پرونده های جذب اعضای هیأت علمی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: خبر روتین اداری و سازمانی دانشگاهی است",
-      "topic": "جامعه",
-      "until": 1792055801.7455213
     },
     "v4|تئاتر کودک و نوجوان؛ صدای نشاط ایران در روزهای تحریم": {
       "ok": false,
@@ -2787,6 +2787,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله موشکی و پهپادی یمن به آرامکو و ریاض.",
       "topic": "نظامی",
       "until": 1792055807.227747
+    },
+    "v4|خاطره اشرفی اصفهانی از ماجرای مستاجری چهارمین شهید محراب": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: personal anecdote, no national significance",
+      "topic": "جامعه",
+      "until": 1792123666.49978
     },
     "v4|خداحافظی ستاره فوتبال نابینایان بعد از ناگویا": {
       "ok": false,
@@ -3297,6 +3303,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اظهارات کلی و تکراری مقامات نظامی درباره آمادگی و پاسخ به تهدید",
       "topic": "نظامی",
       "until": 1792067433.5410924
+    },
+    "v4|سردار شهید مسعود کهریزی نخبه موشکی ایران؛ دلاوری از خطه کرمانشاه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مردم محلی، حوادث محلی",
+      "topic": "نظامی",
+      "until": 1792123668.5839534
     },
     "v4|سرپرست المپیاد ایران: خوشحالم به آمریکا مهاجرت نکردم": {
       "ok": false,
@@ -4042,12 +4054,6 @@
       "topic": "ورزش",
       "until": 1792063374.2530386
     },
-    "v4|نسخه های شبکه های اجتماعی، جای مشورت پزشکی را گرفته اند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: بررسی آسیب‌های شبکه‌های اجتماعی در حوزه سلامت، فاقد رویداد مشخص.",
-      "topic": "سلامت",
-      "until": 1792055800.1383052
-    },
     "v4|نشت گاز و آتش سوزی واحد مسکونی در قم سه مصدوم بر جای گذاشت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Minor residential incident with few casualties, lacks national significance.",
@@ -4263,12 +4269,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: اظهارات کلی و تکراری مقامات درباره صلح و آتش‌بس",
       "topic": "سیاست",
       "until": 1792097222.015697
-    },
-    "v4|واکسن آنفلوآنزای فرانسوی در داروخانه های چهارمحال و بختیاری توزیع شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: توزیع محدود واکسن آنفلوآنزا در یک استان، خبر محلی است.",
-      "topic": "سلامت",
-      "until": 1792055800.858422
     },
     "v4|واکنش مجلس به ابطال انتخابات فدراسیون ها؛ در وزارت ورزش چه می گذرد؟": {
       "ok": false,
@@ -5380,20 +5380,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: روایت تاریخی و غیرراهبردی از دیدارهای گذشته که تاثیری بر وضعیت فعلی ندارد.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792013014,
-      "title": "روایت سید محمد خاتمی از پاسخ رئیس جمهور چین به پیشنهاد اتمی ایران: در زمان ریاست جمهوری خودم، سه ملاقات با جیانگ زمین، ر"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر علمی و فناوری غیرراهبردی که فاقد اهمیت ملی یا جهانی است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792013516,
-      "title": "ساخت دستگاهی برای تولید نانوالیاف برای کاربردهای دارویی و زیستی"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: اظهارات تحلیلی و غیرراهبردی نماینده یک گروه شبه‌نظامی درباره وقایع گذشته.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5938,6 +5924,20 @@
       "rule": "foreign-local-preselection",
       "t": 1792036658,
       "title": "70 درصد هوادار لاروخا بودند/ شگفت انگیز: کاتالونیا عاشق اسپانیا شد!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: personal anecdote, no national significance",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792037266,
+      "title": "خاطره اشرفی اصفهانی از ماجرای مستاجری چهارمین شهید محراب"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial journalists association gaining prominence, low national impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792037267,
+      "title": "انجمن خبرنگاران سمنان به وزنه ای در تشکل های رسانه ای کشور تبدیل شد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10356,7 +10356,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792036589
+    "at": 1792037173
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10394,8 +10394,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792036796,
-    "last_failure": 1792036196,
+    "disabled_until": 1792037868,
+    "last_failure": 1792037268,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
