@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792038998
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1792039006
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792039007
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792039007
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1792039007
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 1x",
-      "t": 1792039007
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
       "t": 1792039622
     },
@@ -159,20 +135,44 @@
     {
       "e": "AI PACE: openrouter:* held 1x",
       "t": 1792044305
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792044932
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792044932
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792044947
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792044947
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1792044948
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 1x",
+      "t": 1792044948
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 157
+      "n": 158
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 58
+      "n": 59
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 57
+      "n": 59
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
@@ -269,18 +269,18 @@
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 25,
-        "calls": 34,
+        "429": 26,
+        "calls": 35,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 9,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 57,
+        "calls": 59,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 44,
+        "ok": 46,
         "other": 8
       },
       "groq:openai/gpt-oss-20b": {
@@ -1667,6 +1667,12 @@
       "topic": "فناوری",
       "until": 1792085369.0154593
     },
+    "v4|آخرین وضعیت ترافیک صبحگاهی تهران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: ترافیک عادی، خبر محلی، اثر محدود",
+      "topic": "جامعه",
+      "until": 1792131331.9803815
+    },
     "v4|آرین: همیشه با لذت بردن طلا می گیرم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: موفقیت در مسابقات گرندپری تکواندو اهمیت استراتژیک ملی ندارد.",
@@ -1757,11 +1763,11 @@
       "topic": "ورزش",
       "until": 1792126631.6757998
     },
-    "v4|ابوالفضل مهمدی: کشتی در خون و رگ های ما جریان دارد": {
+    "v4|اتابک: توسعه تجارت با اوراسیا نیازمند رفع موانع تجاری است": {
       "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine athlete interview after a competition; lacks major championship title significance.",
-      "topic": "ورزش",
-      "until": 1792059282.9228132
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Minister calls for removing trade barriers with Eurasia",
+      "topic": "اقتصاد",
+      "until": 1792131331.106222
     },
     "v4|اتحادیه اروپا: زمستان بسیار دشواری در پیش است": {
       "ok": true,
@@ -3478,12 +3484,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: شهادت فرمانده بسیج در اقدام تروریستی مسلحانه در مهرستان",
       "topic": "نظامی",
       "until": 1792071460.4984136
-    },
-    "v4|شهردار: ۲۵۲ نیروی شهرداری سنندج برای مقابله با بحران های جوی آماده باش هستند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine municipal preparedness announcement for a single city.",
-      "topic": "جامعه",
-      "until": 1792059283.6320775
     },
     "v4|شهرداری پای کار حمایت از ورزش قهرمانی و توسعه والیبال در شاهرود": {
       "ok": false,
@@ -5388,20 +5388,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: خبر فرهنگی و هنری فاقد اهمیت ملی یا بین‌المللی است.",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1792022258,
-      "title": "Paddington: The Musical is coming to Sydney in 2027"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Routine report on black market trends, lacks immediate national or global impact.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792022259,
-      "title": "Illegal tobacco increasingly hard to spot, with some fakes featuring Australian health warnings"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تاثیر محدود، فقط یک تعویض در دربی",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5946,6 +5932,20 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792044286,
       "title": "طلا از کف قیمت یک هفته ای بهبود یافت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Minister calls for removing trade barriers with Eurasia",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792044931,
+      "title": "اتابک: توسعه تجارت با اوراسیا نیازمند رفع موانع تجاری است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: ترافیک عادی، خبر محلی، اثر محدود",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792044931,
+      "title": "آخرین وضعیت ترافیک صبحگاهی تهران"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10004,7 +10004,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792044108
+    "at": 1792044821
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10019,13 +10019,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792044601.0,
-    "last_failure": 1792044301,
+    "disabled_until": 1792045247.0,
+    "last_failure": 1792044947,
     "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792044347,
-    "last_failure": 1792043747,
+    "disabled_until": 1792045532,
+    "last_failure": 1792044932,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10042,8 +10042,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792044331,
-    "last_failure": 1792043731,
+    "disabled_until": 1792045532,
+    "last_failure": 1792044932,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
@@ -10100,8 +10100,8 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792044903,
-    "last_failure": 1792044303,
+    "disabled_until": 1792045547,
+    "last_failure": 1792044947,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
