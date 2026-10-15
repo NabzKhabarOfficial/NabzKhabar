@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792056457
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792056991
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
-      "t": 1792056991
-    },
-    {
-      "e": "EDITOR BATCH: 6/6 via gemini/gemini-3.5-flash-lite",
-      "t": 1792056997
-    },
-    {
-      "e": "AI PACE: gemini:gemini-3.5-flash-lite held 3x, groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792057020
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792058123
     },
@@ -159,24 +139,44 @@
     {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 1x",
       "t": 1792062239
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792062741
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792062743
+    },
+    {
+      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.5-flash-lite",
+      "t": 1792062748
+    },
+    {
+      "e": "EDITOR BATCH: 1/1 via gemini/gemini-3.5-flash-lite",
+      "t": 1792062748
+    },
+    {
+      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 2x, gemini:gemini-3.5-flash-lite held 4x, groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x, openrouter:* held 6x",
+      "t": 1792062769
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 64
+      "n": 65
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 111
+      "n": 117
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 93
+      "n": 94
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 92
+      "n": 94
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -263,33 +263,33 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 144,
+        "calls": 145,
         "last_error": "HTTP 500: { \"error\": { \"code\": 500, \"message\": \"Internal error encountered.\", \"status\": \"INTERNAL\" } } ",
-        "ok": 137,
+        "ok": 138,
         "other": 7
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 30,
-        "calls": 152,
+        "calls": 158,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 116,
+        "ok": 122,
         "other": 6
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 93,
+        "calls": 94,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 72,
+        "ok": 73,
         "other": 16
       },
       "groq:openai/gpt-oss-20b": {
         "429": 20,
-        "calls": 92,
+        "calls": 94,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198667, Requested 1423. Please try again in 38.8799",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 38,
+        "ok": 40,
         "other": 34
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -333,20 +333,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "فناوری",
-      "level": 3,
-      "t": 1791891784.1942601,
-      "title": "متا نخستین هوش مصنوعی پیشرفته اش را ارائه کرد",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 5,
-      "t": 1791892964.8062365,
-      "title": "حمله به دو کشتی در دریای سیاه و مفقود شدن ۱۱ ملوان",
-      "urgent": false
-    },
     {
       "label": "انتظامی",
       "level": 4,
@@ -1172,6 +1158,20 @@
       "t": 1792060987.3301752,
       "title": "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم!",
       "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 4,
+      "t": 1792062759.210225,
+      "title": "پالایشگاه نفت ریازان روسیه طعمه حریق شد",
+      "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1792062768.3909879,
+      "title": "بقائی: رئیس جمهور در اجلاس سران معاهده تنوع زیستی شرکت می کند/ عراقچی به بغداد می رود",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-14",
@@ -1326,12 +1326,6 @@
       "topic": "جامعه",
       "until": 1792108659.4593008
     },
-    "v4|iran targets starlink as ‘tool of war’ with hints of more internet curbs": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=False scope=iran_national: اظهارنظر و ادعای یک مقام درباره اینترنت ماهواره‌ای",
-      "topic": "فناوری",
-      "until": 1792071471.9957542
-    },
     "v4|iran war live: tehran vows to fight until us yields as ships sink in hormuz": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-120b batch score=9 happened=True scope=world: Ships sank; Tehran vows war continuation",
@@ -1391,6 +1385,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Legal intervention in a tech bankruptcy involving consumer data.",
       "topic": "فناوری",
       "until": 1792091731.3139358
+    },
+    "v4|obama says drift towards extremism 'not inevitable'": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: سخنرانی مقام سابق آمریکایی درباره چالش‌های جهانی بدون تصمیم مشخص.",
+      "topic": "سیاست",
+      "until": 1792149148.0563545
     },
     "v4|openai bugging suspect allegedly booked one-way trip to saudi arabia": {
       "ok": false,
@@ -1602,6 +1602,18 @@
       "topic": "ورزش",
       "until": 1792094676.962612
     },
+    "v4|«سرزمین فرشته ها» راهی آنتالیا شد؛ حضور در جشنواره پرتقال طلایی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Film festival participation, cultural event",
+      "topic": "جامعه",
+      "until": 1792149143.1795502
+    },
+    "v4|«شاید بهتر بود»؛ حکایت اعتراف دیرهنگام ترامپ به سوءمحاسبه در جنگ": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: مقاله تحلیلی و تفسیر درباره مواضع مقامات خارجی.",
+      "topic": "سیاست",
+      "until": 1792149148.0434332
+    },
     "v4|«میم مثل میناب»؛ ادای دین یک معلم به دانش آموزان جان باخته": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: نمایش خیابانی، رویداد فرهنگی محلی، بدون اثر ملی",
@@ -1679,6 +1691,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: تحلیل و انتقاد از سیاست ارزی بانک مرکزی بدون رویداد جدید",
       "topic": "اقتصاد",
       "until": 1792121339.2305884
+    },
+    "v4|آماده باش همه جانبه برای مقابله با سیلاب و آبگرفتگی در استان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=local: هشدار و آماده‌باش استانی برای سیلاب احتمالی پیش از وقوع.",
+      "topic": "آب و هوا",
+      "until": 1792149148.0009723
     },
     "v4|آمارهای مالی نشان می دهند/ این هشدار جدی است! لیگ برتر در مرز ورشکستگی": {
       "ok": false,
@@ -1890,12 +1908,6 @@
       "topic": "سیاست",
       "until": 1792133635.7046962
     },
-    "v4|استاندار بوشهر: منطقه آزاد بوشهر، فرصتی طلایی برای توسعه اقتصادی استان است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بیانات استاندار درباره منطقه آزاد بوشهر محلی و رویداد نیست.",
-      "topic": "اقتصاد",
-      "until": 1792071464.0591238
-    },
     "v4|استاندار همدان: جشنواره تئاتر کودک، فرصتی برای نمایش پویایی جامعه ایرانی است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد استانی و اظهارات مقام محلی درباره جشنواره تئاتر.",
@@ -2094,12 +2106,6 @@
       "topic": "ورزش",
       "until": 1792093506.1212406
     },
-    "v4|اوکراین می گوید محدودیت های استارلینک عملیات نظامی اش را مختل کرده است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اختلال در عملیات نظامی اوکراین به دلیل محدودیت‌های استارلینک",
-      "topic": "فناوری",
-      "until": 1792071471.9555
-    },
     "v4|ایده «وراپام» از جنگ ۴۰ روزه شکل گرفت؛ فیلمبرداری در شبِ آماده باش!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Routine news about film production and artistic activities.",
@@ -2208,12 +2214,6 @@
       "topic": "سیاست",
       "until": 1792105164.6473691
     },
-    "v4|ببینید| مرعشی: هم در ایران و هم در بین خاخام های اسرائیل، می گویند ادامه جنگ به ظهور حضرت مهدی منتهی می شود اما اگر حضرت تشریف نیاورند، چه باید کرد؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: اظهارنظر و تحلیل سیاسی یک چهره درباره جنگ و مذاکره",
-      "topic": "سیاست",
-      "until": 1792071471.9419308
-    },
     "v4|بجنوردی: ۹۵ درصد اعتبارات تبصره ۱۸ در خراسان شمالی پرداخت شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و گزارش عملکرد استانی",
@@ -2225,12 +2225,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: تحلیل و بررسی وضعیت انرژی است و رویداد مشخصی رخ نداده.",
       "topic": "اقتصاد",
       "until": 1792126032.4000165
-    },
-    "v4|برتری مردان والیبال نشسته ایران برابر عراق": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=iran_national: دیدار دوستانه تیم ملی والیبال نشسته پیش از مسابقات",
-      "topic": "ورزش",
-      "until": 1792071471.9688451
     },
     "v4|برقراری ۱۲ پرواز در مسیر تهران - بیرجند طی هفته آینده": {
       "ok": false,
@@ -2267,6 +2261,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: Routine diplomatic remarks regarding participation in international meetings.",
       "topic": "سیاست",
       "until": 1792146890.049681
+    },
+    "v4|بقائی: رئیس جمهور در اجلاس سران معاهده تنوع زیستی شرکت می کند/ عراقچی به بغداد می رود": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: اعلام رسمی سخنگوی وزارت خارجه درباره سفر رئیس‌جمهور و وزیر خارجه.",
+      "topic": "سیاست",
+      "until": 1792149148.076973
     },
     "v4|بقائی: رئیس جمهور فردا به ارمنستان می رود": {
       "ok": false,
@@ -2580,6 +2580,12 @@
       "topic": "سیاست",
       "until": 1792135843.9534075
     },
+    "v4|توهم ترامپ از اسطوره تسلیم بی قید و شرط ایران/ امکان تبدیل ایران به افغانستان دوم؟/ آیا ژاپن تسلیم مطلق شد؟؛ جنگ ابزاری برای تغییر موازنه چانه زنی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل و تفسیر رسانه‌ای درباره جنگ و مذاکرات.",
+      "topic": "سیاست",
+      "until": 1792149148.0331044
+    },
     "v4|تیم کشتی فرنگی امیدهای ایران در آمریکا بر بام جهان ایستاد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=iran_national: قهرمانی تیم ملی کشتی فرنگی امید ایران در مسابقات جهانی",
@@ -2591,6 +2597,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=iran_national: قهرمانی تیم ملی کشتی فرنگی زیر ۲۳ سال در مسابقات جهانی",
       "topic": "ورزش",
       "until": 1792121942.7349548
+    },
+    "v4|ثبت پائین ترین میزان محبوبیت برای ترامپ/ جمهوری خواهان امیدوارند نظرسنجی ها اشتباه باشد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: گزارش فاکس نیوز درباره کاهش محبوبیت ترامپ در آستانه انتخابات",
+      "topic": "سیاست",
+      "until": 1792149144.054906
     },
     "v4|جابری انصاری: آثار حملات آمریکا و اسراییل باید مستندسازی و حفظ شود": {
       "ok": false,
@@ -2609,12 +2621,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: مرگ ۱۷ دانش‌آموز در حادثه ریزش سقف مدرسه در پاکستان.",
       "topic": "حادثه",
       "until": 1792135843.9379783
-    },
-    "v4|جان فدایان کُردِ مرزدار قصرشیرین برای دفاع از ایران به میدان آمدند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: رزمایش و آمادگی نظامی محلی در قصرشیرین اهمیت ملی ندارد",
-      "topic": "نظامی",
-      "until": 1792072624.0558474
     },
     "v4|جدول پخش زنده بازی های پنجشنبه 23 مهر": {
       "ok": false,
@@ -2915,12 +2921,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: دستگیری سارقان کابل برق یک خبر محلی و فاقد اهمیت ملی است.",
       "topic": "حادثه",
       "until": 1792095216.3103456
-    },
-    "v4|دفتر ریاست جمهوری لبنان: عون و عراقچی درباره تحولات منطقه گفت وگو کردند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: گفتگوی تلفنی مقامات ارشد لبنان و ایران درباره تحولات منطقه",
-      "topic": "سیاست",
-      "until": 1792071468.7675686
     },
     "v4|دمای هوای خراسان رضوی ۳ درجه افزایش می یابد": {
       "ok": false,
@@ -3234,6 +3234,12 @@
       "topic": "فناوری",
       "until": 1792137584.640061
     },
+    "v4|ستاره جوان والیبال ایران در ویترین جهانی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: FIVB highlights Iranian volleyball star in global showcase",
+      "topic": "ورزش",
+      "until": 1792149142.7481623
+    },
     "v4|ستایش سناتور مکزیکی از عزت و قدرت ایران در برابر جنگ طلبی ترامپ": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: اظهارنظر یک مقام خارجی است و نه یک تصمیم استراتژیک.",
@@ -3258,12 +3264,6 @@
       "topic": "نظامی",
       "until": 1792097677.3215208
     },
-    "v4|سرانه فضای ورزشی دانش آموزان گلپایگان بالاتر از میانگین استان اصفهان است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: افتتاح زمین چمن در گلپایگان و آمار منطقه‌ای است.",
-      "topic": "ورزش",
-      "until": 1792072622.7550724
-    },
     "v4|سرتیپ جهانشاهی: نیروی زمینی ارتش از شمال غرب تا سواحل مکران مقتدرانه حضور دارد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: سخنان معمولی فرمانده نظامی درباره اقتدار ارتش، رویداد جدیدی نیست",
@@ -3281,6 +3281,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مردم محلی، حوادث محلی",
       "topic": "نظامی",
       "until": 1792123668.5839534
+    },
+    "v4|سرپرست ایرانول: صیانت از اعتماد مردم، سرمایه ملی ماست": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Corporate award, not major national/international impact",
+      "topic": "اقتصاد",
+      "until": 1792149141.8242068
     },
     "v4|سفر ۹ ساعته تیم آردا توران برای زنده نگه داشتن امید یک ملت/ روایت نبرد بی پایان شاختار دونتسک: فوتبال در جنگ": {
       "ok": false,
@@ -3432,12 +3438,6 @@
       "topic": "ورزش",
       "until": 1792080170.9832873
     },
-    "v4|صدور ۱۳۴ مجوز برای کارگاه های خانگی خراسان جنوبی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: صدور مجوز برای کارگاه‌های خانگی یک موضوع استانی و غیرراهبردی است.",
-      "topic": "جامعه",
-      "until": 1792072045.060752
-    },
     "v4|صفحه نخست روزنامه ها – پنج شنبه ۲۳ مهر": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مرور روزنامه‌ها خبری معمول و غیرمرتبط با اخبار رده‌اول است.",
@@ -3456,6 +3456,12 @@
       "topic": "اقتصاد",
       "until": 1792139368.7392306
     },
+    "v4|صیانت از اراضی ملی دیباج؛ برداشت غیرمجاز خاک متوقف شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: خبر محلی و سطح استانی درباره توقف برداشت غیرمجاز خاک",
+      "topic": "جامعه",
+      "until": 1792149148.9252083
+    },
     "v4|طائب: هدف های ایران با استفاده از هوش مصنوعی دقیق تر شد": {
       "ok": false,
       "reason": "ai openrouter/free batch score=3 happened=False scope=iran_national: Basij chief claims AI improves target precision, no concrete action.",
@@ -3473,12 +3479,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative report on military planning, not an official decision or event.",
       "topic": "نظامی",
       "until": 1792129531.7327316
-    },
-    "v4|طرح های تکمیل کننده زنجیره های ارزش در اولویت دریافت حمایت های صمت است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine provincial administrative announcement regarding industrial support policies.",
-      "topic": "اقتصاد",
-      "until": 1792072043.8973172
     },
     "v4|طرح های عمرانی کشور با وجود شرایط جنگی متوقف نشد": {
       "ok": false,
@@ -3996,6 +3996,12 @@
       "topic": "سیاست",
       "until": 1792074368.8050296
     },
+    "v4|نامه سرگشاده خانواده شهدای ترور به دولت پاکستان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: نامه سرگشاده و درخواست از دولت خارجی، واجد ارزش خبری رده اول نیست.",
+      "topic": "سیاست",
+      "until": 1792149148.0119038
+    },
     "v4|نانسی پلوسی: جنگ ترامپ علیه ایران، هزینه های زندگی در آمریکا را افزایش داده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: اظهارنظر و انتقاد یک مقام سابق آمریکایی از سیاست‌های ترامپ.",
@@ -4164,6 +4170,12 @@
       "topic": "جامعه",
       "until": 1792078466.619546
     },
+    "v4|هلال احمر قزوین برای سیلاب های احتمالی آماده می شود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: برگزاری مانور آمادگی استانی، رویداد محلی و رده پایین.",
+      "topic": "جامعه",
+      "until": 1792149148.022446
+    },
     "v4|هلند ۱۵ میلیون یورو برای بازسازی سوریه اختصاص می دهد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=world: Future aid plan, not immediate event",
@@ -4176,12 +4188,6 @@
       "topic": "سلامت",
       "until": 1792148048.7351573
     },
-    "v4|همایش روستا و عشایر با هدف معرفی ظرفیت های بومی در فهرج استان کرمان برگزار شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: همایش محلی و رویداد غیرراهبردی در روستا و عشایر کرمان",
-      "topic": "جامعه",
-      "until": 1792072621.1311765
-    },
     "v4|همتی: اولویت ارزی بانک مرکزی، تامین کالاهای اساسی مردم است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: تصمیم و اعلام سیاست رسمی بانک مرکزی توسط رئیس کل",
@@ -4193,12 +4199,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: درخواست اپراتورها برای افزایش تعرفه هنوز یک تصمیم رسمی دولتی نیست.",
       "topic": "اقتصاد",
       "until": 1792097674.8677607
-    },
-    "v4|هوش مصنوعی اقتصاد چین را حرکت داد / مازاد تجاری چین از ۹۳۸ میلیارد دلار فراتر رفت": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: رسیدن مازاد تجاری چین به رقم چشمگیر ۹۳۸ میلیارد دلار",
-      "topic": "اقتصاد",
-      "until": 1792071471.982319
     },
     "v4|هوش مصنوعی اپل احتمالاً در ماه دسامبر با آپدیت ios 27.3 در چین فعال می شود": {
       "ok": false,
@@ -4289,6 +4289,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=4 happened=True scope=world: واکنش دیپلماتیک به اظهارات یک مقام خارجی، فاقد تغییر استراتژیک.",
       "topic": "سیاست",
       "until": 1792108657.0479906
+    },
+    "v4|پالایشگاه نفت در ریازان روسیه طعمه حریق شد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله پهپادی و آتش‌سوزی در تأسیسات کلیدی انرژی در جنگ.",
+      "topic": "نظامی",
+      "until": 1792149148.0666914
     },
     "v4|پاولوویچ 5 سال دیگر ماند/ رسمی: مدافع صرب میلان تمدید کرد": {
       "ok": false,
@@ -4386,6 +4392,12 @@
       "topic": "ورزش",
       "until": 1792104027.8657198
     },
+    "v4|پنجمین جشنواره رویش دانشگاهی در ساری با معرفی برگزیدگان به کار خود پایان داد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: پایان جشنواره دانشگاهی در ساری محلی و کم‌اهمیت است",
+      "topic": "جامعه",
+      "until": 1792149144.9535446
+    },
     "v4|پیرمردی با عصا در خط مقدم؛ روایت زندگی شهید محراب کرمانشاه": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Historical murder, no current national impact",
@@ -4403,12 +4415,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: پیش‌بینی تولید کشاورزی استانی اهمیت ملی ندارد و امتیاز پایینی دارد",
       "topic": "اقتصاد",
       "until": 1792143393.3918426
-    },
-    "v4|پیگیری ارزش مالکانه و سهام دار شدن اعضای صندوق ذخیره فرهنگیان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: خبر معمول آموزش و پرورش و صندوق ذخیره فرهنگیان فاقد اهمیت درجه یک ملی",
-      "topic": "جامعه",
-      "until": 1792071469.4536994
     },
     "v4|پیگیری و بررسی مطالبات مردمی شهرستان سرباز سیستان و بلوچستان": {
       "ok": false,
@@ -4535,12 +4541,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: کشف کالای قاچاق در یک استان محلی است.",
       "topic": "اقتصاد",
       "until": 1792073811.7399561
-    },
-    "v4|کشف ۲۴۰ تن جو و ۱۰ تن کود شیمیایی در انبار ثبت نشده خرم آباد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: کشف اقلام احتکاری در سطح استانی و محلی است.",
-      "topic": "اقتصاد",
-      "until": 1792072621.784295
     },
     "v4|کشف ۴۰۰ حلقه لاستیک سواری فاقد ثبت سامانه جامع انبارها در نور": {
       "ok": false,
@@ -4815,6 +4815,11 @@
       "reason": "policy_scope_blocked",
       "until": 1792068863.0505838
     },
+    "بقائی: رئیس جمهور در اجلاس سران معاهده تنوع زیستی شرکت می کند/ عراقچی به بغداد می رود": {
+      "at": 1792062769.4473429,
+      "reason": "ai_unavailable_local",
+      "until": 1792063969.4473429
+    },
     "جان باختن ۱۷ دانش آموز در پی فروریختن سقف یک مدرسه در پاکستان": {
       "at": 1792050660.1261313,
       "reason": "policy_scope_blocked",
@@ -4868,24 +4873,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت ⚡️ بر اثر سقوط یک هواپیمای کوچک در ایالت ویسکانسین آ",
-      "id": "6c7ac0bd76",
-      "match": "",
-      "model": "groq/openai/gpt-oss-120b",
-      "t": 1791992112,
-      "verdict": "new",
-      "why": "No similar incident in published items"
-    },
-    {
-      "head": "انتقادات گسترده از عبدالحمید؛ چرا تروریست ها محکوم نمی شوند؟ ⚡️ پس از اجرای چند عملیات از سوی گروهک های تروریس",
-      "id": "faba7b3de6",
-      "match": "",
-      "model": "groq/openai/gpt-oss-120b",
-      "t": 1791992638,
-      "verdict": "new",
-      "why": "No prior item mentions Abdulhamid or same attacks"
-    },
     {
       "head": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ ⚡️ در حالی که دولت ترامپ برای توقف حملات اوکراین به",
       "id": "0137be8ca3",
@@ -5398,44 +5385,24 @@
       "t": 1792060983,
       "verdict": "reaction",
       "why": "The new post reports the Saudi claim, and item 5 is the reaction to it."
+    },
+    {
+      "head": "پالایشگاه نفت ریازان روسیه طعمه حریق شد ⚡️ پالایشگاه نفت روسیه در ریازان در پی حمله پهپادی اوکراین دچار آتش سو",
+      "id": "815058a786",
+      "match": "",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1792062758,
+      "verdict": "new",
+      "why": "This is a specific new drone attack on a Russian refinery."
+    },
+    {
+      "head": "بقائی: رئیس جمهور در اجلاس سران معاهده تنوع زیستی شرکت می کند/ عراقچی به بغداد می رود ⚡️ اسماعیل بقائی، سخنگوی",
+      "id": "6fe38480cc",
+      "t": 1792062767,
+      "verdict": "unavailable"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: سخنان مقام دولتی درباره هوش مصنوعی و حکمرانی شهری اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792051184,
-      "title": "سامانه سازی به معنای هوشمندسازی نیست؛ حکمرانی شهری باید متحول شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: اظهارات مقام وزارت بهداشت درباره نیاز به آمبولانس و برخورد با تخلفات",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792051188,
-      "title": "مراکز درمانی کشور نیازمند آمبولانس هستند/ برخورد قاطع با استفاده غیرپزشکی از آمبولانس ها"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر فروش بلیت جشنواره نمایشی اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792051191,
-      "title": "آغاز پیش فروش بلیت های جشنواره نمایش عروسکی تهران-مبارک از ۲۳ مهرماه"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: انتقاد نماینده مجلس از کمبود تجهیزات درمانی در غرب استان تهران",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792051196,
-      "title": "حق وردی: هفت بیمارستان غرب تهران فاقد دستگاه تصویربرداری هستند"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: symbolic visit, limited national relevance",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1792051798,
-      "title": "ورود دوچرخه سواران ترکیه ای به اصفهان و دیدار با استاندار"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: انتشار گزارش پیش‌بینی بازار جهانی بازی‌های ویدیویی اهمیت درجه یک ندارد",
       "rescued": false,
@@ -5960,63 +5927,45 @@
       "rule": "no-concrete-event",
       "t": 1792062230,
       "title": "دستگیری سارق داخل خودرو با کشف ۳۰ فقره سرقت در قم"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Corporate award, not major national/international impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1792062741,
+      "title": "سرپرست ایرانول: صیانت از اعتماد مردم، سرمایه ملی ماست"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: FIVB highlights Iranian volleyball star in global showcase",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792062742,
+      "title": "ستاره جوان والیبال ایران در ویترین جهانی"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Film festival participation, cultural event",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792062743,
+      "title": "«سرزمین فرشته ها» راهی آنتالیا شد؛ حضور در جشنواره پرتقال طلایی"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: گزارش فاکس نیوز درباره کاهش محبوبیت ترامپ در آستانه انتخابات",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792062744,
+      "title": "ثبت پائین ترین میزان محبوبیت برای ترامپ/ جمهوری خواهان امیدوارند نظرسنجی ها اشتباه باشد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: پایان جشنواره دانشگاهی در ساری محلی و کم‌اهمیت است",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792062744,
+      "title": "پنجمین جشنواره رویش دانشگاهی در ساری با معرفی برگزیدگان به کار خود پایان داد"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "اختر",
-        "استرشلد",
-        "استفد",
-        "اسپس",
-        "ال",
-        "اکس",
-        "تحت",
-        "تعن",
-        "دست",
-        "سمن",
-        "شرکت",
-        "متحد",
-        "محددت",
-        "مسک",
-        "ملک",
-        "ملکت",
-        "نح",
-        "هستند",
-        "کنترل",
-        "کنند"
-      ],
-      "t": 1792018205.2088537,
-      "title": "ایلان ماسک: اختیار سامانه نظامی استارشیلد در دست دولت آمریکا است ⚡️ ایلان ماسک مالک شرکت اسپیس اکس اعلام کرد که سامانه ن"
-    },
-    {
-      "h": [
-        "استدلل",
-        "استرم",
-        "اغز",
-        "اقدم",
-        "الم",
-        "بمب",
-        "تند",
-        "ددگ",
-        "رهبر",
-        "زرسخت",
-        "سبق",
-        "عمل",
-        "قنن",
-        "لل",
-        "متجز",
-        "متهم",
-        "محسب",
-        "نرد",
-        "هدف",
-        "وکل",
-        "گذر"
-      ],
-      "t": 1792018777.8788688,
-      "title": "وکلای متهم اوکراینی: حمله به خط لوله نورد استریم اقدامی قانونی بوده است ⚡️ وکلای یک نظامی سابق اوکراینی که متهم به رهبری"
-    },
     {
       "h": [
         "اعدم",
@@ -6584,6 +6533,55 @@
       ],
       "t": 1792060987.314625,
       "title": "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم! ⚡️ ائتلاف به رهبری عربستان سعودی در یمن روز پ"
+    },
+    {
+      "h": [
+        "اتش",
+        "حرق",
+        "دچر",
+        "رز",
+        "سز",
+        "طعم",
+        "پلشگ",
+        "پهپد"
+      ],
+      "t": 1792062759.1926382,
+      "title": "پالایشگاه نفت ریازان روسیه طعمه حریق شد ⚡️ پالایشگاه نفت روسیه در ریازان در پی حمله پهپادی اوکراین دچار آتش سوزی شد."
+    },
+    {
+      "h": [
+        "اجلس",
+        "ارمنست",
+        "اسمعل",
+        "برخ",
+        "بغدد",
+        "بق",
+        "تبدل",
+        "تنع",
+        "جمع",
+        "حش",
+        "خرج",
+        "رد",
+        "زست",
+        "سخنگ",
+        "سرن",
+        "سفر",
+        "شرکت",
+        "صرت",
+        "عرقچ",
+        "عض",
+        "محترم",
+        "معهد",
+        "مهر",
+        "نظر",
+        "هفدهمن",
+        "وزرت",
+        "کت",
+        "کنند",
+        "کننسن"
+      ],
+      "t": 1792062768.3821118,
+      "title": "بقائی: رئیس جمهور در اجلاس سران معاهده تنوع زیستی شرکت می کند/ عراقچی به بغداد می رود ⚡️ اسماعیل بقائی، سخنگوی وزارت امو"
     }
   ],
   "_published_incidents": [
@@ -6796,6 +6794,22 @@
       ],
       "t": 1792060987.322526,
       "title": "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم! ⚡️ ائتلاف به رهبری عربستان سعودی در یمن روز پ",
+      "toll": 0
+    },
+    {
+      "a": [
+        "اتش",
+        "حرق",
+        "دچر",
+        "طعم",
+        "پلشگ"
+      ],
+      "cities": [],
+      "kind": "fire",
+      "places": [],
+      "regions": [],
+      "t": 1792062759.2017732,
+      "title": "پالایشگاه نفت ریازان روسیه طعمه حریق شد ⚡️ پالایشگاه نفت روسیه در ریازان در پی حمله پهپادی اوکراین دچار آتش سوزی شد.",
       "toll": 0
     }
   ],
@@ -10622,6 +10636,133 @@
       ],
       "t": 1792060987.3068972,
       "title": "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم! ⚡️ ائتلاف به رهبری عربستان سعودی در یمن روز پ"
+    },
+    {
+      "k": [
+        "اتش",
+        "ارسل",
+        "ازسر",
+        "انرژ",
+        "اکرن",
+        "بق",
+        "جمهر",
+        "حرق",
+        "حمل",
+        "درفت",
+        "دفع",
+        "دچر",
+        "رز",
+        "رس",
+        "رهگر",
+        "زرسخت",
+        "زلنسک",
+        "زمن",
+        "سز",
+        "سقط",
+        "طعم",
+        "فرمندر",
+        "متقف",
+        "مجب",
+        "محط",
+        "مسک",
+        "مشک",
+        "منطق",
+        "منهدم",
+        "نخهد",
+        "نفت",
+        "وزرت",
+        "وقع",
+        "ولدمر",
+        "وکنش",
+        "پترت",
+        "پدفند",
+        "پلشگ",
+        "پهپد",
+        "کرز",
+        "کشر"
+      ],
+      "t": 1792062759.183445,
+      "title": "پالایشگاه نفت ریازان روسیه طعمه حریق شد ⚡️ پالایشگاه نفت روسیه در ریازان در پی حمله پهپادی اوکراین دچار آتش سوزی شد. ▫️ "
+    },
+    {
+      "k": [
+        "اجد",
+        "اجلس",
+        "ار",
+        "ارمنست",
+        "استثن",
+        "اسمعل",
+        "اف",
+        "ال",
+        "الملل",
+        "امر",
+        "امرک",
+        "امضکنندگ",
+        "اهمت",
+        "برخ",
+        "بغدد",
+        "بق",
+        "تبدل",
+        "تدن",
+        "تشرح",
+        "تصرح",
+        "تنع",
+        "جمع",
+        "جمهر",
+        "جهن",
+        "حش",
+        "حضر",
+        "حفظت",
+        "خرج",
+        "خصص",
+        "درمد",
+        "دلت",
+        "دهه",
+        "رد",
+        "رس",
+        "رسم",
+        "زست",
+        "سخنگ",
+        "سرن",
+        "سزم",
+        "سزکر",
+        "سطح",
+        "سفر",
+        "سند",
+        "شرکت",
+        "شمس",
+        "صرت",
+        "طبعت",
+        "عرقچ",
+        "عض",
+        "عضت",
+        "قعد",
+        "متحد",
+        "محترم",
+        "محط",
+        "مرتبط",
+        "معهد",
+        "ملد",
+        "ملل",
+        "مهر",
+        "مهم",
+        "نظر",
+        "نقش",
+        "هستند",
+        "هفدهمن",
+        "وزرت",
+        "کت",
+        "کشر",
+        "کنند",
+        "کننسن",
+        "گذشت"
+      ],
+      "n": [
+        "196"
+      ],
+      "s": "بقائی",
+      "t": 1792062768.372894,
+      "title": "بقائی: رئیس جمهور در اجلاس سران معاهده تنوع زیستی شرکت می کند/ عراقچی به بغداد می رود ⚡️ اسماعیل بقائی، سخنگوی وزارت امو"
     }
   ],
   "_text_polish": {
@@ -10633,7 +10774,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792062051
+    "at": 1792062620
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10653,8 +10794,8 @@
     "last_status": 429
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792062250,
-    "last_failure": 1792061650,
+    "disabled_until": 1792063365,
+    "last_failure": 1792062765,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10671,14 +10812,14 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792062247,
-    "last_failure": 1792061647,
+    "disabled_until": 1792063341,
+    "last_failure": 1792062741,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792062247,
-    "last_failure": 1792061647,
+    "disabled_until": 1792063343,
+    "last_failure": 1792062743,
     "last_status": 429
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
@@ -10693,20 +10834,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792062303,
-    "last_failure": 1792061703,
+    "disabled_until": 1792063365,
+    "last_failure": 1792062765,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792062303,
-    "last_failure": 1792061703,
+    "disabled_until": 1792063365,
+    "last_failure": 1792062765,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792062303,
-    "last_failure": 1792061703,
+    "disabled_until": 1792063365,
+    "last_failure": 1792062765,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -10717,20 +10858,20 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792062303,
-    "last_failure": 1792061703,
+    "disabled_until": 1792063365,
+    "last_failure": 1792062765,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792062303,
-    "last_failure": 1792061703,
+    "disabled_until": 1792063365,
+    "last_failure": 1792062765,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792062303,
-    "last_failure": 1792061703,
+    "disabled_until": 1792063365,
+    "last_failure": 1792062765,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
