@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1792055867
-    },
-    {
-      "e": "AI PACE: gemini:gemini-3.5-flash-lite held 3x, groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1792055883
-    },
-    {
-      "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.1-flash-lite",
-      "t": 1792056445
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792056457
     },
@@ -159,12 +147,24 @@
     {
       "e": "AI PACE: gemini:gemini-3.5-flash-lite held 3x, groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x, openrouter:* held 6x",
       "t": 1792061706
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792062230
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 6 stories",
+      "t": 1792062231
+    },
+    {
+      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 1x",
+      "t": 1792062239
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 62
+      "n": 64
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
@@ -172,7 +172,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 92
+      "n": 93
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
@@ -263,9 +263,9 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 142,
+        "calls": 144,
         "last_error": "HTTP 500: { \"error\": { \"code\": 500, \"message\": \"Internal error encountered.\", \"status\": \"INTERNAL\" } } ",
-        "ok": 135,
+        "ok": 137,
         "other": 7
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -278,10 +278,10 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 92,
+        "calls": 93,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 71,
+        "ok": 72,
         "other": 16
       },
       "groq:openai/gpt-oss-20b": {
@@ -1770,12 +1770,6 @@
       "topic": "جامعه",
       "until": 1792114427.8309479
     },
-    "v4|اجرای نقشه راه همکاری ایران و اوراسیا به پروژه های مشترک صنعتی و تجاری منجر می شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: سخنان وزیر درباره همکاری‌های تجاری و طرح‌های آینده",
-      "topic": "اقتصاد",
-      "until": 1792070794.2869656
-    },
     "v4|اجرای پویش ملی «هر دانش آموز، یک امدادگر» در ۱۰ مدرسه متوسطه ایلام": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این یک برنامه آموزشی استانی و روتین است و اهمیت ملی ندارد.",
@@ -2910,6 +2904,12 @@
       "topic": "قضایی",
       "until": 1792141604.9303215
     },
+    "v4|دستگیری سارق داخل خودرو با کشف ۳۰ فقره سرقت در قم": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: دستگیری سارق در یک استان، خبری محلی و فاقد اهمیت ملی است.",
+      "topic": "قضایی",
+      "until": 1792148630.4425848
+    },
     "v4|دستگیری ۳ سارق کابل برق با ۳۴ فقره سرقت در کرمانشاه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: دستگیری سارقان کابل برق یک خبر محلی و فاقد اهمیت ملی است.",
@@ -3389,12 +3389,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: سقوط هواپیما با شش کشته در آمریکا",
       "topic": "حادثه",
       "until": 1792074375.312165
-    },
-    "v4|شهادت فرمانده حوزه خواهران بسیج مهرستان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: شهادت فرمانده بسیج در اقدام تروریستی مسلحانه در مهرستان",
-      "topic": "نظامی",
-      "until": 1792071460.4984136
     },
     "v4|شهردار: زمین چمن ۶۵ ساله جلیل آباد پیشوا با اعتبار ۵ میلیارد تومانی احیا می شود": {
       "ok": false,
@@ -4368,6 +4362,12 @@
       "topic": "اقتصاد",
       "until": 1792141606.3952646
     },
+    "v4|پزشکیان: دشمن به دنبال بستن راه های خدمت رسانی به مردم است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: اظهارات کلی و تکراری رئیس‌جمهور درباره مشکلات کشور بدون تصمیم اجرایی جدید",
+      "topic": "سیاست",
+      "until": 1792148628.7911909
+    },
     "v4|پلوسی: جنگ ترامپ علیه ایران، هزینه های زندگی در آمریکا را افزایش داده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: نظر و انتقاد سیاست‌مدار آمریکایی درباره تورم و اقتصاد",
@@ -4788,16 +4788,6 @@
       "reason": "policy_scope_blocked",
       "until": 1792074005.2833765
     },
-    "dozens of children killed after roof collapses in pakistani school": {
-      "at": 1792060519.2831063,
-      "reason": "ai_unavailable_foreign",
-      "until": 1792061719.2831063
-    },
-    "tech market sell-off deepens amid fears over us inflation and ai debt": {
-      "at": 1792060988.3774817,
-      "reason": "ai_unavailable_foreign",
-      "until": 1792062188.3774817
-    },
     "ukraine’s exposure grows as satellite use is restricted and russia escalates": {
       "reason": "content_duplicate",
       "until": 1792063549.245306
@@ -4811,9 +4801,9 @@
       "until": 1792062934.3415513
     },
     "ادعای ترامپ: جنگ ایران خیلی زود به پایان خواهد رسید/ به محض اینکه بخواهم، این جنگ تمام می شود؛ خیلی زود": {
-      "at": 1792060519.2831063,
+      "at": 1792062239.7008967,
       "reason": "ai_unavailable_local",
-      "until": 1792061719.2831063
+      "until": 1792063439.7008967
     },
     "ادعای جدید فرماندهی تروریستی آمریکا علیه قایق های ایرانی در دریای عمان": {
       "at": 1792043228.2917233,
@@ -4838,11 +4828,6 @@
       "at": 1792060519.2831063,
       "reason": "final_guard:off-topic-lead",
       "until": 1792082119.2831063
-    },
-    "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم!": {
-      "at": 1792060988.3774817,
-      "reason": "ai_unavailable_local",
-      "until": 1792062188.3774817
     },
     "ریزش سقف مدرسه در پاکستان ۱۸ کشته بر جای گذاشت": {
       "reason": "content_duplicate",
@@ -5417,20 +5402,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: همایش استانی و غیرمرتبط با اخبار سطح یک.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792050645,
-      "title": "کرمان میزبان نخستین همایش هتلداری و صنایع وابسته کشور"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: سیل در استانبول بدون تلفات عمده خبری محلی و کم‌اهمیت است.",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1792051180,
-      "title": "سیل شدید در استانبول ترکیه"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: سخنان مقام دولتی درباره هوش مصنوعی و حکمرانی شهری اهمیت ملی ندارد.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5975,6 +5946,20 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792061651,
       "title": "بقائی: رئیس جمهور فردا به ارمنستان می رود"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: اظهارات کلی و تکراری رئیس‌جمهور درباره مشکلات کشور بدون تصمیم اجرایی جدید",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792062228,
+      "title": "پزشکیان: دشمن به دنبال بستن راه های خدمت رسانی به مردم است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: دستگیری سارق در یک استان، خبری محلی و فاقد اهمیت ملی است.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792062230,
+      "title": "دستگیری سارق داخل خودرو با کشف ۳۰ فقره سرقت در قم"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10648,7 +10633,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792061475
+    "at": 1792062051
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10663,9 +10648,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792061952.0,
-    "last_failure": 1792061652,
-    "last_status": 500
+    "disabled_until": 1792062830,
+    "last_failure": 1792062230,
+    "last_status": 429
   },
   "gemini:gemini-3.5-flash-lite": {
     "disabled_until": 1792062250,
