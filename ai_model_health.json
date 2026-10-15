@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792021708
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-R",
-      "t": 1792021708
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792021709
     },
@@ -159,12 +151,20 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, openrouter:* held 6x",
       "t": 1792036210
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792036673
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 2 stories",
+      "t": 1792036674
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 96
+      "n": 98
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
@@ -263,8 +263,8 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 20,
-        "ok": 20,
+        "calls": 21,
+        "ok": 21,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -1191,6 +1191,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: محرومیت یک بازیکن فوتبال در سطح اول اخبار جهان نیست.",
       "topic": "ورزش",
       "until": 1792106341.7510812
+    },
+    "v4|70 درصد هوادار لاروخا بودند/ شگفت انگیز: کاتالونیا عاشق اسپانیا شد!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این خبر یک نظرسنجی اجتماعی است و اهمیت خبری سطح اول ندارد.",
+      "topic": "ورزش",
+      "until": 1792123058.8045394
     },
     "v4|a pilgrim and a retiree: victims of the houthi airport attack in saudi arabia": {
       "ok": true,
@@ -2895,12 +2901,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: هشدار شرایط جنگی توسط امیر قطر در منطقه بحرانی.",
       "topic": "نظامی",
       "until": 1792058683.1719291
-    },
-    "v4|دستگاه های اجرایی باید با برنامه ریزی پیش از وقوع بحران آمادگی لازم را ایجاد کنند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: توصیه مقامات استانی درباره آمادگی و پدافند غیرعامل، بدون رویداد مشخص.",
-      "topic": "جامعه",
-      "until": 1792055236.1773477
     },
     "v4|دستگیری فرد تحت تعقیب با ۱۱ فقره سابقه کیفری در ملایر/ کشف سلاح جنگی و مواد ممنوعه": {
       "ok": false,
@@ -5380,13 +5380,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مسابقات فوتبال باشگاهی در سطح اول جهانی قرار نمی‌گیرند.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792013012,
-      "title": "قلع وقمع منچسترسیتی توسط پاریس؛ کامبک هیجان انگیز رئال در رم"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: روایت تاریخی و غیرراهبردی از دیدارهای گذشته که تاثیری بر وضعیت فعلی ندارد.",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5938,6 +5931,13 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792036073,
       "title": "تیم کشتی فرنگی امیدهای ایران در آمریکا بر بام جهان ایستاد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این خبر یک نظرسنجی اجتماعی است و اهمیت خبری سطح اول ندارد.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792036658,
+      "title": "70 درصد هوادار لاروخا بودند/ شگفت انگیز: کاتالونیا عاشق اسپانیا شد!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10356,7 +10356,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792036022
+    "at": 1792036589
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10371,8 +10371,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792036388.0,
-    "last_failure": 1792036088,
+    "disabled_until": 1792036973.0,
+    "last_failure": 1792036673,
     "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
