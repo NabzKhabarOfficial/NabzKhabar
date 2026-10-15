@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 1x",
-      "t": 1792046050
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792046581
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1792046582
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792047216
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792047216
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792047222
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792047222
     },
@@ -159,28 +135,52 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792051818
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792052381
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792052382
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: no usable verdict",
+      "t": 1792052390
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792052390
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 4 stories",
+      "t": 1792052390
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 6x",
+      "t": 1792052405
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 16
+      "n": 17
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 53
+      "n": 57
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 73
+      "n": 74
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 70
+      "n": 71
     },
     "openrouter:*": {
       "day": "2026-10-15",
-      "n": 19
+      "n": 20
     }
   },
   "_ai_usage": {
@@ -263,34 +263,34 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 97,
+        "calls": 98,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 95,
-        "other": 2
+        "other": 3
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 30,
-        "calls": 94,
+        "calls": 98,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 60,
-        "other": 4
+        "ok": 63,
+        "other": 5
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 73,
+        "calls": 74,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 55,
+        "ok": 56,
         "other": 13
       },
       "groq:openai/gpt-oss-20b": {
         "429": 19,
-        "calls": 70,
+        "calls": 71,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198273, Requested 1979. Please try again in 1m48.86",
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 26,
-        "other": 25
+        "other": 26
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 0,
@@ -326,20 +326,13 @@
       },
       "openrouter:openrouter/free": {
         "429": 0,
-        "calls": 13,
-        "ok": 13,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1791882419.7110238,
-      "title": "هشدار رئیس مرکز پژوهش های مجلس نسبت به ترور اعتبار شخصیت های کشور",
-      "urgent": false
-    },
     {
       "label": "اقتصاد",
       "level": 4,
@@ -1172,6 +1165,13 @@
       "t": 1792049464.0867403,
       "title": "عارف: امسال واردات بنزین نخواهیم داشت",
       "urgent": false
+    },
+    {
+      "label": "حادثه",
+      "level": 5,
+      "t": 1792052403.6872034,
+      "title": "شمار قربانیان حادثه مدرسه در پاکستان به ۳۰ کشته رسید",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-14",
@@ -1734,6 +1734,12 @@
       "topic": "سیاست",
       "until": 1792105776.8841486
     },
+    "v4|آواتار ۲۰۲۶ با فناوری رانندگی هوشمند هواوی رونمایی شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: رونمایی خودروی تجاری خارجی خارج از اهمیت درجه یک ایران و جهان است.",
+      "topic": "فناوری",
+      "until": 1792138777.482104
+    },
     "v4|آیا حزب الله لبنان ۲۰۰ میلیون دلار از ایران برای کمک به آوارگان دریافت کرده است؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative inquiry regarding funding; lacks official confirmation of a specific event.",
@@ -1955,12 +1961,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: آمادگی و سناریوسازی امنیتی بدون وقوع رویداد قطعی",
       "topic": "نظامی",
       "until": 1792070794.2785172
-    },
-    "v4|اشتغال فرزندان ایثارگران در وزارت نفت نیازمند ورود مجلس است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: درخواست مقام مسئول برای اشتغال و مطالبه، رویداد قطعی نیست.",
-      "topic": "جامعه",
-      "until": 1792064453.3364158
     },
     "v4|اصلاح سیاست های ارزی برای حفظ توان تولید و صادرات زنجان ضروری است": {
       "ok": false,
@@ -2316,6 +2316,12 @@
       "topic": "جامعه",
       "until": 1792080176.120938
     },
+    "v4|بهره برداری از ۳ پایگاه پشتیبانی و مدیریت بحران تهران طی ۳ ماه آینده": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: افتتاح پایگاه‌های مدیریت بحران در تهران در آینده است و اخبار محلی محسوب می‌شود.",
+      "topic": "جامعه",
+      "until": 1792138781.439097
+    },
     "v4|بوکسور کردستانی برای حضور در رقابت های بین المللی به اردوی تیم ملی دعوت شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: دعوت به اردوی تیم ملی یک خبر ورزشی عادی و غیرمهم است.",
@@ -2573,12 +2579,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: افزایش تورم آمریکا و تأثیر بر اقتصاد جهانی و انتخابات",
       "topic": "اقتصاد",
       "until": 1792073810.3645031
-    },
-    "v4|توسعه مترو و بزرگراه ها در شرایط جنگی متوقف نشد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: ادعای سخنگوی شهرداری درباره پروژه‌های شهری و شرایط عادی و غیرمهم",
-      "topic": "جامعه",
-      "until": 1792064452.1769428
     },
     "v4|توسعه و تداوم فعالیت زیرساخت های بومی مهمترین ویژگی ایران است": {
       "ok": false,
@@ -4784,9 +4784,9 @@
       "until": 1792068863.0505838
     },
     "at least 20 children dead after school roof collapses in pakistan": {
-      "at": 1792051818.9445488,
+      "at": 1792052405.2833765,
       "reason": "policy_scope_blocked",
-      "until": 1792073418.9445488
+      "until": 1792074005.2833765
     },
     "ukraine’s exposure grows as satellite use is restricted and russia escalates": {
       "reason": "content_duplicate",
@@ -4842,9 +4842,10 @@
       "reason": "content_duplicate",
       "until": 1792056032.179933
     },
-    "ریزش سنگین بورس سعودی به دنبال حمله یمن به آرامکو": {
-      "reason": "content_duplicate",
-      "until": 1792051959.6456103
+    "شمار قربانیان حادثه مدرسه در پاکستان به ۳۰ کشته رسید": {
+      "at": 1792052405.2833765,
+      "reason": "ai_unavailable_local",
+      "until": 1792053605.2833765
     },
     "قیمت سکه امروز ۲۳ مهر ۱۴۰۵ در زمان بازگشایی بازار/ نیم سکه ۱۴۰ میلیون تومانی شد + جدول": {
       "at": 1792043756.6775408,
@@ -4867,16 +4868,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "none:-",
-      "head": "محدودیت های استارلینک عملیات نظامی اوکراین را مختل کرد ⚡️ مقام های اوکراینی اعلام کردند که اعمال محدودیت سرعت ",
-      "id": "1a411f7488",
-      "match": "محدودیت های ناگهانی استارلینک همزمان با تشدید حملات روسیه در اوکراین",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791985082,
-      "verdict": "repeat",
-      "why": "موضوع محدودیت اینترنت استارلینک در خط مقدم اوکراین قبلا منتشر شده است."
-    },
     {
       "head": "جهش صادرات چین با موتور محرک هوش مصنوعی؛ مازاد تجاری از ۹۳۸ میلیارد دلار گذشت ⚡️ صادرات چین در ماه سپتامبر با ",
       "id": "dd6bf815a3",
@@ -5408,23 +5399,18 @@
       "t": 1792049462,
       "verdict": "new",
       "why": "This is a new statement by Aref about gasoline imports not published before."
+    },
+    {
+      "head": "شمار قربانیان حادثه مدرسه در پاکستان به ۳۰ کشته رسید ⚡️ شمار تلفات حادثه ریزش سقف مدرسه در شهر پیشاور پاکستان ",
+      "id": "337b8748e4",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1792052402,
+      "verdict": "new",
+      "why": "This is a new school accident in Pakistan."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اخبار حاشیه‌ای و گمانه‌زنی‌های ورزشی فاقد اهمیت ملی یا بین‌المللی است.",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1792040231,
-      "title": "ابهام در سرنوشت یک خرید بزرگ/ کم لطفی مورینیو به برناردو سیلوا کی تمام می شود؟"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: شکستن رکورد گلزنی در لیگ قهرمانان اروپا توسط ارلینگ هالند",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792040239,
-      "title": "هالند رکورد مسی و آگوئرو را شکست"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=0 happened=False scope=local: مرور روزنامه‌ها محتوای تحلیلی و رسانه‌ای است و خبر دست‌اول محسوب نمی‌شود.",
       "rescued": false,
@@ -5970,53 +5956,24 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1792051815,
       "title": "کشف مواد خوراکی قاچاق ۳۰ میلیاردی در تبریز"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: رونمایی خودروی تجاری خارجی خارج از اهمیت درجه یک ایران و جهان است.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792052377,
+      "title": "آواتار ۲۰۲۶ با فناوری رانندگی هوشمند هواوی رونمایی شد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: افتتاح پایگاه‌های مدیریت بحران در تهران در آینده است و اخبار محلی محسوب می‌شود.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792052381,
+      "title": "بهره برداری از ۳ پایگاه پشتیبانی و مدیریت بحران تهران طی ۳ ماه آینده"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "اجد",
-        "بجنگم",
-        "بزدرندگ",
-        "جرت",
-        "زمن",
-        "شم",
-        "طمع",
-        "قدر",
-        "قلبف",
-        "مذکر",
-        "نکند",
-        "هچ",
-        "پدر",
-        "کنم"
-      ],
-      "t": 1792006486.1037235,
-      "title": "قالیباف: هم مذاکره کنیم و هم بجنگیم تا بازدارندگی پایدار ایجاد کنیم ⚡️ بازدارندگی پایدار زمانی ایجاد می شود که آن قدر قو"
-    },
-    {
-      "h": [
-        "استن",
-        "افزش",
-        "ال",
-        "انتخب",
-        "بلترن",
-        "بهر",
-        "ترم",
-        "در",
-        "درصد",
-        "رسد",
-        "سطح",
-        "سلن",
-        "سپتمبر",
-        "فصل",
-        "متحد",
-        "محسب",
-        "نرخ"
-      ],
-      "t": 1792007137.5779297,
-      "title": "تورم آمریکا در آستانه انتخابات میان دوره ای به ۳.۷ درصد رسید ⚡️ نرخ سالانه تورم در ایالات متحده با افزایش در ماه سپتامبر"
-    },
     {
       "h": [
         "اقدم",
@@ -6451,6 +6408,26 @@
       ],
       "t": 1792049464.079218,
       "title": "عارف: امسال واردات بنزین نخواهیم داشت ⚡️ محمدرضا عارف معاون اول رئیس جمهور اعلام کرد که امسال واردات بنزین انجام نخواهد "
+    },
+    {
+      "h": [
+        "افزش",
+        "تلف",
+        "حدث",
+        "رزش",
+        "رسد",
+        "سقف",
+        "شمر",
+        "شهر",
+        "قربن",
+        "مدرس",
+        "نفر",
+        "پشر",
+        "پکست",
+        "یفت"
+      ],
+      "t": 1792052403.6747005,
+      "title": "شمار قربانیان حادثه مدرسه در پاکستان به ۳۰ کشته رسید ⚡️ شمار تلفات حادثه ریزش سقف مدرسه در شهر پیشاور پاکستان به ۳۰ کشته"
     }
   ],
   "_published_incidents": [
@@ -10160,6 +10137,27 @@
       "s": "عارف",
       "t": 1792049464.0716336,
       "title": "عارف: امسال واردات بنزین نخواهیم داشت ⚡️ محمدرضا عارف معاون اول رئیس جمهور اعلام کرد که امسال واردات بنزین انجام نخواهد "
+    },
+    {
+      "k": [
+        "افزش",
+        "تلف",
+        "حدث",
+        "رزش",
+        "رسد",
+        "سقف",
+        "شمر",
+        "شهر",
+        "قربن",
+        "مدرس",
+        "نفر",
+        "پشر",
+        "پکست",
+        "کشت",
+        "یفت"
+      ],
+      "t": 1792052403.6538928,
+      "title": "شمار قربانیان حادثه مدرسه در پاکستان به ۳۰ کشته رسید ⚡️ شمار تلفات حادثه ریزش سقف مدرسه در شهر پیشاور پاکستان به ۳۰ کشته"
     }
   ],
   "_text_polish": {
@@ -10171,7 +10169,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792051641
+    "at": 1792052213
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10186,13 +10184,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792051503.0,
-    "last_failure": 1792051203,
+    "disabled_until": 1792052682.0,
+    "last_failure": 1792052382,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792052116.0,
-    "last_failure": 1792051816,
+    "disabled_until": 1792052681.0,
+    "last_failure": 1792052381,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
@@ -10231,20 +10229,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792051805,
-    "last_failure": 1792051205,
+    "disabled_until": 1792052994,
+    "last_failure": 1792052394,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792051805,
-    "last_failure": 1792051205,
+    "disabled_until": 1792052994,
+    "last_failure": 1792052394,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792051805,
-    "last_failure": 1792051205,
+    "disabled_until": 1792052994,
+    "last_failure": 1792052394,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -10255,21 +10253,21 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792051805,
-    "last_failure": 1792051205,
+    "disabled_until": 1792052994,
+    "last_failure": 1792052394,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792051805,
-    "last_failure": 1792051205,
+    "disabled_until": 1792052994,
+    "last_failure": 1792052394,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792051265,
-    "last_failure": 1792051205,
-    "last_status": 422
+    "disabled_until": 1792052990,
+    "last_failure": 1792052390,
+    "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
     "disabled_until": 1790400317,
