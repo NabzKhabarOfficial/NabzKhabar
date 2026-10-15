@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792032649
-    },
-    {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
       "t": 1792032654
     },
@@ -159,12 +155,16 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, openrouter:* held 6x",
       "t": 1792037946
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792038453
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 101
+      "n": 102
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
@@ -263,9 +263,10 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 23,
+        "calls": 24,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 23,
-        "other": 0
+        "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 11,
@@ -10206,7 +10207,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792037773
+    "at": 1792038336
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10221,9 +10222,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792038223.0,
-    "last_failure": 1792037923,
-    "last_status": 599
+    "disabled_until": 1792038753.0,
+    "last_failure": 1792038453,
+    "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
     "disabled_until": 1792038500,
