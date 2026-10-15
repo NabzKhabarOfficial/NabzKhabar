@@ -1,38 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.1-flash-lite",
-      "t": 1792039631
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1792039632
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792039649
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792040231
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792040261
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1792040266
-    },
-    {
-      "e": "AI PACE: openrouter:* held 6x",
-      "t": 1792040269
-    },
-    {
-      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.1-flash-lite",
-      "t": 1792040816
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792041307
     },
@@ -159,20 +127,52 @@
     {
       "e": "EDITOR BATCH: no verdict for 8 stories",
       "t": 1792045493
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792046028
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792046028
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792046029
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792046045
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: no usable verdict",
+      "t": 1792046049
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792046049
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1792046050
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 1x",
+      "t": 1792046050
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 161
+      "n": 163
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 59
+      "n": 61
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 59
+      "n": 61
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
@@ -180,7 +180,7 @@
     },
     "openrouter:*": {
       "day": "2026-10-15",
-      "n": 16
+      "n": 17
     }
   },
   "_ai_usage": {
@@ -263,25 +263,25 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 72,
+        "calls": 73,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 71,
+        "ok": 72,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 26,
-        "calls": 35,
+        "429": 27,
+        "calls": 37,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 9,
+        "ok": 10,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 59,
+        "calls": 61,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 46,
-        "other": 8
+        "ok": 47,
+        "other": 9
       },
       "groq:openai/gpt-oss-20b": {
         "429": 9,
@@ -325,8 +325,8 @@
       },
       "openrouter:openrouter/free": {
         "429": 0,
-        "calls": 11,
-        "ok": 11,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       }
     }
@@ -2837,6 +2837,12 @@
       "topic": "ورزش",
       "until": 1792126619.9498813
     },
+    "v4|خلاصه بازی لیورپول مقابل لاسک (۶ - ۳)": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: نتیجه بازی مرحله گروهی لیگ قهرمانان اروپا فینال نیست",
+      "topic": "ورزش",
+      "until": 1792132428.8194127
+    },
     "v4|خودرو فیدیلیتی با سرعت ۱۸۰ کیلومتر در جاده میناب توقیف شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: توقیف یک خودرو به دلیل سرعت غیرمجاز خبری محلی و کم‌اهمیت است.",
@@ -3353,6 +3359,12 @@
       "topic": "حادثه",
       "until": 1792061053.5298872
     },
+    "v4|سل، مرگبار اما قابل پیشگیری و درمان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: گزارش عمومی و آموزشی درباره بیماری سل بدون رویداد خبری مشخص",
+      "topic": "سلامت",
+      "until": 1792132430.141972
+    },
     "v4|سلامت زنان شاغل؛ معیاری برای سنجش کیفیت مدیریت و نظام سلامت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات مقام استانی درباره سلامت زنان شاغل اهمیت ملی ندارد",
@@ -3365,23 +3377,11 @@
       "topic": "جامعه",
       "until": 1792065681.2341413
     },
-    "v4|سهمیه جدید برق صنایع تصویب شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=iran_national: تصمیم رسمی دولتی برای سهمیه برق صنایع که بر تولید اثر دارد.",
-      "topic": "اقتصاد",
-      "until": 1792059286.523929
-    },
     "v4|سومین دوره نشان کاوه برگزیدگان خود را شناخت": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سازماندهی محلی، برگزیدگان ورزشی",
       "topic": "ورزش",
       "until": 1792089413.9738233
-    },
-    "v4|سگ های رباتیک چینی که خود در خودرو های جنگی مستقر می شوند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: گزارش از پیشرفت‌های نظامی چین است که فاقد عملیات میدانی است.",
-      "topic": "فناوری",
-      "until": 1792059286.5113094
     },
     "v4|سی ان ان: آمریکا ممکن است در عملیات جدید در ایران بزرگترین بمب غیرهسته ای خود را به کار ببرد": {
       "ok": false,
@@ -3659,12 +3659,6 @@
       "topic": "ورزش",
       "until": 1792126023.508857
     },
-    "v4|فاضل لنکرانی: ممنوعیت حجاب در آذربایجان مقابله با حکم صریح قرآن است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: اظهارنظر یک روحانی درباره مسائل داخلی کشور دیگر است.",
-      "topic": "جامعه",
-      "until": 1792059286.498345
-    },
     "v4|فاضلاب سنندج و ۵۰ روستا به سد ژاوه می ریزد؛آبگیری باید بازنگری شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: Local environmental issue concerning a specific dam in Sanandaj.",
@@ -3790,6 +3784,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: اجرای حکم اعدام با اتهامات امنیتی مرتبط با درگیری‌های نظامی.",
       "topic": "قضایی",
       "until": 1792091744.6173177
+    },
+    "v4|قیمت جهانی طلا امروز ۲۳ مهر؛ اونس طلا به ۴۱۴۶ دلار و ۷۴ سنت رسید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: روزانه‌؛ تغییر جزئی قیمت طلا",
+      "topic": "اقتصاد",
+      "until": 1792132427.029028
     },
     "v4|قیمت سکه امروز ۲۳ مهر ۱۴۰۵ در زمان بازگشایی بازار/ نیم سکه ۱۴۰ میلیون تومانی شد + جدول": {
       "ok": true,
@@ -5388,27 +5388,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local rally supporting leader, no national impact",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792023384,
-      "title": "گنبدکاووس؛ روایت ۲۲۸ شب از یک دلبستگی"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: Mexican court decision low global significance",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792023981,
-      "title": "Mexican court closes case against official over 2023 detention centre fire"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian policy change, low international impact",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792025668,
-      "title": "Australian politics live: Plibersek warns One Nation support ‘winding back access’ to abortion; NSW to waive stamp duty "
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Club preview, not national-level event",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5946,6 +5925,27 @@
       "rule": "below-event-threshold",
       "t": 1792045477,
       "title": "قیمت میوه و تره بار تهران؛ خرمالو هم رسید"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: روزانه‌؛ تغییر جزئی قیمت طلا",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792046027,
+      "title": "قیمت جهانی طلا امروز ۲۳ مهر؛ اونس طلا به ۴۱۴۶ دلار و ۷۴ سنت رسید"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: نتیجه بازی مرحله گروهی لیگ قهرمانان اروپا فینال نیست",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792046028,
+      "title": "خلاصه بازی لیورپول مقابل لاسک (۶ - ۳)"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: گزارش عمومی و آموزشی درباره بیماری سل بدون رویداد خبری مشخص",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792046030,
+      "title": "سل، مرگبار اما قابل پیشگیری و درمان"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10004,7 +10004,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792045279
+    "at": 1792045856
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10019,13 +10019,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792045792.0,
-    "last_failure": 1792045492,
+    "disabled_until": 1792046345.0,
+    "last_failure": 1792046045,
     "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792045532,
-    "last_failure": 1792044932,
+    "disabled_until": 1792046629,
+    "last_failure": 1792046029,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10042,8 +10042,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792045532,
-    "last_failure": 1792044932,
+    "disabled_until": 1792046628,
+    "last_failure": 1792046028,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
@@ -10100,8 +10100,8 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792045547,
-    "last_failure": 1792044947,
+    "disabled_until": 1792046649,
+    "last_failure": 1792046049,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
