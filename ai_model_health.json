@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792052390
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 4 stories",
-      "t": 1792052390
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 6x",
-      "t": 1792052405
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792052946
     },
@@ -159,24 +147,36 @@
     {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 3x, gemini:gemini-3.5-flash-lite held 3x, groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x, openrouter:* held 5x",
       "t": 1792058792
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792059258
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 6 stories",
+      "t": 1792059259
+    },
+    {
+      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 1x, groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x, openrouter:* held 1x",
+      "t": 1792059272
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 54
+      "n": 55
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 96
+      "n": 98
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 86
+      "n": 87
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 86
+      "n": 87
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -263,34 +263,34 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 134,
+        "calls": 135,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 128,
+        "ok": 129,
         "other": 6
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 30,
-        "calls": 137,
+        "calls": 139,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 101,
+        "ok": 103,
         "other": 6
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 86,
+        "calls": 87,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 68,
+        "ok": 69,
         "other": 13
       },
       "groq:openai/gpt-oss-20b": {
         "429": 20,
-        "calls": 86,
+        "calls": 87,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198667, Requested 1423. Please try again in 38.8799",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 36,
-        "other": 30
+        "other": 31
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 0,
@@ -4824,6 +4824,11 @@
       "reason": "content_duplicate",
       "until": 1792070578.4557505
     },
+    "ریاض: رهگیری موشک در مدینه منوره/صنعا: ما هنوز موشک شلیک نکرده ایم!": {
+      "at": 1792059272.802262,
+      "reason": "ai_unavailable_local",
+      "until": 1792060472.802262
+    },
     "ریزش سقف مدرسه در پاکستان ۱۸ کشته بر جای گذاشت": {
       "reason": "content_duplicate",
       "until": 1792076820.1132832
@@ -4858,24 +4863,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "انهدام تجهیزات و اسارت نظامیان سعودی در فرودگاه ذوباب یمن ⚡️ نیروهای مسلح یمن با انتشار تصاویری اعلام کردند که",
-      "id": "683bab7cd3",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791988003,
-      "verdict": "new",
-      "why": "The post discusses a new military operation in Dhubab airport."
-    },
-    {
-      "head": "انفجار نورد استریم؛ دادستان آلمان: این اقدام جنایت جنگی است ⚡️ دادستانی فدرال آلمان در جریان محاکمه سرگئی کوزن",
-      "id": "ec538cd852",
-      "match": "محاکمه یک شهروند اوکراینی در آلمان به اتهام انفجار خطوط لوله نورداستریم",
-      "model": "groq/openai/gpt-oss-120b",
-      "t": 1791989134,
-      "verdict": "reaction",
-      "why": "Prosecutor's statement on Nord Stream explosion"
-    },
     {
       "head": "فرستاده پوتین: اولین قرارداد گازوئیل با آمریکا روزهای آتی امضا می شود ⚡️ نماینده ویژه رئیس جمهور روسیه در امور",
       "id": "9770e7bced",
@@ -5389,6 +5376,26 @@
       "id": "cff043b1d7",
       "t": 1792058776,
       "verdict": "unavailable"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "ریاض: رهگیری موشک در مدینه منوره/صنعا: ما هنوز موشک شلیک نکرده ایم! ⚡️ اما بلافاصله سخنگوی نیروهای مسلح یمن در",
+      "id": "7a428fe05d",
+      "match": "واکنش یحیی سریع به ادعای عربستان درباره حمله به مدینه",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1792059269,
+      "verdict": "repeat",
+      "why": "Both report Yemen denying the Saudi claim about the Medina missile attack."
+    },
+    {
+      "confirm": "none:-",
+      "head": "ریاض: رهگیری موشک در مدینه منوره/صنعا: ما هنوز موشک شلیک نکرده ایم! ⚡️ اما بلافاصله سخنگوی نیروهای مسلح یمن در",
+      "id": "7a428fe05d",
+      "match": "واکنش یحیی سریع به ادعای عربستان درباره حمله به مدینه",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1792059272,
+      "verdict": "repeat",
+      "why": "طرح ادعای عربستان درباره مدینه و واکنش یحیی سریع."
     }
   ],
   "_importance_rescue_log": [
@@ -10497,7 +10504,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792058579
+    "at": 1792059160
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10593,9 +10600,9 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792058850,
-    "last_failure": 1792058790,
-    "last_status": 422
+    "disabled_until": 1792059858,
+    "last_failure": 1792059258,
+    "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
     "disabled_until": 1790400317,
