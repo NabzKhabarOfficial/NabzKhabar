@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792041307
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1792041323
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
       "t": 1792041886
     },
@@ -159,12 +151,20 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 1x",
       "t": 1792046050
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792046581
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1792046582
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 163
+      "n": 165
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
@@ -263,9 +263,9 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 73,
+        "calls": 74,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 72,
+        "ok": 73,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -3389,6 +3389,12 @@
       "topic": "نظامی",
       "until": 1792127216.287975
     },
+    "v4|سی ان ان: ترامپ به دنبال «پیروزی نمادین» است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل رسانه‌ای درباره اهداف احتمالی ترامپ و فاقد رویداد قطعی است.",
+      "topic": "سیاست",
+      "until": 1792132966.0565639
+    },
     "v4|سی ان ان: جنگ ایران تاکنون ۲۶۵ میلیارد دلار برای مصرف کنندگان آمریکایی هزینه داشته است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Economic analysis and speculation on historical costs, not a concrete event.",
@@ -4012,12 +4018,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: مخالفت سناتورهای آمریکایی با توافق ترامپ و پوتین",
       "topic": "سیاست",
       "until": 1792066787.7559524
-    },
-    "v4|موشک ها جلسه محرمانه پادشاهی را به هم ریختند؟": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: تحلیل وضعیت بحرانی انرژی و ناامنی در خاورمیانه و بازار نفت.",
-      "topic": "اقتصاد",
-      "until": 1792059286.5365036
     },
     "v4|می خواهیم مساله فلسطین حل شود؛ عربستان دست دوستی به یمن دهد": {
       "ok": false,
@@ -4777,9 +4777,10 @@
     }
   },
   "_editorial_blocks": {
-    "iran war live: tehran vows to fight until us yields as ships sink in hormuz": {
-      "reason": "content_duplicate",
-      "until": 1792044454.7044165
+    "at least 10 children killed in pakistan school collapse": {
+      "at": 1792046582.646624,
+      "reason": "policy_scope_blocked",
+      "until": 1792068182.646624
     },
     "ukraine’s exposure grows as satellite use is restricted and russia escalates": {
       "reason": "content_duplicate",
@@ -4820,20 +4821,10 @@
       "reason": "content_duplicate",
       "until": 1792051959.6456103
     },
-    "فرنگی کاران با سه طلا کار را تمام کردند/ فوری: قهرمانی تیم ملی کشتی ایران در خاک آمریکا": {
-      "at": 1792042557.2469933,
-      "reason": "ai_unavailable_local",
-      "until": 1792043757.2469933
-    },
     "قیمت سکه امروز ۲۳ مهر ۱۴۰۵ در زمان بازگشایی بازار/ نیم سکه ۱۴۰ میلیون تومانی شد + جدول": {
       "at": 1792043756.6775408,
       "reason": "final_guard:page-chrome",
       "until": 1792065356.6775408
-    },
-    "مارین لوپن، سیاستمدار راست گرای فرانسه: دیگر نمی توانیم هزینه های اوکراین را تأمین کنیم، بنابراین کمک های مالی متوقف می شود/ نباید زلنسکی را به این باور برسانیم که می توانیم تأمین": {
-      "at": 1792043228.2917233,
-      "reason": "ai_unavailable_local",
-      "until": 1792044428.2917233
     },
     "یمن از حمله موشکی به فرودگاه بین المللی ریاض خبر داد": {
       "reason": "content_duplicate",
@@ -5388,13 +5379,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Club preview, not national-level event",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792026260,
-      "title": "برنامه ویژه نویدکیا: آماده سازی دوجین ستاره!"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian domestic political news, low impact",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5946,6 +5930,13 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792046030,
       "title": "سل، مرگبار اما قابل پیشگیری و درمان"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل رسانه‌ای درباره اهداف احتمالی ترامپ و فاقد رویداد قطعی است.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792046566,
+      "title": "سی ان ان: ترامپ به دنبال «پیروزی نمادین» است"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10004,7 +9995,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792045856
+    "at": 1792046436
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10019,8 +10010,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792046345.0,
-    "last_failure": 1792046045,
+    "disabled_until": 1792046881.0,
+    "last_failure": 1792046581,
     "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
