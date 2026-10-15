@@ -14,11 +14,12 @@ NABZ_PACE_<KEY> overrides, 0 = no pacing for that model). Counts live in ai_mode
 under _ai_pace.
 
 Oct 15 (evening review, owner rule: managed Gemini quota so it NEVER hits the 24h ceiling):
-* Conservative Gemini daily budgets (360 for gemini-3.5-flash-lite, 210 for gemini-3.1-flash-lite)
-  with HEADROOM_H = 1.0 (~15 calls/h and ~8.75 calls/h), plus a 4.2s minimum gap between Gemini
-  requests (~14 RPM) so bursty single-story fallbacks never trip Gemini's 15 RPM free limit.
-* Load balancing between the two Gemini models: when both are healthy, the one with the lower
-  used/budget ratio is tried first so gemini-3.5-flash-lite is not burned out while 3.1 sits idle.
+* Conservative Gemini daily budgets (360 for gemini-3.5-flash-lite, 210 for gemini-3.1-flash-lite,
+  plus 160 for gemini-3.8-flash and 160 for gemini-3.6-flash) with HEADROOM_H = 1.0, plus a 4.2s
+  minimum gap between Gemini requests (~14 RPM) so bursty single-story fallbacks never trip
+  Gemini's 15 RPM free limit.
+* Load balancing across all free Gemini models: when healthy, the one with the lowest
+  used/budget ratio is tried first so no single model is burned out while others sit idle.
 * Groq's limit is 200k TOKENS a day per model (~2,000 tokens/call): 90 calls/day keeps it below
   the token ceiling.
 * A local pace hold is not a provider failure: it never starts a router cooldown.
@@ -34,6 +35,8 @@ GEMINI_MIN_INTERVAL_SEC = 4.2  # Free tier is 15 RPM; 4.2s gap keeps bursts <= ~
 BUDGETS = {
     "gemini:gemini-3.5-flash-lite": 360,
     "gemini:gemini-3.1-flash-lite": 210,
+    "gemini:gemini-3.8-flash": 160,
+    "gemini:gemini-3.6-flash": 160,
     "groq:openai/gpt-oss-120b": 90,   # 200k tokens/day at ~2k tokens a call
     "groq:openai/gpt-oss-20b": 90,
     "openrouter:*": 42,   # OpenRouter's 50 free requests a day are for the whole account

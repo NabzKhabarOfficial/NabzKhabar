@@ -17,7 +17,8 @@ This launcher fixes that without touching the other files:
 5. A story blocked only because no AI was available (foreign or Persian) is
    an editorial block, not a "failed publication" (no Telegram request was
    made), and is held 20 minutes instead of 6 hours, so it is retried when
-   AI is back.
+   AI is back. Raw unrewritten Persian DOM text is NEVER published when AI is
+   temporarily out, preventing sidebar/ticker garbage from reaching Telegram.
 6. AI meter: calls / ok / 429 per model per day (+ last error text) are saved
    in ai_model_health.json under _ai_usage, so quota use is measured.
 7. AI pacer (Oct 15, v13_ai_pace): every AI request is counted per quota day and a
@@ -27,10 +28,12 @@ This launcher fixes that without touching the other files:
    fixed instead of refusing the whole post, and a refused story is remembered for 6 h.
 9. Mistral (Oct 15, v13_mistral): the owner's free Mistral account is asked after Groq and
    Gemini, before OpenRouter, for translation and the final editor (needs MISTRAL_API_KEY).
-10. Managed Gemini quota (Oct 15 evening): Gemini models are load-balanced by remaining daily
-    share in the router, editor gate, and event judge; and when an editor batch fails across the
-    pool, single-story judging is bounded to at most 2 stories per run so a degraded pool never
-    cascades into dozens of single-story AI calls.
+10. Expanded free model pool & load-balancing (Oct 15 evening):
+    - Gemini pool expanded to 4 free models (`gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`,
+      `gemini-3.8-flash`, `gemini-3.6-flash`) load-balanced by remaining daily share.
+    - Groq pool expanded with `qwen/qwen3-32b` alongside `openai/gpt-oss-120b` and `openai/gpt-oss-20b`.
+    - Mistral pool expanded with `ministral-8b-latest` alongside `open-mistral-nemo` and `mistral-small-latest`.
+    - OpenRouter editor fallback walks top discovered `:free` models after `openrouter/free`.
 
 Oct 14 (evening review): a batch answer gave the Financial Times Starlink story the verdict of a
 car-import story («ابلاغ دستورالعمل اداری ترخیص خودروهای وارداتی», score 2), so it was dropped for a
@@ -61,6 +64,17 @@ AI_HOSTS = {
     "api.groq.com": "groq",
     "openrouter.ai": "openrouter",
 }
+GEMINI_FREE_POOL = (
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",
+    "gemini-3.8-flash",
+    "gemini-3.6-flash",
+)
+GROQ_FREE_POOL = (
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "qwen/qwen3-32b",
+)
 DAILY_429 = re.compile(r"per[ _-]?day|perday|daily|\bTPD\b|\bRPD\b", re.I)
 _daily_rest = {}   # health key -> unix time when its daily quota resets
 _usage = {}        # health key -> counters for this run
@@ -91,12 +105,26 @@ def _ordered_gemini_models(models):
 
 
 # --------------------------------------------------------------------------
-# 1) Translation router: shorter input + Gemini load-balancing
+# 1) Translation router: shorter input + expanded Gemini/Groq pool + no raw fallback
 # --------------------------------------------------------------------------
 def install_router():
     import v13_ai_router as r
     if getattr(r, "_v13_ai_extra", False):
         return
+    r.MODEL_CANDIDATES = GEMINI_FREE_POOL
+    r.GROQ_MODELS = GROQ_FREE_POOL
+    try:
+        import v13_editor_gate as g
+        g.GEMINI_MODELS = GEMINI_FREE_POOL
+        g.GROQ_MODELS = GROQ_FREE_POOL
+    except Exception:
+        pass
+    try:
+        import v13_event_judge as ej
+        ej.GEMINI_MODELS = GEMINI_FREE_POOL
+        ej.GROQ_MODELS = GROQ_FREE_POOL
+    except Exception:
+        pass
     original_request = r.gemini_request
     original_available = r._available_models
 
@@ -113,11 +141,11 @@ def install_router():
     r._available_models = available_models
     r.gemini_request = gemini_request
     r._v13_ai_extra = True
-    print(f"V13 AI EXTRA: translation input capped at {TRANSLATION_SOURCE_CHARS} chars + Gemini load-balanced", flush=True)
+    print(f"V13 AI EXTRA: translation input capped at {TRANSLATION_SOURCE_CHARS} chars + 4-model Gemini & 3-model Groq pools active", flush=True)
 
 
 # --------------------------------------------------------------------------
-# 2) Editor: cooldown-aware pool (Groq -> Gemini -> OpenRouter, as before)
+# 2) Editor: cooldown-aware pool (Groq -> Gemini -> Mistral -> OpenRouter)
 # --------------------------------------------------------------------------
 def _oa_raw(session, url, key, model, prompt, max_tokens, extra=None, timeout=15):
     payload = {"model": model, "temperature": 0, "max_tokens": max_tokens,
@@ -137,6 +165,7 @@ def _oa_raw(session, url, key, model, prompt, max_tokens, extra=None, timeout=15
 
 def _attempts(main, session, prompt, max_tokens, timeout):
     import v13_editor_gate as g
+    import v13_ai_router as r
     groq = os.getenv("GROQ_API_KEY", "").strip()
     gem = str(getattr(main, "AI_API_KEY", "") or os.getenv("AI_API_KEY", "")).strip()
     orouter = os.getenv("OPENROUTER_API_KEY", "").strip()
@@ -159,9 +188,17 @@ def _attempts(main, session, prompt, max_tokens, timeout):
         for m in _ordered_gemini_models(g.GEMINI_MODELS):
             out.append(("gemini/" + m, "gemini:" + m, lambda m=m: _gemini(m)))
     if orouter:
-        out.append(("openrouter/free", "openrouter:openrouter/free", lambda: _oa_raw(
-            session, "https://openrouter.ai/api/v1/chat/completions", orouter, "openrouter/free", prompt,
-            max_tokens, timeout=timeout)))
+        or_models = ["openrouter/free"]
+        try:
+            for om in r._openrouter_free_models(main)[:3]:
+                if om not in or_models:
+                    or_models.append(om)
+        except Exception:
+            pass
+        for om in or_models:
+            out.append(("openrouter/" + om, "openrouter:" + om, lambda om=om: _oa_raw(
+                session, "https://openrouter.ai/api/v1/chat/completions", orouter, om, prompt,
+                max_tokens, timeout=timeout)))
     return out
 
 
@@ -229,7 +266,7 @@ def install_editor_gate():
     except Exception as exc:
         print(f"V13 AI EXTRA: war-zone verbs not extended ({exc})", flush=True)
     g._v13_ai_extra = True
-    print("V13 AI EXTRA: editor gate is cooldown-aware (Groq -> Gemini -> OpenRouter)", flush=True)
+    print("V13 AI EXTRA: editor gate is cooldown-aware (Groq -> Gemini -> Mistral -> OpenRouter)", flush=True)
 
 
 # --------------------------------------------------------------------------
@@ -529,10 +566,13 @@ def save_usage():
 
 
 # --------------------------------------------------------------------------
-# 5) Short hold for "no AI available" blocks
+# 5) Short hold for "no AI available" blocks + block raw unrewritten Persian fallback
 # --------------------------------------------------------------------------
 def install_block_ttl(rb):
     long_ttl = float(getattr(rb, "_EDITORIAL_BLOCK_TTL_SECONDS", 6 * 3600))
+    if hasattr(rb, "EDITORIAL_BLOCK_STATUSES") and isinstance(rb.EDITORIAL_BLOCK_STATUSES, set):
+        rb.EDITORIAL_BLOCK_STATUSES.add("ai_unavailable_local")
+        rb.EDITORIAL_BLOCK_STATUSES.add("ai_unavailable_persian_fallback")
 
     def effective_until(v):
         until = float(v.get("until", 0) or 0)
@@ -573,6 +613,29 @@ def install_block_ttl(rb):
     print(f"V13 AI EXTRA: no-AI blocks held {AI_UNAVAILABLE_TTL_SECONDS // 60} min (others {int(long_ttl // 3600)} h)", flush=True)
 
 
+def install_no_raw_persian_fallback(rb):
+    """Never let v13_standalone publish raw unrewritten scraped Persian DOM text when every AI
+    provider failed: hold the story for 20 minutes as an editorial block instead."""
+    import v13_post_design as pd
+    for name in ("send_photo", "send_video", "send_message"):
+        inner = getattr(rb.main, name, None)
+        if not callable(inner) or getattr(inner, "_v13_no_raw_fallback", False):
+            continue
+
+        def guarded(*args, _inner=inner, **kwargs):
+            cand = pd._CURRENT.get("candidate") if hasattr(pd, "_CURRENT") and isinstance(pd._CURRENT, dict) else None
+            if isinstance(cand, dict) and cand.get("publication_status") == "ai_unavailable_persian_fallback":
+                title = rb._norm_title(cand.get("title", ""))
+                if title:
+                    rb._editorial_blocks_this_run[title] = "ai_unavailable_local"
+                print("V13 AI EXTRA: raw unrewritten Persian fallback blocked; holding story 20 min for AI.", flush=True)
+                return False
+            return _inner(*args, **kwargs)
+
+        guarded._v13_no_raw_fallback = True
+        setattr(rb.main, name, guarded)
+
+
 def _safe(label, fn):
     try:
         fn()
@@ -594,6 +657,7 @@ if __name__ == "__main__":
         print(f"DAILY BOARDS: launcher error: {type(exc).__name__}: {exc}", flush=True)
     rb._patch_history_rescue_pipeline()
     rb._install_v13_stack()
+    _safe("no raw fallback", lambda: install_no_raw_persian_fallback(rb))
     _safe("guard repair", lambda: __import__("v13_guard_repair").install())
     _safe("mistral", lambda: __import__("v13_mistral").install())
     _safe("ai meter", install_ai_meter)

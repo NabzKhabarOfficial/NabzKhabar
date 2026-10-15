@@ -43,7 +43,8 @@ Oct 15 (evening review, root-cause fix for Putin refinery post 20261015-163253-6
   on_topic() keeps the whole monster because the tail shares words with the headline.
 * Now:
   1. fetch_article() decomposes related/sidebar/ticker/most-viewed DOM blocks and multi-link lists
-     before extracting article text;
+     before extracting article text, and raw Persian fallback without AI is disabled so unrewritten
+     scraped DOM never goes straight to Telegram (the story waits 20 min for AI instead);
   2. strip_teasers() and scrub_lead() cut market/date ticker prefixes («... امروز پنجشنبه ۲۳ مهر ۱۴۰۵ <sentence>»),
      multi-slash headline strips («A / B / C»), and unpunctuated sentence fragments glued right before
      «<Speaker> اعلام کرد / گفت / خبر داد»;
@@ -336,9 +337,28 @@ _BAD_DOM_SELECTORS = (
 )
 
 
+def _strip_bad_dom(soup):
+    """Remove sidebar/related/ticker blocks and link-heavy teaser lists from BeautifulSoup tree."""
+    try:
+        for sel in _BAD_DOM_SELECTORS:
+            for node in soup.select(sel):
+                node.decompose()
+        for ul in soup.find_all(["ul", "ol"]):
+            links = ul.find_all("a")
+            if len(links) >= 3:
+                link_chars = sum(len(a.get_text(" ", strip=True)) for a in links)
+                total_chars = max(1, len(ul.get_text(" ", strip=True)))
+                if link_chars / total_chars >= 0.65:
+                    ul.decompose()
+    except Exception:
+        pass
+    return soup
+
+
 def _install_clean_fetch_article():
     """Patch v13_standalone.fetch_article and clean_content so sidebar/related headline blocks
-    inside article containers are stripped before text extraction."""
+    inside article containers are stripped before text extraction, and block raw unrewritten
+    Persian fallback when all AI providers are temporarily unavailable."""
     try:
         import v13_standalone as core
     except Exception:
@@ -352,6 +372,15 @@ def _install_clean_fetch_article():
         return strip_teasers(cleaned) if cleaned else cleaned
 
     core.clean_content = clean_content
+    orig_bs = getattr(core, "BeautifulSoup", None)
+    if callable(orig_bs):
+        def clean_bs(markup, *args, **kwargs):
+            soup = orig_bs(markup, *args, **kwargs)
+            if isinstance(markup, str) and len(markup) > 800 and ("<article" in markup or "<body" in markup or "<div" in markup):
+                _strip_bad_dom(soup)
+            return soup
+
+        core.BeautifulSoup = clean_bs
     core._v13_clean_dom_installed = True
 
 
