@@ -21,6 +21,18 @@ quote in two («...ممکن است. ...» -> two sentences, each with one quote 
    so it is not fetched, translated, judged and refused again on every run (Oct 14: the same
    Nepal-flood story 6 times, the Aramco story 7 times, each costing AI calls).
 
+Oct 15 (night review of docs/guard_log.json): 12 refusals today, most of them "page-chrome" from
+one site layout: the article text opens with the section breadcrumb and a view counter, then the
+headline again («اروپا ۰ نفر کرملین: ...»، «۰ نفر جان باختن یک کارگر ...»، «قیمت ها ۰ نفر ...»).
+chrome_scrub.scrub_lead only removed a bare section name before the repeated headline, not the
+«۰ نفر» counter, so real news (Kremlin, the Ardakan mine, IRGC statements) was refused run after
+run. Now:
+3. scrub_lead is wrapped: «<up to 6 breadcrumb words> <N> نفر» right before the repeated headline
+   is cut (only when the headline really follows, so «۵ نفر کشته شدند» is never touched).
+4. The repair also handles "page-chrome", "page-widget" (a detail line with the site's widget is
+   dropped) and "off-topic-lead" (the next sentence may become the lead); the guard still has to
+   find NOTHING in the repaired post.
+
 Fail-safe: any error leaves the guard's original verdict untouched.
 """
 
@@ -28,6 +40,32 @@ import re
 import sys
 
 _INSTALLED = {"done": False}
+REPAIRABLE = {"media-source", "cut-quote", "page-chrome", "page-widget", "off-topic-lead"}
+_VIEW_COUNTER = re.compile(r"^(?:[^\s.!؟،:«»]{1,20}\s+){0,6}?[۰-۹0-9]{1,4}\s*نفر\s+")
+
+
+def _n(x):
+    x = str(x or "").replace("\u200c", " ").replace("ي", "ی").replace("ك", "ک")
+    return re.sub(r"\s+", " ", x).strip()
+
+
+def strip_counter(text, title):
+    """«اروپا ۰ نفر <headline> <lead>» -> «<lead>»; unchanged unless the headline follows the counter."""
+    try:
+        raw = str(text or "")
+        x, t = _n(raw), _n(title)
+        m = _VIEW_COUNTER.match(x)
+        if not m or not t:
+            return raw
+        rest = x[m.end():]
+        head = t.split()[:4]
+        if rest.split()[:len(head)] != head:
+            return raw
+        if rest.startswith(t):
+            rest = rest[len(t):].lstrip(" -|/>»،,:.")
+        return rest if len(rest.split()) >= 4 else raw
+    except Exception:
+        return str(text or "")
 
 
 def _patterns():
@@ -98,14 +136,52 @@ def _join_quotes(sents):
     return fixed
 
 
-def variants(sentences):
+def _drop_widget_lines(sents):
+    try:
+        import v13_byline_cleaner as bc
+        import v13_chrome_scrub as cs
+        keep = [sents[0]] if sents else []
+        for x in sents[1:]:
+            if bc._WIDGET.search(str(x)) or cs._WIDGET.search(cs._norm(x)):
+                continue
+            keep.append(x)
+        return keep
+    except Exception:
+        return sents
+
+
+def variants(sentences, title=""):
     rules = _patterns()
     base = [str(s or "") for s in sentences]
+    if base and title:
+        base[0] = strip_counter(base[0], title)
+    base = _drop_widget_lines(base)
     v1 = [x for x in (_strip_outlets(s, rules) for s in _join_quotes(base)) if len(x.split()) >= 3]
     out = [v1]
     if len(v1) >= 2:
         out.append(v1[1:])
     return out
+
+
+def _install_scrub_counter():
+    import v13_chrome_scrub as cs
+    previous = cs.scrub_lead
+    if getattr(previous, "_v13_counter", False):
+        return
+
+    def scrub_lead(title, body):
+        try:
+            cut = strip_counter(body, title)
+            if cut != str(body or ""):
+                print("V13 GUARD REPAIR: breadcrumb + view counter cut before the lead -> "
+                      + str(title or "")[:80], flush=True)
+                body = cut
+        except Exception:
+            pass
+        return previous(title, body)
+
+    scrub_lead._v13_counter = True
+    cs.scrub_lead = scrub_lead
 
 
 def install():
@@ -119,9 +195,9 @@ def install():
         try:
             if not found or not isinstance(sentences, list):
                 return found
-            if not {r for r, _ in found} & {"media-source", "cut-quote"}:
+            if not {r for r, _ in found} & REPAIRABLE:
                 return found
-            for cand in variants(sentences):
+            for cand in variants(sentences, title):
                 if not cand or cand == sentences:
                     continue
                 if not original(title, cand):
@@ -137,6 +213,10 @@ def install():
         return found
 
     fg.problems = problems
+    try:
+        _install_scrub_counter()
+    except Exception as exc:
+        print(f"V13 GUARD REPAIR: counter scrub not installed ({type(exc).__name__}: {exc})", flush=True)
     original_log = fg._log
 
     def log(title, found):
@@ -159,4 +239,5 @@ def install():
 
     fg._log = log
     _INSTALLED["done"] = True
-    print("V13 GUARD REPAIR ACTIVE: outlet names and split quotes are fixed in the text; refusals remembered 6 h", flush=True)
+    print("V13 GUARD REPAIR ACTIVE: outlet names, split quotes and page counters are fixed in the text; "
+          "refusals remembered 6 h", flush=True)
