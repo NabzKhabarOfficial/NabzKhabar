@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
-      "t": 1792039622
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792039622
-    },
-    {
       "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.1-flash-lite",
       "t": 1792039631
     },
@@ -159,12 +151,20 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 1x",
       "t": 1792044948
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792045492
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 8 stories",
+      "t": 1792045493
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 158
+      "n": 161
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
@@ -263,9 +263,9 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 70,
+        "calls": 72,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 69,
+        "ok": 71,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -3359,12 +3359,6 @@
       "topic": "سلامت",
       "until": 1792065680.356456
     },
-    "v4|سند بازآفرینی گردشگری ایران در دوره پساجنگ ابلاغ شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: ابلاغ سند اداری و برنامه‌ریزی است و فاقد تاثیر فوری ملی است.",
-      "topic": "سیاست",
-      "until": 1792059286.4855945
-    },
     "v4|سه مدرسه خیرساز در قشم کلنگ زنی شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: کلنگ‌زنی مدرسه در قشم خبر محلی و کم‌اهمیت است",
@@ -3605,6 +3599,12 @@
       "topic": "اقتصاد",
       "until": 1792130686.2464652
     },
+    "v4|طلای درخشان در لاس وگاس؛ دلاور چمستانی، قهرمان کشتی فرنگی زیر ۲۳ سال جهان شد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلای قهرمانی جهان توسط کشتی‌گیر ایرانی در رده زیر ۲۳ سال",
+      "topic": "ورزش",
+      "until": 1792131876.4773803
+    },
     "v4|طلوع آفتاب امید از پشت دیوارهای مدرسه نابینایان تبریز": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: گزارش محلی و توصیفی از یک مدرسه در تبریز",
@@ -3796,6 +3796,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Significant surge in gold coin prices reflects major national economic volatility.",
       "topic": "اقتصاد",
       "until": 1792129533.9184244
+    },
+    "v4|قیمت میوه و تره بار تهران؛ خرمالو هم رسید": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: گزارش روزمره قیمت میوه در تهران اهمیت ملی ندارد.",
+      "topic": "اقتصاد",
+      "until": 1792131877.1970804
     },
     "v4|قیمت نفت فیزیکی در بازارهای جهانی از ۱۵۰ دلار عبور کرد": {
       "ok": true,
@@ -4432,12 +4438,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: بررسی سینمایی و گفت‌وگو درباره ناصر تقوایی خبری فرهنگی و کم‌اهمیت است.",
       "topic": "جامعه",
       "until": 1792070313.425448
-    },
-    "v4|چطور ال نینو در یک نقطه خشکسالی و در نقطه ای دیگر سیل ایجاد می کند؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: آموزشی و تحلیلی است و فاقد رویداد خبری فوری می‌باشد.",
-      "topic": "آب و هوا",
-      "until": 1792059286.4727318
     },
     "v4|چگونه کودک غرق در بازی را پای درس بنشانیم؟": {
       "ok": false,
@@ -5388,20 +5388,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تاثیر محدود، فقط یک تعویض در دربی",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792022836,
-      "title": "خوش رو ترین تعویضی فوتبال با پیراهن سپاهان!"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Party plans complaint; not a concrete decision",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792022837,
-      "title": "Lula’s party accuses Meta of election interference ahead of Brazil runoff"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local rally supporting leader, no national impact",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5946,6 +5932,20 @@
       "rule": "no-concrete-event",
       "t": 1792044931,
       "title": "آخرین وضعیت ترافیک صبحگاهی تهران"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلای قهرمانی جهان توسط کشتی‌گیر ایرانی در رده زیر ۲۳ سال",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1792045476,
+      "title": "طلای درخشان در لاس وگاس؛ دلاور چمستانی، قهرمان کشتی فرنگی زیر ۲۳ سال جهان شد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: گزارش روزمره قیمت میوه در تهران اهمیت ملی ندارد.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792045477,
+      "title": "قیمت میوه و تره بار تهران؛ خرمالو هم رسید"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10004,7 +10004,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792044821
+    "at": 1792045279
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10019,8 +10019,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792045247.0,
-    "last_failure": 1792044947,
+    "disabled_until": 1792045792.0,
+    "last_failure": 1792045492,
     "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
