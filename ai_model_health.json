@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792037900
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792037908
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792037923
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1792037929
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
-      "t": 1792037931
-    },
-    {
       "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792037931
     },
@@ -159,20 +139,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, openrouter:* held 6x",
       "t": 1792043228
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792043731
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792043746
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792043747
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 6 stories",
+      "t": 1792043748
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792043756
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 154
+      "n": 155
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 56
+      "n": 58
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 56
+      "n": 57
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
@@ -269,18 +269,18 @@
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 24,
-        "calls": 32,
+        "429": 25,
+        "calls": 34,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 8,
+        "ok": 9,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 56,
+        "calls": 57,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 43,
+        "ok": 44,
         "other": 8
       },
       "groq:openai/gpt-oss-20b": {
@@ -2621,17 +2621,17 @@
       "topic": "نظامی",
       "until": 1792065077.270905
     },
+    "v4|تهران در بین دو نامزد نهایی میزبانی کنفرانس جهانی اقتصاد خلاق": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Bid for future conference, decision not yet made",
+      "topic": "اقتصاد",
+      "until": 1792130131.1026974
+    },
     "v4|تورم قیمت مصرف کننده در آمریکا شتاب گرفت": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: افزایش تورم آمریکا و تأثیر بر اقتصاد جهانی و انتخابات",
       "topic": "اقتصاد",
       "until": 1792073810.3645031
-    },
-    "v4|توسعه خدمات ارزان و باکیفیت به ورزشکاران در اولویت است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: بیانیه، اهداف و صحبت‌های روتین مقام مسئول ورزشی",
-      "topic": "ورزش",
-      "until": 1792059279.942394
     },
     "v4|توسعه مترو و بزرگراه ها در شرایط جنگی متوقف نشد": {
       "ok": false,
@@ -2861,6 +2861,12 @@
       "topic": "قضایی",
       "until": 1792075521.7770343
     },
+    "v4|دادستان کرمان از دستگیری اعضای تیم سازمان یافته مرتبط با جریان های ضدانقلاب خبر داد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: دستگیری تیم سازمان‌یافته ضد انقلاب در کرمان توسط سپاه",
+      "topic": "قضایی",
+      "until": 1792130147.0759313
+    },
     "v4|دادستان: اراضی دولتی به ارزش بیش از ۶۰۰۰ میلیارد ریال در کرمان بازپس گیری شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: رفع تصرف اراضی دولتی در استان کرمان، خبری استانی",
@@ -2872,12 +2878,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: خبر محلی جمع‌آوری مطالبات مالیاتی، اثر محدود",
       "topic": "قضایی",
       "until": 1792097208.3274374
-    },
-    "v4|دادستانی کل کشور با تصرفات غیرمجاز بستر رودخانه ها برخورد می کند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine administrative announcement regarding legal enforcement against illegal land use.",
-      "topic": "قضایی",
-      "until": 1792059281.253626
     },
     "v4|داستان های «دیوانگان پاریس»": {
       "ok": false,
@@ -4825,6 +4825,11 @@
       "reason": "ai_unavailable_local",
       "until": 1792043757.2469933
     },
+    "قیمت سکه امروز ۲۳ مهر ۱۴۰۵ در زمان بازگشایی بازار/ نیم سکه ۱۴۰ میلیون تومانی شد + جدول": {
+      "at": 1792043756.6775408,
+      "reason": "final_guard:page-chrome",
+      "until": 1792065356.6775408
+    },
     "مارین لوپن، سیاستمدار راست گرای فرانسه: دیگر نمی توانیم هزینه های اوکراین را تأمین کنیم، بنابراین کمک های مالی متوقف می شود/ نباید زلنسکی را به این باور برسانیم که می توانیم تأمین": {
       "at": 1792043228.2917233,
       "reason": "ai_unavailable_local",
@@ -5383,20 +5388,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تعلیق یک تیم دانشگاهی محلی در آمریکا اهمیت ملی یا بین‌المللی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792022255,
-      "title": "جنجال نژادپرستی در دانشگاه مریلند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=4 happened=True scope=world: واکنش دیپلماتیک به اظهارات یک مقام خارجی، فاقد تغییر استراتژیک.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792022257,
-      "title": "پاسخ مصر به ادعای وزیر دارایی رژیم صهیونیستی درباره شبه جزیره سینا"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Routine diplomatic statement reaffirming existing defense commitments between Pakistan and Sa",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5941,6 +5932,20 @@
       "rule": "no-concrete-event",
       "t": 1792043120,
       "title": "خودرو فیدیلیتی با سرعت ۱۸۰ کیلومتر در جاده میناب توقیف شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Bid for future conference, decision not yet made",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792043731,
+      "title": "تهران در بین دو نامزد نهایی میزبانی کنفرانس جهانی اقتصاد خلاق"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: دستگیری تیم سازمان‌یافته ضد انقلاب در کرمان توسط سپاه",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1792043747,
+      "title": "دادستان کرمان از دستگیری اعضای تیم سازمان یافته مرتبط با جریان های ضدانقلاب خبر داد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9999,7 +10004,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792042969
+    "at": 1792043528
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10013,9 +10018,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1792044046.0,
+    "last_failure": 1792043746,
+    "last_status": 599
+  },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792043739,
-    "last_failure": 1792043139,
+    "disabled_until": 1792044347,
+    "last_failure": 1792043747,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10032,8 +10042,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792043237.9981692,
-    "last_failure": 1792039622,
+    "disabled_until": 1792044331,
+    "last_failure": 1792043731,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
