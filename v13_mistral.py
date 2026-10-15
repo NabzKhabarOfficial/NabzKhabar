@@ -6,14 +6,21 @@ second), so it can carry the night when Groq's 200k tokens a day and Gemini's da
 used up. It is used only AFTER Groq and Gemini, before OpenRouter (50 free requests a day):
 
 1. Translation / rewrite (v13_ai_router.gemini_request): when the router reaches OpenRouter,
-   Mistral (open-mistral-nemo, mistral-small-latest, ministral-8b-latest) is asked first with the
+   Mistral (mistral-small-latest, open-mistral-nemo, ministral-8b-latest) is asked first with the
    same prompt, the same JSON check and the same strict content validation.
-2. Final editor (v13_ai_extra.ask_pool): open-mistral-nemo, mistral-small-latest and
+2. Final editor (v13_ai_extra.ask_pool): mistral-small-latest, open-mistral-nemo and
    ministral-8b-latest are inserted before OpenRouter, with a 1.5s minimum gap and a single 2.5s
    retry on transient HTTP 429 so a bursty upstream rate limit never drops an editor batch.
-3. Event judge + AI sense check (v13_event_judge.ask): open-mistral-nemo, mistral-small-latest
-   and ministral-8b-latest are asked when Groq and Gemini are paced or rate-limited.
+3. Event judge + AI sense check (v13_event_judge.ask): the same three models are asked when Groq
+   and Gemini are paced or rate-limited.
 4. The AI meter counts it (_ai_usage key "mistral:<model>"); it is not paced (no daily cap).
+
+Oct 15 (night review): with open-mistral-nemo first, the editor gate scored clear first-tier news
+0 and "local" («پنتاگون انتشار گزارش حمله به میناب را عقب انداخت»، «لبنان مجوز بانک صادرات ایران را
+لغو کرد», the ex-Shin Bet chief suing Netanyahu), and those wrong verdicts were cached for 24 h.
+mistral-small-latest (same free plan, far better at the rubric and at Persian) now goes first,
+nemo is only a fallback, and the editor-cache rejections made by nemo are dropped once
+(_purge_nemo_rejections) so those stories are judged again by a stronger model.
 
 No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot runs as before.
 """
@@ -23,10 +30,11 @@ import sys
 import time
 
 MISTRAL_BASE = "https://api.mistral.ai/v1"
-TRANSLATE_MODELS = ("open-mistral-nemo", "mistral-small-latest", "ministral-8b-latest")
-EDITOR_MODELS = ("open-mistral-nemo", "mistral-small-latest", "ministral-8b-latest")
+TRANSLATE_MODELS = ("mistral-small-latest", "open-mistral-nemo", "ministral-8b-latest")
+EDITOR_MODELS = ("mistral-small-latest", "open-mistral-nemo", "ministral-8b-latest")
 MIN_INTERVAL_SEC = 1.5   # La Plateforme free tier is ~1 req/s across the account
 RETRY_429_SLEEP_SEC = 2.5
+PURGE_MARK = "_mistral_nemo_purge_v1"
 _INSTALLED = {"done": False}
 _LAST_CALL = {"at": 0.0}
 
@@ -156,6 +164,29 @@ def _install_event_judge(key):
     return True
 
 
+def _purge_nemo_rejections():
+    """One time: editor-gate cache rejections made by open-mistral-nemo are dropped (see notes)."""
+    try:
+        import v13_ai_router as r
+        health = r._load_health()
+        if health.get(PURGE_MARK):
+            return 0
+        cache = health.get("_editor_gate_cache") or {}
+        bad = [k for k, v in cache.items()
+               if isinstance(v, dict) and not v.get("ok") and "open-mistral-nemo" in str(v.get("reason", ""))]
+        for k in bad:
+            cache.pop(k, None)
+        health["_editor_gate_cache"] = cache
+        health[PURGE_MARK] = int(time.time())
+        r._save_health(health)
+        print(f"V13 MISTRAL: {len(bad)} editor rejection(s) by open-mistral-nemo dropped from the cache "
+              "(judged again by a stronger model)", flush=True)
+        return len(bad)
+    except Exception as exc:
+        print(f"V13 MISTRAL: nemo cache purge skipped ({type(exc).__name__})", flush=True)
+        return 0
+
+
 def install():
     if _INSTALLED["done"]:
         return
@@ -167,6 +198,7 @@ def install():
     _install_router(key)
     editor = _install_editor(key)
     ej = _install_event_judge(key)
+    _purge_nemo_rejections()
     _INSTALLED["done"] = True
-    print("V13 MISTRAL ACTIVE: free Mistral after Groq and Gemini, before OpenRouter (translation"
+    print("V13 MISTRAL ACTIVE: free Mistral (small first) after Groq and Gemini, before OpenRouter (translation"
           + (" + editor" if editor else "") + (" + event_judge" if ej else "") + ")", flush=True)
