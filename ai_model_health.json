@@ -176,7 +176,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 8
+      "n": 9
     },
     "openrouter:*": {
       "day": "2026-10-14",
@@ -284,10 +284,10 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 8,
+        "calls": 9,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199777, Requested 1859. Please try again in 11m46.7",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
+        "ok": 3,
         "other": 5
       }
     }
@@ -1633,6 +1633,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: خبر محلی و ارزیابی آمادگی در برابر سیل در بهاباد.",
       "topic": "جامعه",
       "until": 1792058683.1324472
+    },
+    "v4|آمارهای مالی نشان می دهند/ این هشدار جدی است! لیگ برتر در مرز ورشکستگی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=world: Financial crisis in English football clubs",
+      "topic": "ورزش",
+      "until": 1792117287.4169953
     },
     "v4|آمریکا تلفن همراه ایلهان عمر را ضبط کرد": {
       "ok": false,
@@ -4172,12 +4178,6 @@
       "topic": "اقتصاد",
       "until": 1792071471.982319
     },
-    "v4|هوشمندسازی و رشد مرسولات؛ کارنامه درخشان پست خوزستان در دولت چهاردهم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: گزارش عملکرد استانی و روابط عمومی پست خوزستان است.",
-      "topic": "اقتصاد",
-      "until": 1792053458.0592878
-    },
     "v4|وال استریت ژورنال: حوثی ها با قطعات چینی در حال ساخت موشک بالستیک از نوع «خیبرشکن» ایران هستند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: گزارش وال استریت ژورنال درباره ساخت موشک توسط حوثی‌ها.",
@@ -5372,13 +5372,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمع بدون پیامدهای ملی",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792010805,
-      "title": "۲۲۸ شب اتحاد و همدلی مردم ولایی ارومیه در خیابان"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: راه‌روستایی محلی، اثر ملی محدود",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5930,6 +5923,13 @@
       "rule": "below-event-threshold",
       "t": 1792030336,
       "title": "«انقلاب فلامینگو» در کشوری که ایوانکا ترامپ و جرد کوشنر می خواهند اقامتگاه اختصاصی بسازند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=world: Financial crisis in English football clubs",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792030887,
+      "title": "آمارهای مالی نشان می دهند/ این هشدار جدی است! لیگ برتر در مرز ورشکستگی"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10450,7 +10450,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792030246
+    "at": 1792030831
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
