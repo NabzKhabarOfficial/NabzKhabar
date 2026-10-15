@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792037931
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, openrouter:* held 6x",
-      "t": 1792037946
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792038453
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792038983
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792038983
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
       "t": 1792038998
     },
@@ -159,12 +139,32 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792043756
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792044301
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: no usable verdict",
+      "t": 1792044303
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792044303
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 6 stories",
+      "t": 1792044304
+    },
+    {
+      "e": "AI PACE: openrouter:* held 1x",
+      "t": 1792044305
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 155
+      "n": 157
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
@@ -180,7 +180,7 @@
     },
     "openrouter:*": {
       "day": "2026-10-15",
-      "n": 15
+      "n": 16
     }
   },
   "_ai_usage": {
@@ -263,9 +263,9 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 69,
+        "calls": 70,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 68,
+        "ok": 69,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -325,8 +325,8 @@
       },
       "openrouter:openrouter/free": {
         "429": 0,
-        "calls": 10,
-        "ok": 10,
+        "calls": 11,
+        "ok": 11,
         "other": 0
       }
     }
@@ -3539,12 +3539,6 @@
       "topic": "جامعه",
       "until": 1792072045.060752
     },
-    "v4|صف فروش «مس فروش بازار»، شاخص کل را سرخ کرد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=iran_national: افت قابل توجه شاخص کل بورس تهران و تاثیر بر بازار سرمایه",
-      "topic": "اقتصاد",
-      "until": 1792059282.1194644
-    },
     "v4|صفحه نخست روزنامه ها – پنج شنبه ۲۳ مهر": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مرور روزنامه‌ها خبری معمول و غیرمرتبط با اخبار رده‌اول است.",
@@ -3604,6 +3598,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine provincial administrative announcement regarding industrial support policies.",
       "topic": "اقتصاد",
       "until": 1792072043.8973172
+    },
+    "v4|طلا از کف قیمت یک هفته ای بهبود یافت": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نوسان روزانه قیمت طلا در بازارهای جهانی اهمیت استراتژیک ندارد.",
+      "topic": "اقتصاد",
+      "until": 1792130686.2464652
     },
     "v4|طلوع آفتاب امید از پشت دیوارهای مدرسه نابینایان تبریز": {
       "ok": false,
@@ -5388,13 +5388,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Routine diplomatic statement reaffirming existing defense commitments between Pakistan and Sa",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792022257,
-      "title": "شریف: پاکستان به حفاظت از امنیت عربستان متعهد است"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: خبر فرهنگی و هنری فاقد اهمیت ملی یا بین‌المللی است.",
       "rescued": false,
       "rule": "final-scope-preselection",
@@ -5946,6 +5939,13 @@
       "rule": "no-concrete-event",
       "t": 1792043747,
       "title": "دادستان کرمان از دستگیری اعضای تیم سازمان یافته مرتبط با جریان های ضدانقلاب خبر داد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نوسان روزانه قیمت طلا در بازارهای جهانی اهمیت استراتژیک ندارد.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792044286,
+      "title": "طلا از کف قیمت یک هفته ای بهبود یافت"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10004,7 +10004,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792043528
+    "at": 1792044108
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10019,8 +10019,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792044046.0,
-    "last_failure": 1792043746,
+    "disabled_until": 1792044601.0,
+    "last_failure": 1792044301,
     "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
@@ -10100,8 +10100,8 @@
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792043802,
-    "last_failure": 1792043202,
+    "disabled_until": 1792044903,
+    "last_failure": 1792044303,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
