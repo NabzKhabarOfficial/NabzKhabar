@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792035578
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792036088
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1792036190
-    },
-    {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
       "t": 1792036192
     },
@@ -159,24 +147,36 @@
     {
       "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
       "t": 1792041323
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per d",
+      "t": 1792041886
+    },
+    {
+      "e": "EDITOR BATCH: 6/6 via gemini/gemini-3.1-flash-lite",
+      "t": 1792041902
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 6x",
+      "t": 1792041949
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 130
+      "n": 135
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 47
+      "n": 48
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 50
+      "n": 53
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 35
+      "n": 42
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -263,32 +263,32 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 50,
+        "calls": 54,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 49,
+        "ok": 53,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 15,
-        "calls": 23,
+        "429": 16,
+        "calls": 24,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 8,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 50,
+        "calls": 53,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 37,
+        "ok": 40,
         "other": 8
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 4,
-        "calls": 35,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199974, Requested 1919. Please try again in 13m37.7",
+        "429": 5,
+        "calls": 42,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198243, Requested 1884. Please try again in 54.864s",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 16,
+        "ok": 22,
         "other": 15
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -332,13 +332,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1791877819.0036943,
-      "title": "ترامپ مدعی پایان یافتن قریب الوقوع جنگ با ایران شد",
-      "urgent": false
-    },
     {
       "label": "حادثه",
       "level": 4,
@@ -1171,6 +1164,13 @@
       "t": 1792039641.6510167,
       "title": "مسدودسازی بیش از ۱۳ هزار حساب کاربری مرتبط با ایران، چین و روسیه در پلتفرم ایکس",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1792041944.9592364,
+      "title": "کره شمالی از موشک های کروز پرتاب شونده از زیردریایی رونمایی کرد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-14",
@@ -1859,11 +1859,23 @@
       "topic": "اقتصاد",
       "until": 1792073198.9158056
     },
+    "v4|اخبار تهران، ورود ۳۱ اتوبوس جدید و تبدیل مسیر بساط گستری تجریش، گذر گردشگری": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: ورود اتوبوس‌های جدید و جشنواره فرهنگی در تهران",
+      "topic": "جامعه",
+      "until": 1792128284.4501004
+    },
     "v4|اختتامیه پویش ملی «ایران امام رضا(ع)» در جیرفت برگزار شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: مراسم اختتامیه یک جشنواره فرهنگی محلی فاقد اهمیت ملی است.",
       "topic": "جامعه",
       "until": 1792093497.9100266
+    },
+    "v4|اختصاص ۸۰ میلیارد تومان برای بهسازی بافت های فرسوده استان ایلام": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تخصیص بودجه برای بهسازی مناطق",
+      "topic": "اقتصاد",
+      "until": 1792128285.9054983
     },
     "v4|اخلاقی برنامه های خود برای وزارت دفاع را در مجلس تشریح کرد": {
       "ok": false,
@@ -1930,12 +1942,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و روال اداری دانشگاه علوم پزشکی آبادان",
       "topic": "سلامت",
       "until": 1792059781.6842709
-    },
-    "v4|ارائه خدمات مراقبتی به بیش از ۴٨ هزار دانش آموز در جنوب غرب خوزستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: ارائه خدمات بهداشتی دانش‌آموزان در آبادان خبری محلی و غیرمهم است.",
-      "topic": "سلامت",
-      "until": 1792058097.8657217
     },
     "v4|ارتش یمن یک جنگنده عربستان را سرنگون کرد": {
       "ok": true,
@@ -2026,12 +2032,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: اعتراضات دانشجویی و آتش‌سوزی در آلبانی ارتباطی با ایران و اهمیت بین‌المللی ندارد.",
       "topic": "جامعه",
       "until": 1792072627.959067
-    },
-    "v4|افت ۳۴ هزار واحدی شاخص کل بورس در آخرین روز کاری هفته": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=iran_national: افت ۳۴ هزار واحدی شاخص بورس در آخرین روز کاری",
-      "topic": "اقتصاد",
-      "until": 1792058098.504819
     },
     "v4|افت ۹ میلیونی قیمت سکه در برابر رشد ۷۵ میلیون تومانی": {
       "ok": true,
@@ -2333,17 +2333,17 @@
       "topic": "ورزش",
       "until": 1792071471.9688451
     },
-    "v4|برج های دوقلوی والیبال ایران در لاس پالماس!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: انتقال دو بازیکن والیبال به لیگ اسپانیا خبر ورزشی درجه دو است.",
-      "topic": "ورزش",
-      "until": 1792057568.756243
-    },
     "v4|برخورد قضایی با متصرفان غیرمجاز بستر رودخانه ها": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: اعلام رویه کلی و هشدار قوه قضاییه درباره تصرف بستر رودخانه‌ها",
       "topic": "قضایی",
       "until": 1792059782.4421153
+    },
+    "v4|برقراری ۱۲ پرواز در مسیر تهران–بیرجند و بالعکس": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: افزایش پروازهای داخلی",
+      "topic": "سیاست",
+      "until": 1792128284.0325398
     },
     "v4|برنامه وزارت دفاع برای آرایش جدید جنگی دشمن چیست؟": {
       "ok": false,
@@ -2380,12 +2380,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: گمانه‌زنی و ادعای رسانه‌ای درباره ترک ستاره‌ها از عربستان",
       "topic": "ورزش",
       "until": 1792061538.8426101
-    },
-    "v4|بنادر و کریدورها؛ اهرم ایران برای مقابله با تحریم انرژی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: تحلیل کارشناسی و پیشنهاد راهبردی است و نه یک رویداد قطعی.",
-      "topic": "اقتصاد",
-      "until": 1792057570.9783618
     },
     "v4|بهره برداری از ۲۰۴۷ پروژه در گام نخست نهضت توسعه عدالت آموزشی": {
       "ok": false,
@@ -2428,6 +2422,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر شهری و محلی درباره دوربین‌های ترافیکی مشهد",
       "topic": "جامعه",
       "until": 1792074884.7257972
+    },
+    "v4|بیش از ۲ میلیون و ۶۰۰ دوز واکسن دامی در زنجان تزریق شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: دوز واکسن دامی در زنجان تزریق شد",
+      "topic": "سلامت",
+      "until": 1792128283.1461825
     },
     "v4|بیش از ۲ هزار مدرسه در دولت چهاردهم احداث شد": {
       "ok": false,
@@ -2705,17 +2705,11 @@
       "topic": "جامعه",
       "until": 1792108655.8657389
     },
-    "v4|جهانگیر: پرداخت پاداش در شرکت های زیان ده زیر ذره بین بازرسی است": {
+    "v4|جنگ طولانی مدت و اختلالات بزرگترین ریسک برای اقتصادهای خاورمیانه هستند": {
       "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: بررسی پاداش شرکت‌های زیان‌ده توسط سازمان بازرسی، خبر اداری و روتین است.",
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: IMF report on economic risks, not a concrete policy decision.",
       "topic": "اقتصاد",
-      "until": 1792058099.7878869
-    },
-    "v4|جهانیان:مدیریت هوشمند نگهداری جاده ها کلید طلایی کاهش هزینه ها است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: سخنان مقام مسئول درباره مدیریت جاده‌ها رویداد مهمی نیست.",
-      "topic": "اقتصاد",
-      "until": 1792058099.083732
+      "until": 1792128302.6565259
     },
     "v4|حاجی دلیگانی: برنامه وزیر دفاع در خصوص ساخت هواپیمای مسافربری چیست؟": {
       "ok": false,
@@ -3305,12 +3299,6 @@
       "topic": "نظامی",
       "until": 1792058683.159256
     },
-    "v4|سخنگوی سپاه: پس از جنگ ۴۰ روزه به سلاح های پیشرفته تری دست یافته ایم": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: اظهارات رسمی سخنگوی سپاه درباره توانمندی‌های نظامی و آمادگی دفاعی.",
-      "topic": "نظامی",
-      "until": 1792057570.991529
-    },
     "v4|سراج: تقویت پدافند و مولدسازی در وزارت دفاع نیازمند پیگیری جدی است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: توصیه و نظر نماینده مجلس درباره وزارت دفاع، بدون تصمیم اجرایی",
@@ -3653,12 +3641,6 @@
       "topic": "اقتصاد",
       "until": 1792073822.352971
     },
-    "v4|عزت یار جنگی آزمون؛/ جنجال در جده: حمله به سردار و ورود فوری سعید!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: پیروزی تیم باشگاهی فوتبال و درگیری معمولی؛ اهمیت درجه اول ندارد.",
-      "topic": "ورزش",
-      "until": 1792058101.7942579
-    },
     "v4|عصای سفید به دست، پشت درهای بسته حقوق شهروندی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Commentary on disability access barriers",
@@ -3742,6 +3724,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اظهارات محلی فرماندار درباره مدیریت منابع اشتغال در یک شهرستان",
       "topic": "اقتصاد",
       "until": 1792127209.6508713
+    },
+    "v4|فرنگی کاران با سه طلا کار را تمام کردند/ فوری: قهرمانی تیم ملی کشتی ایران در خاک آمریکا": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Championship title won by Iran's national team in a global event.",
+      "topic": "ورزش",
+      "until": 1792128302.6645594
     },
     "v4|فروش فوق العاده هاوال h9 وارداتی آغاز شد": {
       "ok": false,
@@ -3989,12 +3977,6 @@
       "topic": "اقتصاد",
       "until": 1792075521.8316169
     },
-    "v4|ملونی: توافق ترامپ با پوتین برای تامین گازوئیل بسیار پرخطر است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: موضع‌گیری رسمی نخست‌وزیر ایتالیا درباره توافقات کلان انرژی بین‌المللی.",
-      "topic": "سیاست",
-      "until": 1792057571.0042655
-    },
     "v4|ممنوعیت حجاب در آذربایجان مقابله با حکم صریح قرآن است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: موضع‌گیری و محکومیت توسط یک مقام مذهبی داخلی",
@@ -4006,12 +3988,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: سخنان وزیر درباره اصلاح ساختار صندوق ذخیره فرهنگیان روتین است.",
       "topic": "اقتصاد",
       "until": 1792062125.3052866
-    },
-    "v4|مهندس سعودی به اتهام جاسوسی در آمریکا دستگیر شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: بازداشت یک فرد به اتهام جاسوسی در یک شرکت بزرگ فناوری.",
-      "topic": "قضایی",
-      "until": 1792057571.0169997
     },
     "v4|موافقت شورای ملی تامین مالی با تشکیل صندوق املاک دولتی و توثیق دارایی های دیجیتال": {
       "ok": false,
@@ -4234,12 +4210,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: بررسی هزینه های دیابت تحلیل و خبر درجه یک محسوب نمی شود",
       "topic": "سلامت",
       "until": 1792069674.9200938
-    },
-    "v4|هزینه ۷۱ میلیارد دلاری انرژی، پاشنه آشیل تجارت ترکیه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: گزارش تحلیلی درباره هزینه انرژی و کسری تجاری ترکیه",
-      "topic": "اقتصاد",
-      "until": 1792058097.2097378
     },
     "v4|هشدار آمریکا به اتباع خود درباره خطر حمله به فرودگاه های عربستان": {
       "ok": false,
@@ -4481,6 +4451,12 @@
       "topic": "اقتصاد",
       "until": 1792098235.4511642
     },
+    "v4|کاهش ۶ درصدی جان باختگان حوادث رانندگی در خراسان شمالی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Provincial traffic statistics are local news.",
+      "topic": "جامعه",
+      "until": 1792128302.680495
+    },
     "v4|کاپیتان تحت هجمه شدید/ حمله به ستاره وایکینگ به خاطر اولیسه: آدم رذل!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: حاشیه و حملات اینستاگرامی به یک بازیکن فوتبال.",
@@ -4504,6 +4480,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: مواضع رسمی کرملین درباره بازپس‌گیری دارایی‌های روسیه در غرب",
       "topic": "اقتصاد",
       "until": 1792070792.1806173
+    },
+    "v4|کره شمالی موشک های کروز قابل پرتاب از زیردریایی آزمایش کرد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Military missile test by a nuclear-armed state.",
+      "topic": "نظامی",
+      "until": 1792128302.6725857
     },
     "v4|کشت کنترل شده شقایق الی فرا برای دارو/ کشت خشخاش در برنامه وجود دارد؟": {
       "ok": false,
@@ -4576,6 +4558,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: برگزاری مجمع فدراسیون کاراته رویداد درجه اول جهانی نیست",
       "topic": "ورزش",
       "until": 1792063359.8358514
+    },
+    "v4|کوبا: آمریکا با باج خواهی به دنبال تغییر آرا علیه تحریم های هاوانا است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine diplomatic rhetoric and accusations between nations.",
+      "topic": "سیاست",
+      "until": 1792128302.6485152
     },
     "v4|کوبا: روبیو برای شریک کردن جامعه بین المللی در وحشیگری علیه هاوانا تلاش می کند": {
       "ok": false,
@@ -4673,6 +4661,12 @@
       "topic": "نظامی",
       "until": 1792101436.8473842
     },
+    "v4|یمن: جنگنده تایفون عربستان را هدف قرار دادیم": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Targeting a military aircraft in a regional war zone.",
+      "topic": "نظامی",
+      "until": 1792128302.639969
+    },
     "v4|یک دهه جنگ علیه یمن؛ وقتی رنج غیرنظامیان و کودکان یمنی دیده نشد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: تحلیل و نظر رسانه‌ای است و نه یک رویداد خبری جدید.",
@@ -4696,6 +4690,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به اصلاح قراردادهای معدنی و وصول مطالبات در یزد",
       "topic": "قضایی",
       "until": 1792070314.7753859
+    },
+    "v4|۱۹۵ هزار سند مالکیت در استان بوشهر صادر شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سند مالکیت در استان بوشهر صادر شد",
+      "topic": "قضایی",
+      "until": 1792128285.1704443
     },
     "v4|۲۱کیلومتر دیگر از بزرگراه اردبیل - سرچم زیر بار ترافیک رفت": {
       "ok": false,
@@ -4782,9 +4782,8 @@
       "until": 1792044454.7044165
     },
     "ukraine’s exposure grows as satellite use is restricted and russia escalates": {
-      "at": 1792040269.3662329,
-      "reason": "ai_unavailable_foreign",
-      "until": 1792041469.3662329
+      "reason": "content_duplicate",
+      "until": 1792063549.245306
     },
     "آتش زدن تأسیسات سری استارلینک در بلغارستان": {
       "reason": "content_duplicate",
@@ -4815,18 +4814,14 @@
     "یمن از حمله موشکی به فرودگاه بین المللی ریاض خبر داد": {
       "reason": "content_duplicate",
       "until": 1792050743.9466069
+    },
+    "یمن: جنگنده تایفون عربستان را هدف قرار دادیم": {
+      "at": 1792041949.2566106,
+      "reason": "ai_unavailable_local",
+      "until": 1792043149.2566106
     }
   },
   "_event_judge_log": [
-    {
-      "head": "محدودیت های ناگهانی استارلینک همزمان با تشدید حملات روسیه در اوکراین ⚡️ کی یف در پی قطع برق ۶۰۰ هزار نفر و اعم",
-      "id": "8ab965f7f9",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791978073,
-      "verdict": "new",
-      "why": "A new event regarding Starlink restrictions and power outages in Ukraine."
-    },
     {
       "head": "ناتو: تبادل اطلاعاتی آمریکا و اوکراین متوقف نشده است ⚡️ مارک روته، دبیرکل ناتو در نشست خبری مشترک با نخست وزیر",
       "id": "459ab152d9",
@@ -5363,44 +5358,18 @@
       "t": 1792039640,
       "verdict": "new",
       "why": "No matching event found"
+    },
+    {
+      "head": "کره شمالی از موشک های کروز پرتاب شونده از زیردریایی رونمایی کرد ⚡️ کره شمالی روز چهارشنبه دو نوع موشک کروز راه",
+      "id": "8e9c8727ff",
+      "match": "",
+      "model": "groq/openai/gpt-oss-120b",
+      "t": 1792041943,
+      "verdict": "new",
+      "why": "No prior North Korea missile test reported"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine political rhetoric by a parliament member without strategic impact.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792018766,
-      "title": "گودرزی: حضور پرشور مردم معادلات پیچیده دشمن را در هم شکست"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تغییر در فرآیند استخدام یک شرکت مشاوره، خبری عمومی و غیرراهبردی است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792018767,
-      "title": "McKinsey is making job applicants spar with a fake AI client"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Routine football match result, not a final or decisive title.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792018768,
-      "title": "Jackson steps up again as Aston Villa revival continues"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: ضبط تلفن همراه یک نماینده کنگره آمریکا رویدادی سیاسی و قابل توجه است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792019376,
-      "title": "آمریکا تلفن همراه ایلهان عمر را ضبط کرد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: گمانه‌زنی انتخاباتی ترامپ درباره نتایج آینده، فاقد ارزش خبری فوری است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792019938,
-      "title": "ادعای ترامپ: ممکن است کنترل هر دو مجلس را حفظ کنیم"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل و نظر کارشناسی درباره حواشی یک مسابقه فوتبال است.",
       "rescued": false,
@@ -5925,22 +5894,45 @@
       "rule": "below-event-threshold",
       "t": 1792041322,
       "title": "رئیس مجمع نمایندگان آذربایجان غربی:مالیات های نشان دار، فرصتی برای تکمیل زیرساخت هاست"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: دوز واکسن دامی در زنجان تزریق شد",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792041883,
+      "title": "بیش از ۲ میلیون و ۶۰۰ دوز واکسن دامی در زنجان تزریق شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: افزایش پروازهای داخلی",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792041884,
+      "title": "برقراری ۱۲ پرواز در مسیر تهران–بیرجند و بالعکس"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: ورود اتوبوس‌های جدید و جشنواره فرهنگی در تهران",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792041884,
+      "title": "اخبار تهران، ورود ۳۱ اتوبوس جدید و تبدیل مسیر بساط گستری تجریش، گذر گردشگری"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سند مالکیت در استان بوشهر صادر شد",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792041885,
+      "title": "۱۹۵ هزار سند مالکیت در استان بوشهر صادر شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تخصیص بودجه برای بهسازی مناطق",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792041885,
+      "title": "اختصاص ۸۰ میلیارد تومان برای بهسازی بافت های فرسوده استان ایلام"
     }
   ],
   "_join_button_cleanup_done": true,
   "_published_heads": [
-    {
-      "h": [
-        "احسس",
-        "اخر",
-        "تعمل",
-        "خنت",
-        "زلنسک",
-        "نسبت"
-      ],
-      "t": 1791997204.5364094,
-      "title": "زلنسکی: به من خیانت شد! ⚡️ رئیس جمهور اوکراین گفت نسبت به تعاملات اخیر رئیس جمهور آمریکا با روسیه احساس «خیانت» می کند."
-    },
     {
       "h": [
         "انتخب",
@@ -6372,391 +6364,30 @@
       ],
       "t": 1792039641.6377952,
       "title": "مسدودسازی بیش از ۱۳ هزار حساب کاربری مرتبط با ایران، چین و روسیه در پلتفرم ایکس ⚡️ پلتفرم اجتماعی ایکس با شناسایی سه عمل"
+    },
+    {
+      "h": [
+        "ازمش",
+        "در",
+        "رنم",
+        "رهبرد",
+        "زردر",
+        "شرق",
+        "شمل",
+        "شند",
+        "قبل",
+        "مشک",
+        "نع",
+        "پرتب",
+        "چهرشنب",
+        "کرز",
+        "کره"
+      ],
+      "t": 1792041944.9436545,
+      "title": "کره شمالی از موشک های کروز پرتاب شونده از زیردریایی رونمایی کرد ⚡️ کره شمالی روز چهارشنبه دو نوع موشک کروز راهبردی قابل "
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "اخر",
-        "استفد",
-        "انتقد",
-        "بشگ",
-        "تقت",
-        "تمم",
-        "جسن",
-        "حضر",
-        "دقق",
-        "زلزل",
-        "شکست",
-        "فرصت",
-        "لسندر",
-        "مدر",
-        "مرتنز",
-        "مسبق",
-        "منچسترنتد",
-        "ورزش",
-        "ولککس",
-        "چهرمن"
-      ],
-      "cities": [],
-      "kind": "quake",
-      "places": [],
-      "regions": [],
-      "t": 1791952013.0090275,
-      "title": "تیم باید تقویت می شد/ زلزله در منچستریونایتد: لیساندرو به مدیران حمله کرد ⚡️ مارتینز که تمام ۹۰ دقیقه در زمین حضور داشت،",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اجر",
-        "استفد",
-        "اهدف",
-        "جنگند",
-        "دعش",
-        "عمل",
-        "عملت",
-        "فرمنده",
-        "مخفگ",
-        "منهدم",
-        "نظر",
-        "کرکک",
-        "کمل"
-      ],
-      "cities": [
-        "کرکوک"
-      ],
-      "kind": "attack",
-      "places": [
-        "کرکوک"
-      ],
-      "regions": [
-        "iraq_north"
-      ],
-      "t": 1791959036.0972357,
-      "title": "حمله هوایی ارتش عراق به مخفیگاه های داعش در کرکوک ⚡️ رسانه امنیتی عراق از اجرای سه حمله هوایی با استفاده از جنگنده های ا",
-      "toll": 0
-    },
-    {
-      "a": [
-        "بختر",
-        "برج",
-        "خبرنگر",
-        "خدر",
-        "چند",
-        "کرن"
-      ],
-      "cities": [
-        "غزه"
-      ],
-      "kind": "attack",
-      "places": [
-        "غزه",
-        "کرانه باختری"
-      ],
-      "regions": [
-        "gaza",
-        "westbank"
-      ],
-      "t": 1791962485.124035,
-      "title": "حملات اسرائیل در غزه و کرانه باختری؛ کشته شدن یک نفر و زخمی شدن چند خبرنگار ⚡️ حمله هوایی اسرائیل به خودرویی در غزه یک ک",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اتم",
-        "زپرژ",
-        "مجرت",
-        "محط",
-        "نرگ"
-      ],
-      "cities": [
-        "زاپروژیا"
-      ],
-      "kind": "attack",
-      "places": [
-        "زاپروژیا"
-      ],
-      "regions": [
-        "ukraine"
-      ],
-      "t": 1791963157.9038186,
-      "title": "حمله اوکراین به مجاورت نیروگاه اتمی زاپروژیا ⚡️ منابع خبری از حمله اوکراین به محوطه و مجاورت نیروگاه اتمی زاپروژیا خبر د",
-      "toll": 0
-    },
-    {
-      "a": [
-        "سرک",
-        "شهرست",
-        "فرند",
-        "لنج",
-        "متعلق",
-        "محدد",
-        "نشنس",
-        "کرگ",
-        "کله"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1791963637.4409704,
-      "title": "اصابت پهپاد به یک لنج در سیریک با ۳ زخمی ⚡️ یک فروند پهپاد ناشناس در محدوده شهرستان سیریک به یک لنج متعلق به کرگان و کلا",
-      "toll": 3
-    },
-    {
-      "a": [
-        "اسلم",
-        "خدر",
-        "رزمندگ",
-        "شهرست",
-        "شکست",
-        "فرر",
-        "مثر",
-        "مجبر",
-        "مزدر",
-        "مقبل",
-        "مهجم",
-        "مهرست",
-        "پلس"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1791967073.3225434,
-      "title": "شکست حمله تروریست ها به خودروی پلیس در مهرستان ⚡️ رزمندگان اسلام در پی حمله تروریست های مزدور به خودروی پلیس در شهرستان ",
-      "toll": 0
-    },
-    {
-      "a": [
-        "تررسم",
-        "ختم",
-        "خطر",
-        "دنشگ",
-        "سخنرن",
-        "محمد",
-        "مشرع",
-        "مقمت",
-        "هررد",
-        "پسخ"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1791967093.8414855,
-      "title": "روایت خاتمی از پاسخ به حامیان اسرائیل در دانشگاه هاروارد درباره تروریسم و مقاومت ⚡️ سید محمد خاتمی خاطره ای از سخنرانی خ",
-      "toll": 0
-    },
-    {
-      "a": [
-        "ارگن",
-        "برنم",
-        "تمرکز",
-        "جمن",
-        "حقق",
-        "رنم",
-        "سبر",
-        "قدرتمند",
-        "مدل",
-        "مصنع",
-        "منتشر",
-        "پچد",
-        "چلش",
-        "گگل"
-      ],
-      "cities": [],
-      "kind": "cyber",
-      "places": [],
-      "regions": [],
-      "t": 1791967107.410766,
-      "title": "گوگل مدل هوش مصنوعی قدرتمند جمینای ۴ آرگون را منتشر کرد ⚡️ گوگل از مدل هوش مصنوعی جمینای ۴ آرگون با تمرکز بر حل چالش های",
-      "toll": 0
-    },
-    {
-      "a": [
-        "الل",
-        "امددگر",
-        "تشرح",
-        "جزت",
-        "جسمن",
-        "حدث",
-        "حضر",
-        "خمن",
-        "رهبر",
-        "لحظ",
-        "مجتب",
-        "مشهد",
-        "نخستن",
-        "وضعت"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1791967746.0031743,
-      "title": "روایت امدادگر حاضر در بیت رهبری از وضعیت آیت الله مجتبی خامنه ای پس از بمباران ⚡️ نخستین امدادگر حاضر در بیت رهبری پس از",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اتک",
-        "انصرلل",
-        "برد",
-        "بلستک",
-        "خبرشکن",
-        "دنبل",
-        "سخت",
-        "سزند",
-        "قطع",
-        "هستند",
-        "وردت",
-        "یمن"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1791969434.6986392,
-      "title": "حوثی ها با قطعات چینی موشک خیبرشکن می سازند ⚡️ نیروهای انصارالله در یمن به دنبال ساخت موشک های بالستیک میان برد با اتکا ",
-      "toll": 0
-    },
-    {
-      "a": [
-        "تنگ",
-        "عبر",
-        "نشنس",
-        "هرمز",
-        "هنگم",
-        "پرتب",
-        "کنتنر"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [
-        "تنگه هرمز"
-      ],
-      "regions": [
-        "hormuz"
-      ],
-      "t": 1791974681.379085,
-      "title": "حمله به یک کشتی کانتینری در تنگه هرمز ⚡️ یک کشتی کانتینری هنگام عبور از تنگه هرمز با یک پرتابه ناشناس هدف قرار گرفت.",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اتهم",
-        "اغز",
-        "الم",
-        "خطط",
-        "ددگه",
-        "دشتن",
-        "سرح",
-        "محکم",
-        "نردسترم",
-        "همبرگ"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1791974689.7722871,
-      "title": "محاکمه یک شهروند اوکراینی در آلمان به اتهام انفجار خطوط لوله نورداستریم ⚡️ دادگاهی در هامبورگ آلمان محاکمه یک شهروند اوک",
-      "toll": 0
-    },
-    {
-      "a": [
-        "احتمل",
-        "اقدم",
-        "دنبل",
-        "ردبر",
-        "شندن",
-        "محدد",
-        "وجد",
-        "کرم"
-      ],
-      "cities": [
-        "کرمان"
-      ],
-      "kind": "attack",
-      "places": [
-        "کرمان"
-      ],
-      "regions": [
-        "iran_east"
-      ],
-      "t": 1791975156.547531,
-      "title": "احتمال شنیدن صدای انفجار در رودبار کرمان ⚡️ به دنبال این اقدام، احتمال شنیدن صدای انفجار در این محدوده وجود دارد.",
-      "toll": 0
-    },
-    {
-      "a": [
-        "الل",
-        "برت",
-        "بشتر",
-        "تهدد",
-        "حزب",
-        "خهد",
-        "سخت",
-        "صرت",
-        "ضرب",
-        "لتن",
-        "نبط",
-        "ورد",
-        "پستن",
-        "کتز",
-        "کنترل",
-        "یسرل"
-      ],
-      "cities": [
-        "بیروت",
-        "تل اویو",
-        "ضاحیه جنوبی",
-        "نبطیه"
-      ],
-      "kind": "attack",
-      "places": [
-        "بیروت",
-        "تل اویو",
-        "ضاحیه جنوبی",
-        "نبطیه"
-      ],
-      "regions": [
-        "israel_center",
-        "lebanon_beirut",
-        "lebanon_south"
-      ],
-      "t": 1791975736.6198897,
-      "title": "تهدید جدید کاتز علیه ایران و حزب الله ⚡️ يسرائیل کاتز وزیر جنگ اسرائیل تهدید کرد که در صورت پیوستن حزب الله لبنان به ایر",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اتلف",
-        "تعز",
-        "جنگند",
-        "سعد",
-        "مرب",
-        "منجر",
-        "چند",
-        "یمن"
-      ],
-      "cities": [
-        "تعز",
-        "مارب"
-      ],
-      "kind": "attack",
-      "places": [
-        "تعز",
-        "مارب"
-      ],
-      "regions": [
-        "yemen"
-      ],
-      "t": 1791977009.361208,
-      "title": "شهادت و مجروح شدن زنان و کودکان در یمن در پی حملات عربستان ⚡️ حملات جنگنده های ائتلاف سعودی به استان های تعز و مأرب در ی",
-      "toll": 0
-    },
     {
       "a": [
         "اسب",
@@ -7022,78 +6653,30 @@
       "t": 1792015049.9960759,
       "title": "ارتش یمن یک جنگنده عربستان را در آسمان صعده سرنگون کرد ⚡️ نیروهای مسلح یمن یک فروند جنگنده تایفون عربستان را در آسمان اس",
       "toll": 0
+    },
+    {
+      "a": [
+        "ازمش",
+        "رنم",
+        "رهبرد",
+        "زردر",
+        "قبل",
+        "پرتب",
+        "چهرشنب",
+        "کرز",
+        "کره"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1792041944.9516847,
+      "title": "کره شمالی از موشک های کروز پرتاب شونده از زیردریایی رونمایی کرد ⚡️ کره شمالی روز چهارشنبه دو نوع موشک کروز راهبردی قابل ",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ال",
-        "امرک",
-        "بلک",
-        "ترمپ",
-        "تفق",
-        "تنه",
-        "جمهر",
-        "جهن",
-        "رس",
-        "رسندن",
-        "سد",
-        "متحد",
-        "مسک",
-        "نفع",
-        "هدف",
-        "وشنگتن",
-        "گزل"
-      ],
-      "t": 1791910391.4271486,
-      "title": "ترامپ: توافق گازوئیل روسیه و آمریکا به نفع جهان است ⚡️ رئیس جمهور آمریکا گفت توافق گازوئیل بین واشنگتن و مسکو تنها به نف"
-    },
-    {
-      "k": [
-        "اجتمع",
-        "ادع",
-        "ار",
-        "انتخب",
-        "اکس",
-        "برخرد",
-        "بمبر",
-        "ترمپ",
-        "حث",
-        "حمل",
-        "خهد",
-        "دستر",
-        "دنلد",
-        "سعد",
-        "شبک",
-        "عربست",
-        "متقف",
-        "مدع",
-        "مضع"
-      ],
-      "t": 1791910421.7242258,
-      "title": "ادعای ترامپ درباره حملات حوثی ها به عربستان به دستور ایران ⚡️ دونالد ترامپ در شبکه اجتماعی ایکس مدعی شد که حوثی ها به دس"
-    },
-    {
-      "k": [
-        "امرک",
-        "اکرن",
-        "اگ",
-        "حمل",
-        "دلل",
-        "رس",
-        "شرط",
-        "مشک",
-        "منبع",
-        "ندد",
-        "نشر",
-        "هشدر",
-        "هچ",
-        "پلتک"
-      ],
-      "t": 1791911521.9979367,
-      "title": "پالتیکو: آمریکا هیچ هشداری به اوکراین درباره حمله موشکی روسیه نداد ⚡️ یک منبع آگاه به نشریه پالتیکو گفت آمریکا به دلیل «"
-    },
     {
       "k": [
         "اتلف",
@@ -10198,6 +9781,41 @@
       ],
       "t": 1792039641.6175141,
       "title": "مسدودسازی بیش از ۱۳ هزار حساب کاربری مرتبط با ایران، چین و روسیه در پلتفرم ایکس ⚡️ پلتفرم اجتماعی ایکس با شناسایی سه عمل"
+    },
+    {
+      "k": [
+        "ارزب",
+        "ازمش",
+        "افزش",
+        "اقدم",
+        "امدگ",
+        "بزدرندگ",
+        "تن",
+        "در",
+        "رزم",
+        "رنم",
+        "رهبرد",
+        "زردر",
+        "زرسطح",
+        "سمن",
+        "شرق",
+        "شمل",
+        "شند",
+        "عملت",
+        "قبل",
+        "مشک",
+        "مهرت",
+        "نر",
+        "نع",
+        "هدف",
+        "پرتب",
+        "چهرشنب",
+        "کرز",
+        "کره",
+        "کشر"
+      ],
+      "t": 1792041944.9354932,
+      "title": "کره شمالی از موشک های کروز پرتاب شونده از زیردریایی رونمایی کرد ⚡️ کره شمالی روز چهارشنبه دو نوع موشک کروز راهبردی قابل "
     }
   ],
   "_text_polish": {
@@ -10209,7 +9827,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792041225
+    "at": 1792041793
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10224,8 +9842,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792041907,
-    "last_failure": 1792041307,
+    "disabled_until": 1792042519,
+    "last_failure": 1792041919,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10248,8 +9866,8 @@
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792041538.1980338,
-    "last_failure": 1792037931,
+    "disabled_until": 1792045486.5033607,
+    "last_failure": 1792041886,
     "last_status": 429
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
@@ -10264,20 +9882,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792040869,
-    "last_failure": 1792040269,
+    "disabled_until": 1792042531,
+    "last_failure": 1792041931,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792040869,
-    "last_failure": 1792040269,
+    "disabled_until": 1792042531,
+    "last_failure": 1792041931,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792040869,
-    "last_failure": 1792040269,
+    "disabled_until": 1792042531,
+    "last_failure": 1792041931,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -10288,20 +9906,20 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792040869,
-    "last_failure": 1792040269,
+    "disabled_until": 1792042531,
+    "last_failure": 1792041931,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792040869,
-    "last_failure": 1792040269,
+    "disabled_until": 1792042531,
+    "last_failure": 1792041931,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792040869,
-    "last_failure": 1792040269,
+    "disabled_until": 1792042531,
+    "last_failure": 1792041931,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
