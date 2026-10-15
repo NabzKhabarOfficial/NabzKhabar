@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792054130
-    },
-    {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.1-flash-lite",
-      "t": 1792054133
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1792054467
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792054728
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792054729
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 3x, gemini:gemini-3.5-flash-lite held 3x, groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 1x, openrouter:* held 6x",
       "t": 1792060519
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792060973
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792060973
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 4 stories",
+      "t": 1792060974
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792060988
     }
   ],
   "_ai_pace": {
@@ -168,15 +168,15 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 105
+      "n": 107
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 90
+      "n": 91
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 90
+      "n": 91
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -270,27 +270,27 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 30,
-        "calls": 146,
+        "calls": 148,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 110,
+        "ok": 112,
         "other": 6
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 90,
+        "calls": 91,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 71,
-        "other": 14
+        "other": 15
       },
       "groq:openai/gpt-oss-20b": {
         "429": 20,
-        "calls": 90,
+        "calls": 91,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198667, Requested 1423. Please try again in 38.8799",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 38,
-        "other": 32
+        "other": 33
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 0,
@@ -333,13 +333,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 3,
-      "t": 1791890034.711354,
-      "title": "رئیس جمهور لبنان: هدف ما عقب نشینی اسرائیل و بازسازی کشور است",
-      "urgent": false
-    },
     {
       "label": "فناوری",
       "level": 3,
@@ -1171,6 +1164,13 @@
       "level": 4,
       "t": 1792060501.8565192,
       "title": "کرملین: حملات کی یف به زیرساخت های انرژی روسیه مانع تلاش های صلح آمریکا است",
+      "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1792060987.3301752,
+      "title": "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم!",
       "urgent": false
     }
   ],
@@ -4793,6 +4793,11 @@
       "reason": "ai_unavailable_foreign",
       "until": 1792061719.2831063
     },
+    "tech market sell-off deepens amid fears over us inflation and ai debt": {
+      "at": 1792060988.3774817,
+      "reason": "ai_unavailable_foreign",
+      "until": 1792062188.3774817
+    },
     "ukraine’s exposure grows as satellite use is restricted and russia escalates": {
       "reason": "content_duplicate",
       "until": 1792063549.245306
@@ -4839,6 +4844,11 @@
       "reason": "final_guard:off-topic-lead",
       "until": 1792082119.2831063
     },
+    "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم!": {
+      "at": 1792060988.3774817,
+      "reason": "ai_unavailable_local",
+      "until": 1792062188.3774817
+    },
     "ریزش سقف مدرسه در پاکستان ۱۸ کشته بر جای گذاشت": {
       "reason": "content_duplicate",
       "until": 1792076820.1132832
@@ -4873,15 +4883,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "عوارض ۲۰۰ هزار دلاری آمریکا برای کشتی های اسپانیایی ⚡️ کمیسیون فدرال دریایی آمریکا با طرح اتهاماتی علیه اسپانی",
-      "id": "4f33173ad7",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791989687,
-      "verdict": "new",
-      "why": "طرح عوارض جدید آمریکا علیه کشتی های اسپانیایی خبر جدیدی است."
-    },
     {
       "head": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت ⚡️ بر اثر سقوط یک هواپیمای کوچک در ایالت ویسکانسین آ",
       "id": "6c7ac0bd76",
@@ -5403,6 +5404,15 @@
       "id": "f0b6c98553",
       "t": 1792060500,
       "verdict": "unavailable"
+    },
+    {
+      "head": "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم! ⚡️ ائتلاف به رهبری عربستان سعودی در",
+      "id": "68a9ef2de2",
+      "match": "واکنش یحیی سریع به ادعای عربستان درباره حمله به مدینه",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1792060983,
+      "verdict": "reaction",
+      "why": "The new post reports the Saudi claim, and item 5 is the reaction to it."
     }
   ],
   "_importance_rescue_log": [
@@ -6563,57 +6573,35 @@
       ],
       "t": 1792060501.8438482,
       "title": "کرملین: حملات کی یف به زیرساخت های انرژی روسیه مانع تلاش های صلح آمریکا است ⚡️ دیمیتری پسکوف سخنگوی کرملین اعلام کرد تدا"
+    },
+    {
+      "h": [
+        "اتلف",
+        "ام",
+        "رض",
+        "رهبر",
+        "رهگر",
+        "سعد",
+        "شلک",
+        "صنع",
+        "غرب",
+        "فرز",
+        "مدع",
+        "مدن",
+        "مشک",
+        "منر",
+        "منهدم",
+        "نکرد",
+        "هنز",
+        "پنجشنب",
+        "کرز",
+        "یمن"
+      ],
+      "t": 1792060987.314625,
+      "title": "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم! ⚡️ ائتلاف به رهبری عربستان سعودی در یمن روز پ"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "اثر",
-        "الت",
-        "سرنشن",
-        "وسکنسن",
-        "کچک"
-      ],
-      "cities": [],
-      "kind": "crash",
-      "places": [],
-      "regions": [],
-      "t": 1791992113.3227787,
-      "title": "سقوط هواپیمای کوچک در ویسکانسین آمریکا ۶ کشته بر جا گذاشت ⚡️ بر اثر سقوط یک هواپیمای کوچک در ایالت ویسکانسین آمریکا، شش ",
-      "toll": 6
-    },
-    {
-      "a": [
-        "ارد",
-        "انتقد",
-        "برنگخت",
-        "تسس",
-        "تقف",
-        "خسرت",
-        "سفد",
-        "سکت",
-        "شرکت",
-        "فشر",
-        "قبل",
-        "مسک",
-        "وشنگتن",
-        "پلشگ",
-        "کککل"
-      ],
-      "cities": [
-        "مسکو"
-      ],
-      "kind": "attack",
-      "places": [
-        "مسکو"
-      ],
-      "regions": [
-        "russia"
-      ],
-      "t": 1791994982.4975028,
-      "title": "خسارت قابل توجه به تأسیسات آمریکا در اوکراین در سکوت ترامپ ⚡️ در حالی که دولت ترامپ برای توقف حملات اوکراین به پالایشگاه",
-      "toll": 0
-    },
     {
       "a": [
         "اردبهشت",
@@ -6788,6 +6776,41 @@
       "regions": [],
       "t": 1792053014.7471406,
       "title": "درخواست ترامپ برای اعدام افشاگران اطلاعات حمله به تأسیسات هسته ای ایران ⚡️ ترامپ خشم خود را نسبت به افشای اطلاعات مربوط ",
+      "toll": 0
+    },
+    {
+      "a": [
+        "اتلف",
+        "رهبر",
+        "سعد",
+        "شلک",
+        "صنع",
+        "فرز",
+        "مدع",
+        "مدن",
+        "منر",
+        "منهدم",
+        "نکرد",
+        "هنز",
+        "پنجشنب",
+        "کرز",
+        "یمن"
+      ],
+      "cities": [
+        "ریاض",
+        "صنعا"
+      ],
+      "kind": "attack",
+      "places": [
+        "ریاض",
+        "صنعا"
+      ],
+      "regions": [
+        "gulf",
+        "yemen"
+      ],
+      "t": 1792060987.322526,
+      "title": "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم! ⚡️ ائتلاف به رهبری عربستان سعودی در یمن روز پ",
       "toll": 0
     }
   ],
@@ -10573,6 +10596,47 @@
       "s": "کرملین",
       "t": 1792060501.8314505,
       "title": "کرملین: حملات کی یف به زیرساخت های انرژی روسیه مانع تلاش های صلح آمریکا است ⚡️ دیمیتری پسکوف سخنگوی کرملین اعلام کرد تدا"
+    },
+    {
+      "k": [
+        "اتلف",
+        "اجتمع",
+        "ادع",
+        "الملک",
+        "ام",
+        "امرک",
+        "اکس",
+        "بن",
+        "تتر",
+        "ترک",
+        "رض",
+        "رهبر",
+        "رهگر",
+        "سبق",
+        "سخنگ",
+        "سرلشکر",
+        "سعد",
+        "شبک",
+        "شلک",
+        "صنع",
+        "عربست",
+        "غرب",
+        "فرز",
+        "مدع",
+        "مدن",
+        "مشک",
+        "منر",
+        "منطق",
+        "منهدم",
+        "نکرد",
+        "هنز",
+        "پنجشنب",
+        "کت",
+        "کرز",
+        "یمن"
+      ],
+      "t": 1792060987.3068972,
+      "title": "ریاض مدعی رهگیری موشک در مدینه منوره شد/صنعا: ما هنوز موشک شلیک نکرده ایم! ⚡️ ائتلاف به رهبری عربستان سعودی در یمن روز پ"
     }
   ],
   "_text_polish": {
@@ -10584,7 +10648,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792060306
+    "at": 1792060883
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10628,8 +10692,8 @@
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792060591.7193146,
-    "last_failure": 1792056991,
+    "disabled_until": 1792061573,
+    "last_failure": 1792060973,
     "last_status": 429
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
