@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE openrouter/google/gemma-4-26b-a4b-it:free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792103853
-    },
-    {
-      "e": "EDITOR GATE openrouter/google/gemma-4-31b-it:free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792103853
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792103855
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792103855
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792103855
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792103855
-    },
-    {
       "e": "EDITOR BATCH openrouter/openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792103855
     },
@@ -159,16 +135,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792105003
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792105566
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792105566
+    },
+    {
+      "e": "EDITOR GATE groq/qwen/qwen3-32b: HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
+      "t": 1792105566
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792105567
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792105567
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792105571
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 148
+      "n": 149
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 253
+      "n": 254
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-15",
@@ -271,17 +271,17 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 225,
+        "calls": 226,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 208,
+        "ok": 209,
         "other": 17
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 30,
-        "calls": 293,
+        "calls": 294,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 257,
+        "ok": 258,
         "other": 6
       },
       "gemini:gemini-3.6-flash": {
@@ -318,10 +318,10 @@
       },
       "groq:qwen/qwen3-32b": {
         "429": 0,
-        "calls": 44,
+        "calls": 45,
         "last_error": "HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
         "ok": 0,
-        "other": 44
+        "other": 45
       },
       "mistral:ministral-8b-latest": {
         "429": 0,
@@ -1395,6 +1395,12 @@
       "topic": "فناوری",
       "until": 1792186186.2657406
     },
+    "v4|minus 17 to european dreams as bournemouth fairytale continues": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Minor international football match result, lacks national or global significance.",
+      "topic": "ورزش",
+      "until": 1792191971.212213
+    },
     "v4|nazi-looted kandinsky painting sells for $42 million at auction": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: فروش تابلوی نقاشی گران‌قیمت در حراجی با اهمیت جهانی محدود",
@@ -1412,12 +1418,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: سخنرانی مقام سابق آمریکایی درباره چالش‌های جهانی بدون تصمیم مشخص.",
       "topic": "سیاست",
       "until": 1792149148.0563545
-    },
-    "v4|openai bugging suspect allegedly booked one-way trip to saudi arabia": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Individual criminal case regarding a tech company, lacks major geopolitical impact.",
-      "topic": "قضایی",
-      "until": 1792121967.6085734
     },
     "v4|oxfam takes france to court over 'tax inequality': 'problem' with tax system, public service funding": {
       "ok": false,
@@ -1484,6 +1484,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Political shift in Venezuelan opposition strategy regarding US relations.",
       "topic": "سیاست",
       "until": 1792191403.2757778
+    },
+    "v4|venezuela’s opposition leader calls trump’s new oil partner corrupt": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: اظهارنظر مخالفان ونزوئلا درباره شریک نفتی ترامپ اهمیت درجه اول ندارد",
+      "topic": "سیاست",
+      "until": 1792191967.1967278
     },
     "v4|war in ukraine: kyiv residents decry shortage of bomb shelters": {
       "ok": false,
@@ -2918,12 +2924,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: اظهارات کلی و تبلیغاتی بدون اعلام یک تصمیم یا رویداد مشخص.",
       "topic": "نظامی",
       "until": 1792159002.0491261
-    },
-    "v4|دو مصدوم هم دل او را خالی نمی کند/ آماده باش سهراب به نیمکت و جوان های گرسنه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=local: گزارش تمرینی و گمانه‌زنی درباره ترکیب تیم استقلال است.",
-      "topic": "ورزش",
-      "until": 1792121958.7205544
     },
     "v4|دوره آموزشی سرشماری عمومی نفوس و مسکن در شهرستان دشتی برگزار شد": {
       "ok": false,
@@ -5422,20 +5422,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai mistral/open-mistral-nemo score=0 happened=False scope=local: رایانه‌ای، بدون اقدام یا تصمیم رسمی",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792090007,
-      "title": "معاون وزیر امور خارجه: ظرفیت های اقتصادی باید به مزیت رقابتی ایران تبدیل شود"
-    },
-    {
-      "ai": "ai mistral/open-mistral-nemo score=0 happened=True scope=local: رایزنی مجلس در مورد اولویت‌های بهداشتی محلی",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792090009,
-      "title": "حاجی بابایی: ارتقای دانشکده علوم پزشکی ملایر باید در اولویت قرار گیرد"
-    },
-    {
       "ai": "ai mistral/open-mistral-nemo score=4 happened=True scope=local: گفتگو رسمی، بدون تصمیم یا اقدام ملموس",
       "rescued": false,
       "rule": "routine-statement",
@@ -5980,6 +5966,20 @@
       "rule": "no-concrete-event",
       "t": 1792104998,
       "title": "Letters with 'suspicious substances' sent to US senators and election offices"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: اظهارنظر مخالفان ونزوئلا درباره شریک نفتی ترامپ اهمیت درجه اول ندارد",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792105567,
+      "title": "Venezuela’s Opposition Leader Calls Trump’s New Oil Partner Corrupt"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Minor international football match result, lacks national or global significance.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792105571,
+      "title": "Minus 17 to European dreams as Bournemouth fairytale continues"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11303,7 +11303,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792104892
+    "at": 1792105469
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11352,8 +11352,8 @@
     "last_status": 429
   },
   "groq:qwen/qwen3-32b": {
-    "disabled_until": 1792105289.0,
-    "last_failure": 1792104989,
+    "disabled_until": 1792105866.0,
+    "last_failure": 1792105566,
     "last_status": 404
   },
   "mistral:mistral-large-latest": {
