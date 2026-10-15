@@ -8,8 +8,7 @@ used up. It is used only AFTER Groq and Gemini, before OpenRouter (50 free reque
 1. Translation / rewrite (v13_ai_router.gemini_request): when the router reaches OpenRouter,
    Mistral (mistral-small-latest, open-mistral-nemo, ministral-8b-latest) is asked first with the
    same prompt, the same JSON check and the same strict content validation.
-2. Final editor (v13_ai_extra.ask_pool): mistral-small-latest, open-mistral-nemo and
-   ministral-8b-latest are inserted before OpenRouter, with a 1.5s minimum gap and a single 2.5s
+2. Final editor (v13_ai_extra.ask_pool): mistral-small-latest only is inserted before OpenRouter, with a 1.5s minimum gap and a single 2.5s
    retry on transient HTTP 429 so a bursty upstream rate limit never drops an editor batch.
 3. Event judge + AI sense check (v13_event_judge.ask): the same three models are asked when Groq
    and Gemini are paced or rate-limited.
@@ -21,6 +20,10 @@ Oct 15 (night review): with open-mistral-nemo first, the editor gate scored clea
 mistral-small-latest (same free plan, far better at the rubric and at Persian) now goes first,
 nemo is only a fallback, and the editor-cache rejections made by nemo are dropped once
 (_purge_nemo_rejections) so those stories are judged again by a stronger model.
+Same night, next run: mistral-small was in cooldown, so nemo judged again and again cached wrong
+rejections for 24 h. nemo and ministral-8b now never act as editor (translation fallback only);
+when no strong model answers, the gate fails closed WITHOUT caching, so the story is judged again
+on the next run. The purge runs once more (v2).
 
 No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot runs as before.
 """
@@ -31,10 +34,10 @@ import time
 
 MISTRAL_BASE = "https://api.mistral.ai/v1"
 TRANSLATE_MODELS = ("mistral-small-latest", "open-mistral-nemo", "ministral-8b-latest")
-EDITOR_MODELS = ("mistral-small-latest", "open-mistral-nemo", "ministral-8b-latest")
+EDITOR_MODELS = ("mistral-small-latest",)  # nemo/8b only translate: their editor verdicts were wrong
 MIN_INTERVAL_SEC = 1.5   # La Plateforme free tier is ~1 req/s across the account
 RETRY_429_SLEEP_SEC = 2.5
-PURGE_MARK = "_mistral_nemo_purge_v1"
+PURGE_MARK = "_mistral_nemo_purge_v2"
 _INSTALLED = {"done": False}
 _LAST_CALL = {"at": 0.0}
 
