@@ -11,6 +11,15 @@ sent at all: the caller gets a local 429 ("pace"), the pool moves on to the next
 model gets its turn again later. Same free keys, no extra accounts or keys: we only ask less often.
 Budgets sit a little under the real free limits seen on Oct 14 (env NABZ_PACE_<KEY> overrides,
 0 = no pacing for that model). Counts live in ai_model_health.json under _ai_pace.
+
+Oct 15 (day review):
+* Groq's limit is 200k TOKENS a day per model, and one call costs ~2,000 tokens: both Groq models
+  hit 199k at ~100 calls by 15:30 Tehran, so a budget of 170 calls never held them back and they
+  were gone for the evening. Groq budgets are now 95 calls (fits the token limit).
+* A local pace hold was treated by the router as a real provider 429, so the held model also
+  got a 10-minute cooldown (Oct 15 12:20 UTC: 10 of 18 models "disabled", 5 stories held for
+  "no AI" while the pacer would already have allowed some). A hold now never starts a cooldown
+  (_install_no_cooldown wraps v13_ai_router._mark_model_failure at load()).
 """
 
 import os
@@ -22,8 +31,8 @@ HEADROOM_H = 2.0
 BUDGETS = {
     "gemini:gemini-3.5-flash-lite": 450,
     "gemini:gemini-3.1-flash-lite": 250,
-    "groq:openai/gpt-oss-120b": 170,
-    "groq:openai/gpt-oss-20b": 170,
+    "groq:openai/gpt-oss-120b": 95,   # 200k tokens/day at ~2k tokens a call
+    "groq:openai/gpt-oss-20b": 95,
     "openrouter:*": 45,   # OpenRouter's 50 free requests a day are for the whole account
 }
 PACE_TEXT = ('{"error":{"message":"NabzKhabar local pace limit: this model has used its share of '
@@ -31,6 +40,7 @@ PACE_TEXT = ('{"error":{"message":"NabzKhabar local pace limit: this model has u
 _base = {}     # pace key -> {"day": id, "n": count saved by earlier runs}
 _delta = {}    # pace key -> {"day": id, "n": requests in this run}
 _held = {}     # pace key -> requests held back in this run
+_held_at = {}  # health key -> time of its last local hold (consumed by was_held)
 
 
 def _pace_key(hkey):
@@ -91,9 +101,38 @@ def pace_count(hkey, now=None):
     row["n"] += 1
 
 
+def was_held(hkey, within=60.0):
+    """True (once) when this model's last request was held back locally just now."""
+    t = _held_at.pop(str(hkey or ""), 0)
+    return bool(t) and time.time() - t <= within
+
+
+def _install_no_cooldown():
+    """A local pace hold is not a provider failure: it must never start a router cooldown."""
+    import v13_ai_router as r
+    previous = r._mark_model_failure
+    if getattr(previous, "_v13_pace_aware", False):
+        return
+
+    def mark(model, status):
+        try:
+            if int(status) == 429 and was_held(model):
+                return
+        except Exception:
+            pass
+        previous(model, status)
+
+    mark._v13_pace_aware = True
+    r._mark_model_failure = mark
+
+
 def load():
     """Counts saved by earlier runs. A quota day with no pace count yet (first run with the pacer)
     starts from the AI meter's count of the same UTC day, so a half-used quota is not re-spent."""
+    try:
+        _install_no_cooldown()
+    except Exception as exc:
+        print(f"V13 AI PACE: cooldown guard not installed ({type(exc).__name__})", flush=True)
     try:
         import v13_ai_router as r
         health = r._load_health()
@@ -140,6 +179,7 @@ def _pace_response(url):
     resp.headers = CaseInsensitiveDict({"Content-Type": "application/json"})
     resp.url = str(url)
     resp.reason = "Local pace limit"
+    resp._v13_local_pace = True
     return resp
 
 
@@ -154,6 +194,7 @@ def check(hkey, url):
             print(f"V13 AI PACE: {pkey} used {_pace_used(pkey, day)}/{_pace_budget(pkey)} of today's quota "
                   "(more than its share so far); held back, the next model is asked", flush=True)
         _held[pkey] = _held.get(pkey, 0) + 1
+        _held_at[str(hkey)] = time.time()
         return _pace_response(url)
     pace_count(hkey)
     return None
