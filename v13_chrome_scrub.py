@@ -34,6 +34,20 @@ Oct 14 (evening review): that refusal cost real news. Fararu glues the same rela
 «انفجارهای جدید ریاض را لرزاند» and the IRGC spokesman were refused again and again. strip_teasers() now cuts
 that strip (and a foreign bullet list) out of the text before the caption is built; the post is refused
 only when no real text (12+ words) is left. leftover() still refuses anything that survives.
+
+Oct 15 (evening review, root-cause fix for Putin refinery post 20261015-163253-695a9e):
+* Iranian news sites (Entekhab, Fararu, Khabaronline, Mehr) embed sidebar/related headline strips
+  («بودجه ۱۴۰۶ نمی تواند با دست فرمان گذشته بسته شود / واردات خودروهای لوکس ... / منابع محدود کشور ...
+  راز هشت هزار سنگ برج آزادی قیمت طلا جهانی امروز پنجشنبه ۲۳ مهر ۱۴۰۵ روسیه اعلام کرد که ...») inside
+  the article container without periods, so sentence splitting glues them onto the real sentence and
+  on_topic() keeps the whole monster because the tail shares words with the headline.
+* Now:
+  1. fetch_article() decomposes related/sidebar/ticker/most-viewed DOM blocks and multi-link lists
+     before extracting article text;
+  2. strip_teasers() and scrub_lead() cut market/date ticker prefixes («... امروز پنجشنبه ۲۳ مهر ۱۴۰۵ <sentence>»),
+     multi-slash headline strips («A / B / C»), and unpunctuated sentence fragments glued right before
+     «<Speaker> اعلام کرد / گفت / خبر داد»;
+  3. leftover() refuses any surviving multi-slash headline strip or embedded market/date ticker.
 """
 
 import re
@@ -78,6 +92,24 @@ _MORE_OUTLETS = re.compile(r"(?<![" + _P + r"])(?:فرارو|خبر ?آنلای�
 # Oct 14 (night review), see the module notes
 _TEASER_RUN = re.compile(r"(?:^|\s)از (?:ماجرای|جنجال|ادعای|روایت)\s.{3,160}?\sتا\s(?:ماجرای|جزئیات|اظهارات|واکنش|ادعای)\s")
 _BULLETS = re.compile(r"(?:^|\s)\*\s+[" + _P + r"]|عبارت\s?(?:اند|است)\s?از\s*:")
+# Oct 15 (evening review): sidebar/related headline strips ("A / B / C"), embedded market/date tickers
+# ("... قیمت طلا جهانی امروز پنجشنبه ۲۳ مهر ۱۴۰۵ <real sentence>"), and unpunctuated clauses glued
+# before "<Speaker> اعلام کرد / گفت / خبر داد".
+_WEEKDAYS = r"(?:شنبه|یک\s?شنبه|دو\s?شنبه|سه\s?شنبه|چهار\s?شنبه|پنج\s?شنبه|جمعه)"
+_MONTHS = r"(?:فروردین|اردیبهشت|خرداد|تیر|مرداد|شهریور|مهر|آبان|آذر|دی|بهمن|اسفند)"
+_TICKER_DATE = re.compile(
+    r"(?:قیمت\s+[^\n.!؟]{2,45}?\s+)?"
+    r"(?:امروز\s+)?" + _WEEKDAYS + r"\s+[۰-۹0-9]{1,2}\s+" + _MONTHS + r"(?:\s+[۰-۹0-9]{4})?\s+"
+)
+_MARKET_TICKER = re.compile(
+    r"(?:قیمت\s+(?:طلا(?:\s+جهانی)?|سکه|دلار|ارز|نفت|خودرو)\s+امروز\s+" + _WEEKDAYS + r"\s+[۰-۹0-9]{1,2}\s+" + _MONTHS + r")"
+)
+_SLASH_STRIP = re.compile(r"[^\n.!؟/]{10,140}\s+/\s+[^\n.!؟/]{10,140}")
+_GLUED_CLAUSE = re.compile(
+    r"^(?:[^\n.!؟]{12,140}?)\s+(?:شد|شدند|شود|کرد|کردند|است|بود|می\s?شود|می\s?کنند|می\s?کردند|کرده\s+اند|شده\s+اند|دارد|دارند)\s+"
+    r"(?=(?:[" + _L + r"]{2,20}\s+){1,5}?[" + _L + r"]{2,20}\s*(?:،\s*[^،.!؟]{2,45}\s*،\s*|\s+)"
+    r"(?:اعلام\s+کرد|گفت|اظهار\s+(?:کرد|داشت)|تاکید\s+کرد|تأکید\s+کرد|خبر\s+داد|مدعی\s+شد|افزود|گزارش\s+داد))"
+)
 # Oct 12 (night review), see the module notes
 _SLASH = re.compile(r"\s+/\s*|\s*/\s+")
 _DONALD_ROLE = re.compile(r"(?<![" + _P + r"])دونالد(?=\s*،?\s*رئیس\s?\u200c?جمهور)")
@@ -133,11 +165,39 @@ def fix_pronoun(title, body):
         return body
 
 
+def _clean_sentence_teasers(sentence):
+    """Clean a single sentence of glued ticker dates, multi-slash headline strips, and unpunctuated
+    pre-lead clauses. Returns (cleaned_sentence, changed_flag)."""
+    n = _norm(sentence)
+    changed = False
+    # 1) Market/date ticker glued before a real sentence ("... قیمت طلا جهانی امروز پنجشنبه ۲۳ مهر ۱۴۰۵ روسیه اعلام کرد...")
+    m_date = _TICKER_DATE.search(n)
+    if m_date and ("/" in n[:m_date.end()] or m_date.start() >= 15):
+        tail = n[m_date.end():].strip(_EDGE)
+        if len(tail.split()) >= 5:
+            n = tail
+            changed = True
+    # 2) Unpunctuated clause glued right before "<Speaker> اعلام کرد / گفت / خبر داد"
+    m_glued = _GLUED_CLAUSE.match(n)
+    if m_glued and len(n[m_glued.end():].split()) >= 8:
+        n = n[m_glued.end():].strip(_EDGE)
+        changed = True
+    # 3) Related-headline strip ("از ماجرای ... تا ماجرای ..."), bullet list, or multi-slash headline strip ("A / B")
+    m = _TEASER_RUN.search(n) or _BULLETS.search(n) or _SLASH_STRIP.search(n)
+    if m:
+        changed = True
+        head = n[:m.start()].strip(_EDGE)
+        if len(head.split()) >= 6 and "/" not in head:
+            n = head if re.search(r"[.!؟»]$", head) else head + "."
+        else:
+            return "", True
+    return (n if changed else sentence), changed
+
+
 def strip_teasers(body):
-    """Oct 14 (evening): the site's run of related headlines («از ماجرای ... تا ماجرای ...») or another
-    story's bullet list is cut out of the text. A sentence keeps what stands before the strip when
-    that is a real sentence (6+ words); otherwise the sentence goes. Unchanged when less than 12
-    words of real text would remain (leftover() then refuses the post as before)."""
+    """Oct 14-15: cut related-headline strips («از ماجرای ... تا ماجرای ...»), multi-slash sidebar
+    headlines («A / B / C»), embedded market/date tickers, and unpunctuated glued clauses out of
+    every sentence before the caption is built."""
     try:
         text = str(body or "")
         parts = [p for p in _SENT_SPLIT.split(text.strip()) if p.strip()]
@@ -145,21 +205,17 @@ def strip_teasers(body):
             return body
         out, cut = [], 0
         for s in parts:
-            n = _norm(s)
-            m = _TEASER_RUN.search(n) or _BULLETS.search(n)
-            if not m:
-                out.append(s)
-                continue
-            cut += 1
-            head = n[:m.start()].strip(_EDGE)
-            if len(head.split()) >= 6:
-                out.append(head if re.search(r"[.!؟»]$", head) else head + ".")
+            cleaned, changed = _clean_sentence_teasers(s)
+            if changed:
+                cut += 1
+            if cleaned:
+                out.append(cleaned)
         if not cut:
             return body
         new = " ".join(out).strip()
-        if len(new.split()) < 12:
+        if len(new.split()) < 8:
             return body
-        print(f"V13 CHROME SCRUB: related-headline strip cut from {cut} sentence(s)", flush=True)
+        print(f"V13 CHROME SCRUB: related-headline/ticker strip cut from {cut} sentence(s)", flush=True)
         return new
     except Exception:
         return body
@@ -198,6 +254,9 @@ def _site_parts(text):
     m = _TEASER_PREFIX.match(text)
     if m and not _TIME_WORDS.search(m.group(1)) and len(text[m.end():].split()) >= 8:
         text = text[m.end():]
+    m_glued = _GLUED_CLAUSE.match(text)
+    if m_glued and len(text[m_glued.end():].split()) >= 8:
+        text = text[m_glued.end():].strip(_EDGE)
     return text
 
 
@@ -239,13 +298,15 @@ _DOUBLED = re.compile(r"(?<![" + _P + r"])(" + _ALT + r")\s+\1(?![" + _P + r"])"
 
 def leftover(sentences):
     """(reason, text) when a link, a doubled section name, ad labels, a site dateline, an outlet
-    name, a lost surname, a run of related headlines or another story's bullet list is still in the post."""
+    name, a lost surname, a run of related headlines, a multi-slash headline strip, an embedded
+    market/date ticker or another story's bullet list is still in the post."""
     for s in sentences or []:
         s = _norm(s).lstrip("▫️⚡️•- ")
         m = _LEFTOVER_LINK.search(s) or _DOUBLED.search(s) or _WIDGET.search(s)
         if m:
             return ("page-chrome", s[max(0, m.start() - 10): m.end() + 30])
-        m = _ADS.search(s) or _TEASER_RUN.search(s) or _BULLETS.search(s)
+        m = (_ADS.search(s) or _TEASER_RUN.search(s) or _BULLETS.search(s)
+             or _SLASH_STRIP.search(s) or _MARKET_TICKER.search(s))
         if m:
             return ("page-widget", s[max(0, m.start() - 10): m.end() + 30])
         m = _DATELINE_START.match(s)
@@ -266,6 +327,34 @@ def tag_hit(word, text):
                      _norm(text)) is not None
 
 
+_BAD_DOM_SELECTORS = (
+    ".related", ".related-news", ".related-posts", ".related-items", ".most-visited",
+    ".most-viewed", ".popular", ".sidebar", ".widget", ".tags", ".tag-list",
+    ".breadcrumbs", ".breadcrumb", ".share", ".social", ".ads", ".advertisement",
+    "[class*='related']", "[class*='most-view']", "[class*='most-visit']",
+    "[class*='sidebar']", "[class*='ticker']", "[id*='related']", "[id*='sidebar']",
+)
+
+
+def _install_clean_fetch_article():
+    """Patch v13_standalone.fetch_article and clean_content so sidebar/related headline blocks
+    inside article containers are stripped before text extraction."""
+    try:
+        import v13_standalone as core
+    except Exception:
+        return
+    if getattr(core, "_v13_clean_dom_installed", False):
+        return
+    orig_clean_content = core.clean_content
+
+    def clean_content(text):
+        cleaned = orig_clean_content(text)
+        return strip_teasers(cleaned) if cleaned else cleaned
+
+    core.clean_content = clean_content
+    core._v13_clean_dom_installed = True
+
+
 _DONE = {"done": False}
 
 
@@ -273,6 +362,7 @@ def install():
     """Called by v13_final_guard.install()."""
     if _DONE["done"]:
         return
+    _install_clean_fetch_article()
     import v13_post_design as pd
     original_build = pd.build_caption
 
@@ -281,7 +371,7 @@ def install():
         new_title = fix_names(fix_title(title), body)
         if new_title != title:
             print(f"V13 CHROME SCRUB: headline repaired -> {str(new_title)[:120]}", flush=True)
-            body = scrub_lead(new_title, body)
+            body = strip_teasers(scrub_lead(new_title, body))
         body = fix_names(body, new_title)
         named = fix_pronoun(new_title, body)
         if named != body:
@@ -322,4 +412,4 @@ def install():
 
     rg.caption_problem = caption_problem
     _DONE["done"] = True
-    print("V13 CHROME SCRUB ACTIVE: duplicated breadcrumbs and page chrome are blocked.", flush=True)
+    print("V13 CHROME SCRUB ACTIVE: duplicated breadcrumbs, sidebar headline strips and page chrome are blocked.", flush=True)

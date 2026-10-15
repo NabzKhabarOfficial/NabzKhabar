@@ -6,12 +6,12 @@ second), so it can carry the night when Groq's 200k tokens a day and Gemini's da
 used up. It is used only AFTER Groq and Gemini, before OpenRouter (50 free requests a day):
 
 1. Translation / rewrite (v13_ai_router.gemini_request): when the router reaches OpenRouter,
-   Mistral (mistral-small-latest, open-mistral-nemo) is asked first with the same prompt,
+   Mistral (open-mistral-nemo, mistral-small-latest) is asked first with the same prompt,
    the same JSON check and the same strict content validation.
-2. Final editor (v13_ai_extra.ask_pool): BOTH mistral-small-latest and open-mistral-nemo are
+2. Final editor (v13_ai_extra.ask_pool): BOTH open-mistral-nemo and mistral-small-latest are
    inserted before OpenRouter, with a 1.5s minimum gap and a single 2.5s retry on transient HTTP
    429 so a bursty upstream rate limit never drops an editor batch.
-3. Event judge + AI sense check (v13_event_judge.ask): mistral-small-latest and open-mistral-nemo
+3. Event judge + AI sense check (v13_event_judge.ask): open-mistral-nemo and mistral-small-latest
    are asked when Groq and Gemini are paced or rate-limited.
 4. The AI meter counts it (_ai_usage key "mistral:<model>"); it is not paced (no daily cap).
 
@@ -23,8 +23,8 @@ import sys
 import time
 
 MISTRAL_BASE = "https://api.mistral.ai/v1"
-TRANSLATE_MODELS = ("mistral-small-latest", "open-mistral-nemo")
-EDITOR_MODELS = ("mistral-small-latest", "open-mistral-nemo")
+TRANSLATE_MODELS = ("open-mistral-nemo", "mistral-small-latest")
+EDITOR_MODELS = ("open-mistral-nemo", "mistral-small-latest")
 MIN_INTERVAL_SEC = 1.5   # La Plateforme free tier is ~1 req/s across the account
 RETRY_429_SLEEP_SEC = 2.5
 _INSTALLED = {"done": False}

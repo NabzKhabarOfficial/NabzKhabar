@@ -15,7 +15,7 @@
    («... با حوثی ها در ار» + lead «تباط هستیم/ ...»), and drops «در ادامه می آید» teasers.
 4) Oct 12 (night review): the site title gets the same headline repair as the channel
    (v13_chrome_scrub.fix_title / fix_names), and retro_fix_v3() fixes today's bad pages once
-   (docs/.retro_clean_v3): two repeats of the Galilee blast are taken off the site, and a cut
+   (docs/.retro_clean_v3): two repeats of the Galilee Galilee blast are taken off the site, and a cut
    headline, a lost surname, page chrome and leads that start mid-sentence are repaired.
 5) Oct 13 (review): retro_fix_v4() (docs/.retro_clean_v4) repairs 6 more pages once: a sticky
    teaser before the lead, outlet names («العربی», «صداوسیما»), a 150+ character headline and
@@ -23,6 +23,9 @@
 6) Oct 14 (night review): retro_fix_v5() (docs/.retro_clean_v5) repairs 4 Oct 13 pages once: an outlet
    name in the headline («پالتیکو»), a run of related headlines glued to the lead, another story's
    bullet list in the lead, and a lead that opens with «وی».
+7) Oct 15 (evening review): retro_fix_v6() (docs/.retro_clean_v6) repairs the Putin refinery page
+   (sidebar headline/ticker strip in detail[0]) and 4 Oct 14-15 pages with glued pre-lead clauses or
+   wording slips.
 
 All of it is best-effort: any failure is logged and never affects news
 publication. The digest state lives in ai_model_health.json (persisted).
@@ -597,6 +600,37 @@ def retro_fix_v5():
     _retro_fix(RETRO_V5, V5_FIX, _V5_OUTLET, "v5")
 
 
+# Oct 15 (evening review): Putin refinery post (sidebar headline/ticker strip in detail[0]) and
+# four Oct 14-15 posts with glued pre-lead clauses or Persian wording slips.
+RETRO_V6 = os.path.join(DOCS, ".retro_clean_v6")
+V6_FIX = {
+    "20261015-163253-695a9e": {
+        "lead": "ولادیمیر پوتین، رئیس جمهور روسیه، اعلام کرد که مسکو به حملات اوکراین به پالایشگاه های نفت این کشور پاسخ خواهد داد.",
+        "details": [
+            "حملات اوکراین به زیرساخت های انرژی روسیه در شرایطی ادامه دارد که پالایشگاه ها و تأسیسات نفتی این کشور به یکی از اهداف حملات کی یف تبدیل شده اند.",
+            "این حملات می تواند بر تولید و صادرات فرآورده های نفتی روسیه تأثیر بگذارد.",
+        ],
+    },
+    "20261015-083048-2b1e79": {
+        "lead": "صندوق بین المللی پول اعلام کرد: طولانی شدن جنگ در خاورمیانه و پیامدهای آن برای تولید انرژی، مسیرهای کشتیرانی و زیرساخت های حیاتی، بزرگ ترین خطر برای اقتصادهای خاورمیانه و آسیای مرکزی به شمار می رود.",
+    },
+    "20261015-100623-26f970": {
+        "lead": "رئیس جمهور مسعود پزشکیان اعلام کرد در پی جنگ رمضان ۲۳۰ میلیون مترمکعب گاز از دست رفت و تاکنون ۱۰۰ میلیون مترمکعب آن بازگردانده شده است.",
+    },
+    "20261015-082003-e635b8": {
+        "lead": "شمار تلفات حادثه ریزش سقف مدرسه در شهر پیشاور پاکستان به ۳۰ کشته افزایش یافت.",
+    },
+    "20261014-191704-e3b9e2": {
+        "lead": "ایوایلو میرچف، نماینده پارلمان بلغارستان، اعلام کرد دو فرد نقاب دار عمداً ۱۱ مورد از ۱۷ آنتن استارلینک را در یک تأسیسات محرمانه در نزدیکی صوفیه، پایتخت بلغارستان، به آتش کشیده اند.",
+    },
+}
+_V6_OUTLET = re.compile(r"بودجه ۱۴۰۶|قیمت طلا جهانی امروز")
+
+
+def retro_fix_v6():
+    _retro_fix(RETRO_V6, V6_FIX, _V6_OUTLET, "v6")
+
+
 # --------------------------------------------------------------------------
 # Install
 # --------------------------------------------------------------------------
@@ -606,6 +640,7 @@ def install(core, current, plan_for):
     retro_fix_v3()
     retro_fix_v4()
     retro_fix_v5()
+    retro_fix_v6()
 
     def wrap(name, text_index):
         inner = getattr(core, name, None)
