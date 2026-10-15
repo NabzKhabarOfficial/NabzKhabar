@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792011828
-    },
-    {
       "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
       "t": 1792011835
     },
@@ -159,24 +155,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792021709
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1792022839
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 73
+      "n": 75
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 24
+      "n": 27
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-10-14",
-      "n": 196
+      "day": "2026-10-15",
+      "n": 9
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-10-14",
-      "n": 150
+      "day": "2026-10-15",
+      "n": 4
     },
     "openrouter:*": {
       "day": "2026-10-14",
@@ -258,6 +258,37 @@
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
         "ok": 14,
         "other": 0
+      }
+    },
+    "2026-10-15": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 2,
+        "calls": 3,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 1,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 2,
+        "calls": 9,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7298, Requested 1760. Please try again in 7.935s.",
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 5,
+        "other": 2
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 1,
+        "calls": 4,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199777, Requested 1859. Please try again in 11m46.7",
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 0,
+        "other": 3
       }
     }
   },
@@ -1225,6 +1256,12 @@
       "topic": "فناوری",
       "until": 1792071471.9957542
     },
+    "v4|iran war live: tehran vows to fight until us yields as ships sink in hormuz": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=9 happened=True scope=world: Ships sank; Tehran vows war continuation",
+      "topic": "نظامی",
+      "until": 1792109239.63878
+    },
     "v4|israeli air strike kills palestinian woman in gaza city": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله هوایی اسرائیل و کشته شدن غیرنظامی در غزه",
@@ -1248,6 +1285,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اعتراض رسمی ژاپن به روسیه و احضار سفیر.",
       "topic": "سیاست",
       "until": 1792065077.3079712
+    },
+    "v4|lula’s party accuses meta of election interference ahead of brazil runoff": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Party plans complaint; not a concrete decision",
+      "topic": "سیاست",
+      "until": 1792109237.2157233
     },
     "v4|mckinsey is making job applicants spar with a fake ai client": {
       "ok": false,
@@ -2509,12 +2552,6 @@
       "topic": "نظامی",
       "until": 1792073209.5121515
     },
-    "v4|جذب دانشجویان مستعد دانشگاه های برتر به حرفه معلمی بدون آزمون استخدامی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: بررسی دستورالعمل جذب معلم بدون آزمون رویداد درجه یک نیست",
-      "topic": "جامعه",
-      "until": 1792052929.1873183
-    },
     "v4|جزئیات ترور افسانه عقیلا در سیستان و بلوچستان": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: ترور و شهادت پرسنل نظامی در سیستان و بلوچستان.",
@@ -2532,12 +2569,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: جزئیات حمله پهپادی به شناور صیادی در سیریک با سه مجروح",
       "topic": "حادثه",
       "until": 1792052933.867536
-    },
-    "v4|جشنواره های همدان؛ عناوین پرطمطراق و جای خالی مخاطب": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: گزارش انتقادی محلی درباره جشنواره‌های همدان و بی‌توجهی به مخاطب.",
-      "topic": "جامعه",
-      "until": 1792052928.3704054
     },
     "v4|جمینای 4 آرگون، قدرتمندترین هوش مصنوعی گوگل منتشر شد": {
       "ok": true,
@@ -2688,6 +2719,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: مصاحبه با کارگردان درباره ساخت یک سریال",
       "topic": "جامعه",
       "until": 1792054615.14955
+    },
+    "v4|خوش رو ترین تعویضی فوتبال با پیراهن سپاهان!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تاثیر محدود، فقط یک تعویض در دربی",
+      "topic": "ورزش",
+      "until": 1792109236.1829777
     },
     "v4|خیابان های ایلام همچنان سنگر پایداری": {
       "ok": false,
@@ -3469,12 +3506,6 @@
       "topic": "اقتصاد",
       "until": 1792068514.579759
     },
-    "v4|عرضه خارج از شبکه ۷۷ حلقه لاستیک سهمیه ای قم در سایر استان ها": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تخلف توزیع لاستیک در قم یک خبر محلی و کم‌اهمیت است",
-      "topic": "اقتصاد",
-      "until": 1792052929.9837596
-    },
     "v4|عرضه مرغ بالای ۲.۲ کیلوگرم ممنوع شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: تصمیم وزارتخانه درباره وزن عرضه مرغ، خبری تخصصی و صنفی است.",
@@ -4063,12 +4094,6 @@
       "topic": "اقتصاد",
       "until": 1792074375.3403106
     },
-    "v4|نیکاراگوئه سفیر پیشنهادی واشنگتن را نپذیرفت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: اخراج یا رد سفیر آمریکا توسط نیکاراگوئه تحنی دیپلماتیک مهمی است",
-      "topic": "سیاست",
-      "until": 1792052930.756248
-    },
     "v4|هادی جوهری: تعامل با دولت و ارکان بازار، دو اقدام کلیدی سازمان بورس بود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: اظهارنظر مدیرعامل درباره عملکرد سازمان بورس",
@@ -4122,6 +4147,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: هشدار و پیشگیری استانی درباره خطر گازگرفتگی بدون وقوع حادثه خاص.",
       "topic": "سلامت",
       "until": 1792068514.5467558
+    },
+    "v4|هلند ۱۵ میلیون یورو برای بازسازی سوریه اختصاص می دهد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=world: Future aid plan, not immediate event",
+      "topic": "سیاست",
+      "until": 1792109239.652403
     },
     "v4|هلیچی: حق بازیکن ایرانی کجاست؟/ اعتراض جدید به صدور کارت بازیکنان استقلال خوزستان": {
       "ok": false,
@@ -4711,6 +4742,10 @@
       "reason": "content_duplicate",
       "until": 1792034029.7684798
     },
+    "iran war live: tehran vows to fight until us yields as ships sink in hormuz": {
+      "reason": "content_duplicate",
+      "until": 1792044454.7044165
+    },
     "russia attack hits kyiv after reported intelligence lapse": {
       "reason": "content_duplicate",
       "until": 1792033440.6164412
@@ -4790,24 +4825,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "احتمال شنیدن صدای انفجار در رودبار کرمان ⚡️ به دنبال این اقدام، احتمال شنیدن صدای انفجار در این محدوده وجود دا",
-      "id": "27586df4a8",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791975155,
-      "verdict": "new",
-      "why": "این خبر مربوط به رویداد جدیدی در رودبار کرمان است."
-    },
-    {
-      "head": "تهدید جدید کاتز علیه ایران و حزب الله ⚡️ يسرائیل کاتز وزیر جنگ اسرائیل تهدید کرد که در صورت پیوستن حزب الله لب",
-      "id": "cfdec17cf2",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791975735,
-      "verdict": "new",
-      "why": "این تهدید جدید وزیر جنگ اسرائیل است و مورد مشابهی منتشر نشده است."
-    },
     {
       "head": "توافق چین و اروپا بر سر اختلافات تجاری خودروهای برقی ⚡️ چین و اتحادیه اروپا برای کاهش تنش های تجاری و تثبیت زن",
       "id": "7ef39d5508",
@@ -5331,23 +5348,29 @@
       "t": 1792018776,
       "verdict": "update",
       "why": "Provides new details on the ongoing trial regarding Nord Stream sabotage."
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "تهران تا پذیرش خواست های ایالات متحده، مبارزه را ادامه می دهد؛ کشتی ها در تنگه هرمز غرق می شوند ⚡️ ایران اعلام",
+      "id": "a11d9be265",
+      "match": "حمله به یک کشتی کانتینری در تنگه هرمز",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1792022849,
+      "verdict": "repeat",
+      "why": "Both report attacks on ships and conflict escalation in the Strait of Hormuz."
+    },
+    {
+      "confirm": "none:-",
+      "head": "تهران تا پذیرش خواست های ایالات متحده، مبارزه را ادامه می دهد؛ کشتی ها در تنگه هرمز غرق می شوند ⚡️ ایران اعلام",
+      "id": "a11d9be265",
+      "match": "حمله به یک کشتی کانتینری در تنگه هرمز",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1792022854,
+      "verdict": "repeat",
+      "why": "The post refers to the same specific incident in Hormuz."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: رویداد فرهنگی محلی و فاقد اهمیت ملی یا بین‌المللی است.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792007667,
-      "title": "«اززسر» جشنواره ای برای سفر به تاریخ گرگان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local sermon by a city Friday prayer leader.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792007669,
-      "title": "امام جمعه دهگلان: مبارزه با فساد و تحقق عدالت، مطالبه جدی مردم است"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این خبر مربوط به یک تجمع محلی در شهر لنگرود است.",
       "rescued": false,
@@ -5893,6 +5916,20 @@
       "rule": "foreign-local-preselection",
       "t": 1792022259,
       "title": "Illegal tobacco increasingly hard to spot, with some fakes featuring Australian health warnings"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تاثیر محدود، فقط یک تعویض در دربی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792022836,
+      "title": "خوش رو ترین تعویضی فوتبال با پیراهن سپاهان!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Party plans complaint; not a concrete decision",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792022837,
+      "title": "Lula’s party accuses Meta of election interference ahead of Brazil runoff"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11085,7 +11122,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792022153
+    "at": 1792022717
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11121,15 +11158,9 @@
     "last_failure": 1791936876,
     "last_status": 599
   },
-  "groq:openai/gpt-oss-120b": {
-    "daily_quota_rest": true,
-    "disabled_until": 1792022293,
-    "last_failure": 1792021693,
-    "last_status": 429
-  },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792024135.7579176,
+    "disabled_until": 1792026454.549292,
     "last_failure": 1792020535,
     "last_status": 429
   },
