@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792047226
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792047231
-    },
-    {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.1-flash-lite",
-      "t": 1792047235
-    },
-    {
-      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-20b",
-      "t": 1792047237
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, openrouter:* held 6x",
       "t": 1792047263
     },
@@ -159,12 +143,28 @@
     {
       "e": "AI PACE: gemini:gemini-3.5-flash-lite held 4x, groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 3x, openrouter:* held 6x",
       "t": 1792053049
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792053459
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792053464
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 2 stories",
+      "t": 1792053464
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-20b held 1x",
+      "t": 1792053464
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 21
+      "n": 24
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
@@ -176,7 +176,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 75
+      "n": 76
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -263,10 +263,10 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 101,
+        "calls": 104,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 96,
-        "other": 5
+        "ok": 98,
+        "other": 6
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 30,
@@ -286,10 +286,10 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 19,
-        "calls": 75,
+        "calls": 76,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198273, Requested 1979. Please try again in 1m48.86",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 29,
+        "ok": 30,
         "other": 27
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -1986,6 +1986,12 @@
       "topic": "جامعه",
       "until": 1792066784.5442889
     },
+    "v4|افتتاح نمایشگاه خوشنویسی «طریق شکسته ۲» در نگارخانه رها": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: نمایشگاه خوشنویسی در نگارخانه رها",
+      "topic": "جامعه",
+      "until": 1792139859.1571476
+    },
     "v4|افتتاح ۲۴ کیلومتر راه روستایی در طالقان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: راه‌روستایی محلی، اثر ملی محدود",
@@ -2310,12 +2316,6 @@
       "topic": "سیاست",
       "until": 1792120787.8956692
     },
-    "v4|بیانیه محمد خاتمی درباره اوضاع جاری بین المللی و ملی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: بیانیه مقامات سابق و نظرات سیاسی فاقد ارزش خبری درجه یک است",
-      "topic": "سیاست",
-      "until": 1792065067.5511193
-    },
     "v4|بیش از هزار میلیارد تومان برای توسعه زیرساخت های ورزشی زنجان تأمین شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تأمین بودجه برای پروژه‌های استانی یک خبر محلی و عادی است.",
@@ -2502,6 +2502,12 @@
       "topic": "سیاست",
       "until": 1792081351.8558414
     },
+    "v4|تقویت هویت ملی و دینی؛ مهم ترین دغدغه نظام تعلیم و تربیت": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine official remarks on educational policy without concrete executive decisions.",
+      "topic": "جامعه",
+      "until": 1792139861.4253712
+    },
     "v4|تلاش برای بهبود معیشت پرستاران و توسعه فضاهای حمایتی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine official remarks on welfare without concrete policy or budget changes.",
@@ -2537,12 +2543,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تهدید رسمی وزیر جنگ اسرائیل علیه غیرنظامیان لبنانی",
       "topic": "نظامی",
       "until": 1792067974.6610596
-    },
-    "v4|تهدید وزیر جنگ رژیم صهیونیستی علیه لبنان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تهدید رسمی مقام ارشد نظامی اسرائیل علیه لبنان.",
-      "topic": "نظامی",
-      "until": 1792065077.270905
     },
     "v4|تهران در بین دو نامزد نهایی میزبانی کنفرانس جهانی اقتصاد خلاق": {
       "ok": false,
@@ -3162,12 +3162,6 @@
       "topic": "سیاست",
       "until": 1792097222.0600574
     },
-    "v4|زلنسکی: روسیه شب گذشته با ۳۹ موشک بالستیک و بیش از ۱۲۰ پهپاد تهاجمی، به طور مشخص زیرساخت های انرژی ما را که شامل آتش بس می شد، هدف قرار داد/ مسکو اظهارات ترامپ را قدرتمند و بازدارن": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله هوایی گسترده روسیه به زیرساخت‌های انرژی اوکراین.",
-      "topic": "نظامی",
-      "until": 1792065077.26124
-    },
     "v4|زنگ خطر کم آبی برای زمستان به صدا درآمد / سدهای مهم پایتخت در وضعیت بحرانی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: هشدار معمول درباره وضعیت سدها و کم‌آبی پایتخت",
@@ -3431,6 +3425,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سکوت در مرکز درمانی، سوءاستفاده از کودکان معلول",
       "topic": "سلامت",
       "until": 1792124330.641769
+    },
+    "v4|شکایت قضایی برای به چالش کشیدن قانونی بودن نقش کوشنر در دولت ترامپ": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Routine legal challenge against a former official, lacks immediate strategic impact.",
+      "topic": "قضایی",
+      "until": 1792139863.2336273
     },
     "v4|شکست ۱۰ بر یک اهورا بویری در قهرمانی جهان/ حذفی های کشتی فرنگی به عدد ۵ رسید": {
       "ok": false,
@@ -5413,27 +5413,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: مرور روزنامه‌های استانی یک موضوع محلی و فاقد اهمیت ملی است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792040814,
-      "title": "صفحه نخست روزنامه های استان فارس پنجشنبه ۲۳ مهرماه"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این یک برنامه آموزشی استانی و روتین است و اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792041307,
-      "title": "اجرای پویش ملی «هر دانش آموز، یک امدادگر» در ۱۰ مدرسه متوسطه ایلام"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine review of sports newspapers regarding a minor league football match.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792041320,
-      "title": "روزنامه های ورزشی پنج شنبه ۲۳ مهر ۱۴۰۵"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine administrative data collection in a single province.",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -5971,6 +5950,27 @@
       "rule": "no-concrete-event",
       "t": 1792052962,
       "title": "۱۵ سال عقب ماندگی در توسعه ناوگان آمبولانس اورژانس/ نیازمند ۵ هزار آمبولانس جدید هستیم"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: نمایشگاه خوشنویسی در نگارخانه رها",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792053459,
+      "title": "افتتاح نمایشگاه خوشنویسی «طریق شکسته ۲» در نگارخانه رها"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine official remarks on educational policy without concrete executive decisions.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792053461,
+      "title": "تقویت هویت ملی و دینی؛ مهم ترین دغدغه نظام تعلیم و تربیت"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Routine legal challenge against a former official, lacks immediate strategic impact.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792053463,
+      "title": "شکایت قضایی برای به چالش کشیدن قانونی بودن نقش کوشنر در دولت ترامپ"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10362,7 +10362,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792052798
+    "at": 1792053368
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10377,8 +10377,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792052682.0,
-    "last_failure": 1792052382,
+    "disabled_until": 1792053764.0,
+    "last_failure": 1792053464,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
@@ -10406,8 +10406,8 @@
   },
   "groq:openai/gpt-oss-20b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792053054.8301985,
-    "last_failure": 1792047242,
+    "disabled_until": 1792054059,
+    "last_failure": 1792053459,
     "last_status": 429
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
