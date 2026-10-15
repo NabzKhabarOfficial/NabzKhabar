@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792034386
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792034389
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1792034392
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
-      "t": 1792034432
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792035540
     },
@@ -159,16 +143,32 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792039649
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792040231
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792040261
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: no usable verdict",
+      "t": 1792040266
+    },
+    {
+      "e": "AI PACE: openrouter:* held 6x",
+      "t": 1792040269
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 112
+      "n": 117
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 45
+      "n": 46
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
@@ -180,7 +180,7 @@
     },
     "openrouter:*": {
       "day": "2026-10-15",
-      "n": 13
+      "n": 14
     }
   },
   "_ai_usage": {
@@ -263,14 +263,14 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 33,
+        "calls": 37,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 32,
+        "ok": 36,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 13,
-        "calls": 21,
+        "429": 14,
+        "calls": 22,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 8,
         "other": 0
@@ -325,8 +325,8 @@
       },
       "openrouter:openrouter/free": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       }
     }
@@ -1769,6 +1769,12 @@
       "topic": "سیاست",
       "until": 1792075509.850098
     },
+    "v4|ابهام در سرنوشت یک خرید بزرگ/ کم لطفی مورینیو به برناردو سیلوا کی تمام می شود؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اخبار حاشیه‌ای و گمانه‌زنی‌های ورزشی فاقد اهمیت ملی یا بین‌المللی است.",
+      "topic": "ورزش",
+      "until": 1792126631.6757998
+    },
     "v4|ابوالفضل مهمدی: کشتی در خون و رگ های ما جریان دارد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine athlete interview after a competition; lacks major championship title significance.",
@@ -2339,12 +2345,6 @@
       "topic": "ورزش",
       "until": 1792124298.7778728
     },
-    "v4|بسیج ادارات می تواند نقش مؤثری در ترویج فرهنگ مصرف بهینه گاز داشته باشد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: توصیه و سخنرانی مدیر استانی درباره بهینه‌سازی مصرف گاز.",
-      "topic": "جامعه",
-      "until": 1792056405.9102826
-    },
     "v4|بعد از لغو بازی ها و شنیده شدن دائمی صدای انفجار/ فرار رونالدو و ستاره ها از عربستان: اینجا امن نیست!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: گمانه‌زنی و ادعای رسانه‌ای درباره ترک ستاره‌ها از عربستان",
@@ -2735,12 +2735,6 @@
       "topic": "جامعه",
       "until": 1792075518.1171193
     },
-    "v4|حملات موشکی و پهپادی یمن به مراکز حیاتی": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حملات موشکی و پهپادی یمن به مراکز حیاتی در منطقه.",
-      "topic": "نظامی",
-      "until": 1792056405.1304905
-    },
     "v4|حملات یمن مسابقات تنیس در عربستان را به تعویق انداخت": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: پیامد مستقیم حملات یمن بر رویدادهای بین‌المللی در منطقه",
@@ -2806,6 +2800,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: انتقاد محلی مدیرکل بازرسی کرمان از خام‌فروشی و معادن مس",
       "topic": "اقتصاد",
       "until": 1792061056.4202852
+    },
+    "v4|خلاصه بازی رئال مادرید مقابل رم (۴ - ۳)": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه بازی مرحله گروهی لیگ قهرمانان اروپا اهمیت خبری بالایی ندارد.",
+      "topic": "ورزش",
+      "until": 1792126619.9498813
     },
     "v4|خودروسازان چینی در اروپا ریشه دواندند": {
       "ok": false,
@@ -3857,6 +3857,12 @@
       "topic": "سیاست",
       "until": 1792064460.3686075
     },
+    "v4|مرور روزنامه های ۲۳ مهر ۱۴۰۵": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=False scope=local: مرور روزنامه‌ها محتوای تحلیلی و رسانه‌ای است و خبر دست‌اول محسوب نمی‌شود.",
+      "topic": "جامعه",
+      "until": 1792126646.8515282
+    },
     "v4|مرکز خدمات مشاوره دولتی بهزیستی در کیش افتتاح شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: افتتاح مرکز مشاوره در کیش محلی و کم‌اهمیت است.",
@@ -4175,6 +4181,12 @@
       "topic": "اقتصاد",
       "until": 1792066787.7852511
     },
+    "v4|هالند رکورد مسی و آگوئرو را شکست": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: شکستن رکورد گلزنی در لیگ قهرمانان اروپا توسط ارلینگ هالند",
+      "topic": "ورزش",
+      "until": 1792126639.6870294
+    },
     "v4|هدفگذاری رسیدن به سرانه ۶.۱ مترمربع آموزشی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Educational space target, planning statement, no immediate impact",
@@ -4348,12 +4360,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: پایش تندرستی دانشجویان خبر رده اول محسوب نمی شود",
       "topic": "سلامت",
       "until": 1792073800.0469117
-    },
-    "v4|پرداخت مطالبات پیمانکاران طرح های نفت و گاز در عسلویه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: اعلام پرداخت مطالبات پیمانکاران، رویداد روتین اداری و اقتصادی است.",
-      "topic": "اقتصاد",
-      "until": 1792056405.1178782
     },
     "v4|پزشکیان مصوبه تسهیل فرایندهای گمرکی و حمل یک سره کالا را ابلاغ کرد": {
       "ok": true,
@@ -4613,12 +4619,6 @@
       "topic": "آب و هوا",
       "until": 1792126027.5544345
     },
-    "v4|گزارش فایننشال تایمز از شدت تنش در تنگه هرمز؛ ایران ممکن است در حال توسعه توانمندی های موشکی ضدکشتی خود باشد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: گزارش امنیتی بین‌المللی درباره حملات به کشتی‌ها در تنگه هرمز.",
-      "topic": "نظامی",
-      "until": 1792056405.1051364
-    },
     "v4|گزارشی از حمله به یک کشتی در تنگه هرمز": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله به کشتی در تنگه هرمز رویداد مهم امنیتی منطقه ای است.",
@@ -4782,9 +4782,9 @@
       "until": 1792044454.7044165
     },
     "ukraine’s exposure grows as satellite use is restricted and russia escalates": {
-      "at": 1792037946.6272328,
+      "at": 1792040269.3662329,
       "reason": "ai_unavailable_foreign",
-      "until": 1792039146.6272328
+      "until": 1792041469.3662329
     },
     "آتش زدن تأسیسات سری استارلینک در بلغارستان": {
       "reason": "content_duplicate",
@@ -4800,10 +4800,6 @@
       "reason": "final_guard:ai-garbled",
       "until": 1792057810.5630598
     },
-    "حمله دوباره عربستان به پایتخت یمن": {
-      "reason": "content_duplicate",
-      "until": 1792038074.7613058
-    },
     "روته: در حال حاضر تهدیدی مبنی بر حمله روسیه به خاک کشورهای عضو ناتو وجود ندارد": {
       "reason": "content_duplicate",
       "until": 1792056032.179933
@@ -4811,11 +4807,6 @@
     "ریزش سنگین بورس سعودی به دنبال حمله یمن به آرامکو": {
       "reason": "content_duplicate",
       "until": 1792051959.6456103
-    },
-    "لفاظی های ضدایرانی ترامپ؛ از کوچک نمایی هزینه جنگ تا تکرار پایان سریع آن": {
-      "at": 1792037946.6272328,
-      "reason": "ai_unavailable_local",
-      "until": 1792039146.6272328
     },
     "یمن از حمله موشکی به فرودگاه بین المللی ریاض خبر داد": {
       "reason": "content_duplicate",
@@ -5372,34 +5363,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر شهری درباره تجهیز پناهگاه در تهران اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792015026,
-      "title": "تجهیز پارکینگ های خصوصی و تجاری به عنوان پناهگاه/ مقاوم سازی ۲۴ پل در تهران"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine political statement by a local MP without strategic impact.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792015028,
-      "title": "حفظ وحدت و توجه به مطالبات مردم باید در دستور کار قرار گیرد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: تحلیل و نظر کارشناسی درباره استراتژی حوثی‌ها، فاقد رویداد خبری مشخص.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792015030,
-      "title": "‘Growing ambitions’: Dr. Kendall on Houthis’ quest to be recognised as Yemen’s ‘legitimate' leaders"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: موضوع محلی مربوط به ترافیک و مدارس شهر اردبیل است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792015274,
-      "title": "ترافیک مدارس اردبیل زیر سایه هزینه سرویس و کمبود مدرسه"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: School shooting involving anti-terror investigators is a significant international security e",
       "rescued": false,
       "rule": "final-scope-preselection",
@@ -5930,6 +5893,34 @@
       "rule": "local-routine-low-value",
       "t": 1792039628,
       "title": "یزدی ها: تا هر زمانی که نیاز باشد در میدان حاضریم"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه بازی مرحله گروهی لیگ قهرمانان اروپا اهمیت خبری بالایی ندارد.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792040219,
+      "title": "خلاصه بازی رئال مادرید مقابل رم (۴ - ۳)"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اخبار حاشیه‌ای و گمانه‌زنی‌های ورزشی فاقد اهمیت ملی یا بین‌المللی است.",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1792040231,
+      "title": "ابهام در سرنوشت یک خرید بزرگ/ کم لطفی مورینیو به برناردو سیلوا کی تمام می شود؟"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: شکستن رکورد گلزنی در لیگ قهرمانان اروپا توسط ارلینگ هالند",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792040239,
+      "title": "هالند رکورد مسی و آگوئرو را شکست"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=0 happened=False scope=local: مرور روزنامه‌ها محتوای تحلیلی و رسانه‌ای است و خبر دست‌اول محسوب نمی‌شود.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792040246,
+      "title": "مرور روزنامه های ۲۳ مهر ۱۴۰۵"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10214,7 +10205,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792039492
+    "at": 1792040066
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10228,9 +10219,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1792040561.0,
+    "last_failure": 1792040261,
+    "last_status": 599
+  },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792040222,
-    "last_failure": 1792039622,
+    "disabled_until": 1792040831,
+    "last_failure": 1792040231,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10269,20 +10265,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792038535,
-    "last_failure": 1792037935,
+    "disabled_until": 1792040869,
+    "last_failure": 1792040269,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792038535,
-    "last_failure": 1792037935,
+    "disabled_until": 1792040869,
+    "last_failure": 1792040269,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792038535,
-    "last_failure": 1792037935,
+    "disabled_until": 1792040869,
+    "last_failure": 1792040269,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -10293,20 +10289,20 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792038535,
-    "last_failure": 1792037935,
+    "disabled_until": 1792040869,
+    "last_failure": 1792040269,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792038535,
-    "last_failure": 1792037935,
+    "disabled_until": 1792040869,
+    "last_failure": 1792040269,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792039607,
-    "last_failure": 1792039007,
+    "disabled_until": 1792040869,
+    "last_failure": 1792040269,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
