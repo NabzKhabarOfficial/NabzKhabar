@@ -14,7 +14,7 @@ arrests, an official result, a clearly higher toll announced as an update.
 
 * Runs only after the word/place guards found nothing, and only for a post
   that is about to go out, so it costs one or two free calls per run.
-* Free providers only: Groq, then Gemini flash-lite.
+* Free providers only: Groq, then Gemini flash-lite (ordered by remaining daily share).
 * Fail-safe: if every provider fails, the older guards have already run.
 * A "repeat" that shares no visible words with the earlier headline asks a
   second model. Only an explicit "not a repeat" from that second model lets it
@@ -134,6 +134,14 @@ def _parse(raw):
         return json.loads(m.group(0)) if m else None
 
 
+def _ordered_gemini():
+    try:
+        import v13_ai_pace
+        return v13_ai_pace.order_gemini_models(GEMINI_MODELS)
+    except Exception:
+        return list(GEMINI_MODELS)
+
+
 def ask(prompt, skip=""):
     """One verdict from the free pool, or None. `skip` = a model already asked."""
     deadline = time.monotonic() + BUDGET_SECONDS
@@ -160,7 +168,7 @@ def ask(prompt, skip=""):
             except Exception as exc:
                 print(f"V13 EVENT JUDGE: groq/{model} error ({type(exc).__name__}).", flush=True)
     if gem:
-        for model in GEMINI_MODELS:
+        for model in _ordered_gemini():
             if f"gemini/{model}" == skip:
                 continue
             if time.monotonic() >= deadline:

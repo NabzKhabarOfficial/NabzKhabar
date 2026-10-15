@@ -7,13 +7,12 @@ used up. It is used only AFTER Groq and Gemini, before OpenRouter (50 free reque
 
 1. Translation / rewrite (v13_ai_router.gemini_request): when the router reaches OpenRouter,
    Mistral (mistral-small-latest, open-mistral-nemo) is asked first with the same prompt,
-   the same JSON check and the same strict content validation. (Oct 15 review: mistral-large-latest
-   returned HTTP 403 tier_not_allowed on the free tier and burned the 1 req/s rate limit right
-   before mistral-small-latest was called, causing HTTP 429; removed + 1.2s min gap between
-   Mistral requests.)
-2. Final editor (v13_ai_extra.ask_pool): mistral-small-latest is inserted before OpenRouter.
-3. Event judge + AI sense check (v13_event_judge.ask): mistral-small-latest is asked when Groq
-   and Gemini are paced or rate-limited.
+   the same JSON check and the same strict content validation.
+2. Final editor (v13_ai_extra.ask_pool): BOTH mistral-small-latest and open-mistral-nemo are
+   inserted before OpenRouter, with a 1.5s minimum gap and a single 2.5s retry on transient HTTP
+   429 so a bursty upstream rate limit never drops an editor batch.
+3. Event judge + AI sense check (v13_event_judge.ask): mistral-small-latest and open-mistral-nemo
+   are asked when Groq and Gemini are paced or rate-limited.
 4. The AI meter counts it (_ai_usage key "mistral:<model>"); it is not paced (no daily cap).
 
 No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot runs as before.
@@ -25,8 +24,9 @@ import time
 
 MISTRAL_BASE = "https://api.mistral.ai/v1"
 TRANSLATE_MODELS = ("mistral-small-latest", "open-mistral-nemo")
-EDITOR_MODEL = "mistral-small-latest"
-MIN_INTERVAL_SEC = 1.25  # La Plateforme free tier is ~1 req/s across the account
+EDITOR_MODELS = ("mistral-small-latest", "open-mistral-nemo")
+MIN_INTERVAL_SEC = 1.5   # La Plateforme free tier is ~1 req/s across the account
+RETRY_429_SLEEP_SEC = 2.5
 _INSTALLED = {"done": False}
 _LAST_CALL = {"at": 0.0}
 
@@ -51,6 +51,13 @@ def _install_rps_guard():
     def request(self, method, url, *args, **kwargs):
         if "api.mistral.ai" in str(url):
             _pace_rps()
+            resp = original(self, method, url, *args, **kwargs)
+            if getattr(resp, "status_code", 0) == 429:
+                # Transient per-second rate limit on La Plateforme: wait once and retry
+                time.sleep(RETRY_429_SLEEP_SEC)
+                _LAST_CALL["at"] = time.monotonic()
+                resp = original(self, method, url, *args, **kwargs)
+            return resp
         return original(self, method, url, *args, **kwargs)
 
     request._v13_mistral_rps = True
@@ -99,11 +106,12 @@ def _install_editor(key):
 
     def with_mistral(main, session, prompt, max_tokens, timeout):
         out = attempts(main, session, prompt, max_tokens, timeout)
-        item = ("mistral/" + EDITOR_MODEL, "mistral:" + EDITOR_MODEL, lambda: oa_raw(
-            session, MISTRAL_BASE + "/chat/completions", key, EDITOR_MODEL, prompt, max_tokens,
-            timeout=timeout))
         pos = next((i for i, x in enumerate(out) if str(x[0]).startswith("openrouter")), len(out))
-        out.insert(pos, item)
+        for m in reversed(EDITOR_MODELS):
+            item = ("mistral/" + m, "mistral:" + m, lambda m=m: oa_raw(
+                session, MISTRAL_BASE + "/chat/completions", key, m, prompt, max_tokens,
+                timeout=timeout))
+            out.insert(pos, item)
         return out
 
     with_mistral._v13_mistral = True

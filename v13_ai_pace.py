@@ -9,17 +9,19 @@ Now every AI request is counted per quota day, and a model may only use its shar
 far: budget x (hours since its quota reset + HEADROOM_H) / 24. Over its share, the request is not
 sent at all: the caller gets a local 429 ("pace"), the pool moves on to the next model, and the
 model gets its turn again later. Same free keys, no extra accounts or keys: we only ask less often.
-Budgets sit a little under the real free limits seen on Oct 14 (env NABZ_PACE_<KEY> overrides,
-0 = no pacing for that model). Counts live in ai_model_health.json under _ai_pace.
+Budgets sit safely under the real free limits so no model ever hits its 24h ceiling (env
+NABZ_PACE_<KEY> overrides, 0 = no pacing for that model). Counts live in ai_model_health.json
+under _ai_pace.
 
-Oct 15 (day review):
-* Groq's limit is 200k TOKENS a day per model, and one call costs ~2,000 tokens: both Groq models
-  hit 199k at ~100 calls by 15:30 Tehran, so a budget of 170 calls never held them back and they
-  were gone for the evening. Groq budgets are now 95 calls (fits the token limit).
-* A local pace hold was treated by the router as a real provider 429, so the held model also
-  got a 10-minute cooldown (Oct 15 12:20 UTC: 10 of 18 models "disabled", 5 stories held for
-  "no AI" while the pacer would already have allowed some). A hold now never starts a cooldown
-  (_install_no_cooldown wraps v13_ai_router._mark_model_failure at load()).
+Oct 15 (evening review, owner rule: managed Gemini quota so it NEVER hits the 24h ceiling):
+* Conservative Gemini daily budgets (360 for gemini-3.5-flash-lite, 210 for gemini-3.1-flash-lite)
+  with HEADROOM_H = 1.0 (~15 calls/h and ~8.75 calls/h), plus a 4.2s minimum gap between Gemini
+  requests (~14 RPM) so bursty single-story fallbacks never trip Gemini's 15 RPM free limit.
+* Load balancing between the two Gemini models: when both are healthy, the one with the lower
+  used/budget ratio is tried first so gemini-3.5-flash-lite is not burned out while 3.1 sits idle.
+* Groq's limit is 200k TOKENS a day per model (~2,000 tokens/call): 90 calls/day keeps it below
+  the token ceiling.
+* A local pace hold is not a provider failure: it never starts a router cooldown.
 """
 
 import os
@@ -27,13 +29,14 @@ import re
 import time
 
 PACE_KEY = "_ai_pace"
-HEADROOM_H = 2.0
+HEADROOM_H = 1.0
+GEMINI_MIN_INTERVAL_SEC = 4.2  # Free tier is 15 RPM; 4.2s gap keeps bursts <= ~14 RPM
 BUDGETS = {
-    "gemini:gemini-3.5-flash-lite": 450,
-    "gemini:gemini-3.1-flash-lite": 250,
-    "groq:openai/gpt-oss-120b": 95,   # 200k tokens/day at ~2k tokens a call
-    "groq:openai/gpt-oss-20b": 95,
-    "openrouter:*": 45,   # OpenRouter's 50 free requests a day are for the whole account
+    "gemini:gemini-3.5-flash-lite": 360,
+    "gemini:gemini-3.1-flash-lite": 210,
+    "groq:openai/gpt-oss-120b": 90,   # 200k tokens/day at ~2k tokens a call
+    "groq:openai/gpt-oss-20b": 90,
+    "openrouter:*": 42,   # OpenRouter's 50 free requests a day are for the whole account
 }
 PACE_TEXT = ('{"error":{"message":"NabzKhabar local pace limit: this model has used its share of '
              'the quota so far today; it gets more later"}}')
@@ -41,6 +44,7 @@ _base = {}     # pace key -> {"day": id, "n": count saved by earlier runs}
 _delta = {}    # pace key -> {"day": id, "n": requests in this run}
 _held = {}     # pace key -> requests held back in this run
 _held_at = {}  # health key -> time of its last local hold (consumed by was_held)
+_last_gemini_call = {"at": 0.0}
 
 
 def _pace_key(hkey):
@@ -78,6 +82,27 @@ def _pace_used(pkey, day):
     delta = _delta.get(pkey) or {}
     return (int(base.get("n", 0) or 0) if base.get("day") == day else 0) + \
            (int(delta.get("n", 0) or 0) if delta.get("day") == day else 0)
+
+
+def usage_ratio(hkey, now=None):
+    """Fraction of today's budget used by this model (0.0 .. 1.0+), for load-balancing."""
+    pkey = _pace_key(str(hkey or ""))
+    budget = _pace_budget(pkey)
+    if budget <= 0:
+        return 0.0
+    day, _ = _pace_day(pkey, now)
+    return _pace_used(pkey, day) / float(budget)
+
+
+def order_gemini_models(models, now=None):
+    """Order Gemini model names so the one with more remaining share of today's budget goes first."""
+    return sorted(
+        list(models),
+        key=lambda m: (
+            0 if pace_allows(f"gemini:{m}", now) else 1,
+            usage_ratio(f"gemini:{m}", now),
+        ),
+    )
 
 
 def pace_allows(hkey, now=None):
@@ -183,6 +208,13 @@ def _pace_response(url):
     return resp
 
 
+def _pace_gemini_rpm():
+    wait = GEMINI_MIN_INTERVAL_SEC - (time.monotonic() - _last_gemini_call["at"])
+    if wait > 0:
+        time.sleep(wait)
+    _last_gemini_call["at"] = time.monotonic()
+
+
 def check(hkey, url):
     """None = send the request (it is counted); a local 429 response = held back."""
     if not hkey:
@@ -196,6 +228,8 @@ def check(hkey, url):
         _held[pkey] = _held.get(pkey, 0) + 1
         _held_at[str(hkey)] = time.time()
         return _pace_response(url)
+    if str(hkey).startswith("gemini:"):
+        _pace_gemini_rpm()
     pace_count(hkey)
     return None
 

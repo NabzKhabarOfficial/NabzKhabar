@@ -27,6 +27,10 @@ This launcher fixes that without touching the other files:
    fixed instead of refusing the whole post, and a refused story is remembered for 6 h.
 9. Mistral (Oct 15, v13_mistral): the owner's free Mistral account is asked after Groq and
    Gemini, before OpenRouter, for translation and the final editor (needs MISTRAL_API_KEY).
+10. Managed Gemini quota (Oct 15 evening): Gemini models are load-balanced by remaining daily
+    share in the router, editor gate, and event judge; and when an editor batch fails across the
+    pool, single-story judging is bounded to at most 2 stories per run so a degraded pool never
+    cascades into dozens of single-story AI calls.
 
 Oct 14 (evening review): a batch answer gave the Financial Times Starlink story the verdict of a
 car-import story («ابلاغ دستورالعمل اداری ترخیص خودروهای وارداتی», score 2), so it was dropped for a
@@ -47,6 +51,7 @@ BATCH_SIZE = 8
 BATCH_BODY_CHARS = 300
 BATCH_MAX_TOKENS = 1800
 BATCH_BUDGET_SECONDS = 60
+SINGLE_FALLBACK_MAX = 2  # max single-story editor calls in a run when batch judging fails
 USAGE_KEY = "_ai_usage"
 EVENTS_KEY = "_ai_extra_log"
 USAGE_DAYS = 4
@@ -61,6 +66,7 @@ _daily_rest = {}   # health key -> unix time when its daily quota resets
 _usage = {}        # health key -> counters for this run
 _events = []       # short log of batch results and AI errors for this run
 _no_ai_titles = set()  # stories whose rewrite failed only because no AI answered
+_batch_failed_this_run = {"flag": False, "single_calls": 0}
 
 
 def _event(text):
@@ -76,14 +82,26 @@ def _status_of(exc):
     return int(found.group(1)) if found else 599
 
 
+def _ordered_gemini_models(models):
+    try:
+        import v13_ai_pace
+        return v13_ai_pace.order_gemini_models(models)
+    except Exception:
+        return list(models)
+
+
 # --------------------------------------------------------------------------
-# 1) Translation router: shorter input
+# 1) Translation router: shorter input + Gemini load-balancing
 # --------------------------------------------------------------------------
 def install_router():
     import v13_ai_router as r
     if getattr(r, "_v13_ai_extra", False):
         return
     original_request = r.gemini_request
+    original_available = r._available_models
+
+    def available_models(main):
+        return _ordered_gemini_models(original_available(main))
 
     def gemini_request(main, title, article_text):
         text = str(article_text or "")
@@ -92,9 +110,10 @@ def install_router():
             _no_ai_titles.add(str(title))
         return result
 
+    r._available_models = available_models
     r.gemini_request = gemini_request
     r._v13_ai_extra = True
-    print(f"V13 AI EXTRA: translation input capped at {TRANSLATION_SOURCE_CHARS} chars", flush=True)
+    print(f"V13 AI EXTRA: translation input capped at {TRANSLATION_SOURCE_CHARS} chars + Gemini load-balanced", flush=True)
 
 
 # --------------------------------------------------------------------------
@@ -137,7 +156,7 @@ def _attempts(main, session, prompt, max_tokens, timeout):
                 raise RuntimeError(f"HTTP {resp.status_code}: {_short(resp)}")
             parts = ((resp.json().get("candidates") or [{}])[0].get("content") or {}).get("parts") or [{}]
             return str(parts[0].get("text", "") or "")
-        for m in g.GEMINI_MODELS:
+        for m in _ordered_gemini_models(g.GEMINI_MODELS):
             out.append(("gemini/" + m, "gemini:" + m, lambda m=m: _gemini(m)))
     if orouter:
         out.append(("openrouter/free", "openrouter:openrouter/free", lambda: _oa_raw(
@@ -191,6 +210,11 @@ def install_editor_gate():
         return
 
     def ai_judge(main, candidate):
+        if _batch_failed_this_run["flag"] and _batch_failed_this_run["single_calls"] >= SINGLE_FALLBACK_MAX:
+            print("V13 EDITOR GATE: batch failed earlier in this run; skipping extra single-story AI call to protect quota", flush=True)
+            return None, ""
+        if _batch_failed_this_run["flag"]:
+            _batch_failed_this_run["single_calls"] += 1
         title = g._norm(candidate.get("title", ""))
         body = g._norm(candidate.get("summary", "") or candidate.get("description", "") or candidate.get("article_text", ""))[:900]
         return ask_pool(main, g.PROMPT % (title, body), g._parse, max_tokens=400,
@@ -288,6 +312,8 @@ def _parse_batch(raw, titles):
 def prejudge(main, pool):
     """Fill the editor cache for the uncached, non-vetoed pool stories with batched calls."""
     import v13_editor_gate as g
+    _batch_failed_this_run["flag"] = False
+    _batch_failed_this_run["single_calls"] = 0
     todo, keys = [], set()
     for c in list(pool)[:g.POOL_SIZE]:
         if g.deterministic_veto(c):
@@ -309,7 +335,8 @@ def prejudge(main, pool):
         verdicts, provider = ask_pool(main, _batch_prompt(g, chunk), lambda raw, titles=titles: _parse_batch(raw, titles),
                                       max_tokens=BATCH_MAX_TOKENS, budget=45, timeout=40, label="EDITOR BATCH")
         if not verdicts:
-            print(f"V13 EDITOR BATCH: no batch verdict for {len(chunk)} stories; single judging continues", flush=True)
+            _batch_failed_this_run["flag"] = True
+            print(f"V13 EDITOR BATCH: no batch verdict for {len(chunk)} stories; bounded single judging continues (max {SINGLE_FALLBACK_MAX})", flush=True)
             _event(f"EDITOR BATCH: no verdict for {len(chunk)} stories")
             break
         for n, verdict in verdicts.items():
