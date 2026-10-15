@@ -40,6 +40,19 @@ month. The biggest token eaters on Groq/Gemini were the same-event judge (every 
   the rest waits for a strong model on a later run), because its rejections were wrong (scope "local").
 * mistral-small-latest is no longer asked at all (always 429 on this plan).
 
+Oct 16, 02:40 Tehran (review of the published evening posts): «ترمپ با معامله سوخت با مسکو، جنگ روسیه را
+با پول تأمین می کند» went out with «نوبل پزیش اوکسانا ماتویچوک» (Nobel laureate, transliterated) and «پول گشایی»:
+a weak nemo translation (the strong pool was held all evening), and the nemo-first sense check called it "ok".
+The headline also stated one activist's accusation as fact. Now:
+* every Mistral translation gets extra Persian rules (attribution in the headline for a claim or opinion,
+  common Persian name forms, translate words instead of transliterating them);
+* a post translated by nemo/ministral is sense-checked by the strong pool FIRST (only these posts, a few a
+  day); nemo is asked only when no strong model answers;
+* the sense check counts bad machine translation as "garbled" (transliterated English, a misspelled
+  well-known name);
+* deterministic: «ترمپ» becomes «ترامپ» in every AI output, and «نوبل پزیش/پرایز»-type transliterations
+  fail the router's content validation (the next model translates the story).
+
 No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot runs as before.
 """
 
@@ -57,6 +70,19 @@ SENSE_HEAD = "You check a Persian Telegram news post"
 MIN_INTERVAL_SEC = 1.5   # La Plateforme free tier is ~1 req/s across the account
 RETRY_429_SLEEP_SEC = 2.5
 PURGE_MARK = "_mistral_nemo_purge_v2"
+MISTRAL_RULES = """
+قواعد اضافه (ترجمه دقیق و طبیعی):
+- واژه‌های انگلیسی را ترجمه کن، آوانویسی نکن (Nobel laureate = «برنده جایزه نوبل»، نه «نوبل پزیش»).
+- نام‌های مشهور را با شکل رایج فارسی بنویس: ترامپ، پوتین، زلنسکی، نتانیاهو، پزشکیان، عراقچی.
+- اگر خبر ادعا، اتهام یا نظر یک شخص است، تیتر باید گوینده را بگوید (مثلاً «ماتویچوک: ...» یا «... به گفته ...»)
+  و ادعا را به‌صورت واقعیت قطعی ننویسد.
+- اگر معنی جمله‌ای را مطمئن نیستی، آن جمله را حذف کن.
+"""
+WEAK_TITLES = []  # titles translated by nemo/ministral in this run (sense-checked by the strong pool first)
+NAME_FIXES = ((re.compile(r"(?<![\u0600-\u06FF])ترمپ(?![\u0600-\u06FF])"), "ترامپ"),)
+TRANSLIT_BAD = re.compile(r"نوبل[\s\u200c]+پ(?:رای|ری|زی)[زش]|(?<![\u0600-\u06FF])(?:پرایز|لوریت|لاریت)(?![\u0600-\u06FF])")
+SENSE_EXTRA = ('\n- "garbled" also covers bad machine translation: English words written in Persian letters instead '
+               'of translated (e.g. «نوبل پزیش» for "Nobel Prize"), or a well-known name misspelled (e.g. «ترمپ»).')
 _INSTALLED = {"done": False}
 _LAST_CALL = {"at": 0.0}
 
@@ -112,14 +138,33 @@ def _install_router(key):
 
     def fallback(main, provider, models, base_url, api_key, prompt, title, source, foreign, deadline=None):
         if str(provider).lower() == "openrouter":
-            got = previous(main, "Mistral", TRANSLATE_MODELS, MISTRAL_BASE, key, prompt, title, source,
-                           foreign, deadline)
+            got = previous(main, "Mistral", TRANSLATE_MODELS, MISTRAL_BASE, key, str(prompt) + MISTRAL_RULES,
+                           title, source, foreign, deadline)
             if got:
+                WEAK_TITLES.append(str(got.get("title", "")))
+                del WEAK_TITLES[:-30]
                 return got
         return previous(main, provider, models, base_url, api_key, prompt, title, source, foreign, deadline)
 
     fallback._v13_mistral = True
     r._fallback_provider_request = fallback
+
+    orig_validate = r._validate
+    if not getattr(orig_validate, "_v13_names", False):
+        def validate(main, original_title, source, data, foreign):
+            if isinstance(data, dict):
+                data = dict(data)
+                for k in ("title", "summary"):
+                    v = str(data.get(k, "") or "")
+                    for rx, good in NAME_FIXES:
+                        v = rx.sub(good, v)
+                    data[k] = v
+            return orig_validate(main, original_title, source, data, foreign)
+
+        validate._v13_names = True
+        r._validate = validate
+    if TRANSLIT_BAD not in r.TRANSLATION_QUALITY_BAD_PATTERNS:
+        r.TRANSLATION_QUALITY_BAD_PATTERNS = tuple(r.TRANSLATION_QUALITY_BAD_PATTERNS) + (TRANSLIT_BAD,)
 
 
 def _install_editor(key):
@@ -181,6 +226,27 @@ def _related_to_published(ej, prompt):
     return False
 
 
+def _weak_translation(ej, prompt):
+    """True when the sense-check HEADLINE is a title nemo/ministral translated in this run."""
+    if not WEAK_TITLES:
+        return False
+    try:
+        head = prompt.split("HEADLINE:", 1)[1].split("TEXT:", 1)[0].strip()
+    except Exception:
+        return False
+    for t in WEAK_TITLES:
+        if t and (t[:40] in head or head[:40] in t or ej.related(head, t)):
+            return True
+    return False
+
+
+def _install_sense_rules():
+    import v13_final_guard as fg
+    p = fg.COHERENCE_PROMPT
+    if SENSE_EXTRA not in p and '\n- "ok":' in p:
+        fg.COHERENCE_PROMPT = p.replace('\n- "ok":', SENSE_EXTRA + '\n- "ok":', 1)
+
+
 def _install_event_judge(key):
     try:
         import v13_event_judge as ej
@@ -192,6 +258,11 @@ def _install_event_judge(key):
 
     def ask_with_mistral(prompt, skip=""):
         text = str(prompt or "")
+        if text.startswith(SENSE_HEAD) and _weak_translation(ej, text):
+            got = orig_ask(prompt, skip=skip)  # a weak translation: the strong pool reads it first
+            if got:
+                return got
+            return _mistral_ask(ej, key, prompt, NEMO) if skip != f"mistral/{NEMO}" else None
         cheap_first = text.startswith(JUDGE_HEAD) or text.startswith(SENSE_HEAD)
         if cheap_first and skip != f"mistral/{NEMO}":
             got = _mistral_ask(ej, key, prompt, NEMO)
@@ -283,7 +354,11 @@ def install():
         _install_nemo_editor_rules()
     except Exception as exc:
         print(f"V13 MISTRAL: nemo editor rules not installed ({type(exc).__name__}: {exc})", flush=True)
+    try:
+        _install_sense_rules()
+    except Exception as exc:
+        print(f"V13 MISTRAL: sense rules not installed ({type(exc).__name__}: {exc})", flush=True)
     _purge_nemo_rejections()
     _INSTALLED["done"] = True
-    print("V13 MISTRAL ACTIVE: nemo first for duplicate/sense checks; after Groq and Gemini for translation"
+    print("V13 MISTRAL ACTIVE: nemo first for duplicate/sense checks (strong first for nemo translations); after Groq and Gemini for translation"
           + (" + editor" if editor else "") + (" + event_judge" if ej else "") + ")", flush=True)
