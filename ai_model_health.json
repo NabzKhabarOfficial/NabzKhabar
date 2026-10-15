@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792020559
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792020559
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792021693
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792021693
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
       "t": 1792021708
     },
@@ -159,28 +143,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792035578
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792036088
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: no usable verdict",
+      "t": 1792036190
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1792036192
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, openrouter:* held 6x",
+      "t": 1792036210
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 93
+      "n": 96
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 38
+      "n": 41
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 41
+      "n": 42
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 22
+      "n": 25
     },
     "openrouter:*": {
       "day": "2026-10-15",
-      "n": 10
+      "n": 11
     }
   },
   "_ai_usage": {
@@ -263,32 +263,32 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 18,
-        "ok": 18,
+        "calls": 20,
+        "ok": 20,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 7,
-        "calls": 14,
+        "429": 9,
+        "calls": 17,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 7,
+        "ok": 8,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 3,
-        "calls": 41,
+        "calls": 42,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197720, Requested 2418. Please try again in 59.616",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 32,
+        "ok": 33,
         "other": 6
       },
       "groq:openai/gpt-oss-20b": {
         "429": 2,
-        "calls": 22,
+        "calls": 25,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199995, Requested 1818. Please try again in 13m3.21",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
-        "other": 11
+        "ok": 10,
+        "other": 13
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 0,
@@ -324,8 +324,8 @@
       },
       "openrouter:openrouter/free": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       }
     }
@@ -1918,12 +1918,6 @@
       "topic": "نظامی",
       "until": 1792101436.8337128
     },
-    "v4|از بحران نقدینگی تا ناترازی انرژی؛ درد و دل تولیدکنندگان آذربایجان شرقی با دولت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: نشست و دردل تولیدکنندگان استانی با مقام دولتی، فاقد تصمیم ملی.",
-      "topic": "اقتصاد",
-      "until": 1792055236.1510873
-    },
     "v4|از طلا و سهام تا سپرده بانکی؛ دامنه وثایق قضایی گسترش می یابد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Routine administrative update on judicial collateral procedures, lacks major national impact.",
@@ -2644,6 +2638,12 @@
       "topic": "نظامی",
       "until": 1792066145.6091485
     },
+    "v4|تیم کشتی فرنگی امیدهای ایران در آمریکا بر بام جهان ایستاد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=iran_national: قهرمانی تیم ملی کشتی فرنگی امید ایران در مسابقات جهانی",
+      "topic": "ورزش",
+      "until": 1792122473.346105
+    },
     "v4|تیم کشتی فرنگی امیدهای جهان در امریکا بر بام جهان ایستاد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=iran_national: قهرمانی تیم ملی کشتی فرنگی زیر ۲۳ سال در مسابقات جهانی",
@@ -2751,6 +2751,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: پیامد مستقیم حملات یمن بر رویدادهای بین‌المللی در منطقه",
       "topic": "ورزش",
       "until": 1792097221.9986277
+    },
+    "v4|حمله به ایران پیش یا پس از انتخابات آمریکا؟ / ترامپ در دوراهی جنگ و دیپلماسی": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=iran_national: official threat on war escalation",
+      "topic": "نظامی",
+      "until": 1792122592.4410007
     },
     "v4|حمله دوباره عربستان به پایتخت یمن": {
       "ok": true,
@@ -3081,6 +3087,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: رصد علمی سیاهچاله خبر آکادمیک است و جزو اخبار درجه یک نیست.",
       "topic": "فناوری",
       "until": 1792072627.9728806
+    },
+    "v4|رفع اثر بیش از ۹۵ درصد تخلفات در محدوده قانونی شهر تهران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: routine city violation cleanup",
+      "topic": "قضایی",
+      "until": 1792122592.4495337
     },
     "v4|رقابت جهانی خودروهای برقی؛ چین و اروپا به دنبال توافق بر سر اختلافات تجاری": {
       "ok": true,
@@ -3508,12 +3520,6 @@
       "topic": "اقتصاد",
       "until": 1792069675.6756766
     },
-    "v4|شیوه نامه شناسایی و گروه بندی اقتصادی خانوارها تصویب و منتشر شد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: تصویب شیوه نامه اقتصادی خانوارها توسط هیئت وزیران، تصمیم مهم دولتی.",
-      "topic": "اقتصاد",
-      "until": 1792055236.138005
-    },
     "v4|صدرنشینی پرسپولیس در پایان هفته هشتم": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Domestic league result, not top‑tier national/international event",
@@ -3807,12 +3813,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: وعده انتخاباتی یک نامزد برای آینده است و تصمیم قطعی نیست.",
       "topic": "سیاست",
       "until": 1792089416.6621532
-    },
-    "v4|مازاد تجاری چین به مرز یک تریلیون دلار رسید": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: رسیدن مازاد تجاری چین به رکورد بی‌سابقه نزدیک یک تریلیون دلار.",
-      "topic": "اقتصاد",
-      "until": 1792055236.1642408
     },
     "v4|مالک خیبر: توپ دقیقه ۸۵ می توانست ما را برنده بازی کند": {
       "ok": false,
@@ -4780,14 +4780,29 @@
       "reason": "content_duplicate",
       "until": 1792044454.7044165
     },
+    "ukraine’s exposure grows as satellite use is restricted and russia escalates": {
+      "at": 1792036210.5630598,
+      "reason": "ai_unavailable_foreign",
+      "until": 1792037410.5630598
+    },
     "آتش زدن تأسیسات سری استارلینک در بلغارستان": {
       "reason": "content_duplicate",
       "until": 1792053051.2526178
+    },
+    "تیم کشتی فرنگی امیدهای ایران در آمریکا بر بام جهان ایستاد": {
+      "at": 1792036210.5630598,
+      "reason": "ai_unavailable_local",
+      "until": 1792037410.5630598
     },
     "تیم کشتی فرنگی امیدهای جهان در امریکا بر بام جهان ایستاد": {
       "at": 1792035578.413884,
       "reason": "policy_scope_blocked",
       "until": 1792057178.413884
+    },
+    "حمله به ایران پیش یا پس از انتخابات آمریکا؟ / ترامپ در دوراهی جنگ و دیپلماسی": {
+      "at": 1792036210.5630598,
+      "reason": "final_guard:ai-garbled",
+      "until": 1792057810.5630598
     },
     "حمله دوباره عربستان به پایتخت یمن": {
       "reason": "content_duplicate",
@@ -5365,13 +5380,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه یک بازی فوتبال باشگاهی در سطح اول جهانی نیست.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792013011,
-      "title": "آتش بازی درخشان پی اس جی در نیمه اول/ سیتی 2-4 پاریس | انتقام انریکه بعد از 458 روز"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مسابقات فوتبال باشگاهی در سطح اول جهانی قرار نمی‌گیرند.",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5923,6 +5931,13 @@
       "rule": "no-concrete-event",
       "t": 1792035567,
       "title": "OpenAI bugging suspect allegedly booked one-way trip to Saudi Arabia"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=iran_national: قهرمانی تیم ملی کشتی فرنگی امید ایران در مسابقات جهانی",
+      "rescued": true,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792036073,
+      "title": "تیم کشتی فرنگی امیدهای ایران در آمریکا بر بام جهان ایستاد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10341,7 +10356,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792035445
+    "at": 1792036022
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10355,9 +10370,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1792036388.0,
+    "last_failure": 1792036088,
+    "last_status": 599
+  },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792036144,
-    "last_failure": 1792035544,
+    "disabled_until": 1792036796,
+    "last_failure": 1792036196,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10374,8 +10394,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792036144,
-    "last_failure": 1792035544,
+    "disabled_until": 1792036796,
+    "last_failure": 1792036196,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
@@ -10396,20 +10416,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792033380,
-    "last_failure": 1792033320,
-    "last_status": 422
+    "disabled_until": 1792036797,
+    "last_failure": 1792036197,
+    "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792033906,
-    "last_failure": 1792033306,
+    "disabled_until": 1792036797,
+    "last_failure": 1792036197,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792033906,
-    "last_failure": 1792033306,
+    "disabled_until": 1792036797,
+    "last_failure": 1792036197,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -10420,20 +10440,20 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792033388,
-    "last_failure": 1792033328,
-    "last_status": 422
+    "disabled_until": 1792036797,
+    "last_failure": 1792036197,
+    "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792033405,
-    "last_failure": 1792033345,
-    "last_status": 422
+    "disabled_until": 1792036797,
+    "last_failure": 1792036197,
+    "last_status": 429
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792034444,
-    "last_failure": 1792033844,
+    "disabled_until": 1792036797,
+    "last_failure": 1792036197,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
