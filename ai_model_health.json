@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792035540
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792035544
     },
@@ -159,12 +155,16 @@
     {
       "e": "AI PACE: openrouter:* held 6x",
       "t": 1792040269
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.1-flash-lite",
+      "t": 1792040816
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 117
+      "n": 123
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
@@ -263,9 +263,9 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 37,
+        "calls": 43,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 36,
+        "ok": 42,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -1751,6 +1751,12 @@
       "topic": "سیاست",
       "until": 1792058101.8067007
     },
+    "v4|آیا حزب الله لبنان ۲۰۰ میلیون دلار از ایران برای کمک به آوارگان دریافت کرده است؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative inquiry regarding funding; lacks official confirmation of a specific event.",
+      "topic": "سیاست",
+      "until": 1792127216.300971
+    },
     "v4|آیت الله قربانی با فضیلت های اخلاقی خود مردم را جذب می کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مراسم تشییع و سخنرانی مقام محلی، فاقد اهمیت ملی یا بین‌المللی",
@@ -2104,6 +2110,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: اظهارنظر مقامات درباره سیاست خارجی دیگران امتیاز پایینی دارد",
       "topic": "سیاست",
       "until": 1792068511.5446227
+    },
+    "v4|انتقال آب خلیج فارس به فلات مرکزی غیراقتصادی و مخرب محیط زیست": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: این گزارش یک پژوهش علمی است و نه یک تصمیم اجرایی دولتی.",
+      "topic": "جامعه",
+      "until": 1792127205.6513836
     },
     "v4|انجمن خبرنگاران سمنان به وزنه ای در تشکل های رسانه ای کشور تبدیل شد": {
       "ok": false,
@@ -2705,12 +2717,6 @@
       "topic": "سیاست",
       "until": 1792126031.320917
     },
-    "v4|حضور وزیر اقتصاد در اجلاس صندوق بین المللی پول در بانکوک": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: حضور وزیر در اجلاس اقتصادی معمول و رویداد سطح پایین است.",
-      "topic": "اقتصاد",
-      "until": 1792056930.0267613
-    },
     "v4|حفظ وحدت و توجه به مطالبات مردم باید در دستور کار قرار گیرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine political statement by a local MP without strategic impact.",
@@ -2800,6 +2806,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: انتقاد محلی مدیرکل بازرسی کرمان از خام‌فروشی و معادن مس",
       "topic": "اقتصاد",
       "until": 1792061056.4202852
+    },
+    "v4|خطر سلامت افراد با مصرف خودسرانه داروهای اعصاب و روان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: Routine health advice from a local official, not a national event.",
+      "topic": "سلامت",
+      "until": 1792127206.4211628
     },
     "v4|خلاصه بازی رئال مادرید مقابل رم (۴ - ۳)": {
       "ok": false,
@@ -3185,12 +3197,6 @@
       "topic": "آب و هوا",
       "until": 1792073209.4978716
     },
-    "v4|سئول: هوش مصنوعی و جنگ خاورمیانه، نرخ تورم را افزایش می دهد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: اظهارات رئیس بانک مرکزی کره جنوبی درباره تورم و هوش مصنوعی.",
-      "topic": "اقتصاد",
-      "until": 1792056935.3599787
-    },
     "v4|ساخت اپلیکیشن با هوش مصنوعی در گوگل پلی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: به‌روزرسانی و تغییرات عادی در فروشگاه گوگل پلی، رویداد کلان نیست.",
@@ -3371,6 +3377,12 @@
       "topic": "فناوری",
       "until": 1792059286.5113094
     },
+    "v4|سی ان ان: آمریکا ممکن است در عملیات جدید در ایران بزرگترین بمب غیرهسته ای خود را به کار ببرد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative report on potential military plans, not an official confirmed action.",
+      "topic": "نظامی",
+      "until": 1792127216.287975
+    },
     "v4|سی ان ان: جنگ ایران تاکنون ۲۶۵ میلیارد دلار برای مصرف کنندگان آمریکایی هزینه داشته است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Economic analysis and speculation on historical costs, not a concrete event.",
@@ -3400,12 +3412,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Flood in Istanbul caused school closures.",
       "topic": "آب و هوا",
       "until": 1792106918.6178482
-    },
-    "v4|سیل ناگهانی در نپال خانه ها و پل ها را با خود برد + فیم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: سیل در منطقه ای کوچک در نپال، تلفات کلان نداشته است.",
-      "topic": "حادثه",
-      "until": 1792056935.3340964
     },
     "v4|سیلاب ۵۰۰ میلیارد ریال به تاسیسات آب شمال استان اردبیل خسارت زد": {
       "ok": false,
@@ -3466,12 +3472,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: شهادت فرمانده بسیج در اقدام تروریستی مسلحانه در مهرستان",
       "topic": "نظامی",
       "until": 1792071460.4984136
-    },
-    "v4|شهادت مسئول بسیج خواهران مهرستان در پی حمله تروریستی": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: شهادت مسئول بسیج خواهران مهرستان در حمله تروریستی (تکرار خبر دوم).",
-      "topic": "نظامی",
-      "until": 1792056935.372572
     },
     "v4|شهردار: ۲۵۲ نیروی شهرداری سنندج برای مقابله با بحران های جوی آماده باش هستند": {
       "ok": false,
@@ -3544,6 +3544,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مرور روزنامه‌ها خبری معمول و غیرمرتبط با اخبار رده‌اول است.",
       "topic": "جامعه",
       "until": 1792118446.8997757
+    },
+    "v4|صفحه نخست روزنامه های استان فارس پنجشنبه ۲۳ مهرماه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: مرور روزنامه‌های استانی یک موضوع محلی و فاقد اهمیت ملی است.",
+      "topic": "جامعه",
+      "until": 1792127214.2600877
     },
     "v4|صندوق بین المللی پول: کاهش پیش بینی رشد اقتصادی برای کشورهای خلیج فارس در سال ۲۰۲۶/ خاورمیانه و شمال آفریقا تنها منطقه جهان هستند که اقتصاد آن ها در سال جاری، کوچک می شود/ اگر تنگه": {
       "ok": true,
@@ -3689,17 +3695,23 @@
       "topic": "اقتصاد",
       "until": 1792094066.07297
     },
-    "v4|فرمانده یکی از حوزه های بسیج خواهران در مهرستانِ سیستان و بلوچستان، در پی تیراندازی تروریست ها، به شهادت رسید": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: ترور و شهادت یک فرمانده بسیج در داخل کشور؛ رویداد امنیتی مهم.",
-      "topic": "نظامی",
-      "until": 1792056935.3471892
+    "v4|فرماندار: اشتغالزایی در ایرانشهر در گرو اصلاح مدیریت منابع و تسهیلات است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اظهارات محلی فرماندار درباره مدیریت منابع اشتغال در یک شهرستان",
+      "topic": "اقتصاد",
+      "until": 1792127209.6508713
     },
     "v4|فروش فوق العاده هاوال h9 وارداتی آغاز شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=iran_national: آغاز پیش‌ثبت‌نام خودرو یک خبر تجاری و روتین است.",
       "topic": "اقتصاد",
       "until": 1792063931.6187527
+    },
+    "v4|فعالیت بیش از هزار واحد صنایع تبدیلی و غذایی در مازندران": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine report on provincial industrial activity, lacks national strategic significance.",
+      "topic": "اقتصاد",
+      "until": 1792127210.4871178
     },
     "v4|فعالیت ساده ای که فشارخون را بهتر از ورزش ​​کاهش می دهد": {
       "ok": false,
@@ -3875,12 +3887,6 @@
       "topic": "ورزش",
       "until": 1792102862.446267
     },
-    "v4|مرکز هوشمند «مهتاب» در صنعت برق کهگیلویه وبویراحمد به بهره برداری رسید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: افتتاح مرکز هوشمند برق استانی محلی است و اهمیت ملی ندارد",
-      "topic": "اقتصاد",
-      "until": 1792056932.7850764
-    },
     "v4|مسابقات قایقرانی هفته تربیت بدنی در بوشهر برگزار می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: رویداد ورزشی محلی و غیرحرفه‌ای در سطح استانی است.",
@@ -4031,6 +4037,12 @@
       "topic": "سیاست",
       "until": 1792119054.2491922
     },
+    "v4|نتانیاهو برای موفقیت در انتخابات نیاز به جنگ دارد و در داخل کشور هم برخی بر طبل جنگ میزنند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Opinion piece and speculation, not a concrete event or official decision.",
+      "topic": "سیاست",
+      "until": 1792127216.274865
+    },
     "v4|نتانیاهو می ماند یا سقوط می کند؟/پنج سناریو برای انتخابات اسرائیل": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و بررسی سناریوهای انتخابات آینده اسرائیل.",
@@ -4054,6 +4066,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=ورزش: حاشیه ورزشی و ادعای حمله در عربستان، اهمیت درجه دو",
       "topic": "ورزش",
       "until": 1792063374.2530386
+    },
+    "v4|نسخه تجویزی صندوق بین المللی پول برای اقتصادهای آمریکا و چین": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=True scope=world: Official remarks by IMF head, but routine economic policy advice.",
+      "topic": "اقتصاد",
+      "until": 1792127216.314367
     },
     "v4|نشت گاز و آتش سوزی واحد مسکونی در قم سه مصدوم بر جای گذاشت": {
       "ok": false,
@@ -4103,12 +4121,6 @@
       "topic": "فناوری",
       "until": 1792063934.0682547
     },
-    "v4|نمایشی به کارگردانی روباه پیر": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: صدور بیانیه خصمانه ۲۹ کشور علیه ایران توسط انگلیس و آمریکا",
-      "topic": "سیاست",
-      "until": 1792056932.106154
-    },
     "v4|نماینده آباده در مجلس: شیراز اکسپو فرصتی برای توسعه دیپلماسی اقتصادی تولیدکنندگان است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارنظر نماینده مجلس درباره یک نمایشگاه استانی، فاقد ارزش خبری ملی",
@@ -4132,12 +4144,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سخنان مقام محلی درباره علم و دین ارزش خبری ندارد",
       "topic": "جامعه",
       "until": 1792059784.0565715
-    },
-    "v4|نهضت احیای نخلستان های جنوب راه اندازی می شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: خبر درباره طرح و برنامه است و رویداد قطعی محسوب نمی‌شود.",
-      "topic": "جامعه",
-      "until": 1792056930.6045365
     },
     "v4|نهمین پیمایش ملی عوامل خطر بیماری های غیرواگیر در کردستان اجرا می شود": {
       "ok": false,
@@ -4282,12 +4288,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: اظهارات کلی و شعاری مقام نظامی درباره وحدت ملی و ایستادگی",
       "topic": "سیاست",
       "until": 1792057566.8176987
-    },
-    "v4|ورزش بانوان؛ از وعده حمایت دولت تا تاریخ سازی در میدان رقابت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: مقاله تحلیلی و کلی درباره ورزش بانوان بدون رویداد خاص",
-      "topic": "ورزش",
-      "until": 1792056931.4298415
     },
     "v4|ورود سامانه بارشی به تهران از شنبه شب": {
       "ok": false,
@@ -5363,41 +5363,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: School shooting involving anti-terror investigators is a significant international security e",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1792015275,
-      "title": "French anti-terror investigators probe True Crime Community link to school shooting"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مسابقات فوتبال باشگاهی اروپا در سطح اول خبری نیست.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792015887,
-      "title": "دورتموند شکار جدید بودوگلیمت/ استون ویلا، فنرباغچه را در هم کوبید"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local military drill and official remarks with no strategic impact.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792015888,
-      "title": "رزمایش «جان فدایان ایران» جلوه ای از حضور مردم در سنگر خیابان است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارات دیپلماتیک و تنش‌های لفظی معمول بین دو کشور محسوب می‌شود.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792015889,
-      "title": "کوبا: روبیو برای شریک کردن جامعه بین المللی در وحشیگری علیه هاوانا تلاش می کند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل و گمانه‌زنی درباره عملکرد باشگاهی که فاقد اهمیت ملی یا استراتژیک است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792015890,
-      "title": "PSG on 'different level' - are they building greatest European dynasty?"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر مربوط به تعویض بازیکن در یک مسابقه لیگ داخلی است.",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -5921,6 +5886,41 @@
       "rule": "foreign-local-preselection",
       "t": 1792040246,
       "title": "مرور روزنامه های ۲۳ مهر ۱۴۰۵"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: این گزارش یک پژوهش علمی است و نه یک تصمیم اجرایی دولتی.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792040805,
+      "title": "انتقال آب خلیج فارس به فلات مرکزی غیراقتصادی و مخرب محیط زیست"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: Routine health advice from a local official, not a national event.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792040806,
+      "title": "خطر سلامت افراد با مصرف خودسرانه داروهای اعصاب و روان"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اظهارات محلی فرماندار درباره مدیریت منابع اشتغال در یک شهرستان",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792040809,
+      "title": "فرماندار: اشتغالزایی در ایرانشهر در گرو اصلاح مدیریت منابع و تسهیلات است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine report on provincial industrial activity, lacks national strategic significance.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792040810,
+      "title": "فعالیت بیش از هزار واحد صنایع تبدیلی و غذایی در مازندران"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: مرور روزنامه‌های استانی یک موضوع محلی و فاقد اهمیت ملی است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792040814,
+      "title": "صفحه نخست روزنامه های استان فارس پنجشنبه ۲۳ مهرماه"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10205,7 +10205,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792040066
+    "at": 1792040644
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
