@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
-      "t": 1792018778
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792019375
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792019375
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792019378
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792020517
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792020519
     },
@@ -159,24 +139,44 @@
     {
       "e": "AI PACE: openrouter:* held 1x",
       "t": 1792033844
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792034386
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792034386
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792034389
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
+      "t": 1792034392
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1792034432
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 83
+      "n": 87
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 35
+      "n": 36
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 34
+      "n": 38
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 21
+      "n": 22
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -263,31 +263,31 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 5,
-        "calls": 11,
+        "429": 6,
+        "calls": 12,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 6,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 3,
-        "calls": 34,
+        "calls": 38,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197720, Requested 2418. Please try again in 59.616",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 27,
-        "other": 4
+        "ok": 30,
+        "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 2,
-        "calls": 21,
+        "calls": 22,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199995, Requested 1818. Please try again in 13m3.21",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
+        "ok": 9,
         "other": 11
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -1246,6 +1246,12 @@
       "topic": "سیاست",
       "until": 1792098230.6065776
     },
+    "v4|australian politics live: wells says ‘manosphere’ podcasts and moon landing conspiracies allowed under labor duty of care reform": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian health policy change, low national impact",
+      "topic": "سیاست",
+      "until": 1792120789.3715835
+    },
     "v4|brazil’s president lula accuses meta of helping his right-wing opponent": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Political accusations regarding social media influence lack major international policy impact.",
@@ -1611,6 +1617,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رونمایی کتاب دانشگاهی رویدادی محلی و غیرمعیار است.",
       "topic": "جامعه",
       "until": 1792069076.5020306
+    },
+    "v4|«میم مثل میناب»؛ ادای دین یک معلم به دانش آموزان جان باخته": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: نمایش خیابانی، رویداد فرهنگی محلی، بدون اثر ملی",
+      "topic": "جامعه",
+      "until": 1792120785.4672413
     },
     "v4|«ننه عصمت» که بود؟ / زنی که حدود نیم قرن برای رزمندگان دستکش بافت": {
       "ok": false,
@@ -2194,6 +2206,12 @@
       "topic": "سیاست",
       "until": 1792118447.7158144
     },
+    "v4|با ادامه همین روند/ کین رکورد تاریخی رونالدو را می شکند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: رکورد ورزشی، نه خبر مهم ملی یا جهانی",
+      "topic": "ورزش",
+      "until": 1792120788.6147618
+    },
     "v4|با دستور سازمان حفاظت محیط زیست، طرح توسعه میدان نفتی سهراب بازنگری می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: دستور بازنگری طرح نفتی توسط محیط زیست اهمیت ملی دارد اما زیر رده اول.",
@@ -2337,6 +2355,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: دعوت به اردوی تیم ملی یک خبر ورزشی عادی و غیرمهم است.",
       "topic": "ورزش",
       "until": 1792089412.8772392
+    },
+    "v4|بیانیه شورای امنیت درباره دریای سرخ جانبدارانه و ناامیدکننده بود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارنظر یک مقام یمنی درباره بیانیه شورای امنیت، فاقد تاثیر راهبردی است.",
+      "topic": "سیاست",
+      "until": 1792120787.8956692
     },
     "v4|بیانیه محمد خاتمی درباره اوضاع جاری بین المللی و ملی": {
       "ok": false,
@@ -2776,12 +2800,6 @@
       "topic": "اقتصاد",
       "until": 1792061056.4202852
     },
-    "v4|خواجه پاشا: جوایز اسکار و کن باید برای کشور آبروداری کند، نه بی آبرویی/ خطر ساخت «سرو، سپید، سرخ» زیر موشک باران می ارزید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: مصاحبه با کارگردان درباره ساخت یک سریال",
-      "topic": "جامعه",
-      "until": 1792054615.14955
-    },
     "v4|خودروسازان چینی در اروپا ریشه دواندند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل روند بازار خودرو است و نه یک رویداد فوری و کلیدی.",
@@ -2895,12 +2913,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: دستگیری سارقان کابل برق یک خبر محلی و فاقد اهمیت ملی است.",
       "topic": "حادثه",
       "until": 1792095216.3103456
-    },
-    "v4|دشمن مأیوس از میدان به ترور روی آورده است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: سخنرانی امام جمعه اردبیل، نظری و محلی",
-      "topic": "سیاست",
-      "until": 1792054615.1365197
     },
     "v4|دفتر ریاست جمهوری لبنان: عون و عراقچی درباره تحولات منطقه گفت وگو کردند": {
       "ok": true,
@@ -3076,6 +3088,12 @@
       "topic": "سیاست",
       "until": 1792098794.2308972
     },
+    "v4|روته: در حال حاضر تهدیدی مبنی بر حمله روسیه به خاک کشورهای عضو ناتو وجود ندارد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Official statement by NATO Secretary General regarding regional security and war.",
+      "topic": "سیاست",
+      "until": 1792120792.7198763
+    },
     "v4|روته: ناتو از آمریکا در برابر زیردریایی های هسته ای روسیه دفاع می کند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع‌گیری رسمی دبیرکل ناتو درباره دفاع از آمریکا در برابر زیردریایی‌های روسیه.",
@@ -3123,12 +3141,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Significant economic impact on major energy infrastructure following a regional attack.",
       "topic": "اقتصاد",
       "until": 1792094690.366275
-    },
-    "v4|زلنسکی: اوکراین هشدار اطلاعاتی آمریکا درباره حمله موشکی را دریافت نکرد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اعتراض زلنسکی به دریافت نکردن هشدار اطلاعاتی آمریکا از حمله موشکی",
-      "topic": "نظامی",
-      "until": 1792054615.110242
     },
     "v4|زلنسکی: به من خیانت شد!": {
       "ok": true,
@@ -3339,6 +3351,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: گزارش از پیشرفت‌های نظامی چین است که فاقد عملیات میدانی است.",
       "topic": "فناوری",
       "until": 1792059286.5113094
+    },
+    "v4|سی ان ان: جنگ ایران تاکنون ۲۶۵ میلیارد دلار برای مصرف کنندگان آمریکایی هزینه داشته است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Economic analysis and speculation on historical costs, not a concrete event.",
+      "topic": "اقتصاد",
+      "until": 1792120792.7328544
     },
     "v4|سیدمحمد خاتمی از «معیشت مردم»، «جنگ تمدن ها» و «کودکان میناب» نوشت/ باید در پی چاره و تدبیر برای دور کردن سایه جنگ و تجاوز از کشور بود + متن بیانیه": {
       "ok": false,
@@ -3592,12 +3610,6 @@
       "topic": "سلامت",
       "until": 1792094675.076028
     },
-    "v4|عقب نشینی دشمن نتیجه مقاومت عاشورایی است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سخنرانی روتیۢ فرمانده سپاه استانی و فقدان اهمیت ملی",
-      "topic": "سیاست",
-      "until": 1792054611.9172904
-    },
     "v4|عوارض ۲۰۰ هزار دلاری آمریکا برای کشتی های اسپانیایی": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تصمیم کمیسیون دریایی آمریکا برای اعمال عوارض سنگین بر کشتی‌های اسپانیایی",
@@ -3657,12 +3669,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: ترور و شهادت یک فرمانده بسیج در داخل کشور؛ رویداد امنیتی مهم.",
       "topic": "نظامی",
       "until": 1792056935.3471892
-    },
-    "v4|فرودگاه ها و تأسیسات نفتی عربستان زیر آتش یمن؛ صدور هشدار تخلیه فوری": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله موشکی یمن به تاسیسات نفتی و فرودگاه‌های عربستان سعودی",
-      "topic": "نظامی",
-      "until": 1792054615.123594
     },
     "v4|فروش فوق العاده هاوال h9 وارداتی آغاز شد": {
       "ok": false,
@@ -4114,12 +4120,6 @@
       "topic": "سلامت",
       "until": 1792059287.7578716
     },
-    "v4|نواب: خادمان زائران باید با مسئولیت پذیری و سعه صدر خدمت کنند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: توصیه‌های مقام مسئول درباره خدمات‌رسانی به زائران اهمیت ملی ندارد",
-      "topic": "جامعه",
-      "until": 1792054610.6874754
-    },
     "v4|نوری: تلاش فداکارانه کادر درمان در حفظ سلامت مردم شایسته تقدیر است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تقدیر استاندار از کادر درمان محلی و فاقد اهمیت ملی است",
@@ -4420,6 +4420,12 @@
       "topic": "سیاست",
       "until": 1792070312.203478
     },
+    "v4|چرا مجری سابق تلویزیون با انتشار یک ویدئو، نادرست بودن ادعای باهنر را اثبات نمی کند؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: این خبر حاشیه‌ای و مربوط به اظهارات شخصی و جنجال‌های رسانه‌ای است.",
+      "topic": "جامعه",
+      "until": 1792120790.263845
+    },
     "v4|چرا ناصر تقوایی دیگر فیلم نساخت؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: بررسی سینمایی و گفت‌وگو درباره ناصر تقوایی خبری فرهنگی و کم‌اهمیت است.",
@@ -4684,12 +4690,6 @@
       "topic": "اقتصاد",
       "until": 1792073811.1743412
     },
-    "v4|۱۴۲ قطعه شیء تاریخی در برخوار کشف شد؛دستگیری ۳ متهم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و استانی کشف اشیاء عتیقه اهمیت ملی ندارد",
-      "topic": "قضایی",
-      "until": 1792054612.7046027
-    },
     "v4|۱۵ همت تعهدات مالی از قراردادهای معدنی در یزد اصلاح شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به اصلاح قراردادهای معدنی و وصول مطالبات در یزد",
@@ -4800,6 +4800,10 @@
     "حمله دوباره عربستان به پایتخت یمن": {
       "reason": "content_duplicate",
       "until": 1792038074.7613058
+    },
+    "روته: در حال حاضر تهدیدی مبنی بر حمله روسیه به خاک کشورهای عضو ناتو وجود ندارد": {
+      "reason": "content_duplicate",
+      "until": 1792056032.179933
     },
     "ریزش سنگین بورس سعودی به دنبال حمله یمن به آرامکو": {
       "reason": "content_duplicate",
@@ -5369,41 +5373,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: اظهارات تحلیلی و غیرراهبردی نماینده یک گروه شبه‌نظامی درباره وقایع گذشته",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792011829,
-      "title": "نماینده جهاد اسلامی در تهران: می خواهیم مساله فلسطین حل شود/عربستان دست دوستی به یمن دهد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: اخبار داخلی استرالیا فاقد اهمیت ملی برای ایران یا سطح جهانی است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792011830,
-      "title": "Australian politics live: Victoria Labor promises free abortion care if re-elected; Albanese criticises Hanson’s ‘monocu"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Political accusations regarding social media influence lack major international policy impact",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792011831,
-      "title": "Brazil’s President Lula Accuses Meta of Helping His Right-Wing Opponent"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: تحلیل اجتماعی و گمانه‌زنی درباره وضعیت اروپا بدون رویداد مشخص.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792011832,
-      "title": "Angry Youth in Aging Europe"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: نتیجه یک مسابقه فوتبال عادی در لیگ قهرمانان اروپا اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792011833,
-      "title": "لطف شیاطین سرخ انگلیس به مادریدی ها در لیگ قهرمانان اروپا"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقه فوتبال باشگاهی اروپایی در سطح اول اخبار نیست.",
       "rescued": false,
       "rule": "final-scope-preselection",
@@ -5927,6 +5896,41 @@
       "rule": "routine-metaphorical-topic",
       "t": 1792033798,
       "title": "تنها ۱۰ دقیقه ورزش روزانه کیفیت خواب را بهبود می بخشد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: نمایش خیابانی، رویداد فرهنگی محلی، بدون اثر ملی",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792034385,
+      "title": "«میم مثل میناب»؛ ادای دین یک معلم به دانش آموزان جان باخته"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارنظر یک مقام یمنی درباره بیانیه شورای امنیت، فاقد تاثیر راهبردی است.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792034387,
+      "title": "بیانیه شورای امنیت درباره دریای سرخ جانبدارانه و ناامیدکننده بود"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: رکورد ورزشی، نه خبر مهم ملی یا جهانی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792034388,
+      "title": "با ادامه همین روند/ کین رکورد تاریخی رونالدو را می شکند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian health policy change, low national impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792034389,
+      "title": "Australian politics live: Wells says ‘manosphere’ podcasts and moon landing conspiracies allowed under Labor duty of car"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: این خبر حاشیه‌ای و مربوط به اظهارات شخصی و جنجال‌های رسانه‌ای است.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792034390,
+      "title": "چرا مجری سابق تلویزیون با انتشار یک ویدئو، نادرست بودن ادعای باهنر را اثبات نمی کند؟"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10345,7 +10349,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792033705
+    "at": 1792034284
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10359,14 +10363,9 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792034113.0,
-    "last_failure": 1792033813,
-    "last_status": 599
-  },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792033876,
-    "last_failure": 1792033276,
+    "disabled_until": 1792034986,
+    "last_failure": 1792034386,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10383,8 +10382,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792033947.6623168,
-    "last_failure": 1792030347,
+    "disabled_until": 1792034989,
+    "last_failure": 1792034389,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
