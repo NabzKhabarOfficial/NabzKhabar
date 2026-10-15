@@ -2,18 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792058123
-    },
-    {
-      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.5-flash-lite",
-      "t": 1792058133
-    },
-    {
-      "e": "AI PACE: gemini:gemini-3.5-flash-lite held 1x, groq:openai/gpt-oss-120b held 3x",
-      "t": 1792058158
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792058742
     },
     {
@@ -159,12 +147,24 @@
     {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 2x, gemini:gemini-3.5-flash-lite held 4x, groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x, openrouter:* held 6x",
       "t": 1792062769
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792063297
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 6 stories",
+      "t": 1792063297
+    },
+    {
+      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 1x",
+      "t": 1792063304
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 65
+      "n": 67
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
@@ -172,7 +172,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 94
+      "n": 95
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
@@ -263,9 +263,9 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 145,
+        "calls": 147,
         "last_error": "HTTP 500: { \"error\": { \"code\": 500, \"message\": \"Internal error encountered.\", \"status\": \"INTERNAL\" } } ",
-        "ok": 138,
+        "ok": 140,
         "other": 7
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -278,10 +278,10 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 94,
+        "calls": 95,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 73,
+        "ok": 74,
         "other": 16
       },
       "groq:openai/gpt-oss-20b": {
@@ -1926,6 +1926,12 @@
       "topic": "ورزش",
       "until": 1792143975.3856888
     },
+    "v4|اصلاح سبک زندگی کلید طلایی پیشگیری از ۸۰ درصد بیماری های مزمن است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine health advice from a provincial official, lacks national strategic impact.",
+      "topic": "سلامت",
+      "until": 1792149695.8798885
+    },
     "v4|اطلاعات جمعیتی کارکنان قم مبنای برنامه ریزی هدفمند برای جوانی جمعیت می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine administrative data collection in a single province.",
@@ -1937,12 +1943,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=iran_national: توضیحات اداری سازمان تأمین اجتماعی درباره وام خوداشتغالی اخبار درجه یک محسوب نمی‌شود.",
       "topic": "جامعه",
       "until": 1792145159.90169
-    },
-    "v4|اعتراضات به آلبانی هم رسید؛ آتش سوزی در وزارت آموزش": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: اعتراضات دانشجویی و آتش‌سوزی در آلبانی ارتباطی با ایران و اهمیت بین‌المللی ندارد.",
-      "topic": "جامعه",
-      "until": 1792072627.959067
     },
     "v4|اعطای عالی ترین نشان افتخار اتحادیه اقتصادی اوراسیا به وزیر صنعت": {
       "ok": false,
@@ -2916,6 +2916,12 @@
       "topic": "قضایی",
       "until": 1792148630.4425848
     },
+    "v4|دستگیری شرور مسلح در جنوب تهران؛ تهدید خانواده شاکی با کلت و قمه ناکام ماند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: دستگیری یک فرد شرور در سطح محلی، فاقد اهمیت ملی یا بین‌المللی است.",
+      "topic": "حادثه",
+      "until": 1792149697.3235593
+    },
     "v4|دستگیری ۳ سارق کابل برق با ۳۴ فقره سرقت در کرمانشاه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: دستگیری سارقان کابل برق یک خبر محلی و فاقد اهمیت ملی است.",
@@ -3095,12 +3101,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: انتشار گزارش پیش‌بینی بازار جهانی بازی‌های ویدیویی اهمیت درجه یک ندارد",
       "topic": "فناوری",
       "until": 1792138203.2536864
-    },
-    "v4|رصد بلعیده شدن ماده کیهانی و گسیل جت های رادیویی توسط یک سیاه چاله": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: رصد علمی سیاهچاله خبر آکادمیک است و جزو اخبار درجه یک نیست.",
-      "topic": "فناوری",
-      "until": 1792072627.9728806
     },
     "v4|رفع اثر بیش از ۹۵ درصد تخلفات در محدوده قانونی شهر تهران": {
       "ok": false,
@@ -4796,10 +4796,6 @@
       "reason": "content_duplicate",
       "until": 1792064753.7459884
     },
-    "ادعای ترامپ درباره ایران: احتمالاً کمی زیاده روی کردم، عذر می خواهم، زیرا دیگر نمی دانم دقیقاً با چه کسانی سروکار داریم/ سخنگوی سپاه: حمله به کشتی های متخلف بعد از امضای تفاهم نامه": {
-      "reason": "content_duplicate",
-      "until": 1792062934.3415513
-    },
     "ادعای ترامپ: جنگ ایران خیلی زود به پایان خواهد رسید/ به محض اینکه بخواهم، این جنگ تمام می شود؛ خیلی زود": {
       "at": 1792062239.7008967,
       "reason": "ai_unavailable_local",
@@ -4819,6 +4815,11 @@
       "at": 1792062769.4473429,
       "reason": "ai_unavailable_local",
       "until": 1792063969.4473429
+    },
+    "جان باختن یک کارگر بر اثر ریزش معدن در اردکان": {
+      "at": 1792063304.412472,
+      "reason": "final_guard:media-source",
+      "until": 1792084904.412472
     },
     "جان باختن ۱۷ دانش آموز در پی فروریختن سقف یک مدرسه در پاکستان": {
       "at": 1792050660.1261313,
@@ -4857,11 +4858,6 @@
       "at": 1792051227.9943888,
       "reason": "final_guard:page-chrome",
       "until": 1792072827.9943888
-    },
-    "کرملین: اوکراین حمله به تأسیسات انرژی روسیه را ادامه داده است": {
-      "at": 1792061706.5188541,
-      "reason": "ai_unavailable_local",
-      "until": 1792062906.5188541
     },
     "یاسین یزدی: با پیروزی در کشتی فینال سهم کوچکی در قهرمانی داشتم": {
       "reason": "content_duplicate",
@@ -5403,20 +5399,6 @@
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: انتشار گزارش پیش‌بینی بازار جهانی بازی‌های ویدیویی اهمیت درجه یک ندارد",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792051803,
-      "title": "رشد ۶ درصدی بازار جهانی بازی های ویدیویی در سال ۲۰۲۶"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر استانی و مربوط به عملکرد دامپزشکی خراسان شمالی است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792051807,
-      "title": "۶۲ درصد برنامه مبارزه با بیماری های دامی خراسان شمالی محقق شد"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: عذرخواهی سرمربی منچسترسیتی پس از شکست رویداد درجه یک نیست",
       "rescued": false,
@@ -5962,6 +5944,20 @@
       "rule": "local-routine-low-value",
       "t": 1792062744,
       "title": "پنجمین جشنواره رویش دانشگاهی در ساری با معرفی برگزیدگان به کار خود پایان داد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine health advice from a provincial official, lacks national strategic impact.",
+      "rescued": false,
+      "rule": "low-value",
+      "t": 1792063295,
+      "title": "اصلاح سبک زندگی کلید طلایی پیشگیری از ۸۰ درصد بیماری های مزمن است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: دستگیری یک فرد شرور در سطح محلی، فاقد اهمیت ملی یا بین‌المللی است.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792063297,
+      "title": "دستگیری شرور مسلح در جنوب تهران؛ تهدید خانواده شاکی با کلت و قمه ناکام ماند"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10774,7 +10770,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792062620
+    "at": 1792063202
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10789,8 +10785,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792062830,
-    "last_failure": 1792062230,
+    "disabled_until": 1792063897,
+    "last_failure": 1792063297,
     "last_status": 429
   },
   "gemini:gemini-3.5-flash-lite": {
