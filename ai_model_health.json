@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
-      "t": 1792015912
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
-      "t": 1792015912
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792016460
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
-      "t": 1792016474
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
       "t": 1792016474
     },
@@ -159,28 +143,44 @@
     {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
       "t": 1792032654
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792033222
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792033237
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: no usable verdict",
+      "t": 1792033259
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792033260
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 78
+      "n": 79
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 33
+      "n": 35
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 32
+      "n": 34
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 18
+      "n": 21
     },
     "openrouter:*": {
-      "day": "2026-10-14",
-      "n": 15
+      "day": "2026-10-15",
+      "n": 7
     }
   },
   "_ai_usage": {
@@ -268,38 +268,69 @@
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 4,
-        "calls": 9,
+        "429": 5,
+        "calls": 11,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 5,
+        "ok": 6,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 3,
-        "calls": 32,
+        "calls": 34,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197720, Requested 2418. Please try again in 59.616",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 25,
+        "ok": 27,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 1,
-        "calls": 18,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199777, Requested 1859. Please try again in 11m46.7",
+        "429": 2,
+        "calls": 21,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199995, Requested 1818. Please try again in 13m3.21",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
-        "other": 10
+        "ok": 8,
+        "other": 11
+      },
+      "openrouter:dots-studio/dots-3-note-preview:free": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "openrouter:google/gemma-4-26b-a4b-it:free": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai",
+        "ok": 0,
+        "other": 0
+      },
+      "openrouter:google/gemma-4-31b-it:free": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/set",
+        "ok": 0,
+        "other": 0
+      },
+      "openrouter:liquid/lfm-2.5-2.6b:free": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "openrouter:openrouter/free": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1791876633.804158,
-      "title": "آغاز رزمایش هسته ای ناتو در ایتالیا",
-      "urgent": false
-    },
     {
       "label": "ورزش",
       "level": 4,
@@ -1132,6 +1163,13 @@
       "t": 1792030343.709676,
       "title": "قوه قضائیه ایران علی سینا مصطفوی را به جرم اقدام مسلحانه در حمایت از اسرائیل اعدام کرد",
       "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 3,
+      "t": 1792033273.3089204,
+      "title": "پنهان کاری مدیران ارشد در ایالت ویکتوریا درباره ضرر میلیونی کمک های کرونایی",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-14",
@@ -1411,6 +1449,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: رهگیری موشک یمنی به سمت ریاض توسط ائتلاف",
       "topic": "نظامی",
       "until": 1792067974.6069667
+    },
+    "v4|senior victorian public servants hid loss of up to $285m from covid grants given to ineligible businesses": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: Officials hid $285m Covid grant loss",
+      "topic": "قضایی",
+      "until": 1792119660.888806
     },
     "v4|settlers attack palestinian mosque near occupied east jerusalem": {
       "ok": true,
@@ -1789,6 +1833,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: تشریح برنامه‌های وزیر پیشنهادی دفاع در مجلس.",
       "topic": "سیاست",
       "until": 1792058683.2103193
+    },
+    "v4|ادعای ائتلاف سعودی درباره حمله پهپادی به شرق عربستان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Unconfirmed drone attack claim",
+      "topic": "نظامی",
+      "until": 1792119660.8757684
     },
     "v4|ادعای ترامپ: ممکن است کنترل هر دو مجلس را حفظ کنیم": {
       "ok": false,
@@ -2191,12 +2241,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: نتایج هفته دوم لیگ قهرمانان اروپا برای تیم‌های بزرگ",
       "topic": "ورزش",
       "until": 1792099919.145015
-    },
-    "v4|باید هر چه سریع تر از جنگ کنار بکشیم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Opinion and speculation regarding a US senator's visit and regional policy.",
-      "topic": "سیاست",
-      "until": 1792054083.431374
     },
     "v4|ببینید/ کرباسچی در صداوسیما چه گفت؟": {
       "ok": false,
@@ -4244,12 +4288,6 @@
       "topic": "سیاست",
       "until": 1792062127.6420553
     },
-    "v4|وزیرخارجه عمان توافق با ایران درباره تنگه هرمز را به نتیجه مذاکرات تهران-واشنگتن گره زد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Official statement by a foreign minister regarding Strait of Hormuz negotiations.",
-      "topic": "سیاست",
-      "until": 1792054083.4447904
-    },
     "v4|ویلا 6-0 فنر/ طوفان استون ویلا: کارتال در بیرمنگام شیش تایی شد!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقه فوتبال باشگاهی اروپایی در سطح اول اخبار نیست.",
@@ -4750,46 +4788,14 @@
       "reason": "content_duplicate",
       "until": 1792033440.6164412
     },
-    "star-studded saudi exhibition postponed after deadly attacks": {
-      "reason": "content_duplicate",
-      "until": 1792029282.2614331
-    },
-    "starlink restrictions in ukraine war linked to political situation, zelensky aide says": {
-      "reason": "content_duplicate",
-      "until": 1792032460.5855072
-    },
-    "ukraine accuses elon musk’s spacex of throttling starlink terminals": {
-      "reason": "content_duplicate",
-      "until": 1792029906.3801513
-    },
     "ukraine’s exposure grows as satellite use is restricted and russia escalates": {
-      "reason": "content_duplicate",
-      "until": 1792032897.1169686
+      "at": 1792033345.4616597,
+      "reason": "ai_unavailable_foreign",
+      "until": 1792034545.4616597
     },
     "آتش زدن تأسیسات سری استارلینک در بلغارستان": {
       "reason": "content_duplicate",
       "until": 1792053051.2526178
-    },
-    "ادعای نتانیاهو: پیش از انتخابات اسرائیل به دنبال حمله مجدد به ایران نیستم": {
-      "reason": "content_duplicate",
-      "until": 1792009586.1853068
-    },
-    "اوکراین می گوید محدودیت های استارلینک عملیات نظامی اش را مختل کرده است": {
-      "reason": "content_duplicate",
-      "until": 1792028725.399108
-    },
-    "ایران از مرحله خطر حمله غافلگیرکننده عبور کرده است": {
-      "reason": "content_duplicate",
-      "until": 1792009594.0584078
-    },
-    "تورم قیمت مصرف کننده در آمریکا شتاب گرفت": {
-      "at": 1791987439.9807959,
-      "reason": "policy_scope_blocked",
-      "until": 1792009039.9807959
-    },
-    "حملات یمن مسابقات تنیس در عربستان را به تعویق انداخت": {
-      "reason": "content_duplicate",
-      "until": 1792032448.2588782
     },
     "حمله دوباره عربستان به پایتخت یمن": {
       "reason": "content_duplicate",
@@ -4798,18 +4804,6 @@
     "ریزش سنگین بورس سعودی به دنبال حمله یمن به آرامکو": {
       "reason": "content_duplicate",
       "until": 1792051959.6456103
-    },
-    "زلنسکی: ترامپ به من خیانت کرد؛ زیر فشار آمریکا استعفا نمی دهم": {
-      "reason": "content_duplicate",
-      "until": 1792032431.9612148
-    },
-    "سخنگوی سپاه: حمله به کشتی های متخلف بعد از امضای تفاهم نامه اقدام خودسرانه نبود؛ پاسخی به نقض عهد سوم آمریکا بود": {
-      "reason": "content_duplicate",
-      "until": 1792032889.9220207
-    },
-    "قوه قضائیه ایران می گوید علی سینا مصطفوی را «به جرم اقدام مسلحانه در حمایت از اسرائیل» اعدام کرده است": {
-      "reason": "content_duplicate",
-      "until": 1792029899.0058289
     },
     "لفاظی های ضدایرانی ترامپ؛ از کوچک نمایی هزینه جنگ تا تکرار پایان سریع آن": {
       "reason": "content_duplicate",
@@ -4829,16 +4823,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "شهادت و مجروح شدن زنان و کودکان در یمن در پی حملات عربستان ⚡️ حملات جنگنده های ائتلاف سعودی به استان های تعز و",
-      "id": "6cc32e2714",
-      "match": "عربستان تأسیسات شرکت نفت در غرب صنعا را بمباران کرد",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1791976994,
-      "verdict": "repeat",
-      "why": "Reports the same Saudi airstrikes on Yemen and civilian casualties."
-    },
     {
       "head": "شهادت و مجروح شدن زنان و کودکان در یمن در پی حملات عربستان ⚡️ حملات جنگنده های ائتلاف سعودی به استان های تعز و",
       "id": "6cc32e2714",
@@ -5372,6 +5356,15 @@
       "t": 1792030342,
       "verdict": "new",
       "why": "different person, distinct execution event"
+    },
+    {
+      "head": "پنهان کاری مدیران ارشد در ایالت ویکتوریا درباره ضرر میلیونی کمک های کرونایی ⚡️ کمیسیون مستقل ضدفساد ایالت ویکت",
+      "id": "b6c7808639",
+      "match": "",
+      "model": "groq/openai/gpt-oss-120b",
+      "t": 1792033272,
+      "verdict": "new",
+      "why": "different location and subject, no similar event listed"
     }
   ],
   "_importance_rescue_log": [
@@ -5940,125 +5933,6 @@
   "_published_heads": [
     {
       "h": [
-        "اختلل",
-        "بدن",
-        "تخرب",
-        "خسرت",
-        "سختم",
-        "سزم",
-        "صنعت",
-        "طل",
-        "فض",
-        "فعلت",
-        "مج",
-        "محدد",
-        "مهر",
-        "نشبر",
-        "نشد",
-        "هچ",
-        "ورد",
-        "چند",
-        "گن"
-      ],
-      "t": 1791987434.773019,
-      "title": "ادامه بدون اختلال فعالیت ماهواره های ایران در جنگ و پس از آن ⚡️ رئیس سازمان فضایی ایران در نیشابور اعلام کرد که خسارت ها"
-    },
-    {
-      "h": [
-        "اتلف",
-        "اسرت",
-        "انتشر",
-        "انهدم",
-        "تجهز",
-        "تصر",
-        "جنب",
-        "ذبب",
-        "رند",
-        "سعد",
-        "عقب",
-        "غرب",
-        "فردگ",
-        "مسلح",
-        "وبست",
-        "یمن"
-      ],
-      "t": 1791988008.9285574,
-      "title": "انهدام تجهیزات و اسارت نظامیان سعودی در فرودگاه ذوباب یمن ⚡️ نیروهای مسلح یمن با انتشار تصاویری اعلام کردند که نیروهای و"
-    },
-    {
-      "h": [
-        "استرم",
-        "اقدم",
-        "الم",
-        "جر",
-        "جنت",
-        "خطط",
-        "ددست",
-        "ددستن",
-        "سرگ",
-        "فدرل",
-        "لل",
-        "محکم",
-        "مصدق",
-        "مظنن",
-        "نرد",
-        "پرند",
-        "کزنتسف",
-        "گز"
-      ],
-      "t": 1791989137.1641707,
-      "title": "انفجار نورد استریم؛ دادستان آلمان: این اقدام جنایت جنگی است ⚡️ دادستانی فدرال آلمان در جریان محاکمه سرگئی کوزنتسوف، مظنو"
-    },
-    {
-      "h": [
-        "ات",
-        "الن",
-        "امض",
-        "اند",
-        "خرج",
-        "رز",
-        "سرم",
-        "فرستد",
-        "قرردد",
-        "نمند",
-        "همکر",
-        "وژ",
-        "پتن",
-        "گذر",
-        "گزل"
-      ],
-      "t": 1791989157.0773573,
-      "title": "فرستاده پوتین: اولین قرارداد گازوئیل با آمریکا روزهای آتی امضا می شود ⚡️ نماینده ویژه رئیس جمهور روسیه در امور همکاری ها"
-    },
-    {
-      "h": [
-        "اتهمت",
-        "اسپن",
-        "اعمل",
-        "برخ",
-        "بندر",
-        "در",
-        "دسترس",
-        "دلر",
-        "سفر",
-        "طرح",
-        "عرض",
-        "فدرل",
-        "محدد",
-        "محددت",
-        "مطرح",
-        "هزر",
-        "ورد",
-        "پرچم",
-        "پشنهد",
-        "کل",
-        "کمسن"
-      ],
-      "t": 1791989690.3822854,
-      "title": "عوارض ۲۰۰ هزار دلاری آمریکا برای کشتی های اسپانیایی ⚡️ کمیسیون فدرال دریایی آمریکا با طرح اتهاماتی علیه اسپانیا درباره م"
-    },
-    {
-      "h": [
         "اثر",
         "الت",
         "سرنشن",
@@ -6487,6 +6361,36 @@
       ],
       "t": 1792030343.6971054,
       "title": "قوه قضائیه ایران علی سینا مصطفوی را به جرم اقدام مسلحانه در حمایت از اسرائیل اعدام کرد ⚡️ قوه قضائیه ایران علی سینا مصطف"
+    },
+    {
+      "h": [
+        "ارشد",
+        "استرل",
+        "الت",
+        "بدند",
+        "خسرت",
+        "شرط",
+        "ضدفسد",
+        "ضرر",
+        "فقد",
+        "مدر",
+        "مستقل",
+        "ملن",
+        "ندرست",
+        "نش",
+        "وکتر",
+        "وکر",
+        "پردخت",
+        "پنه",
+        "کد",
+        "کر",
+        "کرن",
+        "کسب",
+        "کمسن",
+        "کمک"
+      ],
+      "t": 1792033273.296415,
+      "title": "پنهان کاری مدیران ارشد در ایالت ویکتوریا درباره ضرر میلیونی کمک های کرونایی ⚡️ کمیسیون مستقل ضدفساد ایالت ویکتوریا در اس"
     }
   ],
   "_published_incidents": [
@@ -7141,76 +7045,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ارتش",
-        "اسب",
-        "تم",
-        "تنگ",
-        "حرق",
-        "در",
-        "دچر",
-        "رصد",
-        "سعت",
-        "شرق",
-        "شنس",
-        "عبر",
-        "فرند",
-        "متخلف",
-        "محدد",
-        "نر",
-        "نفتکش",
-        "هرمز"
-      ],
-      "t": 1791902258.6101315,
-      "title": "نیروی دریایی ارتش: یک فروند نفتکش متخلف در شرق تنگه هرمز دچار حریق شد ⚡️ نیروی دریایی ارتش اعلام کرد: یک فروند نفتکش متخ"
-    },
-    {
-      "k": [
-        "اثر",
-        "ار",
-        "اقتصد",
-        "الم",
-        "المندب",
-        "انرژ",
-        "انصرلل",
-        "بب",
-        "بررس",
-        "برنم",
-        "بزگش",
-        "تثبت",
-        "تقف",
-        "تلفن",
-        "تمس",
-        "تنش",
-        "تنگ",
-        "ثبت",
-        "حمل",
-        "خستر",
-        "رهکر",
-        "سز",
-        "سلم",
-        "صدرعظم",
-        "طرف",
-        "عربست",
-        "فردرش",
-        "فشر",
-        "قمت",
-        "متهم",
-        "محمد",
-        "مرتس",
-        "منطق",
-        "نظم",
-        "هرمز",
-        "هست",
-        "ولعهد",
-        "وگ",
-        "کهش",
-        "یمن"
-      ],
-      "t": 1791903341.0812037,
-      "title": "فشار صدراعظم آلمان بر ایران در گفت وگو با ولیعهد عربستان ⚡️ فردریش مرتس، صدراعظم آلمان، در تماس تلفنی با محمد بن سلمان، "
-    },
     {
       "k": [
         "اشغل",
@@ -10443,6 +10277,63 @@
       ],
       "t": 1792030343.6841018,
       "title": "قوه قضائیه ایران علی سینا مصطفوی را به جرم اقدام مسلحانه در حمایت از اسرائیل اعدام کرد ⚡️ قوه قضائیه ایران علی سینا مصطف"
+    },
+    {
+      "k": [
+        "ابعد",
+        "ارسل",
+        "ارشد",
+        "استرل",
+        "اطلع",
+        "الت",
+        "بدند",
+        "بلدست",
+        "تحقق",
+        "تخمن",
+        "ته",
+        "خسرت",
+        "در",
+        "دست",
+        "دشتند",
+        "دلت",
+        "دلر",
+        "زده",
+        "شرط",
+        "ضدفسد",
+        "ضرر",
+        "غرجد",
+        "فقد",
+        "مخف",
+        "مدر",
+        "مستقل",
+        "مقم",
+        "ملن",
+        "ندرست",
+        "نش",
+        "نگه",
+        "هزر",
+        "هشتد",
+        "هفت",
+        "وزر",
+        "وقت",
+        "وقع",
+        "وکتر",
+        "وکر",
+        "پردخت",
+        "پنج",
+        "پندم",
+        "پنه",
+        "کد",
+        "کر",
+        "کرن",
+        "کسب",
+        "کمسن",
+        "کمک",
+        "کنند",
+        "گمر"
+      ],
+      "t": 1792033273.283782,
+      "title": "پنهان کاری مدیران ارشد در ایالت ویکتوریا درباره ضرر میلیونی کمک های کرونایی ⚡️ کمیسیون مستقل ضدفساد ایالت ویکتوریا در اس"
     }
   ],
   "_text_polish": {
@@ -10454,7 +10345,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792032551
+    "at": 1792033128
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10469,13 +10360,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792022008.0,
-    "last_failure": 1792021708,
+    "disabled_until": 1792033537.0,
+    "last_failure": 1792033237,
     "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792033249,
-    "last_failure": 1792032649,
+    "disabled_until": 1792033876,
+    "last_failure": 1792033276,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10496,6 +10387,12 @@
     "last_failure": 1792030347,
     "last_status": 429
   },
+  "groq:openai/gpt-oss-20b": {
+    "daily_quota_rest": true,
+    "disabled_until": 1792036863.1522818,
+    "last_failure": 1792033263,
+    "last_status": 429
+  },
   "openrouter:apodex/apodex-1.1-mini:free": {
     "disabled_until": 1791916753,
     "last_failure": 1791916153,
@@ -10508,20 +10405,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792009608.6840384,
-    "last_failure": 1792006008,
-    "last_status": 429
+    "disabled_until": 1792033380,
+    "last_failure": 1792033320,
+    "last_status": 422
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792009608.5219746,
-    "last_failure": 1792006008,
+    "disabled_until": 1792033906,
+    "last_failure": 1792033306,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792009608.6019244,
-    "last_failure": 1792006008,
+    "disabled_until": 1792033906,
+    "last_failure": 1792033306,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -10532,21 +10429,21 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792009608.7588656,
-    "last_failure": 1792006008,
-    "last_status": 429
+    "disabled_until": 1792033388,
+    "last_failure": 1792033328,
+    "last_status": 422
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792009608.8593478,
-    "last_failure": 1792006008,
-    "last_status": 429
+    "disabled_until": 1792033405,
+    "last_failure": 1792033345,
+    "last_status": 422
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792025308.8417273,
-    "last_failure": 1792021708,
-    "last_status": 429
+    "disabled_until": 1792033366,
+    "last_failure": 1792033306,
+    "last_status": 422
   },
   "openrouter:qwen/qwen3.8-27b:free": {
     "disabled_until": 1790400317,
