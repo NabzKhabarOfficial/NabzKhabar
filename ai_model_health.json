@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792046029
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792046045
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: no usable verdict",
-      "t": 1792046049
-    },
-    {
-      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792046049
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1792046050
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 1x",
       "t": 1792046050
     },
@@ -159,20 +139,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, openrouter:* held 4x",
       "t": 1792051228
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792051799
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792051803
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792051816
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
+      "t": 1792051818
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792051818
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 15
+      "n": 16
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 48
+      "n": 53
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 71
+      "n": 73
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
@@ -263,26 +263,26 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 96,
+        "calls": 97,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 94,
+        "ok": 95,
         "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 30,
-        "calls": 89,
+        "calls": 94,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 56,
-        "other": 3
+        "ok": 60,
+        "other": 4
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 71,
+        "calls": 73,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 54,
-        "other": 12
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 55,
+        "other": 13
       },
       "groq:openai/gpt-oss-20b": {
         "429": 19,
@@ -1212,6 +1212,12 @@
       "topic": "حادثه",
       "until": 1792133635.666377
     },
+    "v4|at least 20 children dead after school roof collapses in pakistan": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Mass casualty event with over 10 deaths is world news.",
+      "topic": "حادثه",
+      "until": 1792138218.255123
+    },
     "v4|australia's first-ever michelin stars go to 11 restaurants in one state": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر سبک زندگی و غیرسیاسی که فاقد اهمیت ملی یا جهانی است.",
@@ -1355,12 +1361,6 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=9 happened=True scope=world: Ships sank; Tehran vows war continuation",
       "topic": "نظامی",
       "until": 1792109239.63878
-    },
-    "v4|israeli air strike kills palestinian woman in gaza city": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله هوایی اسرائیل و کشته شدن غیرنظامی در غزه",
-      "topic": "نظامی",
-      "until": 1792063937.3945048
     },
     "v4|israel’s former security chief sues netanyahu for october 7 defamation": {
       "ok": false,
@@ -1902,12 +1902,6 @@
       "topic": "سیاست",
       "until": 1792065683.4272177
     },
-    "v4|ادعای نتانیاهو درباره حمله پیشدستانه علیه ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: ادعاهای تکراری و معمولی مقامات خارجی علیه ایران",
-      "topic": "سیاست",
-      "until": 1792063937.4081478
-    },
     "v4|ادعای نتانیاهو: پیش از انتخابات اسرائیل به دنبال حمله مجدد به ایران نیستم": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع‌گیری نخست‌وزیر اسرائیل درباره عدم حمله به ایران",
@@ -1955,12 +1949,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد استانی و اظهارات مقام محلی درباره جشنواره تئاتر.",
       "topic": "جامعه",
       "until": 1792073820.4184294
-    },
-    "v4|استاندار کرمانشاه: وحدت ملی عامل خنثی سازی توطئه های دشمنان است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سخنرانی مقام استانی درباره وحدت ملی اهمیت ملی ندارد",
-      "topic": "سیاست",
-      "until": 1792063934.7895288
     },
     "v4|اسرائیل برای مقابله با حمله احتمالی ایران در روز انتخابات آماده می شود": {
       "ok": false,
@@ -2345,12 +2333,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: بیانیه مقامات سابق و نظرات سیاسی فاقد ارزش خبری درجه یک است",
       "topic": "سیاست",
       "until": 1792065067.5511193
-    },
-    "v4|بیست و دومین سفر استانی دولت به آذربایجان شرقی/ کارخانه گلوکز و نشاسته در شبستر افتتاح شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: افتتاح کارخانه در سفر استانی و محلی است",
-      "topic": "اقتصاد",
-      "until": 1792063935.3187516
     },
     "v4|بیش از هزار میلیارد تومان برای توسعه زیرساخت های ورزشی زنجان تأمین شد": {
       "ok": false,
@@ -2898,6 +2880,12 @@
       "topic": "سیاست",
       "until": 1792065077.2803411
     },
+    "v4|دریادار سیاری: تجربه های جنگ های اخیر باید در درمان ارتش به کار گرفته شود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: Routine military remarks on preparedness and training, not strategic.",
+      "topic": "نظامی",
+      "until": 1792138218.2682626
+    },
     "v4|دریادار سیاری، معاون هماهنگ کننده ارتش: تا زمانی که کشور ها به دنبال تأمین بنزین و گازوئیل هستند، یعنی تنگه هرمز بسته است/ هر کسی بدون هماهنگی وارد شود، در اخبار می بینید چه اتفاقی": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: موضع‌گیری رسمی مقام ارشد نظامی درباره تنگه هرمز",
@@ -2915,12 +2903,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=6 happened=True scope=iran_national: دستگیری تیم سازمان‌یافته مرتبط با جریان‌های ضدانقلاب توسط اطلاعات سپاه",
       "topic": "قضایی",
       "until": 1792129500.4450083
-    },
-    "v4|دستگیری ۲ عامل گروگانگیری در شیراز؛ گروگان آزاد شد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=iran_national: آزادی گروگان و دستگیری آدم‌ربایان در شیراز",
-      "topic": "قضایی",
-      "until": 1792063937.4356017
     },
     "v4|دستگیری ۳ سارق کابل برق با ۳۴ فقره سرقت در کرمانشاه": {
       "ok": false,
@@ -3084,6 +3066,12 @@
       "topic": "جامعه",
       "until": 1792115534.1951568
     },
+    "v4|رشد ۶ درصدی بازار جهانی بازی های ویدیویی در سال ۲۰۲۶": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: انتشار گزارش پیش‌بینی بازار جهانی بازی‌های ویدیویی اهمیت درجه یک ندارد",
+      "topic": "فناوری",
+      "until": 1792138203.2536864
+    },
     "v4|رصد بلعیده شدن ماده کیهانی و گسیل جت های رادیویی توسط یک سیاه چاله": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: رصد علمی سیاهچاله خبر آکادمیک است و جزو اخبار درجه یک نیست.",
@@ -3167,12 +3155,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله به تاسیسات آرامکو و خسارت شدید، رویداد مهم جهانی است.",
       "topic": "نظامی",
       "until": 1792065683.4139714
-    },
-    "v4|رویترز: سه طبقه از شرکت آرامکو آسیب دیده است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله به تاسیسات نفتی آرامکو عربستان و خسارت جدی",
-      "topic": "نظامی",
-      "until": 1792063937.4220526
     },
     "v4|رویداد ملی «مانوین» و ریل گذاری نوین اقتصادی نصف جهان": {
       "ok": false,
@@ -3605,6 +3587,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=world: مقاله تحلیلی و مدیریتی درباره ضرر اقتصادی عدم تعامل در جهان.",
       "topic": "اقتصاد",
       "until": 1792068514.579759
+    },
+    "v4|عذرخواهی سرمربی منچستر سیتی پس از شکست سنگین": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: عذرخواهی سرمربی منچسترسیتی پس از شکست رویداد درجه یک نیست",
+      "topic": "ورزش",
+      "until": 1792138211.5003462
     },
     "v4|عرضه مرغ بالای ۲.۲ کیلوگرم ممنوع شد": {
       "ok": false,
@@ -4134,12 +4122,6 @@
       "topic": "فناوری",
       "until": 1792080742.0922592
     },
-    "v4|نمایشگاه رویداد ملی صنایع خلاق «مانوین»": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: افتتاح نمایشگاه استانی و رویداد صنایع خلاق در اصفهان محلی است",
-      "topic": "فناوری",
-      "until": 1792063934.0682547
-    },
     "v4|نماینده آباده در مجلس: شیراز اکسپو فرصتی برای توسعه دیپلماسی اقتصادی تولیدکنندگان است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارنظر نماینده مجلس درباره یک نمایشگاه استانی، فاقد ارزش خبری ملی",
@@ -4265,6 +4247,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: اظهارات کلی و تکراری مقامات درباره صلح و آتش‌بس",
       "topic": "سیاست",
       "until": 1792097222.015697
+    },
+    "v4|ورود دوچرخه سواران ترکیه ای به اصفهان و دیدار با استاندار": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: symbolic visit, limited national relevance",
+      "topic": "جامعه",
+      "until": 1792138198.203564
     },
     "v4|وزیر ارتباطات: مصوبه ای برای رفع فیلتر سکوها تصویب کرده ایم": {
       "ok": true,
@@ -4416,12 +4404,6 @@
       "topic": "سیاست",
       "until": 1792135826.2898667
     },
-    "v4|چابکی استارتاپی، رمز تبدیل «بله» به سوپراپلیکیشن ملی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارات مدیرعامل بانک ملی درباره توسعه یک اپلیکیشن رویداد مهمی محسوب نمی‌شود.",
-      "topic": "فناوری",
-      "until": 1792063932.975056
-    },
     "v4|چرا ارتش آمریکا از درگیری مستقیم عقب نشست؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحلیل و گمانه‌زنی درباره سیاست آمریکا و جنگ",
@@ -4535,6 +4517,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: خبر محلی و کوچک کشف قاچاق در شهرستان چگنی",
       "topic": "حادثه",
       "until": 1792135311.027647
+    },
+    "v4|کشف مواد خوراکی قاچاق ۳۰ میلیاردی در تبریز": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: کشف کالای قاچاق در تبریز محلی و کم‌اهمیت است.",
+      "topic": "جامعه",
+      "until": 1792138215.5091949
     },
     "v4|کشف ۲ تن چوب جنگلی غیرمجاز در نور": {
       "ok": false,
@@ -4746,11 +4734,23 @@
       "topic": "سلامت",
       "until": 1792073197.509982
     },
+    "v4|۴۰ پروژه هوش مصنوعی، در اولویت پژوهش های انتقال خون": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=iran_national: Routine administrative announcement about research priorities, not a concrete event.",
+      "topic": "فناوری",
+      "until": 1792138218.2808058
+    },
     "v4|۶۰ درصد آمبولانس های اورژانس تربت حیدریه فرسوده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و مربوط به فرسودگی آمبولانس‌های تربت حیدریه",
       "topic": "سلامت",
       "until": 1792066142.2821796
+    },
+    "v4|۶۲ درصد برنامه مبارزه با بیماری های دامی خراسان شمالی محقق شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر استانی و مربوط به عملکرد دامپزشکی خراسان شمالی است.",
+      "topic": "سلامت",
+      "until": 1792138207.474324
     },
     "v4|‘growing ambitions’: dr. kendall on houthis’ quest to be recognised as yemen’s ‘legitimate' leaders": {
       "ok": false,
@@ -4782,6 +4782,11 @@
       "at": 1792047263.0505838,
       "reason": "policy_scope_blocked",
       "until": 1792068863.0505838
+    },
+    "at least 20 children dead after school roof collapses in pakistan": {
+      "at": 1792051818.9445488,
+      "reason": "policy_scope_blocked",
+      "until": 1792073418.9445488
     },
     "ukraine’s exposure grows as satellite use is restricted and russia escalates": {
       "reason": "content_duplicate",
@@ -5407,41 +5412,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی مربوط به نمایشگاه خودرو در قائم‌شهر و فاقد اهمیت ملی.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792039624,
-      "title": "واسطه گری در بازار خودروهای منطقه آزاد برچیده می شود؟"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: Local social issue regarding accessibility for the blind in Qom province.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792039625,
-      "title": "آزمون بزرگ مسوولان قم در برابر چالش های ریز و درشت روشندلان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: گزارش نشست اداری و رونمایی از سامانه‌های پایش محیط زیستی است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792039627,
-      "title": "گرد و غبار خوزستان؛ از دیپلماسی تا پیش بینی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering and expression of support for the regime.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792039628,
-      "title": "یزدی ها: تا هر زمانی که نیاز باشد در میدان حاضریم"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه بازی مرحله گروهی لیگ قهرمانان اروپا اهمیت خبری بالایی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792040219,
-      "title": "خلاصه بازی رئال مادرید مقابل رم (۴ - ۳)"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اخبار حاشیه‌ای و گمانه‌زنی‌های ورزشی فاقد اهمیت ملی یا بین‌المللی است.",
       "rescued": false,
       "rule": "final-scope-preselection",
@@ -5965,6 +5935,41 @@
       "rule": "below-event-threshold",
       "t": 1792051196,
       "title": "حق وردی: هفت بیمارستان غرب تهران فاقد دستگاه تصویربرداری هستند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: symbolic visit, limited national relevance",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1792051798,
+      "title": "ورود دوچرخه سواران ترکیه ای به اصفهان و دیدار با استاندار"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: انتشار گزارش پیش‌بینی بازار جهانی بازی‌های ویدیویی اهمیت درجه یک ندارد",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792051803,
+      "title": "رشد ۶ درصدی بازار جهانی بازی های ویدیویی در سال ۲۰۲۶"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر استانی و مربوط به عملکرد دامپزشکی خراسان شمالی است.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792051807,
+      "title": "۶۲ درصد برنامه مبارزه با بیماری های دامی خراسان شمالی محقق شد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: عذرخواهی سرمربی منچسترسیتی پس از شکست رویداد درجه یک نیست",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792051811,
+      "title": "عذرخواهی سرمربی منچستر سیتی پس از شکست سنگین"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: کشف کالای قاچاق در تبریز محلی و کم‌اهمیت است.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792051815,
+      "title": "کشف مواد خوراکی قاچاق ۳۰ میلیاردی در تبریز"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10166,7 +10171,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792051078
+    "at": 1792051641
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10186,8 +10191,8 @@
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792051497.0,
-    "last_failure": 1792051197,
+    "disabled_until": 1792052116.0,
+    "last_failure": 1792051816,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
@@ -10204,8 +10209,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792051228,
-    "last_failure": 1792050628,
+    "disabled_until": 1792052403,
+    "last_failure": 1792051803,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
