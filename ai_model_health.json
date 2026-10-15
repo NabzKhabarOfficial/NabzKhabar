@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1792045493
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792046028
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792046028
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792046029
     },
@@ -159,28 +147,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792050660
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792051197
+    },
+    {
+      "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.1-flash-lite",
+      "t": 1792051200
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, openrouter:* held 4x",
+      "t": 1792051228
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 12
+      "n": 15
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 41
+      "n": 48
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 70
+      "n": 71
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 68
+      "n": 70
     },
     "openrouter:*": {
       "day": "2026-10-15",
-      "n": 17
+      "n": 19
     }
   },
   "_ai_usage": {
@@ -263,34 +263,34 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 93,
+        "calls": 96,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 92,
-        "other": 1
+        "ok": 94,
+        "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 30,
-        "calls": 82,
+        "calls": 89,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 50,
-        "other": 2
+        "ok": 56,
+        "other": 3
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 70,
+        "calls": 71,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 53,
+        "ok": 54,
         "other": 12
       },
       "groq:openai/gpt-oss-20b": {
         "429": 19,
-        "calls": 68,
+        "calls": 70,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198273, Requested 1979. Please try again in 1m48.86",
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
         "ok": 26,
-        "other": 23
+        "other": 25
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 0,
@@ -299,8 +299,8 @@
         "other": 0
       },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 1,
-        "calls": 1,
+        "429": 2,
+        "calls": 2,
         "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai",
         "ok": 0,
         "other": 0
@@ -326,8 +326,8 @@
       },
       "openrouter:openrouter/free": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       }
     }
@@ -1464,6 +1464,12 @@
       "topic": "نظامی",
       "until": 1792098235.436053
     },
+    "v4|russian nuclear-powered submarine fires missiles during pacific drills": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Routine military drill, not a major escalation or combat event.",
+      "topic": "نظامی",
+      "until": 1792137599.8599837
+    },
     "v4|saudi tennis ‘slam’ with alcaraz, djokovic postponed amid houthi attacks": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: تعویق یک تورنمنت نمایشی ورزشی اهمیت خبری سطح اول ندارد.",
@@ -1584,12 +1590,6 @@
       "topic": "فناوری",
       "until": 1792091731.2463107
     },
-    "v4|zelensky to visit u.k. as ukraine presses allies on intelligence sharing": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: سفر رئیس‌جمهور اوکراین به بریتانیا و چالش‌های اطلاعاتی جنگ",
-      "topic": "سیاست",
-      "until": 1792063375.231354
-    },
     "v4|«اززسر» جشنواره ای برای سفر به تاریخ گرگان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: رویداد فرهنگی محلی و فاقد اهمیت ملی یا بین‌المللی است.",
@@ -1703,6 +1703,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: آغاز سرشماری نفوس و مسکن استانی و برنامه‌ریزی آینده است.",
       "topic": "جامعه",
       "until": 1792069676.9810162
+    },
+    "v4|آغاز پیش فروش بلیت های جشنواره نمایش عروسکی تهران-مبارک از ۲۳ مهرماه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر فروش بلیت جشنواره نمایشی اهمیت ملی ندارد.",
+      "topic": "جامعه",
+      "until": 1792137591.9358425
     },
     "v4|آقای همتی! امیدواریم از این پیچ مهم اقتصادی عبور کنید اما این ارزپاشی یعنی چه؟": {
       "ok": false,
@@ -1944,12 +1950,6 @@
       "topic": "اقتصاد",
       "until": 1792071464.0591238
     },
-    "v4|استاندار زنجان: تعهدات ارزی صادرکنندگان به صورت مجزا رسیدگی شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: دستورالعمل استانی درباره تعهدات ارزی، خبر محلی و غیرمهم سراسری است.",
-      "topic": "اقتصاد",
-      "until": 1792063369.9095626
-    },
     "v4|استاندار همدان: جشنواره تئاتر کودک، فرصتی برای نمایش پویایی جامعه ایرانی است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد استانی و اظهارات مقام محلی درباره جشنواره تئاتر.",
@@ -2069,12 +2069,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: نتایج نظرسنجی پیش از انتخابات است و رویداد قطعی نیست",
       "topic": "سیاست",
       "until": 1792135311.0033295
-    },
-    "v4|انتخابات میان دوره ای کنگره؛ دموکرات ها برنامه ۱۰۰ روزه پس از پیروزی نوشتند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: برنامه انتخاباتی و احتمالی حزب دموکرات برای آینده",
-      "topic": "سیاست",
-      "until": 1792063374.2792404
     },
     "v4|انتشار فهرست بلندبالای توقعات آمریکا از بانک جهانی": {
       "ok": true,
@@ -2706,6 +2700,12 @@
       "topic": "سیاست",
       "until": 1792101428.8099666
     },
+    "v4|حق وردی: هفت بیمارستان غرب تهران فاقد دستگاه تصویربرداری هستند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: انتقاد نماینده مجلس از کمبود تجهیزات درمانی در غرب استان تهران",
+      "topic": "سلامت",
+      "until": 1792137596.5223627
+    },
     "v4|حقانی: طلاب با الگوی حضرت زینب(س) به میدان جهاد تبیین بیایند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: سخنرانی و توصیه مذهبی و علمی، فاقد رویداد ملی یا بین‌المللی",
@@ -2820,6 +2820,12 @@
       "topic": "ورزش",
       "until": 1792132428.8194127
     },
+    "v4|خلیج فارس زیر آتش؛ سرمایه گذاری های میلیاردی چه سرنوشتی پیدا می کنند؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Opinion piece and analysis on regional security, not a specific event.",
+      "topic": "سیاست",
+      "until": 1792137599.9902103
+    },
     "v4|خودرو فیدیلیتی با سرعت ۱۸۰ کیلومتر در جاده میناب توقیف شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: توقیف یک خودرو به دلیل سرعت غیرمجاز خبری محلی و کم‌اهمیت است.",
@@ -2855,12 +2861,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: دستگیری تیم سازمان‌یافته ضد انقلاب در کرمان توسط سپاه",
       "topic": "قضایی",
       "until": 1792130147.0759313
-    },
-    "v4|دادستان: اراضی دولتی به ارزش بیش از ۶۰۰۰ میلیارد ریال در کرمان بازپس گیری شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: رفع تصرف اراضی دولتی در استان کرمان، خبری استانی",
-      "topic": "قضایی",
-      "until": 1792063374.2924788
     },
     "v4|دادستانی همدان یک همت از مطالبات مالیاتی را وصول کرد": {
       "ok": false,
@@ -2909,12 +2909,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سخنان مقام نظامی درباره روز پرستار رویداد اول نیست",
       "topic": "سلامت",
       "until": 1792135303.8249736
-    },
-    "v4|دستاوردهای جنبش تحریم رژیم صهیونیستی در سایه نسل کشی درغزه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: اظهارات و گزارش درباره دستاوردهای یک جنبش؛ فاقد رویداد مشخص",
-      "topic": "سیاست",
-      "until": 1792063374.226522
     },
     "v4|دستگیری اعضای یک تیم سازمان یافته مرتبط با جریان های ضدانقلاب در استان کرمان": {
       "ok": false,
@@ -3102,12 +3096,6 @@
       "topic": "قضایی",
       "until": 1792122592.4495337
     },
-    "v4|رقابت جهانی خودروهای برقی؛ چین و اروپا به دنبال توافق بر سر اختلافات تجاری": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: توافق چین و اتحادیه اروپا درباره خودروهای برقی",
-      "topic": "اقتصاد",
-      "until": 1792063374.2661877
-    },
     "v4|روایت سید محمد خاتمی از پاسخ رئیس جمهور چین به پیشنهاد اتمی ایران: در زمان ریاست جمهوری خودم، سه ملاقات با جیانگ زمین، رئیس جمهور وقت چین داشتم و در هر سه مورد، پیشنهاد دادم که برا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: روایت تاریخی و غیرراهبردی از دیدارهای گذشته که تاثیری بر وضعیت فعلی ندارد.",
@@ -3239,6 +3227,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: افتتاح ایست و بازرسی محلی اهمیت ملی ندارد.",
       "topic": "جامعه",
       "until": 1792074862.0633903
+    },
+    "v4|سامانه سازی به معنای هوشمندسازی نیست؛ حکمرانی شهری باید متحول شود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: سخنان مقام دولتی درباره هوش مصنوعی و حکمرانی شهری اهمیت ملی ندارد.",
+      "topic": "فناوری",
+      "until": 1792137584.640061
     },
     "v4|ستایش سناتور مکزیکی از عزت و قدرت ایران در برابر جنگ طلبی ترامپ": {
       "ok": false,
@@ -3408,6 +3402,12 @@
       "topic": "آب و هوا",
       "until": 1792106918.6178482
     },
+    "v4|سیل شدید در استانبول ترکیه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: سیل در استانبول بدون تلفات عمده خبری محلی و کم‌اهمیت است.",
+      "topic": "حادثه",
+      "until": 1792137580.2951872
+    },
     "v4|سیلاب ۵۰۰ میلیارد ریال به تاسیسات آب شمال استان اردبیل خسارت زد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: خسارت سیلاب به تاسیسات آب در شمال استان اردبیل",
@@ -3480,12 +3480,6 @@
       "topic": "ورزش",
       "until": 1792065055.3343346
     },
-    "v4|شهید و مجروح شدن ۵ زن و کودک در حملات عربستان به یمن": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حملات نظامی و تلفات غیرنظامیان در یمن",
-      "topic": "نظامی",
-      "until": 1792063374.3055098
-    },
     "v4|شوک درمانی با چوب؟ / روایت خانواده ها از آنچه در یک مرکز درمانی بر کودکان معلول گذشته است/ «۲۴ میلیون تومان گرفتند؛ پسرم را گریان برگرداندند»": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سکوت در مرکز درمانی، سوءاستفاده از کودکان معلول",
@@ -3545,12 +3539,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: گزارش نشست تخصصی و بررسی مشکلات صنعت بازی، فاقد رویداد کلان",
       "topic": "فناوری",
       "until": 1792068508.4066567
-    },
-    "v4|صیانت از قنات تاریخی زارچ در برابر خطر سیلاب؛ شناسایی نقاط آسیب پذیر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: خبر محلی و برنامه‌ریزی برای حفاظت از قنات در زارچ",
-      "topic": "جامعه",
-      "until": 1792063374.2399623
     },
     "v4|طالبان لباس فرم معرفی کردند؛ نظامیان همچنان تنبان و پیراهن می پوشند": {
       "ok": false,
@@ -3707,12 +3695,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Championship title won by Iran's national team in a global event.",
       "topic": "ورزش",
       "until": 1792128302.6645594
-    },
-    "v4|فروش فوق العاده هاوال h9 وارداتی آغاز شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=iran_national: آغاز پیش‌ثبت‌نام خودرو یک خبر تجاری و روتین است.",
-      "topic": "اقتصاد",
-      "until": 1792063931.6187527
     },
     "v4|فعالیت بیش از هزار واحد صنایع تبدیلی و غذایی در مازندران": {
       "ok": false,
@@ -3918,6 +3900,12 @@
       "topic": "ورزش",
       "until": 1792068509.0991855
     },
+    "v4|مراکز درمانی کشور نیازمند آمبولانس هستند/ برخورد قاطع با استفاده غیرپزشکی از آمبولانس ها": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: اظهارات مقام وزارت بهداشت درباره نیاز به آمبولانس و برخورد با تخلفات",
+      "topic": "سلامت",
+      "until": 1792137588.1716022
+    },
     "v4|مرشایمر، نظریه پرداز روابط بین الملل: این احتمال وجود دارد که عربستان و امارات، آمریکا را به حمله به ایران تشویق کرده باشند؛ زیرا تصور می کردند می توان ضربه ای «ناک اوت کننده» به ت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: نظر تحلیلگر و گمانه‌زنی درباره رفتار عربستان و امارات",
@@ -3977,6 +3965,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local religious speech on journalism ethics",
       "topic": "جامعه",
       "until": 1792121943.6081564
+    },
+    "v4|معاریو به نقل از منابع آگاه: ترامپ و نتانیاهو طی دو هفته گذشته، چندین بار در مورد احتمال ازسرگیری حملات به ایران گفت و گو کردند/ نخست وزیر اسرائیل معتقد است که امکان دارد آغاز جنگ": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: High-level discussions between world leaders regarding potential military action against Iran.",
+      "topic": "سیاست",
+      "until": 1792137599.9590561
     },
     "v4|معاملات برخط برق در بازار انرژی از آذر ماه الزامی می شود": {
       "ok": false,
@@ -4097,12 +4091,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: نیروی اسرائیل اعلام کرد حمله به ایران زمان مناسب نیست",
       "topic": "سیاست",
       "until": 1792085367.6480372
-    },
-    "v4|نجات هافبک تیم ملی از مصدومیت شدید؛/ حمله با لوله به عزت اللهی در عربستان! (عکس)": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=ورزش: حاشیه ورزشی و ادعای حمله در عربستان، اهمیت درجه دو",
-      "topic": "ورزش",
-      "until": 1792063374.2530386
     },
     "v4|نسخه تجویزی صندوق بین المللی پول برای اقتصادهای آمریکا و چین": {
       "ok": false,
@@ -4278,6 +4266,12 @@
       "topic": "سیاست",
       "until": 1792097222.015697
     },
+    "v4|وزیر ارتباطات: مصوبه ای برای رفع فیلتر سکوها تصویب کرده ایم": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Official government decision regarding the lifting of internet platform filtering.",
+      "topic": "فناوری",
+      "until": 1792137599.9696457
+    },
     "v4|وزیر بهداشت در مورد محدودیت های حمل و نقل دریایی: برخی ادعا می کنند دارو و تجهیزات پزشکی تحریم نیست، اما این ادعا با واقعیت های موجود فاصله دارد/ چنین ادعا هایی در شرایطی که دسترسی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=iran_national: اظهارات وزیر بهداشت درباره تحریم دارو، سخنان و موضع گیری اداری است.",
@@ -4289,6 +4283,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارنظر مقامات خارجی درباره یکدیگر اهمیت راهبردی درجه یک ندارد",
       "topic": "سیاست",
       "until": 1792074369.6328304
+    },
+    "v4|ولایتی: پرستاران در جنگ های تحمیلی حماسه ای ماندگار آفریدند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=iran_national: Routine commemorative remarks by an official, not a strategic decision.",
+      "topic": "جامعه",
+      "until": 1792137599.8704953
     },
     "v4|ولخرجی چین در خرید طلا چگونه دلار را زمین گیر می کند؟": {
       "ok": false,
@@ -4440,6 +4440,12 @@
       "topic": "جامعه",
       "until": 1792070313.425448
     },
+    "v4|چهار سناریوی پیش روی بازار نفت در سایه حملات به کشتیرانی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis of oil market scenarios, not a concrete event.",
+      "topic": "اقتصاد",
+      "until": 1792137599.979946
+    },
     "v4|چگونه کودک غرق در بازی را پای درس بنشانیم؟": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: مقالهٔ مشورتی، رویداد واقعی نیست",
@@ -4554,6 +4560,12 @@
       "topic": "اقتصاد",
       "until": 1792067436.7187421
     },
+    "v4|کشف ۸ دستگاه ماینر استخراج رمز ارز غیرمجاز و تجهیزات ۱۵ میلیارد ریالی در چگنی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Minor local police report regarding illegal mining equipment seizure.",
+      "topic": "قضایی",
+      "until": 1792137600.0004182
+    },
     "v4|کشف ۹۶۸ قلم کالای احتکاری در پاوه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: کشف کالای احتکاری در یک شهرستان کوچک اهمیت ملی ندارد.",
@@ -4601,12 +4613,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: گزارش رسمی نرخ تورم آمریکا یک شاخص کلان اقتصادی مهم است.",
       "topic": "اقتصاد",
       "until": 1792093506.0920706
-    },
-    "v4|گاز آلاسکا؛ ابزار واشنگتن برای گسترش نفوذ اقتصادی و انرژی در آسیا": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: قرارداد تجاری و انرژی بین تایوان و آمریکا درباره گاز آلاسکا",
-      "topic": "اقتصاد",
-      "until": 1792063374.3185215
     },
     "v4|گازرسانی به ۴۱۰ روستای خراسان شمالی در سایه اجرای مصوبات سفر رهبر شهید": {
       "ok": false,
@@ -4746,12 +4752,6 @@
       "topic": "سلامت",
       "until": 1792066142.2821796
     },
-    "v4|۷۵ هزار میلیارد ریال اعتبار عمرانی در یزد جذب شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به جذب اعتبار عمرانی در یزد",
-      "topic": "اقتصاد",
-      "until": 1792063370.8073168
-    },
     "v4|‘growing ambitions’: dr. kendall on houthis’ quest to be recognised as yemen’s ‘legitimate' leaders": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: تحلیل و نظر کارشناسی درباره استراتژی حوثی‌ها، فاقد رویداد خبری مشخص.",
@@ -4824,6 +4824,11 @@
       "reason": "final_guard:ai-garbled",
       "until": 1792057810.5630598
     },
+    "حمله موشکی یمن به نجران و جازان": {
+      "at": 1792051227.9943888,
+      "reason": "ai_unavailable_local",
+      "until": 1792052427.9943888
+    },
     "دریادار سیاری، معاون هماهنگ کننده ارتش: تا زمانی که کشور ها به دنبال تأمین بنزین و گازوئیل هستند، یعنی تنگه هرمز بسته است/ هر کسی بدون هماهنگی وارد شود، در اخبار می بینید چه اتفاقی": {
       "reason": "content_duplicate",
       "until": 1792070578.4557505
@@ -4841,13 +4846,19 @@
       "reason": "final_guard:page-chrome",
       "until": 1792065356.6775408
     },
+    "معاریو به نقل از منابع آگاه: ترامپ و نتانیاهو طی دو هفته گذشته، چندین بار در مورد احتمال ازسرگیری حملات به ایران گفت و گو کردند/ نخست وزیر اسرائیل معتقد است که امکان دارد آغاز جنگ": {
+      "at": 1792051227.9943888,
+      "reason": "final_guard:ai-garbled",
+      "until": 1792072827.9943888
+    },
+    "وزیر ارتباطات: مصوبه ای برای رفع فیلتر سکوها تصویب کرده ایم": {
+      "at": 1792051227.9943888,
+      "reason": "final_guard:page-chrome",
+      "until": 1792072827.9943888
+    },
     "یاسین یزدی: با پیروزی در کشتی فینال سهم کوچکی در قهرمانی داشتم": {
       "reason": "content_duplicate",
       "until": 1792071645.6439414
-    },
-    "یمن از حمله موشکی به فرودگاه بین المللی ریاض خبر داد": {
-      "reason": "content_duplicate",
-      "until": 1792050743.9466069
     }
   },
   "_event_judge_log": [
@@ -5396,41 +5407,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Historical sports event, not current",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1792037898,
-      "title": "برگی از تاریخ؛/ کریم باقری ایران را به پاریس می برد! (عکس)"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: خبر سبک و حاشیه‌ای درباره زندگی شخصی ورزشکاران است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792037907,
-      "title": "خرید لاکچری لئو برای فراموشی غم خداحافظی:/ قصر متحرک مسی با ارزش ۶۵۰ میلیارد تومان!"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سکوت در مرکز درمانی، سوءاستفاده از کودکان معلول",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792037930,
-      "title": "شوک درمانی با چوب؟ / روایت خانواده ها از آنچه در یک مرکز درمانی بر کودکان معلول گذشته است/ «۲۴ میلیون تومان گرفتند؛ پسرم"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: برنامه‌ریزی پخش زنده مسابقات، نه خبر مهم یا حادثه",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792039007,
-      "title": "جدول پخش زنده بازی های پنجشنبه 23 مهر"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: اظهارات شخصی ورزشکار درباره آمادگی برای مسابقات، فاقد ارزش خبری فوری است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792039623,
-      "title": "غریب شاهی: مسیر دشواری را پیمودیم، اما آماده درخشش هستیم"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی مربوط به نمایشگاه خودرو در قائم‌شهر و فاقد اهمیت ملی.",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -5954,6 +5930,41 @@
       "rule": "local-routine-low-value",
       "t": 1792050645,
       "title": "کرمان میزبان نخستین همایش هتلداری و صنایع وابسته کشور"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: سیل در استانبول بدون تلفات عمده خبری محلی و کم‌اهمیت است.",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1792051180,
+      "title": "سیل شدید در استانبول ترکیه"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: سخنان مقام دولتی درباره هوش مصنوعی و حکمرانی شهری اهمیت ملی ندارد.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792051184,
+      "title": "سامانه سازی به معنای هوشمندسازی نیست؛ حکمرانی شهری باید متحول شود"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: اظهارات مقام وزارت بهداشت درباره نیاز به آمبولانس و برخورد با تخلفات",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792051188,
+      "title": "مراکز درمانی کشور نیازمند آمبولانس هستند/ برخورد قاطع با استفاده غیرپزشکی از آمبولانس ها"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر فروش بلیت جشنواره نمایشی اهمیت ملی ندارد.",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792051191,
+      "title": "آغاز پیش فروش بلیت های جشنواره نمایش عروسکی تهران-مبارک از ۲۳ مهرماه"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: انتقاد نماینده مجلس از کمبود تجهیزات درمانی در غرب استان تهران",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792051196,
+      "title": "حق وردی: هفت بیمارستان غرب تهران فاقد دستگاه تصویربرداری هستند"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10155,7 +10166,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792050479
+    "at": 1792051078
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10169,9 +10180,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1792051503.0,
+    "last_failure": 1792051203,
+    "last_status": 503
+  },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792050955.0,
-    "last_failure": 1792050655,
+    "disabled_until": 1792051497.0,
+    "last_failure": 1792051197,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
@@ -10210,20 +10226,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792047845,
-    "last_failure": 1792047245,
+    "disabled_until": 1792051805,
+    "last_failure": 1792051205,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792047845,
-    "last_failure": 1792047245,
+    "disabled_until": 1792051805,
+    "last_failure": 1792051205,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792047845,
-    "last_failure": 1792047245,
+    "disabled_until": 1792051805,
+    "last_failure": 1792051205,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -10234,21 +10250,21 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792047845,
-    "last_failure": 1792047245,
+    "disabled_until": 1792051805,
+    "last_failure": 1792051205,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792047845,
-    "last_failure": 1792047245,
+    "disabled_until": 1792051805,
+    "last_failure": 1792051205,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792047845,
-    "last_failure": 1792047245,
-    "last_status": 429
+    "disabled_until": 1792051265,
+    "last_failure": 1792051205,
+    "last_status": 422
   },
   "openrouter:qwen/qwen3.8-27b:free": {
     "disabled_until": 1790400317,
