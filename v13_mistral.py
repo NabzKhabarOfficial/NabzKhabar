@@ -6,8 +6,11 @@ second), so it can carry the night when Groq's 200k tokens a day and Gemini's da
 used up. It is used only AFTER Groq and Gemini, before OpenRouter (50 free requests a day):
 
 1. Translation / rewrite (v13_ai_router.gemini_request): when the router reaches OpenRouter,
-   Mistral (mistral-large-latest, then mistral-small-latest) is asked first with the same prompt,
-   the same JSON check and the same strict content validation.
+   Mistral (mistral-small-latest, open-mistral-nemo) is asked first with the same prompt,
+   the same JSON check and the same strict content validation. (Oct 15 review: mistral-large-latest
+   returned HTTP 403 tier_not_allowed on the free tier and burned the 1 req/s rate limit right
+   before mistral-small-latest was called, causing HTTP 429; removed + 1.2s min gap between
+   Mistral requests.)
 2. Final editor (v13_ai_extra.ask_pool): mistral-small-latest is inserted before OpenRouter.
 3. The AI meter counts it (_ai_usage key "mistral:<model>"); it is not paced (no daily cap).
 
@@ -16,15 +19,40 @@ No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot run
 
 import os
 import sys
+import time
 
 MISTRAL_BASE = "https://api.mistral.ai/v1"
-TRANSLATE_MODELS = ("mistral-large-latest", "mistral-small-latest")
+TRANSLATE_MODELS = ("mistral-small-latest", "open-mistral-nemo")
 EDITOR_MODEL = "mistral-small-latest"
+MIN_INTERVAL_SEC = 1.25  # La Plateforme free tier is ~1 req/s across the account
 _INSTALLED = {"done": False}
+_LAST_CALL = {"at": 0.0}
 
 
 def _key():
     return os.getenv("MISTRAL_API_KEY", "").strip()
+
+
+def _pace_rps():
+    wait = MIN_INTERVAL_SEC - (time.monotonic() - _LAST_CALL["at"])
+    if wait > 0:
+        time.sleep(wait)
+    _LAST_CALL["at"] = time.monotonic()
+
+
+def _install_rps_guard():
+    import requests.sessions as rs
+    if getattr(rs.Session.request, "_v13_mistral_rps", False):
+        return
+    original = rs.Session.request
+
+    def request(self, method, url, *args, **kwargs):
+        if "api.mistral.ai" in str(url):
+            _pace_rps()
+        return original(self, method, url, *args, **kwargs)
+
+    request._v13_mistral_rps = True
+    rs.Session.request = request
 
 
 def _install_router(key):
@@ -32,6 +60,16 @@ def _install_router(key):
     previous = r._fallback_provider_request
     if getattr(previous, "_v13_mistral", False):
         return
+    orig_oa = r._openai_compatible_json
+    if not getattr(orig_oa, "_v13_mistral_json", False):
+        def oa_json(main, provider, base_url, api_key, model, prompt, max_output_tokens=500):
+            # Mistral supports response_format={"type": "json_object"} like OpenRouter
+            if str(provider).lower() == "mistral":
+                return orig_oa(main, "openrouter", base_url, api_key, model, prompt, max_output_tokens=max_output_tokens)
+            return orig_oa(main, provider, base_url, api_key, model, prompt, max_output_tokens=max_output_tokens)
+
+        oa_json._v13_mistral_json = True
+        r._openai_compatible_json = oa_json
 
     def fallback(main, provider, models, base_url, api_key, prompt, title, source, foreign, deadline=None):
         if str(provider).lower() == "openrouter":
@@ -78,6 +116,7 @@ def install():
     if not key:
         print("V13 MISTRAL: no MISTRAL_API_KEY; not used", flush=True)
         return
+    _install_rps_guard()
     _install_router(key)
     editor = _install_editor(key)
     _INSTALLED["done"] = True
