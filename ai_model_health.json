@@ -2,22 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792043746
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792043747
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 6 stories",
-      "t": 1792043748
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792043756
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
       "t": 1792044301
     },
     {
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792047760
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792048285
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792048288
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.5-flash-lite",
+      "t": 1792048293
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792048293
     }
   ],
   "_ai_pace": {
@@ -168,11 +168,11 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 1
+      "n": 7
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 65
+      "n": 66
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
@@ -270,18 +270,18 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 30,
-        "calls": 42,
+        "calls": 48,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 12,
+        "ok": 18,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 65,
+        "calls": 66,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 49,
-        "other": 11
+        "other": 12
       },
       "groq:openai/gpt-oss-20b": {
         "429": 13,
@@ -1787,6 +1787,12 @@
       "topic": "اقتصاد",
       "until": 1792066143.7541556
     },
+    "v4|اتفاق تلخ برای فرنگی کار ایرانی در لاس وگاس/ بیماری عجیبی که یک طلا را از ایران گرفت!(عکس)": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: حذف کشتی‌گیر در مسابقات امیدهای جهان رویداد درجه یک نیست",
+      "topic": "ورزش",
+      "until": 1792134688.1460242
+    },
     "v4|اتهام زنی انگلیس به روسیه و ایران درباره گسترش جنگ ترکیبی": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اتهام زنی رئیس اطلاعات انگلیس به ایران و روسیه",
@@ -2063,6 +2069,12 @@
       "topic": "اقتصاد",
       "until": 1792069077.2726843
     },
+    "v4|افزایش هزینه سوخت، فشار بر کسب وکارهای آمریکا را تشدید کرد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: گزارش و تحلیل روند بازار و هزینه‌های کسب‌وکار.",
+      "topic": "اقتصاد",
+      "until": 1792134693.3129141
+    },
     "v4|الزام به پیاده سازی کشاورزی نسل چهارم و تدوین تقویم تخصصی محصولات در مازندران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی و کشاورزی؛ فاقد اهمیت ملی یا بین‌المللی.",
@@ -2128,6 +2140,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: این گزارش یک پژوهش علمی است و نه یک تصمیم اجرایی دولتی.",
       "topic": "جامعه",
       "until": 1792127205.6513836
+    },
+    "v4|انجام ۷۳۴ بازرسی از مراکز درمانی قم در نیمه نخست سال جاری": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: گزارش عملکرد روتیت و محلی معاونت درمان قم ارزش خبری ندارد.",
+      "topic": "سلامت",
+      "until": 1792134688.9310708
     },
     "v4|انجمن خبرنگاران سمنان به وزنه ای در تشکل های رسانه ای کشور تبدیل شد": {
       "ok": false,
@@ -2266,12 +2284,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: تحلیل و نظر شخصی درباره ارزش بازیکن فوتبال است.",
       "topic": "ورزش",
       "until": 1792119052.6575446
-    },
-    "v4|بازداشت خبرنگار ژاپنی در مسکو به ظن جاسوسی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: بازداشت رسمی یک خبرنگار خارجی به اتهام جاسوسی در سطح بین الملل مهم است.",
-      "topic": "قضایی",
-      "until": 1792061060.2714348
     },
     "v4|بازدید معاون وزیر نیرو از نیروگاه خورشیدی ۱۵ مگاواتی قم": {
       "ok": false,
@@ -2620,6 +2632,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Bid for future conference, decision not yet made",
       "topic": "اقتصاد",
       "until": 1792130131.1026974
+    },
+    "v4|توافق گازوئیلی پوتین و ترامپ، تا کی تاریخ مصرف دارد؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و گمانه‌زنی رسانه‌ای درباره روابط آمریکا و روسیه.",
+      "topic": "اقتصاد",
+      "until": 1792134693.3027112
     },
     "v4|تورم قیمت مصرف کننده در آمریکا شتاب گرفت": {
       "ok": true,
@@ -3011,23 +3029,29 @@
       "topic": "اقتصاد",
       "until": 1792081351.114881
     },
+    "v4|دیدار و رایزنی روسای کل بانک های مرکزی ایران و عراق": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: دیدار مقام‌های بانکی در حاشیه اجلاس، رخداد کلان اقتصادی محسوب نمی‌شود.",
+      "topic": "اقتصاد",
+      "until": 1792134691.4461088
+    },
     "v4|دیدم پزشکیان لنگان لنگان می رود/ می گفتند حضرت آقا رفتند در پناهگاه، تعجب کردم که هنوز در بیت هستند/ روایت رئیس اورژانس از دقایق پس از حمله اسرائیل": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=iran_national: Direct report on high-level security incident involving the President.",
       "topic": "نظامی",
       "until": 1792098798.5346155
     },
+    "v4|دیپلماسی در کفش های گشاد و حرف های نسنجیده!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: نظر مدیر حوزه علمیه درباره تمدن اهمیت ملی ندارد",
+      "topic": "سیاست",
+      "until": 1792134690.734397
+    },
     "v4|رئیس دامپزشکی سنقروکلیایی: ۱۳ کیلوگرم گوشت فاسد امحا شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Minor local health inspection report with no national significance.",
       "topic": "سلامت",
       "until": 1792095219.4638464
-    },
-    "v4|رئیس دانشگاه آزاد: باید فضا را برای سلیقه هایی که دل در گرو ایران دارند امن و پرامید کنیم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: سخنان رئیس دانشگاه آزاد درباره برنامه ریزی و اهداف دانشگاهی روتین است.",
-      "topic": "سیاست",
-      "until": 1792061060.3088255
     },
     "v4|رئیس مجلس یمن: بیانیه شورای امنیت درباره دریای سرخ ناامیدکننده است": {
       "ok": true,
@@ -3046,12 +3070,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=iran_national: اظهارنظر کارشناسی و روتی درباره حکمرانی صنایع خلاق و چالش‌ها",
       "topic": "اقتصاد",
       "until": 1792061538.8751233
-    },
-    "v4|راه اندازی مرکز هم افزایی «آلفا» در دانشگاه بین المللی امام خمینی(ره)": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: افتتاح مرکز فناوری در یک دانشگاه محلی است.",
-      "topic": "فناوری",
-      "until": 1792061534.3698647
     },
     "v4|رحمتی ساختار دفاعی تیمش را پیدا کرد:/ پرس شدید خط حمله المحرق با 7 مهره آشنا": {
       "ok": false,
@@ -3088,12 +3106,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: personal anecdote, no broad significance",
       "topic": "جامعه",
       "until": 1792115534.1951568
-    },
-    "v4|رشد قیمت طلا و سکه؛ طلای ۱۸ عیار به کانال ۲۶ میلیون تومانی بازگشت": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: جهش قیمت طلا و سکه در بازار تهران شوک اقتصادی سراسری است.",
-      "topic": "اقتصاد",
-      "until": 1792061060.296486
     },
     "v4|رصد بلعیده شدن ماده کیهانی و گسیل جت های رادیویی توسط یک سیاه چاله": {
       "ok": false,
@@ -3317,12 +3329,6 @@
       "topic": "نظامی",
       "until": 1792123668.5839534
     },
-    "v4|سرپرست المپیاد ایران: خوشحالم به آمریکا مهاجرت نکردم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارنظر شخصی سرپرست المپیاد درباره مهاجرت، خبری نیست که توسط رسانه‌های طراز اول پوشش داده شود.",
-      "topic": "جامعه",
-      "until": 1792061533.7603862
-    },
     "v4|سفر ۹ ساعته تیم آردا توران برای زنده نگه داشتن امید یک ملت/ روایت نبرد بی پایان شاختار دونتسک: فوتبال در جنگ": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: گزارش حاشیه‌ای ورزشی و داستان تیم فوتبال، فاقد اهمیت درجه یک جهانی",
@@ -3443,6 +3449,12 @@
       "topic": "سلامت",
       "until": 1792063365.8963103
     },
+    "v4|شرط کاهش نرخ تورم و ارز چیست؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: نظر کارشناس درباره تورم، تحلیل و پیش‌بینی است.",
+      "topic": "اقتصاد",
+      "until": 1792134693.2922175
+    },
     "v4|شروط ۷ گانه گمرک برای ترخیض خودروهای ایرانیان مقیم خارج": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: ابلاغ ضوابط جدید گمرکی برای ترخیص خودرو",
@@ -3496,12 +3508,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Early round defeat in U23 championship, not a major medal event.",
       "topic": "ورزش",
       "until": 1792094073.938024
-    },
-    "v4|شکنجه رئیس بیمارستان های غزه تحت نظارت بن گویر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: محکومیت شکنجه بدون اقدام ملموس سطح بالا، امتیاز پایینی دارد.",
-      "topic": "سیاست",
-      "until": 1792061061.1680176
     },
     "v4|شیراز اکسپو باید فرصت های سرمایه گذاری را به پروژه های عملیاتی تبدیل کند": {
       "ok": false,
@@ -3676,12 +3682,6 @@
       "reason": "ai groq/openai/gpt-oss-20b batch score=1 happened=False scope=local: Local blood donation appeal",
       "topic": "سلامت",
       "until": 1792133637.107469
-    },
-    "v4|فراخوان پلیس آگاهی غرب تهران برای شناسایی شاکیان یک متهم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: فراخوان پلیس آگاهی شهرستان شهریار کاملاً خبری محلی و استانی است.",
-      "topic": "قضایی",
-      "until": 1792061060.2840161
     },
     "v4|فرستاده پوتین: اولین قرارداد گازوئیل با آمریکا روزهای آتی امضا می شود": {
       "ok": true,
@@ -4181,12 +4181,6 @@
       "topic": "جامعه",
       "until": 1792074375.3686213
     },
-    "v4|نیمی از انگلیسی ها در صورت وقوع جنگ حاضر به جنگیدن برای کشورشان نیستند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: نتایج نظرسنجی عمومی درباره تمایل به جنگ، خبری حاشیه ای محسوب می شود.",
-      "topic": "جامعه",
-      "until": 1792061060.258891
-    },
     "v4|نیویورک تایمز: آمریکا صدها سرباز به آمریکای لاتین اعزام می کند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اعزام نیرو برای رزمایش و آموزش، رویداد استراتژیک یا فوری محسوب نمی‌شود.",
@@ -4361,6 +4355,12 @@
       "topic": "اقتصاد",
       "until": 1792133635.6923504
     },
+    "v4|پرونده فوت مادر باردار همدانی به صورت ویژه بررسی می شود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: پیگیری محلی نمایندگان مجلس درباره فوت یک مادر باردار",
+      "topic": "سلامت",
+      "until": 1792134689.6386228
+    },
     "v4|پزشکیان مصوبه تسهیل فرایندهای گمرکی و حمل یک سره کالا را ابلاغ کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: ابلاغ رسمی مصوبه مهم ریاست جمهوری توسط پزشکیان.",
@@ -4396,6 +4396,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: انتصاب مربی جدید در کادر فنی تیم صنعت نفت آبادان.",
       "topic": "ورزش",
       "until": 1792067436.7320557
+    },
+    "v4|پیش بینی بارش های بالاتر از نرمال در تهران طی هفته های آینده/ تجربه سرمای پاییزی از آبان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: پیش‌بینی هواشناسی استان تهران و توصیه‌های محلی.",
+      "topic": "آب و هوا",
+      "until": 1792134693.32311
     },
     "v4|پیشتازی «چکنو» بانک صادرات ایران؛ ارزش وصولی ها ۹۴ درصد رشد کرد": {
       "ok": false,
@@ -4528,12 +4534,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: کشف کالای احتکاری در یک شهرستان کوچک اهمیت ملی ندارد.",
       "topic": "اقتصاد",
       "until": 1792095766.9154809
-    },
-    "v4|کشف۱۲۰گرم طلا و جواهرات سرقتی در مراغه/ دستگیری متهم به برادرکشی در میانه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سرقت و دستگیری محلی در مراغه و میانه، فاقد اهمیت ملی.",
-      "topic": "حادثه",
-      "until": 1792061535.022414
     },
     "v4|کلنگ زنی سه مدرسه روستایی در قشم": {
       "ok": false,
@@ -5389,41 +5389,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=world: Financial crisis in English football clubs",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792030887,
-      "title": "آمارهای مالی نشان می دهند/ این هشدار جدی است! لیگ برتر در مرز ورشکستگی"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: محلی: بنچ تیم، جو متفاوت، بدون رویداد مهم",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792031437,
-      "title": "روزهای متفاوت مردان قابل اعتماد محرم!"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: اخبار سیاسی داخلی و روزمره استرالیا برای ایران اهمیت ندارد",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792031438,
-      "title": "Australian politics live: Greens vow to table bill to block US execution livestream; government considering allowing ind"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=0 happened=False scope=local: این مطلب یک نقد کتاب و تحلیل فرهنگی است و خبر محسوب نمی‌شود.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1792032045,
-      "title": "تصویری که اروپا از خود ساخته است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مرور روزنامه‌ها خبری معمول و غیرمرتبط با اخبار رده‌اول است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792032046,
-      "title": "صفحه نخست روزنامه ها – پنج شنبه ۲۳ مهر"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: تحلیل و نظر شخصی درباره ارزش بازیکن فوتبال است.",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5947,6 +5912,41 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792047742,
       "title": "بازسازی بیمارستان الزهرا حاصل همت ارتش در روزهای دشوار کشور است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: حذف کشتی‌گیر در مسابقات امیدهای جهان رویداد درجه یک نیست",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792048288,
+      "title": "اتفاق تلخ برای فرنگی کار ایرانی در لاس وگاس/ بیماری عجیبی که یک طلا را از ایران گرفت!(عکس)"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: گزارش عملکرد روتیت و محلی معاونت درمان قم ارزش خبری ندارد.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792048288,
+      "title": "انجام ۷۳۴ بازرسی از مراکز درمانی قم در نیمه نخست سال جاری"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: پیگیری محلی نمایندگان مجلس درباره فوت یک مادر باردار",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792048289,
+      "title": "پرونده فوت مادر باردار همدانی به صورت ویژه بررسی می شود"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: نظر مدیر حوزه علمیه درباره تمدن اهمیت ملی ندارد",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792048290,
+      "title": "دیپلماسی در کفش های گشاد و حرف های نسنجیده!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: دیدار مقام‌های بانکی در حاشیه اجلاس، رخداد کلان اقتصادی محسوب نمی‌شود.",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1792048291,
+      "title": "دیدار و رایزنی روسای کل بانک های مرکزی ایران و عراق"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9988,7 +9988,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792047577
+    "at": 1792048170
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10021,8 +10021,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792047823,
-    "last_failure": 1792047222,
+    "disabled_until": 1792048888,
+    "last_failure": 1792048288,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
