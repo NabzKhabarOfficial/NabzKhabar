@@ -172,7 +172,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 9
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
@@ -276,10 +276,10 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 2,
-        "calls": 9,
+        "calls": 10,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7298, Requested 1760. Please try again in 7.935s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 6,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
@@ -2660,12 +2660,6 @@
       "topic": "نظامی",
       "until": 1792102297.5023699
     },
-    "v4|حمله سنگین روسیه به یک نیروگاه حرارتی/ زلنسکی: متحدان غربی هیچ هشداری بیش از حمله به ما ندادند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله سنگین موشکی روسیه به نیروگاه حرارتی اوکراین و انتقاد زلنسکی",
-      "topic": "نظامی",
-      "until": 1792052933.8162296
-    },
     "v4|حمله مورینیو به کمیته انضباطی: چرا الان؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Routine sports commentary and personal opinions on disciplinary decisions.",
@@ -4592,6 +4586,12 @@
       "topic": "نظامی",
       "until": 1792061060.2464604
     },
+    "v4|گنبدکاووس؛ روایت ۲۲۸ شب از یک دلبستگی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local rally supporting leader, no national impact",
+      "topic": "سیاست",
+      "until": 1792109784.3361864
+    },
     "v4|گودرزی: حضور پرشور مردم معادلات پیچیده دشمن را در هم شکست": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine political rhetoric by a parliament member without strategic impact.",
@@ -5372,13 +5372,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این خبر مربوط به یک تجمع محلی در شهر لنگرود است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792007670,
-      "title": "شب ۲۲۸ تجمع لنگرودی ها همزمان با شب ولادت حضرت زینب (س)"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Academic achievement of a single faculty member is not national news.",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -5930,6 +5923,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792022837,
       "title": "Lula’s party accuses Meta of election interference ahead of Brazil runoff"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local rally supporting leader, no national impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792023384,
+      "title": "گنبدکاووس؛ روایت ۲۲۸ شب از یک دلبستگی"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11122,7 +11122,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792022717
+    "at": 1792023280
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
