@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792060973
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792060973
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 4 stories",
-      "t": 1792060974
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1792060988
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792061646
     },
@@ -159,24 +143,40 @@
     {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 1x, groq:openai/gpt-oss-120b held 2x, openrouter:* held 5x",
       "t": 1792065672
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792066266
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792066267
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792066272
+    },
+    {
+      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 1x, gemini:gemini-3.5-flash-lite held 1x, groq:openai/gpt-oss-120b held 2x, openrouter:* held 6x",
+      "t": 1792066291
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 74
+      "n": 75
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 130
+      "n": 135
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 100
+      "n": 101
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 99
+      "n": 100
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -263,33 +263,33 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 154,
+        "calls": 155,
         "last_error": "HTTP 500: { \"error\": { \"code\": 500, \"message\": \"Internal error encountered.\", \"status\": \"INTERNAL\" } } ",
-        "ok": 147,
+        "ok": 148,
         "other": 7
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 30,
-        "calls": 171,
+        "calls": 176,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 135,
+        "ok": 140,
         "other": 6
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 100,
+        "calls": 101,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 78,
-        "other": 17
+        "other": 18
       },
       "groq:openai/gpt-oss-20b": {
         "429": 21,
-        "calls": 99,
+        "calls": 100,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199548, Requested 1338. Please try again in 6m22.75",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 42,
+        "ok": 43,
         "other": 36
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -1266,6 +1266,12 @@
       "topic": "سیاست",
       "until": 1792120789.3715835
     },
+    "v4|bee unveils two ai note-taking devices, its first new products since being acquired by amazon": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Minor consumer electronics product launch, lacks global strategic or economic impact.",
+      "topic": "فناوری",
+      "until": 1792152673.7671816
+    },
     "v4|brazil’s president lula accuses meta of helping his right-wing opponent": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Political accusations regarding social media influence lack major international policy impact.",
@@ -1529,12 +1535,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: Local citizens reacting to mayor's advice about bomb shelters.",
       "topic": "سیاست",
       "until": 1792145162.710108
-    },
-    "v4|watkins replaces injured smithies in england squad": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: تغییر جزئی در ترکیب تیم ملی راگبی انگلیس",
-      "topic": "ورزش",
-      "until": 1792074375.3827207
     },
     "v4|west indies beat india to level t20 series as hope continues record run": {
       "ok": false,
@@ -1805,6 +1805,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: ورود اتوبوس‌های جدید و جشنواره فرهنگی در تهران",
       "topic": "جامعه",
       "until": 1792128284.4501004
+    },
+    "v4|اخبار کوتاه ۲۳ مهرماه استان کرمانشاه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر کوتاه محلමی و استانی است",
+      "topic": "جامعه",
+      "until": 1792152671.0365002
     },
     "v4|اختتامیه نخستین جشنواره ادبی اردبیل": {
       "ok": false,
@@ -2093,12 +2099,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: Corruption case in a small municipality is considered local news.",
       "topic": "قضایی",
       "until": 1792145145.976146
-    },
-    "v4|انهدام تجهیزات و اسارت نظامیان سعودی در فرودگاه ذوباب در جنوب غرب یمن": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: درگیری نظامی و اسارت نیروها در یمن",
-      "topic": "نظامی",
-      "until": 1792074375.3967323
     },
     "v4|اولین شکست در لیگ قهرمانان: فابرگاس غافلگیر شد!": {
       "ok": false,
@@ -2484,12 +2484,6 @@
       "topic": "جامعه",
       "until": 1792100564.9319692
     },
-    "v4|تعرفه های اینترنت اپراتورهای تلفن همراه تغییر می کند؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=False scope=iran_national: احتمال افزایش تعرفه اینترنت و عدم قطعی تصمیم رسمی",
-      "topic": "اقتصاد",
-      "until": 1792074862.677917
-    },
     "v4|تعلیق بیش از ۱۳ هزار حساب کاربری مرتبط با ایران، چین و روسیه در آستانه انتخابات آمریکا": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Official action by a major platform regarding foreign influence in US elections.",
@@ -2501,6 +2495,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: تعیین مجوز بازگشت بازیکنان استقلال",
       "topic": "ورزش",
       "until": 1792089413.5169363
+    },
+    "v4|تعویق نشست سران اروپا با شورای همکاری خلیج فارس در ریاض": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: تعویق نشست سران اتحادیه اروپا و شورای همکاری خلیج فارس",
+      "topic": "سیاست",
+      "until": 1792152667.382165
     },
     "v4|تغییر زمان بازی پرسپولیس و شهربابک؛استقلال خوزستان در غدیر بازی می کند": {
       "ok": false,
@@ -2609,6 +2609,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: پیشنهاد و اظهار نظر مدیر عامل ایرنا درباره مستندسازی حملات.",
       "topic": "سیاست",
       "until": 1792143397.5014567
+    },
+    "v4|جابه جایی برخی بیماران در تهران ممکن است تا ۹۰ دقیقه زمان ببرد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات مقام وزارت بهداشت درباره زمان جابجایی بیماران در تهران",
+      "topic": "سلامت",
+      "until": 1792152668.193945
     },
     "v4|جادوی مورینیو از روی نیمکت/ ریمونتادای جنون آمیز رئال مادرید در هفت دقیقه!": {
       "ok": false,
@@ -2783,6 +2789,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: پیشنهاد مقام دولتی درباره مدرسه سازی، فاقد فوریت و اهمیت ملی.",
       "topic": "جامعه",
       "until": 1792137036.9966664
+    },
+    "v4|خط کشی ۱۳۲۰ کیلومتر از راه های بوشهر در ۶ ماه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر است استانی و مربوط به راهداری بوشهر است",
+      "topic": "جامعه",
+      "until": 1792152670.1052618
     },
     "v4|خطر سلامت افراد با مصرف خودسرانه داروهای اعصاب و روان": {
       "ok": false,
@@ -3239,12 +3251,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official UN warning regarding food security and Strait of Hormuz transit.",
       "topic": "اقتصاد",
       "until": 1792133635.6295202
-    },
-    "v4|سامانه آشکارساز ایکس ری درایست وبازرسی شهید صلاحی دشتستان افتتاح شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: افتتاح ایست و بازرسی محلی اهمیت ملی ندارد.",
-      "topic": "جامعه",
-      "until": 1792074862.0633903
     },
     "v4|سامانه سازی به معنای هوشمندسازی نیست؛ حکمرانی شهری باید متحول شود": {
       "ok": false,
@@ -3779,12 +3785,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: دیدار آتی پوتین و شی جین‌پینگ توسط لاوروف اعلام شد",
       "topic": "سیاست",
       "until": 1792082490.4440591
-    },
-    "v4|لاپورتا زمان خرید/ وام ۵۱۰ میلیون یورویی بارسلونا را زنده کرد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تلاش باشگاه ورزشی برای تامین مالی رویداد درجه یک نیست",
-      "topic": "ورزش",
-      "until": 1792074855.5492613
     },
     "v4|لاپورتا زمان خرید/ وام ۵۱۰ میلیون یورویی، بارسلونا را زنده کرد": {
       "ok": false,
@@ -4650,6 +4650,12 @@
       "topic": "ورزش",
       "until": 1792136432.4681401
     },
+    "v4|یامال در استانبول سورپرایز شد! (عکس)": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=world: خبر حاشیه‌ای ورزشی و زندگی شخصی بازیکنان است.",
+      "topic": "ورزش",
+      "until": 1792152669.281514
+    },
     "v4|یحیی سریع: ادعای ریاض درباره حمله یمن به مدینه، دروغی فاحش است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: موضع رسمی سخنگوی نظامی در خصوص درگیری‌های منطقه‌ای و جنگ یمن.",
@@ -4764,12 +4770,6 @@
       "topic": "نظامی",
       "until": 1792099416.0455363
     },
-    "v4|‫اعتصاب سراسری در اسپانیا تقویم یوفا را تغییر داد/ به دلیل گرانی مسکن: تعویق بازی بارسا و آرسنال!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: تعویق مسابقه ورزشی اهمیت سطح یک جهانی ندارد",
-      "topic": "ورزش",
-      "until": 1792074871.4976323
-    },
     "v4|‫حضور معمار عصر طلایی سیتی در اتحاد/ پپ به خانه برگشت: گفتم با شما هستم!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: حضور یک مربی در ورزشگاه خبر درجه یک محسوب نمی‌شود.",
@@ -4794,9 +4794,9 @@
       "until": 1792066872.1905482
     },
     "ادعای ترامپ: جنگ ایران خیلی زود به پایان خواهد رسید/ به محض اینکه بخواهم، این جنگ تمام می شود؛ خیلی زود": {
-      "at": 1792064533.4754584,
+      "at": 1792066291.5947566,
       "reason": "ai_unavailable_local",
-      "until": 1792065733.4754584
+      "until": 1792067491.5947566
     },
     "انتشار فهرست بلندبالای توقعات آمریکا از بانک جهانی": {
       "at": 1792047263.0505838,
@@ -4814,9 +4814,9 @@
       "until": 1792072260.1261313
     },
     "جهش هزینه های حمل ونقل نفت؛ از افزایش قیمت بنزین در جایگاه ها تا گرانی مواد غذایی": {
-      "at": 1792064533.4754584,
+      "at": 1792066291.5947566,
       "reason": "ai_unavailable_local",
-      "until": 1792065733.4754584
+      "until": 1792067491.5947566
     },
     "دریادار سیاری، معاون هماهنگ کننده ارتش: تا زمانی که کشور ها به دنبال تأمین بنزین و گازوئیل هستند، یعنی تنگه هرمز بسته است/ هر کسی بدون هماهنگی وارد شود، در اخبار می بینید چه اتفاقی": {
       "reason": "content_duplicate",
@@ -5392,41 +5392,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: گزارش محلی درباره مشکلات سرویس‌های دانشجویی و یک حادثه رانندگی محدود.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792054131,
-      "title": "دانشگاه بیرجند؛ از تصادف تلخ تا چالش سرویس های دانشجویی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر است استانی و دانشگاهی درباره لرستان و اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "low-value",
-      "t": 1792054723,
-      "title": "برنامه های جدید سلامت در لرستان؛از استخدام پرستاران تا اعتبار ۲.۲ همتی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: توصیه پلیس فتا برای تماس با مرکز فوریت‌های سایبری در زنجان",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792054727,
-      "title": "مردم برای دریافت راهنمایی های سایبری با شماره ۰۹۶۳۸۰ تماس بگیرند"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: بیانیهٔ اداری برای تسهیل طرح‌های خیرخواهانه",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792054728,
-      "title": "مسئولان با تسهیل فرایند ها امکان تحقق سریع تر طرح های خیرخواهانه را فراهم کنند"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: افتتاح ۱۰ طرح برق در آذربایجان شرقی",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792054729,
-      "title": "افتتاح ۱۰ طرح زیرساختی برق در آذربایجان شرقی"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: تو قیف موتورسیکلت بانوان در زنجان و اظهارات محلی پلیس راهور",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5950,6 +5915,41 @@
       "rule": "foreign-local-preselection",
       "t": 1792065645,
       "title": "مدرسه شهدای تتنک در بخش دشتابی قزوین به بهره برداری رسید"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: تعویق نشست سران اتحادیه اروپا و شورای همکاری خلیج فارس",
+      "rescued": true,
+      "rule": "below-event-threshold",
+      "t": 1792066267,
+      "title": "تعویق نشست سران اروپا با شورای همکاری خلیج فارس در ریاض"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات مقام وزارت بهداشت درباره زمان جابجایی بیماران در تهران",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1792066268,
+      "title": "جابه جایی برخی بیماران در تهران ممکن است تا ۹۰ دقیقه زمان ببرد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=world: خبر حاشیه‌ای ورزشی و زندگی شخصی بازیکنان است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792066269,
+      "title": "یامال در استانبول سورپرایز شد! (عکس)"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر است استانی و مربوط به راهداری بوشهر است",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792066270,
+      "title": "خط کشی ۱۳۲۰ کیلومتر از راه های بوشهر در ۶ ماه"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر کوتاه محلමی و استانی است",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792066271,
+      "title": "اخبار کوتاه ۲۳ مهرماه استان کرمانشاه"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10912,7 +10912,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792065534
+    "at": 1792066099
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10927,13 +10927,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792066248,
-    "last_failure": 1792065648,
+    "disabled_until": 1792066880,
+    "last_failure": 1792066280,
     "last_status": 429
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792065706,
-    "last_failure": 1792065106,
+    "disabled_until": 1792066872,
+    "last_failure": 1792066272,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10950,8 +10950,8 @@
   },
   "groq:openai/gpt-oss-120b": {
     "daily_quota_rest": true,
-    "disabled_until": 1792066234,
-    "last_failure": 1792065634,
+    "disabled_until": 1792066867,
+    "last_failure": 1792066267,
     "last_status": 429
   },
   "groq:openai/gpt-oss-20b": {
@@ -10972,20 +10972,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792066266,
-    "last_failure": 1792065666,
+    "disabled_until": 1792066880,
+    "last_failure": 1792066280,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792066266,
-    "last_failure": 1792065666,
+    "disabled_until": 1792066880,
+    "last_failure": 1792066280,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792066266,
-    "last_failure": 1792065666,
+    "disabled_until": 1792066880,
+    "last_failure": 1792066280,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -10996,21 +10996,21 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792066266,
-    "last_failure": 1792065666,
+    "disabled_until": 1792066880,
+    "last_failure": 1792066280,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792066266,
-    "last_failure": 1792065666,
+    "disabled_until": 1792066880,
+    "last_failure": 1792066280,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792065726,
-    "last_failure": 1792065666,
-    "last_status": 422
+    "disabled_until": 1792066880,
+    "last_failure": 1792066280,
+    "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
     "disabled_until": 1790400317,
