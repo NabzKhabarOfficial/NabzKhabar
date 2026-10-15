@@ -12,7 +12,9 @@ used up. It is used only AFTER Groq and Gemini, before OpenRouter (50 free reque
    before mistral-small-latest was called, causing HTTP 429; removed + 1.2s min gap between
    Mistral requests.)
 2. Final editor (v13_ai_extra.ask_pool): mistral-small-latest is inserted before OpenRouter.
-3. The AI meter counts it (_ai_usage key "mistral:<model>"); it is not paced (no daily cap).
+3. Event judge + AI sense check (v13_event_judge.ask): mistral-small-latest is asked when Groq
+   and Gemini are paced or rate-limited.
+4. The AI meter counts it (_ai_usage key "mistral:<model>"); it is not paced (no daily cap).
 
 No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot runs as before.
 """
@@ -109,6 +111,43 @@ def _install_editor(key):
     return True
 
 
+def _install_event_judge(key):
+    try:
+        import v13_event_judge as ej
+    except Exception:
+        return False
+    orig_ask = getattr(ej, "ask", None)
+    if not callable(orig_ask) or getattr(orig_ask, "_v13_mistral", False):
+        return True
+
+    def ask_with_mistral(prompt, skip=""):
+        got = orig_ask(prompt, skip=skip)
+        if got:
+            return got
+        for model in TRANSLATE_MODELS:
+            tag = f"mistral/{model}"
+            if tag == skip:
+                continue
+            try:
+                r = ej._post(MISTRAL_BASE + "/chat/completions",
+                             headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+                             json={"model": model, "temperature": 0, "max_tokens": 350,
+                                   "response_format": {"type": "json_object"},
+                                   "messages": [{"role": "user", "content": prompt}]})
+                if r.ok:
+                    data = ej._parse(r.json()["choices"][0]["message"]["content"])
+                    if isinstance(data, dict) and data.get("verdict"):
+                        return dict(data, model=tag)
+                print(f"V13 EVENT JUDGE: {tag} HTTP {r.status_code}.", flush=True)
+            except Exception as exc:
+                print(f"V13 EVENT JUDGE: {tag} error ({type(exc).__name__}).", flush=True)
+        return None
+
+    ask_with_mistral._v13_mistral = True
+    ej.ask = ask_with_mistral
+    return True
+
+
 def install():
     if _INSTALLED["done"]:
         return
@@ -119,6 +158,7 @@ def install():
     _install_rps_guard()
     _install_router(key)
     editor = _install_editor(key)
+    ej = _install_event_judge(key)
     _INSTALLED["done"] = True
     print("V13 MISTRAL ACTIVE: free Mistral after Groq and Gemini, before OpenRouter (translation"
-          + (" + editor" if editor else "") + ")", flush=True)
+          + (" + editor" if editor else "") + (" + event_judge" if ej else "") + ")", flush=True)
