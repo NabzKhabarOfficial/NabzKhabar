@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1792011835
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
-      "t": 1792012398
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792013008
     },
@@ -159,6 +151,14 @@
     {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
       "t": 1792022839
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792026839
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792026840
     }
   ],
   "_ai_pace": {
@@ -168,15 +168,15 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 27
+      "n": 28
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 14
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 4
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-10-14",
@@ -269,26 +269,26 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 2,
-        "calls": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 1,
+        "ok": 2,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 2,
-        "calls": 14,
+        "calls": 16,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7298, Requested 1760. Please try again in 7.935s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
-        "other": 2
+        "ok": 11,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 4,
+        "calls": 5,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199777, Requested 1859. Please try again in 11m46.7",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 0,
-        "other": 3
+        "other": 4
       }
     }
   },
@@ -2444,12 +2444,6 @@
       "topic": "نظامی",
       "until": 1792061538.8344646
     },
-    "v4|تصویب سهمیه جدید برق صنایع در زمستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: تصویب و اعلام سهمیه برق صنایع در زمستان توسط وزارت صمت",
-      "topic": "اقتصاد",
-      "until": 1792052933.8930528
-    },
     "v4|تصویب موازین ملی طراحی واحد اهداکنندگان خون برای اولین بار در کشور": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: تصویب استاندارد ملی سازمان انتقال خون، رویداد روتین اداری.",
@@ -3410,12 +3404,6 @@
       "topic": "نظامی",
       "until": 1792063374.3055098
     },
-    "v4|شکست مفتضحانه دیگر برای تروریست های مزدور در مهرستان؛ اشرار مسلح مجبور به فرار شدند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=iran_national: حمله تروریستی به خودروی پلیس در مهرستان و فرار مهاجمان",
-      "topic": "نظامی",
-      "until": 1792052933.8803182
-    },
     "v4|شکست ۱۰ بر یک اهورا بویری در قهرمانی جهان/ حذفی های کشتی فرنگی به عدد ۵ رسید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Early round defeat in U23 championship, not a major medal event.",
@@ -4352,6 +4340,12 @@
       "topic": "جامعه",
       "until": 1792055232.2155247
     },
+    "v4|پلوسی: جنگ ترامپ علیه ایران، هزینه های زندگی در آمریکا را افزایش داده است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: نظر و انتقاد سیاست‌مدار آمریکایی درباره تورم و اقتصاد",
+      "topic": "سیاست",
+      "until": 1792113241.1385198
+    },
     "v4|پنجره بسته، توفیق اجباری تیم بود/ بیانی: سهراب برگ برنده استقلال است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: تحلیل و اظهارنظر کارشناسی درباره بازی استقلال در لیگ نخبگان آسیا",
@@ -4459,6 +4453,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: توضیحات وزیر درباره توزیع کتاب درسی اهمیت ملی درجه یک ندارد",
       "topic": "جامعه",
       "until": 1792055232.9406316
+    },
+    "v4|کرباسچی: حالا سوخت در آمریکا گران شد، چه تأثیری در زندگی مردم ایران و اقتصاد کشور ما دارد؟/ حالا این حزب برود، یک حزب دیگر سر کار بیاید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Opinion, no concrete event or decision",
+      "topic": "سیاست",
+      "until": 1792113238.0917544
     },
     "v4|کرمانشاه میزبان گردهمایی معاونان آموزشی جهاددانشگاهی کشور می شود": {
       "ok": false,
@@ -5372,13 +5372,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اعزام نیرو برای رزمایش و آموزش، رویداد استراتژیک یا فوری محسوب نمی‌شود.",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1792008287,
-      "title": "نیویورک تایمز: آمریکا صدها سرباز به آمریکای لاتین اعزام می کند"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: دستگیری سارقان کابل برق یک خبر محلی و فاقد اهمیت ملی است.",
       "rescued": false,
       "rule": "strict-source-below-importance(8<10)",
@@ -5930,6 +5923,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792026261,
       "title": "Australian politics live: jobless rate unexpectedly holds at 4.7%; Plibersek warns One Nation support ‘winding back’ abo"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Opinion, no concrete event or decision",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792026838,
+      "title": "کرباسچی: حالا سوخت در آمریکا گران شد، چه تأثیری در زندگی مردم ایران و اقتصاد کشور ما دارد؟/ حالا این حزب برود، یک حزب دی"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11122,7 +11122,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792026180
+    "at": 1792026771
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
