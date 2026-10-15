@@ -25,6 +25,8 @@ This launcher fixes that without touching the other files:
    (Oct 14 they were all used by ~23:00 Tehran and the night had no editor).
 8. Guard repair (Oct 15, v13_guard_repair): an outlet name or a split quote in the text is
    fixed instead of refusing the whole post, and a refused story is remembered for 6 h.
+9. Mistral (Oct 15, v13_mistral): the owner's free Mistral account is asked after Groq and
+   Gemini, before OpenRouter, for translation and the final editor (needs MISTRAL_API_KEY).
 
 Oct 14 (evening review): a batch answer gave the Financial Times Starlink story the verdict of a
 car-import story («ابلاغ دستورالعمل اداری ترخیص خودروهای وارداتی», score 2), so it was dropped for a
@@ -566,6 +568,7 @@ if __name__ == "__main__":
     rb._patch_history_rescue_pipeline()
     rb._install_v13_stack()
     _safe("guard repair", lambda: __import__("v13_guard_repair").install())
+    _safe("mistral", lambda: __import__("v13_mistral").install())
     _safe("ai meter", install_ai_meter)
     atexit.register(save_usage)
     print("V13 ENGINE LAUNCH: v13_ai_extra -> run_bot -> v13_standalone.main()", flush=True)
