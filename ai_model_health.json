@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
-      "t": 1792036192
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, openrouter:* held 6x",
-      "t": 1792036210
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792036673
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 2 stories",
-      "t": 1792036674
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792037268
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792037268
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792037898
     },
@@ -159,20 +135,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, openrouter:* held 6x",
       "t": 1792041949
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792042532
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792042548
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: no usable verdict",
+      "t": 1792042551
+    },
+    {
+      "e": "EDITOR GATE openrouter/free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792042551
+    },
+    {
+      "e": "EDITOR BATCH: no verdict for 4 stories",
+      "t": 1792042552
+    },
+    {
+      "e": "AI PACE: openrouter:* held 6x",
+      "t": 1792042557
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 135
+      "n": 137
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 48
+      "n": 49
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 53
+      "n": 54
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
@@ -180,7 +180,7 @@
     },
     "openrouter:*": {
       "day": "2026-10-15",
-      "n": 14
+      "n": 15
     }
   },
   "_ai_usage": {
@@ -263,24 +263,24 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 54,
+        "calls": 55,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 53,
+        "ok": 54,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 16,
-        "calls": 24,
+        "429": 17,
+        "calls": 25,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 8,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 5,
-        "calls": 53,
+        "calls": 54,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199201, Requested 807. Please try again in 3.456s.",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 40,
+        "ok": 41,
         "other": 8
       },
       "groq:openai/gpt-oss-20b": {
@@ -325,8 +325,8 @@
       },
       "openrouter:openrouter/free": {
         "429": 0,
-        "calls": 9,
-        "ok": 9,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       }
     }
@@ -1744,12 +1744,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: ضبط تلفن همراه یک نماینده کنگره آمریکا رویدادی سیاسی و قابل توجه است.",
       "topic": "سیاست",
       "until": 1792105776.8841486
-    },
-    "v4|آمریکا و بهای سنگین جنگ با ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل، هشدار و نظر تحلیلگران غربی؛ رخداد مشخصی انجام نشده است.",
-      "topic": "سیاست",
-      "until": 1792058101.8067007
     },
     "v4|آیا حزب الله لبنان ۲۰۰ میلیون دلار از ایران برای کمک به آوارگان دریافت کرده است؟": {
       "ok": false,
@@ -4289,6 +4283,12 @@
       "topic": "سیاست",
       "until": 1792062127.6420553
     },
+    "v4|ولخرجی چین در خرید طلا چگونه دلار را زمین گیر می کند؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل اقتصادی درباره استراتژی چین و فاقد رویداد فوری و قطعی است.",
+      "topic": "اقتصاد",
+      "until": 1792128933.6803784
+    },
     "v4|ویلا 6-0 فنر/ طوفان استون ویلا: کارتال در بیرمنگام شیش تایی شد!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتیجه مسابقه فوتبال باشگاهی اروپایی در سطح اول اخبار نیست.",
@@ -4810,6 +4810,11 @@
     "ریزش سنگین بورس سعودی به دنبال حمله یمن به آرامکو": {
       "reason": "content_duplicate",
       "until": 1792051959.6456103
+    },
+    "فرنگی کاران با سه طلا کار را تمام کردند/ فوری: قهرمانی تیم ملی کشتی ایران در خاک آمریکا": {
+      "at": 1792042557.2469933,
+      "reason": "ai_unavailable_local",
+      "until": 1792043757.2469933
     },
     "یمن از حمله موشکی به فرودگاه بین المللی ریاض خبر داد": {
       "reason": "content_duplicate",
@@ -5371,13 +5376,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل و نظر کارشناسی درباره حواشی یک مسابقه فوتبال است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792019939,
-      "title": "'Players won't like it' - Martinez apologises, but is the damage done?"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تحلیل و بررسی یک مسابقه فوتبال، نه نتیجه نهایی یا فینال.",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5929,6 +5927,13 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1792041885,
       "title": "اختصاص ۸۰ میلیارد تومان برای بهسازی بافت های فرسوده استان ایلام"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل اقتصادی درباره استراتژی چین و فاقد رویداد فوری و قطعی است.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792042533,
+      "title": "ولخرجی چین در خرید طلا چگونه دلار را زمین گیر می کند؟"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9827,7 +9832,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792041793
+    "at": 1792042377
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9841,9 +9846,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1792042848.0,
+    "last_failure": 1792042548,
+    "last_status": 599
+  },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792042519,
-    "last_failure": 1792041919,
+    "disabled_until": 1792043132,
+    "last_failure": 1792042532,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -9882,20 +9892,20 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792042531,
-    "last_failure": 1792041931,
+    "disabled_until": 1792043155,
+    "last_failure": 1792042555,
     "last_status": 429
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792042531,
-    "last_failure": 1792041931,
+    "disabled_until": 1792043155,
+    "last_failure": 1792042555,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792042531,
-    "last_failure": 1792041931,
+    "disabled_until": 1792043155,
+    "last_failure": 1792042555,
     "last_quality_failure": 1791214985,
     "last_status": 429
   },
@@ -9906,20 +9916,20 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792042531,
-    "last_failure": 1792041931,
+    "disabled_until": 1792043155,
+    "last_failure": 1792042555,
     "last_status": 429
   },
   "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792042531,
-    "last_failure": 1792041931,
+    "disabled_until": 1792043155,
+    "last_failure": 1792042555,
     "last_status": 429
   },
   "openrouter:openrouter/free": {
     "daily_quota_rest": true,
-    "disabled_until": 1792042531,
-    "last_failure": 1792041931,
+    "disabled_until": 1792043151,
+    "last_failure": 1792042551,
     "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
