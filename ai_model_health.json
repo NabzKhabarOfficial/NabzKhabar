@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792014160
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792015026
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1792015036
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
       "t": 1792015064
     },
@@ -159,24 +147,36 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792030359
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792031437
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792031439
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792031439
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-14",
-      "n": 75
+      "n": 76
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-14",
-      "n": 29
+      "n": 31
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-15",
-      "n": 30
+      "n": 32
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-15",
-      "n": 9
+      "n": 13
     },
     "openrouter:*": {
       "day": "2026-10-14",
@@ -263,32 +263,32 @@
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
-        "429": 2,
-        "calls": 5,
+        "429": 3,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 3,
+        "ok": 4,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 3,
-        "calls": 30,
+        "calls": 32,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197720, Requested 2418. Please try again in 59.616",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 23,
+        "ok": 25,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 9,
+        "calls": 13,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199777, Requested 1859. Please try again in 11m46.7",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
-        "other": 5
+        "ok": 5,
+        "other": 7
       }
     }
   },
@@ -1184,6 +1184,12 @@
       "topic": "سیاست",
       "until": 1792114428.7895315
     },
+    "v4|australian politics live: greens vow to table bill to block us execution livestream; government considering allowing individuals to sue tech platforms": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: اخبار سیاسی داخلی و روزمره استرالیا برای ایران اهمیت ندارد",
+      "topic": "سیاست",
+      "until": 1792117838.6321564
+    },
     "v4|australian politics live: jobless rate unexpectedly holds at 4.7%; plibersek warns one nation support ‘winding back’ abortion access": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian domestic political news, low impact",
@@ -1585,6 +1591,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مسابقات فوتبال مرحله گروهی لیگ قهرمانان اروپا اهمیت استراتژیک ندارند.",
       "topic": "ورزش",
       "until": 1792094685.2966144
+    },
+    "v4|آتش زدن تأسیسات سری استارلینک در بلغارستان": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: حمله خرابکارانه به تجهیزات ماهواره‌ای مرتبط با جنگ اوکراین در بلغارستان",
+      "topic": "نظامی",
+      "until": 1792117840.2809272
     },
     "v4|آتش سوزی در تاسیسات سرّی استارلینک در بلغارستان": {
       "ok": false,
@@ -2486,12 +2498,6 @@
       "topic": "اقتصاد",
       "until": 1792074862.677917
     },
-    "v4|تعریف بسته سرمایه گذاری ۴۰ هزار میلیارد ریالی برای آذربایجان غربی/اشتغالزایی برای ۸۲۰۰ نفر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: خبر استانی، برنامه‌ریزی سرمایه‌گذاری محلی و خارج از سطح اول است.",
-      "topic": "اقتصاد",
-      "until": 1792053458.069607
-    },
     "v4|تعلیق رای محرومیت 16 بازیکن و مربی/ حکم جنجالی علیه استقلال شکسته شد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: تعیین مجوز بازگشت بازیکنان استقلال",
@@ -3049,6 +3055,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: گمانه‌زنی و تحلیل رسانه‌ای درباره احتمال حمله بدون تصمیم قطعی",
       "topic": "نظامی",
       "until": 1792097221.969654
+    },
+    "v4|روزهای متفاوت مردان قابل اعتماد محرم!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: محلی: بنچ تیم، جو متفاوت، بدون رویداد مهم",
+      "topic": "ورزش",
+      "until": 1792117837.2433493
     },
     "v4|رونویسی چینی ها از روی دست «اسپیس ایکس»": {
       "ok": false,
@@ -4196,12 +4208,6 @@
       "topic": "سلامت",
       "until": 1792055800.858422
     },
-    "v4|واکنش رسانه ایتالیایی به موج جدید لژیونرهای والیبال ایران؛ ۱۵ ستاره در اروپا و آسیا": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: گزارش و تحلیل رسانه ای درباره لژیونرهای والیبال",
-      "topic": "ورزش",
-      "until": 1792054063.0445242
-    },
     "v4|واکنش مجلس به ابطال انتخابات فدراسیون ها؛ در وزارت ورزش چه می گذرد؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: درخواست شفاف‌سازی نماینده مجلس درباره انتخابات فدراسیون‌ها رویداد درجه یک نیست",
@@ -4327,12 +4333,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحلیل و بررسی تنش‌های منطقه‌ای بدون رویداد مشخص",
       "topic": "سیاست",
       "until": 1792069674.2636933
-    },
-    "v4|پشت پرده قیمت های میلیاردی حراج تهران چیست؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اخبار فرهنگ و هنر و حراج آثار تجاری ارزش خبری درجه یک ندارند.",
-      "topic": "جامعه",
-      "until": 1792054069.3337033
     },
     "v4|پل شهدای قره داغ افتتاح شد": {
       "ok": false,
@@ -4765,6 +4765,10 @@
     "ukraine’s exposure grows as satellite use is restricted and russia escalates": {
       "reason": "content_duplicate",
       "until": 1792032897.1169686
+    },
+    "آتش زدن تأسیسات سری استارلینک در بلغارستان": {
+      "reason": "content_duplicate",
+      "until": 1792053051.2526178
     },
     "ادعای نتانیاهو: پیش از انتخابات اسرائیل به دنبال حمله مجدد به ایران نیستم": {
       "reason": "content_duplicate",
@@ -5372,20 +5376,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: راه‌روستایی محلی، اثر ملی محدود",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792010807,
-      "title": "افتتاح ۲۴ کیلومتر راه روستایی در طالقان"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: خبر محلی جمع‌آوری مطالبات مالیاتی، اثر محدود",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792010808,
-      "title": "دادستانی همدان یک همت از مطالبات مالیاتی را وصول کرد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: آسیب بازیکن در مسابقه، نه‌نتیجه مهم",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5930,6 +5920,20 @@
       "rule": "foreign-local-preselection",
       "t": 1792030887,
       "title": "آمارهای مالی نشان می دهند/ این هشدار جدی است! لیگ برتر در مرز ورشکستگی"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: محلی: بنچ تیم، جو متفاوت، بدون رویداد مهم",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792031437,
+      "title": "روزهای متفاوت مردان قابل اعتماد محرم!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: اخبار سیاسی داخلی و روزمره استرالیا برای ایران اهمیت ندارد",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792031438,
+      "title": "Australian politics live: Greens vow to table bill to block US execution livestream; government considering allowing ind"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10450,7 +10454,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792030831
+    "at": 1792031387
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10469,6 +10473,11 @@
     "last_failure": 1792021708,
     "last_status": 599
   },
+  "gemini:gemini-3.5-flash-lite": {
+    "disabled_until": 1792032039,
+    "last_failure": 1792031439,
+    "last_status": 429
+  },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
     "last_error": "bad body JSONDecodeError: OK\r\n",
@@ -10486,12 +10495,6 @@
     "disabled_until": 1792033947.6623168,
     "last_failure": 1792030347,
     "last_status": 429
-  },
-  "groq:openai/gpt-oss-20b": {
-    "daily_quota_rest": true,
-    "last_failure": 1792020535,
-    "last_quality_failure": 1792030349,
-    "last_status": 422
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
     "disabled_until": 1791916753,
