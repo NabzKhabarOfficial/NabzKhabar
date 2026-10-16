@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/qwen/qwen3-32b: HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
-      "t": 1792105566
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792105567
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792105567
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792105571
     },
@@ -159,6 +147,18 @@
     {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792109590
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792111913
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792111914
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1792111919
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 6
+      "n": 7
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
-      "n": 1
+      "n": 3
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -411,16 +411,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 7,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 6,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 1,
+        "calls": 3,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 0,
+        "ok": 2,
         "other": 1
       },
       "groq:qwen/qwen3-32b": {
@@ -2002,6 +2002,12 @@
       "topic": "سلامت",
       "until": 1792140533.740078
     },
+    "v4|اعمال محدودیت کاخ سفید بر سامانه ماهواره ای پشتیبان ارتش اوکراین": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Unconfirmed US satellite restriction claim",
+      "topic": "سیاست",
+      "until": 1792198314.9712996
+    },
     "v4|افتتاح نمایشگاه خوشنویسی «طریق شکسته ۲» در نگارخانه رها": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: نمایشگاه خوشنویسی در نگارخانه رها",
@@ -2128,18 +2134,6 @@
       "topic": "ورزش",
       "until": 1792179291.6687455
     },
-    "v4|ایده «وراپام» از جنگ ۴۰ روزه شکل گرفت؛ فیلمبرداری در شبِ آماده باش!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Routine news about film production and artistic activities.",
-      "topic": "جامعه",
-      "until": 1792126031.2816925
-    },
-    "v4|ایران و آمریکا در آستانه دور تازه ای از تنش؛ آخرین تحولات جنگ چه می گویند؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=False scope=world: Analysis and speculation about war developments rather than a concrete event.",
-      "topic": "سیاست",
-      "until": 1792126031.3078194
-    },
     "v4|ایری به دنبال حضور در ترکیب؛/ آینده پرسپولیس و اعلام آمادگی برای مبارزه!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: خبر مربوط به وضعیت یک بازیکن در تیم باشگاهی است.",
@@ -2187,6 +2181,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بارندگی شدید و سیلابی شدن یک مسیل محلی در استانبول",
       "topic": "آب و هوا",
       "until": 1792166557.4176333
+    },
+    "v4|بارسلونای رکوردشکن یک رکورد دیگر می خواهد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Club record, not major international competition",
+      "topic": "ورزش",
+      "until": 1792198312.2988176
     },
     "v4|بازدید کمیسیون بهداشت و درمان مجلس از مراکز درمانی ملایر": {
       "ok": false,
@@ -3400,6 +3400,12 @@
       "topic": "نظامی",
       "until": 1792170012.8908665
     },
+    "v4|سی ان ان: اوکراین ذخایر موشک های رهگیر پاتریوت را به پایان رسانده است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Ukraine depleted Patriot missiles, increasing vulnerability",
+      "topic": "نظامی",
+      "until": 1792198314.9850512
+    },
     "v4|سی ان ان: ترامپ به دنبال «پیروزی نمادین» است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل رسانه‌ای درباره اهداف احتمالی ترامپ و فاقد رویداد قطعی است.",
@@ -3477,12 +3483,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local ceremony and gathering in a small city, lacks national significance.",
       "topic": "جامعه",
       "until": 1792156696.4897454
-    },
-    "v4|صبحانه خبری، ۲۳ مهر ۱۴۰۵؛ از ادعای نتانیاهو درباره مخالفتش با حمله به ایران پیش از انتخابات در اسرائیل و گزارش رویترز از به کارگیری تاکتیک های جدید برای حمله به کشتی های عبوری از ت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: A news summary/roundup containing claims and speculation, not a single event.",
-      "topic": "سیاست",
-      "until": 1792126031.2947998
     },
     "v4|صفحه نخست روزنامه های استان فارس پنجشنبه ۲۳ مهرماه": {
       "ok": false,
@@ -5474,13 +5474,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.8-flash score=1 happened=False scope=iran_national: اظهار نظر صنفی و روتین فاقد رویداد یا تصمیم اجرایی",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792091097,
-      "title": "دبیرکل خانه صمت: اداره کشور در محاصره اقتصادی، نیازمند پشتیبانی واقعی از تولیدکنندگان است"
-    },
-    {
       "ai": "ai gemini/gemini-3.6-flash score=2 happened=True scope=iran_national: مراسم‌های فرهنگی، جوایز هنری و اظهارنظرهای افراد غیررسمی ارزش خبری پایینی دارند.",
       "rescued": false,
       "rule": "strict-source-below-importance(8<10)",
@@ -6032,6 +6025,13 @@
       "rule": "no-concrete-event",
       "t": 1792110757,
       "title": "Behind a White House Feud That Is Bitter Even by Trump-Era Standards"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Club record, not major international competition",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792111912,
+      "title": "بارسلونای رکوردشکن یک رکورد دیگر می خواهد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11002,7 +11002,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792111260
+    "at": 1792111827
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11042,12 +11042,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "daily_quota_rest": true,
-    "disabled_until": 1792068114.810761,
-    "last_failure": 1792064514,
-    "last_status": 429
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792109886.0,
