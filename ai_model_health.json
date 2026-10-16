@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792107244
-    },
-    {
-      "e": "EDITOR BATCH groq/qwen/qwen3-32b: HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
-      "t": 1792107244
-    },
-    {
       "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
       "t": 1792107245
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792115429
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792115949
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792115949
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 11
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
-      "n": 11
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -417,16 +417,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 11,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 11,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 11,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 11,
         "other": 1
       },
       "groq:qwen/qwen3-32b": {
@@ -1539,6 +1539,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Significant global market volatility and tech sector sell-off.",
       "topic": "اقتصاد",
       "until": 1792140533.7652214
+    },
+    "v4|tesla's redesigned roadster has a cold-gas thruster option, but you'll need $250,000 just to reserve it": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: Tesla unveils high-cost Roadster with thruster option",
+      "topic": "فناوری",
+      "until": 1792202349.6743116
     },
     "v4|three children and a teacher killed by 16-year-old at oregon primary school": {
       "ok": true,
@@ -3658,12 +3664,6 @@
       "topic": "نظامی",
       "until": 1792164213.8612757
     },
-    "v4|فرماندار: اشتغالزایی در ایرانشهر در گرو اصلاح مدیریت منابع و تسهیلات است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اظهارات محلی فرماندار درباره مدیریت منابع اشتغال در یک شهرستان",
-      "topic": "اقتصاد",
-      "until": 1792127209.6508713
-    },
     "v4|فرماندار: حمام تاریخی کنگاور با سرمایه گذاری ۱۰۰ میلیارد ریالی به چرخه گردشگری بازمی گردد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی درباره مرمت یک حمام تاریخی در کنگاور",
@@ -3711,12 +3711,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حملات و فعال شدن آژیرهای خطر در منطقه جنگی یمن و عربستان.",
       "topic": "نظامی",
       "until": 1792165372.9800398
-    },
-    "v4|فعالیت بیش از هزار واحد صنایع تبدیلی و غذایی در مازندران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine report on provincial industrial activity, lacks national strategic significance.",
-      "topic": "اقتصاد",
-      "until": 1792127210.4871178
     },
     "v4|فعالیت ۴۴ هیات ورزشی در شاهرود؛ چهار ورزشکار عضو تیم های ملی هستند": {
       "ok": false,
@@ -4545,6 +4539,12 @@
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: حمله به زیرساخت‌های انرژی سوریه، آسیب جدی",
       "topic": "نظامی",
       "until": 1792181592.3300676
+    },
+    "v4|چین: مساله فلسطین بزرگ ترین بی عدالتی قرن حاضر است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: Chinese FM's official stance on Palestine settlements",
+      "topic": "سیاست",
+      "until": 1792202348.6620853
     },
     "v4|چین؛ برنده بزرگ تجارت جهانی؟": {
       "ok": false,
@@ -5494,13 +5494,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: This is a local news roundup for small provincial towns.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792094632,
-      "title": "اخبار کوتاه از غرب اصفهان"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی درباره مرمت یک حمام تاریخی در کنگاور",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -6052,6 +6045,13 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792115417,
       "title": "7 تزریق کشنده: افشاگری عجیب ستاره سابق لالیگا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: Chinese FM's official stance on Palestine settlements",
+      "rescued": true,
+      "rule": "below-event-threshold",
+      "t": 1792115948,
+      "title": "چین: مساله فلسطین بزرگ ترین بی عدالتی قرن حاضر است"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11022,7 +11022,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792115304
+    "at": 1792115886
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
