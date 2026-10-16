@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792114210
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792114211
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x",
-      "t": 1792114214
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792114821
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792114823
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792120635
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792121188
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792121188
+    },
+    {
+      "e": "EDITOR GATE groq/qwen/qwen3-32b: HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
+      "t": 1792121188
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792121189
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 267
+      "n": 268
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-15",
@@ -397,8 +397,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -433,10 +433,10 @@
       },
       "groq:qwen/qwen3-32b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
         "last_error": "HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
         "ok": 0,
-        "other": 5
+        "other": 6
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1476,6 +1476,12 @@
       "topic": "ورزش",
       "until": 1792191971.212213
     },
+    "v4|myanmar’s coup leader-turned-president wins back neighbours despite war": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: استقبال رهبران آسه آن از حاکم میانمار، رویدادی دیپلماتیک با اهمیت محدود.",
+      "topic": "سیاست",
+      "until": 1792207589.7529979
+    },
     "v4|nazi-looted kandinsky painting sells for $42 million at auction": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: فروش تابلوی نقاشی گران‌قیمت در حراجی با اهمیت جهانی محدود",
@@ -1883,12 +1889,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Official statement by a head of state regarding military policy.",
       "topic": "سیاست",
       "until": 1792129531.7824376
-    },
-    "v4|ادعای ترامپ درباره ایران: احتمالاً کمی زیاده روی کردم، عذر می خواهم، زیرا دیگر نمی دانم دقیقاً با چه کسانی سروکار داریم/ سخنگوی سپاه: حمله به کشتی های متخلف بعد از امضای تفاهم نامه": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: اظهارات رئیس‌جمهور آمریکا و سخنگوی سپاه درباره وضعیت جنگی و نظامی",
-      "topic": "نظامی",
-      "until": 1792127723.6096969
     },
     "v4|ادعای ترامپ: جنگ ایران خیلی زود به پایان خواهد رسید/ به محض اینکه بخواهم، این جنگ تمام می شود؛ خیلی زود": {
       "ok": true,
@@ -11013,7 +11013,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792120508
+    "at": 1792121092
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11055,8 +11055,8 @@
     "last_status": 599
   },
   "groq:qwen/qwen3-32b": {
-    "disabled_until": 1792120909.0,
-    "last_failure": 1792120609,
+    "disabled_until": 1792121488.0,
+    "last_failure": 1792121188,
     "last_status": 404
   },
   "mistral:mistral-large-latest": {
