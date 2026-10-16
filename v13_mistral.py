@@ -68,6 +68,15 @@ Oct 16, 15:20 Tehran (day review, from _ai_extra_log / _ai_pace / the published 
   more years back, with no current-year date anywhere, is refused (final guard, logged in guard_log).
 * «دونالد ترامپ رئیس جمهور سابق آمریکا» (a weak translation): fixed to «رئیس جمهور آمریکا» in every AI output.
 
+Oct 16, 19:50 Tehran (evening review): at 19:43 all 19 selected stories were dropped
+"no-ai-fallback-fail-closed" again. Groq was paced, Gemini answered 503/429, and nemo's 8-story batch
+answer could not be parsed ("no usable verdict"); after a failed batch the launcher allows only 2 single
+editor calls per run (to protect the scarce quotas), so the rest failed closed. nemo's quota is not
+scarce: when the pool gives no verdict, nemo now judges that one story on its own (same rubric, same
+trust rules: approvals only for concrete events). The old-event guard also refused a fresh statement
+(«آخوندی: دو بار ترور شدم، بار اول در سال ۱۳۶۰»): a quoted speaker's title («X: ...») or a "first/second
+time" story is a current event and is no longer refused.
+
 No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot runs as before.
 """
 
@@ -97,6 +106,8 @@ WEAK_TITLES = []  # titles translated by nemo/ministral in this run (sense-check
 NAME_FIXES = ((re.compile(r"(?<![\u0600-\u06FF])ترمپ(?![\u0600-\u06FF])"), "ترامپ"),
               (re.compile(r"(ترامپ[،,]?\s*)رئیس[\s\u200c]*جمهور\s+(?:سابق|پیشین)(?:\s+آمریکا)?"), r"\1رئیس جمهور آمریکا"))
 DEAD_MODELS = ("qwen/qwen3-32b",)  # Groq: model_not_found (HTTP 404) on every call
+_KEY = {"v": ""}
+_REPEAT_WORDS = re.compile(r"بار\s+(?:اول|دوم|نخست|دیگر)|دو\s+بار|دوباره|مجددا|مجدداً|باز\s+هم")
 NEMO_DETERMINISTIC = set()  # editor cache keys whose nemo verdict is not trusted this run
 _MONTHS = ("فروردین|اردیبهشت|خرداد|تیر|مرداد|شهریور|مهر|آبان|آذر|دی|بهمن|اسفند|ژانویه|فوریه|مارس|آوریل|"
            "مه|می|ژوئن|ژوئیه|جولای|اوت|آگوست|سپتامبر|اکتبر|نوامبر|دسامبر")
@@ -290,6 +301,8 @@ def old_event(title, sentences):
             return ""  # a current date is in the post: an old year is background, not the event
     if _NOW_WORDS.search(" ".join([title] + sents[:2])):
         return ""  # "today ... the case from 2022": a new development of an old story
+    if re.match(r"^[^:：]{2,40}[:：]", title) or _REPEAT_WORDS.search(title):
+        return ""  # «X: ...» is a statement made now; "the second time" is a new event
     for text in [title] + sents[:1]:
         for m in _YEAR_CTX.finditer(text):
             y = int(m.group(1))
@@ -403,10 +416,32 @@ def _install_nemo_editor_rules():
                 return  # never cached: judged again on a later run, when a strong model may answer
         return prev_put(key, entry)
 
+    def nemo_single(main, candidate):
+        extra = sys.modules.get("__main__")
+        oa_raw = getattr(extra, "_oa_raw", None)
+        if not callable(oa_raw) or not _KEY["v"]:
+            return None, ""
+        session = getattr(main, "SESSION", None)
+        if session is None:
+            import requests
+            session = requests.Session()
+        title = g._norm(candidate.get("title", ""))
+        body = g._norm(candidate.get("summary", "") or candidate.get("description", "")
+                       or candidate.get("article_text", ""))[:900]
+        try:
+            verdict = g._parse(oa_raw(session, MISTRAL_BASE + "/chat/completions", _KEY["v"], NEMO,
+                                      g.PROMPT % (title, body), 400, timeout=20))
+        except Exception as exc:
+            print(f"V13 MISTRAL: nemo single editor call failed ({type(exc).__name__})", flush=True)
+            return None, ""
+        return (verdict, "mistral/" + NEMO) if verdict else (None, "")
+
     def ai_judge(main, candidate):
         if g._cache_key(candidate) in NEMO_DETERMINISTIC:
             return None, ""
         verdict, provider = prev_judge(main, candidate)
+        if not verdict:
+            verdict, provider = nemo_single(main, candidate)  # pool empty or capped: nemo is not scarce
         if verdict and NEMO in str(provider) and (not g.ai_accepts(verdict, candidate)
                                                   or not concrete(candidate.get("title", ""))):
             print(f"V13 MISTRAL: nemo verdict not trusted -> deterministic rule: {str(candidate.get('title', ''))[:80]}",
@@ -449,6 +484,7 @@ def install():
     if not key:
         print("V13 MISTRAL: no MISTRAL_API_KEY; not used", flush=True)
         return
+    _KEY["v"] = key
     _install_rps_guard()
     _install_router(key)
     editor = _install_editor(key)
