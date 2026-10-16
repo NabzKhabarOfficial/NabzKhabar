@@ -180,7 +180,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 19
+      "n": 21
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
@@ -420,9 +420,9 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 19,
+        "calls": 21,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 15,
+        "ok": 17,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
@@ -1932,6 +1932,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: درخواست یک عضو انجمۯ برای تغییر نرخ ارز است.",
       "topic": "اقتصاد",
       "until": 1792207033.6960192
+    },
+    "v4|اروپا دست به کار شد/ تحرکات برای انتخاب رقیب غیرمنتظره اینفانتینو": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Speculative football politics, no concrete decision",
+      "topic": "ورزش",
+      "until": 1792211028.5575747
     },
     "v4|از جنگ ۱۲ روزه تا جنگ رمضان؛ تداوم خدمات درمانی ارتش به مردم": {
       "ok": false,
@@ -4237,6 +4243,12 @@
       "topic": "اقتصاد",
       "until": 1792172322.706829
     },
+    "v4|هفته اسپانیا در لیگ قهرمانان اروپا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: گروه‌های لالیگا به مرحله دوم لیگ قهرمانان پیش رفتند",
+      "topic": "ورزش",
+      "until": 1792211029.6099005
+    },
     "v4|هلال احمر قزوین برای سیلاب های احتمالی آماده می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: برگزاری مانور آمادگی استانی، رویداد محلی و رده پایین.",
@@ -4362,12 +4374,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=iran_national: Routine commemorative remarks by an official, not a strategic decision.",
       "topic": "جامعه",
       "until": 1792137599.8704953
-    },
-    "v4|ولخرجی چین در خرید طلا چگونه دلار را زمین گیر می کند؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل اقتصادی درباره استراتژی چین و فاقد رویداد فوری و قطعی است.",
-      "topic": "اقتصاد",
-      "until": 1792128933.6803784
     },
     "v4|ویترین اخبار سیستان و بلوچستان؛ پنجشنبه ۲۳ مهر در یک نگاه": {
       "ok": false,
@@ -4608,12 +4614,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Strategic military assessment and international calls for nuclear negotiations.",
       "topic": "نظامی",
       "until": 1792186186.2986295
-    },
-    "v4|کاهش ۶ درصدی جان باختگان حوادث رانندگی در خراسان شمالی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Provincial traffic statistics are local news.",
-      "topic": "جامعه",
-      "until": 1792128302.680495
     },
     "v4|کرایه سنگین نفتکش ها به سود پالایشگاه های آسیایی ضربه زد": {
       "ok": true,
@@ -5490,20 +5490,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: تحلیل انتخاباتی و گمانه‌زنی درباره مشکلات داخلی آمریکا بدون رویداد مشخص.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792096918,
-      "title": "دردسرهای جهانی ترامپ در آستانه انتخابات سرنوشت ساز بیشتر شده است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine diplomatic statement on trade with no concrete policy change.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792096923,
-      "title": "تاکید دبیرکل اکو بر افزایش تجارت میان کشورهای منطقه"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: صدور حکم ۱۵ سال زندان برای رهبر سابق حزب دموکراتیک اولستر به جرم جرایم جنسی",
       "rescued": true,
       "rule": "foreign-local-preselection",
@@ -6048,6 +6034,20 @@
       "rule": "no-concrete-event",
       "t": 1792122891,
       "title": "M 6.9 - 76 km NE of Ozernovskiy, Russia"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Speculative football politics, no concrete decision",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792124628,
+      "title": "اروپا دست به کار شد/ تحرکات برای انتخاب رقیب غیرمنتظره اینفانتینو"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: گروه‌های لالیگا به مرحله دوم لیگ قهرمانان پیش رفتند",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792124629,
+      "title": "هفته اسپانیا در لیگ قهرمانان اروپا"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10297,7 +10297,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792123976
+    "at": 1792124553
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
