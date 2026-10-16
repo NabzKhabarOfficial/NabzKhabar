@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792104999
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1792105003
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792105003
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792105566
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792105566
-    },
-    {
       "e": "EDITOR GATE groq/qwen/qwen3-32b: HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
       "t": 1792105566
     },
@@ -159,6 +139,26 @@
     {
       "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
       "t": 1792109029
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792109585
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792109586
+    },
+    {
+      "e": "EDITOR GATE groq/qwen/qwen3-32b: HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
+      "t": 1792109586
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792109586
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792109590
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 262
+      "n": 263
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-15",
-      "n": 44
+      "n": 45
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-15",
-      "n": 43
+      "n": 44
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 3
+      "n": 4
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-10-15",
-      "n": 100
+      "day": "2026-10-16",
+      "n": 1
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -389,11 +389,46 @@
       }
     },
     "2026-10-16": {
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 3,
+        "calls": 4,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 3,
-        "other": 0
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 0,
+        "other": 1
+      },
+      "groq:qwen/qwen3-32b": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
+        "ok": 0,
+        "other": 1
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1589,12 +1624,6 @@
       "topic": "جامعه",
       "until": 1792142267.4056091
     },
-    "v4|آزمون بزرگ مسوولان قم در برابر چالش های ریز و درشت روشندلان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: Local social issue regarding accessibility for the blind in Qom province.",
-      "topic": "جامعه",
-      "until": 1792126025.263008
-    },
     "v4|آغاز به کار ۳۵۷ آتش نشان جدید در مشهد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: استخدام آتش‌نشانان جدید در مشهد رویدادی محلی و کم‌اهمیت برای سطح ملی است.",
@@ -2506,6 +2535,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: گمانه‌زنی درباره اقدامات احتمالی دولت ترامپ علیه یک نماینده کنگره",
       "topic": "سیاست",
       "until": 1792129519.4394774
+    },
+    "v4|تماس روبیو با نتانیاهو پس از گفت وگو با رئیس جمهور لبنان": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: تماس وزیر خارجه آمریکا با مقامات ارشد منطقه درباره تحولات لبنان",
+      "topic": "سیاست",
+      "until": 1792195995.6576228
     },
     "v4|تماس های محرمانه ترامپ و نتانیاهو درباره حمله دوباره به ایران": {
       "ok": false,
@@ -4882,21 +4917,14 @@
       "reason": "content_duplicate",
       "until": 1792125467.738012
     },
-    "تصاویر راشاتودی از لحظات بعد از حمله پهپادی اوکراین به پالایشگاه روسیه در ریازان": {
-      "reason": "content_duplicate",
-      "until": 1792108741.9693673
-    },
     "تصاویر سرنگونی جنگنده تایفون سعودی در یمن": {
       "reason": "content_duplicate",
       "until": 1792117421.5563903
     },
-    "سی ان ان: اوکراین دیگر موشک رهگیر پاتریوت ندارد": {
-      "reason": "content_duplicate",
-      "until": 1792105228.3466008
-    },
-    "هشدار پوتین درباره پاسخ به حملات اوکراین، قیمت نفت را افزایش داد": {
-      "reason": "content_duplicate",
-      "until": 1792107543.127546
+    "تماس روبیو با نتانیاهو پس از گفت وگو با رئیس جمهور لبنان": {
+      "at": 1792109596.8790364,
+      "reason": "policy_scope_blocked",
+      "until": 1792131196.8790364
     },
     "چراغ سبز کاخ سفید به حمله دوباره به ایران؟": {
       "reason": "content_duplicate",
@@ -5445,13 +5473,6 @@
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai mistral/open-mistral-nemo score=0 happened=False scope=local: رoutine military ideological role statement",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792090593,
-      "title": "فرمانده قرارگاه منطقه ای جنوب شرق ارتش: کار عقیدتی سیاسی در ارتش، شب عملیاتی است"
-    },
     {
       "ai": "ai mistral/open-mistral-nemo score=0 happened=True scope=local: local public gathering, no national impact",
       "rescued": false,
@@ -6004,6 +6025,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792109026,
       "title": "اوباما خطاب به صهیونیست ها: سرزمین های فلسطینی ها را تصرف کرده اید"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: تماس وزیر خارجه آمریکا با مقامات ارشد منطقه درباره تحولات لبنان",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1792109595,
+      "title": "تماس روبیو با نتانیاهو پس از گفت وگو با رئیس جمهور لبنان"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10974,7 +11002,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792108932
+    "at": 1792109511
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10994,13 +11022,13 @@
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792109044,
-    "last_failure": 1792108444,
+    "disabled_until": 1792110190,
+    "last_failure": 1792109590,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792109040,
-    "last_failure": 1792108440,
+    "disabled_until": 1792110186,
+    "last_failure": 1792109586,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11022,8 +11050,8 @@
     "last_status": 429
   },
   "groq:qwen/qwen3-32b": {
-    "disabled_until": 1792108740.0,
-    "last_failure": 1792108440,
+    "disabled_until": 1792109886.0,
+    "last_failure": 1792109586,
     "last_status": 404
   },
   "mistral:mistral-large-latest": {
