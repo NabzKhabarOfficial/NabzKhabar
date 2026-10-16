@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792109590
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792111913
-    },
-    {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
       "t": 1792111914
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792118317
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792120027
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792120029
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 15
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
-      "n": 14
+      "n": 15
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -419,16 +419,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 13,
+        "ok": 14,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 13,
+        "ok": 14,
         "other": 1
       },
       "groq:qwen/qwen3-32b": {
@@ -1992,12 +1992,6 @@
       "topic": "سلامت",
       "until": 1792149695.8798885
     },
-    "v4|اطلاعات جمعیتی کارکنان قم مبنای برنامه ریزی هدفمند برای جوانی جمعیت می شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine administrative data collection in a single province.",
-      "topic": "جامعه",
-      "until": 1792127721.3403652
-    },
     "v4|اطلاعیه تأمین اجتماعی درباره وام خوداشتغالی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=iran_national: توضیحات اداری سازمان تأمین اجتماعی درباره وام خوداشتغالی اخبار درجه یک محسوب نمی‌شود.",
@@ -3162,12 +3156,6 @@
       "topic": "سیاست",
       "until": 1792133635.6799474
     },
-    "v4|روزنامه های ورزشی پنج شنبه ۲۳ مهر ۱۴۰۵": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine review of sports newspapers regarding a minor league football match.",
-      "topic": "ورزش",
-      "until": 1792127720.8098114
-    },
     "v4|روسیه: بارگیری نخستین محموله گازوئیل به آمریکا حداقل ۲ یا ۳ هفته طول می کشد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=True scope=world: Technical logistics update regarding potential future trade, not a major event.",
@@ -4026,6 +4014,12 @@
       "topic": "ورزش",
       "until": 1792187971.8896685
     },
+    "v4|مصدوم رزاقی نیا و بازگشت احمدی بعد از غیبت طولانی/ اتفاقی که هافبک استقلال را به ترکیب برمی گرداند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: بازگشت بازیکن استقلال پس از غیبت",
+      "topic": "ورزش",
+      "until": 1792206427.8234284
+    },
     "v4|مطالبه شبانه روزی شدن مرکز سلامت جوکار و تکمیل بیمارستان ازندریان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: بازدید مسئولان از مراکز درمانی محلی در شهرستان ملایر است.",
@@ -4409,6 +4403,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و نمایشی مربوط به شهر قم",
       "topic": "جامعه",
       "until": 1792182786.5211205
+    },
+    "v4|پزشکیان عازم ارمنستان شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: رئیس‌جمهور برای کنفرانس زیست‌محیطی سفر کرد",
+      "topic": "سیاست",
+      "until": 1792206427.2256794
     },
     "v4|پزشکیان فردا به ارمنستان می رود": {
       "ok": false,
@@ -4892,14 +4892,6 @@
     }
   },
   "_editorial_blocks": {
-    "'it is clear that sooner or later we will have european casualties', romanian mep": {
-      "reason": "content_duplicate",
-      "until": 1792118044.8466818
-    },
-    "israel ex-security chief sues netanyahu over october 7 claims": {
-      "reason": "content_duplicate",
-      "until": 1792119222.4066532
-    },
     "peshawar mourns children killed in school roof collapse": {
       "at": 1792117719.6260157,
       "reason": "policy_scope_blocked",
@@ -4927,9 +4919,9 @@
       "until": 1792124850.835504
     },
     "بریتانیا اریتره را به ممنوعیت ورود شهروندانش بر سر بازگرداندن مهاجران «تهدید کرد»": {
-      "at": 1792114823.018925,
+      "at": 1792120029.26818,
       "reason": "policy_scope_blocked",
-      "until": 1792136423.018925
+      "until": 1792141629.26818
     },
     "بلومبرگ: انگلیس موشک های دوربرد بیشتری به اوکراین می دهد": {
       "reason": "content_duplicate",
@@ -5493,20 +5485,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=iran_national: اظهارات مدیرعامل ایرنا درباره گردشگری، رویداد مهمی محسوب نمی‌شود.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792095169,
-      "title": "مدیرعامل ایرنا: معرفی ظرفیت های میراثی و گردشگری کشور باید بیشتر مورد توجه قرار گیرد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: Routine statement by a local MP regarding provincial economic development.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792095177,
-      "title": "توسعه شهرک های صنعتی و حمایت عملی از تولیدکنندگان، از الزامات رونق اقتصادی کرمان"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: وکالتی مایلک واکنش امیرد میلیبند و وزارت خارجه ایران",
       "rescued": true,
       "rule": "foreign-local-preselection",
@@ -6051,6 +6029,20 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1792118292,
       "title": "افزایش ۲ برابری آمار زوال عقل تا سال ۲۰۵۰"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: رئیس‌جمهور برای کنفرانس زیست‌محیطی سفر کرد",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792120027,
+      "title": "پزشکیان عازم ارمنستان شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: بازگشت بازیکن استقلال پس از غیبت",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792120027,
+      "title": "مصدوم رزاقی نیا و بازگشت احمدی بعد از غیبت طولانی/ اتفاقی که هافبک استقلال را به ترکیب برمی گرداند"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11021,7 +11013,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792119359
+    "at": 1792119929
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
