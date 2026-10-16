@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792185593
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792185593
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792185593
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792186765
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1792187919
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792187945
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-16",
-      "n": 234
+      "n": 235
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-16",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 85
+      "n": 87
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
-      "n": 85
+      "n": 87
     },
     "openrouter:*": {
       "day": "2026-10-16",
@@ -398,9 +398,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 297,
+        "calls": 298,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 241,
+        "ok": 242,
         "other": 56
       },
       "gemini:gemini-3.6-flash": {
@@ -421,16 +421,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 85,
+        "calls": 87,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 60,
+        "ok": 62,
         "other": 25
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 85,
+        "calls": 87,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 62,
+        "ok": 64,
         "other": 23
       },
       "groq:qwen/qwen3-32b": {
@@ -448,8 +448,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 941,
-        "ok": 941,
+        "calls": 944,
+        "ok": 944,
         "other": 0
       },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
@@ -475,13 +475,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 5,
-      "t": 1792047759.3761659,
-      "title": "سنتکام ویدئوی حمله به یک لنج صیادی ایرانی را منتشر کرد",
-      "urgent": false
-    },
     {
       "label": "اقتصاد",
       "level": 4,
@@ -1314,6 +1307,13 @@
       "t": 1792185070.3027384,
       "title": "میانجی های قطر و کاخ سفید منتظر پاسخ ایران به پیشنهاد آمریکا برای پایان جنگ هستند",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 3,
+      "t": 1792187931.4396083,
+      "title": "بروکسل: اتحادیه اروپا دو اقدام ترامپ را رد کرد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-16",
@@ -1690,6 +1690,12 @@
       "topic": "آب و هوا",
       "until": 1792218050.304692
     },
+    "v4|آمریکا انتشار گزارش حمله به مدرسه میناب را به تعوق انداخت": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=iran_national: US delays report on Minab school attack",
+      "topic": "سیاست",
+      "until": 1792274319.3921986
+    },
     "v4|آمریکا بیت کوین انباشت می کند اما جهان دلار دیجیتال": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تحلیل روند بازار رمزارزها و استیبل‌کوین‌ها، فاقد اهمیت استراتژیک فوری است.",
@@ -1749,12 +1755,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اجتماع محلی و پروپاگاندا در خورموج اهمیت ملی ندارد",
       "topic": "جامعه",
       "until": 1792270295.887585
-    },
-    "v4|اجتماع حماسی و پرچم گردانی مردم محلات در شب ۲۲۹ تجدیدعهد با رهبری": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تجمع محلی ومراسم تجدیدعهد، فاقد اهمیت ملی یا بین‌المللی",
-      "topic": "جامعه",
-      "until": 1792187367.6059642
     },
     "v4|اجتماع ۲۳۰ مردم محلات در لبیک به فرمان رهبری": {
       "ok": false,
@@ -2152,6 +2152,12 @@
       "topic": "سیاست",
       "until": 1792190806.1880617
     },
+    "v4|انصارلله: سعودی طی ۲۴ ساعت ۱۰۱ بار به یمن حمله کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Saudi attacks Yemen 101 times in 24 hours",
+      "topic": "نظامی",
+      "until": 1792274319.4196541
+    },
     "v4|انصراف بوکسور ایرانی از مبارزه با نماینده رژیم صهیونیستی": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: انصراف بوکسور ایرانی از مسابقه با نماینده اسرائیل",
@@ -2301,6 +2307,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: تصویب برنامه اداری داخلی سازمان برنامه و بودجه است.",
       "topic": "اقتصاد",
       "until": 1792222669.1937437
+    },
+    "v4|بروکسل در تقابل با کاخ سفید: اروپا ۲ تصمیم ترامپ را رد کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: EU rejects two Trump actions on Russia and ICC",
+      "topic": "سیاست",
+      "until": 1792274319.4332721
     },
     "v4|برگزاری دوره های آموزشی روحانیون حج با رویکردی تعاملی": {
       "ok": false,
@@ -3040,12 +3052,6 @@
       "topic": "جامعه",
       "until": 1792228468.5220327
     },
-    "v4|رحمانی: روستای تاریخی حسنلو از ظرفیت های ارزشمند رونق گردشگری است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: اظهارات استاندار درباره پتانسیل گردشگری یک روستا محلی است.",
-      "topic": "جامعه",
-      "until": 1792187355.1115716
-    },
     "v4|رزمایش بزرگ کنترل آب گرفتگی و سیلاب شهری در قم برگزار شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این یک رزمایش آمادگی محلی در شهر قم است.",
@@ -3460,6 +3466,12 @@
       "topic": "ورزش",
       "until": 1792267421.7064133
     },
+    "v4|صعود ۳ آزادکار ایران به نیمه نهایی امیدهای جهان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: U23 wrestling semifinal, not top‑tier event",
+      "topic": "ورزش",
+      "until": 1792274315.7033913
+    },
     "v4|صندوق بین المللی پول در ارزیابی های خود رویکردی واقع بینانه اتخاذ کند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: درخواست تکراری و معمولی رئیس بانک مرکزی از صندوق بین‌المللی پول",
@@ -3639,6 +3651,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: شهردار قدردانی از نامگذاری خودرو",
       "topic": "جامعه",
       "until": 1792250622.1316247
+    },
+    "v4|قدردانی معاون رئیس جمهور از حفظ ۲۶ هزار نیروی کار در شرکت نیشکر خوزستان در شرایط جنگی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: VP praises 26k workers preserved amid war",
+      "topic": "اقتصاد",
+      "until": 1792274319.4061067
     },
     "v4|قرار شبانه رشتی ها در میدان به شب ۲۳۰ رسید": {
       "ok": false,
@@ -3916,12 +3934,6 @@
       "topic": "سیاست",
       "until": 1792262790.625098
     },
-    "v4|میدان داری مردم ولایی سلماس در شب ۲۲۹ مقاومت ملی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اجتماع محلی و پروپاگاندا، فاقد ارزش خبری درجه یک سراسری",
-      "topic": "جامعه",
-      "until": 1792187359.1624706
-    },
     "v4|میرامینی: ایران زیر بار زیاده خواهی های واشنگتن نمی رود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات امام جمعه پیشوا درباره مذاکرات و آمریکا محلی و فاقد ارزش خبری درجه یک است",
@@ -3993,12 +4005,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و روال اداری در استان بوشهر",
       "topic": "ورزش",
       "until": 1792269730.3325934
-    },
-    "v4|نمایش اتحاد و ایستادگی مردم مبعوث شده ارومیه در شب ۲۲۹ در سنگر خیابان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering with no national strategic impact or news value.",
-      "topic": "جامعه",
-      "until": 1792187363.7220707
     },
     "v4|نهضت ملی مسکن کهگیلویه و بویراحمد؛تکمیل ۹۰۰ واحد در گرو زیرساخت": {
       "ok": false,
@@ -4654,12 +4660,6 @@
       "topic": "جامعه",
       "until": 1792187979.1269348
     },
-    "v4|۲۲۹ شب ایستادگی؛میدان شهدای اراک تبلور پیوند نسل ها درسایه پرچم ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local ceremony and propaganda event with no national strategic impact.",
-      "topic": "جامعه",
-      "until": 1792187351.0925038
-    },
     "v4|۲۳۰ شب اتحاد، همدلی و ایستادگی سلماسی ها به پای وطن": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=local: تجمع عمومی و محلی در سلماس فاقد ارزش خبری کشوری است.",
@@ -4816,9 +4816,9 @@
       "until": 1792202704.9885972
     },
     "real demand tebas resign over goebbels comparison": {
-      "at": 1792187303.3895063,
+      "at": 1792187945.955481,
       "reason": "policy_scope_blocked",
-      "until": 1792208903.3895063
+      "until": 1792209545.955481
     },
     "replay: ukraine's zelensky holds presser in brussels": {
       "reason": "content_duplicate",
@@ -4835,6 +4835,10 @@
     "ادعای وزیر کشتیرانی هند درمورد هدف گیری یک نفتکش با ۱۵ خدمه هندی در تنگه هرمز": {
       "reason": "content_duplicate",
       "until": 1792198609.4620392
+    },
+    "انصارلله: سعودی طی ۲۴ ساعت ۱۰۱ بار به یمن حمله کرد": {
+      "reason": "content_duplicate",
+      "until": 1792209545.409797
     },
     "ترامپ: عربستان باید کمک اسرائیل برای مبارزه با انصارالله را بپذیرد و فکر می کنم آنها این کمک را خواهند پذیرفت / توافق نامه ابراهیم با عربستان دوباره روی میز قرار گرفته؛ شاید بیش از": {
       "reason": "content_duplicate",
@@ -4891,15 +4895,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "ترامپ: آمریکا با روسیه و چین در مذاکرات «عدم تسلیح هسته ای» است ⚡️ دونالد ترامپ اعلام کرد آمریکا با روسیه و چی",
-      "id": "38f09cce11",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792151942,
-      "verdict": "new",
-      "why": "مذاکرات جدید عدم تسلیح هسته‌ای آمریکا با روسیه و چین"
-    },
     {
       "head": "رئیس جمهور: آمریکا با منطق گفت وگو به جای زور اقدام کند ⚡️ رئیس جمهور با اشاره به تحریم های آمریکا علیه ایران ",
       "id": "77a13eb2b1",
@@ -5455,16 +5450,18 @@
       "t": 1792185069,
       "verdict": "new",
       "why": "مذاکرات قطر-کاخ سفید-ایران، پیشنهاد آمریکا"
+    },
+    {
+      "head": "بروکسل: اتحادیه اروپا دو اقدام ترامپ را رد کرد ⚡️ نشست سران اتحادیه اروپا در بروکسل با صدور بیانیه پایانی همرا",
+      "id": "f10f25de74",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792187928,
+      "verdict": "new",
+      "why": "نشست سران اتحادیه اروپا در بروکسل، بیانیه جدید"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سیل مرگبار بی‌سابقه در استانبول با تلفات جانی و خسارت گسترده",
-      "rescued": true,
-      "rule": "final-scope-preselection",
-      "t": 1792174089,
-      "title": "سیل بی سابقه در استانبول پس از ۸۰ سال"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اعتصاب صنفی در نیوزیلند فاقد اهمیت راهبردی برای مخاطب ایرانی است.",
       "rescued": false,
@@ -6017,66 +6014,19 @@
       "rule": "foreign-local-preselection",
       "t": 1792186759,
       "title": "Ranking the Premier League's all-time greatest super subs"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: U23 wrestling semifinal, not top‑tier event",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792187915,
+      "title": "صعود ۳ آزادکار ایران به نیمه نهایی امیدهای جهان"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "بختند",
-        "برخرد",
-        "برق",
-        "بزرگر",
-        "بسج",
-        "بلغ",
-        "تر",
-        "جن",
-        "خردسل",
-        "دختر",
-        "دست",
-        "سرنشن",
-        "شمل",
-        "پژ"
-      ],
-      "t": 1792142125.299711,
-      "title": "برخورد پژو ۲۰۷ با تیر برق در بزرگراه بسیج؛ دو زن جان باختند ⚡️ یک پژو ۲۰۷ در بزرگراه بسیج با تیر برق برخورد کرد و دو سرن"
-    },
-    {
-      "h": [
-        "اخر",
-        "اشر",
-        "افزش",
-        "تن",
-        "تکد",
-        "دد",
-        "در",
-        "سخنگ",
-        "فرند",
-        "فعل",
-        "نسبت",
-        "هنز",
-        "پدفند",
-        "پهپد",
-        "چند",
-        "یفت"
-      ],
-      "t": 1792142715.7908976,
-      "title": "سخنگوی ارتش: ایران توان پدافند هوایی خود را نسبت به دوران جنگ افزایش داده است ⚡️ سخنگوی ارتش ایران با اشاره به ساقط کردن"
-    },
-    {
-      "h": [
-        "بلژک",
-        "تحل",
-        "جر",
-        "جنگند",
-        "خهد",
-        "نخست"
-      ],
-      "t": 1792143282.2768207,
-      "title": "نخست وزیر بلژیک: این کشور جنگنده های خود را به اوکراین تحویل می دهد ⚡️ نخست وزیر بلژیک اعلام کرد این کشور در سال جاری جن"
-    },
     {
       "h": [
         "اخند",
@@ -6931,6 +6881,20 @@
       ],
       "t": 1792185070.289567,
       "title": "میانجی های قطر و کاخ سفید منتظر پاسخ ایران به پیشنهاد آمریکا برای پایان جنگ هستند ⚡️ این منابع به عراقچی گفته اند ایران "
+    },
+    {
+      "h": [
+        "اتحد",
+        "اقدم",
+        "برکسل",
+        "سرن",
+        "صدر",
+        "نشست",
+        "همر",
+        "پن"
+      ],
+      "t": 1792187931.4264987,
+      "title": "بروکسل: اتحادیه اروپا دو اقدام ترامپ را رد کرد ⚡️ نشست سران اتحادیه اروپا در بروکسل با صدور بیانیه پایانی همراه شد."
     }
   ],
   "_published_incidents": [
@@ -7300,154 +7264,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اجز",
-        "اختلل",
-        "اشر",
-        "انرژ",
-        "برق",
-        "تسس",
-        "تلد",
-        "تمن",
-        "تکد",
-        "جلگر",
-        "جمهر",
-        "حمل",
-        "دلت",
-        "دچر",
-        "رس",
-        "رند",
-        "زمست",
-        "زمستن",
-        "عزم",
-        "فصل",
-        "مدر",
-        "مردم",
-        "مسعد",
-        "مشکل",
-        "نخهم",
-        "نرگ",
-        "همره",
-        "پدر",
-        "پزشک",
-        "کرخن",
-        "کشر",
-        "گز"
-      ],
-      "t": 1792055882.1889439,
-      "title": "تأکید پزشکیان بر جلوگیری از اختلال در تولید گاز و برق زمستانی ⚡️ مسعود پزشکیان رئیس جمهور با اشاره به حمله به تأسیسات گا"
-    },
-    {
-      "k": [
-        "ادع",
-        "انجم",
-        "تکد",
-        "حمل",
-        "خند",
-        "خک",
-        "درغ",
-        "رسن",
-        "سخنگ",
-        "سرع",
-        "عربست",
-        "عمل",
-        "فحش",
-        "مبن",
-        "مدن",
-        "مسلح",
-        "نر",
-        "نشد",
-        "هدف",
-        "هچ",
-        "وکنش",
-        "گر",
-        "یح",
-        "یمن"
-      ],
-      "t": 1792056456.518969,
-      "title": "واکنش یحیی سریع به ادعای عربستان درباره حمله به مدینه ⚡️ یحیی سریع سخنگوی نیروهای مسلح یمن با رد ادعای رسانه های عربستان"
-    },
-    {
-      "k": [
-        "ابهم",
-        "اصغر",
-        "اطلع",
-        "امر",
-        "بررس",
-        "بزرس",
-        "تعن",
-        "تقف",
-        "ثن",
-        "جر",
-        "جهنگر",
-        "حسن",
-        "در",
-        "دستر",
-        "دقق",
-        "دلل",
-        "رس",
-        "سزم",
-        "سهم",
-        "شرکت",
-        "شف",
-        "صدر",
-        "صنت",
-        "ضبط",
-        "عمد",
-        "عمم",
-        "فرند",
-        "قمت",
-        "متقف",
-        "مدرت",
-        "مربط",
-        "مزد",
-        "مقرر",
-        "منفع",
-        "نح",
-        "نظرت",
-        "هدف",
-        "وگذر",
-        "کشر"
-      ],
-      "t": 1792057019.566162,
-      "title": "توقف مزایده سهام شرکت شفا دارو با دستور سازمان بازرسی کل کشور ⚡️ سازمان بازرسی کل کشور فرآیند مزایده سهام عمده مدیریتی ش"
-    },
-    {
-      "k": [
-        "ار",
-        "ارز",
-        "اسس",
-        "اقتصد",
-        "الت",
-        "بخش",
-        "بنک",
-        "تب",
-        "تحرم",
-        "ترم",
-        "تشرح",
-        "تقت",
-        "تلد",
-        "تمن",
-        "حمت",
-        "دسترکر",
-        "رس",
-        "سست",
-        "شرط",
-        "ضرر",
-        "عبدلنصر",
-        "محددت",
-        "مردم",
-        "مرکز",
-        "مل",
-        "مهر",
-        "همت",
-        "پل",
-        "کل"
-      ],
-      "t": 1792058150.4361043,
-      "title": "اولویت ارزی بانک مرکزی، تامین کالاهای اساسی است ⚡️ عبدالناصر همتی، رئیس کل بانک مرکزی، با تشریح سیاست های پولی و ارزی در"
-    },
     {
       "k": [
         "بزگردنند",
@@ -11562,6 +11378,37 @@
       ],
       "t": 1792185070.276177,
       "title": "میانجی های قطر و کاخ سفید منتظر پاسخ ایران به پیشنهاد آمریکا برای پایان جنگ هستند ⚡️ این منابع به عراقچی گفته اند ایران "
+    },
+    {
+      "k": [
+        "اتحد",
+        "اخر",
+        "ارپ",
+        "اقدم",
+        "الملل",
+        "بربر",
+        "برکسل",
+        "بن",
+        "ترمپ",
+        "دلت",
+        "دنلد",
+        "دگر",
+        "رس",
+        "سرن",
+        "صدر",
+        "عض",
+        "قبل",
+        "مضع",
+        "نشست",
+        "همر",
+        "پن",
+        "کشر",
+        "کفر",
+        "یک"
+      ],
+      "s": "بروکسل",
+      "t": 1792187931.4127405,
+      "title": "بروکسل: اتحادیه اروپا دو اقدام ترامپ را رد کرد ⚡️ نشست سران اتحادیه اروپا در بروکسل با صدور بیانیه پایانی همراه شد. ▫️ د"
     }
   ],
   "_text_polish": {
@@ -11573,7 +11420,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792187236
+    "at": 1792187815
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11590,11 +11437,6 @@
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1792185344.0,
     "last_failure": 1792185044,
-    "last_status": 503
-  },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792184761.0,
-    "last_failure": 1792184461,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
@@ -11620,7 +11462,7 @@
     "last_status": 599
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792134007,
+    "last_quality_failure": 1792187940,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
