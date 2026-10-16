@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792185621
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792185624
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792189644
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792190196
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 88
+      "n": 89
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
-      "n": 88
+      "n": 89
     },
     "openrouter:*": {
       "day": "2026-10-16",
@@ -421,16 +421,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 88,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "calls": 89,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
         "ok": 62,
-        "other": 26
+        "other": 27
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 88,
+        "calls": 89,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 64,
+        "ok": 65,
         "other": 24
       },
       "groq:qwen/qwen3-32b": {
@@ -1762,6 +1762,12 @@
       "topic": "جامعه",
       "until": 1792266770.164355
     },
+    "v4|احتمال وقوع جنگ در ۲۴ ساعت آینده صحت دارد؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: ادعای جنگ، بدون تأیید رسمی",
+      "topic": "سیاست",
+      "until": 1792276596.8214295
+    },
     "v4|احزاب ترکیه: توافق با عربستان نباید پای آنکارا را به جنگ یمن باز کند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: اعتراض احزاب ترکیه به توافق نظامی، تحلیل سیاسی و هشدار است",
@@ -2818,12 +2824,6 @@
       "topic": "جامعه",
       "until": 1792190253.780007
     },
-    "v4|خرید۷۰۰۰میلیارد تومان تجهیزات برای نوسازی زیرساخت های آذربایجان غربی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine provincial infrastructure procurement and equipment purchase.",
-      "topic": "جامعه",
-      "until": 1792189618.1944115
-    },
     "v4|خسارت ۶۰ میلیارد دلاری عراق در سایه تجاوز آمریکا به خاک ایران": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع‌گیری وزیر خارجه عراق درباره خسارت جنگ و لزوم مذاکره",
@@ -3280,12 +3280,6 @@
       "topic": "ورزش",
       "until": 1792225012.0113246
     },
-    "v4|سرهنگ امینی: رزمایش «جان فدایان ایران» جلوه ای از اقتدار مردم رشت شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رزمایش محلی و اظهارات فرمانده سپاه رشت ارزش خبری سراسری ندارد.",
-      "topic": "نظامی",
-      "until": 1792189614.362197
-    },
     "v4|سعید توکلی: جنگ افروزی آمریکا و اسرائیل علت اصلی بحران انرژی است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: اظهارات روتین و شعارگونه مقام دولتی درباره مسائل منطقه‌ای.",
@@ -3453,12 +3447,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: پیام تبریک مقام نظامی و درخواست از مسئولان",
       "topic": "سلامت",
       "until": 1792246028.75282
-    },
-    "v4|طائب: هوش مصنوعی دقت موشک های ایران را بالاتر برد": {
-      "ok": true,
-      "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=iran_national: official announcement on AI improving missile precision, strategic defense",
-      "topic": "نظامی|فناوری",
-      "until": 1792189632.8652413
     },
     "v4|طعنه پیمان قاسم خانی به صداوسیما": {
       "ok": false,
@@ -3909,12 +3897,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: اقدام رسمی رئیس مجلس درباره ابلاغ مغایرت قانونی آیین‌نامه اجرایی.",
       "topic": "قضایی",
       "until": 1792230230.1072285
-    },
-    "v4|ناگفته های اهالی خبر؛ راز ۲۰ سال خوشنامی «انجمن خبرنگاران سمنان»": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و رویداد انجمن خبرنگاران سمنان اهمیت ملی ندارد.",
-      "topic": "جامعه",
-      "until": 1792189622.306683
     },
     "v4|ناگفته هایی از سلوک سردار شهید غریب کهریزی": {
       "ok": false,
@@ -4762,9 +4744,9 @@
       "until": 1792202704.9885972
     },
     "real demand tebas resign over goebbels comparison": {
-      "at": 1792189644.9327896,
+      "at": 1792190197.311697,
       "reason": "policy_scope_blocked",
-      "until": 1792211244.9327896
+      "until": 1792211797.311697
     },
     "replay: ukraine's zelensky holds presser in brussels": {
       "reason": "content_duplicate",
@@ -4818,10 +4800,6 @@
     "شکاف اروپا و آمریکا از تحریم روسیه تا دیوان کیفری عمیق تر شد": {
       "reason": "content_duplicate",
       "until": 1792200930.105592
-    },
-    "موجودی آمریکا از «مادر بمب ها» به حدود ۱۰ بمب رسیده": {
-      "reason": "content_duplicate",
-      "until": 1792189945.38068
     },
     "نتیجه هر مذاکره ای باید با نتیجه جنگ همخوانی داشته باشد": {
       "reason": "content_duplicate",
@@ -11344,7 +11322,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792189547
+    "at": 1792190133
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
