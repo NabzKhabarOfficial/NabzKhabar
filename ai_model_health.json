@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792105571
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792106083
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1792111919
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792112502
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 7
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
-      "n": 3
+      "n": 4
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -411,16 +411,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 7,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 7,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 3,
+        "calls": 4,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
+        "ok": 3,
         "other": 1
       },
       "groq:qwen/qwen3-32b": {
@@ -432,8 +432,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       }
     }
@@ -1299,6 +1299,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: مرگ تعداد زیادی کودک در حادثه ریزش سقف مدرسه",
       "topic": "حادثه",
       "until": 1792153809.8305018
+    },
+    "v4|a bitter white house feud, even by trump-era standards: alina mildon and richard grenell": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US political feud, limited impact",
+      "topic": "سیاست",
+      "until": 1792198896.358644
     },
     "v4|albania’s pm dismisses calls to resign as student protests spread": {
       "ok": false,
@@ -2733,12 +2739,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine official remarks on rural development without concrete policy changes.",
       "topic": "اقتصاد",
       "until": 1792165974.08578
-    },
-    "v4|حسین شریعتمداری: هر کس به پایان دادن جنگ و حفظ ایران معتقد است سفیر امریکاست": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: Routine political rhetoric and personal opinion by a commentator.",
-      "topic": "سیاست",
-      "until": 1792126031.320917
     },
     "v4|حضور مردم توطئه دشمن برای ایجاد گسست میان ملت و نظام را ناکام گذاشت": {
       "ok": false,
@@ -4926,6 +4926,10 @@
       "reason": "policy_scope_blocked",
       "until": 1792131196.8790364
     },
+    "سی ان ان: اوکراین ذخایر موشک های رهگیر پاتریوت را به پایان رسانده است": {
+      "reason": "content_duplicate",
+      "until": 1792134102.7744675
+    },
     "چراغ سبز کاخ سفید به حمله دوباره به ایران؟": {
       "reason": "content_duplicate",
       "until": 1792121419.7109516
@@ -5473,13 +5477,6 @@
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=2 happened=True scope=iran_national: مراسم‌های فرهنگی، جوایز هنری و اظهارنظرهای افراد غیررسمی ارزش خبری پایینی دارند.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1792091100,
-      "title": "حرف های مجید مجیدی پس از دریافت جایزه بوسان"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine provincial administrative action regarding illegal electricity usage.",
       "rescued": false,
@@ -6032,6 +6029,13 @@
       "rule": "below-event-threshold",
       "t": 1792111912,
       "title": "بارسلونای رکوردشکن یک رکورد دیگر می خواهد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US political feud, limited impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792112496,
+      "title": "A Bitter White House Feud, Even by Trump-Era Standards: Alina Mildon and Richard Grenell"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11002,7 +11006,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792111827
+    "at": 1792112401
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
