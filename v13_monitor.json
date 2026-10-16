@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-16T01:40:23.130536+00:00",
+  "checked_at": "2026-10-16T01:50:29.334564+00:00",
   "status": "healthy",
   "run_status": "success",
-  "raw_candidates": 61,
-  "strict_rejected": 26,
-  "selected_for_publication": 8,
+  "raw_candidates": 59,
+  "strict_rejected": 22,
+  "selected_for_publication": 9,
   "published": 0,
   "failed_publications": 0,
   "ambiguous_publications": 0,
@@ -12,7 +12,7 @@
   "missed_selected_stories": [],
   "important_missed_news": [
     {
-      "checked_at": "2026-10-16T01:40:21.161698+00:00",
+      "checked_at": "2026-10-16T01:50:17.706974+00:00",
       "title": "یحیی سریع: یمن هدف ۲۲۸۱ حمله هوایی و موشکی سعودی قرار گرفته است",
       "source": "fararu.com",
       "category": "ایران",
@@ -30,23 +30,32 @@
     }
   ],
   "failed_publication_attempts": [],
-  "skipped_duplicate_attempts": [],
-  "editorial_blocked_attempts": [
+  "skipped_duplicate_attempts": [
     {
-      "title": "بریتانیا اریتره را به ممنوعیت ورود شهروندانش بر سر بازگرداندن مهاجران «تهدید کرد»",
-      "source": "bbc.com",
-      "url": "https://bbc.com/persian/articles/c6gm0jlxyvlpo?at_campaign=rss&at_medium=RSS",
-      "started_at": "2026-10-16T01:40:23.008725+00:00",
-      "result": "editorial_blocked",
+      "title": "Three children and a teacher killed by 16-year-old at Oregon primary school",
+      "source": "bbc.co.uk",
+      "url": "https://bbc.co.uk/news/articles/cm89zp48k4kzo?at_campaign=rss&at_medium=RSS",
+      "started_at": "2026-10-16T01:50:23.906188+00:00",
+      "result": "skipped_duplicate",
       "error": "",
-      "reason": "policy_scope_blocked"
-    },
+      "reason": "recent-semantic-history"
+    }
+  ],
+  "editorial_blocked_attempts": [
     {
       "title": "اعمال محدودیت کاخ سفید بر سامانه ماهواره ای پشتیبان ارتش اوکراین",
       "source": "",
       "url": "",
       "result": "editorial_blocked",
       "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Unconfirmed US satellite restriction claim",
+      "error": ""
+    },
+    {
+      "title": "Trump’s Deal With Russia Inflames Ukraine War He Vowed to End",
+      "source": "",
+      "url": "",
+      "result": "editorial_blocked",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=world: speculative claim, no concrete decision",
       "error": ""
     },
     {
@@ -100,12 +109,13 @@
   ],
   "last_errors": [],
   "ai_pool": {
-    "status": "healthy",
-    "models": 22,
-    "disabled": 0,
-    "active": 22
+    "status": "degraded_partial",
+    "models": 21,
+    "disabled": 3,
+    "active": 18
   },
   "diagnostics": [
+    "3/21 configured AI models are cooling down or disabled.",
     "8 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure).",
     "1 potentially important candidate(s) were rejected; review reasons before changing gates."
   ]
