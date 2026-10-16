@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792108444
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792108449
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792116538
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792117718
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
-      "n": 12
+      "n": 13
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -419,16 +419,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
-        "other": 1
+        "calls": 14,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 12,
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 13,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
+        "ok": 12,
         "other": 1
       },
       "groq:qwen/qwen3-32b": {
@@ -1500,6 +1500,12 @@
       "topic": "اقتصاد",
       "until": 1792183929.9906306
     },
+    "v4|peshawar mourns children killed in school roof collapse": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: 34 children died in school roof collapse",
+      "topic": "حادثه",
+      "until": 1792204119.0353675
+    },
     "v4|police arrest us teen in alleged illinois hindu temple mass shooting plot": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: جلوگیری از کشتار جمعی و دستگیری فرد مسلح در آمریکا.",
@@ -2099,6 +2105,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: یادداشت انتقادی و تحلیل رسانه‌ای پیرامون مبلغ کالابرگ.",
       "topic": "اقتصاد",
       "until": 1792139368.7518194
+    },
+    "v4|انجام سرشماری نفوس ومسکن برای نخستین بار با اتکا به اطلاعات سامانه ها": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: First-time census method, routine administrative news",
+      "topic": "جامعه",
+      "until": 1792204116.4342139
     },
     "v4|انجام ۷۳۴ بازرسی از مراکز درمانی قم در نیمه نخست امسال": {
       "ok": false,
@@ -3396,12 +3408,6 @@
       "topic": "نظامی",
       "until": 1792165372.9443493
     },
-    "v4|سی ان ان: آمریکا ممکن است در عملیات جدید در ایران بزرگترین بمب غیرهسته ای خود را به کار ببرد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative report on potential military plans, not an official confirmed action.",
-      "topic": "نظامی",
-      "until": 1792127216.287975
-    },
     "v4|سی ان ان: اوکراین دیگر موشک رهگیر پاتریوت ندارد": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo score=7 happened=True scope=world: اوکراین از موشک‌های پاتریوت خالی شد، آسیب‌پذیری در برابر روسیه افزایش یافت",
@@ -4097,12 +4103,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: نشست امنیتی سطح بالا درباره ایران با حضور مقامات ارشد اسرائیل",
       "topic": "سیاست",
       "until": 1792183925.780706
-    },
-    "v4|نتانیاهو برای موفقیت در انتخابات نیاز به جنگ دارد و در داخل کشور هم برخی بر طبل جنگ میزنند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Opinion piece and speculation, not a concrete event or official decision.",
-      "topic": "سیاست",
-      "until": 1792127216.274865
     },
     "v4|نتانیاهو نیاز به جنگ دارد/ در داخل کشور هم عده ای بر طبل جنگ می کوبند": {
       "ok": false,
@@ -4900,6 +4900,11 @@
       "reason": "content_duplicate",
       "until": 1792119222.4066532
     },
+    "peshawar mourns children killed in school roof collapse": {
+      "at": 1792117719.6260157,
+      "reason": "policy_scope_blocked",
+      "until": 1792139319.6260157
+    },
     "several people dead or missing after istanbul floods": {
       "at": 1792099284.8856869,
       "reason": "policy_scope_blocked",
@@ -4930,10 +4935,6 @@
       "reason": "content_duplicate",
       "until": 1792125467.738012
     },
-    "تصاویر سرنگونی جنگنده تایفون سعودی در یمن": {
-      "reason": "content_duplicate",
-      "until": 1792117421.5563903
-    },
     "تماس روبیو با نتانیاهو پس از گفت وگو با رئیس جمهور لبنان": {
       "at": 1792109596.8790364,
       "reason": "policy_scope_blocked",
@@ -4951,10 +4952,6 @@
     "چراغ سبز کاخ سفید به حمله دوباره به ایران؟": {
       "reason": "content_duplicate",
       "until": 1792121419.7109516
-    },
-    "کانال ۱۶ عبری: ایران بالغ بر ۹۵ درصد ظرفیت پرتابگر های خود را احیا کرده/ شمار پرتابگر های تهران اکنون تقریباً به سطح پیش از جنگ بازگشته": {
-      "reason": "content_duplicate",
-      "until": 1792117402.510808
     },
     "یحیی سریع: یمن هدف ۲۲۸۱ حمله هوایی و موشکی سعودی قرار گرفته است": {
       "reason": "content_duplicate",
@@ -5495,13 +5492,6 @@
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی درباره مرمت یک حمام تاریخی در کنگاور",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792094637,
-      "title": "فرماندار: حمام تاریخی کنگاور با سرمایه گذاری ۱۰۰ میلیارد ریالی به چرخه گردشگری بازمی گردد"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تجمع محلی در اسفراین ارزش خبری ملی ندارد",
       "rescued": false,
@@ -6054,6 +6044,13 @@
       "rule": "below-event-threshold",
       "t": 1792115948,
       "title": "چین: مساله فلسطین بزرگ ترین بی عدالتی قرن حاضر است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: First-time census method, routine administrative news",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792117716,
+      "title": "انجام سرشماری نفوس ومسکن برای نخستین بار با اتکا به اطلاعات سامانه ها"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11024,7 +11021,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792117046
+    "at": 1792117617
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
