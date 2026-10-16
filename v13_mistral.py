@@ -53,6 +53,21 @@ The headline also stated one activist's accusation as fact. Now:
 * deterministic: «ترمپ» becomes «ترامپ» in every AI output, and «نوبل پزیش/پرایز»-type transliterations
   fail the router's content validation (the next model translates the story).
 
+Oct 16, 15:20 Tehran (day review, from _ai_extra_log / _ai_pace / the published feed):
+* 11 of 13 selected stories at 15:12 were dropped "no-ai-fallback-fail-closed": the pacer held every Groq
+  and Gemini model, OpenRouter then stalled ~80 s ("Response ended prematurely") and used the whole
+  batch budget, so nemo, placed AFTER OpenRouter, was never asked. nemo now comes BEFORE OpenRouter in
+  the editor pool (its approvals still need a concrete event, see below; its rejections are still
+  never trusted).
+* groq qwen/qwen3-32b does not exist (119 HTTP 404 today): removed from every Groq pool.
+* nemo approved commentary («علی واعظ ...: توافق کمتر در برابر کمتر تنها راه خروج است»، rhetoric of
+  commanders). A nemo approval now counts only for a hard / war-zone / strong-event title; otherwise
+  the deterministic rule decides at once (no second AI call, nothing cached).
+* Old events went out as news: «آمریکا برای نخستین بار بمب مادر تمام بمب ها ...» (April 2017) and
+  «مصدق قطع روابط ایران و انگلیس را اعلام کرد» (1331). A post whose title or lead dates the event two or
+  more years back, with no current-year date anywhere, is refused (final guard, logged in guard_log).
+* «دونالد ترامپ رئیس جمهور سابق آمریکا» (a weak translation): fixed to «رئیس جمهور آمریکا» in every AI output.
+
 No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot runs as before.
 """
 
@@ -79,7 +94,15 @@ MISTRAL_RULES = """
 - اگر معنی جمله‌ای را مطمئن نیستی، آن جمله را حذف کن.
 """
 WEAK_TITLES = []  # titles translated by nemo/ministral in this run (sense-checked by the strong pool first)
-NAME_FIXES = ((re.compile(r"(?<![\u0600-\u06FF])ترمپ(?![\u0600-\u06FF])"), "ترامپ"),)
+NAME_FIXES = ((re.compile(r"(?<![\u0600-\u06FF])ترمپ(?![\u0600-\u06FF])"), "ترامپ"),
+              (re.compile(r"(ترامپ[،,]?\s*)رئیس[\s\u200c]*جمهور\s+(?:سابق|پیشین)(?:\s+آمریکا)?"), r"\1رئیس جمهور آمریکا"))
+DEAD_MODELS = ("qwen/qwen3-32b",)  # Groq: model_not_found (HTTP 404) on every call
+NEMO_DETERMINISTIC = set()  # editor cache keys whose nemo verdict is not trusted this run
+_MONTHS = ("فروردین|اردیبهشت|خرداد|تیر|مرداد|شهریور|مهر|آبان|آذر|دی|بهمن|اسفند|ژانویه|فوریه|مارس|آوریل|"
+           "مه|می|ژوئن|ژوئیه|جولای|اوت|آگوست|سپتامبر|اکتبر|نوامبر|دسامبر")
+_YEAR_CTX = re.compile(r"(?<![\u0600-\u06FF])(?:سال|(?:" + _MONTHS + r")(?:\s*ماه)?)\s+(1[3][0-9]{2}|19[0-9]{2}|20[0-9]{2})(?![0-9])")
+_NOW_WORDS = re.compile(r"امروز|امشب|دیروز|بامداد|روز\s+(?:شنبه|یکشنبه|دوشنبه|سه\s*شنبه|چهارشنبه|پنجشنبه|جمعه)|"
+                        r"این\s+هفته|ساعاتی\s+پیش|لحظاتی\s+پیش|اخیرا|اخیراً|هم\s*اکنون|در\s+حال\s+حاضر")
 TRANSLIT_BAD = re.compile(r"نوبل[\s\u200c]+پ(?:رای|ری|زی)[زش]|(?<![\u0600-\u06FF])(?:پرایز|لوریت|لاریت)(?![\u0600-\u06FF])")
 SENSE_EXTRA = ('\n- "garbled" also covers bad machine translation: English words written in Persian letters instead '
                'of translated (e.g. «نوبل پزیش» for "Nobel Prize"), or a well-known name misspelled (e.g. «ترمپ»).')
@@ -180,8 +203,10 @@ def _install_editor(key):
         return True
 
     def with_mistral(main, session, prompt, max_tokens, timeout):
-        out = attempts(main, session, prompt, max_tokens, timeout)
-        pos = len(out)  # after OpenRouter: nemo is the editor's very last resort (approvals only)
+        out = [a for a in attempts(main, session, prompt, max_tokens, timeout)
+               if not any(d in str(a[0]) for d in DEAD_MODELS)]
+        # before OpenRouter (slow, 50 free calls a day): nemo approvals only, see _install_nemo_editor_rules
+        pos = next((i for i, a in enumerate(out) if str(a[0]).startswith("openrouter/")), len(out))
         for m in reversed(EDITOR_MODELS):
             item = ("mistral/" + m, "mistral:" + m, lambda m=m: oa_raw(
                 session, MISTRAL_BASE + "/chat/completions", key, m, prompt, max_tokens,
@@ -247,6 +272,74 @@ def _install_sense_rules():
         fg.COHERENCE_PROMPT = p.replace('\n- "ok":', SENSE_EXTRA + '\n- "ok":', 1)
 
 
+def _digits(text):
+    return str(text or "").translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789"))
+
+
+def old_event(title, sentences):
+    """The old year when the title or lead dates the event 2+ years back and no current-year date
+    appears anywhere in the post, else ""."""
+    now_g = int(time.strftime("%Y", time.gmtime()))
+    now_j = now_g - 621
+    title = _digits(title)
+    sents = [_digits(x) for x in sentences or []]
+    whole = " ".join([title] + sents)
+    for y in re.findall(r"(?<![0-9])(1[3-4][0-9]{2}|20[0-9]{2})(?![0-9])", whole):
+        y = int(y)
+        if (y >= now_g - 1 and y <= now_g + 1) or (now_j - 1 <= y <= now_j + 1):
+            return ""  # a current date is in the post: an old year is background, not the event
+    if _NOW_WORDS.search(" ".join([title] + sents[:2])):
+        return ""  # "today ... the case from 2022": a new development of an old story
+    for text in [title] + sents[:1]:
+        for m in _YEAR_CTX.finditer(text):
+            y = int(m.group(1))
+            old = (y < now_j - 1) if y < 1500 else (y < now_g - 1)
+            if old:
+                return m.group(0)
+    return ""
+
+
+def _install_old_event_guard():
+    import v13_relevance_gate as rg
+    import v13_final_guard as fg
+    previous = rg.caption_problem
+    if getattr(previous, "_v13_old_event", False):
+        return
+
+    def caption_problem(title, sentences):
+        reason = previous(title, sentences)
+        if reason:
+            return reason
+        try:
+            if fg._BOARD.search(str(title or "")):
+                return ""
+            found = old_event(title, sentences)
+        except Exception:
+            return ""
+        if not found:
+            return ""
+        fg._log(title, [("old-event", found)])
+        print(f"V13 FINAL GUARD: refused (old-event: {found}) -> {str(title or '')[:120]}", flush=True)
+        return "final-guard:old-event"
+
+    caption_problem._v13_old_event = True
+    rg.caption_problem = caption_problem
+
+
+def _drop_dead_models():
+    import v13_ai_router as r
+    mods = [r]
+    for name in ("v13_editor_gate", "v13_event_judge"):
+        try:
+            mods.append(__import__(name))
+        except Exception:
+            pass
+    for mod in mods:
+        pool = getattr(mod, "GROQ_MODELS", None)
+        if isinstance(pool, (tuple, list)):
+            mod.GROQ_MODELS = tuple(m for m in pool if m not in DEAD_MODELS)
+
+
 def _install_event_judge(key):
     try:
         import v13_event_judge as ej
@@ -298,15 +391,25 @@ def _install_nemo_editor_rules():
         return
     prev_put, prev_judge = g._cache_put, g.ai_judge
 
+    def concrete(title):
+        t = g._norm(title)
+        return bool(g.war_zone(t) or g.HARD_HAPPENED.search(t) or g.STRONG_EVENT.search(t))
+
     def cache_put(key, entry):
-        if isinstance(entry, dict) and not entry.get("ok") and NEMO in str(entry.get("reason", "")):
-            return  # judged again on a later run, when a strong model may answer
+        if isinstance(entry, dict) and NEMO in str(entry.get("reason", "")):
+            title = str(key).split("|", 1)[-1]
+            if not entry.get("ok") or not concrete(title):
+                NEMO_DETERMINISTIC.add(key)  # this run: the deterministic rule decides, no second AI call
+                return  # never cached: judged again on a later run, when a strong model may answer
         return prev_put(key, entry)
 
     def ai_judge(main, candidate):
+        if g._cache_key(candidate) in NEMO_DETERMINISTIC:
+            return None, ""
         verdict, provider = prev_judge(main, candidate)
-        if verdict and NEMO in str(provider) and not g.ai_accepts(verdict, candidate):
-            print(f"V13 MISTRAL: nemo reject not trusted -> deterministic rule: {str(candidate.get('title', ''))[:80]}",
+        if verdict and NEMO in str(provider) and (not g.ai_accepts(verdict, candidate)
+                                                  or not concrete(candidate.get("title", ""))):
+            print(f"V13 MISTRAL: nemo verdict not trusted -> deterministic rule: {str(candidate.get('title', ''))[:80]}",
                   flush=True)
             return None, ""
         return verdict, provider
@@ -354,11 +457,16 @@ def install():
         _install_nemo_editor_rules()
     except Exception as exc:
         print(f"V13 MISTRAL: nemo editor rules not installed ({type(exc).__name__}: {exc})", flush=True)
+    for fix in (_drop_dead_models, _install_old_event_guard):
+        try:
+            fix()
+        except Exception as exc:
+            print(f"V13 MISTRAL: {fix.__name__} not installed ({type(exc).__name__}: {exc})", flush=True)
     try:
         _install_sense_rules()
     except Exception as exc:
         print(f"V13 MISTRAL: sense rules not installed ({type(exc).__name__}: {exc})", flush=True)
     _purge_nemo_rejections()
     _INSTALLED["done"] = True
-    print("V13 MISTRAL ACTIVE: nemo first for duplicate/sense checks (strong first for nemo translations); after Groq and Gemini for translation"
+    print("V13 MISTRAL ACTIVE: nemo first for duplicate/sense checks (strong first for nemo translations), editor nemo before OpenRouter; after Groq and Gemini for translation"
           + (" + editor" if editor else "") + (" + event_judge" if ej else "") + ")", flush=True)
