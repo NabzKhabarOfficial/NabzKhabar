@@ -1,38 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792114823
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792115397
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792115397
-    },
-    {
-      "e": "EDITOR GATE groq/qwen/qwen3-32b: HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
-      "t": 1792115397
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792115413
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792115418
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792115418
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792115418
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792115429
     },
@@ -159,32 +127,64 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792121189
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792121731
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792121732
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792121732
+    },
+    {
+      "e": "EDITOR GATE groq/qwen/qwen3-32b: HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
+      "t": 1792121732
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792121738
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792121738
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792121744
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792121754
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-15",
-      "n": 156
+      "n": 157
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 268
+      "n": 270
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-15",
-      "n": 50
+      "n": 51
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-15",
-      "n": 48
+      "n": 49
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 17
+      "n": 18
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
-      "n": 17
+      "n": 18
     },
     "openrouter:*": {
       "day": "2026-10-15",
@@ -391,19 +391,20 @@
     "2026-10-16": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
+        "calls": 2,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 1,
-        "other": 0
+        "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 4,
-        "calls": 6,
+        "429": 5,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 1,
@@ -411,37 +412,37 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 3,
-        "calls": 4,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 17,
+        "calls": 18,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 14,
-        "other": 3
+        "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 17,
+        "calls": 18,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 15,
+        "ok": 16,
         "other": 2
       },
       "groq:qwen/qwen3-32b": {
         "429": 0,
-        "calls": 6,
+        "calls": 7,
         "last_error": "HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
         "ok": 0,
-        "other": 6
+        "other": 7
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       }
     }
@@ -2412,12 +2413,6 @@
       "topic": "جامعه",
       "until": 1792163595.9479249
     },
-    "v4|بیش از ۲ میلیون و ۶۰۰ دوز واکسن دامی در زنجان تزریق شد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: دوز واکسن دامی در زنجان تزریق شد",
-      "topic": "سلامت",
-      "until": 1792128283.1461825
-    },
     "v4|تا ۱۲ روز دیگر فرد جدید انتخاب می شود/ زمان انتخاب مدیرعامل جدید استقلال مشخص شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: تعیین مدیرعامل باشگاه ورزشی داخلی رویداد محلی و اداری محسوب می شود.",
@@ -2814,12 +2809,6 @@
       "topic": "سیاست",
       "until": 1792175826.9879816
     },
-    "v4|حمله تند شریعتمداری به ظریف، روحانی و مرعشی؛ «آمریکا در ایران ده ها سفیر دارد!»": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: اظهارات شخصی و تحلیل سیاسی یک چهره رسانه‌ای بدون تصمیم اجرایی",
-      "topic": "سیاست",
-      "until": 1792127723.6181605
-    },
     "v4|حمله موشکی یمن به نجران و جازان": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله موشکی به تاسیسات نفتی عربستان توسط یمن، رویداد مهم منطقه ای است.",
@@ -3095,6 +3084,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Official condemnation of US pressure by a head of state.",
       "topic": "سیاست",
       "until": 1792186186.2433393
+    },
+    "v4|رئیس جمهور کوبا: جنگ اقتصادی آمریکا علیه ما بی وقفه ادامه دارد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارات تکراری رئیس‌جمهور کوبا درباره تحریم‌های آمریکا اهمیت درجه یک ندارد",
+      "topic": "سیاست",
+      "until": 1792208148.0353608
     },
     "v4|رئیس سازمان بسیج کشور: هوش مصنوعی دقت اهداف دفاعی را افزایش داد": {
       "ok": false,
@@ -3551,6 +3546,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: گمانه‌زنی رسانه‌ای درباره طرح‌های دیپلماتیک و فاقد تصمیم رسمی است.",
       "topic": "سیاست",
       "until": 1792163103.585155
+    },
+    "v4|طعنه پیمان قاسم خانی به صداوسیما": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: بیانیه، بدون تصمیم رسمی",
+      "topic": "سیاست",
+      "until": 1792208132.0873795
     },
     "v4|طلا از کف قیمت یک هفته ای بهبود یافت": {
       "ok": false,
@@ -4943,7 +4944,7 @@
     },
     "چراغ سبز کاخ سفید به حمله دوباره به ایران؟": {
       "reason": "content_duplicate",
-      "until": 1792121419.7109516
+      "until": 1792143354.5889506
     },
     "یحیی سریع: یمن هدف ۲۲۸۱ حمله هوایی و موشکی سعودی قرار گرفته است": {
       "reason": "content_duplicate",
@@ -5484,13 +5485,6 @@
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: عملیات نظامی در کرانه باختری بخشی از تنش‌های کلان منطقه‌ای است.",
-      "rescued": true,
-      "rule": "below-event-threshold",
-      "t": 1792095774,
-      "title": "عملیات ضدصهیونیستی با خودرو در کرانه باختری"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: برپایی نمایشگاه محلی بسیج در تربت حیدریه رویدادی استانی و کم‌اهمیت است.",
       "rescued": false,
@@ -6043,6 +6037,13 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1792120634,
       "title": "هزینه سرماخوردگی با بیمه ۱۸ میلیون ریال آب می خورد!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: بیانیه، بدون تصمیم رسمی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792121732,
+      "title": "طعنه پیمان قاسم خانی به صداوسیما"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11013,7 +11014,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792121092
+    "at": 1792121677
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11028,19 +11029,19 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792120932.0,
-    "last_failure": 1792120632,
-    "last_status": 599
+    "disabled_until": 1792122044.0,
+    "last_failure": 1792121744,
+    "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792121213,
-    "last_failure": 1792120613,
+    "disabled_until": 1792122338,
+    "last_failure": 1792121738,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792121209,
-    "last_failure": 1792120609,
-    "last_status": 429
+    "disabled_until": 1792122038.0,
+    "last_failure": 1792121738,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -11055,8 +11056,8 @@
     "last_status": 599
   },
   "groq:qwen/qwen3-32b": {
-    "disabled_until": 1792121488.0,
-    "last_failure": 1792121188,
+    "disabled_until": 1792122032.0,
+    "last_failure": 1792121732,
     "last_status": 404
   },
   "mistral:mistral-large-latest": {
