@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792186198
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792186204
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792186204
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792186207
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792191426
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792192832
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792192832
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792192834
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-16",
-      "n": 240
+      "n": 241
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-16",
@@ -398,9 +398,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 303,
+        "calls": 304,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 247,
+        "ok": 248,
         "other": 56
       },
       "gemini:gemini-3.6-flash": {
@@ -1438,12 +1438,6 @@
       "topic": "فناوری",
       "until": 1792272604.0368626
     },
-    "v4|minus 17 to european dreams as bournemouth fairytale continues": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Minor international football match result, lacks national or global significance.",
-      "topic": "ورزش",
-      "until": 1792191971.212213
-    },
     "v4|myanmar’s coup leader-turned-president wins back neighbours despite war": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: استقبال رهبران آسه آن از حاکم میانمار، رویدادی دیپلماتیک با اهمیت محدود.",
@@ -1510,6 +1504,12 @@
       "topic": "حادثه",
       "until": 1792201823.2882822
     },
+    "v4|trial of german steakhouse heiress that sparked a huge spy scandal": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: محاکمه یک فرد گرچه جذاب، اما اهمیت بنیادین جهانی ندارد",
+      "topic": "قضایی",
+      "until": 1792279233.5987623
+    },
     "v4|trump denies limiting ukraine access to starlink network": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تکذیب محدودسازی دسترسی اوکراین به استارلینک توسط دونالد ترامپ.",
@@ -1564,12 +1564,6 @@
       "topic": "سلامت",
       "until": 1792260481.9668872
     },
-    "v4|venezuela’s opposition leader calls trump’s new oil partner corrupt": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: اظهارنظر مخالفان ونزوئلا درباره شریک نفتی ترامپ اهمیت درجه اول ندارد",
-      "topic": "سیاست",
-      "until": 1792191967.1967278
-    },
     "v4|what life is like in kyiv as russia tries to make it unlivable": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: تاثیر جنگ روسیه-اوکراین بر زندگی شهروندان کی‌یف",
@@ -1582,23 +1576,11 @@
       "topic": "فناوری",
       "until": 1792194853.7831643
     },
-    "v4|withings wants new users to pay $100 a year to sync with apple health": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: تصمیم تجاری شرکت باسینگز برای دریافت هزینه از کاربران",
-      "topic": "فناوری",
-      "until": 1792192496.6148634
-    },
     "v4|zelensky hails \"real leaders\" in europe, blasts trump's diesel deal with russia": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع‌گیری رئیس‌جمهور اوکراین درباره مذاکرات صلح و دیوانگی دیپلماتیک سطح بالا.",
       "topic": "سیاست",
       "until": 1792254113.212959
-    },
-    "v4|zelensky rallies european allies as us support for ukraine wanes": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: تشدید تنش‌ها میان زلنسکی و آمریکا بر سر حملات به پالایشگاه‌ها",
-      "topic": "سیاست",
-      "until": 1792192492.6986446
     },
     "v4|«تراژدی کسب وکار و کمدی موفقیت»؛ آزمایشگاه مطالعه رفتار نظام های اقتصادی": {
       "ok": false,
@@ -3808,12 +3790,6 @@
       "topic": "اقتصاد",
       "until": 1792209278.7212253
     },
-    "v4|مقام حزب جمهوری خواه خلق ترکیه: توافق مکه بدون اطلاع پارلمان امضا شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: انتقاد حزبی از یک توافق خارجی، موضوعی سیاسی و غیرراهبردی است.",
-      "topic": "سیاست",
-      "until": 1792192500.915932
-    },
     "v4|مهار آتش سوزی سوله هزار متری در بجنورد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: آتش‌سوزی سوله محلی در بجنورد بدون تلفات، خبر محلی است.",
@@ -4714,9 +4690,9 @@
       "until": 1792202704.9885972
     },
     "real demand tebas resign over goebbels comparison": {
-      "at": 1792191952.9295828,
+      "at": 1792192834.7519088,
       "reason": "policy_scope_blocked",
-      "until": 1792213552.9295828
+      "until": 1792214434.7519088
     },
     "replay: ukraine's zelensky holds presser in brussels": {
       "reason": "content_duplicate",
@@ -5353,13 +5329,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.6-flash score=2 happened=False scope=world: تحلیل و اظهار نظر کارشناس، فاقد خبر و رویداد جدید است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792175799,
-      "title": "کارشناس ترکیه ای: علی اف بر ائتلاف با تل آویو پافشاری می کند"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: واکنش تند نتانیاهو به انتقاد اوباما درباره اراضی فلسطینی",
       "rescued": true,
       "rule": "no-concrete-event",
@@ -5911,6 +5880,13 @@
       "rule": "final-scope-preselection",
       "t": 1792191373,
       "title": "Families demand justice after Pakistan school collapse"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: محاکمه یک فرد گرچه جذاب، اما اهمیت بنیادین جهانی ندارد",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792192833,
+      "title": "Trial of German steakhouse heiress that sparked a huge spy scandal"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11163,7 +11139,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792191888
+    "at": 1792192446
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
