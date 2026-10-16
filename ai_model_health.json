@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1792107245
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1792107284
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792108440
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792108440
-    },
-    {
-      "e": "EDITOR GATE groq/qwen/qwen3-32b: HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
-      "t": 1792108440
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792108440
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792108444
     },
@@ -159,6 +135,30 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792115949
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792116528
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792116528
+    },
+    {
+      "e": "EDITOR GATE groq/qwen/qwen3-32b: HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
+      "t": 1792116528
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792116529
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792116533
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792116538
     }
   ],
   "_ai_pace": {
@@ -168,15 +168,15 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-15",
-      "n": 264
+      "n": 265
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-15",
-      "n": 47
+      "n": 48
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-15",
-      "n": 45
+      "n": 46
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
@@ -397,23 +397,25 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 2,
-        "calls": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 1,
-        "other": 0
+        "other": 1
       },
       "gemini:gemini-3.8-flash": {
         "429": 1,
-        "calls": 1,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 0
+        "other": 1
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
@@ -431,10 +433,10 @@
       },
       "groq:qwen/qwen3-32b": {
         "429": 0,
-        "calls": 2,
+        "calls": 3,
         "last_error": "HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
         "ok": 0,
-        "other": 2
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -2200,6 +2202,12 @@
       "topic": "ورزش",
       "until": 1792198312.2988176
     },
+    "v4|بازدید فرمانده نیروی زمینی ارتش از یگان های مرکز ۰۷ کازرون/ بیان اقدامات نیروی زمینی ارتش برای مقابله با حمله زمینی احتمالی آمریکا": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: بازدید نظامی و اظهارات روتین آمادگی رزمی",
+      "topic": "نظامی",
+      "until": 1792202938.3622313
+    },
     "v4|بازدید کمیسیون بهداشت و درمان مجلس از مراکز درمانی ملایر": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بازدید نمایندگان مجلس از مراکز درمانی ملایر رویدادی محلی و کم‌اهمیت است.",
@@ -3483,12 +3491,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local ceremony and gathering in a small city, lacks national significance.",
       "topic": "جامعه",
       "until": 1792156696.4897454
-    },
-    "v4|صفحه نخست روزنامه های استان فارس پنجشنبه ۲۳ مهرماه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: مرور روزنامه‌های استانی یک موضوع محلی و فاقد اهمیت ملی است.",
-      "topic": "جامعه",
-      "until": 1792127214.2600877
     },
     "v4|صلح فقط نبود جنگ نیست؛ معنا و زمینه ای برای زندگی است": {
       "ok": false,
@@ -11022,7 +11024,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792115886
+    "at": 1792116465
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11037,14 +11039,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792116018,
-    "last_failure": 1792115418,
-    "last_status": 429
+    "disabled_until": 1792116833.0,
+    "last_failure": 1792116533,
+    "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792115713.0,
-    "last_failure": 1792115413,
-    "last_status": 599
+    "disabled_until": 1792116829.0,
+    "last_failure": 1792116529,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -11059,8 +11061,8 @@
     "last_status": 599
   },
   "groq:qwen/qwen3-32b": {
-    "disabled_until": 1792115697.0,
-    "last_failure": 1792115397,
+    "disabled_until": 1792116828.0,
+    "last_failure": 1792116528,
     "last_status": 404
   },
   "mistral:mistral-large-latest": {
