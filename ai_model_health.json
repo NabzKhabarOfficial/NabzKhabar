@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-26b-a4b-it:free: HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry sh",
-      "t": 1792185621
-    },
-    {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-31b-it:free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792185621
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 5 stories",
-      "t": 1792185621
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792185621
     },
@@ -159,12 +147,24 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792188517
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792189082
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792189082
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792189104
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-16",
-      "n": 138
+      "n": 139
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-16",
@@ -172,19 +172,19 @@
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-16",
-      "n": 105
+      "n": 106
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-16",
-      "n": 105
+      "n": 106
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 87
+      "n": 88
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
-      "n": 87
+      "n": 88
     },
     "openrouter:*": {
       "day": "2026-10-16",
@@ -391,9 +391,9 @@
     "2026-10-16": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 171,
+        "calls": 172,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 88,
+        "ok": 89,
         "other": 83
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -405,33 +405,33 @@
       },
       "gemini:gemini-3.6-flash": {
         "429": 86,
-        "calls": 133,
+        "calls": 134,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 14,
+        "ok": 15,
         "other": 33
       },
       "gemini:gemini-3.8-flash": {
         "429": 79,
-        "calls": 126,
+        "calls": 127,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 5,
+        "ok": 6,
         "other": 42
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 87,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "calls": 88,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 62,
-        "other": 25
+        "other": 26
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 87,
+        "calls": 88,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 64,
-        "other": 23
+        "other": 24
       },
       "groq:qwen/qwen3-32b": {
         "429": 0,
@@ -448,8 +448,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 944,
-        "ok": 944,
+        "calls": 946,
+        "ok": 946,
         "other": 0
       },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
@@ -475,13 +475,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "اقتصاد",
-      "level": 4,
-      "t": 1792048930.3534222,
-      "title": "تأثیرات جنگ آمریکا و اسرائیل علیه ایران در کانون نشست وزرای اقتصاد گروه بیست در بانکوک",
-      "urgent": false
-    },
     {
       "label": "سیاست",
       "level": 4,
@@ -1314,6 +1307,13 @@
       "t": 1792187931.4396083,
       "title": "بروکسل: اتحادیه اروپا دو اقدام ترامپ را رد کرد",
       "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 3,
+      "t": 1792189102.6033125,
+      "title": "فراخوان رئیس کمیسیون اروپا برای اصلاح الگوی مصرف انرژی",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-16",
@@ -1425,12 +1425,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: زمین‌لرزه بزرگ بدون تلفات یا خسارات گسترده تایید شده.",
       "topic": "حادثه",
       "until": 1792209291.1251118
-    },
-    "v4|man united’s martinez apologises for outburst after talks with carrick": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: حاشیه و عذرخواهی بازیکن فوتبال اهمیت درجه اول ندارد",
-      "topic": "ورزش",
-      "until": 1792188537.5100594
     },
     "v4|meta employees say lula’s accounts restricted in brazil election: report": {
       "ok": false,
@@ -2236,12 +2230,6 @@
       "topic": "سیاست",
       "until": 1792222669.1676645
     },
-    "v4|ایری به دنبال حضور در ترکیب؛/ آینده پرسپولیس و اعلام آمادگی برای مبارزه!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: خبر مربوط به وضعیت یک بازیکن در تیم باشگاهی است.",
-      "topic": "ورزش",
-      "until": 1792188536.7982302
-    },
     "v4|ایستادگی دیناروند مقابل بهترین خط حمله لیگ": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: عملکرد فردی یک بازیکن در لیگ فوتبال و نه فینال یا نتیجه تیم ملی.",
@@ -2410,12 +2398,6 @@
       "topic": "جامعه",
       "until": 1792270304.1364162
     },
-    "v4|تجدید میثاق مردم خمین با رهبر معظم انقلاب در شب ۲۲۹ حماسه و ایستادگی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد محلی و تجدید میثاق مردمی با ارزش خبری پایین",
-      "topic": "جامعه",
-      "until": 1792188519.8279984
-    },
     "v4|تجمع های خیابانی یزد و حضوری که همچنان ادامه دارد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: تجمع های محلی و تکراری حمایتی فاقد ارزش خبری درجه یک",
@@ -2505,12 +2487,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: Review and unanswered questions about a tech product.",
       "topic": "فناوری",
       "until": 1792254119.655001
-    },
-    "v4|تصادف زنجیره ای در مهاباد یک فوتی و ۱۱ مصدوم برجای گذاشت": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: تصادف جاده‌ای در یک شهر کوچک، فاقد اهمیت ملی یا بین‌المللی است.",
-      "topic": "حادثه",
-      "until": 1792188518.8016155
     },
     "v4|تصادف مرگبار با تیر چراغ برق در بزرگراه بسیج": {
       "ok": false,
@@ -2625,12 +2601,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Routine local police traffic enforcement in a single city.",
       "topic": "جامعه",
       "until": 1792266779.1138275
-    },
-    "v4|تیراندازی در مدرسه ای در ایالت اورگان آمریکا": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=world: تیراندازی در مدرسه آمریکا با کشته و مجروح",
-      "topic": "حادثه",
-      "until": 1792189066.5887566
     },
     "v4|تیراندازی نوجوان ۱۶ساله در دبستانی در آمریکا؛ سه کودک و یک معلم کشته شدند": {
       "ok": true,
@@ -2793,12 +2763,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تظاهرات حمایت‌گرایانه بدون اثر ملی یا بین‌المللی",
       "topic": "سیاست",
       "until": 1792272597.5458
-    },
-    "v4|حضور نابینایان در حرم رضوی و زیارت رهبر شهید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این یک گزارش محلی و مذهبی است و فاقد اهمیت ملی است.",
-      "topic": "جامعه",
-      "until": 1792189074.0073078
     },
     "v4|حضور پزشکیان در اجلاس سران کنوانسیون تنوع زیستی، نشان دهنده توجه ایشان به محیط زیست است": {
       "ok": false,
@@ -3543,12 +3507,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: اظهار نظر نماینده مجلس درباره تورم و جنگ.",
       "topic": "اقتصاد",
       "until": 1792262244.2986586
-    },
-    "v4|علائی: فرودگاه شهدای خوی ۲۸ مهرماه بازگشایی می شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و روال اداری بازگشایی یک فرودگاه است.",
-      "topic": "جامعه",
-      "until": 1792189074.96517
     },
     "v4|علت استیضاح عباس عراقچی به روایت ۳ نماینده/ عراقچی دو هفته نیویورک بود؛ برای انتقال پیام یک روز کافی بود": {
       "ok": false,
@@ -4426,6 +4384,12 @@
       "topic": "اقتصاد",
       "until": 1792200610.2144995
     },
+    "v4|چند فلسطینی و یک خبرنگار آمریکایی در حمله شهرک نشینان اسرائیلی در فصل برداشت زیتون زخمی شدند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: حمله شهرک‌نشینان در کرانه باختری بدون تلفات سنگین یا پیامد بین‌المللی",
+      "topic": "سیاست",
+      "until": 1792275487.0454857
+    },
     "v4|چین: جنگ آمریکا علیه ایران هرگز نباید اتفاق می افتاد": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: اعلام چین در سازمان ملل: جنگ آمریکا علیه ایران نباید رخ دهد",
@@ -4479,12 +4443,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: گزارش محلی و آماری درباره بازرسی‌های استاندارد در دیواندره",
       "topic": "جامعه",
       "until": 1792221553.1653638
-    },
-    "v4|کرایه سنگین نفتکش ها به سود پالایشگاه های آسیایی ضربه زد": {
-      "ok": true,
-      "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=world: global oil shipping cost surge impacts Asian refineries",
-      "topic": "اقتصاد",
-      "until": 1792188543.0171392
     },
     "v4|کرمان در انتظار یک دربی جذاب؛ چشم امید آبی های پایتخت به لغزش سپاهان": {
       "ok": false,
@@ -4804,9 +4762,9 @@
       "until": 1792202704.9885972
     },
     "real demand tebas resign over goebbels comparison": {
-      "at": 1792188517.1638093,
+      "at": 1792189104.078644,
       "reason": "policy_scope_blocked",
-      "until": 1792210117.1638093
+      "until": 1792210704.078644
     },
     "replay: ukraine's zelensky holds presser in brussels": {
       "reason": "content_duplicate",
@@ -4883,15 +4841,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "رئیس جمهور: آمریکا با منطق گفت وگو به جای زور اقدام کند ⚡️ رئیس جمهور با اشاره به تحریم های آمریکا علیه ایران ",
-      "id": "77a13eb2b1",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792152504,
-      "verdict": "new",
-      "why": "جديدی است؛ در مورد سیاست خارجی و تحریم‌ها"
-    },
     {
       "head": "فواد ایزدی: بحرین گزینه نخست حمله زمینی ایران است ⚡️ فواد ایزدی تحلیلگر حوزه آمریکا گفت خاندان حاکم بحرین با ا",
       "id": "c839ffc49c",
@@ -5447,6 +5396,15 @@
       "t": 1792187928,
       "verdict": "new",
       "why": "نشست سران اتحادیه اروپا در بروکسل، بیانیه جدید"
+    },
+    {
+      "head": "فراخوان رئیس کمیسیون اروپا برای اصلاح الگوی مصرف انرژی ⚡️ اورزولا فون در لاین، رئیس کمیسیون اروپا، با تأکید بر",
+      "id": "e2179943ba",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792189099,
+      "verdict": "new",
+      "why": "موضوع جدید: سیاست انرژی اتحادیه اروپا"
     }
   ],
   "_importance_rescue_log": [
@@ -6015,64 +5973,6 @@
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اخند",
-        "بر",
-        "ترر",
-        "تط",
-        "خدند",
-        "خلق",
-        "خنث",
-        "دم",
-        "دگر",
-        "زندگ",
-        "شدم",
-        "عبس",
-        "قررگرفتم",
-        "مجهدن",
-        "مهر",
-        "مهرم",
-        "نجت",
-        "نشنس",
-        "هدف",
-        "وکنش",
-        "پنج",
-        "گر",
-        "گرفتم",
-        "گلل",
-        "یکبر"
-      ],
-      "t": 1792145041.305089,
-      "title": "آخوندی: ترور دومی در ۲۱ مهر با توطئه خنثی شد، اما هدف قرارگرفتم ⚡️ عباس آخوندی در واکنش به خنثی شدن حمله به او گفت: «یکب"
-    },
-    {
-      "h": [
-        "امم",
-        "برخرد",
-        "بلچ",
-        "بلچست",
-        "ترر",
-        "جمع",
-        "جنت",
-        "حمقت",
-        "خست",
-        "دشمن",
-        "دنست",
-        "زهد",
-        "سست",
-        "قطعن",
-        "قم",
-        "متعهد",
-        "مسل",
-        "ممن",
-        "نسزگر",
-        "نشن",
-        "هت"
-      ],
-      "t": 1792145057.329147,
-      "title": "امام جمعه زاهدان: ترور بانوان مؤمن نشانه حماقت دشمنان است ⚡️ امام جمعه زاهدان ترور بانوان مؤمن و متعهد در سیستان و بلوچس"
-    },
     {
       "h": [
         "اتفق",
@@ -6883,6 +6783,32 @@
       ],
       "t": 1792187931.4264987,
       "title": "بروکسل: اتحادیه اروپا دو اقدام ترامپ را رد کرد ⚡️ نشست سران اتحادیه اروپا در بروکسل با صدور بیانیه پایانی همراه شد."
+    },
+    {
+      "h": [
+        "اتحد",
+        "ارزل",
+        "اصلح",
+        "الگ",
+        "انرژ",
+        "بلک",
+        "تغر",
+        "تکد",
+        "سخت",
+        "ضررت",
+        "فرخ",
+        "فسل",
+        "فن",
+        "لن",
+        "مصرف",
+        "نسبت",
+        "هشدر",
+        "وبستگ",
+        "وردت",
+        "کمسن"
+      ],
+      "t": 1792189102.5898037,
+      "title": "فراخوان رئیس کمیسیون اروپا برای اصلاح الگوی مصرف انرژی ⚡️ اورزولا فون در لاین، رئیس کمیسیون اروپا، با تأکید بر ضرورت تغی"
     }
   ],
   "_published_incidents": [
@@ -7252,29 +7178,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "بزگردنند",
-        "تکنن",
-        "جمهر",
-        "جنگ",
-        "دست",
-        "رس",
-        "رفت",
-        "رفتن",
-        "رمض",
-        "مترمکعب",
-        "مسعد",
-        "ملن",
-        "پزشک",
-        "گز"
-      ],
-      "n": [
-        "230"
-      ],
-      "t": 1792058783.106432,
-      "title": "از دست رفتن ۲۳۰ میلیون مترمکعب گاز در پی جنگ ⚡️ رئیس جمهور مسعود پزشکیان اعلام کرد در پی جنگ رمضان ۲۳۰ میلیون مترمکعب گا"
-    },
     {
       "k": [
         "ارپ",
@@ -11397,6 +11300,43 @@
       "s": "بروکسل",
       "t": 1792187931.4127405,
       "title": "بروکسل: اتحادیه اروپا دو اقدام ترامپ را رد کرد ⚡️ نشست سران اتحادیه اروپا در بروکسل با صدور بیانیه پایانی همراه شد. ▫️ د"
+    },
+    {
+      "k": [
+        "اتحد",
+        "ارزل",
+        "ارپ",
+        "اصلح",
+        "افزش",
+        "الگ",
+        "انرژ",
+        "بلک",
+        "تصرح",
+        "تغر",
+        "تکد",
+        "رس",
+        "سخت",
+        "ضررت",
+        "فرخ",
+        "فسل",
+        "فن",
+        "لن",
+        "مجب",
+        "مصرف",
+        "ملرد",
+        "نسبت",
+        "هزن",
+        "هشدر",
+        "وبستگ",
+        "وردت",
+        "کمسن",
+        "یر"
+      ],
+      "n": [
+        "106"
+      ],
+      "t": 1792189102.5760503,
+      "title": "فراخوان رئیس کمیسیون اروپا برای اصلاح الگوی مصرف انرژی ⚡️ اورزولا فون در لاین، رئیس کمیسیون اروپا، با تأکید بر ضرورت تغی"
     }
   ],
   "_text_polish": {
@@ -11408,7 +11348,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792188390
+    "at": 1792188967
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11422,20 +11362,15 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792185344.0,
-    "last_failure": 1792185044,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1792188796.0,
     "last_failure": 1792188496,
     "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792189088,
-    "last_failure": 1792188488,
-    "last_status": 429
+    "disabled_until": 1792189155,
+    "last_failure": 1792189095,
+    "last_status": 422
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
