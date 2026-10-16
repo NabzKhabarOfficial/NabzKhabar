@@ -180,7 +180,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-16",
-      "n": 5
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-16",
@@ -411,9 +411,9 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
+        "ok": 5,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
@@ -1347,6 +1347,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Minor consumer electronics product launch, lacks global strategic or economic impact.",
       "topic": "فناوری",
       "until": 1792152673.7671816
+    },
+    "v4|behind a white house feud that is bitter even by trump-era standards": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US feud, no major national/international impact",
+      "topic": "سیاست",
+      "until": 1792197157.11947
     },
     "v4|chad’s icc exit plans raise concerns over sudan war crimes probes": {
       "ok": false,
@@ -4750,12 +4756,6 @@
       "topic": "نظامی",
       "until": 1792142845.3760924
     },
-    "v4|یزدی ها: تا هر زمانی که نیاز باشد در میدان حاضریم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering and expression of support for the regime.",
-      "topic": "جامعه",
-      "until": 1792126028.2825966
-    },
     "v4|یمن: جنگنده تایفون عربستان را هدف قرار دادیم": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Targeting a military aircraft in a regional war zone.",
@@ -5474,13 +5474,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai mistral/open-mistral-nemo score=0 happened=True scope=local: local public gathering, no national impact",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792090594,
-      "title": "موج ۲۲۹ مقاومت در میدان سیمرغ"
-    },
-    {
       "ai": "ai gemini/gemini-3.8-flash score=1 happened=False scope=iran_national: اظهار نظر صنفی و روتین فاقد رویداد یا تصمیم اجرایی",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -6032,6 +6025,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792109595,
       "title": "تماس روبیو با نتانیاهو پس از گفت وگو با رئیس جمهور لبنان"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US feud, no major national/international impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792110757,
+      "title": "Behind a White House Feud That Is Bitter Even by Trump-Era Standards"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11002,7 +11002,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792110089
+    "at": 1792110666
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
