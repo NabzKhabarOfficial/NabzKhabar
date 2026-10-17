@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792189082
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792189082
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792189104
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
       "t": 1792200069
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792200618
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792200619
     }
   ],
   "_ai_pace": {
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-16",
-      "n": 109
+      "n": 110
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-17",
-      "n": 9
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-17",
-      "n": 9
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-10-16",
@@ -486,19 +486,25 @@
         "ok": 1,
         "other": 0
       },
+      "gemini:gemini-3.8-flash": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 5,
-        "other": 4
+        "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 7,
-        "other": 2
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -2426,12 +2432,6 @@
       "topic": "سیاست",
       "until": 1792264531.8840082
     },
-    "v4|ترامپ: از زلنسکی دل خوشی ندارم": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Former president's comment, no concrete action or decision",
-      "topic": "سیاست",
-      "until": 1792200609.5894005
-    },
     "v4|ترامپ: اوکراینی ها مجبور نیستند پالایشگاه ها را هدف قرار دهند؛ اهداف زیادی هست که می توانند به آن ها حمله کنند/وقتی به یک پالایشگاه گازوئیل حمله می کنید؛ جایی ما و جهان به آن نیاز": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=world: اعلام موضع رسمی ترامپ در جنگ اوکراین",
@@ -2545,6 +2545,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار داخلی باشگاه‌های ورزشی اهمیت ملی ندارد و امتیاز پایین می‌گیرد.",
       "topic": "ورزش",
       "until": 1792212827.202628
+    },
+    "v4|تلاش کاخ سفید برای توجیه کردن اقتدار دریایی ایران در تنگه هرمز": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.8-flash score=3 happened=False scope=world: ادعای غیررسمی مقام ناشناس و فاقد رخداد عینی یا تصمیم قطعی",
+      "topic": "نظامی",
+      "until": 1792287022.3301394
     },
     "v4|تماشا کنید: مناظره؛ سرانجام جنگ و دو راهی سرنوشت ساز ایران؟ / قیس قریشی و امیرعلی ابوالفتح": {
       "ok": false,
@@ -2665,12 +2671,6 @@
       "reason": "ai gemini/gemini-3.8-flash score=1 happened=True scope=local: مراسم و جشن مذهبی محلی در شهرستان دیّر فاقد اهمیت ملی",
       "topic": "جامعه",
       "until": 1792270299.6864347
-    },
-    "v4|جشن میلاد حضرت زینب(س) در تجمع شبانه مردم گالیکش": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: جشن مذهبی محلی، بدون پیامدهای ملی یا بین‌المللی",
-      "topic": "جامعه",
-      "until": 1792200612.3275087
     },
     "v4|جشنواره «تهران - مبارک» نمادی از امید، پایداری و توانایی انسان برای عبور از دشواری هاست": {
       "ok": false,
@@ -3007,12 +3007,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: هشدار رئیس کمیسیون اروپا درباره هزینه های سنگین انرژی فسیلی",
       "topic": "اقتصاد",
       "until": 1792274905.7532196
-    },
-    "v4|رامیان در موج ۲۲۹؛ تداوم حضور مردم در تجمعات شبانه": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مردم در رامین تجمع شبانه را ادامه دادند",
-      "topic": "سیاست",
-      "until": 1792200611.500249
     },
     "v4|راه دسترسی تمام روستاهای تنگه چهل چای مینودشت بازگشایی شد": {
       "ok": false,
@@ -3674,12 +3668,6 @@
       "topic": "سیاست",
       "until": 1792237212.9798748
     },
-    "v4|مادورو اتهامات جدید آمریکا در دادگاه نیویورک را تکذیب کرد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Maduro denies US accusations in NY court.",
-      "topic": "قضایی",
-      "until": 1792200610.8641198
-    },
     "v4|ماموریت پزشکیان در ارمنستان؛ از دیپلماسی محیط زیستی تا معادلات قفقاز جنوبی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: سفر دیپلماتیک و حضور در اجلاس‌های بین‌المللی جزو اخبار روتین است.",
@@ -3781,12 +3769,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: رویداد ورزشی محلی و آمار منطقه‌ای فاقد اهمیت ملی.",
       "topic": "ورزش",
       "until": 1792264506.801732
-    },
-    "v4|مشاور فرمانده کل سپاه: پس از انقلاب، آمریکایی ها بیش از ۵۰ بار به ما حمله کرده اند/ دکترین مقاومت در ۴۵ سال گذشته کارآمدی خود را ثابت کرده است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: Commander claims US attacked Iran 50 times",
-      "topic": "نظامی",
-      "until": 1792200073.6633468
     },
     "v4|مصدوم آتش سوزی لنج صیادی در قشم جان باخت": {
       "ok": false,
@@ -4358,12 +4340,6 @@
       "topic": "ورزش",
       "until": 1792240664.764344
     },
-    "v4|چرا دورنمای اقتصادهای خلیج فارس تاریک تر شد؟": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: IMF forecast Gulf economies shrink due to Hormuz disruptions",
-      "topic": "اقتصاد",
-      "until": 1792200610.2144995
-    },
     "v4|چند فلسطینی و یک خبرنگار آمریکایی در حمله شهرک نشینان اسرائیلی در فصل برداشت زیتون زخمی شدند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: حمله شهرک‌نشینان در کرانه باختری بدون تلفات سنگین یا پیامد بین‌المللی",
@@ -4508,23 +4484,11 @@
       "topic": "ورزش",
       "until": 1792251182.3350306
     },
-    "v4|گنبدکاووس؛ میدان انقلاب، میزبان اجتماع شبانه مردم": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمع شبانه بدون اثر ملی",
-      "topic": "سیاست",
-      "until": 1792200071.0551999
-    },
     "v4|گنجینه سبز زاگرس؛ از حصار باغ تا میراث ملی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: مطلب توصیفی و فرهنگی درباره محیط زیست است و فاقد رویداد خبری.",
       "topic": "جامعه",
       "until": 1792229048.343997
-    },
-    "v4|یحیی سریع: یمن هدف ۲۲۸۱ حمله هوایی و موشکی سعودی قرار گرفته است": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Saudi attacks on Yemen count 2281",
-      "topic": "نظامی",
-      "until": 1792200073.6489944
     },
     "v4|یزد، میزبان تاریخی اردوی تیم ملی پدل ایران/حمایت هیئت تنیس استان از ملی پوشان": {
       "ok": false,
@@ -10884,7 +10848,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792199963
+    "at": 1792200551
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
