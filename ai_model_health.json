@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792270837
-    },
-    {
-      "e": "EDITOR BATCH mistral/open-mistral-nemo: no usable verdict",
-      "t": 1792270839
-    },
-    {
       "e": "EDITOR BATCH openrouter/openrouter/free: no usable verdict",
       "t": 1792270842
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 2x, gemini:gemini-3.5-flash-lite held 2x, groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
       "t": 1792271983
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1792272522
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792272543
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
-      "n": 230
+      "n": 232
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-17",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-17",
-      "n": 84
+      "n": 85
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-17",
-      "n": 84
+      "n": 85
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -483,9 +483,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 345,
+        "calls": 347,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 344,
+        "ok": 346,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
@@ -506,16 +506,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 84,
+        "calls": 85,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 62,
+        "ok": 63,
         "other": 22
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 84,
+        "calls": 85,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 57,
+        "ok": 58,
         "other": 27
       },
       "mistral:ministral-8b-latest": {
@@ -1414,6 +1414,12 @@
   ],
   "_digest_last_date": "2026-10-17",
   "_editor_gate_cache": {
+    "v4|17 dead, dozens injured after stampede at indian religious event": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Mass casualty stampede, >10 deaths",
+      "topic": "حادثه",
+      "until": 1792358922.4926057
+    },
     "v4|4 میلیارد و ششصد/ آخرین درآمد وینگر مشهور از لیگ ایران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: خبر حاشیه‌ای و مالی ورزش داخلی، ارزش خبری درجه یک ندارد.",
@@ -1449,6 +1455,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: مقاله تحلیلی و سوالی درباره روند نظامی در یمن",
       "topic": "سیاست",
       "until": 1792307425.883821
+    },
+    "v4|cost of living protests hit belgium, italy, portugal and france": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Multi‑country protests, not first‑tier",
+      "topic": "اقتصاد",
+      "until": 1792358922.4770336
     },
     "v4|deadly school roof collapse in pakistan raises questions over regulation": {
       "ok": true,
@@ -2739,12 +2751,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل نظرسنجی و انتخابات آمریکا، فاقد رخداد مشخص و فوری.",
       "topic": "سیاست",
       "until": 1792309709.7751646
-    },
-    "v4|جنگ یمن تنها با گفت وگوهای یمنی ـ یمنی پایان می یابد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: اظهارنظر و تحلیل کارشناس مسائل غرب آسیا درباره جنگ یمن",
-      "topic": "سیاست",
-      "until": 1792307425.8414953
     },
     "v4|جنگنده های اسرائیلی جنوب لبنان را بمباران کردند": {
       "ok": true,
@@ -4191,12 +4197,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: کارگزاری مفید برنده جایزه طلای بورس اروپایی-آسیایی",
       "topic": "اقتصاد",
       "until": 1792307962.209456
-    },
-    "v4|نفت برای نخستین بار از ماه مه به حدود ۱۱۰ دلار در هر بشکه رسید": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: جهش قیمت نفت به ۱۱۰ دلار یک شوک اقتصادی بزرگ جهانی است",
-      "topic": "اقتصاد",
-      "until": 1792307425.855339
     },
     "v4|نفتی ها برای بایناما بلیط خریدند/ بازگشت بازیکن خارجی طلایی پوشان به ایران": {
       "ok": false,
@@ -11977,7 +11977,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792271857
+    "at": 1792272441
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -12018,10 +12018,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792264567,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
