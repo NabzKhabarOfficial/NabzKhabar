@@ -77,6 +77,15 @@ trust rules: approvals only for concrete events). The old-event guard also refus
 («آخوندی: دو بار ترور شدم، بار اول در سال ۱۳۶۰»): a quoted speaker's title («X: ...») or a "first/second
 time" story is a current event and is no longer refused.
 
+Oct 17, 04:30 Tehran (full read of all 75 posts published Oct 16-17): leftovers the final guard did not know:
+* outlet names «نیوزمکس» and «اویل پرایس» (added to the guard's outlet list, so the detail line is dropped /
+  the post refused like any other outlet name);
+* «صهیونیسم» (the loaded-word rule only knew «صهیونیست» / «صهیونی»);
+* an analyst's opinion published as news («فواد ایزدی تحلیلگر حوزه آمریکا گفت ...»، «دو تحلیلگر ... بر این
+  باورند»): a lead whose speaker is an analyst / commentator is refused ("analyst-opinion");
+* a lead that starts with a dangling reference («این منابع به عراقچی گفته اند ...»، «این در حالی است که ...»):
+  refused ("dangling-lead"); the reader cannot know who "these sources" are.
+
 No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot runs as before.
 """
 
@@ -107,6 +116,11 @@ NAME_FIXES = ((re.compile(r"(?<![\u0600-\u06FF])ترمپ(?![\u0600-\u06FF])"), "
               (re.compile(r"(ترامپ[،,]?\s*)رئیس[\s\u200c]*جمهور\s+(?:سابق|پیشین)(?:\s+آمریکا)?"), r"\1رئیس جمهور آمریکا"))
 DEAD_MODELS = ("qwen/qwen3-32b",)  # Groq: model_not_found (HTTP 404) on every call
 _KEY = {"v": ""}
+_EXTRA_OUTLETS = r"نیوز[\s\u200c]*مکس|اویل[\s\u200c]*پرایس|سی[\s\u200c]*ان[\s\u200c]*بی[\s\u200c]*سی|"
+_LOADED_EXTRA = re.compile(r"(?<![\w])صهیونیسم(?![\w])")
+_ANALYST_LEAD = re.compile(r"^[^.!؟]{0,80}?(?:تحلیلگر|تحلیل[\s\u200c]*گر|کارشناس|مفسر|استاد\s+دانشگاه)[^.!؟]{0,80}?"
+                           r"(?:گفت|معتقد|بر\s+این\s+باور|می[\s\u200c]*گوید|نوشت|تأکید|تاکید)")
+_DANGLING_LEAD = re.compile(r"^\s*(?:این\s+(?:منابع|مقام|مقامات|منبع|گزارش|اظهارات|در\s+حالی)|وی\s|او\s|آنها\s|آن\s+ها\s)")
 _REPEAT_WORDS = re.compile(r"بار\s+(?:اول|دوم|نخست|دیگر)|دو\s+بار|دوباره|مجددا|مجدداً|باز\s+هم")
 NEMO_DETERMINISTIC = set()  # editor cache keys whose nemo verdict is not trusted this run
 _MONTHS = ("فروردین|اردیبهشت|خرداد|تیر|مرداد|شهریور|مهر|آبان|آذر|دی|بهمن|اسفند|ژانویه|فوریه|مارس|آوریل|"
@@ -326,17 +340,34 @@ def _install_old_event_guard():
         try:
             if fg._BOARD.search(str(title or "")):
                 return ""
-            found = old_event(title, sentences)
+            sents = [str(x or "") for x in sentences or []]
+            lead = sents[0] if sents else ""
+            text = " ".join([str(title or "")] + sents)
+            found = []
+            old = old_event(title, sentences)
+            if old:
+                found.append(("old-event", old))
+            m = _LOADED_EXTRA.search(text)
+            if m:
+                found.append(("loaded-wording", m.group(0)))
+            if _ANALYST_LEAD.search(lead) and not re.search(r"سازمان\s+ملل|آژانس|شورای\s+امنیت|بانک\s+جهانی|صندوق", lead[:120]):
+                found.append(("analyst-opinion", lead[:60]))
+            if _DANGLING_LEAD.search(lead):
+                found.append(("dangling-lead", lead[:60]))
         except Exception:
             return ""
         if not found:
             return ""
-        fg._log(title, [("old-event", found)])
-        print(f"V13 FINAL GUARD: refused (old-event: {found}) -> {str(title or '')[:120]}", flush=True)
-        return "final-guard:old-event"
+        fg._log(title, found)
+        print("V13 FINAL GUARD: refused (" + ", ".join(f"{r}: {t}" for r, t in found) + f") -> {str(title or '')[:120]}",
+              flush=True)
+        return "final-guard:" + found[0][0]
 
     caption_problem._v13_old_event = True
     rg.caption_problem = caption_problem
+    p = fg.OUTLET_NAMES.pattern
+    if "نیوز" not in p.split("(?:", 1)[-1][:40] and "(?:بلومبر" in p:
+        fg.OUTLET_NAMES = re.compile(p.replace("(?:بلومبر", "(?:" + _EXTRA_OUTLETS + "بلومبر", 1), fg.OUTLET_NAMES.flags)
 
 
 def _drop_dead_models():
