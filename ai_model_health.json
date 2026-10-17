@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792188488
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792188488
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792196038
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792198358
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-17",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-17",
-      "n": 4
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-10-16",
@@ -488,16 +488,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
-        "other": 3
+        "ok": 4,
+        "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 4,
+        "calls": 5,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
+        "ok": 3,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
@@ -1472,6 +1472,12 @@
       "topic": "سیاست",
       "until": 1792207589.7529979
     },
+    "v4|oregon school shooter was former special needs student, police say": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=local: School shooting in Oregon, former special needs student.",
+      "topic": "قضایی",
+      "until": 1792284759.0302746
+    },
     "v4|palestinians, us journalist attacked in west bank pogrom: what we know": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=world: تجاوز شهرک‌نشینان، زخمی شدن عکاس واشنگتن پست، حمله سازمان‌یافته",
@@ -1880,6 +1886,12 @@
       "topic": "فناوری",
       "until": 1792223882.7686417
     },
+    "v4|استارت درخشان ستاره فرانسوی/ گریزمان در آمریکا زلزله به پا کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: یک بازیکن فوتبال تازه‌کار در MLS، نه خبر ملی یا جهانی",
+      "topic": "ورزش",
+      "until": 1792284757.2119637
+    },
     "v4|استارلینک؛ سلاح ارتباطی آمریکا در جنگ ها و بحران ها": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: مقاله تحلیلی و عمومی درباره کاربرد فناوری.",
@@ -1927,12 +1939,6 @@
       "reason": "ai mistral/open-mistral-nemo batch score=9 happened=True scope=iran_national: اعلام رسمی قطع رابطه ایران-انگلستان در ۱۳۳۱ (تاریخ‌دار، تاریخی)",
       "topic": "سیاست",
       "until": 1792226190.3105712
-    },
-    "v4|اعمال محدودیت کاخ سفید بر سامانه ماهواره ای پشتیبان ارتش اوکراین": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Unconfirmed US satellite restriction claim",
-      "topic": "سیاست",
-      "until": 1792198314.9712996
     },
     "v4|افزایش حملات شهرک نشینان در کرانه باختری؛ عکاس واشنگتن پست زخمی شد": {
       "ok": true,
@@ -2257,12 +2263,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: گمانه‌زنی رسانه‌ای درباره تغییرات احتمالی در جوایز فیفا است.",
       "topic": "ورزش",
       "until": 1792266280.4718385
-    },
-    "v4|بارسلونای رکوردشکن یک رکورد دیگر می خواهد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Club record, not major international competition",
-      "topic": "ورزش",
-      "until": 1792198312.2988176
     },
     "v4|بازدید فرمانده نیروی زمینی ارتش از یگان های مرکز ۰۷ کازرون/ بیان اقدامات نیروی زمینی ارتش برای مقابله با حمله زمینی احتمالی آمریکا": {
       "ok": false,
@@ -3313,12 +3313,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: تحلیل و بررسی قدیمی درباره یک تسلیحات نظامی",
       "topic": "نظامی",
       "until": 1792258721.895371
-    },
-    "v4|سی ان ان: اوکراین ذخایر موشک های رهگیر پاتریوت را به پایان رسانده است": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Ukraine depleted Patriot missiles, increasing vulnerability",
-      "topic": "نظامی",
-      "until": 1792198314.9850512
     },
     "v4|سی بی اس: کشته شدن سه دانش آموز و یک معلم در تیراندازی به دبستانی در ایالت اورگن آمریکا؛ مظنون که پسری ۱۶ ساله بود، کشته شد": {
       "ok": true,
@@ -4718,9 +4712,9 @@
       "until": 1792202704.9885972
     },
     "real demand tebas resign over goebbels comparison": {
-      "at": 1792197743.9695776,
+      "at": 1792198360.4016142,
       "reason": "policy_scope_blocked",
-      "until": 1792219343.9695776
+      "until": 1792219960.4016142
     },
     "replay: ukraine's zelensky holds presser in brussels": {
       "reason": "content_duplicate",
@@ -5358,20 +5352,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.8-flash score=2 happened=True scope=iran_national: پیام تسلیت روتین سخنگو برای درگذشت استاد دانشگاه فاقد اهمیت خبری فوری",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792176378,
-      "title": "بقائی درگذشت پیروز مجتهدزاده را تسلیت گفت"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine statement by a local MP regarding healthcare budget priorities.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792176935,
-      "title": "فلاح: تأمین معیشت کادر سلامت نیازمند اعتبارات پایدار است"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی و مربوط به فعالیت‌های عادی بسیج در یک روستا",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5916,6 +5896,20 @@
       "rule": "below-event-threshold",
       "t": 1792197742,
       "title": "سوءاستفاده کلاهبرداران از نام پلیس فتا برای جلب اعتماد کاربران"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: یک بازیکن فوتبال تازه‌کار در MLS، نه خبر ملی یا جهانی",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1792198357,
+      "title": "استارت درخشان ستاره فرانسوی/ گریزمان در آمریکا زلزله به پا کرد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=local: School shooting in Oregon, former special needs student.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792198359,
+      "title": "Oregon school shooter was former special needs student, police say"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10954,7 +10948,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792197643
+    "at": 1792198225
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
