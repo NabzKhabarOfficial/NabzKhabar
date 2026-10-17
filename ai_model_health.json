@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792191369
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792191369
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792191374
     },
@@ -159,16 +151,24 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792201199
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1792201743
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792201761
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-16",
-      "n": 144
+      "n": 145
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-16",
-      "n": 247
+      "n": 248
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-16",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-17",
-      "n": 10
+      "n": 11
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-17",
-      "n": 10
+      "n": 11
     },
     "openrouter:*": {
       "day": "2026-10-16",
@@ -482,8 +482,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -500,22 +500,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 6,
         "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 8,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       }
     }
@@ -2186,6 +2186,12 @@
       "topic": "نظامی",
       "until": 1792268554.6533303
     },
+    "v4|انفجار مهیب در ابر نفتکش بعد از برخورد با مین دریایی در تنگه هرمز": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Explosion of tanker in Hormuz, major oil incident",
+      "topic": "نظامی",
+      "until": 1792288143.1886988
+    },
     "v4|انفجارهای شدید شهر دمام عربستان را لرزاند/توقف پروازها در فرودگاه ملک فهد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.8-flash batch score=8 happened=True scope=world: انفجار در شهر دمام عربستان و توقف پروازهای فرودگاه بین‌المللی",
@@ -2335,12 +2341,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine social welfare distribution and local military-themed ceremony.",
       "topic": "جامعه",
       "until": 1792220950.545277
-    },
-    "v4|بریتانیا اریتره را به ممنوعیت ورود شهروندانش بر سر بازگرداندن مهاجران «تهدید کرد»": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: UK threatens Eritrea over migrant policy",
-      "topic": "سیاست",
-      "until": 1792201222.3652308
     },
     "v4|بقائی درگذشت پیروز مجتهدزاده را تسلیت گفت": {
       "ok": false,
@@ -3818,12 +3818,6 @@
       "topic": "حادثه",
       "until": 1792254113.1875265
     },
-    "v4|موج ۲۲۹ تجمعات شبانه؛ مردم آزادشهر بار دیگر به میدان آمدند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمع شبانه در آزادشهر، بدون پیامدهای گسترده",
-      "topic": "سیاست",
-      "until": 1792201221.1097093
-    },
     "v4|موج ۲۳۰ اجتماع شبانه سنندج؛ تداوم حضور مردم در میدان همبستگی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local gathering in Sanandaj; lacks national impact or strategic significance.",
@@ -4003,6 +3997,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: مطلب تاریخی و سرگرمی درباره آدولف هیتلر",
       "topic": "جامعه",
       "until": 1792223312.2293394
+    },
+    "v4|واشنگتن در دوراهی گازوئیل روسیه؛ کنگره ای ها به دنبال بستن راه کاخ سفید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Lawmakers propose ending diesel sanctions exemption",
+      "topic": "سیاست",
+      "until": 1792288143.196438
     },
     "v4|واشنگتن پست به نقل از یک مقام اوکراینی: اوکراین به آخرین موشک های پدافند هوایی پاتریوت خود رسیده / تا هفتم اکتبر، تنها ۱۰ موشک باقی مانده بود؛ این موشک ها در جریان حملات مصرف شدند؛": {
       "ok": true,
@@ -4737,6 +4737,11 @@
       "reason": "content_duplicate",
       "until": 1792209545.409797
     },
+    "انفجار مهیب در ابر نفتکش بعد از برخورد با مین دریایی در تنگه هرمز": {
+      "at": 1792201761.3301775,
+      "reason": "final_guard:ai-contradiction",
+      "until": 1792223361.3301775
+    },
     "تریتا پارسی: قیمت نفت برنت امروز به ۱۰۹ دلار در هر بشکه رسیده است؛ بالاترین سطح از ۲۰ مه، زمانی که جنگ ایران در اوج خود قرار داشت / از توانایی ترامپ در منحرف کردن توجه رسانه ها و ب": {
       "reason": "content_duplicate",
       "until": 1792204972.2694805
@@ -4765,10 +4770,6 @@
     "شبکه ۱۲ تلویزیون اسرائیل: تحقیقات جنایی بین المللی، رهبران نظامی و سیاسی اسرائیل را هدف قرار داده / دادستانی ایتالیا در رم دامنه تحقیقات خود را گسترش داده و کاتس، وزیر جنگ، و فهرست": {
       "reason": "content_duplicate",
       "until": 1792205526.5487778
-    },
-    "شکاف اروپا و آمریکا از تحریم روسیه تا دیوان کیفری عمیق تر شد": {
-      "reason": "content_duplicate",
-      "until": 1792200930.105592
     },
     "پایگاههای ائتلاف سعودی در عدن هدف حمله موشکی ارتش یمن قرار گرفت": {
       "reason": "content_duplicate",
@@ -10866,7 +10867,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792201118
+    "at": 1792201689
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
