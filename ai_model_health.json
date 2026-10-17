@@ -2,22 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792271944
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792271944
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792271945
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792271949
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792271954
     },
     {
@@ -159,12 +143,28 @@
     {
       "e": "AI PACE: gemini:gemini-3.5-flash-lite held 1x, groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 9x",
       "t": 1792276067
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792276549
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792276549
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792276549
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792276559
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-17",
-      "n": 143
+      "n": 145
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-17",
-      "n": 88
+      "n": 89
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-17",
-      "n": 88
+      "n": 89
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -476,9 +476,9 @@
     "2026-10-17": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 189,
+        "calls": 191,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 180,
+        "ok": 182,
         "other": 9
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -506,16 +506,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 88,
+        "calls": 89,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 66,
-        "other": 22
+        "other": 23
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 88,
+        "calls": 89,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 61,
+        "ok": 62,
         "other": 27
       },
       "mistral:ministral-8b-latest": {
@@ -2265,6 +2265,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: بازی لیگ داخلی فوتبال ایران اهمیت درجه اول جهانی ندارد.",
       "topic": "ورزش",
       "until": 1792346194.5405898
+    },
+    "v4|بررسی تحولات منطقه در دیدار عراقچی و نخست وزیر عراق": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: ملاقات دیپلماتیک بدون تصمیم",
+      "topic": "سیاست",
+      "until": 1792362949.708687
     },
     "v4|بررسی درمان های اختصاصی بیماری های مغز در دانشگاه شهید بهشتی": {
       "ok": false,
@@ -4258,12 +4264,6 @@
       "topic": "اقتصاد",
       "until": 1792316122.9286435
     },
-    "v4|نمی توان صرفاً به این دلیل که جنگ احساس خوبی به شما می دهد یا عصبانی و کلافه هستید، وارد آن شد/ اقدام نظامی باید به یک هدف مشخص دست یابد/ در درگیری با ایران ۲۰ نفر از نیروهای نظامی": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع رسمی معاون رئیس‌جمهور آمریکا درباره جنگ و اقدام نظامی.",
-      "topic": "نظامی",
-      "until": 1792308607.0952199
-    },
     "v4|نگرانی پاری سن ژرمن: دشمن یامال مصدوم شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: مصدومیت بازیکن فوتبال خبری درجه یک محسوب نمی‌شود.",
@@ -4467,6 +4467,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=iran_national: واکنش رسمی سفارت ایران به اظهارات ترامپ درباره مذاکره.",
       "topic": "سیاست",
       "until": 1792315484.7202544
+    },
+    "v4|پایان رکورد ۳۸ بازی متوالی شکست ناپذیری و …/ درخشش سردار علیه دو رکورد تاریخی امارات": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: نتایج لیگ‌های باشگاهی خارجی در اولویت خبری نبوده و محلی محسوب می‌شود.",
+      "topic": "ورزش",
+      "until": 1792362952.2235353
     },
     "v4|پایان زودهنگام مأموریت سخنگوی تازه ترامپ پس از نخستین نشست خبری جنجالی": {
       "ok": false,
@@ -4947,12 +4953,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: افزودن آمبولانس به اورزانس لرستان استانی و برنامه‌ریزی برای آینده است",
       "topic": "سلامت",
       "until": 1792347346.3045235
-    },
-    "v4|۲۰ شهید و مجروح در حمله با سلاح های ممنوعه در یمن": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله نظامی و تلفات انسانی در منطقه جنگی یمن.",
-      "topic": "حادثه",
-      "until": 1792308607.1090548
     },
     "v4|۲۲۱ پروژه آموزشی خراسان رضوی به بهره برداری رسید": {
       "ok": false,
@@ -5705,20 +5705,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: گزارش عملکرد استانی هلال احمر فاقد اهمیت ملی و اولویت خبری است.",
-      "rescued": true,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792260954,
-      "title": "محبوبی: هلال احمر آذربایجان غربی به ۲۵۰۰ مصدوم امدادرسانی کردند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: دیدار مقام نظامی با وزیر پیشنهادی رویداد سطح اول نیست",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1792261591,
-      "title": "دیدار رئیس سازمان بسیج مستضعفین با مهرداد اخلاقی کتابچی"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی؛ کشف مواد مخدر و مشروبات الکلی",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6263,6 +6249,20 @@
       "rule": "no-concrete-event",
       "t": 1792276024,
       "title": "Photos show luxury boat with 50m pool and water slides near Kim Jong Un's summer retreat"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: ملاقات دیپلماتیک بدون تصمیم",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792276549,
+      "title": "بررسی تحولات منطقه در دیدار عراقچی و نخست وزیر عراق"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: نتایج لیگ‌های باشگاهی خارجی در اولویت خبری نبوده و محلی محسوب می‌شود.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792276552,
+      "title": "پایان رکورد ۳۸ بازی متوالی شکست ناپذیری و …/ درخشش سردار علیه دو رکورد تاریخی امارات"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11855,7 +11855,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792275910
+    "at": 1792276486
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11868,11 +11868,6 @@
     "last_error": "HTTP 402 payment required (no free quota on this account)",
     "last_failure": 1791935762,
     "last_status": 402
-  },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792276307.0,
-    "last_failure": 1792276007,
-    "last_status": 599
   },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1792276615,
