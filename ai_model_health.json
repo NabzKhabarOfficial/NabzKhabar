@@ -2,22 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792274829
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792274829
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1792274868
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792275397
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792275398
     },
     {
@@ -159,16 +143,32 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792279472
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792280037
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792280037
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792280037
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792280049
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-17",
-      "n": 151
+      "n": 152
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
-      "n": 260
+      "n": 262
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-17",
@@ -476,16 +476,16 @@
     "2026-10-17": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 197,
+        "calls": 198,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 183,
-        "other": 14
+        "other": 15
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 375,
+        "calls": 377,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 374,
+        "ok": 376,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
@@ -3382,12 +3382,6 @@
       "topic": "نظامی",
       "until": 1792320132.2256033
     },
-    "v4|سردار ابن الرضا: موشک های ایرانی معادله را تعیین می کنند نه بمب های آمریکایی": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: اظهارنظر مقام ارشد نظامی درباره توان موشکی و تقابل با آمریکا.",
-      "topic": "نظامی",
-      "until": 1792308610.4491916
-    },
     "v4|سردار، سعید و رضا غندی در ترکیب ثابت شباب الاهلی/ ستاره های ایرانی در جنگ صدرنشینی لیگ ادنوک امارات!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Routine sports news regarding club team lineups.",
@@ -4275,6 +4269,12 @@
       "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=world: سرنگونی بالگرد آپاچی عربستان در نزدیکی نجران",
       "topic": "نظامی",
       "until": 1792349181.3151014
+    },
+    "v4|هزاران تجمع علیه ترامپ در آمریکا برگزار شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: تجمعات اعتراضی گسترده علیه ترامپ در سراسر آمریکا برگزار شد",
+      "topic": "سیاست",
+      "until": 1792366442.0367985
     },
     "v4|هشدار اف بی آی درباره حقه های هوش مصنوعی قبل از انتخابات میان دوره": {
       "ok": false,
@@ -5707,13 +5707,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارات تکراری و ادعای مقام خارجی درباره انتخابات",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792262761,
-      "title": "نتانیاهو: دشمنان ما در صدد تاثیرگذاری بر انتخابات هستند"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تجهیز یک بیمارستان محلی در کاشمر خبری استانی و غیر استراتژیک است.",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -6265,6 +6258,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792278852,
       "title": "How 'dangerous' Man City maintained 100 per cent record"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: تجمعات اعتراضی گسترده علیه ترامپ در سراسر آمریکا برگزار شد",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792280042,
+      "title": "هزاران تجمع علیه ترامپ در آمریکا برگزار شد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11857,7 +11857,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792279388
+    "at": 1792279961
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11872,8 +11872,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792279768.0,
-    "last_failure": 1792279468,
+    "disabled_until": 1792280337.0,
+    "last_failure": 1792280037,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
