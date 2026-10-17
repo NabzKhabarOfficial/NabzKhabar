@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792188488
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792188496
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792188498
     },
@@ -159,6 +151,14 @@
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792198358
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792199468
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792199470
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-17",
-      "n": 8
+      "n": 9
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-17",
-      "n": 5
+      "n": 6
     },
     "openrouter:*": {
       "day": "2026-10-16",
@@ -488,16 +488,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 9,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
+        "ok": 5,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
+        "ok": 4,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
@@ -1369,12 +1369,6 @@
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=world: افشاگری شخصی بازیکن سابق فوتبال فاقد اهمیت خبری است.",
       "topic": "ورزش",
       "until": 1792201817.6445327
-    },
-    "v4|a bitter white house feud, even by trump-era standards: alina mildon and richard grenell": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US political feud, limited impact",
-      "topic": "سیاست",
-      "until": 1792198896.358644
     },
     "v4|bellingham agrees new real deal - saturday's gossip": {
       "ok": false,
@@ -3824,6 +3818,12 @@
       "topic": "جامعه",
       "until": 1792269731.9830341
     },
+    "v4|موج ۲۳۰ تجمعات شبانه؛ حضور پرشور مردم گالیکش در صحنه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local night protest in Galikesh, limited national significance",
+      "topic": "سیاست",
+      "until": 1792285868.6734283
+    },
     "v4|موج ۲۳۰ حضور پرشکوه بروجردی ها در میدان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و رویداد شهری بروجرد فاقد اهمیت ملی.",
@@ -4039,6 +4039,12 @@
       "reason": "ai mistral/open-mistral-nemo batch score=2 happened=True scope=local: آرای شخصی، بدون تصمیم رسمی یا اقدام جدید",
       "topic": "سیاست",
       "until": 1792239525.8923132
+    },
+    "v4|واکنش عبدالله گنجی به ماجرای سوءقصد عباس آخوندی؛ اصلاح طلبان می گویند طرف هیچ اقدامی نکرد/ زیدآبادی هم سریع دست به قلم، طرف را سوپر انقلابی معرفی کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Commentary on alleged assassination attempt.",
+      "topic": "سیاست",
+      "until": 1792285869.287319
     },
     "v4|وحدت ملی و تبعیت از رهبری رمز عبور کشور از توطئه های دشمن است": {
       "ok": false,
@@ -4712,9 +4718,9 @@
       "until": 1792202704.9885972
     },
     "real demand tebas resign over goebbels comparison": {
-      "at": 1792198900.2786803,
+      "at": 1792199470.4847498,
       "reason": "policy_scope_blocked",
-      "until": 1792220500.2786803
+      "until": 1792221070.4847498
     },
     "replay: ukraine's zelensky holds presser in brussels": {
       "reason": "content_duplicate",
@@ -5344,20 +5350,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی و مربوط به فعالیت‌های عادی بسیج در یک روستا",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792176948,
-      "title": "اردوی جهادی در روستای محمدآباد بهشهر برگزار شد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: پارلمانی‌نقش‌حمایت‌از‌تکواندو‑لرستان",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792177510,
-      "title": "سپهوند: تکواندو لرستان باید در میادین آسیایی و جهانی مدال آور باشد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: پروژه آب شیرین کن در هرمزگان",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5902,6 +5894,20 @@
       "rule": "routine-metaphorical-topic",
       "t": 1792198359,
       "title": "Oregon school shooter was former special needs student, police say"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local night protest in Galikesh, limited national significance",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792199468,
+      "title": "موج ۲۳۰ تجمعات شبانه؛ حضور پرشور مردم گالیکش در صحنه"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Commentary on alleged assassination attempt.",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1792199469,
+      "title": "واکنش عبدالله گنجی به ماجرای سوءقصد عباس آخوندی؛ اصلاح طلبان می گویند طرف هیچ اقدامی نکرد/ زیدآبادی هم سریع دست به قلم، "
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10940,7 +10946,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792198805
+    "at": 1792199381
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
