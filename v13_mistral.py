@@ -86,6 +86,18 @@ Oct 17, 04:30 Tehran (full read of all 75 posts published Oct 16-17): leftovers 
 * a lead that starts with a dangling reference («این منابع به عراقچی گفته اند ...»، «این در حالی است که ...»):
   refused ("dangling-lead"); the reader cannot know who "these sources" are.
 
+Oct 17, 04:45 Tehran (review of the rejected stories):
+* «انصارلله: سعودی طی ۲۴ ساعت ۱۰۱ بار به یمن حمله کرد» was approved by the AI editor (score 8, world) and then
+  dropped by the final "foreign local" scope check (its war words list knew «عربستان» but not «سعودی» / «یمن»),
+  which also blocked it for 6 hours ("recent-editorial-block", 6 more refusals). A story the AI editor has
+  approved as world / national news (cached verdict, scope not local) is no longer dropped by that keyword check.
+* «هشدار آژیر خطر در جنوب عربستان صادر شد» was refused "strict-source-below-importance(8<10)": the war-zone list
+  has cities, not countries. Air-raid sirens, explosions, interceptions, shoot-downs, air / missile / drone strikes
+  in a country of the regional war now get the rescue path (the AI editor still decides; no-AI fallback unchanged).
+* Same-event judge: three posts of one Trump interview went out because nemo said "new" and the headlines shared too
+  few words for the strong re-check. A new post whose speaker («X: ...») also leads a published headline is now
+  re-checked by the strong pool too.
+
 No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot runs as before.
 """
 
@@ -121,6 +133,12 @@ _LOADED_EXTRA = re.compile(r"(?<![\w])صهیونیسم(?![\w])")
 _ANALYST_LEAD = re.compile(r"^[^.!؟]{0,80}?(?:تحلیلگر|تحلیل[\s\u200c]*گر|کارشناس|مفسر|استاد\s+دانشگاه)[^.!؟]{0,80}?"
                            r"(?:گفت|معتقد|بر\s+این\s+باور|می[\s\u200c]*گوید|نوشت|تأکید|تاکید)")
 _DANGLING_LEAD = re.compile(r"^\s*(?:این\s+(?:منابع|مقام|مقامات|منبع|گزارش|اظهارات|در\s+حالی)|وی\s|او\s|آنها\s|آن\s+ها\s)")
+_WAR_COUNTRIES = (r"(?:عربستان|سعودی|امارات|قطر|کویت|عمان|بحرین|یمن|اسرائیل|لبنان|سوریه|عراق|ایران|اردن|"
+                  r"saudi|emirates|uae|qatar|kuwait|oman|bahrain|yemen|israel|lebanon|syria|iraq|iran|jordan)")
+_WAR_HARD = (r"(?:آژیر|صدای انفجار|انفجار|رهگیری|سرنگون|اصابت|بمباران|حمله (?:موشکی|پهپادی|هوایی)|حملات (?:موشکی|پهپادی|هوایی)|"
+             r"siren|explosion|blast|intercept|shot down|airstrike|air strike|missile strike|drone strike)")
+WAR_COUNTRY_EVENT = re.compile(_WAR_HARD + r"[^.؛]{0,60}" + _WAR_COUNTRIES + r"|" + _WAR_COUNTRIES + r"[^.؛]{0,60}" + _WAR_HARD, re.I)
+_SPEAKER = re.compile(r"^\s*(?:ادعای|واکنش|هشدار|پاسخ)?\s*([^:：]{2,25})[:：]")
 _REPEAT_WORDS = re.compile(r"بار\s+(?:اول|دوم|نخست|دیگر)|دو\s+بار|دوباره|مجددا|مجدداً|باز\s+هم")
 NEMO_DETERMINISTIC = set()  # editor cache keys whose nemo verdict is not trusted this run
 _MONTHS = ("فروردین|اردیبهشت|خرداد|تیر|مرداد|شهریور|مهر|آبان|آذر|دی|بهمن|اسفند|ژانویه|فوریه|مارس|آوریل|"
@@ -267,10 +285,16 @@ def _related_to_published(ej, prompt):
     try:
         head = prompt.split("NEW POST (about to be published):", 1)[1].split("ALREADY PUBLISHED", 1)[0].strip()
         listing = prompt.split("ALREADY PUBLISHED in the last 24 hours:", 1)[1].split("Does the NEW POST", 1)[0]
+        m = _SPEAKER.match(head)
+        speaker = m.group(1).strip() if m else ""
         for line in listing.splitlines():
             title = re.sub(r"^\s*\d+\.\s*", "", line).strip()
             if title and ej.related(head, title):
                 return True
+            if speaker and len(speaker) >= 3:
+                m2 = _SPEAKER.match(title)
+                if m2 and m2.group(1).strip() == speaker:
+                    return True  # the same speaker leads a published post: let the strong pool compare
     except Exception:
         return True  # unsure: let the strong pool look
     return False
@@ -368,6 +392,54 @@ def _install_old_event_guard():
     p = fg.OUTLET_NAMES.pattern
     if "نیوز" not in p.split("(?:", 1)[-1][:40] and "(?:بلومبر" in p:
         fg.OUTLET_NAMES = re.compile(p.replace("(?:بلومبر", "(?:" + _EXTRA_OUTLETS + "بلومبر", 1), fg.OUTLET_NAMES.flags)
+
+
+def _editor_approved(candidate):
+    """True when the AI editor's cached verdict approved this story as world / national news."""
+    try:
+        import v13_editor_gate as g
+        entry = g._cache_get(g._cache_key(candidate))
+        return bool(entry and entry.get("ok") and "scope=local" not in str(entry.get("reason", "")))
+    except Exception:
+        return False
+
+
+def _install_scope_and_rescue_fixes():
+    import v13_policy_guard as pg
+    import v13_editor_gate as g
+    prev_scope = pg._foreign_local_only
+    if not getattr(prev_scope, "_v13_editor_ok", False):
+        def foreign_local_only(candidate):
+            result = prev_scope(candidate)
+            if result and _editor_approved(candidate):
+                print(f"V13 MISTRAL: scope drop skipped (AI editor approved as world/national): "
+                      f"{str(candidate.get('title', ''))[:90]}", flush=True)
+                return False
+            return result
+
+        foreign_local_only._v13_editor_ok = True
+        pg._foreign_local_only = foreign_local_only
+    prev_rescue = g.rescue_tier
+    if not getattr(prev_rescue, "_v13_war_country", False):
+        def rescue_tier(candidate, reason):
+            tier = prev_rescue(candidate, reason)
+            if tier:
+                return tier
+            if not any(str(reason or "").startswith(r) for r in g.RESCUABLE_REASONS):
+                return 0
+            title = g._norm(candidate.get("title", ""))
+            if title and WAR_COUNTRY_EVENT.search(title) and not g.deterministic_veto(candidate):
+                return 4
+            return 0
+
+        rescue_tier._v13_war_country = True
+        g.rescue_tier = rescue_tier
+    try:
+        import v13_importance_rescue as ir
+        if "shooter" not in ir.SIGNAL.pattern:
+            ir.SIGNAL = re.compile(ir.SIGNAL.pattern.replace("(?:", "(?:آژیر|shooter|gunman|stabbing|", 1), ir.SIGNAL.flags)
+    except Exception:
+        pass
 
 
 def _drop_dead_models():
@@ -524,7 +596,7 @@ def install():
         _install_nemo_editor_rules()
     except Exception as exc:
         print(f"V13 MISTRAL: nemo editor rules not installed ({type(exc).__name__}: {exc})", flush=True)
-    for fix in (_drop_dead_models, _install_old_event_guard):
+    for fix in (_drop_dead_models, _install_old_event_guard, _install_scope_and_rescue_fixes):
         try:
             fix()
         except Exception as exc:
