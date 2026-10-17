@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792188498
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792188498
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1792188517
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792189082
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792199470
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792200059
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792200059
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1792200069
     }
   ],
   "_ai_pace": {
@@ -184,7 +184,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-17",
-      "n": 6
+      "n": 9
     },
     "openrouter:*": {
       "day": "2026-10-16",
@@ -495,27 +495,20 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 9,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
+        "ok": 7,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "قضایی",
-      "level": 5,
-      "t": 1792052995.865961,
-      "title": "بازداشت یک نوجوان در آمریکا به اتهام طرح ریزی حمله مرگبار به معبد هندوها",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 4,
@@ -1347,6 +1340,13 @@
       "level": 4,
       "t": 1792196037.3170369,
       "title": "پیشتازی گرینسپن در رقابت برای دبیرکلی سازمان ملل، ورود به مرحله سرنوشت ساز",
+      "urgent": false
+    },
+    {
+      "label": "ورزش",
+      "level": 5,
+      "t": 1792200068.8349864,
+      "title": "رئال مادرید استعفای تِباس را می طلبد",
       "urgent": false
     }
   ],
@@ -2582,6 +2582,12 @@
       "topic": "جامعه",
       "until": 1792266779.1138275
     },
+    "v4|تیراندازی در مدرسه اورگن؛ یکی از معلمان با درگیر شدن با تیرانداز جلوی فاجعه بیشتر را گرفت": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Teacher intervened, prevented further tragedy",
+      "topic": "حادثه",
+      "until": 1792286459.6739087
+    },
     "v4|تیراندازی نوجوان ۱۶ساله در دبستانی در آمریکا؛ سه کودک و یک معلم کشته شدند": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: ۱۰ کشته در تیراندازی دبستانی آمریکا",
@@ -2611,6 +2617,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: اخبار مربوط به جوایز هنری و سلبریتی‌ها در اولویت این کانال نیست.",
       "topic": "جامعه",
       "until": 1792231405.7801926
+    },
+    "v4|جایزه جدید قبل از توپ طلا؟/ یامال و رکوردی که هیچ بازیکن دیگری ندارد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Record pursuit, not yet achieved",
+      "topic": "ورزش",
+      "until": 1792286460.3454998
     },
     "v4|جایزه دروغین فیفا و ترامپ در آستانه نابودی": {
       "ok": false,
@@ -4784,16 +4796,6 @@
   "_event_judge_log": [
     {
       "confirm": "mistral/ministral-8b-latest:repeat",
-      "head": "فرمانده انتظامی چابهار: گروگانگیران در مخفیگاه شناسایی و دستگیر شدند ⚡️ فرمانده انتظامی شهرستان چابهار شناسایی",
-      "id": "9b1b01a77f",
-      "match": "فرماندار چابهار: رسم نادرست گروگان گیری باید با کمک بزرگان طوایف پایان یابد",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792154826,
-      "verdict": "repeat",
-      "why": "same event: hostage-takers arrested in Chabahar"
-    },
-    {
-      "confirm": "mistral/ministral-8b-latest:repeat",
       "head": "فرمانده انتظامی چابهار: گروگانگیران شناسایی و دستگیر شدند ⚡️ فرمانده انتظامی شهرستان چابهار از شناسایی محل اخت",
       "id": "683b82446b",
       "match": "فرماندار چابهار: رسم نادرست گروگان گیری باید با کمک بزرگان طوایف پایان یابد",
@@ -5346,23 +5348,18 @@
       "t": 1792196036,
       "verdict": "new",
       "why": "رای‌گیری غیررسمی دبیرکلی سازمان ملل"
+    },
+    {
+      "head": "رئال مادرید استعفای تِباس را می طلبد ⚡️ رئال مادرید رئیس جمهور لیگ اسپانیا، جویفر تِباس، را به استعفا فراخواند",
+      "id": "27efbd7da5",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792200067,
+      "verdict": "new",
+      "why": "رئال مادرید و استعفا تِباس، موضوع جدید"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: پروژه آب شیرین کن در هرمزگان",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792177511,
-      "title": "آب شیرین کن چارک هزمزگان به زودی وارد مدار می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: آزمون استانی تکواندو بانوان رویدادی محلی و کم‌اهمیت است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792177516,
-      "title": "آزمون ارتقای کمربند بانوان تکواندوکار لرستان برگزار شد"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: خبر ورزشی غیرمهم و حاشیه‌ای درباره انتخاب تیم ملی یک بازیکن.",
       "rescued": false,
@@ -5908,112 +5905,26 @@
       "rule": "routine-statement",
       "t": 1792199469,
       "title": "واکنش عبدالله گنجی به ماجرای سوءقصد عباس آخوندی؛ اصلاح طلبان می گویند طرف هیچ اقدامی نکرد/ زیدآبادی هم سریع دست به قلم، "
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Teacher intervened, prevented further tragedy",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1792200059,
+      "title": "تیراندازی در مدرسه اورگن؛ یکی از معلمان با درگیر شدن با تیرانداز جلوی فاجعه بیشتر را گرفت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Record pursuit, not yet achieved",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792200060,
+      "title": "جایزه جدید قبل از توپ طلا؟/ یامال و رکوردی که هیچ بازیکن دیگری ندارد"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ازد",
-        "بحرن",
-        "تحللگر",
-        "ترخ",
-        "حز",
-        "حش",
-        "حکم",
-        "خلج",
-        "خند",
-        "زمن",
-        "صرت",
-        "فد",
-        "فرس",
-        "نخست",
-        "وشنگتن",
-        "پسخ",
-        "پند",
-        "کمک",
-        "گزن"
-      ],
-      "t": 1792153185.9923947,
-      "title": "فواد ایزدی: بحرین گزینه نخست حمله زمینی ایران است ⚡️ فواد ایزدی تحلیلگر حوزه آمریکا گفت خاندان حاکم بحرین با ایران پیوند"
-    },
-    {
-      "h": [
-        "احتمل",
-        "اخرن",
-        "استفد",
-        "اعزم",
-        "تسس",
-        "خددر",
-        "خهد",
-        "دستر",
-        "زمن",
-        "سلح",
-        "نطنز",
-        "همچن",
-        "کر",
-        "کلنگ",
-        "که"
-      ],
-      "t": 1792154302.937034,
-      "title": "ترامپ: حمله به کوه کلنگ در ایران همچنان در دستور کار است ⚡️ ترامپ رئیس جمهور آمریکا اعلام کرد که از استفاده از سلاح هسته"
-    },
-    {
-      "h": [
-        "اتحد",
-        "اشخص",
-        "برکسل",
-        "خرج",
-        "سخنگ",
-        "ضعف",
-        "نشن",
-        "نشنگر",
-        "نهد",
-        "وزرت",
-        "گسترش"
-      ],
-      "t": 1792154815.2881224,
-      "title": "سخنگوی وزارت خارجه روسیه: تحریم های جدید اروپا نشانه ضعف بروکسل است ⚡️ سخنگوی وزارت خارجه روسیه گفت گسترش تحریم های جدید"
-    },
-    {
-      "h": [
-        "اتم",
-        "افزش",
-        "امن",
-        "انرژ",
-        "اژنس",
-        "تهدد",
-        "خطر",
-        "دزل",
-        "دلل",
-        "زپرژ",
-        "سخت",
-        "مدرکل",
-        "نرگ",
-        "کمبد"
-      ],
-      "t": 1792156068.611129,
-      "title": "مدیرکل آژانس بین المللی انرژی اتمی: کمبود سوخت دیزل در زاپوریژیا خطر ایمنی هسته ای را افزایش می دهد ⚡️ مدیرکل آژانس بین "
-    },
-    {
-      "h": [
-        "استد",
-        "اصل",
-        "بمر",
-        "جغرف",
-        "درگذشت",
-        "دغدغ",
-        "دنشگ",
-        "لندن",
-        "مجتهدزد",
-        "مرز",
-        "پژهشگر"
-      ],
-      "t": 1792156731.4446518,
-      "title": "پژوهشگر جغرافیای سیاسی درگذشت؛ مرزهای ایران دغدغه اصلی او بود ⚡️ پیروز مجتهدزاده، استاد دانشگاه و پژوهشگر جغرافیای سیاسی"
-    },
     {
       "h": [
         "تقت",
@@ -6644,6 +6555,29 @@
       ],
       "t": 1792196037.3040006,
       "title": "پیشتازی گرینسپن در رقابت برای دبیرکلی سازمان ملل، ورود به مرحله سرنوشت ساز ⚡️ خانم ربکا گرینسپن در رای گیری غیررسمی شورا"
+    },
+    {
+      "h": [
+        "استعف",
+        "اسپن",
+        "انجم",
+        "تبس",
+        "تبلغ",
+        "جزف",
+        "جفر",
+        "رل",
+        "طلبد",
+        "فرخند",
+        "لگ",
+        "مدرد",
+        "مسل",
+        "مقس",
+        "نز",
+        "چر",
+        "گبلز"
+      ],
+      "t": 1792200068.822269,
+      "title": "رئال مادرید استعفای تِباس را می طلبد ⚡️ رئال مادرید رئیس جمهور لیگ اسپانیا، جویفر تِباس، را به استعفا فراخواند، چرا که ا"
     }
   ],
   "_published_incidents": [
@@ -6996,42 +6930,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اتحد",
-        "ارپ",
-        "اصل",
-        "اضف",
-        "اغز",
-        "امرک",
-        "بخش",
-        "بدج",
-        "تفق",
-        "تمن",
-        "جنگ",
-        "حمت",
-        "حمل",
-        "خرج",
-        "خصص",
-        "رس",
-        "زمن",
-        "سخنن",
-        "سرن",
-        "سست",
-        "طرق",
-        "عمد",
-        "مسل",
-        "نشست",
-        "نفت",
-        "هد",
-        "پتن",
-        "کلس",
-        "گزل"
-      ],
-      "s": "کالاس",
-      "t": 1792068607.0950572,
-      "title": "کالاس: توافق آمریکا-روسیه، هدیه ای به پوتین است؛ حمایت از حملات کی یف ⚡️ مسئول سیاست خارجی اتحادیه اروپا اعلام کرد: تواف"
-    },
     {
       "k": [
         "اذر",
@@ -10935,6 +10833,46 @@
       ],
       "t": 1792196037.282878,
       "title": "پیشتازی گرینسپن در رقابت برای دبیرکلی سازمان ملل، ورود به مرحله سرنوشت ساز ⚡️ خانم ربکا گرینسپن در رای گیری غیررسمی شورا"
+    },
+    {
+      "k": [
+        "ابزر",
+        "اخلق",
+        "ادع",
+        "استعف",
+        "اسپن",
+        "انجم",
+        "بشگ",
+        "تبس",
+        "تبلغ",
+        "تبلغت",
+        "تحقرمز",
+        "جزف",
+        "جفر",
+        "جمهر",
+        "خست",
+        "دنست",
+        "رس",
+        "رسن",
+        "رل",
+        "طلبد",
+        "عمل",
+        "فتبل",
+        "فدرسن",
+        "فرخند",
+        "لگ",
+        "مدرد",
+        "مسل",
+        "معنت",
+        "مقس",
+        "نز",
+        "نپسند",
+        "همنند",
+        "چر",
+        "گبلز"
+      ],
+      "t": 1792200068.8063426,
+      "title": "رئال مادرید استعفای تِباس را می طلبد ⚡️ رئال مادرید رئیس جمهور لیگ اسپانیا، جویفر تِباس، را به استعفا فراخواند، چرا که ا"
     }
   ],
   "_text_polish": {
@@ -10946,7 +10884,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792199381
+    "at": 1792199963
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
