@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
-      "t": 1792189104
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
-      "t": 1792189644
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792190196
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792191368
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792191368
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792191369
     },
@@ -159,6 +139,26 @@
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792200619
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792201194
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792201194
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792201198
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792201198
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792201199
     }
   ],
   "_ai_pace": {
@@ -168,11 +168,11 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-16",
-      "n": 246
+      "n": 247
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-16",
-      "n": 109
+      "n": 110
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-16",
@@ -481,6 +481,12 @@
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
         "429": 0,
         "calls": 1,
         "ok": 1,
@@ -3344,6 +3350,12 @@
       "topic": "ورزش",
       "until": 1792256986.815122
     },
+    "v4|شناسایی بیش از ۵۶۰۰ بیمار مبتلا به سل در ۱۴۰۵ / ارائه خدمات تشخیص و درمان رایگان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: آمار معمول بیماری سل و خدمات بهداشتی، بدون رویداد کلان",
+      "topic": "سلامت",
+      "until": 1792287599.144733
+    },
     "v4|شناسایی ۴۷۰ کانون خطر در استان ایلام هنگام وقوع حوادث طبیعی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: خبر محلی درباره شناسایی خطرات در ایلام",
@@ -3433,6 +3445,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: پیام تبریک مقام نظامی و درخواست از مسئولان",
       "topic": "سلامت",
       "until": 1792246028.75282
+    },
+    "v4|طرح چین برای تبدیل یوان به ارز جهانی وارد فاز سریع تری می شود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash score=3 happened=False scope=world: گزارش و تحلیل درباره روند بین‌المللی‌سازی یوان بدون وقوع رویداد خاص",
+      "topic": "اقتصاد",
+      "until": 1792287598.1500027
     },
     "v4|طعنه پیمان قاسم خانی به صداوسیما": {
       "ok": false,
@@ -5325,20 +5343,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: خبر ورزشی غیرمهم و حاشیه‌ای درباره انتخاب تیم ملی یک بازیکن.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792177520,
-      "title": "‫الیاس باید تصمیم بگیرد: فرانسه یا الجزایر؟/ یک پسر دیگر زیدان در دوراهی تصمیم بزرگ"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: نتیجه مسابقه لیگ والیبال لهستان برای مخاطب عام ایران اهمیت درجه یک ندارد",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792177524,
-      "title": "نتیجه باورنکردنی در افتتاحیه: قهرمان اسیر شگفتی بزرگ"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: رویداد ورزشی محلی و آمار منطقه‌ای فاقد اهمیت ملی.",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -5883,6 +5887,20 @@
       "rule": "routine-metaphorical-topic",
       "t": 1792200060,
       "title": "جایزه جدید قبل از توپ طلا؟/ یامال و رکوردی که هیچ بازیکن دیگری ندارد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=3 happened=False scope=world: گزارش و تحلیل درباره روند بین‌المللی‌سازی یوان بدون وقوع رویداد خاص",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1792201198,
+      "title": "طرح چین برای تبدیل یوان به ارز جهانی وارد فاز سریع تری می شود"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: آمار معمول بیماری سل و خدمات بهداشتی، بدون رویداد کلان",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792201199,
+      "title": "شناسایی بیش از ۵۶۰۰ بیمار مبتلا به سل در ۱۴۰۵ / ارائه خدمات تشخیص و درمان رایگان"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10848,7 +10866,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792200551
+    "at": 1792201118
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
