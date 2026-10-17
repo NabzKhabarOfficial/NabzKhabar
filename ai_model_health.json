@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH openrouter/openrouter/free: no usable verdict",
-      "t": 1792270842
-    },
-    {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-26b-a4b-it:free: HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry sh",
-      "t": 1792270842
-    },
-    {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-31b-it:free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792270843
-    },
-    {
       "e": "EDITOR BATCH: no verdict for 2 stories",
       "t": 1792270843
     },
@@ -159,24 +147,36 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792272543
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792273077
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792273077
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1792273105
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-17",
-      "n": 135
+      "n": 136
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
-      "n": 232
+      "n": 234
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-17",
-      "n": 102
+      "n": 103
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-17",
-      "n": 102
+      "n": 104
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-17",
@@ -476,32 +476,32 @@
     "2026-10-17": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 182,
+        "calls": 183,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 173,
+        "ok": 174,
         "other": 9
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 347,
+        "calls": 349,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 346,
+        "ok": 348,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
         "429": 79,
-        "calls": 139,
+        "calls": 140,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 41,
-        "other": 19
+        "other": 20
       },
       "gemini:gemini-3.8-flash": {
         "429": 84,
-        "calls": 135,
+        "calls": 137,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 46,
+        "ok": 48,
         "other": 5
       },
       "groq:openai/gpt-oss-120b": {
@@ -526,8 +526,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 822,
-        "ok": 822,
+        "calls": 823,
+        "ok": 823,
         "other": 0
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -2044,12 +2044,6 @@
       "topic": "اقتصاد",
       "until": 1792316122.9008114
     },
-    "v4|افزایش ۱.۱۵ نمره ای معدل امتحانات نهایی دانش آموزان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=iran_national: گزارش وزیر از وضعیت تحصیلی و آمار معدل امتحانات نهایی",
-      "topic": "جامعه",
-      "until": 1792307425.869578
-    },
     "v4|افزایش ۴۰ درصدی ثبت نام در دوره های سوادآموزی خمین": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: خبر محلی و آمار آموزشی یک شهرستان کوچک.",
@@ -3549,6 +3543,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل و یادآوری رویداد گذشته بدون خبر جدید.",
       "topic": "جامعه",
       "until": 1792308607.164607
+    },
+    "v4|شنیده شدن صدای انفجار در ریاض و توقف پروازهای فرودگاه دمام": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.8-flash score=8 happened=True scope=world: گزارش انفجار در پایتخت عربستان سعودی و توقف پروازها در دمام",
+      "topic": "نظامی",
+      "until": 1792359480.7820485
     },
     "v4|شهربابک با رتبه هجدهم در انتظار پرسپولیس و سپاهان/ آزمون سخت قعرنشین جدید لیگ مقابل مدعیان": {
       "ok": false,
@@ -5100,6 +5100,10 @@
     "زلنسکی تاریخ دیدار با پوتین را تعیین کرد": {
       "reason": "content_duplicate",
       "until": 1792276272.6193871
+    },
+    "شنیده شدن صدای انفجار در ریاض و توقف پروازهای فرودگاه دمام": {
+      "reason": "content_duplicate",
+      "until": 1792294703.049153
     },
     "صدای انفجار در شمال عراق شنیده شد": {
       "reason": "content_duplicate",
@@ -11977,7 +11981,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792272441
+    "at": 1792273027
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11991,21 +11995,15 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792270506.0,
-    "last_failure": 1792270206,
-    "last_quality_failure": 1792261401,
-    "last_status": 599
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792272549,
-    "last_failure": 1792271949,
-    "last_status": 429
+    "disabled_until": 1792273388.0,
+    "last_failure": 1792273088,
+    "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792272545,
-    "last_failure": 1792271945,
-    "last_status": 429
+    "disabled_until": 1792273158,
+    "last_failure": 1792273098,
+    "last_status": 422
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
