@@ -98,6 +98,9 @@ Oct 17, 04:45 Tehran (review of the rejected stories):
   few words for the strong re-check. A new post whose speaker («X: ...») also leads a published headline is now
   re-checked by the strong pool too.
 
+Oct 17, 13:40 Tehran: v13_quality_fix (neutral wording, «در حالی که» leads, same-headline repeats) is installed
+at the end of install(), on top of every layer above.
+
 No MISTRAL_API_KEY in the environment = nothing changes. Any error = the bot runs as before.
 """
 
@@ -605,6 +608,11 @@ def install():
         _install_sense_rules()
     except Exception as exc:
         print(f"V13 MISTRAL: sense rules not installed ({type(exc).__name__}: {exc})", flush=True)
+    try:
+        import v13_quality_fix
+        v13_quality_fix.install()
+    except Exception as exc:
+        print(f"V13 MISTRAL: quality fixes not installed ({type(exc).__name__}: {exc})", flush=True)
     _purge_nemo_rejections()
     _INSTALLED["done"] = True
     print("V13 MISTRAL ACTIVE: nemo first for duplicate/sense checks (strong first for nemo translations), editor nemo before OpenRouter; after Groq and Gemini for translation"
