@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: no verdict for 2 stories",
-      "t": 1792270843
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792270843
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792270843
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792270843
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792273105
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792273671
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792273672
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792273705
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-17",
-      "n": 136
+      "n": 138
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
-      "n": 234
+      "n": 235
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-17",
-      "n": 103
+      "n": 104
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-17",
-      "n": 104
+      "n": 105
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-17",
-      "n": 85
+      "n": 86
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-17",
-      "n": 85
+      "n": 86
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -476,46 +476,46 @@
     "2026-10-17": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 183,
+        "calls": 185,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 174,
+        "ok": 176,
         "other": 9
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 349,
+        "calls": 350,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 348,
+        "ok": 349,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
         "429": 79,
-        "calls": 140,
+        "calls": 141,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 41,
+        "ok": 42,
         "other": 20
       },
       "gemini:gemini-3.8-flash": {
         "429": 84,
-        "calls": 137,
+        "calls": 138,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 48,
+        "ok": 49,
         "other": 5
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 85,
+        "calls": 86,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 63,
+        "ok": 64,
         "other": 22
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 85,
+        "calls": 86,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 58,
+        "ok": 59,
         "other": 27
       },
       "mistral:ministral-8b-latest": {
@@ -526,8 +526,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 823,
-        "ok": 823,
+        "calls": 826,
+        "ok": 826,
         "other": 0
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -1449,12 +1449,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: امضای دستور اجرایی تنظیم‌گری هوش مصنوعی در کالیفرنیا",
       "topic": "فناوری",
       "until": 1792344437.2199
-    },
-    "v4|can yemen’s government forces sustain their offensive against the houthis?": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: مقاله تحلیلی و سوالی درباره روند نظامی در یمن",
-      "topic": "سیاست",
-      "until": 1792307425.883821
     },
     "v4|cost of living protests hit belgium, italy, portugal and france": {
       "ok": false,
@@ -2854,6 +2848,12 @@
       "topic": "نظامی",
       "until": 1792321309.2403696
     },
+    "v4|حمله رسانه رئالی به بارسلونا: داور کمک کرد ببرید!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=1 happened=False scope=local: نقد داور در مسابقه فوتبال",
+      "topic": "ورزش",
+      "until": 1792360072.4280353
+    },
     "v4|حمله عادل و یک جین ستاره به جام قهرمانی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: خبر ورزشی داخلی و غیرمهم در سطح ملی است.",
@@ -3039,6 +3039,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: نامزد مربی جدید دهوک",
       "topic": "ورزش",
       "until": 1792336886.60113
+    },
+    "v4|دوئل غول های اروپایی nba: دانچیچ برابر یوکیچ!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Regular NBA game, not top-tier, low national relevance",
+      "topic": "ورزش",
+      "until": 1792360070.8203368
     },
     "v4|دیدار رئیس سازمان بسیج مستضعفین با مهرداد اخلاقی کتابچی": {
       "ok": false,
@@ -3982,6 +3988,12 @@
       "topic": "جامعه",
       "until": 1792318378.4391246
     },
+    "v4|مرکز تهران در معرض سیل احتمالی نیست/ تهران پتانسیل وقوع سیل را دارد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=local: خبر محلی درباره خطر سیل در تهران",
+      "topic": "آب و هوا",
+      "until": 1792360072.4122834
+    },
     "v4|مسئولیت تربیت تنها بر عهده مدرسه نیست/ خانواده بنیادی ترین نهاد اجتماعی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارات مقامات درباره نقش خانواده و مدرسه رویداد مهمی نیست",
@@ -4191,12 +4203,6 @@
       "reason": "ai gemini/gemini-3.6-flash score=1 happened=False scope=iran_national: اظهارات و وعده‌های عمومی فدراسیون جودو فاقد رویداد فوری است",
       "topic": "ورزش",
       "until": 1792313186.4924135
-    },
-    "v4|نشان طلای بورس های اروپایی-آسیایی به کارگزاری مفید تعلق گرفت": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: کارگزاری مفید برنده جایزه طلای بورس اروپایی-آسیایی",
-      "topic": "اقتصاد",
-      "until": 1792307962.209456
     },
     "v4|نفتی ها برای بایناما بلیط خریدند/ بازگشت بازیکن خارجی طلایی پوشان به ایران": {
       "ok": false,
@@ -4984,12 +4990,6 @@
       "topic": "سلامت",
       "until": 1792313175.1125822
     },
-    "v4|۶۰ درصد مأموریت های اورژانس تیران، حوادث جاده ای است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: گزارش آماری محلی مربوط به یک شهرستان کوچک است.",
-      "topic": "سلامت",
-      "until": 1792307962.8156478
-    },
     "v4|۷۵ دستگاه ماشین آلات عمرانی به دهیاری های چهارمحال وبختیاری واگذار شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine provincial administrative event with no national strategic impact.",
@@ -5016,6 +5016,10 @@
     }
   },
   "_editorial_blocks": {
+    "17 dead, dozens injured after stampede at indian religious event": {
+      "reason": "content_duplicate",
+      "until": 1792295305.8068187
+    },
     "deadly school roof collapse in pakistan raises questions over regulation": {
       "at": 1792260375.135987,
       "reason": "policy_scope_blocked",
@@ -5036,6 +5040,10 @@
     "trump faces bipartisan backlash over russia sanctions waiver": {
       "reason": "content_duplicate",
       "until": 1792283219.9106393
+    },
+    "اظهارات انتخاباتی نتانیاهو : هرگز با ایران هسته ای کنار نمی آیم": {
+      "reason": "content_duplicate",
+      "until": 1792295297.8746858
     },
     "افزایش تعداد نفتکش های صدمه دیده در محدوده دریای عمان": {
       "reason": "content_duplicate",
@@ -5689,13 +5697,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این خبر مربوط به مسائل ترافیکی و عمرانی در سطح شهر سنندج است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792259788,
-      "title": "معاون استاندار کردستان:اتصال بلوار کردستان به آزادگان برای کاهش ترافیک شهرک وحدت ضروری است"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: درخواست نماینده مجلس درباره مشکلات پرستاران محلی است.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -6247,6 +6248,13 @@
       "rule": "no-concrete-event",
       "t": 1792271962,
       "title": "RTX Spark Ignites Global Celebration as New Windows PCs Arrive"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Regular NBA game, not top-tier, low national relevance",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792273670,
+      "title": "دوئل غول های اروپایی NBA: دانچیچ برابر یوکیچ!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11981,7 +11989,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792273027
+    "at": 1792273593
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11996,13 +12004,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792273388.0,
-    "last_failure": 1792273088,
-    "last_status": 503
+    "disabled_until": 1792273742,
+    "last_failure": 1792273682,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792273158,
-    "last_failure": 1792273098,
+    "disabled_until": 1792273763,
+    "last_failure": 1792273703,
     "last_status": 422
   },
   "github:openai/gpt-4.1-mini": {
