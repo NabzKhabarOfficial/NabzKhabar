@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792286416
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792286416
-    },
-    {
       "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
       "t": 1792286417
     },
@@ -159,16 +151,24 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
       "t": 1792291087
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1792291629
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792291656
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-17",
-      "n": 164
+      "n": 165
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
-      "n": 281
+      "n": 282
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-17",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-17",
-      "n": 122
+      "n": 123
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
-      "n": 14
+      "n": 15
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-18",
-      "n": 14
+      "n": 15
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -496,14 +496,14 @@
     "2026-10-18": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -516,42 +516,35 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 3,
-        "calls": 5,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 2
+        "other": 3
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 13,
+        "ok": 14,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
+        "ok": 12,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 22,
-        "ok": 22,
+        "calls": 24,
+        "ok": 24,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1792147369.7732334,
-      "title": "علی واعظ و محمد آیت اللهی تبار: ایران و آمریکا در جنگ بی پایان؛ توافق «کمتر در برابر کمتر» تنها راه خروج است",
-      "urgent": false
-    },
     {
       "label": "خبر",
       "level": 3,
@@ -1384,6 +1377,13 @@
       "t": 1792291076.079258,
       "title": "پیوستن جوزف کابیلا، رئیس جمهور پیشین کنگو به ائتلاف شورشیان",
       "urgent": false
+    },
+    {
+      "label": "حادثه",
+      "level": 3,
+      "t": 1792291655.3783047,
+      "title": "عملیات جست وجو برای ۱۱ مفقود حادثه غرق شدن قایق در سواحل مکزیک",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-17",
@@ -1568,6 +1568,12 @@
       "topic": "نظامی",
       "until": 1792367041.1244144
     },
+    "v4|search continues for 11 missing after boat sank off mexico’s baja coast": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: boat sank off Baja, missing and injured survivors",
+      "topic": "حادثه",
+      "until": 1792378029.943867
+    },
     "v4|solar power booms in philippines as war on iran spikes energy costs": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل روند بازار انرژی و تاثیر غیرمستقیم آن بر کشورهای دیگر.",
@@ -1639,12 +1645,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: حمله موشکی حوثی‌ها به فرودگاه عدن در یمن",
       "topic": "نظامی",
       "until": 1792313881.4280481
-    },
-    "v4|«او یک فرشته نجات است»؛ زنی که هر هفته ۱۰ هزار دلار برای کودکان مهاجر بازداشت شده می فرستد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.8-flash batch score=2 happened=True scope=world: داستان انسانی و غیرفوری درباره کمک به مهاجران",
-      "topic": "جامعه",
-      "until": 1792310279.5427427
     },
     "v4|«اکسید مولیبدن» و «کنسانتره مس» وارد بازار گواهی سپرده می شوند": {
       "ok": false,
@@ -2078,6 +2078,12 @@
       "topic": "جامعه",
       "until": 1792334085.1817262
     },
+    "v4|امکان وقوع سیلاب در حوزه های آبخیز مشرف به تهران در صورت بارندگی شدید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=local: forecast of flood, no actual event",
+      "topic": "آب و هوا",
+      "until": 1792378029.9009643
+    },
     "v4|امیرعلی ابوالفتح در مناظره با قیس قریشی: بعضی ها می گویند جنگ پیش دستانه بکنیم؛ اصلا می دانیم جنگ پیش دستانه یعنی چه؟ / گروه هایی هستند که می گویند دولت غربگراست، وزارت خارجه فشل ا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: Opinion and debate between commentators, not an official decision.",
@@ -2342,12 +2348,6 @@
       "topic": "جامعه",
       "until": 1792346747.6958437
     },
-    "v4|بهای نفت و طلا در هفته گذشته؛ «برنت» به مرز ۱۱۰ دلار رسید": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: Oil price rise reported, not a major economic shock",
-      "topic": "اقتصاد",
-      "until": 1792310861.5269036
-    },
     "v4|بهره برداری از ۲۰ پروژه ورزشی فارس با اعتبار ۲۶۰ میلیارد تومان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بهره‌برداری از پروژه‌های ورزشی در سطح استانی و محلی است.",
@@ -2431,6 +2431,12 @@
       "reason": "ai gemini/gemini-3.8-flash score=1 happened=False scope=local: اظهارات استاندار لرستان درباره نیاز به آمبولانس و فاقد رویداد",
       "topic": "سلامت",
       "until": 1792317175.6512759
+    },
+    "v4|تامین ذخایر راهبردی دارو و تجهیزات در شرایط بحران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=local: announcement of reserve planning, not a concrete event",
+      "topic": "سلامت",
+      "until": 1792378029.9296734
     },
     "v4|تاکید ترکیه و مصر بر از سرگیری روند دیپلماتیک میان آمریکا و ایران": {
       "ok": false,
@@ -2743,12 +2749,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: گزارش و آمار سازمانی؛ رویداد عینی و فوری محسوب نمی شود.",
       "topic": "فناوری",
       "until": 1792325336.1524405
-    },
-    "v4|جهش درآمدی و تراز عملیاتی بیمه ملت علی رغم جنگ و خسارت ها + اینفوگرافیک": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.8-flash batch score=2 happened=True scope=local: گزارش مالی و تبلیغاتی یک شرکت بیمه خاص",
-      "topic": "اقتصاد",
-      "until": 1792310279.517621
     },
     "v4|جهش ۱.۱۵ نمره ای معدل امتحانات نهایی در سال جنگ": {
       "ok": false,
@@ -3427,12 +3427,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تحول سیاسی محلی در یک شهر خارجی اهمیت ملی یا جهانی ندارد.",
       "topic": "سیاست",
       "until": 1792336392.7880595
-    },
-    "v4|سلامت زنان، پیش نیاز تاب آوری خانواده در بحران ها / نقش تعیین کننده زنان در روزهای جنگ": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.8-flash batch score=1 happened=False scope=iran_national: اظهارات کارشناسی و تحلیلی فاقد رویداد خبری فوری",
-      "topic": "جامعه",
-      "until": 1792310279.529328
     },
     "v4|سلامت زنان؛ سرمایه گذاری برای آینده خانواده و جامعه": {
       "ok": false,
@@ -4922,6 +4916,12 @@
       "topic": "سلامت",
       "until": 1792347346.3045235
     },
+    "v4|۲۲ شناور طی ۱۳ روز در تنگه هرمز مورد حمله قرار گرفت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: multiple vessel attacks in Hormuz reported",
+      "topic": "نظامی",
+      "until": 1792378029.9155521
+    },
     "v4|۲۲۱ پروژه آموزشی خراسان رضوی به بهره برداری رسید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: افتتاح پروژه‌های آموزشی استانی در سطح محلی اهمیت ملی ندارد.",
@@ -5138,15 +5138,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "عراقچی: از قطر برنامه هفت روزه برای بازکردن تنگه هرمز ارائه کرد ⚡️ عراقچی معاون وزیر امور خارجه ایران گفت معاو",
-      "id": "6cd7492193",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792244746,
-      "verdict": "new",
-      "why": "تنگه هرمز بازشدن برنامه هفت روزه"
-    },
     {
       "head": "دولت توقف موقت واردات خودروهای ایرانیان خارج از کشور را اعلام کرد ⚡️ دولت با دستور پزشکیان واردات خودروهای ایر",
       "id": "3a8469c017",
@@ -5691,6 +5682,15 @@
       "t": 1792291074,
       "verdict": "new",
       "why": "جوزف کابیلا و ائتلاف جدید سیاسی-نظامی در کنگو"
+    },
+    {
+      "head": "عملیات جست وجو برای ۱۱ مفقود حادثه غرق شدن قایق در سواحل مکزیک ⚡️ عملیات جست وجوی نیروهای امدادی آمریکا و مکزی",
+      "id": "2afabb73aa",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792291654,
+      "verdict": "new",
+      "why": "جست‌وجوی مفقودان در مکزیک، موضوع جدید"
     }
   ],
   "_importance_rescue_log": [
@@ -6767,272 +6767,30 @@
       ],
       "t": 1792291076.0650182,
       "title": "پیوستن جوزف کابیلا، رئیس جمهور پیشین کنگو به ائتلاف شورشیان ⚡️ جوزف کابیلا، رئیس جمهور پیشین جمهوری دموکراتیک کنگو با پی"
+    },
+    {
+      "h": [
+        "امدد",
+        "بخ",
+        "جست",
+        "حدث",
+        "سحل",
+        "عمل",
+        "غرق",
+        "قق",
+        "مفقد",
+        "مکزک",
+        "نپدد",
+        "وج",
+        "وژگن",
+        "کلفرن",
+        "یفتن"
+      ],
+      "t": 1792291655.3501773,
+      "title": "عملیات جست وجو برای ۱۱ مفقود حادثه غرق شدن قایق در سواحل مکزیک ⚡️ عملیات جست وجوی نیروهای امدادی آمریکا و مکزیک برای یاف"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "تقف",
-        "دمم",
-        "سعد",
-        "شدد",
-        "فردگ",
-        "فهد",
-        "ملک",
-        "وقع"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1792191424.6754458,
-      "title": "انفجارهای شدید در دمام و توقف پروازها در فرودگاه ملک فهد ⚡️ انفجارهای شدیدی در شهر دمام واقع در شرق عربستان سعودی به گوش",
-      "toll": 0
-    },
-    {
-      "a": [
-        "ابه",
-        "خمس",
-        "شدد",
-        "شنب",
-        "مشط"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1792193140.3032308,
-      "title": "انفجارهای شدید در جنوب غرب عربستان ⚡️ شهرهای ابها و خمیس مشیط در جنوب غرب عربستان بامداد شنبه هدف انفجارهای شدیدی قرار گ",
-      "toll": 0
-    },
-    {
-      "a": [
-        "انس",
-        "جنگند",
-        "ذمر",
-        "سعد",
-        "شهرست",
-        "یمن"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1792194239.6172953,
-      "title": "افزایش آمار مجروحان حمله هوایی عربستان به ذمار یمن ⚡️ منابع خبری یمن از افزایش آمار مجروحان بمباران شهرستان ضوران انس در",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اتش",
-        "اسلم",
-        "انقلب",
-        "برخرد",
-        "بشک",
-        "تنگ",
-        "سپر",
-        "شدد",
-        "فرند",
-        "ملن",
-        "مهب",
-        "نفتکش",
-        "هرمز",
-        "پسدر"
-      ],
-      "cities": [],
-      "kind": "fire",
-      "places": [
-        "تنگه هرمز"
-      ],
-      "regions": [
-        "hormuz"
-      ],
-      "t": 1792202419.8859627,
-      "title": "انفجار مهیب در سوپر نفتکش در تنگه هرمز ⚡️ نیروی دریایی سپاه پاسداران انقلاب اسلامی از انفجار مهیب و آتش سوزی شدید یک فرو",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اسلم",
-        "اعترف",
-        "افرن",
-        "الت",
-        "انتخبت",
-        "تنش",
-        "جرج",
-        "دلتن",
-        "رسم",
-        "رهبر",
-        "مذکر",
-        "گردهم"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1792210016.4834163,
-      "title": "اعتراف ترامپ به زیاده روی در ترور رهبران ایران ⚡️ دونالد ترامپ، رئیس جمهوری آمریکا، در یک گردهمایی انتخاباتی در دالتون ا",
-      "toll": 0
-    },
-    {
-      "a": [
-        "تنگ",
-        "درنرد",
-        "دهل",
-        "مدع",
-        "نفتکش",
-        "هرمز",
-        "هند",
-        "کشترن"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [
-        "تنگه هرمز"
-      ],
-      "regions": [
-        "hormuz"
-      ],
-      "t": 1792216926.5941505,
-      "title": "ادعای دهلی نو درباره اصابت موشک به نفتکش حامل دریانوردان هندی در تنگه هرمز ⚡️ وزیر کشتیرانی هند مدعی شد که یک نفتکش حامل",
-      "toll": 0
-    },
-    {
-      "a": [
-        "ابعد",
-        "ابن",
-        "الرض",
-        "انک",
-        "اهمت",
-        "تثر",
-        "تغر",
-        "تکد",
-        "دفع",
-        "سردر",
-        "سرپرست",
-        "قدرت",
-        "معدل",
-        "ندرد",
-        "هشدر",
-        "وزرت"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1792219269.7893713,
-      "title": "هشدار سرپرست وزارت دفاع به آمریکا درباره تأثیر قدرت موشکی ایران ⚡️ سردار ابن الرضا سرپرست وزارت دفاع با بیان اینکه ابعاد",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اختر",
-        "اطلعت",
-        "طرق",
-        "عبر",
-        "فرمنده",
-        "مدع",
-        "مقبل",
-        "همکر",
-        "یمن"
-      ],
-      "cities": [
-        "ریاض"
-      ],
-      "kind": "attack",
-      "places": [
-        "ریاض"
-      ],
-      "regions": [
-        "gulf"
-      ],
-      "t": 1792220469.8028495,
-      "title": "همکاری اطلاعاتی اسرائیل با عربستان و نیاز ریاض به سامانه های پدافندی ⚡️ رسانه های عبری مدعی شدند که اسرائیل داده های اطل",
-      "toll": 0
-    },
-    {
-      "a": [
-        "استندر",
-        "اصفه",
-        "اطرف",
-        "انهدم",
-        "بحر",
-        "بهرست",
-        "رمض",
-        "صفه",
-        "عمل",
-        "محدد",
-        "مدرت",
-        "مدرکل",
-        "مند",
-        "مهم",
-        "نکرد",
-        "نگرن"
-      ],
-      "cities": [
-        "اصفهان"
-      ],
-      "kind": "attack",
-      "places": [
-        "اصفهان"
-      ],
-      "regions": [
-        "iran_isfahan"
-      ],
-      "t": 1792221071.0093753,
-      "title": "انفجار مهمات جنگ رمضان در جنوب اصفهان؛ جای نگرانی نیست ⚡️ مدیرکل مدیریت بحران استانداری اصفهان از عملیات انهدام مهمات عم",
-      "toll": 0
-    },
-    {
-      "a": [
-        "الجبل",
-        "سحل",
-        "سعد",
-        "شصت",
-        "فصل",
-        "نشنس",
-        "نفتکش",
-        "هشت",
-        "پرتب"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1792223902.5826397,
-      "title": "اصابت پرتابه ناشناس به یک نفتکش در سواحل عربستان ⚡️ یک نفتکش در فاصله شصت و هشت مایلی دریایی شمال شرق شهر الجبیل عربستان",
-      "toll": 0
-    },
-    {
-      "a": [
-        "انجمد",
-        "برخرد",
-        "تصدف",
-        "جشکر",
-        "خدر",
-        "شفت",
-        "قزلقپ",
-        "قند",
-        "مرگ",
-        "مصدمت",
-        "مهبد",
-        "کرخن",
-        "کرگر"
-      ],
-      "cities": [
-        "مهاباد"
-      ],
-      "kind": "crash",
-      "places": [
-        "مهاباد"
-      ],
-      "regions": [
-        "iran_westaz"
-      ],
-      "t": 1792223925.534573,
-      "title": "تصادف مینی بوس کارگران کارخانه قند مهاباد با ۱ کشته و ۱۳ مصدوم ⚡️ برخورد مینی بوس حامل کارگران شیفت شب کارخانه قند مهابا",
-      "toll": 13
-    },
     {
       "a": [
         "المپک",
@@ -7194,6 +6952,29 @@
       ],
       "t": 1792255818.0245664,
       "title": "اسرائیل جنوب لبنان را با بمباران هوایی و توپخانه هدف قرار داد ⚡️ جنگنده های اسرائیلی در دو نوبت شهرک های القنطره و بنی ح",
+      "toll": 0
+    },
+    {
+      "a": [
+        "امدد",
+        "جست",
+        "حدث",
+        "سحل",
+        "عمل",
+        "غرق",
+        "مفقد",
+        "مکزک",
+        "نپدد",
+        "وژگن",
+        "کلفرن",
+        "یفتن"
+      ],
+      "cities": [],
+      "kind": "crash",
+      "places": [],
+      "regions": [],
+      "t": 1792291655.3646436,
+      "title": "عملیات جست وجو برای ۱۱ مفقود حادثه غرق شدن قایق در سواحل مکزیک ⚡️ عملیات جست وجوی نیروهای امدادی آمریکا و مکزیک برای یاف",
       "toll": 0
     }
   ],
@@ -11013,6 +10794,52 @@
       ],
       "t": 1792291076.050779,
       "title": "پیوستن جوزف کابیلا، رئیس جمهور پیشین کنگو به ائتلاف شورشیان ⚡️ جوزف کابیلا، رئیس جمهور پیشین جمهوری دموکراتیک کنگو با پی"
+    },
+    {
+      "k": [
+        "استفد",
+        "امدد",
+        "امددگر",
+        "امرک",
+        "انن",
+        "بخ",
+        "بدند",
+        "برخ",
+        "بلگرد",
+        "جرح",
+        "جست",
+        "حدث",
+        "حمل",
+        "در",
+        "دچر",
+        "سحل",
+        "سرنشن",
+        "شدد",
+        "شنر",
+        "عمل",
+        "غرق",
+        "قق",
+        "مجمع",
+        "مفقد",
+        "منطق",
+        "مکزک",
+        "نجت",
+        "نر",
+        "نش",
+        "نفر",
+        "نپدد",
+        "هستند",
+        "همچن",
+        "وج",
+        "وژگن",
+        "کس",
+        "کلفرن",
+        "گرد",
+        "یفتن",
+        "یفتند"
+      ],
+      "t": 1792291655.3358133,
+      "title": "عملیات جست وجو برای ۱۱ مفقود حادثه غرق شدن قایق در سواحل مکزیک ⚡️ عملیات جست وجوی نیروهای امدادی آمریکا و مکزیک برای یاف"
     }
   ],
   "_text_polish": {
@@ -11024,7 +10851,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792290963
+    "at": 1792291539
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11044,8 +10871,8 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792291350.0,
-    "last_failure": 1792291050,
+    "disabled_until": 1792291939.0,
+    "last_failure": 1792291639,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
