@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792359529
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792359533
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792359533
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792359540
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
       "t": 1792361247
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792361805
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792361807
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792361822
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 242
+      "n": 244
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
-      "n": 87
+      "n": 88
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-18",
-      "n": 87
+      "n": 88
     },
     "openrouter:*": {
       "day": "2026-10-18",
@@ -503,9 +503,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 332,
+        "calls": 334,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 331,
+        "ok": 333,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
@@ -526,16 +526,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 87,
+        "calls": 88,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 61,
+        "ok": 62,
         "other": 26
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 87,
+        "calls": 88,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 60,
+        "ok": 61,
         "other": 27
       },
       "mistral:ministral-8b-latest": {
@@ -546,8 +546,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 919,
-        "ok": 919,
+        "calls": 920,
+        "ok": 920,
         "other": 0
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -2994,12 +2994,6 @@
       "topic": "ورزش",
       "until": 1792409950.429914
     },
-    "v4|دهمین جشنواره کارآفرینی امین الضرب با معرفی منتخبین برگزار شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: برگزاری جشنواره اقتصادی و معرفی برگزیدگان رویداد داخلی است.",
-      "topic": "جامعه",
-      "until": 1792398986.229291
-    },
     "v4|دو طلای ناب و سبقت از روسیه/ زنده از لاس وگاس: ایران قهرمان جهان شد": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Iran wins world wrestling championship, 2 gold medals.",
@@ -3750,6 +3744,12 @@
       "topic": "سیاست",
       "until": 1792404175.6841552
     },
+    "v4|عراقچی: ایران هم با اسرائیل کارهای ناتمامی دارد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Former FM comments on Israel readiness",
+      "topic": "سیاست",
+      "until": 1792448207.1673858
+    },
     "v4|عراقچی: روسیه در جنگ چهل روزه به ایران کمک کرده بود": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Foreign Minister clarifies Iran's strategic military and diplomatic stance on Russia.",
@@ -3864,12 +3864,6 @@
       "topic": "سیاست",
       "until": 1792400730.8235447
     },
-    "v4|قائم پناه، معاون اجرایی پزشکیان: نزدیک به ۵۳۰ میلیون لیتر در روز کمبود گاز داریم؛ ۳۰۰ میلیون متر مکعب در سال گذشته ناترازی داشتیم و در جنگ هم بیش از ۲۳۰ میلیون متر مکعب تولید ما دچ": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.8-flash batch score=8 happened=True scope=iran_national: اعلام آمار ناترازی گاز و خسارت حمله نظامی به عسلویه",
-      "topic": "اقتصاد",
-      "until": 1792399003.5624921
-    },
     "v4|قاب هایی سینمایی از صاعقه در درگهان قشم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=0 happened=True scope=local: تصاویر صاعقه‌ در یک شهر کوچک محلی و فاقد اهمیت ملی است",
@@ -3893,6 +3887,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: گزارش محلی درباره کاهش تولید محصولات کشاورزی در شهرستان تفت",
       "topic": "اقتصاد",
       "until": 1792437268.018586
+    },
+    "v4|قطعی شدن قهرمانی ایران/ یوسفی با چهارمین طلا روس ها را به زانو درآورد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=iran_national: Iran wins U-20 world title, Yousfi gold",
+      "topic": "ورزش",
+      "until": 1792448207.1526153
     },
     "v4|قلعه نویی، میهمان ویژه بازی حساس قزوین(عکس)": {
       "ok": false,
@@ -4008,12 +4008,6 @@
       "topic": "سیاست",
       "until": 1792432662.1508913
     },
-    "v4|محسن رضایی: نیروهای مسلح ایران طرحی ویرانگرتر از جنگ های ۱۲ و ۴۰ روزه آماده کرده اند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.8-flash batch score=7 happened=True scope=iran_national: موضع‌گیری و تهدید نظامی مقام ارشد در شرایط جنگی",
-      "topic": "نظامی",
-      "until": 1792399003.5771582
-    },
     "v4|محمد الفرح: آمریکا و اسرائیل عربستان را به خدمت گرفته اند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: تحلیل و گمانه‌زنی سیاسی توسط یک مقام غیررسمی درباره روابط کشورها",
@@ -4031,6 +4025,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: تحلیل فرهنگی و دیدگاه شخصی درباره یک سلبریتی",
       "topic": "جامعه",
       "until": 1792440692.4076908
+    },
+    "v4|محمدمبین عظیمی به مدال برنز رسید": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=iran_national: Bronze medal at U23 World Wrestling Championships",
+      "topic": "ورزش",
+      "until": 1792448204.9856896
     },
     "v4|محمدی عراقی: قرآن راهکار مقابله با پیمان شکنی دشمن را مشخص کرده است": {
       "ok": false,
@@ -5133,6 +5133,10 @@
       "reason": "content_duplicate",
       "until": 1792368425.6670508
     },
+    "قطعی شدن قهرمانی ایران/ یوسفی با چهارمین طلا روس ها را به زانو درآورد": {
+      "reason": "content_duplicate",
+      "until": 1792383414.6773655
+    },
     "مکرون درباره اتفاقات فرانسه: این وضعیت نتیجه اتفاقاتی است که در خلیج فارس رخ داده است؛ جنگی که فرانسه در آن مشارکت نداشته است": {
       "reason": "content_duplicate",
       "until": 1792375343.992788
@@ -5728,13 +5732,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به صرفه‌جویی گاز در البرز اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792348583,
-      "title": "صرفه جویی ۱.۳ میلیون مترمکعب گاز با بهینه سازی موتورخانه ها در البرز"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: خلاصه اخبار محلی بدون رویداد خاص",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -6286,6 +6283,13 @@
       "rule": "below-event-threshold",
       "t": 1792360604,
       "title": "هیچکس دلتنگ وینیسیوس نمی شود/ رونمایی از برگ برنده رئال برای ال کلاسیکو"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=iran_national: Bronze medal at U23 World Wrestling Championships",
+      "rescued": true,
+      "rule": "below-event-threshold",
+      "t": 1792361804,
+      "title": "محمدمبین عظیمی به مدال برنز رسید"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -12034,7 +12038,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792361141
+    "at": 1792361724
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
