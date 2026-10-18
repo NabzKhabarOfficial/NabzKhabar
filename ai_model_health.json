@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792289262
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792289262
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792289266
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792289271
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 8x",
       "t": 1792292297
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792292780
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792292781
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 9x",
+      "t": 1792292880
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-17",
-      "n": 167
+      "n": 171
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
-      "n": 285
+      "n": 293
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-17",
-      "n": 127
+      "n": 130
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-17",
-      "n": 127
+      "n": 130
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
-      "n": 15
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-18",
-      "n": 15
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -496,50 +496,50 @@
     "2026-10-18": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 11,
-        "ok": 11,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 16,
-        "ok": 16,
+        "calls": 24,
+        "ok": 24,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 6,
-        "calls": 12,
+        "429": 8,
+        "calls": 15,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 4,
+        "ok": 5,
         "other": 2
       },
       "gemini:gemini-3.8-flash": {
-        "429": 5,
-        "calls": 10,
+        "429": 6,
+        "calls": 13,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 2,
+        "ok": 4,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 14,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 12,
-        "other": 3
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 30,
-        "ok": 30,
+        "calls": 38,
+        "ok": 38,
         "other": 0
       }
     }
@@ -1903,6 +1903,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اردوی تمرینی داخلی جودوی بانوان در کرمانشاه اهمیت ملی ندارد",
       "topic": "ورزش",
       "until": 1792315471.0548604
+    },
+    "v4|از آب تا بنزین؛ هر دانشگاه مسئول حل کدام کلان مسئله کشور است؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: طرح دانشگاه‌ها برای حل مسائل کشور برنامه‌ای و غیر فوری است",
+      "topic": "جامعه",
+      "until": 1792379182.349137
     },
     "v4|از امضای توافق تا دفاع مشترک؛ سه مانع جدی پیش روی ائتلاف مکه": {
       "ok": false,
@@ -4922,12 +4928,6 @@
       "topic": "نظامی",
       "until": 1792378029.9155521
     },
-    "v4|۲۲۱ پروژه آموزشی خراسان رضوی به بهره برداری رسید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: افتتاح پروژه‌های آموزشی استانی در سطح محلی اهمیت ملی ندارد.",
-      "topic": "جامعه",
-      "until": 1792310880.2359376
-    },
     "v4|۲۳۱ شب ایستادگی؛ قمی ها همچنان در میدان هستند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: تجمع محلی و روتین در قم بدون اهمیت خبری ملی",
@@ -5001,7 +5001,7 @@
     },
     "iran says two tankers catch fire after hitting mines in strait of hormuz": {
       "reason": "content_duplicate",
-      "until": 1792312060.521085
+      "until": 1792314441.8579414
     },
     "israeli drone attacks kill six palestinians across gaza despite ‘ceasefire’": {
       "reason": "content_duplicate",
@@ -5077,7 +5077,7 @@
     },
     "تهدید دوباره ترامپ علیه ایران: باید مطمئن شویم نابود شده اند": {
       "reason": "content_duplicate",
-      "until": 1792291360.5754676
+      "until": 1792314480.8347666
     },
     "حملات عربستان به تعز یمن، هفت زخمی برجای گذاشت": {
       "reason": "content_duplicate",
@@ -5142,52 +5142,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "زکریا پس از ۱۴ دقیقه و سه پرسش از سخنگوی کاخ سفید کناره گیری کرد ⚡️ کیتی زکریا، پس از تنها پنج روز در سمت سخنگ",
-      "id": "28cba46958",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792246483,
-      "verdict": "new",
-      "why": "سخنگوی کاخ سفید جدید، زکریا، موضوع تازه"
-    },
-    {
-      "head": "حملات روسیه به اوکراین کشته و زخمی بر جای گذاشت ⚡️ حملات جدید روسیه در سراسر اوکراین دست کم هشت کشته و نزدیک ب",
-      "id": "0d8e14c98a",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792247317,
-      "verdict": "new",
-      "why": "نوشته جدید در مورد حمله روسیه به اوکراین است که قبلاً منتشر نشده"
-    },
-    {
-      "head": "هزاران نفر در بزرگ ترین اعتراض سال ها در تونس علیه رئیس جمهور و بحران اقتصادی تجمع کردند ⚡️ هزاران تنسی در اعت",
-      "id": "f843d05875",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792250037,
-      "verdict": "new",
-      "why": "تونس اعتراضات اقتصادی و سیاسی جدید"
-    },
-    {
-      "head": "صدای انفجار در نزدیکی مقر حشد شعبی در بغداد شنیده شد ⚡️ صدای انفجاری در بغداد پایتخت عراق شنیده شد.",
-      "id": "1169327aaa",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792250525,
-      "verdict": "new",
-      "why": "Different event: Baghdad explosion unrelated to prior list"
-    },
-    {
-      "confirm": "mistral/ministral-8b-latest:repeat",
-      "head": "نفتکش متخلف در دریای عمان دچار حریق و از حرکت بازمانده ⚡️ نیروی دریایی ارتش یک نفتکش متخلف را در دریای عمان شن",
-      "id": "c850256046",
-      "match": "اصابت پرتابه ناشناس به یک نفتکش در سواحل عربستان",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792251176,
-      "verdict": "repeat",
-      "why": "نفتکش در تنگه هرمز دچار حریق و از حرکت بازمانده"
-    },
     {
       "confirm": "mistral/ministral-8b-latest:new",
       "head": "نفتکش متخلف در دریای عمان دچار حریق و از حرکت بازمانده ⚡️ نیروی دریایی ارتش یک نفتکش متخلف را در دریای عمان شن",
@@ -5697,16 +5651,57 @@
       "t": 1792292295,
       "verdict": "new",
       "why": "پایگاه نظامی کانادا، حادثه جدید و غیرمستقل"
+    },
+    {
+      "head": "گارد انقلاب ایران: دو ناو باربری در تنگه هرمز به واسطه بمب گذاری در آتش گرفتند ⚡️ گارد انقلاب ایران اعلام کرد ",
+      "id": "f6b56d8c15",
+      "match": "نفتکش متخلف در دریای عمان دچار حریق و از حرکت بازمانده",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1792292819,
+      "verdict": "repeat",
+      "why": "Reports the exact same incident of cargo ships burning in the Strait of Hormuz."
+    },
+    {
+      "head": "گارد انقلاب ایران: دو ناو باربری در تنگه هرمز به واسطه بمب گذاری در آتش گرفتند ⚡️ گارد انقلاب ایران اعلام کرد ",
+      "id": "f6b56d8c15",
+      "match": "نفتکش متخلف در دریای عمان دچار حریق و از حرکت بازمانده",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1792292841,
+      "verdict": "repeat",
+      "why": "Reports the same cargo ship fire incident in the Strait of Hormuz."
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "تهدید دوباره ترامپ علیه ایران: باید مطمئن شویم نابود شده اند ⚡️ دونالد ترامپ با دفاع از حمله به ایران مدعی شد ",
+      "id": "8031c4b465",
+      "match": "ترامپ: ایران نباید توانایی های هسته ای خود را احیا کند",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792292861,
+      "verdict": "repeat",
+      "why": "ترمپ: ایران نباید توانایی هسته‌ای احیا کند"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "تهدید دوباره ترامپ علیه ایران: باید مطمئن شویم نابود شده اند ⚡️ دونالد ترامپ با دفاع از حمله به ایران مدعی شد ",
+      "id": "8031c4b465",
+      "match": "ترامپ: ایران نباید توانایی های هسته ای خود را احیا کند",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792292875,
+      "verdict": "repeat",
+      "why": "ترمپ: ایران نباید توانایی هسته‌ای احیا کند"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "تهدید دوباره ترامپ علیه ایران: باید مطمئن شویم نابود شده اند ⚡️ دونالد ترامپ با دفاع از حمله به ایران مدعی شد ",
+      "id": "8031c4b465",
+      "match": "ترامپ: ایران نباید توانایی های هسته ای خود را احیا کند",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792292880,
+      "verdict": "repeat",
+      "why": "ترمپ: ایران نباید توانایی هسته‌ای احیا کند"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: کشف محموله قاچاق دارویی در مشهد، خبری محلی و غیرمهم است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792266167,
-      "title": "محموله بزرگ شیرخشک و آنتی بیوتیک قاچاق در مشهد کشف شد"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: کاهش زمان اورژانس در لرستان استانی و محلی است",
       "rescued": false,
@@ -6259,6 +6254,13 @@
       "rule": "below-event-threshold",
       "t": 1792292207,
       "title": "مسابقات کشتی فرنگی ناگویا نشان داد وقت جوان شدن تیم ملی فرا رسیده"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: طرح دانشگاه‌ها برای حل مسائل کشور برنامه‌ای و غیر فوری است",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1792292782,
+      "title": "از آب تا بنزین؛ هر دانشگاه مسئول حل کدام کلان مسئله کشور است؟"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10930,7 +10932,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792292114
+    "at": 1792292692
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
