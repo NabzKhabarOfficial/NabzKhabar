@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1792286417
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1792286429
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792287520
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792287521
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
-      "t": 1792288683
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792289261
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792289262
     },
@@ -159,24 +135,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792291656
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792292204
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792292204
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792292207
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792292207
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.6-flash",
+      "t": 1792292214
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 8x",
+      "t": 1792292297
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-17",
-      "n": 165
+      "n": 167
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
-      "n": 282
+      "n": 285
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-17",
-      "n": 123
+      "n": 127
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-17",
-      "n": 123
+      "n": 127
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
@@ -496,30 +496,30 @@
     "2026-10-18": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 9,
-        "ok": 9,
+        "calls": 11,
+        "ok": 11,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 13,
-        "ok": 13,
+        "calls": 16,
+        "ok": 16,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 5,
-        "calls": 8,
+        "429": 6,
+        "calls": 12,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
+        "ok": 4,
         "other": 2
       },
       "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 6,
+        "429": 5,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
+        "ok": 2,
         "other": 3
       },
       "groq:openai/gpt-oss-120b": {
@@ -538,20 +538,13 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 24,
-        "ok": 24,
+        "calls": 30,
+        "ok": 30,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 3,
-      "t": 1792147947.1567721,
-      "title": "کی یف در برابر تلاش روسیه برای غیرقابل زندگی کردن: روزمره ای پر از خطرات ناگهانی",
-      "urgent": false
-    },
     {
       "label": "خبر",
       "level": 4,
@@ -1384,6 +1377,13 @@
       "t": 1792291655.3783047,
       "title": "عملیات جست وجو برای ۱۱ مفقود حادثه غرق شدن قایق در سواحل مکزیک",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1792292296.8966236,
+      "title": "وقوع حادثه مرگبار و آتش سوزی در پایگاه نظامی وین رایت کانادا",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-17",
@@ -1435,6 +1435,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: مرگ بیش از سی کودک در ریزش سقف مدرسه در پاکستان",
       "topic": "حادثه",
       "until": 1792347780.47383
+    },
+    "v4|deadly ‘incident’ at canadian forces base wainwright sparks fire": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: حادثه مرگبار و کشته و زخمی شدن افراد در پایگاه نظامی کانادا",
+      "topic": "حادثه",
+      "until": 1792378614.1347308
     },
     "v4|dispute between trump allies centers on millions transferred from congo": {
       "ok": false,
@@ -2348,6 +2354,12 @@
       "topic": "جامعه",
       "until": 1792346747.6958437
     },
+    "v4|به دنبال تعهد قطعی ایران برای بازسازی نکردن برنامه هسته ای هستیم": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: موضع رسمی معاون رئیس‌جمهور آمریکا درباره برنامه هسته‌ای ایران",
+      "topic": "سیاست",
+      "until": 1792378614.1491
+    },
     "v4|بهره برداری از ۲۰ پروژه ورزشی فارس با اعتبار ۲۶۰ میلیارد تومان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بهره‌برداری از پروژه‌های ورزشی در سطح استانی و محلی است.",
@@ -2413,12 +2425,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: افتتاح مدرسه و توصیه های رئیس جمهور خبر محلی و کم اهمیت است.",
       "topic": "جامعه",
       "until": 1792318384.2108898
-    },
-    "v4|تاثیر دلار و پتروشیمی بر قیمت سیب دماوند و واکنش رئیس جهاد استان": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تأمین مالی کشاورزی در استان",
-      "topic": "اقتصاد",
-      "until": 1792310862.2212472
     },
     "v4|تارتار صدرنشین جدول ایکس جی": {
       "ok": false,
@@ -2971,12 +2977,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Explosion at a military facility in the Middle East.",
       "topic": "نظامی",
       "until": 1792350034.2139955
-    },
-    "v4|دستور پزشکیان به دستگاه های مسئول برای تسهیل فعالیت شرکت های دانش بنیان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: دستور روتین رئیس‌جمهور برای حمایت از شرکت‌های دانش‌بنیان",
-      "topic": "سیاست",
-      "until": 1792310872.3068843
     },
     "v4|دستورالعمل جدید گمرکی برای کاهش توقف کالا در مرزها": {
       "ok": false,
@@ -3992,6 +3992,12 @@
       "topic": "جامعه",
       "until": 1792323065.2549648
     },
+    "v4|مسابقات کشتی فرنگی ناگویا نشان داد وقت جوان شدن تیم ملی فرا رسیده": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.8-flash score=2 happened=False scope=iran_national: تحلیل و نظر رسانه‌ای درباره عملکرد تیم ملی کشتی",
+      "topic": "ورزش",
+      "until": 1792378607.3247907
+    },
     "v4|مسابقه والیبال پیشکسوتان با حضور هنرمندان ایران در ورامین برگزار شد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، بدون اثر ملی یا بین‌المللی",
@@ -4123,12 +4129,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering with no strategic or national impact.",
       "topic": "جامعه",
       "until": 1792354949.9483905
-    },
-    "v4|موقعیت بیرانوند در سی امین دوره جوایز سالانه afc؛ رقابت با ۲ عربستانی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.8-flash score=3 happened=False scope=iran_national: گمانه‌زنی و نامزدی جوایز سالانه بدون دستیابی به نتیجه قطعی",
-      "topic": "ورزش",
-      "until": 1792310867.2630498
     },
     "v4|میراسماعیلی: حمایت های وزیر از جودو ارزشمند است/ نسل طلایی را خواهیم ساخت": {
       "ok": false,
@@ -5067,6 +5067,10 @@
       "reason": "content_duplicate",
       "until": 1792271624.3963847
     },
+    "به دنبال تعهد قطعی ایران برای بازسازی نکردن برنامه هسته ای هستیم": {
+      "reason": "content_duplicate",
+      "until": 1792313858.810805
+    },
     "تشدید تنش های مرزی میان افغانستان و پاکستان؛ تعدادی از طالبان کشته شدند": {
       "reason": "content_duplicate",
       "until": 1792280770.8021898
@@ -5105,7 +5109,7 @@
     },
     "صدای انفجار در شمال عراق شنیده شد": {
       "reason": "content_duplicate",
-      "until": 1792291340.6645596
+      "until": 1792313866.478505
     },
     "صدای انفجار در شمال عراق شنیده شد؛ حمله پهپادی به مقر گروهک های تجزیه طلب": {
       "reason": "content_duplicate",
@@ -5138,33 +5142,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "دولت توقف موقت واردات خودروهای ایرانیان خارج از کشور را اعلام کرد ⚡️ دولت با دستور پزشکیان واردات خودروهای ایر",
-      "id": "3a8469c017",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792244763,
-      "verdict": "new",
-      "why": "موضوع جدید: سیاست اقتصادی و ارزی"
-    },
-    {
-      "head": "مورخ کرمانشاهی: بمباران دبستان رشید یاسمی در جنگ تحمیلی ⚡️ مورخ کرمانشاهی در مورد حمله هوایی ارتش عراق به دبست",
-      "id": "ab520acf6e",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792245403,
-      "verdict": "new",
-      "why": "different event: attack on school in Iran-Iraq war"
-    },
-    {
-      "head": "معترضان در فرانسه به خیابان ها آمدند؛ پلیس گاز اشک آور به کار برد ⚡️ پلیس پاریس برای متفرق کردن معترضان از گاز",
-      "id": "1b87b9d8fd",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792246469,
-      "verdict": "new",
-      "why": "فرانسه معترضان و گاز اشک‌آور، موضوع جدید"
-    },
     {
       "head": "زکریا پس از ۱۴ دقیقه و سه پرسش از سخنگوی کاخ سفید کناره گیری کرد ⚡️ کیتی زکریا، پس از تنها پنج روز در سمت سخنگ",
       "id": "28cba46958",
@@ -5691,16 +5668,38 @@
       "t": 1792291654,
       "verdict": "new",
       "why": "جست‌وجوی مفقودان در مکزیک، موضوع جدید"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "جی دی ونس: واشنگتن به دنبال تعهد قطعی ایران برای بازسازی نکردن برنامه هسته ای است ⚡️ جی دی ونس، معاون رئیس جمه",
+      "id": "72abedf1b2",
+      "match": "ترامپ: ایران نباید توانایی های هسته ای خود را احیا کند",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792292231,
+      "verdict": "repeat",
+      "why": "جایگزینی ونس برای ترامپ، موضوع هسته‌ای ایران"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "جی دی ونس: واشنگتن به دنبال تعهد قطعی ایران برای بازسازی نکردن برنامه هسته ای است ⚡️ جی دی ونس، معاون رئیس جمه",
+      "id": "72abedf1b2",
+      "match": "ترامپ: ایران نباید توانایی های هسته ای خود را احیا کند",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792292243,
+      "verdict": "repeat",
+      "why": "جایگزینی ونس برای ترامپ، موضوع هسته‌ای ایران"
+    },
+    {
+      "head": "وقوع حادثه مرگبار و آتش سوزی در پایگاه نظامی وین رایت کانادا ⚡️ وزیر دفاع کانادا از کشته و زخمی شدن تعدادی از ",
+      "id": "8cb3a1dc5f",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792292295,
+      "verdict": "new",
+      "why": "پایگاه نظامی کانادا، حادثه جدید و غیرمستقل"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: تحلیل و گمانه‌زنی کارشناس درباره تصمیمات ترامپ، رویداد قطعی محسوب نمی‌شود",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792265590,
-      "title": "ترامپ تصمیم نهایی خود را درباره ایران گرفته است / فشار اقتصادی مانع ماجراجویی آمریکا نمی شود"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: کشف محموله قاچاق دارویی در مشهد، خبری محلی و غیرمهم است.",
       "rescued": false,
@@ -6253,6 +6252,13 @@
       "rule": "below-event-threshold",
       "t": 1792291062,
       "title": "وزیر دولت احمدی نژاد: هنگامی که قراردادهای تحمیلی به گونه ای روایت شوند که گویی تنها راه بقا، پذیرش تحمیل و تمکین بوده ر"
+    },
+    {
+      "ai": "ai gemini/gemini-3.8-flash score=2 happened=False scope=iran_national: تحلیل و نظر رسانه‌ای درباره عملکرد تیم ملی کشتی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792292207,
+      "title": "مسابقات کشتی فرنگی ناگویا نشان داد وقت جوان شدن تیم ملی فرا رسیده"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6788,6 +6794,27 @@
       ],
       "t": 1792291655.3501773,
       "title": "عملیات جست وجو برای ۱۱ مفقود حادثه غرق شدن قایق در سواحل مکزیک ⚡️ عملیات جست وجوی نیروهای امدادی آمریکا و مکزیک برای یاف"
+    },
+    {
+      "h": [
+        "اتش",
+        "است",
+        "افرد",
+        "البرت",
+        "تعدد",
+        "حدث",
+        "دفع",
+        "رت",
+        "سز",
+        "مرگبر",
+        "همر",
+        "وقع",
+        "ون",
+        "پگ",
+        "کند"
+      ],
+      "t": 1792292296.8692865,
+      "title": "وقوع حادثه مرگبار و آتش سوزی در پایگاه نظامی وین رایت کانادا ⚡️ وزیر دفاع کانادا از کشته و زخمی شدن تعدادی از افراد در پ"
     }
   ],
   "_published_incidents": [
@@ -6975,6 +7002,26 @@
       "regions": [],
       "t": 1792291655.3646436,
       "title": "عملیات جست وجو برای ۱۱ مفقود حادثه غرق شدن قایق در سواحل مکزیک ⚡️ عملیات جست وجوی نیروهای امدادی آمریکا و مکزیک برای یاف",
+      "toll": 0
+    },
+    {
+      "a": [
+        "اتش",
+        "افرد",
+        "البرت",
+        "حدث",
+        "دفع",
+        "مرگبر",
+        "همر",
+        "وقع",
+        "کند"
+      ],
+      "cities": [],
+      "kind": "fire",
+      "places": [],
+      "regions": [],
+      "t": 1792292296.8831627,
+      "title": "وقوع حادثه مرگبار و آتش سوزی در پایگاه نظامی وین رایت کانادا ⚡️ وزیر دفاع کانادا از کشته و زخمی شدن تعدادی از افراد در پ",
       "toll": 0
     }
   ],
@@ -10840,6 +10887,38 @@
       ],
       "t": 1792291655.3358133,
       "title": "عملیات جست وجو برای ۱۱ مفقود حادثه غرق شدن قایق در سواحل مکزیک ⚡️ عملیات جست وجوی نیروهای امدادی آمریکا و مکزیک برای یاف"
+    },
+    {
+      "k": [
+        "اتش",
+        "است",
+        "افرد",
+        "البرت",
+        "تعدد",
+        "تکنن",
+        "جزت",
+        "حدث",
+        "دفع",
+        "دقق",
+        "رت",
+        "رسم",
+        "زخم",
+        "سز",
+        "علت",
+        "مرگبر",
+        "مقم",
+        "نظم",
+        "نکرد",
+        "همر",
+        "وزر",
+        "وقع",
+        "ون",
+        "پگ",
+        "کشت",
+        "کند"
+      ],
+      "t": 1792292296.855585,
+      "title": "وقوع حادثه مرگبار و آتش سوزی در پایگاه نظامی وین رایت کانادا ⚡️ وزیر دفاع کانادا از کشته و زخمی شدن تعدادی از افراد در پ"
     }
   ],
   "_text_polish": {
@@ -10851,7 +10930,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792291539
+    "at": 1792292114
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10866,14 +10945,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792291657,
-    "last_failure": 1792291057,
+    "disabled_until": 1792292873,
+    "last_failure": 1792292273,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792291939.0,
-    "last_failure": 1792291639,
-    "last_status": 503
+    "disabled_until": 1792292869,
+    "last_failure": 1792292269,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
