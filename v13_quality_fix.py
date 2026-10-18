@@ -249,6 +249,11 @@ def install():
             fix()
         except Exception as exc:
             print(f"V13 QUALITY FIX: {fix.__name__} not installed ({type(exc).__name__}: {exc})", flush=True)
+    try:
+        import v13_review_log  # every Telegram send + every refused story, for Brain's daily review
+        v13_review_log.install()
+    except Exception as exc:
+        print(f"V13 QUALITY FIX: review log not installed ({type(exc).__name__}: {exc})", flush=True)
     _DONE["v"] = True
     print("V13 QUALITY FIX ACTIVE: neutral wording, dangling «در حالی که» leads, same-headline repeats, "
           "nemo-new overlap repeats, run-local headlines, extra outlet names", flush=True)
