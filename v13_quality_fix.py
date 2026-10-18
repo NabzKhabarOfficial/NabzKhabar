@@ -20,6 +20,13 @@ Oct 18, 20:50 Tehran (review of all 92 posts published since Oct 17 16:00):
   earlier headline's words) with a published headline counts as a repeat; "update" and "reaction" still pass.
   Posts allowed earlier in the same run are added to the judge's list, so two posts of one event in one run
   are caught too.
+
+Oct 18, 21:10 Tehran (live channel read, t.me/s/NabzKhabarOfficial): a lead with no subject went out
+(«⚡️ تأکید کرد: ایران هیچ گاه ...» under a Pezeshkian headline), and provincial items passed although the editor
+gate vetoes them («مدیرکل پزشکی قانونی خوزستان: ...», Oct 16 «فرماندار چابهار: ...»), so some rescue path skips
+the gate. The final guard now refuses a lead that starts with a bare verb («تأکید کرد»، «گفت»، «افزود» ...)
+and a headline led by a provincial / city official unless a hard event happened ("local-level"). «ناراضیتی» ->
+«نارضایتی».
 Any error = the bot runs as before.
 """
 
@@ -39,12 +46,16 @@ NEUTRAL = (
     (re.compile(r"(?<![\u0600-\u06FF\u200c])سوزش(?![\u0600-\u06FF])"), "آتش‌سوزی"),
     (re.compile(r"(?<![\u0600-\u06FF])ر(?:ی)?زورت(?![\u0600-\u06FF])"), "استراحتگاه"),
     (re.compile(r"کلکلته"), "کلکته"),
+    (re.compile(r"ناراضیتی"), "نارضایتی"),
 )
 EXTRA_OUTLETS = (r"(?:شبکه\s+)?(?:ان[\s\u200c]*بی[\s\u200c]*سی|سی[\s\u200c]*ان[\s\u200c]*ان|سی[\s\u200c]*بی[\s\u200c]*اس|"
                  r"ای[\s\u200c]*بی[\s\u200c]*سی(?![\s\u200c]*نیوز\s*ایران)|فاکس[\s\u200c]*نیوز)|")
 RUN_HEADS = []  # headlines the same-event judge allowed in this run
 LOADED = re.compile(r"ارتش\s+تروریست|تروریست(?:ی)?\s+(?:آمریکا|اسرائیل)|(?:آمریکا|اسرائیل)ی?\s+تروریست(?![\u0600-\u06FF])")
-DANGLING = re.compile(r"^\s*در\s+حالی\s+که\s")
+DANGLING = re.compile(r"^\s*(?:در\s+حالی\s+که\s|(?:تأکید|تاکید|اعلام|اظهار|عنوان|اضافه|خاطرنشان|تصریح)\s+(?:کرد|کردند)|"
+                      r"(?:گفت|افزود|ادامه\s+داد|یادآور\s+شد)(?![\u0600-\u06FF]))")
+LOCAL_HEAD = re.compile(r"^\s*(?:مدیر\s*کل(?!\s+(?:آژانس|سازمان|یونسکو|صندوق|بانک|فائو|اینترپل|یونیسف|دفتر\s+سازمان))|معاون\s+استاندار(?![\u0600-\u06FF])|استاندار(?![\u0600-\u06FF])(?!\s+تهران)|فرماندار(?![\u0600-\u06FF])|بخشدار|شهردار|امام\s+جمعه|"
+                        r"رئیس\s+(?:شورای\s+شهر|دادگستری\s+استان|پلیس\s+راه\s+استان)|نماینده\s+مردم|فرمانده\s+سپاه\s+استان)")
 MIN_WORDS = 5
 NEMO_NEW_SHARED = 4
 _DONE = {"v": False}
@@ -95,6 +106,14 @@ def _install_guard():
                 found.append(("loaded-wording", m.group(0)))
             if sents and DANGLING.search(sents[0]):
                 found.append(("dangling-lead", sents[0][:60]))
+            if LOCAL_HEAD.search(str(title or "")):
+                try:
+                    import v13_editor_gate as g
+                    hard = bool(g.HARD_HAPPENED.search(g._norm(title)) or g.war_zone(title))
+                except Exception:
+                    hard = True
+                if not hard:
+                    found.append(("local-level", str(title or "")[:60]))
         except Exception:
             return ""
         if not found:
