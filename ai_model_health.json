@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792277734
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792277756
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792285303
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792285832
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
-      "n": 8
+      "n": 9
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-18",
-      "n": 8
+      "n": 9
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -523,21 +523,21 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 9,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 7,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 11,
+        "ok": 11,
         "other": 0
       }
     }
@@ -5079,7 +5079,7 @@
     },
     "دستور نخست وزیر عراق برای تحقیق درباره انفجار انبار مهمات الحشد الشعبی": {
       "reason": "content_duplicate",
-      "until": 1792285265.0680022
+      "until": 1792307432.4834335
     },
     "رویترز به نقل از منابع امنیتی عراق: انفجارهایی در داخل مقر نیروهای حشد الشعبی در شمال بغداد / حشد الشعبی: یک انبار مهمات و تجهیزات فرسوده منفجر شد؛ این حادثه هیچ تلفات جانی در پی ن": {
       "reason": "content_duplicate",
@@ -5128,24 +5128,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "دادستان کل کشور: شناسایی عاملان ترور دو بانوی شهید در سیستان الزامی است ⚡️ دادستان کل کشور با تأکید بر ضرورت ش",
-      "id": "85c95581bf",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792240739,
-      "verdict": "new",
-      "why": "Different event: no prior mention of Sistan-Baluchistan assassinations"
-    },
-    {
-      "head": "رئیس هلال احمر: احتمال عملیات جَمینگ در سقوط هلی کوپتر رئیسی در ورزقان ⚡️ پیرحسین کولیوند، رئیس جمعیت هلال احم",
-      "id": "2cf2455abc",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792240753,
-      "verdict": "new",
-      "why": "سقوط هلی‌کوپتر رئیسی در ورزقان، موضوع جدید"
-    },
     {
       "head": "ریابکوف: اروپا به تصمیم ترامپ برای تعلیق تحریم ها واکنش هوچی گری خواهد کرد ⚡️ سرگئی ریابکوف، معاون وزیر خارجه ",
       "id": "80354d278e",
@@ -5681,6 +5663,24 @@
       "t": 1792285300,
       "verdict": "unconfirmed-repeat",
       "why": "The post covers the same statement by Netanyahu regarding Iran's nuclear program."
+    },
+    {
+      "head": "دستور نخست وزیر عراق برای تحقیق درباره انفجار انبار مهمات الحشد الشعبی ⚡️ نخست وزیر عراق دستور تشکیل کمیته برا",
+      "id": "9295fcb0f9",
+      "match": "صدای انفجار در نزدیکی مقر حشد شعبی در بغداد شنیده شد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792285831,
+      "verdict": "repeat",
+      "why": "انفجار انبار مهمات حشد شعبی در بغداد"
+    },
+    {
+      "head": "دستور نخست وزیر عراق برای تحقیق درباره انفجار انبار مهمات الحشد الشعبی ⚡️ نخست وزیر عراق دستور تشکیل کمیته برا",
+      "id": "9295fcb0f9",
+      "match": "صدای انفجار در نزدیکی مقر حشد شعبی در بغداد شنیده شد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792285832,
+      "verdict": "repeat",
+      "why": "انفجار انبار مهمات حشد شعبی در بغداد"
     }
   ],
   "_importance_rescue_log": [
@@ -11243,7 +11243,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792285163
+    "at": 1792285748
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11284,8 +11284,8 @@
     "last_failure": 1791936876,
     "last_status": 599
   },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792284669,
+  "groq:openai/gpt-oss-120b": {
+    "last_quality_failure": 1792285824,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
