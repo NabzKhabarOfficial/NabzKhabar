@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792277730
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792277730
     },
@@ -159,24 +155,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792284109
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1792284703
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-17",
-      "n": 154
+      "n": 155
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
-      "n": 269
+      "n": 270
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-17",
-      "n": 115
+      "n": 116
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-17",
-      "n": 115
+      "n": 116
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
@@ -184,7 +184,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-18",
-      "n": 5
+      "n": 7
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -494,6 +494,19 @@
       }
     },
     "2026-10-18": {
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
         "calls": 7,
@@ -502,8 +515,15 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 7,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 6,
+        "other": 1
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       }
     }
@@ -4965,7 +4985,7 @@
     },
     "israeli drone attacks kill six palestinians across gaza despite ‘ceasefire’": {
       "reason": "content_duplicate",
-      "until": 1792284406.4602976
+      "until": 1792306303.2532344
     },
     "jerusalem daily: israeli settlers attack farmers and journalists": {
       "reason": "content_duplicate",
@@ -4978,6 +4998,10 @@
     "trump faces bipartisan backlash over russia sanctions waiver": {
       "reason": "content_duplicate",
       "until": 1792283219.9106393
+    },
+    "ادعای ترامپ: عملیات مرتبط با ایران به زودیِ بسیار نزدیک پایان خواهد یافت": {
+      "reason": "content_duplicate",
+      "until": 1792306266.0329978
     },
     "اظهارات انتخاباتی نتانیاهو : هرگز با ایران هسته ای کنار نمی آیم": {
       "reason": "content_duplicate",
@@ -5090,24 +5114,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "مشاور رهبر انقلاب: جنگ عربستان با یمن برادرکشی و حراج جان و مال است ⚡️ مشاور و دستیار رهبر معظم انقلاب در تحلی",
-      "id": "f5f98480df",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792235503,
-      "verdict": "new",
-      "why": "جنگ یمن و نقد عربستان سعودی"
-    },
-    {
-      "head": "ثبات نرخ بهره بین بانکی روی رقم ۲۴ درصد برای هشتمین هفته متوالی ⚡️ این هشتمین هفته متوالی است که نرخ بهره بین ",
-      "id": "ae004e865f",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792235527,
-      "verdict": "new",
-      "why": "نرخ بهره بین بانکی موضوع اقتصادی جدید"
-    },
     {
       "head": "کمیته المپیک روش کسب سهمیه تیراندازی لس آنجلس ۲۰۲۸ را اعلام کرد ⚡️ کمیته بین المللی المپیک روش کسب سهمیه تیران",
       "id": "af9a416e9b",
@@ -5641,6 +5647,24 @@
       "t": 1792278886,
       "verdict": "repeat",
       "why": "same Yemeni military statement about Saudi drone"
+    },
+    {
+      "head": "حملات پهپادی اسرائیل به غزه با وجود آتش بس شش کشته بر جای گذاشت ⚡️ حملات پهپادی ارتش اسرائیل به مناطق مختلف نو",
+      "id": "00091554af",
+      "match": "حمله های اسرائیل به مناطق مختلف نوار غزه ادامه دارد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792284701,
+      "verdict": "repeat",
+      "why": "same Gaza airstrikes, different casualty count"
+    },
+    {
+      "head": "حملات پهپادی اسرائیل به غزه با وجود آتش بس شش کشته بر جای گذاشت ⚡️ حملات پهپادی ارتش اسرائیل به مناطق مختلف نو",
+      "id": "00091554af",
+      "match": "حمله های اسرائیل به مناطق مختلف نوار غزه ادامه دارد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792284703,
+      "verdict": "repeat",
+      "why": "same Gaza airstrikes, different casualty count"
     }
   ],
   "_importance_rescue_log": [
@@ -11795,7 +11819,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792284011
+    "at": 1792284585
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11815,8 +11839,8 @@
     "last_status": 599
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792281808,
-    "last_failure": 1792281208,
+    "disabled_until": 1792285281,
+    "last_failure": 1792284681,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
@@ -11835,6 +11859,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1792284669,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
