@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
-      "t": 1792277170
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792277729
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792277729
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792282379
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792283536
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1792283545
     }
   ],
   "_ai_pace": {
@@ -184,7 +184,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-18",
-      "n": 2
+      "n": 4
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -502,8 +502,8 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       }
     }
@@ -1946,6 +1946,12 @@
       "topic": "جامعه",
       "until": 1792337554.0951416
     },
+    "v4|اعتراضات در فرانسه به درگیری های خشونت آمیز، غارت و آتش زدن اماکن انجامید و بیش از هزار نفر بازداشت شدند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=local: Violent protests in France, 1200 arrests.",
+      "topic": "سیاست",
+      "until": 1792369937.7609694
+    },
     "v4|اعتراف کارمندان متا به اختلال در اینستاگرام رئیس جمهور برزیل": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: گزارش داخلی درباره اختلال فنی در حساب یک مقام خارجی اهمیت راهبردی ندارد.",
@@ -2809,12 +2815,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: حمله شهرک‌نشینان اسرائیلی به دیپلمات‌های اروپایی در کرانه باختری",
       "topic": "سیاست",
       "until": 1792362428.6509588
-    },
-    "v4|حمله عادل و یک جین ستاره به جام قهرمانی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: خبر ورزشی داخلی و غیرمهم در سطح ملی است.",
-      "topic": "ورزش",
-      "until": 1792309158.9181652
     },
     "v4|حیدری نژاد: خدمات پرستاران در ارتقای سلامت جامعه ارزشمند است": {
       "ok": false,
@@ -11795,7 +11795,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792282852
+    "at": 1792283448
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
