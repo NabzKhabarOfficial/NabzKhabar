@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792280637
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1792280641
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1792280652
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792281203
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792281203
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792281204
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792281208
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792289283
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792289917
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792289919
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792289919
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792289919
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792289923
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792289962
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-17",
-      "n": 160
+      "n": 161
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
-      "n": 273
+      "n": 276
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-17",
-      "n": 120
+      "n": 121
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-17",
-      "n": 120
+      "n": 121
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
-      "n": 12
+      "n": 13
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-18",
-      "n": 12
+      "n": 13
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -502,21 +502,21 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 3,
-        "calls": 5,
+        "429": 4,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
         "other": 2
       },
       "gemini:gemini-3.8-flash": {
-        "429": 2,
-        "calls": 3,
+        "429": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -524,33 +524,26 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 13,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 10,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 14,
-        "ok": 14,
+        "calls": 18,
+        "ok": 18,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1792146740.2955515,
-      "title": "هشدار خطر در ینبع عربستان پس از حمله احتمالی یمن",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 3,
@@ -1382,6 +1375,13 @@
       "level": 4,
       "t": 1792288695.0957043,
       "title": "موسی احمدی: بازسازی پالایشگاه های عسلویه تکمیل شد و صد میلیون مترمکعب گاز به تولید بازگشت",
+      "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1792289938.5463905,
+      "title": "هشدار رئیس مجلس یمن به مصر درباره ورود به جنگ",
       "urgent": false
     }
   ],
@@ -3835,6 +3835,12 @@
       "topic": "جامعه",
       "until": 1792350931.2827837
     },
+    "v4|قطر: میانجی گری میان ایران و آمریکا ادامه دارد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: قطر اعلام ادامه میانجی‌گری بین ایران و آمریکا",
+      "topic": "سیاست",
+      "until": 1792376317.9272661
+    },
     "v4|قطع سخنرانی انتخاباتی ترامپ در جورجیا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: اعتراض در تجمع انتخاباتی رئیس جمهور آمریکا.",
@@ -3954,12 +3960,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات مدیرعامل خانه تئاتر در نشست خبری و گلایه از سیاست‌گذاری‌ها خبری تخصصی و صنفی است.",
       "topic": "جامعه",
       "until": 1792321301.9776201
-    },
-    "v4|مدیریت بحران: انجام عملیات انفجارهای کنترل شده در جنوب اصفهان طی روز جاری": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: عملیات کنترل‌شده و محلی مربوط به مهمات در اصفهان.",
-      "topic": "حادثه",
-      "until": 1792309709.8044534
     },
     "v4|مراسم بهره برداری متمرکز طرح های آموزشی و پرورش": {
       "ok": false,
@@ -4279,6 +4279,12 @@
       "topic": "سیاست",
       "until": 1792353811.8226116
     },
+    "v4|هشدار رئیس مجلس یمن : مصر از ورود به جنگ دوری کند": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: هشدار رسمی رئیس مجلس یمن به مصر درباره دخالت نظامی",
+      "topic": "نظامی",
+      "until": 1792376328.0986865
+    },
     "v4|هشدار فرمانده ارتش انگلیس درباره تهدیدات و جنگ های جدید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: هشدار فرمانده ارتش درباره جنگ آینده رویداد قطعی نیست",
@@ -4308,12 +4314,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: رویداد محلی و برنامه‌ریزی برای همایش که هنوز برگزار نشده است.",
       "topic": "جامعه",
       "until": 1792323093.7538161
-    },
-    "v4|همکاری دولت و دانشگاه ها در مورد بحران آب به کجا رسید؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: اظهارنظر درباره اجرای راهبردهای بحران آب و انتقاد از دستگاه‌ها.",
-      "topic": "جامعه",
-      "until": 1792309709.8189647
     },
     "v4|هواپیمایی هند تعلیق پروازها به عربستان تمدید کرد": {
       "ok": false,
@@ -4507,12 +4507,6 @@
       "topic": "جامعه",
       "until": 1792311461.9685645
     },
-    "v4|پزشکیان: فیلم کوتاه صدای نسل امروز و نگاه آنها به جهان و آینده است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.8-flash score=1 happened=True scope=iran_national: پیام تشریفاتی و فرهنگی رئیس‌جمهور فاقد اهمیت خبری درجه‌یک است",
-      "topic": "جامعه",
-      "until": 1792310249.6468854
-    },
     "v4|پلیس پاریس به معترضان حمله کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine protest dispersal; lacks major escalation or significant casualties.",
@@ -4596,6 +4590,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و احتمال‌سنجی یک ژنرال بازنشسته درباره جنگ.",
       "topic": "نظامی",
       "until": 1792315484.77609
+    },
+    "v4|ژوزه-سویا، تاریخچه ای پر از تنش/ خشم تاریخی مورینیو: 13 اشتباه داوری علیه رئال": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Club match, not a top-tier event",
+      "topic": "ورزش",
+      "until": 1792376318.5550706
     },
     "v4|کاراته رده های سنی جهان؛ رضایتی به مدال برنز رسید": {
       "ok": true,
@@ -5056,7 +5056,7 @@
     },
     "انفجار مهیب در شرق بغداد؛ بدون تلفات جانی": {
       "reason": "content_duplicate",
-      "until": 1792289027.3272045
+      "until": 1792311562.5715675
     },
     "انفجار و آتش سوزی دومین سوپرنفتکش در هرمز/ نیروی دریایی سپاه: نفتکش منفجر شده بیش از ۲ میلیون بشکه نفت خام حمل می کرد": {
       "reason": "content_duplicate",
@@ -5133,15 +5133,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "زلنسکی: لغو تحریم های آمریکا علیه روسیه ادامه خواهد داشت ⚡️ رئیس جمهور اوکراین از تعلیق برخی تحریم های آمریکا ",
-      "id": "8aacf65c1c",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792243726,
-      "verdict": "new",
-      "why": "نوشته جدید در مورد اظهار نظر زلنسکی است"
-    },
     {
       "head": "حمله های اسرائیل به مناطق مختلف نوار غزه ادامه دارد ⚡️ اسرائیل با حملات هوایی و زمینی به مناطق مختلف نوار غزه،",
       "id": "436e3c994b",
@@ -5686,23 +5677,18 @@
       "t": 1792288693,
       "verdict": "new",
       "why": "بازسازی پالایشگاه عسلویه و بازگشت گاز به تولید"
+    },
+    {
+      "head": "هشدار رئیس مجلس یمن به مصر درباره ورود به جنگ ⚡️ یحیی علی الراعی رئیس مجلس نمایندگان یمن در نامه ای به همتای م",
+      "id": "0593ad5606",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792289936,
+      "verdict": "new",
+      "why": "یمن جنگ و نامه رسمی رئیس مجلس"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine provincial traffic accident with low casualty count.",
-      "rescued": true,
-      "rule": "no-concrete-event",
-      "t": 1792264544,
-      "title": "۱۱ مصدوم و یک فوتی در حوادث رانندگی فارس"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: تظاهرات داخلی در فرانسه با اهمیت بین‌المللی متوسط",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792265321,
-      "title": "وزیر کشور فرانسه: ۵۵۰ هزار نفر در تظاهرات امروز شرکت کردند"
-    },
     {
       "ai": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: تجمع محلی و روتین در قم بدون اهمیت خبری ملی",
       "rescued": false,
@@ -6248,54 +6234,26 @@
       "rule": "no-concrete-event",
       "t": 1792289283,
       "title": "‘Standing up for democracy’: Atlanta ‘No Kings’ rally draws Trump critics ahead of midterms"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: قطر اعلام ادامه میانجی‌گری بین ایران و آمریکا",
+      "rescued": true,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1792289917,
+      "title": "قطر: میانجی گری میان ایران و آمریکا ادامه دارد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Club match, not a top-tier event",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792289918,
+      "title": "ژوزه-سویا، تاریخچه ای پر از تنش/ خشم تاریخی مورینیو: 13 اشتباه داوری علیه رئال"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "استفد",
-        "اشک",
-        "امدند",
-        "انجم",
-        "برد",
-        "بزدشت",
-        "خب",
-        "سرسر",
-        "فرنس",
-        "متفرق",
-        "معترض",
-        "پرس",
-        "پلس",
-        "کر",
-        "گز"
-      ],
-      "t": 1792246477.4886155,
-      "title": "معترضان در فرانسه به خیابان ها آمدند؛ پلیس گاز اشک آور به کار برد ⚡️ پلیس پاریس برای متفرق کردن معترضان از گاز اشک آور ا"
-    },
-    {
-      "h": [
-        "تنه",
-        "خبرنگر",
-        "دقق",
-        "زکر",
-        "سخنگ",
-        "سفد",
-        "نخستن",
-        "نشست",
-        "پرسش",
-        "پسخ",
-        "پنج",
-        "کت",
-        "کخ",
-        "کنر",
-        "گر"
-      ],
-      "t": 1792246484.1851532,
-      "title": "زکریا پس از ۱۴ دقیقه و سه پرسش از سخنگوی کاخ سفید کناره گیری کرد ⚡️ کیتی زکریا، پس از تنها پنج روز در سمت سخنگوی کاخ سفی"
-    },
     {
       "h": [
         "دست",
@@ -6775,6 +6733,27 @@
       ],
       "t": 1792288695.0875838,
       "title": "موسی احمدی: بازسازی پالایشگاه های عسلویه تکمیل شد و صد میلیون مترمکعب گاز به تولید بازگشت ⚡️ موسی احمدی، رئیس کمیسیون ان"
+    },
+    {
+      "h": [
+        "اقدم",
+        "الرع",
+        "خستر",
+        "در",
+        "عل",
+        "قهر",
+        "مشرکت",
+        "مصر",
+        "نم",
+        "نمندگ",
+        "هشدر",
+        "همت",
+        "ورد",
+        "یح",
+        "یمن"
+      ],
+      "t": 1792289938.532141,
+      "title": "هشدار رئیس مجلس یمن به مصر درباره ورود به جنگ ⚡️ یحیی علی الراعی رئیس مجلس نمایندگان یمن در نامه ای به همتای مصری خود خو"
     }
   ],
   "_published_incidents": [
@@ -7207,46 +7186,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ابفلح",
-        "اتش",
-        "اسرل",
-        "اقدم",
-        "انه",
-        "بختر",
-        "بردشت",
-        "حضر",
-        "حل",
-        "حمل",
-        "درخت",
-        "دشتند",
-        "رست",
-        "زتن",
-        "زخم",
-        "زدن",
-        "زدند",
-        "سنگ",
-        "شهد",
-        "شهرک",
-        "عکس",
-        "فلسطن",
-        "لگد",
-        "متقف",
-        "محل",
-        "نر",
-        "نشن",
-        "نظم",
-        "نکردند",
-        "وشنگتن",
-        "پرتب",
-        "پست",
-        "کرن",
-        "گفتند"
-      ],
-      "t": 1792160195.8361294,
-      "title": "عکاس واشینگتن پست در حمله شهرک نشینان به روستای فلسطینی زخمی شد ⚡️ شهرک نشینان اسرائیلی در حمله به روستای ابوفلاح در کرا"
-    },
     {
       "k": [
         "اتحد",
@@ -11060,6 +10999,38 @@
       "s": "موسی احمدی",
       "t": 1792288695.0788605,
       "title": "موسی احمدی: بازسازی پالایشگاه های عسلویه تکمیل شد و صد میلیون مترمکعب گاز به تولید بازگشت ⚡️ موسی احمدی، رئیس کمیسیون ان"
+    },
+    {
+      "k": [
+        "اقدم",
+        "الرع",
+        "امنت",
+        "تند",
+        "تهدد",
+        "ثبت",
+        "جنگ",
+        "خستر",
+        "دخل",
+        "در",
+        "رس",
+        "شدت",
+        "عل",
+        "قهر",
+        "مجلس",
+        "مشرکت",
+        "مصر",
+        "مل",
+        "نظم",
+        "نم",
+        "نمندگ",
+        "هشدر",
+        "همت",
+        "ورد",
+        "یح",
+        "یمن"
+      ],
+      "t": 1792289938.5172477,
+      "title": "هشدار رئیس مجلس یمن به مصر درباره ورود به جنگ ⚡️ یحیی علی الراعی رئیس مجلس نمایندگان یمن در نامه ای به همتای مصری خود خو"
     }
   ],
   "_text_polish": {
@@ -11071,7 +11042,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792289217
+    "at": 1792289799
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11086,13 +11057,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792289866,
-    "last_failure": 1792289266,
+    "disabled_until": 1792290523,
+    "last_failure": 1792289923,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792289862,
-    "last_failure": 1792289262,
+    "disabled_until": 1792290519,
+    "last_failure": 1792289919,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
