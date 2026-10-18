@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792359520
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792359520
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792359520
     },
@@ -159,20 +151,28 @@
     {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 2x, gemini:gemini-3.5-flash-lite held 2x, groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
       "t": 1792360103
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792360604
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792360619
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 139
+      "n": 140
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 238
+      "n": 239
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
-      "n": 105
+      "n": 106
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-18",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
-      "n": 86
+      "n": 87
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-18",
-      "n": 86
+      "n": 87
     },
     "openrouter:*": {
       "day": "2026-10-18",
@@ -496,21 +496,21 @@
     "2026-10-18": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 181,
+        "calls": 182,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 174,
+        "ok": 175,
         "other": 7
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 328,
+        "calls": 329,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 327,
+        "ok": 328,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
-        "429": 85,
-        "calls": 149,
+        "429": 86,
+        "calls": 150,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 41,
@@ -526,16 +526,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 86,
+        "calls": 87,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 60,
+        "ok": 61,
         "other": 26
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 86,
+        "calls": 87,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 59,
+        "ok": 60,
         "other": 27
       },
       "mistral:ministral-8b-latest": {
@@ -2076,12 +2076,6 @@
       "topic": "جامعه",
       "until": 1792441310.9221315
     },
-    "v4|المپیاد ورزشی درون مدرسه ای در خراسان رضوی آغاز شد/ افتتاح ۹۳ پروژه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: افتتاح المپیاد ورزشی مدرسه ای رویدادی محلی و کم اهمیت است.",
-      "topic": "ورزش",
-      "until": 1792398975.8243148
-    },
     "v4|امام جمعه بخش مرکزی یزد: ورزش باید از مدرسه و محله آغاز شود": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Imam's call for school‑neighbourhood sports, local",
@@ -3005,6 +2999,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: برگزاری جشنواره اقتصادی و معرفی برگزیدگان رویداد داخلی است.",
       "topic": "جامعه",
       "until": 1792398986.229291
+    },
+    "v4|دو طلای ناب و سبقت از روسیه/ زنده از لاس وگاس: ایران قهرمان جهان شد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Iran wins world wrestling championship, 2 gold medals.",
+      "topic": "ورزش",
+      "until": 1792447005.3132288
     },
     "v4|دو مدال برنز حاصل تلاش دختران کاراته ایران در قهرمانی جهان": {
       "ok": true,
@@ -4410,6 +4410,12 @@
       "topic": "جامعه",
       "until": 1792412239.324629
     },
+    "v4|هیچکس دلتنگ وینیسیوس نمی شود/ رونمایی از برگ برنده رئال برای ال کلاسیکو": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بازیکن جدید رئال، خبر ورزشی محلی",
+      "topic": "ورزش",
+      "until": 1792447004.469161
+    },
     "v4|والیبال ایران و غمی که هرگز فراموش نمی شود؛/ صابر کاظمی در کما شش روز پس از امضا با الریان!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: بازخوانی یک رویداد قدیمی و غیرخبری در حوزه ورزش.",
@@ -4895,12 +4901,6 @@
       "reason": "ai openrouter/openrouter/free batch score=8 happened=True scope=world: UNICEF reports 60,000 children orphaned in Gaza war",
       "topic": "حادثه",
       "until": 1792405927.712367
-    },
-    "v4|یک ایرانی در جمع مدعیان پاراتکواندو ناگویا": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Participation of Iranian athlete in Para-Asian Games",
-      "topic": "ورزش",
-      "until": 1792398975.096964
     },
     "v4|یک خبرگزاری دولتی: هر گرم طلای ۱۸ عیار، ۲۵ میلیون و ۷۰۰ هزار تومان شد؛ سکه امامی هم ۲۶۰ میلیون و ۵۰۰ تومان": {
       "ok": true,
@@ -5718,13 +5718,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارنظر سیاسی یک سیاستمدار درباره انتخابات داخلی اسرائیل است.",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1792348579,
-      "title": "واکنش رهبر حزب رقیب به حمایت علنی ترامپ از نتانیاهو"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به صرفه‌جویی گاز در البرز اهمیت ملی ندارد.",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -6276,6 +6269,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792360071,
       "title": "Sydney man charged after alleged gunfire prompted Dulwich Hill lockdown"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بازیکن جدید رئال، خبر ورزشی محلی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792360604,
+      "title": "هیچکس دلتنگ وینیسیوس نمی شود/ رونمایی از برگ برنده رئال برای ال کلاسیکو"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -12024,7 +12024,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792359986
+    "at": 1792360552
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -12039,8 +12039,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792360124,
-    "last_failure": 1792359524,
+    "disabled_until": 1792361208,
+    "last_failure": 1792360608,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
