@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792276549
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792276559
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792281240
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792281803
     }
   ],
   "_ai_pace": {
@@ -179,12 +179,12 @@
       "n": 115
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-10-17",
-      "n": 90
+      "day": "2026-10-18",
+      "n": 4
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-10-17",
-      "n": 90
+      "day": "2026-10-18",
+      "n": 1
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -192,82 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-10-14": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 29,
-        "calls": 288,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 217,
-        "other": 42
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 95,
-        "calls": 599,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 501,
-        "other": 3
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 168,
-        "calls": 364,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199167, Requested 1755. Please try again in 6m38.3",
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 188,
-        "other": 8
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 112,
-        "calls": 254,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199512, Requested 1455. Please try again in 6m57.74",
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 74,
-        "other": 68
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 13,
-        "calls": 13,
-        "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 13,
-        "calls": 13,
-        "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 13,
-        "calls": 13,
-        "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 13,
-        "calls": 13,
-        "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
-        "429": 13,
-        "calls": 13,
-        "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 15,
-        "calls": 29,
-        "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1792022400",
-        "ok": 14,
-        "other": 0
-      }
-    },
     "2026-10-15": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -566,6 +490,20 @@
         "429": 0,
         "calls": 28,
         "ok": 28,
+        "other": 0
+      }
+    },
+    "2026-10-18": {
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 4,
+        "ok": 4,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
         "other": 0
       }
     }
@@ -1480,6 +1418,12 @@
       "topic": "ورزش",
       "until": 1792361229.840714
     },
+    "v4|ebike rider, 13, charged with sexual touching after girls and women allegedly harassed on northern beaches trails": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local teen sexual offence case, limited impact",
+      "topic": "قضایی",
+      "until": 1792368187.1367078
+    },
     "v4|egypt’s el-sisi vows to defend saudi arabia from houthi attacks": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo score=7 happened=True scope=world: رئیس‌جمهور مصر تهدید نظامی علیه یمن",
@@ -1599,12 +1543,6 @@
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: قرار رسمی رئیس‌جمهور آمریکا، واکنش بین‌حزبی، تأثیر بر سیاست جهانی",
       "topic": "سیاست",
       "until": 1792348004.4449706
-    },
-    "v4|trump puts on hold new russia sanctions he signed into law": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تصمیم رئیس‌جمهور آمریکا درباره تحریم‌های روسیه رویدادی مهم و بین‌المللی است.",
-      "topic": "سیاست",
-      "until": 1792309158.903692
     },
     "v4|trump waives new russia sanctions as ukraine ties slump": {
       "ok": true,
@@ -2464,6 +2402,12 @@
       "topic": "جامعه",
       "until": 1792332304.0589812
     },
+    "v4|تجلیل از مترجم و شارح ایتالیایی دیوان حافظ": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Cultural ceremony, no national/international significance",
+      "topic": "جامعه",
+      "until": 1792368185.4623988
+    },
     "v4|تجهیز بیمارستان کاشمر به دستگاه سی تی اسکن پیشرفته ۳۲ اسلایس": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تجهیز یک بیمارستان محلی در کاشمر خبری استانی و غیر استراتژیک است.",
@@ -2799,6 +2743,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: کشف محموله کوچک قاچاق کالا در سطح استانی اهمیت ملی ندارد.",
       "topic": "جامعه",
       "until": 1792341519.283301
+    },
+    "v4|حضور دوباره کسری؛/ ترکیب احتمالی سپاهان برای ثبت سومین برد متوالی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Club league preview, not major national/international event",
+      "topic": "ورزش",
+      "until": 1792368186.2548509
     },
     "v4|حضور ۱۵ عضو هیات علمی دانشگاه مازندران در فهرست پژوهشگران پراستناد ۲ درصد برتر جهان": {
       "ok": false,
@@ -3231,12 +3181,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: افزایش محدود کلاس‌های آموزشی در استان تهران",
       "topic": "جامعه",
       "until": 1792323494.0758371
-    },
-    "v4|روستای «بیدو» به اینترنت پرسرعت متصل شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی و فاقد اهمیت ملی یا بین‌المللی است.",
-      "topic": "فناوری",
-      "until": 1792309153.9559968
     },
     "v4|روستای «بیدو» دیلم به اینترنت پرسرعت پیوست": {
       "ok": false,
@@ -4660,12 +4604,6 @@
       "topic": "آب و هوا",
       "until": 1792342717.086427
     },
-    "v4|کاهش ۷ هزار نفری دانش آموزان شهر تهران به دلیل شرایط اقتصادی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: Local demographic shift in Tehran; lacks national strategic impact.",
-      "topic": "جامعه",
-      "until": 1792309137.81698
-    },
     "v4|کتاب سال «دفاع مقدس و مقاومت» تمدید شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.8-flash score=1 happened=True scope=iran_national: رویداد فرهنگی و ادبی کم‌اهمیت و تمدید مهلت جشنواره",
@@ -5707,27 +5645,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: دستگیری سه نفر، کشف ۵.۵ کیلو تریاک",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792263611,
-      "title": "کشف تریاک از ۲ خودرو در قروه"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: خبر محلی و معمول඼ شهرستانی است",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792263612,
-      "title": "اخبار کوتاه از غرب اصفهان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: رویداد فرهنگی و هنری محلی که فاقد اهمیت ملی یا بین‌المللی است.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792263616,
-      "title": "افتتاحیه جشنواره بین المللی تئاتر عروسکی تهران – مبارک"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: برد تیم فوتبال صنعت نفت در لیگ برتر محلی است",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -6265,6 +6182,27 @@
       "rule": "local-routine-low-value",
       "t": 1792281232,
       "title": "وزیر جهاد کشاورزی در رم از مترجم و شارح ایتالیایی دیوان حافظ تجلیل کرد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Cultural ceremony, no national/international significance",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792281785,
+      "title": "تجلیل از مترجم و شارح ایتالیایی دیوان حافظ"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Club league preview, not major national/international event",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792281786,
+      "title": "حضور دوباره کسری؛/ ترکیب احتمالی سپاهان برای ثبت سومین برد متوالی"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local teen sexual offence case, limited impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792281787,
+      "title": "Ebike rider, 13, charged with sexual touching after girls and women allegedly harassed on northern beaches trails"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11857,7 +11795,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792281121
+    "at": 1792281699
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
