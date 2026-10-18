@@ -1,38 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1792277756
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792278317
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792278843
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792278843
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792278844
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792278848
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792278848
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792278853
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792278853
     },
@@ -159,24 +127,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792285832
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792286404
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792286404
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792286404
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792286408
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792286416
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792286416
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
+      "t": 1792286417
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792286429
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-17",
-      "n": 157
+      "n": 159
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-17",
-      "n": 270
+      "n": 271
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-17",
-      "n": 118
+      "n": 119
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-17",
-      "n": 118
+      "n": 119
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
@@ -496,30 +496,31 @@
     "2026-10-18": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 2,
-        "calls": 3,
+        "calls": 4,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 2
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
         "other": 1
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 1,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 0,
-        "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
@@ -536,8 +537,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 11,
-        "ok": 11,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       }
     }
@@ -1391,12 +1392,6 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Mass casualty stampede, >10 deaths",
       "topic": "حادثه",
       "until": 1792358922.4926057
-    },
-    "v4|4 میلیارد و ششصد/ آخرین درآمد وینگر مشهور از لیگ ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: خبر حاشیه‌ای و مالی ورزش داخلی، ارزش خبری درجه یک ندارد.",
-      "topic": "ورزش",
-      "until": 1792309158.9605043
     },
     "v4|al jazeera reports from paris as protests turns violent": {
       "ok": false,
@@ -2814,6 +2809,12 @@
       "topic": "نظامی",
       "until": 1792350962.4647422
     },
+    "v4|حمله بلاتر به اینفانتینو: پاپ باید خوشحال باشد!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: اظهارنظر و انتقاد مقام سابق ورزشی رویداد مهم جهانی نیست.",
+      "topic": "ورزش",
+      "until": 1792372817.7944565
+    },
     "v4|حمله به ستاد قوه قضائیه تکذیب شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: ادعای تروریستی تکذیب شده و ارزش خبری درجه یک ندارد.",
@@ -3492,6 +3493,12 @@
       "topic": "اقتصاد",
       "until": 1792315484.7624896
     },
+    "v4|سید مهدی میرباقری: همان طور که فروپاشی شرق را دیدیم، ان شاءالله فروپاشی آمریکا و غرب لیبرال را نیز می بینیم/ با همه که نمی توان رفاقت کرد، شدنی نیست": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=iran_national: اظهارات عقیدتی و تحلیل شخصی یک عضو مجلس خبرگان است.",
+      "topic": "سیاست",
+      "until": 1792372816.2041025
+    },
     "v4|سیزدهمین المپیاد بین المللی هندسه برگزار شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: رویداد علمی و آموزشی که در اولویت اخبار ملی قرار ندارد.",
@@ -3564,12 +3571,6 @@
       "topic": "اقتصاد",
       "until": 1792321309.284365
     },
-    "v4|صادرات ۵۲ میلیارد دلاری ایران در برابر صادرات ۳۵۰ میلیارد دلاری ترکیه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: سخنان و آمارهای روتین مقام دولتی بدون تصمیم جدید استراتژیک.",
-      "topic": "اقتصاد",
-      "until": 1792309158.974577
-    },
     "v4|صادقیان پور، نماینده یزد در میدان آسیایی/ پاراتکواندوکار ملی پوش آماده رقابت در ناگویا شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: آمادگی ورزشکار استانی برای مسابقات آینده اهمیت ملی ندارد",
@@ -3599,6 +3600,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: PR routine news of a bank, low significance",
       "topic": "اقتصاد",
       "until": 1792353220.2513483
+    },
+    "v4|صعود ۳ آزادکار ایران به فینال امیدهای جهان/ شکست مبین عظیمی و حذف یحیی پور": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: فینال و مدال آوری ورزشکاران ایران در مسابقات جهانی.",
+      "topic": "ورزش",
+      "until": 1792372817.8092158
     },
     "v4|صعود ۴ آزادکار ایران به نیمه نهایی امیدهای جهان": {
       "ok": true,
@@ -4236,6 +4243,12 @@
       "topic": "اقتصاد",
       "until": 1792316122.9286435
     },
+    "v4|نویدکیا درباره خط حمله تیمش تصمیم می گیرد:/ بازگشت سریع کسری یا نیمکت نشینی آموزشی؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: اخبار داخلی و تحلیل تیم‌های ورزشی اهمیت ملی ندارد.",
+      "topic": "ورزش",
+      "until": 1792372817.7797387
+    },
     "v4|نگرانی پاری سن ژرمن: دشمن یامال مصدوم شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: مصدومیت بازیکن فوتبال خبری درجه یک محسوب نمی‌شود.",
@@ -4415,12 +4428,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: ادعاها، تحلیل‌ها و بحث‌های سیاسی داخلی درباره رویدادهای گذشته.",
       "topic": "سیاست",
       "until": 1792313672.3201833
-    },
-    "v4|ونس درباره تاکر کارلسون، مجری مطرح آمریکایی: یکی از دلایل خشم شدید او، جنگ با ایران است، زیرا از این جنگ خوشش نمی آید/ تاکر را درک می کنم/ عبدل السید، پزشک مسلمان و نامزد دموکرات،": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع‌گیری مقام ارشد آمریکایی درباره جنگ و مسائل استراتژیک.",
-      "topic": "سیاست",
-      "until": 1792309158.9465218
     },
     "v4|ونس: ۲۰ نیروی آمریکایی در درگیری با ایران کشته شده اند": {
       "ok": true,
@@ -4830,12 +4837,6 @@
       "topic": "نظامی",
       "until": 1792314366.8343542
     },
-    "v4|گزارش سال ۱۴۰۴ پیمان منتشر شد؛ بیش از ۲۱ همت تراکنش پرداخت مستقیم در سایه جنگ و محدودیت ها": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: انتشار گزارش سالانه یک شرکت، رویداد درجه اول اقتصادی نیست.",
-      "topic": "اقتصاد",
-      "until": 1792309158.932528
-    },
     "v4|گزارشی از حادثه امنیتی در خلیج عدن": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: حمله به کشتی در خلیج عدن رویدادی مهم و امنیتی است",
@@ -5104,6 +5105,10 @@
     "صدای انفجار در شمال عراق شنیده شد؛ حمله پهپادی به مقر گروهک های تجزیه طلب": {
       "reason": "content_duplicate",
       "until": 1792290903.419424
+    },
+    "صعود ۳ آزادکار ایران به فینال امیدهای جهان/ شکست مبین عظیمی و حذف یحیی پور": {
+      "reason": "content_duplicate",
+      "until": 1792308029.8733256
     },
     "معاون نخست وزیر روسیه: ظرفیت ذخایر نفتی برای ثبات در بازار جهانی تقریبا به پایان رسیده است": {
       "reason": "content_duplicate",
@@ -5685,13 +5690,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: برد تیم فوتبال صنعت نفت در لیگ برتر محلی است",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792263622,
-      "title": "طلسم ۴۶۴ روزه صنعت نفت با پورموسوی شکست!"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: حادثه غرق‌شدگی فردی در سطح محلی بوده و فاقد اهمیت ملی است.",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -6243,6 +6241,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792281787,
       "title": "Ebike rider, 13, charged with sexual touching after girls and women allegedly harassed on northern beaches trails"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=iran_national: اظهارات عقیدتی و تحلیل شخصی یک عضو مجلس خبرگان است.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792286416,
+      "title": "سید مهدی میرباقری: همان طور که فروپاشی شرق را دیدیم، ان شاءالله فروپاشی آمریکا و غرب لیبرال را نیز می بینیم/ با همه که ن"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11243,7 +11248,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792285748
+    "at": 1792286328
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11257,20 +11262,15 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792281527.0,
-    "last_failure": 1792281227,
-    "last_status": 599
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792285281,
-    "last_failure": 1792284681,
-    "last_status": 429
+    "disabled_until": 1792286708.0,
+    "last_failure": 1792286408,
+    "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792281804,
-    "last_failure": 1792281204,
-    "last_status": 429
+    "disabled_until": 1792286704.0,
+    "last_failure": 1792286404,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
