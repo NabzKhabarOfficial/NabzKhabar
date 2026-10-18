@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792359520
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792359524
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792359529
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792359529
     },
@@ -159,24 +147,36 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792360619
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792361204
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792361204
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
+      "t": 1792361247
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 140
+      "n": 142
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 239
+      "n": 242
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
-      "n": 106
+      "n": 108
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-18",
-      "n": 106
+      "n": 108
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
@@ -496,32 +496,32 @@
     "2026-10-18": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 182,
+        "calls": 184,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 175,
+        "ok": 177,
         "other": 7
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 329,
+        "calls": 332,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 328,
+        "ok": 331,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
-        "429": 86,
-        "calls": 150,
+        "429": 87,
+        "calls": 152,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 41,
+        "ok": 42,
         "other": 23
       },
       "gemini:gemini-3.8-flash": {
-        "429": 82,
-        "calls": 142,
+        "429": 83,
+        "calls": 144,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 43,
+        "ok": 44,
         "other": 17
       },
       "groq:openai/gpt-oss-120b": {
@@ -546,8 +546,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 915,
-        "ok": 915,
+        "calls": 919,
+        "ok": 919,
         "other": 0
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -1596,6 +1596,12 @@
       "topic": "فناوری",
       "until": 1792428668.1572533
     },
+    "v4|trump defends russia sanctions relief, accuses zelensky of rejecting peace": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.8-flash score=8 happened=True scope=world: موضع‌گیری رئیس‌جمهور آمریکا درباره صلح اوکراین و تخفیف تحریم‌های روسیه",
+      "topic": "سیاست",
+      "until": 1792447607.786503
+    },
     "v4|trump endorses embattled israeli pm netanyahu ahead of october 27 election": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمایت رئیس‌جمهور آمریکا از نخست‌وزیر اسرائیل در آستانه انتخابات است.",
@@ -2303,12 +2309,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: گزارش بین‌المللی درباره موانع تنوع زیستی رویداد درجه یک نیست.",
       "topic": "جامعه",
       "until": 1792407048.0621545
-    },
-    "v4|بررسی نقش اقتصاد چرخشی و زیست فناوری در تأمین امنیت غذایی پایدار": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: این یک نشست علمی و همایش است و خبر فوری محسوب نمی‌شود.",
-      "topic": "جامعه",
-      "until": 1792398985.2937732
     },
     "v4|برزمینی: جامعه ورزش گلستان ۲۳۰ شب در تجمعات مردمی حضور داشت": {
       "ok": false,
@@ -5053,6 +5053,10 @@
       "reason": "policy_scope_blocked",
       "until": 1792360934.4104755
     },
+    "trump defends russia sanctions relief, accuses zelensky of rejecting peace": {
+      "reason": "content_duplicate",
+      "until": 1792382847.547917
+    },
     "trump endorses embattled israeli pm netanyahu ahead of october 27 election": {
       "reason": "content_duplicate",
       "until": 1792366793.5516083
@@ -5108,6 +5112,10 @@
     "حمله موشکی یمن به محل تجمع نظامیان سعودی در مأرب": {
       "reason": "content_duplicate",
       "until": 1792362771.3245492
+    },
+    "دو طلای ناب و سبقت از روسیه/ زنده از لاس وگاس: ایران قهرمان جهان شد": {
+      "reason": "content_duplicate",
+      "until": 1792382819.1580074
     },
     "زلنسکی: دستور ترامپ در لغو تحریم روسیه مایه تاسف است": {
       "reason": "content_duplicate",
@@ -5167,24 +5175,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "رئیس جمهور: کشور از واردات بنزین بی نیاز شد ⚡️ رئیس جمهور در مورد مدیریت مصرف سوخت گفت: با صرفه جویی و همراهی ",
-      "id": "a3104d50e1",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792319547,
-      "verdict": "new",
-      "why": "خبر جدید از خودکفایی ایران در سوخت، بدون تکرار"
-    },
-    {
-      "head": "اعراب اسرائیل: چهار سال حکومت نتانیاهو را غیرقابل تحمل می دانند و برای برکناری او در انتخابات متحد می شوند ⚡️ ",
-      "id": "502898e602",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792320069,
-      "verdict": "new",
-      "why": "Arab Israeli coalition against Netanyahu"
-    },
     {
       "head": "نتانیاهو: ایران در حال ساخت موشک های قاره پیما با کلاهک هسته ای برای آمریکا است ⚡️ بنیامین نتانیاهو نخست وزیر ",
       "id": "3aafb9c7fd",
@@ -5714,6 +5704,26 @@
       "t": 1792359568,
       "verdict": "repeat",
       "why": "بیانیه شورای همکاری خلیج فارس در منامه"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "دونالد ترامپ: ولودیمیر زلنسکی مانع صلح در جنگ اوکراین است ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، ولودیمیر زلنسکی،",
+      "id": "922e32a9d4",
+      "match": "ترامپ: در مذاکرات برای پایان جنگ روسیه و اوکراین هستم",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792361234,
+      "verdict": "repeat",
+      "why": "ترامپ در مذاکرات صلح اوکراین و انتقاد از زلنسکی"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "دونالد ترامپ: ولودیمیر زلنسکی مانع صلح در جنگ اوکراین است ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، ولودیمیر زلنسکی،",
+      "id": "922e32a9d4",
+      "match": "ترامپ: در مذاکرات برای پایان جنگ روسیه و اوکراین هستم",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792361243,
+      "verdict": "repeat",
+      "why": "ترامپ در مذاکرات صلح اوکراین و انتقاد از زلنسکی"
     }
   ],
   "_importance_rescue_log": [
@@ -12024,7 +12034,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792360552
+    "at": 1792361141
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -12039,9 +12049,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792361208,
-    "last_failure": 1792360608,
-    "last_status": 429
+    "disabled_until": 1792361274,
+    "last_failure": 1792361214,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1792360120,
