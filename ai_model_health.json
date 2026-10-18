@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792278853
-    },
-    {
-      "e": "AI PACE: gemini:gemini-3.5-flash-lite held 2x, groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
-      "t": 1792278886
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792279472
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792286429
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792287520
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792287521
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-18",
-      "n": 9
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-18",
-      "n": 9
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-10-17",
@@ -524,15 +524,15 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 9,
-        "ok": 9,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 8,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
@@ -3541,6 +3541,12 @@
       "topic": "جامعه",
       "until": 1792354314.220533
     },
+    "v4|شرق تهران لرزید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: زمین‌لرزه کوچک، خسارت کم، بومی",
+      "topic": "حادثه",
+      "until": 1792373920.4718773
+    },
     "v4|شنیده شدن صدای انفجار در ریاض و توقف پروازهای فرودگاه دمام": {
       "ok": true,
       "reason": "ai gemini/gemini-3.8-flash score=8 happened=True scope=world: گزارش انفجار در پایتخت عربستان سعودی و توقف پروازها در دمام",
@@ -4045,6 +4051,12 @@
       "topic": "سیاست",
       "until": 1792324766.4873312
     },
+    "v4|مصرف لبنیات در ایران کمتر از میزان توصیه شده / پیشنهاد جدید وزارت بهداشت به مجلس": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: پیشنهاد وزارت بهداشت برای تخصیص مالیات به مواد غذایی",
+      "topic": "سلامت",
+      "until": 1792373921.301824
+    },
     "v4|معاون استاندار کردستان:اتصال بلوار کردستان به آزادگان برای کاهش ترافیک شهرک وحدت ضروری است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این خبر مربوط به مسائل ترافیکی و عمرانی در سطح شهر سنندج است.",
@@ -4128,12 +4140,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering with no strategic or national impact.",
       "topic": "جامعه",
       "until": 1792354949.9483905
-    },
-    "v4|موقعیت بیرانوند در سی امین دوره جوایز سالانه afc؛ رقابت با 2 عربستانی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Award competition pending, not a decisive major event",
-      "topic": "ورزش",
-      "until": 1792309692.7081897
     },
     "v4|موقعیت بیرانوند در سی امین دوره جوایز سالانه afc؛ رقابت با ۲ عربستانی": {
       "ok": false,
@@ -4314,12 +4320,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: اظهارنظر درباره اجرای راهبردهای بحران آب و انتقاد از دستگاه‌ها.",
       "topic": "جامعه",
       "until": 1792309709.8189647
-    },
-    "v4|هندوستان جدیدترین قربانی نفوذ هوش مصنوعی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: نفوذ هوش مصنوعی به داده‌های محرمانه یک کشور رویدادی مهم است.",
-      "topic": "فناوری",
-      "until": 1792309158.9884262
     },
     "v4|هواپیمایی هند تعلیق پروازها به عربستان تمدید کرد": {
       "ok": false,
@@ -5690,13 +5690,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: حادثه غرق‌شدگی فردی در سطح محلی بوده و فاقد اهمیت ملی است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792263851,
-      "title": "غرق شدن جوان ۱۸ ساله در حوضچه آب کشاورزی در محدوده فشافویه"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تجمع محلی وroutine در یک شهر کوچک اهمیت ملی ندارد.",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -6248,6 +6241,13 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792286416,
       "title": "سید مهدی میرباقری: همان طور که فروپاشی شرق را دیدیم، ان شاءالله فروپاشی آمریکا و غرب لیبرال را نیز می بینیم/ با همه که ن"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: زمین‌لرزه کوچک، خسارت کم، بومی",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792287520,
+      "title": "شرق تهران لرزید"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11248,7 +11248,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792286905
+    "at": 1792287479
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
