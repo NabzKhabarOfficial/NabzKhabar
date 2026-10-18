@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792362956
-    },
-    {
-      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.8-flash",
-      "t": 1792362962
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
-      "t": 1792362996
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792363550
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792363550
     },
@@ -159,16 +143,32 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792365860
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792366411
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792366411
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
+      "t": 1792366412
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792366427
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 152
+      "n": 153
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 261
+      "n": 262
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
@@ -496,16 +496,16 @@
     "2026-10-18": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 194,
+        "calls": 195,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 185,
+        "ok": 186,
         "other": 9
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 349,
+        "calls": 350,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 347,
+        "ok": 348,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -1530,6 +1530,12 @@
       "topic": "ورزش",
       "until": 1792415362.0036936
     },
+    "v4|labor promises $30 weekly cap for victorian public transport amid push for free travel": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Local election campaign promise, not a confirmed national policy.",
+      "topic": "سیاست",
+      "until": 1792452812.235981
+    },
     "v4|madueke strikes late but who missed his big chance? - forest v arsenal ratings": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: جزئیات و امتیازدهی مسابقه فوتبال لیگ جزیره.",
@@ -2333,12 +2339,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مسابقات ورزشی استانی و محلی اهمیت ملی ندارد",
       "topic": "ورزش",
       "until": 1792411657.5271232
-    },
-    "v4|برگزاری مسابقه جام قهرمانان مثبت ۵۰ سال ویژه بانوان در یزد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر ورزشی محلی و استانی فاقد اهمیت ملی.",
-      "topic": "ورزش",
-      "until": 1792400717.7361848
     },
     "v4|بسنت: این اروپایی ها هستند که ماشین جنگی روسیه را تأمین مالی می کنند": {
       "ok": true,
@@ -4362,12 +4362,6 @@
       "topic": "حادثه",
       "until": 1792419947.1404066
     },
-    "v4|همتی: شهدا الگوی جاودان پهلوانی برای ورزشکاران هستند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine remarks by a local official regarding sports and culture.",
-      "topic": "جامعه",
-      "until": 1792400716.3770037
-    },
     "v4|هواداران سپاهان لطف داشتند و لقب بوگاتی را به من دادند/ میرزایی: دلم برای اصفهان و مردمش تنگ شده بود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: مصاحبه بازیکن فوتبال درباره بازی لیگ برتر اهمیت ملی ندارد.",
@@ -5021,6 +5015,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این خبر مربوط به رویدادهای استانی و محلی خراسان شمالی است.",
       "topic": "جامعه",
       "until": 1792427539.9409235
+    },
+    "v4|۷۱ درصد از آمریکایی ها معتقدند که کشورشان در مسیر اشتباهی قرار دارد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Public opinion poll, not a concrete political event or decision.",
+      "topic": "سیاست",
+      "until": 1792452812.2476351
     },
     "v4|‘anger and shame’: macron denounces france’s nationwide rioting, looting": {
       "ok": true,
@@ -12072,7 +12072,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792365772
+    "at": 1792366341
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
