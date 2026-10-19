@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792450526
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792450532
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792450532
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792450536
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792453480
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792454012
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792454012
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792454013
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-19",
-      "n": 254
+      "n": 255
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-19",
@@ -479,9 +479,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 329,
+        "calls": 330,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 327,
+        "ok": 328,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -3235,12 +3235,6 @@
       "topic": "جامعه",
       "until": 1792480751.8927913
     },
-    "v4|رکود مسکن چین وارد چهارمین سال شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Report on the ongoing economic trend in China's housing market.",
-      "topic": "اقتصاد",
-      "until": 1792477257.2146337
-    },
     "v4|زارع کوشا:برای معرفی ری به کشور و جهان، پروژه های فرهنگی تعریف می کنیم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و شهری درباره تعریف پروژه‌های فرهنگی در ری",
@@ -5010,6 +5004,12 @@
       "reason": "ai mistral/open-mistral-nemo score=6 happened=True scope=world: ۹ کشته در انفجار لیبی، کشتگان بیش از ۱۰ نفر",
       "topic": "حادثه",
       "until": 1792493509.63479
+    },
+    "v4|‘i don’t want to be known as a hero’: barber who rushed to help helen haines praised by pm": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و حاشیه‌ای درباره تقدیر از یک آرایشگر در استرالیا",
+      "topic": "جامعه",
+      "until": 1792540412.9295573
     }
   },
   "_editorial_blocks": {
@@ -5724,13 +5724,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: حادثه رانندگی در روستا",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792437839,
-      "title": "برخورد پژو پارس با مزدا در جاده نورآباد-نهاوند؛ ۲ نفر مصدوم شدند"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine provincial gathering; lacks national strategic impact or major news value.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -6282,6 +6275,13 @@
       "rule": "no-concrete-event",
       "t": 1792453477,
       "title": "Morocco's first female prime minister caught between the king, clerics, and feminists"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و حاشیه‌ای درباره تقدیر از یک آرایشگر در استرالیا",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792454012,
+      "title": "‘I don’t want to be known as a hero’: barber who rushed to help Helen Haines praised by PM"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11816,7 +11816,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792453309
+    "at": 1792453886
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
