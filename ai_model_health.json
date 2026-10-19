@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-31b-it:free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792445932
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 2 stories",
-      "t": 1792445932
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792445933
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792445933
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792445933
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792445933
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792445933
     },
@@ -159,16 +135,40 @@
     {
       "e": "AI PACE: gemini:gemini-3.5-flash-lite held 4x, groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 6x, openrouter:* held 3x",
       "t": 1792446531
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792447071
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792447071
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792447073
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792447073
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
+      "t": 1792447077
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792447086
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-19",
-      "n": 138
+      "n": 140
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-19",
-      "n": 238
+      "n": 239
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-19",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-19",
-      "n": 86
+      "n": 87
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-19",
-      "n": 86
+      "n": 87
     },
     "openrouter:*": {
       "day": "2026-10-19",
@@ -472,16 +472,16 @@
     "2026-10-19": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 178,
+        "calls": 180,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 132,
+        "ok": 134,
         "other": 46
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 316,
+        "calls": 317,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 314,
+        "ok": 315,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -502,17 +502,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 86,
+        "calls": 87,
         "last_error": "HTTP 502: <html> <head><title>502 Bad Gateway</title></head> <body> <center><h1>502 Bad Gateway</h1></center> <hr><center>cloudflare</center> </body> </html> ",
-        "ok": 65,
+        "ok": 66,
         "other": 21
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 86,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "calls": 87,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 51,
-        "other": 35
+        "other": 36
       },
       "mistral:ministral-8b-latest": {
         "429": 0,
@@ -1501,12 +1501,6 @@
       "topic": "نظامی",
       "until": 1792484718.948805
     },
-    "v4|iran war live: us issues mideast security alert; yemen fighting flares": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: آشفتگی خاورمیانه و هشدار امنیتی سفارت آمریکا در سطح بین‌المللی",
-      "topic": "نظامی",
-      "until": 1792475551.2804563
-    },
     "v4|israeli police arrest 10 after settler attacks on journalist, diplomats": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=world: بازداشت ۱۰ شهرک‌نشین اسرائیلی پس از حمله به دیپلمات‌ها و خبرنگار.",
@@ -1524,6 +1518,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: Global-scale tech release by Nvidia regarding enterprise open models.",
       "topic": "فناوری",
       "until": 1792516276.9780064
+    },
+    "v4|replika’s founder built the ai assistant she pitched at disrupt 12 years ago": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: خبر مربوط به یک استارتاپ فناوری است و اهمیت جهانی ندارد.",
+      "topic": "فناوری",
+      "until": 1792533473.0521307
     },
     "v4|ronaldo given 30-day suspension and £215 fine by portuguese fa": {
       "ok": false,
@@ -1710,12 +1710,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: سخنان روتین رئیس دانشگاه علمی کاربردی فاقد اهمیت ملی است.",
       "topic": "جامعه",
       "until": 1792520737.704697
-    },
-    "v4|آنکارا در انتظار سفر پوتین به ترکیه است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: انتظار برای انجام یک سفر و تکرار دعوت، رویداد قطعی محسوب نمی‌شود.",
-      "topic": "سیاست",
-      "until": 1792475538.4818776
     },
     "v4|آیا حمایت ترامپ از نتانیاهو مقدمه حمله به ایران است؟": {
       "ok": false,
@@ -1933,6 +1927,12 @@
       "topic": "اقتصاد",
       "until": 1792527237.8807137
     },
+    "v4|استفاده احتمالی از سلاح هسته ای در مدار زمین": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: بررسی فرضی و علمی، بدون رویداد مشخص یا تصمیم قطعی.",
+      "topic": "فناوری",
+      "until": 1792533477.0399885
+    },
     "v4|اسلامی با مصدومیت از ورزشگاه رفت؛/ خبر تلخ برای استقلال در شب پیروزی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: حمله به بازیکن استقلال",
@@ -2052,12 +2052,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: دستگیری عامل چاقوکشی در بیمارستانی در ورامین محلی است",
       "topic": "حوادث",
       "until": 1792520741.0359793
-    },
-    "v4|انتخابات در آمریکا نگرانی از تأثیر ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل و ابراز نگرانی کلی بدون رخداد عینی مشخص",
-      "topic": "سیاست",
-      "until": 1792475551.293749
     },
     "v4|انتخابات میان دوره ای آمریکا در سایه فشارهای دولت ترامپ و نگرانی درباره سلامت رای گیری": {
       "ok": false,
@@ -2466,6 +2460,12 @@
       "reason": "ai mistral/open-mistral-nemo score=7 happened=True scope=world: ترمپ موضع رسمی در مورد زلنسکی و مذاکرات جنگ",
       "topic": "سیاست",
       "until": 1792525986.1244824
+    },
+    "v4|ترامپ: من نمی خواهم ایران سلاح هسته ای داشته باشد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع‌گیری صریح مقام ارشد درباره برنامه هسته‌ای ایران.",
+      "topic": "سیاست",
+      "until": 1792533477.0549111
     },
     "v4|تشدید گرانی جهانی مواد غذایی در سایه جنگ و خشکسالی": {
       "ok": false,
@@ -3000,6 +3000,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: تعطیلی لیگ برتر فوتسال رویدادی درجه یک و ملی محسوب نمی‌شود.",
       "topic": "ورزش",
       "until": 1792532309.587256
+    },
+    "v4|دو کشته و زخمی در تیراندازی حوالی مسجدی در ایالت اوهایو آمریکا": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: تیراندازی در آمریکا با تلفات محدود، زیر آستانه خبر اول‌رتبه جهانی.",
+      "topic": "حادثه",
+      "until": 1792533477.0248485
     },
     "v4|دوئل دارایی های امن؛ تحلیل سرمایه گذاری در طلا و ملک": {
       "ok": false,
@@ -4051,12 +4057,6 @@
       "topic": "سلامت",
       "until": 1792525934.1053162
     },
-    "v4|معاون استاندار: موانع اجرای نیروگاه خورشیدی ۱۳۰ مگاواتی زنجان در حال پیگیری است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: پیگیری امور اداری و مجوزهای یک نیروگاه استانی، محلی و غیرمهم",
-      "topic": "اقتصاد",
-      "until": 1792475547.2280858
-    },
     "v4|معاون وزیر: تربیت بدنی و سلامت، زیربنای یادگیری و کیفیت آموزش است": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: دستگاه‌های مدرسه باید نقش‌آفرینی کنند",
@@ -4302,12 +4302,6 @@
       "reason": "ai gemini/gemini-3.8-flash batch score=1 happened=False scope=world: اظهارات و تحلیل شخصی کارشناس فاقد ارزش خبری درجه‌یک",
       "topic": "سیاست",
       "until": 1792485416.449031
-    },
-    "v4|هشدار درباره احتکار تایر/ مراکز عرضه بدون واسطه فعال شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine market regulation measure regarding tire distribution and pricing.",
-      "topic": "اقتصاد",
-      "until": 1792475542.5884132
     },
     "v4|هشدار درباره تشدید قحطی و بحران انسانی در غزه": {
       "ok": false,
@@ -4692,6 +4686,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: بازگشایی یک کتابخانه در قشم محلی و کم‌اهمیت است.",
       "topic": "جامعه",
       "until": 1792518444.703648
+    },
+    "v4|کرواسی در شوک: هواداران مقابل آژاکس نازی شدند!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Fan Nazi chants prosecuted, minor local incident",
+      "topic": "قضایی",
+      "until": 1792533471.0103533
     },
     "v4|کسی که فکرش را نمی کردیم قهرمان جهان مان کرد؛/ سلام نظامی و پشتک و گریه شدید در لاس وگاس": {
       "ok": true,
@@ -5721,20 +5721,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=iran_national: بررسی اخبار تکذیب شده روزانه ارزش خبری درجه یک ندارد.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792433295,
-      "title": "فکت چک؛ اخباری که ۲۷ مهر ۱۴۰۵ تکذیب شدند"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Small local drug seizure, not nationally significant",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792433846,
-      "title": "کشف ۲ کیلوگرم تریاک از قاچاقچی سابقه دار در شاهرود"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local chamber calls for review of export currency commitments",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -6279,6 +6265,20 @@
       "rule": "foreign-local-preselection",
       "t": 1792446523,
       "title": "How have Canada closed gap to world champions England?"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Fan Nazi chants prosecuted, minor local incident",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792447071,
+      "title": "کرواسی در شوک: هواداران مقابل آژاکس نازی شدند!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: خبر مربوط به یک استارتاپ فناوری است و اهمیت جهانی ندارد.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792447073,
+      "title": "Replika’s founder built the AI assistant she pitched at Disrupt 12 years ago"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -12215,7 +12215,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792446366
+    "at": 1792446940
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -12228,11 +12228,6 @@
     "last_error": "HTTP 402 payment required (no free quota on this account)",
     "last_failure": 1791935762,
     "last_status": 402
-  },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792446805.0,
-    "last_failure": 1792446505,
-    "last_status": 599
   },
   "gemini:gemini-3.5-flash-lite": {
     "disabled_until": 1792445056.0,
