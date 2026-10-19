@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792365840
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792365840
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792365844
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792365849
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792365849
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1792365853
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792365860
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792371090
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792371637
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792371638
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792371638
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792371641
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792371641
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792371657
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 161
+      "n": 162
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 277
+      "n": 278
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
-      "n": 123
+      "n": 124
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-18",
-      "n": 123
+      "n": 124
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-19",
-      "n": 7
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-19",
-      "n": 7
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-10-18",
@@ -472,19 +472,19 @@
     "2026-10-19": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 9,
-        "ok": 9,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 2,
-        "calls": 5,
+        "429": 3,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 2,
@@ -492,29 +492,29 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 1,
-        "calls": 1,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 0,
+        "ok": 1,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 7,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 6,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 7,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
+        "ok": 5,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 11,
-        "ok": 11,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       }
     }
@@ -1789,12 +1789,6 @@
       "topic": "جامعه",
       "until": 1792426255.7172713
     },
-    "v4|احتمال قطع آنتن ۱۰۰ هزار گوشی قاچاق/ رضا عالیان، کارشناس بازار موبایل: استعلام از سامانه همتا، پیش از خرید الزامی است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: اطلاع‌رسانی و هشدار درباره طرح رجیستری و گوشی‌های قاچاق.",
-      "topic": "جامعه",
-      "until": 1792401564.0869758
-    },
     "v4|اخبار کوتاه از غرب اصفهان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: خبر محلی و شهرستانی است و اهمیت ملی ندارد.",
@@ -2131,12 +2125,6 @@
       "topic": "ورزش",
       "until": 1792413520.3396065
     },
-    "v4|انفجار کنترل شده مهمات در سرپل ذهاب طی روزهای ۲۶ و ۲۷ مهر ماه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=False scope=local: اطلاعیه انجام برنامه انهدام مهمات قدیمی در یک منطقه محلی.",
-      "topic": "نظامی",
-      "until": 1792401577.69345
-    },
     "v4|اولیانوف: یاد گرفتیم در روابط با غرب ساده لوح نباشیم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارنظر تکراری و معمولی یک دیپلمات بدون تصمیم ملموس",
@@ -2418,6 +2406,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=0 happened=False scope=local: اخبار روال و برنامه‌های صداوسیما اهمیت ملی ندارد",
       "topic": "جامعه",
       "until": 1792417634.3406897
+    },
+    "v4|تاکید فرماندار بر تسریع در شناسایی ضارب پزشک مسجدسلیمانی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: حمله به پزشک، فرماندار خواست شناسایی سریع ضارب",
+      "topic": "قضایی",
+      "until": 1792458038.5462983
     },
     "v4|تاکید وزیران امور خارجه ایران و پاکستان بر رسیدگی به چالش های منطقه ای": {
       "ok": false,
@@ -3060,12 +3054,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: موضع‌گیری رسمی رئیس پارلمان لبنان درباره تجاوزات اسرائیل و قطعنامه ۱۷۰۱",
       "topic": "سیاست",
       "until": 1792421132.7617064
-    },
-    "v4|رئیس کمیسیون امنیت ملی: اخلاقی از بدنه وزارت دفاع انتخاب شده و سال ها تجربه حضور در حوزه موشکی و هوافضا را دارد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=iran_national: اظهارات نماینده مجلس درباره سوابق مسئول دفاعی، خبر درجه یک نیست.",
-      "topic": "سیاست",
-      "until": 1792401577.677848
     },
     "v4|رابیو مهره کلیدی روبن آموریم/ تمدید 4 ساله میلان با ستاره احیا شده": {
       "ok": false,
@@ -4129,6 +4117,12 @@
       "topic": "ورزش",
       "until": 1792439560.6473787
     },
+    "v4|نامزد دموکرات سنای آمریکا: جنگ علیه ایران احمقانه بود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.8-flash score=2 happened=False scope=world: اظهارات انتخاباتی یک نامزد سنا فاقد تصمیم رسمی یا ارزش خبری فوری است.",
+      "topic": "سیاست",
+      "until": 1792458048.549165
+    },
     "v4|نامگذاری غیرقانونی خیابان های کوهسنگی و دانشگاه در مشهد به هیات حل اختلاف مرکزی ارسال شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: اختلاف بر سر نام‌گذاری خیابان‌ها در مشهد محلی و استانی است.",
@@ -4404,6 +4398,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Routine diplomatic effort/intention, not a concrete decision or event.",
       "topic": "سیاست",
       "until": 1792440699.2257757
+    },
+    "v4|وزیر در پرونده ملوان- تراکتور دخالت می کند؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=local: گمانه‌زنی رسانه‌ای درباره یک پرونده انضباطی لیگ برتر فوتبال است.",
+      "topic": "ورزش",
+      "until": 1792458041.019951
     },
     "v4|وزیر دفاع: جنگنده سنگین ایرانی سال آینده تیکاف خواهد کرد / این جنگنده در سازمان هوایی جمهوری اسلامی در وزارت دفاع ساخته شده": {
       "ok": false,
@@ -5008,7 +5008,7 @@
     },
     "trump says suspension of russia sanctions is to keep peace negotiations going": {
       "reason": "content_duplicate",
-      "until": 1792392690.6517706
+      "until": 1792393257.272167
     },
     "what we know so far about deadly fire at canadian military base": {
       "reason": "content_duplicate",
@@ -5707,20 +5707,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.8-flash score=1 happened=True scope=local: خبر کاملاً محلی و کم‌اهمیت کشاورزی شهرستان تفت",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792351456,
-      "title": "شهرستان تفت با ۱۲۰۰ هکتار باغ انار در جایگاه دوم سطح زیر کشت استان یزد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارات کلی رئیس‌جمهور فرانسه درباره اعتراضات داخلی این کشور اهمیت راهبردی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792351459,
-      "title": "ماکرون: با قاطعیت با کسانی که بی نظمی کردند برخورد می کنیم"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: سخنرانی مقام محلی و مذهبی درباره مسائل عقیدتی، فاقد ارزش خبری درجه یک.",
       "rescued": false,
       "rule": "strict-source-below-importance(8<10)",
@@ -6265,6 +6251,20 @@
       "rule": "no-concrete-event",
       "t": 1792371084,
       "title": "ستاره های پاراآسیایی ایران آماده مصاف با رقبا/ برنامه کامل روز نخست کاروان ایران در ژاپن"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: حمله به پزشک، فرماندار خواست شناسایی سریع ضارب",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792371638,
+      "title": "تاکید فرماندار بر تسریع در شناسایی ضارب پزشک مسجدسلیمانی"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=local: گمانه‌زنی رسانه‌ای درباره یک پرونده انضباطی لیگ برتر فوتبال است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792371641,
+      "title": "وزیر در پرونده ملوان- تراکتور دخالت می کند؟"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11468,7 +11468,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792370961
+    "at": 1792371537
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11487,9 +11487,9 @@
     "last_status": 422
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792371382.0,
-    "last_failure": 1792371082,
-    "last_status": 503
+    "disabled_until": 1792372251,
+    "last_failure": 1792371651,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1792371379.0,
