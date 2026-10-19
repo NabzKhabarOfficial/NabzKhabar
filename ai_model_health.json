@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792364711
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792364711
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792364726
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792364728
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792364728
     },
@@ -159,24 +143,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792369434
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792369894
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792369894
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792369894
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792369927
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 158
+      "n": 160
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 271
+      "n": 273
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
-      "n": 121
+      "n": 122
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-18",
-      "n": 120
+      "n": 121
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-19",
@@ -472,21 +472,28 @@
     "2026-10-19": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 1,
-        "calls": 3,
+        "429": 2,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 2,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
@@ -505,8 +512,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       }
     }
@@ -3161,6 +3168,12 @@
       "topic": "ورزش",
       "until": 1792444136.5176356
     },
+    "v4|رقابت ورزشکاران ایرانی در ۱۳ رشته/ زنده از ناگویا: طلاهایی که انتظارمان را می کشند!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: آغاز مسابقات ورزشی و پیش‌بینی مدال، فاقد نتیجه نهایی و قطعی است.",
+      "topic": "ورزش",
+      "until": 1792456299.354219
+    },
     "v4|رهبر شهید از لاریجانی چه خواست؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=iran_national: روایت تاریخی از یک نامه قدیمی که فاقد ارزش خبری فوری است.",
@@ -4925,12 +4938,6 @@
       "topic": "اقتصاد",
       "until": 1792449964.5188022
     },
-    "v4|۵۲۴ دانشجوی گلستانی در جنگ رمضان به کمک مردم تهران رفتند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: خبر فعالیت‌های نهادهای دانشجویی و امدادرسانی.",
-      "topic": "جامعه",
-      "until": 1792401564.0234191
-    },
     "v4|۶۰ ثانیه با خراسان شمالی؛ از واگذاری ورزشگاه ۱۹ مهر تا ۸۴ معدن غیرفعال": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این خبر مربوط به رویدادهای استانی و محلی خراسان شمالی است.",
@@ -4972,6 +4979,10 @@
     "france protests live: macron to address nation after deadly protests": {
       "reason": "content_duplicate",
       "until": 1792356386.7420337
+    },
+    "iran war live: tehran says netanyahu seeks more war; yemen fighting flares": {
+      "reason": "content_duplicate",
+      "until": 1792391527.194174
     },
     "multiple people killed as canadian authorities tackle active blaze at alberta military base": {
       "at": 1792339334.4104755,
@@ -5695,13 +5706,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: بیانیه روتین سیاسی، بدون تصمیم یا اثر ملموس",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792351453,
-      "title": "ملت ایران پرچمدار جبهه حق در جهان است"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: محکومیت بر نفرت‌پراکنی قومی",
       "rescued": false,
       "rule": "routine-statement",
@@ -6253,6 +6257,13 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792369366,
       "title": "اجتماع مردم انقلابی آبدان در شب ۲۳۲"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: آغاز مسابقات ورزشی و پیش‌بینی مدال، فاقد نتیجه نهایی و قطعی است.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792369899,
+      "title": "رقابت ورزشکاران ایرانی در ۱۳ رشته/ زنده از ناگویا: طلاهایی که انتظارمان را می کشند!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11456,7 +11467,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792369237
+    "at": 1792369796
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11471,18 +11482,18 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "last_quality_failure": 1792369405,
+    "last_quality_failure": 1792369921,
     "last_status": 422
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792369471,
-    "last_failure": 1792369411,
-    "last_status": 422
+    "disabled_until": 1792370507,
+    "last_failure": 1792369907,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792369058.0,
-    "last_failure": 1792368758,
-    "last_status": 599
+    "disabled_until": 1792370494,
+    "last_failure": 1792369894,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
