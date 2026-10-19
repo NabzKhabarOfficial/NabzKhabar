@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792448260
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792448260
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792448260
-    },
-    {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 6x, gemini:gemini-3.6-flash held 1x, groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 7x",
       "t": 1792448300
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792452215
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792452845
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792452845
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792452846
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-19",
-      "n": 252
+      "n": 253
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-19",
@@ -479,9 +479,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 327,
+        "calls": 328,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 325,
+        "ok": 326,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -4615,6 +4615,12 @@
       "topic": "سیاست",
       "until": 1792482451.4192014
     },
+    "v4|چالش بر سر مدیریت و تعرفه های شاد؛ تأکید آموزش و پرورش بر مالکیت سامانه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اختلاف اداری بر سر مالکیت و تعرفه‌های سامانه شاد ارزش خبری درجه یک ندارد",
+      "topic": "جامعه",
+      "until": 1792539245.7293065
+    },
     "v4|چرایی افزایش قیمت مرغ در فارس؛ توقف صادرات برای تنظیم بازار": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=local: Provincial market regulation issue; no concrete national decision yet.",
@@ -4920,12 +4926,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی و محلی درباره بودجه مسکن روستایی",
       "topic": "جامعه",
       "until": 1792524248.6089582
-    },
-    "v4|۱۸ سالن ورزشی آسیب دیده لرستان بازسازی شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.8-flash score=1 happened=True scope=local: خبر کاملاً استانی و محلی درباره بازسازی سالن‌های ورزشی لرستان است.",
-      "topic": "ورزش",
-      "until": 1792477242.8950014
     },
     "v4|۲ عامل شرارت پس از مجروح کردن شهروندان در کمتر از ۲ ساعت دستگیر شدند": {
       "ok": false,
@@ -5724,13 +5724,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: هشدار مسافرتی وزارت خارجه رویداد استراتژیک درجه یک نیست",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1792437312,
-      "title": "هشدار وزارت امور خارجه درباره سفر به فرانسه، بلژیک و ایتالیا"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: محرومیت و جریمه کریستیانو رونالدو خبر درجه یک محسوب نمی‌شود.",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -6282,6 +6275,13 @@
       "rule": "no-concrete-event",
       "t": 1792452214,
       "title": "Five ways El Niño is affecting the weather around the world"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اختلاف اداری بر سر مالکیت و تعرفه‌های سامانه شاد ارزش خبری درجه یک ندارد",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792452845,
+      "title": "چالش بر سر مدیریت و تعرفه های شاد؛ تأکید آموزش و پرورش بر مالکیت سامانه"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11816,7 +11816,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792452147
+    "at": 1792452731
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
