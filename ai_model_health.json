@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792364140
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1792364159
-    },
-    {
-      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 4x, gemini:gemini-3.6-flash held 1x, gemini:gemini-3.8-flash held 1x, groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1792364189
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792364711
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792368771
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792369367
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1792369368
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792369434
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 157
+      "n": 158
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 269
+      "n": 271
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
-      "n": 120
+      "n": 121
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-18",
-      "n": 118
+      "n": 120
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-19",
-      "n": 5
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-19",
-      "n": 3
+      "n": 6
     },
     "openrouter:*": {
       "day": "2026-10-18",
@@ -472,41 +472,41 @@
     "2026-10-19": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 1,
-        "calls": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 1,
+        "ok": 2,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
+        "ok": 5,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 3,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 0,
+        "ok": 3,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       }
     }
@@ -1451,6 +1451,12 @@
       "topic": "نظامی",
       "until": 1792455161.4247425
     },
+    "v4|iran war live: tehran says netanyahu seeks more war; yemen fighting flares": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Iran FM says Netanyahu seeks more war",
+      "topic": "نظامی",
+      "until": 1792455768.979394
+    },
     "v4|is fifa scrapping its peace prize after awarding it to us president trump?": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: بررسی کمیته فیفا درباره جایزه صلح هنوز تصمیم قطعی نیست.",
@@ -1726,6 +1732,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: مراسم استانی روز پرستار اهمیت ملی ندارد.",
       "topic": "سلامت",
       "until": 1792412235.3111005
+    },
+    "v4|اجتماع مردم انقلابی آبدان در شب ۲۳۲": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: محلی، تجمع اعظمی بدون پیامد ملی",
+      "topic": "جامعه",
+      "until": 1792455766.715269
     },
     "v4|اجتماع ۳۰۰ هزار نفری جان فداییان ایران در مازندران آغاز شد": {
       "ok": false,
@@ -2020,12 +2032,6 @@
       "reason": "ai mistral/open-mistral-nemo batch score=4 happened=True scope=local: آمار تصادفات رانندگی استان خوزستان؛ افزایش محلی",
       "topic": "سلامت",
       "until": 1792419377.2460303
-    },
-    "v4|افزایش ۲۸۵ هزار بشکه ای ظرفیت تولید نفت ایران؛ مسیر توسعه ادامه دارد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=iran_national: گزارش عملکرد روتی یا روابط عمومی وزارت نفت درباره ظرفیت تولید.",
-      "topic": "اقتصاد",
-      "until": 1792401563.9927864
     },
     "v4|اقدام باشگاه فجر برای پر کردن ورزشگاه پارس": {
       "ok": false,
@@ -2561,12 +2567,6 @@
       "topic": "اقتصاد",
       "until": 1792423482.1012557
     },
-    "v4|تصویب کمک ۲۰ میلیارد تومانی تبریز به آسیب دیدگان جنگ رمضان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: تصویب بودجه کمک مالی توسط شورای شهر تبریز محلی است.",
-      "topic": "جامعه",
-      "until": 1792401563.9771805
-    },
     "v4|تصویر محافظ رهبر شهید که ۹ اسفند به شهادت رسید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: مطلب توصیفی و غیرخبری درباره یک فرد نظامی بازنشسته.",
@@ -2770,12 +2770,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: اظهارنظر و تحلیل یک پژوهشگر درباره جنگ‌های اسرائیل.",
       "topic": "سیاست",
       "until": 1792432671.9435341
-    },
-    "v4|جنگ با ایران و قمار مرگبار ترامپ": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: تحلیل و شعار سیاسی بدون رویداد مشخص جدید.",
-      "topic": "سیاست",
-      "until": 1792401564.0080304
     },
     "v4|حاجی بابایی: اگر آمریکا «بمب های مادر» را بیاورد، «موشک های پدر» را به سراغش خواهیم فرستاد": {
       "ok": true,
@@ -3797,6 +3791,12 @@
       "topic": "ورزش",
       "until": 1792451128.414863
     },
+    "v4|قهرمانی تاریخی و اقتدار ملی کشتی آزاد امیدهای ایران در قلب آمریکا": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=iran_national: Iran wins world wrestling championships in USA",
+      "topic": "ورزش",
+      "until": 1792455768.9517963
+    },
     "v4|قیمت واکسن آنفلوآنزا در داروخانه های مشهد اعلام شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=local: اعلام قیمت واکسن آنفلوآنزا در مشهد یک خبر محلی است.",
@@ -3904,12 +3904,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: نظرسنجی درباره محبوبیت مقام سیاسی رویداد رده اول محسوب نمی‌شود.",
       "topic": "سیاست",
       "until": 1792432662.1508913
-    },
-    "v4|محمد الفرح: آمریکا و اسرائیل عربستان را به خدمت گرفته اند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: تحلیل و گمانه‌زنی سیاسی توسط یک مقام غیررسمی درباره روابط کشورها",
-      "topic": "سیاست",
-      "until": 1792401559.3862214
     },
     "v4|محمدجواد بای؛ رؤیای پروازی که به جاودانگی رسید": {
       "ok": false,
@@ -4553,6 +4547,12 @@
       "topic": "اقتصاد",
       "until": 1792405927.6222074
     },
+    "v4|پوتین پیشنهاد برگزاری نشست با ترامپ و شی درباره جنگ اوکراین بدون حضور زلنسکی را داد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Putin proposes meeting on Ukraine without Zelensky",
+      "topic": "سیاست",
+      "until": 1792455768.9655132
+    },
     "v4|پیام نماینده تبریز: وزیر را استیضاح میکنیم!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.8-flash score=2 happened=False scope=iran_national: تهدید فردی نماینده برای استیضاح وزیر، بدون اقدام نهایی یا فراگیر",
@@ -5101,6 +5101,10 @@
     "پاسخ فوری نتانیاهو به ترامپ/ با هم این ماموریت را به پایان خواهیم رساند": {
       "reason": "content_duplicate",
       "until": 1792364431.2063012
+    },
+    "پوتین پیشنهاد برگزاری نشست با ترامپ و شی درباره جنگ اوکراین بدون حضور زلنسکی را داد": {
+      "reason": "content_duplicate",
+      "until": 1792390980.6314247
     },
     "چهار نظامی کانادایی در آتش سوزی یک پایگاه نظامی کشته شدند": {
       "reason": "content_duplicate",
@@ -5691,13 +5695,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: واکنش مقام دولتی به حواشی یک مسابقه فوتبال محلی یا داخلی اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1792350872,
-      "title": "اولین واکنش دولتی به شعارهای سن سیروس"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: بیانیه روتین سیاسی، بدون تصمیم یا اثر ملموس",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6249,6 +6246,13 @@
       "rule": "below-event-threshold",
       "t": 1792368162,
       "title": "تغییرات حداقلی رحمتی در ترکیب برنده/ ترکیب احتمالی گل گهر برای نبرد با استقلال"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: محلی، تجمع اعظمی بدون پیامد ملی",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792369366,
+      "title": "اجتماع مردم انقلابی آبدان در شب ۲۳۲"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11452,7 +11456,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792368651
+    "at": 1792369237
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11466,10 +11470,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "last_quality_failure": 1792369405,
+    "last_status": 422
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792369365,
-    "last_failure": 1792368765,
-    "last_status": 429
+    "disabled_until": 1792369471,
+    "last_failure": 1792369411,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1792369058.0,
@@ -11493,7 +11501,7 @@
     "last_status": 422
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792368765,
+    "last_quality_failure": 1792369385,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
