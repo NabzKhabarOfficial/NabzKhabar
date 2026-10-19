@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792373368
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792373387
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792373394
     },
@@ -159,12 +151,20 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792378565
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-120b",
+      "t": 1792379132
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792379138
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 171
+      "n": 172
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-19",
-      "n": 15
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-19",
-      "n": 15
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-10-18",
@@ -472,8 +472,8 @@
     "2026-10-19": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 14,
-        "ok": 14,
+        "calls": 15,
+        "ok": 15,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -499,22 +499,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 12,
+        "ok": 13,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 11,
         "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 26,
-        "ok": 26,
+        "calls": 27,
+        "ok": 27,
         "other": 0
       }
     }
@@ -2035,12 +2035,6 @@
       "topic": "ورزش",
       "until": 1792405887.579509
     },
-    "v4|افزایش تولید روزانه نفت خام ایران به ۳.۷ میلیون بشکه": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: اعلام آمار رسمی افزایش تولید نفت خام کشور به ۳.۷ میلیون بشکه.",
-      "topic": "اقتصاد",
-      "until": 1792402911.037116
-    },
     "v4|افزایش نگران کننده تلفات جاده ای خوزستان؛ ۶۳۷ کشته و بیش از ۱۰ هزار مجروح در نیمه نخست سال": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=4 happened=True scope=local: آمار تصادفات رانندگی استان خوزستان؛ افزایش محلی",
@@ -2802,6 +2796,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و رویداد فرهنگی مربوط به شهرستان تفت",
       "topic": "جامعه",
       "until": 1792435542.7330177
+    },
+    "v4|جمهوری اسلامی پراگماتیست و عملگراست و روش افرادی را که می گویند \"ما حتی در برابر صلح طلبی حریف می جنگیم\" قبول ندارد/در برابر امریکا نباید ضعف نشان داد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=local: Opinion, no official decision",
+      "topic": "سیاست",
+      "until": 1792465532.6736915
     },
     "v4|جنجال داوری، تمرکز روی ال کلاسیکو/ جنگ دوگانه رئال مادرید کلید خورد": {
       "ok": false,
@@ -4297,12 +4297,6 @@
       "topic": "ورزش",
       "until": 1792449355.7796726
     },
-    "v4|هواشناسی: صدور هشدار سطح زرد؛ به سبب شدت بارش ها امکان سیلابی شدن مسیرها در برخی استان ها وجود دارد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: هشدار هواشناسی درباره احتمال بارش و سیلابی شدن مسیرها در آینده.",
-      "topic": "آب و هوا",
-      "until": 1792402911.0538251
-    },
     "v4|هیچ کودکی نباید از حق آموزش محروم بماند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارات روتین مقام مسئول درباره آموزش کودکان و آمار مدارس",
@@ -4428,12 +4422,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=iran_national: موضع‌گیری رسمی وزیر دفاع در مجلس درباره آمادگی رزمی و تولید سلاح",
       "topic": "نظامی",
       "until": 1792421132.705353
-    },
-    "v4|وضعیت قرمز تراکتور در خط حمله": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: تحلیل ورزشی پیرامون وضعیت خط حمله باشگاه تراکتور تبریز.",
-      "topic": "ورزش",
-      "until": 1792402911.0454407
     },
     "v4|وقتی در خانه شیشه ای نشسته اید، سنگ پرانی نکنید / آمریکا از پس ایران برنیامد؛ عربستان جای خود دارد": {
       "ok": false,
@@ -4615,6 +4603,12 @@
       "topic": "ورزش",
       "until": 1792444790.6181588
     },
+    "v4|چین . روسیه دوستان ایران هستند اما نباید توقع داشته باشیم هنگام جنگ به کمک ما بیایند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=local: Opinion piece, no concrete event",
+      "topic": "سیاست",
+      "until": 1792465532.66241
+    },
     "v4|کاروان ایران در مراسم افتتاحیه رژه رفت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: مراسم افتتاحیه و رژه کاروان ورزشی رویداد خبری درجه یک نیست.",
@@ -4692,6 +4686,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: پروژه محلی دانشگاهی فاقد اهمیت ملی یا بین‌المللی است.",
       "topic": "اقتصاد",
       "until": 1792424063.2215278
+    },
+    "v4|کلید نجات دشت های ایران چیست؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=False scope=local: Advisory article, no event",
+      "topic": "آب و هوا",
+      "until": 1792465532.6846397
     },
     "v4|کمالوند: خیبر با حمایت هواداران و شروع طوفانی به سه امتیاز رسید": {
       "ok": false,
@@ -5008,7 +5008,7 @@
     },
     "trump says suspension of russia sanctions is to keep peace negotiations going": {
       "reason": "content_duplicate",
-      "until": 1792400165.3146877
+      "until": 1792400738.0201921
     },
     "what we know so far about deadly fire at canadian military base": {
       "reason": "content_duplicate",
@@ -10816,7 +10816,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792378477
+    "at": 1792379058
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10851,6 +10851,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1792379135,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
