@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792366411
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792366411
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1792366412
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792366427
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792372191
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792372790
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792372790
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792372797
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 278
+      "n": 280
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
@@ -478,8 +478,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 10,
-        "ok": 10,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -513,8 +513,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 13,
-        "ok": 13,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       }
     }
@@ -2527,6 +2527,12 @@
       "topic": "اقتصاد",
       "until": 1792433849.6034327
     },
+    "v4|تشدید دوباره تنش میان نتانیاهو و اوباما در آستانه انتخابات رژیم صهیونیستی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: تنها جنگ لفظی انتخاباتی است و ارزش خبری درجه یک ندارد",
+      "topic": "سیاست",
+      "until": 1792459191.62053
+    },
     "v4|تشکیل کمیته ای ویژه برای پیگیری مطالبات پرستاران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: تشکیل کمیته داخلی مجلس خبری رده‌اول محسوب نمی‌شود.",
@@ -3624,12 +3630,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: وزیر خارجه فقط سفر کرد، تصمیم یا بحران نیست",
       "topic": "سیاست",
       "until": 1792420448.6612303
-    },
-    "v4|عراقچی: امیدواریم در بیانیه سازمان همکاری رعایت انصاف شود/ احتمال مخالفت صریح با قطعنامه": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=iran_national: اعلام موضع و شرط رسمی وزیر خارجه در اجلاس بین‌المللی.",
-      "topic": "سیاست",
-      "until": 1792401577.7244177
     },
     "v4|عراقچی: اگر انصاف و توازن در قطعنامه سازمان همکاری اسلامی درباره یمن رعایت نشود، نمی توانیم به آن بپیوندیم/ ممکن است تحفظ خود را اعلام کنیم یا صراحتاً بگوییم که این قطعنامه را قبول": {
       "ok": true,
@@ -5008,7 +5008,7 @@
     },
     "trump says suspension of russia sanctions is to keep peace negotiations going": {
       "reason": "content_duplicate",
-      "until": 1792393791.358688
+      "until": 1792394397.3825717
     },
     "what we know so far about deadly fire at canadian military base": {
       "reason": "content_duplicate",
@@ -5707,13 +5707,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=iran_national: گفتگوی تلفنی وزیران خارجه ایران و مصر درباره تنش‌های منطقه‌ای",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1792352036,
-      "title": "گفتگوی تلفنی وزیران امور خارجه ایران و مصر"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=iran_national: هشدار صریح و رسمی رئیس ستاد کل نیروهای مسلح به دشمن",
       "rescued": true,
       "rule": "no-concrete-event",
@@ -6265,6 +6258,13 @@
       "rule": "low-value",
       "t": 1792372185,
       "title": "مدیریت رختکن با این همه چهره سرشناس/ دلسوزی سرمربی پرسپولیس برای 10 ستاره!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: تنها جنگ لفظی انتخاباتی است و ارزش خبری درجه یک ندارد",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792372791,
+      "title": "تشدید دوباره تنش میان نتانیاهو و اوباما در آستانه انتخابات رژیم صهیونیستی"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11468,7 +11468,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792372123
+    "at": 1792372700
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
