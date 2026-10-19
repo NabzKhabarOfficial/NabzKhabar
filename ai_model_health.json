@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792367600
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792367600
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792367607
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792367607
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792373394
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792373925
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792373925
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792373932
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 164
+      "n": 165
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 282
+      "n": 283
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
@@ -472,14 +472,14 @@
     "2026-10-19": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 14,
-        "ok": 14,
+        "calls": 15,
+        "ok": 15,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -513,8 +513,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 15,
-        "ok": 15,
+        "calls": 16,
+        "ok": 16,
         "other": 0
       }
     }
@@ -2179,6 +2179,12 @@
       "topic": "جامعه",
       "until": 1792407065.1324537
     },
+    "v4|بازگشت بزرگترین ستاره تاریخ سپاهان در فرانسه!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر ورزشی غیرمهم و مربوط به فعالیت یک بازیکن قدیمی است.",
+      "topic": "ورزش",
+      "until": 1792460326.8229926
+    },
     "v4|بازی ترامپ با رای دهندگان آمریکایی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis regarding US elections and foreign policy.",
@@ -3024,12 +3030,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اظهارات مقام دولتی درباره شرایط فعالیت استارلینک فاقد تصمیم قطعی است",
       "topic": "فناوری",
       "until": 1792440120.520224
-    },
-    "v4|رئیس سازمان امور اجتماعی: غرق شدگان در سواحل کشور به کمتر از ۴۰ نفر رسید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=iran_national: گزارش آماری روتین درباره کاهش غرق‌شدگان در سواحل.",
-      "topic": "جامعه",
-      "until": 1792401577.756342
     },
     "v4|رئیس سازمان بسیج حقوقدانان کشور: مجاهدت های خاموش کارکنان زندان ها در جهاد تبیین معرفی شود": {
       "ok": false,
@@ -5008,7 +5008,7 @@
     },
     "trump says suspension of russia sanctions is to keep peace negotiations going": {
       "reason": "content_duplicate",
-      "until": 1792394994.009587
+      "until": 1792395532.6745982
     },
     "what we know so far about deadly fire at canadian military base": {
       "reason": "content_duplicate",
@@ -5707,13 +5707,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تصادف جاده ای محلی با آسیب محدود واجد شرایط نیست",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792352586,
-      "title": "واژگونی پژو در محور مهریز–مروست ۴ مصدوم بر جای گذاشت"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local administrative statement regarding sports development in Yazd province.",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -6265,6 +6258,13 @@
       "rule": "routine-statement",
       "t": 1792373388,
       "title": "پیام جالب انصارالله به مصر"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر ورزشی غیرمهم و مربوط به فعالیت یک بازیکن قدیمی است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792373926,
+      "title": "بازگشت بزرگترین ستاره تاریخ سپاهان در فرانسه!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11468,7 +11468,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792373268
+    "at": 1792373845
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
