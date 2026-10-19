@@ -27,6 +27,16 @@ gate vetoes them («مدیرکل پزشکی قانونی خوزستان: ...», 
 the gate. The final guard now refuses a lead that starts with a bare verb («تأکید کرد»، «گفت»، «افزود» ...)
 and a headline led by a provincial / city official unless a hard event happened ("local-level"). «ناراضیتی» ->
 «نارضایتی».
+Oct 19, 15:40 Tehran (first full read of docs/review/telegram_log.json, 65 sends since Oct 18 22:00):
+* «رئیس وزیر اسرائیل» -> «نخست‌وزیر»; «رئیس جمهور پیشین آمریکا، ترامپ» (Trump is the sitting president) ->
+  «رئیس‌جمهور آمریکا، ترامپ»; «آتش سوزی آتش سوزی» / «آتش آتش‌سوزی» and any two words written twice in a row
+  are written once; «عکاس واشینگتن پست» -> «یک عکاس خبری» (a reporter of an outlet stays in the story without the
+  outlet's name); outlet variants the guard did not know: «واشینگتن پست», «رادیو فردا», «دویچه وله», «یورونیوز»,
+  «ایندیپندنت», «فرانس ۲۴», «هاآرتص», «یدیعوت آحارونوت», «الشرق الاوسط».
+* provincial items still went out because their headline does not START with an official's title: «رئیس پلیس
+  راهور بوشهر: ...», «سرپرست پلیس آگاهی خوزستان: ...». A headline whose speaker (the part before «:») is an
+  official of a province or provincial city is now "local-level" unless a hard event happened; advance notices of
+  controlled blasts («انفجار کنترل شده مهمات در دزفول», «عملیات انفجار در معدن کهک») are always "local-notice".
 Any error = the bot runs as before.
 """
 
@@ -47,15 +57,55 @@ NEUTRAL = (
     (re.compile(r"(?<![\u0600-\u06FF])ر(?:ی)?زورت(?![\u0600-\u06FF])"), "استراحتگاه"),
     (re.compile(r"کلکلته"), "کلکته"),
     (re.compile(r"ناراضیتی"), "نارضایتی"),
+    (re.compile(r"(?<![\u0600-\u06FF])رئیس[\s\u200c]+وزیر(?![\u0600-\u06FF])"), "نخست‌وزیر"),
+    (re.compile(r"رئیس[\s\u200c]*جمهور(?:ی)?[\s\u200c]+(?:پیشین|سابق)[\s\u200c]+(?:آمریکا|ایالات[\s\u200c]+متحده)"
+                r"(?=،?[\s\u200c]*(?:دونالد[\s\u200c]+)?ترامپ)"), "رئیس‌جمهور آمریکا"),
+    (re.compile(r"((?:دونالد[\s\u200c]+)?ترامپ،?[\s\u200c]*)رئیس[\s\u200c]*جمهور(?:ی)?[\s\u200c]+(?:پیشین|سابق)"), "\\1رئیس‌جمهور"),
+    (re.compile(r"آتش[\s\u200c]*(?:سوزی[\s\u200c]+)?آتش[\s\u200c]*سوزی"), "آتش‌سوزی"),
+    (re.compile(r"(?<![\u0600-\u06FF])([\u0600-\u06FF]{2,}[\s\u200c]+[\u0600-\u06FF]{2,})[\s\u200c]+\1(?![\u0600-\u06FF])"), r"\1"),
 )
+OUTLET_WORDS = (r"(?:روزنامه[\s\u200c]+|شبکه[\s\u200c]+|نشریه[\s\u200c]+)?(?:واشی?نگتن[\s\u200c]+پست|نیویورک[\s\u200c]+تایمز|وال[\s\u200c]+استریت[\s\u200c]+ژورنال|"
+                r"گاردین|رویترز|آسوشیتد[\s\u200c]*پرس|فرانس[\s\u200c]+پرس|الجزیره|العربیه|بی[\s\u200c]*بی[\s\u200c]*سی|سی[\s\u200c]*ان[\s\u200c]*ان|اسکای[\s\u200c]*نی?وز)")
+REPORTER_OF_OUTLET = re.compile(r"(عکاس|خبرنگار|گزارشگر|روزنامه[\s\u200c]*نگار|فیلمبردار)(?:ان)?[\s\u200c]+" + OUTLET_WORDS + r"(?![\u0600-\u06FF])")
+REPORTER_WORD = {"عکاس": "یک عکاس خبری", "خبرنگار": "یک خبرنگار", "گزارشگر": "یک گزارشگر", "فیلمبردار": "یک فیلمبردار خبری"}
 EXTRA_OUTLETS = (r"(?:شبکه\s+)?(?:ان[\s\u200c]*بی[\s\u200c]*سی|سی[\s\u200c]*ان[\s\u200c]*ان|سی[\s\u200c]*بی[\s\u200c]*اس|"
-                 r"ای[\s\u200c]*بی[\s\u200c]*سی(?![\s\u200c]*نیوز\s*ایران)|فاکس[\s\u200c]*نیوز)|")
+                 r"ای[\s\u200c]*بی[\s\u200c]*سی(?![\s\u200c]*نیوز\s*ایران)|فاکس[\s\u200c]*نیوز|واشینگتن[\s\u200c]+پست|"
+                 r"رادیو[\s\u200c]+فردا|دویچه[\s\u200c]*وله|یورو[\s\u200c]*نیوز|ایندیپندنت|فرانس[\s\u200c]*(?:۲۴|24)|"
+                 r"ها[\s\u200c]*آرتص|ها[\s\u200c]*آرتز|یدیعوت(?:[\s\u200c]+آحارونوت)?|الشرق[\s\u200c]+الاوسط)|")
 RUN_HEADS = []  # headlines the same-event judge allowed in this run
 LOADED = re.compile(r"ارتش\s+تروریست|تروریست(?:ی)?\s+(?:آمریکا|اسرائیل)|(?:آمریکا|اسرائیل)ی?\s+تروریست(?![\u0600-\u06FF])")
 DANGLING = re.compile(r"^\s*(?:در\s+حالی\s+که\s|(?:تأکید|تاکید|اعلام|اظهار|عنوان|اضافه|خاطرنشان|تصریح)\s+(?:کرد|کردند)|"
                       r"(?:گفت|افزود|ادامه\s+داد|یادآور\s+شد)(?![\u0600-\u06FF]))")
 LOCAL_HEAD = re.compile(r"^\s*(?:مدیر\s*کل(?!\s+(?:آژانس|سازمان|یونسکو|صندوق|بانک|فائو|اینترپل|یونیسف|دفتر\s+سازمان))|معاون\s+استاندار(?![\u0600-\u06FF])|استاندار(?![\u0600-\u06FF])(?!\s+تهران)|فرماندار(?![\u0600-\u06FF])|بخشدار|شهردار|امام\s+جمعه|"
                         r"رئیس\s+(?:شورای\s+شهر|دادگستری\s+استان|پلیس\s+راه\s+استان)|نماینده\s+مردم|فرمانده\s+سپاه\s+استان)")
+PROVINCES = (r"(?:آذربایجان|اردبیل|اصفهان|البرز|ایلام|بوشهر|چهارمحال|بختیاری|خراسان|خوزستان|زنجان|سمنان|سیستان|بلوچستان|"
+             r"فارس|قزوین|(?<![\u0600-\u06FF])قم(?![\u0600-\u06FF])|کردستان|کرمان|کرمانشاه|کهگیلویه|گلستان|گیلان|لرستان|مازندران|"
+             r"(?<![\u0600-\u06FF])مرکزی(?![\u0600-\u06FF])|هرمزگان|همدان|(?<![\u0600-\u06FF])یزد(?![\u0600-\u06FF])|"
+             r"اهواز|مشهد|تبریز|شیراز|کرج|رشت|ساری|ارومیه|زاهدان|بندرعباس|کیش|قشم|دزفول|آبادان|خرمشهر|بیرجند|گرگان|"
+             r"خرم[\s\u200c]*آباد|سنندج|بجنورد|شهرکرد|یاسوج|اراک|کاشان|نیشابور|سبزوار|بابل|آمل|قزوین|زنجان|اردبیل|"
+             r"شهرستان|استانداری|فرمانداری)")
+OFFICIAL = re.compile(r"(?:رئیس|سرپرست|فرمانده|معاون|مدیر|دادستان|استاندار|فرماندار|بخشدار|شهردار|نماینده|سخنگوی|دبیر|مسئول|رئیس[\s\u200c]*کل)")
+PROVINCE_RX = re.compile(PROVINCES)
+LOCAL_NOTICE = re.compile(r"انفجار(?:[\s\u200c]*های)?[\s\u200c]+کنترل[\s\u200c]*شده|عملیات[\s\u200c]+انفجار[\s\u200c]+(?:در[\s\u200c]+)?معدن|"
+                          r"انهدام[\s\u200c]+(?:کنترل[\s\u200c]*شده[\s\u200c]+)?مهمات|خنثی[\s\u200c]*سازی[\s\u200c]+مهمات[\s\u200c]+عمل[\s\u200c]*نکرده")
+
+# a real event in a provincial official's headline (not statistics: «جان باختگان تصادفات» is not «جان باختند»)
+SPEAKER_HARD = re.compile(r"کشته[\s\u200c]+(?:شد|شدند)|جان[\s\u200c]+باخت(?:ند)?(?![\u0600-\u06FF])|زخمی[\s\u200c]+شدند|"
+                          r"انفجار(?![\s\u200c]+کنترل)|زلزله|زمین[\s\u200c]*لرزه|سیل|آتش[\s\u200c]*سوزی|حمله|"
+                          r"شلیک|سقوط|گروگان[\s\u200c]*گیری|ترور")
+
+
+def local_speaker(title):
+    """True when the headline's speaker (before «:») is an official of a province / provincial city."""
+    t = str(title or "")
+    if ":" not in t:
+        return False
+    speaker = t.split(":", 1)[0]
+    if len(speaker.split()) > 10:
+        return False
+    return bool(OFFICIAL.search(speaker) and PROVINCE_RX.search(speaker))
+
+
 MIN_WORDS = 5
 NEMO_NEW_SHARED = 4
 _DONE = {"v": False}
@@ -65,6 +115,7 @@ def neutral(text):
     text = str(text or "")
     for rx, good in NEUTRAL:
         text = rx.sub(good, text)
+    text = REPORTER_OF_OUTLET.sub(lambda m: REPORTER_WORD.get(m.group(1), "یک روزنامه‌نگار"), text)
     return text
 
 
@@ -106,6 +157,17 @@ def _install_guard():
                 found.append(("loaded-wording", m.group(0)))
             if sents and DANGLING.search(sents[0]):
                 found.append(("dangling-lead", sents[0][:60]))
+            if LOCAL_NOTICE.search(str(title or "")):
+                found.append(("local-notice", str(title or "")[:60]))
+            if local_speaker(title) and not LOCAL_HEAD.search(str(title or "")):
+                hard = bool(SPEAKER_HARD.search(str(title or "")))
+                try:
+                    import v13_editor_gate as g
+                    hard = hard or bool(g.war_zone(title))
+                except Exception:
+                    pass
+                if not hard:
+                    found.append(("local-level", str(title or "")[:60]))
             if LOCAL_HEAD.search(str(title or "")):
                 try:
                     import v13_editor_gate as g
@@ -230,8 +292,8 @@ def _install_judge():
 def _install_outlets():
     import v13_final_guard as fg
     p = fg.OUTLET_NAMES.pattern
-    if "فاکس" in p:
-        return
+    if getattr(fg, "_v13_extra_outlets", False):  # (Oct 19: the old «فاکس» marker was already in the
+        return                                      # guard's own list, so these names were never added)
     if "(?:بلومبر" in p:
         p = p.replace("(?:بلومبر", "(?:" + EXTRA_OUTLETS + "بلومبر", 1)
     elif "|بلومبر" in p:
@@ -239,6 +301,7 @@ def _install_outlets():
     else:
         return
     fg.OUTLET_NAMES = re.compile(p, fg.OUTLET_NAMES.flags)
+    fg._v13_extra_outlets = True
 
 
 def install():
@@ -256,4 +319,4 @@ def install():
         print(f"V13 QUALITY FIX: review log not installed ({type(exc).__name__}: {exc})", flush=True)
     _DONE["v"] = True
     print("V13 QUALITY FIX ACTIVE: neutral wording, dangling «در حالی که» leads, same-headline repeats, "
-          "nemo-new overlap repeats, run-local headlines, extra outlet names", flush=True)
+          "nemo-new overlap repeats, run-local headlines, extra outlet names, provincial speakers, blast notices", flush=True)
