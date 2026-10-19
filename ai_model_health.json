@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792364132
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792364135
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792364135
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792364136
-    },
-    {
       "e": "EDITOR BATCH gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792364140
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792368185
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792368742
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792368743
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792368758
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792368771
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 268
+      "n": 269
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
-      "n": 118
+      "n": 120
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-18",
-      "n": 117
+      "n": 118
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-19",
-      "n": 4
+      "n": 5
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-19",
-      "n": 1
+      "n": 3
     },
     "openrouter:*": {
       "day": "2026-10-18",
@@ -476,23 +476,37 @@
         "ok": 1,
         "other": 0
       },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 2,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 1,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 4,
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 4,
-        "other": 0
+        "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 1,
+        "calls": 3,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 0,
-        "other": 1
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       }
     }
@@ -1430,6 +1444,12 @@
       "reason": "ai gemini/gemini-3.8-flash score=2 happened=False scope=world: گزارش توصیفی و میدانی درباره بحران مواد مخدر بدون رخداد فوری",
       "topic": "جامعه",
       "until": 1792444796.5164464
+    },
+    "v4|inside the shadowy world of anti-putin sabotage from within russia": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash score=3 happened=False scope=world: گزارش و مصاحبه درباره خرابکاری، بدون وقوع حادثه خبری مشخص و جدید",
+      "topic": "نظامی",
+      "until": 1792455161.4247425
     },
     "v4|is fifa scrapping its peace prize after awarding it to us president trump?": {
       "ok": false,
@@ -3471,12 +3491,6 @@
       "topic": "اقتصاد",
       "until": 1792437856.5074894
     },
-    "v4|شهید قندی یزد در خانه به دنبال شروعی امیدوارکننده؛ نارنجی پوشان برابر تازه وارد لیگ دسته ۲": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: خبر ورزشی لیگ دسته دوم محلی است و اهمیت ملی ندارد",
-      "topic": "ورزش",
-      "until": 1792401554.3147352
-    },
     "v4|شورش هوش های مصنوعی در آزمایشگاه ها/ اخطار اخیر پژوهشگران درباره خطر انقراض انسان/ همه می گویند هوش مصنوعی ما را نابود می کند": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=world: هشدار پژوهشگران به خطر انقراض بشریت از هوش مصنوعی",
@@ -4982,7 +4996,7 @@
     },
     "trump says suspension of russia sanctions is to keep peace negotiations going": {
       "reason": "content_duplicate",
-      "until": 1792389785.0717819
+      "until": 1792390371.7347682
     },
     "what we know so far about deadly fire at canadian military base": {
       "reason": "content_duplicate",
@@ -11438,7 +11452,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792368081
+    "at": 1792368651
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11453,14 +11467,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792368195,
-    "last_failure": 1792367595,
+    "disabled_until": 1792369365,
+    "last_failure": 1792368765,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792368191,
-    "last_failure": 1792367591,
-    "last_status": 429
+    "disabled_until": 1792369058.0,
+    "last_failure": 1792368758,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -11479,7 +11493,7 @@
     "last_status": 422
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792368182,
+    "last_quality_failure": 1792368765,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
