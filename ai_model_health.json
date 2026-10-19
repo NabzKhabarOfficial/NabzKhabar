@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792367607
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1792367638
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792368185
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792368742
     },
@@ -159,12 +147,24 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792373932
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792374499
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1792374501
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792374524
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 165
+      "n": 166
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
@@ -172,19 +172,19 @@
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
-      "n": 125
+      "n": 126
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-18",
-      "n": 125
+      "n": 126
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-19",
-      "n": 10
+      "n": 11
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-19",
-      "n": 10
+      "n": 11
     },
     "openrouter:*": {
       "day": "2026-10-18",
@@ -472,8 +472,8 @@
     "2026-10-19": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -484,10 +484,10 @@
       },
       "gemini:gemini-3.6-flash": {
         "429": 4,
-        "calls": 7,
+        "calls": 8,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 2,
+        "ok": 3,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
@@ -499,22 +499,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 8,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 6,
         "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 16,
-        "ok": 16,
+        "calls": 17,
+        "ok": 17,
         "other": 0
       }
     }
@@ -1627,6 +1627,12 @@
       "topic": "سیاست",
       "until": 1792446477.4742925
     },
+    "v4|zelensky holds us talks as trump accuses him of not wanting peace": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=4 happened=True scope=world: Zelensky meets US envoys",
+      "topic": "سیاست",
+      "until": 1792460901.1908784
+    },
     "v4|«آنچه دیده نشد!» از اثرات جنگ بر حیات زنان و کودکان می گوید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: افتتاح نمایشگاه عکس فرهنگی و هنری.",
@@ -1674,6 +1680,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تجمع محلی و مراسم در خمین جزو اخبار درجه اول نیست.",
       "topic": "جامعه",
       "until": 1792433841.109819
+    },
+    "v4|آتش سوزی در پایگاه نظامی کانادا چهار کشته و ۳۹ مجروح بر جای گذاشت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=local: Fire at Canadian base kills 4",
+      "topic": "حادثه",
+      "until": 1792460901.182157
     },
     "v4|آخرین مهلت ثبت نام در حراج شمش طلای مرکز مبادله اعلام شد": {
       "ok": false,
@@ -1812,12 +1824,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: موضع‌گیری رسمی درباره اختلاف ایران و آمریکا بر سر مذاکرات و تنگه هرمز",
       "topic": "سیاست",
       "until": 1792418234.1820846
-    },
-    "v4|ادامه روند افزایشی کرونا در کشور/ وزارت بهداشت هشدار داد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=iran_national: هشدار و گزارش آماری روتین وزارت بهداشت از بیماری‌های تنفسی.",
-      "topic": "سلامت",
-      "until": 1792401577.7881866
     },
     "v4|ادامهٔ مقابله با حملات حوثی ها؛ مصر بر حمایت از عربستان سعودی تأکید کرد": {
       "ok": true,
@@ -1962,12 +1968,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: خبر استانی درباره کمبود سازه های آبخیزداری و خطر سیل در اصفهان.",
       "topic": "جامعه",
       "until": 1792402911.0030699
-    },
-    "v4|اطلاعیه فرمانداری نظرآباد درباره مشاهده هواپیما در آسمان شهرستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و تکذیب نگرانی درباره پرواز هواپیما",
-      "topic": "جامعه",
-      "until": 1792401820.0497432
     },
     "v4|اطلاعیه قطع و افت فشار آب شهرهای بستک، جناح و کوهیج": {
       "ok": false,
@@ -3691,12 +3691,6 @@
       "topic": "ورزش",
       "until": 1792423482.1295688
     },
-    "v4|عمار حکیم با وزیر امور خارجه دیدار کرد/تاکید بر توقف تنش ها از مسیر گفت وگو": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=iran_national: دیدار و گفتگوی روتین دیپلماتیک بدون اتخاذ تصمیم اجرایی خاص.",
-      "topic": "سیاست",
-      "until": 1792401577.7722144
-    },
     "v4|عملیات نمادین ترامپ برای خروج از جنگ": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis about future political actions.",
@@ -4027,6 +4021,12 @@
       "topic": "جامعه",
       "until": 1792434988.001524
     },
+    "v4|مقام عراقی: احترام آمریکا به حاکمیت عراق، شرط اساسی ساماندهی سلاح است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: Official statement, no concrete decision, limited immediate impact",
+      "topic": "سیاست",
+      "until": 1792460899.472728
+    },
     "v4|مقاومت عراق: ۶ پهپاد آمریکایی حریم هوایی عراق را نقض کردند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Claim by a militia group, lacks official state confirmation or escalation.",
@@ -4044,12 +4044,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: بیانیه روتین سیاسی، بدون تصمیم یا اثر ملموس",
       "topic": "سیاست",
       "until": 1792437853.5074008
-    },
-    "v4|مهار آتش سوزی در پارک ملی خجیر با تلاش محیط بانان": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: پارک ملی خجیر، آتش‌سوزی محلی کنترل شد",
-      "topic": "آب و هوا",
-      "until": 1792402091.912233
     },
     "v4|مهرداد اخلاقی: جنگنده سنگین ایرانی سال آینده تیکاف خواهد کرد": {
       "ok": false,
@@ -4957,6 +4951,12 @@
       "topic": "جامعه",
       "until": 1792443065.3072715
     },
+    "v4|‘limited evidence’ of protester violence at sydney demonstration against israeli president isaac herzog visit": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Sydney protest largely peaceful",
+      "topic": "جامعه",
+      "until": 1792460901.199375
+    },
     "v4|‫پاسخ کوبنده کیلیان به شاهکار لامین/ جنگ امباپه-یامال: بهترین گل کیلیان برای رئال": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=world: Lifestyle and sports entertainment news regarding individual player performance.",
@@ -5013,6 +5013,10 @@
     "what we know so far about deadly fire at canadian military base": {
       "reason": "content_duplicate",
       "until": 1792375913.5558171
+    },
+    "آتش سوزی در پایگاه نظامی کانادا چهار کشته و ۳۹ مجروح بر جای گذاشت": {
+      "reason": "content_duplicate",
+      "until": 1792396124.0772038
     },
     "ادعای اکسیوس: ترامپ در پیام حمایتی خود از نتانیاهو ظاهراً این پیام را منتقل کرد که اجازه خواهد داد او پس از انتخابات میان دوره ای آمریکا به ایران حمله کند": {
       "reason": "content_duplicate",
@@ -5707,13 +5711,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local administrative statement regarding sports development in Yazd province.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792352591,
-      "title": "هاشمی: هیئت های مذهبی ظرفیت ارزشمندی برای توسعه ورزش یزد هستند"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: پوشش محلی و تکراری از تجمعات شهرستانی با اهمیت ملی صفر",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -6265,6 +6262,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792373926,
       "title": "بازگشت بزرگترین ستاره تاریخ سپاهان در فرانسه!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: Official statement, no concrete decision, limited immediate impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792374499,
+      "title": "مقام عراقی: احترام آمریکا به حاکمیت عراق، شرط اساسی ساماندهی سلاح است"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11468,7 +11472,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792373845
+    "at": 1792374426
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11482,15 +11486,10 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792373687.0,
-    "last_failure": 1792373387,
-    "last_status": 599
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792373968,
-    "last_failure": 1792373368,
-    "last_status": 429
+    "disabled_until": 1792374579,
+    "last_failure": 1792374519,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1792373964,
