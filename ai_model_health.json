@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792371641
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792371641
     },
@@ -159,16 +155,20 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792377427
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792377985
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 169
+      "n": 170
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 290
+      "n": 291
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-19",
-      "n": 14
+      "n": 15
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-19",
-      "n": 14
+      "n": 15
     },
     "openrouter:*": {
       "day": "2026-10-18",
@@ -472,14 +472,14 @@
     "2026-10-19": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 22,
-        "ok": 22,
+        "calls": 23,
+        "ok": 23,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -499,22 +499,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
+        "ok": 12,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 10,
         "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 22,
-        "ok": 22,
+        "calls": 25,
+        "ok": 25,
         "other": 0
       }
     }
@@ -5004,7 +5004,7 @@
     },
     "trump endorses netanyahu ahead of israeli elections, calling him 'great warrior prime minister'": {
       "reason": "content_duplicate",
-      "until": 1792377170.0154135
+      "until": 1792399585.4291487
     },
     "trump says suspension of russia sanctions is to keep peace negotiations going": {
       "reason": "content_duplicate",
@@ -5160,24 +5160,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "حملات به مقار تروریست های تجزیه طلب در اربیل ⚡️ منابع از انجام حملات به مقرهای تروریست های تجزیه طلب در شهر ار",
-      "id": "667905e9a6",
-      "match": "حمله پهپادی به حومه اربیل در اقلیم کردستان عراق",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792329000,
-      "verdict": "repeat",
-      "why": "همان حمله به اربیل با تفاوت جزئی در زمان و جزئیات"
-    },
-    {
-      "head": "حملات به مقار تروریست های تجزیه طلب در اربیل ⚡️ منابع از انجام حملات به مقرهای تروریست های تجزیه طلب در شهر ار",
-      "id": "667905e9a6",
-      "match": "حمله پهپادی به حومه اربیل در اقلیم کردستان عراق",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792329001,
-      "verdict": "repeat",
-      "why": "همان حمله به اربیل با تفاوت جزئی در زمان و جزئیات"
-    },
     {
       "head": "هشدار ارتش یمن: حریم هوایی عربستان به جز مکه و مدینه ناامن است ⚡️ یک منبع نظامی ارتش یمن اعلام کرد نیروهای مسل",
       "id": "5c86989df5",
@@ -5711,6 +5693,26 @@
       "t": 1792377390,
       "verdict": "new",
       "why": "نوشته جدید در مورد ادعای وزیر انرژی آمریکا است"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "ترامپ حامی نجاتی بر انتخابات اسرائیل شد ⚡️ ترامپ اعلام کرد که نجاتی را حامی می کند و او را \"نخست وزیر جنگجوی ب",
+      "id": "b106bf994d",
+      "match": "ترامپ: حمایت بی قیدوشرط از نتانیاهو برای انتخابات مجدد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792377980,
+      "verdict": "repeat",
+      "why": "same Trump statement about Netanyahu support"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "ترامپ حامی نجاتی بر انتخابات اسرائیل شد ⚡️ ترامپ اعلام کرد که نجاتی را حامی می کند و او را \"نخست وزیر جنگجوی ب",
+      "id": "b106bf994d",
+      "match": "ترامپ: حمایت بی قیدوشرط از نتانیاهو برای انتخابات مجدد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792377983,
+      "verdict": "repeat",
+      "why": "ترمپ حمایت از نتانیاهو در انتخابات"
     }
   ],
   "_importance_rescue_log": [
@@ -10814,7 +10816,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792377315
+    "at": 1792377892
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10849,10 +10851,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792372189,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
