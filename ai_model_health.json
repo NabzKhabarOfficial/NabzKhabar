@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792447086
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792447646
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792447646
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792447661
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792447664
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792447664
     },
@@ -159,6 +139,26 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792448833
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792449926
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792449926
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792449931
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792449931
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792449935
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-19",
-      "n": 244
+      "n": 246
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-19",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-19",
-      "n": 89
+      "n": 90
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-19",
-      "n": 88
+      "n": 90
     },
     "openrouter:*": {
       "day": "2026-10-19",
@@ -479,9 +479,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 319,
+        "calls": 321,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 317,
+        "ok": 319,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -502,17 +502,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 89,
-        "last_error": "HTTP 502: <html> <head><title>502 Bad Gateway</title></head> <body> <center><h1>502 Bad Gateway</h1></center> <hr><center>cloudflare</center> </body> </html> ",
+        "calls": 90,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 68,
-        "other": 21
+        "other": 22
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 88,
+        "calls": 90,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 52,
-        "other": 36
+        "other": 38
       },
       "mistral:ministral-8b-latest": {
         "429": 0,
@@ -1519,6 +1519,12 @@
       "topic": "حادثه",
       "until": 1792516276.9489775
     },
+    "v4|maddison's magic moment for spurs - 18 months in the making": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: مسابقه فوتبال باشگاهی و گلزنی بازیکن، اخبار درجه یک نیست",
+      "topic": "ورزش",
+      "until": 1792536334.900077
+    },
     "v4|microsoft says ai agents are like insider threats as ‘frontier models can’t be trusted’": {
       "ok": false,
       "reason": "ai openrouter/openrouter/free batch score=1 happened=False scope=local: Microsoft comment on AI agents, no concrete event",
@@ -1609,6 +1615,12 @@
       "topic": "نظامی",
       "until": 1792531813.463129
     },
+    "v4|us grants deportation reprieve to migrants from ukraine and sudan": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: تمدید موقت اقامت مهاجران اوکراینی و سودانی در آمریکا",
+      "topic": "سیاست",
+      "until": 1792536331.0181367
+    },
     "v4|will trump’s endorsement of netanyahu fire up his campaign or fizzle?": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: تحلیل و گمانه‌زنی رسانه‌ای درباره تاثیر حمایت انتخاباتی است.",
@@ -1650,12 +1662,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Routine expert opinion on environmental management strategies.",
       "topic": "آب و هوا",
       "until": 1792477257.1554847
-    },
-    "v4|آخرین وضعیت بازار رمزارزها در جهان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: تحلیل و گمانه‌زنی درباره قیمت رمزارزها فاقد رویداد قطعی است.",
-      "topic": "اقتصاد",
-      "until": 1792476638.517164
     },
     "v4|آغاز ارزیابی علمی پیمایش ملی زن، خانواده و جمعیت": {
       "ok": false,
@@ -2856,12 +2862,6 @@
       "reason": "ai openrouter/openrouter/free batch score=4 happened=False scope=local: Academic commentary on political legitimacy, no concrete event",
       "topic": "سیاست",
       "until": 1792488890.375499
-    },
-    "v4|خسارت های پنهان و آشکار محدودیت گاز پتروشیمی ها در زمستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: تشریح و تحلیل کارشناسی درباره محدودیت گاز پتروشیمی ها",
-      "topic": "اقتصاد",
-      "until": 1792476077.7468827
     },
     "v4|خط حمله استقلال زیر ذره بین؛ موقعیت سازی کافی نیست": {
       "ok": false,
@@ -5725,20 +5725,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبرها و موفقیت‌های محلی و استانی سمنان اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792434929,
-      "title": "نبض خبر با ایرنا سمنان؛ درخشش دانش آموزان در المپیاد و موفقیت قرآنی در جشنواره ملی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: تهدید مبهم سخنگوی سپاه بدون اقدام ملموس",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792435575,
-      "title": "سخنگوی سپاه: دنیا خواهد دید چه خواهد شد!"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر احداث نیروگاه‌های خورشیدی در مدارس استانی، محلی و غیرمهم است.",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -6283,6 +6269,20 @@
       "rule": "no-concrete-event",
       "t": 1792448820,
       "title": "O'Sullivan & Trump lose in NI Open as big names continue to fall"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: تمدید موقت اقامت مهاجران اوکراینی و سودانی در آمریکا",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792449931,
+      "title": "US grants deportation reprieve to migrants from Ukraine and Sudan"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: مسابقه فوتبال باشگاهی و گلزنی بازیکن، اخبار درجه یک نیست",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792449934,
+      "title": "Maddison's magic moment for Spurs - 18 months in the making"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11924,7 +11924,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792449261
+    "at": 1792449855
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
