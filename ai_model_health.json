@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792447073
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792447073
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1792447077
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792447086
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 6x, gemini:gemini-3.6-flash held 1x, groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 7x",
       "t": 1792448300
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792448813
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792448813
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792448833
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-19",
-      "n": 242
+      "n": 244
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-19",
@@ -479,9 +479,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 317,
+        "calls": 319,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 315,
+        "ok": 317,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -1530,6 +1530,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: Global-scale tech release by Nvidia regarding enterprise open models.",
       "topic": "فناوری",
       "until": 1792516276.9780064
+    },
+    "v4|o'sullivan & trump lose in ni open as big names continue to fall": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: باخت رونی اوسالیوان در مسابقات اسنوکر اهمیت جهانی ندارد",
+      "topic": "ورزش",
+      "until": 1792535220.8179262
     },
     "v4|replika’s founder built the ai assistant she pitched at disrupt 12 years ago": {
       "ok": false,
@@ -2820,12 +2826,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: حمله موشکی مرگبار در یمن با ۴۰ کشته",
       "topic": "نظامی",
       "until": 1792499286.9355547
-    },
-    "v4|حکم قضایی توقف انتخابات ریاست فدراسیون ژیمناستیک": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: حکم قضایی مربوط به انتخابات یک فدراسیون ورزشی داخلی",
-      "topic": "ورزش",
-      "until": 1792476077.7339756
     },
     "v4|حکمی مساوی با هیچ!/ رونالدو با ۳۸ ثانیه در النصر جریمه اش را می دهد!": {
       "ok": false,
@@ -5725,13 +5725,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=iran_national: اظهارات رئیس‌جمهور درباره توسعه روبط با روسیه",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1792434926,
-      "title": "پزشکیان: همکاری های راهبردی ایران و روسیه توسعه خواهد یافت"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبرها و موفقیت‌های محلی و استانی سمنان اهمیت ملی ندارد",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -6283,6 +6276,13 @@
       "rule": "no-concrete-event",
       "t": 1792448230,
       "title": "تئوری عجیب درباره درگیری در رختکن منچستریونایتد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: باخت رونی اوسالیوان در مسابقات اسنوکر اهمیت جهانی ندارد",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792448820,
+      "title": "O'Sullivan & Trump lose in NI Open as big names continue to fall"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -12219,7 +12219,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792448101
+    "at": 1792448678
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -12232,11 +12232,6 @@
     "last_error": "HTTP 402 payment required (no free quota on this account)",
     "last_failure": 1791935762,
     "last_status": 402
-  },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1792448524.0,
-    "last_failure": 1792448224,
-    "last_status": 599
   },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1792448285,
