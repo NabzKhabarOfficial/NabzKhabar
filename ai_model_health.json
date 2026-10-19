@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792366427
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792367050
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792367591
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792367591
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792367591
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792367595
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792367600
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792372797
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792373363
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792373363
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792373364
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792373368
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792373387
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792373394
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-18",
-      "n": 163
+      "n": 164
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-18",
-      "n": 280
+      "n": 282
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-18",
-      "n": 124
+      "n": 125
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-18",
-      "n": 124
+      "n": 125
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-19",
-      "n": 9
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-19",
-      "n": 9
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-10-18",
@@ -478,43 +478,43 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 3,
-        "calls": 6,
+        "429": 4,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 2,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 2,
+        "429": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 1,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 7,
-        "other": 2
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 5,
-        "other": 4
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 14,
-        "ok": 14,
+        "calls": 15,
+        "ok": 15,
         "other": 0
       }
     }
@@ -4459,12 +4459,6 @@
       "topic": "سیاست",
       "until": 1792429218.9109585
     },
-    "v4|پایان انتظار 2 ساله برای گل؛/ امضای اولین برد فصل را فلاح زد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=iran_national: نتیجه بازی معمولی لیگ برتر فوتبال کشور.",
-      "topic": "ورزش",
-      "until": 1792401577.7405992
-    },
     "v4|پایان برنزی مبین عظیمی در لاس وگاس": {
       "ok": false,
       "reason": "ai gemini/gemini-3.8-flash score=3 happened=True scope=iran_national: مدال برنز در تورنمنت غیررسمی کشتی و فاقد اهمیت درجه یک",
@@ -4566,6 +4560,12 @@
       "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Putin proposes meeting on Ukraine without Zelensky",
       "topic": "سیاست",
       "until": 1792455768.9655132
+    },
+    "v4|پیام جالب انصارالله به مصر": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: اظهارنظر و پرسش یک مقام انصارالله درباره مصر رویداد دست اول نیست",
+      "topic": "سیاست",
+      "until": 1792459788.1032312
     },
     "v4|پیام نماینده تبریز: وزیر را استیضاح میکنیم!": {
       "ok": false,
@@ -5008,7 +5008,7 @@
     },
     "trump says suspension of russia sanctions is to keep peace negotiations going": {
       "reason": "content_duplicate",
-      "until": 1792394397.3825717
+      "until": 1792394994.009587
     },
     "what we know so far about deadly fire at canadian military base": {
       "reason": "content_duplicate",
@@ -5707,13 +5707,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=iran_national: هشدار صریح و رسمی رئیس ستاد کل نیروهای مسلح به دشمن",
-      "rescued": true,
-      "rule": "no-concrete-event",
-      "t": 1792352055,
-      "title": "سرلشکر عبداللهی: برای تصمیم های احمقانه دشمن لحظه شماری می کنیم"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تصادف جاده ای محلی با آسیب محدود واجد شرایط نیست",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6265,6 +6258,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792372791,
       "title": "تشدید دوباره تنش میان نتانیاهو و اوباما در آستانه انتخابات رژیم صهیونیستی"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: اظهارنظر و پرسش یک مقام انصارالله درباره مصر رویداد دست اول نیست",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1792373388,
+      "title": "پیام جالب انصارالله به مصر"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11468,7 +11468,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792372700
+    "at": 1792373268
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11482,15 +11482,20 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1792373687.0,
+    "last_failure": 1792373387,
+    "last_status": 599
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792372251,
-    "last_failure": 1792371651,
+    "disabled_until": 1792373968,
+    "last_failure": 1792373368,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792371379.0,
-    "last_failure": 1792371079,
-    "last_status": 599
+    "disabled_until": 1792373964,
+    "last_failure": 1792373364,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
