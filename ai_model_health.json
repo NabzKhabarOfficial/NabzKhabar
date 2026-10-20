@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792452845
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
-      "t": 1792452846
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792453462
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792460354
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792460902
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792460903
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-20",
-      "n": 10
+      "n": 11
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-20",
-      "n": 10
+      "n": 11
     },
     "openrouter:*": {
       "day": "2026-10-19",
@@ -508,16 +508,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
+        "ok": 9,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 6,
         "other": 5
       },
       "mistral:open-mistral-nemo": {
@@ -1383,6 +1383,12 @@
       "reason": "ai mistral/open-mistral-nemo score=8 happened=True scope=world: ۱۶۰ کشته در حملات درون در سودان، هدف غیرنظامیان و زیرساخت‌ها",
       "topic": "نظامی",
       "until": 1792534662.206159
+    },
+    "v4|20 سال ثبات شگفت انگیز/ بزرگترین بازیکن تاریخ؟ مسی در کنار مارادونا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: نظرات مربی پس از شکست تیم، خبری غیر مهم ورزشی",
+      "topic": "ورزش",
+      "until": 1792547302.0707533
     },
     "v4|at least 18 killed in houthi attack on military camp in yemen’s shabwa": {
       "ok": true,
@@ -3358,12 +3364,6 @@
       "topic": "ورزش",
       "until": 1792482927.4791296
     },
-    "v4|سردار بنی اسدی فر: جنگل ها و مراتع به پایش هوشمند نیاز دارند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: سخنان مقام انتظامی درباره لزوم پایش هوشمند جنگل‌ها، رویداد محسوب نمی‌شود.",
-      "topic": "جامعه",
-      "until": 1792480162.392786
-    },
     "v4|سرلشکر ایزدی: پیروزی های ما با ایستادگی مردم ادامه خواهد یافت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=False scope=iran_national: اظهارات عمومی و شعاری مسئولان بدون داشتن رویداد جدید",
@@ -3429,12 +3429,6 @@
       "reason": "ai openrouter/openrouter/free batch score=4 happened=False scope=local: Opinion columnist's analysis, not an official event",
       "topic": "سیاست",
       "until": 1792488890.38848
-    },
-    "v4|سهم ناچیز کردستان از ۱۷ هزار میلیارد تومان اعتبار مالیاتی کشور/ صنایع استان از ظرفیت قانون جهش تولید عقب نمانند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Provincial economic critique and routine administrative PR.",
-      "topic": "اقتصاد",
-      "until": 1792480166.031255
     },
     "v4|سهم ۱۷ درصدی استان مرکزی از ظرفیت نیروگاه های خورشیدی کشور": {
       "ok": false,
@@ -3693,6 +3687,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: General tech news and analysis, not a concrete major event.",
       "topic": "فناوری",
       "until": 1792524263.5666912
+    },
+    "v4|فاصله فراوان محروقی با فصل گذشته؛/ خشک سالی در خط حمله فولاد: کجایی احسان؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Player's performance not repeated",
+      "topic": "ورزش",
+      "until": 1792547303.427909
     },
     "v4|فاصله یحیی گل محمدی تا نیمکت تیم فوتبال امید به «یک امضا» رسید": {
       "ok": false,
@@ -5557,13 +5557,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: ادعای غیرواقعی و فاقد اعتبار اجرایی که ارزش خبری ندارد.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792439539,
-      "title": "دستور فوری ترامپ به ایالت «نیومکزیکو» برای تغییر نامش"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: ادعای تکراری و مبهم مقام خارجی بدون تصمیم مشخص",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6115,6 +6108,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792460348,
       "title": "Japan launches mission to explore Mars' moons and bring back samples"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: نظرات مربی پس از شکست تیم، خبری غیر مهم ورزشی",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792460902,
+      "title": "20 سال ثبات شگفت انگیز/ بزرگترین بازیکن تاریخ؟ مسی در کنار مارادونا"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11152,7 +11152,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792460245
+    "at": 1792460828
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
