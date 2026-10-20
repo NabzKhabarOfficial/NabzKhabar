@@ -1,38 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792457405
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792457408
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792457408
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
-      "t": 1792457410
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
-      "t": 1792458012
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792458028
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792459203
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792459205
-    },
-    {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
       "t": 1792459206
     },
@@ -159,32 +127,64 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 8x",
       "t": 1792462127
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792462718
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792462719
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792462723
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792462723
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792462728
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792462742
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792462742
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1792462797
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-19",
-      "n": 152
+      "n": 156
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-19",
-      "n": 266
+      "n": 268
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-19",
-      "n": 116
+      "n": 118
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-19",
-      "n": 116
+      "n": 117
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-20",
-      "n": 12
+      "n": 13
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-20",
-      "n": 12
+      "n": 13
     },
     "openrouter:*": {
       "day": "2026-10-19",
@@ -484,47 +484,49 @@
     "2026-10-20": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 11,
-        "ok": 11,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 5,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 3,
+        "other": 1
+      },
+      "gemini:gemini-3.8-flash": {
         "429": 0,
         "calls": 3,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 2,
         "other": 1
       },
-      "gemini:gemini-3.8-flash": {
-        "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 13,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 11,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 13,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 6,
-        "other": 6
+        "other": 7
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       }
     }
@@ -1475,6 +1477,12 @@
       "topic": "سیاست",
       "until": 1792542129.4790173
     },
+    "v4|helen haines live updates: mp critical but stable as afp look into charges carrying up to 10 years’ imprisonment": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: Deliberate attack on a sitting member of parliament is major news.",
+      "topic": "حادثه",
+      "until": 1792549152.5145314
+    },
     "v4|helen haines was chatting with locals at a dog park on monday morning. by the afternoon, she was fighting for her life": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سوءقصد به جان نماینده پارلمان استرالیا با خودرو",
@@ -1852,6 +1860,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و بهداشتی مربوط به دانش‌آموزان یک شهرستان است.",
       "topic": "سلامت",
       "until": 1792487106.8684218
+    },
+    "v4|اجرای پایلوت پزشکی خانواده در بهارستانِ تهران / نیاز به ۲۰۰ پزشک عمومی و منابع پایدار": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، برنامه بهداشتی بدون اثر ملی",
+      "topic": "سلامت",
+      "until": 1792549118.1766386
     },
     "v4|اجرای یک هزار و ۲۰۰ برنامه ورزشی و فرهنگی در استان مرکزی": {
       "ok": false,
@@ -2302,12 +2316,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: Gold medal win by an Iranian athlete at a world championship.",
       "topic": "ورزش",
       "until": 1792498742.9969523
-    },
-    "v4|بازی وسط سیل: داور سوژه شد! (عکس)": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: خبر سرگرمی و حاشیه‌ای ورزشی، فاقد اهمیت ملی یا جهانی",
-      "topic": "ورزش",
-      "until": 1792480751.8531673
     },
     "v4|بازیکن استقلال با ناراحتی از ورزشگاه رفت!": {
       "ok": false,
@@ -2830,12 +2838,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این یک مراسم محلی و تکراری است و ارزش خبری ملی ندارد.",
       "topic": "جامعه",
       "until": 1792537478.949592
-    },
-    "v4|جنوب کرمان بین خشکسالی و سیلاب/ از ۱۲۰۰ سازه آبخیزداری تا ۲.۵ میلیون هکتار معطل اعتبار": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: گزارش محلی و استانی درباره کمبود بودجه آبخیزداری جنوب کرمان",
-      "topic": "جامعه",
-      "until": 1792480751.8398383
     },
     "v4|جهانساز: سالانه ۱۲۳ هزار تن برگ سبز چای در کشور تولید می شود": {
       "ok": false,
@@ -3467,12 +3469,6 @@
       "topic": "ورزش",
       "until": 1792485382.4046397
     },
-    "v4|سینمای دفاع مقدس باید بازنمایی انسانیت در شرایط سخت باشد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: نظر و تحلیل فرهنگی درباره سینمای دفاع مقدس فاقد ارزش خبری درجه یک",
-      "topic": "جامعه",
-      "until": 1792480741.7214878
-    },
     "v4|شب پیروزی فجر سپاسی در پارس؛ دومین برد متوالی با طعم انسجام و ضدحمله": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Domestic league match, limited national impact",
@@ -3568,6 +3564,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local chamber calls for review of export currency commitments",
       "topic": "اقتصاد",
       "until": 1792520246.5318766
+    },
+    "v4|صابر اولین طلای روز دوم را دشت کرد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash score=7 happened=True scope=iran_national: کسب مدال طلای ورزشکار ایرانی در بازی‌های پاراآسیایی",
+      "topic": "ورزش",
+      "until": 1792549141.020912
     },
     "v4|صدای مقاومت از قلب اردبیل": {
       "ok": false,
@@ -3700,6 +3702,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: کودک اردبیلی جایزه بین المللی گرفت",
       "topic": "جامعه",
       "until": 1792483568.074811
+    },
+    "v4|غلامی جودوکار ژاپنی را به زانو درآورد/ برچلو باخت": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: پیروزی در مرحله مقدماتی بازی‌های پاراآسیایی اهمیت استراتژیک ملی ندارد.",
+      "topic": "ورزش",
+      "until": 1792549123.493576
     },
     "v4|فاجعه در بازار جهانی لپ تاپ و موبایل | سیلیکن": {
       "ok": false,
@@ -4937,12 +4945,6 @@
       "topic": "سیاست",
       "until": 1792495152.822724
     },
-    "v4|۵۰۰ برنامه ورزشی در کردستان اجرا می شود؛ بهره برداری از ۱۰ زمین چمن": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: خبر استانی و برنامه‌های روتین اداره ورزش و جوانان کردستان است.",
-      "topic": "ورزش",
-      "until": 1792480748.1797178
-    },
     "v4|۵۳ کشته و ۲۰۰ زخمی در حمله موشکی به یک مرکز آموزشی سعودی در جنوب یمن": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: موشکی به مرکز آموزشی سعودی در یمن، کشتگان و زخمیان",
@@ -4994,7 +4996,7 @@
     },
     "ترامپ: زلنسکی چندان به حل وفصل اوضاع کمک نمی کند؛ فکر می کنم او نمی خواهد به این جنگ پایان دهد / وقت آن رسیده است که شخص دیگری به نمایندگی از اوکراین وارد مذاکرات شود / اگر پوتین و": {
       "reason": "content_duplicate",
-      "until": 1792462487.5114675
+      "until": 1792484379.8964996
     },
     "جدال مقام های ایران و اسرائیل؛ مخبر: حمله کنند، ۹ کشور را می زنیم": {
       "reason": "content_duplicate",
@@ -5566,27 +5568,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: بیانیه دیپلماتیک عمومی، بدون اقدام ملموس",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1792441253,
-      "title": "تاکید وزیران خارجه ایران و برزیل بر کاهش تنش های منطقه ای"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مردم قم در میدان حضور حماسی",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792441254,
-      "title": "۲۳۳ شب حضور حماسی؛ عزم راسخ قمی ها در میدان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=0 happened=True scope=local: خبر محلی و رویداد شهری فاقد اهمیت ملی",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792441254,
-      "title": "روگذر طالقانی شهرکرد میزبان بعثت ۲۳۳"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: موضوع مربوط به آموزش‌های نظامی و فاقد ارزش خبری ملی است.",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -6124,6 +6105,27 @@
       "rule": "final-scope-preselection",
       "t": 1792462111,
       "title": "Zelensky accuses US of delaying missile deliveries as tensions rise"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، برنامه بهداشتی بدون اثر ملی",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792462718,
+      "title": "اجرای پایلوت پزشکی خانواده در بهارستانِ تهران / نیاز به ۲۰۰ پزشک عمومی و منابع پایدار"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: پیروزی در مرحله مقدماتی بازی‌های پاراآسیایی اهمیت استراتژیک ملی ندارد.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792462723,
+      "title": "غلامی جودوکار ژاپنی را به زانو درآورد/ برچلو باخت"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=7 happened=True scope=iran_national: کسب مدال طلای ورزشکار ایرانی در بازی‌های پاراآسیایی",
+      "rescued": true,
+      "rule": "below-event-threshold",
+      "t": 1792462741,
+      "title": "صابر اولین طلای روز دوم را دشت کرد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11161,7 +11163,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792461979
+    "at": 1792462555
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11181,14 +11183,14 @@
     "last_status": 599
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792462382.0,
-    "last_failure": 1792462082,
-    "last_status": 503
+    "disabled_until": 1792463360,
+    "last_failure": 1792462760,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792462379.0,
-    "last_failure": 1792462079,
-    "last_status": 599
+    "disabled_until": 1792463028.0,
+    "last_failure": 1792462728,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
