@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792451678
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792451682
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792451682
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.6-flash",
-      "t": 1792451688
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792451707
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792458028
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792459203
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792459205
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792459206
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1792459214
     }
   ],
   "_ai_pace": {
@@ -184,7 +184,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-20",
-      "n": 6
+      "n": 9
     },
     "openrouter:*": {
       "day": "2026-10-19",
@@ -515,15 +515,15 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 9,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
+        "ok": 5,
         "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       }
     }
@@ -2014,6 +2014,12 @@
       "topic": "سیاست",
       "until": 1792484241.8422213
     },
+    "v4|اعتراض مخالفان/ادعای ترامپ در مورد مشارکت نکردن ناتو در جنگ علیه ایران": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: US President claims NATO won't join war against Iran",
+      "topic": "سیاست",
+      "until": 1792545606.9227717
+    },
     "v4|اعتراض های فرانسه؛ فرصتی برای قدرت گیری راست افراطی": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=world: Mass protests, 2000+ arrests, violent clashes in France",
@@ -2674,6 +2680,12 @@
       "topic": "ورزش",
       "until": 1792516258.0134265
     },
+    "v4|تکنیکی ها ناجی مورینیو/ جادوگرها به رئال مادرید جان دادند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مبارزه کلوبی، تغییر ترکیب مورینیو، نتیجه مثبت",
+      "topic": "ورزش",
+      "until": 1792545604.316725
+    },
     "v4|تکواندو استارت زد، دوومیدانی تکمیل کرد/ لحظه به لحظه از ناگویا: روز طلایی زنان ایران": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلا و موفقیت زنان ورزشکار ایران در پاراآسیایی ناگویا",
@@ -2721,6 +2733,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: General comment, no concrete decision or action",
       "topic": "نظامی",
       "until": 1792509687.788947
+    },
+    "v4|جدال در هوای ناپایدار/ حاشیه عجیب برای کمانداران در ناگویا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=world: Archery event delayed due to weather",
+      "topic": "ورزش",
+      "until": 1792545606.9368632
     },
     "v4|جدال مقام های ایران و اسرائیل؛ مخبر: حمله کنند، ۹ کشور را می زنیم": {
       "ok": true,
@@ -4132,12 +4150,6 @@
       "topic": "سیاست",
       "until": 1792480717.3944054
     },
-    "v4|نتانیاهو: باید برای حمله پیشدستانه آماده باشیم": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع‌گیری رسمی نخست‌وزیر اسرائیل درباره آمادگی برای حمله پیشدستانه.",
-      "topic": "نظامی",
-      "until": 1792480162.3253522
-    },
     "v4|نتانیاهو: در جنگ هرکس که اول ضربه بزند، مزیت بسیار بزرگی دارد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع‌گیری رسمی نتانیاهو درباره اهمیت ضربه اول و آمادگی برای حمله پیشدستانه.",
@@ -4384,12 +4396,6 @@
       "topic": "فناوری",
       "until": 1792508616.7379634
     },
-    "v4|وال استریت ژورنال: پوتین پیشنهاد برگزاری نشستی سه جانبه با همتایان آمریکایی و چینی خود را برای گفت وگو جهت «پایان دادن به جنگ اوکراین»، مطرح کرده/ ترامپ هنوز با برگزاری این نشست مو": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: پیشنهاد رسمی پوتین برای برگزاری نشست سه جانبه پایان جنگ اوکراین.",
-      "topic": "سیاست",
-      "until": 1792480162.338811
-    },
     "v4|واژگونی خودرو در جاده های استان سمنان باز هم قربانی گرفت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تصادف جاده ای محلی در استان سمنان با تلفات محدود",
@@ -4401,12 +4407,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=iran_national: مقاله تحلیلی و واکاوی مسائل حکمرانی است.",
       "topic": "سیاست",
       "until": 1792495152.7100077
-    },
-    "v4|واکنش کریس ون هولن، سناتور دموکرات به حمایت ترامپ از نتانیاهو در انتخابات اسرائیل: آن ها جنگ علیه ایران را با هم آغاز کردند و درباره همه چیز با هم دروغ می گویند؛ مستبدان هم جنس دور": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: اظهارنظر یک سناتور آمریکایی درباره ترامپ و نتانیاهو رویداد قطعی نیست.",
-      "topic": "سیاست",
-      "until": 1792480162.3096576
     },
     "v4|ورزش هرمزگان در مسیر توسعه زیرساخت ها و حمایت پایدار از قهرمانان": {
       "ok": false,
@@ -4978,38 +4978,10 @@
       "reason": "content_duplicate",
       "until": 1792469894.863972
     },
-    "russia’s lavrov discusses us war and regional security during tehran visit": {
-      "reason": "content_duplicate",
-      "until": 1792443867.594393
-    },
-    "trump is pushing ukraine to surrender to russia, zelensky says": {
-      "reason": "content_duplicate",
-      "until": 1792436832.3700075
-    },
-    "احتمال شنیده شدن صدای انفجار در بندرعباس تا ۲ روز آینده": {
-      "at": 1792425213.1201143,
-      "reason": "final_guard:local-notice",
-      "until": 1792446813.1201143
-    },
-    "ادعای وزیر خارجه آمریکا: ایران اهرم فشار خود را بر تنگه هرمز از دست داده است / ترامپ به تهران اجازه نداد که به سلاح هسته ای دست یابد و آن را در پس پرده ای از هزاران موشک و پهپاد پن": {
-      "reason": "content_duplicate",
-      "until": 1792451525.0556257
-    },
-    "ارتش یمن: حمله به اردوگاه شبه نظامیان در شبوه، ده ها کشته و زخمی برجای گذاشت": {
-      "reason": "content_duplicate",
-      "until": 1792442682.3115594
-    },
-    "افزایش قیمت نفت در میان ادامه درگیری های عربستان و یمن": {
-      "reason": "content_duplicate",
-      "until": 1792458988.978826
-    },
-    "انصارالله: مراکز بسیج نیرو در عربستان را هدف قرار دادیم": {
-      "reason": "content_duplicate",
-      "until": 1792449734.2975225
-    },
-    "بحران انرژی به خیابان های اروپا رسید/اختلال در بازار انرژی فشار بر معیشت را افزایش داد": {
-      "reason": "content_duplicate",
-      "until": 1792451511.8134828
+    "اعتراض مخالفان/ادعای ترامپ در مورد مشارکت نکردن ناتو در جنگ علیه ایران": {
+      "at": 1792459214.388693,
+      "reason": "final_guard:dangling-lead",
+      "until": 1792480814.388693
     },
     "ترامپ: زلنسکی چندان به حل وفصل اوضاع کمک نمی کند؛ فکر می کنم او نمی خواهد به این جنگ پایان دهد / وقت آن رسیده است که شخص دیگری به نمایندگی از اوکراین وارد مذاکرات شود / اگر پوتین و": {
       "reason": "content_duplicate",
@@ -5019,116 +4991,17 @@
       "reason": "content_duplicate",
       "until": 1792461793.8886187
     },
-    "جزئیات تصادف مرگبار محور بجنورد ـ شیروان با ۲ کشته اعلام شد": {
-      "at": 1792425213.1201143,
-      "reason": "final_guard:local-level",
-      "until": 1792446813.1201143
-    },
-    "جزئیات حادثه مرگبار انفجار در کارخانه «فروآلیاژ» اسلام آبادغرب": {
-      "reason": "content_duplicate",
-      "until": 1792437372.5041935
-    },
-    "حمله موشکی یمن به اردوگاه نظامی شبه نظامیان در شبوه؛ ۴۰ نفر کشته شدند": {
-      "reason": "content_duplicate",
-      "until": 1792434521.5938308
-    },
-    "دستگیری عامل تیراندازی منجر به کشته شدن یک نفر در شبستر": {
-      "at": 1792430410.5718803,
-      "reason": "final_guard:local-level",
-      "until": 1792452010.5718803
-    },
-    "سخنگوی سپاه: پاسخ ایران به تجاوز جدید جهان را بحران انرژی روبرو می کند": {
-      "reason": "content_duplicate",
-      "until": 1792440345.6679554
-    },
-    "سخنگوی سپاه:پاسخ ایران به تجاوزجدید،جهان رابا بحران انرژی روبرو می کند": {
-      "reason": "content_duplicate",
-      "until": 1792440825.1160161
-    },
-    "سرلشکر ایزدی، جانشین فرمانده کل سپاه: اکنون نیروهای آمریکایی در دریا سرگردان هستند و حدود ۷۰۰ کیلومتر فاصله گرفته اند تا موشک های ما به آن ها آسیب نرسانند": {
-      "reason": "content_duplicate",
-      "until": 1792434545.661884
-    },
-    "سومین طلای ایران در بازی های پاراآسیایی/ ضیغمی نژاد قهرمان شد، ایزدیار نقره گرفت": {
-      "reason": "content_duplicate",
-      "until": 1792433314.1487188
-    },
     "شرط زلنسکی برای توقف حمله به مراکز نفتی روسیه": {
       "reason": "content_duplicate",
       "until": 1792463529.8536637
-    },
-    "طائب: قهرمانی مقتدرانه تیم های ملی کشتی آزاد و فرنگی زیر ۲۳ سال در خاک آمریکا حلاوتی دوچندان داشت": {
-      "reason": "content_duplicate",
-      "until": 1792452010.5517764
-    },
-    "عارف از مواضع و حمایت های تاجیکستان از ایران در جریان جنگ رمضان و حملات آمریکا و اسرائیل قدردانی کرد": {
-      "reason": "content_duplicate",
-      "until": 1792458981.5786214
-    },
-    "فعال شدن آژیر خطر در نجران در جنوب عربستان": {
-      "reason": "content_duplicate",
-      "until": 1792435649.2715669
-    },
-    "قطر ایرویز تعلیق پروازها به ریاض و دمام را تمدید کرد": {
-      "reason": "content_duplicate",
-      "until": 1792436819.5075858
-    },
-    "لاوروف: دیپلماسی باید جایگزین تنش در خلیج فارس شود": {
-      "reason": "content_duplicate",
-      "until": 1792440818.219551
     },
     "ممنوعیت استفاده از هوش مصنوعی چینی «دیپ سیک» در نهادهای دولتی آمریکا": {
       "reason": "content_duplicate",
       "until": 1792467027.422333
     },
-    "نتانیاهو: اسرائیل آمادهٔ حملهٔ پیش دستانه به ایران بدون حمایت آمریکا است": {
-      "reason": "content_duplicate",
-      "until": 1792456579.2842104
-    },
-    "نیروهای مسلح یمن: کشته شدن ده ها شبه نظامی و چند افسر سعودی در حمله به اردوگاه نظامی العلم": {
-      "reason": "content_duplicate",
-      "until": 1792441529.4677317
-    },
-    "هشدار سپاه: پاسخ این بار شدیدتر خواهد بود": {
-      "reason": "content_duplicate",
-      "until": 1792436839.9648044
-    },
-    "پاکستان از کشته شدن ۴ شبه نظامی در ایالت بلوچستان خبر داد": {
-      "at": 1792425213.1201143,
-      "reason": "policy_scope_blocked",
-      "until": 1792446813.1201143
-    },
-    "پزشکیان: افزایش ۵۰۰ هزار تومانی کالابرگ الکترونیک اجرا می شود": {
-      "reason": "content_duplicate",
-      "until": 1792435121.1547518
-    },
     "پس از هفته ها خشونت، فشارها بر دولت فرانسه افزایش یافته است": {
       "reason": "content_duplicate",
       "until": 1792464147.9969459
-    },
-    "چین خواستار احیای توافق نامه اسلام آباد شد": {
-      "reason": "content_duplicate",
-      "until": 1792449761.9763277
-    },
-    "چین خواهان احیای توافق نامه اسلام آباد است/مخالفت قاطع پکن با تحریم های آمریکا": {
-      "reason": "content_duplicate",
-      "until": 1792443848.1099691
-    },
-    "کاهش مصرف بنزین بدون گران سازی/ مدیریت مصرف بنزین در میانه جنگ": {
-      "reason": "content_duplicate",
-      "until": 1792439802.856872
-    },
-    "کشته شدن ۵۳ نیروی تازه استخدام عربستان در حمله موشکی یمن": {
-      "reason": "content_duplicate",
-      "until": 1792440806.9074168
-    },
-    "یحیی سریع: با ۶ موشک بالستیک تجمع مزدوران را هدف قرار دادیم": {
-      "reason": "content_duplicate",
-      "until": 1792442051.9755526
-    },
-    "۵۳ کشته و ۲۰۰ زخمی در حمله موشکی به یک مرکز آموزشی سعودی در جنوب یمن": {
-      "reason": "content_duplicate",
-      "until": 1792446129.1978717
     }
   },
   "_event_judge_log": [
@@ -5684,13 +5557,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی درباره ساماندهی نانوایی‌ها در بروجرد",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792439052,
-      "title": "ساماندهی بیش از ۵۰ خبازی آزادپز در بروجرد؛ فقط ۲ واحد مجوز دارند"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: پیام تبریک مقام نظامی و اظهارنظر روتین بدون رویداد کلان",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -6242,6 +6108,13 @@
       "rule": "below-event-threshold",
       "t": 1792458578,
       "title": "انتشار تصاویر تازه از رهبر کره شمالی در میان شایعات پیرامون سلامتی وی"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مبارزه کلوبی، تغییر ترکیب مورینیو، نتیجه مثبت",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792459204,
+      "title": "تکنیکی ها ناجی مورینیو/ جادوگرها به رئال مادرید جان دادند"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11279,7 +11152,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792458502
+    "at": 1792459087
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11314,10 +11187,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792458018,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
