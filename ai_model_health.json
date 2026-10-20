@@ -2,18 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792450546
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1792450550
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792451072
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792451072
     },
     {
@@ -159,6 +147,18 @@
     {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
       "t": 1792455732
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792456832
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792456833
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1792456833
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-20",
-      "n": 6
+      "n": 7
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-20",
-      "n": 1
+      "n": 3
     },
     "openrouter:*": {
       "day": "2026-10-19",
@@ -490,16 +490,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 7,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 6,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 1,
+        "calls": 3,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 0,
+        "ok": 2,
         "other": 1
       },
       "mistral:open-mistral-nemo": {
@@ -1432,6 +1432,12 @@
       "topic": "اقتصاد",
       "until": 1792532910.672594
     },
+    "v4|gilbert bigio, haitian tycoon linked to gangs, dies at 91": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Death of Haitian tycoon, no major global impact",
+      "topic": "اقتصاد",
+      "until": 1792543232.628464
+    },
     "v4|helen haines live updates: independent mp in critical but stable condition as asio boss warns about ‘violent rhetoric’": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=local: Australian MP attacked, not major impact",
@@ -1599,6 +1605,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارنظر جنجالی دونالد ترامپ درباره مهاجران و فرانسه ارزش خبری درجه اول ندارد",
       "topic": "سیاست",
       "until": 1792536941.5822027
+    },
+    "v4|trump’s push for deals with russia powers his frustration with ukraine": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: تحلیل اقدامات ترامپ در روابط روسیه",
+      "topic": "سیاست",
+      "until": 1792543233.5914462
     },
     "v4|ukraine uses f-16s to shoot down russia’s jet-powered drones": {
       "ok": true,
@@ -1834,12 +1846,6 @@
       "topic": "اقتصاد",
       "until": 1792487122.074141
     },
-    "v4|اختلاف بر سر اسپیس ایکس؛ آمریکا اروپا را به تلافی «ویرانگر» تهدید کرد": {
-      "ok": true,
-      "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: تهدید آمریکا به اروپا برای محدودیت‌های اسپیس ایکس",
-      "topic": "فناوری",
-      "until": 1792478911.9729683
-    },
     "v4|ادعاهای ونس درباره جنگ علیه ایران و کنترل عرضه نفت جهان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative claims and political rhetoric, not a concrete official decision.",
@@ -1977,12 +1983,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: تغییر جزئی در نحوه انتشار اطلاعات صندوق‌های بازار سرمایه.",
       "topic": "اقتصاد",
       "until": 1792484202.5920372
-    },
-    "v4|اطلاعیه سپاه پاسداران: اصابت نفتکش متخلف به مین در جنوب تنگه هرمز": {
-      "ok": true,
-      "reason": "ai mistral/open-mistral-nemo score=8 happened=True scope=world: ماین‌کشی در تنگه هرمز، تهدید ترافیک نفت جهانی",
-      "topic": "نظامی",
-      "until": 1792479579.4675062
     },
     "v4|اعتراض به گرانی گازوئیل در ایتالیا با آتش زدن پرچم آمریکا": {
       "ok": false,
@@ -3910,6 +3910,12 @@
       "topic": "فناوری",
       "until": 1792538081.9895658
     },
+    "v4|محبوبیت ترامپ به پایین ترین سطح خود رسید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: نظرسنجی، نه تصمیم یا رویداد مهم",
+      "topic": "سیاست",
+      "until": 1792543231.9570847
+    },
     "v4|محکومیت صریح تجاوزهای آمریکا و رژیم صهیونی توسط چین/مخالفت قاطع پکن با تحریم های آمریکا": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo score=8 happened=True scope=world: چین محکومیت صریح تحریم‌های آمریکا و اسرائیل و حمایت از ایران",
@@ -4731,12 +4737,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و مطالبات ورزشی در روداب نرماشیر فاقد اهمیت ملی است.",
       "topic": "ورزش",
       "until": 1792507941.2895005
-    },
-    "v4|کمبود موشک پنتاگون را به خرید بی سروصدا وادار کرد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: قرارداد تسلیحاتی بزرگ ۵۳۹ میلیون دلاری پنتاگون برای خرید موشک‌های دوربرد",
-      "topic": "نظامی",
-      "until": 1792480119.8425136
     },
     "v4|کوروش احمدی: تا این لحظه، چین آمادگی میانجیگری بین ایران و امریکا نداشته / مواضع پکن از خیلی جهات به آمریکا نزدیک تر است تا به ما / چینی ها موقعیت میانجیگری ندارند؛ اتفاقا کشورهای": {
       "ok": false,
@@ -5666,20 +5666,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی و مربوط به وضعیت نانوایی‌های یک شهرستان خاص است.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792437860,
-      "title": "فرماندار خرم آباد: تنها ۸۶ نانوایی شهرستان دوگانه سوز است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: لغو نشست مهم اقتصادی عربستان در پی حملات اخیر",
-      "rescued": true,
-      "rule": "below-event-threshold",
-      "t": 1792438457,
-      "title": "عربستان نشست «داووس صحرا» را به سال ۲۰۲۷ موکول کرد"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: موضوع محلی مربوط به ساماندهی کارگران در شهرداری شیراز است.",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -6224,6 +6210,20 @@
       "rule": "no-concrete-event",
       "t": 1792455729,
       "title": "Helen Haines live updates: independent MP in critical but stable condition as Asio boss warns about ‘violent rhetoric’"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: نظرسنجی، نه تصمیم یا رویداد مهم",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792456831,
+      "title": "محبوبیت ترامپ به پایین ترین سطح خود رسید"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Death of Haitian tycoon, no major global impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792456832,
+      "title": "Gilbert Bigio, Haitian Tycoon Linked to Gangs, Dies at 91"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11390,7 +11390,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792456194
+    "at": 1792456770
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
