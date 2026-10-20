@@ -2,26 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792462061
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792462079
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792462082
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792462098
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792462099
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792462099
     },
     {
@@ -159,6 +139,26 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792463809
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792464426
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792464428
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792464428
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.8-flash",
+      "t": 1792464461
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792464483
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-19",
-      "n": 273
+      "n": 274
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-19",
-      "n": 119
+      "n": 120
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-19",
-      "n": 118
+      "n": 120
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-20",
-      "n": 14
+      "n": 15
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-20",
-      "n": 14
+      "n": 15
     },
     "openrouter:*": {
       "day": "2026-10-19",
@@ -490,38 +490,38 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 18,
-        "ok": 18,
+        "calls": 19,
+        "ok": 19,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 2,
-        "calls": 6,
+        "calls": 7,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 3,
+        "other": 2
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 3,
         "other": 1
       },
-      "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 4,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 2,
-        "other": 1
-      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 11,
-        "other": 3
+        "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 7,
         "other": 8
       },
       "mistral:open-mistral-nemo": {
@@ -1454,6 +1454,12 @@
       "topic": "نظامی",
       "until": 1792528282.610073
     },
+    "v4|four dead as torrential rain batters eastern spain": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.8-flash batch score=3 happened=True scope=world: سیل اسپانیا با تلفات کمتر از ۱۰ نفر اولویت فوری نیست",
+      "topic": "حادثه",
+      "until": 1792550861.801488
+    },
     "v4|france riots: ai photos falsely depict elderly couple ‘stripped and robbed’": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: اخبار مربوط به تصاویر جعلی و شبکه اجتماعی رویداد درجه یک جهانی محسوب نمی‌شود.",
@@ -1591,6 +1597,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: باخت رونی اوسالیوان در مسابقات اسنوکر اهمیت جهانی ندارد",
       "topic": "ورزش",
       "until": 1792535220.8179262
+    },
+    "v4|oil-rich alberta votes on its future in canada": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Alberta referendum on staying in Canada.",
+      "topic": "سیاست",
+      "until": 1792550826.7929347
     },
     "v4|priest in ecuador dies after crucifix falls on him during livestreamed mass": {
       "ok": false,
@@ -2131,6 +2143,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: تاخیر آمریکا در ارسال موشک‌های پاتریوت به اوکراین تصمیم مهم نظامی.",
       "topic": "نظامی",
       "until": 1792549697.3290613
+    },
+    "v4|امریکا با گرفتن امتیاز هسته ای راضی نمی شود؛ او می خواهد ایران ونزوئلا شود/ باید جنگید و دستاورد جنگ را به امتیاز سیاسی تبدیل کرد؛مثل تفاهمنامه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.8-flash batch score=2 happened=False scope=iran_national: تحلیل و نظر سیاسی بدون رخداد عینی یا تصمیم رسمی",
+      "topic": "سیاست",
+      "until": 1792550861.815222
     },
     "v4|امکان تبدیل اقساطی خودروهای بنزینی به دوگانه سوز در زنجان فراهم است": {
       "ok": false,
@@ -2785,12 +2803,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی درمورد دمای هوا در استان گلستان",
       "topic": "آب و هوا",
       "until": 1792524253.7817628
-    },
-    "v4|جان باختن یک مادر و کودک در اتوبان غدیر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: حادثه رانندگی محلی با تلفات محدود استانی محسوب می شود.",
-      "topic": "حادثه",
-      "until": 1792481318.5864832
     },
     "v4|جانشین وزیر دفاع: شناخت رفتار دشمن از الزامات تصمیم گیری دقیق و موثر است": {
       "ok": false,
@@ -3566,12 +3578,6 @@
       "topic": "جامعه",
       "until": 1792530068.1587338
     },
-    "v4|صدور اوراق گام و برات الکترونیکی بدون استعلام مالیاتی ممنوع شد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: بخشنامه مهم بانک مرکزی با تاثیر سراسری بر بازار مالی.",
-      "topic": "اقتصاد",
-      "until": 1792481318.5997546
-    },
     "v4|صدور بیش از ۸۲۰ سند مالکیت برای اراضی زراعی دزفول": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار محلی و ثبت اسناد شهری اهمیت ملی ندارد",
@@ -3709,12 +3715,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Player's performance not repeated",
       "topic": "ورزش",
       "until": 1792547303.427909
-    },
-    "v4|فاصله یحیی گل محمدی تا نیمکت تیم فوتبال امید به «یک امضا» رسید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=iran_national: گمانه‌زنی درباره انتخاب سرمربی تیم امید و عدم نهایی شدن قرارداد.",
-      "topic": "ورزش",
-      "until": 1792481314.1185613
     },
     "v4|فراخوان هفدهمین جشنواره مردمی فیلم عمار منتشر شد": {
       "ok": false,
@@ -5569,13 +5569,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=6 happened=True scope=world: توطئه امنیتی علیه پرواز دبی به تل‌آویو در امارات کشف شد.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792441882,
-      "title": "For Israelis and Jews in the U.A.E., an Eroding Sense of Security"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: کیت سوم بارسلونا برای مسابقه PSG",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -6127,6 +6120,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792463803,
       "title": "مقاله تامل برانگیز روزنامه جمهوری اسلامی یک روز بعد از انتشار عکس دوچرخه سواری احمدی نژاد/امریکا و اسزائل به دنبال روی ک"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Alberta referendum on staying in Canada.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792464426,
+      "title": "Oil-Rich Alberta Votes on its Future in Canada"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10669,7 +10669,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792463710
+    "at": 1792464292
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10684,9 +10684,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792464387,
-    "last_failure": 1792463787,
-    "last_status": 429
+    "disabled_until": 1792464780.0,
+    "last_failure": 1792464480,
+    "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1792463884,
