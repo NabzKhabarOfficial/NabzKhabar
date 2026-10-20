@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792450536
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792450541
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792454013
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1792455164
     }
   ],
   "_ai_pace": {
@@ -179,8 +179,8 @@
       "n": 113
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-10-19",
-      "n": 90
+      "day": "2026-10-20",
+      "n": 2
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-19",
@@ -192,91 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-10-16": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 176,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 93,
-        "other": 83
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 308,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 252,
-        "other": 56
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 86,
-        "calls": 137,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 18,
-        "other": 33
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 80,
-        "calls": 130,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 8,
-        "other": 42
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 63,
-        "other": 27
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 65,
-        "other": 25
-      },
-      "groq:qwen/qwen3-32b": {
-        "429": 0,
-        "calls": 121,
-        "last_error": "HTTP 404: {\"error\":{\"message\":\"The model `qwen/qwen3-32b` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}} ",
-        "ok": 0,
-        "other": 121
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 0,
-        "calls": 42,
-        "ok": 42,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 0,
-        "calls": 954,
-        "ok": 954,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 4,
-        "calls": 4,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 2,
-        "calls": 2,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/set",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 33,
-        "ok": 33,
-        "other": 0
-      }
-    },
     "2026-10-17": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -565,16 +480,23 @@
         "ok": 29,
         "other": 1
       }
+    },
+    "2026-10-20": {
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      }
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 3,
-      "t": 1792317840.7604587,
-      "title": "عراقچی: ایران ممکن است قطعنامه یمن سازمان همکاری اسلامی را رد کند",
-      "urgent": false
-    },
     {
       "label": "اقتصاد",
       "level": 3,
@@ -1407,6 +1329,13 @@
       "t": 1792451706.565789,
       "title": "انفجار در جنوب لبنان",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 3,
+      "t": 1792455181.22127,
+      "title": "فروپاشی معدن طلای غیرقانونی در ناریو، ۱۴ کشته شد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-19",
@@ -1428,6 +1357,12 @@
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: Ballistic missile attack on military camp, 18+ deaths",
       "topic": "نظامی",
       "until": 1792502757.5807793
+    },
+    "v4|colombia illegal gold mine collapse kills 14 people": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Mine collapse, 14 dead",
+      "topic": "حادثه",
+      "until": 1792541564.4174607
     },
     "v4|coreweave’s debt is becoming the whole ai industry’s problem": {
       "ok": false,
@@ -3157,12 +3092,6 @@
       "topic": "ورزش",
       "until": 1792523717.0211458
     },
-    "v4|رشد اقتصاد چین در سه ماهه سوم شتاب گرفت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Official economic data release regarding China's quarterly GDP growth.",
-      "topic": "اقتصاد",
-      "until": 1792477257.22934
-    },
     "v4|رفع دستور توقف انتخابات فدراسیون ژیمناستیک": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=iran_national: رفع دستور موقت و برگزاری انتخابات فدراسیون ژیمناستیک",
@@ -3901,12 +3830,6 @@
       "topic": "فناوری",
       "until": 1792480166.1119795
     },
-    "v4|لرستان جزو سه استان برتر کشور در پیشگیری و اطفای حریق": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial ranking, limited national significance",
-      "topic": "آب و هوا",
-      "until": 1792477786.4718502
-    },
     "v4|لغو پروازهای شرکت هواپیمایی «الاتحاد» امارات به عربستان تا دوم آبان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.8-flash batch score=5 happened=True scope=world: لغو موقت پروازهای یک ایرلاین منطقه‌ای فاقد اهمیت درجه‌یک",
@@ -4032,6 +3955,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: Routine administrative statement about preventive management of natural resources.",
       "topic": "جامعه",
       "until": 1792494132.5163233
+    },
+    "v4|مرشایمر: آمریکا راهی برای خروج از بحران های اوکراین و خاورمیانه ندارد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=world: Opinion piece, no concrete event",
+      "topic": "سیاست",
+      "until": 1792541564.4018974
     },
     "v4|مرمت درها و پنجره های تئاتر شهر پس از ۲۰ سال؛ پایان عملیات تا دو هفته آینده": {
       "ok": false,
@@ -5172,16 +5101,6 @@
   },
   "_event_judge_log": [
     {
-      "confirm": "mistral/ministral-8b-latest:repeat",
-      "head": "ارتش عملیات پاکسازی مهمات جنگی در جنوب اصفهان آغاز می کند ⚡️ ارتش ایران عملیات پاکسازی و خنثی سازی مهمات عمل ن",
-      "id": "e648acb5f9",
-      "match": "انفجار کنترل شده مهمات در دزفول",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792402506,
-      "verdict": "repeat",
-      "why": "انفجار کنترل شده مهمات در جنوب اصفهان"
-    },
-    {
       "head": "ارتش پاکستان: کشته شدن افسر ارشد در عملیات های امنیتی بلوچستان ⚡️ ارتش پاکستان اعلام کرد یک سرگرد و چهار شبه ن",
       "id": "b5c72a3dc9",
       "match": "",
@@ -5720,6 +5639,15 @@
       "t": 1792451705,
       "verdict": "new",
       "why": "انفجار جدید در جنوب لبنان، غیرمستقل از موارد قبلی"
+    },
+    {
+      "head": "فروپاشی معدن طلای غیرقانونی در ناریو، ۱۴ کشته شد ⚡️ در بخش چامبرو شهرستان سانتا باربارا د ایسکوانده در استان ن",
+      "id": "27cad674de",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792455172,
+      "verdict": "new",
+      "why": "معدن غیرقانونی در ناریو، کلمبیا؛ متفاوت از موارد قبلی"
     }
   ],
   "_importance_rescue_log": [
@@ -6288,368 +6216,6 @@
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ارشد",
-        "افسر",
-        "بلچست",
-        "سرگرد",
-        "شبه",
-        "شدند",
-        "عمل",
-        "پکست",
-        "چهر"
-      ],
-      "t": 1792402523.6373904,
-      "title": "ارتش پاکستان: کشته شدن افسر ارشد در عملیات های امنیتی بلوچستان ⚡️ ارتش پاکستان اعلام کرد یک سرگرد و چهار شبه نظامی در عم"
-    },
-    {
-      "h": [
-        "ابتد",
-        "اتش",
-        "البرت",
-        "بد",
-        "تبدل",
-        "تغر",
-        "جهت",
-        "رسد",
-        "سربز",
-        "سز",
-        "علف",
-        "فجع",
-        "نظر",
-        "نفر",
-        "نگهن",
-        "پگ",
-        "چهر",
-        "کنترل",
-        "کند"
-      ],
-      "t": 1792403661.120821,
-      "title": "آتش سوزی آتش سوزی علفی در پایگاه نظامی کانادا چهار سرباز را کشته و ۳۹ نفر را زخمی کرد ⚡️ در یک پایگاه نظامی در آلبرتا، ی"
-    },
-    {
-      "h": [
-        "اشتب",
-        "امدر",
-        "ترخ",
-        "تصمم",
-        "تغر",
-        "خند",
-        "دستر",
-        "زلنسک",
-        "لغ"
-      ],
-      "t": 1792404770.929745,
-      "title": "زلنسکی: لغو تحریم روسیه توسط ترامپ «اشتباه تاریخی» است ⚡️ زلنسکی دستور ترامپ برای لغو تحریم های روسیه را «اشتباه تاریخی»"
-    },
-    {
-      "h": [
-        "تعدد",
-        "سصد",
-        "شرکت",
-        "طهر",
-        "عبدلح",
-        "عدد",
-        "عملت",
-        "مدرعمل",
-        "نگ",
-        "هزر",
-        "هستند",
-        "کهش",
-        "یفت"
-      ],
-      "t": 1792404785.3695345,
-      "title": "مدیرعامل ایران ایر: ناوگان عملیاتی شرکت به ۱۳۰ تا ۱۴۰ هواپیما کاهش یافته است ⚡️ طاهر عبدالحی، مدیرعامل ایران ایر، گفت که"
-    },
-    {
-      "h": [
-        "اردند",
-        "ارمغ",
-        "افتخر",
-        "الهم",
-        "ترن",
-        "دست",
-        "صلح",
-        "طل",
-        "مد",
-        "مدل",
-        "مسبق",
-        "معصم",
-        "مل",
-        "نز",
-        "نقر",
-        "نگ",
-        "پرتب",
-        "پردمدن",
-        "کسب"
-      ],
-      "t": 1792404796.1523001,
-      "title": "بانوان ایرانی در پرتاب نیزه، طلا و نقره ناگویا را به دست آوردند ⚡️ الهام صالحی و معصومه تورانی در مسابقات پارادوومیدانی "
-    },
-    {
-      "h": [
-        "اتحد",
-        "جده",
-        "دلل",
-        "دمم",
-        "رض",
-        "شرط",
-        "شرکت",
-        "شهر",
-        "لغ"
-      ],
-      "t": 1792404810.3637354,
-      "title": "هواپیمایی اتحاد امارات پروازهای خود به عربستان را لغو کرد ⚡️ شرکت هواپیمایی اتحاد امارات پروازهای خود به شهرهای دمام، جد"
-    },
-    {
-      "h": [
-        "اصل",
-        "برقرر",
-        "ثبت",
-        "خرج",
-        "خرمن",
-        "دنست",
-        "رب",
-        "صلح",
-        "عمل",
-        "مرک",
-        "معرف",
-        "منع",
-        "پشن"
-      ],
-      "t": 1792405983.3404343,
-      "title": "روبیو: ترامپ ایران را مانع اصلی صلح در خاورمیانه معرفی کرد ⚡️ وزیر خارجه آمریکا، مارکو روبیو، ادعا کرد که رئیس جمهور پیش"
-    },
-    {
-      "h": [
-        "اس",
-        "بربر",
-        "بز",
-        "تم",
-        "خرد",
-        "در",
-        "شکست",
-        "صفر",
-        "مسبق",
-        "مقبل",
-        "مل",
-        "نتج",
-        "نخستن",
-        "نشست",
-        "ولبل",
-        "پنجمن"
-      ],
-      "t": 1792406012.097457,
-      "title": "تیم والیبال نشسته بانوان ایران در برابر چین شکست خورد ⚡️ تیم ملی والیبال نشسته بانوان ایران در نخستین مسابقه پنجمین دوره"
-    },
-    {
-      "h": [
-        "افزش",
-        "برنت",
-        "بزر",
-        "بشک",
-        "جهن",
-        "خم",
-        "درصد",
-        "دلر",
-        "رسد",
-        "سخت",
-        "سنت",
-        "صعد",
-        "عرض",
-        "معفت",
-        "ممکن",
-        "وکنش",
-        "کهش",
-        "یفت"
-      ],
-      "t": 1792406027.8250248,
-      "title": "نفت برنت پس از صعود، با کاهش به ۱۰۸ دلار رسید ⚡️ قیمت نفت خام برنت در بازار جهانی با واکنش به معافیت های تحریمی ترامپ که"
-    },
-    {
-      "h": [
-        "الز",
-        "الهرش",
-        "برج",
-        "خمپر",
-        "دست",
-        "شهر",
-        "لب",
-        "مرکز",
-        "گذشت",
-        "گلل",
-        "یک"
-      ],
-      "t": 1792407140.550037,
-      "title": "انفجار در لیبی با ۹ کشته ⚡️ انفجار یک گلوله خمپاره در یکی از مراکز امنیتی در منطقه «الهرشه» در شهر الزاویه لیبی، دست کم "
-    },
-    {
-      "h": [
-        "اسلح",
-        "اعض",
-        "برج",
-        "بست",
-        "تر",
-        "خدکش",
-        "خند",
-        "سپس",
-        "شمل",
-        "مرد",
-        "معرف",
-        "منسل",
-        "نمد",
-        "یک"
-      ],
-      "t": 1792407171.7795002,
-      "title": "مرد میانسال در برج شمال تهران اعضای خانواده را به تیر بست و خودکشی کرد ⚡️ مردی در یکی از برج های معروف شمال تهران با اسل"
-    },
-    {
-      "h": [
-        "است",
-        "اغز",
-        "انجم",
-        "حضر",
-        "خددر",
-        "خست",
-        "سعت",
-        "شهرست",
-        "شهرند",
-        "عمل",
-        "محدد",
-        "معدن",
-        "کهک"
-      ],
-      "t": 1792408259.6022828,
-      "title": "عملیات انفجار در معدن کهک استان قم انجام می شود؛ از شهروندان خواسته می شود از حضور در محدوده خودداری کنند ⚡️ عملیات انفج"
-    },
-    {
-      "h": [
-        "احتمل",
-        "اعمل",
-        "بختر",
-        "برتن",
-        "خرج",
-        "سخت",
-        "سز",
-        "شرکت",
-        "شهرک",
-        "غرقنن",
-        "مرتبط",
-        "ممکن",
-        "منقص",
-        "هشدر",
-        "کرن"
-      ],
-      "t": 1792408768.372625,
-      "title": "وزیر خارجه بریتانیا به شرکت ها هشدار می دهد: شرکت در ساخت شهرک های غیرقانونی اسرائیل در کرانه باختری ممکن است تحریم شود "
-    },
-    {
-      "h": [
-        "اطلع",
-        "بزرگ",
-        "تضحت",
-        "جنت",
-        "خصص",
-        "خندگ",
-        "شدند",
-        "شهرک",
-        "غرب",
-        "قتل",
-        "مرکز",
-        "نفر",
-        "پلس",
-        "چند"
-      ],
-      "t": 1792408776.1558588,
-      "title": "پلیس تهران بزرگ دربارهٔ قتل خانوادگی شهرک غرب توضیحاتی ارائه داد ⚡️ مرکز اطلاع رسانی پلیس تهران بزرگ در خصوص جنایت خانوا"
-    },
-    {
-      "h": [
-        "اخر",
-        "استعف",
-        "اشب",
-        "اعترض",
-        "امنل",
-        "دخل",
-        "درخست",
-        "درگر",
-        "فرنس",
-        "مکرن",
-        "گسترد"
-      ],
-      "t": 1792408783.6807714,
-      "title": "ماکرون پس از آشوب های فرانسه، از استعفا وزیر داخلی رد کرد ⚡️ رئیس جمهور فرانسه امانوئل ماکرون در پی اعتراضات اخیر و درگی"
-    },
-    {
-      "h": [
-        "بررس",
-        "تقت",
-        "تنش",
-        "خرج",
-        "خلج",
-        "خهد",
-        "ددر",
-        "ربط",
-        "رسم",
-        "رهبرد",
-        "رهکر",
-        "سرگ",
-        "سفر",
-        "عبس",
-        "عرقچ",
-        "فرس",
-        "لرف",
-        "مسعد",
-        "همکر",
-        "پزشک",
-        "کهش",
-        "گفتگ"
-      ],
-      "t": 1792409463.2762177,
-      "title": "لاوروف با عراقچی و پزشکیان در تهران دربارهٔ کاهش تنش خلیج فارس و روابط راهبردی گفتگو می کند ⚡️ وزیر امور خارجه روسیه، سر"
-    },
-    {
-      "h": [
-        "ادم",
-        "ازد",
-        "انهدم",
-        "اهز",
-        "اگه",
-        "بند",
-        "خزست",
-        "رب",
-        "ربد",
-        "سرهنگ",
-        "سرپرست",
-        "شهرست",
-        "عل",
-        "فرد",
-        "نفر",
-        "پلس",
-        "کرم",
-        "گرگ"
-      ],
-      "t": 1792409480.0008988,
-      "title": "سرپرست پلیس آگاهی خوزستان: انهدام باند آدم ربایی و آزادی گروگان در اهواز ⚡️ سرهنگ علی کریمی از انهدام یک باند سه نفره آد"
-    },
-    {
-      "h": [
-        "استرل",
-        "بمرست",
-        "خدر",
-        "زر",
-        "مستقل",
-        "منتقل",
-        "نمند",
-        "هلن",
-        "هنز",
-        "ونگرت",
-        "پرلم"
-      ],
-      "t": 1792411046.3424594,
-      "title": "نماینده پارلمان استرالیا در حمله با خودرو در وانگاراتا زخمی شد ⚡️ هلن هینز، نماینده مستقل پارلمان استرالیا، در وانگاراتا"
-    },
     {
       "h": [
         "ازد",
@@ -7264,6 +6830,25 @@
       ],
       "t": 1792445448.718977,
       "title": "رئیس اداره اطلاعات زلنسکی: محدودیت های آمریکا در انتقال اطلاعات، جان های اوکراینی را به خطر انداخته است ⚡️ رئیس اداره اط"
+    },
+    {
+      "h": [
+        "است",
+        "اسکند",
+        "بخش",
+        "بربر",
+        "سنت",
+        "شهرست",
+        "طل",
+        "غرقنن",
+        "فرپش",
+        "مجرح",
+        "معدن",
+        "نفر",
+        "چمبر"
+      ],
+      "t": 1792455181.2065287,
+      "title": "فروپاشی معدن طلای غیرقانونی در ناریو، ۱۴ کشته شد ⚡️ در بخش چامبرو شهرستان سانتا باربارا د ایسکوانده در استان ناریو، فروپ"
     }
   ],
   "_published_incidents": [
@@ -7545,67 +7130,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "احمر",
-        "ارژنس",
-        "است",
-        "برج",
-        "بلگرد",
-        "جمعت",
-        "حدث",
-        "حسن",
-        "خدر",
-        "درخش",
-        "درمن",
-        "دستگ",
-        "دمغ",
-        "سمن",
-        "شدند",
-        "محر",
-        "مدرعمل",
-        "مرکز",
-        "مرگبر",
-        "مصدم",
-        "منتقل",
-        "هلل",
-        "وژگن",
-        "کشت",
-        "گذشت"
-      ],
-      "t": 1792322410.4476688,
-      "title": "واژگونی مرگبار ال ۹۰ در محور دامغان به سمنان یک کشته داد ⚡️ واژگونی یک دستگاه خودرو ال ۹۰ در محور دامغان به سمنان یک کشت"
-    },
-    {
-      "k": [
-        "اقدم",
-        "بزگشت",
-        "بن",
-        "تلش",
-        "تمم",
-        "تکد",
-        "جلگر",
-        "جنگ",
-        "حمت",
-        "خرج",
-        "خرمن",
-        "دپلمتک",
-        "رس",
-        "سرگ",
-        "صلح",
-        "عر",
-        "عرب",
-        "لرف",
-        "مسک",
-        "منم",
-        "نشست",
-        "وزر",
-        "کشر"
-      ],
-      "s": "وزیر خارجه روسیه",
-      "t": 1792324145.1609645,
-      "title": "وزیر خارجه روسیه: مسکو از تلاش های صلح بانی کشورهای عربی در خاورمیانه حمایت می کند ⚡️ سرگئی لاوروف، وزیر خارجه روسیه، در"
-    },
     {
       "k": [
         "اثر",
@@ -11805,6 +11329,42 @@
       ],
       "t": 1792451706.5373092,
       "title": "انفجار در جنوب لبنان ⚡️ وقوع انفجارهایی در شهر حداثا واقع در جنوب لبنان گزارش شد. ▫️ این انفجارها در شهر حداثا رخ داده ا"
+    },
+    {
+      "k": [
+        "ات",
+        "است",
+        "اسکند",
+        "بخش",
+        "بربر",
+        "جستج",
+        "حدث",
+        "رسد",
+        "سنت",
+        "شدند",
+        "شهر",
+        "شهرست",
+        "طل",
+        "عمل",
+        "غرقنن",
+        "فجع",
+        "فرپش",
+        "مجرح",
+        "محل",
+        "مشبه",
+        "معدن",
+        "مفقد",
+        "مقم",
+        "نر",
+        "نفر",
+        "هستند",
+        "پلکرپ",
+        "چمبر",
+        "کر",
+        "کشت"
+      ],
+      "t": 1792455181.1915693,
+      "title": "فروپاشی معدن طلای غیرقانونی در ناریو، ۱۴ کشته شد ⚡️ در بخش چامبرو شهرستان سانتا باربارا د ایسکوانده در استان ناریو، فروپ"
     }
   ],
   "_text_polish": {
@@ -11816,7 +11376,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792454477
+    "at": 1792455041
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
