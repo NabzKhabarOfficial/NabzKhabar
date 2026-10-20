@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792534910
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792534916
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792534916
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1792534916
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: gemini:gemini-3.5-flash-lite held 1x, groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792537813
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792538359
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792538359
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792538388
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-20",
-      "n": 151
+      "n": 152
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 258
+      "n": 260
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
@@ -491,9 +491,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 307,
+        "calls": 309,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 300,
+        "ok": 302,
         "other": 7
       },
       "gemini:gemini-3.6-flash": {
@@ -4177,6 +4177,12 @@
       "topic": "اقتصاد",
       "until": 1792579925.1030235
     },
+    "v4|موج بارشی تازه در کشور / باران و باد شدید تا ۳ آبان / احتمال خسارت به کشاورزی و گلخانه ها": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: هشدار هواشناسی درباره بارش‌های آینده و رویداد قطعی رخ نداده است.",
+      "topic": "آب و هوا",
+      "until": 1792624763.2121031
+    },
     "v4|موشک ١٢١ کیلومتری اسفندیار لهستان را لرزاند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: عملکرد فردی یک والیبالیست ایرانی در لیگ خارجی ارزش خبری درجه یک ندارد.",
@@ -4872,12 +4878,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: گزارش محلی درباره کودکان و عروسک‌ها در بندرعباس، فاقد ارزش خبری ملی.",
       "topic": "جامعه",
       "until": 1792579196.1493483
-    },
-    "v4|گزارش اکسیوس از دیدار محرمانه وزیر دفاع آمریکا با نتانیاهو در پایگاه عوودا / سیگنال نظامی واشنگتن پیش از انتخابات کنست": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: دیدار محرمانه وزیر دفاع آمریکا با نتانیاهو در بحران منطقه‌ای.",
-      "topic": "نظامی",
-      "until": 1792555511.0956728
     },
     "v4|گفت وگوی تلفنی زلنسکی با روبیو همزمان با تشدید تنش ها میان کی یف-واشنگتن": {
       "ok": true,
@@ -5654,13 +5654,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، ترافیک، یک کشته و شش مصدوم",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792525128,
-      "title": "تصادف در جاده سمنان-فیروزکوه یک فوتی و ۶ مصدوم داشت"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اعلام ساعت مسابقات تیم ملی فوتبال در جام ملت‌ها",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -6212,6 +6205,13 @@
       "rule": "no-concrete-event",
       "t": 1792537795,
       "title": "Five things you should know before buying the iPhone Duo"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: هشدار هواشناسی درباره بارش‌های آینده و رویداد قطعی رخ نداده است.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792538363,
+      "title": "موج بارشی تازه در کشور / باران و باد شدید تا ۳ آبان / احتمال خسارت به کشاورزی و گلخانه ها"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11771,7 +11771,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792537653
+    "at": 1792538232
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
