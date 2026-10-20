@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1792451707
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792452209
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792452209
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
       "t": 1792459214
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792459727
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792459728
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-19",
-      "n": 256
+      "n": 257
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-19",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-20",
-      "n": 9
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-20",
-      "n": 9
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-10-19",
@@ -490,8 +490,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -508,17 +508,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 8,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 5,
-        "other": 4
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1534,6 +1534,12 @@
       "topic": "سیاست",
       "until": 1792539877.0484831
     },
+    "v4|nab to cut 2,500 jobs in massive restructure": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: اختیار تعدیل نیروی بانکی خارجی برای نبض خبر درجه یک نیست",
+      "topic": "اقتصاد",
+      "until": 1792546129.4914188
+    },
     "v4|nscale and anthropic are reportedly in talks for yet another $45 billion compute deal": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: گزارش غیررسمی از مذاکرات اولیه است و هنوز توافقی صورت نگرفته است.",
@@ -1731,12 +1737,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: توصیه های کشاورزی محلی اهمیت ملی ندارد",
       "topic": "جامعه",
       "until": 1792481874.007464
-    },
-    "v4|آمریکا از ایران چه می خواهد؟/ رمزگشایی پیام ونس درباره آینده پرونده هسته ای": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=False scope=world: تحلیل و بررسی مواضع آمریکا درباره پرونده هسته‌ای، فاقد رویداد مشخص است.",
-      "topic": "سیاست",
-      "until": 1792480162.3525102
     },
     "v4|آمریکا راهبرد جنگ با ایران را کنار نگذاشته است": {
       "ok": false,
@@ -5557,13 +5557,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: پیام تبریک مقام نظامی و اظهارنظر روتین بدون رویداد کلان",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792439065,
-      "title": "رئیس سازمان بسیج: اطمینان دارم افق های تازه ای در صنایع دفاعی گشوده می شود"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، چند نفر، بدون تلفات گسترده",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -6115,6 +6108,13 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792459204,
       "title": "تکنیکی ها ناجی مورینیو/ جادوگرها به رئال مادرید جان دادند"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: اختیار تعدیل نیروی بانکی خارجی برای نبض خبر درجه یک نیست",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792459729,
+      "title": "NAB to cut 2,500 jobs in massive restructure"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11152,7 +11152,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792459087
+    "at": 1792459661
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
