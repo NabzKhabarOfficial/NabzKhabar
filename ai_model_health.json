@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792450541
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792450541
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792450546
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792450546
     },
@@ -159,6 +147,18 @@
     {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
       "t": 1792455164
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792455724
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792455725
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1792455732
     }
   ],
   "_ai_pace": {
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-19",
-      "n": 113
+      "n": 114
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-20",
-      "n": 2
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-10-19",
-      "n": 90
+      "day": "2026-10-20",
+      "n": 1
     },
     "openrouter:*": {
       "day": "2026-10-19",
@@ -482,11 +482,25 @@
       }
     },
     "2026-10-20": {
+      "gemini:gemini-3.8-flash": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
+        "calls": 6,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 5,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 0,
+        "other": 1
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1418,6 +1432,12 @@
       "topic": "اقتصاد",
       "until": 1792532910.672594
     },
+    "v4|helen haines live updates: independent mp in critical but stable condition as asio boss warns about ‘violent rhetoric’": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=local: Australian MP attacked, not major impact",
+      "topic": "سیاست",
+      "until": 1792542129.4790173
+    },
     "v4|helen haines was chatting with locals at a dog park on monday morning. by the afternoon, she was fighting for her life": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سوءقصد به جان نماینده پارلمان استرالیا با خودرو",
@@ -1453,6 +1473,12 @@
       "reason": "ai openrouter/openrouter/free batch score=7 happened=True scope=world: Regional defense partnership announcement amid Yemen tensions",
       "topic": "نظامی",
       "until": 1792484718.948805
+    },
+    "v4|iran war live: trump says us hits iran hard ‘economically and militarily’": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=world: Unverified claim, not an official action",
+      "topic": "سیاست",
+      "until": 1792542132.1121874
     },
     "v4|israeli police arrest 10 after settler attacks on journalist, diplomats": {
       "ok": false,
@@ -1754,12 +1780,6 @@
       "topic": "جامعه",
       "until": 1792524247.97601
     },
-    "v4|اجرای طرح «مدرسه اکوسیستم گیاهان دارویی» در بروجرد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: طرح آموزشی در بروجرد آغاز شد",
-      "topic": "جامعه",
-      "until": 1792478893.470125
-    },
     "v4|اجرای طرح وارنیش فلوراید برای ۷۲۰۰ دانش آموز بافقی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و بهداشتی مربوط به دانش‌آموزان یک شهرستان است.",
@@ -1837,6 +1857,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: ادعای تکراری و مبهم مقام خارجی بدون تصمیم مشخص",
       "topic": "سیاست",
       "until": 1792525940.1213405
+    },
+    "v4|ادعای عجیب ریچارلیسون/ رئیس جمهور برزیل جزیره ام را به زور گرفت!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.8-flash score=1 happened=True scope=world: ادعای حاشیه‌ای یک فوتبالیست و فاقد اهمیت خبری سطح یک",
+      "topic": "ورزش",
+      "until": 1792542128.4073207
     },
     "v4|ادعای وزیر خارجه آمریکا: اگر ایرانی ها سلاح هسته ای داشتند، می توانستند بگویند «تنگه هرمز متعلق به ما است و شما نمی توانید هیچ کاری در این باره انجام دهید؛ زیرا اگر کاری کنید، علاو": {
       "ok": true,
@@ -2426,6 +2452,12 @@
       "topic": "سیاست",
       "until": 1792504570.0805802
     },
+    "v4|تداوم تجمع شبانه مردم گنبد کاووس در موج ۲۳۳": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local nightly protest, no national impact",
+      "topic": "سیاست",
+      "until": 1792542123.0340195
+    },
     "v4|ترامپ ناکام در اقتصاد، آسیب پذیری جمهوری خواهان در انتخابات کنگره": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحلیل و گمانه‌زنی درباره وضعیت اقتصادی آمریکا و انتخابات کنگره",
@@ -2804,6 +2836,12 @@
       "topic": "نظامی",
       "until": 1792499286.9355547
     },
+    "v4|حمیدرضا گرشاسبی:/ بعد از جنگ، کسب این عنوان لذت بخش بود!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=False scope=local: Award ceremony, not top-tier news",
+      "topic": "ورزش",
+      "until": 1792542132.1264842
+    },
     "v4|حکمی مساوی با هیچ!/ رونالدو با ۳۸ ثانیه در النصر جریمه اش را می دهد!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: جریمه انضباطی بازیکن خبر مهم و درجه اول ورزشی نیست",
@@ -3103,12 +3141,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: جشنواره استعدادیابی محلی و فرهنگی در صباشهر اهمیتی سراسری ندارد",
       "topic": "جامعه",
       "until": 1792516265.6372178
-    },
-    "v4|روابط راهبردی تهران و مسکو در میانه بحران منطقه ای/چرا سفر لاوروف مهم است؟": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=iran_national: سفر برنامه‌ریزی‌شده لاوروف، هنوز رخ نداده",
-      "topic": "سیاست",
-      "until": 1792478892.851728
     },
     "v4|روابط عمومی سپاه حضرت سیدالشهدا(ع) استان تهران: هیچ گونه صدای انفجار یا حادثه امنیتی تا کنون در شرق تهران گزارش نشده است": {
       "ok": true,
@@ -3524,12 +3556,6 @@
       "topic": "جامعه",
       "until": 1792504570.0999289
     },
-    "v4|طرح «مدرسه اکوسیستم گیاهان دارویی» در بروجرد؛ پیوند آموزش مهارتی با اقتصاد دانش بنیان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.8-flash score=1 happened=True scope=local: طرح آموزشی و کارآفرینی محدود و محلی در مدارس بروجرد",
-      "topic": "جامعه",
-      "until": 1792478279.986419
-    },
     "v4|طرح ملی «هر دانش آموز، یک مهارت» از پایه هفتم آغاز می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: طرح آموزشی داخلی و routine وزارت آموزش و پرورش.",
@@ -3613,12 +3639,6 @@
       "reason": "ai gemini/gemini-3.8-flash score=1 happened=False scope=local: اظهارات روتین امام جمعه مراغه درباره پرستاران فاقد ارزش خبری",
       "topic": "جامعه",
       "until": 1792519657.4815822
-    },
-    "v4|عضو هیئت رئیسه مجلس درباره تهدید ترامپ برای حمله به کوه کلنگ با بمب مادر؛ در صورت تعرض به تأسیسات، با شدت پاسخ می دهیم/ تهدیدات ترامپ را جدی می گیریم": {
-      "ok": true,
-      "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=iran_national: تأکید رسمی مجلس بر پاسخ قاطع به حمله احتمالی آمریکا",
-      "topic": "نظامی",
-      "until": 1792478908.6460257
     },
     "v4|عضو کانون پرورشی کودکان اردبیل در رویداد جهانی «جی کیوای» ۲۰۲۵ خوش درخشید": {
       "ok": false,
@@ -4033,12 +4053,6 @@
       "reason": "ai gemini/gemini-3.8-flash score=3 happened=True scope=world: مناظره انتخاباتی معمول در برزیل، بدون نتیجه نهایی و فاقد فوریت.",
       "topic": "سیاست",
       "until": 1792481282.9063509
-    },
-    "v4|منبع امنیتی عراقی: آمریکا برای حمله به پدافند هوایی، به اسرائیل چراغ سبز داده است": {
-      "ok": true,
-      "reason": "ai mistral/open-mistral-nemo score=8 happened=True scope=world: چراغ سبز آمریکا به اسرائیل برای حمله به پدافند هوایی عراق",
-      "topic": "نظامی",
-      "until": 1792477800.7749197
     },
     "v4|مهلت واریز وجه الضمان جهت شرکت در حراج شمش طلا مرکز مبادله تا ساعت ۲۴ امشب": {
       "ok": false,
@@ -5652,27 +5666,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine provincial gathering; lacks national strategic impact or major news value.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792437847,
-      "title": "اجتماع پرشور مردمی در مازندران"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی و محلی درباره بودجه مسکن روستایی",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792437848,
-      "title": "۱۳ میلیارد تومان برای تکمیل ۲۱۱ خانه روستایی در گلستان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی درمورد دمای هوا در استان گلستان",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792437853,
-      "title": "ثبت دمای ۳۵ درجه در چهار نقطه گلستان؛ گرگان خنک ترین شد"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی و مربوط به وضعیت نانوایی‌های یک شهرستان خاص است.",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -6210,6 +6203,27 @@
       "rule": "foreign-local-preselection",
       "t": 1792454012,
       "title": "‘I don’t want to be known as a hero’: barber who rushed to help Helen Haines praised by PM"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local nightly protest, no national impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792455723,
+      "title": "تداوم تجمع شبانه مردم گنبد کاووس در موج ۲۳۳"
+    },
+    {
+      "ai": "ai gemini/gemini-3.8-flash score=1 happened=True scope=world: ادعای حاشیه‌ای یک فوتبالیست و فاقد اهمیت خبری سطح یک",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792455728,
+      "title": "ادعای عجیب ریچارلیسون/ رئیس جمهور برزیل جزیره ام را به زور گرفت!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=local: Australian MP attacked, not major impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792455729,
+      "title": "Helen Haines live updates: independent MP in critical but stable condition as Asio boss warns about ‘violent rhetoric’"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11376,7 +11390,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792455041
+    "at": 1792455621
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
