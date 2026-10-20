@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792536566
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
-      "t": 1792536582
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792537186
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792537186
-    },
-    {
       "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1792537189
     },
@@ -159,16 +143,32 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792540081
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792540651
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792540651
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792540651
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792540663
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-20",
-      "n": 156
+      "n": 157
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 267
+      "n": 268
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
@@ -176,7 +176,7 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-20",
-      "n": 118
+      "n": 119
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-20",
@@ -484,16 +484,16 @@
     "2026-10-20": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 180,
+        "calls": 181,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 131,
+        "ok": 132,
         "other": 49
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 316,
+        "calls": 317,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 309,
+        "ok": 310,
         "other": 7
       },
       "gemini:gemini-3.6-flash": {
@@ -505,8 +505,8 @@
         "other": 34
       },
       "gemini:gemini-3.8-flash": {
-        "429": 97,
-        "calls": 125,
+        "429": 98,
+        "calls": 126,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 8,
@@ -1458,12 +1458,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=world: راهنمای خرید محصول و بررسی است، خبر سطح اول نیست",
       "topic": "فناوری",
       "until": 1792624195.1725202
-    },
-    "v4|fourteen dead in illegal colombian gold mine collapse": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: مرگ ۱۴ نفر در ریزش معدن طلا در کلمبیا.",
-      "topic": "حادثه",
-      "until": 1792556052.6095996
     },
     "v4|france protests are ‘outburst of resentment’ against macron": {
       "ok": false,
@@ -4723,6 +4717,12 @@
       "topic": "سلامت",
       "until": 1792610422.7232764
     },
+    "v4|پیشنهاد ویتکاف به پوتین برای صلح": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: دیدار فرستاده آمریکا با پوتین و پیشنهاد صلح اوکراین",
+      "topic": "سیاست",
+      "until": 1792627056.4039283
+    },
     "v4|پیشکسوت سازمان زمین شناسی و اکتشافات معدنی، زمین شناس فرهیخته کشور شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اعطای لوح تقدیر و عنوان فرهیخته کشوری به නک پیشکسوت",
@@ -5659,13 +5659,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: مسابقه ورزشی داخلی، اثر ملی محدود",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792526253,
-      "title": "بابلسر میزبان دومین دوره مسابقات کشوری کراس فیت ساحلی با حضور ۱۵۰ ورزشکار از سراسر کشور"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: آمار تصادفات رانندگی استانی است و امتیاز پایینی دارد",
       "rescued": true,
       "rule": "no-concrete-event",
@@ -6217,6 +6210,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792539525,
       "title": "M 4.5 - 115 km NNE of Barishal, Pakistan"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: دیدار فرستاده آمریکا با پوتین و پیشنهاد صلح اوکراین",
+      "rescued": true,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792540656,
+      "title": "پیشنهاد ویتکاف به پوتین برای صلح"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11601,7 +11601,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792539969
+    "at": 1792540542
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11621,8 +11621,8 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792540141,
-    "last_failure": 1792539541,
+    "disabled_until": 1792541251,
+    "last_failure": 1792540651,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
