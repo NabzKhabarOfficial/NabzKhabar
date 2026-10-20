@@ -1,18 +1,27 @@
 {
-  "checked_at": "2026-10-20T21:42:49.127306+00:00",
-  "status": "healthy",
+  "checked_at": "2026-10-20T21:54:04.534493+00:00",
+  "status": "publication_failure",
   "run_status": "success",
-  "raw_candidates": 65,
-  "strict_rejected": 40,
-  "selected_for_publication": 10,
-  "published": 0,
-  "failed_publications": 0,
+  "raw_candidates": 59,
+  "strict_rejected": 33,
+  "selected_for_publication": 11,
+  "published": 1,
+  "failed_publications": 1,
   "ambiguous_publications": 0,
-  "editorial_blocked_publications": 10,
-  "missed_selected_stories": [],
+  "editorial_blocked_publications": 9,
+  "missed_selected_stories": [
+    {
+      "title": "اعتراف نخست وزیر فرانسه به بحران امنیتی",
+      "source": "mehrnews.com",
+      "url": "https://mehrnews.com/news/6984629/%D8%A7%D8%B9%D8%AA%D8%B1%D8%A7%D9%81-%D9%86%D8%AE%D8%B3%D8%AA-%D9%88%D8%B2%DB%8C%D8%B1-%D9%81%D8%B1%D8%A7%D9%86%D8%B3%D9%87-%D8%A8%D9%87-%D8%A8%D8%AD%D8%B1%D8%A7%D9%86-%D8%A7%D9%85%D9%86%DB%8C%D8%AA%DB%8C",
+      "intelligence_score": 14,
+      "publication_tier": 4,
+      "monitor_reason": "selected-but-not-published"
+    }
+  ],
   "important_missed_news": [
     {
-      "checked_at": "2026-10-20T21:42:26.193634+00:00",
+      "checked_at": "2026-10-20T21:52:50.727237+00:00",
       "title": "فرماندار اراک: حادثه فنی در سیستم برق آلومینیوم؛ خبر انفجار صحت ندارد",
       "source": "irna.ir",
       "category": "ایران",
@@ -29,7 +38,7 @@
       "monitor_reason": "important-candidate-rejected"
     },
     {
-      "checked_at": "2026-10-20T21:42:26.203530+00:00",
+      "checked_at": "2026-10-20T21:52:50.731934+00:00",
       "title": "مقاومت عراق: پرواز هواپیما های آمریکایی بر فراز عراق ادامه دارد",
       "source": "entekhab.ir",
       "category": "ایران",
@@ -46,7 +55,16 @@
       "monitor_reason": "important-candidate-rejected"
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "title": "اعتراف نخست وزیر فرانسه به بحران امنیتی",
+      "source": "mehrnews.com",
+      "url": "https://mehrnews.com/news/6984629/%D8%A7%D8%B9%D8%AA%D8%B1%D8%A7%D9%81-%D9%86%D8%AE%D8%B3%D8%AA-%D9%88%D8%B2%DB%8C%D8%B1-%D9%81%D8%B1%D8%A7%D9%86%D8%B3%D9%87-%D8%A8%D9%87-%D8%A8%D8%AD%D8%B1%D8%A7%D9%86-%D8%A7%D9%85%D9%86%DB%8C%D8%AA%DB%8C",
+      "started_at": "2026-10-20T21:53:57.083087+00:00",
+      "result": "failed",
+      "error": ""
+    }
+  ],
   "skipped_duplicate_attempts": [],
   "editorial_blocked_attempts": [
     {
@@ -79,14 +97,6 @@
       "url": "",
       "result": "editorial_blocked",
       "reason": "editor_gate: no-ai-fallback-fail-closed",
-      "error": ""
-    },
-    {
-      "title": "کارشناسان اسرائیلی: آتش جنگ با ایران دوباره شعله ور می شود؛ مسئله فقط زمان است",
-      "source": "",
-      "url": "",
-      "result": "editorial_blocked",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و گمانه‌زنی کارشناسان درباره احتمال درگیری.",
       "error": ""
     },
     {
@@ -134,12 +144,14 @@
   "ai_pool": {
     "status": "degraded_partial",
     "models": 26,
-    "disabled": 2,
-    "active": 24
+    "disabled": 3,
+    "active": 23
   },
   "diagnostics": [
-    "2/26 configured AI models are cooling down or disabled.",
-    "10 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure).",
+    "3/26 configured AI models are cooling down or disabled.",
+    "9 selected stor(y/ies) were blocked by an editorial gate before any Telegram request (not a publication failure).",
+    "Selected stories did not reach confirmed publication.",
+    "One or more publication attempts returned failure/exception.",
     "2 potentially important candidate(s) were rejected; review reasons before changing gates."
   ]
 }
