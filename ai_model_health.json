@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792534335
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792534335
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792534338
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792534338
-    },
-    {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.1-flash-lite",
-      "t": 1792534357
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792534357
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792534357
     },
@@ -159,24 +135,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792536582
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792537186
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792537186
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792537189
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"The service is currently unavailable.\", \"status\": \"UNAVAILABLE\" } } ",
+      "t": 1792537191
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
+      "t": 1792537196
+    },
+    {
+      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 1x, gemini:gemini-3.5-flash-lite held 2x, groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
+      "t": 1792537252
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-20",
-      "n": 147
+      "n": 149
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 252
+      "n": 256
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
-      "n": 111
+      "n": 114
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-20",
-      "n": 111
+      "n": 114
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-20",
@@ -484,33 +484,33 @@
     "2026-10-20": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 172,
+        "calls": 174,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 127,
-        "other": 45
+        "other": 47
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 301,
+        "calls": 305,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 294,
+        "ok": 298,
         "other": 7
       },
       "gemini:gemini-3.6-flash": {
-        "429": 99,
-        "calls": 155,
+        "429": 100,
+        "calls": 158,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 24,
-        "other": 32
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"The service is currently unavailable.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 25,
+        "other": 33
       },
       "gemini:gemini-3.8-flash": {
-        "429": 92,
-        "calls": 118,
+        "429": 94,
+        "calls": 121,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 7,
-        "other": 19
+        "other": 20
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
@@ -534,8 +534,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 1423,
-        "ok": 1423,
+        "calls": 1428,
+        "ok": 1428,
         "other": 0
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -574,20 +574,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "موضع‌گیری",
-      "level": 4,
-      "t": 1792405983.3536844,
-      "title": "روبیو: ترامپ ایران را مانع اصلی صلح در خاورمیانه معرفی کرد",
-      "urgent": false
-    },
-    {
-      "label": "ورزش",
-      "level": 3,
-      "t": 1792406012.1112697,
-      "title": "تیم والیبال نشسته بانوان ایران در برابر چین شکست خورد",
-      "urgent": false
-    },
     {
       "label": "اقتصاد",
       "level": 3,
@@ -1412,6 +1398,20 @@
       "level": 4,
       "t": 1792534410.8492098,
       "title": "منچسترسیتی با پنج بر یک یونانی ها، رکورد شکست ناپذیری خود را در لیگ قهرمانان حفظ کرد",
+      "urgent": false
+    },
+    {
+      "label": "فناوری",
+      "level": 4,
+      "t": 1792537237.846728,
+      "title": "هشدار سپاه پاسداران: در صورت حمله به زیرساخت ها، کابل های اینترنتی تنگه هرمز را هدف قرار می دهیم",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1792537251.5718932,
+      "title": "ترامپ به زلنسکی فشار می آورد تا با روسیه صلح کند",
       "urgent": false
     }
   ],
@@ -2527,12 +2527,6 @@
       "topic": "جامعه",
       "until": 1792559593.498493
     },
-    "v4|ترافیک نیمه سنگین در ۴ محور منتهی به تهران/بارش باران در محورهای شمالی کشور": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Traffic jam due to rain in northern routes",
-      "topic": "آب و هوا",
-      "until": 1792555491.5562947
-    },
     "v4|ترامپ درباره جنگ اوکراین: روس ها هزار دستگاه تانک داشتند که در حال حرکت در یک بزرگراه بتنی بودند؛ می توانستند ظرف چهار ساعت وارد اوکراین شوند اما یک ژنرال بسیار احمق تصمیم گرفت که": {
       "ok": false,
       "reason": "ai openrouter/openrouter/free batch score=2 happened=False scope=world: Commentary on Ukraine war, no concrete event occurred",
@@ -3054,6 +3048,12 @@
       "reason": "ai gemini/gemini-3.8-flash batch score=4 happened=True scope=iran_national: توضیحات سخنگوی وزارت خارجه پیرامون نشست‌ها و بیانیه‌ها فاقد رویداد جدید",
       "topic": "سیاست",
       "until": 1792571112.8738358
+    },
+    "v4|در صورت حمله به زیرساخت های ما، کابل های اینترنتی را هدف قرار می دهیم": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تهدید مقام ارشد سپاه درباره کابل‌های اینترنتی تنگه هرمز و زیرساخت‌ها.",
+      "topic": "نظامی",
+      "until": 1792623596.1917994
     },
     "v4|درآمد پزشکان خراسان رضوی ۳۰ درصد کمتر از میانگین کشور است": {
       "ok": false,
@@ -4807,12 +4807,6 @@
       "topic": "جامعه",
       "until": 1792567757.9157865
     },
-    "v4|کسب ۴ مدال طلا و یک نقره در پارادوومیدانی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: پارادوومیدانی، اثر ملی محدود، نه‌قهرمان‌ساز",
-      "topic": "ورزش",
-      "until": 1792555490.8063056
-    },
     "v4|کسب ۵ مدال طلا و یک نقره در پارادوومیدانی": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=iran_national: کسب ۵ مدال طلا و یک نقره در بازی های پاراآسیایی توسط ورزشکاران ایران",
@@ -5016,6 +5010,12 @@
       "reason": "ai openrouter/openrouter/free batch score=3 happened=True scope=local: Local infrastructure project for flood prevention in Bushehr province",
       "topic": "آب و هوا",
       "until": 1792568295.8832786
+    },
+    "v4|‘i don’t care how it’s done’: trump pressures ukraine to cut peace deal": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: فشار رئیس‌جمهور آمریکا به اوکراین برای توافق صلح و اختلاف با زلنسکی.",
+      "topic": "سیاست",
+      "until": 1792623596.2068412
     }
   },
   "_editorial_blocks": {
@@ -5103,24 +5103,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "صدر: پاییز برگ های نفوذ آمریکا و اسرائیل را خواهد فرو ریخت و هشدار به جنگ نیابتی در عراق، سوریه و لبنان داد ⚡️",
-      "id": "364fc80973",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792488234,
-      "verdict": "new",
-      "why": "پیش بینی رهبر جریان صدر، موضوع جدید"
-    },
-    {
-      "head": "سازمان های بین المللی: حمله مستعمره نشینان اسرائیلی به روزنامه نگار و دیپلمات ها در غزه و نوار غزه ⚡️ مستعمره ",
-      "id": "e8ba325f6e",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792488812,
-      "verdict": "new",
-      "why": "هیچ ارتباطی با رویدادهای قبلی ندارد"
-    },
     {
       "head": "سپاه: دو کشتی متخلف در تنگه هرمز به آتش کشیده شدند ⚡️ سپاه پاسداران انقلاب اسلامی اعلام کرد نیروهای دریایی آن ",
       "id": "74a7a1eb98",
@@ -5650,6 +5632,24 @@
       "t": 1792534404,
       "verdict": "new",
       "why": "لیگ قهرمانان اروپا، منچسترسیتی، یونانی‌ها"
+    },
+    {
+      "head": "هشدار سپاه پاسداران: در صورت حمله به زیرساخت ها، کابل های اینترنتی تنگه هرمز را هدف قرار می دهیم ⚡️ سردار یدال",
+      "id": "862c64ff13",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1792537230,
+      "verdict": "new",
+      "why": "This is a new statement by an Iranian official regarding the Strait of Hormuz."
+    },
+    {
+      "head": "ترامپ به زلنسکی فشار می آورد تا با روسیه صلح کند ⚡️ رئیس جمهور آمریکا، دونالد ترامپ، در گفتگویی در کاخ سفید، ر",
+      "id": "2c529f47dd",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792537250,
+      "verdict": "new",
+      "why": "جنگ اوکراین و فشار ترامپ به زلنسکی"
     }
   ],
   "_importance_rescue_log": [
@@ -6218,54 +6218,6 @@
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اسب",
-        "امز",
-        "انترنت",
-        "بحر",
-        "تنه",
-        "تنگ",
-        "تکد",
-        "خرج",
-        "خهد",
-        "رسند",
-        "ره",
-        "طرق",
-        "قطر",
-        "قطع",
-        "مذکر",
-        "مسلمت",
-        "هرمز",
-        "وزرت",
-        "وشنگتن",
-        "پذر"
-      ],
-      "t": 1792491695.5994947,
-      "title": "وزارت خارجه قطر: قطع اینترنت در تنگه هرمز همه کشورها را در منطقه آسیب پذیر می کند ⚡️ وزارت خارجه قطر تأکید کرد که قطع ای"
-    },
-    {
-      "h": [
-        "اتش",
-        "اغز",
-        "النب",
-        "تکد",
-        "جدد",
-        "ختم",
-        "خهد",
-        "دربرم",
-        "دمن",
-        "ستد",
-        "فر",
-        "فرمند",
-        "قررگ",
-        "مرکز",
-        "مسلح",
-        "پم"
-      ],
-      "t": 1792493546.6820824,
-      "title": "فرمانده ستاد کل نیروهای مسلح: جنگ جدید علیه ایران آغاز می شود، آتش آن همه را دربرمی گیرد ⚡️ فرمانده قرارگاه مرکزی خاتم ا"
-    },
     {
       "h": [
         "اختلل",
@@ -7151,6 +7103,53 @@
       ],
       "t": 1792534410.8341749,
       "title": "منچسترسیتی با پنج بر یک یونانی ها، رکورد شکست ناپذیری خود را در لیگ قهرمانان حفظ کرد ⚡️ منچسترسیتی با پیروزی پنج بر یک م"
+    },
+    {
+      "h": [
+        "اسلم",
+        "انترنت",
+        "تنگ",
+        "جن",
+        "دهم",
+        "زر",
+        "زرسخت",
+        "سردر",
+        "صرت",
+        "معن",
+        "هدف",
+        "هرمز",
+        "هشدر",
+        "پسدر",
+        "کبل",
+        "گرند",
+        "یدلل"
+      ],
+      "t": 1792537237.8319287,
+      "title": "هشدار سپاه پاسداران: در صورت حمله به زیرساخت ها، کابل های اینترنتی تنگه هرمز را هدف قرار می دهیم ⚡️ سردار یدالله جوانی، "
+    },
+    {
+      "h": [
+        "ارد",
+        "بربر",
+        "تسلم",
+        "خهد",
+        "ددن",
+        "زلنسک",
+        "سفد",
+        "صلح",
+        "علق",
+        "فشر",
+        "مند",
+        "نبشد",
+        "نتج",
+        "وخم",
+        "ولدمر",
+        "کخ",
+        "گد",
+        "گفتگ"
+      ],
+      "t": 1792537251.5565214,
+      "title": "ترامپ به زلنسکی فشار می آورد تا با روسیه صلح کند ⚡️ رئیس جمهور آمریکا، دونالد ترامپ، در گفتگویی در کاخ سفید، رئیس جمهور "
     }
   ],
   "_published_incidents": [
@@ -7469,195 +7468,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ادع",
-        "ار",
-        "اشکر",
-        "اصل",
-        "امرک",
-        "برقرر",
-        "ترمپ",
-        "ترن",
-        "تغر",
-        "تهر",
-        "تکد",
-        "ثبت",
-        "جمهر",
-        "خرج",
-        "خرمن",
-        "ددگ",
-        "دنست",
-        "رب",
-        "رس",
-        "صلح",
-        "عمل",
-        "فلسطن",
-        "مرک",
-        "مسل",
-        "معرف",
-        "منطق",
-        "منع",
-        "مهم",
-        "وزر",
-        "پشتر",
-        "پشن",
-        "چلش"
-      ],
-      "s": "روبیو",
-      "t": 1792405983.327063,
-      "title": "روبیو: ترامپ ایران را مانع اصلی صلح در خاورمیانه معرفی کرد ⚡️ وزیر خارجه آمریکا، مارکو روبیو، ادعا کرد که رئیس جمهور پیش"
-    },
-    {
-      "k": [
-        "ار",
-        "اس",
-        "بربر",
-        "بز",
-        "بن",
-        "ترتب",
-        "تم",
-        "خرد",
-        "ددر",
-        "در",
-        "رض",
-        "سرمرب",
-        "شدند",
-        "شکست",
-        "صفر",
-        "مسبق",
-        "مغلب",
-        "مقبل",
-        "مل",
-        "نتج",
-        "نخستن",
-        "نزدک",
-        "نشست",
-        "نظرت",
-        "هد",
-        "ولبل",
-        "پنجمن",
-        "چن"
-      ],
-      "t": 1792406012.0836012,
-      "title": "تیم والیبال نشسته بانوان ایران در برابر چین شکست خورد ⚡️ تیم ملی والیبال نشسته بانوان ایران در نخستین مسابقه پنجمین دوره"
-    },
-    {
-      "k": [
-        "افزش",
-        "امنت",
-        "برنت",
-        "بزر",
-        "بشک",
-        "بعث",
-        "بلترن",
-        "تحرم",
-        "ترمپ",
-        "تنش",
-        "جمع",
-        "جهن",
-        "حل",
-        "خرمن",
-        "خم",
-        "درصد",
-        "دلر",
-        "رس",
-        "رسد",
-        "سخت",
-        "سطح",
-        "سنت",
-        "صعد",
-        "عرض",
-        "قمت",
-        "مرز",
-        "معفت",
-        "ممکن",
-        "نفت",
-        "وکنش",
-        "کهش",
-        "یفت"
-      ],
-      "n": [
-        "108",
-        "110"
-      ],
-      "t": 1792406027.811072,
-      "title": "نفت برنت پس از صعود، با کاهش به ۱۰۸ دلار رسید ⚡️ قیمت نفت خام برنت در بازار جهانی با واکنش به معافیت های تحریمی ترامپ که"
-    },
-    {
-      "k": [
-        "احتمل",
-        "افزش",
-        "اقدم",
-        "الز",
-        "الهرش",
-        "امنت",
-        "انفجر",
-        "اهد",
-        "بدند",
-        "برج",
-        "بمرست",
-        "تج",
-        "حدث",
-        "خستند",
-        "خمپر",
-        "خن",
-        "دست",
-        "زخم",
-        "شدند",
-        "شمر",
-        "شهر",
-        "شهرند",
-        "قربن",
-        "لب",
-        "مجرح",
-        "مرکز",
-        "منتقل",
-        "منطق",
-        "نر",
-        "کشت",
-        "گذشت",
-        "گلل",
-        "یک"
-      ],
-      "t": 1792407140.5361905,
-      "title": "انفجار در لیبی با ۹ کشته ⚡️ انفجار یک گلوله خمپاره در یکی از مراکز امنیتی در منطقه «الهرشه» در شهر الزاویه لیبی، دست کم "
-    },
-    {
-      "k": [
-        "اسلح",
-        "اعض",
-        "اغز",
-        "برج",
-        "بزپرس",
-        "بست",
-        "بمرست",
-        "تحقق",
-        "تر",
-        "تهر",
-        "جن",
-        "خدکش",
-        "خند",
-        "ددسر",
-        "سپس",
-        "شدند",
-        "شمل",
-        "قتل",
-        "مدر",
-        "مرد",
-        "معرف",
-        "منتقل",
-        "منسل",
-        "نفر",
-        "نمد",
-        "وژ",
-        "چهر",
-        "کشت",
-        "یک"
-      ],
-      "t": 1792407171.7656322,
-      "title": "مرد میانسال در برج شمال تهران اعضای خانواده را به تیر بست و خودکشی کرد ⚡️ مردی در یکی از برج های معروف شمال تهران با اسل"
-    },
     {
       "k": [
         "اجر",
@@ -11856,6 +11666,100 @@
       ],
       "t": 1792534410.8193188,
       "title": "منچسترسیتی با پنج بر یک یونانی ها، رکورد شکست ناپذیری خود را در لیگ قهرمانان حفظ کرد ⚡️ منچسترسیتی با پیروزی پنج بر یک م"
+    },
+    {
+      "k": [
+        "اسلم",
+        "اظهر",
+        "امرک",
+        "انترنت",
+        "بن",
+        "تنگ",
+        "جمهر",
+        "جن",
+        "حمل",
+        "خهند",
+        "در",
+        "دهم",
+        "رحت",
+        "رفت",
+        "زر",
+        "زرسخت",
+        "سردر",
+        "سس",
+        "سپ",
+        "صرت",
+        "متحدنش",
+        "معن",
+        "مهم",
+        "هدف",
+        "هرمز",
+        "هشدر",
+        "هفت",
+        "پسدر",
+        "کبل",
+        "گرند",
+        "یدلل"
+      ],
+      "s": "هشدار سپاه پاسداران",
+      "t": 1792537237.8170264,
+      "title": "هشدار سپاه پاسداران: در صورت حمله به زیرساخت ها، کابل های اینترنتی تنگه هرمز را هدف قرار می دهیم ⚡️ سردار یدالله جوانی، "
+    },
+    {
+      "k": [
+        "اتق",
+        "اد",
+        "ارد",
+        "ارپ",
+        "اسل",
+        "اشر",
+        "امرک",
+        "انجم",
+        "اکرن",
+        "بربر",
+        "ترمپ",
+        "تسلم",
+        "تنش",
+        "تنند",
+        "جمهر",
+        "جنگ",
+        "خهد",
+        "ددر",
+        "ددن",
+        "درند",
+        "دندم",
+        "دنلد",
+        "رس",
+        "زلنسک",
+        "سفد",
+        "شدد",
+        "صحبت",
+        "صلح",
+        "علق",
+        "فرستد",
+        "فشر",
+        "فهمم",
+        "متحد",
+        "مشخص",
+        "منتقل",
+        "مند",
+        "مهم",
+        "نبشد",
+        "نتج",
+        "نرژ",
+        "وخم",
+        "ولدمر",
+        "وژ",
+        "پتن",
+        "چطر",
+        "چگنگ",
+        "کخ",
+        "کر",
+        "گد",
+        "گفتگ"
+      ],
+      "t": 1792537251.5412247,
+      "title": "ترامپ به زلنسکی فشار می آورد تا با روسیه صلح کند ⚡️ رئیس جمهور آمریکا، دونالد ترامپ، در گفتگویی در کاخ سفید، رئیس جمهور "
     }
   ],
   "_text_polish": {
@@ -11867,7 +11771,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792536492
+    "at": 1792537076
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11882,19 +11786,19 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792536876.0,
-    "last_failure": 1792536576,
+    "disabled_until": 1792537502.0,
+    "last_failure": 1792537202,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792536873.0,
-    "last_failure": 1792536573,
+    "disabled_until": 1792537491.0,
+    "last_failure": 1792537191,
     "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792536606,
-    "last_failure": 1792536006,
-    "last_status": 429
+    "disabled_until": 1792537489.0,
+    "last_failure": 1792537189,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
