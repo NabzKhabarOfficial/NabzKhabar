@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792451072
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792451075
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792451075
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792451079
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792451079
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792451082
     },
@@ -159,6 +139,26 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1792456833
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792457404
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792457405
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792457408
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792457408
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1792457410
     }
   ],
   "_ai_pace": {
@@ -168,11 +168,11 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-19",
-      "n": 255
+      "n": 256
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-19",
-      "n": 113
+      "n": 114
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-19",
@@ -184,7 +184,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-20",
-      "n": 3
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-10-19",
@@ -482,6 +482,18 @@
       }
     },
     "2026-10-20": {
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
       "gemini:gemini-3.8-flash": {
         "429": 0,
         "calls": 1,
@@ -497,10 +509,10 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 3,
+        "calls": 5,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 2,
-        "other": 1
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1642,6 +1654,12 @@
       "topic": "سلامت",
       "until": 1792482451.4334161
     },
+    "v4|«ارتش سفالین» را چه کسانی ساختند؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=world: پژوهش باستان‌شناسی و تاریخی فاقد ارزش خبری فوری و مهم",
+      "topic": "جامعه",
+      "until": 1792543808.1516352
+    },
     "v4|«ایران راه» در راه بازار نشر/ظرفیت های ترانزیتی ایران در جنگ اقتصادی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=0 happened=False scope=iran_national: انتشار کتاب جدید، فاقد ارزش خبری استراتژیک.",
@@ -2187,6 +2205,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: خبر تخصصی و روتین فناوری شرکت اینتل.",
       "topic": "فناوری",
       "until": 1792492343.334955
+    },
+    "v4|اینجا همه گل می زنند/ فلیک تیراندازان بارسلونا ردیف کرد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آمار گلزنی بازیکنان بارسلونا خبر رده اول محسوب نمی‌شود",
+      "topic": "ورزش",
+      "until": 1792543810.4585845
     },
     "v4|با قراردادی سه ساله؛/ فوری و اختصاصی: یحیی سرمربی تیم امید شد!": {
       "ok": false,
@@ -3628,12 +3652,6 @@
       "topic": "جامعه",
       "until": 1792491153.8463545
     },
-    "v4|عرضه مستقیم لاستیک و روغن موتور در ۳۰۰ نقطه تهران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: طرح توزیع کالا در سطح شهر تهران یک موضوع محلی است.",
-      "topic": "اقتصاد",
-      "until": 1792480128.1352882
-    },
     "v4|عضو خبرگان: خدمت صادقانه در شرایط سخت ویژگی مهم جامعه پرستاری است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.8-flash score=1 happened=False scope=local: اظهارات روتین امام جمعه مراغه درباره پرستاران فاقد ارزش خبری",
@@ -4605,12 +4623,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و چشم‌انداز همکاری‌های اقتصادی چین و آسیای مرکزی",
       "topic": "اقتصاد",
       "until": 1792480751.9060383
-    },
-    "v4|کامبک های بی پایان اهورا؛/ رئال مادرید در کشتی ایران!": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلای مسابقات جهانی کشتی توسط ورزشکار ایرانی",
-      "topic": "ورزش",
-      "until": 1792480148.1728642
     },
     "v4|کاهش دما و احتمال رگبار و رعدوبرق در فارس تا پایان هفته": {
       "ok": false,
@@ -5666,20 +5678,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: موضوع محلی مربوط به ساماندهی کارگران در شهرداری شیراز است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792438466,
-      "title": "ساماندهی کارگران ساختمانی شیراز با الگوی پلتفرم های هوشمند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: مراسم مذهبی و درخواست تدفین شهدای گمنام استانی است",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792438467,
-      "title": "شیراز در ایام فاطمیه به عطر شهدا معطر می شود/ بیش از ۱۰۰ نقطه فارس؛ متقاضی خاکسپاری شهدا"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تصادف محلی در جوادآباد با یک کشته فاقد ارزش ملی است.",
       "rescued": false,
       "rule": "final-scope-preselection",
@@ -6224,6 +6222,20 @@
       "rule": "no-concrete-event",
       "t": 1792456832,
       "title": "Gilbert Bigio, Haitian Tycoon Linked to Gangs, Dies at 91"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=2 happened=True scope=world: پژوهش باستان‌شناسی و تاریخی فاقد ارزش خبری فوری و مهم",
+      "rescued": false,
+      "rule": "low-value",
+      "t": 1792457408,
+      "title": "«ارتش سفالین» را چه کسانی ساختند؟"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آمار گلزنی بازیکنان بارسلونا خبر رده اول محسوب نمی‌شود",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792457410,
+      "title": "اینجا همه گل می زنند/ فلیک تیراندازان بارسلونا ردیف کرد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11390,7 +11402,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792456770
+    "at": 1792457344
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
