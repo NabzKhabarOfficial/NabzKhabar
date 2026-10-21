@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792537189
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"The service is currently unavailable.\", \"status\": \"UNAVAILABLE\" } } ",
-      "t": 1792537191
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1792537196
-    },
-    {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 1x, gemini:gemini-3.5-flash-lite held 2x, groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
       "t": 1792537252
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792540663
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792541223
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792541225
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792541225
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 268
+      "n": 269
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
-      "n": 119
+      "n": 120
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-20",
-      "n": 119
+      "n": 120
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-10-20",
-      "n": 90
+      "day": "2026-10-21",
+      "n": 5
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-10-20",
-      "n": 90
+      "day": "2026-10-21",
+      "n": 3
     },
     "openrouter:*": {
       "day": "2026-10-20",
@@ -192,102 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-10-17": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 198,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 183,
-        "other": 15
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 384,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 383,
-        "other": 1
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 87,
-        "calls": 152,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 44,
-        "other": 21
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 92,
-        "calls": 148,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 50,
-        "other": 6
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 67,
-        "other": 23
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 63,
-        "other": 27
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 0,
-        "calls": 26,
-        "ok": 26,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 0,
-        "calls": 837,
-        "ok": 837,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 5,
-        "calls": 5,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 3,
-        "calls": 3,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/set",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 28,
-        "ok": 28,
-        "other": 0
-      }
-    },
     "2026-10-18": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -571,16 +475,50 @@
         "ok": 31,
         "other": 1
       }
+    },
+    "2026-10-21": {
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 2,
+        "other": 3
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 3,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 1,
+        "other": 2
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      }
     }
   },
   "_daily_items": [
-    {
-      "label": "حادثه",
-      "level": 5,
-      "t": 1792407140.5775,
-      "title": "انفجار در لیبی با ۹ کشته",
-      "urgent": false
-    },
     {
       "label": "خبر",
       "level": 4,
@@ -1413,6 +1351,13 @@
       "t": 1792539560.9534614,
       "title": "قایق های ماهیگیری در تعز هدف حمله قرار گرفتند؛ هشت ماهیگیر کشته شدند",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1792541252.9583669,
+      "title": "روبینو: دستیابی به توافق صلح با تهران بسیار دشوار است؛ حملات به تنگه هرمز ادامه دارد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-20",
@@ -1489,6 +1434,12 @@
       "topic": "سیاست",
       "until": 1792622432.318033
     },
+    "v4|iran war live: us warns peace deal with tehran is extremely difficult": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: موضع‌گیری رسمی مقام ارشد آمریکایی درباره شرایط توافق صلح با ایران",
+      "topic": "سیاست",
+      "until": 1792627629.5508487
+    },
     "v4|is putin’s waiting game working?": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: تحلیل و گمانه‌زنی درباره سیاست پوتین و ترامپ بدون رویداد مشخص",
@@ -1506,6 +1457,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=world: زمین‌لرزه با مقیاس کوچک و بدون تلفات در منطقه دورافتاده",
       "topic": "حادثه",
       "until": 1792625925.4355907
+    },
+    "v4|m 4.6 - 115 km nne of barishal, pakistan": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: محدود، بدون خسارت عمده",
+      "topic": "آب و هوا",
+      "until": 1792627623.719053
     },
     "v4|masoud pezeshkian: peace, not surrender": {
       "ok": false,
@@ -2863,12 +2820,6 @@
       "topic": "اقتصاد",
       "until": 1792581610.615261
     },
-    "v4|جنگل های هیرکانی؛ بازماندگان عصر یخبندان/ جنگلی در ایران که میلیون ها سال دوام آورده است/ راز بقای «هیرکانی » چیست؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=iran_national: مقاله توصیفی و فرهنگی درباره تاریخچه جنگل‌های هیرکانی.",
-      "topic": "جامعه",
-      "until": 1792556052.6202412
-    },
     "v4|جهان آبادی در ۱۰۰ متر قورباغه برنز گرفت": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=iran_national: مدال برنز ورزشکار ایرانی در بازی‌های پاراآسیایی",
@@ -3678,12 +3629,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: صعود ورزشکار ایرانی به فینال مسابقات مهم بین‌المللی.",
       "topic": "ورزش",
       "until": 1792556743.4842293
-    },
-    "v4|صهیونیست ها درباره سیاست های جنگی به کابینه نتانیاهو اعتماد ندارند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: نتیجه نظرسنجی عمومی درباره بی‌اعتمادی به کابینه اسرائیل.",
-      "topic": "سیاست",
-      "until": 1792556052.6308658
     },
     "v4|ضرب الاجل ۱۰ ساعته دادستان استان برای رفع نقاط حادثه خیز کمربندی سمنان": {
       "ok": false,
@@ -5108,15 +5053,6 @@
   },
   "_event_judge_log": [
     {
-      "head": "هکر چینی با استفاده از هوش مصنوعی به هزاران وب سایت تجاری حمله کرد ⚡️ یک هکر ناشناس به زبان چینی با بهره گیری ",
-      "id": "e42d930936",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792490636,
-      "verdict": "new",
-      "why": "هک وب‌سایت‌ها با هوش مصنوعی، موضوع جدید"
-    },
-    {
       "head": "وزارت خارجه قطر: قطع اینترنت در تنگه هرمز همه کشورها را در منطقه آسیب پذیر می کند ⚡️ وزارت خارجه قطر تأکید کرد",
       "id": "7e2fdd2d9f",
       "match": "",
@@ -5655,16 +5591,18 @@
       "t": 1792539553,
       "verdict": "unconfirmed-repeat",
       "why": "همه حمله به قایق‌های ماهیگیران در تعز"
+    },
+    {
+      "head": "روبینو: دستیابی به توافق صلح با تهران بسیار دشوار است؛ حملات به تنگه هرمز ادامه دارد ⚡️ سناتور مارک روبینو به ",
+      "id": "05f88df398",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1792541243,
+      "verdict": "new",
+      "why": "It's a new statement by Senator Rubio about peace talks."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: آمار تصادفات رانندگی استانی است و امتیاز پایینی دارد",
-      "rescued": true,
-      "rule": "no-concrete-event",
-      "t": 1792526260,
-      "title": "اینفوگرافیک؛ تصادفات رانندگی در آذربایجان شرقی ۴۷۲ قربانی گرفت"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارنظر روتین دبیر انجمن کشتیرانی درباره نقش بخش خصوصی.",
       "rescued": false,
@@ -6217,49 +6155,19 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1792540656,
       "title": "پیشنهاد ویتکاف به پوتین برای صلح"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: محدود، بدون خسارت عمده",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792541223,
+      "title": "M 4.6 - 115 km NNE of Barishal, Pakistan"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "انجم",
-        "اهل",
-        "برخرد",
-        "حن",
-        "دستگ",
-        "ذهب",
-        "رنند",
-        "سرپل",
-        "شدند",
-        "لدر",
-        "مصدم",
-        "من",
-        "نفر",
-        "کر"
-      ],
-      "t": 1792496723.517734,
-      "title": "راننده لودر و دو نفر در برخورد با مین در سرپل ذهاب مصدوم شدند ⚡️ در انفجار مین در سرپل ذهاب، یک دستگاه لودر حین انجام کا"
-    },
-    {
-      "h": [
-        "برتن",
-        "تجرت",
-        "تصدف",
-        "در",
-        "درفت",
-        "دقم",
-        "سزم",
-        "شرق",
-        "عمل",
-        "عمن",
-        "نفتکش"
-      ],
-      "t": 1792496760.3459308,
-      "title": "سازمان تجارت دریایی بریتانیا: نفتکش در شرق دُقم با نیروهای نظامی تصادف کرد ⚡️ سازمان عملیات تجارت دریایی بریتانیا گزارش "
-    },
     {
       "h": [
         "اقدم",
@@ -7136,6 +7044,26 @@
       ],
       "t": 1792539560.9244015,
       "title": "قایق های ماهیگیری در تعز هدف حمله قرار گرفتند؛ هشت ماهیگیر کشته شدند ⚡️ وزارت بهداشت یمن اعلام کرد نیروهای ائتلاف سعودی "
+    },
+    {
+      "h": [
+        "ال",
+        "بسر",
+        "تفق",
+        "تنگ",
+        "دستب",
+        "دشر",
+        "ربن",
+        "رسدن",
+        "سنتر",
+        "صلح",
+        "طر",
+        "متحد",
+        "مرک",
+        "هرمز"
+      ],
+      "t": 1792541252.9467614,
+      "title": "روبینو: دستیابی به توافق صلح با تهران بسیار دشوار است؛ حملات به تنگه هرمز ادامه دارد ⚡️ سناتور مارک روبینو به رسانه های "
     }
   ],
   "_published_incidents": [
@@ -7479,35 +7407,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "استرل",
-        "بمرست",
-        "تصف",
-        "حمل",
-        "خدر",
-        "دستگر",
-        "رنند",
-        "زخم",
-        "زر",
-        "عمد",
-        "عمل",
-        "مرد",
-        "مستقل",
-        "منتقل",
-        "نخست",
-        "نمند",
-        "هلن",
-        "هنز",
-        "وزر",
-        "ونگرت",
-        "پرلم",
-        "پلس",
-        "چق"
-      ],
-      "t": 1792411046.332577,
-      "title": "نماینده پارلمان استرالیا در حمله با خودرو در وانگاراتا زخمی شد ⚡️ هلن هینز، نماینده مستقل پارلمان استرالیا، در وانگاراتا"
-    },
     {
       "k": [
         "ازد",
@@ -11590,6 +11489,30 @@
       ],
       "t": 1792539560.9095562,
       "title": "قایق های ماهیگیری در تعز هدف حمله قرار گرفتند؛ هشت ماهیگیر کشته شدند ⚡️ وزارت بهداشت یمن اعلام کرد نیروهای ائتلاف سعودی "
+    },
+    {
+      "k": [
+        "ال",
+        "بسر",
+        "تفق",
+        "تنگ",
+        "تهر",
+        "حمل",
+        "دستب",
+        "دشر",
+        "ربن",
+        "رسدن",
+        "رسن",
+        "سنتر",
+        "صلح",
+        "طر",
+        "متحد",
+        "مرک",
+        "هرمز"
+      ],
+      "s": "روبینو",
+      "t": 1792541252.9349527,
+      "title": "روبینو: دستیابی به توافق صلح با تهران بسیار دشوار است؛ حملات به تنگه هرمز ادامه دارد ⚡️ سناتور مارک روبینو به رسانه های "
     }
   ],
   "_text_polish": {
@@ -11601,7 +11524,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792540542
+    "at": 1792541154
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11636,10 +11559,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-120b": {
-    "last_quality_failure": 1792517045,
-    "last_status": 422
   },
   "groq:openai/gpt-oss-20b": {
     "last_quality_failure": 1792517047,
