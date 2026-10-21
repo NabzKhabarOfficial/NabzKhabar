@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 1x, gemini:gemini-3.5-flash-lite held 2x, groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1792537252
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792537783
     },
@@ -159,6 +155,10 @@
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792541225
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792541779
     }
   ],
   "_ai_pace": {
@@ -184,7 +184,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-21",
-      "n": 3
+      "n": 4
     },
     "openrouter:*": {
       "day": "2026-10-20",
@@ -505,15 +505,15 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 3,
+        "calls": 4,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 1,
+        "ok": 2,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       }
     }
@@ -4975,6 +4975,10 @@
     "تصاویری از سوپرنفتکش متخلف منفجرشده در جنوب تنگۀ هرمز": {
       "reason": "content_duplicate",
       "until": 1792546814.4045353
+    },
+    "تکذیب انفجار در شرکت آلومینیوم اراک؛ حادثه فنی برق علت انتشار دود بود": {
+      "reason": "content_duplicate",
+      "until": 1792563379.3647664
     },
     "دو نفر در ارتباط با حادثه پایگاه فرفورد به ظن کمک به سرویس اطلاعاتی ایران دوباره بازداشت شدند": {
       "reason": "content_duplicate",
@@ -11524,7 +11528,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792541154
+    "at": 1792541712
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11559,10 +11563,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792517047,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
