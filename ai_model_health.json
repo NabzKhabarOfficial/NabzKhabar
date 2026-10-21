@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792537783
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792537783
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792537791
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792537791
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792541779
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792543518
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792543519
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792543539
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-20",
-      "n": 157
+      "n": 158
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 269
+      "n": 271
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-21",
-      "n": 5
+      "n": 7
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-21",
-      "n": 4
+      "n": 7
     },
     "openrouter:*": {
       "day": "2026-10-20",
@@ -479,8 +479,8 @@
     "2026-10-21": {
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -498,17 +498,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 5,
+        "calls": 7,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 2,
-        "other": 3
+        "ok": 3,
+        "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 4,
+        "calls": 7,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
-        "other": 2
+        "ok": 3,
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1499,6 +1499,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: هشدار مقام ارشد بانک مرکزی استرالیا درباره احتمال افزایش نرخ بهره",
       "topic": "اقتصاد",
       "until": 1792625279.1070905
+    },
+    "v4|one year on: has kenya’s opposition lost its way without raila odinga?": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: تحلیل سیاسی داخلی کنیا و تحولات اپوزیسیون بدون رویداد مشخص",
+      "topic": "سیاست",
+      "until": 1792629919.9529915
     },
     "v4|palestine weekly: israeli settlers attack journalist and diplomats": {
       "ok": true,
@@ -3018,6 +3024,12 @@
       "topic": "جامعه",
       "until": 1792583089.5612237
     },
+    "v4|در انتظار صید طلاهای بیشتر در روز سوم/ لحظه به لحظه از ناگویا: پرچمدار ایران وارد می شود": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Preview of Para Games, not decisive result",
+      "topic": "ورزش",
+      "until": 1792629917.034899
+    },
     "v4|در دیدار لاوروف با عراقچی چه گذشت؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=iran_national: دیدار دیپلماتیک و گفتگوی عمومی بدون اتخاذ تصمیم یا بیانیه خاص",
@@ -3479,12 +3491,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به پویش سلامت دانش‌آموزان در یزد",
       "topic": "سلامت",
       "until": 1792559018.2762585
-    },
-    "v4|سند امنیتی نتانیاهو علیه ایران؛ راهبرد واقعی یا نمایش انتخاباتی؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: تحلیل و ادعا درباره سند امنیتی جدید نتانیاهو علیه ایران.",
-      "topic": "سیاست",
-      "until": 1792556052.6414714
     },
     "v4|سه گزینه دونالد ترامپ در برابر ایران": {
       "ok": false,
@@ -4698,12 +4704,6 @@
       "topic": "اقتصاد",
       "until": 1792560773.0557487
     },
-    "v4|چرا باید «سواد رسانه» را جدی بگیریم؟ مهارت زیستن در عصر انفجار اطلاعات": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=iran_national: مطلب آموزشی و ترویجی درباره اهمیت سواد رسانه‌ای.",
-      "topic": "جامعه",
-      "until": 1792556052.6520085
-    },
     "v4|چمران: درباره حمله به بیت رهبری (نهم اسفند) براساس هک شدن دوربین های شهر چیزی نشنیده ام / چون دوربین ها خارجی هستند احتمال دسترسی به اطلاعات وجود دارد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=local: اظهارنظر پیرامون شایعات و موضوعات شهری است.",
@@ -5608,20 +5608,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارنظر روتین دبیر انجمن کشتیرانی درباره نقش بخش خصوصی.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792526293,
-      "title": "اقتصاد دولتی شفابخش نیست/ دولت برای اداره کشور به بخش خصوصی نیاز دارد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: خبر ورزشی کم‌اهمیت درباره وضعیت مصدومیت یک بسکتبالیست.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792526304,
-      "title": "مصدومیتی که ختم به خیر شد:/ جهان آماده تماشای هنرنمایی دوباره سرآشپز کری!"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: کشف گنجینه تاریخی، اثر محلی",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6166,6 +6152,20 @@
       "rule": "foreign-local-preselection",
       "t": 1792541223,
       "title": "M 4.6 - 115 km NNE of Barishal, Pakistan"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Preview of Para Games, not decisive result",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1792543517,
+      "title": "در انتظار صید طلاهای بیشتر در روز سوم/ لحظه به لحظه از ناگویا: پرچمدار ایران وارد می شود"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: تحلیل سیاسی داخلی کنیا و تحولات اپوزیسیون بدون رویداد مشخص",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792543519,
+      "title": "One year on: Has Kenya’s opposition lost its way without Raila Odinga?"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11528,7 +11528,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792542862
+    "at": 1792543443
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11563,6 +11563,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1792543526,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
