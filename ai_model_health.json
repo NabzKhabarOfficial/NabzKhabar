@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792547592
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792547592
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792547602
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792547603
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792551066
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792551652
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1792551654
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792551683
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-20",
-      "n": 169
+      "n": 170
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 290
+      "n": 291
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
-      "n": 128
+      "n": 129
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-20",
-      "n": 128
+      "n": 129
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-21",
-      "n": 15
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-21",
-      "n": 15
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-10-20",
@@ -479,28 +479,28 @@
     "2026-10-21": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 11,
+        "calls": 12,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 10,
+        "ok": 11,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 22,
-        "ok": 22,
+        "calls": 23,
+        "ok": 23,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 4,
-        "calls": 9,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 4,
+        "ok": 5,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 2,
-        "calls": 5,
+        "429": 3,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -508,34 +508,27 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
+        "ok": 9,
         "other": 7
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 8,
         "other": 8
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "حادثه",
-      "level": 4,
-      "t": 1792408259.6248367,
-      "title": "عملیات انفجار در معدن کهک استان قم انجام می شود؛ از شهروندان خواسته می شود از حضور در محدوده خودداری کنند",
-      "urgent": false
-    },
     {
       "label": "سیاست",
       "level": 4,
@@ -1368,6 +1361,13 @@
       "t": 1792551065.31848,
       "title": "قطر: اسرائیل به دنبال جنگ است، نه صلح",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1792551682.6131723,
+      "title": "سازمان دفاع مدنی غزه: ۸ هزار مفقودی زیر آوار است",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-20",
@@ -1407,6 +1407,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Scientific research on depression is not a first-tier news event.",
       "topic": "سلامت",
       "until": 1792624191.6122797
+    },
+    "v4|fast-fashion giant shein outperforms several australian retailers on ethics, report says": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Ethical fashion report, minor business news",
+      "topic": "اقتصاد",
+      "until": 1792638052.0192509
     },
     "v4|five things you should know before buying the iphone duo": {
       "ok": false,
@@ -1797,6 +1803,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=iran_national: تصمیم اجرایی اداری است که تاثیر محدودی بر کل اقتصاد دارد.",
       "topic": "اقتصاد",
       "until": 1792575198.6171317
+    },
+    "v4|ابوالفتح: همه شواهد از احتمال وقوع یک جنگ پرشدت دیگر حکایت دارد/ اهداف مورد حمله و سلاح های به کارگرفته شده می توانند متفاوت باشند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Prediction, no event yet",
+      "topic": "سیاست",
+      "until": 1792638054.1521142
     },
     "v4|اتابک: با تأمین انرژی و فولاد، تولید خودرو امسال افزایش می یابد": {
       "ok": false,
@@ -2326,12 +2338,6 @@
       "topic": "ورزش",
       "until": 1792589250.9745924
     },
-    "v4|بازگشت والیبال به سالن ها بعد از ۲۴۰ روز؛ جدال سه تیم لیگ برتری": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: آغاز مسابقات لیگ برتر والیبال داخلی است و اهمیت ملی ندارد",
-      "topic": "ورزش",
-      "until": 1792558996.1977303
-    },
     "v4|بازگشت چین به بازار سویای آمریکا": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: ازسرگیری واردات سویا میان چین و آمریکا نشانگر تحول بزرگ تجاری است.",
@@ -2391,12 +2397,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: برنامه‌ریزی برای اردو و مراسم استانی و محلی است.",
       "topic": "جامعه",
       "until": 1792585783.8369954
-    },
-    "v4|برگزاری سومین جشنواره ورزشی «اهوازبانو» با استقبال بیش از ۲۰۰ نفر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد ورزشی محلی و شهری، فاقد اهمیت ملی یا بین‌المللی",
-      "topic": "ورزش",
-      "until": 1792559021.1361492
     },
     "v4|بقائی: ایران مانع گنجاندن بندهای تفرقه افکن درباره یمن در بیانیه بغداد شد": {
       "ok": true,
@@ -3364,6 +3364,12 @@
       "topic": "جامعه",
       "until": 1792584623.1531417
     },
+    "v4|سازمان دفاع مدنی غزه: ۸ هزار مفقودی زیر آوار است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: 8k missing, war casualties",
+      "topic": "حادثه",
+      "until": 1792638054.165212
+    },
     "v4|سازمان عملیات تجارت دریایی بریتانیا: حادثه میان یک نفتکش و نیروهای نظامی در فاصله ۱۲۱ مایل دریایی در شرق دُقم عمان": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: گزارش حادثه امنیتی دریایی در منطقه خاورمیانه و آب‌های عمان.",
@@ -3496,12 +3502,6 @@
       "topic": "سیاست",
       "until": 1792612789.9205806
     },
-    "v4|سلامت دهان و دندان ۳۰۰ هزار دانش آموز یزد در کانون توجه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به پویش سلامت دانش‌آموزان در یزد",
-      "topic": "سلامت",
-      "until": 1792559018.2762585
-    },
     "v4|سه گزینه دونالد ترامپ در برابر ایران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.8-flash batch score=2 happened=False scope=world: تحلیل و گمانه‌زنی درباره گزینه‌ها و سناریوهای احتمالی ترامپ",
@@ -3591,12 +3591,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: سخنان شعارگونه و تکراری مقام‌های رده‌پایین ارزش خبری ندارد.",
       "topic": "سیاست",
       "until": 1792619584.7511482
-    },
-    "v4|صبحانه با خبر، ساخت هشت مجموعه ورزشی ویژه بانوان در همدان و پیشرفت ۴۳ درصدی مسکن کوی پرواز": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار محلی و استانی همدان برای کانال سراسری ارزش ندارد",
-      "topic": "جامعه",
-      "until": 1792559012.8571193
     },
     "v4|صدای انفجار در ریاض": {
       "ok": true,
@@ -4774,6 +4768,12 @@
       "topic": "جامعه",
       "until": 1792567757.9157865
     },
+    "v4|کدام مناسبت های جنگ اخیر وارد تقویم می شوند؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Calendar proposals, no event",
+      "topic": "جامعه",
+      "until": 1792638054.1783695
+    },
     "v4|کشف فسیل دایناسور ۱۲۰ میلیون ساله در بریتانیا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: کشف فسیل علمی فاقد اهمیت درجه یک خبری است.",
@@ -5082,15 +5082,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "جنگ علیه ایران، تولید نفت و گاز آمریکای جنوبی را به رشد انداخته است ⚡️ جنگ در خاورمیانه و اختلال در تنگه هرمز،",
-      "id": "27ff97faa9",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792495261,
-      "verdict": "new",
-      "why": "اختلال در تنگه هرمز و رقابت برای منابع جایگزین"
-    },
     {
       "head": "برخورد اتوبوس و کامیون در جاده اسیوط: ۱۳ کشته و ۲۰ زخمی ⚡️ در تصادف مرگبار بین یک اتوبوس و کامیون سنگین در جاد",
       "id": "6773991d06",
@@ -5630,16 +5621,18 @@
       "t": 1792551064,
       "verdict": "new",
       "why": "جنگ و صلح اسرائیل-فلسطین، موضوع جدید"
+    },
+    {
+      "head": "سازمان دفاع مدنی غزه: ۸ هزار مفقودی زیر آوار است ⚡️ سازمان دفاع مدنی نوار غزه از وجود دست کم ۸ هزار مفقودی زیر",
+      "id": "3928d102a9",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792551680,
+      "verdict": "new",
+      "why": "مفقودی زیر آوار غزه، موضوع جدید"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: سفر مقام آمریکایی برای مذاکرات تجاری رویداد دست اول جهانی نیست",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792529745,
-      "title": "Rubio Travels to India to Strengthen Economic Ties Amid Strained U.S. Relations"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تجمع محلی وroutine در اسفراین اهمیت ملی یا بین‌المللی ندارد",
       "rescued": false,
@@ -6192,35 +6185,19 @@
       "rule": "below-event-threshold",
       "t": 1792551052,
       "title": "تصادف موتورسوار با یک خودرو در بلاروس"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Ethical fashion report, minor business news",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792551652,
+      "title": "Fast-fashion giant Shein outperforms several Australian retailers on ethics, report says"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اتش",
-        "اخر",
-        "استفد",
-        "افتدن",
-        "تند",
-        "تنگ",
-        "سز",
-        "طلن",
-        "مترخن",
-        "مدت",
-        "مشک",
-        "منجر",
-        "نزدک",
-        "هدف",
-        "هرمز",
-        "کر",
-        "گر"
-      ],
-      "t": 1792508195.5758617,
-      "title": "ایران در حملات به کشتی ها در تنگه هرمز از موشک برای هدف گیری موتورخانه استفاده می کند ⚡️ ایران در حملات اخیر به کشتی ها "
-    },
     {
       "h": [
         "انجمد",
@@ -6944,6 +6921,25 @@
       ],
       "t": 1792551065.3074346,
       "title": "قطر: اسرائیل به دنبال جنگ است، نه صلح ⚡️ سخنگوی وزارت امور خارجه قطر اعلام کرد که سران اسرائیل به جای صلح، ثبات و حقوق م"
+    },
+    {
+      "h": [
+        "احتمل",
+        "افزش",
+        "دست",
+        "دفع",
+        "زر",
+        "سختم",
+        "سزم",
+        "مدن",
+        "مفقد",
+        "هزر",
+        "هشدر",
+        "وجد",
+        "ور"
+      ],
+      "t": 1792551682.6008081,
+      "title": "سازمان دفاع مدنی غزه: ۸ هزار مفقودی زیر آوار است ⚡️ سازمان دفاع مدنی نوار غزه از وجود دست کم ۸ هزار مفقودی زیر آوار ساخت"
     }
   ],
   "_published_incidents": [
@@ -7287,53 +7283,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ابد",
-        "اح",
-        "ار",
-        "اسرل",
-        "اسلم",
-        "اشکر",
-        "اقدم",
-        "ال",
-        "الملل",
-        "امرک",
-        "امنت",
-        "بدن",
-        "تجز",
-        "تحرم",
-        "تفق",
-        "تکد",
-        "جمهر",
-        "جنب",
-        "حقق",
-        "حن",
-        "خند",
-        "ددر",
-        "دفع",
-        "دلت",
-        "رس",
-        "سزم",
-        "شر",
-        "ضررت",
-        "مجز",
-        "محکمت",
-        "مخلفت",
-        "مذکر",
-        "مشرع",
-        "مضع",
-        "معن",
-        "نقض",
-        "نم",
-        "نمد",
-        "وشنگتن",
-        "پکن",
-        "چن"
-      ],
-      "t": 1792421592.140605,
-      "title": "رئیس شورای دولتی چین: آمریکا و اسرائیلی ها با تجاوز به ایران در مذاکرات نقض حقوق ایران کردند ⚡️ رئیس شورای دولتی چین در "
-    },
     {
       "k": [
         "ارل",
@@ -10934,6 +10883,70 @@
       "s": "قطر",
       "t": 1792551065.295877,
       "title": "قطر: اسرائیل به دنبال جنگ است، نه صلح ⚡️ سخنگوی وزارت امور خارجه قطر اعلام کرد که سران اسرائیل به جای صلح، ثبات و حقوق م"
+    },
+    {
+      "k": [
+        "اجسد",
+        "احتمل",
+        "ار",
+        "اصل",
+        "اغز",
+        "افزش",
+        "امر",
+        "امکن",
+        "انتقل",
+        "بصل",
+        "بلغ",
+        "بمرست",
+        "بنجمد",
+        "تجهز",
+        "تمم",
+        "تکنن",
+        "جست",
+        "جنگ",
+        "حجم",
+        "دد",
+        "دست",
+        "دفع",
+        "زد",
+        "زر",
+        "سختم",
+        "سخنگ",
+        "سزم",
+        "سنگن",
+        "شدد",
+        "شمر",
+        "شنس",
+        "صرت",
+        "طل",
+        "عمل",
+        "غزه",
+        "فرهم",
+        "محمد",
+        "مدن",
+        "مفقد",
+        "ممکن",
+        "منع",
+        "مهر",
+        "نجت",
+        "نر",
+        "هزر",
+        "هستند",
+        "هشدر",
+        "وج",
+        "وجد",
+        "ور",
+        "ورن",
+        "پنزدهم",
+        "کشت",
+        "کمبد",
+        "گسترد"
+      ],
+      "n": [
+        "250"
+      ],
+      "t": 1792551682.5876482,
+      "title": "سازمان دفاع مدنی غزه: ۸ هزار مفقودی زیر آوار است ⚡️ سازمان دفاع مدنی نوار غزه از وجود دست کم ۸ هزار مفقودی زیر آوار ساخت"
     }
   ],
   "_text_polish": {
@@ -10945,7 +10958,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792550960
+    "at": 1792551548
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10959,19 +10972,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792547902.0,
-    "last_failure": 1792547602,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792551647,
-    "last_failure": 1792551047,
-    "last_status": 429
+    "disabled_until": 1792551730,
+    "last_failure": 1792551670,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792551643,
-    "last_failure": 1792551043,
+    "disabled_until": 1792552261,
+    "last_failure": 1792551661,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
