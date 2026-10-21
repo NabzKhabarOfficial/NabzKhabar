@@ -2,18 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792538879
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1792538895
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792539506
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792539506
     },
     {
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792545291
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792545872
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1792545874
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792545905
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 275
+      "n": 277
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
-      "n": 122
+      "n": 123
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-20",
-      "n": 122
+      "n": 123
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-21",
-      "n": 9
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-21",
-      "n": 9
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-10-20",
@@ -485,13 +485,14 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 0,
-        "calls": 3,
+        "429": 1,
+        "calls": 4,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 3,
         "other": 0
       },
@@ -504,22 +505,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
+        "ok": 5,
         "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
+        "ok": 4,
         "other": 6
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       }
     }
@@ -1854,6 +1855,12 @@
       "topic": "سلامت",
       "until": 1792568818.8305206
     },
+    "v4|اخلاقی: قهرمانی تیم امید ارزشمند بود؛۱۰ فرنگی کار در جهانی شانس دارند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=iran_national: French expert comments on Iranian U-23 wrestling success",
+      "topic": "ورزش",
+      "until": 1792632274.659918
+    },
     "v4|اخلاقی:قهرمانی تیم امید ارزشمند بود؛۱۰ فرنگی کار در جهانی شانس دارند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: نظر کارشناس درباره قهرمانی تیم امید و مسابقات جهانی",
@@ -2472,12 +2479,6 @@
       "topic": "جامعه",
       "until": 1792557287.0085864
     },
-    "v4|بیماری خاموشی که استخوان ها را شکننده می کند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: مقاله آموزشی و عمومی درباره بیماری پوکی استخوان.",
-      "topic": "سلامت",
-      "until": 1792556743.4984686
-    },
     "v4|بین المللی شدن آموزش، صلح و مدارا را در جهان گسترش می دهد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=iran_national: اظهارات روتین و عمومی وزیر علوم درباره آموزش بین‌المللی",
@@ -2958,6 +2959,12 @@
       "topic": "سیاست",
       "until": 1792560806.277083
     },
+    "v4|حملات عربستان به قایق های ماهیگیری در تعز؛ کشته شدن ۸ ماهیگیر یمنی": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: 8 fishermen killed in Saudi coalition air attacks",
+      "topic": "نظامی",
+      "until": 1792632274.6300426
+    },
     "v4|حمله تند به fivb: این تصمیم دیوانه وار است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: انتقاد ورزشی مدیر باشگاه از تصمیم فدراسیون جهانی رویداد درجه یک نیست",
@@ -3107,12 +3114,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر دستگیری سارق محلی فاقد اهمیت ملی یا بین‌المللی است",
       "topic": "جامعه",
       "until": 1792575177.2194324
-    },
-    "v4|دلخوش: تریبون داران مردم را به انسجام دعوت کنند/ تجمعات شبانه، جناحی نشود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: توصیه نماینده سابق مجلس به انسجام ملی اهمیت اول ندارد",
-      "topic": "سیاست",
-      "until": 1792557269.9284332
     },
     "v4|دو عصر و یک شب در ریاض/ اعلام ساعت دقیق بازی های ایران در جام ملت ها": {
       "ok": false,
@@ -3654,12 +3655,6 @@
       "topic": "ورزش",
       "until": 1792631092.6266217
     },
-    "v4|صعود نماینده ایران به فینال شنا ۱۰۰ متر قورباغه مردان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: صعود ورزشکار ایرانی به فینال مسابقات مهم بین‌المللی.",
-      "topic": "ورزش",
-      "until": 1792556743.4842293
-    },
     "v4|ضرب الاجل ۱۰ ساعته دادستان استان برای رفع نقاط حادثه خیز کمربندی سمنان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، فقط مهلت رفع نقاط خطر در کمربندی سمنان",
@@ -3870,6 +3865,12 @@
       "topic": "سیاست",
       "until": 1792569960.3821743
     },
+    "v4|قلعه نویی کار سختی برای قهرمان کردن ایران دارد؛ انتقاد ازafc": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=iran_national: AFC secretary comments on Iranian coach's challenge",
+      "topic": "ورزش",
+      "until": 1792632274.6452532
+    },
     "v4|قهرمانان آینده ورزش کشور از مدارس شناسایی می شوند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: اظهارات و برنامه‌های مقامات محلی درباره ورزش دانش‌آموزی اهمیت ملی ندارد.",
@@ -3929,12 +3930,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آغاز لیگ برتر رویینگ بانوان در سطح محلی و کم‌اهمیت است",
       "topic": "ورزش",
       "until": 1792571087.1427686
-    },
-    "v4|مأموریت تازه روسیه در تهران؛ آیا پوتین برای پایان جنگ دست به کار شده است؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و گمانه‌زنی درباره تماس پوتین و ترامپ بدون خبر قطعی.",
-      "topic": "سیاست",
-      "until": 1792556743.4697955
     },
     "v4|ماندگاری طلای جهانی در مسیر افزایش قیمت": {
       "ok": false,
@@ -4067,6 +4062,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=local: Local road project announcement, limited national impact",
       "topic": "اقتصاد",
       "until": 1792599013.0109212
+    },
+    "v4|معضلی که فقط یک راه حل داشت/ فده مشکل 30 میلیون یورویی رئال را حل نکرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: نتیجه مسابقه عادی، نه خبر مهم",
+      "topic": "ورزش",
+      "until": 1792632272.2426267
     },
     "v4|معمای حل نشده پنتاگون در خلیج فارس": {
       "ok": false,
@@ -4970,6 +4971,10 @@
     }
   },
   "_editorial_blocks": {
+    "us jails guatemalan man for 30 years over deadly smuggling operation": {
+      "reason": "content_duplicate",
+      "until": 1792567505.7697406
+    },
     "ادعای روبیو: توافق با ایران بسیار دشوار است": {
       "reason": "content_duplicate",
       "until": 1792545729.1143029
@@ -4985,6 +4990,10 @@
     "تکذیب انفجار در شرکت آلومینیوم اراک؛ حادثه فنی برق علت انتشار دود بود": {
       "reason": "content_duplicate",
       "until": 1792563379.3647664
+    },
+    "حملات عربستان به قایق های ماهیگیری در تعز؛ کشته شدن ۸ ماهیگیر یمنی": {
+      "reason": "content_duplicate",
+      "until": 1792567499.8931031
     },
     "دو نفر در ارتباط با حادثه پایگاه فرفورد به ظن کمک به سرویس اطلاعاتی ایران دوباره بازداشت شدند": {
       "reason": "content_duplicate",
@@ -5618,13 +5627,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار محلی و رویدادهای شهری یاسوج فاقد اهمیت ملی است.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792526790,
-      "title": "۲۳۴ شب میدان داری مردم یاسوج در قرارهای شبانه"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مصدومیت بازیکن جوان در سطح ملی یا بین‌المللی نیست و اهمیت درجه دو دارد.",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6176,6 +6178,13 @@
       "rule": "no-concrete-event",
       "t": 1792545258,
       "title": "استارت مدال آوری روز سوم با یک طلا؛ دختر دونده حذف شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: نتیجه مسابقه عادی، نه خبر مهم",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792545872,
+      "title": "معضلی که فقط یک راه حل داشت/ فده مشکل 30 میلیون یورویی رئال را حل نکرد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11251,7 +11260,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792545177
+    "at": 1792545756
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11266,9 +11275,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792544772,
-    "last_failure": 1792544712,
-    "last_status": 422
+    "disabled_until": 1792546492,
+    "last_failure": 1792545892,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1792544446.0,
