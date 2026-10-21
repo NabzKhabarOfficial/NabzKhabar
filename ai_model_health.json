@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792545259
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1792545263
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792545291
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792545872
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
-      "t": 1792545874
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792545905
     },
@@ -159,16 +139,36 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792548175
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792548745
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792548745
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792548746
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792548746
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792548756
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-20",
-      "n": 166
+      "n": 167
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 284
+      "n": 285
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-21",
-      "n": 12
+      "n": 13
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-21",
-      "n": 12
+      "n": 13
     },
     "openrouter:*": {
       "day": "2026-10-20",
@@ -479,15 +479,15 @@
     "2026-10-21": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 8,
+        "calls": 9,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 7,
+        "ok": 8,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 16,
-        "ok": 16,
+        "calls": 17,
+        "ok": 17,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -507,17 +507,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 13,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 6,
-        "other": 6
+        "other": 7
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 13,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 5,
-        "other": 7
+        "other": 8
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -2343,6 +2343,12 @@
       "topic": "ورزش",
       "until": 1792583075.8018253
     },
+    "v4|بازی های پاراآسیایی ناگویا؛ نصراللهی برنده نبرد ایرانی ها در پاراتکواندو": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: خبر ورزشی غیر فینال و غیر مدال‌آور در سطح مسابقات آسیایی.",
+      "topic": "ورزش",
+      "until": 1792635155.821842
+    },
     "v4|ببینید/ لحظه نجات خلبان ایرانی جنگنده سرنگون شده در جنگ ۴۰ روزه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=local: Fictional or speculative scenario regarding a 40-day war.",
@@ -2534,12 +2540,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: عملیات فنی محلی و تخلیه گاز خط لوله در آستارا",
       "topic": "جامعه",
       "until": 1792586407.0906935
-    },
-    "v4|تخمین احتمال زنده ماندن بیماران سرطانی از روی «عکس چهره»": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: پژوهش علمی، اثر محدود بر جامعه",
-      "topic": "سلامت",
-      "until": 1792558684.0849693
     },
     "v4|تدوین نقشه راه ملی برای توسعه فناوری های زبان فارسی در عصر هوش مصنوعی": {
       "ok": false,
@@ -3537,12 +3537,6 @@
       "topic": "نظامی",
       "until": 1792602772.6791594
     },
-    "v4|سینا خلیلی در جمع مدعیان مدال جهانی؛ شانس فینالیست شدن هم دارد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Speculation about future sports performance, not a completed event.",
-      "topic": "ورزش",
-      "until": 1792557805.099934
-    },
     "v4|شب تلخ بارسلونا در پاریس، جشن گل های انگلیسی ها!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نتایج مرحله گروهی لیگ قهرمانان اروپا در اولویت خبری نبز خبر نیست.",
@@ -3626,6 +3620,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: صعود ورزشکار ایرانی به فینال مسابقات آسیایی پاراآسیایی",
       "topic": "ورزش",
       "until": 1792631092.6266217
+    },
+    "v4|صفحه نخست روزنامه ها – چهارشنبه ۲۹ مهر": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: مرور تیتر روزنامه ها داخلی است و رویداد مهمی محسوب نمی شود",
+      "topic": "جامعه",
+      "until": 1792635146.669637
     },
     "v4|ضرب الاجل ۱۰ ساعته دادستان استان برای رفع نقاط حادثه خیز کمربندی سمنان": {
       "ok": false,
@@ -5633,20 +5633,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: پیگیری مطالبات فرهنگی محلی توسط نماینده مجلس",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792528575,
-      "title": "از تکمیل زیرساخت های فرهنگی اهواز تا روایت جهاد عشایر خوزستان"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، فقط مهلت رفع نقاط خطر در کمربندی سمنان",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792528576,
-      "title": "ضرب الاجل ۱۰ ساعته دادستان استان برای رفع نقاط حادثه خیز کمربندی سمنان"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local gathering in a small city, lacks national or international significance.",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -6191,6 +6177,20 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1792548174,
       "title": "نیویورک تایمز: انقلاب ماکرون از راه رسید اما نه آن انقلابی که می خواست"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: مرور تیتر روزنامه ها داخلی است و رویداد مهمی محسوب نمی شود",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792548746,
+      "title": "صفحه نخست روزنامه ها – چهارشنبه ۲۹ مهر"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: خبر ورزشی غیر فینال و غیر مدال‌آور در سطح مسابقات آسیایی.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792548755,
+      "title": "بازی های پاراآسیایی ناگویا؛ نصراللهی برنده نبرد ایرانی ها در پاراتکواندو"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11266,7 +11266,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792548061
+    "at": 1792548658
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
