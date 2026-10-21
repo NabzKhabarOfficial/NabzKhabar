@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792548175
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792548745
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792548745
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792548746
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
       "t": 1792552281
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792552820
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1792552822
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792552861
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-20",
-      "n": 173
+      "n": 174
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 295
+      "n": 297
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
-      "n": 131
+      "n": 132
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-20",
-      "n": 131
+      "n": 132
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-21",
-      "n": 16
+      "n": 17
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-21",
-      "n": 16
+      "n": 17
     },
     "openrouter:*": {
       "day": "2026-10-20",
@@ -479,24 +479,24 @@
     "2026-10-21": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 14,
+        "ok": 15,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 27,
-        "ok": 27,
+        "calls": 29,
+        "ok": 29,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 5,
-        "calls": 12,
+        "calls": 13,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 5,
-        "other": 2
+        "other": 3
       },
       "gemini:gemini-3.8-flash": {
         "429": 3,
@@ -508,22 +508,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 16,
+        "calls": 17,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 10,
         "other": 7
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 16,
+        "calls": 17,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
+        "ok": 9,
         "other": 8
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 17,
-        "ok": 17,
+        "calls": 18,
+        "ok": 18,
         "other": 0
       }
     }
@@ -1504,6 +1504,12 @@
       "topic": "سیاست",
       "until": 1792600347.1915581
     },
+    "v4|nato to send additional patrol planes to black sea after drone attacks": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: NATO deploys patrol planes after drone attacks in Black Sea.",
+      "topic": "نظامی",
+      "until": 1792639222.2301433
+    },
     "v4|nigeria records first ebola case as outbreak spreads across africa": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: گسترش بیماری ابولا در نیجریه و هشدار رسمی مرکز کنترل بیماری‌های آفریقا",
@@ -1834,12 +1840,6 @@
       "topic": "جامعه",
       "until": 1792613811.3712108
     },
-    "v4|اجرای ۸۰ برنامه تماشاخانه سیار کانون در سیستان و بلوچستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر استانی مربوط به فعالیت فرهنگی کودکان و نوجوانان است.",
-      "topic": "جامعه",
-      "until": 1792559601.223592
-    },
     "v4|احترام به حاکمیت ملی، استقلال و حق تعیین سرنوشت ملت کوبا ضروری است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: بیانیه تشریفاتی و تکراری وزارت خارجه در محکومیت تحریم‌های آمریکا علیه کوبا",
@@ -1857,12 +1857,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلا و نقره توسط بانوان پاراتیرانداز ایران در مسابقات بین‌المللی",
       "topic": "ورزش",
       "until": 1792562507.6221318
-    },
-    "v4|اخبار کوتاه تهران، ساماندهی ترافیک «خیام» و جشنواره عکاسی «تهران زیبا»": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Traffic control, community plan, local photo festival",
-      "topic": "جامعه",
-      "until": 1792559579.4901872
     },
     "v4|اخبار کوتاه گیلان؛ کشف توتون قاچاق تا تاکید بر سلامت روان دانش آموزان": {
       "ok": false,
@@ -2127,6 +2121,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: افزایش بودجه ورزشی در استان خراسان جنوبی",
       "topic": "ورزش",
       "until": 1792608550.679436
+    },
+    "v4|افزایش تعداد وام بازنشستگان تأمین اجتماعی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: routine administrative increase, limited national impact",
+      "topic": "اقتصاد",
+      "until": 1792639219.7682192
     },
     "v4|افزایش تعداد وام های بازنشستگان تأمین اجتماعی": {
       "ok": false,
@@ -2560,12 +2560,6 @@
       "topic": "فناوری",
       "until": 1792581586.9029148
     },
-    "v4|ترافیک نیمه سنگین در ۴ محور منتهی به تهران/ بارش باران در محورهای شمالی کشور": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: ترافیک جاده‌ای و وضعیت راه‌ها خبری محلی و روتین است.",
-      "topic": "جامعه",
-      "until": 1792559593.498493
-    },
     "v4|ترامپ درباره جنگ اوکراین: روس ها هزار دستگاه تانک داشتند که در حال حرکت در یک بزرگراه بتنی بودند؛ می توانستند ظرف چهار ساعت وارد اوکراین شوند اما یک ژنرال بسیار احمق تصمیم گرفت که": {
       "ok": false,
       "reason": "ai openrouter/openrouter/free batch score=2 happened=False scope=world: Commentary on Ukraine war, no concrete event occurred",
@@ -2992,12 +2986,6 @@
       "topic": "جامعه",
       "until": 1792602734.8632548
     },
-    "v4|خاموشی بابرنامه برق برای تعمیرات پیشگیرانه پاییز در کهگیلویه وبویراحمد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر قطعی برق برنامه‌ریزی شده و محلی در کهگیلویه و بویراحمد است.",
-      "topic": "جامعه",
-      "until": 1792559597.0094032
-    },
     "v4|خانه های شاهنامه در کشور ایجاد می شود/ توجه سازمان برنامه به خوارزمی و ابن سینا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine cultural announcement by an official regarding cultural heritage projects.",
@@ -3310,6 +3298,12 @@
       "topic": "اقتصاد",
       "until": 1792564248.8286788
     },
+    "v4|رکورد تاریخی دانش آموزان ایرانی در المپیادهای جهانی؛ ۱۸ طلا در سال جنگ": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: 18 gold medals by Iranian students in 2026 global competitions.",
+      "topic": "ورزش",
+      "until": 1792639222.215925
+    },
     "v4|رکوردشکنی امیرحسین علیپور و طلای ایران در پرتاب وزنه": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: شکستن رکورد آسیا و کسب مدال طلا توسط ورزشکار ایرانی",
@@ -3513,6 +3507,12 @@
       "reason": "ai openrouter/openrouter/free batch score=2 happened=False scope=world: Diplomatic statement criticizing US, not a concrete decision",
       "topic": "سیاست",
       "until": 1792612789.9205806
+    },
+    "v4|سناتور آمریکایی: جنگ غیرقانونی در ایران را پایان دهید": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: US senator calls for ending illegal war in Iran.",
+      "topic": "سیاست",
+      "until": 1792639222.2442207
     },
     "v4|سه گزینه دونالد ترامپ در برابر ایران": {
       "ok": false,
@@ -5026,6 +5026,10 @@
       "reason": "content_duplicate",
       "until": 1792550842.946141
     },
+    "سناتور آمریکایی: جنگ غیرقانونی در ایران را پایان دهید": {
+      "reason": "content_duplicate",
+      "until": 1792574447.3219016
+    },
     "سپاه: یک فروند سوپر نفتکش متخلف با اصابت با یک مین دریایی در جنوب تنگه هرمز منفجر و دچار آتش سوزی شد / با هرگونه تحرکی که امنیت تنگه را نادیده بگیرد با قاطعیت برخورد خواهد شد": {
       "reason": "content_duplicate",
       "until": 1792538075.4713311
@@ -5639,13 +5643,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: خبر محلی و نمایشی بدون رویداد مشخص",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792530339,
-      "title": "شیروانی ها ایستاده در میدان اقتدار در قرار ۲۳۴"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: گروه‌مرحله لیگ قهرمانان، نه نهایی مهم",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -6197,6 +6194,13 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792552228,
       "title": "افزایش تعداد وام های بازنشستگان تأمین اجتماعی"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: routine administrative increase, limited national impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1792552819,
+      "title": "افزایش تعداد وام بازنشستگان تأمین اجتماعی"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10938,7 +10942,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792552138
+    "at": 1792552703
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10953,8 +10957,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792552516.0,
-    "last_failure": 1792552216,
+    "disabled_until": 1792553141,
+    "last_failure": 1792552840,
     "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
