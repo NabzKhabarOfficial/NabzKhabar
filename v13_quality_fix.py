@@ -37,6 +37,18 @@ Oct 19, 15:40 Tehran (first full read of docs/review/telegram_log.json, 65 sends
   راهور بوشهر: ...», «سرپرست پلیس آگاهی خوزستان: ...». A headline whose speaker (the part before «:») is an
   official of a province or provincial city is now "local-level" unless a hard event happened; advance notices of
   controlled blasts («انفجار کنترل شده مهمات در دزفول», «عملیات انفجار در معدن کهک») are always "local-notice".
+Oct 21, 14:30 Tehran (review of every post since Oct 19 15:40, telegram_log + live channel):
+* loaded labels still went out: «رژیم جولانی», «مستعمره نشینان اسرائیلی», «تجاوزات», «مزدوران سعودی»,
+  «پهپادهای انتحاری», «تجزیه طلب», «ماجراجویی نظامی», «کشته شدن تروریست». Neutral wording now: دولت جولانی,
+  شهرک‌نشینان, حملات, نیروهای وابسته به عربستان, پهپادهای انفجاری, جدایی‌طلب, اقدام نظامی, فرد مسلح / حمله‌ی
+  مسلحانه («تروریست» stays when it is attributed or a designation list: «در فهرست تروریستی», «... را تروریست نامید»).
+  A post that still carries one of these labels is refused ("loaded-wording").
+* «جروزالم پست» (headline and lead) -> «یک رسانه‌ی اسرائیلی» (also «تایمز اسرائیل»); «مارک روبینو» -> «مارکو روبیو»;
+  «غزه و نوار غزه» -> «نوار غزه»; «کشته بارتر» -> «مرگبارتر».
+* trivial provincial items: «زلزله در نزدیکی راور کرمان ثبت شد» (a small quake, nobody hurt) -> "small-quake";
+  «فرماندار اراک: خبر انفجار ... کذب است» (a local denial passed because of the word «انفجار») -> "local-level";
+  «آتش سوزی پژو پارس در محور سرباز–کهیری دو جان باخت» (a road crash / car fire in Iran, under five dead) ->
+  "local-crash".
 Any error = the bot runs as before.
 """
 
@@ -94,6 +106,87 @@ SPEAKER_HARD = re.compile(r"کشته[\s\u200c]+(?:شد|شدند)|جان[\s\u200c
                           r"انفجار(?![\s\u200c]+کنترل)|زلزله|زمین[\s\u200c]*لرزه|سیل|آتش[\s\u200c]*سوزی|حمله|"
                           r"شلیک|سقوط|گروگان[\s\u200c]*گیری|ترور")
 
+_TERR_ATTR = re.compile(r"(?:فهرست|تحریم|سازمان[\s\u200c]*های|عنوان|نامید|نامیده|خواند|خوانده|اتهام|متهم)$")
+_TERR_AFTER = re.compile(r"[\s\u200c]*(?:»|نامید|نامیده|خواند|خوانده|دانست|توصیف|معرفی)")
+
+
+def _terr(word):
+    def sub(m):
+        before = m.string[max(0, m.start() - 24):m.start()].rstrip(" \u200c")
+        after = m.string[m.end():m.end() + 14]
+        if _TERR_ATTR.search(before) or "«" in before[-3:] or _TERR_AFTER.match(after):
+            return m.group(0)  # attributed, or a designation list: the word stays
+        return word
+    return sub
+
+
+_MERC = {"سعودی": "عربستان", "آمریکایی": "آمریکا", "اماراتی": "امارات", "اسرائیلی": "اسرائیل"}
+NEUTRAL_V6 = (
+    (re.compile(r"رژیم[\s\u200c]+(?:صهیونیستی|اشغالگر(?:[\s\u200c]+قدس)?)"), "اسرائیل"),
+    (re.compile(r"رژیم[\s\u200c]+جولانی"), "دولت جولانی"),
+    (re.compile(r"مستعمره[\s\u200c]*نشین"), "شهرک‌نشین"),
+    (re.compile(r"(?<![\u0600-\u06FF])تجاوزات(?![\u0600-\u06FF])"), "حملات"),
+    (re.compile(r"مزدوران[\s\u200c]+(سعودی|آمریکایی|اماراتی|اسرائیلی)"), lambda m: "نیروهای وابسته به " + _MERC[m.group(1)]),
+    (re.compile(r"(?<![\u0600-\u06FF])مزدوران(?![\u0600-\u06FF])"), "نیروهای وابسته"),
+    (re.compile(r"پهپاد([\s\u200c]*های)?[\s\u200c]+انتحاری"), lambda m: "پهپاد" + (m.group(1) or "") + " انفجاری"),
+    (re.compile(r"ماجراجویی(?:[\s\u200c]*های)?[\s\u200c]+نظامی"), "اقدام نظامی"),
+    (re.compile(r"تجزیه[\s\u200c]*طلب"), "جدایی‌طلب"),
+    (re.compile(r"(حمله|حملات|عملیات|اقدام)([\s\u200c]*(?:های|ها))?[\s\u200c]+تروریستی(?![\u0600-\u06FF])"),
+     lambda m: m.group(1) + (m.group(2) or "") + " مسلحانه"),
+    (re.compile(r"(?<![\u0600-\u06FF\u200c])تروریستی(?![\u0600-\u06FF])"), _terr("مسلح")),
+    (re.compile(r"(?<![\u0600-\u06FF\u200c])تروریست[\s\u200c]*ها(?![\u0600-\u06FF])"), _terr("افراد مسلح")),
+    (re.compile(r"(?<![\u0600-\u06FF\u200c])تروریست(?![\u0600-\u06FF\u200c])"), _terr("فرد مسلح")),
+    (re.compile(r"روبینو"), "روبیو"),
+    (re.compile(r"مارک[\s\u200c]+روبیو"), "مارکو روبیو"),
+    (re.compile(r"(?<![\u0600-\u06FF])غزه[\s\u200c]+و[\s\u200c]+نوار[\s\u200c]+غزه"), "نوار غزه"),
+    (re.compile(r"کشته[\s\u200c]*بارتر"), "مرگبارتر"),
+    (re.compile(r"(?:روزنامه[\s\u200c]+|نشریه[\s\u200c]+|پایگاه[\s\u200c]+)?(?:جروزالم|اورشلیم)[\s\u200c]*پست"), "یک رسانه‌ی اسرائیلی"),
+    (re.compile(r"(?:روزنامه[\s\u200c]+|نشریه[\s\u200c]+|پایگاه[\s\u200c]+)?تایمز[\s\u200c]+(?:[اآ]و[\s\u200c]+)?اسرائیل"), "یک رسانه‌ی اسرائیلی"),
+)
+LOADED_V6 = re.compile(r"رژیم[\s\u200c]+(?:صهیونیستی|اشغالگر|جولانی)|مستعمره[\s\u200c]*نشین|مزدوران|تجاوزات|"
+                       r"پهپاد(?:[\s\u200c]*های)?[\s\u200c]+انتحاری|جروزالم[\s\u200c]*پست|اورشلیم[\s\u200c]*پست")
+FA_NUM = {"یک": 1, "دو": 2, "سه": 3, "چهار": 4, "پنج": 5, "شش": 6, "هفت": 7, "هشت": 8, "نه": 9, "ده": 10}
+QUAKE = re.compile(r"زلزله|زمین[\s\u200c]*لرزه")
+MAGNITUDE = re.compile(r"([0-9\u06F0-\u06F9]+(?:[.\u066B/][0-9\u06F0-\u06F9]+)?)[\s\u200c]*(?:ریشتر|درجه|ریکتر)")
+HURT = re.compile(r"کشته|زخمی|مصدوم|مجروح|جان[\s\u200c]*باخت|خسارت|تخریب|آوار|ویران")
+DENIAL = re.compile(r"کذب|تکذیب|شایعه|صحت[\s\u200c]+ندارد|واقعیت[\s\u200c]+ندارد")
+CRASH = re.compile(r"تصادف|واژگونی|واژگون|برخورد[\s\u200c]+(?:دو|سه|چند)?[\s\u200c]*(?:خودرو|دستگاه)|"
+                   r"آتش[\s\u200c]*سوزی[\s\u200c]+(?:خودرو|پژو|پراید|سمند|پیکان|تیبا|اتوبوس|کامیون|وانت)|"
+                   r"(?<![\u0600-\u06FF])(?:پژو|پراید|سمند|پیکان|تیبا|وانت)(?![\u0600-\u06FF])")
+DEATHS = re.compile(r"([0-9\u06F0-\u06F9]+|یک|دو|سه|چهار|پنج|شش|هفت|هشت|نه|ده)[\s\u200c]+(?:نفر[\s\u200c]+)?(?:کشته|جان[\s\u200c]*باخت|فوتی|مصدوم|زخمی)")
+
+
+def _num(s):
+    s = str(s).translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹٫", "0123456789."))
+    if s in FA_NUM:
+        return FA_NUM[s]
+    try:
+        return float(s.replace("/", "."))
+    except ValueError:
+        return None
+
+
+def small_quake(title, text):
+    """A minor earthquake (under 4.5, nobody hurt): not news for the channel."""
+    if not QUAKE.search(str(title or "")) or HURT.search(text):
+        return False
+    mags = [m for m in (_num(x) for x in MAGNITUDE.findall(text)) if m is not None]
+    if mags:
+        return max(mags) < 4.5
+    t = str(title or "")
+    return bool(re.search(r"ثبت[\s\u200c]+شد", t) and PROVINCE_RX.search(t))
+
+
+def local_crash(title, text):
+    """A road crash / car fire inside Iran with fewer than five dead: a provincial item."""
+    t = str(title or "")
+    if not CRASH.search(t):
+        return False
+    if not (PROVINCE_RX.search(t) or re.search(r"(?<![\u0600-\u06FF])محور(?![\u0600-\u06FF])", t)):
+        return False
+    counts = [n for n in (_num(x) for x in DEATHS.findall(text)) if n is not None]
+    return not counts or max(counts) < 5
+
 
 def local_speaker(title):
     """True when the headline's speaker (before «:») is an official of a province / provincial city."""
@@ -113,7 +206,7 @@ _DONE = {"v": False}
 
 def neutral(text):
     text = str(text or "")
-    for rx, good in NEUTRAL:
+    for rx, good in NEUTRAL_V6 + NEUTRAL:
         text = rx.sub(good, text)
     text = REPORTER_OF_OUTLET.sub(lambda m: REPORTER_WORD.get(m.group(1), "یک روزنامه‌نگار"), text)
     return text
@@ -151,16 +244,21 @@ def _install_guard():
             if fg._BOARD.search(str(title or "")):
                 return ""
             sents = [str(x or "") for x in sentences or []]
+            whole = " ".join([str(title or "")] + sents)
             found = []
-            m = LOADED.search(" ".join([str(title or "")] + sents))
+            m = LOADED.search(whole) or LOADED_V6.search(whole)
             if m:
                 found.append(("loaded-wording", m.group(0)))
             if sents and DANGLING.search(sents[0]):
                 found.append(("dangling-lead", sents[0][:60]))
             if LOCAL_NOTICE.search(str(title or "")):
                 found.append(("local-notice", str(title or "")[:60]))
+            if small_quake(title, whole):
+                found.append(("small-quake", str(title or "")[:60]))
+            if local_crash(title, whole):
+                found.append(("local-crash", str(title or "")[:60]))
             if local_speaker(title) and not LOCAL_HEAD.search(str(title or "")):
-                hard = bool(SPEAKER_HARD.search(str(title or "")))
+                hard = bool(SPEAKER_HARD.search(str(title or ""))) and not DENIAL.search(str(title or ""))
                 try:
                     import v13_editor_gate as g
                     hard = hard or bool(g.war_zone(title))
@@ -174,6 +272,8 @@ def _install_guard():
                     hard = bool(g.HARD_HAPPENED.search(g._norm(title)) or g.war_zone(title))
                 except Exception:
                     hard = True
+                if DENIAL.search(str(title or "")):
+                    hard = False
                 if not hard:
                     found.append(("local-level", str(title or "")[:60]))
         except Exception:
@@ -318,5 +418,6 @@ def install():
     except Exception as exc:
         print(f"V13 QUALITY FIX: review log not installed ({type(exc).__name__}: {exc})", flush=True)
     _DONE["v"] = True
-    print("V13 QUALITY FIX ACTIVE: neutral wording, dangling «در حالی که» leads, same-headline repeats, "
-          "nemo-new overlap repeats, run-local headlines, extra outlet names, provincial speakers, blast notices", flush=True)
+    print("V13 QUALITY FIX ACTIVE: neutral wording (v6 labels), dangling «در حالی که» leads, same-headline repeats, "
+          "nemo-new overlap repeats, run-local headlines, extra outlet names, provincial speakers, blast notices, "
+          "small quakes, local crashes, local denials", flush=True)
