@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792545905
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792546458
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792546458
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792546465
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792548756
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792549924
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792549925
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792549925
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-21",
-      "n": 13
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-21",
-      "n": 13
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-10-20",
@@ -507,16 +507,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 13,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 7,
         "other": 7
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 13,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 6,
         "other": 8
       },
       "mistral:open-mistral-nemo": {
@@ -1701,12 +1701,6 @@
       "topic": "سیاست",
       "until": 1792620757.8499262
     },
-    "v4|آخرین دیدار و بغضی همیشگی برای جامعه ورزش کشور؛ تقدیری که چراغ راه شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: گزارش خبری از یک دیدار قدیمی و تشریفاتی که ارزش خبری ندارد",
-      "topic": "ورزش",
-      "until": 1792558698.1828904
-    },
     "v4|آغاز اجلاس نخست وزیران شانگهای با حضور عارف در دوشنبه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: حضور مقام دولتی در اجلاس بین‌المللی روتین است و امتیاز پایین دارد",
@@ -1917,6 +1911,12 @@
       "topic": "سیاست",
       "until": 1792610454.85814
     },
+    "v4|ادعای زلنسکی: روسیه پهپاد و اطلاعات ماهواره ای در اختیار ایران قرار داده است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Zelensky claims Russia shared drones and data with Iran",
+      "topic": "سیاست",
+      "until": 1792636325.5159214
+    },
     "v4|ادعای هگست: آمریکا همچنان در حال بررسی ابعاد حمله به مدرسه میناب است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Official statement by US Secretary of Defense regarding attack in Iran.",
@@ -2066,12 +2066,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: واکنش سخنگوی قوه قضائیه به اظهارات مقام خارجی، سخنان روتین است",
       "topic": "قضایی",
       "until": 1792567229.679196
-    },
-    "v4|اعتراف ترامپ به انزوای آمریکا": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: ترامپ انتقاد از ناتو، ادعا آمریکا در انزوای نظامی",
-      "topic": "سیاست",
-      "until": 1792558684.8494143
     },
     "v4|اعتراف نخست وزیر فرانسه به بحران امنیتی": {
       "ok": true,
@@ -3320,6 +3314,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: محدود به منطقه، اثر کم",
       "topic": "آب و هوا",
       "until": 1792587472.5847285
+    },
+    "v4|زندی: واگذاری حتی موقتی اورانیوم ها به روسیه، زمینه بازگشت آن به ایران را بسیار کاهش خواهد داد/ رقیق سازی اورانیوم، بهتر از واگذاری به روسیه است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Professor claims handing over reduces return chances",
+      "topic": "سیاست",
+      "until": 1792636325.5039687
     },
     "v4|زهرا رحیمی: دوست داشتم طلا بگیرم اما حریف قدر بود/ عبدالله پور: نمی خواستم دست خالی برگردم": {
       "ok": false,
@@ -4677,6 +4677,12 @@
       "topic": "سلامت",
       "until": 1792610422.7232764
     },
+    "v4|پیشرفت ۸۵ درصدی مرمت بازار پاچنار تهران/ احیای جداره های تاریخی و سامان دهی فضای بازار": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local heritage restoration, limited national impact",
+      "topic": "جامعه",
+      "until": 1792636323.763116
+    },
     "v4|پیشنهاد ویتکاف به پوتین برای صلح": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: دیدار فرستاده آمریکا با پوتین و پیشنهاد صلح اوکراین",
@@ -4766,12 +4772,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آمار جزئی و روتیین سازمان منابع طبیعی ارزش خبری درجه یک ندارد",
       "topic": "جامعه",
       "until": 1792567757.9157865
-    },
-    "v4|کشت قراردادی چگونه به توسعه بادام زمینی گیلان کمک می کند؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: موضوع محلی و تحلیلی درباره کشاورزی است و فاقد اهمیت ملی است.",
-      "topic": "اقتصاد",
-      "until": 1792558694.9417722
     },
     "v4|کشف فسیل دایناسور ۱۲۰ میلیون ساله در بریتانیا": {
       "ok": false,
@@ -5633,13 +5633,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local gathering in a small city, lacks national or international significance.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792529152,
-      "title": "حضور مستمر لنگرودی ها در میدان؛ ۲۳۴ شب همراهی و خونخواهی"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: پوشش تجمع‌های محلی و شهری در رشت ارزش خبری ملی ندارد",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -6191,6 +6184,13 @@
       "rule": "routine-metaphorical-topic",
       "t": 1792548755,
       "title": "بازی های پاراآسیایی ناگویا؛ نصراللهی برنده نبرد ایرانی ها در پاراتکواندو"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local heritage restoration, limited national impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792549923,
+      "title": "پیشرفت ۸۵ درصدی مرمت بازار پاچنار تهران/ احیای جداره های تاریخی و سامان دهی فضای بازار"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11266,7 +11266,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792549248
+    "at": 1792549813
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
