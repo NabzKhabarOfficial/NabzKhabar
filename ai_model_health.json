@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792538388
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792538869
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792538869
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792538870
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792538874
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792538879
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792538879
     },
@@ -159,16 +135,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792544720
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792545256
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792545257
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792545259
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792545259
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
+      "t": 1792545263
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792545291
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-20",
-      "n": 160
+      "n": 161
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 273
+      "n": 275
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-21",
-      "n": 8
+      "n": 9
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-21",
-      "n": 8
+      "n": 9
     },
     "openrouter:*": {
       "day": "2026-10-20",
@@ -479,14 +479,14 @@
     "2026-10-21": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -504,22 +504,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "calls": 9,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 4,
-        "other": 4
+        "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 9,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 3,
-        "other": 5
+        "other": 6
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       }
     }
@@ -1566,6 +1566,12 @@
       "topic": "اقتصاد",
       "until": 1792620757.833775
     },
+    "v4|us jails guatemalan man for 30 years over deadly smuggling operation": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: صدور حکم ۳۰ سال زندان برای قاچاق انسان منجر به مرگ ۵۳ نفر",
+      "topic": "قضایی",
+      "until": 1792631663.0263727
+    },
     "v4|us-ukraine relations sour as trump, zelenskyy clash over talks, arms": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Significant diplomatic rift between US and Ukraine regarding war strategy.",
@@ -1848,6 +1854,12 @@
       "topic": "سلامت",
       "until": 1792568818.8305206
     },
+    "v4|اخلاقی:قهرمانی تیم امید ارزشمند بود؛۱۰ فرنگی کار در جهانی شانس دارند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: نظر کارشناس درباره قهرمانی تیم امید و مسابقات جهانی",
+      "topic": "ورزش",
+      "until": 1792631663.0144615
+    },
     "v4|ادعا جالب ستاره سابق بارسلونا: مسی شایسته ترین گزینه برای دریافت توپ طلا است": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: ادعای شخصی، تأثیر خبری کم",
@@ -1985,6 +1997,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال‌های رنگارنگ توسط ورزشکاران ایران در بازی‌های پاراآسیایی",
       "topic": "ورزش",
       "until": 1792588670.081636
+    },
+    "v4|استارت مدال آوری روز سوم با یک طلا؛ دختر دونده حذف شد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلا توسط نمایندگان ایران در بازی های پاراآسیایی",
+      "topic": "ورزش",
+      "until": 1792631658.6518419
     },
     "v4|استاندار آذربایجان شرقی: آموزش دانشگاهی باید با تقاضای واقعی اقتصاد پیوند بخورد": {
       "ok": false,
@@ -3228,12 +3246,6 @@
       "topic": "ورزش",
       "until": 1792561286.259987
     },
-    "v4|رفع تصرف هزار مترمربع از بستر رودخانه ها و مسیل های پلدختر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: خبر محلی و شهرستانی درباره رفع تصرف بستر رودخانه.",
-      "topic": "جامعه",
-      "until": 1792556743.4552882
-    },
     "v4|رم ۴-۰ اسلوان | فاجعه برابر رئال فراموش شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: پیروزی رم در مرحله گروهی لیگ قهرمانان برای مخاطب عام در ایران درجه‌یک محسوب نمی‌شود.",
@@ -3774,12 +3786,6 @@
       "topic": "ورزش",
       "until": 1792568814.7333355
     },
-    "v4|فابرگاس: میزبانی از منچستریونایتد یک رویا است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارنظر سرمربی کومو درباره مسابقه فوتبال فاقد ارزش خبری درجه یک است",
-      "topic": "ورزش",
-      "until": 1792556734.440767
-    },
     "v4|فاصله عجیب قیمت کارخانه و بازار خودرو؛ اختلافی بیش از ۳ میلیارد تومان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: گزارش تکراری از اختلاف قیمت خودرو که تاثیر کلان فوری ندارد",
@@ -4031,12 +4037,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: خبر ورزشی کم‌اهمیت درباره وضعیت مصدومیت یک بسکتبالیست.",
       "topic": "ورزش",
       "until": 1792612704.6013455
-    },
-    "v4|مطالعات جمع آوری و تصفیه فاضلاب در ۱۸ روستای حاشیه زاینده رود انجام شده است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و استانی مربوط به مطالعات فاضلاب روستایی",
-      "topic": "جامعه",
-      "until": 1792556738.7469234
     },
     "v4|معامله پنهان؛ نشست سه جانبه در شنژن": {
       "ok": false,
@@ -5067,15 +5067,6 @@
   },
   "_event_judge_log": [
     {
-      "head": "وزارت خارجه قطر: قطع اینترنت در تنگه هرمز همه کشورها را در منطقه آسیب پذیر می کند ⚡️ وزارت خارجه قطر تأکید کرد",
-      "id": "7e2fdd2d9f",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792491694,
-      "verdict": "new",
-      "why": "مذاکره و هشدار قطر به قطع اینترنت در تنگه هرمز"
-    },
-    {
       "head": "فرمانده ستاد کل نیروهای مسلح: جنگ جدید علیه ایران آغاز می شود، آتش آن همه را دربرمی گیرد ⚡️ فرمانده قرارگاه مر",
       "id": "1d3fa31210",
       "match": "",
@@ -5614,16 +5605,18 @@
       "t": 1792541243,
       "verdict": "new",
       "why": "It's a new statement by Senator Rubio about peace talks."
+    },
+    {
+      "head": "حبس ۳۰ ساله برای قاچاقچی انسان در پی مرگ ۵۳ مهاجر در آمریکا ⚡️ یک تبعه گواتمالا به نام ریگوبورتو رومان میراندا",
+      "id": "9c8035241a",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792545279,
+      "verdict": "new",
+      "why": "قاچاق انسانی و محکومیت قاچاقچی در آمریکا"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تعطیلی مدارس یک شهر به دلیل آلودگی هوا خبری محلی است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792526782,
-      "title": "مدارس نوبت صبح شهر اراک فردا غیرحضوری شد"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار محلی و رویدادهای شهری یاسوج فاقد اهمیت ملی است.",
       "rescued": false,
@@ -6176,124 +6169,19 @@
       "rule": "no-concrete-event",
       "t": 1792544158,
       "title": "Helen Haines live updates: police charge accused Brendan Nugent with additional offence; lawyer says he has rare neurolo"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلا توسط نمایندگان ایران در بازی های پاراآسیایی",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1792545258,
+      "title": "استارت مدال آوری روز سوم با یک طلا؛ دختر دونده حذف شد"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اقدم",
-        "امض",
-        "انجم",
-        "ترک",
-        "تعهد",
-        "دفع",
-        "دهند",
-        "سعد",
-        "صرت",
-        "متقبل",
-        "مسلحن",
-        "مکه",
-        "پم",
-        "پکست"
-      ],
-      "t": 1792498308.8626847,
-      "title": "ترکیه، عربستان و پاکستان پیمان دفاعی جدید امضا کردند ⚡️ ترکیه، عربستان سعودی و پاکستان با امضای پیمان دفاعی مکه، تعهد کر"
-    },
-    {
-      "h": [
-        "اجد",
-        "افرد",
-        "تثر",
-        "تحت",
-        "خهد",
-        "سخنگ",
-        "سزم",
-        "مشکل",
-        "مل",
-        "کمسن"
-      ],
-      "t": 1792498744.715838,
-      "title": "سخنگوی کمیسیون امنیت ملی: تحریم ها برای مردم ایران مشکل ایجاد می کنند، ما هم برای آن ها مشکل می سازیم ⚡️ سخنگوی کمیسیون "
-    },
-    {
-      "h": [
-        "اعزم",
-        "انگلس",
-        "انگلست",
-        "بفرستد",
-        "جنگند",
-        "سلطنت",
-        "قصد",
-        "مشر"
-      ],
-      "t": 1792499443.0163307,
-      "title": "انگلستان جنگنده و مشاوران نظامی به عربستان اعزام می کند ⚡️ دولت انگلیس قصد دارد جنگنده های نیروی هوایی سلطنتی و مشاوران "
-    },
-    {
-      "h": [
-        "اند",
-        "تضح",
-        "تک",
-        "جدد",
-        "جنگند",
-        "ستد",
-        "سنگن",
-        "عبدلله",
-        "عل",
-        "مسلح",
-        "مضع"
-      ],
-      "t": 1792499461.9879134,
-      "title": "توضیح رئیس ستاد کل نیروهای مسلح درباره پرواز جنگنده سنگین ایران ⚡️ علی عبداللهی، رئیس ستاد کل نیروهای مسلح، اعلام کرد تی"
-    },
-    {
-      "h": [
-        "اردگ",
-        "افزش",
-        "العلم",
-        "برتر",
-        "شب",
-        "شمر",
-        "مشک",
-        "گذشت",
-        "یفت",
-        "یمن"
-      ],
-      "t": 1792500449.794355,
-      "title": "حمله موشکی به اردوگاه العلم در شبوه یمن کشته بارتر شد ⚡️ حمله موشکی به اردوگاه العلم در شبوه یمن در روز گذشته کشته بارتر"
-    },
-    {
-      "h": [
-        "ارشد",
-        "انتخب",
-        "اندزد",
-        "تضعف",
-        "طل",
-        "طلن",
-        "مذکر",
-        "مقعت",
-        "نمبر",
-        "وشنگتن"
-      ],
-      "t": 1792500470.9260612,
-      "title": "مقام های ایرانی: تهران مذاکرات با آمریکا را طولانی می کند تا موقعیت سیاسی ترامپ را تضعیف کند ⚡️ مقام های ارشد ایرانی ادع"
-    },
-    {
-      "h": [
-        "احتمل",
-        "استفد",
-        "اهدف",
-        "بمب",
-        "عظم",
-        "مدر",
-        "مطرح"
-      ],
-      "t": 1792501708.2224653,
-      "title": "ترامپ: احتمال استفاده از «مادر همه بمب ها» علیه ایران ⚡️ رئیس جمهور آمریکا، دونالد ترامپ، احتمال استفاده از بمب عظیم انف"
-    },
     {
       "h": [
         "ادر",
@@ -7078,6 +6966,39 @@
       ],
       "t": 1792541252.9467614,
       "title": "روبینو: دستیابی به توافق صلح با تهران بسیار دشوار است؛ حملات به تنگه هرمز ادامه دارد ⚡️ سناتور مارک روبینو به رسانه های "
+    },
+    {
+      "h": [
+        "ارزک",
+        "افرن",
+        "انتن",
+        "انس",
+        "انسن",
+        "تبع",
+        "تگزس",
+        "حبس",
+        "ددگه",
+        "دلل",
+        "رم",
+        "رهشد",
+        "رگبرت",
+        "زند",
+        "سل",
+        "عمل",
+        "قچق",
+        "قچقچ",
+        "محکم",
+        "مرند",
+        "مرگ",
+        "منجر",
+        "مهجر",
+        "نقش",
+        "نم",
+        "کمن",
+        "گتمل"
+      ],
+      "t": 1792545291.9748497,
+      "title": "حبس ۳۰ ساله برای قاچاقچی انسان در پی مرگ ۵۳ مهاجر در آمریکا ⚡️ یک تبعه گواتمالا به نام ریگوبورتو رومان میراندا-اوروزکو ب"
     }
   ],
   "_published_incidents": [
@@ -7421,265 +7342,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ازد",
-        "اسب",
-        "اسلم",
-        "اشر",
-        "امرک",
-        "امم",
-        "انقلب",
-        "برد",
-        "تن",
-        "جنشن",
-        "خمن",
-        "در",
-        "درتر",
-        "دشمن",
-        "رزب",
-        "ره",
-        "رهبر",
-        "سرلشکر",
-        "سپ",
-        "شنر",
-        "فرمند",
-        "فصل",
-        "مشک",
-        "مصطف",
-        "معن",
-        "نر",
-        "نرسند",
-        "نقش",
-        "هدف",
-        "هفض",
-        "پد",
-        "پر",
-        "پشرفت",
-        "کلمتر",
-        "کنم",
-        "گر"
-      ],
-      "s": "ایزدی",
-      "t": 1792412391.9099975,
-      "title": "ایزدی: نیروهای آمریکایی در دریا از برد موشک های سپاه دورتر شده اند ⚡️ سرلشکر مصطفی ایزدی، جانشین فرمانده کل سپاه، گفت نی"
-    },
-    {
-      "k": [
-        "ارتش",
-        "ارشد",
-        "اسرل",
-        "افزش",
-        "افسر",
-        "ال",
-        "امد",
-        "امنت",
-        "انتخب",
-        "اکتبر",
-        "بش",
-        "بلترن",
-        "تضمن",
-        "تعلق",
-        "حضر",
-        "دستر",
-        "رس",
-        "زمر",
-        "ستد",
-        "سربز",
-        "سرلشکر",
-        "سطح",
-        "صدر",
-        "فرمنده",
-        "مرخص",
-        "مرکز",
-        "نظم",
-        "یفت"
-      ],
-      "t": 1792412403.8224776,
-      "title": "رئیس ستاد ارتش اسرائیل: آماده باش نظامی در بالاترین سطح برای انتخابات اکتبر ⚡️ رئیس ستاد کل ارتش اسرائیل، سرلشکر ایال زا"
-    },
-    {
-      "k": [
-        "ادع",
-        "ار",
-        "اشر",
-        "اطلع",
-        "اظهر",
-        "افزش",
-        "امزش",
-        "برد",
-        "تحقق",
-        "تحللگر",
-        "تن",
-        "تکتک",
-        "حث",
-        "حل",
-        "حمت",
-        "حمل",
-        "خرج",
-        "دد",
-        "دلت",
-        "دهند",
-        "رسم",
-        "رهنم",
-        "سپ",
-        "شهر",
-        "طرف",
-        "عربست",
-        "غرب",
-        "معتقدند",
-        "منطق",
-        "نشن",
-        "نم",
-        "پسدر",
-        "پشر",
-        "پشرفت",
-        "کشر",
-        "کمک",
-        "یمن"
-      ],
-      "t": 1792412932.6275418,
-      "title": "تحقیقات جدید دربارهٔ حمایت ایران از حوثی ها در یمن و حمله به شهرهای عربستان ⚡️ گزارش ها و اظهارات رسمی نشان می دهند که س"
-    },
-    {
-      "k": [
-        "استفد",
-        "اقدم",
-        "اهدف",
-        "اکرن",
-        "بل",
-        "تک",
-        "جمهر",
-        "جنگند",
-        "حل",
-        "حمل",
-        "رس",
-        "رش",
-        "ره",
-        "عمل",
-        "عملت",
-        "غرنظم",
-        "فن",
-        "قمت",
-        "متر",
-        "مجهز",
-        "محددت",
-        "مسک",
-        "مقبل",
-        "نشن",
-        "نظم",
-        "هزن",
-        "همر",
-        "هپم",
-        "پرسرعت",
-        "پشرفت",
-        "پهپد",
-        "چلش",
-        "کشد",
-        "کمل",
-        "گرن"
-      ],
-      "t": 1792412954.7737815,
-      "title": "اوکراین با جنگنده های خود پهپادهای روسی را در هوا می کشد ⚡️ رئیس جمهور اوکراین از جنگنده های پیشرفته برای مقابله با پهپا"
-    },
-    {
-      "k": [
-        "ار",
-        "اغز",
-        "اقدم",
-        "امرک",
-        "انجم",
-        "تجهز",
-        "تعدد",
-        "تن",
-        "تکد",
-        "جنگ",
-        "جهن",
-        "حسن",
-        "حضر",
-        "خلج",
-        "خهد",
-        "دردست",
-        "درگر",
-        "رفت",
-        "زد",
-        "سخنگ",
-        "سپ",
-        "شددتر",
-        "شنر",
-        "عمل",
-        "غر",
-        "غرمن",
-        "فرس",
-        "فرسد",
-        "فعل",
-        "قدر",
-        "مجهز",
-        "محب",
-        "محدد",
-        "مستقر",
-        "منطق",
-        "ندرد",
-        "نر",
-        "هچ",
-        "ورد",
-        "پسخ",
-        "پمد",
-        "پگ"
-      ],
-      "s": "سخنگوی سپاه",
-      "t": 1792413497.7591362,
-      "title": "سخنگوی سپاه: آمریکا توان آغاز درگیری جدید در خلیج فارس را ندارد ⚡️ حسین محبی، سخنگوی سپاه، گفت آمریکا در حال حاضر با پای"
-    },
-    {
-      "k": [
-        "اج",
-        "اجد",
-        "اختلل",
-        "ار",
-        "اسرل",
-        "افزش",
-        "اقتصد",
-        "ام",
-        "امرک",
-        "امنت",
-        "اند",
-        "انرژ",
-        "بزر",
-        "بشتر",
-        "تهدد",
-        "تکد",
-        "جنگ",
-        "جهن",
-        "حکمت",
-        "دح",
-        "درگر",
-        "دفع",
-        "سخن",
-        "شک",
-        "عرض",
-        "قطر",
-        "مجمع",
-        "مشر",
-        "مطرح",
-        "ممکن",
-        "منطق",
-        "نرسد",
-        "نظر",
-        "نقط",
-        "نگرن",
-        "هشدر",
-        "همچن",
-        "هنز",
-        "وزر",
-        "پمد",
-        "کشر",
-        "یفت"
-      ],
-      "s": "وزیر دفاع قطر",
-      "t": 1792415205.250498,
-      "title": "وزیر دفاع قطر: شوک های انرژی جنگ علیه ایران هنوز به اوج نرسیده ⚡️ وزیر مشاور دفاعی قطر در مجمع امنیت جهانی در دوحه هشدار"
-    },
     {
       "k": [
         "اجتمع",
@@ -11527,6 +11189,57 @@
       "s": "روبینو",
       "t": 1792541252.9349527,
       "title": "روبینو: دستیابی به توافق صلح با تهران بسیار دشوار است؛ حملات به تنگه هرمز ادامه دارد ⚡️ سناتور مارک روبینو به رسانه های "
+    },
+    {
+      "k": [
+        "ارتبط",
+        "ارزک",
+        "افتدن",
+        "افرن",
+        "امرک",
+        "انتن",
+        "انس",
+        "انسن",
+        "بختند",
+        "تبع",
+        "ته",
+        "تکنن",
+        "تگزس",
+        "جن",
+        "حبس",
+        "دخل",
+        "ددگه",
+        "دلل",
+        "رم",
+        "رهشد",
+        "رگبرت",
+        "زند",
+        "سستم",
+        "سل",
+        "شدد",
+        "عمل",
+        "فجع",
+        "قربن",
+        "قچق",
+        "قچقچ",
+        "محکم",
+        "مرند",
+        "مرگ",
+        "منجر",
+        "مهجر",
+        "نزدک",
+        "نفر",
+        "نقش",
+        "نم",
+        "پرند",
+        "ژن",
+        "کر",
+        "کمن",
+        "گتمل",
+        "گرم"
+      ],
+      "t": 1792545291.9631739,
+      "title": "حبس ۳۰ ساله برای قاچاقچی انسان در پی مرگ ۵۳ مهاجر در آمریکا ⚡️ یک تبعه گواتمالا به نام ریگوبورتو رومان میراندا-اوروزکو ب"
     }
   ],
   "_text_polish": {
@@ -11538,7 +11251,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792544600
+    "at": 1792545177
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
