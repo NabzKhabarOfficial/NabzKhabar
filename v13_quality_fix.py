@@ -49,6 +49,13 @@ Oct 21, 14:30 Tehran (review of every post since Oct 19 15:40, telegram_log + li
   «فرماندار اراک: خبر انفجار ... کذب است» (a local denial passed because of the word «انفجار») -> "local-level";
   «آتش سوزی پژو پارس در محور سرباز–کهیری دو جان باخت» (a road crash / car fire in Iran, under five dead) ->
   "local-crash".
+Oct 21, 15:00 Tehran:
+* a headline with two claims joined by «؛» where the text supports only one («قیمت نفت ... افزایش یافت؛ طلا ...
+  کاهش یافت» with nothing about oil; «ویتکاف ...؛ زلنسکی از توقف حملات ... سخن گفت» with no Zelensky in the text):
+  the AI title keeps only the claims the text supports; a post that still has an unsupported claim is refused
+  ("headline-body-gap").
+* commentary is not news: a headline about a debate / column / opinion piece («مناظره ...»، «یادداشت ...»،
+  «سرمقاله ...»، «دیدگاه ...») or a bare question headline («آیا ... ؟») is refused ("opinion").
 Any error = the bot runs as before.
 """
 
@@ -188,6 +195,51 @@ def local_crash(title, text):
     return not counts or max(counts) < 5
 
 
+TITLE_STOP = set("""از با به در که را و یا این آن برای تا بر یک های ها می شد شود شده شدند کرد کردند کرده است بود بودند
+خواهد گفت گفته سخن داد دادند یافت یافته دارد ندارد هم نیز پس پیش روی درباره علیه بین میان خود او آنها ما شما
+اعلام تاکید تأکید ادامه جدید""".split())
+OPINION = re.compile(r"(?<![\u0600-\u06FF])(?:مناظره|یادداشت|سرمقاله|دیدگاه|گفت[\s\u200c]*و[\s\u200c]*گوی[\s\u200c]+ویژه)(?![\u0600-\u06FF])")
+
+
+def _words(text):
+    return [w for w in re.findall(r"[\u0600-\u06FF]{3,}", str(text or "").replace("\u200c", ""))
+            if w not in TITLE_STOP]
+
+
+def part_supported(part, body):
+    """True when at least half of a headline part's meaningful words (or their 4-letter stems) are in the text."""
+    words = _words(part)
+    if len(words) < 2:
+        return True
+    text = str(body or "").replace("\u200c", "")
+    have = sum(1 for w in words if w in text or w[:4] in text)
+    return have * 2 >= len(words)
+
+
+def repair_title(title, body):
+    """Drop the «؛» parts of a headline that the text does not support (keeps at least one part)."""
+    t = str(title or "")
+    if "؛" not in t or not str(body or "").strip():
+        return t
+    parts = [x.strip() for x in t.split("؛") if x.strip()]
+    keep = [x for x in parts if part_supported(x, body)]
+    if not keep or len(keep) == len(parts):
+        return t
+    return "؛ ".join(keep)
+
+
+def headline_gap(title, body):
+    t = str(title or "")
+    if "؛" not in t or not str(body or "").strip():
+        return False
+    return any(not part_supported(x, body) for x in t.split("؛") if x.strip())
+
+
+def is_opinion(title):
+    t = str(title or "").strip()
+    return bool(OPINION.search(t) or (t.endswith("؟") and re.match(r"^\s*آیا(?![\u0600-\u06FF])", t)))
+
+
 def local_speaker(title):
     """True when the headline's speaker (before «:») is an official of a province / provincial city."""
     t = str(title or "")
@@ -223,6 +275,10 @@ def _install_router():
             data = dict(data)
             for k in ("title", "summary"):
                 data[k] = neutral(data.get(k, ""))
+            try:
+                data["title"] = repair_title(data.get("title", ""), data.get("summary", ""))
+            except Exception:
+                pass
         return prev(main, original_title, source, data, foreign)
 
     validate._v13_neutral = True
@@ -253,6 +309,10 @@ def _install_guard():
                 found.append(("dangling-lead", sents[0][:60]))
             if LOCAL_NOTICE.search(str(title or "")):
                 found.append(("local-notice", str(title or "")[:60]))
+            if is_opinion(title):
+                found.append(("opinion", str(title or "")[:60]))
+            if headline_gap(title, " ".join(sents)):
+                found.append(("headline-body-gap", str(title or "")[:60]))
             if small_quake(title, whole):
                 found.append(("small-quake", str(title or "")[:60]))
             if local_crash(title, whole):
@@ -420,4 +480,4 @@ def install():
     _DONE["v"] = True
     print("V13 QUALITY FIX ACTIVE: neutral wording (v6 labels), dangling «در حالی که» leads, same-headline repeats, "
           "nemo-new overlap repeats, run-local headlines, extra outlet names, provincial speakers, blast notices, "
-          "small quakes, local crashes, local denials", flush=True)
+          "small quakes, local crashes, local denials, headline-body gaps, opinion pieces", flush=True)
