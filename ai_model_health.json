@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: gemini:gemini-3.5-flash-lite held 1x, groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1792537813
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792538359
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792538359
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792538388
     },
@@ -159,24 +147,36 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792544164
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792544691
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792544691
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792544720
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-20",
-      "n": 159
+      "n": 160
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-20",
-      "n": 272
+      "n": 273
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-20",
-      "n": 121
+      "n": 122
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-20",
-      "n": 121
+      "n": 122
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-21",
@@ -479,20 +479,20 @@
     "2026-10-21": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
@@ -518,8 +518,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       }
     }
@@ -3060,12 +3060,6 @@
       "topic": "نظامی",
       "until": 1792623596.1917994
     },
-    "v4|درآمد پزشکان خراسان رضوی ۳۰ درصد کمتر از میانگین کشور است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: درآمد پزشکان خراسان رضوی کمتر از میانگین کشوری است و خبری استانی محسوب می شود",
-      "topic": "سلامت",
-      "until": 1792556730.4386685
-    },
     "v4|درخواست اسموتریچ برای الحاق جنوب لبنان و کوچاندن اهالی غزه؛ تهدید به اشغال صحرای سینا": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=9 happened=True scope=world: تهدید صهیونیستی به اشغال سینا و کوچاندن فلسطینی‌ها؛ مذاکرات و تهدیدات رسمی",
@@ -3641,6 +3635,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: شوک بزرگ اقتصادی و رشد کم‌سابقه ۹۵ هزار واحدی شاخص بورس",
       "topic": "اقتصاد",
       "until": 1792567229.7053642
+    },
+    "v4|صعود صفرزاده به فینال دوی ۱۰۰ متر بانوان/ امیرزادگانی حذف شد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: صعود ورزشکار ایرانی به فینال مسابقات آسیایی پاراآسیایی",
+      "topic": "ورزش",
+      "until": 1792631092.6266217
     },
     "v4|صعود نماینده ایران به فینال شنا ۱۰۰ متر قورباغه مردان": {
       "ok": true,
@@ -5009,6 +5009,10 @@
     "سپاه: یک فروند سوپر نفتکش متخلف با اصابت با یک مین دریایی در جنوب تنگه هرمز منفجر و دچار آتش سوزی شد / با هرگونه تحرکی که امنیت تنگه را نادیده بگیرد با قاطعیت برخورد خواهد شد": {
       "reason": "content_duplicate",
       "until": 1792538075.4713311
+    },
+    "صعود صفرزاده به فینال دوی ۱۰۰ متر بانوان/ امیرزادگانی حذف شد": {
+      "reason": "content_duplicate",
+      "until": 1792566320.1245956
     },
     "قالیباف در دیدار با عاصم منیر:آمریکا فقط با اجرای شروط هفتگانه می تواند اعتماد ایران را کسب کند/ جنگ طلب نیستیم": {
       "reason": "content_duplicate",
@@ -11534,7 +11538,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792544025
+    "at": 1792544600
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11549,9 +11553,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792540667,
-    "last_failure": 1792540067,
-    "last_status": 429
+    "disabled_until": 1792544772,
+    "last_failure": 1792544712,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1792544446.0,
