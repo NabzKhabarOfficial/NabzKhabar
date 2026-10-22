@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792704719
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792704719
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792704719
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792704719
-    },
-    {
-      "e": "EDITOR BATCH: 5/5 via mistral/open-mistral-nemo",
-      "t": 1792704725
-    },
-    {
-      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 4x, gemini:gemini-3.5-flash-lite held 4x, groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
-      "t": 1792704754
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792705302
     },
@@ -159,16 +135,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792707428
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792707850
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792707850
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792707854
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792707854
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792707869
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792707879
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-22",
-      "n": 140
+      "n": 142
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-22",
-      "n": 242
+      "n": 244
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-22",
@@ -460,16 +460,16 @@
     "2026-10-22": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 177,
+        "calls": 178,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 107,
+        "ok": 108,
         "other": 70
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 289,
+        "calls": 291,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 278,
+        "ok": 280,
         "other": 11
       },
       "gemini:gemini-3.6-flash": {
@@ -1631,12 +1631,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: Russian strikes killed and injured people in Kyiv during active war.",
       "topic": "نظامی",
       "until": 1792757221.8791523
-    },
-    "v4|sam wood makes bid for bail over domestic violence charges to supreme court": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار محلی و جرایم فردی حائز اهمیت ملی نیست",
-      "topic": "جامعه",
-      "until": 1792719100.694619
     },
     "v4|strong earthquake strikes china’s remote tibet region": {
       "ok": true,
@@ -3198,6 +3192,12 @@
       "topic": "ورزش",
       "until": 1792719113.7280197
     },
+    "v4|دویست وسی وششمین حماسه حضور زنجانی ها در میدان دفاع از وطن": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering with no national or strategic impact.",
+      "topic": "جامعه",
+      "until": 1792794254.6671875
+    },
     "v4|دویست وسی وششمین شب ایستادگی و مقاومت در نوشهر": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: گردهمایی محلی و تکراری در نوشهر اهمیت ملی ندارد",
@@ -4008,12 +4008,6 @@
       "topic": "ورزش",
       "until": 1792777628.9810152
     },
-    "v4|ماموریت ملی برای گل محمدی ؛/ واکنش فدراسیون به توافق با یحیی: به افق المپیک!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: انتصاب سرمربی تیم امید یک خبر ورزشی داخلی و غیر استراتژیک است.",
-      "topic": "ورزش",
-      "until": 1792719099.8804379
-    },
     "v4|ماینر های غیرمجاز خانه ای را در تهران به آتش کشیدند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: آتش‌سوزی خانه‌ای به‌دلیل ماینرهای رمزارز",
@@ -4205,6 +4199,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: موضع‌گیری حامی مالی ترامپ درباره جنگ با ایران",
       "topic": "سیاست",
       "until": 1792745416.834826
+    },
+    "v4|ناراحتی آموریم: افتضاح بودیم و اصلا بازی نکردیم!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: نتایج مسابقات عادی فوتبال باشگاهی اهمیت درجه اول ندارد.",
+      "topic": "ورزش",
+      "until": 1792794270.5728285
     },
     "v4|ناکامی دشمن در قطع ارتباط رسانه ملی با مردم علی رغم حمله به ۵۶ فرستنده": {
       "ok": false,
@@ -5627,20 +5627,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: محلی، برنامه‌ریزی‌شده، تأثیر محدود",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792689383,
-      "title": "نخستین نمایشگاه «قم هلث» برپا می شود"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: President cultural message, not strategic event",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1792689384,
-      "title": "پزشکیان: فرهنگ روستا و عشایر بخشی از ریشه های هویت ایرانی است"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Statement, no concrete event reported",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -6185,6 +6171,20 @@
       "rule": "no-concrete-event",
       "t": 1792707390,
       "title": "Lewis Hamilton aims to extend career till early 2030s so he can race in African Grand Prix"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local gathering with no national or strategic impact.",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792707854,
+      "title": "دویست وسی وششمین حماسه حضور زنجانی ها در میدان دفاع از وطن"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: نتایج مسابقات عادی فوتبال باشگاهی اهمیت درجه اول ندارد.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792707870,
+      "title": "ناراحتی آموریم: افتضاح بودیم و اصلا بازی نکردیم!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11813,7 +11813,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792707188
+    "at": 1792707768
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11828,9 +11828,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792707695.0,
-    "last_failure": 1792707395,
-    "last_status": 503
+    "disabled_until": 1792708169.0,
+    "last_failure": 1792707869,
+    "last_status": 599
   },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1792708002,
