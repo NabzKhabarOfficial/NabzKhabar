@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792629796
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
-      "t": 1792629797
-    },
-    {
-      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 4x, gemini:gemini-3.5-flash-lite held 4x, gemini:gemini-3.6-flash held 4x, gemini:gemini-3.8-flash held 2x, groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 7x",
-      "t": 1792629840
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792630332
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792630333
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
-      "t": 1792630349
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792630944
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792630944
     },
@@ -159,32 +131,60 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792633803
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792634428
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792634428
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792634431
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792634447
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792634453
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792634453
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792634473
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-21",
-      "n": 171
+      "n": 173
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-21",
-      "n": 294
+      "n": 296
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-21",
-      "n": 128
+      "n": 129
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-21",
-      "n": 129
+      "n": 130
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-22",
-      "n": 11
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-22",
-      "n": 11
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-10-21",
@@ -460,23 +460,23 @@
     "2026-10-22": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 25,
-        "ok": 25,
+        "calls": 27,
+        "ok": 27,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 5,
-        "calls": 8,
+        "calls": 9,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 1,
-        "other": 2
+        "other": 3
       },
       "gemini:gemini-3.8-flash": {
         "429": 6,
@@ -488,34 +488,27 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 11,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "calls": 12,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 4,
-        "other": 7
+        "other": 8
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 11,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "calls": 12,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 5,
-        "other": 6
+        "other": 7
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 27,
-        "ok": 27,
+        "calls": 30,
+        "ok": 30,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1792498744.7242692,
-      "title": "سخنگوی کمیسیون امنیت ملی: تحریم ها برای مردم ایران مشکل ایجاد می کنند، ما هم برای آن ها مشکل می سازیم",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 4,
@@ -1347,6 +1340,13 @@
       "level": 3,
       "t": 1792629833.7655663,
       "title": "ایرلند قانون عدم نیاز به موافقت سازمان ملل برای اعزام نیروهای صلح آمیز را تصویب کرد",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 3,
+      "t": 1792634467.8662972,
+      "title": "صعود وحید علی نجیمی به فینال دوی ۴۰۰ متر بازی های پاراآسیایی",
       "urgent": false
     }
   ],
@@ -2449,6 +2449,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: پیروزی تیم ملی ایران در مسابقات مهم قاره‌ای.",
       "topic": "ورزش",
       "until": 1792653850.225128
+    },
+    "v4|بازی های پاراآسیایی ناگویا ۲۰۲۶؛دونده ۴۰۰ متر ایران فینالیست شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: صعود به فینال مسابقات پاراآسیایی اهمیت خبری درجه یک ندارد.",
+      "topic": "ورزش",
+      "until": 1792720852.5982478
     },
     "v4|باید بررسی کرد چرا برخی به بی حجابی گرایش دارند؟": {
       "ok": false,
@@ -3728,12 +3734,6 @@
       "topic": "جامعه",
       "until": 1792668244.9254453
     },
-    "v4|عتباتی: حقوق شاکیان در پرونده های کثیرالشاکی باید صیانت شود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial statement, limited national impact",
-      "topic": "قضایی",
-      "until": 1792645684.5917099
-    },
     "v4|عراقچی: اگر شواهد روشنی از تمایل آمریکا برای دستیابی به راه حلی عادلانه و عزتمندانه با هدف پایان دادن دائمی به مناقشه مشاهده کنیم، آماده ایم بار دیگر به دیپلماسی فرصت دهیم/ایران با": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اعلام موضع رسمی وزیر خارجه ایران درباره دیپلماسی و هرمز",
@@ -4382,6 +4382,12 @@
       "topic": "جامعه",
       "until": 1792701730.1293447
     },
+    "v4|وحید علی نجیمی فینالیست دوی ۴۰۰ متر شد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: صعود نماینده ایران به فینال بازی های پاراآسیایی",
+      "topic": "ورزش",
+      "until": 1792720853.8838303
+    },
     "v4|ورزش باستانی در اجتماع شبانه مردم چالوس": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: رویداد محلی و فرهنگی در سطح شهرستان چالوس است.",
@@ -4633,12 +4639,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: پیشرفت پروژه محلی حفاظت محیط زیست فاقد اهمیت ملی است",
       "topic": "جامعه",
       "until": 1792683245.3630943
-    },
-    "v4|پیوند اصالت بومی با اقتصاد روستایی؛ طارم سفلی محیای رویداد ملی زیتون است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: برگزاری جشنواره محلی زیتون در سطح استانی و فاقد اهمیت ملی است.",
-      "topic": "جامعه",
-      "until": 1792645683.4749713
     },
     "v4|پیوند اصالت بومی با اقتصاد روستایی؛ طارم سفلی مهیای رویداد ملی زیتون است": {
       "ok": false,
@@ -4964,7 +4964,7 @@
     },
     "meta ordered to cough up $25 billion in new mexico privacy case": {
       "reason": "content_duplicate",
-      "until": 1792655398.8996546
+      "until": 1792656073.9392087
     },
     "putin agrees to resume three-way talks with kyiv and washington": {
       "reason": "content_duplicate",
@@ -5077,15 +5077,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "ندیمی: حمایت ترامپ از تروریسم و جدایی طلبی در ایران، ابعاد ژئوپلیتیکی دارد ⚡️ پژوهشگر ارشد ژئوپلیتیک در نشستی ",
-      "id": "fab59b1287",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792580870,
-      "verdict": "new",
-      "why": "موضوع جدید: تحلیل ژئوپلیتیک حمایت ترامپ از تروریسم/جدایی‌طلبی در ایران"
-    },
     {
       "head": "پزشکیان: زیر بار زور و قلدری نمی رویم ⚡️ مسعود پزشکیان رئیس جمهور در آیین گرامیداشت روز ملی صادرات در تهران اع",
       "id": "acf31f48ee",
@@ -5630,16 +5621,18 @@
       "t": 1792629832,
       "verdict": "new",
       "why": "ایرلند قانون جدید اعزام صلح‌آمیز بدون موافقت ملل"
+    },
+    {
+      "head": "صعود وحید علی نجیمی به فینال دوی ۴۰۰ متر بازی های پاراآسیایی ⚡️ وحید علی نجیمی در رقابت های دوی ۴۰۰ متر کلاس T",
+      "id": "c7a5886b6a",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792634466,
+      "verdict": "new",
+      "why": "دوی پاراآسیایی ۲۰۲۶ جدید و غیرموجود در لیست"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine diplomatic rhetoric and exchange of statements between officials.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792616578,
-      "title": "واکنش بقایی به سخنان وزیر امور خارجه آمریکا"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: دیدگاه محلی و رویداد غیرمهم استانی",
       "rescued": false,
@@ -6192,135 +6185,19 @@
       "rule": "below-event-threshold",
       "t": 1792633794,
       "title": "تراکتور دیگر سرباز نمی گیرد/ امشب، خداحافظی اشکبار بیرانوند با یادگار"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: صعود به فینال مسابقات پاراآسیایی اهمیت خبری درجه یک ندارد.",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792634452,
+      "title": "بازی های پاراآسیایی ناگویا ۲۰۲۶؛دونده ۴۰۰ متر ایران فینالیست شد"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ارنم",
-        "انرچمنت",
-        "برخرد",
-        "برنم",
-        "بزگشت",
-        "تنگ",
-        "جدد",
-        "ددن",
-        "ربر",
-        "مذکر",
-        "مضع",
-        "هرمز",
-        "چلش"
-      ],
-      "t": 1792587155.497804,
-      "title": "مذاکرات آمریکا و ایران در مورد تنگه هرمز با چالش جدیدی روبرو شد: انریچمنت اورانیوم ⚡️ مذاکرات برای پایان دادن به جنگ آمر"
-    },
-    {
-      "h": [
-        "ازد",
-        "استف",
-        "تد",
-        "جنگدن",
-        "زندن",
-        "سل",
-        "شهرند",
-        "متهم",
-        "مفقت",
-        "هبرد",
-        "ولدمر",
-        "پتن"
-      ],
-      "t": 1792587174.063006,
-      "title": "پوتین: آزادی شهروند آمریکایی زندانی در روسیه را تأیید کرد ⚡️ رئیس جمهور روسیه، ولادیمیر پوتین، با آزادی استفان هابارد، ش"
-    },
-    {
-      "h": [
-        "ابشحد",
-        "القرر",
-        "جنب",
-        "خن",
-        "دب",
-        "رمض",
-        "شمل",
-        "شهدت",
-        "عض",
-        "فرمنده",
-        "فلسطن",
-        "محمد",
-        "مرکز",
-        "مص",
-        "مقمت",
-        "پهپد",
-        "کمت",
-        "ینس",
-        "یک"
-      ],
-      "t": 1792588822.283135,
-      "title": "شهادت یکی از فرماندهان کمیته های مقاومت در حمله اسرائیل ⚡️ رمضان محمد دیاب ابوشحاده، عضو فرماندهی مرکزی کمیته های مقاومت"
-    },
-    {
-      "h": [
-        "اثر",
-        "بت",
-        "بمبر",
-        "خبرگ",
-        "رهبر",
-        "سخت",
-        "شهد",
-        "عض",
-        "نم",
-        "وصت"
-      ],
-      "t": 1792590018.5381222,
-      "title": "عضو خبرگان: وصیت نامه رهبر شهید در بمباران بیت رهبری سوخته شد ⚡️ عضو مجلس خبرگان گفت که وصیت نامه رهبر شهید در اثر بمبار"
-    },
-    {
-      "h": [
-        "اجتمع",
-        "ازد",
-        "استن",
-        "افرد",
-        "خستر",
-        "دلل",
-        "شبک",
-        "شهرند",
-        "عدم",
-        "عذرخه",
-        "فر",
-        "متعدد",
-        "مذکر",
-        "ندنستند",
-        "هبرد",
-        "پم",
-        "چر"
-      ],
-      "t": 1792590582.9324768,
-      "title": "ترامپ: عذرخواهی های متعدد از من برای عدم تحریم فوری روسیه به دلیل مذاکره آزادی شهروند آمریکایی ⚡️ ترامپ در پیامی در شبکه"
-    },
-    {
-      "h": [
-        "افزش",
-        "بست",
-        "تجرت",
-        "تفت",
-        "جر",
-        "زمن",
-        "محددت",
-        "مختل",
-        "مرز",
-        "مسر",
-        "همر",
-        "وبستگ",
-        "پکست",
-        "چذب",
-        "کل",
-        "گذرگ"
-      ],
-      "t": 1792590595.8588326,
-      "title": "بسته شدن چذابه و تفتان تجارت زمینی را مختل کرد ⚡️ بسته شدن گذرگاه های مرزی چذابه و تفتان در ایران و پاکستان، همراه با مح"
-    },
     {
       "h": [
         "اس",
@@ -6942,6 +6819,29 @@
       ],
       "t": 1792629833.7508845,
       "title": "ایرلند قانون عدم نیاز به موافقت سازمان ملل برای اعزام نیروهای صلح آمیز را تصویب کرد ⚡️ مجلس قانون گذاری ایرلند با تصویب "
+    },
+    {
+      "h": [
+        "اچ",
+        "بز",
+        "ثبت",
+        "ثن",
+        "دم",
+        "رقبت",
+        "زمن",
+        "صعد",
+        "عل",
+        "فنل",
+        "متر",
+        "نجم",
+        "نگ",
+        "وحد",
+        "پرس",
+        "کلس",
+        "گر"
+      ],
+      "t": 1792634467.8524,
+      "title": "صعود وحید علی نجیمی به فینال دوی ۴۰۰ متر بازی های پاراآسیایی ⚡️ وحید علی نجیمی در رقابت های دوی ۴۰۰ متر کلاس T۱۲ بازی ها"
     }
   ],
   "_published_incidents": [
@@ -7227,185 +7127,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اردگ",
-        "افزش",
-        "العلم",
-        "برتر",
-        "حمل",
-        "شب",
-        "شمر",
-        "مشک",
-        "کشت",
-        "گذشت",
-        "یفت",
-        "یمن"
-      ],
-      "t": 1792500449.7849867,
-      "title": "حمله موشکی به اردوگاه العلم در شبوه یمن کشته بارتر شد ⚡️ حمله موشکی به اردوگاه العلم در شبوه یمن در روز گذشته کشته بارتر"
-    },
-    {
-      "k": [
-        "احتمل",
-        "ادع",
-        "ار",
-        "ارشد",
-        "ارن",
-        "اسرل",
-        "اغز",
-        "اقدم",
-        "امتز",
-        "امد",
-        "امرک",
-        "انتخب",
-        "اندزد",
-        "بست",
-        "ترمپ",
-        "تضعف",
-        "تفق",
-        "تمل",
-        "تهر",
-        "جدد",
-        "جنگ",
-        "حمل",
-        "خددر",
-        "خهد",
-        "دد",
-        "ددن",
-        "سد",
-        "سرع",
-        "سس",
-        "شکستن",
-        "طل",
-        "طلن",
-        "مذکر",
-        "معتقد",
-        "مقعت",
-        "مقم",
-        "نمبر",
-        "وشنگتن",
-        "کهش"
-      ],
-      "s": "مقام های ایرانی",
-      "t": 1792500470.9169924,
-      "title": "مقام های ایرانی: تهران مذاکرات با آمریکا را طولانی می کند تا موقعیت سیاسی ترامپ را تضعیف کند ⚡️ مقام های ارشد ایرانی ادع"
-    },
-    {
-      "k": [
-        "احتمل",
-        "ار",
-        "ارن",
-        "استفد",
-        "اشر",
-        "امدگ",
-        "امرک",
-        "انفجر",
-        "اهدف",
-        "برخ",
-        "بمب",
-        "تحقر",
-        "ترمپ",
-        "تهدد",
-        "جمهر",
-        "حمل",
-        "دنلد",
-        "رس",
-        "سردر",
-        "سس",
-        "عظم",
-        "محب",
-        "محمدرض",
-        "مدر",
-        "مطرح",
-        "مقم",
-        "مهردد",
-        "نشن",
-        "نظم",
-        "نقد",
-        "وکنش",
-        "پزشک",
-        "چهر",
-        "کلنگ",
-        "که"
-      ],
-      "s": "ترامپ",
-      "t": 1792501708.2078688,
-      "title": "ترامپ: احتمال استفاده از «مادر همه بمب ها» علیه ایران ⚡️ رئیس جمهور آمریکا، دونالد ترامپ، احتمال استفاده از بمب عظیم انف"
-    },
-    {
-      "k": [
-        "اجتمع",
-        "احتط",
-        "ادر",
-        "استفد",
-        "الزم",
-        "امن",
-        "بختند",
-        "بدنند",
-        "بز",
-        "بشتر",
-        "بشهر",
-        "ترفک",
-        "تکد",
-        "جن",
-        "حدث",
-        "خددر",
-        "خدر",
-        "خست",
-        "خستند",
-        "ددن",
-        "دست",
-        "دطرف",
-        "رس",
-        "رفتر",
-        "رنندگ",
-        "رهدر",
-        "سن",
-        "فرزند",
-        "فقد",
-        "مترسر",
-        "مترسکلت",
-        "مسلت",
-        "نج",
-        "هشت",
-        "هشمند",
-        "ولدن",
-        "پش",
-        "کل",
-        "گذشت",
-        "گهنم"
-      ],
-      "s": "رئیس راهداری بوشهر",
-      "t": 1792502341.5056992,
-      "title": "رئیس راهداری بوشهر: هشت نوجوان و جوان در حوادث موتورسیکلت جان باختند ⚡️ رئیس اداره ایمنی و پایش هوشمند راهداری بوشهر گفت"
-    },
-    {
-      "k": [
-        "است",
-        "تهر",
-        "ثبت",
-        "حل",
-        "دنشگ",
-        "رر",
-        "زلزل",
-        "زمن",
-        "شبک",
-        "عمق",
-        "لرز",
-        "مرکز",
-        "مسس",
-        "نزدک",
-        "نگر",
-        "هجدک",
-        "ژفزک",
-        "کرم",
-        "کشر",
-        "کلمتر"
-      ],
-      "t": 1792503441.4781125,
-      "title": "زلزله در نزدیکی راور کرمان ثبت شد ⚡️ شبکه های لرزه نگاری مرکز لرزه نگاری کشور مؤسسه ژئوفیزیک دانشگاه تهران زلزله ای در ح"
-    },
     {
       "k": [
         "ابد",
@@ -11496,6 +11217,35 @@
       ],
       "t": 1792629833.7361465,
       "title": "ایرلند قانون عدم نیاز به موافقت سازمان ملل برای اعزام نیروهای صلح آمیز را تصویب کرد ⚡️ مجلس قانون گذاری ایرلند با تصویب "
+    },
+    {
+      "k": [
+        "اچ",
+        "بز",
+        "ثبت",
+        "ثن",
+        "جز",
+        "حضر",
+        "دم",
+        "رقبت",
+        "زمن",
+        "صعد",
+        "عل",
+        "فنل",
+        "متر",
+        "مرحل",
+        "مسبق",
+        "نتج",
+        "نجم",
+        "نگ",
+        "وحد",
+        "پرس",
+        "کسب",
+        "کلس",
+        "گر"
+      ],
+      "t": 1792634467.8381462,
+      "title": "صعود وحید علی نجیمی به فینال دوی ۴۰۰ متر بازی های پاراآسیایی ⚡️ وحید علی نجیمی در رقابت های دوی ۴۰۰ متر کلاس T۱۲ بازی ها"
     }
   ],
   "_text_polish": {
@@ -11507,7 +11257,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792633725
+    "at": 1792634319
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11521,20 +11271,15 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792632436.0,
-    "last_failure": 1792632136,
-    "last_status": 599
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792633875,
-    "last_failure": 1792633275,
-    "last_status": 429
+    "disabled_until": 1792634731.0,
+    "last_failure": 1792634431,
+    "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792633879,
-    "last_failure": 1792633279,
-    "last_status": 429
+    "disabled_until": 1792634747.0,
+    "last_failure": 1792634447,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
