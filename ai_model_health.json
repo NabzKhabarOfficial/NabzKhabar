@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-120b",
-      "t": 1792636136
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1792636155
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792636745
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792636745
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792636746
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792636750
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792636755
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792636755
     },
@@ -159,20 +131,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
       "t": 1792639109
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792639597
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792639597
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792639597
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792639601
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792639606
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792639606
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792639616
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-21",
-      "n": 185
+      "n": 186
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-21",
-      "n": 318
+      "n": 321
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-21",
-      "n": 139
+      "n": 140
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-21",
@@ -460,20 +460,20 @@
     "2026-10-22": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 26,
+        "calls": 27,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 25,
-        "other": 1
+        "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 49,
-        "ok": 49,
+        "calls": 52,
+        "ok": 52,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 11,
-        "calls": 19,
+        "429": 12,
+        "calls": 20,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 3,
@@ -503,8 +503,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 48,
-        "ok": 48,
+        "calls": 49,
+        "ok": 49,
         "other": 0
       }
     }
@@ -1545,12 +1545,6 @@
       "topic": "سلامت",
       "until": 1792712122.094088
     },
-    "v4|no bail for alleged helen haines attacker as police chief warns of australia’s ‘febrile’ political environment": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Local criminal case and general political commentary, not a major event.",
-      "topic": "قضایی",
-      "until": 1792648099.5173051
-    },
     "v4|peter zalmayev: 'ukraine was showing all sorts of cards that trump took away and gave to putin'": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=False scope=world: اظهار نظر و تحلیل کارشناس غیررسمی درباره جنگ اوکراین.",
@@ -2019,12 +2013,6 @@
       "topic": "سیاست",
       "until": 1792652644.8219974
     },
-    "v4|ادعای ترامپ: ایرانی ها رؤیای این را دارند که جنگ را تا پس از انتخابات میان دوره ای ادامه دهند، اما این جنگ خیلی زود پایان خواهد یافت/ ادعای الجزیره به نقل از یک منبع دولتی در عراق:": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official position/claim regarding an ongoing regional war and conflict.",
-      "topic": "سیاست",
-      "until": 1792648099.5315242
-    },
     "v4|ادعای ترامپ: بیش از هر زمان دیگری به توافق درباره اوکراین نزدیک شدیم": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اظهارنظر رئیس‌جمهور آمریکا درباره توافق جنگ اوکراین",
@@ -2060,6 +2048,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: این متن تحلیل و نظر شخصی درباره سیاست آمریکا است و رویداد نیست.",
       "topic": "سیاست",
       "until": 1792675145.6219294
+    },
+    "v4|اروپا در موج تازه ناآرامی ها؛ از درگیری های خیابانی تا استقرار نیروهای نظامی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: گزارش کلی و بدون رویداد مشخص درباره ناآرامی در اروپا",
+      "topic": "جامعه",
+      "until": 1792726010.838299
     },
     "v4|از اقتصاد تا جنگ نامحبوب با ایران؛ ۶ چالش کلیدی ترامپ در انتخابات میان دوره ای آمریکا": {
       "ok": false,
@@ -4443,6 +4437,12 @@
       "topic": "نظامی",
       "until": 1792648103.624009
     },
+    "v4|وزیر خزانه داری آمریکا نسبت به پیامدهای پیروزی دموکرات ها در انتخابات کنگره هشدار داد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: هشدار مقام آمریکایی درباره انتخابات آینده، رویداد ملموس فوری نیست",
+      "topic": "سیاست",
+      "until": 1792726006.32685
+    },
     "v4|وزیر علوم: حکمرانی مشارکتی و ارتقای منزلت اعضای هیئت علمی در اولویت است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: بیانات روتین و شعارگونه وزیر درباره دانشگاه‌ها اهمیت درجه یک ندارد",
@@ -4965,7 +4965,7 @@
     },
     "meta ordered to cough up $25 billion in new mexico privacy case": {
       "reason": "content_duplicate",
-      "until": 1792660708.9868238
+      "until": 1792661216.316152
     },
     "putin agrees to resume three-way talks with kyiv and washington": {
       "reason": "content_duplicate",
@@ -5643,20 +5643,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: اظهارنظر رسمی رئیس‌جمهور آمریکا درباره موضع روسیه در قبال ایران",
-      "rescued": true,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792618230,
-      "title": "ترامپ: خوشحالیم که روسیه در موضوع ایران دخالت نکرد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: نتایج مرحله گروهی لیگ قهرمانان اروپا فینال نیست.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792618250,
-      "title": "فاجعه منچستریونایتد در لیگ قهرمانان اروپا / پیروزی راحت رئال و تساوی جذاب بایرن و آرسنال / اینتر بالاخره پیروز شد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، توقیف قاچاق، اثر ملی کم",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -6201,6 +6187,20 @@
       "rule": "below-event-threshold",
       "t": 1792639069,
       "title": "با بطری مشروب به سر مادرم کوبیدم و او را کشتم/ بعد هم با دختری که 18سال پیش دوستش داشتم ازدواج کردم"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: هشدار مقام آمریکایی درباره انتخابات آینده، رویداد ملموس فوری نیست",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792639606,
+      "title": "وزیر خزانه داری آمریکا نسبت به پیامدهای پیروزی دموکرات ها در انتخابات کنگره هشدار داد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: گزارش کلی و بدون رویداد مشخص درباره ناآرامی در اروپا",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792639610,
+      "title": "اروپا در موج تازه ناآرامی ها؛ از درگیری های خیابانی تا استقرار نیروهای نظامی"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11263,7 +11263,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792638946
+    "at": 1792639511
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11278,14 +11278,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792639391.0,
-    "last_failure": 1792639091,
+    "disabled_until": 1792639901.0,
+    "last_failure": 1792639601,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792639166,
-    "last_failure": 1792639106,
-    "last_status": 422
+    "disabled_until": 1792640197,
+    "last_failure": 1792639597,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1792639686,
