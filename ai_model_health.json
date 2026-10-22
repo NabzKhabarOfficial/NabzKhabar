@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792626273
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792626273
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792626275
-    },
-    {
       "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
       "t": 1792626280
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: gemini:gemini-3.5-flash-lite held 2x, groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
       "t": 1792629244
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792629796
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1792629797
+    },
+    {
+      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 4x, gemini:gemini-3.5-flash-lite held 4x, gemini:gemini-3.6-flash held 4x, gemini:gemini-3.8-flash held 2x, groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 7x",
+      "t": 1792629840
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-21",
-      "n": 163
+      "n": 164
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-21",
-      "n": 279
+      "n": 281
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-21",
-      "n": 124
+      "n": 125
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-21",
-      "n": 123
+      "n": 125
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-22",
-      "n": 6
+      "n": 7
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-22",
-      "n": 6
+      "n": 7
     },
     "openrouter:*": {
       "day": "2026-10-21",
@@ -460,61 +460,55 @@
     "2026-10-22": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 10,
-        "ok": 10,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 3,
-        "calls": 4,
+        "calls": 5,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 1,
+        "other": 1
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 4,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
         "other": 1
       },
-      "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 3,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 0,
-        "other": 0
-      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 7,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 2,
+        "ok": 3,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 7,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
+        "ok": 3,
         "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 10,
-        "ok": 10,
+        "calls": 18,
+        "ok": 18,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 4,
-      "t": 1792498308.8919575,
-      "title": "ترکیه، عربستان و پاکستان پیمان دفاعی جدید امضا کردند",
-      "urgent": false
-    },
     {
       "label": "سیاست",
       "level": 4,
@@ -1347,6 +1341,13 @@
       "t": 1792628693.3019826,
       "title": "هشدار مقامات جهان درباره آسیب پذیری امنیتی زبان برنامه نویسی پی اچ پی",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 3,
+      "t": 1792629833.7655663,
+      "title": "ایرلند قانون عدم نیاز به موافقت سازمان ملل برای اعزام نیروهای صلح آمیز را تصویب کرد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-21",
@@ -1452,6 +1453,12 @@
       "reason": "ai openrouter/openrouter/free batch score=7 happened=True scope=world: Nuclear enrichment resurfaces as key issue in US talks",
       "topic": "سیاست",
       "until": 1792673528.7133327
+    },
+    "v4|ireland votes to end un veto over overseas peacekeeping missions": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Ireland removes UN veto",
+      "topic": "سیاست",
+      "until": 1792716197.3705413
     },
     "v4|isco the difference as betis continue winning start": {
       "ok": false,
@@ -2959,12 +2966,6 @@
       "topic": "حادثه",
       "until": 1792688580.8623493
     },
-    "v4|حفظ جریان تجارت با استفاده از مسیرهای جایگزین/ تجلیل از ۱۳ صادرکننده ممتاز": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: مقام دولتی از اقدامات روتی برای تجارت گفت",
-      "topic": "اقتصاد",
-      "until": 1792644522.151884
-    },
     "v4|حق شناس چهاردهمین طلایی ایران در ناگویا/ بسکتبال با ویلچر فینالیست شد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: مدال طلای ورزشکار ایرانی در بازی های پاراآسیایی",
@@ -2988,6 +2989,12 @@
       "reason": "ai mistral/open-mistral-nemo batch score=6 happened=True scope=world: انفجار در اربیل، عراق، با تلفات احتمالی",
       "topic": "نظامی",
       "until": 1792657887.9903235
+    },
+    "v4|حمله با سه دفاع؟/ ترکیب احتمالی: تراکتور با همان نسخه قبلی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=local: Speculative corporate move",
+      "topic": "اقتصاد",
+      "until": 1792716197.340557
     },
     "v4|حمله به فرودگاه دمام عربستان": {
       "ok": true,
@@ -3577,12 +3584,6 @@
       "topic": "اقتصاد",
       "until": 1792657876.674633
     },
-    "v4|شروع ترافیک صبحگاهی در معابر پایتخت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: گزارش ترافیک روزانه تهران یک خبر محلی و روتین است.",
-      "topic": "جامعه",
-      "until": 1792644517.904045
-    },
     "v4|شش سفر طولانی در دو هفته/ ۱۵ روز نفس گیر استقلال: از قطر و یزد تا دبی!": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: routine club travel, not major national/international event",
@@ -3841,6 +3842,12 @@
       "topic": "نظامی",
       "until": 1792669391.564531
     },
+    "v4|فریاد اعتراض مخالفان؛ ترامپ گزافه گویی های ضد ایرانی خود را تکرار کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Trump repeats anti-Iran rhetoric",
+      "topic": "سیاست",
+      "until": 1792716197.3558142
+    },
     "v4|فشار بر صنعت هوانوردی جهان در سایه جنگ ایران افزایش یافت": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تاثیر کلان جنگ بر صنعت هوانوردی و سوخت جهان.",
@@ -3924,6 +3931,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مصدومیت بازیکن معمولی خارج از اخبار درجه یک است",
       "topic": "ورزش",
       "until": 1792660157.5563042
+    },
+    "v4|ماجراهای عجیب ستاره تیم مجتبی جباری/ پرسپولیس باعث شد با عشقم عروسی کنم!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، داستان ورزشی بدون اهمیت ملی",
+      "topic": "ورزش",
+      "until": 1792716195.6040719
     },
     "v4|مارکو روبیو : توافق با رژیم ایران کار دشواری است": {
       "ok": true,
@@ -4152,12 +4165,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: Threat letters to US congress, 30 states, no casualties yet",
       "topic": "قضایی",
       "until": 1792652058.90322
-    },
-    "v4|ناودرون؛ گنجینه پارینه سنگی کرمانشاه/ استقرار انسان در غار گلیمگوش در ۳۸ هزار سال قبل": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار باستان‌شناسی و آثار تاریخی محلی اهمیت سراسری ندارد",
-      "topic": "جامعه",
-      "until": 1792644513.6750515
     },
     "v4|نبرد بزرگ در آلیانز/ لحظه به لحظه با دیدار بایرن - آرسنال": {
       "ok": false,
@@ -4410,12 +4417,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سفر مقام دولتی و افتتاح پروژه استانی اهمیت ملی ندارد",
       "topic": "جامعه",
       "until": 1792646275.66352
-    },
-    "v4|وزیر علوم وارد کرمان شد؛ بررسی طرح های دانشگاهی و فناوری در سفری ۲ روزه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سفر استانی وزیر علوم و بررسی طرح‌های محلی اهمیت ملی ندارد",
-      "topic": "سیاست",
-      "until": 1792644509.5882552
     },
     "v4|وزیر علوم: حکمرانی مشارکتی و ارتقای منزلت اعضای هیئت علمی در اولویت است": {
       "ok": false,
@@ -4963,7 +4964,7 @@
     },
     "meta ordered to cough up $25 billion in new mexico privacy case": {
       "reason": "content_duplicate",
-      "until": 1792650844.882994
+      "until": 1792651440.4413188
     },
     "putin agrees to resume three-way talks with kyiv and washington": {
       "reason": "content_duplicate",
@@ -5029,6 +5030,10 @@
       "reason": "content_duplicate",
       "until": 1792635367.338359
     },
+    "فریاد اعتراض مخالفان؛ ترامپ گزافه گویی های ضد ایرانی خود را تکرار کرد": {
+      "reason": "content_duplicate",
+      "until": 1792651424.6694336
+    },
     "لایپزیش برای سیلوا خوش یمن بود/ طلسم برناردو شکست: اولین گل برای رئال": {
       "reason": "content_duplicate",
       "until": 1792635870.1788993
@@ -5068,33 +5073,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "گروگان گیری و کشف جسد سوخته جوان در استان تهران ⚡️ پلیس آگاهی تهران بزرگ از ربایش یک جوان ۲۱ ساله توسط پنج نفر",
-      "id": "05944b9a7c",
-      "match": "پلیس تهران: کشف جسد گروگان سوخته و دستگیری متهم به کلاهبرداری با وکالت نامه های جعلی",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792579679,
-      "verdict": "repeat",
-      "why": "گروگان‌گیری و کشف جسد سوخته در تهران"
-    },
-    {
-      "head": "نماینده مجلس: ابعاد حمله به لامرد باید در افکار عمومی جهان تبیین شود ⚡️ نماینده شیراز و زرقان در مجلس، با اشار",
-      "id": "e7176e4042",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792580242,
-      "verdict": "new",
-      "why": "موضوع حمله به لامرد جدید و متفاوت"
-    },
-    {
-      "head": "وزیر دفاع بریتانیا: حملات حوثی ها به عربستان «نفرت انگیز» و جنگنده های تایفون برای دفاع از ریاض اعزام می شوند ",
-      "id": "e8b771b352",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792580264,
-      "verdict": "new",
-      "why": "جنگنده‌های تایفون برای دفاع از ریاض"
-    },
     {
       "head": "ندیمی: حمایت ترامپ از تروریسم و جدایی طلبی در ایران، ابعاد ژئوپلیتیکی دارد ⚡️ پژوهشگر ارشد ژئوپلیتیک در نشستی ",
       "id": "fab59b1287",
@@ -5619,16 +5597,38 @@
       "t": 1792628692,
       "verdict": "new",
       "why": "آموزش زبان پی اچ پی و آسیب پذیری امنیتی جدید"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "تکرار لفاظی های ضد ایرانی ترامپ در کارولینای جنوبی ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، در گردهمایی جمهوری خواه",
+      "id": "0e3879cfa3",
+      "match": "ترامپ: ایران در وضعیتی قرار گرفته که پیش تر تجربه نکرده است",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792629810,
+      "verdict": "repeat",
+      "why": "تکرار اظهارات ضد ایرانی ترامپ در تاریخ مشابه"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "تکرار لفاظی های ضد ایرانی ترامپ در کارولینای جنوبی ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، در گردهمایی جمهوری خواه",
+      "id": "0e3879cfa3",
+      "match": "ترامپ: ایران در وضعیتی قرار گرفته که پیش تر تجربه نکرده است",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792629823,
+      "verdict": "repeat",
+      "why": "تکرار اظهارات ضد ایران ترامپ"
+    },
+    {
+      "head": "ایرلند قانون عدم نیاز به موافقت سازمان ملل برای اعزام نیروهای صلح آمیز را تصویب کرد ⚡️ مجلس قانون گذاری ایرلند",
+      "id": "c93e9e2df0",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792629832,
+      "verdict": "new",
+      "why": "ایرلند قانون جدید اعزام صلح‌آمیز بدون موافقت ملل"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اعلام بودجه برای تنش آبی روستایی یک استان خبر محلی است",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792613691,
-      "title": "اختصاص ۳۶۰۰ میلیارد ریال برای رفع تنش آبی روستاهای خراسان شمالی"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: routine club travel, not major national/international event",
       "rescued": false,
@@ -6181,31 +6181,19 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792629222,
       "title": "گلزنی نوری پس از رکورد 200 تایی (عکس)"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، داستان ورزشی بدون اهمیت ملی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792629795,
+      "title": "ماجراهای عجیب ستاره تیم مجتبی جباری/ پرسپولیس باعث شد با عشقم عروسی کنم!"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اغز",
-        "ال",
-        "الت",
-        "امنل",
-        "تکد",
-        "ثبت",
-        "دند",
-        "صلح",
-        "فرنس",
-        "مخلف",
-        "مکرن",
-        "ورد",
-        "کشرش"
-      ],
-      "t": 1792586574.1520464,
-      "title": "مکرون: فرانسه از آغاز مخالف جنگ در منطقه بوده و صلح را اولویت می داند ⚡️ امانوئل مکرون رئیس جمهور فرانسه تأکید کرد که فر"
-    },
     {
       "h": [
         "ارنم",
@@ -6930,6 +6918,26 @@
       ],
       "t": 1792628693.27538,
       "title": "هشدار مقامات جهان درباره آسیب پذیری امنیتی زبان برنامه نویسی پی اچ پی ⚡️ مقامات در اروپا، آسیا و دیگر مناطق جهان وب سایت"
+    },
+    {
+      "h": [
+        "ارلند",
+        "اعزم",
+        "امز",
+        "تصب",
+        "خرج",
+        "سزم",
+        "صلح",
+        "عدم",
+        "قنن",
+        "مفقت",
+        "ملل",
+        "ندرد",
+        "نز",
+        "گذر"
+      ],
+      "t": 1792629833.7508845,
+      "title": "ایرلند قانون عدم نیاز به موافقت سازمان ملل برای اعزام نیروهای صلح آمیز را تصویب کرد ⚡️ مجلس قانون گذاری ایرلند با تصویب "
     }
   ],
   "_published_incidents": [
@@ -7215,45 +7223,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اعزم",
-        "انگلس",
-        "انگلست",
-        "بفرستد",
-        "جنگند",
-        "دلت",
-        "سلطنت",
-        "عربست",
-        "قصد",
-        "مشر",
-        "نر",
-        "نظم"
-      ],
-      "t": 1792499443.0017676,
-      "title": "انگلستان جنگنده و مشاوران نظامی به عربستان اعزام می کند ⚡️ دولت انگلیس قصد دارد جنگنده های نیروی هوایی سلطنتی و مشاوران "
-    },
-    {
-      "k": [
-        "ار",
-        "اند",
-        "تضح",
-        "تک",
-        "جدد",
-        "جنگند",
-        "رس",
-        "ستد",
-        "سنگن",
-        "عبدلله",
-        "عل",
-        "مسلح",
-        "مضع",
-        "نر",
-        "پرز"
-      ],
-      "t": 1792499461.972908,
-      "title": "توضیح رئیس ستاد کل نیروهای مسلح درباره پرواز جنگنده سنگین ایران ⚡️ علی عبداللهی، رئیس ستاد کل نیروهای مسلح، اعلام کرد تی"
-    },
     {
       "k": [
         "اردگ",
@@ -11486,6 +11455,43 @@
       ],
       "t": 1792628693.260723,
       "title": "هشدار مقامات جهان درباره آسیب پذیری امنیتی زبان برنامه نویسی پی اچ پی ⚡️ مقامات در اروپا، آسیا و دیگر مناطق جهان وب سایت"
+    },
+    {
+      "k": [
+        "ارلند",
+        "اعزم",
+        "الملل",
+        "امز",
+        "تصب",
+        "حفظ",
+        "خرج",
+        "ربر",
+        "سزم",
+        "شرکت",
+        "صلح",
+        "طرف",
+        "عدم",
+        "عض",
+        "قنن",
+        "مجلس",
+        "مخلف",
+        "مخلفت",
+        "مفقت",
+        "ملل",
+        "ممرت",
+        "نت",
+        "ندرد",
+        "نر",
+        "نز",
+        "نظم",
+        "نمندگ",
+        "هرچند",
+        "هشدر",
+        "کشر",
+        "گذر"
+      ],
+      "t": 1792629833.7361465,
+      "title": "ایرلند قانون عدم نیاز به موافقت سازمان ملل برای اعزام نیروهای صلح آمیز را تصویب کرد ⚡️ مجلس قانون گذاری ایرلند با تصویب "
     }
   ],
   "_text_polish": {
@@ -11497,7 +11503,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792629108
+    "at": 1792629685
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11522,9 +11528,9 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792629247,
-    "last_failure": 1792628647,
-    "last_status": 429
+    "disabled_until": 1792630102.0,
+    "last_failure": 1792629802,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
