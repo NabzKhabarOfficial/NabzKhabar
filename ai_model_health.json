@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1792634993
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792635515
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792635515
     },
@@ -159,12 +151,20 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792637893
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-120b",
+      "t": 1792638479
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792638501
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-21",
-      "n": 182
+      "n": 183
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-21",
@@ -172,19 +172,19 @@
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-21",
-      "n": 137
+      "n": 138
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-21",
-      "n": 137
+      "n": 138
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-22",
-      "n": 15
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-22",
-      "n": 15
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-10-21",
@@ -460,8 +460,8 @@
     "2026-10-22": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 23,
-        "ok": 23,
+        "calls": 24,
+        "ok": 24,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -471,16 +471,16 @@
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 10,
-        "calls": 17,
+        "429": 11,
+        "calls": 18,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 2,
         "other": 5
       },
       "gemini:gemini-3.8-flash": {
-        "429": 11,
-        "calls": 13,
+        "429": 12,
+        "calls": 14,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -488,22 +488,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 6,
         "other": 10
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 5,
-        "other": 10
+        "other": 11
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 43,
-        "ok": 43,
+        "calls": 44,
+        "ok": 44,
         "other": 0
       }
     }
@@ -1808,6 +1808,12 @@
       "topic": "جامعه",
       "until": 1792653839.339734
     },
+    "v4|آغاز سفری یک ساله برای یافتن منشاء حیات در منظومه شمسی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=False scope=world: اعلام پرتاب آینده، هنوز رخ نداده",
+      "topic": "فناوری",
+      "until": 1792724879.6449575
+    },
     "v4|آغاز ماجراجویی تهران بیشه چمستان در لیگ برتر والیبال؛ جدال با قهرمان در خانه حریف": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر ورزشی لیگ برتر والیبال سطح اول کشوری نیست",
@@ -2257,12 +2263,6 @@
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: تغییرات جهانی قیمت نفت و طلا به دلیل نگرانی‌های عرضه و تورم",
       "topic": "اقتصاد",
       "until": 1792649790.1843805
-    },
-    "v4|افزودن نیم درصد گرافن به گریس، دمای اوج کارکرد را ۳۰ درصد کاهش می دهد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار علمی دانشگاهی جزو اولویت‌های سطح اول کانال نیست",
-      "topic": "فناوری",
-      "until": 1792647465.482415
     },
     "v4|افزودن ۱۷ هزار مترمربع به فضای ورزشی خوابگاه های دانشجویی": {
       "ok": false,
@@ -3170,12 +3170,6 @@
       "topic": "ورزش",
       "until": 1792671767.263397
     },
-    "v4|درخشش کاراته کاهای ملایری در مسابقات قهرمانی کشور با کسب سه مدال طلا و نقره": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: National championship win, not top‑tier sports news",
-      "topic": "ورزش",
-      "until": 1792648060.0514116
-    },
     "v4|دستاوردسازی انتخاباتی نتانیاهو با برجسته کردن حمله به ایران": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=world: نتانیاهو اعلام رسمی حمله اسرائیل به ایران در انتخاباتی",
@@ -3890,6 +3884,12 @@
       "topic": "اقتصاد",
       "until": 1792661834.5297506
     },
+    "v4|فلاحت پیشه:امریکا به دنبال توافق با ایران نیست و میانجی ها فقط پیام جنگ می آورند/ دست ایران خالی نیست": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=iran_national: اظهارات بدون تصمیم یا واقعهٔ جدید",
+      "topic": "سیاست",
+      "until": 1792724879.6302001
+    },
     "v4|فلیک: شکست برابر پاری سن ژرمن پایان راه نیست؛ باید اشتباهات را اصلاح کنیم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارات سرمربی بارسلونا پس از شکست در لیگ قهرمانان اروپا",
@@ -4238,6 +4238,12 @@
       "topic": "سیاست",
       "until": 1792663071.3765934
     },
+    "v4|نصری: همراهی بی سابقه افکار عمومی غرب با ایران نباید در دام جنگ تمدنی بسوزد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=iran_national: نظر شخصی، بدون رویداد ملموس",
+      "topic": "سیاست",
+      "until": 1792724879.615224
+    },
     "v4|نظرسنجی سایت ای اف سی برای بهترین گل دور دوم/ سوپرگل آسانی در رقابت با رونالدو و سردار": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: نامزدی گل بازیکن استقلال در نظرسنجی آسیا، خبری رده‌پایین است.",
@@ -4357,12 +4363,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تجلیل از واحدهای نمونه استاندارد استانی رویدادی محلی و کم‌اهمیت است",
       "topic": "جامعه",
       "until": 1792666023.7908134
-    },
-    "v4|واردات گوشت مقرون به صرفه نیست": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=2 happened=False scope=iran_national: اظهار نظر درباره عدم صرفه اقتصادی واردات گوشت بدون رویداد جدید",
-      "topic": "اقتصاد",
-      "until": 1792648078.0286412
     },
     "v4|واژگونی اتوبوس در پنجابِ پاکستان با ۴۰ کشته و زخمی": {
       "ok": true,
@@ -4964,7 +4964,7 @@
     },
     "meta ordered to cough up $25 billion in new mexico privacy case": {
       "reason": "content_duplicate",
-      "until": 1792659493.417712
+      "until": 1792660101.1183429
     },
     "putin agrees to resume three-way talks with kyiv and washington": {
       "reason": "content_duplicate",
@@ -11272,7 +11272,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792637784
+    "at": 1792638368
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11287,13 +11287,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792638473,
-    "last_failure": 1792637873,
+    "disabled_until": 1792639087,
+    "last_failure": 1792638487,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792637989,
-    "last_failure": 1792637389,
+    "disabled_until": 1792639083,
+    "last_failure": 1792638483,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -11309,7 +11309,7 @@
     "last_status": 599
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792636139,
+    "last_quality_failure": 1792638483,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
