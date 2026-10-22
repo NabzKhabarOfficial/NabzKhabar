@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792705302
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792705302
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792705302
     },
@@ -159,32 +151,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792707879
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792708523
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792708545
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-22",
-      "n": 142
+      "n": 143
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-22",
-      "n": 244
+      "n": 245
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-22",
-      "n": 107
+      "n": 108
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-22",
-      "n": 107
+      "n": 108
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-22",
-      "n": 88
+      "n": 89
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-22",
-      "n": 88
+      "n": 89
     },
     "openrouter:*": {
       "day": "2026-10-22",
@@ -460,29 +460,29 @@
     "2026-10-22": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 178,
+        "calls": 179,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 108,
-        "other": 70
+        "other": 71
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 291,
+        "calls": 292,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 280,
+        "ok": 281,
         "other": 11
       },
       "gemini:gemini-3.6-flash": {
-        "429": 89,
-        "calls": 145,
+        "429": 90,
+        "calls": 146,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 28,
         "other": 28
       },
       "gemini:gemini-3.8-flash": {
-        "429": 88,
-        "calls": 134,
+        "429": 89,
+        "calls": 135,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 7,
@@ -490,16 +490,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 88,
+        "calls": 89,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
         "ok": 64,
-        "other": 24
+        "other": 25
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 88,
+        "calls": 89,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 56,
+        "ok": 57,
         "other": 32
       },
       "mistral:ministral-8b-latest": {
@@ -1589,6 +1589,12 @@
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: Terrorist attack with fatalities at major airport",
       "topic": "نظامی",
       "until": 1792733577.0988996
+    },
+    "v4|openai working on new $30b raise at $1.25t valuation ahead of ipo": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: OpenAI's planned funding round, not yet realized",
+      "topic": "فناوری",
+      "until": 1792794924.2242405
     },
     "v4|protests in indonesia demand action to stop rainforest fires": {
       "ok": false,
@@ -3185,12 +3191,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: صعود ورزشکار استانی به فینال مسابقات پاراآسیایی",
       "topic": "ورزش",
       "until": 1792762779.9895816
-    },
-    "v4|دونده ۴۰۰ متر ایران فینالیست شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=iran_national: صعود ورزشکار ایرانی به فینال مسابقات پاراآسیایی",
-      "topic": "ورزش",
-      "until": 1792719113.7280197
     },
     "v4|دویست وسی وششمین حماسه حضور زنجانی ها در میدان دفاع از وطن": {
       "ok": false,
@@ -11813,7 +11813,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792707768
+    "at": 1792708338
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11828,18 +11828,18 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792708169.0,
-    "last_failure": 1792707869,
-    "last_status": 599
+    "disabled_until": 1792708839.0,
+    "last_failure": 1792708539,
+    "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792708002,
-    "last_failure": 1792707402,
+    "disabled_until": 1792709134,
+    "last_failure": 1792708534,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792707998,
-    "last_failure": 1792707398,
+    "disabled_until": 1792709130,
+    "last_failure": 1792708530,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
