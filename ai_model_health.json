@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792629222
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792629222
-    },
-    {
-      "e": "AI PACE: gemini:gemini-3.5-flash-lite held 2x, groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
-      "t": 1792629244
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792629796
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1792633296
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792633788
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792633788
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1792633803
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-21",
-      "n": 170
+      "n": 171
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-21",
-      "n": 292
+      "n": 294
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-21",
@@ -460,14 +460,14 @@
     "2026-10-22": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 11,
-        "ok": 11,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 23,
-        "ok": 23,
+        "calls": 25,
+        "ok": 25,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -502,8 +502,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 25,
-        "ok": 25,
+        "calls": 27,
+        "ok": 27,
         "other": 0
       }
     }
@@ -2090,12 +2090,6 @@
       "topic": "قضایی",
       "until": 1792670566.4931943
     },
-    "v4|از کشف کشتی ۴۵۰۰ ساله تا گورستان غیرمعمول رومی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اخبار باستان‌شناسی و کشفیات تاریخی جزء خبرهای درجه یک نیستند.",
-      "topic": "جامعه",
-      "until": 1792645679.3953056
-    },
     "v4|اساسنامه گردشگری سلامت در دولت تصویب شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: تصویب آیین‌نامه و اساسنامه معمول دولتی، خبری روتین و غیربحرانی است.",
@@ -2695,6 +2689,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: اظهارنظر رسمی رئیس‌جمهور آمریکا درباره موضع روسیه در قبال ایران",
       "topic": "سیاست",
       "until": 1792704630.2252831
+    },
+    "v4|تراکتور دیگر سرباز نمی گیرد/ امشب، خداحافظی اشکبار بیرانوند با یادگار": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر مربوط به وضعیت بازیکن یک باشگاه ورزشی است.",
+      "topic": "ورزش",
+      "until": 1792720194.5282667
     },
     "v4|ترکیب بایرن-آرسنال | جدال دو مدعی": {
       "ok": false,
@@ -4964,11 +4964,11 @@
     },
     "meta ordered to cough up $25 billion in new mexico privacy case": {
       "reason": "content_duplicate",
-      "until": 1792654896.5003397
+      "until": 1792655398.8996546
     },
     "putin agrees to resume three-way talks with kyiv and washington": {
       "reason": "content_duplicate",
-      "until": 1792633581.7441378
+      "until": 1792655403.4958632
     },
     "آزادی شهروند آمریکایی همزمان با سفر فرستاده ترامپ به روسیه؛ قدردانی ویژه ویتکاف از پوتین": {
       "reason": "content_duplicate",
@@ -5634,13 +5634,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Assists by player in club matches, local sports news",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792615973,
-      "title": "سپاهان و آقای 190 با سه پاس گل/ امید نور در نقش ریکی آلوز! (عکس)"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine diplomatic rhetoric and exchange of statements between officials.",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -6192,6 +6185,13 @@
       "rule": "final-scope-preselection",
       "t": 1792633289,
       "title": "Australian Zoo Plays Matchmaker for Giant Birds, and Big Green Eggs Are Proof"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر مربوط به وضعیت بازیکن یک باشگاه ورزشی است.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792633794,
+      "title": "تراکتور دیگر سرباز نمی گیرد/ امشب، خداحافظی اشکبار بیرانوند با یادگار"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11507,7 +11507,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792633160
+    "at": 1792633725
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
