@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1792626280
-    },
-    {
-      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 2x, gemini:gemini-3.5-flash-lite held 6x, gemini:gemini-3.6-flash held 3x, gemini:gemini-3.8-flash held 3x, groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 9x",
-      "t": 1792626337
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792626900
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792626900
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 4x, gemini:gemini-3.5-flash-lite held 4x, gemini:gemini-3.6-flash held 4x, gemini:gemini-3.8-flash held 2x, groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 7x",
       "t": 1792629840
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792630332
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792630333
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792630349
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-21",
-      "n": 164
+      "n": 165
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-21",
-      "n": 281
+      "n": 282
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-21",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-22",
-      "n": 7
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-22",
-      "n": 7
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-10-21",
@@ -460,14 +460,14 @@
     "2026-10-22": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -488,22 +488,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 7,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "calls": 8,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 3,
-        "other": 4
+        "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 7,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "calls": 8,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
         "ok": 3,
-        "other": 4
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 18,
-        "ok": 18,
+        "calls": 19,
+        "ok": 19,
         "other": 0
       }
     }
@@ -2822,12 +2822,6 @@
       "topic": "قضایی",
       "until": 1792705248.8808453
     },
-    "v4|توهم قدرت در واشنگتن؛ از ویتنام تا جنگ علیه ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و نظر فرمانده پیشین آمریکا، فاقد رویداد عینی.",
-      "topic": "سیاست",
-      "until": 1792644526.5230746
-    },
     "v4|تکذیب گزارش ها پیرامون تخلیه سفارتخانه های آمریکا در خاورمیانه": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: توضیح رسمی سخنگوی وزارت خارجه آمریکا پیرامون تخلیه سفارتخانه‌ها.",
@@ -3247,6 +3241,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: دیدار بن سلمان و مکرون و وعده افزایش عرضه گازوئیل.",
       "topic": "اقتصاد",
       "until": 1792687362.8263252
+    },
+    "v4|رئال مادرید مقابل ۱۷ داور بازی می کند!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: حاشیه‌های پیش از مسابقه و نظرات رسانه‌ای درباره داوری",
+      "topic": "ورزش",
+      "until": 1792716734.219647
     },
     "v4|رئال مادرید۴ - ۱ لایپزیگ/ آتش بازی کهکشانی ها در سانتیاگو برنابئو": {
       "ok": false,
@@ -4964,7 +4964,7 @@
     },
     "meta ordered to cough up $25 billion in new mexico privacy case": {
       "reason": "content_duplicate",
-      "until": 1792651440.4413188
+      "until": 1792651949.0765724
     },
     "putin agrees to resume three-way talks with kyiv and washington": {
       "reason": "content_duplicate",
@@ -5630,13 +5630,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: routine club travel, not major national/international event",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1792614223,
-      "title": "شش سفر طولانی در دو هفته/ ۱۵ روز نفس گیر استقلال: از قطر و یزد تا دبی!"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: جمعیت ۲۳۵ نفر در تجمع شبانه",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -6188,6 +6181,13 @@
       "rule": "below-event-threshold",
       "t": 1792629795,
       "title": "ماجراهای عجیب ستاره تیم مجتبی جباری/ پرسپولیس باعث شد با عشقم عروسی کنم!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: حاشیه‌های پیش از مسابقه و نظرات رسانه‌ای درباره داوری",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792630334,
+      "title": "رئال مادرید مقابل ۱۷ داور بازی می کند!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11503,7 +11503,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792629685
+    "at": 1792630272
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11516,11 +11516,6 @@
     "last_error": "HTTP 402 payment required (no free quota on this account)",
     "last_failure": 1791935762,
     "last_status": 402
-  },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792629517.0,
-    "last_failure": 1792629217,
-    "last_status": 599
   },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1792629798,
