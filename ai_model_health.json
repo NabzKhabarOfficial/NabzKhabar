@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792625176
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792625177
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792625177
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792625196
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792625197
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792625197
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792625200
-    },
-    {
       "e": "EDITOR BATCH gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1792625226
     },
@@ -159,32 +131,60 @@
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792627493
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792628023
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792628024
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792628029
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792628030
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792628031
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792628032
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792628045
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-21",
-      "n": 157
+      "n": 159
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-21",
-      "n": 270
+      "n": 271
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-21",
-      "n": 120
+      "n": 121
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-21",
-      "n": 120
+      "n": 121
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-22",
-      "n": 3
+      "n": 5
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-22",
-      "n": 2
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-10-21",
@@ -458,30 +458,50 @@
       }
     },
     "2026-10-22": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
         "calls": 1,
-        "ok": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 3,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
         "ok": 1,
-        "other": 2
+        "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 2,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 1,
-        "other": 1
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 2,
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       }
     }
@@ -1450,6 +1470,12 @@
       "topic": "سیاست",
       "until": 1792713893.8397217
     },
+    "v4|macron rejects trump’s claims blaming migrants for french riots": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=world: Macron rejects Trump's migrant blame claim",
+      "topic": "سیاست",
+      "until": 1792714432.805201
+    },
     "v4|macron visits riyadh to show solidarity amid houthi attacks, ease tensions at home via fuel deal": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: مذاکرات Macron با عربستان در پی حملات هوثی و توافقات نفت",
@@ -1732,12 +1758,6 @@
       "topic": "جامعه",
       "until": 1792696662.6878796
     },
-    "v4|آغاز ثبت نام پذیرفته شدگان آزمون ارشد از امروز": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=iran_national: Routine administrative procedure for university enrollment, lacks national strategic significance.",
-      "topic": "جامعه",
-      "until": 1792643849.479906
-    },
     "v4|آغاز ثبت نام پذیرفته شدگان آزمون کارشناسی ارشد سال ۱۴۰۵ از امروز": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=iran_national: ثبت‌نام دانشگاهی یک رویداد اداری و معمولی آموزشی است",
@@ -1827,6 +1847,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: گزارش محلی درباره خطر تخریب منازل در یک شهر",
       "topic": "جامعه",
       "until": 1792661284.688152
+    },
+    "v4|آکسیوس مدعی رزمایش اسرائیل برای شبیه سازی حمله احتمالی به ایران شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: American media claims Israeli drills near Iran",
+      "topic": "نظامی",
+      "until": 1792714432.8145213
     },
     "v4|آکومد اردبیل در اولین بازی در لیگ دسته دوم کشور به مصاف سپید رود رشت می رود": {
       "ok": false,
@@ -2272,6 +2298,12 @@
       "topic": "ورزش",
       "until": 1792699002.0222178
     },
+    "v4|انتقاد نامزد دموکرات انتخابات سنا از ارسال سلاح برای رژیم صهیونیستی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: انتقاد یک نامزد سنای آمریکا درباره ارسال سلاح به اسرائیل",
+      "topic": "سیاست",
+      "until": 1792714431.0631776
+    },
     "v4|انتقاد هیلاری کلینتون از فساد : خانواده ترامپ فاسد و کلاهبردارند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: انتقاد سیاسی چهره‌های سابق آمریکا روتین و کم اهمیت است.",
@@ -2398,12 +2430,6 @@
       "topic": "ورزش",
       "until": 1792643860.2121708
     },
-    "v4|بازی های پاراآسیایی ناگویا؛ حق شناس سومین فینالیست پاراتکواندو شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=iran_national: راهیابی ورزشکار ایرانی به فینال مسابقات پاراآسیایی",
-      "topic": "ورزش",
-      "until": 1792643852.1731265
-    },
     "v4|بافق میدان حماسه و ایستادگی در شب ۲۳۴ از قرارهای شبانه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تجمع محلی در بافق، رویداد سطح پایین و غیرمهم سراسری",
@@ -2523,6 +2549,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: پیش‌بینی و گزارش پیش از مسابقات ورزشی پاراآسیایی",
       "topic": "ورزش",
       "until": 1792713891.9149978
+    },
+    "v4|بی رقیب با سه توپ طلا؛/ ستاره عربستان به دنبال یک دستاورد تاریخی!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: خبر ورزشی غیرفوری و مربوط به دستاوردهای فردی یک بازیکن خارجی.",
+      "topic": "ورزش",
+      "until": 1792714428.5234482
     },
     "v4|بیش از ۱۰۰۰ شهید و زخمی در حملات عربستان علیه ماهیگیران یمنی": {
       "ok": true,
@@ -2823,12 +2855,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: جزئیات فنی و اداری مدیریت برق صنایع در سطح استانی است.",
       "topic": "اقتصاد",
       "until": 1792653846.7426155
-    },
-    "v4|جدول پخش زنده بازی های چهارشنبه 29 مهر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: Routine schedule of sports broadcasts is not a first-tier news event.",
-      "topic": "ورزش",
-      "until": 1792643841.6142857
     },
     "v4|جرکنی: طلای جهان در خاک آمریکا را به شهدای مدرسه شجره طیبه میناب تقدیم می کنم": {
       "ok": true,
@@ -4906,12 +4932,6 @@
       "topic": "جامعه",
       "until": 1792697198.4783263
     },
-    "v4|۴۹۴ روستای چهارمحال و بختیاری به اینترنت دسترسی دارند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine provincial report on internet coverage in rural areas.",
-      "topic": "فناوری",
-      "until": 1792643842.3691182
-    },
     "v4|۶۰۰ میلیارد تومان به طرح های مدرسه سازی استان زنجان اختصاص یافت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تویج بودجه مدرسه سازی در یک استان خاص، خبری محلی است.",
@@ -4938,7 +4958,7 @@
     },
     "meta ordered to cough up $25 billion in new mexico privacy case": {
       "reason": "content_duplicate",
-      "until": 1792649099.7058337
+      "until": 1792649645.6618388
     },
     "putin agrees to resume three-way talks with kyiv and washington": {
       "reason": "content_duplicate",
@@ -5597,20 +5617,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اهدای جهیزیه محلی و خیریه است و اخبار درجه یک محسوب نمی‌شود.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792611905,
-      "title": "اهدای ۱۱۰ سری جهیزیه به نو عروسان کهگیلویه و بویراحمدی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: استقبال محلی از کشتی‌گیر آملی قهرمان جهان، اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792612586,
-      "title": "استقبال آملی ها از فاتح لاس وگاس"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: رویداد محلی و غیر استراتژیک در سطح مدارس شهرستان گناوه.",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -6155,6 +6161,20 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1792627491,
       "title": "به امید درو کردن طلاها در روز چهارم/ زنده از ناگویا: روز سرنوشت ، یا الان یا هیچ وقت!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: خبر ورزشی غیرفوری و مربوط به دستاوردهای فردی یک بازیکن خارجی.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1792628028,
+      "title": "بی رقیب با سه توپ طلا؛/ ستاره عربستان به دنبال یک دستاورد تاریخی!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: انتقاد یک نامزد سنای آمریکا درباره ارسال سلاح به اسرائیل",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792628031,
+      "title": "انتقاد نامزد دموکرات انتخابات سنا از ارسال سلاح برای رژیم صهیونیستی"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11434,7 +11454,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792627376
+    "at": 1792627946
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11448,19 +11468,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792626575.0,
-    "last_failure": 1792626275,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792627531,
-    "last_failure": 1792626931,
+    "disabled_until": 1792628638,
+    "last_failure": 1792628038,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792626885,
-    "last_failure": 1792626285,
+    "disabled_until": 1792628634,
+    "last_failure": 1792628034,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
