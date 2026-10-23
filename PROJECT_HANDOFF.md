@@ -13,13 +13,15 @@
 - Hardened content duplicate state handling and runtime health reporting.
 - Added `tests/test_runtime_imports.py` for dynamically loaded runtime modules.
 - Added the offline CI workflow at `.github/workflows/offline-tests.yml` when repository workflow permissions allow it.
+- Restored the full `v13_story_dedup.py` API (`_health`, `COMMON`, number/speaker anchors, follow-up matching). The earlier rewrite had silently disabled the AI event judge (`v13_event_judge`), which depends on these names.
 
 ## Important runtime files
 - `run_bot.py`: launcher and stack wiring.
 - `v13_standalone.py`: Telegram collection, filtering, media, and publishing.
 - `v13_freshness_rescue.py`: freshness and consequential-story rescue.
 - `v13_editorial_final_patch.py`: final freshness/editorial calibration.
-- `v13_story_dedup.py`: publication duplicate guard.
+- `v13_story_dedup.py`: publication duplicate guard (also installs text polish, incident dedup, event judge, importance rescue).
+- `v13_event_judge.py`: AI same-event judge, active only through `v13_story_dedup.install()`.
 - `v13_monitor.py`: runtime and publication health report.
 - `.github/workflows/bot.yml`: scheduled production workflow.
 - `.github/workflows/offline-tests.yml`: offline compile/import/pytest workflow.
@@ -40,6 +42,24 @@
 - Blockers: `<none or exact blocker>`
 - Next action: `<concrete continuation step>`
 
+## Latest update
+- Last change: https://github.com/NabzKhabarOfficial/NabzKhabar/commit/f2e42da4956431dc73504ab8bb4d8c9b569d5e87
+- Changed files: `v13_story_dedup.py` (restored to the original `e38a027` content, blob 92226d62, byte-identical).
+- Verification: static review of `v13_event_judge.py`, `v13_text_polish.py`, `v13_incident_dedup.py`, and `v13_ai_router.py` confirmed the names they use now exist. Not run in live CI yet.
+- Blockers: none for code. Remaining known issues below.
+- Next action: add an offline test that imports `v13_story_dedup`, calls `install()` with a stub core, and asserts that `v13_event_judge` installed. Then review `v13_monitor.py` (dropped diagnostics; check the health `status` values it gates on) and `voice_check.write_report` (missing `_BEATS`/`_REASON` reset).
+
 ## Known verification boundary
 - Static code and workflow wiring have been reviewed.
 - Live GitHub Actions, Telegram, RSS, and AI provider behavior still requires an actual CI/workflow run.
+
+## Known open risks
+- `daily_boards` photo+text duplicate on an ambiguous timeout.
+- Non-atomic `_save_health` in `v13_ai_router` (plain write, can corrupt on crash).
+- `sent_news.txt` hashes are unbounded.
+- `quality_fix` is only installed when Mistral is configured.
+- Token leakage risk in logs.
+- Cron plus self-dispatch can cause duplicate runs.
+- `v13_monitor.py` rewrite dropped diagnostics (`important_missed`, `editorial_blocked`, `skipped_duplicate`, `ai_pool`, `no_publication_candidate`), and the fail-closed gate may misfire on unexpected health statuses.
+- `voice_check.write_report` no longer resets `_BEATS` / `_REASON`.
+- Private repo CI runs with `NABZ_VOICE_CHECK=0`, so voice check is untested there.
