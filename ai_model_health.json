@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792791481
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792791486
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792791486
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792791491
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792792086
-    },
-    {
       "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
       "t": 1792792087
     },
@@ -159,16 +139,36 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792797077
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792797639
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792797639
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792797640
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792797640
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792797644
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-23",
-      "n": 141
+      "n": 142
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-23",
-      "n": 242
+      "n": 243
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-23",
@@ -453,16 +453,16 @@
     "2026-10-23": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 155,
+        "calls": 156,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 151,
+        "ok": 152,
         "other": 4
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 298,
+        "calls": 299,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 296,
+        "ok": 297,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -1865,6 +1865,12 @@
       "topic": "سیاست",
       "until": 1792840829.7107308
     },
+    "v4|ابتکار دورتموند: بی خیال موبایل شوید، جایزه بگیرید!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این یک خبر حاشیه‌ای و غیرمهم در دنیای ورزش است.",
+      "topic": "ورزش",
+      "until": 1792884040.1640477
+    },
     "v4|ابلاغ آیین نامه دستگاه های اجرایی؛ دورکاری ۲ روز و یک روز بدون خودرو در هفته برای کارکنان دولت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=4 happened=True scope=iran_national: ابلاغ آیین‌نامه اداری و دورکاری کارکنان دولت؛ برنامه روتین اجرایی.",
@@ -2368,12 +2374,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: گزارش دمای هوای شهرهای استان گلستان محلی و کم‌اهمیت است.",
       "topic": "آب و هوا",
       "until": 1792871015.1358678
-    },
-    "v4|بارش باران در جاده های شمالی کشور/ تردد روان در محور های مواصلاتی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: وضعیت ترافیک و آب و هوای جاده ای اهمیت ملی ندارد.",
-      "topic": "آب و هوا",
-      "until": 1792820354.0981205
     },
     "v4|بازگشت تایریس بعد از 490 روز:/ اشک های ابر قهرمان ایندیانا بند نمی آمد!": {
       "ok": false,
@@ -2956,6 +2956,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: جهش قیمت جهانی نفت به بالای ۱۱۷ دلار در پی تنش‌ها",
       "topic": "اقتصاد",
       "until": 1792881133.9775453
+    },
+    "v4|جودی دنچ: دیگر نمی توانم روی صحنه بروم، فیلم بازی کنم یا کتاب بخوانم": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: ناتوانی جودی دنچ به دلیل بیماری خبری جهانی اما غیرسیاسی است",
+      "topic": "جامعه",
+      "until": 1792884044.3471994
     },
     "v4|حاجی میرزایی:واردات کشور با وجود محدودیت بنادر، تنها ۲۵ درصد کاهش یافت": {
       "ok": true,
@@ -3796,12 +3802,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: ",
       "topic": "جامعه",
       "until": 1792833753.7939334
-    },
-    "v4|فرصت سوزی در پایتخت زیتون ایران؛ جشنواره ای در تراز ملی یا آشفتگی در مقیاس محلی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: گزارش انتقادی محلی درباره کیفیت برگزاری جشنواره زیتون در قزوین.",
-      "topic": "جامعه",
-      "until": 1792820357.9221218
     },
     "v4|فرصت طلایی برای زاهدی از دست رفت؛/ عصبانیت شهاب از توقف گل ها (عکس)": {
       "ok": false,
@@ -5790,20 +5790,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تجمع محلی و تکراری در یک شهرستان کوچک",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792778180,
-      "title": "تجمع حماسی ملت مبعوث شده در اردستان به شب ۲۳۷ رسید"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: US consumer sentiment fell sharply, political implications noted",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792778181,
-      "title": "US consumer sentiment hits a near-record low before midterm elections"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=3 happened=False scope=world: Netanyahu claims US aid to Israel will end.",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -6348,6 +6334,20 @@
       "rule": "no-concrete-event",
       "t": 1792797076,
       "title": "پیشتازی ائتلاف رقیب نتانیاهو در نظرسنجی های انتخاباتی رژیم صهیونیستی"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این یک خبر حاشیه‌ای و غیرمهم در دنیای ورزش است.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792797640,
+      "title": "ابتکار دورتموند: بی خیال موبایل شوید، جایزه بگیرید!"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: ناتوانی جودی دنچ به دلیل بیماری خبری جهانی اما غیرسیاسی است",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792797644,
+      "title": "جودی دنچ: دیگر نمی توانم روی صحنه بروم، فیلم بازی کنم یا کتاب بخوانم"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11172,7 +11172,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792796938
+    "at": 1792797505
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
