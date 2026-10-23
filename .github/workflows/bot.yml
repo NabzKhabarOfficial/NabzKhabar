@@ -2,7 +2,7 @@ name: NabzKhabar News Bot
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,6 +17,7 @@ jobs:
   run-bot:
     runs-on: ubuntu-latest
     timeout-minutes: 14
+
     steps:
       - name: Record start time
         run: echo "RUN_START=$(date +%s)" >> "$GITHUB_ENV"
@@ -26,37 +27,155 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Python 3.11
+      - name: Setup Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: pip
           cache-dependency-path: requirements.txt
 
       - name: Install dependencies and media tools
         run: |
           set -e
+
           if ! command -v ffprobe >/dev/null 2>&1 || ! command -v ffmpeg >/dev/null 2>&1; then
             sudo apt-get update -qq
             sudo apt-get install -y --no-install-recommends ffmpeg
           fi
+
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
+          python -m pip install pytest
 
-      - name: Validate V13 before execution
+      - name: Validate all Python files
         run: |
           set -e
-          python -m py_compile v13_standalone.py v13_media_branding.py v13_ai_router.py v13_content_enhancer.py v13_ad_filter.py v13_intelligence.py v13_quality_gate.py v13_freshness_rescue.py v13_critical_rescue.py v13_global_rescue.py v13_policy_guard.py v13_editorial_formatter.py v13_byline_cleaner.py v13_final_guard.py v13_monitor.py v13_editor_gate.py v13_story_dedup.py v13_incident_dedup.py v13_event_judge.py v13_importance_rescue.py v13_text_polish.py v13_post_design.py v13_ai_extra.py v13_ai_pace.py v13_guard_repair.py v13_mistral.py run_bot.py education.py car_prices.py weather.py
-          for path in v13_argos_translate.py sitecustomize.py requirements-cpu.txt .github/workflows/argos-real-test.yml .github/workflows/argos-standalone-test.yml; do
-            test ! -e "$path" || { echo "Obsolete path exists: $path"; exit 1; }
-          done
+          python -m compileall -q . \
+            -x '(^|/)(tests|\.git|__pycache__)(/|$)'
+
+      - name: Validate V13 modules
+        run: |
+          set -e
+
+          python -m py_compile \
+            v13_standalone.py \
+            v13_media_branding.py \
+            v13_ai_router.py \
+            v13_content_enhancer.py \
+            v13_ad_filter.py \
+            v13_intelligence.py \
+            v13_quality_gate.py \
+            v13_freshness_rescue.py \
+            v13_critical_rescue.py \
+            v13_global_rescue.py \
+            v13_policy_guard.py \
+            v13_editorial_formatter.py \
+            v13_byline_cleaner.py \
+            v13_final_guard.py \
+            v13_monitor.py \
+            v13_editor_gate.py \
+            v13_story_dedup.py \
+            v13_incident_dedup.py \
+            v13_event_judge.py \
+            v13_importance_rescue.py \
+            v13_text_polish.py \
+            v13_post_design.py \
+            v13_relevance_gate.py \
+            v13_growth.py \
+            v13_quality_fix.py \
+            v13_review_log.py \
+            v13_chrome_scrub.py \
+            v13_sports_desk.py \
+            v13_ai_extra.py \
+            v13_ai_pace.py \
+            v13_guard_repair.py \
+            v13_mistral.py \
+            v13_editorial_final_patch.py \
+            run_bot.py \
+            education.py \
+            car_prices.py \
+            market_prices.py \
+            weather.py \
+            daily_boards.py \
+            daily_cards.py \
+            daily_sports.py \
+            sports_results.py
+
+      - name: Import smoke test
+        env:
+          BOT_TOKEN: OFFLINE_IMPORT_TEST_TOKEN
+          PYTHONPATH: .
+        run: |
           python - <<'PY'
-          import os, importlib
-          os.environ.setdefault('BOT_TOKEN','V13_IMPORT_SMOKE_TEST')
-          for name in ('v13_standalone','v13_media_branding','v13_ai_router','v13_content_enhancer','v13_ad_filter','v13_intelligence','v13_quality_gate','v13_freshness_rescue','v13_critical_rescue','v13_global_rescue','v13_policy_guard','v13_editorial_formatter','v13_byline_cleaner','v13_final_guard','v13_monitor','v13_story_dedup','v13_incident_dedup','v13_event_judge','v13_importance_rescue','v13_text_polish','run_bot','v13_ai_extra','v13_ai_pace','v13_guard_repair','v13_mistral'):
-              importlib.import_module(name)
-          print('V13 PRE-RUN INTEGRITY: PASS')
+          import importlib
+
+          modules = [
+              "v13_standalone",
+              "v13_media_branding",
+              "v13_ai_router",
+              "v13_content_enhancer",
+              "v13_ad_filter",
+              "v13_intelligence",
+              "v13_quality_gate",
+              "v13_freshness_rescue",
+              "v13_critical_rescue",
+              "v13_global_rescue",
+              "v13_policy_guard",
+              "v13_editorial_formatter",
+              "v13_byline_cleaner",
+              "v13_final_guard",
+              "v13_monitor",
+              "v13_editor_gate",
+              "v13_story_dedup",
+              "v13_incident_dedup",
+              "v13_event_judge",
+              "v13_importance_rescue",
+              "v13_text_polish",
+              "v13_post_design",
+              "v13_relevance_gate",
+              "v13_growth",
+              "v13_quality_fix",
+              "v13_review_log",
+              "v13_chrome_scrub",
+              "v13_sports_desk",
+              "v13_ai_extra",
+              "v13_ai_pace",
+              "v13_guard_repair",
+              "v13_mistral",
+              "v13_editorial_final_patch",
+              "run_bot",
+              "education",
+              "car_prices",
+              "market_prices",
+              "weather",
+              "daily_boards",
+              "daily_cards",
+              "daily_sports",
+              "sports_results",
+          ]
+
+          for module_name in modules:
+              importlib.import_module(module_name)
+
+          import v13_freshness_rescue
+
+          assert callable(
+              getattr(v13_freshness_rescue, "_critical", None)
+          ), "Freshness _critical predicate is missing"
+
+          assert callable(
+              getattr(v13_freshness_rescue, "_is_critical", None)
+          ), "Freshness compatibility predicate _is_critical is missing"
+
+          print("V13 import smoke test: PASS")
           PY
+
+      - name: Run offline regression tests
+        env:
+          BOT_TOKEN: OFFLINE_TEST_TOKEN
+          PYTHONPATH: .
+        run: |
+          python -m pytest -q tests
 
       - name: Check AI pool
         env:
@@ -67,29 +186,58 @@ jobs:
         run: |
           python - <<'PY'
           import os
-          p={'Groq':'GROQ_API_KEY','Gemini':'AI_API_KEY','OpenRouter':'OPENROUTER_API_KEY','Mistral':'MISTRAL_API_KEY'}
-          print('V13 AI POOL CONFIG:', ', '.join(f'{k}={"READY" if os.getenv(v," ").strip() else "MISSING"}' for k,v in p.items()))
+
+          providers = {
+              "Groq": "GROQ_API_KEY",
+              "Gemini": "AI_API_KEY",
+              "OpenRouter": "OPENROUTER_API_KEY",
+              "Mistral": "MISTRAL_API_KEY",
+          }
+
+          result = []
+          for provider, variable in providers.items():
+              state = "READY" if os.getenv(variable, "").strip() else "MISSING"
+              result.append(f"{provider}={state}")
+
+          print("V13 AI POOL CONFIG:", ", ".join(result))
           PY
 
       - name: Reset per-run telemetry
-        run: python -c "from pathlib import Path; [p.unlink() for p in (Path('v13_health.json'), Path('v13_monitor.json')) if p.exists()]" 
+        run: |
+          python - <<'PY'
+          from pathlib import Path
 
-      - name: Run independent V13 engine
+          for filename in (
+              "v13_health.json",
+              "v13_monitor.json",
+          ):
+              path = Path(filename)
+              if path.exists():
+                  path.unlink()
+          PY
+
+      - name: Run V13 engine
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-        run: python v13_ai_extra.py
+        run: |
+          set -e
+          python v13_ai_extra.py
 
       - name: Runtime monitoring
         if: ${{ always() }}
-        run: python v13_monitor.py
+        run: |
+          set -e
+          python v13_monitor.py
 
-            - name: Enforce runtime and publication health
+      - name: Enforce runtime and publication health
         if: ${{ always() }}
         run: |
+          set -e
+
           python - <<'PY'
           import json
           import pathlib
@@ -98,35 +246,64 @@ jobs:
           health_file = pathlib.Path("v13_health.json")
           monitor_file = pathlib.Path("v13_monitor.json")
 
+          errors = []
+
           if not health_file.exists():
-              print("V13 HEALTH: runtime health file is missing")
-              sys.exit(1)
+              errors.append("v13_health.json is missing")
 
           if not monitor_file.exists():
-              print("V13 MONITOR: monitor file is missing")
+              errors.append("v13_monitor.json is missing")
+
+          if errors:
+              print("V13 CI BLOCKED:")
+              for error in errors:
+                  print(f" - {error}")
               sys.exit(1)
 
           try:
-              health = json.loads(health_file.read_text(encoding="utf-8"))
-              monitor = json.loads(monitor_file.read_text(encoding="utf-8"))
+              health = json.loads(
+                  health_file.read_text(encoding="utf-8")
+              )
+              monitor = json.loads(
+                  monitor_file.read_text(encoding="utf-8")
+              )
           except Exception as exc:
-              print(f"V13 HEALTH: invalid telemetry JSON: {type(exc).__name__}")
+              print(
+                  "V13 CI BLOCKED: invalid telemetry JSON: "
+                  f"{type(exc).__name__}: {str(exc)[:200]}"
+              )
               sys.exit(1)
 
-          if not isinstance(health, dict) or not isinstance(monitor, dict):
-              print("V13 HEALTH: telemetry must be JSON objects")
+          if not isinstance(health, dict):
+              errors.append("v13_health.json must contain a JSON object")
+
+          if not isinstance(monitor, dict):
+              errors.append("v13_monitor.json must contain a JSON object")
+
+          if errors:
+              print("V13 CI BLOCKED:")
+              for error in errors:
+                  print(f" - {error}")
               sys.exit(1)
 
           run_status = str(
-              health.get("status", monitor.get("run_status", "unknown"))
+              health.get(
+                  "status",
+                  monitor.get("run_status", "unknown")
+              )
           ).strip().lower()
 
           monitor_status = str(
               monitor.get("status", "unknown")
           ).strip().lower()
 
-          failed = int(monitor.get("failed_publications", 0) or 0)
-          ambiguous = int(monitor.get("ambiguous_publications", 0) or 0)
+          failed = int(
+              monitor.get("failed_publications", 0) or 0
+          )
+
+          ambiguous = int(
+              monitor.get("ambiguous_publications", 0) or 0
+          )
 
           print(
               "V13 HEALTH: "
@@ -147,25 +324,33 @@ jobs:
           bad_monitor_statuses = {
               "",
               "unknown",
+              "failed",
+              "error",
               "runtime_failure",
               "publication_failure",
           }
 
-          errors = []
-
           if run_status in bad_run_statuses:
-              errors.append(f"invalid runtime status: {run_status or 'missing'}")
+              errors.append(
+                  "invalid runtime status: "
+                  f"{run_status or 'missing'}"
+              )
 
           if monitor_status in bad_monitor_statuses:
               errors.append(
-                  f"invalid monitor status: {monitor_status or 'missing'}"
+                  "invalid monitor status: "
+                  f"{monitor_status or 'missing'}"
               )
 
           if failed > 0:
-              errors.append(f"{failed} failed publication(s)")
+              errors.append(
+                  f"{failed} failed publication(s)"
+              )
 
           if ambiguous > 0:
-              errors.append(f"{ambiguous} ambiguous publication(s)")
+              errors.append(
+                  f"{ambiguous} ambiguous publication(s)"
+              )
 
           if errors:
               print("V13 CI BLOCKED:")
@@ -176,57 +361,107 @@ jobs:
           print("V13 CI HEALTH: PASS")
           PY
 
-      - name: Persist runtime state without rewriting code
+      - name: Persist runtime state
         if: ${{ always() }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git remote set-url origin \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
+
           mkdir -p /tmp/v13-state
-          for f in sent_news.txt ai_model_health.json v13_health.json v13_rejected_news.json v13_monitor.json car_prices_history.json weather_history.json; do
-            test ! -f "$f" || cp "$f" "/tmp/v13-state/$f"
+
+          for file in \
+            sent_news.txt \
+            ai_model_health.json \
+            v13_health.json \
+            v13_rejected_news.json \
+            v13_monitor.json \
+            car_prices_history.json \
+            weather_history.json
+          do
+            if [ -f "$file" ]; then
+              cp "$file" "/tmp/v13-state/$file"
+            fi
           done
-          test ! -d docs || cp -r docs /tmp/v13-state/docs
+
+          if [ -d docs ]; then
+            cp -r docs /tmp/v13-state/docs
+          fi
+
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
-            for f in sent_news.txt ai_model_health.json v13_health.json v13_rejected_news.json v13_monitor.json car_prices_history.json weather_history.json; do
-              test ! -f "/tmp/v13-state/$f" || cp "/tmp/v13-state/$f" "$f"
+
+            for file in \
+              sent_news.txt \
+              ai_model_health.json \
+              v13_health.json \
+              v13_rejected_news.json \
+              v13_monitor.json \
+              car_prices_history.json \
+              weather_history.json
+            do
+              if [ -f "/tmp/v13-state/$file" ]; then
+                cp "/tmp/v13-state/$file" "$file"
+              fi
             done
-            if [ -d /tmp/v13-state/docs ]; then rm -rf docs; cp -r /tmp/v13-state/docs docs; fi
-            git add sent_news.txt ai_model_health.json v13_health.json v13_rejected_news.json v13_monitor.json car_prices_history.json weather_history.json 2>/dev/null || true
+
+            if [ -d /tmp/v13-state/docs ]; then
+              rm -rf docs
+              cp -r /tmp/v13-state/docs docs
+            fi
+
+            git add \
+              sent_news.txt \
+              ai_model_health.json \
+              v13_health.json \
+              v13_rejected_news.json \
+              v13_monitor.json \
+              car_prices_history.json \
+              weather_history.json \
+              2>/dev/null || true
+
             git add docs 2>/dev/null || true
+
             if git diff --cached --quiet; then
-              echo 'No runtime-state changes.'
+              echo "No runtime-state changes."
               exit 0
             fi
-            git commit -m 'Update V13 runtime state [skip ci]'
+
+            git commit -m "Update V13 runtime state [skip ci]"
+
             if git push origin HEAD:main; then
-              echo 'Runtime state synchronized without rewriting code.'
+              echo "Runtime state synchronized."
               exit 0
             fi
+
             git reset --hard origin/main
             sleep 2
           done
-          echo 'Runtime state synchronization failed.'
+
+          echo "Runtime state synchronization failed."
           exit 1
 
-      # GitHub often delays or silently drops scheduled runs (this repo got a
-      # run only every 20-35 min, and none at all for 3 hours on 3 Oct).
-      # Each run therefore starts the next one itself, ~10 minutes after it
-      # began. The cron above stays as a backup if this chain ever breaks.
-      - name: Keep the 10-minute cycle alive
+      - name: Keep the cycle alive
         if: ${{ always() }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           elapsed=$(( $(date +%s) - RUN_START ))
           wait=$(( 570 - elapsed ))
+
           if [ "$wait" -gt 0 ]; then
-            echo "Waiting ${wait}s before starting the next cycle"
+            echo "Waiting ${wait}s before starting next cycle"
             sleep "$wait"
           fi
-          gh workflow run bot.yml --ref main -R "${{ github.repository }}" || echo 'Keep-alive dispatch failed; the cron backup will continue.'
+
+          gh workflow run bot.yml \
+            --ref main \
+            -R "${{ github.repository }}" \
+            || echo "Keep-alive dispatch failed; cron backup continues."
