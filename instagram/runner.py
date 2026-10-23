@@ -1,7 +1,7 @@
 """Validate and select the two-month Story calendar without publishing by default."""
 from __future__ import annotations
 import argparse, json
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from .content import build_caption, validate_caption
 from .dedupe import content_key
@@ -11,13 +11,35 @@ CALENDAR = ROOT / "story_calendar.json"
 
 def load_calendar():
     data = json.loads(CALENDAR.read_text(encoding="utf-8"))
-    stories = data.get("stories", [])
+    start = date.fromisoformat(data["start_date"])
+    stories = []
+    for index in range(data["days"]):
+        current = start + timedelta(days=index)
+        pillar = data["pillars"][index % len(data["pillars"])]
+        stories.append({
+            "slot_id": f"story-{current.isoformat()}",
+            "publish_date": current.isoformat(),
+            "pillar": pillar["name"],
+            "format": data["formats"][index % len(data["formats"])],
+            "angle": data["angles"][(index * 3) % len(data["angles"])],
+            "template_id": data["templates"][index % len(data["templates"])],
+            "event_key": f"evergreen-{pillar['name']}-{index % len(data['pillars'])}-{current.isoformat()}",
+            "hook": pillar["hook"],
+            "cta": pillar["cta"],
+            "status": "planned",
+        })
     assert data.get("days") == len(stories), "calendar day count mismatch"
     assert len(stories) == len({x["slot_id"] for x in stories}), "duplicate slot_id"
     assert len(stories) == len({x["event_key"] for x in stories}), "duplicate event_key"
-    assert all(len(x.get("frames", [])) == 3 for x in stories), "every Story needs three frames"
+    for item in stories:
+        item["frames"] = [
+            {"type": "hook", "text": f"{item['hook']}\nموضوع امروز: {item['pillar']}"},
+            {"type": "value", "text": f"قالب: {item['format']}\nزاویه: {item['angle']}\nیک ادعای مشخص را انتخاب کن، منبع و زمان انتشارش را بررسی کن، بعد نتیجه را در یک جمله ساده بنویس."},
+            {"type": "cta", "text": item["cta"]},
+        ]
     keys = [content_key(x["frames"][0]["text"], event_key=x["event_key"]) for x in stories]
     assert len(keys) == len(set(keys)), "duplicate content key"
+    data["stories"] = stories
     return data
 
 def check():
