@@ -87,22 +87,93 @@ jobs:
         if: ${{ always() }}
         run: python v13_monitor.py
 
-      - name: Enforce publication health
+            - name: Enforce runtime and publication health
         if: ${{ always() }}
         run: |
           python - <<'PY'
-          import json, pathlib, sys
-          p=pathlib.Path('v13_monitor.json')
-          if not p.exists():
-              print('V13 MONITOR: missing telemetry')
+          import json
+          import pathlib
+          import sys
+
+          health_file = pathlib.Path("v13_health.json")
+          monitor_file = pathlib.Path("v13_monitor.json")
+
+          if not health_file.exists():
+              print("V13 HEALTH: runtime health file is missing")
               sys.exit(1)
-          data=json.loads(p.read_text(encoding='utf-8'))
-          status=str(data.get('status','')).strip().lower()
-          failed=int(data.get('failed_publications',0) or 0)
-          ambiguous=int(data.get('ambiguous_publications',0) or 0)
-          print(f'V13 PUBLICATION HEALTH: status={status}, failed={failed}, ambiguous={ambiguous}')
-          if status == 'publication_failure' or failed > 0 or ambiguous > 0:
+
+          if not monitor_file.exists():
+              print("V13 MONITOR: monitor file is missing")
               sys.exit(1)
+
+          try:
+              health = json.loads(health_file.read_text(encoding="utf-8"))
+              monitor = json.loads(monitor_file.read_text(encoding="utf-8"))
+          except Exception as exc:
+              print(f"V13 HEALTH: invalid telemetry JSON: {type(exc).__name__}")
+              sys.exit(1)
+
+          if not isinstance(health, dict) or not isinstance(monitor, dict):
+              print("V13 HEALTH: telemetry must be JSON objects")
+              sys.exit(1)
+
+          run_status = str(
+              health.get("status", monitor.get("run_status", "unknown"))
+          ).strip().lower()
+
+          monitor_status = str(
+              monitor.get("status", "unknown")
+          ).strip().lower()
+
+          failed = int(monitor.get("failed_publications", 0) or 0)
+          ambiguous = int(monitor.get("ambiguous_publications", 0) or 0)
+
+          print(
+              "V13 HEALTH: "
+              f"run_status={run_status}, "
+              f"monitor_status={monitor_status}, "
+              f"failed={failed}, "
+              f"ambiguous={ambiguous}"
+          )
+
+          bad_run_statuses = {
+              "",
+              "unknown",
+              "failed",
+              "error",
+              "runtime_failure",
+          }
+
+          bad_monitor_statuses = {
+              "",
+              "unknown",
+              "runtime_failure",
+              "publication_failure",
+          }
+
+          errors = []
+
+          if run_status in bad_run_statuses:
+              errors.append(f"invalid runtime status: {run_status or 'missing'}")
+
+          if monitor_status in bad_monitor_statuses:
+              errors.append(
+                  f"invalid monitor status: {monitor_status or 'missing'}"
+              )
+
+          if failed > 0:
+              errors.append(f"{failed} failed publication(s)")
+
+          if ambiguous > 0:
+              errors.append(f"{ambiguous} ambiguous publication(s)")
+
+          if errors:
+              print("V13 CI BLOCKED:")
+              for error in errors:
+                  print(f" - {error}")
+              sys.exit(1)
+
+          print("V13 CI HEALTH: PASS")
           PY
 
       - name: Persist runtime state without rewriting code
