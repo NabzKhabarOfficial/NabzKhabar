@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792705316
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792705316
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792705316
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792705320
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792705328
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792705328
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792705330
     },
@@ -159,12 +135,36 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792709082
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792714247
+    },
+    {
+      "e": "EDITOR BATCH: 4/5 via groq/openai/gpt-oss-120b",
+      "t": 1792714253
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792714254
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792714255
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792714255
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792714261
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-22",
-      "n": 143
+      "n": 144
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-22",
@@ -172,19 +172,19 @@
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-22",
-      "n": 108
+      "n": 109
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-22",
-      "n": 108
+      "n": 109
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-10-22",
-      "n": 90
+      "day": "2026-10-23",
+      "n": 4
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-10-22",
-      "n": 90
+      "day": "2026-10-23",
+      "n": 2
     },
     "openrouter:*": {
       "day": "2026-10-22",
@@ -192,103 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-10-19": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 189,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 142,
-        "other": 47
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 330,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 328,
-        "other": 2
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 83,
-        "calls": 153,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 40,
-        "other": 30
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 82,
-        "calls": 127,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 32,
-        "other": 13
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 68,
-        "other": 22
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 52,
-        "other": 38
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 0,
-        "calls": 20,
-        "ok": 20,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 0,
-        "calls": 1150,
-        "ok": 1150,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 4,
-        "calls": 4,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 4,
-        "calls": 4,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/set",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:nvidia/nemotron-3-super-120b-a12b:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 30,
-        "last_error": "HTTP 500: {\"error\":{\"message\":\"Internal Server Error\",\"code\":500}}",
-        "ok": 29,
-        "other": 1
-      }
-    },
     "2026-10-20": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -546,16 +449,51 @@
         "ok": 22,
         "other": 0
       }
+    },
+    "2026-10-23": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 1
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 4,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 2,
+        "other": 2
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 2,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 1,
+        "other": 1
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1792580265.3426971,
-      "title": "وزیر دفاع بریتانیا: حملات حوثی ها به عربستان «نفرت انگیز» و جنگنده های تایفون برای دفاع از ریاض اعزام می شوند",
-      "urgent": false
-    },
     {
       "label": "موضع‌گیری",
       "level": 5,
@@ -1388,6 +1326,13 @@
       "t": 1792707427.7439828,
       "title": "نتانیاهو: شخصاً برای کوچاندن فلسطینیان غزه تلاش می کنم",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1792714289.6013405,
+      "title": "قالیباف: جنگ با ایران برای آمریکا ده پیامد تلخ دارد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-22",
@@ -1433,12 +1378,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: توفان و سیل با تلفات جانی در فرانسه خبری مهم جهانی است",
       "topic": "حادثه",
       "until": 1792756175.5787663
-    },
-    "v4|australian zoo plays matchmaker for giant birds, and big green eggs are proof": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: خبر سبک و غیرسیاسی که فاقد اهمیت ملی یا بین‌المللی است.",
-      "topic": "جامعه",
-      "until": 1792719689.2740595
     },
     "v4|ballon d’or 2026: can bayern’s harry kane end england’s 25 years of hurt?": {
       "ok": false,
@@ -1553,6 +1492,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: تنش‌های سیاسی میان رهبران فرانسه و آمریکا و ممنوعیت تجمعات در پاریس",
       "topic": "سیاست",
       "until": 1792724280.8551621
+    },
+    "v4|m 7.0 - 191 km ene of nagqu, china": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: موجۀ زلزله ۷.۰ در چین",
+      "topic": "آب و هوا",
+      "until": 1792800648.1192772
     },
     "v4|magnitude 7 earthquake kills 16 people in china’s tibet, xinhua reports": {
       "ok": true,
@@ -1919,6 +1864,12 @@
       "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=world: اعلام رسمی ترامپ و واکنش‌های احتمالی بر سر مذاکرات ایران-آمریکا",
       "topic": "سیاست",
       "until": 1792738230.3879972
+    },
+    "v4|ادعای رسانه صهیونیست درباره تخلیه خانواده دیپلمات های آمریکایی ازمنطقه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Unverified claim of diplomatic evacuations, no official confirmation",
+      "topic": "سیاست",
+      "until": 1792800653.087445
     },
     "v4|ادعای سنتکام درباره صادرات نفت ایران": {
       "ok": false,
@@ -2412,12 +2363,6 @@
       "topic": "ورزش",
       "until": 1792723168.7557309
     },
-    "v4|بازی های پاراآسیایی ناگویا ۲۰۲۶؛دونده ۴۰۰ متر ایران فینالیست شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: صعود به فینال مسابقات پاراآسیایی اهمیت خبری درجه یک ندارد.",
-      "topic": "ورزش",
-      "until": 1792720852.5982478
-    },
     "v4|برخورد سمند با پراید در جاده کاشمر-ریوش با یک کشته و ۶ مصدوم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: تصادف جاده‌ای محلی با تلفات محدود و خارج از مقیاس ملی",
@@ -2634,12 +2579,6 @@
       "topic": "سیاست",
       "until": 1792746334.3330805
     },
-    "v4|تراکتور دیگر سرباز نمی گیرد/ امشب، خداحافظی اشکبار بیرانوند با یادگار": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر مربوط به وضعیت بازیکن یک باشگاه ورزشی است.",
-      "topic": "ورزش",
-      "until": 1792720194.5282667
-    },
     "v4|تراکتور ۳ - صنعت نفت صفر / خروج موقت تراکتور از بحران": {
       "ok": false,
       "reason": "ai openrouter/openrouter/free batch score=2 happened=True scope=local: Trākto 3 defeated Industry Oil 0 in a football match",
@@ -2747,6 +2686,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial governor's routine economic remarks",
       "topic": "اقتصاد",
       "until": 1792788865.5643408
+    },
+    "v4|تمامی تمهیدات برای خدمات رسانی به سیل زدگان اندیشیده شده/ آمادگی کامل داریم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Local flood relief measures, limited national impact",
+      "topic": "آب و هوا",
+      "until": 1792800653.073086
     },
     "v4|تنگه هرمز، نفت گران و شوک اقتصادی؛ ادعای پیروزی ترامپ تنها مصرف انتخاباتی دارد": {
       "ok": false,
@@ -3264,6 +3209,12 @@
       "topic": "جامعه",
       "until": 1792786682.7041526
     },
+    "v4|رسانه های آمریکایی: ترامپ در حال بررسی گزینه حمله مجدد به ایران است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: Speculative media claim, no concrete action",
+      "topic": "سیاست",
+      "until": 1792800653.044108
+    },
     "v4|رضایی: اقدام علیه ایران هزینه دارد": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=iran_national: Official warning about potential conflict",
@@ -3540,12 +3491,6 @@
       "topic": "ورزش",
       "until": 1792752681.6662562
     },
-    "v4|شاهین ایزدیار و سینا ضیغمی نژاد در ۱۰۰ متر قورباغه فینالیست شدند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=iran_national: صعود شناگران ایرانی به فینال مسابقات پاراآسیایی یا جهانی",
-      "topic": "ورزش",
-      "until": 1792719690.3809907
-    },
     "v4|شروع متفاوت نمایندگان اصفهان در لیگ برتر فوتسال بانوان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: نتایج لیگ برتر فوتسال بانوان در سطح ملی اهمیت خبری ندارد.",
@@ -3563,12 +3508,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: گزارش برق استان تهران درباره انشعابات غیرمجاز.",
       "topic": "جامعه",
       "until": 1792733078.615335
-    },
-    "v4|شناگر ایران در ۵۰ متر آزاد فینالیست شد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: راهیابی شناگر ایران به فینال مسابقات جهانی یا پارالمپیک",
-      "topic": "ورزش",
-      "until": 1792721365.50743
     },
     "v4|شهادت یک فلسطینی و زخمی شدن چند نفر دیگر در حمله رژیم اسرائیل به غزه": {
       "ok": false,
@@ -4356,6 +4295,12 @@
       "topic": "سیاست",
       "until": 1792783203.6444094
     },
+    "v4|هشدار یمن به شرکت های هواپیمایی: فرودگاه های عربستان در معرض حمله است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Warning of possible attack, no incident yet",
+      "topic": "نظامی",
+      "until": 1792800653.05865
+    },
     "v4|هم می توان گفت حمله می شود و هم می توان گفت حمله نمی شود / اگر به کوه کلنگ حمله شود، ایران به دیمونا حمله می کند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: تحلیل و گمانه‌زنی یک کارشناس روابط بین‌الملل درباره احتمال حمله.",
@@ -4439,12 +4384,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آمار معمولی وزارت آموزش و پرورش ارزش خبری درجه یک ندارد",
       "topic": "جامعه",
       "until": 1792757786.7993464
-    },
-    "v4|وحید علی نجیمی فینالیست دوی ۴۰۰ متر شد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: صعود نماینده ایران به فینال بازی های پاراآسیایی",
-      "topic": "ورزش",
-      "until": 1792720853.8838303
     },
     "v4|ورزش در مدارس؛ از تفاوت های جنسیتی تا چالش آموزش غیرحضوری": {
       "ok": false,
@@ -4637,6 +4576,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Opinion piece, no concrete event or decision",
       "topic": "سیاست",
       "until": 1792780785.5183132
+    },
+    "v4|پنتاگون به دنبال خرابکاری دیجیتالی در کشورهای خارجی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: ایجاد واحد جدید سایبری در پنتاگون برای عملیات‌های خرابکارانه خارجی",
+      "topic": "نظامی",
+      "until": 1792800677.9679182
     },
     "v4|پنج مدرسه زنجان برای اجرای طرح زیست بوم جدید یادگیری انتخاب شد": {
       "ok": false,
@@ -5067,15 +5012,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "یونان تحریم های ایران را اجرا می کند ⚡️ وزارت دارایی یونان اعلام کرد که در پی تحریم های آمریکا علیه شرکت های ح",
-      "id": "25d4efdac4",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792668103,
-      "verdict": "new",
-      "why": "یونان تحریم‌های ایران را اجرا می‌کند، موضوع جدید"
-    },
     {
       "head": "صندوق بین المللی پول: اختلال در مسیرهای تجاری می تواند قیمت انرژی را افزایش دهد و رشد اقتصادی را تضعیف کند ⚡️ ",
       "id": "56c85e9ce6",
@@ -5623,16 +5559,18 @@
       "t": 1792707426,
       "verdict": "new",
       "why": "نovo evento sobre declaração de Netanyahu"
+    },
+    {
+      "head": "قالیباف: جنگ با ایران برای آمریکا ده پیامد تلخ دارد ⚡️ محمد باقر قالیباف در توییتی به آمریکا هشدار داد که جنگ ",
+      "id": "20adb839ed",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792714288,
+      "verdict": "new",
+      "why": "جنگ احتمالی آمریکا با ایران، پیامدهای اقتصادی و نظامی"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: واکنش معاون رئیس‌جمهور آمریکا به توافق تحریمی روسیه و دفاع از سیاست دولت",
-      "rescued": true,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792689394,
-      "title": "ونس درباره توافق گازوئیل با روسیه: اطمینان می دهم که مسکو، رئیس جمهور آمریکا را بازی و فریب نمی دهد/ اینکه می گویند حالا"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارات تکراری مقام سپاه درباره رویکرد سیاسی داخلی.",
       "rescued": false,
@@ -6185,138 +6123,19 @@
       "rule": "routine-metaphorical-topic",
       "t": 1792709070,
       "title": "کین بهترین بازیکن انگلیسی تمام دوران است!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: موجۀ زلزله ۷.۰ در چین",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792714248,
+      "title": "M 7.0 - 191 km ENE of Nagqu, China"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "احتمل",
-        "اقدم",
-        "انتقد",
-        "اپزسن",
-        "خددر",
-        "دند",
-        "مسل",
-        "نتنه",
-        "نسبت",
-        "پشگرن",
-        "کتس",
-        "کنن",
-        "یسرل"
-      ],
-      "t": 1792665302.773519,
-      "title": "وزیر جنگ اسرائیل: هر حمله احتمالی علیه اسرائیل را اپوزیسیون مسئول می داند ⚡️ یسرائیل کاتس، وزیر جنگ اسرائیل، هر حمله احت"
-    },
-    {
-      "h": [
-        "الخلج",
-        "الهل",
-        "تعطل",
-        "تم",
-        "جده",
-        "حرف",
-        "ددر",
-        "دلل",
-        "دمم",
-        "سفر",
-        "فردگ",
-        "لغ",
-        "لگ",
-        "مقت",
-        "یزدهم"
-      ],
-      "t": 1792665322.7931376,
-      "title": "لغو دیدار الاهلی و الخلیج عربستان به دلیل حمله به فرودگاه دمام ⚡️ سفر تیم الخلیج عربستان به جده برای دیدار هفته یازدهم ل"
-    },
-    {
-      "h": [
-        "اتحد",
-        "اجر",
-        "اقدم",
-        "حقق",
-        "در",
-        "دست",
-        "شرکت",
-        "قنن",
-        "لزم",
-        "مرتبط",
-        "مقرر",
-        "مل",
-        "وزرت",
-        "ین"
-      ],
-      "t": 1792668104.1351511,
-      "title": "یونان تحریم های ایران را اجرا می کند ⚡️ وزارت دارایی یونان اعلام کرد که در پی تحریم های آمریکا علیه شرکت های حقوقی مرتبط"
-    },
-    {
-      "h": [
-        "اختلل",
-        "افزش",
-        "انرژ",
-        "تجر",
-        "تضعف",
-        "تلد",
-        "تند",
-        "دد",
-        "رشد",
-        "صندق",
-        "مسر",
-        "هرگن",
-        "هشدر",
-        "پل"
-      ],
-      "t": 1792668116.891445,
-      "title": "صندوق بین المللی پول: اختلال در مسیرهای تجاری می تواند قیمت انرژی را افزایش دهد و رشد اقتصادی را تضعیف کند ⚡️ صندوق بین "
-    },
-    {
-      "h": [
-        "اسلم",
-        "امد",
-        "تکد",
-        "خه",
-        "دفعم",
-        "سفر",
-        "نرژ",
-        "نستم",
-        "کمل"
-      ],
-      "t": 1792669794.948741,
-      "title": "سفیر ایران در نروژ: خواهان جنگ نیستیم اما کاملاً آماده دفاعیم ⚡️ سفیر جمهوری اسلامی ایران در نروژ تأکید کرد که تهران خوا"
-    },
-    {
-      "h": [
-        "اخر",
-        "تضح",
-        "تکذب",
-        "خددر",
-        "شبک",
-        "محت",
-        "مصحب",
-        "ممنعت",
-        "نتنه",
-        "ندرست",
-        "وگ",
-        "کنل"
-      ],
-      "t": 1792669809.2601008,
-      "title": "نتانیاهو ادعای ممانعت ترامپ از حمله به ایران را تکذیب کرد ⚡️ نتانیاهو در مصاحبه با شبکه کانال ۷ اسرائیل اعلام کرد که این"
-    },
-    {
-      "h": [
-        "ارمک",
-        "تسس",
-        "رض",
-        "شرکت",
-        "صد",
-        "پتخت",
-        "پهپد"
-      ],
-      "t": 1792670196.5089421,
-      "title": "انفجار در ریاض و حمله به تأسیسات آرامکو ⚡️ صدای انفجار در پایتخت عربستان و حمله پهپادی به تأسیسات شرکت نفتی آرامکو گزارش"
-    },
     {
       "h": [
         "اجر",
@@ -7096,6 +6915,31 @@
       ],
       "t": 1792707427.730235,
       "title": "نتانیاهو: شخصاً برای کوچاندن فلسطینیان غزه تلاش می کنم ⚡️ نخست وزیر اسرائیل از تلاش شخصی خود برای کوچ اجباری فلسطینیان ا"
+    },
+    {
+      "h": [
+        "افزش",
+        "بده",
+        "بزر",
+        "بقر",
+        "تت",
+        "ترم",
+        "تلخ",
+        "تلف",
+        "جنگند",
+        "حدقل",
+        "خهد",
+        "سهم",
+        "قلبف",
+        "محمد",
+        "منف",
+        "هشدر",
+        "همر",
+        "پمد",
+        "کهش"
+      ],
+      "t": 1792714289.5877378,
+      "title": "قالیباف: جنگ با ایران برای آمریکا ده پیامد تلخ دارد ⚡️ محمد باقر قالیباف در توییتی به آمریکا هشدار داد که جنگ با ایران ح"
     }
   ],
   "_published_incidents": [
@@ -7410,323 +7254,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ادع",
-        "ارتش",
-        "انجم",
-        "بزرگ",
-        "بهتن",
-        "تکذب",
-        "حمل",
-        "خند",
-        "دخل",
-        "ددن",
-        "درغن",
-        "سخنگ",
-        "سرع",
-        "شهر",
-        "عربست",
-        "عمق",
-        "عملت",
-        "مدن",
-        "مسلح",
-        "معرف",
-        "منر",
-        "ندد",
-        "نر",
-        "هدف",
-        "هچ",
-        "کذب",
-        "یح",
-        "یمن"
-      ],
-      "s": "سخنگوی ارتش یمن",
-      "t": 1792578557.5627859,
-      "title": "سخنگوی ارتش یمن: حمله به عربستان ادعایی دروغین است ⚡️ یحیی سریع، سخنگوی ارتش یمن، ادعای حمله به عمق عربستان را تکذیب کرد"
-    },
-    {
-      "k": [
-        "اح",
-        "اختلف",
-        "ار",
-        "ازد",
-        "استن",
-        "اقتصد",
-        "امدگ",
-        "امرک",
-        "اکرن",
-        "تد",
-        "ترمپ",
-        "تشکر",
-        "تمل",
-        "تکد",
-        "جمهر",
-        "ددر",
-        "درگر",
-        "دنلد",
-        "ربط",
-        "رس",
-        "شهرند",
-        "نمند",
-        "هبرد",
-        "همکر",
-        "وژ",
-        "پتن",
-        "کمک"
-      ],
-      "s": "پوتین",
-      "t": 1792579667.9597185,
-      "title": "پوتین: روسیه آمادگی همکاری با آمریکا در حل اختلاف ایران و اوکراین را دارد ⚡️ رئیس جمهور روسیه، پوتین، در دیداری با نماین"
-    },
-    {
-      "k": [
-        "ابعد",
-        "ار",
-        "استن",
-        "اسرل",
-        "اشر",
-        "افکر",
-        "اقدم",
-        "امرک",
-        "بزتب",
-        "تبن",
-        "تند",
-        "تکد",
-        "تکرر",
-        "جلگر",
-        "جنت",
-        "جهن",
-        "حدث",
-        "حضر",
-        "حمل",
-        "رسن",
-        "رشن",
-        "زرق",
-        "شرز",
-        "ضررت",
-        "عمم",
-        "لمرد",
-        "مجلس",
-        "مسل",
-        "مل",
-        "نمد",
-        "نمند",
-        "کمک"
-      ],
-      "s": "نماینده مجلس",
-      "t": 1792580243.4438093,
-      "title": "نماینده مجلس: ابعاد حمله به لامرد باید در افکار عمومی جهان تبیین شود ⚡️ نماینده شیراز و زرقان در مجلس، با اشاره به حمله "
-    },
-    {
-      "k": [
-        "اتش",
-        "استرتنگ",
-        "اعزم",
-        "اقدم",
-        "الملل",
-        "انجم",
-        "انگز",
-        "برتن",
-        "تشدد",
-        "تصف",
-        "تفن",
-        "تنه",
-        "جنگند",
-        "حت",
-        "حث",
-        "حمل",
-        "درخست",
-        "درند",
-        "درگر",
-        "دفع",
-        "رض",
-        "زرسخت",
-        "سعد",
-        "صرت",
-        "عربست",
-        "فردگ",
-        "فرپش",
-        "محفظت",
-        "مضع",
-        "ممرت",
-        "مکرر",
-        "نخهند",
-        "نفرت",
-        "وزر",
-        "پسخ",
-        "چندسل",
-        "کشر",
-        "یمن"
-      ],
-      "s": "وزیر دفاع بریتانیا",
-      "t": 1792580265.314671,
-      "title": "وزیر دفاع بریتانیا: حملات حوثی ها به عربستان «نفرت انگیز» و جنگنده های تایفون برای دفاع از ریاض اعزام می شوند ⚡️ وزیر دف"
-    },
-    {
-      "k": [
-        "ابعد",
-        "ار",
-        "ارشد",
-        "بررس",
-        "تحلل",
-        "تررسم",
-        "ترمپ",
-        "جد",
-        "حمت",
-        "رهبرد",
-        "طلب",
-        "ندم",
-        "نشست",
-        "پردخت",
-        "پژهشگر",
-        "ژپلتک"
-      ],
-      "s": "ندیمی",
-      "t": 1792580891.8810408,
-      "title": "ندیمی: حمایت ترامپ از تروریسم و جدایی طلبی در ایران، ابعاد ژئوپلیتیکی دارد ⚡️ پژوهشگر ارشد ژئوپلیتیک در نشستی به بررسی ر"
-    },
-    {
-      "k": [
-        "ار",
-        "استدم",
-        "استدگ",
-        "اعمل",
-        "امرک",
-        "ان",
-        "انجم",
-        "بتنم",
-        "بر",
-        "تحرم",
-        "تصر",
-        "تهر",
-        "جمهر",
-        "جنگ",
-        "حمل",
-        "خهم",
-        "دنبل",
-        "رس",
-        "رفت",
-        "رم",
-        "زر",
-        "صدر",
-        "قصد",
-        "قلدر",
-        "مسعد",
-        "مل",
-        "نبد",
-        "نخهد",
-        "ندرد",
-        "همچن",
-        "هچ",
-        "وجه",
-        "پزشک",
-        "کنم",
-        "گرمدشت",
-        "گه"
-      ],
-      "s": "پزشکیان",
-      "t": 1792580904.4991488,
-      "title": "پزشکیان: زیر بار زور و قلدری نمی رویم ⚡️ مسعود پزشکیان رئیس جمهور در آیین گرامیداشت روز ملی صادرات در تهران اعلام کرد که"
-    },
-    {
-      "k": [
-        "الف",
-        "بندر",
-        "جز",
-        "جنب",
-        "حمل",
-        "دقق",
-        "شرق",
-        "عرق",
-        "مشخص",
-        "منبع",
-        "منطق",
-        "نشد",
-        "نفتکش",
-        "هدف",
-        "هنز",
-        "وقع"
-      ],
-      "t": 1792581898.8772423,
-      "title": "نفتکش در جنوب شرق بندر الفاو عراق هدف حمله قرار گرفت ⚡️ یک نفتکش در منطقه جنوب شرق بندر الفاو عراق مورد حمله قرار گرفت. "
-    },
-    {
-      "k": [
-        "ابرز",
-        "ار",
-        "اعتمد",
-        "امد",
-        "امدگ",
-        "امر",
-        "امرک",
-        "بدن",
-        "بربر",
-        "تجزگر",
-        "تفق",
-        "تمل",
-        "تهر",
-        "تکد",
-        "تکرر",
-        "خددر",
-        "خرج",
-        "دفع",
-        "دنبل",
-        "دپلمس",
-        "شرفتمندن",
-        "صدقن",
-        "صلح",
-        "عدلن",
-        "عرقچ",
-        "نخهد",
-        "ندرد",
-        "وزر",
-        "وشنگتن",
-        "یددشت"
-      ],
-      "s": "عراقچی",
-      "t": 1792582402.9696727,
-      "title": "عراقچی: ایران آمادگی دیپلماسی دارد اما از دفاع خودداری نخواهد کرد ⚡️ وزیر امور خارجه ایران در یادداشت خود تأکید کرد که ت"
-    },
-    {
-      "k": [
-        "ادع",
-        "اقدم",
-        "اکرن",
-        "بدن",
-        "تر",
-        "تصف",
-        "تفق",
-        "خرج",
-        "خصص",
-        "خصمن",
-        "درن",
-        "دنست",
-        "رس",
-        "زخر",
-        "سخنگ",
-        "شرکت",
-        "غرقنع",
-        "فرش",
-        "قطع",
-        "مبن",
-        "مر",
-        "مقم",
-        "مند",
-        "نخهد",
-        "نسبت",
-        "هشدر",
-        "همکر",
-        "وزرت",
-        "وکنش",
-        "پسخ",
-        "پهپد",
-        "ژپن",
-        "کنند"
-      ],
-      "t": 1792584288.244246,
-      "title": "واکنش قاطع روسیه به توافق پهپادی شرکت ژاپنی با اوکراین ⚡️ روسیه فروش پهپاد از سوی شرکت ژاپنی «ترا درون» به اوکراین را اق"
-    },
     {
       "k": [
         "ار",
@@ -11802,6 +11329,44 @@
       "s": "نتانیاهو",
       "t": 1792707427.7163537,
       "title": "نتانیاهو: شخصاً برای کوچاندن فلسطینیان غزه تلاش می کنم ⚡️ نخست وزیر اسرائیل از تلاش شخصی خود برای کوچ اجباری فلسطینیان ا"
+    },
+    {
+      "k": [
+        "ار",
+        "افزش",
+        "امرک",
+        "بده",
+        "بزر",
+        "بقر",
+        "بمند",
+        "تت",
+        "ترم",
+        "تلخ",
+        "تلف",
+        "تند",
+        "جلگر",
+        "جنگ",
+        "جنگند",
+        "حدقل",
+        "خهد",
+        "در",
+        "سختگ",
+        "سقط",
+        "سهم",
+        "قلبف",
+        "مترکس",
+        "محمد",
+        "مسر",
+        "منف",
+        "نظم",
+        "هشدر",
+        "همر",
+        "پمد",
+        "کهش"
+      ],
+      "s": "قالیباف",
+      "t": 1792714289.5737498,
+      "title": "قالیباف: جنگ با ایران برای آمریکا ده پیامد تلخ دارد ⚡️ محمد باقر قالیباف در توییتی به آمریکا هشدار داد که جنگ با ایران ح"
     }
   ],
   "_text_polish": {
@@ -11813,7 +11378,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792710228
+    "at": 1792714127
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11833,13 +11398,13 @@
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792709134,
-    "last_failure": 1792708534,
-    "last_status": 429
+    "disabled_until": 1792714561.0,
+    "last_failure": 1792714261,
+    "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792709130,
-    "last_failure": 1792708530,
+    "disabled_until": 1792714855,
+    "last_failure": 1792714255,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
