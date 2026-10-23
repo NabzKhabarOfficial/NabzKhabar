@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792707402
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1792707428
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792707850
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792707850
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792707854
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 5x",
       "t": 1792719333
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792720583
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792720584
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792720586
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792720604
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-22",
-      "n": 251
+      "n": 252
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-22",
-      "n": 111
+      "n": 112
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-22",
-      "n": 111
+      "n": 112
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-23",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-23",
-      "n": 10
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-10-22",
@@ -460,11 +460,19 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 4,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 3
+      },
+      "gemini:gemini-3.8-flash": {
         "429": 1,
         "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
@@ -472,44 +480,29 @@
         "ok": 0,
         "other": 2
       },
-      "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 2,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
-        "other": 1
-      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 8,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 9,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "موضع‌گیری",
-      "level": 5,
-      "t": 1792580891.909557,
-      "title": "ندیمی: حمایت ترامپ از تروریسم و جدایی طلبی در ایران، ابعاد ژئوپلیتیکی دارد",
-      "urgent": false
-    },
     {
       "label": "موضع‌گیری",
       "level": 4,
@@ -1342,6 +1335,13 @@
       "t": 1792714289.6013405,
       "title": "قالیباف: جنگ با ایران برای آمریکا ده پیامد تلخ دارد",
       "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1792720603.9061172,
+      "title": "امضای سه توافقنامه همکاری میان ترکیه و کانادا",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-22",
@@ -1430,6 +1430,12 @@
       "topic": "سیاست",
       "until": 1792805716.3631477
     },
+    "v4|embattled queensland minister amanda camm quits crisafulli frontbench citing health and safety reasons": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local resignation, no national impact",
+      "topic": "سیاست",
+      "until": 1792806984.1008496
+    },
     "v4|emirati diplomat could become next un chief despite human rights concerns": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: نامزدی برای دبیرکلی سازمان ملل یک گمانه‌زنی و فرآیند دیپلماتیک است.",
@@ -1507,12 +1513,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارنظر یک ورزشکار درباره آینده شغلی، خبری درجه یک نیست.",
       "topic": "ورزش",
       "until": 1792793790.9331667
-    },
-    "v4|live: paris bans protests after violent unrest as macron takes swipe at trump": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: تنش‌های سیاسی میان رهبران فرانسه و آمریکا و ممنوعیت تجمعات در پاریس",
-      "topic": "سیاست",
-      "until": 1792724280.8551621
     },
     "v4|m 7.0 - 191 km ene of nagqu, china": {
       "ok": false,
@@ -1724,12 +1724,6 @@
       "topic": "جامعه",
       "until": 1792754448.7205777
     },
-    "v4|آغاز سفری یک ساله برای یافتن منشاء حیات در منظومه شمسی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=False scope=world: اعلام پرتاب آینده، هنوز رخ نداده",
-      "topic": "فناوری",
-      "until": 1792724879.6449575
-    },
     "v4|آغاز مسابقات منطقه ای دراژبال دختران طرح محله ۲۰۲۰ در کرمان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مسابقات ورزشی محلی دختران",
@@ -1813,6 +1807,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine administrative decision regarding school curriculum, lacks national strategic impact.",
       "topic": "جامعه",
       "until": 1792741248.5726447
+    },
+    "v4|ابوالفضل ظریف پور به فینال ۱۰۰ متر آزاد رسید؛ پایان کار ۲ پاراشناگر": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: Iranian swimmer reaches 100m freestyle final",
+      "topic": "ورزش",
+      "until": 1792806986.5051193
     },
     "v4|اتابک: دستور پزشکیان برای جلوگیری از قطعی برق و گاز صنایع": {
       "ok": true,
@@ -2360,6 +2360,12 @@
       "topic": "ورزش",
       "until": 1792767438.6755798
     },
+    "v4|ببخشید، یک عذرخواهی به آرائوخو بدهکارم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Player position shift and goal, not major decisive sports event",
+      "topic": "ورزش",
+      "until": 1792806983.515861
+    },
     "v4|برخورد سمند با پراید در جاده کاشمر-ریوش با یک کشته و ۶ مصدوم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: تصادف جاده‌ای محلی با تلفات محدود و خارج از مقیاس ملی",
@@ -2600,6 +2606,12 @@
       "topic": "جامعه",
       "until": 1792783203.6729128
     },
+    "v4|ترکیه و کانادا سه توافقنامه همکاری امضا کردند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: Turkey-Canada defense, transport, energy agreements signed",
+      "topic": "سیاست",
+      "until": 1792806986.4934812
+    },
     "v4|تسلا فروش تاکسی های خودران را تا پایان سال کلید می زند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=False scope=world: اعلام برنامه برای آینده است و رویداد قطعی رخ نداده.",
@@ -2611,12 +2623,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: تغییرات اداری و تسهیلات مالیاتی جزو اخبار رده اول محسوب نمی‌شوند.",
       "topic": "اقتصاد",
       "until": 1792756544.668113
-    },
-    "v4|تشدید تنش ها بین ترکیه و آذربایجان بر سر حجاب/ ممنوع الورود شدن ۳۱ چهره ترکیه ای": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Azerbaijan bans 31 Turkish citizens over hijab dispute.",
-      "topic": "سیاست",
-      "until": 1792725460.4672897
     },
     "v4|تشریح وضعیت جوی و ترافیکی جاده های کشور": {
       "ok": false,
@@ -3848,12 +3854,6 @@
       "topic": "سیاست",
       "until": 1792738779.220884
     },
-    "v4|فلاحت پیشه:امریکا به دنبال توافق با ایران نیست و میانجی ها فقط پیام جنگ می آورند/ دست ایران خالی نیست": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=iran_national: اظهارات بدون تصمیم یا واقعهٔ جدید",
-      "topic": "سیاست",
-      "until": 1792724879.6302001
-    },
     "v4|قالیباف خطاب به آمریکا: جنگ با ایران حداقل ۱۰ پیامد تلخ برای شما به همراه خواهد آورد، از سقوط بازار سهام و جنگنده ها گرفته تا افزایش بدهی و تورم و آمار سربازان کشته شده تان/ مجبور": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: هشدار صریح رئیس مجلس ایران به آمریکا درباره پیامدهای جنگ.",
@@ -4196,12 +4196,6 @@
       "topic": "سلامت",
       "until": 1792760064.009708
     },
-    "v4|نصری: همراهی بی سابقه افکار عمومی غرب با ایران نباید در دام جنگ تمدنی بسوزد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=iran_national: نظر شخصی، بدون رویداد ملموس",
-      "topic": "سیاست",
-      "until": 1792724879.615224
-    },
     "v4|نفت ۱۱۱.۱۶ دلار شد/ ادعای نیویورک تایمز به نقل از مقامات آگاه: طرح های مشخصی برای ازسرگیری حملات کوتاه ولی شدید علیه ایران پس از انتخابات آمریکا، تدوین شده/ فارس: ۴ کشتی هدف قرار گ": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo score=8 happened=True scope=world: نیویورک تایمز: طرح‌های حمله کوتاه‌مدت علیه ایران پس از انتخابات آمریکا",
@@ -4459,6 +4453,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: گزارش آمار معمول ذخایر آب سدهای استان تهران.",
       "topic": "جامعه",
       "until": 1792743690.793658
+    },
+    "v4|وضعیت هشداردهنده ای درباره کرونا و آنفلوآنزا نداریم/دانش آموزان سرماخورده را مدرسه نفرستید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Routine advisory, no alarming outbreak",
+      "topic": "سلامت",
+      "until": 1792806982.649651
     },
     "v4|وعده دوباره ترامپ: پس از پایان جنگ با ایران قیمت نفت کاهش می یابد": {
       "ok": true,
@@ -4996,15 +4996,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "نتانیاهو ادعای ممانعت ترامپ از حمله به ایران را تکذیب کرد ⚡️ نتانیاهو در مصاحبه با شبکه کانال ۷ اسرائیل اعلام ",
-      "id": "3545400e5c",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792669808,
-      "verdict": "new",
-      "why": "نتانیاهو تکذیب ادعای ممانعت ترامپ از حمله به ایران"
-    },
     {
       "head": "انفجار در ریاض و حمله به تأسیسات آرامکو ⚡️ صدای انفجار در پایتخت عربستان و حمله پهپادی به تأسیسات شرکت نفتی آر",
       "id": "5e68acee87",
@@ -5552,30 +5543,18 @@
       "t": 1792717906,
       "verdict": "repeat",
       "why": "انفجار در ریاض و حمله به آرامکو"
+    },
+    {
+      "head": "امضای سه توافقنامه همکاری میان ترکیه و کانادا ⚡️ ترکیه و کانادا سه توافقنامه همکاری در حوزه های دفاعی، حمل و ن",
+      "id": "ec1806869d",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792720602,
+      "verdict": "new",
+      "why": "توافقنامه‌های جدید همکاری بین ترکیه و کانادا"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: صدور سند زمین دولتی در شادگان خبری محلی و کم‌اهمیت است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792691193,
-      "title": "سند ۱۲۰ هکتار اراضی دولتی دارخوین صادر شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: انتصاب محلی در حد مسئول فوتبال روستایی یک استان",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792691197,
-      "title": "مسئول فوتبال و فوتسال روستایی مازندران معرفی شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و اداری درباره بودجه یک ورزشگاه در انزلی",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792691202,
-      "title": "فرماندار: ورزشگاه سیروس قایقران از نظر مالیاتی نشان دار شد"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تگرگ در ایالات متحده، خسارت محدود",
       "rescued": false,
@@ -6114,128 +6093,33 @@
       "rule": "foreign-local-preselection",
       "t": 1792719316,
       "title": "Embattled QLD Mininster Amanda Camm quits Crisafulli frontbench citing health and safety reasons"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Routine advisory, no alarming outbreak",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792720582,
+      "title": "وضعیت هشداردهنده ای درباره کرونا و آنفلوآنزا نداریم/دانش آموزان سرماخورده را مدرسه نفرستید"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Player position shift and goal, not major decisive sports event",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792720583,
+      "title": "ببخشید، یک عذرخواهی به آرائوخو بدهکارم"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local resignation, no national impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792720584,
+      "title": "Embattled Queensland minister Amanda Camm quits Crisafulli frontbench citing health and safety reasons"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اجر",
-        "بز",
-        "بزم",
-        "تحقق",
-        "تنگ",
-        "تکد",
-        "خهد",
-        "دبر",
-        "رض",
-        "سرلشکر",
-        "شر",
-        "شرط",
-        "عل",
-        "مذکر",
-        "مل",
-        "نخهد",
-        "نز",
-        "هرمز",
-        "هفت",
-        "گردد"
-      ],
-      "t": 1792673694.6096468,
-      "title": "رضایی: ایران تا اجرای هفت شرط، تنگه هرمز را باز نخواهد کرد ⚡️ سرلشکر رضایی، دبیر شورای عالی امنیت ملی، تأکید کرد که ایرا"
-    },
-    {
-      "h": [
-        "اقدم",
-        "انجم",
-        "انقلب",
-        "تهجم",
-        "خهد",
-        "دهم",
-        "صرت",
-        "عل",
-        "پسخ",
-        "کنم",
-        "گرد"
-      ],
-      "t": 1792674146.5227587,
-      "title": "گارد انقلاب ایران: در صورت حمله، به حمله پاسخ می دهیم و خود نیز حمله می کنیم ⚡️ گارد انقلاب ایران اعلام کرد در صورت حمله"
-    },
-    {
-      "h": [
-        "برنز",
-        "بز",
-        "جدل",
-        "جگ",
-        "رسد",
-        "ششم",
-        "صعد",
-        "طل",
-        "مدل",
-        "نقر",
-        "نگ",
-        "پررزش",
-        "پرس",
-        "پله",
-        "پنج",
-        "چهرم",
-        "کر",
-        "کسب",
-        "یزد"
-      ],
-      "t": 1792676179.8731167,
-      "title": "ایران با پنج طلا در پاراآسیایی ناگویا به ششم جدول مدالها رسید ⚡️ کاروان پاراورزشی ایران در روز چهارم بازی های پاراآسیایی"
-    },
-    {
-      "h": [
-        "اس",
-        "استرت",
-        "افزش",
-        "برس",
-        "برنت",
-        "تجه",
-        "جهن",
-        "خم",
-        "رسد",
-        "شخص",
-        "صرت",
-        "قبل",
-        "مرز",
-        "مصنع",
-        "نگرن",
-        "هش",
-        "همهنگ",
-        "ول"
-      ],
-      "t": 1792676403.0481012,
-      "title": "سقوط بورس های جهانی و افزایش قیمت نفت در سایه نگرانی از هوش مصنوعی ⚡️ قیمت نفت خام برنت به مرز افزایش قابل توجهی رسید و "
-    },
-    {
-      "h": [
-        "ال",
-        "انک",
-        "جذب",
-        "دسترس",
-        "دلر",
-        "دپ",
-        "سرم",
-        "سزم",
-        "سک",
-        "شرکت",
-        "فدرل",
-        "فنر",
-        "متحد",
-        "محددت",
-        "مسدد",
-        "مصنع",
-        "ملرد",
-        "هش"
-      ],
-      "t": 1792676411.3724973,
-      "title": "دیپ سیک پس از محدودیت های ایالات متحده ۱۵ میلیارد دلار جذب کرد ⚡️ شرکت چینی هوش مصنوعی دیپ سیک دو روز پس از اینکه ایالات"
-    },
     {
       "h": [
         "اجر",
@@ -6924,6 +6808,21 @@
       ],
       "t": 1792714289.5877378,
       "title": "قالیباف: جنگ با ایران برای آمریکا ده پیامد تلخ دارد ⚡️ محمد باقر قالیباف در توییتی به آمریکا هشدار داد که جنگ با ایران ح"
+    },
+    {
+      "h": [
+        "امض",
+        "انرژ",
+        "ترک",
+        "تفقنم",
+        "حز",
+        "دفع",
+        "نقل",
+        "همکر",
+        "کند"
+      ],
+      "t": 1792720603.8956456,
+      "title": "امضای سه توافقنامه همکاری میان ترکیه و کانادا ⚡️ ترکیه و کانادا سه توافقنامه همکاری در حوزه های دفاعی، حمل و نقل هوایی و"
     }
   ],
   "_published_incidents": [
@@ -7238,270 +7137,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ار",
-        "اغز",
-        "ال",
-        "الت",
-        "امنل",
-        "تکد",
-        "ثبت",
-        "جمهر",
-        "جنگ",
-        "دند",
-        "رس",
-        "صلح",
-        "فرنس",
-        "فعلت",
-        "مخلف",
-        "مخلفت",
-        "منطق",
-        "مکرن",
-        "هرگن",
-        "هست",
-        "ورد",
-        "کشرش"
-      ],
-      "s": "مکرون",
-      "t": 1792586574.141599,
-      "title": "مکرون: فرانسه از آغاز مخالف جنگ در منطقه بوده و صلح را اولویت می داند ⚡️ امانوئل مکرون رئیس جمهور فرانسه تأکید کرد که فر"
-    },
-    {
-      "k": [
-        "ار",
-        "ارنم",
-        "ازدسز",
-        "اسرل",
-        "اغز",
-        "امرک",
-        "انرچمنت",
-        "برخرد",
-        "برطرف",
-        "برنم",
-        "بزگشت",
-        "تحرم",
-        "تنگ",
-        "تهر",
-        "جدد",
-        "جنگ",
-        "حذف",
-        "حل",
-        "خهد",
-        "ددن",
-        "در",
-        "دند",
-        "ربر",
-        "سخن",
-        "سلح",
-        "عدم",
-        "فعلت",
-        "قبل",
-        "قنن",
-        "لغ",
-        "مذکر",
-        "مسددشد",
-        "مضع",
-        "هرمز",
-        "هست",
-        "پم",
-        "چرچب",
-        "چلش",
-        "کشر",
-        "کمل",
-        "گسترش",
-        "گند"
-      ],
-      "t": 1792587155.4830225,
-      "title": "مذاکرات آمریکا و ایران در مورد تنگه هرمز با چالش جدیدی روبرو شد: انریچمنت اورانیوم ⚡️ مذاکرات برای پایان دادن به جنگ آمر"
-    },
-    {
-      "k": [
-        "ازد",
-        "استف",
-        "اشتب",
-        "ال",
-        "امرک",
-        "اکرن",
-        "بزدشت",
-        "تد",
-        "جمهر",
-        "جنگدن",
-        "خرج",
-        "رس",
-        "زندن",
-        "سل",
-        "شهرند",
-        "فردگ",
-        "فرستد",
-        "متحد",
-        "متهم",
-        "مضع",
-        "مطرح",
-        "مفقت",
-        "منتقل",
-        "نر",
-        "هبرد",
-        "وزرت",
-        "ولدمر",
-        "پتن",
-        "پلک",
-        "گفتگ"
-      ],
-      "s": "پوتین",
-      "t": 1792587174.0486295,
-      "title": "پوتین: آزادی شهروند آمریکایی زندانی در روسیه را تأیید کرد ⚡️ رئیس جمهور روسیه، ولادیمیر پوتین، با آزادی استفان هابارد، ش"
-    },
-    {
-      "k": [
-        "ابشحد",
-        "است",
-        "اسرل",
-        "القرر",
-        "برجست",
-        "بن",
-        "تسس",
-        "تشکل",
-        "جنب",
-        "حمل",
-        "خن",
-        "دب",
-        "رمض",
-        "سل",
-        "شخ",
-        "شمل",
-        "شهدت",
-        "عض",
-        "غزه",
-        "فرمند",
-        "فرمنده",
-        "فلسطن",
-        "محمد",
-        "مرکز",
-        "مص",
-        "مقمت",
-        "منطق",
-        "نر",
-        "نقش",
-        "پهپد",
-        "کشت",
-        "کمت",
-        "گذر",
-        "ینس",
-        "یک"
-      ],
-      "t": 1792588822.2743123,
-      "title": "شهادت یکی از فرماندهان کمیته های مقاومت در حمله اسرائیل ⚡️ رمضان محمد دیاب ابوشحاده، عضو فرماندهی مرکزی کمیته های مقاومت"
-    },
-    {
-      "k": [
-        "اثر",
-        "اصلح",
-        "بت",
-        "بمبر",
-        "تخرب",
-        "جر",
-        "حضر",
-        "حفظ",
-        "خبرگ",
-        "دجتل",
-        "دسترس",
-        "دفتر",
-        "ذخر",
-        "رفت",
-        "رهبر",
-        "رهد",
-        "سخت",
-        "شهد",
-        "عض",
-        "مجلس",
-        "محققن",
-        "مشبه",
-        "ندشت",
-        "نسخ",
-        "نشر",
-        "نم",
-        "هچ",
-        "وجد",
-        "وصت",
-        "گن"
-      ],
-      "s": "عضو خبرگان",
-      "t": 1792590018.5267308,
-      "title": "عضو خبرگان: وصیت نامه رهبر شهید در بمباران بیت رهبری سوخته شد ⚡️ عضو مجلس خبرگان گفت که وصیت نامه رهبر شهید در اثر بمبار"
-    },
-    {
-      "k": [
-        "اجتمع",
-        "ازد",
-        "استن",
-        "اعمل",
-        "افرد",
-        "امرک",
-        "تحرم",
-        "ترمپ",
-        "جمهر",
-        "خستر",
-        "دلل",
-        "رس",
-        "شبک",
-        "شهرند",
-        "عدم",
-        "عذرخه",
-        "فر",
-        "قطع",
-        "متعدد",
-        "مذکر",
-        "ندنستند",
-        "هبرد",
-        "پم",
-        "چر"
-      ],
-      "s": "ترامپ",
-      "t": 1792590582.9205327,
-      "title": "ترامپ: عذرخواهی های متعدد از من برای عدم تحریم فوری روسیه به دلیل مذاکره آزادی شهروند آمریکایی ⚡️ ترامپ در پیامی در شبکه"
-    },
-    {
-      "k": [
-        "ار",
-        "افزش",
-        "اقتصد",
-        "امرک",
-        "امک",
-        "بزگردن",
-        "بست",
-        "تجرت",
-        "تفت",
-        "جر",
-        "حلت",
-        "دد",
-        "دلت",
-        "زمن",
-        "عد",
-        "عرق",
-        "فشر",
-        "محددت",
-        "مختل",
-        "مرز",
-        "مسر",
-        "مقت",
-        "همر",
-        "همس",
-        "همکر",
-        "وبستگ",
-        "وشنگتن",
-        "وضعت",
-        "پذر",
-        "پکست",
-        "چذب",
-        "کشر",
-        "کل",
-        "کمل",
-        "گذرگ"
-      ],
-      "t": 1792590595.8471582,
-      "title": "بسته شدن چذابه و تفتان تجارت زمینی را مختل کرد ⚡️ بسته شدن گذرگاه های مرزی چذابه و تفتان در ایران و پاکستان، همراه با مح"
-    },
     {
       "k": [
         "ار",
@@ -11351,6 +10986,22 @@
       "s": "قالیباف",
       "t": 1792714289.5737498,
       "title": "قالیباف: جنگ با ایران برای آمریکا ده پیامد تلخ دارد ⚡️ محمد باقر قالیباف در توییتی به آمریکا هشدار داد که جنگ با ایران ح"
+    },
+    {
+      "k": [
+        "امض",
+        "انرژ",
+        "ترک",
+        "تفقنم",
+        "حز",
+        "حمل",
+        "دفع",
+        "نقل",
+        "همکر",
+        "کند"
+      ],
+      "t": 1792720603.8850327,
+      "title": "امضای سه توافقنامه همکاری میان ترکیه و کانادا ⚡️ ترکیه و کانادا سه توافقنامه همکاری در حوزه های دفاعی، حمل و نقل هوایی و"
     }
   ],
   "_text_polish": {
@@ -11362,7 +11013,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792719202
+    "at": 1792720485
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11377,13 +11028,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792719605.0,
-    "last_failure": 1792719305,
+    "disabled_until": 1792720897.0,
+    "last_failure": 1792720597,
     "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792719598.0,
-    "last_failure": 1792719298,
+    "disabled_until": 1792720892.0,
+    "last_failure": 1792720592,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
