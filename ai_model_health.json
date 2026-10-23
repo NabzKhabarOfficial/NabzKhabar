@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792789592
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792789592
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792789592
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792789592
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792791491
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792792086
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1792792087
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792792134
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-23",
-      "n": 136
+      "n": 137
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-23",
-      "n": 233
+      "n": 235
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-23",
-      "n": 103
+      "n": 104
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-23",
-      "n": 103
+      "n": 104
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-23",
-      "n": 85
+      "n": 86
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-23",
-      "n": 85
+      "n": 86
     },
     "openrouter:*": {
       "day": "2026-10-23",
@@ -460,17 +460,17 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 289,
+        "calls": 291,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 287,
+        "ok": 289,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
         "429": 69,
-        "calls": 123,
+        "calls": 124,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 34,
+        "ok": 35,
         "other": 20
       },
       "gemini:gemini-3.8-flash": {
@@ -483,16 +483,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 85,
+        "calls": 86,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 69,
+        "ok": 70,
         "other": 16
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 85,
+        "calls": 86,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 60,
+        "ok": 61,
         "other": 25
       },
       "mistral:ministral-8b-latest": {
@@ -503,8 +503,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 447,
-        "ok": 447,
+        "calls": 451,
+        "ok": 451,
         "other": 0
       },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
@@ -530,13 +530,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "قضایی",
-      "level": 4,
-      "t": 1792652508.6213725,
-      "title": "فلاحت پیشه: آمریکا به دنبال توافق نیست و پیام های دیپلماتیک حکم اولتیماتوم دارد",
-      "urgent": false
-    },
     {
       "label": "اقتصاد",
       "level": 3,
@@ -1369,6 +1362,13 @@
       "t": 1792789607.877134,
       "title": "رئیس جمهور مولداوی: دیپلمات روسیه در این کشور «عنصر نامطلوب» شد",
       "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 3,
+      "t": 1792792115.0023766,
+      "title": "حاجی میرزایی: واردات کشور با وجود محدودیت بنادر تنها ۲۵ درصد کاهش یافت",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-23",
@@ -1571,6 +1571,12 @@
       "topic": "حادثه",
       "until": 1792829782.6108727
     },
+    "v4|masked gunmen kill seven in attack on church funeral in jordan": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: Seven killed in Jordan church attack",
+      "topic": "حادثه",
+      "until": 1792878487.6791039
+    },
     "v4|melania trump ‘secured ceasefire’ in ukrainian city of oleshky: white house": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: اعلامیه کاخ سفید درباره آتش‌بس محدود در اوکراین",
@@ -1745,6 +1751,12 @@
       "topic": "سیاست",
       "until": 1792842929.6817882
     },
+    "v4|villa could reconsider garnacho deal - saturday's gossip": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=local: Villa gossip, no major event",
+      "topic": "ورزش",
+      "until": 1792878487.6941102
+    },
     "v4|war in the middle east: israel launches west bank operations": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: عملیات نظامی اسرائیل و دستور قرنطینه در کرانه باختری.",
@@ -1901,12 +1913,6 @@
       "topic": "اقتصاد",
       "until": 1792866036.20375
     },
-    "v4|ادعای ای بی سی: حملات آمریکا و اسرائیل علیه ایران تقریباً به طور قطع پس از انتخابات میان دوره ای آمریکا انجام خواهد شد/ادعای ترامپ: ما خیلی زود کار ایران را تمام خواهیم کرد؛ برای م": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل، ادعا و گمانه‌زنی رسانه‌ای درباره حملات احتمالی آینده",
-      "topic": "سیاست",
-      "until": 1792817642.902688
-    },
     "v4|ادعای تام باراک، فرستاده ویژه آمریکا درباره ایران: ممکن است آخر هفته حمله ای انجام شود / ترامپ گفته که علاقه ای به تغییر رژیم در ایران ندارد / تقریباً همه توافق دارند که تهدید هسته": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اعلام موضع رسمی فرستاده آمریکا درباره ایران و تغییر رژیم",
@@ -1978,12 +1984,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: درگیری مسلحانه و کشته شدن ۱۰ تروریست در منطقه گوادر پاکستان",
       "topic": "نظامی",
       "until": 1792839631.00789
-    },
-    "v4|ارزیابی 3کارشناس بین المللی در باره وقوع جنگ امریکا با ایران/ ترامپ نمی خواهد قبل از انتخابات حمله کند/ واشنگتن بمب های قویتری را امتحان خواهد کرد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: تحلیل و گمانه‌زنی کارشناسان درباره جنگ احتمالی آمریکا با ایران.",
-      "topic": "سیاست",
-      "until": 1792818191.3752208
     },
     "v4|ارزیابی صلاحیت داوطلبان دانشگاه فرهنگیان باید قانون مدار و به دور از سلیقه های شخصی باشد": {
       "ok": false,
@@ -2308,12 +2308,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تبادل بزرگ اسرا میان اوکراین و روسیه در سطح ملی.",
       "topic": "نظامی",
       "until": 1792854894.6381402
-    },
-    "v4|ای بی سی به نقل از یک منبع آگاه: ارتش آمریکا در حال جابه جایی نیروها در پایگاه های خود در خاورمیانه است؛ مشابه اقداماتی که پیش از آغاز جنگ با ایران در ماه فوریه، به صورت بی سروصدا": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: گزارش ای‌بی‌سی درباره جابه‌جایی نیروهای ارتش آمریکا در پایگاه‌های خاورمیانه.",
-      "topic": "نظامی",
-      "until": 1792818191.388509
     },
     "v4|ایده پوچ ترامپ در روابط بین الملل": {
       "ok": false,
@@ -2705,12 +2699,6 @@
       "topic": "حادثه",
       "until": 1792859724.1905518
     },
-    "v4|تصادف زنجیره ای در محوز فیروزکوه ۸ مصدوم برجای گذاشت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تصادف جاده‌ای با تعداد مصدوم کم، خبری محلی محسوب می‌شود.",
-      "topic": "حادثه",
-      "until": 1792818187.1966598
-    },
     "v4|تصادف سانتافه و پراید در محور اهواز- خرمشهر ۲ کشته داد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: تصادف جاده‌ای محلی با تلفات محدود",
@@ -2975,6 +2963,12 @@
       "topic": "نظامی",
       "until": 1792856530.9443393
     },
+    "v4|حاجی میرزایی:واردات کشور با وجود محدودیت بنادر، تنها ۲۵ درصد کاهش یافت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=iran_national: Imports fell 25% despite port restrictions",
+      "topic": "اقتصاد",
+      "until": 1792878487.7088673
+    },
     "v4|حادثه برای نفتکش پس از عبور از تنگه هرمز": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo score=7 happened=True scope=world: هجوم ناشناس به نفتکش در هرمز، خطر بر امنیت دریایی",
@@ -3136,6 +3130,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: Regular league match, no national significance",
       "topic": "ورزش",
       "until": 1792860810.2833855
+    },
+    "v4|دیدار تیم های چادرملو اردکان و استقلال تهران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مسابقه محلی، تاثیر محدود بر کل کشور",
+      "topic": "ورزش",
+      "until": 1792878485.8032615
     },
     "v4|دیدار طلایی پوشان ورامین و روژ میوه مریوان در لیگ دسته اول والیبال": {
       "ok": false,
@@ -4996,6 +4996,10 @@
       "reason": "content_duplicate",
       "until": 1792785083.701123
     },
+    "masked gunmen kill seven in attack on church funeral in jordan": {
+      "reason": "content_duplicate",
+      "until": 1792813734.7310114
+    },
     "one killed as elysee calls paris area shooting ‘racist, terrorist attack’": {
       "reason": "content_duplicate",
       "until": 1792806242.4867864
@@ -5226,15 +5230,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "ترامپ: کار ایران را خیلی زود تمام می کنم ⚡️ دونالد ترامپ رئیس جمهور آمریکا در گردهمایی جمهوری خواهان در آیووا ",
-      "id": "e82c145622",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1792736366,
-      "verdict": "new",
-      "why": "ترامپ اظهارات جدیدی علیه ایران مطرح کرده که مشابه آن در لیست نیست"
-    },
     {
       "head": "نشست وزیران خارجه اروپا و خاورمیانه در استانبول درباره تنش های منطقه ای ⚡️ وزیران خارجه کشورهای اروپایی و خاور",
       "id": "ec9c4fc619",
@@ -5774,16 +5769,18 @@
       "t": 1792789605,
       "verdict": "new",
       "why": "موضوع جدید: دیپلمات روسیه در مولداوی «عنصر نامطلوب» شد"
+    },
+    {
+      "head": "حاجی میرزایی: واردات کشور با وجود محدودیت بنادر تنها ۲۵ درصد کاهش یافت ⚡️ محسن حاجی میرزایی رئیس دفتر رئیس جمه",
+      "id": "ca64e66723",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792792113,
+      "verdict": "new",
+      "why": "واردات کشور و محدودیت بنادر"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، نتیجه مسابقه فوتسال، اهمیت محدود",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792776616,
-      "title": "شهرآورد فوتسال اصفهان برنده نداشت"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: خبر درباره احتمال برگزاری انتخابات در کرج",
       "rescued": false,
@@ -6336,55 +6333,19 @@
       "rule": "no-concrete-event",
       "t": 1792791490,
       "title": "۴ کشور مسلمان: اشغالگری رژیم صهیونیستی عامل اصلی بی ثباتی در منطقه است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مسابقه محلی، تاثیر محدود بر کل کشور",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1792792085,
+      "title": "دیدار تیم های چادرملو اردکان و استقلال تهران"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ابلغ",
-        "است",
-        "امد",
-        "اند",
-        "بخشنم",
-        "بدج",
-        "برنم",
-        "تقت",
-        "خهد",
-        "زد",
-        "سهم",
-        "قسم",
-        "محمد",
-        "معن",
-        "همهنگ"
-      ],
-      "t": 1792747387.304723,
-      "title": "قاسمی: بخشنامه بودجه ۱۴۰۶ آماده ابلاغ و سهم استان ها در بودجه تقویت می شود ⚡️ محمد قاسمی، معاون هماهنگی برنامه و بودجه، "
-    },
-    {
-      "h": [
-        "ارد",
-        "بل",
-        "تم",
-        "تنس",
-        "جز",
-        "جن",
-        "حضر",
-        "دست",
-        "رقبت",
-        "شکست",
-        "صعد",
-        "فنل",
-        "قطر",
-        "پکست",
-        "کنگ",
-        "کپ"
-      ],
-      "t": 1792747979.030144,
-      "title": "صعود تیم تنیس بانوان ایران به فینال بیلی جین کینگ کاپ ⚡️ تیم تنیس بانوان ایران با شکست قطر در پاکستان، جواز حضور در فینا"
-    },
     {
       "h": [
         "امدگ",
@@ -7162,6 +7123,33 @@
       ],
       "t": 1792789607.868607,
       "title": "رئیس جمهور مولداوی: دیپلمات روسیه در این کشور «عنصر نامطلوب» شد ⚡️ مایا ساندو، رئیس جمهور مولداوی، پس از سقوط یک پهپاد ر"
+    },
+    {
+      "h": [
+        "اسس",
+        "بندر",
+        "تمن",
+        "تنه",
+        "جنب",
+        "جگزن",
+        "حج",
+        "درصد",
+        "دفتر",
+        "سز",
+        "فعل",
+        "محددت",
+        "محسن",
+        "مرز",
+        "مز",
+        "مسر",
+        "نز",
+        "وجد",
+        "ورد",
+        "کهش",
+        "یفت"
+      ],
+      "t": 1792792114.9888914,
+      "title": "حاجی میرزایی: واردات کشور با وجود محدودیت بنادر تنها ۲۵ درصد کاهش یافت ⚡️ محسن حاجی میرزایی رئیس دفتر رئیس جمهور در قم ا"
     }
   ],
   "_published_incidents": [
@@ -7382,153 +7370,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ارپ",
-        "اطلع",
-        "امرک",
-        "اکرن",
-        "بدن",
-        "برخردر",
-        "تحرم",
-        "ترمپ",
-        "تنه",
-        "تهجم",
-        "تکد",
-        "جمهر",
-        "درغ",
-        "درند",
-        "دشتند",
-        "ربط",
-        "رس",
-        "زر",
-        "زلنسک",
-        "صرت",
-        "قبل",
-        "قدرت",
-        "مفقت",
-        "مند",
-        "نخهند",
-        "نزدک",
-        "هدف",
-        "همش",
-        "همچن",
-        "وقع",
-        "وژ",
-        "پبند",
-        "پتن",
-        "پشگرن"
-      ],
-      "s": "زلنسکی",
-      "t": 1792660759.3084416,
-      "title": "زلنسکی: ترامپ و پوتین رابطه ویژه ای داشتند و تحریم های پیشگیرانه آمریکا را رد کرد ⚡️ رئیس جمهور اوکراین گفت ترامپ و پوتی"
-    },
-    {
-      "k": [
-        "امنت",
-        "انتظم",
-        "بخش",
-        "برقرر",
-        "ترندز",
-        "جمع",
-        "دست",
-        "دستگر",
-        "رمشک",
-        "سر",
-        "عمل",
-        "فرمند",
-        "منطق",
-        "نزع",
-        "پلس"
-      ],
-      "s": "فرمانده انتظامی رومشکان",
-      "t": 1792660769.657778,
-      "title": "فرمانده انتظامی رومشکان: دستگیری عاملان تیراندازی و نزاع در سوری ⚡️ فرمانده انتظامی رومشکان اعلام کرد پلیس با دستگیری عا"
-    },
-    {
-      "k": [
-        "ار",
-        "ارشد",
-        "اسرل",
-        "اقتصد",
-        "اقدم",
-        "امرک",
-        "امنت",
-        "اهدف",
-        "بند",
-        "تثر",
-        "تحت",
-        "ترر",
-        "تهر",
-        "جنگ",
-        "حمل",
-        "خرمن",
-        "در",
-        "دفع",
-        "دند",
-        "سس",
-        "سست",
-        "صرت",
-        "فرض",
-        "مج",
-        "محصر",
-        "مردم",
-        "مشرع",
-        "مشرکت",
-        "مقم",
-        "نظم",
-        "هدف",
-        "وقع",
-        "چرچب",
-        "کشتر",
-        "کنندگ"
-      ],
-      "s": "مقام امنیتی ایران",
-      "t": 1792661140.110758,
-      "title": "مقام امنیتی ایران: در صورت ترور مقامات و کشتار مردم، اهداف سیاسی آمریکا و مشارکت کنندگان جنگ را هدف مشروع می داند ⚡️ یک "
-    },
-    {
-      "k": [
-        "ارمک",
-        "افزش",
-        "المندب",
-        "النصر",
-        "امن",
-        "انجم",
-        "بب",
-        "بحر",
-        "بررس",
-        "تنگ",
-        "دسترس",
-        "ذخر",
-        "رس",
-        "سد",
-        "سطح",
-        "شرق",
-        "صدر",
-        "صدرت",
-        "عربست",
-        "عمل",
-        "غرب",
-        "قمت",
-        "لل",
-        "مردنز",
-        "مسر",
-        "مطلع",
-        "منع",
-        "مهندس",
-        "نصر",
-        "نفت",
-        "هرمز",
-        "پن",
-        "کرر",
-        "کنن",
-        "یک"
-      ],
-      "s": "ناصر",
-      "t": 1792662341.9488118,
-      "title": "ناصر: ذخایر نفت عربستان در بحران کنونی پایین تر از سطح موردنیاز است و سه مسیر تنگه هرمز، باب المندب و سیدی کریر برای صاد"
-    },
     {
       "k": [
         "احتمل",
@@ -11272,6 +11113,46 @@
       "s": "رئیس جمهور مولداوی",
       "t": 1792789607.8597445,
       "title": "رئیس جمهور مولداوی: دیپلمات روسیه در این کشور «عنصر نامطلوب» شد ⚡️ مایا ساندو، رئیس جمهور مولداوی، پس از سقوط یک پهپاد ر"
+    },
+    {
+      "k": [
+        "اسس",
+        "بندر",
+        "تمن",
+        "تنه",
+        "جمهر",
+        "جنب",
+        "جگزن",
+        "حج",
+        "حمت",
+        "درصد",
+        "دفتر",
+        "دلت",
+        "رس",
+        "سز",
+        "شرط",
+        "فعل",
+        "محددت",
+        "محسن",
+        "مردم",
+        "مرز",
+        "مز",
+        "مسر",
+        "مسلح",
+        "معشت",
+        "ممرت",
+        "نر",
+        "نز",
+        "وجد",
+        "ورد",
+        "کشر",
+        "کنن",
+        "کهش",
+        "یفت"
+      ],
+      "s": "حاجی میرزایی",
+      "t": 1792792114.974786,
+      "title": "حاجی میرزایی: واردات کشور با وجود محدودیت بنادر تنها ۲۵ درصد کاهش یافت ⚡️ محسن حاجی میرزایی رئیس دفتر رئیس جمهور در قم ا"
     }
   ],
   "_text_polish": {
@@ -11283,7 +11164,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792791360
+    "at": 1792791947
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11298,9 +11179,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792792081,
-    "last_failure": 1792791481,
-    "last_status": 429
+    "disabled_until": 1792792168,
+    "last_failure": 1792792108,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1792792077,
