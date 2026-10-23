@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792789315
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792789315
-    },
-    {
-      "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.1-flash-lite",
-      "t": 1792789320
-    },
-    {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 1x, gemini:gemini-3.5-flash-lite held 1x, groq:openai/gpt-oss-120b held 14x, groq:openai/gpt-oss-20b held 12x",
       "t": 1792789421
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 5x",
       "t": 1792790741
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792790965
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792790965
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792790967
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-23",
-      "n": 231
+      "n": 232
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-23",
@@ -460,9 +460,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 287,
+        "calls": 288,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 285,
+        "ok": 286,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -1402,6 +1402,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: Analysis and speculation about oil reserves without a concrete event.",
       "topic": "اقتصاد",
       "until": 1792829782.5971334
+    },
+    "v4|argentina drops investigation into president milei over crypto fraud": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: موقوف شدن پرونده قضایی رئیس‌جمهور آرژانتین",
+      "topic": "قضایی",
+      "until": 1792877366.6285195
     },
     "v4|arsenal fear saka could be out for two months": {
       "ok": false,
@@ -3328,12 +3334,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، اثر محدود، بدون پیامد ملی یا بین‌المللی",
       "topic": "جامعه",
       "until": 1792821473.3722835
-    },
-    "v4|زلزله تبت؛ ۱۶ کشته، ۶۵ مصدوم و بیش از ۴۰۰ پس لرزه تاکنون": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: زلزله بزرگ با ۱۶ کشته و ده‌ها مصدوم در تبت",
-      "topic": "حادثه",
-      "until": 1792817642.862864
     },
     "v4|زلنسکی: گازوئیل روسیه تاثیری بر قیمت ها در آمریکا ندارد/ترامپ باید از همان نوع ادبیاتی که برای من به کار می برد، در مورد پوتین استفاده کند / از ترامپ خواسته بودم برای برقراری یک آت": {
       "ok": true,
@@ -5778,13 +5778,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اظهارنظر شخصی مربی درباره لیگ هندبال اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792774420,
-      "title": "مربی تیم هندبال سپاهان: تعطیلی های لیگ برتر هندبال به ضرر تیم های ملی پوش است"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، لیگ دسته اول والیبال، نه‌قابل‌توجه",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6336,6 +6329,13 @@
       "rule": "no-concrete-event",
       "t": 1792790714,
       "title": "Impressive Gloucester beat rivals Bath in Prem"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: موقوف شدن پرونده قضایی رئیس‌جمهور آرژانتین",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792790966,
+      "title": "Argentina drops investigation into President Milei over crypto fraud"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11283,7 +11283,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792790552
+    "at": 1792790792
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
