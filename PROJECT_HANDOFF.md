@@ -30,7 +30,15 @@
 3. Treat import compatibility, state persistence, duplicate prevention, and health reporting as mandatory.
 4. Never use real API calls in offline tests.
 5. Do not move Instagram or YouTube code into this repository.
-6. After edits, verify the exact changed files and report any unverified live behavior honestly.
+6. After every code, workflow, dependency, state, or documentation change, update this handoff with the latest commit, changed files, current status, blockers, and next action.
+7. Verify the exact changed files and report any unverified live behavior honestly.
+
+## Handoff update format
+- Last change: `<commit URL>`
+- Changed files: `<paths>`
+- Verification: `<CI/test/static status>`
+- Blockers: `<none or exact blocker>`
+- Next action: `<concrete continuation step>`
 
 ## Known verification boundary
 - Static code and workflow wiring have been reviewed.
