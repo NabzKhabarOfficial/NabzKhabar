@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH mistral/open-mistral-nemo: no usable verdict",
-      "t": 1792878843
-    },
-    {
-      "e": "EDITOR BATCH openrouter/openrouter/free: no usable verdict",
-      "t": 1792878845
-    },
-    {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-26b-a4b-it:free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792878845
-    },
-    {
       "e": "EDITOR BATCH openrouter/google/gemma-4-31b-it:free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792878845
     },
@@ -159,12 +147,24 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792883605
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792884137
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792884137
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792884145
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-24",
-      "n": 144
+      "n": 145
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-24",
@@ -440,9 +440,9 @@
     "2026-10-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 191,
+        "calls": 192,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 182,
+        "ok": 183,
         "other": 9
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -2777,12 +2777,6 @@
       "topic": "اقتصاد",
       "until": 1792936568.5051875
     },
-    "v4|جشنی که ناگهان به وحشت تبدیل شد؛ لحظه انفجار در برابر چشمان مردم": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: حوادث خارجی بدون تلفات سنگین یا ابعاد راهبردی ارزش خبری کمی دارند.",
-      "topic": "حادثه",
-      "until": 1792915300.8495784
-    },
     "v4|جعفرپور: اربعین ظرفیت تولید گفتمان تمدنی دارد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Academic opinion, no concrete event, low national significance",
@@ -4810,6 +4804,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل و نظر کارشناس درباره شایعات زمان حمله",
       "topic": "سیاست",
       "until": 1792926270.0712752
+    },
+    "v4|گادی آیزنکوت رقیب اصلی نتانیاهو در انتخابات اسرائیل کیست؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل انتخاباتی و گمانه‌زنی درباره نتایج نظرسنجی‌ها است.",
+      "topic": "سیاست",
+      "until": 1792970545.5234737
     },
     "v4|گرد و خاک فرنگی کاران ایران در جهان؛ سه فینالیست و یک رده بندی": {
       "ok": true,
@@ -11338,7 +11338,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792883476
+    "at": 1792884049
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
