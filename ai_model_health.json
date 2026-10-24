@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1792798883
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792803853
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792803854
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792803868
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1792803883
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1792803883
     },
@@ -159,6 +139,26 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792809518
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792809971
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792809972
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792809972
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
+      "t": 1792809973
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792809973
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-23",
-      "n": 260
+      "n": 261
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-23",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-24",
-      "n": 14
+      "n": 15
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-24",
-      "n": 14
+      "n": 15
     },
     "openrouter:*": {
       "day": "2026-10-23",
@@ -447,8 +447,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 11,
-        "ok": 11,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -469,16 +469,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 12,
-        "other": 2
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 11,
         "other": 4
       },
       "mistral:open-mistral-nemo": {
@@ -1549,6 +1549,12 @@
       "topic": "ورزش",
       "until": 1792879649.3618026
     },
+    "v4|m 7.2 - 200 km w of sola, vanuatu": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=6 happened=True scope=world: زلزله 7.2 در وانوات، 200 کیلومتر غرب سولا",
+      "topic": "آب و هوا",
+      "until": 1792896372.3808737
+    },
     "v4|magnitude-7 earthquake hits tibet, killing at least 16 and destroying hundreds of homes": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: Major earthquake with 16 deaths is world disaster news.",
@@ -1854,12 +1860,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Minor international incident involving two individuals, lacks national or global significance.",
       "topic": "جامعه",
       "until": 1792829773.554441
-    },
-    "v4|ادامه اتفاقات عجیب پیرامون علیرض بیرانوند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مصدومیت بازیکن در مسابقه فوتبال اهمیت ملی ندارد",
-      "topic": "ورزش",
-      "until": 1792822022.8338695
     },
     "v4|ادامه اتفاقات عجیب پیرامون علیرضا بیرانوند": {
       "ok": false,
@@ -2190,6 +2190,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: انتشار نکات اخلاقی و مذهبی فاقد ارزش خبری درجه یک است.",
       "topic": "جامعه",
       "until": 1792863943.1145096
+    },
+    "v4|انتقاد از شعارهای ضدوحدت در حرم امام رضا / جلوی این ها را بگیرید، پیش از آن که خنجرشان بر پشت ایران و انقلاب بنشیند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: مقاله انتقادی، سخنرانی و اظهارنظر عقیدتی بدون وقوع رویداد مشخص",
+      "topic": "جامعه",
+      "until": 1792896373.7820623
     },
     "v4|انتقال تشریفات گمرکی به داخل کشور؛ برنامه جدید برای کاهش توقف کالا": {
       "ok": false,
@@ -3625,12 +3631,6 @@
       "topic": "سیاست",
       "until": 1792863940.6437995
     },
-    "v4|عراقچی: هزینه دفاع از اسرائیل بر دوش مالیات دهندگان آمریکایی است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official position by Iran's FM on US-Israel relations and regional policy.",
-      "topic": "سیاست",
-      "until": 1792822028.2034435
-    },
     "v4|عراقچی: پزشکیان به روسیه سفر خواهد کرد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Announcement of future trip, no event yet",
@@ -4164,6 +4164,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative report on potential future military infrastructure expansion.",
       "topic": "نظامی",
       "until": 1792846632.6156826
+    },
+    "v4|نصری: با کشته شدن چند سرباز یا تورم ۵ درصدی، اقتصاد و حاکمیت ایالات متحده فرونمی پاشد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: تحلیل، اظهارنظر و گفتگوی کارشناسانه درباره ایالات متحده بدون رویداد مشخص",
+      "topic": "سیاست",
+      "until": 1792896373.772465
     },
     "v4|نظرسنجی ها؛ بهانه تازه ترامپ برای حمله مجدد به نیویورک تایمز": {
       "ok": false,
@@ -4788,12 +4794,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: اعتراض شهروندخبرنگار به بلاتکلیفی داوطلبان یک آزمون استخدامی اهمیت ملی ندارد.",
       "topic": "جامعه",
       "until": 1792849012.2505443
-    },
-    "v4|یک میزبان غیرمنتظره برای والیبال قهرمانی جهان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Minor international sports hosting announcement, lacks national significance for Iran.",
-      "topic": "ورزش",
-      "until": 1792822028.1923811
     },
     "v4|یک میلیون ربات در برابر ۱.۵ میلیون کارگر؛ رقابت نابرابر در انبارهای آمازون": {
       "ok": false,
@@ -5771,13 +5771,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: پرداخت حقوق بازنشستگان یک رویداد روتین اداری و غیر استراتژیک است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792782608,
-      "title": "پرداخت ۱۴۰ همت بابت حقوق مهرماه بازنشستگان تأمین اجتماعی"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اظهارات سرمربی فوتسال گیتی‌پسند درباره موقعیت‌های تیمش، فاقد اهمیت ملی.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -6329,6 +6322,13 @@
       "rule": "routine-statement",
       "t": 1792809455,
       "title": "لواندوفسکی از مدعیان پرتعداد توپ طلا گفت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=6 happened=True scope=world: زلزله 7.2 در وانوات، 200 کیلومتر غرب سولا",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792809972,
+      "title": "M 7.2 - 200 km W of Sola, Vanuatu"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10601,7 +10601,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792809313
+    "at": 1792809875
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
