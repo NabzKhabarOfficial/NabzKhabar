@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792794721
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792794725
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792794729
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792794742
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792796452
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792796453
     },
@@ -159,32 +139,52 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1792805040
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792805636
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792805637
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792805638
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792805639
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792805703
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-23",
-      "n": 145
+      "n": 146
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-23",
-      "n": 250
+      "n": 251
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-23",
-      "n": 110
+      "n": 112
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-23",
-      "n": 110
+      "n": 112
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-24",
-      "n": 9
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-24",
-      "n": 5
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-10-23",
@@ -440,68 +440,55 @@
     "2026-10-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
+        "calls": 3,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
+        "ok": 2,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 0,
-        "calls": 1,
+        "429": 1,
+        "calls": 3,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
+        "ok": 1,
         "other": 1
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
+        "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 8,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 5,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
+        "ok": 8,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1792653131.2363017,
-      "title": "خروج ۱۳۰ میلیون مترمکعب گاز کشور از مدار در جنگ تحمیلی سوم",
-      "urgent": false
-    },
-    {
-      "label": "ورزش",
-      "level": 4,
-      "t": 1792653582.480128,
-      "title": "طلای پرتاب نیزه بازی های پاراآسیایی ناگویا با رکوردشکنی جهان برای افروز",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 3,
-      "t": 1792653592.9902759,
-      "title": "حملات مرگبار عربستان به مناطق یمن",
-      "urgent": false
-    },
     {
       "label": "موضع‌گیری",
       "level": 4,
@@ -1320,6 +1307,27 @@
       "t": 1792801809.7102594,
       "title": "دوازده کشور هرگونه حمله و تهدید علیه تأسیسات هسته ای را محکوم کردند",
       "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1792805652.4028041,
+      "title": "شیخ سلمان در توکیو از اینفانتینو حمایت کرد",
+      "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1792805679.6407356,
+      "title": "انفجار در ریاض و حملات هوایی سعودی به یمن",
+      "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1792805701.9950757,
+      "title": "توافق انگلیس و عمان بر سر گسترش همکاری های دفاعی و تجاری",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-23",
@@ -1755,12 +1763,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اعلام موضع رسمی مقام ارشد درباره احتمال حمله و مذاکره",
       "topic": "سیاست",
       "until": 1792859766.7229772
-    },
-    "v4|آخرین وضعیت جاده های شمالی کشور": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine traffic report on road conditions is not first-tier news.",
-      "topic": "جامعه",
-      "until": 1792821502.6197503
     },
     "v4|آغاز تولید گرافن از متان در امارات با ظرفیت تولید یک تُن در سال": {
       "ok": false,
@@ -2199,6 +2201,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: انفجار در تریلی، خسارت جانی نداشت",
       "topic": "حادثه",
       "until": 1792882853.0246127
+    },
+    "v4|انفجار در ریاض و حملاتی به یمن": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: explosion in Riyadh, war zone",
+      "topic": "حادثه",
+      "until": 1792892039.2693498
     },
     "v4|انفجار دو سوپرنفتکش متخلف پس از برخورد با مین در ساحل جنوبی تنگه هرمز": {
       "ok": true,
@@ -2722,6 +2730,12 @@
       "topic": "ورزش",
       "until": 1792853365.5737743
     },
+    "v4|توافق انگلیس و عمان برای گسترش همکاری های دفاعی، تجاری و فناوری": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: UK-Oman defense trade agreement",
+      "topic": "سیاست",
+      "until": 1792892039.2548606
+    },
     "v4|توافق ایران و ترکیه برای تردد شبانه روزی کامیون ها در مرز رازی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=iran_national: توافق گمرکی ایران و ترکیه برای تردد شبانه‌روزی کامیون‌ها",
@@ -2889,12 +2903,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial decision, limited national relevance",
       "topic": "آب و هوا",
       "until": 1792840825.9263754
-    },
-    "v4|جمع آوری گل فروشان اطراف بهشت زهرا/ انتقال ۷۰ درصد وانت بارهای متخلف تهران به پارکینگ": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: اقدام روتین مدیریت شهری در تهران و فاقد اهمیت ملی",
-      "topic": "جامعه",
-      "until": 1792821496.5698164
     },
     "v4|جنجال تازه رئیس جمهور آمریکا در ورزش/ حمله تند ترامپ به لبران جیمز: مایه ننگی!": {
       "ok": false,
@@ -4012,12 +4020,6 @@
       "topic": "اقتصاد",
       "until": 1792866620.7180274
     },
-    "v4|معمای دهانه سیلورپیت حل شد؛ برخورد سیارک تأیید شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: یافته علمی باستانی؛ فاقد ارزش خبری اولویت‌دار روز.",
-      "topic": "فناوری",
-      "until": 1792821511.9921165
-    },
     "v4|مقام آگاه: تردد شناور های متخلف در تنگه هرمز به طور کامل متوقف شد": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=9 happened=True scope=world: توقف تردد غیرمجاز در تنگه هرمز، اقدام رسمی نظامی",
@@ -4233,12 +4235,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر فرهنگی و مصاحبه درباره یک سریال تلویزیونی",
       "topic": "جامعه",
       "until": 1792822010.2970061
-    },
-    "v4|هزاران ونزوئلایی با مطالبه اعلام رسمی انتخابات ریاست جمهوری به خیابان آمدند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=world: اعتراضات هزاران نفری در ونزوئلا با مطالبات سیاسی مهم.",
-      "topic": "سیاست",
-      "until": 1792821506.6676795
     },
     "v4|هزینه کرد ۴۶۰ میلیارد تومانی برای بیماران خاص در کهگیلویه و بویراحمد": {
       "ok": false,
@@ -4594,11 +4590,23 @@
       "topic": "ورزش",
       "until": 1792834352.0974908
     },
+    "v4|چرخش ۱۸۰ درجه ای آسیا به سود رییس فیفا/ پشت پرده حمایت ای اف سی از اینفانتینو: پول!": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: AFC supports FIFA re-election, influencing global football.",
+      "topic": "سیاست",
+      "until": 1792892037.1479669
+    },
     "v4|چیتگر ظرفیت کاشت ۳۵ هزار نهال را دارد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محیط‌زیست محلی، نهال‌کاری در بوستان چیتگر",
       "topic": "آب و هوا",
       "until": 1792857902.2435791
+    },
+    "v4|چین سند راهبردی حکمرانی فضایی را با اولویت جلوگیری از مسابقه تسلیحاتی منتشر کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: China prioritizes preventing space arms race",
+      "topic": "سیاست",
+      "until": 1792892037.767426
     },
     "v4|کاتس: ایران و اخوان المسلمین در پی حمله به اسرائیل هستند": {
       "ok": false,
@@ -5206,33 +5214,6 @@
   },
   "_event_judge_log": [
     {
-      "head": "سردار عظمایی: آمریکایی ها ۷۰۰ کیلومتر از تنگه هرمز فاصله گرفته اند ⚡️ فرمانده نیروی دریایی سپاه پاسداران انقلا",
-      "id": "55a623c534",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792741365,
-      "verdict": "new",
-      "why": "گفتار فرمانده نیروی دریایی سپاه در مورد فاصله‌گیری آمریکا از تنگه هرمز"
-    },
-    {
-      "head": "انفجار گاز در کوی مهدیس اهواز با ۴ مصدوم ⚡️ انفجار گاز در یک منزل چهار واحدی در کوی مهدیس اهواز، چهار مصدوم بر",
-      "id": "d68a332a94",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792742448,
-      "verdict": "new",
-      "why": "گازسوزی جدید در منطقه جدید"
-    },
-    {
-      "head": "دستگیری متهم اصلی تیراندازی مسعودیه در فرمانیه ⚡️ متهم اصلی پرونده تیراندازی و شرارت شبانه در محله مسعودیه تهر",
-      "id": "aafd6beb2b",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792742459,
-      "verdict": "new",
-      "why": "تیراندازی مسعودیه تهران، دستگیری متهم جدید"
-    },
-    {
       "confirm": "gemini/gemini-3.1-flash-lite:repeat",
       "head": "تداوم روند صعودی قیمت نفت در بازارهای جهانی ⚡️ قیمت نفت در معاملات جمعه بازار جهانی در پی حملات نیروهای یمنی د",
       "id": "dc5e0d65c9",
@@ -5753,23 +5734,37 @@
       "t": 1792801808,
       "verdict": "reaction",
       "why": "Condemnation of nuclear threats by 12 nations"
+    },
+    {
+      "head": "شیخ سلمان در توکیو از اینفانتینو حمایت کرد ⚡️ شیخ سلمان بن ابراهیم در کنگره فوق العاده ای اف سی در توکیو، حمای",
+      "id": "7487a2ddc8",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792805650,
+      "verdict": "new",
+      "why": "Sheikh Salman's statement unrelated to listed events"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:new",
+      "head": "انفجار در ریاض و حملات هوایی سعودی به یمن ⚡️ انفجار در ریاض شنیده شد و صدای آژیر خطر اعلام شد.",
+      "id": "8af6ee505c",
+      "match": "یمن: حمله عربستان به جزیره میون امنیت کشتیرانی را تهدید می کند",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792805663,
+      "verdict": "unconfirmed-repeat",
+      "why": "حمله عربستان به یمن و انفجار در ریاض مرتبط"
+    },
+    {
+      "head": "توافق انگلیس و عمان بر سر گسترش همکاری های دفاعی و تجاری ⚡️ انگلیس و عمان در جریان سفر رسمی سلطان عمان به لندن",
+      "id": "11dbcac9bd",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792805701,
+      "verdict": "new",
+      "why": "موضوع جدید: همکاری‌های دفاعی و تجاری بین انگلیس و عمان"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial comment on electricity supply, no major impact",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792780220,
-      "title": "معاون وزیر نیرو: کرمان از پیشروترین استان ها در تأمین برق تابستان بود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: خبر ورزشی مربوط به مسابقات NBA و جذابیت های فصل جدید است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792780240,
-      "title": "رفاقت استاد کهنه کار و پدیده NBA:/ کمک خلبان نوزده ساله در کابین اروینگ افسانه ای!"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: عبور قیمت نفت برنت از ۱۱۴ دلار و فشار تورمی جهانی",
       "rescued": true,
@@ -6315,6 +6310,20 @@
       "rule": "low-value",
       "t": 1792804472,
       "title": "دانیال ایری در مرز آمادگی؛/ مدافع پرسپولیس در رویای یک تولد خاطره انگیز!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: AFC supports FIFA re-election, influencing global football.",
+      "rescued": true,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792805637,
+      "title": "چرخش ۱۸۰ درجه ای آسیا به سود رییس فیفا/ پشت پرده حمایت ای اف سی از اینفانتینو: پول!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: China prioritizes preventing space arms race",
+      "rescued": true,
+      "rule": "low-value",
+      "t": 1792805637,
+      "title": "چین سند راهبردی حکمرانی فضایی را با اولویت جلوگیری از مسابقه تسلیحاتی منتشر کرد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6962,124 +6971,64 @@
       ],
       "t": 1792801809.6970713,
       "title": "دوازده کشور هرگونه حمله و تهدید علیه تأسیسات هسته ای را محکوم کردند ⚡️ دوازده کشور از جمله ایران، روسیه، چین و پاکستان د"
+    },
+    {
+      "h": [
+        "ابرهم",
+        "العد",
+        "انفنتن",
+        "تک",
+        "حمت",
+        "سلم",
+        "شخ",
+        "فق",
+        "کنگر"
+      ],
+      "t": 1792805652.389622,
+      "title": "شیخ سلمان در توکیو از اینفانتینو حمایت کرد ⚡️ شیخ سلمان بن ابراهیم در کنگره فوق العاده ای اف سی در توکیو، حمایت خود را ا"
+    },
+    {
+      "h": [
+        "اژر",
+        "خطر",
+        "رض",
+        "سعد",
+        "شند",
+        "صد",
+        "یمن"
+      ],
+      "t": 1792805679.6133707,
+      "title": "انفجار در ریاض و حملات هوایی سعودی به یمن ⚡️ انفجار در ریاض شنیده شد و صدای آژیر خطر اعلام شد."
+    },
+    {
+      "h": [
+        "افزش",
+        "انگلس",
+        "تجر",
+        "تجرت",
+        "تفق",
+        "جر",
+        "حز",
+        "دفع",
+        "رسم",
+        "سبز",
+        "سرم",
+        "سفر",
+        "سلط",
+        "صنع",
+        "عمن",
+        "فنر",
+        "لندن",
+        "نظهر",
+        "همکر",
+        "گذر",
+        "گسترش"
+      ],
+      "t": 1792805701.9816673,
+      "title": "توافق انگلیس و عمان بر سر گسترش همکاری های دفاعی و تجاری ⚡️ انگلیس و عمان در جریان سفر رسمی سلطان عمان به لندن برای افزا"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "احتمل",
-        "ازسرگر",
-        "انتخب",
-        "اند",
-        "ددن",
-        "مطرح",
-        "کرزر",
-        "گمن"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1792730058.4496276,
-      "title": "گمانه زنی درباره ازسرگیری کارزار نظامی آمریکا علیه ایران پس از انتخابات میان دوره ای ⚡️ دونالد ترامپ با ادعای پایان دادن",
-      "toll": 0
-    },
-    {
-      "a": [
-        "تنگ",
-        "محدد",
-        "هرمز"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [
-        "تنگه هرمز"
-      ],
-      "regions": [
-        "hormuz"
-      ],
-      "t": 1792730077.890583,
-      "title": "گزارش صدای انفجار در تنگه هرمز ⚡️ صدای انفجار در محدوده تنگه هرمز شنیده شده است.",
-      "toll": 0
-    },
-    {
-      "a": [
-        "الخلل",
-        "انجمد",
-        "بختر",
-        "عمل",
-        "ورد",
-        "پنج",
-        "کرن"
-      ],
-      "cities": [
-        "الخلیل"
-      ],
-      "kind": "attack",
-      "places": [
-        "الخلیل",
-        "کرانه باختری"
-      ],
-      "regions": [
-        "westbank"
-      ],
-      "t": 1792733992.9772897,
-      "title": "زخمی شدن پنج نظامی اسرائیلی در جنوب کرانه باختری ⚡️ عملیات تیراندازی در نزدیکی ورودی شمالی شهر الخلیل به زخمی شدن پنج نظ",
-      "toll": 0
-    },
-    {
-      "a": [
-        "استند",
-        "انهدم",
-        "بحرن",
-        "تقرب",
-        "مجر",
-        "مطرح",
-        "منهدم",
-        "پنجم",
-        "کمل",
-        "کنگر"
-      ],
-      "cities": [
-        "بحرین"
-      ],
-      "kind": "attack",
-      "places": [
-        "بحرین"
-      ],
-      "regions": [
-        "gulf"
-      ],
-      "t": 1792736330.9825463,
-      "title": "ادعای انهدام کامل پایگاه ناوگان پنجم آمریکا در بحرین ⚡️ یک مجری مطرح آمریکایی با استناد به شهادت شاهدان عینی و گزارش های",
-      "toll": 0
-    },
-    {
-      "a": [
-        "انبر",
-        "اهن",
-        "بندر",
-        "تسس",
-        "دفع",
-        "زرسخت",
-        "محمل",
-        "وزرت",
-        "پلت"
-      ],
-      "cities": [
-        "پولتاوا"
-      ],
-      "kind": "attack",
-      "places": [
-        "پولتاوا"
-      ],
-      "regions": [
-        "ukraine"
-      ],
-      "t": 1792739330.5693474,
-      "title": "روسیه زیرساخت های ریلی و بندری اوکراین را هدف قرار داد ⚡️ وزارت دفاع روسیه اعلام کرد نیروهای این کشور در حملات پهپادی شب",
-      "toll": 0
-    },
     {
       "a": [
         "اهز",
@@ -7178,89 +7127,31 @@
       "t": 1792770173.2934916,
       "title": "زلزله قوی در شمال تبت کشته و خانه های بسیاری را ویران کرد ⚡️ زلزله ای با بزرگی هفت ریشتر در شهر ناگکو شمال تبت رخ داد که",
       "toll": 0
+    },
+    {
+      "a": [
+        "اژر",
+        "خطر",
+        "سعد",
+        "یمن"
+      ],
+      "cities": [
+        "ریاض"
+      ],
+      "kind": "attack",
+      "places": [
+        "ریاض"
+      ],
+      "regions": [
+        "gulf"
+      ],
+      "t": 1792805679.6271508,
+      "title": "انفجار در ریاض و حملات هوایی سعودی به یمن ⚡️ انفجار در ریاض شنیده شد و صدای آژیر خطر اعلام شد.",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اجر",
-        "ار",
-        "ارتبط",
-        "اقدم",
-        "امنت",
-        "بز",
-        "بزم",
-        "تحقق",
-        "تسس",
-        "تصف",
-        "تنگ",
-        "تکد",
-        "جنگ",
-        "خهد",
-        "دبر",
-        "دد",
-        "درمد",
-        "رض",
-        "رهبرد",
-        "سرلشکر",
-        "سرم",
-        "سنگن",
-        "شر",
-        "شرط",
-        "صرت",
-        "عل",
-        "فرتر",
-        "مدرت",
-        "مذکر",
-        "مرکز",
-        "مل",
-        "منطق",
-        "نخهد",
-        "نز",
-        "هدف",
-        "هرمز",
-        "هزن",
-        "هشدر",
-        "هفت",
-        "کسب",
-        "گردد",
-        "گرند"
-      ],
-      "s": "رضایی",
-      "t": 1792673694.5944135,
-      "title": "رضایی: ایران تا اجرای هفت شرط، تنگه هرمز را باز نخواهد کرد ⚡️ سرلشکر رضایی، دبیر شورای عالی امنیت ملی، تأکید کرد که ایرا"
-    },
-    {
-      "k": [
-        "ار",
-        "استفد",
-        "افزش",
-        "اقدم",
-        "امدگ",
-        "انجم",
-        "انقلب",
-        "تن",
-        "تهجم",
-        "حمل",
-        "خهد",
-        "دهم",
-        "سخنگ",
-        "سزم",
-        "سلح",
-        "صرت",
-        "عل",
-        "مشک",
-        "پسخ",
-        "پشرفت",
-        "کشر",
-        "کنم",
-        "گرد"
-      ],
-      "s": "گارد انقلاب ایران",
-      "t": 1792674146.5073478,
-      "title": "گارد انقلاب ایران: در صورت حمله، به حمله پاسخ می دهیم و خود نیز حمله می کنیم ⚡️ گارد انقلاب ایران اعلام کرد در صورت حمله"
-    },
     {
       "k": [
         "ار",
@@ -10751,6 +10642,106 @@
       ],
       "t": 1792801809.6835601,
       "title": "دوازده کشور هرگونه حمله و تهدید علیه تأسیسات هسته ای را محکوم کردند ⚡️ دوازده کشور از جمله ایران، روسیه، چین و پاکستان د"
+    },
+    {
+      "k": [
+        "ابرهم",
+        "ات",
+        "ار",
+        "اس",
+        "اعض",
+        "العد",
+        "انتخب",
+        "انتقد",
+        "انفنتن",
+        "بشد",
+        "تثرگذر",
+        "تجر",
+        "تند",
+        "تک",
+        "حقق",
+        "حل",
+        "حمت",
+        "رس",
+        "رست",
+        "سز",
+        "سلم",
+        "شخ",
+        "فدرسن",
+        "فف",
+        "فق",
+        "مدرت",
+        "مرس",
+        "مسبق",
+        "نشد",
+        "نه",
+        "هنز",
+        "پرژ",
+        "کنر",
+        "کنککف",
+        "کنگر",
+        "یف"
+      ],
+      "t": 1792805652.376026,
+      "title": "شیخ سلمان در توکیو از اینفانتینو حمایت کرد ⚡️ شیخ سلمان بن ابراهیم در کنگره فوق العاده ای اف سی در توکیو، حمایت خود را ا"
+    },
+    {
+      "k": [
+        "است",
+        "الدسر",
+        "انجم",
+        "انفجر",
+        "اژر",
+        "حمل",
+        "خطر",
+        "رسن",
+        "رض",
+        "زمن",
+        "سحر",
+        "سعد",
+        "شرق",
+        "شند",
+        "صد",
+        "صعد",
+        "عربستن",
+        "منطق",
+        "نر",
+        "هشدر",
+        "همن",
+        "وجد",
+        "ود",
+        "یمن"
+      ],
+      "t": 1792805679.5996897,
+      "title": "انفجار در ریاض و حملات هوایی سعودی به یمن ⚡️ انفجار در ریاض شنیده شد و صدای آژیر خطر اعلام شد. ▫️ در همین زمان، نیروهای "
+    },
+    {
+      "k": [
+        "افزش",
+        "انگلس",
+        "تجر",
+        "تجرت",
+        "تفق",
+        "جر",
+        "حز",
+        "دفع",
+        "رسم",
+        "سبز",
+        "سرم",
+        "سفر",
+        "سلط",
+        "صنع",
+        "عمن",
+        "فنر",
+        "لندن",
+        "نظم",
+        "نظهر",
+        "همکر",
+        "گذر",
+        "گسترش"
+      ],
+      "t": 1792805701.9680657,
+      "title": "توافق انگلیس و عمان بر سر گسترش همکاری های دفاعی و تجاری ⚡️ انگلیس و عمان در جریان سفر رسمی سلطان عمان به لندن برای افزا"
     }
   ],
   "_text_polish": {
@@ -10762,7 +10753,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792804927
+    "at": 1792805494
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10777,14 +10768,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792804183.0,
-    "last_failure": 1792803883,
-    "last_status": 503
+    "disabled_until": 1792806289,
+    "last_failure": 1792805689,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792804183.0,
-    "last_failure": 1792803883,
-    "last_status": 599
+    "disabled_until": 1792806285,
+    "last_failure": 1792805685,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
