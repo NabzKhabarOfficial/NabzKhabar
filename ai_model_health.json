@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-31b-it:free: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792878845
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 3 stories",
-      "t": 1792878845
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792878845
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792878845
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792878845
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792884145
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792884733
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792884733
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
+      "t": 1792884734
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792884734
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-24",
-      "n": 247
+      "n": 248
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-24",
@@ -447,9 +447,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 354,
+        "calls": 355,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 345,
+        "ok": 346,
         "other": 9
       },
       "gemini:gemini-3.6-flash": {
@@ -1595,6 +1595,12 @@
       "topic": "قضایی",
       "until": 1792957782.2880197
     },
+    "v4|trump lauds melania over russia-ukraine localised ceasefire deal": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: ادعای ترامپ درباره آتش‌بس محلی ارزش خبری درجه یک ندارد.",
+      "topic": "سیاست",
+      "until": 1792971134.3653393
+    },
     "v4|ukraine says starlink connection 'now stable' after network limits": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: مهم برای جنگ اوکراین اما تاثیر جهانی محدود دارد",
@@ -2014,12 +2020,6 @@
       "reason": "ai openrouter/openrouter/free batch score=1 happened=False scope=local: US embassy tightens security after deadly church attack in Jordan",
       "topic": "قضایی",
       "until": 1792918779.631512
-    },
-    "v4|افزایش شمار قربانیان حمله مسلحانه به یک کلیسا در اردن به ۸ کشته": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله تروریستی با کشته و زخمی زیاد در سطح بین‌المللی مهم است.",
-      "topic": "حادثه",
-      "until": 1792915300.8636625
     },
     "v4|افزایش ۵۰ درصدی کالابرگ در مرحله نخست برای مشمولان": {
       "ok": false,
@@ -3689,6 +3689,12 @@
       "topic": "سیاست",
       "until": 1792967480.7210627
     },
+    "v4|عضو کمیسیون امنیت ملی: ترامپ و دارودسته اش باید به جرم تجاوز به ایران و ترور رهبر شهید در انتخابات شکست بخورند/ دموکرات ها بهتر از جمهوریخواهان نیستند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: نظر نماینده مجلس درباره انتخابات آمریکا و ترور، موضع روتین و کم‌ارزش است.",
+      "topic": "سیاست",
+      "until": 1792971134.3791585
+    },
     "v4|عفو بین الملل: دست کم ۴۰ نفر در حمله افراد مسلح به روستایی در نیجریه کشته شدند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Mass casualty event with 40 deaths meets world news criteria.",
@@ -4138,12 +4144,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Local provincial sports competition results.",
       "topic": "ورزش",
       "until": 1792924476.594078
-    },
-    "v4|معیشت صهیونیست ها زیر سایه جنگ؛ نارضایتی از کابینه نتانیاهو بالا گرفت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: نتایج نظرسنجی و تحلیل سیاسی درباره انتخابات خارجی اولویت درجه یک ندارد.",
-      "topic": "سیاست",
-      "until": 1792915300.877507
     },
     "v4|مناطق مشخصی از اهواز و شیبان یکشنبه بدون گاز می شوند": {
       "ok": false,
@@ -11338,7 +11338,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792884049
+    "at": 1792884621
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
