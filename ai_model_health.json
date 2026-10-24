@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792798848
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792798848
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1792798852
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
       "t": 1792798883
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792808833
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792809455
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792809456
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1792809518
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-23",
-      "n": 150
+      "n": 152
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-23",
-      "n": 256
+      "n": 260
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-23",
-      "n": 114
+      "n": 116
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-23",
-      "n": 114
+      "n": 116
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-24",
-      "n": 13
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-24",
-      "n": 13
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-10-23",
@@ -440,23 +440,23 @@
     "2026-10-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 7,
+        "calls": 9,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 5,
+        "ok": 7,
         "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 11,
+        "ok": 11,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 2,
-        "calls": 5,
+        "429": 3,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
+        "ok": 2,
         "other": 2
       },
       "gemini:gemini-3.8-flash": {
@@ -469,41 +469,27 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 13,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
+        "ok": 12,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 13,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 10,
-        "other": 3
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 18,
-        "ok": 18,
+        "calls": 23,
+        "ok": 23,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "حادثه",
-      "level": 4,
-      "t": 1792656589.5177772,
-      "title": "صدای انفجار در غرب تبریز طی ساعات آینده شنیده می شود",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 3,
-      "t": 1792656601.1748006,
-      "title": "ناتو اجازه خرید مستقیم تسلیحات از آژانس خود را به اوکراین می دهد",
-      "urgent": false
-    },
     {
       "label": "سیاست",
       "level": 4,
@@ -1328,6 +1314,20 @@
       "level": 4,
       "t": 1792808268.763013,
       "title": "کارنی اتهام دخالت کانادا در انتخابات آمریکا را رد کرد",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1792809485.2962182,
+      "title": "طوفان چامپی در تایوان قربانی گرفت",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 5,
+      "t": 1792809516.943447,
+      "title": "مکرون تیراندازی در نزدیکی پاریس را حمله مسلحانه و نژادپرستانه خواند",
       "urgent": false
     }
   ],
@@ -2473,12 +2473,6 @@
       "topic": "جامعه",
       "until": 1792870504.436537
     },
-    "v4|بیش از ۱۵ هزار نفر در همدان آموزش های مهارتی دریافت کردند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine provincial report on vocational training statistics.",
-      "topic": "جامعه",
-      "until": 1792822014.5600405
-    },
     "v4|بیگدلی: خدا را شاکریم که شرمنده مردم نشدیم/ به یاد شهدای میناب به میدان رفتیم": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: قهرمانی تیم ملی والیبال نشسته ایران در بازی‌های پاراآسیایی.",
@@ -3066,12 +3060,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Political statement, no concrete event",
       "topic": "سیاست",
       "until": 1792849002.3815818
-    },
-    "v4|دعوت وزیر علوم از دختران کشور آذربایجان / درهای دانشگاه های ایران به روی آنها باز است / دخترانی که بخاطر حجاب مجبورند تحصیل شان را ترک کنند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: دعوت وزیر علوم از دانشجویان خارجی رویداد کم‌اهمیت است.",
-      "topic": "سیاست",
-      "until": 1792822018.6728892
     },
     "v4|ده ها کشته و زخمی بر اثر تیراندازی در یک کلیسا در اردن": {
       "ok": true,
@@ -3853,6 +3841,12 @@
       "topic": "نظامی",
       "until": 1792872812.3487778
     },
+    "v4|لواندوفسکی از مدعیان پرتعداد توپ طلا گفت": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Lewandowski praised players, not major sports event",
+      "topic": "ورزش",
+      "until": 1792895855.4982984
+    },
     "v4|لیگ برتر فوتبال زنان؛ شکست سنگین ملوان و توقف سپاهان در سیرجان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: نتایج مسابقات لیگ فوتبال زنان اهمیت ملی ندارد",
@@ -4074,6 +4068,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: تیراندازی با یک کشته در حومه پاریس اهمیت بین‌المللی محدودی دارد",
       "topic": "حادثه",
       "until": 1792871683.6049905
+    },
+    "v4|مکرون: تیراندازی مرگبار در نزدیکی پاریس «حمله ای تروریستی با انگیزه نژادپرستانه» بود": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: تایید تروریستی بودن تیراندازی مرگبار در پاریس توسط مکرون",
+      "topic": "حادثه",
+      "until": 1792895857.5414271
     },
     "v4|مکمل منیزیم، خواب راحت و حس خوب زندگی در دوره سالمندی": {
       "ok": false,
@@ -5171,6 +5171,10 @@
       "reason": "content_duplicate",
       "until": 1792799183.4591937
     },
+    "مکرون: تیراندازی مرگبار در نزدیکی پاریس «حمله ای تروریستی با انگیزه نژادپرستانه» بود": {
+      "reason": "content_duplicate",
+      "until": 1792831112.3292444
+    },
     "هشدار تند ایران به میانجی ها/ پاسخ تهران حمله به زیرساخت های خلیج فارس خواهد بود": {
       "reason": "content_duplicate",
       "until": 1792779778.7831306
@@ -5214,33 +5218,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "هشدار نماینده ولی فقیه در سپاه: دشمن جسارت کند سیلی بی سابقه ای می خورد ⚡️ نماینده ولی فقیه در سپاه پاسداران ا",
-      "id": "a171ffcf90",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792745709,
-      "verdict": "new",
-      "why": "هیچ ارتباط با رویدادهای قبلی"
-    },
-    {
-      "head": "قاسمی: بخشنامه بودجه ۱۴۰۶ آماده ابلاغ و سهم استان ها در بودجه تقویت می شود ⚡️ محمد قاسمی، معاون هماهنگی برنامه",
-      "id": "a1fe8a9d75",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792747386,
-      "verdict": "new",
-      "why": "بخشنامه بودجه سال ۱۴۰۶ جدید و غیرمکرر"
-    },
-    {
-      "head": "صعود تیم تنیس بانوان ایران به فینال بیلی جین کینگ کاپ ⚡️ تیم تنیس بانوان ایران با شکست قطر در پاکستان، جواز حض",
-      "id": "bf03f99f05",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792747977,
-      "verdict": "new",
-      "why": "تیم تنیس بانوان ایران در فینال بیلی جین کینگ کاپ"
-    },
     {
       "head": "آمادگی آمریکا برای رویارویی طولانی مدت با ایران ⚡️ مایک والتز، سفیر آمریکا در سازمان ملل متحد، مدعی شد واشنگتن",
       "id": "7de97f2f3e",
@@ -5761,16 +5738,38 @@
       "t": 1792808267,
       "verdict": "new",
       "why": "دخالت کانادا در انتخابات آمریکا، موضوع جدید"
+    },
+    {
+      "head": "طوفان چامپی در تایوان قربانی گرفت ⚡️ طوفان چامپی در روز شنبه در تایوان یک کشته و ۵۲۷ زخمی برجای گذاشت.",
+      "id": "9b95ee3e3b",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792809484,
+      "verdict": "new",
+      "why": "طوفان چامپی در تایوان، رویداد جدید و غیرمتعلق"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "مکرون تیراندازی در نزدیکی پاریس را حمله مسلحانه و نژادپرستانه خواند ⚡️ امانوئل مکرون، رئیس جمهور فرانسه، تیران",
+      "id": "a614bf15b7",
+      "match": "شلیک در حومه پاریس؛ یک کشته و چند زخمی",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792809497,
+      "verdict": "repeat",
+      "why": "same shooting event, different wording"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:reaction",
+      "head": "مکرون تیراندازی در نزدیکی پاریس را حمله مسلحانه و نژادپرستانه خواند ⚡️ امانوئل مکرون، رئیس جمهور فرانسه، تیران",
+      "id": "a614bf15b7",
+      "match": "شلیک در حومه پاریس؛ یک کشته و چند زخمی",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792809513,
+      "verdict": "unconfirmed-repeat",
+      "why": "same shooting event near Paris"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: سخنان مقام سابق خارجی درباره اسلام‌هراسی خبر درجه یک محسوب نمی‌شود.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792782589,
-      "title": "کاخ سفید، اتاق فرمان شرارت"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: پرداخت حقوق بازنشستگان یک رویداد روتین اداری و غیر استراتژیک است.",
       "rescued": false,
@@ -6323,6 +6322,13 @@
       "rule": "foreign-local-preselection",
       "t": 1792808813,
       "title": "گرم کردن، عدم ورود به زمین و پیام قاطع سرمربی؛/ الکسیس سانچز در کانادا جنجال ساز شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Lewandowski praised players, not major sports event",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1792809455,
+      "title": "لواندوفسکی از مدعیان پرتعداد توپ طلا گفت"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6944,31 +6950,44 @@
       ],
       "t": 1792808268.6960957,
       "title": "کارنی اتهام دخالت کانادا در انتخابات آمریکا را رد کرد ⚡️ نخست وزیر کانادا مارک کارنی اتهام دخالت اوتاوا در انتخابات میان"
+    },
+    {
+      "h": [
+        "برج",
+        "شنب",
+        "طف",
+        "قربن",
+        "چمپ",
+        "گذشت"
+      ],
+      "t": 1792809485.2838404,
+      "title": "طوفان چامپی در تایوان قربانی گرفت ⚡️ طوفان چامپی در روز شنبه در تایوان یک کشته و ۵۲۷ زخمی برجای گذاشت."
+    },
+    {
+      "h": [
+        "امنل",
+        "انگز",
+        "ترندز",
+        "تصف",
+        "حم",
+        "خند",
+        "فرنس",
+        "مجرح",
+        "مرگبر",
+        "مسلحن",
+        "منجر",
+        "مکرن",
+        "نزدک",
+        "نفر",
+        "نژدپرستن",
+        "پرس",
+        "پنج"
+      ],
+      "t": 1792809516.9219084,
+      "title": "مکرون تیراندازی در نزدیکی پاریس را حمله مسلحانه و نژادپرستانه خواند ⚡️ امانوئل مکرون، رئیس جمهور فرانسه، تیراندازی مرگبا"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "اهز",
-        "منزل",
-        "مهدس",
-        "وحد",
-        "چهر"
-      ],
-      "cities": [
-        "اهواز"
-      ],
-      "kind": "attack",
-      "places": [
-        "اهواز"
-      ],
-      "regions": [
-        "iran_khuzestan"
-      ],
-      "t": 1792742449.715059,
-      "title": "انفجار گاز در کوی مهدیس اهواز با ۴ مصدوم ⚡️ انفجار گاز در یک منزل چهار واحدی در کوی مهدیس اهواز، چهار مصدوم بر جای گذاشت",
-      "toll": 4
-    },
     {
       "a": [
         "اتم",
@@ -7066,76 +7085,33 @@
       "t": 1792805679.6271508,
       "title": "انفجار در ریاض و حملات هوایی سعودی به یمن ⚡️ انفجار در ریاض شنیده شد و صدای آژیر خطر اعلام شد.",
       "toll": 0
+    },
+    {
+      "a": [
+        "امنل",
+        "انگز",
+        "تصف",
+        "خند",
+        "فرنس",
+        "مرگبر",
+        "مسلحن",
+        "منجر",
+        "مکرن",
+        "نژدپرستن",
+        "پرس",
+        "پنج"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1792809516.9328942,
+      "title": "مکرون تیراندازی در نزدیکی پاریس را حمله مسلحانه و نژادپرستانه خواند ⚡️ امانوئل مکرون، رئیس جمهور فرانسه، تیراندازی مرگبا",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "است",
-        "ال",
-        "بختند",
-        "جن",
-        "حدث",
-        "دست",
-        "شدند",
-        "شغل",
-        "قنن",
-        "مدر",
-        "مدرکل",
-        "مصدم",
-        "مه",
-        "نش",
-        "نفر",
-        "همد",
-        "پزشک",
-        "کر",
-        "کرگر"
-      ],
-      "n": [
-        "349"
-      ],
-      "t": 1792679192.9231095,
-      "title": "مدیر پزشکی قانونی همدان: ۲۱ کارگر در حوادث شغلی جان باختند ⚡️ مدیرکل پزشکی قانونی استان همدان اعلام کرد در شش ماهه اول س"
-    },
-    {
-      "k": [
-        "ابتد",
-        "ارگن",
-        "امز",
-        "ببندد",
-        "بربر",
-        "ترندز",
-        "حل",
-        "خدم",
-        "درب",
-        "دستش",
-        "دفع",
-        "دنش",
-        "سل",
-        "شلک",
-        "مجدد",
-        "محفظت",
-        "مدرس",
-        "مشغل",
-        "معلم",
-        "مقمت",
-        "نتنست",
-        "نز",
-        "نکرد",
-        "نکردم",
-        "وژ",
-        "پدر",
-        "کدک",
-        "کشت",
-        "کشتن",
-        "کلس",
-        "کنند",
-        "یک"
-      ],
-      "t": 1792679202.9571555,
-      "title": "معلم مدرسه ابتدایی اورگن: «به جای مقاومت، از خودم دفاع نکردم» ⚡️ یک معلم ۵۴ ساله در تیراندازی مدرسه ابتدایی اورگن گفت که"
-    },
     {
       "k": [
         "ارزش",
@@ -10548,6 +10524,72 @@
       ],
       "t": 1792808268.6852384,
       "title": "کارنی اتهام دخالت کانادا در انتخابات آمریکا را رد کرد ⚡️ نخست وزیر کانادا مارک کارنی اتهام دخالت اوتاوا در انتخابات میان"
+    },
+    {
+      "k": [
+        "برج",
+        "برق",
+        "بعث",
+        "درخت",
+        "زخم",
+        "سقط",
+        "شنب",
+        "طف",
+        "قربن",
+        "قطع",
+        "منطق",
+        "چمپ",
+        "کشت",
+        "گذشت"
+      ],
+      "n": [
+        "527"
+      ],
+      "t": 1792809485.27285,
+      "title": "طوفان چامپی در تایوان قربانی گرفت ⚡️ طوفان چامپی در روز شنبه در تایوان یک کشته و ۵۲۷ زخمی برجای گذاشت. ▫️ این طوفان همچن"
+    },
+    {
+      "k": [
+        "اغز",
+        "امنل",
+        "انگز",
+        "بزدشت",
+        "تحقق",
+        "تررسم",
+        "ترندز",
+        "تصف",
+        "جمهر",
+        "حم",
+        "حمل",
+        "خند",
+        "دختر",
+        "ددستن",
+        "درند",
+        "رس",
+        "سل",
+        "فرد",
+        "فرنس",
+        "مبرز",
+        "مجرح",
+        "مرگبر",
+        "مسلحن",
+        "مظنن",
+        "مل",
+        "منجر",
+        "مکرن",
+        "نزدک",
+        "نفر",
+        "نژدپرستن",
+        "وخم",
+        "وضعت",
+        "پرس",
+        "پرند",
+        "پلس",
+        "پنج",
+        "کشت"
+      ],
+      "t": 1792809516.9110703,
+      "title": "مکرون تیراندازی در نزدیکی پاریس را حمله مسلحانه و نژادپرستانه خواند ⚡️ امانوئل مکرون، رئیس جمهور فرانسه، تیراندازی مرگبا"
     }
   ],
   "_text_polish": {
@@ -10559,7 +10601,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792808717
+    "at": 1792809313
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10573,10 +10615,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "last_quality_failure": 1792809490,
+    "last_status": 422
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792809418,
-    "last_failure": 1792808818,
-    "last_status": 429
+    "disabled_until": 1792809536,
+    "last_failure": 1792809476,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1792809414,
