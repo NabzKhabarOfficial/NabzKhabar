@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792794720
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1792794720
     },
@@ -159,12 +155,16 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792803895
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792804481
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-23",
-      "n": 144
+      "n": 145
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-23",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-24",
-      "n": 8
+      "n": 9
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-24",
-      "n": 2
+      "n": 3
     },
     "openrouter:*": {
       "day": "2026-10-23",
@@ -440,9 +440,9 @@
     "2026-10-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
+        "calls": 2,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
+        "ok": 1,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -460,22 +460,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 9,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 8,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 2,
+        "calls": 3,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 1,
-        "other": 1
+        "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       }
     }
@@ -3016,6 +3016,12 @@
       "topic": "اقتصاد",
       "until": 1792831991.6730852
     },
+    "v4|دانیال ایری در مرز آمادگی؛/ مدافع پرسپولیس در رویای یک تولد خاطره انگیز!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: Player's personal birthday wish, no significant event",
+      "topic": "ورزش",
+      "until": 1792890872.6914592
+    },
     "v4|داوران با آنها مهربان ترند/ جنگ روانی جدید رئال مادرید علیه بارسلونا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=world: حاشیه‌ها و جنگ روانی پیش از مسابقه ورزشی اهمیت اول‌تییر ندارد.",
@@ -3297,12 +3303,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: ادعای شهردار تهران درباره کنترل تورم، شعار و فاقد ارزش خبری درجه یک است.",
       "topic": "سیاست",
       "until": 1792849744.9153962
-    },
-    "v4|زخمی بر چهره عروس زاگرس؛ پسماندهای ساختمانی در شهر جا خوش کردند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، اثر محدود، بدون پیامد ملی یا بین‌المللی",
-      "topic": "جامعه",
-      "until": 1792821473.3722835
     },
     "v4|زنگ خطر برای آموزش عالی اتریش": {
       "ok": false,
@@ -4941,7 +4941,7 @@
     },
     "israel locks down occupied west bank after hebron shooting": {
       "reason": "content_duplicate",
-      "until": 1792804245.2677193
+      "until": 1792826081.7066543
     },
     "israel orders army to prepare to fully close west bank after two soldiers killed in shooting": {
       "reason": "content_duplicate",
@@ -5753,13 +5753,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Administrative and legal issues of a football club are not national news.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792779630,
-      "title": "استعلامی که نباید از فیفا گرفته می شد:/ و بالاخره نامه فسخ استقلال به فیفا درباره آسانی!"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial comment on electricity supply, no major impact",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6311,6 +6304,13 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1792803303,
       "title": "پایان دوران طلایی اسطوره های فوتبال جهان"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: Player's personal birthday wish, no significant event",
+      "rescued": false,
+      "rule": "low-value",
+      "t": 1792804472,
+      "title": "دانیال ایری در مرز آمادگی؛/ مدافع پرسپولیس در رویای یک تولد خاطره انگیز!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10758,7 +10758,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792803753
+    "at": 1792804329
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10771,11 +10771,6 @@
     "last_error": "HTTP 402 payment required (no free quota on this account)",
     "last_failure": 1791935762,
     "last_status": 402
-  },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1792804168.0,
-    "last_failure": 1792803868,
-    "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1792804183.0,
@@ -10798,6 +10793,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1792804477,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
