@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792794720
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792794721
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792794721
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1792804481
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792805031
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1792805040
     }
   ],
   "_ai_pace": {
@@ -184,7 +184,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-24",
-      "n": 3
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-10-23",
@@ -467,15 +467,15 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 3,
+        "calls": 5,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 1,
+        "ok": 3,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       }
     }
@@ -2572,12 +2572,6 @@
       "topic": "سیاست",
       "until": 1792837359.7833145
     },
-    "v4|ترامپ برای افزایش تولید نفت آمریکا به قانون تولید دفاعی متوسل شد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: تصمیم رسمی رئیس‌جمهور آمریکا برای افزایش تولید نفت و مهار بحران سوخت",
-      "topic": "اقتصاد",
-      "until": 1792821492.2684724
-    },
     "v4|ترامپ خواستار استعفای ایلهان عمر شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=True scope=world: اظهارنظر سیاسی ترامپ که تاثیر راهبردی بر سیاست کلان ندارد.",
@@ -3783,6 +3777,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Two deaths in Tehran highway crash, limited local impact",
       "topic": "حادثه",
       "until": 1792831988.4890618
+    },
+    "v4|فیدان: حمله به ایران، جنگ و درگیری را در منطقه گسترش خواهد داد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Turkish FM warns Iran attack would widen regional war",
+      "topic": "سیاست",
+      "until": 1792891432.3847313
     },
     "v4|فیدان: هیچ کسی از مداخله نظامی در ایران حمایت نمی کند": {
       "ok": true,
@@ -5137,6 +5137,10 @@
     "فرانسه: تنش نظامی بین ایران و آمریکا هیچ برنده ای ندارد": {
       "reason": "content_duplicate",
       "until": 1792801875.6311667
+    },
+    "فیدان: حمله به ایران، جنگ و درگیری را در منطقه گسترش خواهد داد": {
+      "reason": "content_duplicate",
+      "until": 1792826640.9827404
     },
     "فیدان: هیچ کسی از مداخله نظامی در ایران حمایت نمی کند": {
       "reason": "content_duplicate",
@@ -10758,7 +10762,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792804329
+    "at": 1792804927
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10793,10 +10797,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792804477,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
