@@ -180,7 +180,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-24",
-      "n": 5
+      "n": 7
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-23",
@@ -440,14 +440,14 @@
     "2026-10-24": {
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       }
     }
@@ -3408,12 +3408,6 @@
       "topic": "اقتصاد",
       "until": 1792823172.686176
     },
-    "v4|سواحل ام القوین امارات تعطیل شد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: نشت نفت و تعطیلی سواحل امارات رویدادی مهم در حوزه انرژی است.",
-      "topic": "حادثه",
-      "until": 1792820889.7423847
-    },
     "v4|سومین اهداء عضو رفسنجان در سال جاری/ جان ۳ بیمار نجات یافت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر محلی مربوط به اهدای عضو در شهرستان رفسنجان است.",
@@ -4476,6 +4470,12 @@
       "topic": "ورزش",
       "until": 1792855933.161062
     },
+    "v4|پایان دوران طلایی اسطوره های فوتبال جهان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: Potential retirement, not concrete top-tier event",
+      "topic": "ورزش",
+      "until": 1792889703.0932345
+    },
     "v4|پایان هفته چهارم کورس پاییزه آق قلا با رقابت ۶۱ راس اسب در روز سوم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: مسابقات اسب‌دوانی محلی در آق‌قلا اهمیت ملی یا بین‌المللی ندارد.",
@@ -5132,7 +5132,7 @@
     },
     "واکنش ترامپ به ادعای تام باراک درباره زمان حمله به ایران: من چیزی درباره این موضوع نمی دانم": {
       "reason": "content_duplicate",
-      "until": 1792803023.277537
+      "until": 1792824913.9614618
     },
     "وب سایت آمریکایی مارکت پلیس: عبور نفت برنت از ۱۱۴ دلار، هزینه انرژی و فشار تورمی در آمریکا را افزایش داد": {
       "reason": "content_duplicate",
@@ -5721,13 +5721,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: بررسی مشکلات واحدهای صنعتی در سطح شهرستانی محلی است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792779626,
-      "title": "بررسی موانع تولید ۱۲ واحد صنعتی و تولیدی در کلیبر"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Administrative and legal issues of a football club are not national news.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -6279,6 +6272,13 @@
       "rule": "strict-source-below-importance(8<10)",
       "t": 1792800285,
       "title": "بکارگیری ابزارهای نوین تأمین مالی زنجیره تولید در بانک مسکن/ نخستین اوراق گام به ارزش ۱۰۰۰ میلیارد ریال صادر شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: Potential retirement, not concrete top-tier event",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1792803303,
+      "title": "پایان دوران طلایی اسطوره های فوتبال جهان"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10726,7 +10726,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792801669
+    "at": 1792803165
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
