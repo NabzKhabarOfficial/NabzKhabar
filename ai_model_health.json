@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792878831
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792878835
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792878835
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792878840
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792878840
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792878840
     },
@@ -159,12 +139,32 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792881656
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792882837
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792882838
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792882838
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
+      "t": 1792882839
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792882839
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-24",
-      "n": 143
+      "n": 144
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-24",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-24",
-      "n": 89
+      "n": 90
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-24",
-      "n": 89
+      "n": 90
     },
     "openrouter:*": {
       "day": "2026-10-24",
@@ -440,9 +440,9 @@
     "2026-10-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 190,
+        "calls": 191,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 181,
+        "ok": 182,
         "other": 9
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -470,16 +470,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 89,
+        "calls": 90,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 72,
+        "ok": 73,
         "other": 17
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 89,
+        "calls": 90,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 58,
+        "ok": 59,
         "other": 31
       },
       "mistral:ministral-8b-latest": {
@@ -1427,6 +1427,12 @@
       "topic": "فناوری",
       "until": 1792945959.5085788
     },
+    "v4|elon musk says ukraine violated starlink’s rules": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Official statement by a major tech figure regarding a war-zone service.",
+      "topic": "فناوری",
+      "until": 1792969239.11738
+    },
     "v4|france protest updates: hundreds of thousands march amid heavy security": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اعتراضات گسترده، درگیری‌ها و استفاده از گاز اشک‌آور در فرانسه.",
@@ -1450,6 +1456,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: خبر ورزشی عادی و غیر سرنوشت‌ساز در سطح لیگ‌های باشگاهی.",
       "topic": "ورزش",
       "until": 1792949015.5245721
+    },
+    "v4|gunmen kill at least 10 people in eastern nigeria, police say": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: Gunmen kill at least 10 in Nigeria",
+      "topic": "حادثه",
+      "until": 1792969237.924451
     },
     "v4|highest position since early january - are spurs finally on way back?": {
       "ok": false,
@@ -1936,12 +1948,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine promotion of a TV series by a judicial official.",
       "topic": "جامعه",
       "until": 1792954322.8728588
-    },
-    "v4|استعدادیابی نونهالان، مسیر توسعه تیراندازی با کمان زنجان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: خبر ورزشی استانی درباره استعدادیابی پایه که کاملاً محلی است.",
-      "topic": "ورزش",
-      "until": 1792914639.4816234
     },
     "v4|استفاده از تجهیزات الکترونیکی تحت نظارت شورای مدرسه مجاز است": {
       "ok": false,
@@ -2609,6 +2615,12 @@
       "topic": "اقتصاد",
       "until": 1792938924.0803196
     },
+    "v4|تغییر مسیر پروازهای ریاض و ادامه توقف پروازهای هند به عربستان": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Routine operational change for a specific airline, lacks national strategic impact.",
+      "topic": "اقتصاد",
+      "until": 1792969239.094586
+    },
     "v4|تغییرات مدیریتی با هدف ارتقای کارآمدی انجام می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: سخنان کلی استاندار درباره تغییرات مدیریتی، فاقد ارزش خبری ملی",
@@ -3083,6 +3095,12 @@
       "topic": "ورزش",
       "until": 1792954301.011559
     },
+    "v4|دو کشور، دو اعتراض؛ رسانه های حکومتی ایران اعتراضات فرانسه و ایران را چگونه مقایسه می کنند؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Analysis and media comparison, not a concrete event or official decision.",
+      "topic": "جامعه",
+      "until": 1792969239.105846
+    },
     "v4|دوری برای من غیرممکن است؛/ یک اعتراف تلخ از رامین رضاییان! (عکس)": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine sports news about a player's injury and training habits.",
@@ -3094,6 +3112,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: اظهارنظر یک شخص مذهبی، موضع رسمی دولت عراق نیست.",
       "topic": "سیاست",
       "until": 1792950761.7082977
+    },
+    "v4|دویست و سی و هشتمین حماسه حضور زنجانی ها در میدان دفاع از وطن": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: Local political rally, no national impact",
+      "topic": "جامعه",
+      "until": 1792969237.3804889
     },
     "v4|دویست و سی وهشتمین شب حضور مردم تبریز در اجتماع بیعت با رهبری": {
       "ok": false,
@@ -3652,12 +3676,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Manager criticized flight cost, no major impact",
       "topic": "ورزش",
       "until": 1792938880.076034
-    },
-    "v4|عضو شورای شهر: شهردار باید پاسخگوی خشک شدن جنگل های تهران باشد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: انتقاد عضو شورای شهر از وضعیت فضای سبز تهران محلی است",
-      "topic": "جامعه",
-      "until": 1792915280.0857038
     },
     "v4|عضو هیات رئیسه مجلس: روبیو اطلاعات بسیار اندکی نسبت به تاریخ ایران دارد/ حداقل تاریخ تمدن ها را مطالعه کند/ مردم ایران هیچ زمانی خوی توحش گری نداشتند": {
       "ok": false,
@@ -4253,12 +4271,6 @@
       "topic": "اقتصاد",
       "until": 1792915849.7061443
     },
-    "v4|نرخ انواع ارز ۲ آبان در مرکز مبادله ایران مشخص شد+ جزئیات": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: اعلام نرخ رسمی انواع ارز در مرکز مبادله ایران",
-      "topic": "اقتصاد",
-      "until": 1792915287.4957824
-    },
     "v4|نرخ جدید گواهی اسقاط خودرو به زودی اعلام می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: اعلام تغییر نرخ در آینده و خبر از برنامه‌های انجمن",
@@ -4499,12 +4511,6 @@
       "topic": "سلامت",
       "until": 1792919903.4005094
     },
-    "v4|پتروشیمی تبریز، باشگاه برتر کشور در رشته دوچرخه سواری شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: انتخاب باشگاه پتروشیمی تبریز به عنوان برتر دوچرخه‌سواری، رویداد محلی و کم‌اهمیت است.",
-      "topic": "ورزش",
-      "until": 1792915283.6633143
-    },
     "v4|پرتاب های طلایی در هفته تربیت بدنی؛ معرفی برترین های جایزه بزرگ تیراندازی با کمان یزد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: مسابقات استانی تیراندازی با کمان محلی است و ارزش خبری سراسری ندارد",
@@ -4654,12 +4660,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: گزارش تحلیلی و بررسی احتمالات بدون وقوع رویداد مشخص.",
       "topic": "فناوری",
       "until": 1792949015.4725075
-    },
-    "v4|کارشناس عرب: لفاظی های اخیر نتانیاهو در مورد ایران انتخاباتی است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=world: تحلیل و نظر یک کارشناس درباره سخنان دیگران، رویداد محسوب نمی شود.",
-      "topic": "سیاست",
-      "until": 1792914639.4927654
     },
     "v4|کاظمی: دستورالعمل ویژه تداوم آموزش در شرایط بحرانی ابلاغ می شود": {
       "ok": false,
@@ -5671,20 +5671,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: اظهارات پیش از مسابقه مربی مس شهربابک اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792868469,
-      "title": "شهبا: از بازی سپاهان امتیاز می خواهیم"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تعطیلی مدارس به دلیل گرد و غبار یک موضوع استانی و محلی است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792869003,
-      "title": "غیرحضوری شدن مدارس نوبت صبح چهار شهر خوزستان در روز یکشنبه"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: نشست خبری مقام دولتی جزو خبرهای روتین و کم‌اهمیت است",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -6229,6 +6215,20 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1792881647,
       "title": "احسان محروقی به دنبال گلزنی؛/ چه رقیبی بهتر از پرسپولیس، برای بازگشت به اوج!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: Local political rally, no national impact",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1792882837,
+      "title": "دویست و سی و هشتمین حماسه حضور زنجانی ها در میدان دفاع از وطن"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: Gunmen kill at least 10 in Nigeria",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1792882837,
+      "title": "Gunmen kill at least 10 people in eastern Nigeria, police say"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11338,7 +11338,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792881544
+    "at": 1792882720
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
