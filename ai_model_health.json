@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1792807128
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792807129
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
-      "t": 1792807140
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792807693
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792810574
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792811140
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792811141
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792811169
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-23",
-      "n": 154
+      "n": 155
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-23",
-      "n": 263
+      "n": 266
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-23",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-24",
-      "n": 15
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-24",
-      "n": 15
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-10-23",
@@ -447,8 +447,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 14,
-        "ok": 14,
+        "calls": 17,
+        "ok": 17,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -469,22 +469,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 15,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 12,
+        "ok": 13,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 15,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "calls": 16,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
         "ok": 11,
-        "other": 4
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 23,
-        "ok": 23,
+        "calls": 25,
+        "ok": 25,
         "other": 0
       }
     }
@@ -1860,12 +1860,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Minor international incident involving two individuals, lacks national or global significance.",
       "topic": "جامعه",
       "until": 1792829773.554441
-    },
-    "v4|ادامه اتفاقات عجیب پیرامون علیرضا بیرانوند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مصدومیت یک بازیکن در مسابقه فوتبال اهمیت ملی ندارد",
-      "topic": "ورزش",
-      "until": 1792822650.9628687
     },
     "v4|ادامه روند صعودی قیمت نفت؛ طلای سیاه از ۱۱۷ دلار در هر بشکه هم عبور کرد": {
       "ok": true,
@@ -3673,12 +3667,6 @@
       "topic": "حادثه",
       "until": 1792825671.308655
     },
-    "v4|عکس| هو شدن کوکوریا در سانتیاگو برنابئو به خاطر کینه آلمانی ها در یورو 2024": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: حاشیه ورزشی کم‌اهمیت و هو کردن یک بازیکن در مسابقه فوتبال.",
-      "topic": "ورزش",
-      "until": 1792822655.280939
-    },
     "v4|غرفه سمنان در کنفرانس بین المللی اعضای کنوانسیون تنوع زیستی ارمنستان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر غرفه استانی در یک کنفرانس بین المللی اهمیت ملی ندارد.",
@@ -4176,6 +4164,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: نظرسنجی‌ها پیش‌بینی هستند و نه یک رویداد قطعی یا تصمیم رسمی.",
       "topic": "سیاست",
       "until": 1792872814.6085608
+    },
+    "v4|نفر آخرین رنکنیگ مهاجمان قرمزها از کرواسی/ کجایی تومی؟ دو گل و حالا هفته ها بی خبری!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: گزارش و تحلیل عملکرد بازیکن فوتبال تراکتور فاقد اهمیت ملی.",
+      "topic": "ورزش",
+      "until": 1792897542.7498777
     },
     "v4|نقش آفرینی اجتماعی روحانیت به مدیریت بهینه استان کرمان کمک می کند": {
       "ok": false,
@@ -4807,6 +4801,12 @@
       "topic": "حادثه",
       "until": 1792851128.587693
     },
+    "v4|۱۰ ملک آموزش وپرورش تهران در آستانه مولدسازی/ساخت ۷۰ مدرسه با فروش یک ملک در \"ونک\" !": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local education property sale, limited national impact",
+      "topic": "جامعه",
+      "until": 1792897540.9449944
+    },
     "v4|۱۱ میلیارد دلار از مالیات آمریکایی ها صرف دفاع از اسرائیل شده است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: مواضع رسمی وزیر خارجه ایران درباره هزینه‌های دفاعی آمریکا از اسرائیل.",
@@ -4990,7 +4990,7 @@
     },
     "russia, ukraine agree to melania trump-brokered localised ceasefire": {
       "reason": "content_duplicate",
-      "until": 1792810997.0959415
+      "until": 1792832769.9641116
     },
     "sa faces rising tension as foreign national is killed amid anti-migrant protests": {
       "at": 1792754930.7997437,
@@ -5040,7 +5040,7 @@
     },
     "اظهارات جنگ طلبانه ترامپ درباره آغاز یک عملیات نظامی جدید": {
       "reason": "content_duplicate",
-      "until": 1792810990.9766772
+      "until": 1792832753.7527962
     },
     "انفجار دو سوپرنفتکش متخلف پس از برخورد با مین و رها شدن آن توسط خدمه در تنگه هرمز": {
       "reason": "content_duplicate",
@@ -5771,20 +5771,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Guest appearance of wrestling champions",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792784090,
-      "title": "بدون تعارف با قهرمان های کشتی آزاد و فرنگی امید های جهان"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: آموزش کم، برنامه‌ریزی برای کاهش تراکم کلاس‌ها",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1792784091,
-      "title": "سرانه فضای آموزشی خراسان رضوی از میانگین کشوری پایین تر است"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و مذهبی فاقد اهمیت ملی یا بین‌المللی",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -6329,6 +6315,20 @@
       "rule": "no-concrete-event",
       "t": 1792810570,
       "title": "M 6.9 - 197 km WNW of Port-Olry, Vanuatu"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local education property sale, limited national impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792811140,
+      "title": "۱۰ ملک آموزش وپرورش تهران در آستانه مولدسازی/ساخت ۷۰ مدرسه با فروش یک ملک در \"ونک\" !"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: گزارش و تحلیل عملکرد بازیکن فوتبال تراکتور فاقد اهمیت ملی.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792811142,
+      "title": "نفر آخرین رنکنیگ مهاجمان قرمزها از کرواسی/ کجایی تومی؟ دو گل و حالا هفته ها بی خبری!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10601,7 +10601,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792810453
+    "at": 1792811037
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
