@@ -59,8 +59,7 @@ def save_json(path, value) -> None:
                 indent=2,
                 sort_keys=True,
             )
-            handle.write("
-")
+            handle.write("\n")
             handle.flush()
             os.fsync(handle.fileno())
 
