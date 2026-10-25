@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792881095
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792881634
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792881634
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792881635
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792881635
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792881638
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1792881642
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792881656
     },
@@ -159,24 +131,52 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
       "t": 1792888835
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792889410
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792889410
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1792889425
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1792889436
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792889437
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792889437
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1792889447
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-24",
-      "n": 148
+      "n": 149
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-24",
-      "n": 253
+      "n": 254
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-24",
-      "n": 112
+      "n": 113
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-24",
-      "n": 112
+      "n": 113
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-25",
@@ -460,22 +460,23 @@
     "2026-10-25": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 1,
-        "calls": 1,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 0
+        "other": 1
       },
       "gemini:gemini-3.8-flash": {
         "429": 1,
@@ -1361,6 +1362,12 @@
       "topic": "حادثه",
       "until": 1792967480.7321093
     },
+    "v4|antonelli stands on brink of history in austin": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: پیش‌بینی و بررسی مسابقات فرمول یک و کسب عنوان قهرمانی",
+      "topic": "ورزش",
+      "until": 1792975837.4642534
+    },
     "v4|blue planet iii is keeping the rough edges in the age of ai": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: این خبر مربوط به سبک تولید یک مستند تلویزیونی است.",
@@ -1516,6 +1523,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و بررسی انتخاباتی، خبر فوری یا رویداد تازه نیست.",
       "topic": "سیاست",
       "until": 1792950761.6732476
+    },
+    "v4|obama slams trump’s ‘cruelty and corruption’ at ohio rally for democrats": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Routine political rhetoric from a former president during a campaign rally.",
+      "topic": "سیاست",
+      "until": 1792975847.3929257
     },
     "v4|palestinian families displaced as israeli forces demolish hebron homes": {
       "ok": false,
@@ -2464,12 +2477,6 @@
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=iran_national: پیام تشریفاتی و تاکید بر آسیب‌شناسی، فاقد ارزش خبری دست اول است.",
       "topic": "ورزش",
       "until": 1792922234.6336033
-    },
-    "v4|تاکید پکن بر اصلاح و بهبود نظام حکمرانی جهانی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارات کلی و دیپلماتیک رئیس‌جمهور چین فاقد تصمیم اجرایی فوری است.",
-      "topic": "سیاست",
-      "until": 1792916323.0767283
     },
     "v4|تبریک اژه ای از قهرمانی ورزشکاران ایران در پاراآسیایی": {
       "ok": false,
@@ -3832,12 +3839,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=iran_national: بررسی اخبار تکذیب شده روزانه فاقد ارزش خبری درجه یک است.",
       "topic": "سیاست",
       "until": 1792953158.649971
-    },
-    "v4|قائم مقام رئیس دانشگاه آزاد استان تهران در واحد تهران مرکزی منصوب شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: انتصاب اداری درون‌دانشگاهی و فاقد اهمیت ملی یا بین‌المللی است.",
-      "topic": "جامعه",
-      "until": 1792916342.5807972
     },
     "v4|قالیباف در نشست روسای مجالس اعضای بریکس شرکت نمی کند": {
       "ok": false,
@@ -5657,13 +5658,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: برد تاتنهام مقابل چلسی برای اخبار درجه یک ایران مهم نیست",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1792870090,
-      "title": "شب تاریخی تاتنهام و پایان کری خوانی های آبی های لندن/ بعد از 36 سال! گلادیاتور از مصاف شیر، زنده بیرون آمد"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: عدم حضور رئیس مجلس در یک نشست بین‌المللی اهمیت راهبردی ندارد.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -6215,6 +6209,13 @@
       "rule": "no-concrete-event",
       "t": 1792888797,
       "title": "بنیامین نتانیاهو؛ آیا «آقای امنیت» اسرائیل می تواند برای هفتمین بار نخست وزیر شود؟"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: پیش‌بینی و بررسی مسابقات فرمول یک و کسب عنوان قهرمانی",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792889437,
+      "title": "Antonelli stands on brink of history in Austin"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11324,7 +11325,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792888674
+    "at": 1792889253
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11339,14 +11340,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792889402,
-    "last_failure": 1792888802,
-    "last_status": 429
+    "disabled_until": 1792889736.0,
+    "last_failure": 1792889436,
+    "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792889398,
-    "last_failure": 1792888798,
-    "last_status": 429
+    "disabled_until": 1792889725.0,
+    "last_failure": 1792889425,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
