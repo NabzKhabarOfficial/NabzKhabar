@@ -16,6 +16,7 @@ VALID_PUBLICATION_STATUSES = frozenset(item.value for item in PublicationStatus)
 _ALIASES = {
     "success": PublicationStatus.PUBLISHED.value,
     "explicit_failure": PublicationStatus.FAILED.value,
+    "publication_ambiguous": PublicationStatus.AMBIGUOUS.value,
     "failure": PublicationStatus.FAILED.value,
     "exception": PublicationStatus.FAILED.value,
     "duplicate": PublicationStatus.SKIPPED_DUPLICATE.value,
