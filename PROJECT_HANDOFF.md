@@ -5,7 +5,7 @@
 - Instagram and YouTube work belongs in the private `NabzAI-YouTube` repository.
 
 ## Current branch
-- `main`
+- `brain/production-hardening`
 
 ## Completed fixes
 - Fixed the freshness-rescue/editorial-patch compatibility issue: the active `_critical` predicate and legacy `_is_critical` name are both supported.
@@ -63,3 +63,13 @@
 - `v13_monitor.py` rewrite dropped diagnostics (`important_missed`, `editorial_blocked`, `skipped_duplicate`, `ai_pool`, `no_publication_candidate`), and the fail-closed gate may misfire on unexpected health statuses.
 - `voice_check.write_report` no longer resets `_BEATS` / `_REASON`.
 - Private repo CI runs with `NABZ_VOICE_CHECK=0`, so voice check is untested there.
+
+
+## Production hardening — 2026-10-25
+- Current branch: `brain/production-hardening`; safety snapshot: `brain/production-hardening-backup` (both branched from `main`).
+- Last change: https://github.com/NabzKhabarOfficial/NabzKhabar/commit/2ccc3e29886dd7dbcdee3663d794912c5ad82955
+- Changed files: `daily_boards.py`, `v13_ai_router.py`, `v13_monitor.py`, `v13_status.py`, `.github/workflows/bot.yml`, `tests/test_daily_boards_outcomes.py`, `tests/test_ai_router_safety.py`, `tests/test_status_schema.py`.
+- Verified by static inspection: daily-board photo outcomes now distinguish confirmed success, explicit rejection, and ambiguous transport outcomes; ambiguous photo outcomes do not trigger text fallback. Daily-board JSON state and AI health writes use atomic persistence. AI router rejects non-object JSON and redacts configured/common token patterns in exception logs. Monitor uses the canonical publication status schema and reports the requested diagnostics. Removed the self-dispatch keep-alive scheduler; the existing cron and manual dispatch remain.
+- Verification: GitHub file reads/writes succeeded. Tests and compile checks have **not yet been run** against this branch; do not treat this batch as green until branch CI completes.
+- Blockers/remaining: production state writers across `v13_standalone.py`, intelligence/rejection history, sent-news history, and docs still need atomic migration; publication outcome/reconciliation still needs integration into the primary Telegram sender; workflow YAML validation and full offline CI are pending; voice-check state reset remains an earlier known risk.
+- Next action: run all offline checks on this branch, fix any failures, then migrate the next narrow set of production writers and re-run tests. Do not merge PRs automatically.
