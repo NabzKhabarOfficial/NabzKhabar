@@ -9,28 +9,24 @@ MANIFEST = ROOT / "content" / "quarantine_manifest.json"
 NEWS = ROOT / "docs" / "news"
 ALLOWED_SCOPES = {"world", "iran_national", "local"}
 
-def _norm(value):
-    return re.sub(r"\s+", " ", str(value or "").replace("ي", "ی").replace("ك", "ک").replace("\u200c", " ")).strip().lower()
-
+def _norm(value): return re.sub(r"\s+", " ", str(value or "").replace("ي", "ی").replace("ك", "ک").replace("\u200c", " ")).strip().lower()
 def quarantined_ids():
     try:
         data = json.loads(MANIFEST.read_text(encoding="utf-8")); ids = data.get("ids")
         if not isinstance(ids, list): raise ValueError("quarantine manifest ids is not a list")
         return {str(x).strip() for x in ids if str(x).strip()}
-    except Exception as exc:
-        raise RuntimeError(f"quarantine manifest unavailable: {type(exc).__name__}: {exc}") from None
+    except Exception as exc: raise RuntimeError(f"quarantine manifest unavailable: {type(exc).__name__}: {exc}
+") from None
 
 def _quarantined_titles():
     titles = set()
     for rid in quarantined_ids():
-        path = NEWS / f"{rid}.html"
         try:
-            soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+            soup = BeautifulSoup((NEWS / f"{rid}.html").read_text(encoding="utf-8"), "html.parser")
             if soup.title: titles.add(_norm(soup.title.get_text(" ", strip=True)).split(" | ")[0])
             h1 = soup.find("h1")
             if h1: titles.add(_norm(h1.get_text(" ", strip=True)))
-        except OSError:
-            continue
+        except OSError: continue
     return {x for x in titles if x}
 
 def candidate_id(candidate):
@@ -45,10 +41,7 @@ def candidate_id(candidate):
     return ""
 
 def is_quarantined(candidate):
-    cid = candidate_id(candidate)
-    if cid in quarantined_ids(): return True
-    title = _norm(candidate.get("title") or candidate.get("headline"))
-    return bool(title and title in _quarantined_titles())
+    return candidate_id(candidate) in quarantined_ids() or (_norm(candidate.get("title") or candidate.get("headline")) in _quarantined_titles())
 
 def install_main(main, force=False):
     if getattr(main, "_quarantine_guard_installed", False) and not force: return
@@ -69,6 +62,18 @@ def install_main(main, force=False):
             return kept
         main.collect_candidates = guarded_collect
     main._quarantine_guard_installed = True
+
+def install_launcher(launcher):
+    """Reinstall after run_bot recompiles collect/process functions."""
+    if getattr(launcher, "_quarantine_launcher_installed", False): return
+    original = launcher._patch_history_rescue_pipeline
+    @wraps(original)
+    def patched(*args, **kwargs):
+        result = original(*args, **kwargs)
+        install_main(launcher.main, force=True)
+        return result
+    launcher._patch_history_rescue_pipeline = patched
+    launcher._quarantine_launcher_installed = True
 
 def install_editor_gate(gate):
     if getattr(gate, "_quarantine_verdict_guard_installed", False): return
