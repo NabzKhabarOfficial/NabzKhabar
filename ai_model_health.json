@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-20b",
-      "t": 1792879357
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1792879384
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792879953
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
-      "t": 1792879974
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792881079
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
-      "t": 1792881080
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
       "t": 1792881095
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
       "t": 1792888262
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792888797
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792888798
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792888798
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792888798
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1792888802
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1792888835
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-24",
-      "n": 146
+      "n": 148
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-24",
-      "n": 250
+      "n": 253
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-24",
-      "n": 111
+      "n": 112
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-24",
-      "n": 111
+      "n": 112
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-25",
-      "n": 6
+      "n": 7
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-25",
-      "n": 6
+      "n": 7
     },
     "openrouter:*": {
       "day": "2026-10-24",
@@ -458,29 +458,49 @@
       }
     },
     "2026-10-25": {
-      "gemini:gemini-3.5-flash-lite": {
+      "gemini:gemini-3.1-flash-lite": {
         "429": 0,
         "calls": 1,
         "ok": 1,
         "other": 0
       },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 4,
+        "ok": 4,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 7,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 6,
         "other": 1
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       }
     }
@@ -1641,6 +1661,12 @@
       "topic": "جامعه",
       "until": 1792920346.3627179
     },
+    "v4|آلوز در تمرین، پشت خط تا آذر (عکس)": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Club training update, no major competition impact",
+      "topic": "ورزش",
+      "until": 1792975197.1796336
+    },
     "v4|آماده باش امنیتی در فرانسه در آستانه دور روز تازه ای از اعتراضات": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اعلام آماده‌باش امنیتی در یک قدرت بزرگ جهانی برای اعتراضات سراسری",
@@ -1814,12 +1840,6 @@
       "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=world: رئیس‌جمهور آمریکا تهدید احتمالی حمله نظامی به ایران را اعلام کرد",
       "topic": "سیاست",
       "until": 1792964093.1063418
-    },
-    "v4|ادعای مدیر اطلاعات ملی آمریکا خطاب به روبیو: اطلاعات مربوط به طرح های ترور منتسب به ایران، باید در اختیار شمار بیشتری از کارکنان مراکز دیپلماتیک آمریکا قرار گیرد؛ یعنی افرادی که در": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: هشدار مقام اطلاعاتی آمریکا درباره ادعای ترور منتسب به ایران است.",
-      "topic": "نظامی",
-      "until": 1792915855.8426178
     },
     "v4|ادعای وال استریت ژورنال: پاکستان عبور کامیون های باری از ایران را در چارچوب تحریم های آمریکا، متوقف کرد/ شماری از رانندگان کامیون در صف های طولانی مرزی گرفتار شده اند و بخشی از محم": {
       "ok": true,
@@ -2024,12 +2044,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: ادعاها و ابراز نگرانی درباره انتخاباتی که هنوز برگزار نشده است.",
       "topic": "سیاست",
       "until": 1792918153.7740734
-    },
-    "v4|انتشار کتاب «سیاه، حشره سنگین»؛ روایتی از زخم های انسان در سایه جنگ": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=iran_national: انتشار کتاب رویداد فرهنگی بوده و اهمیت ملی یا بین‌المللی ندارد.",
-      "topic": "جامعه",
-      "until": 1792915855.8285024
     },
     "v4|انتقاد از مصوبه تمرکززدایی پایتخت: گرانی مسکن و گسترش حاشیه نشینی": {
       "ok": false,
@@ -2324,6 +2338,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار حاشیه‌ای و نقل‌وانتقالات باشگاهی فوتبال ارزش ملی ندارد",
       "topic": "ورزش",
       "until": 1792959441.367003
+    },
+    "v4|بنیامین نتانیاهو؛ آیا «آقای امنیت» اسرائیل می تواند برای هفتمین بار نخست وزیر شود؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Netanyahu hopes to win seventh term",
+      "topic": "سیاست",
+      "until": 1792975197.8042996
     },
     "v4|به اذن الهی در جنگ نهایی ابرقدرت مطلق جهان خواهیم شد": {
       "ok": false,
@@ -3675,6 +3695,12 @@
       "topic": "سیاست",
       "until": 1792931787.8298593
     },
+    "v4|علی جنتی: احتمالا فرماندهان نظامی موشک بالستیک جدیدی را آماده کرده اند که می تواند اهداف متحرک را نیز در دریا مورد اصابت قرار دهد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: برداشت شخصی علی جنتی درباره موشک جدید گمانه‌زنی است",
+      "topic": "نظامی",
+      "until": 1792975207.178646
+    },
     "v4|علی نژاد: اطلاعات ۵۵ هزار خانوار آذ بایجان غربی سرشماری می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر استانی و روتین سرشماری خانوارهای آذربایجان غربی اهمیت ملی ندارد",
@@ -3998,12 +4024,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: حاشیه‌ها و اظهارات ورزشی داخلی و غیرمهم",
       "topic": "ورزش",
       "until": 1792964075.1242442
-    },
-    "v4|مذاکره کنیم یا بجنگیم؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: مقاله تحلیلی و نظری درباره جنگ و مذاکره است و رویدادی مشخص ندارد.",
-      "topic": "سیاست",
-      "until": 1792915855.8139188
     },
     "v4|مراسم استقبال از قهرمان بازی های پاراآسیایی در بوشهر برگزار شد": {
       "ok": false,
@@ -5016,6 +5036,10 @@
       "reason": "content_duplicate",
       "until": 1792884246.9306698
     },
+    "حمله هوایی عربستان به استان تعز یمن": {
+      "reason": "content_duplicate",
+      "until": 1792910435.5665805
+    },
     "حمله پهبادی به مقر کردهای جدایی طلب در اربیل": {
       "reason": "content_duplicate",
       "until": 1792901574.1019173
@@ -5064,24 +5088,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "مدیر بحران استان اصفهان: صداهای انفجار در مناطق جنوبی اصفهان از معدوم سازی مهمات عمل نکرده جنگ رمضان است ⚡️ مد",
-      "id": "68177be640",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792839212,
-      "verdict": "new",
-      "why": "انفجار کنترل‌شده مهمات عمل‌نکرده در اصفهان"
-    },
-    {
-      "head": "فرانسه آماده برخورد با اعتراضات تازه دانش آموزان و کارگران ⚡️ فرانسه در آستانه اعتراضات سراسری دانش آموزان و ک",
-      "id": "0c66283bd4",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792839889,
-      "verdict": "new",
-      "why": "اعتراضات دانش آموزان و کارگران جدید"
-    },
     {
       "head": "اسرائیل در واکنش به حمله خونین، در شهر حبرون اقدام به تخریب ساختمان ها و ایجاد مانع های راهی کرد ⚡️ نیروهای نظ",
       "id": "4594d823bf",
@@ -5627,23 +5633,29 @@
       "t": 1792888261,
       "verdict": "repeat",
       "why": "same Saudi attack on Yemen, different casualty numbers"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "بمباران استان تعز یمن توسط جنگنده های عربستان ⚡️ جنگنده های عربستان استان تعز در یمن را بمباران کردند.",
+      "id": "2c9468858d",
+      "match": "عربستان به سه شهر یمن حمله کرد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792888828,
+      "verdict": "repeat",
+      "why": "همان حمله عربستان به یمن، استان تعز"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "بمباران استان تعز یمن توسط جنگنده های عربستان ⚡️ جنگنده های عربستان استان تعز در یمن را بمباران کردند.",
+      "id": "2c9468858d",
+      "match": "عربستان به سه شهر یمن حمله کرد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792888830,
+      "verdict": "repeat",
+      "why": "همان حمله عربستان به یمن، استان تعز"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=local: خبر مربوط به آمادگی تیم باشگاهی برای مسابقات است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792869597,
-      "title": "بمی ها آماده سومین حضور آسیایی/ پرواز خاتون به سمت گروه مرگ"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: تحقیق دانشگاهی درباره چالش هوش مصنوعی برای نابینایان اهمیت جهانی درجه یک ندارد.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792869598,
-      "title": "هوش مصنوعی نابینایان را کلافه می کند!"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: برد تاتنهام مقابل چلسی برای اخبار درجه یک ایران مهم نیست",
       "rescued": false,
@@ -6189,6 +6201,20 @@
       "rule": "no-concrete-event",
       "t": 1792888219,
       "title": "استقلالی سابق، غایب بزرگ مس مقابل سپاهان!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Club training update, no major competition impact",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792888797,
+      "title": "آلوز در تمرین، پشت خط تا آذر (عکس)"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Netanyahu hopes to win seventh term",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792888797,
+      "title": "بنیامین نتانیاهو؛ آیا «آقای امنیت» اسرائیل می تواند برای هفتمین بار نخست وزیر شود؟"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11298,7 +11324,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792888100
+    "at": 1792888674
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11313,13 +11339,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1792886461,
-    "last_failure": 1792885861,
+    "disabled_until": 1792889402,
+    "last_failure": 1792888802,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792886457,
-    "last_failure": 1792885857,
+    "disabled_until": 1792889398,
+    "last_failure": 1792888798,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
