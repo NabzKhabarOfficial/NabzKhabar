@@ -1,6 +1,9 @@
 """Crash-safe JSON state persistence for NabzKhabar."""
 from __future__ import annotations
-import json, os, tempfile, time
+import json
+import os
+import tempfile
+import time
 from pathlib import Path
 
 
@@ -36,10 +39,14 @@ def save_json(path, value) -> None:
         os.replace(tmp_name, path)
         try:
             dir_fd = os.open(path.parent, os.O_DIRECTORY)
-            try: os.fsync(dir_fd)
-            finally: os.close(dir_fd)
+            try:
+                os.fsync(dir_fd)
+            finally:
+                os.close(dir_fd)
         except (AttributeError, OSError):
             pass
     finally:
-        try: os.unlink(tmp_name)
-        except FileNotFoundError: pass
+        try:
+            os.unlink(tmp_name)
+        except FileNotFoundError:
+            pass
