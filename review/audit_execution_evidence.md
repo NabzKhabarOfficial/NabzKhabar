@@ -2,10 +2,10 @@
 
 Date: 2026-10-25
 
-## Exact revisions
+## Exact final revisions
 
-- NabzKhabar: `ae92fd4768ddda209ae5e0f2b16d49fef7a6c9bc`
-- NabzAI-YouTube safety baseline: `8fda7a6db1a749bbb85bd745f414d5ee5acec7d0`
+- NabzKhabar: `ff299b3c841dc9be2b1436c6364add12c8e907ce`
+- NabzAI-YouTube: `8e72ee518db2ff4c5a312df922ae54369de38f67`
 
 ## Scope
 
@@ -17,14 +17,19 @@ Date: 2026-10-25
 ## Cases recorded
 
 1. YouTube timeout after server-side acceptance: no second insert, claim becomes `ambiguous`.
-2. YouTube deterministic `publishAt` rejection: one controlled fallback is allowed.
-3. Buffer create timeout: no mutation retry, claim becomes `ambiguous`.
-4. Buffer delete timeout: no blind replacement, delete claim becomes `ambiguous`.
-5. Quarantine record: blocked before publication.
-6. Editorial score outside 0-10 or unknown scope: rejected.
+2. YouTube deterministic `publishAt` rejection: only a controlled fallback is attempted.
+3. YouTube fallback without confirmed `publishAt`: claim does not become a confirmed scheduled publication.
+4. Buffer create timeout: no mutation retry, claim becomes `ambiguous`.
+5. Buffer delete timeout: no blind replacement, delete claim becomes `ambiguous`.
+6. Quarantine record: blocked by exact ID or normalized stored-page title.
+7. Editorial score outside 0-10 or unknown scope: rejected.
 
 ## Execution status
 
-The source and fixtures are committed. Hosted GitHub Actions execution is **not certified in this evidence file**: the connected GitHub session returned 404 for the private Actions pages, and the current token could not create/update workflow files because it lacks the `workflow` scope.
+The user reports that the manually started GitHub Actions runs were green. The connected session did not expose run IDs or logs, so this report labels that status **user-reported**, not independently verified here.
 
-The complete 1,408-body audit is therefore still pending actual runner execution. This file intentionally records the gap instead of claiming green tests.
+The complete 1,408-body audit is still pending a runner artifact from `scripts/audit_news_corpus.py`. The repository now contains the executable audit and evidence receipt; no claim of full body-level coverage is made until the artifact proves `collected=1408`, `processed=1408`, no structural failures, and no missing quarantine IDs.
+
+## Final review status
+
+The final static review confirms the main duplicate-publication blockers are fail-closed at the latest commits. Remaining certification requirement: attach the latest Actions run IDs and the complete audit artifact from the current heads above.
