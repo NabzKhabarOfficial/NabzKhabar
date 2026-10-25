@@ -1,8 +1,5 @@
-import tempfile
 import unittest
-from pathlib import Path
 from types import SimpleNamespace
-
 import quarantine_guard
 
 
@@ -14,14 +11,16 @@ class QuarantineGuardTests(unittest.TestCase):
         self.assertFalse(quarantine_guard.is_quarantined({"id": "not-quarantined"}))
 
     def test_editor_verdict_schema_rejects_bad_scope_and_score(self):
-        gate = SimpleNamespace(
-            WAR_ZONE_MIN_SCORE=5,
-            war_zone=lambda title: False,
-            ai_accepts=lambda verdict, candidate=None: True,
-        )
+        gate = SimpleNamespace(WAR_ZONE_MIN_SCORE=5, war_zone=lambda title: False,
+                               ai_accepts=lambda verdict, candidate=None: True)
         quarantine_guard.install_editor_gate(gate)
         self.assertFalse(gate.ai_accepts({"score": 11, "happened": True, "scope": "world"}))
         self.assertFalse(gate.ai_accepts({"score": 8, "happened": True, "scope": "unknown"}))
+
+    def test_import_hook_has_reentrancy_guard(self):
+        text = open("sitecustomize.py", encoding="utf-8").read()
+        self.assertIn("_in_hook", text)
+        self.assertIn("if _in_hook", text)
 
 
 if __name__ == "__main__":
