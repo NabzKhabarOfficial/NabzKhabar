@@ -2,18 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792883602
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1792883605
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792884137
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792884137
     },
     {
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792892297
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1792893395
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792893396
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1792893397
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-25",
-      "n": 11
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-25",
-      "n": 10
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-10-24",
@@ -487,15 +487,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 11,
+        "calls": 12,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 11,
-        "other": 0
+        "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
+        "ok": 10,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
@@ -1920,6 +1921,12 @@
       "topic": "سیاست",
       "until": 1792962889.906598
     },
+    "v4|از ۱۶ وزیر دفاع بعد از پیروزی انقلاب ۷ وزیر اول آن فوت کرده یا شهید شده اند/ محمد تقی ریاحی و احمد مدنی در خارج از کشور فوت کردند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: وفات وزیران سابق",
+      "topic": "سیاست",
+      "until": 1792979796.5075898
+    },
     "v4|اسامی فینالیست های ۴ وزن نخست کشتی فرنگی قهرمانی جهان/ درخشش شاگردان رنگرز با ۳ شانس طلا": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: فینالیست شدن کشتی‌گیران ایران در مسابقات قهرمانی جهان.",
@@ -2537,6 +2544,12 @@
       "reason": "ai openrouter/openrouter/free batch score=1 happened=False scope=world: Trump alleged to misuse 2026 US‑Iran deal for leverage",
       "topic": "سیاست",
       "until": 1792918779.6552901
+    },
+    "v4|ترامپ باز هم وعده کاهش قیمت انرژی را تکرار کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: Trump promises energy price cut after oil price surge",
+      "topic": "سیاست",
+      "until": 1792979797.618369
     },
     "v4|ترامپ پس از توافق گازوئیل سراغ کود روسیه رفت": {
       "ok": true,
@@ -3605,12 +3618,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: طوفان بزرگ با تلفات و خسارات گسترده در چند کشور",
       "topic": "آب و هوا",
       "until": 1792962277.9876924
-    },
-    "v4|ظرفیت بزرگترین فرآورش نفت ایران ۳۲۰ هزار بشکه در روز رسید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: آمار معمولی صنعتی و روابط عمومی وزارتخانه.",
-      "topic": "اقتصاد",
-      "until": 1792916359.5194027
     },
     "v4|ظرفیت بزرگترین مرکز فرآورش نفت ایران به ۳۲۰ هزار بشکه در روز رسید": {
       "ok": false,
@@ -4806,12 +4813,6 @@
       "topic": "نظامی",
       "until": 1792967480.709806
     },
-    "v4|گسترش کارخانه موشکی عربستان برای تولید موشک های قدرتمندتر؛ ردپای فناوری چین در تأسیسات جدید ریاض/ موشک ها با سوخت جامد می تواند تهران را هدف بگیرد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: گزارش ماهواره‌ای از توسعه تأسیسات موشکی عربستان سعودی.",
-      "topic": "نظامی",
-      "until": 1792916359.5083256
-    },
     "v4|گشایش نمایشگاه خوشنویسی در شاهرود؛ ۶۰ اثر به نمایش گذاشته شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: گشایش نمایشگاه هنری محلی در شاهرود فاقد اهمیت ملی است.",
@@ -5658,13 +5659,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: اظهارنظر روتین مقامات و سخنان ایدئولوژیک فاقد ارزش خبری درجه یک.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1792870711,
-      "title": "مشاور رئیس جمهوری: اثرگذاری روحانیت در جامعه باید از ایده به طرح عملیاتی تبدیل شود"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار داخلی لیگ فوتبال باشگاهی اهمیت ملی ندارد.",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6216,6 +6210,13 @@
       "rule": "routine-metaphorical-topic",
       "t": 1792892251,
       "title": "زرندی مدیرعامل فولاد مبارکه سپاهان:/ فرزندان شما را از ۳ سالگی ورزشکار می کنیم!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: وفات وزیران سابق",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1792893396,
+      "title": "از ۱۶ وزیر دفاع بعد از پیروزی انقلاب ۷ وزیر اول آن فوت کرده یا شهید شده اند/ محمد تقی ریاحی و احمد مدنی در خارج از کشور "
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11325,7 +11326,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792892716
+    "at": 1792893302
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
