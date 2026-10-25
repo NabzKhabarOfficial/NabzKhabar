@@ -179,8 +179,8 @@
       "n": 111
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-10-24",
-      "n": 90
+      "day": "2026-10-25",
+      "n": 1
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-24",
@@ -192,83 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-10-21": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 182,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 104,
-        "other": 78
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 343,
-        "ok": 343,
-        "other": 0
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 91,
-        "calls": 153,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 30,
-        "other": 32
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 83,
-        "calls": 121,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 7,
-        "other": 31
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 64,
-        "other": 26
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 46,
-        "other": 44
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 0,
-        "calls": 28,
-        "ok": 28,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 0,
-        "calls": 1388,
-        "ok": 1388,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 6,
-        "calls": 6,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 4,
-        "calls": 4,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/set",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 32,
-        "ok": 32,
-        "other": 0
-      }
-    },
     "2026-10-22": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -531,6 +454,14 @@
         "429": 0,
         "calls": 25,
         "ok": 25,
+        "other": 0
+      }
+    },
+    "2026-10-25": {
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
         "other": 0
       }
     }
@@ -2122,6 +2053,12 @@
       "reason": "ai mistral/open-mistral-nemo score=6 happened=True scope=iran_national: انهدام مهمات غیرعملی در اصفهان، خطرات امنیتی",
       "topic": "نظامی",
       "until": 1792925157.1213949
+    },
+    "v4|انفجار و آتش سوزی شدید در یک کارخانه در ایالت آیووا آمریکا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local US factory explosion, limited impact",
+      "topic": "حادثه",
+      "until": 1792972845.3307812
     },
     "v4|انفجار گلوله توپ جنگی در بازار ضایعات نسیم شهر؛ ترکش به دیوار مدرسه خورد": {
       "ok": true,
@@ -4061,12 +3998,6 @@
       "topic": "جامعه",
       "until": 1792923912.643762
     },
-    "v4|مرد شکاک، مچ های دست همسرش را که قهرمان مچ اندازی بود برید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: جنایت خانوادگی و محلی محسوب شده و جزو اخبار درجه یک نیست.",
-      "topic": "قضایی",
-      "until": 1792915300.905467
-    },
     "v4|مردم آمریکا در دو راهی جنگ و صلح": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل و نظر درباره وضعیت سیاسی آمریکا و انتخابات.",
@@ -5671,13 +5602,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine sports news about a player's market value ranking.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792869036,
-      "title": "آریا یوسفی در جمع ارزشمندترین مدافعان راست آسیا"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Governor's praise, no significant national impact",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6229,6 +6153,13 @@
       "rule": "no-concrete-event",
       "t": 1792883605,
       "title": "Palestinian families displaced as Israeli forces demolish Hebron homes"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local US factory explosion, limited impact",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1792886445,
+      "title": "انفجار و آتش سوزی شدید در یک کارخانه در ایالت آیووا آمریکا"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11338,7 +11269,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792885778
+    "at": 1792886356
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
