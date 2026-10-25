@@ -180,7 +180,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-25",
-      "n": 7
+      "n": 9
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-25",
@@ -487,8 +487,8 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
@@ -1674,6 +1674,12 @@
       "topic": "جامعه",
       "until": 1792920346.3627179
     },
+    "v4|آغاز سفر مارکوپولویی گل گهر از تهران به دوشنبه!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: برنامه سفر تیم گل‌گهر، رویداد ورزشی محلی",
+      "topic": "ورزش",
+      "until": 1792976931.2223473
+    },
     "v4|آلوز در تمرین، پشت خط تا آذر (عکس)": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Club training update, no major competition impact",
@@ -2675,12 +2681,6 @@
       "reason": "ai openrouter/openrouter/free batch score=1 happened=False scope=world: Al Jazeera says Iran's missiles complicate Israel's strike calculations",
       "topic": "سیاست",
       "until": 1792918779.619641
-    },
-    "v4|توزیع مرغ منجمد ۲۷۴ هزار تومانی برای مهار قیمت ها در فارس": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به تنظیم بازار مرغ در فارس",
-      "topic": "اقتصاد",
-      "until": 1792916345.1987522
     },
     "v4|توسعه همکاری وزارت بهداشت با پزشکان ایرانی مقیم آلمان": {
       "ok": false,
@@ -3930,6 +3930,12 @@
       "topic": "ورزش",
       "until": 1792947110.3508885
     },
+    "v4|لیگ برتر ۱۸ سال؛/ صدرنشینی جوانان سپاهان با شکست تراکتور": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Youth league result, no national impact",
+      "topic": "ورزش",
+      "until": 1792976931.843307
+    },
     "v4|ماجرای تخلیه نیروگاه هسته ای بوشهر/ سفارت روسیه بیانیه داد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Official statement regarding the status of the Bushehr nuclear power plant.",
@@ -4757,12 +4763,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine report on provincial school infrastructure and educational space statistics.",
       "topic": "جامعه",
       "until": 1792916956.0725615
-    },
-    "v4|کمبود زمین مشکل اصلی مدرسه سازی در استان تهران/برابری فضای آموزشی در تهران با۱۱ استان کشور": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر است استانی و مربوط به توسعه مدارس تهران است.",
-      "topic": "جامعه",
-      "until": 1792916349.4270637
     },
     "v4|کوروش احمدی: این روزها رسانه ها در مورد اعلام تاریخ شروع جنگ، با هم مسابقه گذاشته اند/ بعید است بتوان نقل قول ها از سفیر آمریکا در ترکیه در مورد اینکه شنبه یا یکشنبه حمله ای انجام": {
       "ok": false,
@@ -5658,20 +5658,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: عدم حضور رئیس مجلس در یک نشست بین‌المللی اهمیت راهبردی ندارد.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1792870100,
-      "title": "قالیباف در نشست روسای مجالس اعضای بریکس شرکت نمی کند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: نشت نفت گسترده و تعطیلی سواحل متعدد در امارات",
-      "rescued": true,
-      "rule": "below-event-threshold",
-      "t": 1792870102,
-      "title": "امارات تمامی سواحل رأس الخیمه را تعطیل کرد"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: ثبت تصویر پلنگ در منطقه حفاظت شده محلی و کم اهمیت است",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -6216,6 +6202,20 @@
       "rule": "no-concrete-event",
       "t": 1792889437,
       "title": "Antonelli stands on brink of history in Austin"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: برنامه سفر تیم گل‌گهر، رویداد ورزشی محلی",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1792890531,
+      "title": "آغاز سفر مارکوپولویی گل گهر از تهران به دوشنبه!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Youth league result, no national impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1792890531,
+      "title": "لیگ برتر ۱۸ سال؛/ صدرنشینی جوانان سپاهان با شکست تراکتور"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11325,7 +11325,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792889852
+    "at": 1792890416
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
