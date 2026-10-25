@@ -1,9 +1,8 @@
-"""Install fail-closed guards after the launcher has finished replacing runtime functions."""
+"""Install fail-closed guards through the full production launcher lifecycle."""
 from __future__ import annotations
 import builtins
 _original_import = builtins.__import__
 _in_hook = False
-_seen = set()
 
 def _hook(name, globals=None, locals=None, fromlist=(), level=0):
     global _in_hook
@@ -14,14 +13,16 @@ def _hook(name, globals=None, locals=None, fromlist=(), level=0):
     _in_hook = True
     try:
         import quarantine_guard
+        if root == "run_bot":
+            quarantine_guard.install_launcher(module)
         if root in {"v13_standalone", "run_bot", "v13_ai_extra"}:
             target = getattr(module, "main", None)
             if target is not None and hasattr(target, "process_news"):
                 quarantine_guard.install_main(target, force=True)
         if root in {"v13_editor_gate", "run_bot", "v13_ai_extra"}:
             quarantine_guard.install_editor_gate(module if root == "v13_editor_gate" else __import__("v13_editor_gate"))
-        _seen.add(root)
     finally:
         _in_hook = False
     return module
+
 builtins.__import__ = _hook
