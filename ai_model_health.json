@@ -180,7 +180,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-25",
-      "n": 1
+      "n": 2
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-24",
@@ -460,8 +460,8 @@
     "2026-10-25": {
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       }
     }
@@ -3578,12 +3578,6 @@
       "topic": "اقتصاد",
       "until": 1792921494.3321145
     },
-    "v4|ظرفیت فرآورش نفت آزادگان جنوبی به ۳۲۰ هزار بشکه در روز رسید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=iran_national: افزایش ظرفیت تولید نفت ملی مهم است اما تأثیر فوری ندارد.",
-      "topic": "اقتصاد",
-      "until": 1792915300.9198003
-    },
     "v4|عبدالله دوم دستور بازنگری امنیتی داد / پس لرزه ۸ کشته و ده ها مجروح در مراسم تشییع جنازه مسیحیان در اردن": {
       "ok": true,
       "reason": "ai openrouter/openrouter/free batch score=7 happened=True scope=world: 8 dead, many injured in Jordan funeral disaster",
@@ -4610,6 +4604,12 @@
       "topic": "سلامت",
       "until": 1792932941.2542946
     },
+    "v4|کاپیتان سپاهان در انتظار بازگشت به روزهای اوج": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بازگشت بازیکن پس از مصدومیت، خبر محلی",
+      "topic": "ورزش",
+      "until": 1792973435.2354755
+    },
     "v4|کتاب «دایره المعارف۱۰۰رویداد شگفت انگیز تاریخ نجوم» منتشر شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: انتشار کتاب محلی و فاقد اهمیت خبری کشوری",
@@ -5602,13 +5602,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Governor's praise, no significant national impact",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792869580,
-      "title": "استاندار اصفهان: سپاهان مایه افتخار این شهر است"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: سخنرانی امام جمعه محلی؛ فاقد ارزش خبری ملی و بین‌المللی",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -6160,6 +6153,13 @@
       "rule": "final-scope-preselection",
       "t": 1792886445,
       "title": "انفجار و آتش سوزی شدید در یک کارخانه در ایالت آیووا آمریکا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بازگشت بازیکن پس از مصدومیت، خبر محلی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1792887035,
+      "title": "کاپیتان سپاهان در انتظار بازگشت به روزهای اوج"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11269,7 +11269,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792886356
+    "at": 1792886936
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
