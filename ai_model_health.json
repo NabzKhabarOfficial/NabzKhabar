@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792878846
-    },
-    {
-      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 11x, gemini:gemini-3.5-flash-lite held 11x, gemini:gemini-3.6-flash held 3x, gemini:gemini-3.8-flash held 3x, groq:openai/gpt-oss-120b held 15x, groq:openai/gpt-oss-20b held 15x, openrouter:* held 2x",
-      "t": 1792878876
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792879354
-    },
-    {
       "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-20b",
       "t": 1792879357
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1792885870
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792888219
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1792888220
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
+      "t": 1792888262
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-24",
-      "n": 145
+      "n": 146
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-24",
-      "n": 249
+      "n": 250
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-24",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-25",
-      "n": 4
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-10-24",
-      "n": 90
+      "day": "2026-10-25",
+      "n": 6
     },
     "openrouter:*": {
       "day": "2026-10-24",
@@ -458,7 +458,26 @@
       }
     },
     "2026-10-25": {
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 6,
+        "ok": 6,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 6,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 5,
+        "other": 1
+      },
+      "mistral:open-mistral-nemo": {
         "429": 0,
         "calls": 4,
         "ok": 4,
@@ -1412,6 +1431,12 @@
       "topic": "سیاست",
       "until": 1792965246.5352316
     },
+    "v4|iran war live: trump hints at possible sunday iran attack or deal reached": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Trump hints at possible attack or deal.",
+      "topic": "سیاست",
+      "until": 1792974620.7490675
+    },
     "v4|israel cracks down in west bank city after deadly attack": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: military operation after deadly attack, mass displacement",
@@ -1915,6 +1940,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: خبر استانی درباره تاسیس یک دانشکده جدید اهمیت ملی ندارد",
       "topic": "جامعه",
       "until": 1792965231.7982416
+    },
+    "v4|استقلالی سابق، غایب بزرگ مس مقابل سپاهان!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بازیکن مس به دلیل مصدومیت در بازی مهم غایب شد",
+      "topic": "ورزش",
+      "until": 1792974619.0129664
     },
     "v4|اسماعیلی: بیش از تحریم، خودتحریمی ها دست وپای بازرگانان و بخش خصوصی را بسته": {
       "ok": false,
@@ -2684,12 +2715,6 @@
       "topic": "نظامی",
       "until": 1792938333.4392853
     },
-    "v4|ثبت ۲۸ هزار و ۵۳۲ ماموریت اورژانس در هفته گذشته": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سخنرانی رئیس اورژانس استان تهران درباره تعداد ماموریت‌ها",
-      "topic": "سلامت",
-      "until": 1792915818.004254
-    },
     "v4|جاده چالوس یکطرفه شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: محدودیت ترافیکی جاده‌ای محلی و عادی است",
@@ -2821,6 +2846,12 @@
       "reason": "ai mistral/open-mistral-nemo score=8 happened=True scope=world: سعودی یمن: ۲۱ کشته/زخمی در حملات هوایی",
       "topic": "نظامی",
       "until": 1792944195.9763172
+    },
+    "v4|حملات عربستان به یمن ۱۹۳ شهید و ۴۶۸ زخمی برجای گذاشت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Saudi attacks on Yemen kill 193, injure 468.",
+      "topic": "نظامی",
+      "until": 1792974620.762896
     },
     "v4|حملات نظامی روسیه علیه اهداف نیروهای مسلح اوکراین": {
       "ok": true,
@@ -3019,12 +3050,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Minor local police report regarding public order in small towns.",
       "topic": "قضایی",
       "until": 1792927976.329608
-    },
-    "v4|دلیل غیبت علیرضا دبیر در مجمع انتخاباتی اتحادیه جهانی کشتی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine administrative news regarding a sports federation official's absence.",
-      "topic": "ورزش",
-      "until": 1792915836.6756814
     },
     "v4|دو ایرانی بازی با استقلال را از دست دادند": {
       "ok": false,
@@ -4184,12 +4209,6 @@
       "topic": "جامعه",
       "until": 1792950761.6907117
     },
-    "v4|نخستین نمایشگاه جامع تخصصی دریا محور بزودی در گیلان برگزار می شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=1 happened=False scope=local: اعلام برنامه‌ریزی برای برگزاری نمایشگاه استانی در آینده",
-      "topic": "اقتصاد",
-      "until": 1792915849.7061443
-    },
     "v4|نرخ جدید گواهی اسقاط خودرو به زودی اعلام می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: اعلام تغییر نرخ در آینده و خبر از برنامه‌های انجمن",
@@ -4219,6 +4238,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: توافق موقت بشردوستانه میان روسیه و اوکراین با تأیید مقامات دو کشور.",
       "topic": "سیاست",
       "until": 1792916974.9254417
+    },
+    "v4|نقص فنی شبکه برق کیش برطرف شد/ تلاش برای اتصال کامل": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: قطعی برق فنی در کیش، محلی و محدود",
+      "topic": "اقتصاد",
+      "until": 1792974617.984778
     },
     "v4|نمایش دو مستند درباره جنگ ۱۲ روزه در «یک روز با مستند»": {
       "ok": false,
@@ -4610,12 +4635,6 @@
       "topic": "ورزش",
       "until": 1792973435.2354755
     },
-    "v4|کتاب «دایره المعارف۱۰۰رویداد شگفت انگیز تاریخ نجوم» منتشر شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: انتشار کتاب محلی و فاقد اهمیت خبری کشوری",
-      "topic": "جامعه",
-      "until": 1792915840.076336
-    },
     "v4|کربکندی: پیشرفت فوتبال ایران متوقف شده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: اظهارنظر شخصی و انتقادی یک پیشکسوت درباره فوتبال.",
@@ -4928,6 +4947,10 @@
       "reason": "content_duplicate",
       "until": 1792900476.1296139
     },
+    "iran war live: trump hints at possible sunday iran attack or deal reached": {
+      "reason": "content_duplicate",
+      "until": 1792909835.6227026
+    },
     "israel cracks down in west bank city after deadly attack": {
       "reason": "content_duplicate",
       "until": 1792898198.3618326
@@ -4985,6 +5008,10 @@
       "reason": "content_duplicate",
       "until": 1792899850.350033
     },
+    "حملات عربستان به یمن ۱۹۳ شهید و ۴۶۸ زخمی برجای گذاشت": {
+      "reason": "content_duplicate",
+      "until": 1792909862.1479142
+    },
     "حمله هوایی تازه عربستان به پایتخت یمن، چهار نفر شهید شدند": {
       "reason": "content_duplicate",
       "until": 1792884246.9306698
@@ -5037,24 +5064,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "وزارت کشور عربستان: انتشار تصاویر محل اصابت موشک ها و پهپادها پیگرد قانونی دارد ⚡️ وزارت کشور عربستان به انتشا",
-      "id": "2e7957d7c0",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792838099,
-      "verdict": "new",
-      "why": "هشدار قانونی عربستان به انتشار محل اصابت موشک‌ها"
-    },
-    {
-      "head": "وزیر دفاع لهستان: ورشو میزبانی تسلیحات هسته ای آمریکا و فرانسه را دنبال می کند ⚡️ وزیر دفاع لهستان اعلام کرد ک",
-      "id": "aec06e167a",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792838110,
-      "verdict": "new",
-      "why": "موضوع جدید: تسلیحات هسته‌ای آمریکا و فرانسه در لهستان"
-    },
     {
       "head": "مدیر بحران استان اصفهان: صداهای انفجار در مناطق جنوبی اصفهان از معدوم سازی مهمات عمل نکرده جنگ رمضان است ⚡️ مد",
       "id": "68177be640",
@@ -5598,23 +5607,29 @@
       "t": 1792881093,
       "verdict": "new",
       "why": "جديدی است، مربوط به کشتاری در هائیتی"
+    },
+    {
+      "confirm": "groq/openai/gpt-oss-20b:repeat",
+      "head": "حملات عربستان به یمن ۱۹۳ کشته و ۴۶۸ زخمی برجای گذاشت ⚡️ سخنگوی وزارت بهداشت یمن اعلام کرد حملات عربستان به این",
+      "id": "97a75b7b58",
+      "match": "عربستان به سه شهر یمن حمله کرد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792888259,
+      "verdict": "repeat",
+      "why": "same Saudi airstrikes on Yemen, different casualty numbers"
+    },
+    {
+      "confirm": "groq/openai/gpt-oss-20b:repeat",
+      "head": "حملات عربستان به یمن ۱۹۳ کشته و ۴۶۸ زخمی برجای گذاشت ⚡️ سخنگوی وزارت بهداشت یمن اعلام کرد حملات عربستان به این",
+      "id": "97a75b7b58",
+      "match": "عربستان به سه شهر یمن حمله کرد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1792888261,
+      "verdict": "repeat",
+      "why": "same Saudi attack on Yemen, different casualty numbers"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: سخنرانی امام جمعه محلی؛ فاقد ارزش خبری ملی و بین‌المللی",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1792869581,
-      "title": "حسینی: ایمان واقعی در میدان عمل و دفاع از ولایت اثبات می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=2 happened=True scope=local: اظهارات روتین درباره حمایت مالی از باشگاه سپاهان و فاقد اهمیت سراسری",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1792869593,
-      "title": "مدیرعامل فولاد مبارکه: حمایت فولاد مبارکه از سپاهان کاهش نمی یابد/ نسبت به سپاهان متعهدیم"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=local: خبر مربوط به آمادگی تیم باشگاهی برای مسابقات است.",
       "rescued": false,
@@ -6160,6 +6175,20 @@
       "rule": "below-event-threshold",
       "t": 1792887035,
       "title": "کاپیتان سپاهان در انتظار بازگشت به روزهای اوج"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: قطعی برق فنی در کیش، محلی و محدود",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792888217,
+      "title": "نقص فنی شبکه برق کیش برطرف شد/ تلاش برای اتصال کامل"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بازیکن مس به دلیل مصدومیت در بازی مهم غایب شد",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1792888219,
+      "title": "استقلالی سابق، غایب بزرگ مس مقابل سپاهان!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11269,7 +11298,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792887510
+    "at": 1792888100
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11306,7 +11335,7 @@
     "last_status": 599
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1792862650,
+    "last_quality_failure": 1792888242,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
