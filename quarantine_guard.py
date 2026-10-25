@@ -15,8 +15,8 @@ def quarantined_ids():
         data = json.loads(MANIFEST.read_text(encoding="utf-8")); ids = data.get("ids")
         if not isinstance(ids, list): raise ValueError("quarantine manifest ids is not a list")
         return {str(x).strip() for x in ids if str(x).strip()}
-    except Exception as exc: raise RuntimeError(f"quarantine manifest unavailable: {type(exc).__name__}: {exc}
-") from None
+    except Exception as exc:
+        raise RuntimeError(f"quarantine manifest unavailable: {type(exc).__name__}: {exc}") from None
 
 def _quarantined_titles():
     titles = set()
@@ -64,7 +64,6 @@ def install_main(main, force=False):
     main._quarantine_guard_installed = True
 
 def install_launcher(launcher):
-    """Reinstall after run_bot recompiles collect/process functions."""
     if getattr(launcher, "_quarantine_launcher_installed", False): return
     original = launcher._patch_history_rescue_pipeline
     @wraps(original)
