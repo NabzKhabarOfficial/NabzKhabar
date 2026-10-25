@@ -74,3 +74,7 @@
 - CI follow-up: first PR CI caught an unterminated string in the existing `atomic_state.py`; corrected the newline literal in commit https://github.com/NabzKhabarOfficial/NabzKhabar/commit/9aff3cd5bd45b7cff2eeb6945c6e148d57e2f3da. CI rerun pending.
 - Blockers/remaining: production state writers across `v13_standalone.py`, intelligence/rejection history, sent-news history, and docs still need atomic migration; publication outcome/reconciliation still needs integration into the primary Telegram sender; workflow YAML validation and full offline CI are pending; voice-check state reset remains an earlier known risk.
 - Next action: run all offline checks on this branch, fix any failures, then migrate the next narrow set of production writers and re-run tests. Do not merge PRs automatically.
+
+- Latest hardening batch (2026-10-25): added `atomic_state.save_text`; bounded `sent_news.txt` hash history to 5,000 entries and switched its replacement to atomic writes; malformed non-hash entries are ignored; added compaction/concurrent-replacement tests. Added workflow-YAML syntax validation to `.github/workflows/offline-tests.yml`.
+- Additional changed files: `atomic_state.py`, `v13_standalone.py`, `tests/test_history_compaction.py`, `.github/workflows/offline-tests.yml`.
+- Verification: earlier hardening checks passed; full offline test steps reached compileall/import/pytest successfully but were cancelled during cleanup by a newer commit. A fresh run for the latest commit is pending; final green status not yet established.
