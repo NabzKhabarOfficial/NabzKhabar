@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
-      "t": 1792882839
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
-      "t": 1792882839
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792883594
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792883594
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1792883596
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1792883602
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1792883602
     },
@@ -159,6 +135,30 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1792891162
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792892250
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792892251
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1792892251
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=40)",
+      "t": 1792892291
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.6-flash",
+      "t": 1792892297
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1792892297
     }
   ],
   "_ai_pace": {
@@ -172,11 +172,11 @@
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-24",
-      "n": 113
+      "n": 114
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-24",
-      "n": 113
+      "n": 114
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-25",
@@ -184,7 +184,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-25",
-      "n": 9
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-10-24",
@@ -472,10 +472,10 @@
       },
       "gemini:gemini-3.6-flash": {
         "429": 1,
-        "calls": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
+        "ok": 1,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
@@ -493,9 +493,9 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 8,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
@@ -1494,6 +1494,12 @@
       "topic": "جامعه",
       "until": 1792949015.5072947
     },
+    "v4|italy’s young protesters return to the streets": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: تجمعات و اعتراضات عادی جوانان در ایتالیا بدون پیامد ملی یا جهانی",
+      "topic": "جامعه",
+      "until": 1792978697.747614
+    },
     "v4|live updates: france deploys vast security force in bid to prevent more riots": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: استقرار گسترده نیروهای امنیتی و ناآرامی در فرانسه.",
@@ -1733,12 +1739,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: افشای اظهارات تند ترامپ درباره نتانیاهو توسط آکسیوس",
       "topic": "سیاست",
       "until": 1792939570.452486
-    },
-    "v4|آیا بحران فرانسه می تواند کل اروپا را به لرزه درآورد؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: مقاله تحلیلی و گمانه‌زنی درباره بحران سیاسی اروپا.",
-      "topic": "سیاست",
-      "until": 1792916359.4859738
     },
     "v4|آیا جنگ پنهان آمریکا و چین وارد مرحله جدیدی شده است؟": {
       "ok": false,
@@ -2892,12 +2892,6 @@
       "topic": "نظامی",
       "until": 1792929750.4759247
     },
-    "v4|حمله ستاره بارسلونا به مورینیو در آستانه الکلاسیکو": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: اظهارنظر حاشیه‌ای بازیکن پیش از مسابقه اهمیت خبری کمی دارد.",
-      "topic": "ورزش",
-      "until": 1792916359.4637058
-    },
     "v4|حمله شدید خداداد به مدیرعامل استقلال": {
       "ok": false,
       "reason": "ai openrouter/openrouter/free batch score=1 happened=True scope=local: Owner criticized manager over alleged club mismanagement",
@@ -3263,6 +3257,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=local: Local agricultural damage report in a specific province.",
       "topic": "آب و هوا",
       "until": 1792927976.3156505
+    },
+    "v4|زرندی مدیرعامل فولاد مبارکه سپاهان:/ فرزندان شما را از ۳ سالگی ورزشکار می کنیم!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سخنرانی مدیرعامل در جشن سالگرد",
+      "topic": "ورزش",
+      "until": 1792978651.4225132
     },
     "v4|زلزله ۳ ریشتری پارسیان هرمزگان را لرزاند": {
       "ok": false,
@@ -3972,6 +3972,12 @@
       "topic": "سیاست",
       "until": 1792938924.0709498
     },
+    "v4|محمود نبویان: دولت عراق پاسخ دهد که چرا جنگنده های رژیم صهیونیستی در آسمان عراق در حال تمرین و آماده شدن برای حمله به ایران هستند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=False scope=iran_national: ادعا و هشدار نماینده مجلس درباره تمرین جنگنده‌ها فاقد رویداد معتبر است",
+      "topic": "سیاست",
+      "until": 1792978697.7334397
+    },
     "v4|محور موضوعات دیدار پزشکیان و پوتین در روسیه از زبان جلالی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: اعلام سفر آینده رئیس‌جمهور به روسیه، رویداد قطعی نیست",
@@ -3983,12 +3989,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: توضیح سفیر درباره دیدار مقامات، رویداد درجه یک محسوب نمی‌شود.",
       "topic": "سیاست",
       "until": 1792935083.7268991
-    },
-    "v4|مدال بازی های پاراآسیایی ناگویا به شهید مدرسه میناب رسید": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: مدال‌آوری ورزشکار ایرانی در مسابقات پاراآسیایی.",
-      "topic": "ورزش",
-      "until": 1792916359.4748564
     },
     "v4|مدیر اجرایی آژانس بین المللی انرژی:آ زادسازی هماهنگ ۴۰۰ میلیون بشکه از ذخایر راهبردی نفت، جهش اولیه قیمت ها کنترل کرد، اما این اقدام صرفا مسکنی موقت است / آزادسازی ذخایر نفتی راه ح": {
       "ok": true,
@@ -5658,13 +5658,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: Minor civil unrest in a foreign country without major national impact.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1792870698,
-      "title": "درگیری معترضان با نیروهای امنیتی در آلبانی"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: اظهارنظر روتین مقامات و سخنان ایدئولوژیک فاقد ارزش خبری درجه یک.",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -6216,6 +6209,13 @@
       "rule": "routine-metaphorical-topic",
       "t": 1792891682,
       "title": "خوان سباستین ورون در رویای جام قهرمانی/ بازگشت به خانه، سه بار خداحافظی و انقلاب در باشگاه!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سخنرانی مدیرعامل در جشن سالگرد",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1792892251,
+      "title": "زرندی مدیرعامل فولاد مبارکه سپاهان:/ فرزندان شما را از ۳ سالگی ورزشکار می کنیم!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -11325,7 +11325,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1792891566
+    "at": 1792892139
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -11345,8 +11345,8 @@
     "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1792889725.0,
-    "last_failure": 1792889425,
+    "disabled_until": 1792892591.0,
+    "last_failure": 1792892291,
     "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
