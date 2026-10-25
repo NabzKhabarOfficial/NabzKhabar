@@ -10,6 +10,7 @@ import re
 import time
 from collections import Counter
 from datetime import datetime, timezone
+from atomic_state import load_json as _atomic_load_json, save_json as _atomic_save_json
 
 HEALTH_FILE = "v13_health.json"
 REJECTED_NEWS_FILE = "v13_rejected_news.json"
@@ -796,28 +797,22 @@ def _dedup_events(main, candidates):
 def _write_health(state):
     try:
         state["updated_at"] = datetime.now(timezone.utc).isoformat()
-        with open(HEALTH_FILE, "w", encoding="utf-8") as f:
-            json.dump(state, f, ensure_ascii=False, indent=2)
+        _atomic_save_json(HEALTH_FILE, state)
     except Exception as exc:
-        print(f"V13 HEALTH WRITE ERROR: {exc}", flush=True)
+        print(f"V13 HEALTH WRITE ERROR: {type(exc).__name__}", flush=True)
 
 
 def _load_rejected_history():
-    try:
-        with open(REJECTED_NEWS_FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        return data if isinstance(data, list) else []
-    except Exception:
-        return []
+    data = _atomic_load_json(REJECTED_NEWS_FILE, [])
+    return data if isinstance(data, list) else []
 
 
 def _save_rejected_history(history):
     try:
         history = history[-MAX_REJECTED_NEWS_HISTORY:]
-        with open(REJECTED_NEWS_FILE, "w", encoding="utf-8") as f:
-            json.dump(history, f, ensure_ascii=False, indent=2)
+        _atomic_save_json(REJECTED_NEWS_FILE, history)
     except Exception as exc:
-        print(f"V13 REJECTED NEWS WRITE ERROR: {exc}", flush=True)
+        print(f"V13 REJECTED NEWS WRITE ERROR: {type(exc).__name__}", flush=True)
 
 
 def _rejected_record(main, candidate, score, reason, stage="intelligence_filter"):

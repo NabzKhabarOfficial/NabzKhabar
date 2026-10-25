@@ -19,9 +19,6 @@ jobs:
     timeout-minutes: 14
 
     steps:
-      - name: Record start time
-        run: echo "RUN_START=$(date +%s)" >> "$GITHUB_ENV"
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -448,20 +445,3 @@ jobs:
           echo "Runtime state synchronization failed."
           exit 1
 
-      - name: Keep the cycle alive
-        if: ${{ always() }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          elapsed=$(( $(date +%s) - RUN_START ))
-          wait=$(( 570 - elapsed ))
-
-          if [ "$wait" -gt 0 ]; then
-            echo "Waiting ${wait}s before starting next cycle"
-            sleep "$wait"
-          fi
-
-          gh workflow run bot.yml \
-            --ref main \
-            -R "${{ github.repository }}" \
-            || echo "Keep-alive dispatch failed; cron backup continues."

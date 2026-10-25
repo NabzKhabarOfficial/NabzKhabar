@@ -4,6 +4,7 @@ import sys
 import time
 
 import v13_standalone as main
+from atomic_state import load_json as _atomic_load_json, save_json as _atomic_save_json
 import v13_media_branding
 import v13_ai_router
 import v13_content_enhancer
@@ -319,11 +320,9 @@ def _reclassify_editorial_blocks():
     if not _editorial_blocks_this_run:
         return
     _save_recent_blocks(_editorial_blocks_this_run)
-    try:
-        with open(_HEALTH_FILE, "r", encoding="utf-8") as f:
-            health = _json.load(f)
-    except Exception as exc:
-        print(f"V13 EDITORIAL BLOCKS: telemetry read warning: {type(exc).__name__}: {exc}")
+    health = _atomic_load_json(_HEALTH_FILE, None)
+    if not isinstance(health, dict):
+        print("V13 EDITORIAL BLOCKS: telemetry read warning: missing or invalid state")
         return
     corrected = 0
     for attempt in health.get("publication_attempts") or []:
@@ -337,8 +336,7 @@ def _reclassify_editorial_blocks():
     if corrected:
         health["failed_publications"] = max(0, int(health.get("failed_publications", 0) or 0) - corrected)
         health["editorial_blocked_publications"] = int(health.get("editorial_blocked_publications", 0) or 0) + corrected
-        with open(_HEALTH_FILE, "w", encoding="utf-8") as f:
-            _json.dump(health, f, ensure_ascii=False, indent=2)
+        _atomic_save_json(_HEALTH_FILE, health)
         print(f"V13 EDITORIAL BLOCKS: {corrected} attempt(s) reclassified from failed to editorial_blocked", flush=True)
 
 

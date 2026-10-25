@@ -5,61 +5,45 @@
 - Instagram and YouTube work belongs in the private `NabzAI-YouTube` repository.
 
 ## Current branch
-- `main`
+- `brain/production-hardening`
+- Backup: `brain/production-hardening-backup`
 
-## Completed fixes
-- Fixed the freshness-rescue/editorial-patch compatibility issue: the active `_critical` predicate and legacy `_is_critical` name are both supported.
-- Added concurrency-safe freshness rescue compatibility behavior.
-- Hardened content duplicate state handling and runtime health reporting.
-- Added `tests/test_runtime_imports.py` for dynamically loaded runtime modules.
-- Added the offline CI workflow at `.github/workflows/offline-tests.yml` when repository workflow permissions allow it.
-- Restored the full `v13_story_dedup.py` API (`_health`, `COMMON`, number/speaker anchors, follow-up matching). The earlier rewrite had silently disabled the AI event judge (`v13_event_judge`), which depends on these names.
+## Production hardening status
+- PR: https://github.com/NabzKhabarOfficial/NabzKhabar/pull/15
+- Previous helper PR: https://github.com/NabzKhabarOfficial/NabzKhabar/pull/14
+- Both PRs remain open and unmerged by design.
+- Current PR head before this handoff refresh: `fd88f5651911e6055b29a77f74a708a0327a32cf`.
+- This documentation update creates a new head and requires fresh CI before it is called green.
 
-## Important runtime files
-- `run_bot.py`: launcher and stack wiring.
-- `v13_standalone.py`: Telegram collection, filtering, media, and publishing.
-- `v13_freshness_rescue.py`: freshness and consequential-story rescue.
-- `v13_editorial_final_patch.py`: final freshness/editorial calibration.
-- `v13_story_dedup.py`: publication duplicate guard (also installs text polish, incident dedup, event judge, importance rescue).
-- `v13_event_judge.py`: AI same-event judge, active only through `v13_story_dedup.install()`.
-- `v13_monitor.py`: runtime and publication health report.
-- `.github/workflows/bot.yml`: scheduled production workflow.
-- `.github/workflows/offline-tests.yml`: offline compile/import/pytest workflow.
+## Verified implementation
+- `run_bot.py` and `v13_ai_extra.py` are the active V13 launch path; the production workflow invokes `python v13_ai_extra.py`.
+- Atomic JSON/text persistence uses fsync, atomic replacement, and corrupt-state quarantine.
+- Daily-board photo outcomes distinguish confirmed success, explicit failure, and ambiguous transport outcomes; ambiguous photo outcomes do not trigger text fallback.
+- AI router requires object-shaped JSON and redacts configured/common credential-like values before logging.
+- Canonical publication status schema and monitor diagnostics are present.
+- Cron self-dispatch keep-alive was removed; scheduled and manual triggers remain.
+- `sent_news.txt` is bounded to 5,000 hash entries and atomically replaced, with compaction regression tests.
+- Persian language, freshness, duplicate, source-quality, media-claim, editorial, and AI-failure gates are active in the V13 stack.
 
-## Required continuation procedure
-1. Inspect `main` and the latest commits before changing anything.
-2. Run or inspect offline CI first; do not repeat completed fixes.
-3. Treat import compatibility, state persistence, duplicate prevention, and health reporting as mandatory.
-4. Never use real API calls in offline tests.
-5. Do not move Instagram or YouTube code into this repository.
-6. After every code, workflow, dependency, state, or documentation change, update this handoff with the latest commit, changed files, current status, blockers, and next action.
-7. Verify the exact changed files and report any unverified live behavior honestly.
+## Evidence
+- Prior complete checks for the previous PR head:
+  - Telegram offline regression: https://github.com/NabzKhabarOfficial/NabzKhabar/actions/runs/40159050592/job/121066535511
+  - offline: https://github.com/NabzKhabarOfficial/NabzKhabar/actions/runs/40159050594/job/121066535326
+  - hardening/offline: https://github.com/NabzKhabarOfficial/NabzKhabar/actions/runs/40159046923/job/121066526149
+- Those checks are historical evidence for `fd88f5651911e6055b29a77f74a708a0327a32cf`; fresh checks are required for this handoff commit.
+- No live Telegram, RSS, or AI-provider verification has been performed.
 
-## Handoff update format
-- Last change: `<commit URL>`
-- Changed files: `<paths>`
-- Verification: `<CI/test/static status>`
-- Blockers: `<none or exact blocker>`
-- Next action: `<concrete continuation step>`
+## Known remaining risks and blockers
+- Primary Telegram sender still lacks a durable provider-side reconciliation ledger for accepted-but-lost responses. Tri-state outcomes prevent blind fallback/retry but do not prove remote state.
+- `v13_growth.py` has a direct publication path that does not yet share the canonical outcome/reconciliation contract.
+- Remaining state writers in intelligence/rejection history, docs/review, and auxiliary modules need a complete atomic-writer audit/migration.
+- `content/quarantine_manifest.json` is documented but not yet wired into the production candidate-selection gate; records require re-extraction from original sources before correction.
+- Large content populations (`docs/review/telegram_log.json`, `docs/review/rejected_log.json`, `v13_rejected_news.json`, `sent_news.txt`, and the full `docs/news/` tree) were not fully enumerable in the connector response, so no exhaustive claim is made.
+- Live platform behavior remains `NOT VERIFIED`.
 
-## Latest update
-- Last change: https://github.com/NabzKhabarOfficial/NabzKhabar/commit/f2e42da4956431dc73504ab8bb4d8c9b569d5e87
-- Changed files: `v13_story_dedup.py` (restored to the original `e38a027` content, blob 92226d62, byte-identical).
-- Verification: static review of `v13_event_judge.py`, `v13_text_polish.py`, `v13_incident_dedup.py`, and `v13_ai_router.py` confirmed the names they use now exist. Not run in live CI yet.
-- Blockers: none for code. Remaining known issues below.
-- Next action: add an offline test that imports `v13_story_dedup`, calls `install()` with a stub core, and asserts that `v13_event_judge` installed. Then review `v13_monitor.py` (dropped diagnostics; check the health `status` values it gates on) and `voice_check.write_report` (missing `_BEATS`/`_REASON` reset).
-
-## Known verification boundary
-- Static code and workflow wiring have been reviewed.
-- Live GitHub Actions, Telegram, RSS, and AI provider behavior still requires an actual CI/workflow run.
-
-## Known open risks
-- `daily_boards` photo+text duplicate on an ambiguous timeout.
-- Non-atomic `_save_health` in `v13_ai_router` (plain write, can corrupt on crash).
-- `sent_news.txt` hashes are unbounded.
-- `quality_fix` is only installed when Mistral is configured.
-- Token leakage risk in logs.
-- Cron plus self-dispatch can cause duplicate runs.
-- `v13_monitor.py` rewrite dropped diagnostics (`important_missed`, `editorial_blocked`, `skipped_duplicate`, `ai_pool`, `no_publication_candidate`), and the fail-closed gate may misfire on unexpected health statuses.
-- `voice_check.write_report` no longer resets `_BEATS` / `_REASON`.
-- Private repo CI runs with `NABZ_VOICE_CHECK=0`, so voice check is untested there.
+## Required continuation
+1. Wait for fresh checks for the handoff commit and verify the exact SHA.
+2. Wire the quarantine manifest into candidate selection without suppressing legitimate fresh news.
+3. Add a durable Telegram reconciliation record and route every direct publication path, including growth/digest, through the canonical outcome contract.
+4. Audit and migrate remaining production state writers and add restart/concurrency tests.
+5. Keep PRs open and do not merge automatically.

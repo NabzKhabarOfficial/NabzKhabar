@@ -79,3 +79,32 @@ def save_json(path, value) -> None:
             os.unlink(tmp_name)
         except FileNotFoundError:
             pass
+
+def save_text(path, value: str) -> None:
+    """Atomically replace a UTF-8 text file using a same-directory temporary file."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp_name = tempfile.mkstemp(
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+        dir=str(path.parent),
+    )
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="") as handle:
+            handle.write(str(value))
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(tmp_name, path)
+        try:
+            directory_fd = os.open(path.parent, os.O_DIRECTORY)
+            try:
+                os.fsync(directory_fd)
+            finally:
+                os.close(directory_fd)
+        except (AttributeError, OSError):
+            pass
+    finally:
+        try:
+            os.unlink(tmp_name)
+        except FileNotFoundError:
+            pass

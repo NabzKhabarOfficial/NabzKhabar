@@ -21,6 +21,8 @@ from zoneinfo import ZoneInfo
 
 import requests
 
+from atomic_state import load_json as _atomic_load_json, save_json as _atomic_save_json
+
 TEHRAN = ZoneInfo("Asia/Tehran")
 WEATHER_HOUR = 7      # morning board
 CAR_PRICES_HOUR = 11  # source usually updates late morning
@@ -40,23 +42,27 @@ def _plain(text):
 
 
 def _load_json(path):
-    try:
-        return json.loads(Path(path).read_text(encoding="utf-8"))
-    except Exception:
-        return {}
+    data = _atomic_load_json(path, {})
+    return data if isinstance(data, dict) else {}
 
 
 def _save_json(path, data):
-    Path(path).write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    _atomic_save_json(path, data)
 
 
 def send_photo(path, caption):
+    """Return True on confirmed success, False on explicit rejection, None if ambiguous."""
     token = os.getenv("BOT_TOKEN", "").strip()
     if not token:
         _log("BOT_TOKEN is not configured")
         return False
     try:
-        with open(path, "rb") as fh:
+        fh = open(path, "rb")
+    except OSError as exc:
+        _log(f"sendPhoto could not open media: {type(exc).__name__}")
+        return False
+    try:
+        with fh:
             r = requests.post(
                 f"https://api.telegram.org/bot{token}/sendPhoto",
                 data={"chat_id": CHANNEL_ID, "caption": caption[:1000]},
@@ -65,10 +71,26 @@ def send_photo(path, caption):
             )
         if r.ok:
             return True
-        _log(f"sendPhoto failed: {r.status_code} {r.text[:300]}")
+        if r.status_code >= 500:
+            _log(f"sendPhoto outcome ambiguous after HTTP {r.status_code}; no fallback will be sent")
+            return None
+        _log(f"sendPhoto explicitly rejected: HTTP {r.status_code}")
+        return False
+    except requests.RequestException as exc:
+        _log(f"sendPhoto transport outcome ambiguous: {type(exc).__name__}; no fallback will be sent")
+        return None
     except Exception as exc:
-        _log(f"sendPhoto error: {type(exc).__name__}: {exc}")
-    return False
+        _log(f"sendPhoto outcome ambiguous: {type(exc).__name__}; no fallback will be sent")
+        return None
+
+
+def _log_photo_result(label, outcome):
+    if outcome is True:
+        _log(f"{label} card sent")
+    elif outcome is None:
+        _log(f"{label} card outcome ambiguous; refusing fallback to prevent duplicates")
+    else:
+        _log(f"{label} card failed, falling back to text")
 
 
 # ------------------------------------------------------------------ weather
@@ -127,8 +149,8 @@ def _run_weather(now):
         card = daily_cards.render_weather(rows, jalali, os.path.join(tmp, "weather.jpg"), weather._weather_text)
         if card:
             sent = send_photo(card, _weather_caption(rows, jalali, daily_cards.fa))
-            _log("weather card sent" if sent else "weather card failed, falling back to text")
-    if not sent:
+            _log_photo_result("weather", sent)
+    if sent is False:
         sent = weather._send_weather_message(_plain(weather._format_board(data, jalali)))
     if not sent:
         _log("weather publication failed")
@@ -170,8 +192,8 @@ def _run_car_prices(now):
             caption = (f"🚗 قیمت روز خودرو | {daily_cards.fa(update_date.split(' امروز')[0])}\n"
                        f"{daily_cards.fa(len(items))} مدل پرطرفدار · بازار و کارخانه\n\n📢 @NabzKhabarOfficial")
             sent = send_photo(card, caption)
-            _log("car card sent" if sent else "car card failed, falling back to text")
-    if not sent:
+            _log_photo_result("car", sent)
+    if sent is False:
         text, count = car_prices.build_board(update_date, found)
         if count:
             car_prices.send_telegram(text)
@@ -206,8 +228,8 @@ def _run_sports(now):
             card = daily_cards.render_sports(rows, jalali, os.path.join(tmp, "sports.jpg"))
             if card:
                 sent = send_photo(card, daily_sports.caption(rows, jalali, daily_cards.fa))
-                _log("sports card sent" if sent else "sports card failed, falling back to text")
-        if not sent:
+                _log_photo_result("sports", sent)
+        if sent is False:
             lines = [f"🏟 برنامه مسابقات مهم امروز | {jalali}", ""]
             for r in rows:
                 extra = f" | {r['broadcast']}" if r.get("broadcast") else ""
@@ -275,8 +297,8 @@ def _run_sports_results(now):
                 card = _render_results(rows, jalali, os.path.join(tmp, "results.jpg"))
                 if card:
                     sent = send_photo(card, caption)
-                    _log("results card sent" if sent else "results card failed, falling back to text")
-            if not sent:
+                    _log_photo_result("results", sent)
+            if sent is False:
                 sent = weather._send_weather_message(caption)
         if not sent:
             _log(f"results for {day}: publication failed, will retry")
@@ -310,8 +332,8 @@ def _run_education(now):
         card = education.render_card(item, jalali, number, os.path.join(tmp, "education.jpg"))
         if card:
             sent = send_photo(card, caption)
-            _log("education card sent" if sent else "education card failed, falling back to text")
-    if not sent:
+            _log_photo_result("education", sent)
+    if sent is False:
         sent = weather._send_weather_message(caption)
     if not sent:
         _log("education publication failed")

@@ -9,6 +9,8 @@ import os
 import re
 import time
 
+from atomic_state import load_json as _atomic_load_json, save_json as _atomic_save_json
+
 # Low-cost/free-tier Gemini candidates, ordered from lighter to stronger.
 # The router discovers which models are actually available for this API key.
 MODEL_CANDIDATES = (
@@ -48,16 +50,43 @@ def _persian_ratio(text):
     return sum("\u0600" <= ch <= "\u06ff" for ch in letters) / len(letters)
 
 
+def _redact(value):
+    """Remove configured credentials and common token formats before logging."""
+    text = str(value or "")
+    secrets = [
+        os.getenv(name, "").strip()
+        for name in ("BOT_TOKEN", "AI_API_KEY", "GEMINI_API_KEY", "GROQ_API_KEY",
+                     "OPENROUTER_API_KEY", "YOUTUBE_TOKEN", "YOUTUBE_REFRESH_TOKEN",
+                     "INSTAGRAM_ACCESS_TOKEN", "BUFFER_ACCESS_TOKEN", "HF_TOKEN")
+    ]
+    for secret in sorted((item for item in secrets if len(item) >= 8), key=len, reverse=True):
+        text = text.replace(secret, "[REDACTED]")
+    patterns = (
+        r"AIza[0-9A-Za-z_-]{20,}",
+        r"gsk_[0-9A-Za-z_-]{20,}",
+        r"sk-or-v1-[0-9A-Za-z_-]{20,}",
+        r"gh[pousr]_[0-9A-Za-z_]{20,}",
+        r"\b\d{8,10}:[A-Za-z0-9_-]{25,}\b",
+    )
+    for pattern in patterns:
+        text = re.sub(pattern, "[REDACTED]", text)
+    return text[:500]
+
+
+def _require_json_object(value):
+    if not isinstance(value, dict):
+        raise ValueError("AI response must be a JSON object")
+    return value
+
+
 def _clean_json(raw):
-    """Parse provider JSON even when a free model wraps it in prose/code fences."""
+    """Parse a provider response and require a JSON object, not an array/scalar."""
     raw = str(raw or "").strip()
     raw = re.sub(r"^\s*\`\`\`(?:json)?\s*", "", raw, flags=re.I)
     raw = re.sub(r"\s*\`\`\`\s*$", "", raw)
     try:
-        return json.loads(raw.strip())
+        return _require_json_object(json.loads(raw.strip()))
     except Exception:
-        # Some free models emit a short preamble around the JSON. Extract the
-        # first balanced top-level JSON object instead of rejecting it.
         start = raw.find("{")
         if start < 0:
             raise
@@ -81,26 +110,20 @@ def _clean_json(raw):
             elif ch == "}":
                 depth -= 1
                 if depth == 0:
-                    return json.loads(raw[start:idx + 1])
+                    return _require_json_object(json.loads(raw[start:idx + 1]))
         raise
 
 
-
 def _load_health():
-    try:
-        with open(AI_HEALTH_FILE, "r", encoding="utf-8") as handle:
-            data = json.load(handle)
-        return data if isinstance(data, dict) else {}
-    except Exception:
-        return {}
+    data = _atomic_load_json(AI_HEALTH_FILE, {})
+    return data if isinstance(data, dict) else {}
 
 
 def _save_health(health):
     try:
-        with open(AI_HEALTH_FILE, "w", encoding="utf-8") as handle:
-            json.dump(health, handle, ensure_ascii=False, indent=2, sort_keys=True)
+        _atomic_save_json(AI_HEALTH_FILE, health)
     except Exception as exc:
-        print(f"V13 AI ROUTER: health save error: {exc}")
+        print(f"V13 AI ROUTER: health save error: {_redact(exc)}")
 
 
 def _model_disabled(health, model):
@@ -176,7 +199,7 @@ def _available_models(main):
         print("V13 AI ROUTER: discovery returned no approved candidates; using fallback candidate list.")
         return list(MODEL_CANDIDATES)
     except Exception as exc:
-        print(f"V13 AI ROUTER: model discovery error: {exc}; using known candidates.")
+        print(f"V13 AI ROUTER: model discovery error: {_redact(exc)}; using known candidates.")
         return list(MODEL_CANDIDATES)
 
 def _request_json(main, model, prompt, max_output_tokens=500):

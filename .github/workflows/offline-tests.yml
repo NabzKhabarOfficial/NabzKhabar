@@ -97,6 +97,10 @@ jobs:
           print("NabzKhabar import smoke test: PASS")
           PY
 
+      - name: Validate workflow YAML
+        run: |
+          ruby -e 'require "yaml"; Dir.glob(".github/workflows/*.yml").each { |file| YAML.parse_file(file); puts "YAML syntax OK: #{file}" }'
+
       - name: Run offline regression tests
         run: |
           python -m pytest -q tests

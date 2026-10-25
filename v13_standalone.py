@@ -16,6 +16,7 @@ from urllib.parse import (
 )
 
 import requests
+from atomic_state import save_text as _atomic_save_text
 
 import feedparser
 from concurrent.futures import ThreadPoolExecutor
@@ -75,6 +76,7 @@ MAX_NEWS_AGE_HOURS = 0.5
 SEMANTIC_HISTORY_DAYS = 7
 
 HISTORY_FILE = "sent_news.txt"
+MAX_HASH_HISTORY = 5000
 
 WATERMARK_TEXT = "نبض خبر | NABZ"
 
@@ -1146,11 +1148,10 @@ def load_history():
 
                     continue
 
-                hash_history.add(
-                    normalize_space(
-                        line
-                    )
-                )
+                if re.fullmatch(r"[0-9a-fA-F]{32,64}", line):
+                    hash_history.add(line.lower())
+                else:
+                    print("History load warning: ignored malformed history entry", flush=True)
 
     except Exception as e:
 
@@ -1230,24 +1231,12 @@ def save_history(
                 )
             )
 
-        with open(
-            HISTORY_FILE,
-            "w",
-            encoding="utf-8"
-        ) as f:
-
-            for item in sorted(
-                hash_history
-            ):
-                f.write(
-                    item + "\n"
-                )
-
-            for timestamp, title in cleaned_titles:
-
-                f.write(
-                    f"TITLE|{timestamp}|{title}\n"
-                )
+        # Hash-only legacy entries have no timestamps; retain a generous bounded
+        # window while timestamped title records use the semantic age cutoff.
+        bounded_hashes = sorted(hash_history)[-MAX_HASH_HISTORY:]
+        lines = list(bounded_hashes)
+        lines.extend(f"TITLE|{timestamp}|{title}" for timestamp, title in cleaned_titles)
+        _atomic_save_text(HISTORY_FILE, "\n".join(lines) + ("\n" if lines else ""))
 
     except Exception as e:
 
