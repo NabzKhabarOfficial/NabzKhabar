@@ -1,27 +1,13 @@
 {
   "ai_pool": {},
   "ambiguous_publications": 0,
-  "checked_at": "2026-10-26T05:04:31.291683+00:00",
+  "checked_at": "2026-10-26T05:37:12.542846+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Speculative political analysis and personal opinion regarding potential future military con",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "جلایی پور: احتمال حمله به کشور طی ۲۰ تا ۹۰ روز آینده را باید جدی گرفت/ اظهارات رضایی پیام «ترجیح پایان جنگ، اما نه به هر قیمتی» را منتقل می کند",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine report on past maritime operations, not a new event.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "US military says it helped Gulf states export 1.5 billion barrels of oil",
-      "url": ""
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Premier League match, local sports event",
@@ -48,10 +34,10 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: General opinion piece on diplomacy without a concrete event.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: محتوای سبک زندگی و حیات وحش، فاقد ارزش خبری درجه یک",
       "result": "editorial_blocked",
       "source": "",
-      "title": "باید از هر روزنه دیپلماتیک برای پیشگیری از جنگ استفاده کرد",
+      "title": "لحظه شکار موش توسط افعی سبز لب سفید؛ حمله ای برق آسا",
       "url": ""
     },
     {
@@ -64,17 +50,35 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=iran_national: Routine administrative procedure for university registration.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: هشدار هواشناسی استانی و محلی با رویداد قطعی نشده",
       "result": "editorial_blocked",
       "source": "",
-      "title": "️تسهیل ثبت نام پذیرفته شدگان کارشناسی ارشد ۱۴۰۵",
+      "title": "هواشناسی خراسان شمالی نسبت به وقوع سیلاب و آبگرفتگی هشدار داد",
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "aljazeera.com",
+      "started_at": "2026-10-26T05:37:04.849113+00:00",
+      "title": "Social video captures moment Brazil’s election turned",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/26/social-video-captures-moment-brazils-election-turned?traffic_source=rss"
+    }
+  ],
+  "failed_publications": 1,
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 11,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "aljazeera.com",
+      "title": "Social video captures moment Brazil’s election turned",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/26/social-video-captures-moment-brazils-election-turned?traffic_source=rss"
+    }
+  ],
   "no_publication_candidate": false,
   "published": 0,
   "run_status": "success",
@@ -84,20 +88,29 @@
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "aljazeera.com",
-      "started_at": "2026-10-26T05:04:17.708205+00:00",
-      "title": "Iran war live: Saudi forces attack Sanaa after Houthis target Riyadh",
-      "url": "https://aljazeera.com/news/liveblog/2026/10/26/iran-war-live-trump-rules-out-strikes-today-israeli-forces-raid-hebron?traffic_source=rss"
+      "source": "isna.ir",
+      "started_at": "2026-10-26T05:36:25.129887+00:00",
+      "title": "حمله عربستان به صنعا",
+      "url": "https://isna.ir/news/1405080401991/%D8%AD%D9%85%D9%84%D9%87-%D8%B9%D8%B1%D8%A8%D8%B3%D8%AA%D8%A7%D9%86-%D8%A8%D9%87-%D8%B5%D9%86%D8%B9%D8%A7"
     },
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "khabaronline.ir",
-      "started_at": "2026-10-26T05:04:22.257855+00:00",
-      "title": "ترامپ: با ایران و کانادا توافق امضا خواهیم کرد/مراکز هسته ای تهران را زیر نظر داریم",
-      "url": "https://khabaronline.ir/news/2293185/%D8%AA%D8%B1%D8%A7%D9%85%D9%BE-%D8%A8%D8%A7-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D9%88-%DA%A9%D8%A7%D9%86%D8%A7%D8%AF%D8%A7-%D8%AA%D9%88%D8%A7%D9%81%D9%82-%D8%A7%D9%85%D8%B6%D8%A7-%D8%AE%D9%88%D8%A7%D9%87%DB%8C%D9%85-%DA%A9%D8%B1%D8%AF-%D9%85%D8%B1%D8%A7%DA%A9%D8%B2-%D9%87%D8%B3%D8%AA%D9%87-%D8%A7%DB%8C"
+      "started_at": "2026-10-26T05:36:38.403191+00:00",
+      "title": "ادعای رویترز: قیمت نفت، هیات قطری را به درخواست آمریکا به تهران کشاند",
+      "url": "https://khabaronline.ir/news/2293193/%D8%A7%D8%AF%D8%B9%D8%A7%DB%8C-%D8%B1%D9%88%DB%8C%D8%AA%D8%B1%D8%B2-%D9%82%DB%8C%D9%85%D8%AA-%D9%86%D9%81%D8%AA-%D9%87%DB%8C%D8%A7%D8%AA-%D9%82%D8%B7%D8%B1%DB%8C-%D8%B1%D8%A7-%D8%A8%D9%87-%D8%AF%D8%B1%D8%AE%D9%88%D8%A7%D8%B3%D8%AA-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7-%D8%A8%D9%87-%D8%AA%D9%87%D8%B1%D8%A7%D9%86"
+    },
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
+      "source": "mehrnews.com",
+      "started_at": "2026-10-26T05:36:50.426621+00:00",
+      "title": "ادامه واکنش های بین المللی به پیروزی مجدد رئیس جمهور برزیل",
+      "url": "https://mehrnews.com/news/6989982/%D8%A7%D8%AF%D8%A7%D9%85%D9%87-%D9%88%D8%A7%DA%A9%D9%86%D8%B4-%D9%87%D8%A7%DB%8C-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D8%A8%D9%87-%D9%BE%DB%8C%D8%B1%D9%88%D8%B2%DB%8C-%D9%85%D8%AC%D8%AF%D8%AF-%D8%B1%D8%A6%DB%8C%D8%B3-%D8%AC%D9%85%D9%87%D9%88%D8%B1-%D8%A8%D8%B1%D8%B2%DB%8C%D9%84"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
