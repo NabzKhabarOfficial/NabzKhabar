@@ -1,25 +1,27 @@
 {
   "ai_pool": {},
-  "ambiguous_publications": 0,
-  "checked_at": "2026-10-26T13:47:30.787295+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-10-26T14:08:20.231125+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: گمانه‌زنی و تحلیل درباره احتمال حمله و برنامه‌های آینده.",
+      "reason": "editor_gate: cached:ai openrouter/openrouter/free batch score=6 happened=True scope=iran_national: تحلیل سیاسی از تغییر روند دیپلماسی، اما بدون اقدام رسمی یا تصمیم نهایی.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "چرا حمله به ایراه به بعد از انتخابات موکول شد؟",
+      "title": "مطهری: احتمال توافق ایران و آمریکا بیشتر از حمله نظامی است",
       "url": ""
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: آتش‌سوزی شهری و محلی در تهران بدون تلفات مرگبار.",
+      "reason": "editor_gate: cached:ai openrouter/openrouter/free batch score=3 happened=True scope=local: آتشسوزی موتورسازی تهران با یک مصدوم، حادثه محلی و جزئی است.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "نجات ۲۰ نفر از آتش سوزی در مغازه موتورسازی خیابان شهید بهشتی تهران",
+      "title": "نجات ۲۰ تن از آتش سوزی موتورسازی خیابان شهید بهشتی",
       "url": ""
     },
     {
@@ -28,6 +30,14 @@
       "result": "editorial_blocked",
       "source": "",
       "title": "Man found dead in Queensland flood waters as state hit by multiple storms and days-long deluge",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai openrouter/openrouter/free batch score=4 happened=False scope=iran_national: نشست آغاز شده اما هنوز خبر توافق یا تصمیم قطعی وجود ندارد.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "آغاز نشست چهارجانبه ایران، پاکستان، ترکیه، عربستان",
       "url": ""
     },
     {
@@ -47,24 +57,68 @@
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "irna.ir",
+      "started_at": "2026-10-26T14:06:50.560732+00:00",
+      "title": "سایه سنگین جنگ ایران روی شانه های لرزان اقتصاد جهانی",
+      "url": "https://irna.ir/news/86304029/%D8%B3%D8%A7%DB%8C%D9%87-%D8%B3%D9%86%DA%AF%DB%8C%D9%86-%D8%AC%D9%86%DA%AF-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%B1%D9%88%DB%8C-%D8%B4%D8%A7%D9%86%D9%87-%D9%87%D8%A7%DB%8C-%D9%84%D8%B1%D8%B2%D8%A7%D9%86-%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF-%D8%AC%D9%87%D8%A7%D9%86%DB%8C"
+    },
+    {
+      "error": "",
+      "result": "failed",
+      "source": "khabaronline.ir",
+      "started_at": "2026-10-26T14:07:35.339033+00:00",
+      "title": "صورت حساب ۱۰۰ میلیارد دلاری جنگ ۴۰ روزه / هزینه های پنهان جنگ در آستانه انتخابات",
+      "url": "https://khabaronline.ir/news/2293084/%D8%B5%D9%88%D8%B1%D8%AA-%D8%AD%D8%B3%D8%A7%D8%A8-%DB%B1%DB%B0%DB%B0-%D9%85%DB%8C%D9%84%DB%8C%D8%A7%D8%B1%D8%AF-%D8%AF%D9%84%D8%A7%D8%B1%DB%8C-%D8%AC%D9%86%DA%AF-%DB%B4%DB%B0-%D8%B1%D9%88%D8%B2%D9%87-%D9%87%D8%B2%DB%8C%D9%86%D9%87-%D9%87%D8%A7%DB%8C-%D9%BE%D9%86%D9%87%D8%A7%D9%86-%D8%AC%D9%86%DA%AF"
+    }
+  ],
+  "failed_publications": 1,
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 26,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "khabaronline.ir",
+      "title": "صورت حساب ۱۰۰ میلیارد دلاری جنگ ۴۰ روزه / هزینه های پنهان جنگ در آستانه انتخابات",
+      "url": "https://khabaronline.ir/news/2293084/%D8%B5%D9%88%D8%B1%D8%AA-%D8%AD%D8%B3%D8%A7%D8%A8-%DB%B1%DB%B0%DB%B0-%D9%85%DB%8C%D9%84%DB%8C%D8%A7%D8%B1%D8%AF-%D8%AF%D9%84%D8%A7%D8%B1%DB%8C-%D8%AC%D9%86%DA%AF-%DB%B4%DB%B0-%D8%B1%D9%88%D8%B2%D9%87-%D9%87%D8%B2%DB%8C%D9%86%D9%87-%D9%87%D8%A7%DB%8C-%D9%BE%D9%86%D9%87%D8%A7%D9%86-%D8%AC%D9%86%DA%AF"
+    },
+    {
+      "intelligence_score": 22,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "irna.ir",
+      "title": "سایه سنگین جنگ ایران روی شانه های لرزان اقتصاد جهانی",
+      "url": "https://irna.ir/news/86304029/%D8%B3%D8%A7%DB%8C%D9%87-%D8%B3%D9%86%DA%AF%DB%8C%D9%86-%D8%AC%D9%86%DA%AF-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%B1%D9%88%DB%8C-%D8%B4%D8%A7%D9%86%D9%87-%D9%87%D8%A7%DB%8C-%D9%84%D8%B1%D8%B2%D8%A7%D9%86-%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF-%D8%AC%D9%87%D8%A7%D9%86%DB%8C"
+    }
+  ],
   "no_publication_candidate": false,
-  "published": 3,
+  "published": 0,
   "run_status": "success",
-  "selected_for_publication": 9,
+  "selected_for_publication": 10,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
+      "source": "fararu.com",
+      "started_at": "2026-10-26T14:07:29.573530+00:00",
+      "title": "چرا حمله به ایران به بعد از انتخابات موکول شد؟",
+      "url": "https://fararu.com/fa/news/1012497/%DA%86%D8%B1%D8%A7-%D8%AD%D9%85%D9%84%D9%87-%D8%A8%D9%87-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%A8%D9%87-%D8%A8%D8%B9%D8%AF-%D8%A7%D8%B2-%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA-%D9%85%D9%88%DA%A9%D9%88%D9%84-%D8%B4%D8%AF"
+    },
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
       "source": "irna.ir",
-      "started_at": "2026-10-26T13:46:50.377821+00:00",
-      "title": "کشتی فرنگی قهرمانی جهان؛ فردینِ ۴۰ ثانیه/ طلای سنگین وزن برای ایران",
-      "url": "https://irna.ir/news/86304001/%DA%A9%D8%B4%D8%AA%DB%8C-%D9%81%D8%B1%D9%86%DA%AF%DB%8C-%D9%82%D9%87%D8%B1%D9%85%D8%A7%D9%86%DB%8C-%D8%AC%D9%87%D8%A7%D9%86-%D9%81%D8%B1%D8%AF%DB%8C%D9%86-%DB%B4%DB%B0-%D8%AB%D8%A7%D9%86%DB%8C%D9%87-%D8%B7%D9%84%D8%A7%DB%8C-%D8%B3%D9%86%DA%AF%DB%8C%D9%86-%D9%88%D8%B2%D9%86-%D8%A8%D8%B1%D8%A7%DB%8C"
+      "started_at": "2026-10-26T14:07:47.860373+00:00",
+      "title": "کشتی فرنگی قهرمانی جهان؛ سومین طلای ایران به نام سهرابی ضرب شد",
+      "url": "https://irna.ir/news/86304054/%DA%A9%D8%B4%D8%AA%DB%8C-%D9%81%D8%B1%D9%86%DA%AF%DB%8C-%D9%82%D9%87%D8%B1%D9%85%D8%A7%D9%86%DB%8C-%D8%AC%D9%87%D8%A7%D9%86-%D8%B3%D9%88%D9%85%DB%8C%D9%86-%D8%B7%D9%84%D8%A7%DB%8C-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%A8%D9%87-%D9%86%D8%A7%D9%85-%D8%B3%D9%87%D8%B1%D8%A7%D8%A8%DB%8C-%D8%B6%D8%B1%D8%A8-%D8%B4%D8%AF"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
