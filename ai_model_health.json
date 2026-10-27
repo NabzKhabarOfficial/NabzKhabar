@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 7x",
-      "t": 1793054132
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793055822
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793055822
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793055823
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793055823
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1793055827
     },
@@ -159,6 +139,26 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
       "t": 1793057653
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793063049
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793063050
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1793063050
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-120b",
+      "t": 1793063063
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1793063095
     }
   ],
   "_ai_pace": {
@@ -172,19 +172,19 @@
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-26",
-      "n": 57
+      "n": 58
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-26",
-      "n": 57
+      "n": 58
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-10-26",
-      "n": 90
+      "day": "2026-10-27",
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-10-26",
-      "n": 90
+      "day": "2026-10-27",
+      "n": 2
     },
     "openrouter:*": {
       "day": "2026-10-26",
@@ -192,84 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-10-23": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 156,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 152,
-        "other": 4
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 305,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 303,
-        "other": 2
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 74,
-        "calls": 129,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 35,
-        "other": 20
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 74,
-        "calls": 95,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
-        "other": 20
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 73,
-        "other": 17
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 63,
-        "other": 27
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 0,
-        "calls": 12,
-        "ok": 12,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 0,
-        "calls": 456,
-        "ok": 456,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 6,
-        "calls": 6,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 6,
-        "calls": 6,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/set",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 13,
-        "ok": 13,
-        "other": 0
-      }
-    },
     "2026-10-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -517,6 +439,41 @@
         "calls": 5,
         "last_429": "{\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metadata\":{\"headers\":{\"X-RateLimit-Limit\":\"50\",\"X-RateLimit-Remaining\":\"0\",\"X-RateLimit-Reset\":\"1793059200",
         "ok": 1,
+        "other": 0
+      }
+    },
+    "2026-10-27": {
+      "gemini:gemini-3.6-flash": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 8,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 7,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 2,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 1,
+        "other": 1
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       }
     }
@@ -1039,16 +996,24 @@
       "t": 1793056965.3678544,
       "title": "واکنش هری کین پس از کسب توپ طلا: اگر تاتنهام نبود به اینجا نمی رسیدم",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1793063075.7695265,
+      "title": "حملات روسیه به اوکراین چهار کشته و ۲۲ زخمی بر جای گذاشت",
+      "urgent": false
+    },
+    {
+      "label": "حادثه",
+      "level": 4,
+      "t": 1793063085.2891853,
+      "title": "انفجارها شرق عربستان را لرزاند؛ پروازها در فرودگاه ملک فهد دمام متوقف شد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-26",
   "_editor_gate_cache": {
-    "v4|a corruption scandal involving a brazilian supreme court justice has shaken up the election.": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Foreign judicial scandals without direct impact on Iran are low priority.",
-      "topic": "قضایی",
-      "until": 1793059401.7722375
-    },
     "v4|angus taylor criticised for ‘tone deaf’ response to alleged attack on helen haines": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: بحث و جدل سیاسی داخلی در استرالیا.",
@@ -1060,12 +1025,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=world: گزارش تفریحی و مرور گل‌های بازیکن",
       "topic": "ورزش",
       "until": 1793130018.5181992
-    },
-    "v4|ballon d’or 2026: can barcelona phenom lamine yamal become youngest winner?": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: Speculative preview, no actual event occurred",
-      "topic": "ورزش",
-      "until": 1793059397.4807017
     },
     "v4|brazil keeps left: what lula’s victory means for his country and beyond": {
       "ok": true,
@@ -1084,12 +1043,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=9 happened=True scope=world: پیروزی لولا داسیلوا در انتخابات ریاست‌جمهوری برزیل یک رویداد سیاسی جهانی است.",
       "topic": "سیاست",
       "until": 1793070250.091668
-    },
-    "v4|brazil runoff live updates: lula has defeated bolsonaro, electoral court announces": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=9 happened=True scope=world: پیروزی لولا داسیلوا در انتخابات ریاست‌جمهوری برزیل یک رویداد مهم جهانی است.",
-      "topic": "سیاست",
-      "until": 1793061203.125367
     },
     "v4|brazil runoff live updates: lula prepares to speak after historic victory over flávio bolsonaro": {
       "ok": true,
@@ -1145,11 +1098,17 @@
       "topic": "سیاست",
       "until": 1793073898.553668
     },
-    "v4|how liverpool's attack impressed against brighton": {
+    "v4|how lula’s social media campaign helped him win brazil’s election": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=9 happened=True scope=world: Lula's election win, major global political event",
+      "topic": "سیاست",
+      "until": 1793149458.659502
+    },
+    "v4|iran war live: iran says us ‘not serious’ about talks; ship ablaze off iraq": {
       "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Premier League match, local sports event",
-      "topic": "ورزش",
-      "until": 1793059403.077002
+      "reason": "ai groq/openai/gpt-oss-120b batch score=6 happened=True scope=world: Iran claims US not serious; ship fire reported off Iraq",
+      "topic": "سیاست",
+      "until": 1793149463.4587982
     },
     "v4|iran war live: saudi forces attack sanaa after houthis target riyadh": {
       "ok": true,
@@ -1199,23 +1158,11 @@
       "topic": "ورزش",
       "until": 1793126139.548373
     },
-    "v4|live updates: brazil re-elects lula, rejecting predecessor’s son": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: خبر مربوط به انتخابات گذشته برزیل است و اهمیت خبری فوری ندارد.",
-      "topic": "سیاست",
-      "until": 1793063025.77452
-    },
     "v4|london city's putellas wins record-equalling third ballon d'or": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Major international sports award for a world-famous athlete.",
       "topic": "ورزش",
       "until": 1793142255.0781422
-    },
-    "v4|lula holds off far right with victory in brazil presidential election": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: پیروزی لولا داسیلوا در انتخابات ریاست‌جمهوری برزیل",
-      "topic": "سیاست",
-      "until": 1793061199.6772933
     },
     "v4|lula wins re-election as bolsonaro rejects result": {
       "ok": true,
@@ -1247,12 +1194,6 @@
       "topic": "حادثه",
       "until": 1793085054.0646658
     },
-    "v4|maría corina machado returns to venezuela": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: بازگشت چهره اصلی اپوزیسیون ونزوئلا به کشور برای چالش انتخاباتی",
-      "topic": "سیاست",
-      "until": 1793063023.5703385
-    },
     "v4|mecca pact nations hold talks with iran to prevent renewed middle east war": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: مذاکرات دیپلماتیک ارشد منطقه‌ای برای جلوگیری از جنگ",
@@ -1277,12 +1218,6 @@
       "topic": "اقتصاد",
       "until": 1793142255.060507
     },
-    "v4|the presidential election in brazil is a test of trump’s power as a kingmaker.": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Speculative analysis of upcoming election",
-      "topic": "سیاست",
-      "until": 1793059400.1404412
-    },
     "v4|us military says it helped gulf states export 1.5 billion barrels of oil": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine report on past maritime operations, not a new event.",
@@ -1300,12 +1235,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: مقاله، پادکست یا بررسی رسانه‌ای است و رویداد مکرر نیست.",
       "topic": "جامعه",
       "until": 1793126139.5253751
-    },
-    "v4|xi jinping’s corruption crackdown in the spotlight as china prepares for meeting of top leaders": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل و گمانه‌زنی درباره سیاست‌های داخلی چین و نشست‌های حزبی.",
-      "topic": "سیاست",
-      "until": 1793063017.6892254
     },
     "v4|your apple tv remote has handy shortcuts most people never use": {
       "ok": false,
@@ -1408,6 +1337,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی و برنامه‌های توسعه‌ای مدارس است.",
       "topic": "جامعه",
       "until": 1793079367.9250252
+    },
+    "v4|احسان حاج صفی و عمل زیبایی و جوانی قطعی!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=local: بررسی آمار فردی یک بازیکن و فاقد اهمیت خبری سطح اول",
+      "topic": "ورزش",
+      "until": 1793149457.5941455
     },
     "v4|احصای بیش از ۱۴ میلیون کیلووات ساعت انرژی در طرح ملی «مهتاب» استان سمنان": {
       "ok": false,
@@ -1612,6 +1547,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: 10 injured in residential explosion, local incident",
       "topic": "حادثه",
       "until": 1793111667.7259467
+    },
+    "v4|انفجارها شرق عربستان را لرزاند / توقف پروازها در فرودگاه ملک فهد دمام": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=6 happened=True scope=world: Explosions heard in eastern Saudi, flights halted",
+      "topic": "حادثه",
+      "until": 1793149463.4814658
     },
     "v4|انفجارهای سنگین در تنگۀ هرمز": {
       "ok": true,
@@ -1853,12 +1794,6 @@
       "topic": "سیاست",
       "until": 1793086541.832855
     },
-    "v4|ترامپ برای نجات نتانیاهو به میدان آمد: «به بی بی رأی دهید!»": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=6 happened=True scope=world: درخواست و حمایت علنی ترامپ از نتانیاهو در انتخابات",
-      "topic": "سیاست",
-      "until": 1793059396.631578
-    },
     "v4|ترامپ به مردم آمریکا دروغ می گوید/ بحران انرژی در حال تشدید است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: اظهارنظر انتقادی یک نماینده دموکرات درباره ترامپ، رویداد ملموس نیست",
@@ -2003,12 +1938,6 @@
       "topic": "حادثه",
       "until": 1793130018.4721534
     },
-    "v4|جدال تلخ بر سر خدمت سربازی؛ موضوعی که می تواند آینده اسرائیل را تغییر دهد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: تحلیل و بررسی شکاف‌های اجتماعی و سیاسی بدون وقوع رویداد مشخص.",
-      "topic": "سیاست",
-      "until": 1793061212.5284386
-    },
     "v4|جذب سرمایه گذار برای پرینت ۱۰ واحد مسکونی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Routine industry development news regarding construction technology.",
@@ -2086,6 +2015,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Congratulatory statement, no significant impact",
       "topic": "سیاست",
       "until": 1793133273.0305529
+    },
+    "v4|حملات روسیه به اوکراین چهار کشته و ۲۲ زخمی بر جای گذاشت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Russian attacks kill 4, injure 22 in Ukraine",
+      "topic": "نظامی",
+      "until": 1793149463.4704235
     },
     "v4|حمله روزنامه اصولگرا به جبهه پایداری: در دعوای سیاسی با قالیباف، از جایگاه رهبری مایه می گذارند": {
       "ok": false,
@@ -2194,12 +2129,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: اظهارات مقام ارشد نظامی درباره ارزیابی حمله و درگیری دریایی.",
       "topic": "نظامی",
       "until": 1793088380.926264
-    },
-    "v4|دست وپا زدن ترامپ برای پیروزی نتانیاهو در انتخابات با ادعاهای ضدایرانی": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: موضع‌گیری رسمی رئیس‌جمهور آمریکا درباره انتخابات و تهدیدات نظامی علیه ایران.",
-      "topic": "سیاست",
-      "until": 1793061212.5807931
     },
     "v4|دستگیری سارق مسلح در اندیمشک": {
       "ok": false,
@@ -2597,12 +2526,6 @@
       "topic": "ورزش",
       "until": 1793138637.130763
     },
-    "v4|صدرنشین لیگ قهرمانان برابر تیم نکونام/ حریف تراکتور، قاتلان رونالدو و النصر!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: League match, not final",
-      "topic": "ورزش",
-      "until": 1793061200.5147545
-    },
     "v4|صورت حساب ۱۰۰ میلیارد دلاری جنگ ۴۰ روزه / هزینه های پنهان جنگ در آستانه انتخابات": {
       "ok": true,
       "reason": "ai openrouter/openrouter/free batch score=7 happened=True scope=world: برآورد هزینههای جنگ ۴۰ روزه و تخلیه ذخایر نظامی، شوک اقتصادی جهانی است.",
@@ -2662,6 +2585,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: گزارش علمی درباره تغییرات اقلیمی تاریخی و فاقد فوریت خبری است.",
       "topic": "آب و هوا",
       "until": 1793073893.5023975
+    },
+    "v4|عطاالله مهاجرانی: اگر مسعود بهنود خاطرات و تفسیر خاطراتش را بنویسد اتفاق مهمی در تاریخ مطبوعات ایران خواهد افتاد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Minister's comment, no significant national impact",
+      "topic": "سیاست",
+      "until": 1793149460.4505658
     },
     "v4|عقب نشینی ترامپ از موضع گیری سابقش علیه یک کشور عربی": {
       "ok": false,
@@ -2812,12 +2741,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: لغو پروازها به دلیل ناامنی و تنش های منطقه ای.",
       "topic": "سیاست",
       "until": 1793075773.1554642
-    },
-    "v4|لولا برای چهارمین بار رئیس جمهور برزیل شد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Lula re-elected, major international political event",
-      "topic": "سیاست",
-      "until": 1793063004.8125668
     },
     "v4|لولا داسیلوا برای چهارمین بار رئیس جمهور برزیل شد": {
       "ok": true,
@@ -3155,12 +3078,6 @@
       "topic": "سیاست",
       "until": 1793120751.8083673
     },
-    "v4|هنوز خیلی زود است؛/ واکنش نویدکیا به خریدهای زمستانی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: کوچ تیم سپاهان درباره خریدهای زمستانی اظهار نظر کرد",
-      "topic": "ورزش",
-      "until": 1793059398.2169287
-    },
     "v4|هواشناسی خراسان شمالی نسبت به وقوع سیلاب و آبگرفتگی هشدار داد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: هشدار هواشناسی استانی و محلی با رویداد قطعی نشده",
@@ -3317,23 +3234,11 @@
       "topic": "سیاست",
       "until": 1793093789.0362685
     },
-    "v4|پیروزی لولا داسیلوا در انتخابات ریاست جمهوری برزیل": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=9 happened=True scope=world: انتخابات مهم برزیل، تأثیر جهانی",
-      "topic": "سیاست",
-      "until": 1793061178.9192085
-    },
     "v4|پیش نویس شیوه جدید قیمت گذاری خودرو تهیه شد/ تذکر و اقدام تعزیری در انتظار خودروسازان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Draft of new car pricing scheme announced.",
       "topic": "اقتصاد",
       "until": 1793130005.4587822
-    },
-    "v4|پیشتازی بولسونارو در انتخابات ریاست جمهوری برزیل": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=world: Brazilian election preliminary results",
-      "topic": "سیاست",
-      "until": 1793059403.0840466
     },
     "v4|پیشتازی لولاداسیلوا در انتخابات ریاست جمهوری برزیل": {
       "ok": true,
@@ -3394,12 +3299,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine diplomatic congratulatory message, not a major policy shift.",
       "topic": "سیاست",
       "until": 1793104646.8243597
-    },
-    "v4|ژابی بداند، عصبانی می شود/ فوتبال فانتزی راز بزرگ چلسی را لو داد!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مدیر چلسی درباره شایعه‌ی آسیب‌پذیری بازیکن اظهار نظر کرد",
-      "topic": "ورزش",
-      "until": 1793061180.031319
     },
     "v4|کارشناس ارز دیجیتال: ارائه خدمات به کاربران ساکن ایران در اکثر صرافی های خارجی ممنوع است": {
       "ok": false,
@@ -3497,6 +3396,12 @@
       "topic": "جامعه",
       "until": 1793126126.9354188
     },
+    "v4|گوزن شمالی در قاب رنگین کمان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: Trivial wildlife photo, no national significance",
+      "topic": "آب و هوا",
+      "until": 1793149459.6560395
+    },
     "v4|یمن یک هواپیمای شناسایی عربستان را سرنگون کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: سرنگونی هواپیمای نظامی در منطقه درگیری یمن و عربستان.",
@@ -3541,6 +3446,10 @@
     }
   },
   "_editorial_blocks": {
+    "how lula’s social media campaign helped him win brazil’s election": {
+      "reason": "content_duplicate",
+      "until": 1793084691.4492607
+    },
     "israel 'genocide' has continued after gaza ceasefire, un report claims": {
       "reason": "content_duplicate",
       "until": 1793075726.7183895
@@ -3625,24 +3534,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "فعال شدن آژیر هشدار و وقوع انفجار در ریاض ⚡️ سازمان دفاع مدنی و مدیریت بحران عربستان از فعال شدن سامانه هشدار ",
-      "id": "954644113c",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792980282,
-      "verdict": "new",
-      "why": "انفجار در ریاض، عربستان؛ موضوع جدید"
-    },
-    {
-      "head": "لولا داسیلوا: دموکراسی برزیل با خنثی سازی مداخله خارجی حفظ شد ⚡️ لولا داسیلوا رئیس جمهور منتخب برزیل پس از پیر",
-      "id": "38a5e340d4",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1792982024,
-      "verdict": "new",
-      "why": "برزیل انتخابات ریاست جمهوری و مداخله خارجی"
-    },
     {
       "head": "گروگان گیری و سرقت از مرد جوان به دلیل تذکر در پارک تهران ⚡️ یک مرد جوان پس از تذکر به سه مزاحم نوامیس در پارک",
       "id": "e9d7f9c302",
@@ -4175,37 +4066,27 @@
       "t": 1793056953,
       "verdict": "new",
       "why": "هری کین و توپ طلا بایرن مونیخ"
+    },
+    {
+      "head": "حملات روسیه به اوکراین چهار کشته و ۲۲ زخمی بر جای گذاشت ⚡️ مقام های اوکراینی اعلام کردند که حملات روسیه به شهر",
+      "id": "d985f7340f",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793063073,
+      "verdict": "new",
+      "why": "different event: Russian-Ukraine strikes, not previously listed"
+    },
+    {
+      "head": "انفجارها شرق عربستان را لرزاند؛ پروازها در فرودگاه ملک فهد دمام متوقف شد ⚡️ به دنبال این، فعالیت های پروازی در",
+      "id": "b625722bb8",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793063084,
+      "verdict": "new",
+      "why": "انفجار و توقف پروازها در دمام، رویداد جدید"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Research finding, limited national relevance",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1793016337,
-      "title": "شواهد ژنتیکی، رابطه میان سطح ویتامین D و بیماری سلیاک را تأیید نمی کند"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: خبر محلی درباره نقش پزشکی قانونی",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1793016338,
-      "title": "معاون استاندار: اطلاعات پزشکی قانونی گره گشای شناخت آسیب های اجتماعی گلستان است"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: ملاقات رسمی، تأکید بر همکاری اقتصادی، بدون تأثیر فوری",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1793016339,
-      "title": "تاکید همتی بر توسعه همکاری های منطقه ای و چند جانبه در دیدار با سفیر جدید هند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: ملاقات‌های دیپلماتیک روتین و فاقد تصمیمات راهبردی یا تغییرات کلان سیاسی.",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1793016344,
-      "title": "دیدار نخست وزیر عراق و پادشاه اردن"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: آتش سوزی محلی، بدون تلفات جدی",
       "rescued": false,
@@ -4737,149 +4618,40 @@
       "rule": "local-routine-low-value",
       "t": 1793057632,
       "title": "توپ طلای ۲۰۲۶ در آغوش هری کین؛ گزارش کامل مراسم"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=2 happened=True scope=local: بررسی آمار فردی یک بازیکن و فاقد اهمیت خبری سطح اول",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1793063057,
+      "title": "احسان حاج صفی و عمل زیبایی و جوانی قطعی!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=9 happened=True scope=world: Lula's election win, major global political event",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1793063058,
+      "title": "How Lula’s Social Media Campaign Helped Him Win Brazil’s Election"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: Trivial wildlife photo, no national significance",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1793063059,
+      "title": "گوزن شمالی در قاب رنگین کمان"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Minister's comment, no significant national impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1793063060,
+      "title": "عطاالله مهاجرانی: اگر مسعود بهنود خاطرات و تفسیر خاطراتش را بنویسد اتفاق مهمی در تاریخ مطبوعات ایران خواهد افتاد"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "افرق",
-        "انتخب",
-        "انس",
-        "برزل",
-        "تبرک",
-        "تصف",
-        "جنب",
-        "جهن",
-        "دسل",
-        "دنست",
-        "رمفس",
-        "سرل",
-        "لز",
-        "لل",
-        "نمزد",
-        "چپگر"
-      ],
-      "t": 1793014563.7517385,
-      "title": "رئیس جمهور آفریقای جنوبی پیروزی داسیلوا را پیروزی جنوب جهانی دانست ⚡️ سیریل رامافوسا، رئیس جمهور آفریقای جنوبی، پیروزی ل"
-    },
-    {
-      "h": [
-        "افتد",
-        "انگلس",
-        "اکتبر",
-        "تجرت",
-        "تد",
-        "تنگ",
-        "خرج",
-        "در",
-        "سزم",
-        "عمل",
-        "مسر",
-        "نشنس",
-        "نفتکش",
-        "هدف",
-        "هرمز",
-        "پرتب",
-        "کر"
-      ],
-      "t": 1793014625.7474315,
-      "title": "سازمان عملیات تجارت دریایی انگلیس تأیید حمله به نفتکش در تنگه هرمز ⚡️ سازمان عملیات تجارت دریایی انگلیس تأیید کرد که در "
-    },
-    {
-      "h": [
-        "استن",
-        "اعترض",
-        "بحث",
-        "برنگز",
-        "تصمم",
-        "تم",
-        "جهن",
-        "حسن",
-        "خشم",
-        "در",
-        "رنگرز",
-        "سرمرب",
-        "شدت",
-        "فرنگ",
-        "قزقست",
-        "قضت",
-        "قهرمن",
-        "مسبق",
-        "مل",
-        "نسبت"
-      ],
-      "t": 1793016389.6613507,
-      "title": "انفجار خشم سرمربی تیم ملی کشتی فرنگی از قضاوت های بحث برانگیز در مسابقات جهانی ⚡️ حسن رنگرز، سرمربی تیم ملی کشتی فرنگی ا"
-    },
-    {
-      "h": [
-        "جهن",
-        "حرف",
-        "رفت",
-        "ره",
-        "فرنگ",
-        "فنل",
-        "قهرمن",
-        "مرحل",
-        "مسبق",
-        "مقبل",
-        "وزن",
-        "کر",
-        "کلگرم",
-        "یفت"
-      ],
-      "t": 1793018376.578637,
-      "title": "فرنگی کار ایران راهی فینال قهرمانی جهان شد ⚡️ فرنگی کار ایران در وزن ۶۷ کیلوگرم به فینال مسابقات قهرمانی جهان راه یافت و"
-    },
-    {
-      "h": [
-        "ارد",
-        "افزش",
-        "خرد",
-        "خلج",
-        "خم",
-        "دد",
-        "در",
-        "دلل",
-        "عقب",
-        "فرس",
-        "نشن",
-        "هزن",
-        "هند",
-        "ونقل",
-        "پلشگ",
-        "کهش"
-      ],
-      "t": 1793018439.7454348,
-      "title": "پالایشگاه های هند از نفت روسیه عقب نشینی و به نفت خلیج فارس روی آورده اند ⚡️ پالایشگاه های هند به دلیل افزایش هزینه های "
-    },
-    {
-      "h": [
-        "استن",
-        "المحمد",
-        "بزدشت",
-        "بستن",
-        "بغدد",
-        "تحقق",
-        "تهدد",
-        "حکم",
-        "ددگ",
-        "دلل",
-        "سم",
-        "شر",
-        "شکت",
-        "مرز",
-        "مس",
-        "مصطف",
-        "نخست",
-        "کرخ"
-      ],
-      "t": 1793018483.8116488,
-      "title": "دادگاه عراق به رئیس شورای استانی میسان حکم بازداشت داد به دلیل تهدید به بستن مرز با ایران ⚡️ دادگاه تحقیق سوم کرخ در بغد"
-    },
     {
       "h": [
         "ارسل",
@@ -5345,45 +5117,37 @@
       ],
       "t": 1793056965.3577156,
       "title": "واکنش هری کین پس از کسب توپ طلا: اگر تاتنهام نبود به اینجا نمی رسیدم ⚡️ هری کین، مهاجم انگلیسی بایرن مونیخ، پس از کسب تو"
+    },
+    {
+      "h": [
+        "ارد",
+        "خرکف",
+        "شهر",
+        "وجد",
+        "پلگرد",
+        "چهر",
+        "گذشت"
+      ],
+      "t": 1793063075.745842,
+      "title": "حملات روسیه به اوکراین چهار کشته و ۲۲ زخمی بر جای گذاشت ⚡️ مقام های اوکراینی اعلام کردند که حملات روسیه به شهرهای کی یف،"
+    },
+    {
+      "h": [
+        "دمم",
+        "دنبل",
+        "شرق",
+        "فردگ",
+        "فعلت",
+        "فهد",
+        "لرزند",
+        "متقف",
+        "ملک"
+      ],
+      "t": 1793063085.2636907,
+      "title": "انفجارها شرق عربستان را لرزاند؛ پروازها در فرودگاه ملک فهد دمام متوقف شد ⚡️ به دنبال این، فعالیت های پروازی در فرودگاه ب"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "بدن",
-        "دنست",
-        "منتف"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1792987527.077922,
-      "title": "ترامپ حملات نظامی به ایران را برای امروز منتفی دانست ⚡️ دونالد ترامپ از منتفی بودن حملات نظامی به ایران در روز جاری خبر ",
-      "toll": 0
-    },
-    {
-      "a": [
-        "امد",
-        "بزر",
-        "تنش",
-        "جهن",
-        "دشنب",
-        "رکرد",
-        "عقب",
-        "مرتبط",
-        "معمل",
-        "نشن",
-        "کهش"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1792997142.0704548,
-      "title": "عقب نشینی قیمت نفت از رکورد شش ماهه ⚡️ قیمت نفت در معاملات روز دوشنبه بازار جهانی با امید به کاهش تنش های مرتبط با حمله ",
-      "toll": 0
-    },
     {
       "a": [
         "افتد",
@@ -5562,97 +5326,53 @@
       "t": 1793052246.0952208,
       "title": "تشدید حملات اوکراین به نیروگاه زاپوریژیا از دید مسکو ⚡️ ماریا زاخارووا، سخنگوی وزارت خارجه روسیه، از تشدید حملات هدفمند ",
       "toll": 0
+    },
+    {
+      "a": [
+        "ارد",
+        "خرکف",
+        "وجد",
+        "پلگرد",
+        "چهر"
+      ],
+      "cities": [
+        "خارکیف",
+        "کی یف"
+      ],
+      "kind": "attack",
+      "places": [
+        "خارکیف",
+        "کی یف"
+      ],
+      "regions": [
+        "ukraine"
+      ],
+      "t": 1793063075.7584407,
+      "title": "حملات روسیه به اوکراین چهار کشته و ۲۲ زخمی بر جای گذاشت ⚡️ مقام های اوکراینی اعلام کردند که حملات روسیه به شهرهای کی یف،",
+      "toll": 22
+    },
+    {
+      "a": [
+        "دمم",
+        "دنبل",
+        "فردگ",
+        "فعلت",
+        "فهد",
+        "لرزند",
+        "متقف",
+        "ملک"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1793063085.2768705,
+      "title": "انفجارها شرق عربستان را لرزاند؛ پروازها در فرودگاه ملک فهد دمام متوقف شد ⚡️ به دنبال این، فعالیت های پروازی در فرودگاه ب",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ارتش",
-        "استفد",
-        "اسم",
-        "اصبت",
-        "امرک",
-        "انهدم",
-        "بندرعبس",
-        "تحت",
-        "سمن",
-        "شبک",
-        "فرند",
-        "لکس",
-        "منهدم",
-        "نر",
-        "هدف",
-        "پدفند",
-        "پهپد",
-        "کشر",
-        "یکپرچ"
-      ],
-      "t": 1792928258.3876135,
-      "title": "انهدام یک فروند پهپاد لوکاس در بندرعباس ⚡️ نیروی پدافند هوایی ارتش یک فروند پهپاد لوکاس ارتش آمریکا را در آسمان بندرعباس"
-    },
-    {
-      "k": [
-        "ابن",
-        "احتمل",
-        "است",
-        "انفجر",
-        "انهدم",
-        "بقمند",
-        "تهر",
-        "حضرت",
-        "در",
-        "ربط",
-        "سدلشهد",
-        "سم",
-        "سپ",
-        "شند",
-        "صد",
-        "عمل",
-        "عمم",
-        "قدرت",
-        "متفت",
-        "مهم",
-        "نکرد",
-        "هستند",
-        "هشدر",
-        "پنج",
-        "پکدشت",
-        "گذشت",
-        "یکشنب"
-      ],
-      "t": 1792930078.3975132,
-      "title": "انهدام ۵ مهمات عمل نکرده در پاکدشت و هشدار درباره احتمال شنیده شدن صدای انفجار ⚡️ روابط عمومی سپاه حضرت سیدالشهدا استان "
-    },
-    {
-      "k": [
-        "ارز",
-        "استفد",
-        "اسرل",
-        "امد",
-        "امرک",
-        "بق",
-        "بنمن",
-        "بنک",
-        "تحرم",
-        "دجتل",
-        "در",
-        "ره",
-        "زدن",
-        "زمن",
-        "فقط",
-        "مل",
-        "مند",
-        "نتنه",
-        "نخست",
-        "هشدر",
-        "وزر",
-        "کمک"
-      ],
-      "s": "نتانیاهو",
-      "t": 1792931797.5148432,
-      "title": "نتانیاهو: اسرائیل باید برای تحریم های بانکی و پایان کمک های آمریکا آماده شود ⚡️ نخست وزیر اسرائیل بنیامین نتانیاهو اعلام"
-    },
     {
       "k": [
         "اببطح",
@@ -8027,6 +7747,51 @@
       ],
       "t": 1793056965.3365908,
       "title": "واکنش هری کین پس از کسب توپ طلا: اگر تاتنهام نبود به اینجا نمی رسیدم ⚡️ هری کین، مهاجم انگلیسی بایرن مونیخ، پس از کسب تو"
+    },
+    {
+      "k": [
+        "ارد",
+        "اکرن",
+        "حمل",
+        "خرکف",
+        "رس",
+        "زخم",
+        "شهر",
+        "مقم",
+        "وجد",
+        "پلگرد",
+        "چهر",
+        "کشت",
+        "گذشت"
+      ],
+      "t": 1793063075.733176,
+      "title": "حملات روسیه به اوکراین چهار کشته و ۲۲ زخمی بر جای گذاشت ⚡️ مقام های اوکراینی اعلام کردند که حملات روسیه به شهرهای کی یف،"
+    },
+    {
+      "k": [
+        "الملل",
+        "انفجر",
+        "دمم",
+        "دنبل",
+        "رسن",
+        "سعد",
+        "شرق",
+        "شند",
+        "شهر",
+        "صد",
+        "عربست",
+        "فردگ",
+        "فعلت",
+        "فهد",
+        "لرزند",
+        "متقف",
+        "ملک",
+        "منطق",
+        "هشدر",
+        "پرز"
+      ],
+      "t": 1793063085.2513587,
+      "title": "انفجارها شرق عربستان را لرزاند؛ پروازها در فرودگاه ملک فهد دمام متوقف شد ⚡️ به دنبال این، فعالیت های پروازی در فرودگاه ب"
     }
   ],
   "_text_polish": {
@@ -8038,7 +7803,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793057477
+    "at": 1793062897
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8063,9 +7828,9 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793058204,
-    "last_failure": 1793057604,
-    "last_status": 429
+    "disabled_until": 1793063350.0,
+    "last_failure": 1793063050,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
