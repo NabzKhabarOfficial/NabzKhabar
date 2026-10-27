@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793117146
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793117148
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793117148
-    },
-    {
-      "e": "EDITOR BATCH mistral/open-mistral-nemo: no usable verdict",
-      "t": 1793117155
-    },
-    {
       "e": "EDITOR BATCH: 8/8 via openrouter/openrouter/free",
       "t": 1793117166
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 12x, groq:openai/gpt-oss-20b held 11x",
       "t": 1793120770
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per ",
+      "t": 1793126108
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793126111
+    },
+    {
+      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.5-flash-lite",
+      "t": 1793126114
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1793126115
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-27",
-      "n": 116
+      "n": 118
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-27",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-27",
-      "n": 68
+      "n": 74
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-27",
-      "n": 68
+      "n": 74
     },
     "openrouter:*": {
       "day": "2026-10-27",
@@ -452,8 +452,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 142,
-        "ok": 142,
+        "calls": 144,
+        "ok": 144,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -473,18 +473,19 @@
         "other": 25
       },
       "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 68,
+        "429": 1,
+        "calls": 74,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5962, Requested 2148. Please try again in 825ms. ",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 47,
+        "ok": 52,
         "other": 21
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 68,
+        "calls": 74,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 41,
-        "other": 27
+        "ok": 45,
+        "other": 29
       },
       "mistral:ministral-8b-latest": {
         "429": 0,
@@ -494,8 +495,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 203,
-        "ok": 203,
+        "calls": 209,
+        "ok": 209,
         "other": 0
       },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
@@ -521,13 +522,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "موضع‌گیری",
-      "level": 3,
-      "t": 1792951531.3255599,
-      "title": "المشاط: برای پایان دادن به محاصره و حملات عربستان از همه راه های ممکن استفاده می کنیم",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1241,9 +1235,23 @@
       "t": 1793120724.7438085,
       "title": "واژگونی خودرو در کوهستان کجور مازندران: ۶ کشته",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1793126128.066181,
+      "title": "عراقچی: بازگشت امنیت به منطقه مستلزم توقف اقدامات تجاوزکارانه آمریکا",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1793126150.090375,
+      "title": "محکومیت جعفر پناهی به ۵ سال حبس و ۲ سال ممنوعیت خروج از کشور",
+      "urgent": false
     }
   ],
-  "_digest_last_date": "2026-10-26",
+  "_digest_last_date": "2026-10-27",
   "_editor_gate_cache": {
     "v4|'i would do it again' - kaepernick reflects on price of protest, 10 years on": {
       "ok": false,
@@ -1323,11 +1331,23 @@
       "topic": "حادثه",
       "until": 1793181971.8736777
     },
+    "v4|european leaders split over phone call to putin": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=4 happened=True scope=world: European leaders split over call to Putin",
+      "topic": "سیاست",
+      "until": 1793212515.4075973
+    },
     "v4|everything apple announced this week so far: new ipad and macbooks": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: معرفی محصولات جدید اپل اخبار درجه یک جهانی نیست",
       "topic": "فناوری",
       "until": 1793198227.138503
+    },
+    "v4|flávio bolsonaro flees brazil after presidential election loss, reports say": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Bolsonaro flees after losing election",
+      "topic": "سیاست",
+      "until": 1793212515.4211013
     },
     "v4|halide releases its first batch of updates for the iphone duo": {
       "ok": false,
@@ -1532,12 +1552,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: فولاد ب در لیگ دسته اول، تساوی بدون گل",
       "topic": "ورزش",
       "until": 1793205447.9621992
-    },
-    "v4|آبروی وزیر جنگ آمریکا رفت؛ هگست حتی نمی داند اعضای آسه آن کدام کشورها هستند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: حاشیه سیاسی و خبری زرد درباره یک مقام خارجی.",
-      "topic": "سیاست",
-      "until": 1793120751.7856975
     },
     "v4|آتش سوزی در دامداری هوراند ۴۶ رأس دام سبک را تلف کرد": {
       "ok": false,
@@ -1821,6 +1835,12 @@
       "topic": "جامعه",
       "until": 1793181964.211835
     },
+    "v4|اسرائیل سلاح هسته ای در اختیار دارد اما نگرانی شما نبود بازرسان در ایران است / نشست امروز نمونه دیگری از دورویی ای است که به یکی از ویژگی های جدایی ناپذیر سیاست خارجی این کشورها تب": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع‌گیری رسمی مقام ارشد ایران در شورای امنیت سازمان ملل",
+      "topic": "سیاست",
+      "until": 1793212514.10488
+    },
     "v4|اسرائیل هیوم: وزیر دفاع عربستان در سفر به ایران پیشنهاد داده از طریق تهران، یک میلیارد دلار به انصارالله برای آتش بس پرداخت کند / «خالد بن سلمان» حتی این مبلغ را با خود به ایران آو": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: سفر وزیر دفاع عربستان به تهران برای مذاکره آتش‌بس یمن",
@@ -2097,12 +2117,6 @@
       "topic": "اقتصاد",
       "until": 1793165745.7175632
     },
-    "v4|بلند شدن دود غلیظ از فرودگاه جده بعد از حمله یمنی ها": {
-      "ok": true,
-      "reason": "ai mistral/open-mistral-nemo score=8 happened=True scope=world: حمله یمنی به فرودگاه جده، دود غلیظ، تهدید امنیت منطقه‌ای",
-      "topic": "نظامی",
-      "until": 1793124346.7657542
-    },
     "v4|بلومبرگ به نقل از منبع آگاه: عربستان حریق در نزدیکی تأسیسات رأس تنوره که بر اثر یک حمله رخ داده بود را مهار کرد/ آتش سوزی در ساعات اولیه روز سه شنبه به وقوع پیوست/ میزان خسارات وار": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: حمله به تاسیسات نفتی استراتژیک در منطقه خلیج فارس",
@@ -2187,12 +2201,6 @@
       "topic": "نظامی",
       "until": 1793174041.3528743
     },
-    "v4|تداوم نقض آتش بس در غزه؛ از افزایش قربانیان تا محدودیت ورود کمک های بشردوستانه": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: گزارش تلفات انسانی گسترده در یک منطقه جنگی فعال.",
-      "topic": "نظامی",
-      "until": 1793120751.7631354
-    },
     "v4|ترامپ: آتش بس را چون مطابق خواسته ام نبود، پایان دادم": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اظهارنظر مهم ترامپ درباره پایان دادن به آتش‌بس",
@@ -2228,12 +2236,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: تصادف جاده‌ای با تلفات زیر ۱۰ نفر حادثه محلی محسوب می‌شود.",
       "topic": "حادثه",
       "until": 1793183782.9950728
-    },
-    "v4|تصویب ۴ طرح تولید بار اول به ارزش سه میلیون دلار": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: تصویب طرح‌های کوچک فناورانه که تأثیر کلان ملی ندارند.",
-      "topic": "اقتصاد",
-      "until": 1793120751.7743933
     },
     "v4|تصویب ۸ طرح اقتصادی در سیستان و بلوچستان؛ از دامپروری تا خدمات بین راه": {
       "ok": false,
@@ -2283,11 +2285,11 @@
       "topic": "جامعه",
       "until": 1793180171.8047628
     },
-    "v4|تمجید حماس از مواضع داسیلوا": {
+    "v4|تماشا کنید: سناریو های جنگ آینده / آمریکا به دنبال پیاده سازی الگوی مصر؟": {
       "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: موضع‌گیری دیپلماتیک غیرراهبردی و فاقد تأثیرگذاری کلان بین‌المللی.",
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل، مقاله و گمانه‌زنی کارشناس درباره جنگ آینده",
       "topic": "سیاست",
-      "until": 1793120751.7519557
+      "until": 1793212514.052256
     },
     "v4|تهاجم علیه ایران؛ بلای جان انتخاباتی جمهوری خواهان در آمریکا": {
       "ok": false,
@@ -2601,6 +2603,12 @@
       "topic": "قضایی",
       "until": 1793169384.5573084
     },
+    "v4|درخواست عراق برای برگزاری نشست مشترک با کشورهای خلیج فارس و ایران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: دولت عراق درخواست نشست، تأثیر محدود",
+      "topic": "سیاست",
+      "until": 1793212507.4954867
+    },
     "v4|درگذشت تصویربردار صداوسیما در برنامه زنده مسابقات جهانی کشتی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: کامیون فوت در پوشش زنده مسابقات کشتی",
@@ -2751,6 +2759,12 @@
       "topic": "جامعه",
       "until": 1793156696.3403196
     },
+    "v4|رایزنی وزیران خارجه ایران و مصر درباره کاهش تنش در منطقه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: رایزنی دیپلماتیک روتین درباره کاهش تنش منطقه‌ای",
+      "topic": "سیاست",
+      "until": 1793212514.0787199
+    },
     "v4|رجیستری 24 گوشی در ایران ممنوع شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=iran_national: Official regulatory decision affecting consumer electronics market nationwide.",
@@ -2823,12 +2837,6 @@
       "topic": "سیاست",
       "until": 1793203566.1966867
     },
-    "v4|رژیم صهیونیستی با جنایات خود مرگش را جلو انداخت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: اظهارنظر و شعار مذهبی کارشناس، فاقد ارزش خبری درجه یک",
-      "topic": "سیاست",
-      "until": 1793120720.6847064
-    },
     "v4|رکورد جهانی موتورسواری روی آب شکسته شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: شکستن رکورد جهانی موتورسواری خبر درجه یک محسوب نمی‌شود.",
@@ -2895,6 +2903,12 @@
       "topic": "سیاست",
       "until": 1793192861.2212462
     },
+    "v4|ستاره کشتی ایران در جشن قهرمانی شرکت نکرد!": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: رویداد مهم مرتبط با تیم ملی کشتی در رقابت جهانی",
+      "topic": "ورزش",
+      "until": 1793212514.0917652
+    },
     "v4|سخنگوی دولت: افزایش ۵۰ درصدی کالابرگ برای جبران کاهش قدرت خرید خانوارها": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Official government decision on national economic policy affecting household purchasing power.",
@@ -2912,12 +2926,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Routine government remarks on internet pricing and border traffic.",
       "topic": "سیاست",
       "until": 1793178338.095948
-    },
-    "v4|سخنگوی وزارت صنعت، معدن و تجارت: التهاب بازار خودرو کاهش می یابد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=iran_national: اعلام تصمیم دولتی برای تغییر در سیاست‌های گمرکی و بازار خودرو.",
-      "topic": "اقتصاد",
-      "until": 1793120751.8194818
     },
     "v4|سردار کوثری: ثبت خاطرات دفاع مقدس برای نسل های آینده ضروری است": {
       "ok": false,
@@ -3026,6 +3034,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Administrative and routine provincial planning news.",
       "topic": "جامعه",
       "until": 1793196293.0838861
+    },
+    "v4|سی ان ان: پست های نژادپرستانه و ضد مسلمانان مشاور مذهبی وزیر جنگ آمریکا / هیگینز به یکی از چهره های تأثیرگذار در تلاش های هگست برای وارد کردن مضامین ملی گرایی مسیحی به اظهارات عموم": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: جنجال پیرامون مواضع مشاور ارشد وزیر جنگ آمریکا در رسانه ها",
+      "topic": "سیاست",
+      "until": 1793212514.010011
     },
     "v4|سی هاوک وارد میدان شد؛ گام تازه نیروی دریایی آمریکا در جنگ": {
       "ok": false,
@@ -3195,12 +3209,6 @@
       "topic": "اقتصاد",
       "until": 1793169397.3059175
     },
-    "v4|ظرفیت طب سنتی سیستان و بلوچستان بالاتر از حد انتظار است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: ادعای محلی درباره پتانسیل طب سنتی",
-      "topic": "سلامت",
-      "until": 1793120686.0797994
-    },
     "v4|عارف: تعامل قوه مجریه و قضاییه برای پاسخگویی به مطالبات مردم تداوم دارد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Routine remark, no concrete policy change",
@@ -3212,12 +3220,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: اظهارات کلی و روتین مسئولان درباره جنگ اقتصادی",
       "topic": "سیاست",
       "until": 1793187265.603226
-    },
-    "v4|عارف: قهرمانی کشتی فرنگی ایران، جلوه ای از خودباوری و توانمندی نسل جوان است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: قهرمانی تیم ملی کشتی ایران در رقابت‌های جهانی.",
-      "topic": "ورزش",
-      "until": 1793120751.797129
     },
     "v4|عاملان آتش سوزی عمدی خودرو و منزل در رشت دستگیر شدند": {
       "ok": false,
@@ -3236,6 +3238,18 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Celebrity-related controversy and PR management, not a top-tier global news event.",
       "topic": "ورزش",
       "until": 1793195052.228257
+    },
+    "v4|عراقچی پیروزی داسیلوا را به همتای برزیلی تبریک گفت": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: پیام تبریک تشریفاتی وزیر خارجه به مقام خارجی",
+      "topic": "سیاست",
+      "until": 1793212514.065592
+    },
+    "v4|عراقچی: بازگشت امنیت به منطقه مستلزم توقف اقدامات تجاوزکارانه آمریکاست": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع رسمی وزیر خارجه ایران درباره امنیت منطقه و آمریکا",
+      "topic": "سیاست",
+      "until": 1793212514.0366876
     },
     "v4|عضو هیات مدیره شرکت داروسازی ساوه: آتش سوزی وقفه ای در تولید ندارد": {
       "ok": false,
@@ -3453,6 +3467,12 @@
       "topic": "ورزش",
       "until": 1793190932.520338
     },
+    "v4|ماجرای هواپیما ربایی که هیچوقت روشن نشد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Historical hijacking, no current relevance",
+      "topic": "حادثه",
+      "until": 1793212503.1529033
+    },
     "v4|مانع تراشی نتانیاهو در مسیر اجرای طرح ترامپ برای غزه": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تعلیق اجرای طرح صلح غزه توسط نتانیاهو",
@@ -3471,11 +3491,11 @@
       "topic": "سیاست",
       "until": 1793160239.3989198
     },
-    "v4|مخازن ذخیره آب به روستاهای مناطق محروم لرستان اختصاص می یابد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine local infrastructure project in a specific province.",
-      "topic": "جامعه",
-      "until": 1793120748.2868435
+    "v4|محکومیت جعفر پناهی به ۵ سال حبس و ۲ سال ممنوعیت خروج از کشور": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: صدور حکم سنگین قضایی برای چهره سینمایی برجسته",
+      "topic": "قضایی",
+      "until": 1793212514.0234087
     },
     "v4|مخبر: اقتدار فناورانه نخبگان ایران، دشمن را به استیصال کشانده است": {
       "ok": false,
@@ -3507,11 +3527,23 @@
       "topic": "جامعه",
       "until": 1793178314.989165
     },
+    "v4|مدیرعامل شرکت گاز کردستان: طرح ملی «همیار گاز» گامی اساسی در فرهنگ سازی مصرف بهینه گاز است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=iran_national: CEO comments on national gas program",
+      "topic": "اقتصاد",
+      "until": 1793212515.393315
+    },
     "v4|مدیرکل سیاسی استانداری کرمانشاه: در مقابل ایران مسئولیت تاریخی داریم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine political rhetoric by a provincial official with no strategic impact.",
       "topic": "سیاست",
       "until": 1793195020.0613112
+    },
+    "v4|مدیرکل مدیریت بحران بوشهر: جامعه نیازمند آموزش در حوزه هسته ای است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local official's call for nuclear education, no concrete action taken",
+      "topic": "جامعه",
+      "until": 1793212504.315117
     },
     "v4|مسابقات روسیه معیار انتخاب کاراته کاهای اعزامی به جام جهانی است": {
       "ok": false,
@@ -3771,12 +3803,6 @@
       "topic": "سلامت",
       "until": 1793133276.2739465
     },
-    "v4|هشدار تشدید بارش ها در ۴ استان؛ وقوع سیلاب و سرمازدگی محصولات کشاورزی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=local: پیش‌بینی هواشناسی است و نه یک رویداد قطعی و سراسری.",
-      "topic": "آب و هوا",
-      "until": 1793120751.7404032
-    },
     "v4|هشدار دادستان تهران: هنجارها و موازین شرعی در مسابقات فوتبال بانوان رعایت نمی شود": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Prosecutor warns non‑compliance of religious norms in women's football",
@@ -3819,12 +3845,6 @@
       "topic": "سیاست",
       "until": 1793160239.4205637
     },
-    "v4|همکاری اعضای جی ئی سی اف برای تقویت امنیت انرژی ضروری است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: موضع‌گیری رسمی مقام ارشد نفتی درباره امنیت انرژی و تنش‌های منطقه‌ای.",
-      "topic": "سیاست",
-      "until": 1793120751.8083673
-    },
     "v4|هوش مصنوعی می تواند شیوه مدیریت دستگاه های اجرایی را تغییر دهد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=local: Academic opinion and speculation about artificial intelligence.",
@@ -3866,6 +3886,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Celebrity/business news regarding a football player, not first-tier.",
       "topic": "جامعه",
       "until": 1793180171.8227394
+    },
+    "v4|واکنش پرسپولیس به رای کمیته استیناف؛ پرونده آسانی به cas می رود": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: باشگاه پرسپولیس، دعوی حقوقی داخلی، اهمیت ملی کم",
+      "topic": "ورزش",
+      "until": 1793212506.3768175
     },
     "v4|واکنش کین بعد از کسب توپ طلا": {
       "ok": false,
@@ -3932,18 +3958,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: موضع رسمی وزیر خارجه عمان درباره امنیت خلیج فارس و ایران",
       "topic": "سیاست",
       "until": 1793181976.6861095
-    },
-    "v4|وزیر صهیونیست نتیجه انتخابات برزیل را زیر سؤال برد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اظهارنظر مقام خارجی درباره انتخابات برزیل اهمیت درجه یک ندارد",
-      "topic": "سیاست",
-      "until": 1793120690.557224
-    },
-    "v4|وزیر نیرو با هدف توسعه همکاری های انرژی عازم بلاروس شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: سفر وزیر نیرو برای توسعه همکاری روتین است و اهمیت درجه یک ندارد.",
-      "topic": "سیاست",
-      "until": 1793120705.683005
     },
     "v4|وصول ۴۰۰ میلیارد تومان حقوق دولتی در معرض تضییع در کردستان": {
       "ok": false,
@@ -4221,6 +4235,12 @@
       "topic": "جامعه",
       "until": 1793169398.3074067
     },
+    "v4|گفتگوی تلفنی وزرای امور خارجه ایران و اردن": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: تماس دیپلماتیک بدون تصمیم ملموس",
+      "topic": "سیاست",
+      "until": 1793212505.5520594
+    },
     "v4|گلباران قبور مطهر شهدای حرم مطهر حضرت شاهچراغ(ع)": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مراسم یادبود محلی",
@@ -4388,6 +4408,10 @@
       "reason": "content_duplicate",
       "until": 1793131615.3232114
     },
+    "اسرائیل سلاح هسته ای در اختیار دارد اما نگرانی شما نبود بازرسان در ایران است / نشست امروز نمونه دیگری از دورویی ای است که به یکی از ویژگی های جدایی ناپذیر سیاست خارجی این کشورها تب": {
+      "reason": "content_duplicate",
+      "until": 1793147796.570787
+    },
     "حمله موشکی به پالایشگاه رأس تنوره": {
       "reason": "content_duplicate",
       "until": 1793122529.4572656
@@ -4407,6 +4431,10 @@
     "رهبر انقلاب در دیدار با محسن رضایی: تأمین منافع ملت ایران و جبهه مقاومت با تحقق شروط مطرح شده از سوی مسئولان با هدف پایان «نه جنگ، نه صلح» پیگیری شود": {
       "reason": "content_duplicate",
       "until": 1793120800.051571
+    },
+    "ستاره کشتی ایران در جشن قهرمانی شرکت نکرد!": {
+      "reason": "content_duplicate",
+      "until": 1793147742.458608
     },
     "فرمانده سپاه رشت: ترور شهید سلیمانی به شکست محاسبات آمریکا منجر شد": {
       "at": 1793113594.4013746,
@@ -4447,24 +4475,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "واکنش هری کین پس از کسب توپ طلا: اگر تاتنهام نبود به اینجا نمی رسیدم ⚡️ هری کین، مهاجم انگلیسی بایرن مونیخ، پس",
-      "id": "dc3548e699",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793056953,
-      "verdict": "new",
-      "why": "هری کین و توپ طلا بایرن مونیخ"
-    },
-    {
-      "head": "حملات روسیه به اوکراین چهار کشته و ۲۲ زخمی بر جای گذاشت ⚡️ مقام های اوکراینی اعلام کردند که حملات روسیه به شهر",
-      "id": "d985f7340f",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793063073,
-      "verdict": "new",
-      "why": "different event: Russian-Ukraine strikes, not previously listed"
-    },
     {
       "head": "انفجارها شرق عربستان را لرزاند؛ پروازها در فرودگاه ملک فهد دمام متوقف شد ⚡️ به دنبال این، فعالیت های پروازی در",
       "id": "b625722bb8",
@@ -5002,44 +5012,27 @@
       "t": 1793120758,
       "verdict": "new",
       "why": "Different event: Iran's UN envoy criticizes West"
+    },
+    {
+      "head": "عراقچی: بازگشت امنیت به منطقه مستلزم توقف اقدامات تجاوزکارانه آمریکا ⚡️ وزیر خارجه ایران به همتای اردنی خود گف",
+      "id": "cae0a0b4fb",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793126126,
+      "verdict": "new",
+      "why": "جديدی، مباحثه دیپلماتیک ایران و اردن"
+    },
+    {
+      "head": "محکومیت جعفر پناهی به ۵ سال حبس و ۲ سال ممنوعیت خروج از کشور ⚡️ وکیل جعفر پناهی اعلام کرد که موکلش به پنج سال ",
+      "id": "4d36d9fd60",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793126149,
+      "verdict": "repeat",
+      "why": "same court verdict for Ja'far Panahi"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=3 happened=False scope=iran_national: اظهارات روتین مسئولان درباره تداوم اجرای طرح پزشک خانواده",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793086455,
-      "title": "قائم پناه: اجرای پزشک خانواده تکلیف قانونی دولت است، توقف آن موضوعیت ندارد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، مسائل شهری، بدون اثر ملی یا جهانی",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1793087605,
-      "title": "از ورود اتوبوس های ۲۶ متری به تهران تا فاجعه زیست محیطی پارک چیتگر و لزوم پاسخگویی شهرداری"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: خبر محلی درباره خشکی درختان چیتگر",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1793087606,
-      "title": "خشکیدگی درختان چیتگر نتیجه سال ها تنش آبی است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: اظهار نظر و انتقاد مقام سابق فاقد ارزش خبری فوری است",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1793087631,
-      "title": "رئیس پیشین موساد رویکرد نتانیاهو درباره ایران را زیر سوال برد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine participation in an international tournament, not a major championship.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1793087631,
-      "title": "حضور ملی پوشان کاراته ایران در مسابقات روسیه؛ ترکیب تیم ها مشخص شد"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=0 happened=False scope=local: خبر زرد و حاشیه‌ای ورزشی، فقدان اهمیت ملی",
       "rescued": false,
@@ -5564,50 +5557,47 @@
       "rule": "routine-statement",
       "t": 1793120644,
       "title": "دیدار روسای جمهور ایران و روسیه و گفت وگو درباره آخرین تحولات روابط دوجانبه"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Historical hijacking, no current relevance",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1793126103,
+      "title": "ماجرای هواپیما ربایی که هیچوقت روشن نشد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local official's call for nuclear education, no concrete action taken",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1793126104,
+      "title": "مدیرکل مدیریت بحران بوشهر: جامعه نیازمند آموزش در حوزه هسته ای است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: تماس دیپلماتیک بدون تصمیم ملموس",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1793126105,
+      "title": "گفتگوی تلفنی وزرای امور خارجه ایران و اردن"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: باشگاه پرسپولیس، دعوی حقوقی داخلی، اهمیت ملی کم",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1793126106,
+      "title": "واکنش پرسپولیس به رای کمیته استیناف؛ پرونده آسانی به CAS می رود"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: دولت عراق درخواست نشست، تأثیر محدود",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1793126107,
+      "title": "درخواست عراق برای برگزاری نشست مشترک با کشورهای خلیج فارس و ایران"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "جهن",
-        "رزنم",
-        "قهرمن",
-        "مسبق",
-        "ورزش",
-        "پردختند",
-        "پشش",
-        "گر"
-      ],
-      "t": 1793077580.7459967,
-      "title": "قهرمانی کشتی گیران در مسابقات جهانی در روزنامه های ورزشی ⚡️ روزنامه های ورزشی به پوشش قهرمانی کشتی گیران کشور در مسابقات"
-    },
-    {
-      "h": [
-        "افت",
-        "امدر",
-        "انتظر",
-        "تثر",
-        "تحت",
-        "تصمم",
-        "تقت",
-        "جهن",
-        "خرمن",
-        "دلر",
-        "دپلمس",
-        "رزر",
-        "زر",
-        "طل",
-        "فدرل",
-        "معمل",
-        "کهش",
-        "یفت"
-      ],
-      "t": 1793081112.3368428,
-      "title": "افت قیمت جهانی نفت و طلا زیر سایه دیپلماسی خاورمیانه و تقویت دلار ⚡️ قیمت جهانی نفت و طلا در معاملات امروز تحت تأثیر امی"
-    },
     {
       "h": [
         "ارتبط",
@@ -6407,6 +6397,45 @@
       ],
       "t": 1793120770.6877015,
       "title": "سفیر ایران در سازمان ملل: اسرائیل سلاح هسته ای دارد، اما نگرانی از بازرسان در ایران است ⚡️ غلامحسین درزی سفیر ایران در س"
+    },
+    {
+      "h": [
+        "اردن",
+        "افرز",
+        "اقدم",
+        "بزگشت",
+        "تجزکرن",
+        "تسع",
+        "تقف",
+        "جن",
+        "خرج",
+        "طلب",
+        "عرقچ",
+        "مدخل",
+        "مستلزم",
+        "مهر",
+        "همت"
+      ],
+      "t": 1793126128.052749,
+      "title": "عراقچی: بازگشت امنیت به منطقه مستلزم توقف اقدامات تجاوزکارانه آمریکا ⚡️ وزیر خارجه ایران به همتای اردنی خود گفت که بازگش"
+    },
+    {
+      "h": [
+        "امل",
+        "جعفر",
+        "حبس",
+        "خرج",
+        "محکم",
+        "محکمت",
+        "مصدر",
+        "ممنعت",
+        "مکلش",
+        "وکل",
+        "پنج",
+        "پنه"
+      ],
+      "t": 1793126150.0769985,
+      "title": "محکومیت جعفر پناهی به ۵ سال حبس و ۲ سال ممنوعیت خروج از کشور ⚡️ وکیل جعفر پناهی اعلام کرد که موکلش به پنج سال و یک ماه ح"
     }
   ],
   "_published_incidents": [
@@ -6766,95 +6795,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "افت",
-        "انترمدت",
-        "انرژ",
-        "اپک",
-        "برنت",
-        "بزر",
-        "تغر",
-        "تگزس",
-        "ثبت",
-        "جهن",
-        "خم",
-        "دلر",
-        "رسد",
-        "رقم",
-        "سبد",
-        "سطح",
-        "شدند",
-        "طبع",
-        "قمت",
-        "معمل",
-        "نرخ",
-        "نفت",
-        "همر",
-        "وست",
-        "گز"
-      ],
-      "n": [
-        "101.2",
-        "114.8",
-        "115.1"
-      ],
-      "t": 1792994817.5474064,
-      "title": "نفت برنت در بازارهای جهانی به ۱۱۴.۸ دلار رسید ⚡️ بازارهای جهانی انرژی با تغییرات قیمتی همراه شدند و نفت برنت با افت ۱.۹۷"
-    },
-    {
-      "k": [
-        "اتلف",
-        "ار",
-        "امنت",
-        "ترک",
-        "تهر",
-        "دبر",
-        "ددر",
-        "دفع",
-        "سفر",
-        "شر",
-        "عربست",
-        "عض",
-        "عل",
-        "مقم",
-        "مل",
-        "مکه",
-        "پکست",
-        "کشر"
-      ],
-      "t": 1792994837.6100411,
-      "title": "سفر مقامات دفاعی عربستان، پاکستان و ترکیه به تهران ⚡️ مقامات دفاعی کشورهای عضو ائتلاف دفاعی مکه برای دیدار با دبیر شورای"
-    },
-    {
-      "k": [
-        "ار",
-        "ارد",
-        "استن",
-        "اسرل",
-        "اقدم",
-        "التمس",
-        "انتخب",
-        "انجم",
-        "برگزر",
-        "بزند",
-        "بشتر",
-        "بنمن",
-        "ترمپ",
-        "حمت",
-        "خست",
-        "دست",
-        "دنلد",
-        "طر",
-        "علن",
-        "فشر",
-        "مدم",
-        "نتنه",
-        "نظم"
-      ],
-      "t": 1792994885.821863,
-      "title": "فشار مداوم نتانیاهو به ترامپ برای اقدام نظامی علیه ایران پیش از انتخابات اسرائیل ⚡️ بنیامین نتانیاهو به طور مداوم به دون"
-    },
     {
       "k": [
         "ار",
@@ -9764,6 +9704,54 @@
       ],
       "t": 1793120770.6787705,
       "title": "سفیر ایران در سازمان ملل: اسرائیل سلاح هسته ای دارد، اما نگرانی از بازرسان در ایران است ⚡️ غلامحسین درزی سفیر ایران در س"
+    },
+    {
+      "k": [
+        "ار",
+        "اردن",
+        "اسرل",
+        "افرز",
+        "اقدم",
+        "امرک",
+        "امنت",
+        "بزگشت",
+        "تجزکرن",
+        "تسع",
+        "تقف",
+        "جن",
+        "جنگ",
+        "خرج",
+        "طلب",
+        "عرقچ",
+        "مدخل",
+        "مستلزم",
+        "منطق",
+        "مهر",
+        "همت",
+        "وزر"
+      ],
+      "s": "عراقچی",
+      "t": 1793126128.039217,
+      "title": "عراقچی: بازگشت امنیت به منطقه مستلزم توقف اقدامات تجاوزکارانه آمریکا ⚡️ وزیر خارجه ایران به همتای اردنی خود گفت که بازگش"
+    },
+    {
+      "k": [
+        "امل",
+        "جعفر",
+        "حبس",
+        "خرج",
+        "محکم",
+        "محکمت",
+        "مصدر",
+        "ممنعت",
+        "مکلش",
+        "وکل",
+        "پنج",
+        "پنه",
+        "کشر"
+      ],
+      "t": 1793126150.063317,
+      "title": "محکومیت جعفر پناهی به ۵ سال حبس و ۲ سال ممنوعیت خروج از کشور ⚡️ وکیل جعفر پناهی اعلام کرد که موکلش به پنج سال و یک ماه ح"
     }
   ],
   "_text_polish": {
@@ -9775,7 +9763,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793120481
+    "at": 1793125883
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9794,11 +9782,6 @@
     "last_failure": 1793120669,
     "last_quality_failure": 1793119120,
     "last_status": 503
-  },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1793120960.0,
-    "last_failure": 1793120660,
-    "last_status": 599
   },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1793121264,
@@ -9822,9 +9805,10 @@
     "last_failure": 1791936876,
     "last_status": 599
   },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1793106497,
-    "last_status": 422
+  "groq:openai/gpt-oss-120b": {
+    "disabled_until": 1793126708,
+    "last_failure": 1793126108,
+    "last_status": 429
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
