@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1793056898
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793056902
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793056906
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793056911
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x",
       "t": 1793064890
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793066593
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1793066594
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1793066639
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-27",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-27",
-      "n": 8
+      "n": 11
     },
     "openrouter:*": {
       "day": "2026-10-26",
@@ -473,16 +473,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 9,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
+        "ok": 6,
         "other": 5
       },
       "mistral:open-mistral-nemo": {
@@ -1048,6 +1048,12 @@
       "topic": "ورزش",
       "until": 1793130018.5181992
     },
+    "v4|bolsonaro’s party accepts brazil election after trump calls vote ‘rigged’": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Trump’s claim and party acceptance lack major impact",
+      "topic": "سیاست",
+      "until": 1793152992.3467407
+    },
     "v4|brazil keeps left: what lula’s victory means for his country and beyond": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash batch score=8 happened=True scope=world: پیروزی لولا دا سیلوا در انتخابات ریاست‌جمهوری برزیل",
@@ -1066,12 +1072,6 @@
       "topic": "سیاست",
       "until": 1793070250.091668
     },
-    "v4|brazil runoff live updates: lula prepares to speak after historic victory over flávio bolsonaro": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=9 happened=True scope=world: Lula wins fourth term, Brazil's presidential runoff result",
-      "topic": "سیاست",
-      "until": 1793064968.6819859
-    },
     "v4|brazil: defeated flávio bolsonaro ordered to surrender passports": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: حکم قضایی علیه فرزند رئیس‌جمهور سابق برزیل در سطح بین‌المللی مهم است.",
@@ -1083,12 +1083,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Criminal trial of an individual, lacks national or international strategic significance.",
       "topic": "قضایی",
       "until": 1793072044.7579215
-    },
-    "v4|elation across serbia after veteran ruler vučić concedes to student-led protest movement": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Vučić concedes to student protests",
-      "topic": "سیاست",
-      "until": 1793064969.5045562
     },
     "v4|even realities launches a brown version of its g2 smart glasses": {
       "ok": false,
@@ -1485,6 +1479,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=iran_national: اظهارنظر و تحلیل نماینده مجلس درباره آمریکا؛ فاقد رویداد مهم.",
       "topic": "سیاست",
       "until": 1793102763.4170442
+    },
+    "v4|اضطراب از دست دادن شغل در عصر هوش مصنوعی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: General anxiety, no event",
+      "topic": "فناوری",
+      "until": 1793152994.7295835
     },
     "v4|اعزام تیم ملی پاراتکواندو به مسابقات جهانی": {
       "ok": false,
@@ -2038,6 +2038,12 @@
       "topic": "اقتصاد",
       "until": 1793102737.0712073
     },
+    "v4|حلقه ارتباط علمی پژوهشگران ایرانیِ زیر فشار تحریم های علمی را تنگ تر نکنیم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Statement on sanctions, no event",
+      "topic": "سیاست",
+      "until": 1793152994.7220948
+    },
     "v4|حماس به دا سیلوا تبریک گفت": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Congratulatory statement, no significant impact",
@@ -2301,6 +2307,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: Announcement of a book publication, considered cultural PR.",
       "topic": "جامعه",
       "until": 1793086572.6456196
+    },
+    "v4|روح الله جمعه ای: آقای پایداری، آقای جلیلی، آقای سوپرانقلابی و خانم خیلی خیلی انقلابی فقط برای یک ماه، تریبون، لشکرکشی خیابانی و دشنام را تعطیل کنید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: Social media plea, no concrete decision or event",
+      "topic": "سیاست",
+      "until": 1793152993.199353
     },
     "v4|رودریگز بازگشت ماچادو به ونزوئلا را یک نمایش خواند": {
       "ok": false,
@@ -2781,12 +2793,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: لغو پروازها به دلیل ناامنی و تنش های منطقه ای.",
       "topic": "سیاست",
       "until": 1793075773.1554642
-    },
-    "v4|لولا داسیلوا برای چهارمین بار رئیس جمهور برزیل شد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Brazil's presidential election result, major international political event",
-      "topic": "سیاست",
-      "until": 1793064967.994928
     },
     "v4|لولا داسیلوا: با شکست مداخله خارجی، از دموکراسی برزیل حفاظت کردیم": {
       "ok": true,
@@ -4134,20 +4140,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.6-flash score=6 happened=True scope=world: سبقت تاریخی خودروسازان چینی از ژاپنی‌ها در بازار اروپا یک تحول مهم اقتصادی است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1793018230,
-      "title": "خودروسازان چینی از ژاپنی ها در اروپا جلو زدند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اقدام تجاری اندونزی تاثیر مستقیم و کلانی بر ایران ندارد.",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1793018231,
-      "title": "اندونزی برای مقابله با پیامدهای جنگ خاورمیانه به واردات اضطراری روی آورد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Diplomatic meeting, no concrete decision, low impact",
       "rescued": false,
       "rule": "routine-statement",
@@ -4692,6 +4684,20 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1793064833,
       "title": "واکاوی حقوقی یک جنجال بزرگ/ تفاوت پرونده طارمی استقلال و آسانی پرسپولیس"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Trump’s claim and party acceptance lack major impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1793066592,
+      "title": "Bolsonaro’s party accepts Brazil election after Trump calls vote ‘rigged’"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: Social media plea, no concrete decision or event",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1793066593,
+      "title": "روح الله جمعه ای: آقای پایداری، آقای جلیلی، آقای سوپرانقلابی و خانم خیلی خیلی انقلابی فقط برای یک ماه، تریبون، لشکرکشی خ"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -7857,7 +7863,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793064682
+    "at": 1793066467
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -7897,10 +7903,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1793064886,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,

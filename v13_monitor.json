@@ -1,8 +1,10 @@
 {
   "ai_pool": {},
   "ambiguous_publications": 0,
-  "checked_at": "2026-10-27T01:34:50.988479+00:00",
+  "checked_at": "2026-10-27T02:03:59.953259+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -40,31 +42,57 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: اظهار نظر نماینده مجلس درباره احتمال درگیری و تحلیل اقتصادی",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Statement on sanctions, no event",
       "result": "editorial_blocked",
       "source": "",
-      "title": "شهریاری: اگر توافق نشود احتمال درگیری بالای ۷۰ درصد است/ ۱۳۰ میلیون تن کالا از بنادر کشور وارد می شد که ظرفیت مرزهای زمینی پاسخگوی این حجم نیست",
+      "title": "حلقه ارتباط علمی پژوهشگران ایرانیِ زیر فشار تحریم های علمی را تنگ تر نکنیم",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: General anxiety, no event",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "اضطراب از دست دادن شغل در عصر هوش مصنوعی",
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "entekhab.ir",
+      "started_at": "2026-10-27T02:03:15.499580+00:00",
+      "title": "وزیر جنگ اسرائیل: قاطعانه تأکید می کنم که هیچ گونه قصدی برای حمله به ایران پیش از انتخابات در اسرائیل نداشته ایم",
+      "url": "https://entekhab.ir/fa/news/945217/وزیر-جنگ-اسرائیل-قاطعانه-تأکید-می-کنم-که-هیچ-گونه-قصدی-برای-حمله-به-ایران-پیش-از-انتخابات-در-اسرائیل-نداشته-ایم"
+    }
+  ],
+  "failed_publications": 1,
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 32,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "entekhab.ir",
+      "title": "وزیر جنگ اسرائیل: قاطعانه تأکید می کنم که هیچ گونه قصدی برای حمله به ایران پیش از انتخابات در اسرائیل نداشته ایم",
+      "url": "https://entekhab.ir/fa/news/945217/وزیر-جنگ-اسرائیل-قاطعانه-تأکید-می-کنم-که-هیچ-گونه-قصدی-برای-حمله-به-ایران-پیش-از-انتخابات-در-اسرائیل-نداشته-ایم"
+    }
+  ],
   "no_publication_candidate": false,
-  "published": 1,
+  "published": 0,
   "run_status": "success",
-  "selected_for_publication": 7,
+  "selected_for_publication": 8,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "nytimes.com",
-      "started_at": "2026-10-27T01:34:43.860062+00:00",
+      "started_at": "2026-10-27T02:03:57.101640+00:00",
       "title": "Netanyahu Pushed for Attack on Iran Ahead of Israeli Election, Officials Say",
       "url": "https://nytimes.com/2026/10/26/world/middleeast/netanyahu-iran-israel-election.html"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
