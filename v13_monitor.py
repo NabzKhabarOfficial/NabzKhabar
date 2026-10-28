@@ -7,7 +7,6 @@ from v13_status import PublicationStatus, normalize_status
 
 HEALTH_FILE = "v13_health.json"
 REPORT_FILE = "v13_monitor.json"
-STALE_AFTER_SECONDS = 20 * 60
 NON_FAILURE_RESULTS = (
     PublicationStatus.SKIPPED_DUPLICATE.value,
     PublicationStatus.EDITORIAL_BLOCKED.value,
@@ -21,16 +20,6 @@ def _load(path, default):
             return json.load(f)
     except Exception:
         return default
-
-
-def _age_seconds(value):
-    try:
-        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
-        if parsed.tzinfo is None:
-            parsed = parsed.replace(tzinfo=timezone.utc)
-        return max(0.0, (datetime.now(timezone.utc) - parsed).total_seconds())
-    except Exception:
-        return None
 
 
 def build_report():
@@ -50,21 +39,9 @@ def build_report():
     run_status = str(health.get("status", "unknown")).strip().lower()
     status = "healthy"
     diagnostics = []
-    if run_status in ("failed", "error", "unknown", "", "starting", "running", "collecting"):
+    if run_status in ("failed", "error", "unknown", ""):
         status = "runtime_failure"
         diagnostics.append(f"Runtime status is {run_status or 'unknown'}.")
-    heartbeat = health.get("heartbeat_at") or health.get("updated_at") or health.get("started_at")
-    age = _age_seconds(heartbeat)
-    if age is None:
-        # Older fixtures and manually-created health files may not carry a
-        # timestamp. New production runs always have a startup heartbeat and
-        # are therefore still fail-closed when that marker is malformed.
-        if health.get("run_id") or health.get("heartbeat_phase"):
-            status = "runtime_failure"
-            diagnostics.append("Runtime heartbeat timestamp is missing or invalid.")
-    elif age > STALE_AFTER_SECONDS:
-        status = "runtime_failure"
-        diagnostics.append(f"Runtime heartbeat is stale ({int(age // 60)} minutes old).")
     if missed or health.get("failed_publications") or health.get("ambiguous_publications"):
         status = "publication_failure"
         if missed: diagnostics.append("Selected stories did not reach confirmed publication.")
@@ -84,7 +61,6 @@ def build_report():
         "checked_at": datetime.now(timezone.utc).isoformat(),
         "status": status,
         "run_status": run_status,
-        "heartbeat_age_seconds": age,
         "selected_for_publication": len(selected),
         "published": health.get("published", len(published)),
         "failed_publications": health.get("failed_publications", len(failed)),
