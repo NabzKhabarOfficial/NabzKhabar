@@ -7,6 +7,7 @@ from v13_status import PublicationStatus, normalize_status
 
 HEALTH_FILE = "v13_health.json"
 REPORT_FILE = "v13_monitor.json"
+STALE_AFTER_SECONDS = 20 * 60
 NON_FAILURE_RESULTS = (
     PublicationStatus.SKIPPED_DUPLICATE.value,
     PublicationStatus.EDITORIAL_BLOCKED.value,
@@ -20,6 +21,16 @@ def _load(path, default):
             return json.load(f)
     except Exception:
         return default
+
+
+def _age_seconds(value):
+    try:
+        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=timezone.utc)
+        return max(0.0, (datetime.now(timezone.utc) - parsed).total_seconds())
+    except Exception:
+        return None
 
 
 def build_report():
@@ -39,9 +50,17 @@ def build_report():
     run_status = str(health.get("status", "unknown")).strip().lower()
     status = "healthy"
     diagnostics = []
-    if run_status in ("failed", "error", "unknown", ""):
+    if run_status in ("failed", "error", "unknown", "", "starting", "running", "collecting"):
         status = "runtime_failure"
         diagnostics.append(f"Runtime status is {run_status or 'unknown'}.")
+    heartbeat = health.get("heartbeat_at") or health.get("updated_at") or health.get("started_at")
+    age = _age_seconds(heartbeat)
+    if age is None:
+        status = "runtime_failure"
+        diagnostics.append("Runtime heartbeat timestamp is missing or invalid.")
+    elif age > STALE_AFTER_SECONDS:
+        status = "runtime_failure"
+        diagnostics.append(f"Runtime heartbeat is stale ({int(age // 60)} minutes old).")
     if missed or health.get("failed_publications") or health.get("ambiguous_publications"):
         status = "publication_failure"
         if missed: diagnostics.append("Selected stories did not reach confirmed publication.")
@@ -50,9 +69,7 @@ def build_report():
     editorial_blocked = [x for x in attempts if normalize_status(x.get("result")) == PublicationStatus.EDITORIAL_BLOCKED.value]
     skipped_duplicate = [x for x in attempts if normalize_status(x.get("result")) == PublicationStatus.SKIPPED_DUPLICATE.value]
     ai_pool = health.get("ai_pool") or health.get("ai_providers") or {}
-    no_publication_candidate = bool(health.get("no_publication_candidate")) or (
-        not selected and not attempts
-    )
+    no_publication_candidate = bool(health.get("no_publication_candidate")) or (not selected and not attempts)
     if important_missed:
         diagnostics.append("Important-news rescue reports missed candidates.")
     if editorial_blocked:
@@ -63,16 +80,16 @@ def build_report():
         "checked_at": datetime.now(timezone.utc).isoformat(),
         "status": status,
         "run_status": run_status,
+        "heartbeat_age_seconds": age,
         "selected_for_publication": len(selected),
         "published": health.get("published", len(published)),
         "failed_publications": health.get("failed_publications", len(failed)),
-        "ambiguous_publications": health.get("ambiguous_publications", sum(
-            1 for x in attempts if normalize_status(x.get("result")) == PublicationStatus.AMBIGUOUS.value
-        )),
+        "ambiguous_publications": health.get("ambiguous_publications", sum(1 for x in attempts if normalize_status(x.get("result")) == PublicationStatus.AMBIGUOUS.value)),
         "important_missed": important_missed,
         "editorial_blocked": editorial_blocked,
         "skipped_duplicate": skipped_duplicate,
         "ai_pool": ai_pool,
+        "feed_summary": health.get("feed_summary", {}),
         "no_publication_candidate": no_publication_candidate,
         "missed_selected_stories": missed,
         "failed_publication_attempts": failed,
