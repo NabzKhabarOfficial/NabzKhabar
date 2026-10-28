@@ -24,6 +24,7 @@ def _hook(name, globals=None, locals=None, fromlist=(), level=0):
             quarantine_guard.install_editor_gate(module if root == "v13_editor_gate" else __import__("v13_editor_gate"))
         if root == "v13_final_guard":
             quarantine_guard.install_final_guard(module)
+            module.install()
     finally:
         _in_hook = False
     return module
