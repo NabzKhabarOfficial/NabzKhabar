@@ -38,8 +38,7 @@ jobs:
               `Checked commit: ${context.sha}`,
               "",
               "Inspect v13_monitor.json, v13_health.json, and feed_status/feed_summary."
-            ].join("
-");
+            ].join("\n");
 
             const open = await github.paginate(
               github.rest.issues.listForRepo,
