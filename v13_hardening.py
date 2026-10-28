@@ -10,8 +10,18 @@ def _halfspace_text(value):
     text = str(value or "").replace("ي", "ی").replace("ك", "ک")
     text = text.replace("\u200f", "").replace("\u200e", "").replace("\xa0", " ")
     text = re.sub(r"\s*\u200c\s*", "\u200c", text)
-    text = re.sub(r"\b(می|نمی)\s+([\u0600-\u06ff])", r"\1\u200c\2", text)
-    text = re.sub(r"([\u0600-\u06ff])\s+(ها|های|هایی|تر|ترین)(?=\b|\s|[،؛؟,.!])", r"\1\u200c\2", text)
+    # Use callable replacements: Python's re replacement parser treats
+    # backslash-u sequences specially and can raise "bad escape \\u".
+    text = re.sub(
+        r"\b(می|نمی)\s+([\u0600-\u06ff])",
+        lambda match: f"{match.group(1)}\u200c{match.group(2)}",
+        text,
+    )
+    text = re.sub(
+        r"([\u0600-\u06ff])\s+(ها|های|هایی|تر|ترین)(?=\b|\s|[،؛؟,.!])",
+        lambda match: f"{match.group(1)}\u200c{match.group(2)}",
+        text,
+    )
     return re.sub(r"[ \t]+", " ", text).strip()
 
 

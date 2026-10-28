@@ -1,22 +1,39 @@
-"""Install fail-closed guards through the full production launcher lifecycle."""
+"""Install fail-closed guards and runtime observability through the launcher lifecycle."""
 from __future__ import annotations
 import builtins
+import os
+import sys
 _original_import = builtins.__import__
 _in_hook = False
+
+
+def _engine_process():
+    return os.path.basename(str(sys.argv[0] or "")) in {"v13_ai_extra.py", "run_bot.py"}
 
 
 def _hook(name, globals=None, locals=None, fromlist=(), level=0):
     global _in_hook
     module = _original_import(name, globals, locals, fromlist, level)
     root = name.split(".", 1)[0]
-    if _in_hook or root not in {"v13_standalone", "v13_editor_gate", "v13_final_guard", "v13_growth", "run_bot", "v13_ai_extra"}:
+    if _in_hook or root not in {"v13_standalone", "v13_intelligence", "v13_editor_gate", "v13_final_guard", "v13_growth", "run_bot", "v13_ai_extra"}:
         return module
     _in_hook = True
     try:
         import quarantine_guard
         import v13_hardening
+        if _engine_process() and root == "v13_standalone":
+            try:
+                import runtime_observability
+                runtime_observability.startup_heartbeat()
+            except Exception as exc:
+                print(f"V13 OBSERVABILITY: startup heartbeat skipped ({type(exc).__name__})", flush=True)
         if root == "run_bot":
             quarantine_guard.install_launcher(module)
+            try:
+                import runtime_observability
+                runtime_observability.install_patch_hook(module)
+            except Exception as exc:
+                print(f"V13 OBSERVABILITY: patch hook skipped ({type(exc).__name__})", flush=True)
         if root in {"v13_standalone", "run_bot", "v13_ai_extra"}:
             target = getattr(module, "main", None)
             if target is not None and hasattr(target, "process_news"):

@@ -50,9 +50,7 @@ def build_report():
     editorial_blocked = [x for x in attempts if normalize_status(x.get("result")) == PublicationStatus.EDITORIAL_BLOCKED.value]
     skipped_duplicate = [x for x in attempts if normalize_status(x.get("result")) == PublicationStatus.SKIPPED_DUPLICATE.value]
     ai_pool = health.get("ai_pool") or health.get("ai_providers") or {}
-    no_publication_candidate = bool(health.get("no_publication_candidate")) or (
-        not selected and not attempts
-    )
+    no_publication_candidate = bool(health.get("no_publication_candidate")) or (not selected and not attempts)
     if important_missed:
         diagnostics.append("Important-news rescue reports missed candidates.")
     if editorial_blocked:
@@ -66,13 +64,12 @@ def build_report():
         "selected_for_publication": len(selected),
         "published": health.get("published", len(published)),
         "failed_publications": health.get("failed_publications", len(failed)),
-        "ambiguous_publications": health.get("ambiguous_publications", sum(
-            1 for x in attempts if normalize_status(x.get("result")) == PublicationStatus.AMBIGUOUS.value
-        )),
+        "ambiguous_publications": health.get("ambiguous_publications", sum(1 for x in attempts if normalize_status(x.get("result")) == PublicationStatus.AMBIGUOUS.value)),
         "important_missed": important_missed,
         "editorial_blocked": editorial_blocked,
         "skipped_duplicate": skipped_duplicate,
         "ai_pool": ai_pool,
+        "feed_summary": health.get("feed_summary", {}),
         "no_publication_candidate": no_publication_candidate,
         "missed_selected_stories": missed,
         "failed_publication_attempts": failed,
