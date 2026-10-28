@@ -29,6 +29,14 @@ def _hook(name, globals=None, locals=None, fromlist=(), level=0):
             quarantine_guard.install_final_guard(module)
             module.install()
         if root == "v13_growth":
+            try:
+                import quarantine_site_sweep
+                changed = quarantine_site_sweep.run()
+                if changed:
+                    print(f"QUARANTINE SITE SWEEP: {changed} public entries rewritten", flush=True)
+            except Exception as exc:
+                print(f"QUARANTINE SITE SWEEP: blocked startup ({type(exc).__name__})", flush=True)
+                raise
             v13_hardening.install_growth(module)
             v13_hardening.install_digest(module)
     finally:
