@@ -21,7 +21,8 @@ def _hook(name, globals=None, locals=None, fromlist=(), level=0):
             target = getattr(module, "main", None)
             if target is not None and hasattr(target, "process_news"):
                 quarantine_guard.install_main(target, force=True)
-                v13_hardening.install_text_normalizer(target)
+            if hasattr(module, "normalize_space"):
+                v13_hardening.install_text_normalizer(module)
         if root in {"v13_editor_gate", "run_bot", "v13_ai_extra"}:
             quarantine_guard.install_editor_gate(module if root == "v13_editor_gate" else __import__("v13_editor_gate"))
         if root == "v13_final_guard":
