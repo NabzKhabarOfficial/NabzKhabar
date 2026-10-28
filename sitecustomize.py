@@ -9,22 +9,27 @@ def _hook(name, globals=None, locals=None, fromlist=(), level=0):
     global _in_hook
     module = _original_import(name, globals, locals, fromlist, level)
     root = name.split(".", 1)[0]
-    if _in_hook or root not in {"v13_standalone", "v13_editor_gate", "v13_final_guard", "run_bot", "v13_ai_extra"}:
+    if _in_hook or root not in {"v13_standalone", "v13_editor_gate", "v13_final_guard", "v13_growth", "run_bot", "v13_ai_extra"}:
         return module
     _in_hook = True
     try:
         import quarantine_guard
+        import v13_hardening
         if root == "run_bot":
             quarantine_guard.install_launcher(module)
         if root in {"v13_standalone", "run_bot", "v13_ai_extra"}:
             target = getattr(module, "main", None)
             if target is not None and hasattr(target, "process_news"):
                 quarantine_guard.install_main(target, force=True)
+                v13_hardening.install_text_normalizer(target)
         if root in {"v13_editor_gate", "run_bot", "v13_ai_extra"}:
             quarantine_guard.install_editor_gate(module if root == "v13_editor_gate" else __import__("v13_editor_gate"))
         if root == "v13_final_guard":
             quarantine_guard.install_final_guard(module)
             module.install()
+        if root == "v13_growth":
+            v13_hardening.install_growth(module)
+            v13_hardening.install_digest(module)
     finally:
         _in_hook = False
     return module
