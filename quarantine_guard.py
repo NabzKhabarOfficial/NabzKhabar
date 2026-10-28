@@ -1,6 +1,6 @@
 """Fail-closed quarantine and editorial verdict guard."""
 from __future__ import annotations
-import json, math, re
+import json, math, re, os
 from functools import wraps
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -87,3 +87,34 @@ def install_editor_gate(gate):
         if candidate is not None and gate.war_zone(candidate.get("title", "")): return score >= gate.WAR_ZONE_MIN_SCORE and happened and scope != "local"
         return bool(previous(verdict, candidate))
     gate.ai_accepts = strict_ai_accepts; gate._quarantine_verdict_guard_installed = True
+
+def install_final_guard(module):
+    """Replace the final guard's fail-open exception path with a hard editorial block."""
+    if getattr(module, "_quarantine_final_guard_installed", False): return
+    original_install = module.install
+    @wraps(original_install)
+    def guarded_install(*args, **kwargs):
+        import v13_relevance_gate as rg
+        previous = rg.caption_problem
+        result = original_install(*args, **kwargs)
+        if getattr(rg.caption_problem, "_quarantine_fail_closed", False): return result
+        def strict_caption_problem(title, sentences):
+            reason = previous(title, sentences)
+            if reason: return reason
+            try:
+                found = module.problems(title, sentences)
+                if not found and os.getenv("NABZ_AI_SENSE_CHECK", "1") != "0":
+                    flag = module.coherence(title, sentences)
+                    if flag: found = [flag]
+            except Exception as exc:
+                print(f"V13 FINAL GUARD: internal error blocked publication ({type(exc).__name__})", flush=True)
+                return "final-guard:internal-error"
+            if not found: return ""
+            try: module._log(title, found)
+            except Exception: pass
+            return "final-guard:" + found[0][0]
+        strict_caption_problem._quarantine_fail_closed = True
+        rg.caption_problem = strict_caption_problem
+        return result
+    module.install = guarded_install
+    module._quarantine_final_guard_installed = True
