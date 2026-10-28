@@ -14,12 +14,13 @@
 - PR #17: [diagnose feed starvation and stale runtime health](https://github.com/NabzKhabarOfficial/NabzKhabar/pull/17)
 - Branch: `brain/root-cause-feed-observability`
 - Adds startup heartbeat, per-feed collection diagnostics, feed summary persistence, and fail-closed stale-run detection.
-- CI: compile/offline/audit checks pass; Telegram regression still fails. Its complete log is not exposed through the connected GitHub endpoint, so do not claim this PR is green or merge it yet.
+- The regression root cause was `v13_hardening._halfspace_text`: regex replacement strings contained `\\u200c`, causing `bad escape \\u` and aborting history persistence. Replacements now use callable functions.
+- A fresh CI run is required after this handoff update; do not merge until all checks are green.
 
 ## Automatic alerting
 - Added `scripts/check_publication_health.py`.
-- It fails on stale/missing telemetry, runtime/publication failure, or all feeds returning zero candidates.
-- A GitHub Actions watchdog workflow was prepared but GitHub rejected the workflow-file write because this connection lacks `workflow` scope. The workflow still needs to be added manually or by a connection with workflow permission. Do not claim the automatic alert is active until that file exists on `main`.
+- Added `.github/workflows/publication-watchdog.yml` on `main`, corrected in commit `a946c7c0757321b325eb5bf52903c22b8a0d130c`.
+- The watchdog fails on stale/missing telemetry, runtime/publication failure, or all feeds returning zero candidates, then opens/comments on a `publication-outage` issue.
 
 ## NabzAI-YouTube Instagram status
 - 150 staged English/Persian mystery stories are merged on `main`; story validation and post-merge checks are green.
@@ -36,8 +37,7 @@
 - Live provider behavior is not proven by static checks alone.
 
 ## Required continuation
-1. Obtain the complete Telegram regression log from an authenticated GitHub Actions session or rerun it where logs are accessible.
-2. Fix the exact failing assertion and require all PR #17 checks to pass.
-3. Merge PR #17 only after the green check set is verified.
-4. Run one manual workflow dispatch and inspect per-feed diagnostics.
-5. Reconcile PR #3 and PR #5 against current `NabzAI-YouTube/main`; keep `buffer_max=10` disabled.
+1. Verify all PR #17 checks are green, then merge PR #17.
+2. Run one manual workflow dispatch and inspect per-feed diagnostics.
+3. Reconcile PR #3 and PR #5 against current `NabzAI-YouTube/main`; keep `buffer_max=10` disabled.
+4. Perform only the one-item `buffer_max=1` smoke test after current-main CI is green and provider state can be independently verified.
