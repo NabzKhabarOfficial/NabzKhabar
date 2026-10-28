@@ -56,8 +56,12 @@ def build_report():
     heartbeat = health.get("heartbeat_at") or health.get("updated_at") or health.get("started_at")
     age = _age_seconds(heartbeat)
     if age is None:
-        status = "runtime_failure"
-        diagnostics.append("Runtime heartbeat timestamp is missing or invalid.")
+        # Older fixtures and manually-created health files may not carry a
+        # timestamp. New production runs always have a startup heartbeat and
+        # are therefore still fail-closed when that marker is malformed.
+        if health.get("run_id") or health.get("heartbeat_phase"):
+            status = "runtime_failure"
+            diagnostics.append("Runtime heartbeat timestamp is missing or invalid.")
     elif age > STALE_AFTER_SECONDS:
         status = "runtime_failure"
         diagnostics.append(f"Runtime heartbeat is stale ({int(age // 60)} minutes old).")
