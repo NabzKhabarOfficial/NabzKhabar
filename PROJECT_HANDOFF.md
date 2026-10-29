@@ -5,34 +5,32 @@
 - Instagram and YouTube work belongs in the private `NabzAI-YouTube` repository.
 
 ## Latest operational state: 2026-10-29
-- The latest bot run correctly failed closed.
-- `v13_health.json`: `selected_for_publication=12`, `published=0`, `failed_publications=1`, `ambiguous_publications=0`.
-- The failed publication source was IRNA story `شنیده شدن صدای انفجار در شرق و جنوب عربستان`; the owner provided matching channel evidence that the event was already published as `انفجارها شرق عربستان را لرزاند؛ پروازها در فرودگاه ملک فهد دمام متوقف شد` at 04:34 on 27 February. Treat it as already published and do not retry or duplicate it. A Telegram message ID/permalink was not provided, so ID-level reconciliation remains incomplete.
-- The Madrid train-crash story is also confirmed present in the Telegram channel by owner-provided channel evidence. Do not republish it. A Telegram message ID/permalink was not provided.
-- `v13_monitor.status=publication_failure` is the intended fail-closed result, not a healthy run.
+- Latest bot run correctly failed closed: selected 12, published 0, 1 explicit failed attempt, 11 editorial blocks.
+- The explicit IRNA Saudi-explosion item and the Madrid item were later confirmed by owner evidence as already published under different headlines. Neither may be retried or duplicated.
+- `sitecustomize.py` already wires `quarantine_guard` launcher, candidate, editor and final guards through the production import lifecycle. Regression coverage is now added in `tests/test_production_guard_wiring.py`.
 
 ## Deep audit
 - Full re-audit: `docs/review/RE-AUDIT-2026-10-29.md`.
 - Large publication corpus remains only partially retrievable through the current connector; do not claim every historical post has been fact-verified.
 
-## P0 gates before broad publication
-1. Wire and test `quarantine_guard`, `v13_final_guard`, and `v13_review_log` from the production launcher.
-2. Preserve both Madrid and Saudi-explosion stories as already published; do not retry either.
-3. Add a durable publication registry that can reconcile by story/source identity even when Telegram message IDs are unavailable.
-4. Keep all known quarantine IDs blocked until each is re-extracted from its original source.
+## Remaining P0/P1 gates
+1. Add durable story/source reconciliation for already-published and ambiguous outcomes; block duplicate retries.
+2. Add a durable ambiguous-publication registry with request hash, timestamp, and reconciliation state.
+3. Keep all known quarantine IDs blocked until each is re-extracted from its original source.
+4. Preserve source URL, publisher, retrieval time and claim status internally.
+5. Add entity/number/unit/period validation beyond numeric-token presence.
 
 ## Manual steps required from the owner
-1. No resend or deletion is needed for either reconciled story.
-2. If convenient, capture each Telegram message ID/permalink from the channel UI and store it, but this is not a reason to resend.
-3. Do not edit quarantined HTML/JSON records by guessing names, numbers, or wording.
-4. After the wiring patch lands, run:
+1. Do not resend or delete the Madrid or Saudi-explosion stories.
+2. Branch protection for the Nabz AI backup branch is optional and unavailable on the current private-plan integration; keep the snapshot SHA documented.
+3. After the next wiring/test commit, run:
 ```bash
 python -m compileall -q .
 python -m unittest discover -s tests -v
 python scripts/audit_news_corpus.py
 python scripts/check_publication_health.py
 ```
-5. Keep `v13_monitor.json` and `v13_health.json` from the same workflow run.
+4. Keep `v13_monitor.json` and `v13_health.json` from the same workflow run.
 
 ## Guarantee boundary
-The system can validate deterministic filters and telemetry contracts. It cannot guarantee factual truth, source authenticity, or delivery after an ambiguous network timeout.
+The system validates deterministic filters and telemetry contracts. It cannot guarantee factual truth, source authenticity, or delivery after an ambiguous network timeout.
