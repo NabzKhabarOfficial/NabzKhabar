@@ -7,8 +7,8 @@
 ## Latest operational state: 2026-10-29
 - The latest bot run correctly failed closed.
 - `v13_health.json`: `selected_for_publication=12`, `published=0`, `failed_publications=1`, `ambiguous_publications=0`.
-- The failed publication was the IRNA story `شنیده شدن صدای انفجار در شرق و جنوب عربستان`; it is an explicit failure, not an ambiguous delivery. Do not blindly retry it until the source is rechecked and the failure reason is known.
-- The Madrid train-crash story is confirmed present in the Telegram channel by owner-provided channel evidence. It must not be republished. The visible post headline is `استقرار پلیس ضدشورش در مادرید همزمان با اعتراضات مرگبار به حادثه قطار` and the post states 68 deaths and a demand for the transport minister's resignation. A Telegram message ID/link was not included in the evidence provided, so provider-side ID reconciliation remains incomplete.
+- The failed publication source was IRNA story `شنیده شدن صدای انفجار در شرق و جنوب عربستان`; the owner provided matching channel evidence that the event was already published as `انفجارها شرق عربستان را لرزاند؛ پروازها در فرودگاه ملک فهد دمام متوقف شد` at 04:34 on 27 February. Treat it as already published and do not retry or duplicate it. A Telegram message ID/permalink was not provided, so ID-level reconciliation remains incomplete.
+- The Madrid train-crash story is also confirmed present in the Telegram channel by owner-provided channel evidence. Do not republish it. A Telegram message ID/permalink was not provided.
 - `v13_monitor.status=publication_failure` is the intended fail-closed result, not a healthy run.
 
 ## Deep audit
@@ -17,24 +17,22 @@
 
 ## P0 gates before broad publication
 1. Wire and test `quarantine_guard`, `v13_final_guard`, and `v13_review_log` from the production launcher.
-2. Preserve the Madrid story as already published; do not retry it. Record its Telegram message ID if the channel UI exposes it.
-3. Re-source and review the IRNA Saudi-explosion story before considering a retry.
-4. Add a durable ambiguous-publication registry and block blind retries.
-5. Keep all known quarantine IDs blocked until each is re-extracted from its original source.
+2. Preserve both Madrid and Saudi-explosion stories as already published; do not retry either.
+3. Add a durable publication registry that can reconcile by story/source identity even when Telegram message IDs are unavailable.
+4. Keep all known quarantine IDs blocked until each is re-extracted from its original source.
 
 ## Manual steps required from the owner
-1. If available, capture the Madrid message ID and permalink from Telegram; do not delete or resend the message.
-2. Search for the IRNA Saudi-explosion story using `عربستان`, `انفجار`, `شرق`, `جنوب`. Do not resend or delete it.
-3. If the Saudi story exists, send its message ID and timestamp for reconciliation. If absent, report absence only; do not manually resend.
-4. Do not edit quarantined HTML/JSON records by guessing names, numbers, or wording.
-5. After the wiring patch lands, run:
+1. No resend or deletion is needed for either reconciled story.
+2. If convenient, capture each Telegram message ID/permalink from the channel UI and store it, but this is not a reason to resend.
+3. Do not edit quarantined HTML/JSON records by guessing names, numbers, or wording.
+4. After the wiring patch lands, run:
 ```bash
 python -m compileall -q .
 python -m unittest discover -s tests -v
 python scripts/audit_news_corpus.py
 python scripts/check_publication_health.py
 ```
-6. Keep `v13_monitor.json` and `v13_health.json` from the same workflow run.
+5. Keep `v13_monitor.json` and `v13_health.json` from the same workflow run.
 
 ## Guarantee boundary
 The system can validate deterministic filters and telemetry contracts. It cannot guarantee factual truth, source authenticity, or delivery after an ambiguous network timeout.
