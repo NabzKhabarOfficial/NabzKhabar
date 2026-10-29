@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793232193
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793232194
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793232209
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793232210
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793232210
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1793232217
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793232749
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1793232750
     },
@@ -159,32 +131,60 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1793239376
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793241153
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793241154
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793241154
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: no usable verdict",
+      "t": 1793241159
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793241172
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1793241174
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1793241211
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-28",
-      "n": 41
+      "n": 43
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-28",
-      "n": 69
+      "n": 72
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-28",
-      "n": 31
+      "n": 32
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-28",
-      "n": 29
+      "n": 30
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-29",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-29",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-10-28",
@@ -412,75 +412,54 @@
     "2026-10-29": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
-        "other": 0
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
         "calls": 7,
         "ok": 7,
         "other": 0
       },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 9,
+        "ok": 9,
+        "other": 0
+      },
       "gemini:gemini-3.6-flash": {
         "429": 2,
-        "calls": 5,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 2,
+        "ok": 3,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 4,
-        "calls": 5,
+        "429": 5,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 1,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 8,
         "other": 6
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 8
+        "ok": 5,
+        "other": 9
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 5,
-      "t": 1793063075.7695265,
-      "title": "حملات روسیه به اوکراین چهار کشته و ۲۲ زخمی بر جای گذاشت",
-      "urgent": false
-    },
-    {
-      "label": "حادثه",
-      "level": 4,
-      "t": 1793063085.2891853,
-      "title": "انفجارها شرق عربستان را لرزاند؛ پروازها در فرودگاه ملک فهد دمام متوقف شد",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 5,
-      "t": 1793064882.4034402,
-      "title": "مقام های اسرائیلی درباره آمادگی حمله به ایران گفتگو کردند",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1103,6 +1082,13 @@
       "t": 1793234018.0141122,
       "title": "طرح ۷ روزه تهران برای تنگه هرمز و تکذیب مذاکرات صلح از سوی ترامپ",
       "urgent": false
+    },
+    {
+      "label": "حادثه",
+      "level": 4,
+      "t": 1793241190.857289,
+      "title": "وقوع انفجار در شرق و جنوب عربستان",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-28",
@@ -1232,6 +1218,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Protests regarding government formation are routine political developments.",
       "topic": "سیاست",
       "until": 1793322191.5394292
+    },
+    "v4|israel’s parties gird for wrangling to form a government, with no clear path": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: نتایج اولیه انتخابات اسرائیل و احتمال بن‌بست سیاسی",
+      "topic": "سیاست",
+      "until": 1793327572.389806
     },
     "v4|live updates: at least 68 killed in train crash in spain, officials say": {
       "ok": true,
@@ -1641,6 +1633,12 @@
       "topic": "حادثه",
       "until": 1793286298.7057574
     },
+    "v4|برخی توصیه های حوزه علمیه به دولت محرمانه است/نگاه روحانیت به فیلترینگ یکسان نیست": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Secret clerical advice, no major policy impact",
+      "topic": "سیاست",
+      "until": 1793327553.3090577
+    },
     "v4|برگزاری مجموعه آزمون های نظام مهندسی ساختمان با حضور هزار و ۸۰۸ نفر در کهگیلویه و بویراحمد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار استانی و محلی برگزاری آزمون نظام مهندسی اهمیتی ندارد.",
@@ -1869,6 +1867,12 @@
       "topic": "نظامی",
       "until": 1793304291.505713
     },
+    "v4|حمله موشکی به منطقه شرق عربستان": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Missile attack from Yemen to Saudi Arabia reported.",
+      "topic": "نظامی",
+      "until": 1793327574.42473
+    },
     "v4|خبرنگار الجزیره در تهران: یک پیشنهاد آمریکایی مطرح است که می خواهد پیشنهاد ایران شامل هفت شرط را با مطالبات هسته ای آمریکا ادغام کند و اجرای توافق نیز به صورت مرحله ای انجام شود /": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: گزارش رسمی و مهم درباره پیشنهاد جدید هسته‌ای آمریکا و ایران",
@@ -2073,6 +2077,12 @@
       "topic": "فناوری",
       "until": 1793300657.7290478
     },
+    "v4|زارع، قدرت بلامنازع سنگین وزن/ آستانه هم حیاط خلوت \"یل آمل\" می شود؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Preview of athlete's goal, no concrete event occurred",
+      "topic": "ورزش",
+      "until": 1793327552.385402
+    },
     "v4|زلنسکی: مذاکره درباره مسائل سرزمینی فقط در سطح رؤسای جمهور انجام شود": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: موضع رسمی رئیس‌جمهور اوکراین درباره جنگ و تمامیت ارضی کشور.",
@@ -2240,6 +2250,12 @@
       "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Statement, no concrete event",
       "topic": "سیاست",
       "until": 1793291639.5663204
+    },
+    "v4|فولکس واگن؛ از میراث جنگ جهانی تا بزرگ ترین آزمون تاریخ خودروسازی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: History of VW's automotive evolution.",
+      "topic": "فناوری",
+      "until": 1793327574.43094
     },
     "v4|قبض جنگ علیه ایران سنگین تر شد/هشدار کمیسیون اروپا در پی سه برابر شدن قیمت گاز": {
       "ok": true,
@@ -2687,7 +2703,7 @@
     },
     "at least 68 killed in train crash in spain, officials say": {
       "reason": "content_duplicate",
-      "until": 1793237722.794415
+      "until": 1793262811.7514021
     },
     "flávio bolsonaro lands in miami after fleeing brazil": {
       "reason": "content_duplicate",
@@ -2733,6 +2749,10 @@
       "reason": "content_duplicate",
       "until": 1793239564.1115322
     },
+    "حمله موشکی به منطقه شرق عربستان": {
+      "reason": "content_duplicate",
+      "until": 1793262780.9984684
+    },
     "دبیرکل حزب الله: جنگ ها با هدف تحقق طرح «اسرائیل بزرگ» انجام می شود": {
       "reason": "content_duplicate",
       "until": 1793228712.642747
@@ -2759,15 +2779,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "نماینده ایران در شورای امنیت: قطعنامه ۲۲۳۱ منقضی شده است ⚡️ نماینده ایران در نشست شورای امنیت سازمان ملل متحد ",
-      "id": "522eb6bf83",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793119221,
-      "verdict": "new",
-      "why": "شورای امنیت و قطعنامه ۲۲۳۱"
-    },
     {
       "head": "پوتین: ساخت نیروگاه بوشهر در ایران پیش می رود ⚡️ ولادیمیر پوتین رئیس جمهور روسیه در دیدار با مسعود پزشکیان رئی",
       "id": "a1e52375fb",
@@ -3301,30 +3312,18 @@
       "t": 1793235812,
       "verdict": "new",
       "why": "درباره درگیری پلیس ضدشورش با معترضان در مادرید، اسپانیا"
+    },
+    {
+      "head": "وقوع انفجار در شرق و جنوب عربستان ⚡️ صدای چند انفجار در منطقه شرقی و نجران در جنوب غربی عربستان شنیده شد.",
+      "id": "0f8a49885e",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793241189,
+      "verdict": "new",
+      "why": "انفجار جدید در عربستان، غیرمستقیم مرتبط با یمن"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Women's league match, domestic club derby, not a major event.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793208908,
-      "title": "لیگ برتر فوتبال بانوان / استقلال _ پرسپولیس"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: President emphasizes priority for deprived areas",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793208910,
-      "title": "پزشکیان: رسیدگی به مناطق محروم باید در اولویت بنیاد مستضعفان باشد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مشکلات ارزی صادرکنندگان در استان بررسی می‌شود",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793208910,
-      "title": "معاون استاندار: مشکلات ارزی صادرکنندگان خراسان شمالی موردی بررسی می شود"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: US announced 12 Patriot deliveries, Ukraine needs far more",
       "rescued": true,
@@ -3863,6 +3862,27 @@
       "rule": "no-concrete-event",
       "t": 1793239363,
       "title": "90 دقیقه روی نیمکت، دی یونگ در زمین/ فلیک در خروجی را به گاوی نشان داد!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Preview of athlete's goal, no concrete event occurred",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1793241152,
+      "title": "زارع، قدرت بلامنازع سنگین وزن/ آستانه هم حیاط خلوت \"یل آمل\" می شود؟"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Secret clerical advice, no major policy impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1793241153,
+      "title": "برخی توصیه های حوزه علمیه به دولت محرمانه است/نگاه روحانیت به فیلترینگ یکسان نیست"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: نتایج اولیه انتخابات اسرائیل و احتمال بن‌بست سیاسی",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1793241172,
+      "title": "Israel’s Parties Gird for Wrangling to Form a Government, With No Clear Path"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -4509,34 +4529,23 @@
       ],
       "t": 1793235825.2491744,
       "title": "استقرار پلیس ضدشورش در مادرید همزمان با اعتراضات مرگبار به حادثه قطار ⚡️ پلیس ضدشورش در مادرید مستقر شد و معترضان راست ا"
+    },
+    {
+      "h": [
+        "جنب",
+        "شرق",
+        "شند",
+        "صد",
+        "غرب",
+        "نجر",
+        "وقع",
+        "چند"
+      ],
+      "t": 1793241190.8454258,
+      "title": "وقوع انفجار در شرق و جنوب عربستان ⚡️ صدای چند انفجار در منطقه شرقی و نجران در جنوب غربی عربستان شنیده شد."
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "ابد",
-        "اتش",
-        "اسلم",
-        "افغنست",
-        "ددن",
-        "درگر",
-        "دلل",
-        "طلب",
-        "قلمر",
-        "متهم",
-        "مرزبن",
-        "مسکن",
-        "پکست",
-        "گشدن"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1793151319.6815212,
-      "title": "درگیری مرزی پاکستان و افغانستان با کشته و زخمی شدن ۶ نفر ⚡️ اسلام آباد مرزبانان طالبان افغانستان را به گشودن بی دلیل آتش",
-      "toll": 6
-    },
     {
       "a": [
         "احتمل",
@@ -4690,143 +4699,24 @@
       "t": 1793212526.6917765,
       "title": "اسرائیل با توپخانه روستای صیدا الجولان در حومه قنیطره را بمباران کرد ⚡️ نظامیان اسرائیلی با توپخانه اراضی کشاورزی روستای",
       "toll": 0
+    },
+    {
+      "a": [
+        "نجر",
+        "وقع",
+        "چند"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1793241190.8515131,
+      "title": "وقوع انفجار در شرق و جنوب عربستان ⚡️ صدای چند انفجار در منطقه شرقی و نجران در جنوب غربی عربستان شنیده شد.",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اتش",
-        "ارض",
-        "اسرل",
-        "اشغل",
-        "الملل",
-        "بختر",
-        "بشرت",
-        "تحقق",
-        "تفق",
-        "جن",
-        "حمس",
-        "سزم",
-        "غزه",
-        "فلسطن",
-        "متحد",
-        "مرتکب",
-        "مستقل",
-        "ملل",
-        "نر",
-        "نسل",
-        "همچن",
-        "کرن",
-        "کش",
-        "کمسن"
-      ],
-      "s": "سازمان ملل",
-      "t": 1793106492.5865507,
-      "title": "سازمان ملل: اسرائیل پس از آتش بس در غزه و کرانه باختری به نسل کشی ادامه می دهد ⚡️ کمیسیون مستقل بین المللی تحقیق سازمان "
-    },
-    {
-      "k": [
-        "ارنشهر",
-        "اطلعت",
-        "اقدم",
-        "انجم",
-        "تم",
-        "دستن",
-        "دستگ",
-        "دستگر",
-        "دشتند",
-        "دهند",
-        "زمن",
-        "سر",
-        "سپ",
-        "شنس",
-        "عمل",
-        "قدس",
-        "قررگ",
-        "قصد",
-        "قطع",
-        "مسلح",
-        "مسلحن",
-        "مندند",
-        "منطق",
-        "نر",
-        "نکم",
-        "پسدر",
-        "چند"
-      ],
-      "t": 1793108286.9076366,
-      "title": "دستگیری دو تیم مسلح در سراوان و ایرانشهر توسط سپاه ⚡️ قرارگاه قدس نیروی زمینی سپاه پاسداران دو تیم مسلح را در مناطق سراو"
-    },
-    {
-      "k": [
-        "ارتش",
-        "استفد",
-        "الحرب",
-        "المندب",
-        "بب",
-        "بدر",
-        "بلستک",
-        "تبع",
-        "تجهز",
-        "تلش",
-        "تلف",
-        "جن",
-        "جنب",
-        "حضر",
-        "دشمن",
-        "دفع",
-        "سخنگ",
-        "سرع",
-        "سعد",
-        "سلح",
-        "سنگن",
-        "ضمن",
-        "عربست",
-        "عمل",
-        "فرمنده",
-        "مسلح",
-        "مشک",
-        "منهدم",
-        "نر",
-        "نکم",
-        "هشدر",
-        "وبست",
-        "ورد",
-        "پشر",
-        "گذشتن",
-        "یح",
-        "یمن"
-      ],
-      "t": 1793108688.8307683,
-      "title": "دفع عملیات پیشروی نیروهای سعودی در جنوب باب المندب توسط ارتش یمن ⚡️ یحیی سریع، سخنگوی نیروهای مسلح یمن از ناکام گذاشتن ت"
-    },
-    {
-      "k": [
-        "ار",
-        "ارتبط",
-        "اقدم",
-        "اکتبر",
-        "برقرر",
-        "بزدشت",
-        "تلش",
-        "تکنن",
-        "خرج",
-        "خند",
-        "شهرندش",
-        "لتن",
-        "نتنست",
-        "نپدد",
-        "وزرت",
-        "وزرتخن",
-        "کمک",
-        "کنسل",
-        "گذشت"
-      ],
-      "s": "وزارت خارجه لیتوانی",
-      "t": 1793110048.7435694,
-      "title": "وزارت خارجه لیتوانی: دو شهروندش در ایران بازداشت شده اند ⚡️ وزارت خارجه لیتوانی اعلام کرد دو زن لیتوانیایی که از هفته گذ"
-    },
     {
       "k": [
         "اسرل",
@@ -6930,6 +6820,26 @@
       ],
       "t": 1793235825.2395873,
       "title": "استقرار پلیس ضدشورش در مادرید همزمان با اعتراضات مرگبار به حادثه قطار ⚡️ پلیس ضدشورش در مادرید مستقر شد و معترضان راست ا"
+    },
+    {
+      "k": [
+        "انفجر",
+        "تد",
+        "جنب",
+        "خبر",
+        "شرق",
+        "شند",
+        "صد",
+        "عربست",
+        "غرب",
+        "منبع",
+        "منطق",
+        "نجر",
+        "وقع",
+        "چند"
+      ],
+      "t": 1793241190.839292,
+      "title": "وقوع انفجار در شرق و جنوب عربستان ⚡️ صدای چند انفجار در منطقه شرقی و نجران در جنوب غربی عربستان شنیده شد. ▫️ منابع خبری "
     }
   ],
   "_text_polish": {
@@ -6941,7 +6851,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793239292
+    "at": 1793241075
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -6961,8 +6871,8 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793239965,
-    "last_failure": 1793239365,
+    "disabled_until": 1793241754,
+    "last_failure": 1793241154,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
