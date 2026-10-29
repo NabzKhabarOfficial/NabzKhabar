@@ -1,10 +1,11 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
+  "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-10-29T16:35:39.947728+00:00",
+  "checked_at": "2026-10-29T17:07:31.420217+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -18,10 +19,10 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: General analysis of labor market trends in China, not a specific event.",
+      "reason": "editor_gate: no-ai-fallback-fail-closed",
       "result": "editorial_blocked",
       "source": "",
-      "title": "سونامی مدرک دکتری در چین",
+      "title": "هشدار سازمان ملل درباره فرصت ها و تهدیدهای هوش مصنوعی در امنیت دریایی",
       "url": ""
     },
     {
@@ -34,60 +35,109 @@
     },
     {
       "error": "",
+      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "Wabi, the AI agent that builds mini apps, now valued at $1.25B after latest round",
+      "url": ""
+    },
+    {
+      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative scenario about a hypothetical attack and election strategy.",
       "result": "editorial_blocked",
       "source": "",
       "title": "جیمز بلر، استراتژیست ارشد سیاسی ترامپ برای انتخاباتی میان دوره ای با شرایطی متفاوت برنامه ریزی کرده بود، اما ترامپ به ایران حمله کرد و سپس به سرعت حفظ کنترل مجلس نمایندگان از دسترس",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "حمله شهپادی به یک کشتی تجاری اسرائیلی در دریای سیاه",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Local rescue operation in a specific county, lacks national strategic impact.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "نجات ۳ دانشجوی مفقودشده معدن در ارتفاعات جیرفت",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "معاون وزیر کشور: بیش از سه میلیون و ۴۰۰ هزار زائر ایرانی در راهپیمایی اربعین حضور یافتند",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "ادعای کریس مورفی، سناتور دموکرات: طرح ترامپ برای حملات جدید علیه ایران، «دیوانه وار» است و چرخه جدیدی از تشدید تنش ها را به راه خواهد انداخت/ او قصد دارد پس از انتخابات میان دوره ا",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "bbc.co.uk",
+      "started_at": "2026-10-29T17:07:23.853339+00:00",
+      "title": "Ethiopia acquires Russian fighter jets and air defence systems amid war in Tigray",
+      "url": "https://bbc.co.uk/news/articles/cw78prj801pvo?at_campaign=rss&at_medium=RSS"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "bbc.co.uk",
+      "title": "Ethiopia acquires Russian fighter jets and air defence systems amid war in Tigray",
+      "url": "https://bbc.co.uk/news/articles/cw78prj801pvo?at_campaign=rss&at_medium=RSS"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
   "run_status": "success",
-  "selected_for_publication": 8,
+  "selected_for_publication": 13,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "isna.ir",
-      "started_at": "2026-10-29T16:34:52.720848+00:00",
-      "title": "برخورد یک نفتکش متخلف با مین های دریایی/ آسیب و آتش گرفتن نفتکش و توقف آن",
-      "url": "https://isna.ir/news/1405080704699/%D8%A8%D8%B1%D8%AE%D9%88%D8%B1%D8%AF-%DB%8C%DA%A9-%D9%86%D9%81%D8%AA%DA%A9%D8%B4-%D9%85%D8%AA%D8%AE%D9%84%D9%81-%D8%A8%D8%A7-%D9%85%DB%8C%D9%86-%D9%87%D8%A7%DB%8C-%D8%AF%D8%B1%DB%8C%D8%A7%DB%8C%DB%8C-%D8%A2%D8%B3%DB%8C%D8%A8-%D9%88-%D8%A2%D8%AA%D8%B4-%DA%AF%D8%B1%D9%81%D8%AA%D9%86-%D9%86%D9%81%D8%AA%DA%A9%D8%B4"
+      "started_at": "2026-10-29T17:06:37.439848+00:00",
+      "title": "المیادین: ایران پیش از اجرای شروط هفت گانه، گام تازه ای برنمی دارد",
+      "url": "https://isna.ir/news/1405080704714/%D8%A7%D9%84%D9%85%DB%8C%D8%A7%D8%AF%DB%8C%D9%86-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D9%BE%DB%8C%D8%B4-%D8%A7%D8%B2-%D8%A7%D8%AC%D8%B1%D8%A7%DB%8C-%D8%B4%D8%B1%D9%88%D8%B7-%D9%87%D9%81%D8%AA-%DA%AF%D8%A7%D9%86%D9%87-%DA%AF%D8%A7%D9%85-%D8%AA%D8%A7%D8%B2%D9%87-%D8%A7%DB%8C-%D8%A8%D8%B1%D9%86%D9%85%DB%8C-%D8%AF%D8%A7%D8%B1%D8%AF"
     },
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "entekhab.ir",
-      "started_at": "2026-10-29T16:34:57.316340+00:00",
-      "title": "المیادین به نقل از منبع آگاه ایرانی: ایران نگران است که خارج کردن مواد غنی شده از کشور، به جای پایان دادن به جنگ، زمینه ساز تجاوز نظامی جدید آمریکا شود/ تهران میانجی گری ای که صرفا",
-      "url": "https://entekhab.ir/fa/news/945651/المیادین-به-نقل-از-منبع-آگاه-ایرانی-ایران-نگران-است-که-خارج-کردن-مواد-غنی-شده-از-کشور-به-جای-پایان-دادن-به-جنگ-زمینه-ساز-تجاوز-نظامی-جدید-آمریکا-شود-تهران-میانجی-گری-ای-که-صرفا-به-انتقال-مطالبات-آمریکا-و-اعمال-فشار-بر-ایران-محدود-شود-را-نخواهد-پذیرفت-ادعای-ترامپ-مبنی-بر-اینکه-پیام-ونس-در-پاسخ-به-درخواست-ایران-برای-دریافت-تجهیزات-و-دارو-ارسال-شده-کاملا-دروغ-است"
+      "started_at": "2026-10-29T17:07:06.032435+00:00",
+      "title": "نخست وزیر انگلیس از گفت وگوهای تلفنی با ترامپ برای کاهش تنش در منطقه خبر داد/ ادعای برنهام: توافق احتمالی باید مانع برخورداری تهران از سلاح هسته ای شود/ خواهان حل مسائل و دستیابی ب",
+      "url": "https://entekhab.ir/fa/news/945656/نخست-وزیر-انگلیس-از-گفت-وگوهای-تلفنی-با-ترامپ-برای-کاهش-تنش-در-منطقه-خبر-داد-ادعای-برنهام-توافق-احتمالی-باید-مانع-برخورداری-تهران-از-سلاح-هسته-ای-شود-خواهان-حل-مسائل-و-دستیابی-به-توافقی-هستیم-که-به-بازگشایی-کامل-تنگه-هرمز-منجر-شود"
     },
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "entekhab.ir",
-      "started_at": "2026-10-29T16:35:23.014536+00:00",
+      "started_at": "2026-10-29T17:07:16.772930+00:00",
       "title": "اسرائیل هیوم: یک کشتی اسرائیلی در دریای سیاه هدف حمله سه پهپاد قرار گرفت و تمام ۴۲۱ کانتینر با محموله هایش به زیر آب رفتند/ این کشتی حامل اقلامی از جمله باتری های لیتیوم-یونی، مایع",
       "url": "https://entekhab.ir/fa/news/945645/اسرائیل-هیوم-یک-کشتی-اسرائیلی-در-دریای-سیاه-هدف-حمله-سه-پهپاد-قرار-گرفت-و-تمام-421-کانتینر-با-محموله-هایش-به-زیر-آب-رفتند-این-کشتی-حامل-اقلامی-از-جمله-باتری-های-لیتیوم-یونی-مایعات-و-اسیدها-بود"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "khabaronline.ir",
-      "started_at": "2026-10-29T16:35:32.123553+00:00",
-      "title": "نیروی دریایی ارتش: یک نفت کش در محدوده ناامن تنگه هرمزبه مین های دریایی برخورد کرد/ تنگه برای کشتی هایی که قصد عبور از مناطق ممنوعه را دارند، بسته است",
-      "url": "https://khabaronline.ir/news/2294911/%D9%86%DB%8C%D8%B1%D9%88%DB%8C-%D8%AF%D8%B1%DB%8C%D8%A7%DB%8C%DB%8C-%D8%A7%D8%B1%D8%AA%D8%B4-%DB%8C%DA%A9-%D9%86%D9%81%D8%AA-%DA%A9%D8%B4-%D8%AF%D8%B1-%D9%85%D8%AD%D8%AF%D9%88%D8%AF%D9%87-%D9%86%D8%A7%D8%A7%D9%85%D9%86-%D8%AA%D9%86%DA%AF%D9%87-%D9%87%D8%B1%D9%85%D8%B2%D8%A8%D9%87-%D9%85%DB%8C%D9%86-%D9%87%D8%A7%DB%8C"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
