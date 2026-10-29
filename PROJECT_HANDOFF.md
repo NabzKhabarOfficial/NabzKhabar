@@ -4,38 +4,35 @@
 - This repository is for the Telegram news channel only.
 - Instagram and YouTube work belongs in the private `NabzAI-YouTube` repository.
 
-## Audit snapshot: 2026-10-28
-- Audited current `main` after the publication-gap alert.
+## Audit snapshot: 2026-10-29
+- Deep re-audit recorded in `docs/review/RE-AUDIT-2026-10-29.md`.
 - Open issue: [#18 publication stopped or telemetry is stale](https://github.com/NabzKhabarOfficial/NabzKhabar/issues/18).
 - Open hardening PR: [#14](https://github.com/NabzKhabarOfficial/NabzKhabar/pull/14). Do not merge wholesale without recreating its remaining fixes on current `main`.
 
-## Changes applied in this audit
-- `v13_monitor.py` now reports `publication_gap` when stories were selected but confirmed publications are zero.
-- It distinguishes an all-editorially-blocked run from a transport/publication failure instead of calling both healthy.
-- The permanent handoff now records the known quarantine, state-safety, reconciliation and editorial limitations.
+## Current state
+- `v13_monitor.py` reports `publication_gap` when stories were selected but confirmed publications are zero.
+- The observed runtime failure was correctly fail-closed: editorial blocks were separated from one ambiguous Telegram outcome.
+- Full corpus content verification is not yet complete because large publication files were only partially retrievable.
 
-## Known production risks
-- `content/quarantine_manifest.json` still requires verified wiring into candidate collection and processing. Do not claim quarantined records are blocked until an exact current-main test proves it.
-- Some auxiliary writers and senders remain outside the canonical atomic/outcome path.
-- Telegram timeouts can be accepted by Telegram even when the client sees no response. Provider-side reconciliation is still required.
-- Numeric-presence checks do not prove entity/number correctness or source truth.
-- Published data contains known Persian grammar, neutrality, attribution and unsupported-claim defects. Re-source and manually review before republishing.
-- Offline tests cannot prove RSS freshness, AI output correctness, Telegram delivery, or factual truth.
+## P0 gates before broad publication
+1. Wire and test `quarantine_guard`, `v13_final_guard`, and `v13_review_log` from the production launcher.
+2. Reconcile the ambiguous Madrid train-crash Telegram attempt with the channel/provider before retrying it.
+3. Add a durable ambiguous-publication registry and block blind retries.
+4. Keep all known quarantine IDs blocked until each is re-extracted from its original source.
 
-## Safe verification sequence
+## Manual steps required from the owner
+1. Open the Telegram channel and search for the Madrid train-crash headline. Record whether it exists and its Telegram message ID.
+2. If it exists, do not republish it; send the message ID and timestamp for reconciliation.
+3. If it does not exist, do not manually resend it; report that it is absent so the code can create a safe, explicit retry path.
+4. Do not edit quarantined HTML or JSON records by guessing names, numbers, or wording.
+5. Run the exact current-main verification commands only after the wiring patch lands:
 ```bash
 python -m compileall -q .
 python -m unittest discover -s tests -v
 python scripts/audit_news_corpus.py
 python scripts/check_publication_health.py
 ```
-
-## Manual-only continuation
-1. Run the checks on the exact current `main` commit.
-2. Inspect `v13_monitor.json` and `v13_health.json` from the same run.
-3. Reconcile every ambiguous Telegram attempt with the channel/provider before retrying.
-4. Re-source quarantined and high-risk posts; never “correct” names or numbers by guesswork.
-5. Dispatch one controlled workflow run and inspect feed diagnostics before broad scheduling.
+6. Keep `v13_monitor.json` and `v13_health.json` from the same workflow run.
 
 ## Guarantee boundary
 The system can validate deterministic filters and telemetry contracts. It cannot guarantee factual truth, source authenticity, or delivery after an ambiguous network timeout.
