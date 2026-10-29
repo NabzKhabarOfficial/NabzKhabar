@@ -20,6 +20,7 @@ def _hook(name, globals=None, locals=None, fromlist=(), level=0):
     _in_hook = True
     try:
         import quarantine_guard
+        import reconciliation_guard
         import v13_hardening
         if _engine_process() and root == "v13_standalone":
             try:
@@ -38,6 +39,7 @@ def _hook(name, globals=None, locals=None, fromlist=(), level=0):
             target = getattr(module, "main", None)
             if target is not None and hasattr(target, "process_news"):
                 quarantine_guard.install_main(target, force=True)
+                reconciliation_guard.install(target)
             if hasattr(module, "normalize_space"):
                 v13_hardening.install_text_normalizer(module)
         if root in {"v13_editor_gate", "run_bot", "v13_ai_extra"}:
