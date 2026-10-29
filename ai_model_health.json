@@ -2,30 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793230343
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1793230358
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1793230360
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793230364
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793230364
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793230368
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793230368
     },
     {
@@ -159,6 +135,30 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
       "t": 1793235825
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793237552
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793237554
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1793237569
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793237575
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1793237577
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1793237582
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-28",
-      "n": 68
+      "n": 69
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-28",
-      "n": 30
+      "n": 31
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-28",
-      "n": 27
+      "n": 28
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-29",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-29",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-10-28",
@@ -418,16 +418,16 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 2,
-        "calls": 4,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
+        "ok": 2,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
@@ -439,22 +439,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 4
+        "ok": 5,
+        "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
-        "other": 6
+        "ok": 3,
+        "other": 7
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       }
     }
@@ -1107,12 +1107,6 @@
   ],
   "_digest_last_date": "2026-10-28",
   "_editor_gate_cache": {
-    "v4|'biggest night in the club's history' for fearless fleetwood": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: پیروزی شگفت‌انگیز فلیت‌وود مقابل آرسنال در جام اتحادیه انگلیس",
-      "topic": "ورزش",
-      "until": 1793235849.9498568
-    },
     "v4|'israeli electorate has moved rightward: many underestimated extent of fracture in israeli society'": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: Expert commentary and political analysis, no concrete event happened.",
@@ -1136,12 +1130,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: خبر مربوط به شایعات یا معرفی محصول تکنولوژی است.",
       "topic": "فناوری",
       "until": 1793295328.8833132
-    },
-    "v4|arab parties could win 18 seats in israeli elections, exit polls suggest": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: نتایج اولیه انتخابات اسرائیل و مشارکت بالای اعراب",
-      "topic": "سیاست",
-      "until": 1793235841.5139675
     },
     "v4|at least 64 dead in spain’s high-speed train crash": {
       "ok": true,
@@ -1173,12 +1161,6 @@
       "topic": "سیاست",
       "until": 1793322200.2779539
     },
-    "v4|dowman sees red as arsenal dumped out, but did arteta go too far?": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: شکست آرسنال در جام اتحادیه در سطح اول اخبار جهانی نیست.",
-      "topic": "ورزش",
-      "until": 1793235854.6764822
-    },
     "v4|eu backs away from offer to canada to start ‘associate member’ talks": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: تغییر بیانیه در نشست اتحادیه اروپا و کانادا اهمیت درجه اول جهانی ندارد.",
@@ -1190,6 +1172,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: عبور قیمت گاز اتحادیه اروپا از سقف ۱۰۰ یورو پس از سال ۲۰۲۲.",
       "topic": "اقتصاد",
       "until": 1793313229.2572517
+    },
+    "v4|flávio bolsonaro denies fleeing brazil after landing in miami": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Brazilian candidate's claim lacks significance for Iran or global news",
+      "topic": "سیاست",
+      "until": 1793323975.6198635
     },
     "v4|flávio bolsonaro lands in miami after fleeing brazil": {
       "ok": true,
@@ -1353,6 +1341,12 @@
       "topic": "سیاست",
       "until": 1793320404.1706374
     },
+    "v4|آلمان شیفته جواهر 17 ساله مراکشی شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash score=2 happened=False scope=world: شایعات نقل‌وانتقالات و گمانه‌زنی‌های فوتبالی فاقد اهمیت خبری فورس‌ماژور است.",
+      "topic": "ورزش",
+      "until": 1793323974.5392709
+    },
     "v4|آمادگی برای حمله ای دیگر؟ گزارش ها از تحرکات تازه نظامی آمریکا در برابر ایران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: گزارش و تحلیل درباره تحرکات نظامی است و رویداد قطعی مشخصی ندارد.",
@@ -1430,6 +1424,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Speculative report based on claims, not an official confirmed decision.",
       "topic": "سیاست",
       "until": 1793302488.8044686
+    },
+    "v4|ادعای ترامپ: جنگ علیه ایران را خیلی سریع پایان خواهم داد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=iran_national: Trump claims to end war quickly, no decision made.",
+      "topic": "سیاست",
+      "until": 1793323977.7895677
     },
     "v4|ادعای حزب لیکود به رهبری نتانیاهو: انتخابات از سوی احزاب عربی که از تروریسم و نابودی دولت یهودی حمایت می کنند، به سرقت رفته / به سلامت و اعتبار انتخابات در اسرائیل و نتایج آن خدشه": {
       "ok": false,
@@ -1965,6 +1965,12 @@
       "topic": "حادثه",
       "until": 1793289910.7108715
     },
+    "v4|دستاوردهای نشست مسکو؛ از امنیت انرژی تا توافق گازی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: Meeting discussed energy security, no concrete decision.",
+      "topic": "اقتصاد",
+      "until": 1793323977.7957428
+    },
     "v4|دستور فوری وزیر آموزش و پرورش برای پیگیری حادثه سرویس مدارس اردکان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=local: حادثه محلی و دستور روتین وزیر برای پیگیری موضوع.",
@@ -2030,12 +2036,6 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: حمله حوثی‌ها به خطوط نفت سعودی، تأثیر منطقه‌ای",
       "topic": "نظامی",
       "until": 1793286296.7423396
-    },
-    "v4|رسانه آمریکایی: هزینه جنگ آمریکا علیه ایران به ۴۷ میلیارد دلار رسید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: تحلیل و برآورد هزینه است و نه یک رویداد قطعی جدید.",
-      "topic": "سیاست",
-      "until": 1793235854.6624823
     },
     "v4|رشد ۳۰ درصدی برداشت برگ سبز چای در لاهیجان": {
       "ok": false,
@@ -2126,12 +2126,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Official UN spokesperson statement on regional military escalation.",
       "topic": "سیاست",
       "until": 1793304291.5414474
-    },
-    "v4|سفر رئیس جمهور اسلامی ایران به روسیه": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: رئیس جمهور ایران به روسیه سفر کرد",
-      "topic": "سیاست",
-      "until": 1793235826.336796
     },
     "v4|سندرز: ترامپ خطرناک ترین رئیس جمهور تاریخ است": {
       "ok": false,
@@ -2307,12 +2301,6 @@
       "topic": "سیاست",
       "until": 1793286976.6479044
     },
-    "v4|مجمع کشورهای صادرکننده گاز خواستار قیمت گذاری منصفانه و افزایش امنیت عرضه شدند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: بیانیه و ابراز نگرانی عمومی مجمع کشورهای صادرکننده گاز",
-      "topic": "اقتصاد",
-      "until": 1793235836.5644803
-    },
     "v4|محرومیت نیمار به دلیل قانون وینیسیوس!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: محرومیت یک بازیکن در لیگ برزیل اهمیت ملی یا بین‌المللی ندارد.",
@@ -2480,6 +2468,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine industrial cooperation announcement, lacks immediate strategic or combat impact.",
       "topic": "نظامی",
       "until": 1793305398.977387
+    },
+    "v4|همکاری گوگل دیپ مایند و اشپرینگر نیچر برای توسعه دستیار هوش مصنوعی داوری مقالات": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=فناوری: Google DeepMind and Springer Nature collaborate on AI peer review.",
+      "topic": "فناوری",
+      "until": 1793323977.8015277
     },
     "v4|هوش مصنوعی بازی های رایانه ای را با وضعیت بازیکن تنظیم می کند": {
       "ok": false,
@@ -2696,12 +2690,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=True scope=world: A letter from lawmakers is a routine political action, not a decision.",
       "topic": "سیاست",
       "until": 1793297066.2447956
-    },
-    "v4|‘i use disposable cups’: chris minns backflips on takeaway coffee cups after media and business backlash": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local Australian policy change with no national or international significance.",
-      "topic": "جامعه",
-      "until": 1793235846.298628
     }
   },
   "_editorial_blocks": {
@@ -2720,6 +2708,10 @@
     "live updates: at least 68 killed in train crash in spain, officials say": {
       "reason": "content_duplicate",
       "until": 1793221552.7371564
+    },
+    "riot police deployed in madrid as protests erupt over deadly train crash": {
+      "reason": "content_duplicate",
+      "until": 1793259182.2095277
     },
     "spain demands answers after deadliest train disaster in over a decade": {
       "reason": "content_duplicate",
@@ -3325,20 +3317,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: مسابقه محلی بدون حضور بازیکنان کلیدی",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793207066,
-      "title": "بدون حضور هوادران و در غیاب دو بازیکن مصدوم:/ تقابل نفتی های بسکتبال تحت تاثیر بازی جنجالی!"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Youth football win, not top‑tier senior competition",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1793208906,
-      "title": "صعود نونهالان ایران به جمع ۸ تیم برتر دنیا"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Official speech, no concrete decision, low impact",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -3883,6 +3861,20 @@
       "rule": "no-concrete-event",
       "t": 1793235800,
       "title": "Canada and EU drop associate membership plan in bid to deepen ties"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=2 happened=False scope=world: شایعات نقل‌وانتقالات و گمانه‌زنی‌های فوتبالی فاقد اهمیت خبری فورس‌ماژور است.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1793237574,
+      "title": "آلمان شیفته جواهر 17 ساله مراکشی شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Brazilian candidate's claim lacks significance for Iran or global news",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1793237575,
+      "title": "Flávio Bolsonaro denies fleeing Brazil after landing in Miami"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6961,7 +6953,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793235683
+    "at": 1793237468
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -6981,9 +6973,9 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793236386,
-    "last_failure": 1793235786,
-    "last_status": 429
+    "disabled_until": 1793237869.0,
+    "last_failure": 1793237569,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,

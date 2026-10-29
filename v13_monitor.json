@@ -1,22 +1,13 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": false,
-  "ambiguous_publications": 1,
-  "checked_at": "2026-10-29T01:03:45.400637+00:00",
+  "all_selected_blocked": true,
+  "ambiguous_publications": 0,
+  "checked_at": "2026-10-29T01:33:02.323792+00:00",
   "diagnostics": [
-    "Selected stories did not reach confirmed publication.",
-    "Publication attempts failed or raised exceptions.",
+    "All selected stories were blocked or reconciled without a confirmed publication.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Terrorist attack near Israeli embassy in Serbia",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "وزیر کشور صربستان: یک مهاجم که با خود چاقو داشت، پس از حمله به پلیس در مقابل سفارت اسرائیل کشته شد",
-      "url": ""
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: تحلیل و نظر یک کارشناس که فاقد ارزش خبری فوری است.",
@@ -75,18 +66,34 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: درگیری و تلفات محدود در سوریه، اهمیت بین‌المللی بالایی ندارد",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "کشته شدن ۲ سرباز سوری در ریف ادلب",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Speculative political rhetoric; not a concrete policy decision or event.",
       "result": "editorial_blocked",
       "source": "",
       "title": "توهمات تکراری ترامپ درباره جنگ با ایران",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=iran_national: Trump claims to end war quickly, no decision made.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "ادعای ترامپ: جنگ علیه ایران را خیلی سریع پایان خواهم داد",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: Meeting discussed energy security, no concrete decision.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "دستاوردهای نشست مسکو؛ از امنیت انرژی تا توافق گازی",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=فناوری: Google DeepMind and Springer Nature collaborate on AI peer review.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "همکاری گوگل دیپ مایند و اشپرینگر نیچر برای توسعه دستیار هوش مصنوعی داوری مقالات",
       "url": ""
     },
     {
@@ -106,35 +113,26 @@
       "url": ""
     }
   ],
-  "failed_publication_attempts": [
-    {
-      "error": "",
-      "reason": "telegram-transport-uncertain-no-retry",
-      "result": "ambiguous",
-      "source": "aljazeera.com",
-      "started_at": "2026-10-29T01:03:24.854028+00:00",
-      "title": "Riot police deployed in Madrid as protests erupt over deadly train crash",
-      "url": "https://aljazeera.com/video/newsfeed/2026/10/29/riot-police-deployed-in-madrid-as-protests-erupt-over-deadly-train-crash?traffic_source=rss"
-    }
-  ],
+  "failed_publication_attempts": [],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [
-    {
-      "intelligence_score": 14,
-      "monitor_reason": "selected-but-not-published",
-      "publication_tier": 4,
-      "source": "aljazeera.com",
-      "title": "Riot police deployed in Madrid as protests erupt over deadly train crash",
-      "url": "https://aljazeera.com/video/newsfeed/2026/10/29/riot-police-deployed-in-madrid-as-protests-erupt-over-deadly-train-crash?traffic_source=rss"
-    }
-  ],
+  "missed_selected_stories": [],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
   "run_status": "success",
-  "selected_for_publication": 13,
-  "skipped_duplicate": [],
-  "status": "publication_failure"
+  "selected_for_publication": 14,
+  "skipped_duplicate": [
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
+      "source": "aljazeera.com",
+      "started_at": "2026-10-29T01:32:58.161026+00:00",
+      "title": "Riot police deployed in Madrid as protests erupt over deadly train crash",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/29/riot-police-deployed-in-madrid-as-protests-erupt-over-deadly-train-crash?traffic_source=rss"
+    }
+  ],
+  "status": "editorial_blocked"
 }
