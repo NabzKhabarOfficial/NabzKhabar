@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1793224995
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1793225009
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793226804
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793226804
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793226805
     },
@@ -159,6 +143,22 @@
     {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1793232217
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793232749
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793232750
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793232750
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1793232772
     }
   ],
   "_ai_pace": {
@@ -168,11 +168,11 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-28",
-      "n": 62
+      "n": 63
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-28",
-      "n": 27
+      "n": 28
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-28",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-29",
-      "n": 3
+      "n": 5
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-29",
-      "n": 2
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-10-28",
@@ -416,9 +416,16 @@
         "ok": 1,
         "other": 0
       },
-      "gemini:gemini-3.6-flash": {
+      "gemini:gemini-3.5-flash-lite": {
         "429": 0,
         "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 2,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
         "other": 1
@@ -432,35 +439,27 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 3,
+        "calls": 5,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 1,
+        "ok": 3,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 2,
+        "calls": 5,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 0,
-        "other": 2
+        "ok": 2,
+        "other": 3
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1793056937.5822997,
-      "title": "شکست دولت ترامپ در تلاش برای جلوگیری از شمارش آرای پستی کالیفرنیا",
-      "urgent": false
-    },
-    {
-      "label": "ورزش",
-      "level": 4,
-      "t": 1793056965.3678544,
-      "title": "واکنش هری کین پس از کسب توپ طلا: اگر تاتنهام نبود به اینجا نمی رسیدم",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1090,6 +1089,13 @@
       "t": 1793228614.6523373,
       "title": "هشدار آمریکا درباره اخراج مهاجران غیرقانونی رای دهنده در انتخابات",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1793232771.435385,
+      "title": "هیچ برنده واضحی در انتخابات اسرائیل با نزدیک به ۹۰٪ رأی شمارش شده",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-28",
@@ -1129,12 +1135,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: نتایج اولیه انتخابات اسرائیل و مشارکت بالای اعراب",
       "topic": "سیاست",
       "until": 1793235841.5139675
-    },
-    "v4|arab parties’ strong showing may bring role in formation of israel’s next government": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Arab parties' record turnout may shape Israel's coalition",
-      "topic": "سیاست",
-      "until": 1793232271.982596
     },
     "v4|at least 64 dead in spain’s high-speed train crash": {
       "ok": true,
@@ -1202,6 +1202,12 @@
       "topic": "ورزش",
       "until": 1793316772.088467
     },
+    "v4|iran war live: tehran presses 7-day hormuz plan; trump denies peace talks": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: موضع‌گیری ارغچی درباره طرح ۷ روزه تنگه هرمز و تکذیب مذاکرات صلح توسط ترامپ",
+      "topic": "سیاست",
+      "until": 1793319155.5765622
+    },
     "v4|israel election: what impact on iran as the war in the middle east continues?": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis about election impact rather than a concrete event.",
@@ -1226,12 +1232,6 @@
       "topic": "حادثه",
       "until": 1793286298.0797474
     },
-    "v4|live updates: exit polls show no clear winner in pivotal israeli election": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: انتخابات حیاتی اسرائیل و نامشخص بودن پیروز بر اساس نظرسنجی‌ها.",
-      "topic": "سیاست",
-      "until": 1793232271.0274296
-    },
     "v4|live updates: exit polls suggest no clear winner in pivotal israeli election": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: انتخابات سراسری اسرائیل و تغییر احتمالی دولت یک رویداد مهم جهانی است.",
@@ -1249,6 +1249,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Meta's minor app launch, limited impact",
       "topic": "فناوری",
       "until": 1793286979.7462661
+    },
+    "v4|no clear winner in israeli election with nearly 90 percent of votes counted": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Major Israeli election outcome, impacts regional politics",
+      "topic": "سیاست",
+      "until": 1793319149.4981613
     },
     "v4|rare wartime dissent in moscow over plans to dismantle russia’s ‘eiffel tower’": {
       "ok": false,
@@ -1357,12 +1363,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Political deadlock in Israel impacts regional stability and government formation.",
       "topic": "سیاست",
       "until": 1793298849.7336907
-    },
-    "v4|آیزنکوت: مردم به ادامه کار نتانیاهو رأی منفی دادند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: اظهارنظر مهم یک چهره سیاسی ارشد اسرائیل درباره نتانیاهو و انتخابات",
-      "topic": "سیاست",
-      "until": 1793232265.5807738
     },
     "v4|آیزنکوت: مردم به تغییر و پایان نتانیاهو رای دادند": {
       "ok": false,
@@ -1483,12 +1483,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=iran_national: طرح حمایتی مالی برای واحدهای آسیب دیده از جنگ.",
       "topic": "اقتصاد",
       "until": 1793300677.804938
-    },
-    "v4|اعلام آمادگی دولت ترامپ برای مذاکره با مسکو": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Trump ready to negotiate with Moscow",
-      "topic": "سیاست",
-      "until": 1793232273.3522894
     },
     "v4|اعلام سه روز عزای عمومی در اسپانیا در پی برخورد مرگبار دو قطار": {
       "ok": true,
@@ -1855,6 +1849,12 @@
       "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Claim, no event",
       "topic": "سیاست",
       "until": 1793291639.5751917
+    },
+    "v4|حق وردی بعد از یک ماه ونیم بازی کرد/ بازگشت لژیونر مطرح با برد 11 گله!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، لیگ کوچک، نه‌قهرمانی ملی",
+      "topic": "ورزش",
+      "until": 1793319148.6036763
     },
     "v4|حملات جدید رژیم صهیونیستی به غزه؛ شماری شهید و زخمی شدند": {
       "ok": true,
@@ -2300,12 +2300,6 @@
       "topic": "ورزش",
       "until": 1793314987.1180046
     },
-    "v4|محمد عمری همچنان روی نیمکت؛/ هفت پرسپولیس، به دنبال یک گوشه چشم مهدی تارتار!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: پرسپولیس، جزئیات بازی، تأثیر ملی کم",
-      "topic": "ورزش",
-      "until": 1793232266.7021232
-    },
     "v4|محموله سنگین طلای بدل در قم توقیف شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: کشف کالای قاچاق در یک واحد صنفی استانی، فاقد اهمیت ملی است.",
@@ -2317,12 +2311,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: کشف پرندگان قاچاق در یک استان، محلی و کم‌اهمیت است.",
       "topic": "جامعه",
       "until": 1793311390.905055
-    },
-    "v4|مخالفت قاطع کشورهای صادر کننده گاز با تحریم های یکجانبه": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: OPEC rejects unilateral sanctions",
-      "topic": "سیاست",
-      "until": 1793232273.2856104
     },
     "v4|مدیرکل ارتباطات کرمانشاه: تمام روستاهای کنگاور به اینترنت و تلفن همراه متصل شد": {
       "ok": false,
@@ -2564,12 +2552,6 @@
       "topic": "سیاست",
       "until": 1793293488.7725294
     },
-    "v4|پنج تیم مدعی قهرمانی؛/ یک رای جنجالی و جدول ترسناک لیگ برتر! (عکس)": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Domestic league match result, not top‑tier national news",
-      "topic": "ورزش",
-      "until": 1793232267.8717308
-    },
     "v4|پیش بینی هوای تهران از پنجشنبه تا شنبه؛ رگبار باران و باد شدید، در ارتفاعات رگبار برف / احتمال سیلابی شدن مسیل ها": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Routine weather forecast for a specific province.",
@@ -2772,15 +2754,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "نیروی دریایی ارتش: نفتکش متخلف با مین در شرق تنگه هرمز دچار حریق شد ⚡️ نیروی دریایی ارتش اعلام کرد یک نفتکش مت",
-      "id": "a4f331c1b5",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793117257,
-      "verdict": "new",
-      "why": "موضوع جدید: حادثه نفتکش در تنگه هرمز"
-    },
     {
       "head": "اسماعیلی و مهمدی در روز پایانی قهرمانی جهان را تکمیل کردند ⚡️ در آخرین روز مسابقات قهرمانی کشتی فرنگی جهان در ",
       "id": "74ad6daf2a",
@@ -3314,23 +3287,18 @@
       "t": 1793228609,
       "verdict": "new",
       "why": "هشدار جدید آمریکا به مهاجران غیرقانونی رای‌دهنده"
+    },
+    {
+      "head": "هیچ برنده واضحی در انتخابات اسرائیل با نزدیک به ۹۰٪ رأی شمارش شده ⚡️ در انتخابات اسرائیل، نزدیک به ۹۰٪ رأی شما",
+      "id": "7473b40a6f",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793232764,
+      "verdict": "new",
+      "why": "نتیجه انتخابات اسرائیل بدون برنده مشخص"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial agricultural policy, limited national impact",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1793205216,
-      "title": "مدیرکل جهاد کشاورزی گیلان: باغ های کیوی باید شناسنامه دار شود"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: قهرمانی در مسابقه اختراعات انگلستان",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1793205217,
-      "title": "جوان سلماسی برنده مدال طلا و جایزه ویژه در مسابقات بین المللی اختراعات انگلستان شد"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: خدمت آزمایشگاهی برای مادران باردار",
       "rescued": false,
@@ -3876,6 +3844,20 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1793232220,
       "title": "بازگشت بدموقع به ترکیب؛/ تصمیمی که منجر به مصدومیت کاپیتان پرسپولیس شد!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، لیگ کوچک، نه‌قهرمانی ملی",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1793232748,
+      "title": "حق وردی بعد از یک ماه ونیم بازی کرد/ بازگشت لژیونر مطرح با برد 11 گله!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Major Israeli election outcome, impacts regional politics",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1793232749,
+      "title": "No clear winner in Israeli election with nearly 90 percent of votes counted"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -4462,6 +4444,20 @@
       ],
       "t": 1793228614.6449451,
       "title": "هشدار آمریکا درباره اخراج مهاجران غیرقانونی رای دهنده در انتخابات ⚡️ وزارت امنیت داخلی آمریکا اعلام کرد مهاجران غیرقانون"
+    },
+    {
+      "h": [
+        "انتخب",
+        "برند",
+        "شمرش",
+        "مشخص",
+        "نزدک",
+        "نشد",
+        "هچ",
+        "وضح"
+      ],
+      "t": 1793232771.4265702,
+      "title": "هیچ برنده واضحی در انتخابات اسرائیل با نزدیک به ۹۰٪ رأی شمارش شده ⚡️ در انتخابات اسرائیل، نزدیک به ۹۰٪ رأی شمارش شد و هی"
     }
   ],
   "_published_incidents": [
@@ -4647,147 +4643,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اعل",
-        "اقدم",
-        "الحث",
-        "انصرلل",
-        "انگز",
-        "تصمم",
-        "تلش",
-        "تکد",
-        "جمهر",
-        "جنبش",
-        "جنگ",
-        "حمت",
-        "خند",
-        "دفع",
-        "دنست",
-        "زمن",
-        "سس",
-        "سعد",
-        "شر",
-        "شگفت",
-        "صلح",
-        "عربست",
-        "عض",
-        "عل",
-        "قهر",
-        "محمد",
-        "مصر",
-        "معن",
-        "منزل",
-        "منطق",
-        "پرلم",
-        "پشتبن",
-        "کشر",
-        "یمن"
-      ],
-      "s": "الحوثی",
-      "t": 1793099183.5847094,
-      "title": "الحوثی: تصمیم قاهره در حمایت از سعودی اعلان جنگ علیه یمن است ⚡️ محمد علی الحوثی، عضو شورای سیاسی جنبش انصارالله یمن، تصم"
-    },
-    {
-      "k": [
-        "ار",
-        "اسرل",
-        "اشتبه",
-        "اقدم",
-        "برهم",
-        "بلتر",
-        "بلک",
-        "ترر",
-        "تزن",
-        "تمر",
-        "تنه",
-        "تکد",
-        "دسترد",
-        "دنست",
-        "رس",
-        "رسند",
-        "رهبر",
-        "رهبرد",
-        "سبق",
-        "سطح",
-        "سپ",
-        "شکست",
-        "فحش",
-        "فرپش",
-        "قدرت",
-        "مسد",
-        "منجر",
-        "ندشت",
-        "نشد",
-        "نظم",
-        "همر",
-        "هچ",
-        "پرد",
-        "پسدر",
-        "پشن",
-        "گذشت"
-      ],
-      "s": "رئیس سابق موساد",
-      "t": 1793100947.9697485,
-      "title": "رئیس سابق موساد: ترور رهبر ایران اشتباهی فاحش و شکست راهبردی اسرائیل بود ⚡️ تامیر پاردو، رئیس پیشین موساد، ترور رهبر ایر"
-    },
-    {
-      "k": [
-        "ارزش",
-        "استر",
-        "بزر",
-        "تغر",
-        "درصد",
-        "دلر",
-        "رفت",
-        "سقط",
-        "سهم",
-        "شخص",
-        "فنر",
-        "مربط",
-        "ملرد",
-        "نزدک",
-        "همر",
-        "چن"
-      ],
-      "n": [
-        "480"
-      ],
-      "t": 1793100968.152097,
-      "title": "سقوط ۴۰ درصدی شاخص سهام فناوری در چین ⚡️ این تغییرات با سقوط ۴۰ درصدی شاخص سهام فناوری همراه شد. ▫️ نزدیک به ۴۸۰ میلیارد"
-    },
-    {
-      "k": [
-        "اتش",
-        "اثر",
-        "اجد",
-        "ال",
-        "تسس",
-        "تنر",
-        "حرق",
-        "حمل",
-        "خسر",
-        "دد",
-        "رس",
-        "سز",
-        "سع",
-        "سعد",
-        "شنب",
-        "صدر",
-        "عربست",
-        "مز",
-        "مشخص",
-        "مهر",
-        "نزدک",
-        "نفت",
-        "هنز",
-        "وقع",
-        "پست",
-        "پن"
-      ],
-      "t": 1793101017.2410889,
-      "title": "مهار آتش سوزی در نزدیکی تأسیسات نفتی رأس تنوره عربستان ⚡️ عربستان سعودی حریق ایجاد شده در نزدیکی پایانه صادرات نفت رأس ت"
-    },
     {
       "k": [
         "بلستک",
@@ -6979,6 +6834,30 @@
       ],
       "t": 1793228614.637337,
       "title": "هشدار آمریکا درباره اخراج مهاجران غیرقانونی رای دهنده در انتخابات ⚡️ وزارت امنیت داخلی آمریکا اعلام کرد مهاجران غیرقانون"
+    },
+    {
+      "k": [
+        "اسرل",
+        "انتخب",
+        "برند",
+        "بق",
+        "تزع",
+        "تغر",
+        "جعب",
+        "دگن",
+        "شمرش",
+        "صندل",
+        "مشخص",
+        "ممکن",
+        "مند",
+        "نزدک",
+        "نشد",
+        "هزر",
+        "هچ",
+        "وضح"
+      ],
+      "t": 1793232771.4174092,
+      "title": "هیچ برنده واضحی در انتخابات اسرائیل با نزدیک به ۹۰٪ رأی شمارش شده ⚡️ در انتخابات اسرائیل، نزدیک به ۹۰٪ رأی شمارش شد و هی"
     }
   ],
   "_text_polish": {
@@ -6990,7 +6869,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793232113
+    "at": 1793232642
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -7005,9 +6884,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793232517.0,
-    "last_failure": 1793232217,
-    "last_status": 503
+    "disabled_until": 1793233350,
+    "last_failure": 1793232750,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1793232810,
