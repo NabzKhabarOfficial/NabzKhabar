@@ -1,9 +1,11 @@
 {
   "ai_pool": {},
   "all_selected_blocked": false,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-10-29T00:33:39.257156+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-10-29T01:03:45.400637+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -21,6 +23,14 @@
       "result": "editorial_blocked",
       "source": "",
       "title": "موسوی نیا استاد روابط بین الملل: در اسرائیل علیه ایران اجماع وجود دارد: هدفشان طولانی شدن جنگ و تبدیل ایران به failed state (دولت فرومانده) است",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Routine weather warning for mountaineers; no actual event occurred.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "خطر سیلاب، رعدوبرق و کولاک در کمین کوهنوردان",
       "url": ""
     },
     {
@@ -73,6 +83,14 @@
     },
     {
       "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Speculative political rhetoric; not a concrete policy decision or event.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "توهمات تکراری ترامپ درباره جنگ با ایران",
+      "url": ""
+    },
+    {
+      "error": "",
       "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=world: Dissent over dismantling Moscow tower",
       "result": "editorial_blocked",
       "source": "",
@@ -88,16 +106,35 @@
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "aljazeera.com",
+      "started_at": "2026-10-29T01:03:24.854028+00:00",
+      "title": "Riot police deployed in Madrid as protests erupt over deadly train crash",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/29/riot-police-deployed-in-madrid-as-protests-erupt-over-deadly-train-crash?traffic_source=rss"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 14,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "aljazeera.com",
+      "title": "Riot police deployed in Madrid as protests erupt over deadly train crash",
+      "url": "https://aljazeera.com/video/newsfeed/2026/10/29/riot-police-deployed-in-madrid-as-protests-erupt-over-deadly-train-crash?traffic_source=rss"
+    }
+  ],
   "no_publication_candidate": false,
-  "publication_gap": false,
-  "published": 1,
+  "publication_gap": true,
+  "published": 0,
   "run_status": "success",
-  "selected_for_publication": 11,
+  "selected_for_publication": 13,
   "skipped_duplicate": [],
-  "status": "healthy"
+  "status": "publication_failure"
 }
