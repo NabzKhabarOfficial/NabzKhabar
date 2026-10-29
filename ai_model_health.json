@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793230368
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793230372
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793230372
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
-      "t": 1793230387
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1793232193
     },
@@ -159,12 +143,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
       "t": 1793237582
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793239364
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793239365
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793239365
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1793239376
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-28",
-      "n": 40
+      "n": 41
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-28",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-28",
-      "n": 28
+      "n": 29
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-29",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-29",
-      "n": 10
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-10-28",
@@ -412,8 +412,8 @@
     "2026-10-29": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -431,25 +431,25 @@
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 4,
+        "429": 4,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 1,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
-        "other": 5
+        "ok": 6,
+        "other": 6
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
-        "other": 7
+        "ok": 4,
+        "other": 8
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1113,6 +1113,12 @@
       "topic": "سیاست",
       "until": 1793304293.4151886
     },
+    "v4|90 دقیقه روی نیمکت، دی یونگ در زمین/ فلیک در خروجی را به گاوی نشان داد!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Minor bench incident in domestic football match",
+      "topic": "ورزش",
+      "until": 1793325763.36212
+    },
     "v4|amid uncertainty over eu aid, vitalii kim insists ukraine has no choice but to fight for motherland": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: Routine interview and personal opinion of a minister, not a concrete first-tier event.",
@@ -1401,12 +1407,6 @@
       "topic": "جامعه",
       "until": 1793307880.8074763
     },
-    "v4|احتمال ائتلاف حریدی ها با «آیزنکوت»": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=False scope=world: گمانه‌زنی رسانه‌ای درباره احتمال ائتلاف سیاسی در اسرائیل",
-      "topic": "سیاست",
-      "until": 1793237699.243406
-    },
     "v4|احتمال بالای وقوع سیل در ۱۲ استان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: هشدار هواشناسی بدون وقوع حادثه قطعی، در سطح پیش‌بینی است.",
@@ -1581,12 +1581,6 @@
       "topic": "سیاست",
       "until": 1793295328.9093637
     },
-    "v4|ایمیلی که تلاش برای هک سیستم کمیسیون انتخابات آمریکا را نشان داد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: حمله سایبری به کمیسیون انتخابات آمریکا و تعلیق خدمات آنلاین",
-      "topic": "فناوری",
-      "until": 1793237692.4517694
-    },
     "v4|بازنگری در شیوه آموزش قرآن در مدارس/ آغاز تحول کتب قرآنی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=iran_national: برنامه روال و تغییرات معمولی آموزشی در مدارس",
@@ -1742,12 +1736,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: اعلام رسمی سیاست سخت‌گیرانه دولت آمریکا علیه مهاجران غیرقانونی در انتخابات کنگره",
       "topic": "سیاست",
       "until": 1793315003.7806537
-    },
-    "v4|توافق دریایی ترکیه و لیبی؛ چرا یونان نگران است؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Analysis of a past agreement and geopolitical concerns, not a new event.",
-      "topic": "سیاست",
-      "until": 1793237707.9256306
     },
     "v4|تورم نقطه به نقطه کوتاه آمد اما سالانه نه! / غیرخوراکی ها همچنان پیشتاز تورم ماهانه": {
       "ok": false,
@@ -2157,6 +2145,12 @@
       "topic": "جامعه",
       "until": 1793307880.231271
     },
+    "v4|شنیده شدن صدای انفجار در شرق و جنوب عربستان": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=9 happened=True scope=world: انفجار در مناطق استراتژیک عربستان در چارچوب تنش‌های منطقه‌ای",
+      "topic": "نظامی",
+      "until": 1793325771.053925
+    },
     "v4|شهیکی: پارک های علم و فناوری حلقه اتصال دانشگاه و صنعت و جامعه هستند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Official speech, no concrete decision, low impact",
@@ -2528,12 +2522,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=iran_national: مشاجره رسانه‌ای و واکنش برنامه‌ تلویزیونی به رسانه‌های دیگر.",
       "topic": "سیاست",
       "until": 1793293488.7977035
-    },
-    "v4|پاکستان از کشته و زخمی شدن ۶ نفر درپی درگیری با مرزبانان افغانستان خبر داد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Armed border clash between two countries resulting in casualties.",
-      "topic": "نظامی",
-      "until": 1793237707.911506
     },
     "v4|پایش پسماند های دارویی و جلوگیری از توقف تولید در شرایط بحرانی": {
       "ok": false,
@@ -3317,13 +3305,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Official speech, no concrete decision, low impact",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1793208907,
-      "title": "شهیکی: پارک های علم و فناوری حلقه اتصال دانشگاه و صنعت و جامعه هستند"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Women's league match, domestic club derby, not a major event.",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -3875,6 +3856,13 @@
       "rule": "foreign-local-preselection",
       "t": 1793237575,
       "title": "Flávio Bolsonaro denies fleeing Brazil after landing in Miami"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Minor bench incident in domestic football match",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793239363,
+      "title": "90 دقیقه روی نیمکت، دی یونگ در زمین/ فلیک در خروجی را به گاوی نشان داد!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6953,7 +6941,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793237468
+    "at": 1793239292
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -6973,9 +6961,9 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793237869.0,
-    "last_failure": 1793237569,
-    "last_status": 599
+    "disabled_until": 1793239965,
+    "last_failure": 1793239365,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,

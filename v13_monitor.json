@@ -1,10 +1,11 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
+  "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-10-29T01:33:02.323792+00:00",
+  "checked_at": "2026-10-29T02:02:56.935225+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -82,22 +83,6 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: Meeting discussed energy security, no concrete decision.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "دستاوردهای نشست مسکو؛ از امنیت انرژی تا توافق گازی",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=فناوری: Google DeepMind and Springer Nature collaborate on AI peer review.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "همکاری گوگل دیپ مایند و اشپرینگر نیچر برای توسعه دستیار هوش مصنوعی داوری مقالات",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=world: Dissent over dismantling Moscow tower",
       "result": "editorial_blocked",
       "source": "",
@@ -113,26 +98,34 @@
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "irna.ir",
+      "started_at": "2026-10-29T02:02:51.327514+00:00",
+      "title": "شنیده شدن صدای انفجار در شرق و جنوب عربستان",
+      "url": "https://irna.ir/news/86306491/%D8%B4%D9%86%DB%8C%D8%AF%D9%87-%D8%B4%D8%AF%D9%86-%D8%B5%D8%AF%D8%A7%DB%8C-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1-%D8%AF%D8%B1-%D8%B4%D8%B1%D9%82-%D9%88-%D8%AC%D9%86%D9%88%D8%A8-%D8%B9%D8%B1%D8%A8%D8%B3%D8%AA%D8%A7%D9%86"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 18,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "irna.ir",
+      "title": "شنیده شدن صدای انفجار در شرق و جنوب عربستان",
+      "url": "https://irna.ir/news/86306491/%D8%B4%D9%86%DB%8C%D8%AF%D9%87-%D8%B4%D8%AF%D9%86-%D8%B5%D8%AF%D8%A7%DB%8C-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1-%D8%AF%D8%B1-%D8%B4%D8%B1%D9%82-%D9%88-%D8%AC%D9%86%D9%88%D8%A8-%D8%B9%D8%B1%D8%A8%D8%B3%D8%AA%D8%A7%D9%86"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
   "run_status": "success",
-  "selected_for_publication": 14,
-  "skipped_duplicate": [
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "aljazeera.com",
-      "started_at": "2026-10-29T01:32:58.161026+00:00",
-      "title": "Riot police deployed in Madrid as protests erupt over deadly train crash",
-      "url": "https://aljazeera.com/video/newsfeed/2026/10/29/riot-police-deployed-in-madrid-as-protests-erupt-over-deadly-train-crash?traffic_source=rss"
-    }
-  ],
-  "status": "editorial_blocked"
+  "selected_for_publication": 12,
+  "skipped_duplicate": [],
+  "status": "publication_failure"
 }
