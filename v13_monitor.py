@@ -25,7 +25,7 @@ def _load(path, default):
 def build_report():
     health = _load(HEALTH_FILE, None)
     if not isinstance(health, dict):
-        report = {"checked_at": datetime.now(timezone.utc).isoformat(), "status": "runtime_failure", "run_status": "unknown", "diagnostics": ["Runtime health file is missing or invalid."], "selected_for_publication": 0, "published": 0, "failed_publications": 0, "ambiguous_publications": 0}
+        report = {"checked_at": datetime.now(timezone.utc).isoformat(), "status": "runtime_failure", "run_status": "unknown", "diagnostics": ["Runtime health file is missing or invalid."], "selected_for_publication": 0, "published": 0, "failed_publications": 0, "ambiguous_publications": 0, "publication_gap": False}
         save_json(REPORT_FILE, report)
         print("V13 MONITOR STATUS: runtime_failure", flush=True)
         return report
@@ -47,10 +47,25 @@ def build_report():
         if missed: diagnostics.append("Selected stories did not reach confirmed publication.")
         if failed: diagnostics.append("Publication attempts failed or raised exceptions.")
     important_missed = health.get("important_missed") or []
-    editorial_blocked = [x for x in attempts if normalize_status(x.get("result")) == PublicationStatus.EDITORIAL_BLOCKED.value]
+    editorial_blocked = [x for x in attempts if normalize_status(x.get("result")) in (PublicationStatus.EDITORIAL_BLOCKED.value, PublicationStatus.QUALITY_BLOCKED.value)]
     skipped_duplicate = [x for x in attempts if normalize_status(x.get("result")) == PublicationStatus.SKIPPED_DUPLICATE.value]
     ai_pool = health.get("ai_pool") or health.get("ai_providers") or {}
     no_publication_candidate = bool(health.get("no_publication_candidate")) or (not selected and not attempts)
+
+    # A run that selected stories but published none is not healthy. Distinguish
+    # a real transport/publication outage from an explicit editorial stop so the
+    # watchdog can alert without pretending that editorial blocking is success.
+    selected_count = len(selected)
+    published_count = len(published)
+    all_selected_blocked = bool(selected_count) and published_count == 0 and not missed and bool(attempts)
+    publication_gap = bool(selected_count and published_count == 0)
+    if publication_gap and status == "healthy":
+        if all_selected_blocked and len(editorial_blocked) + len(skipped_duplicate) >= selected_count:
+            status = "editorial_blocked"
+            diagnostics.append("All selected stories were blocked or reconciled without a confirmed publication.")
+        else:
+            status = "publication_failure"
+            diagnostics.append("Run selected stories but confirmed zero publications.")
     if important_missed:
         diagnostics.append("Important-news rescue reports missed candidates.")
     if editorial_blocked:
@@ -61,8 +76,8 @@ def build_report():
         "checked_at": datetime.now(timezone.utc).isoformat(),
         "status": status,
         "run_status": run_status,
-        "selected_for_publication": len(selected),
-        "published": health.get("published", len(published)),
+        "selected_for_publication": selected_count,
+        "published": health.get("published", published_count),
         "failed_publications": health.get("failed_publications", len(failed)),
         "ambiguous_publications": health.get("ambiguous_publications", sum(1 for x in attempts if normalize_status(x.get("result")) == PublicationStatus.AMBIGUOUS.value)),
         "important_missed": important_missed,
@@ -71,6 +86,8 @@ def build_report():
         "ai_pool": ai_pool,
         "feed_summary": health.get("feed_summary", {}),
         "no_publication_candidate": no_publication_candidate,
+        "publication_gap": publication_gap,
+        "all_selected_blocked": all_selected_blocked,
         "missed_selected_stories": missed,
         "failed_publication_attempts": failed,
         "diagnostics": diagnostics,

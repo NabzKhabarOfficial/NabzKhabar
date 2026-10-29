@@ -4,40 +4,38 @@
 - This repository is for the Telegram news channel only.
 - Instagram and YouTube work belongs in the private `NabzAI-YouTube` repository.
 
-## Incident: publication gap on 2026-10-28
-- Last confirmed Telegram publication: `2026-10-28T01:35:18Z` (`05:05:18` Iran time).
-- GitHub Actions continued committing runtime state after that point.
-- `v13_health.json` stayed on the old engine run while `v13_monitor.json` advanced its own `checked_at`, so the monitor falsely looked healthy.
-- The strongest hypothesis is feed freshness/collection starvation or an engine early-exit path, but stale telemetry could not distinguish RSS errors, stale-only feeds, zero candidates, or a pre-telemetry crash.
+## Audit snapshot: 2026-10-28
+- Audited current `main` after the publication-gap alert.
+- Open issue: [#18 publication stopped or telemetry is stale](https://github.com/NabzKhabarOfficial/NabzKhabar/issues/18).
+- Open hardening PR: [#14](https://github.com/NabzKhabarOfficial/NabzKhabar/pull/14). Do not merge wholesale without recreating its remaining fixes on current `main`.
 
-## Root-cause patch
-- PR #17: [diagnose feed starvation and stale runtime health](https://github.com/NabzKhabarOfficial/NabzKhabar/pull/17)
-- Branch: `brain/root-cause-feed-observability`
-- Adds startup heartbeat, per-feed collection diagnostics, feed summary persistence, and fail-closed stale-run detection.
-- The regression root cause was `v13_hardening._halfspace_text`: regex replacement strings contained `\\u200c`, causing `bad escape \\u` and aborting history persistence. Replacements now use callable functions.
-- A fresh CI run is required after this handoff update; do not merge until all checks are green.
+## Changes applied in this audit
+- `v13_monitor.py` now reports `publication_gap` when stories were selected but confirmed publications are zero.
+- It distinguishes an all-editorially-blocked run from a transport/publication failure instead of calling both healthy.
+- The permanent handoff now records the known quarantine, state-safety, reconciliation and editorial limitations.
 
-## Automatic alerting
-- Added `scripts/check_publication_health.py`.
-- Added `.github/workflows/publication-watchdog.yml` on `main`, corrected in commit `a946c7c0757321b325eb5bf52903c22b8a0d130c`.
-- The watchdog fails on stale/missing telemetry, runtime/publication failure, or all feeds returning zero candidates, then opens/comments on a `publication-outage` issue.
+## Known production risks
+- `content/quarantine_manifest.json` still requires verified wiring into candidate collection and processing. Do not claim quarantined records are blocked until an exact current-main test proves it.
+- Some auxiliary writers and senders remain outside the canonical atomic/outcome path.
+- Telegram timeouts can be accepted by Telegram even when the client sees no response. Provider-side reconciliation is still required.
+- Numeric-presence checks do not prove entity/number correctness or source truth.
+- Published data contains known Persian grammar, neutrality, attribution and unsupported-claim defects. Re-source and manually review before republishing.
+- Offline tests cannot prove RSS freshness, AI output correctness, Telegram delivery, or factual truth.
 
-## NabzAI-YouTube Instagram status
-- 150 staged English/Persian mystery stories are merged on `main`; story validation and post-merge checks are green.
-- PR #3 Buffer safety remains open and stale against current `main`; do not merge or run `buffer_max=10`.
-- PR #5 production hardening remains open with a stale/diverged branch; historical checks do not prove current-main safety.
-- Rebase or recreate both fixes on current `NabzAI-YouTube/main`, run current CI, then perform only the approved `buffer_max=1` smoke test.
-- No live Buffer/Meta/provider verification is proven.
+## Safe verification sequence
+```bash
+python -m compileall -q .
+python -m unittest discover -s tests -v
+python scripts/audit_news_corpus.py
+python scripts/check_publication_health.py
+```
 
-## Known risks
-- Telegram accepted-but-lost responses still lack provider-side reconciliation.
-- `v13_growth.py` has a direct sender outside the canonical outcome path.
-- Some auxiliary state writers remain direct-write and need migration.
-- `content/quarantine_manifest.json` is not yet wired into candidate selection.
-- Live provider behavior is not proven by static checks alone.
+## Manual-only continuation
+1. Run the checks on the exact current `main` commit.
+2. Inspect `v13_monitor.json` and `v13_health.json` from the same run.
+3. Reconcile every ambiguous Telegram attempt with the channel/provider before retrying.
+4. Re-source quarantined and high-risk posts; never “correct” names or numbers by guesswork.
+5. Dispatch one controlled workflow run and inspect feed diagnostics before broad scheduling.
 
-## Required continuation
-1. Verify all PR #17 checks are green, then merge PR #17.
-2. Run one manual workflow dispatch and inspect per-feed diagnostics.
-3. Reconcile PR #3 and PR #5 against current `NabzAI-YouTube/main`; keep `buffer_max=10` disabled.
-4. Perform only the one-item `buffer_max=1` smoke test after current-main CI is green and provider state can be independently verified.
+## Guarantee boundary
+The system can validate deterministic filters and telemetry contracts. It cannot guarantee factual truth, source authenticity, or delivery after an ambiguous network timeout.
