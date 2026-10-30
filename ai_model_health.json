@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1793313200
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793314776
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793314777
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793314777
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793314784
     },
@@ -159,6 +143,22 @@
     {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
       "t": 1793318556
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793320434
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793320435
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1793320450
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1793320457
     }
   ],
   "_ai_pace": {
@@ -172,19 +172,19 @@
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-29",
-      "n": 77
+      "n": 78
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-29",
-      "n": 61
+      "n": 62
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-30",
-      "n": 2
+      "n": 5
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-10-29",
-      "n": 90
+      "day": "2026-10-30",
+      "n": 1
     },
     "openrouter:*": {
       "day": "2026-10-29",
@@ -414,11 +414,25 @@
       }
     },
     "2026-10-30": {
+      "gemini:gemini-3.6-flash": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 4,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 0,
+        "other": 1
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1155,11 +1169,11 @@
       "topic": "سیاست",
       "until": 1793347503.669888
     },
-    "v4|iran war live: tehran presses 7-day hormuz plan; trump denies peace talks": {
+    "v4|iran war live: irgc says four tankers struck mines in strait of hormuz": {
       "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: موضع‌گیری ارغچی درباره طرح ۷ روزه تنگه هرمز و تکذیب مذاکرات صلح توسط ترامپ",
-      "topic": "سیاست",
-      "until": 1793319155.5765622
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Four tankers hit mines, escalates regional tension, world impact.",
+      "topic": "نظامی",
+      "until": 1793406857.9248295
     },
     "v4|iran war live: trump says he approved vance outreach over medical supplies": {
       "ok": true,
@@ -1239,12 +1253,6 @@
       "topic": "سیاست",
       "until": 1793403198.0348666
     },
-    "v4|no clear winner in israeli election with nearly 90 percent of votes counted": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Major Israeli election outcome, impacts regional politics",
-      "topic": "سیاست",
-      "until": 1793319149.4981613
-    },
     "v4|palestinians injured, arrested in israeli raids across west bank": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: درگیری‌ها و یورش‌های مداوم در کرانه باختری.",
@@ -1287,12 +1295,6 @@
       "topic": "حادثه",
       "until": 1793322204.173216
     },
-    "v4|romania extends pre-trial detention of far-right politician calin georgescu": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local court decision, limited international relevance",
-      "topic": "قضایی",
-      "until": 1793318608.1574833
-    },
     "v4|russia says more than 600 drones launched towards moscow overnight": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Major military escalation involving large-scale drone attack on capital.",
@@ -1328,6 +1330,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Major disaster with significant casualties meets world news criteria.",
       "topic": "حادثه",
       "until": 1793365506.154762
+    },
+    "v4|tunisians drawn into russia's war in ukraine": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Concern over Tunisian conscripts, not a major new event.",
+      "topic": "سیاست",
+      "until": 1793406857.897422
     },
     "v4|wabi, the ai agent that builds mini apps, now valued at $1.25b after latest round": {
       "ok": false,
@@ -1418,12 +1426,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine educational event; lacks national strategic impact or major public consequence.",
       "topic": "سلامت",
       "until": 1793334841.5033245
-    },
-    "v4|آغاز شمارش آرای پاکت های رأی دوگانه در انتخابات کنست اسرائیل": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: شمارش آرای انتخابات اسرائیل و تحولات سیاسی آن اهمیت جهانی دارد.",
-      "topic": "سیاست",
-      "until": 1793320404.1706374
     },
     "v4|آلمان شیفته جواهر 17 ساله مراکشی شد": {
       "ok": false,
@@ -1689,6 +1691,12 @@
       "topic": "نظامی",
       "until": 1793361810.0703647
     },
+    "v4|اعتصاب سراسری در ۱۰۰ بندر جهان علیه صادرات اسلحه به رژیم صهیونیستی": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: اعتصاب سراسری کارگران در ۱۰۰ بندر جهان علیه ارسال سلاح به اسرائیل",
+      "topic": "سیاست",
+      "until": 1793406854.4780884
+    },
     "v4|اعلام دستاورد همایشی با محوریت اربعین": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Conference with 145 papers, 9 volumes published.",
@@ -1892,18 +1900,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: بازداشت نظامی به اتهام جاسوسی برای ایران رویداد مهم امنیتی است.",
       "topic": "قضایی",
       "until": 1793381702.8727393
-    },
-    "v4|بازنگری در شیوه آموزش قرآن در مدارس/ آغاز تحول کتب قرآنی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=iran_national: برنامه روال و تغییرات معمولی آموزشی در مدارس",
-      "topic": "جامعه",
-      "until": 1793320398.047016
-    },
-    "v4|بازگشت بدموقع به ترکیب؛/ تصمیمی که منجر به مصدومیت کاپیتان پرسپولیس شد!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: مصدومیت یک بازیکن فوتبال در سطح باشگاهی اهمیت ملی ندارد.",
-      "topic": "ورزش",
-      "until": 1793318620.490734
     },
     "v4|بازگشت فوق العاده نابغه ایران به میدان جهانی؛/ طوفان حسن یزدانی: چراغ اول پر نور روشن شد!": {
       "ok": false,
@@ -2253,6 +2249,12 @@
       "topic": "ورزش",
       "until": 1793379909.788553
     },
+    "v4|جان کری: ترامپ با فرضیات غلط به ایران حمله کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=iran_national: Former official's claim, no official decision, speculative.",
+      "topic": "سیاست",
+      "until": 1793406857.9111977
+    },
     "v4|جزئیات نشست ترامپ با فرمانده سنتکام درباره ایران": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: نشست رسمی ترامپ با فرمانده سنتکام و ارائه گزینه های نظامی علیه ایران",
@@ -2313,12 +2315,6 @@
       "topic": "فناوری",
       "until": 1793343929.4845068
     },
-    "v4|حتی خروس من خوش تیپ تر از یامال است!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: انتقاد یک فوتبالیست قدیمی از اکسسوری یامال ارزش خبری پایینی دارد.",
-      "topic": "ورزش",
-      "until": 1793320391.7248576
-    },
     "v4|حضور تمام عیار مردم شیروان در شب ۲۴۳ تجمعات": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار تجمعات محلی و شهری کوچک اهمیت ملی ندارد.",
@@ -2336,12 +2332,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: رئیس جمهور در همایش حضور یافت",
       "topic": "سیاست",
       "until": 1793345653.6521552
-    },
-    "v4|حق وردی بعد از یک ماه ونیم بازی کرد/ بازگشت لژیونر مطرح با برد 11 گله!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، لیگ کوچک، نه‌قهرمانی ملی",
-      "topic": "ورزش",
-      "until": 1793319148.6036763
     },
     "v4|حمایت های ویژه دولت از اشتغال بانوان و تحصیل کرده ها در سیستان و بلوچستان": {
       "ok": false,
@@ -2432,12 +2422,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local comment on marriage mediation, no major impact",
       "topic": "جامعه",
       "until": 1793347491.175174
-    },
-    "v4|خودداری نهاد نظارتی پنتاگون از انجام تحقیقات درباره اختلال استارلینک در اوکراین": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: پنتاگون از تحقیق درباره اختلال استارلینک در اوکراین خودداری کرد.",
-      "topic": "فناوری",
-      "until": 1793320400.0746818
     },
     "v4|خیرین با وجود شرایط سخت اقتصادی ۲۳۳۱ مدرسه در کشور احداث کردند": {
       "ok": false,
@@ -2834,12 +2818,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major global economic event involving record-breaking profits for a top-tier company.",
       "topic": "اقتصاد",
       "until": 1793345690.3487175
-    },
-    "v4|سومین بازی گل گهر گل نداشت:/ 180 دقیقه انتظار بی فایده برای اولین گل آسیایی!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.8-flash score=2 happened=True scope=iran_national: نتیجه مسابقه عادی مرحله گروهی باشگاهی فاقد اهمیت درجه یک",
-      "topic": "ورزش",
-      "until": 1793318607.4639063
     },
     "v4|سونامی مدرک دکتری در چین": {
       "ok": false,
@@ -3819,6 +3797,12 @@
       "topic": "سیاست",
       "until": 1793385645.0505369
     },
+    "v4|پولیتیکو: پنتاگون برای کاهش ۴۰۰ میلیارد دلاری بودجه دفاعی درخواستی ترامپ آماده می شود": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Speculative budget cut preparation, no concrete decision yet.",
+      "topic": "اقتصاد",
+      "until": 1793406857.9383447
+    },
     "v4|پولیتیکو: پنتاگون برای کاهش ۴۰۰ میلیارد دلاری بودجه نظامی آمریکا آماده می شود": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: کاهش بودجه نظامی آمریکا تغییری کلیدی در سیاست دفاعی و جهانی است",
@@ -4796,13 +4780,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: Official protest, limited international impact",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793289843,
-      "title": "محکومیت شدید ادعای مداخله جویانه امارات و کانادا در رابطه با جزایر ایرانی"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: مدال‌آوری در سطح استانی و غیر ملی برای تیم ملی ایران نیست.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5354,6 +5331,13 @@
       "rule": "no-concrete-event",
       "t": 1793316803,
       "title": "Ex-Palantir execs launch Dream with $17M from a16z to build AI world models for construction"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: اعتصاب سراسری کارگران در ۱۰۰ بندر جهان علیه ارسال سلاح به اسرائیل",
+      "rescued": true,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1793320454,
+      "title": "اعتصاب سراسری در ۱۰۰ بندر جهان علیه صادرات اسلحه به رژیم صهیونیستی"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8832,7 +8816,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793318480
+    "at": 1793320327
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8852,8 +8836,8 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793317086,
-    "last_failure": 1793316785,
+    "disabled_until": 1793320750.0,
+    "last_failure": 1793320450,
     "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
