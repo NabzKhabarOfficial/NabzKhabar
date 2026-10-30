@@ -1,9 +1,11 @@
 {
   "ai_pool": {},
   "all_selected_blocked": false,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-10-30T16:35:51.328900+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-10-30T17:04:59.313529+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -21,6 +23,14 @@
       "result": "editorial_blocked",
       "source": "",
       "title": "نکات ضروری در هنگام وقوع سیل",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Escalation in space warfare involving major global powers.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "Star Wars: Has Russia's war with Ukraine gone intergalactic?",
       "url": ""
     },
     {
@@ -73,14 +83,6 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Opinion and analysis by a commentator, not an official decision.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "فواد ایزدی: اکثریت مردم آمریکا مخالف جنگ هستند",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Speculative analysis by a political expert, not a concrete event.",
       "result": "editorial_blocked",
       "source": "",
@@ -89,10 +91,10 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: هشدار و نظر شخصی کارشناس درباره حباب هوش مصنوعی.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Opinion and analysis by a commentator, not an official decision.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "Theranos whistleblower Tyler Shultz warns that the AI boom is ‘a great opportunity to go deceive people’",
+      "title": "فواد ایزدی: اکثریت مردم آمریکا مخالف جنگ هستند",
       "url": ""
     },
     {
@@ -102,28 +104,71 @@
       "source": "",
       "title": "اولین ربات چهارپای جهان برای بازرسی محیط های مستعد انفجار از راه رسید",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Opinion piece by an expert, not an official policy decision.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "قلی زاده: نفت در ایران به معنای واقعی کلمه دولتی است",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=local: Ceremonial event for an athlete; the victory itself is not recent.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "استقبال فارسی ها از قهرمان شیرازی کشتی فرنگی جهان",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: آتش‌بس و ادامه روند تخلیه غیرنظامیان در منطقه جنگی.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "Ceasefire allows evacuation from devastated Russian-occupied Oleshky",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "nytimes.com",
+      "started_at": "2026-10-30T17:04:40.838510+00:00",
+      "title": "U.S. to Send Dozens Back to Afghanistan, Despite Risk of Persecution",
+      "url": "https://nytimes.com/2026/10/30/world/asia/afghan-refugees-deported-flight-pakistan.html"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "nytimes.com",
+      "title": "U.S. to Send Dozens Back to Afghanistan, Despite Risk of Persecution",
+      "url": "https://nytimes.com/2026/10/30/world/asia/afghan-refugees-deported-flight-pakistan.html"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": false,
-  "published": 3,
+  "published": 1,
   "run_status": "success",
-  "selected_for_publication": 16,
+  "selected_for_publication": 18,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "khabaronline.ir",
-      "started_at": "2026-10-30T16:35:06.777524+00:00",
-      "title": "ترامپ: ایران نباید به سلاح هسته ای دست یابد!",
-      "url": "https://khabaronline.ir/news/2295171/%D8%AA%D8%B1%D8%A7%D9%85%D9%BE-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D9%86%D8%A8%D8%A7%DB%8C%D8%AF-%D8%A8%D9%87-%D8%B3%D9%84%D8%A7%D8%AD-%D9%87%D8%B3%D8%AA%D9%87-%D8%A7%DB%8C-%D8%AF%D8%B3%D8%AA-%DB%8C%D8%A7%D8%A8%D8%AF"
+      "source": "france24.com",
+      "started_at": "2026-10-30T17:04:37.458116+00:00",
+      "title": "Stranded locals use rare truce to leave Moscow-occupied town in Ukraine",
+      "url": "https://france24.com/en/video/20261030-stranded-locals-use-rare-truce-to-leave-moscow-occupied-town-in-ukraine"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
