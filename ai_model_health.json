@@ -1,38 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793316798
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793316798
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793316799
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793316799
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793316804
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793316804
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1793316808
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1793316812
-    },
-    {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
       "t": 1793318556
     },
@@ -159,16 +127,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
       "t": 1793329420
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793331155
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793331156
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793331157
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1793331172
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793331174
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793331174
+    },
+    {
+      "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.5-flash-lite",
+      "t": 1793331178
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1793331198
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-29",
-      "n": 110
+      "n": 111
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-29",
-      "n": 187
+      "n": 190
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-29",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-29",
-      "n": 71
+      "n": 72
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-30",
-      "n": 16
+      "n": 18
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-30",
-      "n": 16
+      "n": 18
     },
     "openrouter:*": {
       "day": "2026-10-29",
@@ -416,14 +416,14 @@
     "2026-10-30": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -444,35 +444,28 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 16,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 13,
-        "other": 3
+        "calls": 18,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 14,
+        "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 16,
+        "calls": 18,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6283, Requested 1890. Please try again in 1.297499",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 12,
-        "other": 3
+        "ok": 13,
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 15,
-        "ok": 15,
+        "calls": 18,
+        "ok": 18,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "قضایی",
-      "level": 5,
-      "t": 1793151319.6948717,
-      "title": "درگیری مرزی پاکستان و افغانستان با کشته و زخمی شدن ۶ نفر",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1032,6 +1025,13 @@
       "t": 1793324087.5333362,
       "title": "آزادسازی کامل تعز نزدیک است",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 3,
+      "t": 1793331197.0268798,
+      "title": "کالاس: متقاعد کردن اروپایی ها برای حمایت از اوکراین دشوارتر شده است",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-29",
@@ -1149,6 +1149,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: استارتاپ هوش مصنوعی جدید با سرمایه کلان، اهمیت جهانی درجه یک ندارد",
       "topic": "فناوری",
       "until": 1793403203.7786763
+    },
+    "v4|flash floods kill five in syria": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: سیل مرگبار در سوریه با تلفات محدود.",
+      "topic": "حادثه",
+      "until": 1793417578.4603605
     },
     "v4|former sydney childcare worker ashley paul griffith hit with 202 more abuse charges": {
       "ok": false,
@@ -1384,6 +1390,12 @@
       "topic": "جامعه",
       "until": 1793340259.9170978
     },
+    "v4|«پاتریک استوارت» درگذشت": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: درگذشت چهره‌های هنری و سینمایی در سطح بین‌المللی برای خبر اولویت اول محسوب نمی‌شود.",
+      "topic": "جامعه",
+      "until": 1793417573.816537
+    },
     "v4|آتش سوزی انبار ترابری بندرعباس تحت کنترل است /حادثه خسارت جانی نداشت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: آتش‌سوزی محلی بدون تلفات جانی در بندرعباس، اهمیت استانی دارد.",
@@ -1485,6 +1497,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: High-level political accusation regarding national elections in Israel.",
       "topic": "سیاست",
       "until": 1793388823.5158
+    },
+    "v4|آینده زنان جنگجوی کرد در سوریه چه خواهد شد؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Speculative future scenario, no concrete event",
+      "topic": "نظامی",
+      "until": 1793417555.7991042
     },
     "v4|آیین چهلمین روز ارتحال آیت الله شبیری زنجانی در قم برگزار شد": {
       "ok": false,
@@ -3418,6 +3436,12 @@
       "topic": "سیاست",
       "until": 1793378028.6551235
     },
+    "v4|نامه محرمانه جی دی ونس به محسن رضایی در واپسین روزهای منتهی به انتخابات آمریکا؛ گاردین: این آخرین روزنه برای جلوگیری از جنگ جدید است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: ادعای غیررونسی و ساختگی گاردین درباره نامه.",
+      "topic": "سیاست",
+      "until": 1793417578.478199
+    },
     "v4|نتایج بی سابقه احزاب عرب؛ قطر وترکیه اتهام دخالت در این انتخابات اسرائیل را رد کردند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: نتایج مهم انتخابات اسرائیل و موفقیت چشمگیر احزاب عربی.",
@@ -3712,6 +3736,12 @@
       "topic": "سیاست",
       "until": 1793345678.9283142
     },
+    "v4|ونس: ترامپ اجازه وقوع جنگی بی پایان با ایران را نمی دهد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: مواضع رسمی معاون رئیس‌جمهور آمریکا درباره ایران.",
+      "topic": "سیاست",
+      "until": 1793417578.4866276
+    },
     "v4|پاتریک استوارت بازیگر انگلیسی در ۸۶ سالگی درگذشت": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: celebrity death lacks major national/international impact",
@@ -3867,6 +3897,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: درگذشت کارگردان سینما و تلویزیون، خبر مهم استراتژیک یا درجه یک نیست.",
       "topic": "جامعه",
       "until": 1793351091.1374183
+    },
+    "v4|کالاس: متقاعد کردن اروپایی ها برای حمایت از اوکراین دشوارتر شده است": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: اظهارنظر رسمی مقام ارشد اتحادیه اروپا درباره اوکراین.",
+      "topic": "سیاست",
+      "until": 1793417578.4952261
     },
     "v4|کاهش تورم نقطه به نقطه در مهر؛ نشانه های بهبود در بازار خوراکی ها و اجاره": {
       "ok": true,
@@ -4048,6 +4084,12 @@
       "topic": "اقتصاد",
       "until": 1793331179.6651635
     },
+    "v4|یک کشته و چند زخمی در شمال غرب سوریه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: حمله مسلحانه در سوریه و کشته شدن یک نیرو.",
+      "topic": "نظامی",
+      "until": 1793417578.4695957
+    },
     "v4|۱۲ هزار مدرسه کشور به پنل های خورشیدی تجهیز می شود": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: سازمان انرژی خورشیدی مدارس را تجهیز می‌کند",
@@ -4059,12 +4101,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: سیاست انرژی تجدیدپذیر، تجهیز مدارس با پنل خورشیدی",
       "topic": "سیاست",
       "until": 1793369044.6339667
-    },
-    "v4|۱۶ مورد مسمومیت با مونوکسیدکربن در خراسان رضوی از ابتدای مهر/۸۶ درصد موارد در منازل مسکونی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=local: پراکندگی محدود، مرگ‌ومیر چندی",
-      "topic": "سلامت",
-      "until": 1793331178.2941751
     },
     "v4|۲۰ میلیون دلار! بزرگ ترین پول ایران دست ایتفانتینو": {
       "ok": false,
@@ -4107,6 +4143,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: حادثه رانندگی در شهرستان‌های فارس، ۲۵ مصدوم و یک فوتی",
       "topic": "حادثه",
       "until": 1793354725.2606478
+    },
+    "v4|۴۰ روز دور از خانواده برای نجات خانه طبیعت": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: فعالیت محلی حفاظت از حیات‌وحش، اثر محدود",
+      "topic": "آب و هوا",
+      "until": 1793417556.8691761
     },
     "v4|۶ عملیات موشکی و پهپادی یمن علیه اهدافی در عربستان": {
       "ok": true,
@@ -4197,6 +4239,10 @@
       "reason": "content_duplicate",
       "until": 1793343860.0884376
     },
+    "ونس: ترامپ اجازه وقوع جنگی بی پایان با ایران را نمی دهد": {
+      "reason": "content_duplicate",
+      "until": 1793352784.0150087
+    },
     "پولیتیکو: پنتاگون برای کاهش ۴۰۰ میلیارد دلاری بودجه نظامی آمریکا آماده می شود": {
       "reason": "content_duplicate",
       "until": 1793336411.24501
@@ -4220,15 +4266,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "سپاه: پهپاد پیشرفته آمریکایی در تنگه هرمز منهدم شد ⚡️ سپاه پاسداران انقلاب اسلامی اعلام کرد یک فروند پهپاد پیش",
-      "id": "1f4819866b",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793252205,
-      "verdict": "new",
-      "why": "تنگه هرمز، پهپاد آمریکایی، پدافند هوافضا سپاه"
-    },
     {
       "head": "حمله گسترده پهپادی به مسکو؛ سرنگونی بیش از ۶۰۰ پهپاد ⚡️ پدافند هوایی روسیه بیش از ۶۰۰ پهپاد پرتاب شده به سمت م",
       "id": "afc9dc9bcd",
@@ -4770,30 +4807,18 @@
       "t": 1793324080,
       "verdict": "unconfirmed-repeat",
       "why": "آزادسازی تعز و حمله عربستان به آن"
+    },
+    {
+      "head": "کالاس: متقاعد کردن اروپایی ها برای حمایت از اوکراین دشوارتر شده است ⚡️ کایا کالاس اعلام کرد با افزایش خستگی اف",
+      "id": "1b2b0818b6",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793331188,
+      "verdict": "new",
+      "why": "موضوع جدید: حمایت اروپا از اوکراین"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: تلاش برای آزادسازی پول در حد خبر و حرف است، رویداد قطعی نیست.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1793295293,
-      "title": "۲۰ میلیون دلار! بزرگ ترین پول ایران دست ایتفانتینو"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: مرگ ۷۴ نفر در تصادف قطار، فاجعه بزرگ بین‌المللی",
-      "rescued": true,
-      "rule": "final-scope-preselection",
-      "t": 1793297039,
-      "title": "افزایش کشته های سانحه قطار در اسپانیا به ۷۴ نفر"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: هشدار محلی، اثر محدود، بدون حادثه",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1793297040,
-      "title": "هشدار مدیرکل ارتباطات مازندران؛ پیامک های رسمی سرشماری لینک ندارند و بصورت متنی هستند"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: استقبال کم، محلی، نمره پایین",
       "rescued": false,
@@ -5332,82 +5357,33 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1793329417,
       "title": "موج ۲۴۳ تجمعات شبانه به گالیکش رسید"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Speculative future scenario, no concrete event",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1793331155,
+      "title": "آینده زنان جنگجوی کرد در سوریه چه خواهد شد؟"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: فعالیت محلی حفاظت از حیات‌وحش، اثر محدود",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1793331156,
+      "title": "۴۰ روز دور از خانواده برای نجات خانه طبیعت"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: درگذشت چهره‌های هنری و سینمایی در سطح بین‌المللی برای خبر اولویت اول محسوب نمی‌شود.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1793331173,
+      "title": "«پاتریک استوارت» درگذشت"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اجز",
-        "انتقد",
-        "بزدد",
-        "بزگشت",
-        "جر",
-        "حز",
-        "خسر",
-        "خسرت",
-        "خلج",
-        "دد",
-        "دمکر",
-        "سنتر",
-        "فرس",
-        "قطر",
-        "مرف",
-        "نکرد",
-        "پد",
-        "پنه",
-        "پگ",
-        "کر",
-        "کرس"
-      ],
-      "t": 1793281009.6872003,
-      "title": "انتقاد سناتور مورفی از پنهان کاری دولت آمریکا درباره خسارات پایگاه های خلیج فارس ⚡️ کریس مورفی، سناتور دموکرات آمریکایی "
-    },
-    {
-      "h": [
-        "امتز",
-        "انتخبت",
-        "تحت",
-        "تفق",
-        "تکتک",
-        "دنبل",
-        "شرط",
-        "محمد",
-        "مفقت",
-        "مهد",
-        "نجت",
-        "نخهد",
-        "هچ",
-        "ورد",
-        "کسب"
-      ],
-      "t": 1793282727.681177,
-      "title": "مهدی محمدی: ایران برای نجات ترامپ امتیاز هسته ای نمی دهد ⚡️ مهدی محمدی افزود آمریکا به دنبال کسب امتیاز هسته ای برای موف"
-    },
-    {
-      "h": [
-        "اخر",
-        "استف",
-        "اقدم",
-        "انتقد",
-        "بربر",
-        "تهدد",
-        "تکد",
-        "جهن",
-        "دجرک",
-        "دپلمس",
-        "سخنگ",
-        "سزم",
-        "لزم",
-        "متحد",
-        "ملل",
-        "نزمند"
-      ],
-      "t": 1793284506.4652467,
-      "title": "تاکید سخنگوی سازمان ملل بر لزوم دیپلماسی در برابر تهدیدات نظامی آمریکا علیه ایران ⚡️ استفان دوجاریک سخنگوی سازمان ملل مت"
-    },
     {
       "h": [
         "اتهم",
@@ -5634,6 +5610,25 @@
       ],
       "t": 1793324087.5211449,
       "title": "آزادسازی کامل تعز نزدیک است ⚡️ استاندار تعز در دولت تغییر و سازندگی یمن در صنعا اعلام کرد که بخش عمده جغرافیای این استان"
+    },
+    {
+      "h": [
+        "افزش",
+        "افکر",
+        "تضح",
+        "حمت",
+        "خستگ",
+        "دشرتر",
+        "شهرند",
+        "ضررت",
+        "طلن",
+        "عمم",
+        "متقعد",
+        "مدت",
+        "کلس"
+      ],
+      "t": 1793331197.0158048,
+      "title": "کالاس: متقاعد کردن اروپایی ها برای حمایت از اوکراین دشوارتر شده است ⚡️ کایا کالاس اعلام کرد با افزایش خستگی افکار عمومی "
     }
   ],
   "_published_incidents": [
@@ -5927,282 +5922,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اتهم",
-        "احتمل",
-        "ار",
-        "ارتبط",
-        "اسلم",
-        "اطلعت",
-        "افکن",
-        "امرک",
-        "بخش",
-        "برتن",
-        "بمب",
-        "تر",
-        "تنه",
-        "جز",
-        "جمهر",
-        "حدث",
-        "حمل",
-        "خدر",
-        "خدم",
-        "خرج",
-        "ددست",
-        "دستر",
-        "دستگ",
-        "دستگر",
-        "دنند",
-        "رفتند",
-        "رهبر",
-        "سخت",
-        "سرس",
-        "سفد",
-        "سپتمبر",
-        "شهرند",
-        "طرح",
-        "عل",
-        "عمل",
-        "فرد",
-        "فرر",
-        "فرفرد",
-        "متهم",
-        "مرتبط",
-        "مقم",
-        "نزدک",
-        "نم",
-        "هدف",
-        "هشدر",
-        "پلس",
-        "پهپد",
-        "پگ",
-        "چند",
-        "گر",
-        "گسترد",
-        "یفت",
-        "یک"
-      ],
-      "t": 1793198234.8826025,
-      "title": "جزئیات طرح حمله به فرفورد؛ پای یک عامل اطلاعاتی ایران در میان است ⚡️ دادستان بریتانیا اعلام کرد فردی به نام «علی» که احت"
-    },
-    {
-      "k": [
-        "ار",
-        "استگ",
-        "اطلع",
-        "امر",
-        "انجم",
-        "برند",
-        "بهر",
-        "تنمند",
-        "جسس",
-        "حث",
-        "حمت",
-        "حمل",
-        "خرج",
-        "رس",
-        "سخنگ",
-        "سعد",
-        "شبه",
-        "شمل",
-        "عربست",
-        "عرق",
-        "عنصر",
-        "فرهم",
-        "مشک",
-        "مضع",
-        "مفقت",
-        "مهر",
-        "نظم",
-        "نفت",
-        "وزرت",
-        "پمپژ",
-        "پهپد",
-        "پگ",
-        "چن",
-        "کمک",
-        "گره"
-      ],
-      "t": 1793198253.5585704,
-      "title": "ماهواره های روسیه و چین به حوثی ها و شبه نظامیان عراقی در حملات به عربستان کمک کردند ⚡️ حمایت گرهای ایران شامل حوثی ها و"
-    },
-    {
-      "k": [
-        "ارتق",
-        "افزش",
-        "تحت",
-        "تحرم",
-        "تمن",
-        "حمل",
-        "خدر",
-        "در",
-        "دلر",
-        "زنجر",
-        "فشر",
-        "هزن"
-      ],
-      "t": 1793198287.9959576,
-      "title": "تحریم دریایی هزینه حمل هر خودرو را از ۹۰ به ۶۰۰ دلار ارتقا داد ⚡️ تحریم دریایی هزینه حمل هر خودرو را از ۹۰ به ۶۰۰ دلار ا"
-    },
-    {
-      "k": [
-        "اقدم",
-        "الملل",
-        "انصرلل",
-        "بر",
-        "تخل",
-        "حضر",
-        "حمل",
-        "درخست",
-        "دلل",
-        "دمن",
-        "عدن",
-        "عربست",
-        "فردگ",
-        "مجدد",
-        "مشک",
-        "نظم",
-        "هدف",
-        "هپم",
-        "یمن"
-      ],
-      "t": 1793199910.5562952,
-      "title": "دومین حمله موشکی به فرودگاه عدن در یمن ⚡️ انصارالله مجدداً فرودگاه بین المللی عدن را هدف حمله موشکی قرار داد. ▫️ این اقد"
-    },
-    {
-      "k": [
-        "اشغل",
-        "اشلک",
-        "اطرف",
-        "ال",
-        "بتنند",
-        "تخل",
-        "تخلف",
-        "تقف",
-        "جل",
-        "جنگ",
-        "خرج",
-        "دم",
-        "رس",
-        "سعت",
-        "سکن",
-        "سکنت",
-        "شرط",
-        "شهر",
-        "طل",
-        "غرقبل",
-        "قدر",
-        "متحد",
-        "محل",
-        "مقدم",
-        "نبدند",
-        "ندد",
-        "نزدک",
-        "نمبر",
-        "هچ"
-      ],
-      "t": 1793199928.0186968,
-      "title": "توقف جنگ محلی در اشلکی، روز دوم ⚡️ در طول ۳۰ ساعت اول، هیچ تخلفی از توقف جنگ محلی که توسط ایالات متحده میان بر کرده بود،"
-    },
-    {
-      "k": [
-        "اسپن",
-        "السر",
-        "برخرد",
-        "حدث",
-        "حدقل",
-        "زخم",
-        "سرع",
-        "شدند",
-        "قطر",
-        "مرکز",
-        "نفر",
-        "کشت"
-      ],
-      "t": 1793199943.7394583,
-      "title": "برخورد دو قطار سریع السیر در اسپانیا با ۳۰ کشته و ۸۰ زخمی ⚡️ دو قطار سریع السیر در اسپانیا به هم برخورد کردند و حداقل ۳۰"
-    },
-    {
-      "k": [
-        "اقدم",
-        "انکر",
-        "اکرن",
-        "بربر",
-        "تثر",
-        "تجر",
-        "تحت",
-        "ترک",
-        "تمم",
-        "جر",
-        "حفظ",
-        "حقق",
-        "حمل",
-        "خهد",
-        "در",
-        "درگر",
-        "دفع",
-        "دند",
-        "رس",
-        "طرف",
-        "طرفن",
-        "عقلنت",
-        "عمل",
-        "فرستد",
-        "قنن",
-        "لزم",
-        "محفظ",
-        "مشک",
-        "من",
-        "هشدر",
-        "وزر",
-        "پرچم",
-        "پهپد",
-        "کشت",
-        "گلر",
-        "یشر"
-      ],
-      "t": 1793200609.3045065,
-      "title": "ترکیه به روسیه و اوکراین درباره حملات در دریای سیاه هشدار داد ⚡️ وزیر دفاع ترکیه، یاشار گولر، به روسیه و اوکراین هشدار د"
-    },
-    {
-      "k": [
-        "اب",
-        "اتپ",
-        "احمد",
-        "بزدرندگ",
-        "بگرد",
-        "تحل",
-        "تقت",
-        "تنمند",
-        "جمهر",
-        "جنگند",
-        "خهد",
-        "درفت",
-        "دستن",
-        "رس",
-        "رست",
-        "زدتر",
-        "سخ",
-        "سمن",
-        "صرت",
-        "فرند",
-        "معد",
-        "مقرر",
-        "نخست",
-        "نظم",
-        "وزر",
-        "ولدمر",
-        "پتن",
-        "پدفند",
-        "چهر",
-        "کشر",
-        "کمک"
-      ],
-      "s": "پوتین",
-      "t": 1793200643.2238183,
-      "title": "پوتین: اتیوپی ۱۲ جنگنده سوخو-۳۵ را یک سال زودتر دریافت کرد ⚡️ ابی احمد، نخست وزیر اتیوپی، اعلام کرد که ولادیمیر پوتین، ر"
-    },
     {
       "k": [
         "احتمل",
@@ -8703,6 +8422,29 @@
       ],
       "t": 1793324087.5087657,
       "title": "آزادسازی کامل تعز نزدیک است ⚡️ استاندار تعز در دولت تغییر و سازندگی یمن در صنعا اعلام کرد که بخش عمده جغرافیای این استان"
+    },
+    {
+      "k": [
+        "ارپ",
+        "افزش",
+        "افکر",
+        "اکرن",
+        "تضح",
+        "جنگ",
+        "حمت",
+        "خستگ",
+        "دشرتر",
+        "شهرند",
+        "ضررت",
+        "طلن",
+        "عمم",
+        "متقعد",
+        "مدت",
+        "کلس"
+      ],
+      "s": "کالاس",
+      "t": 1793331197.0064502,
+      "title": "کالاس: متقاعد کردن اروپایی ها برای حمایت از اوکراین دشوارتر شده است ⚡️ کایا کالاس اعلام کرد با افزایش خستگی افکار عمومی "
     }
   ],
   "_text_polish": {
@@ -8714,7 +8456,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793329313
+    "at": 1793331068
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8734,9 +8476,9 @@
     "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793329713.0,
-    "last_failure": 1793329413,
-    "last_status": 503
+    "disabled_until": 1793331472.0,
+    "last_failure": 1793331172,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
