@@ -1,9 +1,11 @@
 {
   "ai_pool": {},
   "all_selected_blocked": false,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-10-30T13:34:28.202138+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-10-30T14:06:26.061660+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -13,6 +15,14 @@
       "result": "editorial_blocked",
       "source": "",
       "title": "US weighs new Iran strikes as Vance reaches out: Is war or a deal closer?",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Minor traffic accident with few injuries, lacks national strategic significance.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "آتش سوزی خودرو در تونل البرز محور کرج چالوس ۵ مصدوم بر جای گذاشت",
       "url": ""
     },
     {
@@ -57,14 +67,6 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=3 happened=True scope=iran_national: اظهارنظر امام جمعه در خطبه نماز جمعه؛ فاقد مقام اجرایی/نظامی ارشد.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "علم الهدی: در صورت حمله آمریکا کابل های ارتباط جهانی در تنگه هرمز را قطع می کنیم",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: گمانه‌زنی و تحلیل رسانه‌ای درباره احتمال حمله آمریکا به ایران.",
       "result": "editorial_blocked",
       "source": "",
@@ -73,59 +75,52 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: تصادف جاده‌ای محلی با تلفات محدود زیر ده نفر.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=local: Routine military disposal operation, not a major national security event.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "برخورد سمند با پراید در جاده کاشان ـ قم ۲ کشته و چهار مصدوم برجا گذاشت",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=2 happened=False scope=iran_national: تحلیل و گمانه‌زنی کارشناس در مورد اقدامات احتمالی آینده.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "آیا ترامپ پیش از استقرار کنگره جدید به ایران حمله می کند؟",
+      "title": "عملیات امحای مهمات عمل نکرده جنگ رمضان از فردا در اهواز آغاز می شود",
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "mehrnews.com",
+      "started_at": "2026-10-30T14:05:56.320690+00:00",
+      "title": "روند واردات خودرو برای ایرانیان مقیم خارج متوقف شد",
+      "url": "https://mehrnews.com/news/6994499/%D8%B1%D9%88%D9%86%D8%AF-%D9%88%D8%A7%D8%B1%D8%AF%D8%A7%D8%AA-%D8%AE%D9%88%D8%AF%D8%B1%D9%88-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%DB%8C%D8%A7%D9%86-%D9%85%D9%82%DB%8C%D9%85-%D8%AE%D8%A7%D8%B1%D8%AC-%D9%85%D8%AA%D9%88%D9%82%D9%81-%D8%B4%D8%AF"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 17,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "mehrnews.com",
+      "title": "روند واردات خودرو برای ایرانیان مقیم خارج متوقف شد",
+      "url": "https://mehrnews.com/news/6994499/%D8%B1%D9%88%D9%86%D8%AF-%D9%88%D8%A7%D8%B1%D8%AF%D8%A7%D8%AA-%D8%AE%D9%88%D8%AF%D8%B1%D9%88-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%DB%8C%D8%A7%D9%86-%D9%85%D9%82%DB%8C%D9%85-%D8%AE%D8%A7%D8%B1%D8%AC-%D9%85%D8%AA%D9%88%D9%82%D9%81-%D8%B4%D8%AF"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": false,
-  "published": 1,
+  "published": 2,
   "run_status": "success",
-  "selected_for_publication": 14,
+  "selected_for_publication": 13,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "varzesh3.com",
-      "started_at": "2026-10-30T13:33:50.842792+00:00",
-      "title": "آمریکا جنگ بزرگ کشتی آزاد را از روسیه برد",
-      "url": "https://varzesh3.com/news/2440585/آمریکا-جنگ-بزرگ-کشتی-آزاد-را-از-روسیه-برد"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "france24.com",
-      "started_at": "2026-10-30T13:34:11.841189+00:00",
-      "title": "🔴 Ukraine war live: Russian strikes leave 200,000 without power in Ukraine's Dnipropetrovsk region",
-      "url": "https://france24.com/en/europe/20261030-live-russia-strikes-energy-facilities-kyiv-aid-convoy-heads-besieged-town-oleshky-ukraine"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
       "source": "entekhab.ir",
-      "started_at": "2026-10-30T13:34:17.221913+00:00",
-      "title": "سپاه: انفجار سومین نفتکش در مسیر غیر مجاز تنگه هرمز / این سوپر نفتکش با بیش از ۲ میلیون بشکه نفت در دهانه تنگه هرمز رها شده و در حال سوختن است",
-      "url": "https://entekhab.ir/fa/news/945725/سپاه-انفجار-سومین-نفتکش-در-مسیر-غیر-مجاز-تنگه-هرمز-این-سوپر-نفتکش-با-بیش-از-2-میلیون-بشکه-نفت-در-دهانه-تنگه-هرمز-رها-شده-و-در-حال-سوختن-است"
+      "started_at": "2026-10-30T14:04:46.663028+00:00",
+      "title": "سی بی اس: میانجی های قطری در تهران حضور داشتند تا آخرین اصلاحات در پیش نویس پیشنهاد پایان دادن به جنگ را به طرف ایرانی منتقل کنند / نشانه هایی از پیشرفت در روند مذاکرات مشاهده می ش",
+      "url": "https://entekhab.ir/fa/news/945730/سی-بی-اس-میانجی-های-قطری-در-تهران-حضور-داشتند-تا-آخرین-اصلاحات-در-پیش-نویس-پیشنهاد-پایان-دادن-به-جنگ-را-به-طرف-ایرانی-منتقل-کنند-نشانه-هایی-از-پیشرفت-در-روند-مذاکرات-مشاهده-می-شود"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
