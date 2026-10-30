@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1793314817
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793315066
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793315066
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793315066
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793315066
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
       "t": 1793324088
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793325757
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793325758
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793325758
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1793325818
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-29",
-      "n": 184
+      "n": 186
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-29",
-      "n": 82
+      "n": 83
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-29",
-      "n": 68
+      "n": 69
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-30",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-30",
-      "n": 10
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-10-29",
@@ -422,43 +422,44 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 2,
-        "calls": 5,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 3,
-        "other": 0
+        "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 5,
-        "calls": 5,
+        "429": 6,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 8,
-        "other": 2
+        "calls": 12,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 9,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 10,
+        "calls": 12,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6283, Requested 1890. Please try again in 1.297499",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
-        "other": 2
+        "ok": 8,
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       }
     }
@@ -1034,12 +1035,6 @@
   ],
   "_digest_last_date": "2026-10-29",
   "_editor_gate_cache": {
-    "v4|90 دقیقه روی نیمکت، دی یونگ در زمین/ فلیک در خروجی را به گاوی نشان داد!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Minor bench incident in domestic football match",
-      "topic": "ورزش",
-      "until": 1793325763.36212
-    },
     "v4|after crash, spain asks if its train system is too old and prone to human error": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: حادثه ریلی اسپانیا مهم است اما واجد استاندارد خبر طراز اول جهانی نیست",
@@ -3056,6 +3051,12 @@
       "topic": "سیاست",
       "until": 1793385645.085958
     },
+    "v4|فرانسه ۷۰ هزار نیروی امنیتی در خیابان ها مستقر می کند": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: استقرار ۷۰ هزار نیروی امنیتی در فرانسه به دلیل اعتراضات",
+      "topic": "نظامی",
+      "until": 1793412164.0591416
+    },
     "v4|فرماندار دشتی: همکاری مردم با مأموران سرشماری ضروری است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و روال اداری درباره سرشماری در شهرستان دشتی",
@@ -4160,22 +4161,9 @@
       "reason": "content_duplicate",
       "until": 1793327668.0133288
     },
-    "audio reveals exchanges between spain train operators and drivers moments before deadly crash": {
-      "at": 1793297171.2988436,
-      "reason": "policy_scope_blocked",
-      "until": 1793318771.2988436
-    },
-    "ethiopia acquires russian fighter jets and air defence systems amid war in tigray": {
-      "reason": "content_duplicate",
-      "until": 1793318771.2828615
-    },
     "iran war live: irgc says four tankers struck mines in strait of hormuz": {
       "reason": "content_duplicate",
       "until": 1793343841.9457443
-    },
-    "israeli strikes hit gaza as health ministry urges rafah opening": {
-      "reason": "content_duplicate",
-      "until": 1793311563.5813558
     },
     "no clear winner in israel election, final results show": {
       "reason": "content_duplicate",
@@ -4185,25 +4173,9 @@
       "reason": "content_duplicate",
       "until": 1793340162.4919994
     },
-    "ادعای ترامپ: مجبور بودیم به ایران حمله کنیم!": {
-      "reason": "content_duplicate",
-      "until": 1793324033.927744
-    },
     "ادعای وال استریت ژورنال به نقل از مقامات آمریکایی: دریاسالار کوپر، فرمانده ارشد نیروی دریایی آمریکا امروز در دیداری، گزینه های نظامی درباره ایران را به ترامپ ارائه کرد": {
       "reason": "content_duplicate",
       "until": 1793336746.6762354
-    },
-    "افزایش کشته های سانحه قطار در اسپانیا به ۷۴ نفر": {
-      "reason": "content_duplicate",
-      "until": 1793318739.5587533
-    },
-    "المیادین به نقل از منبع آگاه ایرانی: ایران نگران است که خارج کردن مواد غنی شده از کشور، به جای پایان دادن به جنگ، زمینه ساز تجاوز نظامی جدید آمریکا شود/ تهران میانجی گری ای که صرفا": {
-      "reason": "content_duplicate",
-      "until": 1793313322.2631867
-    },
-    "المیادین: ایران پیش از اجرای شروط هفت گانه، گام تازه ای برنمی دارد": {
-      "reason": "content_duplicate",
-      "until": 1793315224.0228949
     },
     "ترامپ: مجبور بودیم به ایران حمله کنیم!": {
       "reason": "content_duplicate",
@@ -4221,6 +4193,11 @@
       "reason": "content_duplicate",
       "until": 1793334795.0856576
     },
+    "شهریار زرشناس: راهی جز ساخت بمب هسته ای نداریم؛ استراتژیمان باید استراتژی بمب هسته ای شود/ چین در سال ۱۹۶۴ و شوروی ۱۹۴۶؛ باید به آنجا برسیم": {
+      "at": 1793325818.2592566,
+      "reason": "final_guard:analyst-opinion",
+      "until": 1793347418.2592566
+    },
     "صدای چند انفجار در حوالی تنگهٔ هرمز شنیده شد/ برخی از این صداها با شلیک اخطار به سوی شناورهای متخلف مرتبط هستند": {
       "reason": "content_duplicate",
       "until": 1793336723.1361306
@@ -4236,14 +4213,6 @@
     "پولیتیکو: پنتاگون برای کاهش ۴۰۰ میلیارد دلاری بودجه نظامی آمریکا آماده می شود": {
       "reason": "content_duplicate",
       "until": 1793336411.24501
-    },
-    "کریس مورفی، سناتور دموکرات: دولت ترامپ در حال پنهان کاری برای مخفی نگه داشتن ابعاد خساراتی است که ایران به پایگاه های نظامی آمریکا در خاورمیانه وارد کرده/ آن ها نمی خواهند مردم آمر": {
-      "reason": "content_duplicate",
-      "until": 1793324060.866688
-    },
-    "گزارش ها از حمله احتمالی به تاسیسات آرامکو": {
-      "reason": "content_duplicate",
-      "until": 1793324046.63819
     },
     "گزارش وال استریت ژورنال از نشست محرمانه کاخ سفید؛ فرمانده سنتکام گزینه های حمله به ایران را به ترامپ ارائه کرد": {
       "at": 1793311463.2815552,
@@ -4814,13 +4783,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: این یک خبر حاشیه‌ای و اظهارنظر شخصی است و اهمیت راهبردی ندارد.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1793291637,
-      "title": "واکنش رونالدو به انتخابش به عنوان بهترین برنده توپ طلای تاریخ: جایزه ای برای همه هواداران"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Statement predicting crisis, no actual event occurred.",
       "rescued": false,
       "rule": "final-scope-preselection",
@@ -5372,6 +5334,13 @@
       "rule": "below-event-threshold",
       "t": 1793324016,
       "title": "مقام یمنی: «آزادسازی کامل» تعز نزدیک است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: استقرار ۷۰ هزار نیروی امنیتی در فرانسه به دلیل اعتراضات",
+      "rescued": true,
+      "rule": "local-routine-low-value",
+      "t": 1793325764,
+      "title": "فرانسه ۷۰ هزار نیروی امنیتی در خیابان ها مستقر می کند"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8754,7 +8723,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793323902
+    "at": 1793325676
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8769,13 +8738,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793324673,
-    "last_failure": 1793324073,
-    "last_status": 429
+    "disabled_until": 1793326115.0,
+    "last_failure": 1793325815,
+    "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793324659,
-    "last_failure": 1793324059,
+    "disabled_until": 1793326359,
+    "last_failure": 1793325758,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
