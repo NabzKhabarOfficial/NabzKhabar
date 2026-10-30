@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793314784
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793314784
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793314785
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793314790
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793314790
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793314794
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793314794
     },
@@ -159,32 +135,56 @@
     {
       "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
       "t": 1793320457
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793322204
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793322207
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793322208
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793322209
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1793322211
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1793322260
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-29",
-      "n": 105
+      "n": 106
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-29",
-      "n": 180
+      "n": 182
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-29",
-      "n": 78
+      "n": 81
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-29",
-      "n": 62
+      "n": 65
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-30",
-      "n": 5
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-30",
-      "n": 1
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-10-29",
@@ -414,30 +414,51 @@
       }
     },
     "2026-10-30": {
-      "gemini:gemini-3.6-flash": {
+      "gemini:gemini-3.1-flash-lite": {
         "429": 0,
         "calls": 1,
         "ok": 1,
         "other": 0
       },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 4,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 3,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 3,
+        "calls": 3,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 5,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 1
+        "calls": 8,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 6,
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 1,
+        "429": 1,
+        "calls": 8,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6283, Requested 1890. Please try again in 1.297499",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 0,
-        "other": 1
+        "ok": 5,
+        "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       }
     }
@@ -1043,6 +1064,12 @@
       "topic": "سیاست",
       "until": 1793385645.121898
     },
+    "v4|armenian parliament turns into a boxing ring, third time in a month": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Parliamentary brawl, third time in month",
+      "topic": "سیاست",
+      "until": 1793408608.6886241
+    },
     "v4|as search traffic dries up, reddit announces it’s shifting to a logged-in experience": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: تغییر استراتژی کلان ردیت در پاسخ به هوش مصنوعی.",
@@ -1060,12 +1087,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: انتشار فایل صوتی درباره یک حادثه قدیمی‌تر.",
       "topic": "حادثه",
       "until": 1793385636.3428488
-    },
-    "v4|canada and eu drop associate membership plan in bid to deepen ties": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: کانادا و اتحادیه اروپا طرح عضویت وابسته را لغو کردند",
-      "topic": "سیاست",
-      "until": 1793322200.2779539
     },
     "v4|carney to push for closer ties at canada-eu summit in montreal": {
       "ok": false,
@@ -1199,12 +1220,6 @@
       "topic": "نظامی",
       "until": 1793376321.1103723
     },
-    "v4|israelis rally for jewish-arab government after election gains": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Protests regarding government formation are routine political developments.",
-      "topic": "سیاست",
-      "until": 1793322191.5394292
-    },
     "v4|israel’s parties gird for wrangling to form a government, with no clear path": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: نتایج اولیه انتخابات اسرائیل و احتمال بن‌بست سیاسی",
@@ -1289,12 +1304,6 @@
       "topic": "ورزش",
       "until": 1793399579.4779708
     },
-    "v4|riot police deployed in madrid as protests erupt over deadly train crash": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Deadly train crash and subsequent civil unrest are major world news.",
-      "topic": "حادثه",
-      "until": 1793322204.173216
-    },
     "v4|russia says more than 600 drones launched towards moscow overnight": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Major military escalation involving large-scale drone attack on capital.",
@@ -1330,6 +1339,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Major disaster with significant casualties meets world news criteria.",
       "topic": "حادثه",
       "until": 1793365506.154762
+    },
+    "v4|trump cancels iowa, kansas midterm events, opts for ‘tele-rallies’": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: ترامپ کنسل رویدادهای حاشیه‌ای، به رالی‌های تلویزیونی تغییر داد",
+      "topic": "سیاست",
+      "until": 1793408608.0564475
     },
     "v4|tunisians drawn into russia's war in ukraine": {
       "ok": false,
@@ -1438,6 +1453,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: هشدار و آماده‌باش استانی بدون وقوع حادثه قطعی.",
       "topic": "آب و هوا",
       "until": 1793345678.8862007
+    },
+    "v4|آمادگی پنتاگون برای کاهش ۴۰۰ میلیارد دلاری بودجه نظامی آمریکا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=world: Draft US military budget under discussion, not finalized.",
+      "topic": "نظامی",
+      "until": 1793408611.2677555
     },
     "v4|آمریکا هواپیمای فضایی مرموز چین را شکار کرد": {
       "ok": false,
@@ -1606,6 +1627,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: اعلام آمار رسمی رشد نقدینگی و وضعیت بانک‌ها توسط رئیس کل بانک مرکزی",
       "topic": "اقتصاد",
       "until": 1793360118.5364966
+    },
+    "v4|ادعای سفیر آمریکا در ترکیه درباره احتمال کاهش تنش در خاورمیانه طی دو هفته آینده": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Ambassador says tensions may ease in two weeks.",
+      "topic": "سیاست",
+      "until": 1793408611.2810082
     },
     "v4|ادعای سناتور آمریکایی درباره حمله به ایران پس از انتخابات": {
       "ok": false,
@@ -2207,12 +2234,6 @@
       "topic": "سیاست",
       "until": 1793352854.1129253
     },
-    "v4|توهمات تکراری ترامپ درباره جنگ با ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Speculative political rhetoric; not a concrete policy decision or event.",
-      "topic": "سیاست",
-      "until": 1793322204.1821418
-    },
     "v4|تکاپوی کیش برای جذب گردشگر خارجی و توسعه روابط با کشورهای اکو": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: محور گردشگری سلامت، پایدار و بوم‌گردی در کیش",
@@ -2410,12 +2431,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: نتایج مطالعه پژوهشی درباره آینده مقاومت آنتی‌بیوتیکی رویداد فوری نیست",
       "topic": "سلامت",
       "until": 1793333069.440886
-    },
-    "v4|خطر سیلاب، رعدوبرق و کولاک در کمین کوهنوردان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Routine weather warning for mountaineers; no actual event occurred.",
-      "topic": "آب و هوا",
-      "until": 1793322204.163815
     },
     "v4|خلاء واسطه گری درست در ازدواج، تشکیل خانواده را به تعویق می اندازد": {
       "ok": false,
@@ -3287,6 +3302,12 @@
       "topic": "حادثه",
       "until": 1793362602.8424299
     },
+    "v4|مسی کشتی تفریحی 10 میلیون دلاری سفارش داد!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مسی خرید تفریحی لوکس",
+      "topic": "اقتصاد",
+      "until": 1793408605.621219
+    },
     "v4|مشاور قالیباف: نامه نگاری ونس شکافی در داخل نظام ایجاد نخواهد کرد / واشنگتن می خواهد امتیاز هسته ای بگیرد تا ترامپ را در انتخابات نجات دهد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: Official position on US-Iran nuclear negotiations and internal political stability.",
@@ -3304,6 +3325,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: Significant national energy consumption spike impacting infrastructure and economy.",
       "topic": "اقتصاد",
       "until": 1793343924.4988813
+    },
+    "v4|مصلحت اندیaی ممکن نیست/ قانون علیه حکم عجیب برای ملوان - تراکتور": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: قضیۀ انضباطی فوتبال، تاثیر ملی کم",
+      "topic": "ورزش",
+      "until": 1793408607.3445923
     },
     "v4|معاون نیروی دریایی ارتش: بیش از ۲۰ عملیات علیه ناوهای آمریکایی انجام دادیم": {
       "ok": false,
@@ -3845,12 +3872,6 @@
       "topic": "جامعه",
       "until": 1793381671.9638183
     },
-    "v4|چه بر سر یونایتد می آید؟/ سالی برای فرار از سقوط! طغیان اولدترافورد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Club coaching speculation, not national/international impact",
-      "topic": "ورزش",
-      "until": 1793322183.4524255
-    },
     "v4|کابوس ثانیه آخر برای کشتی ایران/ رحمان عموزاد هم باخت!": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: فقدان در نیمی از نهایی جهان",
@@ -3898,6 +3919,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=world: General debt comparison, no specific event",
       "topic": "اقتصاد",
       "until": 1793342083.7221332
+    },
+    "v4|کردکوی در موج ۲۴۳ تجمعات شبانه میزبان حضور مردم شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمعات شبانه بدون اثر ملی",
+      "topic": "جامعه",
+      "until": 1793408606.3873432
     },
     "v4|کرملین: دور بعدی مذاکرات اوکراین به وضعیت خاورمیانه وابسته است": {
       "ok": true,
@@ -4142,6 +4169,10 @@
       "reason": "content_duplicate",
       "until": 1793318771.2828615
     },
+    "iran war live: irgc says four tankers struck mines in strait of hormuz": {
+      "reason": "content_duplicate",
+      "until": 1793343841.9457443
+    },
     "israeli strikes hit gaza as health ministry urges rafah opening": {
       "reason": "content_duplicate",
       "until": 1793311563.5813558
@@ -4200,7 +4231,7 @@
     },
     "وقوع انفجار در چند منطقه عربستان/ منابع محلی: حمله گسترده به شرکت نفتی آرامکو": {
       "reason": "content_duplicate",
-      "until": 1793320886.9581563
+      "until": 1793343860.0884376
     },
     "پولیتیکو: پنتاگون برای کاهش ۴۰۰ میلیارد دلاری بودجه نظامی آمریکا آماده می شود": {
       "reason": "content_duplicate",
@@ -4229,24 +4260,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "وزیر جنگ آمریکا ژنرال ارشد ارتش را برکنار کرد ⚡️ پیت هگست وزیر جنگ آمریکا، ژنرال برت سیلویا مدیر بخش راهبرد، ب",
-      "id": "2ecbc72463",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793244808,
-      "verdict": "new",
-      "why": "وزیر جنگ آمریکا برکنار کرد، موضوع جدید"
-    },
-    {
-      "head": "افشای اطلاعات بیش از ۴۰ هزار کارمند وزارت امنیت داخلی آمریکا ⚡️ اطلاعات بیش از ۴۰ هزار کارمند وزارت امنیت داخل",
-      "id": "e3df4bb571",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793246700,
-      "verdict": "new",
-      "why": "نشت اطلاعاتی جدید وزارت امنیت داخلی آمریکا"
-    },
     {
       "head": "انفجار آمبولانس در پاکستان با ۹ کشته ⚡️ انفجار سیلندر اکسیژن در یک آمبولانس در ایالت سند پاکستان منجر به کشته ",
       "id": "8d202e912b",
@@ -4776,44 +4789,29 @@
       "t": 1793315123,
       "verdict": "unconfirmed-repeat",
       "why": "صدای انفجار در تنگه هرمز و آسمان"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "ایران: چهار تنگه کش در تنگه هرمز به مین برخورد کردند ⚡️ نیروی سپاه پاسداران ایران اعلام کرد که چهار تنگه کش در",
+      "id": "ba10277b14",
+      "match": "آتش سوزی یک شناور در تنگه هرمز",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793322217,
+      "verdict": "repeat",
+      "why": "همان تنگه هرمز، مین‌زدگی کشتی‌ها"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "ایران: چهار تنگه کش در تنگه هرمز به مین برخورد کردند ⚡️ نیروی سپاه پاسداران ایران اعلام کرد که چهار تنگه کش در",
+      "id": "ba10277b14",
+      "match": "آتش سوزی یک شناور در تنگه هرمز",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793322228,
+      "verdict": "repeat",
+      "why": "مورد مشابه با مین‌گذاری در تنگه هرمز"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: مدال‌آوری در سطح استانی و غیر ملی برای تیم ملی ایران نیست.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793289876,
-      "title": "کسب مدال طلا و برنز توسط جودوکاران خراسان رضوی در کاپ آسیا"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=local: خبر کوتاه از شهرستان‌های شرق استان اصفهان",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793289876,
-      "title": "اخبار کوتاه شرق استان اصفهان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: خبر استانی و مربوط به فعالیت‌های روتین هلال احمر است.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793289879,
-      "title": "مهرآبادی: طرح ملی ماهر در بیش از ۴۵ مدرسه ابتدایی استان مرکزی اجرا شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Minor technical incident in US military stores, lacks major strategic impact.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793291613,
-      "title": "پنتاگون احتمال حمله سایبری به فریزرهای پایگاه های نظامی آمریکا را بررسی می کند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: اظهارات کلی و توصیه‌ای وزیر کار درباره انتظارات از این وزارتخانه.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1793291628,
-      "title": "میدری: انتظارت از وزارت کار واقع بینانه و در حد توان باشد"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: آتش‌سوزی جزئی در یک ساختمان نیمه‌کاره، فاقد اهمیت ملی یا امنیتی است.",
       "rescued": false,
@@ -5338,6 +5336,41 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1793320454,
       "title": "اعتصاب سراسری در ۱۰۰ بندر جهان علیه صادرات اسلحه به رژیم صهیونیستی"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مسی خرید تفریحی لوکس",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793322205,
+      "title": "مسی کشتی تفریحی 10 میلیون دلاری سفارش داد!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمعات شبانه بدون اثر ملی",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1793322206,
+      "title": "کردکوی در موج ۲۴۳ تجمعات شبانه میزبان حضور مردم شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: قضیۀ انضباطی فوتبال، تاثیر ملی کم",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793322207,
+      "title": "مصلحت اندیAی ممکن نیست/ قانون علیه حکم عجیب برای ملوان - تراکتور"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: ترامپ کنسل رویدادهای حاشیه‌ای، به رالی‌های تلویزیونی تغییر داد",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793322208,
+      "title": "Trump cancels Iowa, Kansas midterm events, opts for ‘tele-rallies’"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Parliamentary brawl, third time in month",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793322208,
+      "title": "Armenian parliament turns into a boxing ring, third time in a month"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8816,7 +8849,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793320327
+    "at": 1793322102
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8831,14 +8864,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793317390,
-    "last_failure": 1793316790,
-    "last_status": 429
+    "disabled_until": 1793322315,
+    "last_failure": 1793322255,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793320750.0,
-    "last_failure": 1793320450,
-    "last_status": 599
+    "disabled_until": 1793322848,
+    "last_failure": 1793322248,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -8851,10 +8884,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1793277373,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
