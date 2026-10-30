@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793314794
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793314799
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793314799
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 6x",
       "t": 1793314817
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 1x",
       "t": 1793322260
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793324017
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1793324019
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1793324088
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-29",
-      "n": 106
+      "n": 108
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-29",
-      "n": 182
+      "n": 184
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-29",
-      "n": 81
+      "n": 82
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-29",
-      "n": 65
+      "n": 68
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-30",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-30",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-10-29",
@@ -416,75 +416,54 @@
     "2026-10-30": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 1,
-        "calls": 4,
+        "429": 2,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 3,
+        "429": 5,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 6,
+        "ok": 8,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 8,
+        "calls": 10,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6283, Requested 1890. Please try again in 1.297499",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 7,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1793145886.2813468,
-      "title": "دولت ترامپ آمادگی مذاکره با مسکو را اعلام کرد",
-      "urgent": false
-    },
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1793145901.2090845,
-      "title": "مخالفت مجمع کشورهای صادرکننده گاز با تحریم های یکجانبه",
-      "urgent": false
-    },
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1793145925.775328,
-      "title": "احتمال مشارکت احزاب عرب در تشکیل دولت آینده اسرائیل",
-      "urgent": false
-    },
     {
       "label": "قضایی",
       "level": 5,
@@ -1030,6 +1009,27 @@
       "t": 1793315135.9423304,
       "title": "شنیده شدن صدای چند انفجار در حوالی تنگهٔ هرمز",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1793324052.5157063,
+      "title": "توقف حملات اوکراین به پالایشگاه های نفت روسیه",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1793324068.2599368,
+      "title": "علی الزیدی ریاست سازمان اطلاعات ملی عراق را شخصاً بر عهده گرفت",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1793324087.5333362,
+      "title": "آزادسازی کامل تعز نزدیک است",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-29",
@@ -1142,17 +1142,17 @@
       "topic": "سیاست",
       "until": 1793381702.8479629
     },
+    "v4|eu force helicopter crash kills four in bosnia": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=5 happened=True scope=world: EU helicopter crash kills four in Bosnia",
+      "topic": "حادثه",
+      "until": 1793410419.4184291
+    },
     "v4|ex-palantir execs launch dream with $17m from a16z to build ai world models for construction": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: استارتاپ هوش مصنوعی جدید با سرمایه کلان، اهمیت جهانی درجه یک ندارد",
       "topic": "فناوری",
       "until": 1793403203.7786763
-    },
-    "v4|flávio bolsonaro denies fleeing brazil after landing in miami": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Brazilian candidate's claim lacks significance for Iran or global news",
-      "topic": "سیاست",
-      "until": 1793323975.6198635
     },
     "v4|french shooting suspect deliberately targeted muslims, africans": {
       "ok": true,
@@ -1442,12 +1442,6 @@
       "topic": "سلامت",
       "until": 1793334841.5033245
     },
-    "v4|آلمان شیفته جواهر 17 ساله مراکشی شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=2 happened=False scope=world: شایعات نقل‌وانتقالات و گمانه‌زنی‌های فوتبالی فاقد اهمیت خبری فورس‌ماژور است.",
-      "topic": "ورزش",
-      "until": 1793323974.5392709
-    },
     "v4|آماده باش مدیریت بحران در آذربایجان غربی؛ احتمال وقوع سیلاب": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: هشدار و آماده‌باش استانی بدون وقوع حادثه قطعی.",
@@ -1603,12 +1597,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اعلام موضع رسمی رئیس‌جمهور آمریکا درباره برنامه هسته‌ای ایران.",
       "topic": "سیاست",
       "until": 1793387034.6728227
-    },
-    "v4|ادعای ترامپ: جنگ علیه ایران را خیلی سریع پایان خواهم داد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=iran_national: Trump claims to end war quickly, no decision made.",
-      "topic": "سیاست",
-      "until": 1793323977.7895677
     },
     "v4|ادعای ترامپ: مجبور بودیم به ایران حمله کنیم!": {
       "ok": true,
@@ -2498,12 +2486,6 @@
       "topic": "اقتصاد",
       "until": 1793336608.579986
     },
-    "v4|دستاوردهای نشست مسکو؛ از امنیت انرژی تا توافق گازی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: Meeting discussed energy security, no concrete decision.",
-      "topic": "اقتصاد",
-      "until": 1793323977.7957428
-    },
     "v4|دستور وزیر آموزش و پرورش برای بررسی علت حادثه اردکان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=local: دستور روتین وزیر در پی حادثه محلی سرویس دانش‌آموزی",
@@ -2900,6 +2882,12 @@
       "topic": "حادثه",
       "until": 1793362622.216214
     },
+    "v4|شهریار زرشناس: راهی جز ساخت بمب هسته ای نداریم؛ استراتژیمان باید استراتژی بمب هسته ای شود/ چین در سال ۱۹۶۴ و شوروی ۱۹۴۶؛ باید به آنجا برسیم": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=iran_national: Iranian official calls for nuclear strategy",
+      "topic": "سیاست",
+      "until": 1793410419.4441862
+    },
     "v4|شکار پهپاد آمریکایی mqm-170 در تنگه هرمز؛ ناکامی مأموریت شناسایی و فریب پدافند ایران": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Military escalation involving US drone in the Strait of Hormuz.",
@@ -3019,6 +3007,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Speculative analysis regarding trade relations without a concrete new official decision.",
       "topic": "اقتصاد",
       "until": 1793333076.87078
+    },
+    "v4|علی الزیدی ریاست سازمان اطلاعات ملی عراق را شخصاً بر عهده گرفت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Iraqi PM appoints new intelligence chief, significant regional security move",
+      "topic": "سیاست",
+      "until": 1793410415.6685433
     },
     "v4|غرویان: موضوع هسته ای هدف نهایی ما نیست/نمی توان همواره با تمام دنیا درگیر بود": {
       "ok": false,
@@ -3362,6 +3356,12 @@
       "topic": "سیاست",
       "until": 1793378048.3161888
     },
+    "v4|مقام یمنی: «آزادسازی کامل» تعز نزدیک است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Yemeni official announces imminent full liberation of Taiz, regional war news",
+      "topic": "نظامی",
+      "until": 1793410416.8597772
+    },
     "v4|مقاومت فلیک در هم شکست/ ورود هانسی فلیک به اینستا با 253 کا فالوور!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=world: Lifestyle/social media news regarding a sports figure.",
@@ -3572,12 +3572,6 @@
       "topic": "جامعه",
       "until": 1793347503.7120864
     },
-    "v4|همکاری گوگل دیپ مایند و اشپرینگر نیچر برای توسعه دستیار هوش مصنوعی داوری مقالات": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=فناوری: Google DeepMind and Springer Nature collaborate on AI peer review.",
-      "topic": "فناوری",
-      "until": 1793323977.8015277
-    },
     "v4|هوش مصنوعی در میدان مبارزه با سکته مغزی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=False scope=world: خبر عمومی توصیفی درباره سلامت و هوش مصنوعی بدون رویداد خبری فوری",
@@ -3589,6 +3583,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=iran_national: اعلام اولویت پرداخت تسهیلات بانکی، اظهارات روتین وزیر اقتصاد است.",
       "topic": "اقتصاد",
       "until": 1793381702.8851142
+    },
+    "v4|وال استریت ژورنال: اوکراین حملات به پالایشگاه های روسیه را متوقف کرده است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Ukraine halts attacks on Russian refineries",
+      "topic": "نظامی",
+      "until": 1793410419.4316175
     },
     "v4|واژگونی خودرو در جاده اراک ـ ملایر یک کشته و سه مصدوم برجای گذاشت": {
       "ok": false,
@@ -4227,7 +4227,7 @@
     },
     "فاکس نیوز به نقل از مقام پنتاگون: وزیر جنگ آمریکا، «برت سیلویا»، یکی از ارشدترین برنامه ریزان راهبردی پنتاگون را به اتهام افشای اطلاعات جنگ ایران به خبرنگاران، برکنار کرد/ «سیلویا»": {
       "reason": "content_duplicate",
-      "until": 1793322259.2943113
+      "until": 1793345631.2994182
     },
     "وقوع انفجار در چند منطقه عربستان/ منابع محلی: حمله گسترده به شرکت نفتی آرامکو": {
       "reason": "content_duplicate",
@@ -4260,33 +4260,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "انفجار آمبولانس در پاکستان با ۹ کشته ⚡️ انفجار سیلندر اکسیژن در یک آمبولانس در ایالت سند پاکستان منجر به کشته ",
-      "id": "8d202e912b",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793248483,
-      "verdict": "new",
-      "why": "انفجار آمبولانس با سیلندر اکسیژن در سند پاکستان"
-    },
-    {
-      "head": "انفجار شدید در مجتمع فولادسازی برزیل ⚡️ وقوع انفجاری شدید در مجتمع فولادسازی شرکت ملی فولاد برزیل در شهر ولتا ",
-      "id": "92fed7c6b7",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793248490,
-      "verdict": "new",
-      "why": "انفجار جدید در مجتمع فولاد برزیل"
-    },
-    {
-      "head": "شلیک ۱۲ موشک بالستیک توسط کره شمالی ⚡️ کره شمالی صبح پنجشنبه حدود ۱۲ موشک بالستیک کوتاه برد به سمت دریای شرقی ",
-      "id": "4c00f4cae6",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793252159,
-      "verdict": "new",
-      "why": "کره شمالی شلیک موشک جدید، غیر مرتبط با موارد قبلی"
-    },
     {
       "head": "سپاه: پهپاد پیشرفته آمریکایی در تنگه هرمز منهدم شد ⚡️ سپاه پاسداران انقلاب اسلامی اعلام کرد یک فروند پهپاد پیش",
       "id": "1f4819866b",
@@ -4809,23 +4782,37 @@
       "t": 1793322228,
       "verdict": "repeat",
       "why": "مورد مشابه با مین‌گذاری در تنگه هرمز"
+    },
+    {
+      "head": "توقف حملات اوکراین به پالایشگاه های نفت روسیه ⚡️ اوکراین در پی فشارهای ترامپ، حملات خود به پالایشگاه های نفت ر",
+      "id": "6943b8829d",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793324051,
+      "verdict": "new",
+      "why": "موضوع جدید: توقف حمله اوکراین به پالایشگاه‌های نفت روسیه"
+    },
+    {
+      "head": "علی الزیدی ریاست سازمان اطلاعات ملی عراق را شخصاً بر عهده گرفت ⚡️ نخست وزیر و فرمانده کل نیروهای مسلح عراق با ",
+      "id": "8136b92ec2",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793324067,
+      "verdict": "new",
+      "why": "ایران: تغییرات رهبری سازمان اطلاعات ملی"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:new",
+      "head": "آزادسازی کامل تعز نزدیک است ⚡️ استاندار تعز در دولت تغییر و سازندگی یمن در صنعا اعلام کرد که بخش عمده جغرافیای",
+      "id": "94647a89bc",
+      "match": "شهادت ۱۲ غیرنظامی در حمله هوایی عربستان سعودی به تعز",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793324080,
+      "verdict": "unconfirmed-repeat",
+      "why": "آزادسازی تعز و حمله عربستان به آن"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: آتش‌سوزی جزئی در یک ساختمان نیمه‌کاره، فاقد اهمیت ملی یا امنیتی است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793291629,
-      "title": "منشا دود در غرب تهران چه بود؟"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine academic opinion on scientific development, lacks immediate national impact.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1793291633,
-      "title": "پرفسور ثبوتی: با خرید علم و فناوری نمی توان به پیشرفت علمی رسید"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: این یک خبر حاشیه‌ای و اظهارنظر شخصی است و اهمیت راهبردی ندارد.",
       "rescued": false,
@@ -5371,200 +5358,26 @@
       "rule": "no-concrete-event",
       "t": 1793322208,
       "title": "Armenian parliament turns into a boxing ring, third time in a month"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Iraqi PM appoints new intelligence chief, significant regional security move",
+      "rescued": true,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1793324015,
+      "title": "علی الزیدی ریاست سازمان اطلاعات ملی عراق را شخصاً بر عهده گرفت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Yemeni official announces imminent full liberation of Taiz, regional war news",
+      "rescued": true,
+      "rule": "below-event-threshold",
+      "t": 1793324016,
+      "title": "مقام یمنی: «آزادسازی کامل» تعز نزدیک است"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اسپن",
-        "افزش",
-        "امدد",
-        "تم",
-        "سنح",
-        "شمر",
-        "شنب",
-        "عمل",
-        "قربن",
-        "قطر",
-        "مرگ",
-        "مرگبر",
-        "نجت",
-        "نفر",
-        "پنج"
-      ],
-      "t": 1793271944.3125517,
-      "title": "افزایش شمار قربانیان قطار مرگ در اسپانیا به ۶۹ نفر ⚡️ تیم های امداد و نجات در اسپانیا روز پنج شنبه به عملیات خود پس از س"
-    },
-    {
-      "h": [
-        "ازدسز",
-        "تحقق",
-        "در",
-        "دنست",
-        "رفع",
-        "شرط",
-        "شمل",
-        "فرش",
-        "محصر",
-        "مسددشد",
-        "وشنگتن",
-        "پذرش",
-        "گر"
-      ],
-      "t": 1793275446.4828553,
-      "title": "پایان جنگ در گرو پذیرش شروط ایران از سوی واشنگتن ⚡️ تهران تحقق شروط خود شامل رفع محاصره دریایی، آزادسازی دارایی های مسدو"
-    },
-    {
-      "h": [
-        "اعترف",
-        "بدند",
-        "بزدشت",
-        "تررست",
-        "تکد",
-        "دستگر",
-        "رحم",
-        "زنن",
-        "زهد",
-        "عمل",
-        "فرد",
-        "مسلح",
-        "نکند",
-        "نکنند",
-        "پشتب",
-        "گفتند",
-        "یک"
-      ],
-      "t": 1793275482.593964,
-      "title": "اعترافات فرد مسلح دستگیر شده: به ما گفتند به زنان هم رحم نکنید ⚡️ در زاهدان، یکی از تروریست های بازداشت شده در اعترافات "
-    },
-    {
-      "h": [
-        "ازسرگر",
-        "امدگ",
-        "بسر",
-        "تردد",
-        "درند",
-        "سفد",
-        "عمل",
-        "نسبت",
-        "کخ",
-        "گسترش"
-      ],
-      "t": 1793275497.3756623,
-      "title": "ترامپ آمادگی دارد عملیات نظامی را گسترش دهد ⚡️ بسیاری در کاخ سفید نسبت به ازسرگیری عملیات نظامی تردید دارند."
-    },
-    {
-      "h": [
-        "ابتد",
-        "اسفند",
-        "اسم",
-        "ال",
-        "انتشر",
-        "تصر",
-        "دقق",
-        "عبر",
-        "فرز",
-        "لحظ",
-        "مشک",
-        "نهم",
-        "ود",
-        "پتخت",
-        "پرتنش",
-        "کرز",
-        "کشد"
-      ],
-      "t": 1793275536.4069216,
-      "title": "انتشار تصاویر عبور موشک های کروز از آسمان تهران در دقایق ابتدایی جنگ ⚡️ تصاویری از لحظات پرتنش آسمان تهران در دقایق اولی"
-    },
-    {
-      "h": [
-        "اثر",
-        "البرح",
-        "بهدشت",
-        "تعز",
-        "خن",
-        "سعد",
-        "شدند",
-        "شهدت",
-        "غرب",
-        "غرنظم",
-        "هدف",
-        "وزرت",
-        "یمن"
-      ],
-      "t": 1793276236.3623936,
-      "title": "شهادت ۱۲ غیرنظامی در حمله هوایی عربستان سعودی به تعز ⚡️ وزارت بهداشت یمن اعلام کرد در پی حمله هوایی عربستان سعودی به منط"
-    },
-    {
-      "h": [
-        "اتش",
-        "استگ",
-        "اشغل",
-        "الشک",
-        "برقرر",
-        "حل",
-        "شهر",
-        "قطر",
-        "محل",
-        "مرگبر",
-        "مشک",
-        "گذشت"
-      ],
-      "t": 1793276261.774157,
-      "title": "حمله موشکی روسیه به ایستگاه قطار در اوکراین ۱۳ کشته بر جای گذاشت ⚡️ حمله مرگبار روسیه به ایستگاه قطار در اوکراین در حالی"
-    },
-    {
-      "h": [
-        "اعترض",
-        "افزش",
-        "امنل",
-        "برنگخت",
-        "بست",
-        "تنگ",
-        "دد",
-        "فرنس",
-        "مکرن",
-        "هرمز"
-      ],
-      "t": 1793277359.0030475,
-      "title": "ماکرون: جنگ آمریکا علیه ایران اعتراضات در فرانسه را برانگیخت ⚡️ امانوئل مکرون، رئیس جمهور فرانسه، اعلام کرد جنگ آمریکا ع"
-    },
-    {
-      "h": [
-        "ارزش",
-        "انستکرت",
-        "تفق",
-        "خرد",
-        "خردر",
-        "درز",
-        "دلر",
-        "رقب",
-        "شرکت",
-        "قرردد",
-        "ملرد"
-      ],
-      "t": 1793277403.6382506,
-      "title": "دروازه دش اینستاکارت را در قراردادی ۱۷ میلیارد دلاری خرید ⚡️ شرکت دروازه دش در قراردادی به ارزش ۱۷ میلیارد دلار توافق کر"
-    },
-    {
-      "h": [
-        "اثر",
-        "بندر",
-        "حرکت",
-        "حف",
-        "در",
-        "رمن",
-        "غرق",
-        "مقصد",
-        "هدف",
-        "پهپد"
-      ],
-      "t": 1793279154.4232733,
-      "title": "غرق شدن کشتی اسرائیلی در دریای سیاه بر اثر حمله پهپادی ⚡️ یک کشتی اسرائیل که از بندر حیفا به مقصد رومانی در حرکت بود، در"
-    },
     {
       "h": [
         "اجز",
@@ -5820,46 +5633,50 @@
       ],
       "t": 1793315135.9157703,
       "title": "شنیده شدن صدای چند انفجار در حوالی تنگهٔ هرمز ⚡️ منابع محلی از شنیده شدن صدای چند انفجار از سمت دریا در آسمان و محدودهٔ "
+    },
+    {
+      "h": [
+        "اطلع",
+        "الزد",
+        "برکنر",
+        "در",
+        "رست",
+        "سرس",
+        "سزم",
+        "شخص",
+        "عل",
+        "عهد",
+        "فرمند",
+        "مسلح",
+        "مل",
+        "نخست",
+        "پشن"
+      ],
+      "t": 1793324068.2478194,
+      "title": "علی الزیدی ریاست سازمان اطلاعات ملی عراق را شخصاً بر عهده گرفت ⚡️ نخست وزیر و فرمانده کل نیروهای مسلح عراق با برکناری رئ"
+    },
+    {
+      "h": [
+        "ازدسز",
+        "است",
+        "استن",
+        "استندر",
+        "بخش",
+        "تعز",
+        "تغر",
+        "جغرف",
+        "سزندگ",
+        "صنع",
+        "عمد",
+        "نزدک",
+        "کمل",
+        "یمن"
+      ],
+      "t": 1793324087.5211449,
+      "title": "آزادسازی کامل تعز نزدیک است ⚡️ استاندار تعز در دولت تغییر و سازندگی یمن در صنعا اعلام کرد که بخش عمده جغرافیای این استان"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "برد",
-        "بلستک",
-        "شلک",
-        "پنجشنب",
-        "کره"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1793252161.193722,
-      "title": "شلیک ۱۲ موشک بالستیک توسط کره شمالی ⚡️ کره شمالی صبح پنجشنبه حدود ۱۲ موشک بالستیک کوتاه برد به سمت دریای شرقی شلیک کرد.",
-      "toll": 0
-    },
-    {
-      "a": [
-        "سرنگن",
-        "مسک",
-        "پرتب",
-        "گسترد"
-      ],
-      "cities": [
-        "مسکو"
-      ],
-      "kind": "attack",
-      "places": [
-        "مسکو"
-      ],
-      "regions": [
-        "russia"
-      ],
-      "t": 1793253569.0956724,
-      "title": "حمله گسترده پهپادی به مسکو؛ سرنگونی بیش از ۶۰۰ پهپاد ⚡️ پدافند هوایی روسیه بیش از ۶۰۰ پهپاد پرتاب شده به سمت مسکو را در ",
-      "toll": 0
-    },
     {
       "a": [
         "اتش",
@@ -6130,6 +5947,21 @@
       ],
       "t": 1793315135.9292452,
       "title": "شنیده شدن صدای چند انفجار در حوالی تنگهٔ هرمز ⚡️ منابع محلی از شنیده شدن صدای چند انفجار از سمت دریا در آسمان و محدودهٔ ",
+      "toll": 0
+    },
+    {
+      "a": [
+        "تقف",
+        "فشر",
+        "متقف",
+        "پلشگ"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1793324052.5031419,
+      "title": "توقف حملات اوکراین به پالایشگاه های نفت روسیه ⚡️ اوکراین در پی فشارهای ترامپ، حملات خود به پالایشگاه های نفت روسیه را مت",
       "toll": 0
     }
   ],
@@ -8838,6 +8670,79 @@
       ],
       "t": 1793315135.9018958,
       "title": "شنیده شدن صدای چند انفجار در حوالی تنگهٔ هرمز ⚡️ منابع محلی از شنیده شدن صدای چند انفجار از سمت دریا در آسمان و محدودهٔ "
+    },
+    {
+      "k": [
+        "اقدم",
+        "اکرن",
+        "ترمپ",
+        "تقف",
+        "حمل",
+        "دلت",
+        "رس",
+        "صرت",
+        "فشر",
+        "متقف",
+        "نفت",
+        "پلشگ"
+      ],
+      "t": 1793324052.4898038,
+      "title": "توقف حملات اوکراین به پالایشگاه های نفت روسیه ⚡️ اوکراین در پی فشارهای ترامپ، حملات خود به پالایشگاه های نفت روسیه را مت"
+    },
+    {
+      "k": [
+        "استرتژک",
+        "اطلع",
+        "الزد",
+        "امنت",
+        "برکنر",
+        "بند",
+        "حزب",
+        "در",
+        "رس",
+        "رست",
+        "سخنگ",
+        "سرس",
+        "سزم",
+        "سهم",
+        "شخص",
+        "عرق",
+        "عل",
+        "عهد",
+        "فرق",
+        "فرمند",
+        "مسلح",
+        "مل",
+        "نخست",
+        "نر",
+        "نهد",
+        "نگه",
+        "وزر",
+        "پشن"
+      ],
+      "t": 1793324068.2350616,
+      "title": "علی الزیدی ریاست سازمان اطلاعات ملی عراق را شخصاً بر عهده گرفت ⚡️ نخست وزیر و فرمانده کل نیروهای مسلح عراق با برکناری رئ"
+    },
+    {
+      "k": [
+        "ازدسز",
+        "است",
+        "استن",
+        "استندر",
+        "بخش",
+        "تعز",
+        "تغر",
+        "جغرف",
+        "دلت",
+        "سزندگ",
+        "صنع",
+        "عمد",
+        "نزدک",
+        "کمل",
+        "یمن"
+      ],
+      "t": 1793324087.5087657,
+      "title": "آزادسازی کامل تعز نزدیک است ⚡️ استاندار تعز در دولت تغییر و سازندگی یمن در صنعا اعلام کرد که بخش عمده جغرافیای این استان"
     }
   ],
   "_text_polish": {
@@ -8849,7 +8754,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793322102
+    "at": 1793323902
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8864,13 +8769,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793322315,
-    "last_failure": 1793322255,
-    "last_status": 422
+    "disabled_until": 1793324673,
+    "last_failure": 1793324073,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793322848,
-    "last_failure": 1793322248,
+    "disabled_until": 1793324659,
+    "last_failure": 1793324059,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
