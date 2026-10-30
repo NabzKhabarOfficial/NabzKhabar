@@ -1,9 +1,11 @@
 {
   "ai_pool": {},
   "all_selected_blocked": false,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-10-30T19:36:09.436627+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-10-30T20:06:40.120391+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -57,42 +59,76 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: سخنان مقام دولتی و اظهارنظر کلی، فاقد رویداد مشخص",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=local: Local provincial incident with low casualty count.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "ایران در جنگ اخیر نشان داد در برابر ابرقدرت ها می تواند بایستد",
+      "title": "آذرخش در ایلام پنج کشته و زخمی بر جا گذاشت",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: گمانه‌زنی و تحلیل رسانه‌ای درباره احتمال حمله آمریکا به ایران.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "پشت درهای بسته کاخ سفید؛ مذاکره با تهران یا حمله ای تازه؟",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis piece by a foreign media outlet.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "فارن پالیسی: خلیج فارس برای ازسرگیری جنگ با ایران آماده نیست",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: برنامه‌ها و تبلیغات انتخاباتی احزاب و گمانه‌زنی سیاسی.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "دموکرات ها با تبلیغ برنامه های خود برای وادار کردن ترامپ به پایان دادن به جنگ ایران تلاش می کنند حمایت بیشتری به دست آورند/آنها ترجیح می دهند بر وادار کردن ترامپ به پایان دادن به ج",
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "isna.ir",
+      "started_at": "2026-10-30T20:03:54.441532+00:00",
+      "title": "سرلشکر رضایی خطاب به کشورهای اروپایی: جنگ وترور تاوان دارد؛ حالا نوبت شماست که تاوان بدهید",
+      "url": "https://isna.ir/news/1405080805149/%D8%B3%D8%B1%D9%84%D8%B4%DA%A9%D8%B1-%D8%B1%D8%B6%D8%A7%DB%8C%DB%8C-%D8%AE%D8%B7%D8%A7%D8%A8-%D8%A8%D9%87-%DA%A9%D8%B4%D9%88%D8%B1%D9%87%D8%A7%DB%8C-%D8%A7%D8%B1%D9%88%D9%BE%D8%A7%DB%8C%DB%8C-%D8%AC%D9%86%DA%AF-%D9%88%D8%AA%D8%B1%D9%88%D8%B1-%D8%AA%D8%A7%D9%88%D8%A7%D9%86-%D8%AF%D8%A7%D8%B1%D8%AF-%D8%AD%D8%A7%D9%84%D8%A7"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 21,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "isna.ir",
+      "title": "سرلشکر رضایی خطاب به کشورهای اروپایی: جنگ وترور تاوان دارد؛ حالا نوبت شماست که تاوان بدهید",
+      "url": "https://isna.ir/news/1405080805149/%D8%B3%D8%B1%D9%84%D8%B4%DA%A9%D8%B1-%D8%B1%D8%B6%D8%A7%DB%8C%DB%8C-%D8%AE%D8%B7%D8%A7%D8%A8-%D8%A8%D9%87-%DA%A9%D8%B4%D9%88%D8%B1%D9%87%D8%A7%DB%8C-%D8%A7%D8%B1%D9%88%D9%BE%D8%A7%DB%8C%DB%8C-%D8%AC%D9%86%DA%AF-%D9%88%D8%AA%D8%B1%D9%88%D8%B1-%D8%AA%D8%A7%D9%88%D8%A7%D9%86-%D8%AF%D8%A7%D8%B1%D8%AF-%D8%AD%D8%A7%D9%84%D8%A7"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": false,
   "published": 2,
   "run_status": "success",
-  "selected_for_publication": 11,
+  "selected_for_publication": 14,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "yjc.ir",
-      "started_at": "2026-10-30T19:34:17.522060+00:00",
-      "title": "حملات اوکراین صادرات گازوئیل روسیه را تهدید می کند",
-      "url": "https://yjc.ir/fa/news/9143861/حملات-اوکراین-صادرات-گازوئیل-روسیه-را-تهدید-می‌کند"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "bbc.com",
-      "started_at": "2026-10-30T19:35:08.341484+00:00",
-      "title": "حمله هکرها به بزرگ ترین صرافی رمزارز جهان؛ پای ۶ میلیارد دلار در میان است",
-      "url": "https://bbc.com/persian/articles/c9kgjp54pyxgo?at_campaign=rss&at_medium=RSS"
+      "source": "khabaronline.ir",
+      "started_at": "2026-10-30T20:04:14.290802+00:00",
+      "title": "محسن رضایی: همین دیروز اروپا به کثیف کاری های رژیم صهیونیستی افتخار می کرد اما امروز از هزینه میلیاردها دلاری که جنگ برایشان تراشیده به فغان آمده است",
+      "url": "https://khabaronline.ir/news/2295273/%D9%85%D8%AD%D8%B3%D9%86-%D8%B1%D8%B6%D8%A7%DB%8C%DB%8C-%D9%87%D9%85%DB%8C%D9%86-%D8%AF%DB%8C%D8%B1%D9%88%D8%B2-%D8%A7%D8%B1%D9%88%D9%BE%D8%A7-%D8%A8%D9%87-%DA%A9%D8%AB%DB%8C%D9%81-%DA%A9%D8%A7%D8%B1%DB%8C-%D9%87%D8%A7%DB%8C-%D8%B1%DA%98%DB%8C%D9%85-%D8%B5%D9%87%DB%8C%D9%88%D9%86%DB%8C%D8%B3%D8%AA%DB%8C"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
