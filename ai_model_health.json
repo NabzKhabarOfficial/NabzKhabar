@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1793403233
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1793403252
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1793403267
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793403268
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793403268
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793403272
     },
@@ -159,32 +139,52 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
       "t": 1793406855
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793408557
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793408557
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1793408572
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793408573
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1793408587
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-30",
-      "n": 101
+      "n": 102
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-30",
-      "n": 173
+      "n": 174
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-30",
-      "n": 63
+      "n": 64
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-30",
-      "n": 49
+      "n": 50
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-31",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-31",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-10-29",
@@ -390,19 +390,19 @@
     "2026-10-31": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 2,
-        "calls": 3,
+        "429": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 1,
         "other": 0
@@ -417,22 +417,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 4,
-        "other": 2
+        "calls": 8,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 5,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 4,
-        "other": 2
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 9,
-        "ok": 9,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       }
     }
@@ -1224,6 +1224,12 @@
       "topic": "نظامی",
       "until": 1793464466.994626
     },
+    "v4|could el salvador’s bukele be haiti’s savior?": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اعزام نظامیان السالوادور به هائیتی رویداد بین‌المللی مهمی است",
+      "topic": "نظامی",
+      "until": 1793494977.7925358
+    },
     "v4|ethnic cleansing fears rise as israel squeezes space in gaza: un": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: گزارش رسمی سازمان ملل متحد درباره جنگ و وضعیت غزه.",
@@ -1295,12 +1301,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major global tech company stock crash with significant financial impact.",
       "topic": "اقتصاد",
       "until": 1793484224.3258579
-    },
-    "v4|iran war live: irgc says four tankers struck mines in strait of hormuz": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Four tankers hit mines, escalates regional tension, world impact.",
-      "topic": "نظامی",
-      "until": 1793406857.9248295
     },
     "v4|iran war live: oil tankers hit in hormuz; trump says conflict will end soon": {
       "ok": true,
@@ -1463,12 +1463,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: ترامپ کنسل رویدادهای حاشیه‌ای، به رالی‌های تلویزیونی تغییر داد",
       "topic": "سیاست",
       "until": 1793408608.0564475
-    },
-    "v4|tunisians drawn into russia's war in ukraine": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Concern over Tunisian conscripts, not a major new event.",
-      "topic": "سیاست",
-      "until": 1793406857.897422
     },
     "v4|u.s. to send dozens back to afghanistan, despite risk of persecution": {
       "ok": true,
@@ -1871,12 +1865,6 @@
       "reason": "ai gemini/gemini-3.6-flash score=3 happened=False scope=world: تحلیل و گمانه‌زنی درباره وضعیت اقتصادی و بدهی‌های فرانسه",
       "topic": "اقتصاد",
       "until": 1793432035.3225873
-    },
-    "v4|اعتصاب سراسری در ۱۰۰ بندر جهان علیه صادرات اسلحه به رژیم صهیونیستی": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: اعتصاب سراسری کارگران در ۱۰۰ بندر جهان علیه ارسال سلاح به اسرائیل",
-      "topic": "سیاست",
-      "until": 1793406854.4780884
     },
     "v4|اعلام برنامه های هفته بسیج دانش آموزی در استان کرمان": {
       "ok": false,
@@ -2519,12 +2507,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Youth world cup ranking, not top-tier",
       "topic": "ورزش",
       "until": 1793455392.7367826
-    },
-    "v4|جان کری: ترامپ با فرضیات غلط به ایران حمله کرد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=iran_national: Former official's claim, no official decision, speculative.",
-      "topic": "سیاست",
-      "until": 1793406857.9111977
     },
     "v4|جان کری: حمله به ایران پس از انتخابات اشتباهی فاحش خواهد بود": {
       "ok": true,
@@ -4008,12 +3990,6 @@
       "topic": "سیاست",
       "until": 1793467976.5042524
     },
-    "v4|پولیتیکو: پنتاگون برای کاهش ۴۰۰ میلیارد دلاری بودجه دفاعی درخواستی ترامپ آماده می شود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Speculative budget cut preparation, no concrete decision yet.",
-      "topic": "اقتصاد",
-      "until": 1793406857.9383447
-    },
     "v4|پیام تسلیت پزشکیان در پی وقوع سانحه ریلی در اسپانیا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: پیام تسلیت تشریفاتی مقام عالی‌رتبه درباره حادثه خارجی اهمیت درجه یک ندارد",
@@ -4322,6 +4298,11 @@
     }
   },
   "_editorial_blocks": {
+    "could el salvador’s bukele be haiti’s savior?": {
+      "at": 1793408587.0934434,
+      "reason": "final_guard:opinion",
+      "until": 1793430187.0934434
+    },
     "hundreds evacuated from russian-occupied oleshky during rare ukraine ceasefire": {
       "reason": "content_duplicate",
       "until": 1793425378.1294947
@@ -4334,41 +4315,13 @@
       "reason": "content_duplicate",
       "until": 1793419445.9743388
     },
-    "stranded locals use rare truce to leave moscow-occupied town in ukraine": {
-      "reason": "content_duplicate",
-      "until": 1793401480.5905848
-    },
-    "u.s. to send dozens back to afghanistan, despite risk of persecution": {
-      "reason": "content_duplicate",
-      "until": 1793406848.5783253
-    },
     "آمریکا دستور خروج کارکنان غیرضروری خود از عربستان را صادر کرد": {
       "reason": "content_duplicate",
       "until": 1793412646.695393
     },
-    "آکسیوس: حمله نظامی، محور اصلی نشست ترامپ با فرمانده سنتکام نبود": {
-      "reason": "content_duplicate",
-      "until": 1793406845.165006
-    },
     "ادعای ترامپ: گفت وگوهایی با ایران در حال انجام است": {
       "reason": "content_duplicate",
       "until": 1793415964.2750714
-    },
-    "ادعای وزیر خارجه آلمان: بیشتر کشور های گروه ۲۰ با ما هم نظر هستند که ایران باید پای میز مذاکره بنشیند و حملات حوثی ها را متوقف کند": {
-      "reason": "content_duplicate",
-      "until": 1793403217.546475
-    },
-    "بازگشت کایل اسنایدر به دوران اوج جوانی؛/ بزرگترین حریف حسن یزدانی کیست؟!": {
-      "reason": "content_duplicate",
-      "until": 1793405071.0242512
-    },
-    "تداوم نقض آتش بس؛ نظامیان صهیونیست جنوب لبنان را گلوله باران کردند": {
-      "reason": "content_duplicate",
-      "until": 1793396349.4582675
-    },
-    "ترامپ: ایران نباید به سلاح هسته ای دست یابد!": {
-      "reason": "content_duplicate",
-      "until": 1793399751.1523554
     },
     "حملات اوکراین صادرات گازوئیل روسیه را تهدید می کند": {
       "reason": "content_duplicate",
@@ -4385,10 +4338,6 @@
     "سپاه: چهارمین نفتکش متخلف در مسیر غیر مجاز تنگه هرمز منفجر شد": {
       "reason": "content_duplicate",
       "until": 1793412667.0527778
-    },
-    "شکست آرش یوشیدا مقابل اسنایدر در ۱۴ ثانیه پایانی فینال قهرمانی جهان": {
-      "reason": "content_duplicate",
-      "until": 1793396340.7839048
     },
     "عربستان مدعی سرنگونی یک پهپاد در منطقه شرقی شد": {
       "reason": "content_duplicate",
@@ -4410,10 +4359,6 @@
     "چهارمین نفتکش متخلف در مسیر غیر مجاز تنگه هرمز منفجر شد": {
       "reason": "content_duplicate",
       "until": 1793413994.6722617
-    },
-    "کرملین: روسیه با آتش بس منجر به تجدید قوای کی یف مخالف است": {
-      "reason": "content_duplicate",
-      "until": 1793397911.063082
     },
     "یمن ادعای عربستان درباره سرنگونی پهپاد در آسمان مدینه منوره را رد کرد": {
       "reason": "content_duplicate",
@@ -4974,13 +4919,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: پیروزی سپاهان در لیگ برتر فوتبال جزو اخبار سطح اول نیست.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793378057,
-      "title": "پیروزی شیرین شاگردان نویدکیا با طعم صدرنشینی"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر معمول فرهنگی و استانی درباره ثبت جهانی ماسوله",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -5532,6 +5470,13 @@
       "rule": "no-concrete-event",
       "t": 1793406776,
       "title": "Alaska Senate candidate denies knowing about alleged plot to put two Dan Sullivans on ballot"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اعزام نظامیان السالوادور به هائیتی رویداد بین‌المللی مهمی است",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1793408577,
+      "title": "Could El Salvador’s Bukele Be Haiti’s Savior?"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9090,7 +9035,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793406668
+    "at": 1793408480
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9105,14 +9050,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793407367,
-    "last_failure": 1793406767,
+    "disabled_until": 1793409173,
+    "last_failure": 1793408573,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793407067.0,
-    "last_failure": 1793406767,
-    "last_status": 503
+    "disabled_until": 1793408872.0,
+    "last_failure": 1793408572,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9125,6 +9070,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1793408585,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
