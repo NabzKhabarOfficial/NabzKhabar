@@ -7,6 +7,9 @@ before it is formatted:
 * a sentence or bullet that starts with a dangling «که» (broken relative clause)
   loses the «که» so it reads as a sentence
 
+The same launcher hook also starts the Telegram error logger (v13_error_log),
+so no extra edit to run_bot.py is needed.
+
 Fail-safe: any error returns the original text unchanged.
 """
 
@@ -34,6 +37,11 @@ def fix_text(text):
 
 def install(formatter):
     """Wrap the formatter's title/body functions so every post is cleaned."""
+    try:
+        import v13_error_log
+        v13_error_log.install()
+    except Exception as exc:
+        print(f"V13 TELEGRAM ERROR LOG: not installed ({type(exc).__name__})", flush=True)
     if getattr(formatter, "_v13_text_fixes_installed", False):
         return
     for name in ("format_title", "format_body"):
