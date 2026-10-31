@@ -19,6 +19,7 @@ import v13_byline_cleaner
 import v13_policy_guard
 import v13_editorial_final_patch
 import v13_post_design
+import v13_text_fixes
 import v13_editor_gate
 
 PERSIAN_RSS_FEEDS = [
@@ -167,6 +168,7 @@ def _install_v13_stack():
 
     # Visual layer last: wraps the final caption, photo sender and story.
     v13_post_design.install(main, v13_editorial_formatter)
+    v13_text_fixes.install(v13_editorial_formatter)
 
     # Final editor: installed last so no override/rescue layer can bypass it.
     v13_editor_gate.install(main)
