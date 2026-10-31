@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1793403763
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
-      "t": 1793403778
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793404983
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793404984
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
       "t": 1793404999
     },
@@ -159,32 +143,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
       "t": 1793412262
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793413934
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793413936
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1793413937
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1793413988
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-30",
-      "n": 106
+      "n": 108
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-30",
-      "n": 181
+      "n": 184
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-30",
-      "n": 70
+      "n": 72
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-30",
-      "n": 56
+      "n": 58
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-31",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-31",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-10-29",
@@ -390,27 +390,27 @@
     "2026-10-31": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 10,
-        "ok": 10,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 14,
-        "ok": 14,
+        "calls": 17,
+        "ok": 17,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 6,
-        "calls": 9,
+        "429": 8,
+        "calls": 11,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 2,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 4,
+        "429": 5,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -418,22 +418,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 11,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 9,
         "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 14,
-        "ok": 14,
+        "calls": 16,
+        "ok": 16,
         "other": 0
       }
     }
@@ -1180,6 +1180,13 @@
       "t": 1793412240.8208473,
       "title": "وقوع حادثه برای ۴ نفتکش در تنگه هرمز؛ ترامپ از پایان زودهنگام تنش ها گفت",
       "urgent": false
+    },
+    {
+      "label": "انتظامی",
+      "level": 4,
+      "t": 1793413987.2870617,
+      "title": "گروه هکر وابسته به کره شمالی در سرقت بزرگ ارز دیجیتال بایننس متهم شده اند",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-30",
@@ -1255,12 +1262,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: سیل مرگبار در سوریه با تلفات محدود.",
       "topic": "حادثه",
       "until": 1793417578.4603605
-    },
-    "v4|former sydney childcare worker ashley paul griffith hit with 202 more abuse charges": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Child abuse case in Australia, limited impact",
-      "topic": "قضایی",
-      "until": 1793413732.3776171
     },
     "v4|french crowd gathers for anti-islamophobia rally in paris suburb after attack": {
       "ok": false,
@@ -1513,6 +1514,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: عملیات تخلیه اضطراری کم‌سابقه در منطقه اشغالی اوکراین.",
       "topic": "نظامی",
       "until": 1793464466.9104767
+    },
+    "v4|why north korea's 'elite' hackers are the prime suspect in major binance hack": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=9 happened=True scope=world: Major Binance hack attributed to North Korean hackers",
+      "topic": "فناوری",
+      "until": 1793500335.913389
     },
     "v4|wikipedia’s operator says a bad ai copyright ruling could threaten the open web": {
       "ok": false,
@@ -2114,12 +2121,6 @@
       "topic": "ورزش",
       "until": 1793448256.1833084
     },
-    "v4|این یک اتفاق عادی است/ کارواخال: بارها در رختکن رئال زد و خورد شد!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: غیر مهم، شایعه ورزشی داخلی",
-      "topic": "ورزش",
-      "until": 1793413731.670982
-    },
     "v4|بارش باران و رعدوبرق در ۲۱ استان طی امروز/ وزش باد شدید در تهران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=False scope=iran_national: پیش‌بینی و هشدار جوی عادی فاقد حادثه یا بحران بزرگ است.",
@@ -2659,6 +2660,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Military attack on a major regional base is world news.",
       "topic": "نظامی",
       "until": 1793462698.1914344
+    },
+    "v4|خبر تلخ جدید برای زیدان و فرانسه/ دست زیدان خالی خالی است: انتظار نداشته باشید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Injury crisis, no major result or competition outcome",
+      "topic": "ورزش",
+      "until": 1793500333.6860416
     },
     "v4|خبرنگار سی بی اس: میانجی های قطری امروز با جدیدترین نسخه از پیشنهاد دیپلماتیک برای پایان دادن به جنگ، در تهران حضور دارند / ۴۸ ساعت آینده برای تصمیم گیری در این زمینه بسیار تعیین ک": {
       "ok": true,
@@ -3734,6 +3741,12 @@
       "topic": "جامعه",
       "until": 1793440999.278553
     },
+    "v4|هانیه توسلی گرفتار حادثه آتش سوزی شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Fire incident involving actress during filming",
+      "topic": "حادثه",
+      "until": 1793500337.253768
+    },
     "v4|هزینه جنگ آمریکا با ایران از ۴۷ میلیارد دلار گذشت": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: آمار رسمی پنتاگون از هزینه‌های جنگ جاری.",
@@ -4010,6 +4023,12 @@
       "topic": "اقتصاد",
       "until": 1793473434.0776212
     },
+    "v4|پیونگ یانگ بیانیه مشترک چند کشور درباره تحریم ها را محکوم کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: North Korea condemns joint sanctions statement",
+      "topic": "سیاست",
+      "until": 1793500337.2619393
+    },
     "v4|پیونگ یانگ: تحریم های غرب بر کره شمالی کارساز نیست": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Official condemnation of joint sanctions statement by US and allies",
@@ -4051,6 +4070,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع‌گیری رسمی سخنگوی وزارت خارجه چین علیه تحریم‌های آمریکا",
       "topic": "سیاست",
       "until": 1793426648.7578192
+    },
+    "v4|کار دشوار گل گهر برای صعود؛/ بازگشت امید عالیشاه هم دردی دوا نکرد!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Club match, not major national/international impact",
+      "topic": "ورزش",
+      "until": 1793500334.6531942
     },
     "v4|کارشناس مسائل اسرائیل: انتخابات کنست رفراندومی درباره ماندن یا رفتن نتانیاهو بود": {
       "ok": false,
@@ -4370,15 +4395,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "سقوط بالگرد نظامی ایتالیا در بوسنی با ۴ کشته ⚡️ یک فروند بالگرد نظامی ایتالیا که در قالب نیروی اتحادیه اروپا د",
-      "id": "6bc446253b",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793345662,
-      "verdict": "new",
-      "why": "سقوط بالگرد نظامی ایتالیا در بوسنی، متفاوت از موارد قبلی"
-    },
     {
       "head": "رهایی گروگان در عملیات پلیس ایرانشهر ⚡️ فرمانده انتظامی ایرانشهر از رهایی یک گروگان در عملیات قاطع پلیس در این",
       "id": "b0a6e66940",
@@ -4915,30 +4931,18 @@
       "t": 1793412240,
       "verdict": "new",
       "why": "Different incident regarding tankers in the Strait of Hormuz."
+    },
+    {
+      "head": "گروه هکر وابسته به کره شمالی در سرقت بزرگ ارز دیجیتال بایننس متهم شده اند ⚡️ دو شرکت تحلیل بلاکچین مستقل به شو",
+      "id": "9618b09984",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793413980,
+      "verdict": "new",
+      "why": "هکرهای کره شمالی و سرقت بایننس"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: رالی انتخاباتی، اثر محدود، تصمیم مهم نیست",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793381560,
-      "title": "عقب نشینی ترامپ از لغو تجمع های انتخاباتی در کانزاس و آیووا"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local football match criticism, no national impact.",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1793381560,
-      "title": "کمالوند: نیمه اول دیدار با سپاهان ضعیف ترین نمایش خیبر در لیگ امسال بود"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مربی خیبر درباره پنالتی ندادن اعتراض کرد",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793381561,
-      "title": "فراز کمالوند: پنالتی واضح خیبر چرا گرفته نشد؟؛ آقای «تاج» ورود کند"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: ازسرگیری گردهمایی‌های انتخاباتی دونالد ترامپ پس از لغو موقت",
       "rescued": false,
@@ -5477,72 +5481,33 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1793412180,
       "title": "کالبدشکافی یک بازگشت تاریخی؛ چرا «فلاویو بولسونارو» در برابر «لولا» شکست خورد؟"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Injury crisis, no major result or competition outcome",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1793413933,
+      "title": "خبر تلخ جدید برای زیدان و فرانسه/ دست زیدان خالی خالی است: انتظار نداشته باشید"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Club match, not major national/international impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1793413934,
+      "title": "کار دشوار گل گهر برای صعود؛/ بازگشت امید عالیشاه هم دردی دوا نکرد!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=9 happened=True scope=world: Major Binance hack attributed to North Korean hackers",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1793413935,
+      "title": "Why North Korea's 'elite' hackers are the prime suspect in major Binance hack"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اجر",
-        "الطر",
-        "بر",
-        "تخرب",
-        "تشدد",
-        "جنب",
-        "شهرک",
-        "عمل",
-        "مسر",
-        "منزل",
-        "کفرشب",
-        "گلل"
-      ],
-      "t": 1793369061.9156091,
-      "title": "تشدید حملات ارتش اسرائیل به جنوب لبنان ⚡️ ارتش اسرائیل با اجرای عملیات انفجار در شهرک الطیری و تخریب منزلی در مسیر کفرشو"
-    },
-    {
-      "h": [
-        "اتش",
-        "استگ",
-        "اهن",
-        "برقرر",
-        "خستر",
-        "دبرکل",
-        "دنپر",
-        "ره",
-        "سزم",
-        "شرط",
-        "فر",
-        "قد",
-        "متحد",
-        "محکم",
-        "ملل"
-      ],
-      "t": 1793369085.0614433,
-      "title": "دبیرکل سازمان ملل خواستار آتش بس فوری در اوکراین شد ⚡️ دبیرکل سازمان ملل متحد با محکوم کردن حملات به ایستگاه راه آهن دنی"
-    },
-    {
-      "h": [
-        "ابلغ",
-        "اجر",
-        "ال",
-        "تقف",
-        "خدر",
-        "خرج",
-        "رند",
-        "عرف",
-        "متقف",
-        "محمدرض",
-        "مصب",
-        "معن",
-        "مقرر",
-        "هت",
-        "ورد"
-      ],
-      "t": 1793369185.9321978,
-      "title": "روند واردات خودرو برای ایرانیان مقیم خارج متوقف شد ⚡️ محمدرضا عارف، معاون اول رئیس جمهور، مصوبه هیئت وزیران درباره توقف "
-    },
     {
       "h": [
         "ازد",
@@ -6120,52 +6085,39 @@
       ],
       "t": 1793412240.8078623,
       "title": "وقوع حادثه برای ۴ نفتکش در تنگه هرمز؛ ترامپ از پایان زودهنگام تنش ها گفت ⚡️ سپاه پاسداران انقلاب اسلامی از وقوع حادثه بر"
+    },
+    {
+      "h": [
+        "احتمل",
+        "ارز",
+        "اشر",
+        "بزرگ",
+        "بلکچن",
+        "بننس",
+        "تحلل",
+        "ترن",
+        "جهن",
+        "دجتل",
+        "سرقت",
+        "شرکت",
+        "شمل",
+        "شهد",
+        "صرف",
+        "لزرس",
+        "متهم",
+        "مستقل",
+        "نقش",
+        "هکر",
+        "وبست",
+        "وحد",
+        "کره",
+        "گر"
+      ],
+      "t": 1793413987.2719183,
+      "title": "گروه هکر وابسته به کره شمالی در سرقت بزرگ ارز دیجیتال بایننس متهم شده اند ⚡️ دو شرکت تحلیل بلاکچین مستقل به شواهد قوی اش"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "برج",
-        "تبرز",
-        "دمپزشک",
-        "فلک",
-        "مجتمع",
-        "محدد",
-        "مسکن",
-        "وقع"
-      ],
-      "cities": [
-        "تبریز"
-      ],
-      "kind": "attack",
-      "places": [
-        "تبریز"
-      ],
-      "regions": [
-        "iran_north"
-      ],
-      "t": 1793334778.0653477,
-      "title": "انفجار گاز در تبریز ۲ مصدوم برجای گذاشت ⚡️ وقوع انفجار گاز در یک مجتمع مسکونی در محدوده فلکه دامپزشکی تبریز، دو مصدوم بر",
-      "toll": 2
-    },
-    {
-      "a": [
-        "اتحد",
-        "اتل",
-        "بسن",
-        "بلگرد",
-        "فرند",
-        "فعلت",
-        "قلب"
-      ],
-      "cities": [],
-      "kind": "crash",
-      "places": [],
-      "regions": [],
-      "t": 1793345666.1956651,
-      "title": "سقوط بالگرد نظامی ایتالیا در بوسنی با ۴ کشته ⚡️ یک فروند بالگرد نظامی ایتالیا که در قالب نیروی اتحادیه اروپا در بوسنی فع",
-      "toll": 4
-    },
     {
       "a": [
         "ابظب",
@@ -6423,68 +6375,42 @@
       "t": 1793396050.9953978,
       "title": "آمریکا فروش ۵۰۰ موشک پاتریوت به اوکراین را تصویب کرد ⚡️ وزارت امور خارجه آمریکا فروش موشک های پاتریوت به اوکراین را تصوی",
       "toll": 0
+    },
+    {
+      "a": [
+        "احتمل",
+        "ارز",
+        "اشر",
+        "بزرگ",
+        "بلکچن",
+        "بننس",
+        "تحلل",
+        "ترن",
+        "جهن",
+        "دجتل",
+        "سرقت",
+        "شرکت",
+        "صرف",
+        "لزرس",
+        "متهم",
+        "مستقل",
+        "نقش",
+        "هکر",
+        "وبست",
+        "وحد",
+        "کره"
+      ],
+      "cities": [],
+      "kind": "cyber",
+      "places": [],
+      "regions": [],
+      "t": 1793413987.279597,
+      "title": "گروه هکر وابسته به کره شمالی در سرقت بزرگ ارز دیجیتال بایننس متهم شده اند ⚡️ دو شرکت تحلیل بلاکچین مستقل به شواهد قوی اش",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اجد",
-        "ار",
-        "ارک",
-        "اشر",
-        "اقتصد",
-        "امتز",
-        "امرک",
-        "انتخبت",
-        "تثر",
-        "تحت",
-        "ترر",
-        "ترمپ",
-        "تصمم",
-        "تغر",
-        "تفق",
-        "تکتک",
-        "تکد",
-        "دشمن",
-        "دنبل",
-        "رز",
-        "رس",
-        "رهبرد",
-        "سختر",
-        "شرط",
-        "شکست",
-        "شکف",
-        "طرح",
-        "لجستک",
-        "مجلس",
-        "محصر",
-        "محمد",
-        "مشر",
-        "مفقت",
-        "مقم",
-        "مهد",
-        "نجت",
-        "نخهد",
-        "ندرد",
-        "نظم",
-        "نم",
-        "نکم",
-        "نگر",
-        "هست",
-        "هچ",
-        "وحدت",
-        "ورد",
-        "ونس",
-        "پدفند",
-        "کسب",
-        "کشر",
-        "گر"
-      ],
-      "s": "مهدی محمدی",
-      "t": 1793282727.6680655,
-      "title": "مهدی محمدی: ایران برای نجات ترامپ امتیاز هسته ای نمی دهد ⚡️ مهدی محمدی افزود آمریکا به دنبال کسب امتیاز هسته ای برای موف"
-    },
     {
       "k": [
         "احتمل",
@@ -8944,6 +8870,48 @@
       ],
       "t": 1793412240.794449,
       "title": "وقوع حادثه برای ۴ نفتکش در تنگه هرمز؛ ترامپ از پایان زودهنگام تنش ها گفت ⚡️ سپاه پاسداران انقلاب اسلامی از وقوع حادثه بر"
+    },
+    {
+      "k": [
+        "ابتد",
+        "ات",
+        "احتمل",
+        "ارز",
+        "اشر",
+        "بررس",
+        "بزرگ",
+        "بلکچن",
+        "بننس",
+        "تحلل",
+        "ترن",
+        "تصف",
+        "تپ",
+        "جهن",
+        "حمل",
+        "دجتل",
+        "دلت",
+        "سرقت",
+        "شرکت",
+        "شمل",
+        "شهد",
+        "صرف",
+        "لزرس",
+        "متهم",
+        "مستقل",
+        "مشب",
+        "مهندس",
+        "نفذ",
+        "نقش",
+        "هکر",
+        "وبست",
+        "وحد",
+        "کره",
+        "گر",
+        "گستر",
+        "گسترد"
+      ],
+      "t": 1793413987.2640848,
+      "title": "گروه هکر وابسته به کره شمالی در سرقت بزرگ ارز دیجیتال بایننس متهم شده اند ⚡️ دو شرکت تحلیل بلاکچین مستقل به شواهد قوی اش"
     }
   ],
   "_text_polish": {
@@ -8955,7 +8923,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793412094
+    "at": 1793413868
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8969,14 +8937,22 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "last_quality_failure": 1793413968,
+    "last_status": 422
+  },
+  "gemini:gemini-3.5-flash-lite": {
+    "last_quality_failure": 1793413957,
+    "last_status": 422
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793412857,
-    "last_failure": 1793412257,
+    "disabled_until": 1793414543,
+    "last_failure": 1793413943,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793411998,
-    "last_failure": 1793411398,
+    "disabled_until": 1793414539,
+    "last_failure": 1793413939,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
