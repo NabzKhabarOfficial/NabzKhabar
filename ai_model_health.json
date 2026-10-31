@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793403747
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1793403748
-    },
-    {
       "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
       "t": 1793403763
     },
@@ -159,32 +151,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
       "t": 1793411437
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793412180
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1793412262
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-30",
-      "n": 104
+      "n": 106
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-30",
-      "n": 179
+      "n": 181
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-30",
-      "n": 66
+      "n": 70
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-30",
-      "n": 52
+      "n": 56
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-31",
-      "n": 11
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-31",
-      "n": 11
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-10-29",
@@ -390,27 +390,27 @@
     "2026-10-31": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 4,
-        "calls": 6,
+        "429": 6,
+        "calls": 9,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
+        "ok": 2,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 2,
-        "calls": 3,
+        "429": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -418,22 +418,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 11,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
+        "ok": 9,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 11,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 7,
         "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 11,
-        "ok": 11,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       }
     }
@@ -1173,6 +1173,13 @@
       "t": 1793406850.437013,
       "title": "آرش یوشیدا؛ کشتی گیر ژاپنی با اصالت ایرانی در کانون توجه ورزش جهان",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1793412240.8208473,
+      "title": "وقوع حادثه برای ۴ نفتکش در تنگه هرمز؛ ترامپ از پایان زودهنگام تنش ها گفت",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-30",
@@ -1302,6 +1309,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major global tech company stock crash with significant financial impact.",
       "topic": "اقتصاد",
       "until": 1793484224.3258579
+    },
+    "v4|iran war live: 4 tankers hit in hormuz; trump says conflict will end soon": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Four tankers hit in Hormuz, major maritime security incident.",
+      "topic": "نظامی",
+      "until": 1793498581.634756
     },
     "v4|iran war live: oil tankers hit in hormuz; trump says conflict will end soon": {
       "ok": true,
@@ -3295,12 +3308,6 @@
       "topic": "ورزش",
       "until": 1793467961.609529
     },
-    "v4|فرانسه ۷۰ هزار نیروی امنیتی در خیابان ها مستقر می کند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: استقرار ۷۰ هزار نیروی امنیتی در فرانسه به دلیل اعتراضات",
-      "topic": "نظامی",
-      "until": 1793412164.0591416
-    },
     "v4|فرخی: برای اهتزاز پرچم ایران به مولایم علی(ع) متوسل شدم": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: بیان شخصی، بدون رویداد واقعی",
@@ -4057,6 +4064,12 @@
       "topic": "سیاست",
       "until": 1793417578.4952261
     },
+    "v4|کالبدشکافی یک بازگشت تاریخی؛ چرا «فلاویو بولسونارو» در برابر «لولا» شکست خورد؟": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: انتخابات برزیل ۲۰۲۶، تغییر رهبری بزرگ‌ترین اقتصاد لاتین",
+      "topic": "سیاست",
+      "until": 1793498580.7334847
+    },
     "v4|کامبک چادرملو مقابل ملوان؛ شاگردان زارع برد را با باخت عوض کردند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: نتیجه بازی فوتبال باشگاهی اهمیت ملی سراسری ندارد",
@@ -4290,6 +4303,10 @@
       "reason": "content_duplicate",
       "until": 1793425378.1294947
     },
+    "iran war live: 4 tankers hit in hormuz; trump says conflict will end soon": {
+      "reason": "content_duplicate",
+      "until": 1793433821.695562
+    },
     "iran war live: oil tankers hit in hormuz; trump says conflict will end soon": {
       "reason": "content_duplicate",
       "until": 1793428437.0544786
@@ -4353,24 +4370,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "عرضه ۴۲ میلیون بشکه نفت از ذخایر اضطراری اروپا ⚡️ اروپا طی سه ماه آینده ۴۲ میلیون بشکه از ذخایر اضطراری نفت خو",
-      "id": "cc2b63af93",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793342083,
-      "verdict": "new",
-      "why": "ذخیره اضطراری نفت اروپا، موضوع جدید"
-    },
-    {
-      "head": "بن بست در تصویب طرح بودجه پنتاگون و خطر ناکامی در جایگزینی سلاح ها ⚡️ ناکامی در تصویب این لوایح، گزینه های پنت",
-      "id": "5a22d23e25",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793342098,
-      "verdict": "new",
-      "why": "مورد جدید در مورد محدودیت‌های بودجه پنتاگون و جنگ ایران"
-    },
     {
       "head": "سقوط بالگرد نظامی ایتالیا در بوسنی با ۴ کشته ⚡️ یک فروند بالگرد نظامی ایتالیا که در قالب نیروی اتحادیه اروپا د",
       "id": "6bc446253b",
@@ -4898,16 +4897,27 @@
       "t": 1793406845,
       "verdict": "new",
       "why": "آرش یوشیدا کشتی‌گیر ژاپنی با اصالت ایرانی"
+    },
+    {
+      "head": "وقوع حادثه برای ۴ نفتکش در تنگه هرمز؛ ترامپ از پایان زودهنگام تنش ها گفت ⚡️ سپاه پاسداران انقلاب اسلامی از وقو",
+      "id": "f05006de4a",
+      "match": "توقف دو نفتکش متخلف در آب های جنوبی تنگه هرمز",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1793412221,
+      "verdict": "repeat",
+      "why": "رخداد حادثه برای نفتکش‌ها در تنگه هرمز قبلاً منتشر شده است."
+    },
+    {
+      "head": "وقوع حادثه برای ۴ نفتکش در تنگه هرمز؛ ترامپ از پایان زودهنگام تنش ها گفت ⚡️ سپاه پاسداران انقلاب اسلامی از وقو",
+      "id": "f05006de4a",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1793412240,
+      "verdict": "new",
+      "why": "Different incident regarding tankers in the Strait of Hormuz."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: club match, not national significance",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793381559,
-      "title": "کسب سه امتیاز در خرم آباد اهمیت زیادی داشت/خیبر شایسته حمایت بیشتر است"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: رالی انتخاباتی، اثر محدود، تصمیم مهم نیست",
       "rescued": false,
@@ -5460,31 +5470,19 @@
       "rule": "no-concrete-event",
       "t": 1793411407,
       "title": "Global nature talks reach deal but money remains an issue"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: انتخابات برزیل ۲۰۲۶، تغییر رهبری بزرگ‌ترین اقتصاد لاتین",
+      "rescued": true,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1793412180,
+      "title": "کالبدشکافی یک بازگشت تاریخی؛ چرا «فلاویو بولسونارو» در برابر «لولا» شکست خورد؟"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "احتمل",
-        "انتخب",
-        "بررس",
-        "برزل",
-        "تثرگذر",
-        "تحقق",
-        "تط",
-        "دستر",
-        "رست",
-        "رند",
-        "عل",
-        "فدرل",
-        "پلس"
-      ],
-      "t": 1793367250.0590591,
-      "title": "دستور دیوان عالی برزیل برای تحقیق درباره توطئه احتمالی آمریکا در انتخابات ⚡️ دیوان عالی برزیل به پلیس فدرال این کشور دست"
-    },
     {
       "h": [
         "اجر",
@@ -6105,6 +6103,23 @@
       ],
       "t": 1793406850.424107,
       "title": "آرش یوشیدا؛ کشتی گیر ژاپنی با اصالت ایرانی در کانون توجه ورزش جهان ⚡️ آرش یوشیدا کشتی گیر ژاپنی که فرزند جواد اسفنجانی، "
+    },
+    {
+      "h": [
+        "اسلم",
+        "انقلب",
+        "تنش",
+        "تنگ",
+        "حدث",
+        "زدهنگم",
+        "نفتکش",
+        "هرمز",
+        "وقع",
+        "پسدر",
+        "چهر"
+      ],
+      "t": 1793412240.8078623,
+      "title": "وقوع حادثه برای ۴ نفتکش در تنگه هرمز؛ ترامپ از پایان زودهنگام تنش ها گفت ⚡️ سپاه پاسداران انقلاب اسلامی از وقوع حادثه بر"
     }
   ],
   "_published_incidents": [
@@ -6412,111 +6427,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ار",
-        "اعترض",
-        "افزش",
-        "امرک",
-        "امنل",
-        "برز",
-        "برنگخت",
-        "بست",
-        "تنگ",
-        "جمهر",
-        "جنگ",
-        "دد",
-        "رس",
-        "سرتسر",
-        "فرنس",
-        "قمت",
-        "مجب",
-        "مکرن",
-        "هرمز",
-        "وضعت",
-        "گسترد"
-      ],
-      "s": "ماکرون",
-      "t": 1793277358.9931,
-      "title": "ماکرون: جنگ آمریکا علیه ایران اعتراضات در فرانسه را برانگیخت ⚡️ امانوئل مکرون، رئیس جمهور فرانسه، اعلام کرد جنگ آمریکا ع"
-    },
-    {
-      "k": [
-        "ارزش",
-        "انحصر",
-        "انستکرت",
-        "بررس",
-        "تفق",
-        "خرد",
-        "خردر",
-        "درز",
-        "دلر",
-        "رقب",
-        "شرکت",
-        "عدم",
-        "قرردد",
-        "مدخل",
-        "مشرط",
-        "ملرد",
-        "نه"
-      ],
-      "t": 1793277403.628195,
-      "title": "دروازه دش اینستاکارت را در قراردادی ۱۷ میلیارد دلاری خرید ⚡️ شرکت دروازه دش در قراردادی به ارزش ۱۷ میلیارد دلار توافق کر"
-    },
-    {
-      "k": [
-        "اثر",
-        "اسرل",
-        "بندر",
-        "حرکت",
-        "حف",
-        "حمل",
-        "در",
-        "رمن",
-        "غرق",
-        "مقصد",
-        "هدف",
-        "پهپد",
-        "کشت"
-      ],
-      "t": 1793279154.4105809,
-      "title": "غرق شدن کشتی اسرائیلی در دریای سیاه بر اثر حمله پهپادی ⚡️ یک کشتی اسرائیل که از بندر حیفا به مقصد رومانی در حرکت بود، در"
-    },
-    {
-      "k": [
-        "اجز",
-        "ار",
-        "امرک",
-        "انتقد",
-        "بزدد",
-        "بزگشت",
-        "جر",
-        "جنگ",
-        "حز",
-        "خسر",
-        "خسرت",
-        "خلج",
-        "دد",
-        "دلت",
-        "دمکر",
-        "سنتر",
-        "فرس",
-        "قطر",
-        "متهم",
-        "مرف",
-        "مز",
-        "نکرد",
-        "ورد",
-        "پد",
-        "پنه",
-        "پگ",
-        "کر",
-        "کرس",
-        "کشر"
-      ],
-      "t": 1793281009.6744313,
-      "title": "انتقاد سناتور مورفی از پنهان کاری دولت آمریکا درباره خسارات پایگاه های خلیج فارس ⚡️ کریس مورفی، سناتور دموکرات آمریکایی "
-    },
     {
       "k": [
         "اجد",
@@ -9007,6 +8917,33 @@
       ],
       "t": 1793406850.4108977,
       "title": "آرش یوشیدا؛ کشتی گیر ژاپنی با اصالت ایرانی در کانون توجه ورزش جهان ⚡️ آرش یوشیدا کشتی گیر ژاپنی که فرزند جواد اسفنجانی، "
+    },
+    {
+      "k": [
+        "اخر",
+        "ار",
+        "اسلم",
+        "انقلب",
+        "تحل",
+        "ترمپ",
+        "تنش",
+        "تنگ",
+        "حدث",
+        "درگر",
+        "دنلد",
+        "زد",
+        "زدهنگم",
+        "سپ",
+        "نفتکش",
+        "هرمز",
+        "وقع",
+        "وکنش",
+        "پسدر",
+        "چهر",
+        "یبد"
+      ],
+      "t": 1793412240.794449,
+      "title": "وقوع حادثه برای ۴ نفتکش در تنگه هرمز؛ ترامپ از پایان زودهنگام تنش ها گفت ⚡️ سپاه پاسداران انقلاب اسلامی از وقوع حادثه بر"
     }
   ],
   "_text_polish": {
@@ -9018,7 +8955,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793411309
+    "at": 1793412094
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9033,8 +8970,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793412002,
-    "last_failure": 1793411402,
+    "disabled_until": 1793412857,
+    "last_failure": 1793412257,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
