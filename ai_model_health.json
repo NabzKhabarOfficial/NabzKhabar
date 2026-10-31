@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793403272
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793403272
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793403276
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793403276
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793403281
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793403281
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1793403285
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
       "t": 1793403293
     },
@@ -159,32 +131,60 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1793408587
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793410372
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793410373
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1793410388
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1793410395
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793410396
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1793410398
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1793410412
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-30",
-      "n": 102
+      "n": 103
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-30",
-      "n": 174
+      "n": 176
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-30",
-      "n": 64
+      "n": 65
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-30",
-      "n": 50
+      "n": 51
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-10-31",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-31",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-10-29",
@@ -390,22 +390,23 @@
     "2026-10-31": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 3,
-        "calls": 4,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 1,
-        "other": 0
+        "other": 1
       },
       "gemini:gemini-3.8-flash": {
         "429": 1,
@@ -417,17 +418,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 7,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 4
+        "ok": 5,
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1200,12 +1201,6 @@
       "topic": "فناوری",
       "until": 1793487780.4939568
     },
-    "v4|armenian parliament turns into a boxing ring, third time in a month": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Parliamentary brawl, third time in month",
-      "topic": "سیاست",
-      "until": 1793408608.6886241
-    },
     "v4|brazil summons argentinian diplomat over bolsonaro’s flight to us": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: Diplomatic spat, limited global impact",
@@ -1241,6 +1236,12 @@
       "reason": "ai groq/openai/gpt-oss-20b batch score=5 happened=True scope=world: EU helicopter crash kills four in Bosnia",
       "topic": "حادثه",
       "until": 1793410419.4184291
+    },
+    "v4|fake polls expose vulnerabilities in us elections ahead of midterms": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Fake polls raise US election concerns",
+      "topic": "سیاست",
+      "until": 1793496772.7538269
     },
     "v4|first youth olympic games in africa": {
       "ok": false,
@@ -1386,6 +1387,12 @@
       "topic": "سیاست",
       "until": 1793450032.2559845
     },
+    "v4|police deployed during stand-off over control of top poland court": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=world: Police deployed in Poland court stand-off",
+      "topic": "قضایی",
+      "until": 1793496798.4141183
+    },
     "v4|polish police deployed to top court after head judge suspended": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: استقرار پلیس در دادگاه عالی لهستان پس از تعلیق رئیس.",
@@ -1457,12 +1464,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: هشدار و نظر شخصی کارشناس درباره حباب هوش مصنوعی.",
       "topic": "فناوری",
       "until": 1793464466.9407017
-    },
-    "v4|trump cancels iowa, kansas midterm events, opts for ‘tele-rallies’": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: ترامپ کنسل رویدادهای حاشیه‌ای، به رالی‌های تلویزیونی تغییر داد",
-      "topic": "سیاست",
-      "until": 1793408608.0564475
     },
     "v4|u.s. to send dozens back to afghanistan, despite risk of persecution": {
       "ok": true,
@@ -1577,12 +1578,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و کشاورزی مربوط به پایش زنبورستان های طبس",
       "topic": "اقتصاد",
       "until": 1793424831.798367
-    },
-    "v4|آمادگی پنتاگون برای کاهش ۴۰۰ میلیارد دلاری بودجه نظامی آمریکا": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=world: Draft US military budget under discussion, not finalized.",
-      "topic": "نظامی",
-      "until": 1793408611.2677555
     },
     "v4|آمار جدید پنتاگون از نظامیان به هلاکت رسیده آمریکایی در جنگ علیه ایران": {
       "ok": true,
@@ -1739,12 +1734,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: میانجیگران قطری برای توافق ایران و آمریکا به تهران بازگشتند.",
       "topic": "سیاست",
       "until": 1793433856.940648
-    },
-    "v4|ادعای سفیر آمریکا در ترکیه درباره احتمال کاهش تنش در خاورمیانه طی دو هفته آینده": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Ambassador says tensions may ease in two weeks.",
-      "topic": "سیاست",
-      "until": 1793408611.2810082
     },
     "v4|ادعای وزیر خارجه آلمان: بیشتر کشور های گروه ۲۰ با ما هم نظر هستند که ایران باید پای میز مذاکره بنشیند و حملات حوثی ها را متوقف کند": {
       "ok": true,
@@ -2742,6 +2731,12 @@
       "topic": "سیاست",
       "until": 1793464466.9271696
     },
+    "v4|دنیل بیرلیگیا:/ مربی خیلی سخت گیر است، در تمرینات گریه می کنیم!": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اظهارات بازیکن فوتبال درباره تمرینات اهمیت درجه اول ندارد",
+      "topic": "ورزش",
+      "until": 1793496796.4581952
+    },
     "v4|دو فروند نفتکش متخلف در آبهای جنوبی تنگه هرمز متوقف شدند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: توقیف نفتکش‌ها در تنگه هرمز رویداد نظامی امنیتی مهم جهانی است.",
@@ -2789,6 +2784,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local rice yield reported, no national impact",
       "topic": "اقتصاد",
       "until": 1793428404.0576131
+    },
+    "v4|رایزنی وزیران خارجه عربستان و آمریکا درباره مسائل منطقه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: مشاوره بدون تصمیم ملموس",
+      "topic": "سیاست",
+      "until": 1793496771.7311695
     },
     "v4|رحمان عموزاد به دیدار رده بندی رفت": {
       "ok": false,
@@ -3168,6 +3169,12 @@
       "topic": "اقتصاد",
       "until": 1793437479.6396182
     },
+    "v4|طرح جامع نیروهای مسلح ایران برای پاسخی گسترده به هر تجاوزی آماده است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=iran_national: Senior official says forces ready for any aggression",
+      "topic": "نظامی",
+      "until": 1793496798.4353678
+    },
     "v4|طرح جامع واکنش نظامی ایران تکمیل شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=iran_national: اعلام تکمیل طرح نظامی بدون جزئیات عملیاتی، در حد مانور تبلیغاتی است.",
@@ -3516,12 +3523,6 @@
       "topic": "ورزش",
       "until": 1793442800.0887759
     },
-    "v4|مسی کشتی تفریحی 10 میلیون دلاری سفارش داد!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مسی خرید تفریحی لوکس",
-      "topic": "اقتصاد",
-      "until": 1793408605.621219
-    },
     "v4|مشاغل رکورددار بیشترین افزایش دستمزد در آمریکا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: گزارش تحلیلی درباره تغییرات دستمزد در آمریکا، فاقد اهمیت راهبردی ملی است.",
@@ -3533,12 +3534,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: تحلیل و ادعای یک مشاور درباره مواضع گذشته ترامپ است.",
       "topic": "سیاست",
       "until": 1793469864.141646
-    },
-    "v4|مصلحت اندیaی ممکن نیست/ قانون علیه حکم عجیب برای ملوان - تراکتور": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: قضیۀ انضباطی فوتبال، تاثیر ملی کم",
-      "topic": "ورزش",
-      "until": 1793408607.3445923
     },
     "v4|مطلق زاده: آرزو دارم فولاد قهرمان شود/با بی مهری از استقلال خوزستان جدا شدم": {
       "ok": false,
@@ -3743,6 +3738,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: آمار رسمی پنتاگون از هزینه‌های جنگ جاری.",
       "topic": "نظامی",
       "until": 1793433866.6651945
+    },
+    "v4|هشت قهرمانی و رویای تبدیل شدن به باشگاه/ تاجرنیا و گزارشی از 450 روز مدیریت استقلال": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=local: Report on 450 days of club management",
+      "topic": "ورزش",
+      "until": 1793496798.4248207
     },
     "v4|هشدار به مسافران و گردشگران؛ بارش باران و احتمال سیلاب در مازندران": {
       "ok": false,
@@ -4079,12 +4080,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: حذف کشتی‌گیر ایران از مسابقات جهانی، اخبار ورزشی سطح پایین‌تر است.",
       "topic": "ورزش",
       "until": 1793442818.2536013
-    },
-    "v4|کردکوی در موج ۲۴۳ تجمعات شبانه میزبان حضور مردم شد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمعات شبانه بدون اثر ملی",
-      "topic": "جامعه",
-      "until": 1793408606.3873432
     },
     "v4|کرمان در تدارک ذخیره سازی سوخت صنایع برای عبور از زمستان": {
       "ok": false,
@@ -4919,27 +4914,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر معمول فرهنگی و استانی درباره ثبت جهانی ماسوله",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1793378062,
-      "title": "ارزیاب ایکوموس: تصمیم نهایی درباره ثبت جهانی ماسوله پس از بررسی های تخصصی اتخاذ می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=iran_national: پیام تسلیت رئیس‌جمهور برای درگذشت مادر مقام سابق، خبری تشریفاتی و کم‌اهمیت است",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1793379779,
-      "title": "رئیس جمهور درگذشت مادر وزیر پیشین نفت را تسلیت گفت"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US league schedule change, not top-tier sports news",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793379780,
-      "title": "پایان تقویم سنتی در فوتبال آمریکا ۲۰۲۷/ رسمی: لیگِ مسی مثل لیگهای اروپایی شد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: بیان شخصی، بدون رویداد واقعی",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5477,6 +5451,27 @@
       "rule": "no-concrete-event",
       "t": 1793408577,
       "title": "Could El Salvador’s Bukele Be Haiti’s Savior?"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: مشاوره بدون تصمیم ملموس",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1793410371,
+      "title": "رایزنی وزیران خارجه عربستان و آمریکا درباره مسائل منطقه"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Fake polls raise US election concerns",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793410372,
+      "title": "Fake polls expose vulnerabilities in US elections ahead of midterms"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اظهارات بازیکن فوتبال درباره تمرینات اهمیت درجه اول ندارد",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1793410396,
+      "title": "دنیل بیرلیگیا:/ مربی خیلی سخت گیر است، در تمرینات گریه می کنیم!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9035,7 +9030,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793408480
+    "at": 1793410291
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9050,13 +9045,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793409173,
-    "last_failure": 1793408573,
-    "last_status": 429
+    "disabled_until": 1793410695.0,
+    "last_failure": 1793410395,
+    "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793408872.0,
-    "last_failure": 1793408572,
+    "disabled_until": 1793410688.0,
+    "last_failure": 1793410388,
     "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
