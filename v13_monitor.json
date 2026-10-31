@@ -1,21 +1,14 @@
 {
   "ai_pool": {},
   "all_selected_blocked": false,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-10-31T15:04:52.743443+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-10-31T15:12:41.830225+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "final_guard:old-event",
-      "result": "editorial_blocked",
-      "source": "irna.ir",
-      "started_at": "2026-10-31T15:04:15.039066+00:00",
-      "title": "انتخابات پارلمانی اسرائیل ۲۰۲۶",
-      "url": "https://irna.ir/subject/86308462/%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA-%D9%BE%D8%A7%D8%B1%D9%84%D9%85%D8%A7%D9%86%DB%8C-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84-%DB%B2%DB%B0%DB%B2%DB%B6"
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: درخواست رهبر کاتولیک‌ها برای ممنوعیت سلاح‌های هوش مصنوعی؛ فاقد تصمیم اجرایی فوری.",
@@ -50,10 +43,10 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: اظهارنظر و پیشنهاد یک سناتور درباره آینده",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: اظهارنظر و پیشنهاد یک سناتور که هنوز به تصمیم تبدیل نشده",
       "result": "editorial_blocked",
       "source": "",
-      "title": "سناتور کریس مورفی: اگر دموکرات ها در انتخابات پیروز شوند، باید به قطع بودجه جنگ ترامپ علیه ایران رأی دهند",
+      "title": "کریس مورفی: دموکرات ها باید به قطع بودجه جنگ ترامپ علیه ایران رأی دهند",
       "url": ""
     },
     {
@@ -79,28 +72,53 @@
       "source": "",
       "title": "بازتاب رسانه ای گسترده بیانات مقام معظم رهبری درباره پاسخ ایران به هرگونه تجاوزگری",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: گزارش عملکرد روتین بانکی و آمار داخلی یک بانک خاص",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "رشد ۴۷ درصدی پرداخت تسهیلات ازدواج در بانک ملی ایران",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Player aims for 40 points before match.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "پاسخ فروتنانه گتوزو/ قهرمانی؟ هدف اول، رسیدن به 40 امتیاز است!",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "bbc.co.uk",
+      "started_at": "2026-10-31T15:12:23.109770+00:00",
+      "title": "Evacuees from Russia-occupied city where residents ate weeds arrive in Ukraine",
+      "url": "https://bbc.co.uk/news/articles/cqx2818elrnzo?at_campaign=rss&at_medium=RSS"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
-  "no_publication_candidate": false,
-  "publication_gap": false,
-  "published": 2,
-  "run_status": "success",
-  "selected_for_publication": 12,
-  "skipped_duplicate": [
+  "missed_selected_stories": [
     {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "aljazeera.com",
-      "started_at": "2026-10-31T15:04:47.937182+00:00",
-      "title": "Iran FM says US outreach a ‘positive step’ as delegation in Qatar for talks",
-      "url": "https://aljazeera.com/news/2026/10/31/iran-fm-says-us-outreach-a-positive-step-as-delegation-in-qatar-for-talks?traffic_source=rss"
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "bbc.co.uk",
+      "title": "Evacuees from Russia-occupied city where residents ate weeds arrive in Ukraine",
+      "url": "https://bbc.co.uk/news/articles/cqx2818elrnzo?at_campaign=rss&at_medium=RSS"
     }
   ],
-  "status": "healthy"
+  "no_publication_candidate": false,
+  "publication_gap": false,
+  "published": 1,
+  "run_status": "success",
+  "selected_for_publication": 12,
+  "skipped_duplicate": [],
+  "status": "publication_failure"
 }
