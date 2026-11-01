@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793485981
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793485986
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
       "t": 1793489581
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1793491522
     }
   ],
   "_ai_pace": {
@@ -179,8 +179,8 @@
       "n": 47
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-10-31",
-      "n": 90
+      "day": "2026-11-01",
+      "n": 3
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-10-31",
@@ -192,71 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-10-28": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 44,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 36,
-        "other": 8
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 71,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 70,
-        "other": 1
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 5,
-        "calls": 33,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 14,
-        "other": 14
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 0,
-        "calls": 14,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
-        "other": 14
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 2,
-        "calls": 90,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6740, Requested 1448. Please try again in 1.41s. ",
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 58,
-        "other": 30
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 1,
-        "calls": 90,
-        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5784, Requested 3077. Please try again in 6.4575s.",
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 60,
-        "other": 29
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 0,
-        "calls": 104,
-        "ok": 104,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      }
-    },
     "2026-10-29": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -481,6 +416,14 @@
         "429": 0,
         "calls": 4,
         "ok": 4,
+        "other": 0
+      }
+    },
+    "2026-11-01": {
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       }
     }
@@ -1290,6 +1233,12 @@
       "topic": "سیاست",
       "until": 1793501303.0279908
     },
+    "v4|are manchester united really at risk of a relegation scrap?": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Speculative relegation talk, not major sports result",
+      "topic": "ورزش",
+      "until": 1793577921.128043
+    },
     "v4|brazil summons argentinian diplomat over bolsonaro’s flight to us": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: Diplomatic spat, limited global impact",
@@ -1422,12 +1371,6 @@
       "topic": "حادثه",
       "until": 1793572390.570309
     },
-    "v4|moloney-macdonald scores four tries as england thump usa": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Minor international rugby result, not top-tier",
-      "topic": "ورزش",
-      "until": 1793491416.987405
-    },
     "v4|more than 5,000 die from ebola in dr congo's deadliest outbreak": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: مرگ هزاران نفر از ابولا رویداد بزرگ جهانی است.",
@@ -1452,23 +1395,11 @@
       "topic": "قضایی",
       "until": 1793496798.4141183
     },
-    "v4|polish police deployed to top court after head judge suspended": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: استقرار پلیس در دادگاه عالی لهستان پس از تعلیق رئیس.",
-      "topic": "قضایی",
-      "until": 1793489685.2259924
-    },
     "v4|returning estevao brings x-factor to strikerless chelsea": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: تحلیل ورزشی و بررسی وضعیت بازیکن فوتبال.",
       "topic": "ورزش",
       "until": 1793552662.9836051
-    },
-    "v4|sherrock upsets littler to claim £501,000 prize": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Minor sports event, not a major international championship or title.",
-      "topic": "ورزش",
-      "until": 1793490147.357798
     },
     "v4|spurs revival continues with victory over 10-man crystal palace": {
       "ok": false,
@@ -1722,12 +1653,6 @@
       "topic": "نظامی",
       "until": 1793566990.6099658
     },
-    "v4|ارتش آنلاین لولا؛ چگونه یک کانال واتس اپ ورق انتخابات برزیل را برگرداند؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: گزارش تحلیلی و رسانه‌ای قدیمی درباره انتخابات برزیل اهمیت درجه یک ندارد",
-      "topic": "سیاست",
-      "until": 1793489680.8931272
-    },
     "v4|اردوغان: اقدامات تنش زا در دریای سیاه به نفع هیچکس نیست": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: اظهارات رئیس‌جمهور ترکیه درباره تنش‌های دریای سیاه و بحران اوکراین",
@@ -1764,17 +1689,17 @@
       "topic": "ورزش",
       "until": 1793507641.1178818
     },
+    "v4|از دانش آموزان تا روحانیون؛ همبستگی مردمی پشتوانه اقتدار موشکی ایران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: local rally supporting missile program, not major event",
+      "topic": "جامعه",
+      "until": 1793577922.637008
+    },
     "v4|اسبقیان: استان ها به هیات های پارادوومیدانی مکان مناسب بدهند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine administrative instruction regarding provincial sports facilities.",
       "topic": "ورزش",
       "until": 1793545445.147989
-    },
-    "v4|استان فارس با ۵ زمینلرزه لرزید/ثبت زلزله ۳.۷ در شهداد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: اخبار زمین‌لرزه‌های خفیف استانی فاقد اهمیت ملی یا جهانی است.",
-      "topic": "آب و هوا",
-      "until": 1793490163.4957867
     },
     "v4|استاندار خراسان رضوی: ۲۲ شهر استان گرفتار پدیده فرونشست است": {
       "ok": false,
@@ -1866,12 +1791,6 @@
       "topic": "جامعه",
       "until": 1793522118.3275938
     },
-    "v4|افسوس مهاجم سپاهان در خرم آباد/ کسری هت تریک در بریس را سوزاند!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: جزئیات بازی فوتبال باشگاهی لیگ برتر اهمیت ملی ندارد",
-      "topic": "ورزش",
-      "until": 1793489672.4781723
-    },
     "v4|افشای خسارات سنگین حملات ایران به پایگاه های آمریکایی در دوره جنگ": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: گزارش تحلیلی رسانه‌ای درباره وقایع گذشته، نه یک رویداد جاری.",
@@ -1889,12 +1808,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: Statistical report/comparison without a specific new policy event.",
       "topic": "اقتصاد",
       "until": 1793532880.0444336
-    },
-    "v4|السیسی: مصر برای تثبیت آتش بس در غزه و جلوگیری از تشدید تنش ها تلاش می کند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: اظهارات رئیس‌جمهور مصر درباره آتش‌بس غزه و تحولات منطقه‌ای.",
-      "topic": "سیاست",
-      "until": 1793489685.212854
     },
     "v4|المیادین به نقل از مقام ارشد ایرانی: طرح جامع و به روزشده برای پاسخ به هرگونه تجاوز آماده است": {
       "ok": true,
@@ -1991,12 +1904,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Major military escalation involving US bases in the Middle East.",
       "topic": "نظامی",
       "until": 1793558030.71485
-    },
-    "v4|ایران محور دیدار وزیران خارجه آمریکا با ترکیه و عربستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: مذاکرات دیپلماتیک سطح بالا درباره پرونده‌های حساس منطقه‌ای و ایران",
-      "topic": "سیاست",
-      "until": 1793491415.133788
     },
     "v4|ایستگاه راه آهن بیشه؛ سفر پاییزی به قلب زاگرس با قطار": {
       "ok": false,
@@ -2544,12 +2451,6 @@
       "topic": "سیاست",
       "until": 1793527458.0388627
     },
-    "v4|جنگ زودهنگام بر سر جذب ستاره احیا شده در لیورپول": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=local: Rumor about clubs targeting Ronaldo",
-      "topic": "ورزش",
-      "until": 1793491419.567175
-    },
     "v4|جنگ علیه ایران؛ هزینه ای که ترامپ در انتخابات میان دوره ای می پردازد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis regarding US elections and hypothetical war scenarios.",
@@ -2621,12 +2522,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: پوشش پروپاگاندا و رخداد محلی حکومتی بدون اهمیت ملی.",
       "topic": "جامعه",
       "until": 1793565218.6431825
-    },
-    "v4|حضور یاسین در کاروان؛/ هافبک پرسپولیس بالاخره به لیست بازگشت!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بازیکن تیمی سفر کرد، رویداد مهم نیست",
-      "topic": "ورزش",
-      "until": 1793491415.9380052
     },
     "v4|حماسه آفرینی مردم ولایتمدار اردبیل": {
       "ok": false,
@@ -3072,12 +2967,6 @@
       "topic": "جامعه",
       "until": 1793550818.7369127
     },
-    "v4|سازمان ملل درباره تداوم نگرانی ها از پاک سازی قومی در غزه هشدار داد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: هشدار رسمی سازمان ملل درباره پاک‌سازی قومی در جنگ غزه.",
-      "topic": "سیاست",
-      "until": 1793490163.5047
-    },
     "v4|سامانه تشخیص میکروپلاستیک دانشجوی دانشگاه خوارزمی در جشنواره بوعلی اول شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: موفقیت علمی و دانشگاهی، فاقد اهمیت ملی یا بین‌المللی است.",
@@ -3233,12 +3122,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: سیل محلی بدون گزارش تلفات انبوه یا خسارت استراتژیک.",
       "topic": "آب و هوا",
       "until": 1793524011.7061942
-    },
-    "v4|سیلاب در مکزیک؛ یک کشته و ده ها خودرو گرفتار در آب": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: یک کشته، خسارات محدود، اثر جهانی کم",
-      "topic": "آب و هوا",
-      "until": 1793491381.9428551
     },
     "v4|سیلابی شدن مسیل ها و آبگرفتگی معابر در چهارمحال و بختیاری": {
       "ok": false,
@@ -3420,12 +3303,6 @@
       "topic": "نظامی",
       "until": 1793514882.2242448
     },
-    "v4|عربستان مدعی سرنگونی یک پهپاد در منطقه شرقی شد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Saudi coalition claims drone shootdown in eastern region",
-      "topic": "نظامی",
-      "until": 1793491419.5792398
-    },
     "v4|عضو ائتلاف دولت قانون: بسته ماندن گذرگاه های مرزی با ایران به مردم عراق آسیب وارد می کند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: اظهارنظر یک سیاستمدار درباره وضعیت مرزها بدون تصمیم اجرایی.",
@@ -3558,12 +3435,6 @@
       "topic": "جامعه",
       "until": 1793525691.82508
     },
-    "v4|قطع و جایگزینی ۳۵ هزار اصله درخت در پارک سرخه حصار": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و مربوط به قطع درختان در پارک تهران است.",
-      "topic": "جامعه",
-      "until": 1793489668.2646542
-    },
     "v4|قهر بیرانوند بی هزینه نماند؛ حذف از فهرست اعزامی به دوحه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: حذف یک ورزشکار از تیم ملی تیراندازی اهمیت ملی سطح بالا ندارد.",
@@ -3689,12 +3560,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Negotiation ongoing, no concrete decision, low national impact",
       "topic": "فناوری",
       "until": 1793527416.019266
-    },
-    "v4|مربی ام گفت خجالت نمی کشی برای برنز کشتی می گیری؟/ سعدالله اوف و یک صدای وحشتناک در زانو!": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: مدال آوری ورزشکار مشهور جهانی در مسابقات قهرمانی جهان",
-      "topic": "ورزش",
-      "until": 1793489676.625537
     },
     "v4|مرثیه ای برای جنگل هایی که امنیت آب ایران اند": {
       "ok": false,
@@ -4056,6 +3921,12 @@
       "topic": "آب و هوا",
       "until": 1793566990.6417167
     },
+    "v4|هفته هشتم لیگ دسته اول/ داغ ترین جنگ صدرنشینی فوتبال ایران در کویر!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: second‑division football, low national impact",
+      "topic": "ورزش",
+      "until": 1793577922.623788
+    },
     "v4|همایش شهرداران و روسای شوراهای اسلامی در زاهدان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: کنفرانس محلی شهرداران، اثر محدود بر کشور",
@@ -4247,12 +4118,6 @@
       "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: North Korea condemns joint sanctions statement",
       "topic": "سیاست",
       "until": 1793500337.2619393
-    },
-    "v4|پیونگ یانگ: تحریم های غرب بر کره شمالی کارساز نیست": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Official condemnation of joint sanctions statement by US and allies",
-      "topic": "سیاست",
-      "until": 1793491419.5544925
     },
     "v4|چرایی ممانعت آمریکا از انتقال اورانیوم ایران به روسیه از زبان مدیرعامل روس اتم": {
       "ok": false,
@@ -5273,13 +5138,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر مربوط به لیگ‌های داخلی ووشو اهمیت ملی یا بین‌المللی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793464415,
-      "title": "شگفتی سازی دختران ووشوکار یزد در شروع لیگ برتر"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اعتراض نماینده مجلس به تصمیم شیلات درباره لنج‌داران محلی",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -5831,6 +5689,13 @@
       "rule": "no-concrete-event",
       "t": 1793489565,
       "title": "Coventry, Ipswich, Hull - promoted trio enjoy positive starts"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Speculative relegation talk, not major sports result",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793491521,
+      "title": "Are Manchester United really at risk of a relegation scrap?"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9722,7 +9587,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793489476
+    "at": 1793491437
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
