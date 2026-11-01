@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793485990
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
-      "t": 1793485995
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793486147
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793486147
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793486147
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x",
       "t": 1793497302
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793498556
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793498557
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1793498572
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1793498584
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-31",
-      "n": 172
+      "n": 173
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-31",
-      "n": 57
+      "n": 59
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-31",
-      "n": 47
+      "n": 48
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-01",
-      "n": 11
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-01",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-10-31",
@@ -420,18 +420,32 @@
       }
     },
     "2026-11-01": {
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 2,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 1,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 11,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 11,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 6,
-        "other": 0
+        "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1294,12 +1308,6 @@
       "topic": "جامعه",
       "until": 1793568823.7956023
     },
-    "v4|global nature talks reach deal but money remains an issue": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=world: دستیابی به توافق جهانی برای حفاظت از طبیعت",
-      "topic": "سیاست",
-      "until": 1793497807.8556113
-    },
     "v4|iran braces for more war, no matter the outcome of the u.s. and israeli elections": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis regarding foreign policy and elections.",
@@ -1467,12 +1475,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Minor traffic accident, few injuries, no national impact",
       "topic": "حادثه",
       "until": 1793511243.1005595
-    },
-    "v4|آخرین تصویری که مربیان لیگ می ببینند: سپاهان!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: کوچک، تأثیر محدود بر لیگ",
-      "topic": "ورزش",
-      "until": 1793497797.3697093
     },
     "v4|آخرین نتیجه معاینه های پزشکی حج ۱۴۰۶ اعلام شد/ ۲۸۲ نفر تأیید نشدند": {
       "ok": false,
@@ -2205,6 +2207,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: گفتگوی تلفنی ترامپ و نتانیاهو در مسائل مهم بینâ€Œالمللی",
       "topic": "سیاست",
       "until": 1793575950.0082164
+    },
+    "v4|ترامپ: درباره احتمال ازسرگیری جنگ با ایران اظهارنظر نمی کنم": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: عدم اظهارنظر ترامپ درباره جنگ؛ موضع یا تصمیم جدیدی اعلام نشد",
+      "topic": "سیاست",
+      "until": 1793584976.6591327
     },
     "v4|ترامپ: می خواهند مرا استیضاح کنند چون توان هسته ای جمهوری اسلامی ایران را از بین برده ام": {
       "ok": true,
@@ -3394,12 +3402,6 @@
       "topic": "اقتصاد",
       "until": 1793538288.492189
     },
-    "v4|قتل مادر و دختر ۱۴ماهه اش؛ درخواست حبس ابد برای متهم": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مجرم قتل مادر و دختر در رم",
-      "topic": "قضایی",
-      "until": 1793497798.1381412
-    },
     "v4|قراردادهای یکسان، سند رسمی نیستند/ استعفای پرتعداد سردفتران به دلیل قانون تسهیل": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Routine remarks by an official regarding administrative regulations.",
@@ -4282,6 +4284,12 @@
       "topic": "سیاست",
       "until": 1793552629.854157
     },
+    "v4|گریلیش در متن حاشیه/ سرنوشت مبهم ستاره سابق 100 میلیون یورویی!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: حاشیه‌گری ورزشی، بی‌اهمیت، خبری نیست",
+      "topic": "ورزش",
+      "until": 1793584956.5879686
+    },
     "v4|گزارش آسوشیتدپرس از خسارت سنگین آمریکا در پی پاسخ ایران به حملات/۲۶ پایگاه نظامی تخریب شد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Report on major military escalation and damage to regional bases.",
@@ -5109,13 +5117,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات سرمربی تیم باشگاهی فوتبال زنان، خبری داخلی و غیرمهم است",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793466249,
-      "title": "فعلا هدفمان صعود است/ مرضیه جعفری: با ابرقدرت های جهان بازی داریم"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: دستور معاون اول برای بررسی موانع مولدسازی، خبری روهین و داخلی است.",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5667,6 +5668,13 @@
       "rule": "local-routine-low-value",
       "t": 1793497246,
       "title": "موج ۲۴۵ تجمعات شبانه؛ مردم گلستان همچنان در میدان حضور دارند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: حاشیه‌گری ورزشی، بی‌اهمیت، خبری نیست",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1793498556,
+      "title": "گریلیش در متن حاشیه/ سرنوشت مبهم ستاره سابق 100 میلیون یورویی!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9347,7 +9355,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793497174
+    "at": 1793498482
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9362,14 +9370,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793490144,
-    "last_failure": 1793489544,
+    "disabled_until": 1793499179,
+    "last_failure": 1793498579,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793490140,
-    "last_failure": 1793489540,
-    "last_status": 429
+    "disabled_until": 1793498872.0,
+    "last_failure": 1793498572,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9382,6 +9390,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1793498579,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
