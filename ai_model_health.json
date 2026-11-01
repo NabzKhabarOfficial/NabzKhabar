@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793487793
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793487795
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793487795
     },
@@ -159,32 +151,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
       "t": 1793502222
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1793503954
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1793504038
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-10-31",
-      "n": 101
+      "n": 103
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-31",
-      "n": 174
+      "n": 176
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-31",
-      "n": 60
+      "n": 62
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-31",
-      "n": 49
+      "n": 52
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-01",
-      "n": 16
+      "n": 18
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-01",
-      "n": 15
+      "n": 18
     },
     "openrouter:*": {
       "day": "2026-10-31",
@@ -420,17 +420,24 @@
       }
     },
     "2026-11-01": {
-      "gemini:gemini-3.5-flash-lite": {
+      "gemini:gemini-3.1-flash-lite": {
         "429": 0,
         "calls": 2,
-        "ok": 2,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 1,
+        "other": 1
+      },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 2,
-        "calls": 3,
+        "429": 3,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 1,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
@@ -442,22 +449,28 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 16,
+        "calls": 18,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 15,
+        "ok": 17,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 15,
+        "calls": 18,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 12,
-        "other": 3
+        "ok": 14,
+        "other": 4
+      },
+      "mistral:ministral-8b-latest": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       }
     }
@@ -1943,12 +1956,6 @@
       "topic": "جامعه",
       "until": 1793511270.2869017
     },
-    "v4|بازگشت سپاهان به روزهای خوب با عبور از یک اختلاف": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine sports news about a club's performance and internal management.",
-      "topic": "ورزش",
-      "until": 1793502188.650253
-    },
     "v4|بالاخره ارگانیک مصرف کنیم یا نه؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: مطلب آموزشی و عمومی درباره محصولات ارگانیک است.",
@@ -2410,6 +2417,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=world: Lifestyle and performance commentary on a football player.",
       "topic": "ورزش",
       "until": 1793532879.9985445
+    },
+    "v4|جنگ آشکار بر سر رافینیا/ تصمیم جنجالی آنچلوتی بارسلونا را خشمگین کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=local: Football club dispute, no national impact",
+      "topic": "ورزش",
+      "until": 1793590354.2918088
     },
     "v4|جنگ ایران به بازار کار هوانوردی آمریکا رسید؛تعدیل ۲۰۰ نیروی آلاسکا ایر": {
       "ok": true,
@@ -3011,12 +3024,6 @@
       "topic": "سیاست",
       "until": 1793545453.0056107
     },
-    "v4|سقوط آزاد پدیده فرانسوی در تئاتر رویاها/ زیدان لنی را زنده کرد، منچستر او را کشت!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل عملکرد یک بازیکن فوتبال در سطح باشگاهی و ملی است.",
-      "topic": "ورزش",
-      "until": 1793502183.990215
-    },
     "v4|سقوط تریلی از ارتفاع ۴۰ متری؛ یک نفر جان باخت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Minor local traffic accident with low casualty count.",
@@ -3160,12 +3167,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: 2 Palestinian girls died in camp fire",
       "topic": "سلامت",
       "until": 1793583648.7964752
-    },
-    "v4|شوهرم طلاقم داد؛ صمیمی ترین دوستش به خواستگاری ام آمده/ نگران حرف مردم هستم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=True scope=local: موضوع شخصی و خانوادگی است و فاقد اهمیت ملی یا بین‌المللی است.",
-      "topic": "جامعه",
-      "until": 1793502200.5545425
     },
     "v4|شکار هفتمین مدال با نتایج قدرتمندانه؛ امیرحسین زارع به مدال طلا رسید": {
       "ok": true,
@@ -3328,6 +3329,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: پروژه محلی تبدیل زباله به اقتصاد",
       "topic": "اقتصاد",
       "until": 1793509389.359309
+    },
+    "v4|غنیمت های جدید ایران از آمریکا؛ ماجرای شکار دو mqm-170": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Iran shot down two US drones in Gulf",
+      "topic": "نظامی",
+      "until": 1793590354.3029575
     },
     "v4|فارن پالیسی: جنگ علیه ایران، امنیت انرژی در خلیج فارس را برای سال ها تهدید می کند": {
       "ok": false,
@@ -3496,12 +3503,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Interview, no major competition result",
       "topic": "ورزش",
       "until": 1793545433.5333395
-    },
-    "v4|مخزن ۱۰ هزار مترمکعبی و مجموعه تجاری و ورزشی ستاره شهر؛ دو پروژه در ویترین توسعه صالحیه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: افتتاح پروژه محلی و شهری در صالحیه تهران اهمیت ملی ندارد",
-      "topic": "جامعه",
-      "until": 1793502195.3404536
     },
     "v4|مدودف: وضعیت در لهستان همانند یک کودتای قانون اساسی است": {
       "ok": false,
@@ -3989,6 +3990,12 @@
       "topic": "ورزش",
       "until": 1793588575.2299223
     },
+    "v4|وقوع زلزله ۴.۵ در بوشهر": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Minor 4.5 quake, limited damage, no casualties",
+      "topic": "حادثه",
+      "until": 1793590354.2777288
+    },
     "v4|پاسخ فروتنانه گتوزو/ قهرمانی؟ هدف اول، رسیدن به 40 امتیاز است!": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Player aims for 40 points before match.",
@@ -4121,12 +4128,6 @@
       "topic": "سیاست",
       "until": 1793509459.5374677
     },
-    "v4|کارآگاه خصوصی همان جاسوس اجاره ای است/ آنها به خواسته زنها ، شوهران خیانتکار را تعقیب می کنند؛ چک بلاوصول هم نقد می کنند/ دستمزد هر شب 20میلیون تومان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: گزارش اجتماعی درباره فعالیت‌های غیررسمی و فاقد اهمیت ملی یا راهبردی.",
-      "topic": "جامعه",
-      "until": 1793502193.3264277
-    },
     "v4|کارنی: وابستگی اقتصادی کانادا به آمریکا بیش از حد افزایش یافته است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=False scope=world: Routine policy opinion/statement on economic strategy, not a concrete decision.",
@@ -4138,6 +4139,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: سخنان مقام مسئول درباره گسترش کانون‌های خدمت، رویداد دسته‌اول نیست.",
       "topic": "جامعه",
       "until": 1793545926.3906972
+    },
+    "v4|کاهش چک های برگشتی نسبت به دو دوره چنگ 19 و 40 روزه/ مفهومش این است که اوضاع اقتصادی بهتر شده": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Cheque return decline cited as economic improvement",
+      "topic": "اقتصاد",
+      "until": 1793590354.3132467
     },
     "v4|کدام فرماندهان نظامی در دیدار با رهبری حضور داشتند؟": {
       "ok": true,
@@ -4439,46 +4446,10 @@
       "reason": "content_duplicate",
       "until": 1793507770.2267263
     },
-    "iran fm says us outreach a ‘positive step’ as delegation in qatar for talks": {
-      "reason": "content_duplicate",
-      "until": 1793480692.529433
-    },
-    "احمد ترکوند؛/ دبیر: به او گفتم طلا نگیری به ایران خیانت کردی!": {
-      "reason": "content_duplicate",
-      "until": 1793491494.608705
-    },
-    "امیرحسین زارع بازهم پادشاه سنگین وزن شد": {
-      "reason": "content_duplicate",
-      "until": 1793477084.291524
-    },
-    "انتخابات پارلمانی اسرائیل ۲۰۲۶": {
-      "at": 1793459092.5484529,
-      "reason": "final_guard:old-event",
-      "until": 1793480692.5484529
-    },
-    "انفجار نفتکش ها، نفت را به بالاترین سطح ۶ ماهه رساند/ نفت برنت بشکه ای ۱۱۷ دلار شد": {
-      "reason": "content_duplicate",
-      "until": 1793482575.635254
-    },
-    "اولین طلای ایران: قهرمان المپیک مقابل احمد جوان مات شد!": {
-      "reason": "content_duplicate",
-      "until": 1793477089.1908422
-    },
-    "اوکراینی های شهر اشغالی اولشکی بعد از هفته ها گرسنگی به کشورشان بازگشتند": {
-      "reason": "content_duplicate",
-      "until": 1793486041.3401377
-    },
     "ایران در حمله به بیش از ۲۶ پایگاه آمریکا در خاورمیانه، ابتدا سامانه های هشدار زودهنگام را هدف قرار داد/تهران با این اقدام مسیر را برای حملات بعدی به انبارها، محل اسکان نیروهای نظام": {
-      "reason": "content_duplicate",
-      "until": 1793493253.2149704
-    },
-    "بایننس ۶.۳ میلیارد دلار، خسارت حمله هکری را جبران می کند": {
-      "reason": "content_duplicate",
-      "until": 1793491543.8168445
-    },
-    "بیش از ۵۱ میلیون آمریکایی رای زودهنگام دادند؛ تشدید حملات نامزدهای سنا به یکدیگر": {
-      "reason": "content_duplicate",
-      "until": 1793504031.7354615
+      "at": 1793504038.7514806,
+      "reason": "final_guard:ai-contradiction",
+      "until": 1793525638.7514806
     },
     "ترامپ و نتانیاهو تلفنی گفت وگو کردند": {
       "reason": "content_duplicate",
@@ -4488,54 +4459,9 @@
       "reason": "content_duplicate",
       "until": 1793518902.3220742
     },
-    "جام قهرمانی جهان از دست ایران پرید/ رده بندی تیمی مسابقات کشتی آزاد قهرمانی جهان ۲۰۲۶ پس از پایان روز سوم": {
+    "غنیمت های جدید ایران از آمریکا؛ ماجرای شکار دو mqm-170": {
       "reason": "content_duplicate",
-      "until": 1793487957.0363407
-    },
-    "خبر مهم عراقچی از مذاکرات قطر/ شرط ایران برای توافق با آمریکا": {
-      "reason": "content_duplicate",
-      "until": 1793482526.1557977
-    },
-    "رضایی: درباره تغییر دکترین هسته ای تصمیم جدیدی گرفته نشده است": {
-      "reason": "content_duplicate",
-      "until": 1793493260.49572
-    },
-    "روبیو: ترامپ هنوز درباره ازسرگیری جنگ علیه ایران تصمیم نگرفته است": {
-      "reason": "content_duplicate",
-      "until": 1793493242.9206662
-    },
-    "زارع پس از چهارمین طلای جهان: امیدوارم حال مردم خوب شده باشد": {
-      "reason": "content_duplicate",
-      "until": 1793486048.1154501
-    },
-    "صعود محمد نخودی به فینال قهرمانی جهان؛ فیروزپور در یک قدمی فینال شکست خورد": {
-      "reason": "content_duplicate",
-      "until": 1793471760.866957
-    },
-    "صیادان مفقودشده در حمله به شناورهای قشم پیدا شدند": {
-      "reason": "content_duplicate",
-      "until": 1793473533.3536935
-    },
-    "عراقچی: در حال حاضر نیازی به دیدار با آمریکایی ها نمی بینیم": {
-      "at": 1793451992.1379054,
-      "reason": "final_guard:ai-contradiction",
-      "until": 1793473592.1379054
-    },
-    "قیمت دلار، یورو و انواع ارزها امروز ۹ آبان ۱۴۰۵ در زمان بسته شدن بازار/ دلار ۲۷۰ هزار و ۵۰۰ تومان قیمت خورد + جدول": {
-      "reason": "content_duplicate",
-      "until": 1793498818.4695807
-    },
-    "محسن رضایی: نامه ونس را مطالعه کردم و هنوز پاسخی به آن ندادم/ تصمیم جدیدی به صورت رسمی و حکومتی درباره تغییر دکترین هسته ای گرفته نشده است": {
-      "reason": "content_duplicate",
-      "until": 1793489739.752
-    },
-    "محمد نخودی به فینال قهرمانی جهان رسید": {
-      "reason": "content_duplicate",
-      "until": 1793469984.4216194
-    },
-    "هشدار فوری آمریکا درباره احتمال حمله تروریستی در مسکو": {
-      "reason": "content_duplicate",
-      "until": 1793491479.056322
+      "until": 1793525596.3092759
     },
     "گزارش آسوشیتدپرس از خسارت سنگین آمریکا در پی پاسخ ایران به حملات/۲۶ پایگاه نظامی تخریب شد": {
       "reason": "content_duplicate",
@@ -9082,7 +9008,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793502090
+    "at": 1793503887
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9096,10 +9022,15 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1793504280.0,
+    "last_failure": 1793503980,
+    "last_status": 503
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793502806,
-    "last_failure": 1793502206,
-    "last_status": 429
+    "disabled_until": 1793504036,
+    "last_failure": 1793503976,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1793502506.0,
@@ -9118,8 +9049,8 @@
     "last_failure": 1791936876,
     "last_status": 599
   },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1793502194,
+  "groq:openai/gpt-oss-120b": {
+    "last_quality_failure": 1793503958,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
@@ -9143,7 +9074,7 @@
   },
   "mistral:open-mistral-nemo": {
     "last_failure": 1792775100,
-    "last_quality_failure": 1793468159,
+    "last_quality_failure": 1793503990,
     "last_status": 422
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
