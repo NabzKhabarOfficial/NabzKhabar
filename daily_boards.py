@@ -288,6 +288,13 @@ def _run_sports_results(now):
         if open_matches and not give_up:
             _log(f"results for {day}: waiting, {open_matches} match(es) not final yet")
             continue
+        state = _load_json(STATE_FILE)
+        boards = state.get("sports_boards") or {}
+        if day not in boards or boards[day].get("results_sent"):
+            continue
+        boards[day]["results_sent"] = True
+        state["sports_boards"] = boards
+        _save_json(STATE_FILE, state)
         rows = sports_results.card_rows(board, results)
         sent = not rows
         if rows:
@@ -300,7 +307,14 @@ def _run_sports_results(now):
                     _log_photo_result("results", sent)
             if sent is False:
                 sent = weather._send_weather_message(caption)
+        if sent is None:
+            _log(f"results for {day}: outcome ambiguous, not retrying to avoid duplicates")
+            continue
         if not sent:
+            state = _load_json(STATE_FILE)
+            if day in (state.get("sports_boards") or {}):
+                state["sports_boards"][day]["results_sent"] = False
+                _save_json(STATE_FILE, state)
             _log(f"results for {day}: publication failed, will retry")
             continue
         state = _load_json(STATE_FILE)
