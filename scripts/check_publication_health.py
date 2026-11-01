@@ -1,4 +1,9 @@
-"""Fail loudly when the news engine stops producing fresh runtime evidence."""
+"""Fail loudly when the news engine stops producing fresh runtime evidence.
+
+A run that selects stories and publishes none is reported as a WARNING, not a
+failure: editorial blocks are a legitimate outcome. The warning makes a long
+silent stretch visible in the job log without turning healthy runs red.
+"""
 from __future__ import annotations
 
 import json
@@ -55,6 +60,14 @@ def main():
     feed_summary = health.get("feed_summary") or {}
     if feed_summary and feed_summary.get("total", 0) and feed_summary.get("feeds_with_candidates", 0) == 0:
         errors.append("all observed feeds returned zero candidates")
+
+    # Warning only: selected stories, nothing published, editorial gate decided.
+    selected = int(health.get("selected_for_publication", 0) or 0)
+    published = int(health.get("published", 0) or 0)
+    if status == "editorial_blocked" and selected and published == 0:
+        print("::warning title=NabzKhabar no publication this run::"
+              f"{selected} selected, 0 published (all blocked by editorial gate)")
+        print("PUBLICATION WATCHDOG: WARNING - run published nothing (editorial blocks)")
 
     if errors:
         print("PUBLICATION WATCHDOG: ALERT")
