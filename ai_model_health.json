@@ -2,26 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793486152
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793486152
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793486156
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793486156
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1793486183
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793487793
     },
     {
@@ -159,6 +139,26 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1793500358
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793502174
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793502175
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793502176
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1793502177
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
+      "t": 1793502222
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-10-31",
-      "n": 173
+      "n": 174
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-10-31",
-      "n": 59
+      "n": 60
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-10-31",
-      "n": 48
+      "n": 49
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-01",
-      "n": 14
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-01",
-      "n": 9
+      "n": 15
     },
     "openrouter:*": {
       "day": "2026-10-31",
@@ -422,61 +422,47 @@
     "2026-11-01": {
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 1,
-        "calls": 2,
+        "429": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 1,
         "other": 0
       },
+      "gemini:gemini-3.8-flash": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 1
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 13,
+        "ok": 15,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 9,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
-        "other": 2
+        "ok": 12,
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1793324052.5157063,
-      "title": "توقف حملات اوکراین به پالایشگاه های نفت روسیه",
-      "urgent": false
-    },
-    {
-      "label": "خبر",
-      "level": 4,
-      "t": 1793324068.2599368,
-      "title": "علی الزیدی ریاست سازمان اطلاعات ملی عراق را شخصاً بر عهده گرفت",
-      "urgent": false
-    },
-    {
-      "label": "خبر",
-      "level": 4,
-      "t": 1793324087.5333362,
-      "title": "آزادسازی کامل تعز نزدیک است",
-      "urgent": false
-    },
     {
       "label": "موضع‌گیری",
       "level": 3,
@@ -1232,6 +1218,13 @@
       "t": 1793495042.2354941,
       "title": "حمله هوایی ادعایی ارتش ونزوئلا به اردوگاه ارتش آزادی بخش ملی در مرز کلمبیا",
       "urgent": false
+    },
+    {
+      "label": "ورزش",
+      "level": 4,
+      "t": 1793502221.0540893,
+      "title": "تاریخ سازی وزنه برداران زن ایران در بازی های آسیایی ناگویا",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-10-31",
@@ -1241,12 +1234,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis and commentary on sports business.",
       "topic": "ورزش",
       "until": 1793511270.33893
-    },
-    "v4|albanese looks for reset on world stage as ‘spot fires burn’ domestically and likely interest rate hike looms": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحلیل سیاسی و پیش‌بینی اقتصادی داخلی استرالیا برای ایران اهمیت ندارد.",
-      "topic": "سیاست",
-      "until": 1793501303.0279908
     },
     "v4|are manchester united really at risk of a relegation scrap?": {
       "ok": false,
@@ -1374,12 +1361,6 @@
       "topic": "سیاست",
       "until": 1793572395.0089703
     },
-    "v4|poland’s president joins protest amid constitutional crisis at top court": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: اعتراض رئیس‌جمهور لهستان بحران قانون اساسی را تشدید می‌کند اما اهمیت بین‌المللی محدودی دارد",
-      "topic": "سیاست",
-      "until": 1793501307.2145064
-    },
     "v4|returning estevao brings x-factor to strikerless chelsea": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: تحلیل ورزشی و بررسی وضعیت بازیکن فوتبال.",
@@ -1439,12 +1420,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: مقاله، تحلیل و تفسیر است نه یک رویداد خبری مشخص.",
       "topic": "سیاست",
       "until": 1793540060.9170167
-    },
-    "v4|«در کوچه آفتاب» به نوزدهمین ایستگاه رسید؛ گرامیداشت قیصر امین پور در گتوند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: همایش استانی بزرگداشت شاعر، فاقد اهمیت ملی یا بین‌المللی است",
-      "topic": "جامعه",
-      "until": 1793501280.0075324
     },
     "v4|«ماسوله» گواهی زنده بر تعامل انسان، طبیعت و فناوری است": {
       "ok": false,
@@ -1823,6 +1798,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: 19 killed in alleged Venezuelan airstrike on Colombian rebel camp",
       "topic": "نظامی",
       "until": 1793581433.7262425
+    },
+    "v4|انتقاد سناتور آمریکایی از شرکت های بزرگ نفتی به دلیل کسب سود از جنگ علیه ایران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Opinion, no official decision or event.",
+      "topic": "اقتصاد",
+      "until": 1793588577.859623
     },
     "v4|انسداد محور آشخانه - چمن بید در پی آتش سوزی تانکر حامل مواد شیمیایی": {
       "ok": false,
@@ -2574,6 +2555,12 @@
       "topic": "نظامی",
       "until": 1793529346.769789
     },
+    "v4|خاموشی بابرنامه برق برای تعمیرات پیشگیرانه پاییز در کهگیلویه وبویراحمد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: خاموشی برنامه‌ای محلی، اثر محدود بر کل کشور",
+      "topic": "اقتصاد",
+      "until": 1793588574.342225
+    },
     "v4|خبر مهم عراقچی از مذاکرات قطر/ شرط ایران برای توافق با آمریکا": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: اعلام موضع رسمی وزیر خارجه درباره تنگه هرمز و مذاکرات",
@@ -2742,6 +2729,12 @@
       "topic": "ورزش",
       "until": 1793570554.3973818
     },
+    "v4|راهکار کاهش ۷۰ درصدی خسارات سیل چیست؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Question about flood mitigation, no concrete event.",
+      "topic": "آب و هوا",
+      "until": 1793588577.8464582
+    },
     "v4|رایزنی وزرای خارجه قطر و کویت درباره کاهش تنش های منطقه ای": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine diplomatic consultation without concrete new decisions.",
@@ -2856,6 +2849,12 @@
       "topic": "نظامی",
       "until": 1793522114.6075702
     },
+    "v4|ریحانه، مهسا و ۲ اتفاق باورنکردنی!": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=iran_national: First Iranian women weightlifters win Asian Games medals",
+      "topic": "ورزش",
+      "until": 1793588573.0898516
+    },
     "v4|ریزش بورس در نخستین روز هفته/ مسی جدید به بورس تهران می آید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=iran_national: سقوط شدید شاخص بورس تهران و خروج از کانال حمایتی مهم",
@@ -2963,6 +2962,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Opinion piece and analysis by a journalist, not a concrete event.",
       "topic": "سیاست",
       "until": 1793538288.5051167
+    },
+    "v4|سرقت بوگاتی شیرون چند میلیون دلاری مدیرعامل بوگاتی در کرواسی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سرقت خودرو لوکس در کرواسی",
+      "topic": "قضایی",
+      "until": 1793588575.8219438
     },
     "v4|سرلشکر عبداللهی: منتظر آغاز حمله دشمن نمی مانیم": {
       "ok": true,
@@ -3336,12 +3341,6 @@
       "topic": "فناوری",
       "until": 1793524011.7694726
     },
-    "v4|فرار 40 متری و سیو خلیفه در مثبت 90!(عکس)": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر ورزشی کم‌اهمیت و حاشیه‌ای درباره لیگ فوتبال داخلی.",
-      "topic": "ورزش",
-      "until": 1793501298.8267517
-    },
     "v4|فردین قول طلا را از امیرحسین گرفت": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: وعدهٔ دو کشتی‌گیر پیش از مسابقات جهانی",
@@ -3617,6 +3616,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: موضع‌گیری رسمی مقام ارشد نظامی درباره جنگ و درگیری.",
       "topic": "نظامی",
       "until": 1793552663.008246
+    },
+    "v4|مقصران گرانی خودرو ؛ تحریم و کمبود ارز در صدر دلایل": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Economic analysis, no specific event.",
+      "topic": "اقتصاد",
+      "until": 1793588577.8726373
     },
     "v4|مناظره جنجالی و پرسش های بی پاسخ؛ میلیاردها دلار پول نفت ایران کجاست؟": {
       "ok": false,
@@ -3978,6 +3983,12 @@
       "topic": "سیاست",
       "until": 1793509459.493948
     },
+    "v4|واکنش عربستانی ها به احتمال تعویق جام ملت های آسیا ۲۰۲۷": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Speculation, no concrete event",
+      "topic": "ورزش",
+      "until": 1793588575.2299223
+    },
     "v4|پاسخ فروتنانه گتوزو/ قهرمانی؟ هدف اول، رسیدن به 40 امتیاز است!": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Player aims for 40 points before match.",
@@ -4050,12 +4061,6 @@
       "topic": "سیاست",
       "until": 1793541845.4998589
     },
-    "v4|پکن: با رقابت تسلیحاتی در فضا مخالفیم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: بیان مواضع کلی چین درباره فضا، فاقد تصمیم ملموس جدید",
-      "topic": "سیاست",
-      "until": 1793501275.409478
-    },
     "v4|پیام آیت الله خامنه ای خطاب به آمریکا و اسرائیل و سپس کشورهای همسایه بود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: اظهارات سفیر درباره پیام غیررسمی و فاقد جزئیات راهبردی است.",
@@ -4115,12 +4120,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Speculative media report on potential negotiation frameworks.",
       "topic": "سیاست",
       "until": 1793509459.5374677
-    },
-    "v4|چین: مخالف رقابت تسلیحاتی در فضا هستیم": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: China opposes space arms race, calls for international negotiations",
-      "topic": "سیاست",
-      "until": 1793501266.2480795
     },
     "v4|کارآگاه خصوصی همان جاسوس اجاره ای است/ آنها به خواسته زنها ، شوهران خیانتکار را تعقیب می کنند؛ چک بلاوصول هم نقد می کنند/ دستمزد هر شب 20میلیون تومان": {
       "ok": false,
@@ -4548,15 +4547,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "حمله به نفتکش ها در تنگه هرمز و اظهارات ترامپ درباره پایان درگیری با ایران ⚡️ سپاه پاسداران انقلاب اسلامی از ه",
-      "id": "bbd4ce10b2",
-      "match": "توقف دو نفتکش متخلف در آب های جنوبی تنگه هرمز",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1793406837,
-      "verdict": "repeat",
-      "why": "Both report the targeting or stopping of tankers in the Strait of Hormuz."
-    },
     {
       "head": "آرش یوشیدا؛ کشتی گیر ژاپنی با اصالت ایرانی در کانون توجه ورزش جهان ⚡️ آرش یوشیدا کشتی گیر ژاپنی که فرزند جواد ",
       "id": "5bc9ca62d4",
@@ -5089,37 +5079,18 @@
       "t": 1793495041,
       "verdict": "new",
       "why": "هجوم هوایی جدید ونزوئلا به اردوگاه کلمبیا"
+    },
+    {
+      "head": "تاریخ سازی وزنه برداران زن ایران در بازی های آسیایی ناگویا ⚡️ ریحانه کریمی و مهسا بهشتی، دختران ملی پوش وزنه ب",
+      "id": "8c57e0573f",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793502213,
+      "verdict": "new",
+      "why": "اولین مدال زنان وزنه برداری ایران در بازی‌های آسیایی"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: کشف پول جعلی در یک بخش کوچک محلی اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1793466257,
-      "title": "کشف ۱۴ میلیارد تومان دلار جعلی در اردبیل"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: US foreign minister welcomes diplomatic approach with Iran",
-      "rescued": true,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1793468011,
-      "title": "روبیو: از راهکارهای دیپلماتیک با ایران استقبال می کنیم!"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: کنفرانس محلی شهرداران، اثر محدود بر کشور",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1793468012,
-      "title": "همایش شهرداران و روسای شوراهای اسلامی در زاهدان"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Club match, no national or world significance",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1793468013,
-      "title": "اکرت را برای گلزنی نگه داشتند"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: بیان آرزوهای مردم، بدون وقوع واقعه",
       "rescued": false,
@@ -5651,88 +5622,40 @@
       "rule": "below-event-threshold",
       "t": 1793500352,
       "title": "بولسونارو با همراهی مامور سابق موساد از برزیل گریخته است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=iran_national: First Iranian women weightlifters win Asian Games medals",
+      "rescued": true,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1793502173,
+      "title": "ریحانه، مهسا و ۲ اتفاق باورنکردنی!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: خاموشی برنامه‌ای محلی، اثر محدود بر کل کشور",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793502174,
+      "title": "خاموشی بابرنامه برق برای تعمیرات پیشگیرانه پاییز در کهگیلویه وبویراحمد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Speculation, no concrete event",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1793502175,
+      "title": "واکنش عربستانی ها به احتمال تعویق جام ملت های آسیا ۲۰۲۷"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سرقت خودرو لوکس در کرواسی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1793502175,
+      "title": "سرقت بوگاتی شیرون چند میلیون دلاری مدیرعامل بوگاتی در کرواسی"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اتش",
-        "تمم",
-        "جبه",
-        "خرج",
-        "خستر",
-        "طبق",
-        "عبس",
-        "عرقچ",
-        "هستم",
-        "گفتگ"
-      ],
-      "t": 1793453689.3076684,
-      "title": "عراقچی: خواستار آتش بس و پایان جنگ در تمام جبهه ها هستیم ⚡️ عباس عراقچی وزیر امور خارجه ایران در گفتگویی با طبق گزارش‌ها"
-    },
-    {
-      "h": [
-        "برخرد",
-        "بزرگره",
-        "بس",
-        "تصدف",
-        "جد",
-        "جز",
-        "جنب",
-        "دستگ",
-        "قهر",
-        "من",
-        "نفر",
-        "وقع",
-        "کمن",
-        "گذشت"
-      ],
-      "t": 1793453704.2462163,
-      "title": "کشته و زخمی شدن ۳۴ نفر در تصادف جاده ای جنوب قاهره ⚡️ برخورد یک دستگاه کامیون با یک مینی بوس در بزرگراهی در جیزه واقع در"
-    },
-    {
-      "h": [
-        "اسپرت",
-        "الت",
-        "برج",
-        "ترندز",
-        "خرد",
-        "شهر",
-        "فرشگ",
-        "فرشگه",
-        "فرفلد",
-        "مرکز",
-        "مرگبر",
-        "هلن",
-        "وقع",
-        "کلفرن",
-        "گذشت"
-      ],
-      "t": 1793453721.0928507,
-      "title": "تیراندازی مرگبار در فروشگاهی در کالیفرنیا؛ یک کشته و ۶ زخمی برجای گذاشت ⚡️ تیراندازی در فروشگاه «اسپیریت هالووین» واقع د"
-    },
-    {
-      "h": [
-        "اردغ",
-        "استنبل",
-        "دجنب",
-        "ددر",
-        "در",
-        "زلنسک",
-        "سفر",
-        "مسل",
-        "هدف",
-        "ورد",
-        "ولدمر",
-        "وگ",
-        "کشترن"
-      ],
-      "t": 1793453739.2917814,
-      "title": "سفر رئیس جمهور اوکراین به استانبول برای دیدار با اردوغان ⚡️ ولودیمیر زلنسکی، رئیس جمهور اوکراین با هدف گفت وگو درباره مس"
-    },
     {
       "h": [
         "اعتمد",
@@ -6078,6 +6001,36 @@
       ],
       "t": 1793495042.2200904,
       "title": "حمله هوایی ادعایی ارتش ونزوئلا به اردوگاه ارتش آزادی بخش ملی در مرز کلمبیا ⚡️ حداقل نوزده نفر در حمله هوایی ادعایی ارتش "
+    },
+    {
+      "h": [
+        "ارند",
+        "اس",
+        "بردر",
+        "برنز",
+        "بز",
+        "بهشت",
+        "ترخ",
+        "دختر",
+        "دست",
+        "رحن",
+        "زنن",
+        "سز",
+        "شدند",
+        "مدل",
+        "مسبق",
+        "مفق",
+        "مل",
+        "مهس",
+        "نخستن",
+        "نگ",
+        "وزن",
+        "پش",
+        "کرم",
+        "کسب"
+      ],
+      "t": 1793502221.0410717,
+      "title": "تاریخ سازی وزنه برداران زن ایران در بازی های آسیایی ناگویا ⚡️ ریحانه کریمی و مهسا بهشتی، دختران ملی پوش وزنه برداری ایرا"
     }
   ],
   "_published_incidents": [
@@ -6341,250 +6294,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "احتمل",
-        "امرک",
-        "انتخب",
-        "بررس",
-        "برزل",
-        "تثرگذر",
-        "تحقق",
-        "تط",
-        "جمهر",
-        "دستر",
-        "رست",
-        "رند",
-        "عل",
-        "فدرل",
-        "پلس",
-        "کشر"
-      ],
-      "t": 1793367250.0491474,
-      "title": "دستور دیوان عالی برزیل برای تحقیق درباره توطئه احتمالی آمریکا در انتخابات ⚡️ دیوان عالی برزیل به پلیس فدرال این کشور دست"
-    },
-    {
-      "k": [
-        "اتش",
-        "اجر",
-        "ارتش",
-        "اسرل",
-        "اقدم",
-        "الطر",
-        "القنطر",
-        "انفجر",
-        "بر",
-        "تخرب",
-        "تشدد",
-        "جنب",
-        "حمل",
-        "رژم",
-        "زدن",
-        "شهرک",
-        "عمل",
-        "لبن",
-        "مسر",
-        "منزل",
-        "منطق",
-        "نظم",
-        "کفرشب",
-        "گلل"
-      ],
-      "t": 1793369061.907322,
-      "title": "تشدید حملات ارتش اسرائیل به جنوب لبنان ⚡️ ارتش اسرائیل با اجرای عملیات انفجار در شهرک الطیری و تخریب منزلی در مسیر کفرشو"
-    },
-    {
-      "k": [
-        "اتش",
-        "استگ",
-        "اهن",
-        "اکرن",
-        "برقرر",
-        "حمل",
-        "خستر",
-        "دبرکل",
-        "دنپر",
-        "ره",
-        "سزم",
-        "شرط",
-        "فر",
-        "قد",
-        "متحد",
-        "محکم",
-        "ملل",
-        "کشر"
-      ],
-      "t": 1793369085.0531971,
-      "title": "دبیرکل سازمان ملل خواستار آتش بس فوری در اوکراین شد ⚡️ دبیرکل سازمان ملل متحد با محکوم کردن حملات به ایستگاه راه آهن دنی"
-    },
-    {
-      "k": [
-        "ابلغ",
-        "اجر",
-        "ارز",
-        "ارن",
-        "استفد",
-        "ال",
-        "الجر",
-        "بنک",
-        "تصب",
-        "تصمم",
-        "تقف",
-        "ثبت",
-        "جمهر",
-        "حت",
-        "خدر",
-        "خرج",
-        "رس",
-        "رند",
-        "زمن",
-        "سر",
-        "سفرش",
-        "شمل",
-        "صرت",
-        "عرف",
-        "غر",
-        "قبل",
-        "متقف",
-        "محمدرض",
-        "مرکز",
-        "مصب",
-        "معن",
-        "مقرر",
-        "مقف",
-        "مقم",
-        "ممکن",
-        "منش",
-        "نخهد",
-        "نم",
-        "هت",
-        "همن",
-        "ورد",
-        "وزر",
-        "کشر"
-      ],
-      "t": 1793369185.9235036,
-      "title": "روند واردات خودرو برای ایرانیان مقیم خارج متوقف شد ⚡️ محمدرضا عارف، معاون اول رئیس جمهور، مصوبه هیئت وزیران درباره توقف "
-    },
-    {
-      "k": [
-        "ار",
-        "ازد",
-        "برنز",
-        "تم",
-        "جهن",
-        "رحم",
-        "رقبت",
-        "عمزد",
-        "قزقست",
-        "قهرمن",
-        "مدل",
-        "مسبق",
-        "مفق",
-        "نخستن",
-        "کسب",
-        "کشت"
-      ],
-      "t": 1793370867.5549653,
-      "title": "رحمان عموزاد مدال برنز کشتی آزاد قهرمانی جهان را کسب کرد ⚡️ رحمان عموزاد در مسابقات کشتی آزاد قهرمانی جهان در قزاقستان م"
-    },
-    {
-      "k": [
-        "ارتش",
-        "اردگ",
-        "ارض",
-        "ارگ",
-        "اسرل",
-        "اشغل",
-        "افزش",
-        "اقدم",
-        "امکن",
-        "اژت",
-        "بحرن",
-        "برک",
-        "بزگشت",
-        "بشر",
-        "بق",
-        "تبدل",
-        "تخرب",
-        "تشدد",
-        "تصف",
-        "تنگ",
-        "حقق",
-        "حلق",
-        "حمل",
-        "خن",
-        "دفتر",
-        "زرد",
-        "زرسخت",
-        "سزم",
-        "سنگ",
-        "غرنظم",
-        "غزه",
-        "فرتر",
-        "فلسطن",
-        "قم",
-        "متحد",
-        "محصر",
-        "مسحت",
-        "مسل",
-        "مسم",
-        "ملل",
-        "مند",
-        "منطق",
-        "مکرر",
-        "ندرند",
-        "نر",
-        "نهد",
-        "نگرن",
-        "هشدر",
-        "هچ",
-        "وضعت",
-        "پشر",
-        "پکسز",
-        "کشتر",
-        "کهش",
-        "کچندن",
-        "یبد"
-      ],
-      "s": "سازمان ملل",
-      "t": 1793370882.5671244,
-      "title": "سازمان ملل: با تنگ تر شدن حلقه محاصره غزه، نگرانی ها درباره پاکسازی قومی افزایش می یابد ⚡️ دفتر حقوق بشر سازمان ملل متحد"
-    },
-    {
-      "k": [
-        "ارض",
-        "اشکف",
-        "اظهر",
-        "ال",
-        "امدگ",
-        "امرک",
-        "اکرن",
-        "بررس",
-        "ترخ",
-        "تعن",
-        "جز",
-        "جمهر",
-        "جنب",
-        "خصص",
-        "دستر",
-        "رس",
-        "زلنسک",
-        "شند",
-        "متحد",
-        "مذکر",
-        "مسل",
-        "مشخص",
-        "نشد",
-        "نشدن",
-        "هنز",
-        "هچ",
-        "ولدمر",
-        "یر"
-      ],
-      "t": 1793370936.0834467,
-      "title": "تعیین نشدن تاریخ مذاکرات سه جانبه روسیه، آمریکا و اوکراین ⚡️ یوری اوشاکوف دستیار رئیس جمهور روسیه اعلام کرد که هنوز هیچ "
-    },
     {
       "k": [
         "اف",
@@ -9300,6 +9009,48 @@
       ],
       "t": 1793495042.2120054,
       "title": "حمله هوایی ادعایی ارتش ونزوئلا به اردوگاه ارتش آزادی بخش ملی در مرز کلمبیا ⚡️ حداقل نوزده نفر در حمله هوایی ادعایی ارتش "
+    },
+    {
+      "k": [
+        "ار",
+        "ارند",
+        "اس",
+        "اعض",
+        "بدند",
+        "بردر",
+        "برنز",
+        "بز",
+        "بست",
+        "بستمن",
+        "بهشت",
+        "ترخ",
+        "ترن",
+        "جن",
+        "دختر",
+        "در",
+        "دست",
+        "رحن",
+        "زنن",
+        "سز",
+        "سنن",
+        "شدند",
+        "مدل",
+        "مسبق",
+        "مفق",
+        "مل",
+        "مهس",
+        "نخستن",
+        "نگ",
+        "هفد",
+        "ورزشکر",
+        "وزن",
+        "پش",
+        "کر",
+        "کرم",
+        "کسب"
+      ],
+      "t": 1793502221.028333,
+      "title": "تاریخ سازی وزنه برداران زن ایران در بازی های آسیایی ناگویا ⚡️ ریحانه کریمی و مهسا بهشتی، دختران ملی پوش وزنه برداری ایرا"
     }
   ],
   "_telegram_errors": [
@@ -9331,7 +9082,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793500268
+    "at": 1793502090
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9346,14 +9097,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793499179,
-    "last_failure": 1793498579,
+    "disabled_until": 1793502806,
+    "last_failure": 1793502206,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793498872.0,
-    "last_failure": 1793498572,
-    "last_status": 599
+    "disabled_until": 1793502506.0,
+    "last_failure": 1793502206,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9366,6 +9117,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1793502194,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,

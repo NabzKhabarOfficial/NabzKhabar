@@ -1,10 +1,11 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
+  "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-01T02:32:38.426027+00:00",
+  "checked_at": "2026-11-01T03:03:42.311522+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -14,6 +15,14 @@
       "result": "editorial_blocked",
       "source": "",
       "title": "عبدل السید: جنگ غیرقانونی آمریکا علیه ایران عامل افزایش قیمت سوخت است",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Question about flood mitigation, no concrete event.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "راهکار کاهش ۷۰ درصدی خسارات سیل چیست؟",
       "url": ""
     },
     {
@@ -42,14 +51,6 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Small protest, limited impact",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "Thousands rally in Israel urging Eisenkot-Arab deal to remove Netanyahu",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis regarding foreign policy and elections.",
       "result": "editorial_blocked",
       "source": "",
@@ -58,10 +59,26 @@
     },
     {
       "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Opinion, no official decision or event.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "انتقاد سناتور آمریکایی از شرکت های بزرگ نفتی به دلیل کسب سود از جنگ علیه ایران",
+      "url": ""
+    },
+    {
+      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash score=3 happened=True scope=world: عدم اظهارنظر ترامپ درباره جنگ؛ موضع یا تصمیم جدیدی اعلام نشد",
       "result": "editorial_blocked",
       "source": "",
       "title": "ترامپ: درباره احتمال ازسرگیری جنگ با ایران اظهارنظر نمی کنم",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Economic analysis, no specific event.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "مقصران گرانی خودرو ؛ تحریم و کمبود ارز در صدر دلایل",
       "url": ""
     },
     {
@@ -79,36 +96,46 @@
       "source": "",
       "title": "از دانش آموزان تا روحانیون؛ همبستگی مردمی پشتوانه اقتدار موشکی ایران",
       "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=world: Unverified call, no concrete outcome",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "گفت و گوی تلفنی «ترامپ» و «نتانیاهو»",
-      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "entekhab.ir",
+      "started_at": "2026-11-01T03:02:59.567676+00:00",
+      "title": "ایران در حمله به بیش از ۲۶ پایگاه آمریکا در خاورمیانه، ابتدا سامانه های هشدار زودهنگام را هدف قرار داد/تهران با این اقدام مسیر را برای حملات بعدی به انبارها، محل اسکان نیروهای نظام",
+      "url": "https://entekhab.ir/fa/news/945904/ایران-در-حمله-به-بیش-از-26-پایگاه-آمریکا-در-خاورمیانه-ابتدا-سامانه-های-هشدار-زودهنگام-را-هدف-قرار-داد-تهران-با-این-اقدام-مسیر-را-برای-حملات-بعدی-به-انبارها-محل-اسکان-نیروهای-نظامی-و-سایر-تأسیسات-هموار-می-کرد-بیشتر-حملات-در-کویت-انجام-شده-پایگاه-علی-السالم-دست-کم-30-بار-هدف-حملات-قرار-گرفت-که-در-نتیجه-آن-دست-کم-15-آشیانه-هواپیما-شمار-زیادی-انبار-و-10-ساختمان-آسیب-دیدند-یا-منهدم-شدند"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 25,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "entekhab.ir",
+      "title": "ایران در حمله به بیش از ۲۶ پایگاه آمریکا در خاورمیانه، ابتدا سامانه های هشدار زودهنگام را هدف قرار داد/تهران با این اقدام مسیر را برای حملات بعدی به انبارها، محل اسکان نیروهای نظام",
+      "url": "https://entekhab.ir/fa/news/945904/ایران-در-حمله-به-بیش-از-26-پایگاه-آمریکا-در-خاورمیانه-ابتدا-سامانه-های-هشدار-زودهنگام-را-هدف-قرار-داد-تهران-با-این-اقدام-مسیر-را-برای-حملات-بعدی-به-انبارها-محل-اسکان-نیروهای-نظامی-و-سایر-تأسیسات-هموار-می-کرد-بیشتر-حملات-در-کویت-انجام-شده-پایگاه-علی-السالم-دست-کم-30-بار-هدف-حملات-قرار-گرفت-که-در-نتیجه-آن-دست-کم-15-آشیانه-هواپیما-شمار-زیادی-انبار-و-10-ساختمان-آسیب-دیدند-یا-منهدم-شدند"
+    }
+  ],
   "no_publication_candidate": false,
-  "publication_gap": true,
-  "published": 0,
+  "publication_gap": false,
+  "published": 1,
   "run_status": "success",
-  "selected_for_publication": 11,
+  "selected_for_publication": 14,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "aljazeera.com",
-      "started_at": "2026-11-01T02:32:35.497591+00:00",
+      "started_at": "2026-11-01T03:03:08.056846+00:00",
       "title": "Iran war live: Araghchi says talks under way on 2-day plan to reopen Hormuz",
       "url": "https://aljazeera.com/news/liveblog/2026/11/1/iran-war-live-araghchi-says-talks-under-way-on-2-day-plan-to-reopen-hormuz?traffic_source=rss"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
