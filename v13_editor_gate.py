@@ -17,7 +17,8 @@ bypass it:
    plans) and city/county-level stories, unless a hard event really happened.
 2. AI editor-in-chief: scores 0-10 against a strict "front page of
    BBC/Reuters, or nationwide Iran news" rubric. Published only if
-   score >= 7, the event happened, scope not local.
+   score >= 7 (score >= 6 for hard events that already happened), the event
+   happened, scope not local.
 3. If every AI provider fails: fail closed; only clearly hard, already
    happened, non-local events pass.
 Decisions are cached for 24h so a rejected story never costs AI again.
@@ -61,8 +62,9 @@ import re
 import time
 
 MIN_AI_SCORE = 7
+HARD_EVENT_MIN_AI_SCORE = 6  # hard events that already happened (deaths, crashes, strikes)
 CACHE_KEY = "_editor_gate_cache"
-CACHE_VERSION = "v3"    # bump when the rubric changes: old verdicts are ignored
+CACHE_VERSION = "v4"    # bump when the rubric or thresholds change: old verdicts are ignored
 CACHE_TTL = 24 * 3600
 CACHE_MAX = 600
 AI_TIMEOUT = 15
@@ -319,9 +321,14 @@ def ai_judge(main, candidate):
 
 def ai_accepts(verdict, candidate=None):
     score = int(verdict.get("score", 0))
-    if candidate is not None and war_zone(candidate.get("title", "")) and not NON_EVENT.search(_norm(candidate.get("title", ""))):
+    title = _norm(candidate.get("title", "")) if candidate is not None else ""
+    if candidate is not None and war_zone(title) and not NON_EVENT.search(title):
         return score >= WAR_ZONE_MIN_SCORE  # war-zone reports: happened, never local
-    return (score >= MIN_AI_SCORE and verdict.get("happened")
+    # Hard events that already happened (deaths, crashes, strikes) get a bar of 6:
+    # the rubric already asks for 7-10 on them, but the model often lands on 6.
+    hard = bool(HARD_HAPPENED.search(title)) and not NON_EVENT.search(title)
+    bar = HARD_EVENT_MIN_AI_SCORE if hard else MIN_AI_SCORE
+    return (score >= bar and verdict.get("happened")
             and verdict.get("scope") != "local")
 
 
