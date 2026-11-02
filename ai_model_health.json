@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793573745
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793573746
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793573754
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
       "t": 1793581477
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1793583131
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1793583160
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-01",
-      "n": 185
+      "n": 186
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-01",
-      "n": 78
+      "n": 79
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-01",
-      "n": 58
+      "n": 59
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-02",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-02",
-      "n": 6
+      "n": 7
     },
     "openrouter:*": {
       "day": "2026-11-01",
@@ -428,34 +428,34 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 2,
-        "calls": 5,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 3,
+        "ok": 4,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 7,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 3,
-        "other": 3
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 10,
-        "ok": 10,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       }
     }
@@ -1422,12 +1422,6 @@
       "topic": "حادثه",
       "until": 1793667824.1021435
     },
-    "v4|on 'tense' antonelli's big weekend, this was hamilton's day": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Qualifying result, not a decisive competition outcome",
-      "topic": "ورزش",
-      "until": 1793581432.5087156
-    },
     "v4|rice relishing title race 'anxiety' after win at liverpool": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: مصاحبه و تحلیل ورزشی درباره مسابقه فوتبال لیگ برتر",
@@ -1499,6 +1493,18 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: موضع رسمی بریتانیا در قبال غرامت برده‌داری در نشست کشورهای مشترک‌المنافع",
       "topic": "سیاست",
       "until": 1793660154.9143817
+    },
+    "v4|ukraine air raid app apparently hacked as users receive false radiation threat, air force says": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=4 happened=True scope=world: Cyber hack of alert app, no casualties",
+      "topic": "فناوری",
+      "until": 1793669531.6147392
+    },
+    "v4|ukraine suspects nationwide air raid alert app has been hacked": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=4 happened=True scope=world: Cyber hack of alert app, no casualties",
+      "topic": "فناوری",
+      "until": 1793669531.6236231
     },
     "v4|warnock hid seizures from liverpool as a youngster": {
       "ok": false,
@@ -1691,6 +1697,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: مسابقات هنوز تمام نشده و این پیش‌بینی و تحلیل عملکرد است.",
       "topic": "ورزش",
       "until": 1793606065.1955228
+    },
+    "v4|اتلتیکو صدرشین خواهد شد؟/ هفتمین برد متوالی برای خلق یک معجزه!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Club football streak, lacks national/international impact",
+      "topic": "ورزش",
+      "until": 1793669530.122436
     },
     "v4|اجتماع شبانه مردم انقلابی آبدان در شب ۲۴۶": {
       "ok": false,
@@ -1943,12 +1955,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Major military escalation in the ongoing Russia-Ukraine war.",
       "topic": "نظامی",
       "until": 1793637278.0510428
-    },
-    "v4|انتشار گزارش هایی از بمباران اردوگاه ارتش آزادی بخش ملی کلمبیا": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: 19 killed in alleged Venezuelan airstrike on Colombian rebel camp",
-      "topic": "نظامی",
-      "until": 1793581433.7262425
     },
     "v4|انتقاد روسیه از تحریم ها و توقیف ناوگان تجاری در نشست گروه ۲۰": {
       "ok": true,
@@ -4733,7 +4739,7 @@
     },
     "ببینید / چین موشک ضدناو خود را بر ماکت ناو هواپیمابر امریکا آزمایش کرد": {
       "reason": "content_duplicate",
-      "until": 1793581553.753024
+      "until": 1793604760.52492
     },
     "ترامپ از گفت وگو با نتانیاهو درباره ایران خبر داد": {
       "reason": "content_duplicate",
@@ -5345,13 +5351,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: دستور روتین رئیس‌جمهور درباره معیشت بدون تصمیم مشخص و عملیاتی",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793550872,
-      "title": "پزشکیان: صیانت از معیشت اقشار کم برخوردار در اولویت باشد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Injury of national wrestler at world event, no major competition outcome",
       "rescued": false,
       "rule": "routine-statement",
@@ -5903,6 +5902,13 @@
       "rule": "final-scope-preselection",
       "t": 1793581424,
       "title": "Nine die in ‘cataclysmic’ Florida business jet crash"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Club football streak, lacks national/international impact",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1793583130,
+      "title": "اتلتیکو صدرشین خواهد شد؟/ هفتمین برد متوالی برای خلق یک معجزه!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9733,7 +9739,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793581332
+    "at": 1793583064
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9748,9 +9754,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793582030,
-    "last_failure": 1793581430,
-    "last_status": 429
+    "disabled_until": 1793583214,
+    "last_failure": 1793583154,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1793581720.0,
@@ -9768,6 +9774,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1793583138,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
