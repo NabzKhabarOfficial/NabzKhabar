@@ -2,30 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793573754
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793573754
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1793573760
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793574192
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793574192
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793574192
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793574197
     },
     {
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1793583160
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793584953
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793584955
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793584955
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793584959
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.1-flash-lite",
+      "t": 1793584965
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1793584980
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-01",
-      "n": 108
+      "n": 109
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-01",
-      "n": 186
+      "n": 187
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-01",
-      "n": 79
+      "n": 80
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-01",
-      "n": 59
+      "n": 60
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-02",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-02",
-      "n": 7
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-01",
@@ -422,40 +422,47 @@
     "2026-11-02": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 2,
-        "calls": 6,
+        "429": 3,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 4,
         "other": 0
       },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "ok": 0,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
-        "ok": 10,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 7,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
-        "other": 4
+        "ok": 4,
+        "other": 6
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       }
     }
@@ -1500,6 +1507,12 @@
       "topic": "فناوری",
       "until": 1793669531.6147392
     },
+    "v4|ukraine blames russia after air alert app sends out false warnings": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Cyberattack on a warning app is a minor technical incident.",
+      "topic": "فناوری",
+      "until": 1793671365.57179
+    },
     "v4|ukraine suspects nationwide air raid alert app has been hacked": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b batch score=4 happened=True scope=world: Cyber hack of alert app, no casualties",
@@ -1848,6 +1861,12 @@
       "topic": "جامعه",
       "until": 1793608408.549198
     },
+    "v4|اصابت دو پرتابه ناشناس به یک نفتکش در خلیج فارس": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Attack on a tanker in the Persian Gulf is world news.",
+      "topic": "حادثه",
+      "until": 1793671365.5830302
+    },
     "v4|اعتراض صد ها هزار ایتالیایی به گرانی، تجارت سلاح و جنگ علیه ایران": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: اعتصاب و تظاهرات صدها هزار نفری در ایتالیا",
@@ -2184,6 +2203,12 @@
       "topic": "سیاست",
       "until": 1793628213.6652997
     },
+    "v4|بحران سیاسی در لهستان؛ آیا پای «کودتا» در میان است؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis of a political crisis without a concrete outcome.",
+      "topic": "سیاست",
+      "until": 1793671365.6120424
+    },
     "v4|بخش خصوصی خواستار کاهش تعرفه های گمرکی در تجارت با اوراسیاست": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: درخواست کاهش تعرفه‌ها، نه تصمیم رسمی",
@@ -2231,6 +2256,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: بمباران تأسیسات نفتی در یمن توسط جنگنده‌های سعودی خبری جنگی و جهانی است.",
       "topic": "نظامی",
       "until": 1793592256.511515
+    },
+    "v4|بمباران تأسیسات نفتی و غرب یمن ۷ زخمی برجای گذاشت": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Attack on oil facilities in the Middle East is world news.",
+      "topic": "نظامی",
+      "until": 1793671365.5593278
     },
     "v4|بمباران شهرک «القصیر» و نفوذ پهپادهای جاسوسی اشغالگران به منازل در جنوب لبنان": {
       "ok": true,
@@ -2549,6 +2580,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Cultural award, low national impact",
       "topic": "جامعه",
       "until": 1793646294.3388193
+    },
+    "v4|جزئیات بسته تشویقی دانشگاه تهران برای انتشار مقاله و ثبت اختراع": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: پاداش داخلی دانشگاه، تأثیر محدود، خبری محلی",
+      "topic": "فناوری",
+      "until": 1793671351.8780196
     },
     "v4|جزئیات ترکیب تیم های پزشکی خانواده / ۱ پزشک و ۲ مراقب سلامت برای هر ۳۰۰۰ نفر جمعیت": {
       "ok": false,
@@ -3282,12 +3319,6 @@
       "topic": "نظامی",
       "until": 1793633608.3348064
     },
-    "v4|شهادت ۲ دختر بچه فلسطینی بر اثر آتش سوزی در چادر آوارگان در خان یونس": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: 2 Palestinian girls died in camp fire",
-      "topic": "سلامت",
-      "until": 1793583648.7964752
-    },
     "v4|شهادت ۹ فلسطینی در غزه در حملات رژیم صهیونیستی": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: حمله نظامی در غزه و شهادت ۹ فلسطینی",
@@ -3437,6 +3468,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine rhetoric by a cleric; not an official state policy decision.",
       "topic": "سیاست",
       "until": 1793639072.9765697
+    },
+    "v4|عضو کمیسیون امنیت ملی: قالیباف گفت اگر مرا به دار بکشند با دو جریان کنار نخواهم آمد؛ نوحجتیه ها و جریان سکولار و لیبرال/ قالیباف عشقش ولایت فقیه است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Political comment, no concrete decision",
+      "topic": "سیاست",
+      "until": 1793671352.8500223
     },
     "v4|علت دشمنی ها این است که ایران می خواهد مستقل و آزاد زندگی کند": {
       "ok": false,
@@ -3822,12 +3859,6 @@
       "topic": "ورزش",
       "until": 1793633610.2534223
     },
-    "v4|معوقات تعرفه پرستاری از یک سال به ۶ ماه رسید/تاخیر بیش از ۳ ماه، تخلف بیمه هاست": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: routine health‑policy remark, low national impact",
-      "topic": "سلامت",
-      "until": 1793583645.690975
-    },
     "v4|مقاومت بی فایده گورخر در برابر حمله ناگهانی شیر": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=0 happened=True scope=world: lifestyle, animal video, non-news item.",
@@ -3875,12 +3906,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: این مطلب تحلیل و بررسی دیدگاه‌ها است و رویداد جدیدی محسوب نمی‌شود.",
       "topic": "سیاست",
       "until": 1793633610.26385
-    },
-    "v4|موج ۲۴۵ تجمعات شبانه؛ مردم گلستان همچنان در میدان حضور دارند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial protest, not top‑tier national event",
-      "topic": "سیاست",
-      "until": 1793583646.9049973
     },
     "v4|مودیان می توانند مالیات خود را به حفاظت و نگهداری از بقعه شیخ صفی الدین اختصاص دهند": {
       "ok": false,
@@ -4530,12 +4555,6 @@
       "topic": "آب و هوا",
       "until": 1793593985.6975894
     },
-    "v4|گریلیش در متن حاشیه/ سرنوشت مبهم ستاره سابق 100 میلیون یورویی!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: حاشیه‌گری ورزشی، بی‌اهمیت، خبری نیست",
-      "topic": "ورزش",
-      "until": 1793584956.5879686
-    },
     "v4|گفت و گوی تلفنی «ترامپ» و «نتانیاهو»": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=world: Unverified call, no concrete outcome",
@@ -4729,6 +4748,10 @@
       "reason": "final_guard:ai-contradiction",
       "until": 1793588645.2263112
     },
+    "اصابت دو پرتابه ناشناس به یک نفتکش در خلیج فارس": {
+      "reason": "content_duplicate",
+      "until": 1793606580.417227
+    },
     "انتشار تصاویر حمله خوشه ای روسیه به بالگردهای نظامی اوکراین در دونتسک": {
       "reason": "content_duplicate",
       "until": 1793572602.9603372
@@ -4740,6 +4763,10 @@
     "ببینید / چین موشک ضدناو خود را بر ماکت ناو هواپیمابر امریکا آزمایش کرد": {
       "reason": "content_duplicate",
       "until": 1793604760.52492
+    },
+    "بمباران تأسیسات نفتی و غرب یمن ۷ زخمی برجای گذاشت": {
+      "reason": "content_duplicate",
+      "until": 1793606574.564802
     },
     "ترامپ از گفت وگو با نتانیاهو درباره ایران خبر داد": {
       "reason": "content_duplicate",
@@ -5351,20 +5378,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Injury of national wrestler at world event, no major competition outcome",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1793552650,
-      "title": "حادثه تلخ در رقابت های جهانی؛مبارزه فیروزپور با دست شکسته در دیدار رده بندی"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=iran_national: President announces banking reform to centralize provincial accounts.",
-      "rescued": true,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793552652,
-      "title": "پزشکیان: حساب های شرکت ها، کارخانه ها و معادن یک استان در بانک های همان استان متمرکز شود"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine rhetoric by a cleric; not an official state policy decision.",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5909,6 +5922,20 @@
       "rule": "below-event-threshold",
       "t": 1793583130,
       "title": "اتلتیکو صدرشین خواهد شد؟/ هفتمین برد متوالی برای خلق یک معجزه!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: پاداش داخلی دانشگاه، تأثیر محدود، خبری محلی",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1793584951,
+      "title": "جزئیات بسته تشویقی دانشگاه تهران برای انتشار مقاله و ثبت اختراع"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Political comment, no concrete decision",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793584952,
+      "title": "عضو کمیسیون امنیت ملی: قالیباف گفت اگر مرا به دار بکشند با دو جریان کنار نخواهم آمد؛ نوحجتیه ها و جریان سکولار و لیبرال/"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9739,7 +9766,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793583064
+    "at": 1793584874
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9754,14 +9781,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793583214,
-    "last_failure": 1793583154,
-    "last_status": 422
+    "disabled_until": 1793585559,
+    "last_failure": 1793584959,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793581720.0,
-    "last_failure": 1793581420,
-    "last_status": 599
+    "disabled_until": 1793585555,
+    "last_failure": 1793584955,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9776,7 +9803,7 @@
     "last_status": 599
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1793583138,
+    "last_quality_failure": 1793584977,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
