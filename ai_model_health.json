@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793662380
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793662380
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1793662384
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793662388
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793662388
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793662393
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793662393
-    },
-    {
       "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
       "t": 1793662397
     },
@@ -159,32 +131,60 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 6x, openrouter:* held 6x",
       "t": 1793673273
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793674998
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793674999
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793674999
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793675003
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793675009
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1793675011
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1793675048
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-02",
-      "n": 127
+      "n": 129
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-02",
-      "n": 217
+      "n": 220
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-02",
-      "n": 88
+      "n": 89
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-02",
-      "n": 84
+      "n": 85
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-03",
-      "n": 14
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-03",
-      "n": 14
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-11-03",
@@ -468,27 +468,27 @@
     "2026-11-03": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 15,
+        "calls": 17,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 11,
+        "ok": 13,
         "other": 4
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 23,
-        "ok": 23,
+        "calls": 26,
+        "ok": 26,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 7,
-        "calls": 14,
+        "429": 8,
+        "calls": 15,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 5,
-        "calls": 10,
+        "429": 6,
+        "calls": 11,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -496,17 +496,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 12,
-        "other": 2
+        "ok": 13,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 14,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
-        "other": 3
+        "calls": 16,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 12,
+        "other": 4
       },
       "mistral:ministral-8b-latest": {
         "429": 0,
@@ -516,8 +516,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 35,
-        "ok": 35,
+        "calls": 39,
+        "ok": 39,
         "other": 0
       },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
@@ -543,13 +543,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "ورزش",
-      "level": 4,
-      "t": 1793502221.0540893,
-      "title": "تاریخ سازی وزنه برداران زن ایران در بازی های آسیایی ناگویا",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 4,
@@ -1305,6 +1298,13 @@
       "t": 1793673184.8465338,
       "title": "درخواست واشنگتن از ناتو برای تأمین مالی تجهیزات اوکراین",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1793675047.178699,
+      "title": "دونالد ترامپ آفریقای جنوبی و رواندا را از توافق تجاری با آمریکا حذف می کند",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-02",
@@ -1573,6 +1573,12 @@
       "topic": "سیاست",
       "until": 1793752373.2331946
     },
+    "v4|trump to remove rwanda and south africa from us trade deal": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: US removes Rwanda, South Africa from trade deal.",
+      "topic": "سیاست",
+      "until": 1793761411.3760765
+    },
     "v4|us lawmakers ask trump administration to stop deportation of afghans": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: درخواست قانون‌گذاران آمریکایی برای توقف اخراج افغان‌ها رویداد درجه یک نیست",
@@ -1662,12 +1668,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: خبر استانی مربوط به طرح جنگلداری در کهگیلویه و بویراحمد.",
       "topic": "جامعه",
       "until": 1793723728.1092653
-    },
-    "v4|آقایان خودروساز! دیدید وقتی قیمت گذاری دستوری متوقف شد، تولیدتان کاهش یافت ، زیاندهی تان هم ادامه پیدا کرد؟": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=False scope=local: Opinion piece, no concrete event",
-      "topic": "اقتصاد",
-      "until": 1793674998.111182
     },
     "v4|آماده باش حداکثری رژیم اسرائیل در آستانه انتخابات آمریکا": {
       "ok": false,
@@ -3061,6 +3061,12 @@
       "topic": "جامعه",
       "until": 1793711031.4767842
     },
+    "v4|رد درخواست دولت ترامپ برای توقف شمارش۲۰ هزار رأی در دیوان عالی آمریکا": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: رد درخواست ترامپ توسط دیوان عالی آمریکا درباره شمارش آرا",
+      "topic": "قضایی",
+      "until": 1793761408.5656192
+    },
     "v4|رزمایش «جان فدا» ۱۳ آبان در قزوین برگزار می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: برگزاری رزمایش استانی و محلی است و هنوز رخ نداده است.",
@@ -3510,6 +3516,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=iran_national: حضور بازیکن مطرح ملی در مسابقات مهم آسیایی",
       "topic": "ورزش",
       "until": 1793721869.8982456
+    },
+    "v4|طبیبیان: مملکت را بدون نفت می توان اداره کرد، بدون عقل نه/ آثار تحریمهای دوره احمدی نژاد تا سالها می ماند/ موفقیت هاشمی در به کارگیری تکنوکرات ها بود": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=local: Physicians comment on oil dependency and sanctions.",
+      "topic": "سیاست",
+      "until": 1793761411.3901389
     },
     "v4|طرح های پرهزینه دموکرات ها؛ چه باری بر اقتصاد آمریکا تحمیل می کنند؟": {
       "ok": false,
@@ -4369,6 +4381,12 @@
       "topic": "سیاست",
       "until": 1793718264.5996354
     },
+    "v4|پنجاهمین گل در 154 بازی/ عبور بلینگام از زیدان با یک رکورد شگفت انگیز": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: رکورد باشگاهی، نه مسابقهٔ بین‌المللی مهم",
+      "topic": "ورزش",
+      "until": 1793761409.480937
+    },
     "v4|پنجمین برد متوالی سلتیکس و اولین پیروزی بروکلین:/ شاهکار 32 امتیازی تیتوم با سر و صورت زخمی!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: نتایج مسابقات لیگ بسکتبال NBA، خارج از اولویت‌های اصلی خبری ایران.",
@@ -4386,12 +4404,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: محتوای آموزشی و عمومی است و فاقد ارزش خبری فوری است.",
       "topic": "سلامت",
       "until": 1793709210.7193246
-    },
-    "v4|پیشتازی دموکرات ها در آستانه انتخابات میان دوره ای آمریکا": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: نظرسنجی پیش‌بینی انتخابات، نه تصمیم یا رویداد واقعی",
-      "topic": "سیاست",
-      "until": 1793674996.695306
     },
     "v4|پیشرفت ۹۰ درصدی مصلی و آزمایشگاه سلول های بنیادین پردیس": {
       "ok": false,
@@ -4633,12 +4645,6 @@
       "topic": "حادثه",
       "until": 1793689463.101259
     },
-    "v4|گمانه زنی نشریه آمریکایی برای نامزدی ونس در انتخابات ۲۰۲۸": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=local: Speculation, no official decision",
-      "topic": "سیاست",
-      "until": 1793674998.0976267
-    },
     "v4|گندم کاران زیر بار هزینه ها؛ تولید هر کیلو گندم به ۸۵ هزار تومان رسید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Routine sectoral economic report on production costs without national crisis.",
@@ -4868,6 +4874,10 @@
       "reason": "content_duplicate",
       "until": 1793678752.5447178
     },
+    "ادعای ترامپ: مذاکرات به خوبی پیش می رود / برای ازسرگیری جنگ با ایران عجله ای ندارم؛ ما داریم اقتصادشان را فلج می کنیم": {
+      "reason": "content_duplicate",
+      "until": 1793696621.2557623
+    },
     "ادعای ترامپ: مردم احساس می کنند جنگی با ایران در کار نخواهد بود/ توافق با تهران ممکن است حاصل شود/ ایرنا: صدای ۵ انفجار در قشم؛ به نظر می رسد اصابت در داخل جزیره بوده/ خبرنگار ان ب": {
       "reason": "content_duplicate",
       "until": 1793676867.3011658
@@ -4901,6 +4911,10 @@
       "reason": "final_guard:media-source",
       "until": 1793678762.353067
     },
+    "رد درخواست دولت ترامپ برای توقف شمارش۲۰ هزار رأی در دیوان عالی آمریکا": {
+      "reason": "content_duplicate",
+      "until": 1793696628.6267064
+    },
     "سپاه: انهدام و کنترل ۳ پهپاد آمریکایی در آسمان خلیج فارس": {
       "at": 1793673273.2238986,
       "reason": "ai_unavailable_persian_fallback",
@@ -4924,15 +4938,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "تصمیم گیری درباره پاسخ به نامه معاون رئیس جمهور آمریکا بر عهده دبیر شورای عالی امنیت ملی است ⚡️ سخنگوی وزارت ا",
-      "id": "14ee30486a",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793608509,
-      "verdict": "new",
-      "why": "درباره تصمیم گیری رسمی ایران در پاسخ به نامه آمریکا"
-    },
     {
       "head": "بقایی: توپ در زمین آمریکاست ⚡️ اسماعیل بقایی، سخنگوی وزارت امورخارجه، در نشست خبری هفتگی با خبرنگاران داخلی و ",
       "id": "2a7ca7296d",
@@ -5478,23 +5483,18 @@
       "t": 1793673183,
       "verdict": "new",
       "why": "تأمین مالی ناتو برای سلاح اوکراین، موضوع جدید"
+    },
+    {
+      "head": "دونالد ترامپ آفریقای جنوبی و رواندا را از توافق تجاری با آمریکا حذف می کند ⚡️ دونالد ترامپ، رئیس جمهور آمریکا،",
+      "id": "62f8f85adc",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793675045,
+      "verdict": "new",
+      "why": "تغییرات تجاری آمریکا با آفریقای جنوبی و رواندا"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: افتتاح مرکز نظامی، مراسم تشریفاتی",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793635448,
-      "title": "افتتاح سومین مرکز آموزش نظامی عمومی «جان فدا»"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: سخنان مقام محلی استاندار خوزستان، رویداد ملی محسوب نمی شود.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793635463,
-      "title": "استاندار خوزستان: خلاف نظر رهبر انقلاب ذره ای امتیاز به دشمن نمی دهیم"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial school solar rollout, limited national impact",
       "rescued": false,
@@ -6040,42 +6040,26 @@
       "rule": "no-concrete-event",
       "t": 1793673169,
       "title": "US lawmakers ask Trump administration to stop deportation of Afghans"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: رد درخواست ترامپ توسط دیوان عالی آمریکا درباره شمارش آرا",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1793675008,
+      "title": "رد درخواست دولت ترامپ برای توقف شمارش۲۰ هزار رأی در دیوان عالی آمریکا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: رکورد باشگاهی، نه مسابقهٔ بین‌المللی مهم",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1793675009,
+      "title": "پنجاهمین گل در 154 بازی/ عبور بلینگام از زیدان با یک رکورد شگفت انگیز"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اردن",
-        "افرد",
-        "امم",
-        "بربر",
-        "تررسم",
-        "تسلم",
-        "تکد",
-        "جر",
-        "در",
-        "دم",
-        "شهر",
-        "عبدلل",
-        "قطعن",
-        "مرگبر",
-        "مسلح",
-        "مقبل",
-        "ملک",
-        "نخهد",
-        "پدش",
-        "پرلم",
-        "کرک",
-        "کلس",
-        "گذشت",
-        "گشش"
-      ],
-      "t": 1793630135.9138103,
-      "title": "پادشاه اردن پس از حمله کرک بر مقابله با افراد مسلح تأکید کرد ⚡️ ملک عبدالله دوم، پادشاه اردن، در جریان گشایش دوره جدید پ"
-    },
     {
       "h": [
         "اتش",
@@ -6520,6 +6504,26 @@
       ],
       "t": 1793673184.838872,
       "title": "درخواست واشنگتن از ناتو برای تأمین مالی تجهیزات اوکراین ⚡️ آمریکا از متحدان خود در ناتو می خواهد تا بودجه اضافی برای پوش"
+    },
+    {
+      "h": [
+        "اغز",
+        "افرق",
+        "تجر",
+        "تصمم",
+        "تفق",
+        "جنب",
+        "حذف",
+        "خرج",
+        "رشد",
+        "رند",
+        "فرصت",
+        "قنن",
+        "مطلع",
+        "کنگر"
+      ],
+      "t": 1793675047.1660278,
+      "title": "دونالد ترامپ آفریقای جنوبی و رواندا را از توافق تجاری با آمریکا حذف می کند ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، کنگره را "
     }
   ],
   "_published_incidents": [
@@ -6881,113 +6885,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اتلف",
-        "اختلل",
-        "انرژ",
-        "اپک",
-        "بدن",
-        "تدم",
-        "تغر",
-        "تلد",
-        "تنش",
-        "جنگ",
-        "جهن",
-        "حفظ",
-        "خرمن",
-        "دسمبر",
-        "سطح",
-        "سهم",
-        "سپتمبر",
-        "عرض",
-        "محددت",
-        "نسبت",
-        "نفت",
-        "وکنش",
-        "پلس"
-      ],
-      "t": 1793543689.9778125,
-      "title": "تداوم محدودیت تولید اوپک پلاس در سایه تنش های خاورمیانه ⚡️ ائتلاف نفتی اوپک پلاس در واکنش به تداوم جنگ در خاورمیانه و اخ"
-    },
-    {
-      "k": [
-        "افزش",
-        "اقدم",
-        "امرک",
-        "انجم",
-        "انگلس",
-        "تظهر",
-        "جر",
-        "حم",
-        "دستگر",
-        "سفرت",
-        "فشر",
-        "فلسطن",
-        "لندن",
-        "مقبل",
-        "نفر",
-        "همزم",
-        "پلس"
-      ],
-      "n": [
-        "325"
-      ],
-      "t": 1793543706.7843902,
-      "title": "دستگیری ۳۲۵ نفر در تظاهرات حامیان فلسطین در لندن ⚡️ پلیس انگلیس در جریان تظاهرات حامیان فلسطین در مقابل سفارت آمریکا در "
-    },
-    {
-      "k": [
-        "اخلق",
-        "ار",
-        "ارتق",
-        "امدگ",
-        "بدن",
-        "بربر",
-        "برنم",
-        "برهم",
-        "بهر",
-        "تعرض",
-        "تن",
-        "تهدد",
-        "تکد",
-        "جغرف",
-        "خهد",
-        "دخل",
-        "دشمن",
-        "دفع",
-        "رزم",
-        "زند",
-        "سز",
-        "علم",
-        "عملت",
-        "غفلگر",
-        "فر",
-        "فرمن",
-        "فرمند",
-        "فنر",
-        "قطع",
-        "متخصص",
-        "متنسب",
-        "مج",
-        "محددت",
-        "مسلح",
-        "معدل",
-        "مهردد",
-        "نر",
-        "نقط",
-        "هرگن",
-        "وزر",
-        "وزرتخن",
-        "پسخ",
-        "پشتبن",
-        "پشرفت",
-        "گر"
-      ],
-      "s": "وزیر دفاع",
-      "t": 1793543762.6887906,
-      "title": "وزیر دفاع: ایران در برابر تهدید غافلگیر نمی شود/ ارتقای توان پاسخ بدون محدودیت جغرافیایی ⚡️ مهرداد اخلاقی وزیر دفاع و پش"
-    },
     {
       "k": [
         "ار",
@@ -9561,6 +9458,63 @@
       ],
       "t": 1793673184.8308551,
       "title": "درخواست واشنگتن از ناتو برای تأمین مالی تجهیزات اوکراین ⚡️ آمریکا از متحدان خود در ناتو می خواهد تا بودجه اضافی برای پوش"
+    },
+    {
+      "k": [
+        "ابرز",
+        "اشتغل",
+        "اغز",
+        "افرق",
+        "اقدم",
+        "امرک",
+        "امنت",
+        "بدن",
+        "بزر",
+        "بشر",
+        "تجر",
+        "تجرت",
+        "ترمپ",
+        "تسف",
+        "تصمم",
+        "تفق",
+        "تکد",
+        "جمهر",
+        "جنب",
+        "حذف",
+        "حفظ",
+        "حقق",
+        "خرج",
+        "دلل",
+        "دنبل",
+        "دنلد",
+        "رس",
+        "رشد",
+        "رعت",
+        "رند",
+        "سرم",
+        "سز",
+        "شرط",
+        "صدرت",
+        "ضمن",
+        "عدم",
+        "فرصت",
+        "قنن",
+        "متنع",
+        "مربط",
+        "مطلع",
+        "معر",
+        "مقم",
+        "مل",
+        "منع",
+        "نگرن",
+        "هستند",
+        "وجد",
+        "وشنگتن",
+        "کنگر",
+        "گذر"
+      ],
+      "t": 1793675047.151489,
+      "title": "دونالد ترامپ آفریقای جنوبی و رواندا را از توافق تجاری با آمریکا حذف می کند ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، کنگره را "
     }
   ],
   "_telegram_errors": [
@@ -9652,7 +9606,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793673066
+    "at": 1793674911
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9666,19 +9620,15 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.5-flash-lite": {
-    "last_quality_failure": 1793673226,
-    "last_status": 422
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793673764,
-    "last_failure": 1793673164,
+    "disabled_until": 1793675603,
+    "last_failure": 1793675003,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793673464.0,
-    "last_failure": 1793673164,
-    "last_status": 599
+    "disabled_until": 1793675599,
+    "last_failure": 1793674999,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
