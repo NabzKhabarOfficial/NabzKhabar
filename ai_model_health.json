@@ -2,30 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793660610
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793660610
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793660610
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793660614
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793660619
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793660619
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793660623
     },
     {
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
       "t": 1793669672
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793670585
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793670586
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793670586
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1793670586
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.6-flash",
+      "t": 1793670594
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 7x",
+      "t": 1793670670
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-02",
-      "n": 118
+      "n": 121
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-02",
-      "n": 202
+      "n": 207
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-02",
-      "n": 80
+      "n": 84
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-02",
-      "n": 77
+      "n": 80
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-03",
-      "n": 10
+      "n": 11
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-03",
-      "n": 10
+      "n": 11
     },
     "openrouter:*": {
       "day": "2026-11-03",
@@ -468,44 +468,44 @@
     "2026-11-03": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 7,
+        "calls": 10,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 6,
-        "other": 1
+        "ok": 7,
+        "other": 3
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 4,
-        "calls": 6,
+        "429": 5,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 2,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 4,
+        "429": 4,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 1
+        "other": 3
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 10,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 8,
         "other": 3
       },
       "mistral:ministral-8b-latest": {
@@ -516,8 +516,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 19,
-        "ok": 19,
+        "calls": 24,
+        "ok": 24,
         "other": 0
       },
       "openrouter:openrouter/free": {
@@ -1330,6 +1330,12 @@
       "topic": "سیاست",
       "until": 1793705690.2218568
     },
+    "v4|european force to hold first ukraine support exercise in poland": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=False scope=world: برگزاری رزمایش و تمرینات نظامی پیش‌رو دارای ارزش خبری پایین است",
+      "topic": "نظامی",
+      "until": 1793756994.7898533
+    },
     "v4|fake nuclear warning from hacked app sparks unease but not panic in ukraine": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: هشدار جعلی اتمی از یک اپلیکیشن هک شده در اوکراین",
@@ -1426,6 +1432,12 @@
       "topic": "سیاست",
       "until": 1793687626.5451791
     },
+    "v4|multiple russian strikes kill at least 26 at ukraine aid centre": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash batch score=8 happened=True scope=world: حمله مرگبار روسیه به مرکز امدادرسانی در اوکراین با حداقل ۲۶ کشته",
+      "topic": "نظامی",
+      "until": 1793756994.7762191
+    },
     "v4|nba: yaxel lendeborg scores 37 as warriors defeat clippers": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine regular season NBA game result, not a final or title.",
@@ -1467,6 +1479,12 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Facial recognition trial, not major national impact",
       "topic": "فناوری",
       "until": 1793673136.9949648
+    },
+    "v4|rba interest rates live: reserve bank of australia meeting today before cash rate decision and announcement – latest news": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Expected 18‑year high rate hike by RBA",
+      "topic": "اقتصاد",
+      "until": 1793756985.7230372
     },
     "v4|rsf publishes list of press freedom 'predators': 'dictators want to silence journalists'": {
       "ok": false,
@@ -3622,6 +3640,12 @@
       "topic": "ورزش",
       "until": 1793711068.1529777
     },
+    "v4|عیار دفاع چپ استقلال طلا می شود؟/ محرز، پورتال گودرزی برای انتقال به سطحی بالاتر!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Club match preview, not major national/international event",
+      "topic": "ورزش",
+      "until": 1793756985.030179
+    },
     "v4|غریب آبادی: امنیت غذایی نباید قربانی جنگ و تحریم شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=iran_national: مواضع مقام وزارت خارجه درباره تحریم و امنیت غذایی، خبر رسمی معمول.",
@@ -4822,6 +4846,10 @@
       "reason": "content_duplicate",
       "until": 1793676890.083335
     },
+    "multiple russian strikes kill at least 26 at ukraine aid centre": {
+      "reason": "content_duplicate",
+      "until": 1793692270.9226246
+    },
     "plane may have broken apart ahead of deadly florida jet crash, say investigators": {
       "reason": "content_duplicate",
       "until": 1793687636.4634924
@@ -4853,7 +4881,7 @@
     },
     "انصارالله از حمله به فرودگاه دمام و اهداف نظامی در جیزان خبر داد": {
       "reason": "content_duplicate",
-      "until": 1793669765.132578
+      "until": 1793692225.540071
     },
     "به روزرسانی می شود؛ جزئیات شنیده شدن صدای انفجار در قشم": {
       "reason": "content_duplicate",
@@ -4861,7 +4889,7 @@
     },
     "ترامپ: برای جلوگیری از هسته ای شدن ایران، نیازی به تغییر نظام نیست": {
       "reason": "content_duplicate",
-      "until": 1793670272.5906463
+      "until": 1793692210.4979043
     },
     "تیراندازی مرگبار در نزدیکی ساحل کالیفرنیا": {
       "reason": "content_duplicate",
@@ -4899,25 +4927,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "روسیه و اوکراین در حملات سایبری ادعا می کنند ⚡️ روسیه و اوکراین در روز دوشنبه ادعاهای متقابل دربارهٔ حملات سای",
-      "id": "38daa5776b",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793606682,
-      "verdict": "new",
-      "why": "هیچ تطابق با رویدادهای قبلی وجود ندارد"
-    },
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "شکست تلاش عناصر وابسته به عربستان در محور باب المندب ⚡️ نیروهای مسلح یمن موفق شدند تلاش عناصر وابسته به عربستا",
-      "id": "724e60c4ab",
-      "match": "حمله موشکی ارتش یمن به مواضع نیروهای تحت حمایت عربستان در لحج",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793608457,
-      "verdict": "repeat",
-      "why": "same Yemeni military attack against Saudi-backed forces"
-    },
     {
       "confirm": "gemini/gemini-3.5-flash-lite:new",
       "head": "شکست تلاش عناصر وابسته به عربستان در محور باب المندب ⚡️ نیروهای مسلح یمن موفق شدند تلاش عناصر وابسته به عربستا",
@@ -5453,23 +5462,29 @@
       "t": 1793667836,
       "verdict": "unconfirmed-repeat",
       "why": "same Saudi airstrike on Yemen civilians"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "حملات روسیه به مرکز امداد در اوکراین دست کم ۲۶ کشته برجای گذاشت ⚡️ حملات موشکی روسیه به یک مرکز امدادرسانی انس",
+      "id": "e97787d862",
+      "match": "زلنسکی: بمباران روسیه در مرکز کمک های بشردوستانه کی یف ۲۴ کشته بر جای گذاشت",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793670636,
+      "verdict": "repeat",
+      "why": "same Russian attack on humanitarian center, different region/casualties"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "حملات روسیه به مرکز امداد در اوکراین دست کم ۲۶ کشته برجای گذاشت ⚡️ حملات موشکی روسیه به یک مرکز امدادرسانی انس",
+      "id": "e97787d862",
+      "match": "زلنسکی: بمباران روسیه در مرکز کمک های بشردوستانه کی یف ۲۴ کشته بر جای گذاشت",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793670651,
+      "verdict": "repeat",
+      "why": "same Russian attack on humanitarian center, different region/casualties"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Traffic control plan, not a major event, local scope",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793633641,
-      "title": "عزم پلیس برای جلوگیری از زرنگ بازی خودرو ها در بزرگراه ها"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=iran_national: Official threat to US military operation",
-      "rescued": true,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1793633643,
-      "title": "عراقچی: اگر آمریکا قصد عملیات نظامی داشته باشد، پاسخی تلخ تر و سنگین تر دریافت می کند"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: اعلام کلیات و پیشرفت طرح های نفتی بدون رویداد مشخص",
       "rescued": false,
@@ -6015,6 +6030,20 @@
       "rule": "no-concrete-event",
       "t": 1793669562,
       "title": "North Korea denies being behind record $6.3bn Binance hack"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Club match preview, not major national/international event",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1793670585,
+      "title": "عیار دفاع چپ استقلال طلا می شود؟/ محرز، پورتال گودرزی برای انتقال به سطحی بالاتر!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Expected 18‑year high rate hike by RBA",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1793670585,
+      "title": "RBA interest rates live: Reserve Bank of Australia meeting today before cash rate decision and announcement – latest new"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9879,7 +9908,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793669471
+    "at": 1793670483
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9894,22 +9923,20 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1793670917.0,
+    "last_failure": 1793670617,
     "last_quality_failure": 1793669585,
-    "last_status": 422
-  },
-  "gemini:gemini-3.5-flash-lite": {
-    "last_quality_failure": 1793669588,
-    "last_status": 422
+    "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793670157,
-    "last_failure": 1793669557,
-    "last_status": 429
+    "disabled_until": 1793670665,
+    "last_failure": 1793670605,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793670153,
-    "last_failure": 1793669553,
-    "last_status": 429
+    "disabled_until": 1793670886.0,
+    "last_failure": 1793670586,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
