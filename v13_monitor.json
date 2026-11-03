@@ -1,25 +1,26 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-03T16:39:35.377330+00:00",
+  "all_selected_blocked": false,
+  "ambiguous_publications": 2,
+  "checked_at": "2026-11-03T17:07:30.507727+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
     {
       "error": "",
-      "reason": "final_guard:ai-contradiction",
+      "reason": "final_guard:dangling-lead",
       "result": "editorial_blocked",
-      "source": "nytimes.com",
-      "started_at": "2026-11-03T16:39:26.634145+00:00",
-      "title": "Iran Says It Would Reopen Strait of Hormuz in 2 Days as Part of U.S. Deal",
-      "url": "https://nytimes.com/2026/11/02/world/middleeast/iran-deal-strait-of-hormuz.html"
+      "source": "khabaronline.ir",
+      "started_at": "2026-11-03T17:05:19.994592+00:00",
+      "title": "ترامپ: درگیری با ایران، جنگ محسوب نمی شود",
+      "url": "https://khabaronline.ir/news/2297258/%D8%AA%D8%B1%D8%A7%D9%85%D9%BE-%D8%AF%D8%B1%DA%AF%DB%8C%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%AC%D9%86%DA%AF-%D9%85%D8%AD%D8%B3%D9%88%D8%A8-%D9%86%D9%85%DB%8C-%D8%B4%D9%88%D8%AF"
     },
     {
       "error": "",
-      "reason": "editor_gate: ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار دانشگاهی و محلی، فاقد ارزش خبری درجه یک ملی.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار دانشگاهی و محلی، فاقد ارزش خبری درجه یک ملی.",
       "result": "editorial_blocked",
       "source": "",
       "title": "میز لرزه ۲۰ تنی دانشگاه قم آماده آزمون سازه ها در برابر زلزله شد",
@@ -35,65 +36,69 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Routine aggressive rhetoric by a lower-level official, not state policy.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "نماینده مجلس: هر کسی به سمت ما دست تعرض دراز کند، هر کجا که باشد، دستش باید قطع شود/ به هر حمله ای از جانب اروپا نیز پاسخ می دهیم",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: no-ai-fallback-fail-closed",
       "result": "editorial_blocked",
       "source": "",
-      "title": "ثبت ۳۹۵ مورد نقض در یک ماه؛ تشدید تحرکات اسرائیل در جنوب سوریه",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: no-ai-fallback-fail-closed",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "محدودیت های ترافیکی راهپیمایی ۱۳ آبان در قم اعلام شد",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Reports of regional security instability affecting major international sports travel.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "رسانه ورزشی اماراتی: رونالدو به علت ناامنی فرودگاه های عربستان در پی حملات انصارالله، حاضر به سفر به ازبکستان نشد",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: no-ai-fallback-fail-closed",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "بخش عمده مطالبات ۴۴۰ میلیون دلاری پتروشیمی جم وصول شد",
+      "title": "Ukraine and Russia are taking the war underground as drones saturate the battlefield",
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "isna.ir",
+      "started_at": "2026-11-03T17:04:33.370755+00:00",
+      "title": "زلنسکی: پوتین را به کی یف دعوت نمی کنم",
+      "url": "https://isna.ir/news/1405081208266/%D8%B2%D9%84%D9%86%D8%B3%DA%A9%DB%8C-%D9%BE%D9%88%D8%AA%DB%8C%D9%86-%D8%B1%D8%A7-%D8%A8%D9%87-%DA%A9%DB%8C-%DB%8C%D9%81-%D8%AF%D8%B9%D9%88%D8%AA-%D9%86%D9%85%DB%8C-%DA%A9%D9%86%D9%85"
+    },
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "aljazeera.com",
+      "started_at": "2026-11-03T17:06:23.842713+00:00",
+      "title": "Opposition party organiser killed before South Africa elections",
+      "url": "https://aljazeera.com/news/2026/11/3/opposition-party-organiser-killed-ahead-of-south-africa-elections?traffic_source=rss"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 14,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "isna.ir",
+      "title": "زلنسکی: پوتین را به کی یف دعوت نمی کنم",
+      "url": "https://isna.ir/news/1405081208266/%D8%B2%D9%84%D9%86%D8%B3%DA%A9%DB%8C-%D9%BE%D9%88%D8%AA%DB%8C%D9%86-%D8%B1%D8%A7-%D8%A8%D9%87-%DA%A9%DB%8C-%DB%8C%D9%81-%D8%AF%D8%B9%D9%88%D8%AA-%D9%86%D9%85%DB%8C-%DA%A9%D9%86%D9%85"
+    },
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "aljazeera.com",
+      "title": "Opposition party organiser killed before South Africa elections",
+      "url": "https://aljazeera.com/news/2026/11/3/opposition-party-organiser-killed-ahead-of-south-africa-elections?traffic_source=rss"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
   "run_status": "success",
-  "selected_for_publication": 9,
+  "selected_for_publication": 7,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "khabaronline.ir",
-      "started_at": "2026-11-03T16:39:20.371088+00:00",
-      "title": "ترامپ: درگیری با ایران، جنگ محسوب نمی شود",
-      "url": "https://khabaronline.ir/news/2297258/%D8%AA%D8%B1%D8%A7%D9%85%D9%BE-%D8%AF%D8%B1%DA%AF%DB%8C%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%AC%D9%86%DA%AF-%D9%85%D8%AD%D8%B3%D9%88%D8%A8-%D9%86%D9%85%DB%8C-%D8%B4%D9%88%D8%AF"
+      "source": "france24.com",
+      "started_at": "2026-11-03T17:07:07.384269+00:00",
+      "title": "‘Vile terrorist attack’: Russia bombs Ukraine aid centre",
+      "url": "https://france24.com/en/video/20261103-vile-terrorist-attack-russia-bombs-ukraine-aid-centre"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
