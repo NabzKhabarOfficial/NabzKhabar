@@ -1,29 +1,19 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": false,
-  "ambiguous_publications": 2,
-  "checked_at": "2026-11-03T17:07:30.507727+00:00",
+  "all_selected_blocked": true,
+  "ambiguous_publications": 0,
+  "checked_at": "2026-11-03T17:38:16.045816+00:00",
   "diagnostics": [
-    "Selected stories did not reach confirmed publication.",
-    "Publication attempts failed or raised exceptions.",
+    "All selected stories were blocked or reconciled without a confirmed publication.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
     {
       "error": "",
-      "reason": "final_guard:dangling-lead",
-      "result": "editorial_blocked",
-      "source": "khabaronline.ir",
-      "started_at": "2026-11-03T17:05:19.994592+00:00",
-      "title": "ترامپ: درگیری با ایران، جنگ محسوب نمی شود",
-      "url": "https://khabaronline.ir/news/2297258/%D8%AA%D8%B1%D8%A7%D9%85%D9%BE-%D8%AF%D8%B1%DA%AF%DB%8C%D8%B1%DB%8C-%D8%A8%D8%A7-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%AC%D9%86%DA%AF-%D9%85%D8%AD%D8%B3%D9%88%D8%A8-%D9%86%D9%85%DB%8C-%D8%B4%D9%88%D8%AF"
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اخبار دانشگاهی و محلی، فاقد ارزش خبری درجه یک ملی.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: خبر محلی و آماری مربوط به یک شهرستان خاص",
       "result": "editorial_blocked",
       "source": "",
-      "title": "میز لرزه ۲۰ تنی دانشگاه قم آماده آزمون سازه ها در برابر زلزله شد",
+      "title": "کاهش ۵۰ درصدی آتش سوزی در عرصه های طبیعی آستارا",
       "url": ""
     },
     {
@@ -36,69 +26,68 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: گزارش تحلیلی از وضعیت اقتصادی روسیه در پی جنگ",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "Russian households face increasing financial strain as war in Ukraine drags on",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: گزارش تحلیلی از تغییر تاکتیک‌های نظامی در جنگ اوکراین",
       "result": "editorial_blocked",
       "source": "",
       "title": "Ukraine and Russia are taking the war underground as drones saturate the battlefield",
       "url": ""
     }
   ],
-  "failed_publication_attempts": [
-    {
-      "error": "",
-      "reason": "telegram-transport-uncertain-no-retry",
-      "result": "ambiguous",
-      "source": "isna.ir",
-      "started_at": "2026-11-03T17:04:33.370755+00:00",
-      "title": "زلنسکی: پوتین را به کی یف دعوت نمی کنم",
-      "url": "https://isna.ir/news/1405081208266/%D8%B2%D9%84%D9%86%D8%B3%DA%A9%DB%8C-%D9%BE%D9%88%D8%AA%DB%8C%D9%86-%D8%B1%D8%A7-%D8%A8%D9%87-%DA%A9%DB%8C-%DB%8C%D9%81-%D8%AF%D8%B9%D9%88%D8%AA-%D9%86%D9%85%DB%8C-%DA%A9%D9%86%D9%85"
-    },
-    {
-      "error": "",
-      "reason": "telegram-transport-uncertain-no-retry",
-      "result": "ambiguous",
-      "source": "aljazeera.com",
-      "started_at": "2026-11-03T17:06:23.842713+00:00",
-      "title": "Opposition party organiser killed before South Africa elections",
-      "url": "https://aljazeera.com/news/2026/11/3/opposition-party-organiser-killed-ahead-of-south-africa-elections?traffic_source=rss"
-    }
-  ],
+  "failed_publication_attempts": [],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [
-    {
-      "intelligence_score": 14,
-      "monitor_reason": "selected-but-not-published",
-      "publication_tier": 4,
-      "source": "isna.ir",
-      "title": "زلنسکی: پوتین را به کی یف دعوت نمی کنم",
-      "url": "https://isna.ir/news/1405081208266/%D8%B2%D9%84%D9%86%D8%B3%DA%A9%DB%8C-%D9%BE%D9%88%D8%AA%DB%8C%D9%86-%D8%B1%D8%A7-%D8%A8%D9%87-%DA%A9%DB%8C-%DB%8C%D9%81-%D8%AF%D8%B9%D9%88%D8%AA-%D9%86%D9%85%DB%8C-%DA%A9%D9%86%D9%85"
-    },
-    {
-      "intelligence_score": 12,
-      "monitor_reason": "selected-but-not-published",
-      "publication_tier": 4,
-      "source": "aljazeera.com",
-      "title": "Opposition party organiser killed before South Africa elections",
-      "url": "https://aljazeera.com/news/2026/11/3/opposition-party-organiser-killed-ahead-of-south-africa-elections?traffic_source=rss"
-    }
-  ],
+  "missed_selected_stories": [],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
   "run_status": "success",
-  "selected_for_publication": 7,
+  "selected_for_publication": 8,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "france24.com",
-      "started_at": "2026-11-03T17:07:07.384269+00:00",
-      "title": "‘Vile terrorist attack’: Russia bombs Ukraine aid centre",
-      "url": "https://france24.com/en/video/20261103-vile-terrorist-attack-russia-bombs-ukraine-aid-centre"
+      "source": "isna.ir",
+      "started_at": "2026-11-03T17:35:15.313052+00:00",
+      "title": "یحیی سریع: جنگنده های سعودی طی ۲۴ ساعت گذشته ۹۳ بار مناطق غیرنظامی یمن را بمباران کردند",
+      "url": "https://isna.ir/news/1405081208278/%DB%8C%D8%AD%DB%8C%DB%8C-%D8%B3%D8%B1%DB%8C%D8%B9-%D8%AC%D9%86%DA%AF%D9%86%D8%AF%D9%87-%D9%87%D8%A7%DB%8C-%D8%B3%D8%B9%D9%88%D8%AF%DB%8C-%D8%B7%DB%8C-%DB%B2%DB%B4-%D8%B3%D8%A7%D8%B9%D8%AA-%DA%AF%D8%B0%D8%B4%D8%AA%D9%87-%DB%B9%DB%B3-%D8%A8%D8%A7%D8%B1-%D9%85%D9%86%D8%A7%D8%B7%D9%82-%D8%BA%DB%8C%D8%B1%D9%86%D8%B8%D8%A7%D9%85%DB%8C"
+    },
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
+      "source": "mehrnews.com",
+      "started_at": "2026-11-03T17:35:28.461548+00:00",
+      "title": "وداع مردم زابل با شهید حمله تروریستی سراوان",
+      "url": "https://mehrnews.com/news/6999162/%D9%85%D8%B1%D8%A7%D8%B3%D9%85-%D9%88%D8%AF%D8%A7%D8%B9-%D9%85%D8%B1%D8%AF%D9%85-%D8%B2%D8%A7%D8%A8%D9%84-%D8%A8%D8%A7-%D8%B4%D9%87%DB%8C%D8%AF-%D8%AD%D9%85%D9%84%D9%87-%D8%AA%D8%B1%D9%88%D8%B1%DB%8C%D8%B3%D8%AA%DB%8C-%D8%B3%D8%B1%D8%A7%D9%88%D8%A7%D9%86"
+    },
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
+      "source": "khabaronline.ir",
+      "started_at": "2026-11-03T17:36:43.804446+00:00",
+      "title": "بقایی: با بدبینی کامل وارد مذاکرات می شویم؛ آمریکا دو بار هنگام مذاکره به ایران حمله کرد",
+      "url": "https://khabaronline.ir/news/2297200/%D8%A8%D9%82%D8%A7%DB%8C%DB%8C-%D8%A8%D8%A7-%D8%A8%D8%AF%D8%A8%DB%8C%D9%86%DB%8C-%DA%A9%D8%A7%D9%85%D9%84-%D9%88%D8%A7%D8%B1%D8%AF-%D9%85%D8%B0%D8%A7%DA%A9%D8%B1%D8%A7%D8%AA-%D9%85%DB%8C-%D8%B4%D9%88%DB%8C%D9%85-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7-%D8%AF%D9%88-%D8%A8%D8%A7%D8%B1-%D9%87%D9%86%DA%AF%D8%A7%D9%85"
+    },
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
+      "source": "entekhab.ir",
+      "started_at": "2026-11-03T17:38:04.319684+00:00",
+      "title": "پلیس: درگیری پلیس با افراد مسلح در ایرانشهر، موجب کشته شدن یک نفر و دستگیری دو تن دیگر شد",
+      "url": "https://entekhab.ir/fa/news/946358/پلیس-درگیری-پلیس-با-افراد-مسلح-در-ایرانشهر-موجب-کشته-شدن-یک-نفر-و-دستگیری-دو-تن-دیگر-شد"
     }
   ],
-  "status": "publication_failure"
+  "status": "editorial_blocked"
 }
