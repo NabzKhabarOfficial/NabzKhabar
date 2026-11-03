@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793658793
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1793658797
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793658804
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793658805
     },
@@ -159,36 +147,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
       "t": 1793666036
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793667775
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1793667777
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1793667989
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-02",
-      "n": 112
+      "n": 116
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-02",
-      "n": 196
+      "n": 198
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-02",
-      "n": 76
+      "n": 79
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-02",
-      "n": 73
+      "n": 76
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-03",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-03",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
-      "day": "2026-11-02",
-      "n": 27
+      "day": "2026-11-03",
+      "n": 2
     }
   },
   "_ai_usage": {
@@ -468,60 +468,66 @@
     "2026-11-03": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
+        "calls": 5,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
+        "ok": 4,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 1,
-        "calls": 2,
+        "429": 3,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 1,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 0,
-        "calls": 1,
+        "429": 2,
+        "calls": 3,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
         "other": 1
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 4,
+        "ok": 6,
         "other": 2
+      },
+      "mistral:ministral-8b-latest": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 15,
+        "ok": 15,
+        "other": 0
+      },
+      "openrouter:openrouter/free": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 5,
-      "t": 1793495042.2354941,
-      "title": "حمله هوایی ادعایی ارتش ونزوئلا به اردوگاه ارتش آزادی بخش ملی در مرز کلمبیا",
-      "urgent": false
-    },
     {
       "label": "ورزش",
       "level": 4,
@@ -1263,6 +1269,20 @@
       "t": 1793665981.6274426,
       "title": "تهران: مسدودیت دریایی آمریکا باید برداشته شود",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1793667806.019047,
+      "title": "هواپیماهای جنگی سعودی بر کارخانه کفش در تعز حمله کردند",
+      "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1793667846.811241,
+      "title": "وزارت بهداشت یمن: ۷۶ تن در حملات عربستان شهید و زخمی شدند",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-02",
@@ -1272,6 +1292,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Expert analysis and speculation on ongoing protests, not a new event.",
       "topic": "سیاست",
       "until": 1793711068.1668854
+    },
+    "v4|11 شهید و زخمی در تجاوز جنگنده های سعودی در تعز": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Saudi jets attack Yemen factory, casualties",
+      "topic": "نظامی",
+      "until": 1793754177.0988283
     },
     "v4|afc: ایران و رویای جام چهارم پس از ۵۰ سال در آسیا": {
       "ok": false,
@@ -1698,6 +1724,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Club football streak, lacks national/international impact",
       "topic": "ورزش",
       "until": 1793669530.122436
+    },
+    "v4|اجتماع شبانه مردم انقلابی آبدان در شب ۲۴۷": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمع کوچک بدون پیامدهای گسترده",
+      "topic": "سیاست",
+      "until": 1793754175.412251
     },
     "v4|اجرای حکم توقیف دارایی های صندوق ذخیره فرهنگیان متوقف شد": {
       "ok": true,
@@ -4213,6 +4245,12 @@
       "topic": "فناوری",
       "until": 1793689484.1811564
     },
+    "v4|وزارت بهداشت یمن: حملات اخیر عربستان ۷۶ شهید و زخمی برجای گذاشته است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: 76 civilians killed by Saudi attacks",
+      "topic": "نظامی",
+      "until": 1793754177.1203
+    },
     "v4|وزنه برداری قهرمانی جهان/ وزنه برداران ایران ناکام ماندند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: عملکرد تیم ملی ایران در مسابقات قهرمانی جهان اهمیت ملی دارد.",
@@ -4405,6 +4443,12 @@
       "topic": "سیاست",
       "until": 1793700194.8513682
     },
+    "v4|کاروان «لاله های مادری» در اجتماع حماسی مردم گناوه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، مراسم یادبود، بدون اثر ملی یا بین‌المللی",
+      "topic": "جامعه",
+      "until": 1793754174.5383925
+    },
     "v4|کارگاه تخصصی «موزه ایمن، میراث ماندگار» ویژه مدیران موزه های کشور برگزار می شود": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: کارگاه موزه‌ای، رویداد محلی",
@@ -4536,6 +4580,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: AI-based judicial service launch",
       "topic": "فناوری",
       "until": 1793718262.5692708
+    },
+    "v4|گاوی در انتهای صف: سقوط آزاد سرباز جنگنده!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=local: player injury, no event",
+      "topic": "ورزش",
+      "until": 1793754177.1098614
     },
     "v4|گزارش نیویورک تایمز از ساعات سرنوشت ساز تهران؛ جنگ حتمی است یا توافق نزدیک؟": {
       "ok": false,
@@ -4791,18 +4841,9 @@
     }
   },
   "_editorial_blocks": {
-    "fighting returns to kherson region after longest ukraine war ceasefire": {
-      "reason": "content_duplicate",
-      "until": 1793667952.3064246
-    },
     "iran engages us in 'intensive' negotiations to avert fresh war outbreak": {
       "reason": "content_duplicate",
       "until": 1793676890.083335
-    },
-    "iran says it would reopen strait of hormuz in 2 days as part of u.s. deal": {
-      "at": 1793641067.938896,
-      "reason": "final_guard:ai-contradiction",
-      "until": 1793662667.938896
     },
     "plane may have broken apart ahead of deadly florida jet crash, say investigators": {
       "reason": "content_duplicate",
@@ -4820,10 +4861,6 @@
     "ادعای ترامپ: برای ازسرگیری جنگ با ایران عجله ای ندارم": {
       "reason": "content_duplicate",
       "until": 1793678752.5447178
-    },
-    "ادعای ترامپ: برای جلوگیری از دستیابی ایران به سلاح هسته ای، لزوماً نیازی به تغییر حکومت در ایران نداریم /مشکل این است که باید مشخص کنیم در ایران با چه کسی می توانیم مذاکره کنیم/ ای": {
-      "reason": "content_duplicate",
-      "until": 1793662667.9250963
     },
     "ادعای ترامپ: مذاکرات به خوبی پیش می رود / برای ازسرگیری جنگ با ایران عجله ای ندارم؛ ما داریم اقتصادشان را فلج می کنیم": {
       "reason": "content_duplicate",
@@ -4858,13 +4895,14 @@
       "reason": "final_guard:media-source",
       "until": 1793678762.353067
     },
+    "سپاه: انهدام و کنترل ۳ پهپاد آمریکایی در آسمان خلیج فارس": {
+      "at": 1793667989.1962862,
+      "reason": "ai_unavailable_persian_fallback",
+      "until": 1793669189.1962862
+    },
     "سپاه: دو پهپاد آمریکایی در قشم شکار کردیم/ ادعای ترامپ: مردم احساس می کنند جنگی با ایران در کار نخواهد بود؛ ممکن است توافق حاصل شود/ ایرنا: ۵ انفجار در قشم؛ اصابت در داخل جزیره بود": {
       "reason": "content_duplicate",
       "until": 1793682249.3449616
-    },
-    "سپاه: یک تیم تروریستی در جنوب سیستان وبلوچستان قبل از اجرای اقدام تروریستی به کمین افتاد / در این عملیات یک نفر از تروریست ها به هلاکت رسید و تعدادی نیز دستگیر شدند": {
-      "reason": "content_duplicate",
-      "until": 1793664343.50831
     },
     "صدای انفجار از سمت دریا در بندرلنگه شنیده شد": {
       "reason": "content_duplicate",
@@ -4877,39 +4915,9 @@
     "مخالفت دیوان عالی آمریکا با درخواست ترامپ برای ابطال ۲۰ هزار رأی در ایالت کالیفرنیا": {
       "reason": "content_duplicate",
       "until": 1793685847.4811275
-    },
-    "یحیی سریع: عربستان در ۲۴ ساعت گذشته ۱۰۹ بار یمن را هدف قرار داد": {
-      "reason": "content_duplicate",
-      "until": 1793662591.1171165
-    },
-    "یمن: حملات عربستان بیش از ۳۸۰۰ بار تکرار شده است": {
-      "reason": "content_duplicate",
-      "until": 1793662562.6296995
-    },
-    "۱۰۹ حمله عربستان به یمن طی ۲۴ ساعت گذشته": {
-      "reason": "content_duplicate",
-      "until": 1793666112.2669003
     }
   },
   "_event_judge_log": [
-    {
-      "head": "تلاش آمریکا برای ازسرگیری فروش گاز روسیه به اروپا از مسیر اوکراین با هدف آتش بس انرژی ⚡️ آمریکا ازسرگیری سریع ",
-      "id": "c66bc03be2",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793604988,
-      "verdict": "new",
-      "why": "مذاکرات جدید آتش‌بس انرژی آمریکا-روسیه"
-    },
-    {
-      "head": "هشدار ادنوک درباره کاهش ذخایر جهانی نفت در پی بحران تنگه هرمز ⚡️ رئیس اجرایی شرکت نفت ادنوک امارات اعلام کرد ک",
-      "id": "62deb7ea44",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793605023,
-      "verdict": "new",
-      "why": "ذخایر جهانی نفت و هشدار ادنوک"
-    },
     {
       "head": "روسیه و اوکراین در حملات سایبری ادعا می کنند ⚡️ روسیه و اوکراین در روز دوشنبه ادعاهای متقابل دربارهٔ حملات سای",
       "id": "38daa5776b",
@@ -5444,23 +5452,29 @@
       "t": 1793665980,
       "verdict": "new",
       "why": "مذاکرات جدید ایران و آمریکا بدون اشاره قبلی"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:new",
+      "head": "هواپیماهای جنگی سعودی بر کارخانه کفش در تعز حمله کردند ⚡️ هواپیماهای جنگی سعودی بر کارخانه تولید کفش در منطقه ",
+      "id": "00e2a138b1",
+      "match": "حمله هوایی و توپخانه ای عربستان به صعده با سه زخمی ⚡️ حمله هوایی عربستان سعودی به یک منزل مسکونی در منطقه عکوا",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793667784,
+      "verdict": "unconfirmed-repeat",
+      "why": "همه حمله هوایی عربستان به یمن"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:new",
+      "head": "وزارت بهداشت یمن: ۷۶ تن در حملات عربستان شهید و زخمی شدند ⚡️ وزارت بهداشت یمن اعلام کرد در ۲۴ ساعت گذشته ۷۶ غی",
+      "id": "839ba4a75e",
+      "match": "حمله هوایی و توپخانه ای عربستان به صعده با سه زخمی ⚡️ حمله هوایی عربستان سعودی به یک منزل مسکونی در منطقه عکوا",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793667836,
+      "verdict": "unconfirmed-repeat",
+      "why": "same Saudi airstrike on Yemen civilians"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Predictions, no actual event yet",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793631864,
-      "title": "پنج عامل تعیین کننده در انتخابات میان دوره ای آمریکا؛ جمهوری خواهان در معرض شکست"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار رویدادهای استانی و برنامه‌های آموزش و پرورش اهمیت محلی دارد",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793631898,
-      "title": "تشریح برنامه های آموزش و پرورش آذربایجان شرقی برای روز دانش آموز و راهپیمایی ۱۳ آبان"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: درخواست نماینده برای رفع مشکلات اینترنت روستاهای ملایر خبری محلی است",
       "rescued": false,
@@ -6006,69 +6020,26 @@
       "rule": "foreign-local-preselection",
       "t": 1793664225,
       "title": "مخالفت دیوان عالی آمریکا با درخواست ترامپ برای ابطال ۲۰ هزار رأی در ایالت کالیفرنیا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، مراسم یادبود، بدون اثر ملی یا بین‌المللی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1793667774,
+      "title": "کاروان «لاله های مادری» در اجتماع حماسی مردم گناوه"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمع کوچک بدون پیامدهای گسترده",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1793667775,
+      "title": "اجتماع شبانه مردم انقلابی آبدان در شب ۲۴۷"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ابن",
-        "ارشد",
-        "الجل",
-        "برق",
-        "بست",
-        "تحل",
-        "تعن",
-        "تنگ",
-        "حمت",
-        "سخت",
-        "شرط",
-        "شمل",
-        "ضرب",
-        "فرمل",
-        "قبض",
-        "مذکر",
-        "مسکن",
-        "مضع",
-        "مضعت",
-        "نمند",
-        "هرمز",
-        "هزن"
-      ],
-      "t": 1793622885.2194202,
-      "title": "اعلام موضوعات بسته خبری ۱۱ آبان و تحویل مسکن حمایتی ⚡️ بسته خبری ۱۱ آبان ۱۴۰۵ شامل موضوعاتی چون شروط تهران برای امنیت تن"
-    },
-    {
-      "h": [
-        "اثر",
-        "استندر",
-        "بکنند",
-        "ترر",
-        "تنند",
-        "تهدد",
-        "تکد",
-        "حضر",
-        "دشمن",
-        "شهر",
-        "شهردر",
-        "صحن",
-        "غلط",
-        "مسعد",
-        "منند",
-        "نشست",
-        "نفر",
-        "هزر",
-        "همره",
-        "هچ",
-        "وجد",
-        "پزشک",
-        "کلن"
-      ],
-      "t": 1793622914.816296,
-      "title": "پزشکیان: با همراهی مردم، ترور هزاران نفر مانند من توسط دشمنان بی اثر است ⚡️ مسعود پزشکیان رئیس جمهور در نشست با استاندار"
-    },
     {
       "h": [
         "ازسرگر",
@@ -6596,30 +6567,43 @@
       ],
       "t": 1793665981.6171837,
       "title": "تهران: مسدودیت دریایی آمریکا باید برداشته شود ⚡️ تهران از آمریکا می خواهد مسدودیت دریایی را بردارد و تمام خواسته هایش را"
+    },
+    {
+      "h": [
+        "بخش",
+        "تعز",
+        "تقطع",
+        "تلد",
+        "جنب",
+        "سعد",
+        "شرعب",
+        "شهرست",
+        "غرب",
+        "هدف",
+        "کرخن",
+        "کفش",
+        "یمن"
+      ],
+      "t": 1793667805.997547,
+      "title": "هواپیماهای جنگی سعودی بر کارخانه کفش در تعز حمله کردند ⚡️ هواپیماهای جنگی سعودی بر کارخانه تولید کفش در منطقه تقاطع شرعب"
+    },
+    {
+      "h": [
+        "اثر",
+        "بهدشت",
+        "سعت",
+        "شدند",
+        "شهد",
+        "غرنظم",
+        "وزرت",
+        "گذشت",
+        "یمن"
+      ],
+      "t": 1793667846.8008795,
+      "title": "وزارت بهداشت یمن: ۷۶ تن در حملات عربستان شهید و زخمی شدند ⚡️ وزارت بهداشت یمن اعلام کرد در ۲۴ ساعت گذشته ۷۶ غیرنظامی بر "
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "ارتبط",
-        "شبک",
-        "صعد",
-        "یمن"
-      ],
-      "cities": [
-        "صعده"
-      ],
-      "kind": "attack",
-      "places": [
-        "صعده"
-      ],
-      "regions": [
-        "yemen"
-      ],
-      "t": 1793595876.829175,
-      "title": "حمله هوایی به شبکه ارتباطی در صعده یمن ⚡️ حملات هوایی به یمن ادامه یافت و یک شبکه ارتباطی در صعده هدف قرار گرفت.",
-      "toll": 0
-    },
     {
       "a": [
         "ادس",
@@ -6947,6 +6931,32 @@
       ],
       "t": 1793658877.7208812,
       "title": "وقوع پنج انفجار در جزیره قشم ⚡️ صدای پنج انفجار ممتد و پشت سر هم دقایقی پیش در جزیره قشم به گوش رسید و شدت آن ها نشان ده",
+      "toll": 0
+    },
+    {
+      "a": [
+        "تعز",
+        "تقطع",
+        "تلد",
+        "سعد",
+        "شرعب",
+        "شهرست",
+        "کرخن",
+        "کفش",
+        "یمن"
+      ],
+      "cities": [
+        "تعز"
+      ],
+      "kind": "attack",
+      "places": [
+        "تعز"
+      ],
+      "regions": [
+        "yemen"
+      ],
+      "t": 1793667806.008548,
+      "title": "هواپیماهای جنگی سعودی بر کارخانه کفش در تعز حمله کردند ⚡️ هواپیماهای جنگی سعودی بر کارخانه تولید کفش در منطقه تقاطع شرعب",
       "toll": 0
     }
   ],
@@ -9754,6 +9764,49 @@
       "s": "تهران",
       "t": 1793665981.6064136,
       "title": "تهران: مسدودیت دریایی آمریکا باید برداشته شود ⚡️ تهران از آمریکا می خواهد مسدودیت دریایی را بردارد و تمام خواسته هایش را"
+    },
+    {
+      "k": [
+        "بخش",
+        "تعز",
+        "تقطع",
+        "تلد",
+        "جنب",
+        "جنگ",
+        "حمل",
+        "سعد",
+        "شرعب",
+        "شهرست",
+        "غرب",
+        "منطق",
+        "هدف",
+        "هپم",
+        "کرخن",
+        "کفش",
+        "یمن"
+      ],
+      "t": 1793667805.9847336,
+      "title": "هواپیماهای جنگی سعودی بر کارخانه کفش در تعز حمله کردند ⚡️ هواپیماهای جنگی سعودی بر کارخانه تولید کفش در منطقه تقاطع شرعب"
+    },
+    {
+      "k": [
+        "اثر",
+        "بهدشت",
+        "حمل",
+        "زخم",
+        "سعت",
+        "شدند",
+        "شهد",
+        "عربست",
+        "غرنظم",
+        "وزرت",
+        "کشر",
+        "گذشت",
+        "یمن"
+      ],
+      "s": "وزارت بهداشت یمن",
+      "t": 1793667846.7902744,
+      "title": "وزارت بهداشت یمن: ۷۶ تن در حملات عربستان شهید و زخمی شدند ⚡️ وزارت بهداشت یمن اعلام کرد در ۲۴ ساعت گذشته ۷۶ غیرنظامی بر "
     }
   ],
   "_telegram_errors": [
@@ -9845,7 +9898,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793665884
+    "at": 1793667684
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9860,24 +9913,22 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1793664562.0,
-    "last_failure": 1793664262,
-    "last_quality_failure": 1793660668,
-    "last_status": 503
+    "last_quality_failure": 1793667858,
+    "last_status": 422
   },
   "gemini:gemini-3.5-flash-lite": {
-    "last_quality_failure": 1793666025,
+    "last_quality_failure": 1793667851,
     "last_status": 422
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793666608,
-    "last_failure": 1793666008,
+    "disabled_until": 1793668413,
+    "last_failure": 1793667813,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793664553.0,
-    "last_failure": 1793664253,
-    "last_status": 503
+    "disabled_until": 1793668409,
+    "last_failure": 1793667809,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9891,17 +9942,13 @@
     "last_failure": 1791936876,
     "last_status": 599
   },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1793665995,
-    "last_status": 422
-  },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
     "last_failure": 1792151356,
     "last_status": 404
   },
   "mistral:ministral-8b-latest": {
-    "last_quality_failure": 1793660680,
+    "last_quality_failure": 1793667867,
     "last_status": 422
   },
   "mistral:mistral-large-latest": {
@@ -9916,7 +9963,7 @@
   },
   "mistral:open-mistral-nemo": {
     "last_failure": 1792775100,
-    "last_quality_failure": 1793666028,
+    "last_quality_failure": 1793667863,
     "last_status": 422
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
@@ -9976,8 +10023,9 @@
     "last_status": 422
   },
   "openrouter:openrouter/free": {
-    "disabled_until": 1793660751,
-    "last_failure": 1793660691,
+    "disabled_until": 1793668046,
+    "last_failure": 1793667986,
+    "last_quality_failure": 1793667882,
     "last_status": 422
   },
   "openrouter:qwen/qwen3.8-27b:free": {
