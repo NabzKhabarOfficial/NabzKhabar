@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 9x",
-      "t": 1793657162
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793658793
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1793658793
     },
@@ -159,32 +151,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1793664271
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1793665973
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
+      "t": 1793666036
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-02",
-      "n": 111
+      "n": 112
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-02",
-      "n": 195
+      "n": 196
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-02",
-      "n": 75
+      "n": 76
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-02",
-      "n": 72
+      "n": 73
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-03",
-      "n": 5
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-03",
-      "n": 1
+      "n": 6
     },
     "openrouter:*": {
       "day": "2026-11-02",
@@ -475,13 +475,14 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 0,
-        "calls": 1,
+        "429": 1,
+        "calls": 2,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 1,
         "other": 0
       },
@@ -494,33 +495,26 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 1,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 0,
-        "other": 1
+        "calls": 6,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 4,
+        "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1793486181.9926596,
-      "title": "موضع وزیر خارجه آمریکا درباره احتمال اقدام نظامی علیه ایران",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1262,6 +1256,13 @@
       "t": 1793658877.73397,
       "title": "وقوع پنج انفجار در جزیره قشم",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1793665981.6274426,
+      "title": "تهران: مسدودیت دریایی آمریکا باید برداشته شود",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-02",
@@ -1271,12 +1272,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Expert analysis and speculation on ongoing protests, not a new event.",
       "topic": "سیاست",
       "until": 1793711068.1668854
-    },
-    "v4|10 ipad widgets you probably didn't realize existed": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: Simple tech tip, no significant impact",
-      "topic": "فناوری",
-      "until": 1793665962.1176088
     },
     "v4|afc: ایران و رویای جام چهارم پس از ۵۰ سال در آسیا": {
       "ok": false,
@@ -1374,6 +1369,12 @@
       "topic": "سیاست",
       "until": 1793712924.730451
     },
+    "v4|iran war live: vance sees ‘progress’, tehran says ‘ball is in us court’": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=iran_national: Tehran demands US lift blockade before agreement",
+      "topic": "سیاست",
+      "until": 1793752373.2227108
+    },
     "v4|jordan’s king abdullah promises to confront ‘terrorists’ after karak attack": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: واکنش رسمی پادشاه اردن به حمله تروریستی و تهدیدات امنیتی",
@@ -1427,6 +1428,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: قرارداد مهم مدیرعامل اوپن‌ای‌آی با دولت امارات در حوزه هوش مصنوعی.",
       "topic": "فناوری",
       "until": 1793712928.096569
+    },
+    "v4|plane may have broken apart ahead of deadly florida jet crash, say investigators": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Major US plane crash with many deaths",
+      "topic": "حادثه",
+      "until": 1793752373.2117286
     },
     "v4|police use facial recognition to scan one million faces in wa trial leading to 122 arrests": {
       "ok": false,
@@ -1494,6 +1501,12 @@
       "topic": "سیاست",
       "until": 1793743460.1338084
     },
+    "v4|trump signals progress on iran deal as tehran pushes faster ceasefire": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=iran_national: Iran offers quick Hormuz reopening if US agrees",
+      "topic": "سیاست",
+      "until": 1793752373.2331946
+    },
     "v4|ukraine air raid app apparently hacked as users receive false radiation threat, air force says": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b batch score=4 happened=True scope=world: Cyber hack of alert app, no casualties",
@@ -1517,6 +1530,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: اخبار حاشیه‌ای و تبلیغاتی مقدماتی انتخابات میان‌دوره‌ای آمریکا.",
       "topic": "سیاست",
       "until": 1793700219.67115
+    },
+    "v4|war, tariffs and china: what the us midterms mean for the asia-pacific": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=local: Analytical piece, no concrete event",
+      "topic": "سیاست",
+      "until": 1793752373.243593
     },
     "v4|«خبرگردی» ۱۱ آبان؛ ۲۶ هزار نفر صاحب خانه شدند": {
       "ok": true,
@@ -2717,12 +2736,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اظهارات تکراری و شعاری مقام حماس درباره اسرا بدون رویداد جدید",
       "topic": "سیاست",
       "until": 1793748780.6186802
-    },
-    "v4|حمایت غیرمنتظره نماینده دموکرات آمریکا از یک نامزد جمهوری خواه": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US state endorsement, limited national impact",
-      "topic": "سیاست",
-      "until": 1793665961.2076967
     },
     "v4|حمایت مسکو از تلاش ها برای میانجیگری و کمک به روند مذاکرات ایران و آمریکا": {
       "ok": true,
@@ -4032,12 +4045,6 @@
       "topic": "سیاست",
       "until": 1793682220.7600136
     },
-    "v4|نماینده مجلس: اگر پس از جنگ ۱۲ روزه توجه بیشتری به پدافند غیرعامل می شد آسیب های جنگ کتر بود/ مدیریت حوزه پدافند غیرعامل باید از انفعال خارج شود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Parliamentary comment, no concrete decision or event",
-      "topic": "نظامی",
-      "until": 1793665963.3319728
-    },
     "v4|نماینده ویژه چین به ایران سفر می کند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: سفر برنامه‌ریزی شده و آینده دیپلماتیک مقام چینی اهمیت درجه یک ندارد",
@@ -4797,10 +4804,18 @@
       "reason": "final_guard:ai-contradiction",
       "until": 1793662667.938896
     },
+    "plane may have broken apart ahead of deadly florida jet crash, say investigators": {
+      "reason": "content_duplicate",
+      "until": 1793687636.4634924
+    },
     "trump approval rating near record low on eve of us midterm elections: poll": {
       "at": 1793662418.847016,
       "reason": "final_guard:media-source",
       "until": 1793684018.847016
+    },
+    "trump signals progress on iran deal as tehran pushes faster ceasefire": {
+      "reason": "content_duplicate",
+      "until": 1793687593.0996106
     },
     "ادعای ترامپ: برای ازسرگیری جنگ با ایران عجله ای ندارم": {
       "reason": "content_duplicate",
@@ -4877,15 +4892,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "زنگ خطر جدی تنش گازی در زمستان پیش رو ⚡️ ناصر حسینی مدیرعامل شرکت گاز استان البرز نسبت به خطر تنش گازی در بخش ",
-      "id": "7f1f0a85ed",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793603218,
-      "verdict": "new",
-      "why": "گزارش جدید از تنش گازی زمستانی، موضوع جدید"
-    },
     {
       "head": "تلاش آمریکا برای ازسرگیری فروش گاز روسیه به اروپا از مسیر اوکراین با هدف آتش بس انرژی ⚡️ آمریکا ازسرگیری سریع ",
       "id": "c66bc03be2",
@@ -5429,6 +5435,15 @@
       "t": 1793658875,
       "verdict": "new",
       "why": "انفجارهای جزیره قشم گزارش جدید و غیرمستقل"
+    },
+    {
+      "head": "تهران: مسدودیت دریایی آمریکا باید برداشته شود ⚡️ تهران از آمریکا می خواهد مسدودیت دریایی را بردارد و تمام خواس",
+      "id": "75c149d1cf",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793665980,
+      "verdict": "new",
+      "why": "مذاکرات جدید ایران و آمریکا بدون اشاره قبلی"
     }
   ],
   "_importance_rescue_log": [
@@ -5999,155 +6014,6 @@
   "_published_heads": [
     {
       "h": [
-        "ارز",
-        "اسس",
-        "اسلم",
-        "التمتم",
-        "بدج",
-        "برنم",
-        "بنک",
-        "تجگردن",
-        "تعن",
-        "تکلف",
-        "خستر",
-        "رز",
-        "شر",
-        "عبدلنصر",
-        "غلمرض",
-        "فر",
-        "مرکز",
-        "مطلب",
-        "مکتب",
-        "همت",
-        "وردکنندگ",
-        "کل",
-        "کمسن"
-      ],
-      "t": 1793615686.7609696,
-      "title": "اولتیماتوم ۱۰ روزه مجلس به بانک مرکزی برای مطالبات واردکنندگان ⚡️ غلامرضا تاجگردون، رئیس کمیسیون برنامه و بودجه مجلس شور"
-    },
-    {
-      "h": [
-        "ارشد",
-        "خرج",
-        "سخنگ",
-        "قلبف",
-        "محمدبقر",
-        "مذکر",
-        "وزرت",
-        "کنند"
-      ],
-      "t": 1793615711.6496263,
-      "title": "قالیباف مذاکره کننده ارشد ایران است ⚡️ سخنگوی وزارت امور خارجه اعلام کرد محمدباقر قالیباف مذاکره کننده ارشد ایران است."
-    },
-    {
-      "h": [
-        "اتش",
-        "بمر",
-        "تلفن",
-        "دست",
-        "شهر",
-        "مبل",
-        "منفجر",
-        "نگه",
-        "نگهن",
-        "همر",
-        "هند",
-        "کلنک",
-        "گلر"
-      ],
-      "t": 1793615725.432202,
-      "title": "انفجار ناگهانی موبایل در دست بیمار در هند ⚡️ یک تلفن همراه ناگهان در دست یک بیمار در کلینیکی در شهر گوالیور هند آتش گرفت"
-    },
-    {
-      "h": [
-        "بقر",
-        "حکمت",
-        "خرج",
-        "ددر",
-        "دفع",
-        "سفر",
-        "شر",
-        "عل",
-        "مصلح",
-        "معن",
-        "مل",
-        "ونگ",
-        "پکن",
-        "کن",
-        "گفتگ"
-      ],
-      "t": 1793617499.0056155,
-      "title": "دیدار باقری کنی با وزیر خارجه چین در پکن/ ایران در دفاع از حاکمیت خود مصالحه نمی کند ⚡️ علی باقری، معاون بین الملل شورای"
-    },
-    {
-      "h": [
-        "ابن",
-        "بزر",
-        "تم",
-        "تمن",
-        "سکه",
-        "شدند",
-        "طر",
-        "طل",
-        "عر",
-        "معمل",
-        "ملن",
-        "نرخ",
-        "هزر",
-        "پرش",
-        "گرم"
-      ],
-      "t": 1793619315.60316,
-      "title": "پرش ۷ میلیون تومانی قیمت سکه در بازار ۱۱ آبان ⚡️ به طوری که هر گرم طلای ۱۸ عیار با نرخ ۲۵ میلیون و ۷۰۳ هزار تومان و طلای"
-    },
-    {
-      "h": [
-        "اتش",
-        "اخر",
-        "اسلم",
-        "انقلب",
-        "برخ",
-        "تنگ",
-        "در",
-        "دچر",
-        "سختند",
-        "سز",
-        "غرق",
-        "فرمنده",
-        "متخلف",
-        "نفتکش",
-        "هرمز",
-        "پسدر"
-      ],
-      "t": 1793619339.414729,
-      "title": "سپاه پاسداران: ۱۱ نفتکش متخلف در تنگه هرمز در آتش سوختند ⚡️ فرماندهی نیروی دریایی سپاه پاسداران انقلاب اسلامی اعلام کرد "
-    },
-    {
-      "h": [
-        "ابرز",
-        "ازسرگر",
-        "استقلل",
-        "بشکند",
-        "تند",
-        "حکمت",
-        "خرج",
-        "دفع",
-        "سخنگ",
-        "شن",
-        "شکست",
-        "عزم",
-        "متجزن",
-        "مل",
-        "نشن",
-        "نگرن",
-        "وزرت"
-      ],
-      "t": 1793621134.684412,
-      "title": "سخنگوی روسیه: حملات متجاوزانه نمی تواند عزم ایران در دفاع از حاکمیت را شکست دهد ⚡️ سخنگوی وزارت امور خارجه روسیه در بیان"
-    },
-    {
-      "h": [
         "ابن",
         "ارشد",
         "الجل",
@@ -6713,6 +6579,23 @@
       ],
       "t": 1793658877.7071688,
       "title": "وقوع پنج انفجار در جزیره قشم ⚡️ صدای پنج انفجار ممتد و پشت سر هم دقایقی پیش در جزیره قشم به گوش رسید و شدت آن ها نشان ده"
+    },
+    {
+      "h": [
+        "بردرد",
+        "بردشت",
+        "بررد",
+        "تفق",
+        "تمم",
+        "خست",
+        "خهد",
+        "در",
+        "صرت",
+        "مسددت",
+        "هش"
+      ],
+      "t": 1793665981.6171837,
+      "title": "تهران: مسدودیت دریایی آمریکا باید برداشته شود ⚡️ تهران از آمریکا می خواهد مسدودیت دریایی را بردارد و تمام خواسته هایش را"
     }
   ],
   "_published_incidents": [
@@ -7069,253 +6952,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اجز",
-        "ادع",
-        "استفد",
-        "افغنست",
-        "امر",
-        "امرک",
-        "امنت",
-        "جهن",
-        "حمل",
-        "حکمت",
-        "خرج",
-        "خک",
-        "دهم",
-        "سخنگ",
-        "سرپرست",
-        "همسگ",
-        "هچ",
-        "وزر",
-        "کبل",
-        "کشر",
-        "گره"
-      ],
-      "s": "کابل",
-      "t": 1793529297.3839755,
-      "title": "کابل: اجازه حمله به همسایگان را از خاک افغانستان نمی دهیم ⚡️ سخنگوی حکومت سرپرست افغانستان با رد ادعاهای وزیر امور خارجه"
-    },
-    {
-      "k": [
-        "ارن",
-        "امنت",
-        "تهر",
-        "جلگر",
-        "جنگ",
-        "دح",
-        "ددر",
-        "دپلمتک",
-        "رزن",
-        "شدت",
-        "فشرد",
-        "قطر",
-        "مختلف",
-        "مقم",
-        "منج",
-        "منطق",
-        "هت",
-        "وشنگتن",
-        "پکستن",
-        "گذشت",
-        "گرن"
-      ],
-      "t": 1793529343.382348,
-      "title": "رایزنی های فشرده دیپلماتیک برای جلوگیری از جنگ ⚡️ رایزنی های میانجی گران قطری و پاکستانی میان تهران، دوحه و واشنگتن برای"
-    },
-    {
-      "k": [
-        "ابلغ",
-        "اصل",
-        "اعتبر",
-        "الزم",
-        "بنک",
-        "تغر",
-        "جگزن",
-        "حدقل",
-        "دسترلعمل",
-        "رسدگ",
-        "رکرد",
-        "شبک",
-        "شک",
-        "صنت",
-        "ضبط",
-        "مرکز",
-        "مسس",
-        "مشتر",
-        "پشگرن",
-        "کشر"
-      ],
-      "t": 1793529374.3539035,
-      "title": "ابلاغ ضوابط حداقل الزامات صیانت از مشتریان مؤسسات اعتباری ⚡️ بانک مرکزی ضوابط حداقل الزامات صیانت از مشتریان مؤسسات اعتب"
-    },
-    {
-      "k": [
-        "اجتمع",
-        "ار",
-        "اسرل",
-        "اسک",
-        "افسر",
-        "تسع",
-        "تعدد",
-        "تنه",
-        "تپخن",
-        "تکنن",
-        "حمل",
-        "خن",
-        "خند",
-        "درلبلح",
-        "دست",
-        "زخم",
-        "شمر",
-        "شهدت",
-        "شهر",
-        "شهرند",
-        "غزه",
-        "فلسطن",
-        "مختلف",
-        "منجر",
-        "منطق",
-        "نر",
-        "نز",
-        "هدف",
-        "هزر",
-        "ورد",
-        "وزرت",
-        "پلس",
-        "پهپد",
-        "چدر",
-        "چند",
-        "کدک",
-        "گرفتند",
-        "ینس"
-      ],
-      "t": 1793529385.944402,
-      "title": "شهادت ۹ فلسطینی در حملات اسرائیل به غزه ⚡️ حملات امروز اسرائیل به مناطق مختلف نوار غزه به شهادت ۹ فلسطینی و زخمی شدن شما"
-    },
-    {
-      "k": [
-        "احتمل",
-        "ار",
-        "ارشد",
-        "ازسرگر",
-        "امد",
-        "امرک",
-        "انجم",
-        "بنمن",
-        "ترمپ",
-        "تلفن",
-        "تمس",
-        "جنگ",
-        "حل",
-        "حمل",
-        "دنلد",
-        "رزم",
-        "شنب",
-        "عمل",
-        "فرمنده",
-        "نتنه",
-        "نشست",
-        "نظم",
-        "گزن",
-        "گفتگ"
-      ],
-      "t": 1793532910.4102435,
-      "title": "گفتگوی تلفنی دونالد ترامپ و بنیامین نتانیاهو درباره احتمال ازسرگیری جنگ علیه ایران ⚡️ دونالد ترامپ روز شنبه و در پی نشست"
-    },
-    {
-      "k": [
-        "ارزش",
-        "برد",
-        "بشتر",
-        "بق",
-        "بننس",
-        "تد",
-        "ترتر",
-        "تردر",
-        "تکن",
-        "جبر",
-        "جگزن",
-        "حدث",
-        "حمل",
-        "در",
-        "درصد",
-        "دلر",
-        "دلل",
-        "رمزرز",
-        "زمن",
-        "سبر",
-        "سرقت",
-        "شمل",
-        "صرف",
-        "متحمل",
-        "متعهد",
-        "مسل",
-        "مل",
-        "ملرد",
-        "مند",
-        "نخهند",
-        "نش",
-        "نقدشندگ",
-        "نم",
-        "هچ",
-        "وبست",
-        "پمد",
-        "کربر",
-        "کردم",
-        "کره",
-        "کمتر",
-        "گر",
-        "گن"
-      ],
-      "s": "بایننس",
-      "t": 1793532922.5688229,
-      "title": "بایننس: ۹۰ درصد از دارایی های سرقت شده در حمله سایبری را جایگزین کردیم ⚡️ صرافی رمزارزی بایننس اعلام کرد که ۹۰ درصد از د"
-    },
-    {
-      "k": [
-        "اتخذ",
-        "اجلس",
-        "امرک",
-        "انک",
-        "اکرن",
-        "برگزر",
-        "ترمپ",
-        "تصمم",
-        "تفرح",
-        "جمهر",
-        "حضر",
-        "خهد",
-        "درل",
-        "دسمبر",
-        "دعت",
-        "دنلد",
-        "رز",
-        "رس",
-        "زلنسک",
-        "سرن",
-        "شرکت",
-        "عض",
-        "فلرد",
-        "مجمع",
-        "مذکر",
-        "مم",
-        "مهم",
-        "نشست",
-        "نشنل",
-        "نمندگ",
-        "وجد",
-        "وشنگتن",
-        "ولدمر",
-        "پتن",
-        "کشر",
-        "گر",
-        "یفت"
-      ],
-      "t": 1793534713.4543762,
-      "title": "دعوت ترامپ از زلنسکی برای شرکت در اجلاس گروه ۲۰ ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، اعلام کرد که ولودیمیر زلنسکی، رئیس ج"
-    },
     {
       "k": [
         "ابتکر",
@@ -10098,6 +9734,26 @@
       ],
       "t": 1793658877.6935613,
       "title": "وقوع پنج انفجار در جزیره قشم ⚡️ صدای پنج انفجار ممتد و پشت سر هم دقایقی پیش در جزیره قشم به گوش رسید و شدت آن ها نشان ده"
+    },
+    {
+      "k": [
+        "امرک",
+        "بردرد",
+        "بردشت",
+        "بررد",
+        "تفق",
+        "تمم",
+        "تهر",
+        "خست",
+        "خهد",
+        "در",
+        "صرت",
+        "مسددت",
+        "هش"
+      ],
+      "s": "تهران",
+      "t": 1793665981.6064136,
+      "title": "تهران: مسدودیت دریایی آمریکا باید برداشته شود ⚡️ تهران از آمریکا می خواهد مسدودیت دریایی را بردارد و تمام خواسته هایش را"
     }
   ],
   "_telegram_errors": [
@@ -10189,7 +9845,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793664118
+    "at": 1793665884
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10209,10 +9865,14 @@
     "last_quality_failure": 1793660668,
     "last_status": 503
   },
-  "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793664320,
-    "last_failure": 1793664260,
+  "gemini:gemini-3.5-flash-lite": {
+    "last_quality_failure": 1793666025,
     "last_status": 422
+  },
+  "gemini:gemini-3.6-flash": {
+    "disabled_until": 1793666608,
+    "last_failure": 1793666008,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1793664553.0,
@@ -10232,7 +9892,7 @@
     "last_status": 599
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1793664253,
+    "last_quality_failure": 1793665995,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
@@ -10256,7 +9916,7 @@
   },
   "mistral:open-mistral-nemo": {
     "last_failure": 1792775100,
-    "last_quality_failure": 1793660673,
+    "last_quality_failure": 1793666028,
     "last_status": 422
   },
   "openrouter:apodex/apodex-1.1-mini:free": {
