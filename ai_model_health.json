@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793750655
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793750655
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793750659
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793750665
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
-      "t": 1793750671
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793752345
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793752345
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
       "t": 1793755990
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793761379
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793761379
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1793761388
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793761392
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1793761393
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x",
+      "t": 1793761522
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-03",
-      "n": 112
+      "n": 113
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-03",
-      "n": 192
+      "n": 193
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-03",
-      "n": 82
+      "n": 85
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-03",
-      "n": 79
+      "n": 81
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-04",
-      "n": 12
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-04",
-      "n": 10
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-11-03",
@@ -448,77 +448,56 @@
     "2026-11-04": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 7,
+        "calls": 8,
         "last_error": "HTTP 500: { \"error\": { \"code\": 500, \"message\": \"Internal error encountered.\", \"status\": \"INTERNAL\" } } ",
-        "ok": 6,
+        "ok": 7,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 13,
+        "ok": 14,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
-        "429": 5,
-        "calls": 7,
+        "429": 6,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-        "ok": 2,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
         "429": 3,
-        "calls": 4,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
-        "other": 1
+        "ok": 1,
+        "other": 2
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 8,
+        "ok": 12,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
-        "other": 4
+        "ok": 9,
+        "other": 7
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1793581439.5513592,
-      "title": "احتمال هک اپلیکیشن هشدار حمله هوایی اوکراین با ارسال هشدارهای جعلی",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 5,
-      "t": 1793581468.6316214,
-      "title": "حمله موشکی ارتش یمن به مواضع نیروهای تحت حمایت عربستان در لحج",
-      "urgent": false
-    },
-    {
-      "label": "قضایی",
-      "level": 4,
-      "t": 1793581476.443336,
-      "title": "کمیسیون اروپا در مناقشه دادگاه قانون اساسی لهستان مداخله کرد",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1169,6 +1148,20 @@
       "t": 1793752427.1729631,
       "title": "افزایش شمار قربانیان حملات روسیه به مراکز غیرنظامی در اوکراین",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1793761503.0403264,
+      "title": "مصطفی نجفی: خروج از ان پی تی بدون ساخت بمب اتم یعنی توجیه حمله هسته ای به ایران",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1793761521.1043334,
+      "title": "پیروزی دموکرات ها در تصاحب کرسی سنا در کارولینای شمالی",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-03",
@@ -1281,6 +1274,12 @@
       "topic": "ورزش",
       "until": 1793835253.3917017
     },
+    "v4|midterms: abdul el-sayed, mike rogers face off for michigan senate seat": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US Senate race, not top‑tier news",
+      "topic": "سیاست",
+      "until": 1793847779.0278354
+    },
     "v4|more iranians call for nuclear weapons after war with u.s.": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=False scope=iran_national: اظهار نظر و تحلیل برخی مسئولان بدون تصمیم رسمی",
@@ -1316,6 +1315,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: موضعی عمومی و فاقد تصمیم یا پیشنهاد مشخص",
       "topic": "سیاست",
       "until": 1793829918.6036224
+    },
+    "v4|public service union refuses to back labor at victorian election, condemning job cuts and $1.2bn consultant spend": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: State‑level union decision, not national significance",
+      "topic": "سیاست",
+      "until": 1793847778.1113
     },
     "v4|qatar remains hopeful the us and iran can reach a deal": {
       "ok": false,
@@ -1431,11 +1436,11 @@
       "topic": "نظامی",
       "until": 1793790370.3048732
     },
-    "v4|us lawmakers ask trump administration to stop deportation of afghans": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: درخواست قانون‌گذاران آمریکایی برای توقف اخراج افغان‌ها رویداد درجه یک نیست",
+    "v4|us midterm elections: democrats flip senate seat in north carolina": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: پیروزی دمکرات‌ها در تغییر کرسی سنای کارولینای شمالی در انتخابات آمریکا",
       "topic": "سیاست",
-      "until": 1793759569.4818218
+      "until": 1793847791.9308975
     },
     "v4|us strikes iran ahead of midterm elections": {
       "ok": true,
@@ -1647,6 +1652,12 @@
       "topic": "جامعه",
       "until": 1793772266.9100595
     },
+    "v4|ادعای ترامپ: آمریکا هیچ برنامه فوری برای حمله به ایران ندارد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Trump denies imminent attack plan",
+      "topic": "سیاست",
+      "until": 1793847793.455259
+    },
     "v4|ادعای ترامپ: دیشب به یک «سامانه ضد هوایی» که ایران ساخت آن را به پایان رسانده بود، حمله کردیم؛ این جنگ محسوب نمی شود": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=7 happened=True scope=world: اعلام حمله نظامی آمریکا به سامانه ایرانی، با تأثیر بین‌المللی",
@@ -1761,12 +1772,6 @@
       "topic": "ورزش",
       "until": 1793806397.2588925
     },
-    "v4|استقرار نیرو های ضدتروریسم لهستان در نزدیکی مرز روسیه": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: استقرار نیروهای ضدتروریسم لهستان در مرز روسیه با هشدارهای امنیتی.",
-      "topic": "نظامی",
-      "until": 1793759573.968741
-    },
     "v4|اسرائیل اینترنشنال توجیه گر حمله به زیرساخت های ایران؛ آمریکا برق سپاه را می زند!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Media criticism and commentary, not a concrete political or military event.",
@@ -1868,6 +1873,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=local: خبر محلی مربوط به امور مالیاتی استان قم",
       "topic": "اقتصاد",
       "until": 1793779477.931218
+    },
+    "v4|امیدواریم اینترنت قطع نشود، اما فکر آن را هم کرده ایم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Video game festival planning, low national significance",
+      "topic": "فناوری",
+      "until": 1793847776.212334
     },
     "v4|انتخابات آمریکا ساعت ۱۳:۳۰ سه شنبه آغاز و تا چهارشنبه صبح ادامه دارد": {
       "ok": true,
@@ -2090,12 +2101,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: موضع‌گیری رسمی سخنگوی وزارت خارجه درباره مذاکرات و تنش با آمریکا",
       "topic": "سیاست",
       "until": 1793813707.1757855
-    },
-    "v4|بلومبرگ: واشنگتن از متحدان ناتو درخواست ۲ میلیارد دلار برای تجهیز اوکراین کرده است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: درخواست رسمی آمریکا از ناتو برای تامین بودجه تسلیحاتی اوکراین.",
-      "topic": "اقتصاد",
-      "until": 1793759573.9767997
     },
     "v4|به دلیل درگذشت خسوس دِمیگل/ فوری: همه بازی های اسپانیا تعلیق شد": {
       "ok": false,
@@ -2997,12 +3002,6 @@
       "topic": "سیاست",
       "until": 1793811822.3551705
     },
-    "v4|زندگی حاشیه ای بیرون فوتبال/ بایرن نگران جواهر 18 ساله: چه بر سر کارل آمده؟": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Player under scrutiny, no major event",
-      "topic": "ورزش",
-      "until": 1793759549.474545
-    },
     "v4|زنگ استکبارستیزی در یک هزار و ۵۰۰ مدرسه استان یزد نواخته شد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سکوت در مدارس، مراسم محلی",
@@ -3056,12 +3055,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: سرمایه‌گذاری در نیروگاه خورشیدی در خراسان جنوبی",
       "topic": "اقتصاد",
       "until": 1793786628.2701118
-    },
-    "v4|سرمربی جمهوری آذربایجان: ما شکست خوردیم": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: coach apologizes after poor performance",
-      "topic": "ورزش",
-      "until": 1793759548.4359958
     },
     "v4|سرنوشت مذاکرات ایران و آمریکا چه می شود؟": {
       "ok": false,
@@ -3615,6 +3608,12 @@
       "topic": "سلامت",
       "until": 1793777716.2285826
     },
+    "v4|مصطفی نجفی: خروج از ان پی تی بدون ساخت بمب اتم یعنی توجیه حمله هسته ای به ایران": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: Opinion on NPT exit and nuclear threat",
+      "topic": "سیاست",
+      "until": 1793847793.4688745
+    },
     "v4|معاون حقوقی و امور مجلس قوه قضائیه: با وجود چالش ها به دنبال پاسخگو کردن آمریکا هستیم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Routine legal rhetoric regarding international litigation without concrete new developments.",
@@ -4071,12 +4070,6 @@
       "topic": "قضایی",
       "until": 1793788414.3484669
     },
-    "v4|چالش های تولید واکسن در ایران؛ از قیمت گذاری تا زیرساخت ها": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Discussion of vaccine production challenges, not a concrete event",
-      "topic": "سلامت",
-      "until": 1793759546.6226737
-    },
     "v4|چرا در قلب سرمایه داری جهان، سوسیالیست ها در حال قدرت گرفتن هستند؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: تحلیل سیاسی درباره افزایش محبوبیت سوسیالیست های آمریکایی",
@@ -4305,6 +4298,12 @@
       "topic": "سیاست",
       "until": 1793772259.5812833
     },
+    "v4|۱۳ آبان فرصتی برای تعمیق آگاهی و تقویت هویت ایرانی است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial education remark, no national impact",
+      "topic": "جامعه",
+      "until": 1793847777.0608284
+    },
     "v4|۲۰ میلیون مترمکعب آب سد کوثر گچساران برای مهار سیلاب رهاسازی شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: رهاسازی آب سد در یک شهرستان، خبری محلی و غیرمهم ملی است.",
@@ -4379,6 +4378,10 @@
       "reason": "content_duplicate",
       "until": 1793777590.3800378
     },
+    "ادعای ترامپ: آمریکا هیچ برنامه فوری برای حمله به ایران ندارد": {
+      "reason": "content_duplicate",
+      "until": 1793783000.0451028
+    },
     "ترامپ به سی بی اس: از تبدیل شدن به «آقای وتو» استقبال می کنم": {
       "at": 1793755990.391776,
       "reason": "final_guard:media-source",
@@ -4398,24 +4401,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "افزایش نرخ بهره بانکی در استرالیا و اختلاف دولت و اپوزیسیون بر سر بودجه ⚡️ بانک مرکزی استرالیا نرخ بهره نقدی ر",
-      "id": "5558e24cff",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793689575,
-      "verdict": "new",
-      "why": "موضوع جدید: افزایش نرخ بهره بانکی استرالیا"
-    },
-    {
-      "head": "انتقاد وزارت خارجه از نقض حقوق بشر در حملات آمریکا به ایران ⚡️ معاون امور حقوقی و بین المللی وزارت امور خارجه ",
-      "id": "3a808a0d98",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1793691355,
-      "verdict": "repeat",
-      "why": "این خبر مشابه موارد قبلی درباره واکنش وزارت خارجه به حملات آمریکاست."
-    },
     {
       "head": "فاصله زیاد تهران و واشنگتن برای توافق پایان جنگ ⚡️ یک مقام ارشد ایرانی اعلام کرد که تهران و واشنگتن هنور با تو",
       "id": "af613a8a08",
@@ -4950,44 +4935,27 @@
       "t": 1793752406,
       "verdict": "unconfirmed-repeat",
       "why": "همان حمله روسیه به اوکراین با تلفات مشابه"
+    },
+    {
+      "head": "مصطفی نجفی: خروج از ان پی تی بدون ساخت بمب اتم یعنی توجیه حمله هسته ای به ایران ⚡️ مصطفی نجفی معتقد است خروج ا",
+      "id": "f3e49f3609",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1793761502,
+      "verdict": "new",
+      "why": "It is a new expert commentary on NPT withdrawal."
+    },
+    {
+      "head": "پیروزی دموکرات ها در تصاحب کرسی سنا در کارولینای شمالی ⚡️ حزب دموکرات در تلاش برای بازیابی اکثریت در کنگره و پ",
+      "id": "8dcc55c008",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793761516,
+      "verdict": "new",
+      "why": "انتخابات سنا آمریکا، موضوع جدید"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Zelensky's refusal to invite Putin signals ongoing conflict stance",
-      "rescued": true,
-      "rule": "below-event-threshold",
-      "t": 1793725422,
-      "title": "زلنسکی: پوتین را به کی یف دعوت نمی کنم"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: First meeting of UNESCO sports committee in Iran.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793725423,
-      "title": "آغاز به کار کمیته ملی ورزش و تربیت بدنی کمیسیون ملی یونسکو در ایران"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Routine political comment, no concrete decision or impact",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1793727266,
-      "title": "منتظری: باید با یأس و ناامیدی مبارزه کنیم"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Spain football suspension, not major international impact",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793727267,
-      "title": "به دلیل درگذشت خسوس دِمیگل/ فوری: همه بازی های اسپانیا تعلیق شد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=local: خبر کوتاه از شهرستان‌های شرق استان اصفهان",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793727269,
-      "title": "اخبار کوتاه شرق استان اصفهان"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=local: رویداد آموزشی و ترویجی است و فاقد اهمیت ملی یا بین‌المللی است.",
       "rescued": false,
@@ -5512,209 +5480,47 @@
       "rule": "final-scope-preselection",
       "t": 1793757988,
       "title": "NTSB says crucial plane parts found three miles from Florida crash site"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Video game festival planning, low national significance",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1793761376,
+      "title": "امیدواریم اینترنت قطع نشود، اما فکر آن را هم کرده ایم"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial education remark, no national impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793761377,
+      "title": "۱۳ آبان فرصتی برای تعمیق آگاهی و تقویت هویت ایرانی است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: State‑level union decision, not national significance",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1793761378,
+      "title": "Public service union refuses to back Labor at Victorian election, condemning job cuts and $1.2bn consultant spend"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US Senate race, not top‑tier news",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1793761379,
+      "title": "Midterms: Abdul El-Sayed, Mike Rogers face off for Michigan Senate seat"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: پیروزی دمکرات‌ها در تغییر کرسی سنای کارولینای شمالی در انتخابات آمریکا",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1793761391,
+      "title": "US midterm elections: Democrats flip Senate seat in North Carolina"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "احتمل",
-        "خرج",
-        "دست",
-        "سلح",
-        "صرت",
-        "معن",
-        "معهد",
-        "منع",
-        "نخهد",
-        "نزدک",
-        "کرگر",
-        "کلنگ",
-        "که",
-        "گذشت",
-        "گسترش"
-      ],
-      "t": 1793709467.0386655,
-      "title": "معاون وزیر امور خارجه: پایان معاهده منع گسترش سلاح های هسته ای نزدیک است ⚡️ معاون وزیر امور خارجه ایران پیش از حمله احتم"
-    },
-    {
-      "h": [
-        "اختر",
-        "برد",
-        "تکد",
-        "درفت",
-        "سد",
-        "مذکر",
-        "مسعد",
-        "منفعت",
-        "نخهد",
-        "هچ",
-        "پزشک"
-      ],
-      "t": 1793709554.5718691,
-      "title": "پزشکیان: جنگ به سود هیچ کس نیست و اختیارات مذاکره دریافت شده است ⚡️ مسعود پزشکیان رئیس جمهور تأکید کرد هیچ کشوری از جنگ "
-    },
-    {
-      "h": [
-        "بر",
-        "بررس",
-        "جن",
-        "دستگ",
-        "فرنس",
-        "قض",
-        "نخستن",
-        "پرند",
-        "گشد"
-      ],
-      "t": 1793711193.5040338,
-      "title": "فرانسه پرونده جنایات جنگی اسرائیلی گشود ⚡️ دستگاه قضایی فرانسه برای نخستین بار پرونده ای را برای بررسی جنایات جنگی ارتش "
-    },
-    {
-      "h": [
-        "المپک",
-        "امرمحمد",
-        "بزمندند",
-        "ترندز",
-        "جهن",
-        "خند",
-        "دح",
-        "دستب",
-        "رقبت",
-        "سهم",
-        "قطر",
-        "قهرمن",
-        "مدل",
-        "نمند",
-        "نمندگ",
-        "نکم",
-        "نکنم",
-        "وحد",
-        "کسب"
-      ],
-      "t": 1793712882.5028949,
-      "title": "ناکامی نمایندگان ایران در کسب مدال و سهمیه المپیک در تیراندازی قهرمانی جهان ⚡️ امیرمحمد نکونام و وحید گل خندان، دو نماین"
-    },
-    {
-      "h": [
-        "افزش",
-        "انتشر",
-        "انتل",
-        "تقض",
-        "درمد",
-        "رزن",
-        "سهم",
-        "شخص",
-        "شدد",
-        "شددترن",
-        "ضعف",
-        "مه",
-        "نگرن",
-        "چهرم",
-        "کمپتر",
-        "کهش",
-        "یک"
-      ],
-      "t": 1793712945.9605074,
-      "title": "سقوط شدید سهام اینتل با پیش بینی ضعیف درآمد سه ماهه چهارم ⚡️ سهم اینتل پس از انتشار پیش بینی ضعیف درآمد سه ماهه چهارم و "
-    },
-    {
-      "h": [
-        "اتحد",
-        "اتش",
-        "بزر",
-        "تفسر",
-        "تن",
-        "تنفس",
-        "خرج",
-        "خست",
-        "درخست",
-        "درگر",
-        "رزم",
-        "رش",
-        "سرگ",
-        "فرصت",
-        "لرف"
-      ],
-      "t": 1793714740.432141,
-      "title": "لاوروف: درخواست آتش بس اروپا برای «تنفس» نظامی اوکراین است ⚡️ سرگئی لاوروف، وزیر امور خارجه روسیه، درخواست اتحادیه اروپا"
-    },
-    {
-      "h": [
-        "رسد",
-        "زر",
-        "سخت",
-        "سمن",
-        "گذشت"
-      ],
-      "t": 1793714814.9536495,
-      "title": "ترامپ: آمریکا به سامانه ضد هوایی ساخته شده در ایران حمله کرد؛ این جنگ نیست ⚡️ ترامپ رئیس جمهور آمریکا ادعا کرد که شب گذش"
-    },
-    {
-      "h": [
-        "اثر",
-        "است",
-        "بختند",
-        "برق",
-        "جر",
-        "جن",
-        "دست",
-        "قنن",
-        "مدرکل",
-        "مرد",
-        "مه",
-        "نخست",
-        "نفر",
-        "هرمزگ",
-        "پزشک",
-        "گرفتگ"
-      ],
-      "t": 1793714867.0984948,
-      "title": "مدیرکل پزشکی قانونی هرمزگان: ۸ نفر در سه ماهه نخست سال جاری در استان بر اثر برق گرفتگی جان باختند ⚡️ مدیرکل پزشکی قانونی"
-    },
-    {
-      "h": [
-        "اس",
-        "تج",
-        "تم",
-        "جمع",
-        "دنست",
-        "زنن",
-        "فتبل",
-        "فتسل",
-        "فدرسن",
-        "قهرمن",
-        "مل",
-        "ندد",
-        "نقش",
-        "پسخ",
-        "کسن",
-        "گرفتن",
-        "گرند"
-      ],
-      "t": 1793716620.4262588,
-      "title": "تاج: قهرمانی بانوان در آسیا پاسخ به نادیده گرفتن نقش زنان است ⚡️ رئیس فدراسیون فوتبال ایران، قهرمانی تیم ملی فوتسال بانو"
-    },
-    {
-      "h": [
-        "استفد",
-        "اندخت",
-        "بعث",
-        "تجر",
-        "خطر",
-        "در",
-        "صدر",
-        "غرق",
-        "ولدمر",
-        "پتن",
-        "پهپد",
-        "گندم",
-        "یک"
-      ],
-      "t": 1793716653.3071554,
-      "title": "پوتین با حمله به کشتی های تجاری در دریای سیاه، صادرات گندم اوکراین را به خطر انداخت ⚡️ رئیس جمهور روسیه، ولادیمیر پوتین،"
-    },
     {
       "h": [
         "اردن",
@@ -6129,6 +5935,54 @@
       ],
       "t": 1793752427.1556742,
       "title": "افزایش شمار قربانیان حملات روسیه به مراکز غیرنظامی در اوکراین ⚡️ حملات ۲۴ ساعت گذشته روسیه به یک مرکز توزیع کمک های بشرد"
+    },
+    {
+      "h": [
+        "اتم",
+        "اجد",
+        "اشع",
+        "بدن",
+        "بزدرندگ",
+        "بمب",
+        "بهن",
+        "تج",
+        "خرج",
+        "سخت",
+        "سلح",
+        "عدم",
+        "فرهم",
+        "مصطف",
+        "معتقد",
+        "نجف",
+        "پم",
+        "یعن"
+      ],
+      "t": 1793761503.0222287,
+      "title": "مصطفی نجفی: خروج از ان پی تی بدون ساخت بمب اتم یعنی توجیه حمله هسته ای به ایران ⚡️ مصطفی نجفی معتقد است خروج از پیمان عد"
+    },
+    {
+      "h": [
+        "الت",
+        "اکثرت",
+        "بزب",
+        "تسلط",
+        "تصحب",
+        "تلش",
+        "حزب",
+        "خه",
+        "ددن",
+        "دمکر",
+        "سن",
+        "شمل",
+        "قدرت",
+        "مفق",
+        "وشنگتن",
+        "کرس",
+        "کرلن",
+        "کنگر"
+      ],
+      "t": 1793761521.090402,
+      "title": "پیروزی دموکرات ها در تصاحب کرسی سنا در کارولینای شمالی ⚡️ حزب دموکرات در تلاش برای بازیابی اکثریت در کنگره و پایان دادن "
     }
   ],
   "_published_incidents": [
@@ -6435,313 +6289,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ابن",
-        "ارشد",
-        "اقتصد",
-        "الجل",
-        "امنت",
-        "برق",
-        "بست",
-        "تحل",
-        "تعن",
-        "تنگ",
-        "تهر",
-        "حمت",
-        "خبر",
-        "دنشج",
-        "سخت",
-        "شرط",
-        "شمل",
-        "ضرب",
-        "ضربت",
-        "فرمل",
-        "فرهنگ",
-        "قبض",
-        "مبرز",
-        "محر",
-        "مذکر",
-        "مسکن",
-        "مضع",
-        "مضعت",
-        "مفسد",
-        "نمند",
-        "هرمز",
-        "هزن",
-        "هستند",
-        "یرن"
-      ],
-      "t": 1793622885.2104576,
-      "title": "اعلام موضوعات بسته خبری ۱۱ آبان و تحویل مسکن حمایتی ⚡️ بسته خبری ۱۱ آبان ۱۴۰۵ شامل موضوعاتی چون شروط تهران برای امنیت تن"
-    },
-    {
-      "k": [
-        "اثر",
-        "استندر",
-        "اقدم",
-        "انتظر",
-        "بخشنم",
-        "بدن",
-        "بکنند",
-        "ترر",
-        "تلد",
-        "تنند",
-        "تهدد",
-        "تکد",
-        "جمهر",
-        "حضر",
-        "دستر",
-        "دشمن",
-        "رس",
-        "شهر",
-        "شهردر",
-        "صحن",
-        "غلط",
-        "متقف",
-        "مردم",
-        "مسعد",
-        "مشکل",
-        "منند",
-        "نشست",
-        "نفر",
-        "نگذرند",
-        "هزر",
-        "همره",
-        "هچ",
-        "وجد",
-        "پزشک",
-        "چرخ",
-        "کلن"
-      ],
-      "s": "پزشکیان",
-      "t": 1793622914.8078825,
-      "title": "پزشکیان: با همراهی مردم، ترور هزاران نفر مانند من توسط دشمنان بی اثر است ⚡️ مسعود پزشکیان رئیس جمهور در نشست با استاندار"
-    },
-    {
-      "k": [
-        "ار",
-        "ازسرگر",
-        "اسرل",
-        "اقدم",
-        "امرک",
-        "انتخب",
-        "ترغب",
-        "تفق",
-        "تلش",
-        "تلفن",
-        "تمس",
-        "جمهر",
-        "حمل",
-        "دح",
-        "دستب",
-        "دپلمتک",
-        "رس",
-        "صرت",
-        "فشر",
-        "قطر",
-        "مذکر",
-        "مقت",
-        "منج",
-        "نخست",
-        "نظم",
-        "همزم",
-        "وزر",
-        "وشنگتن",
-        "گر"
-      ],
-      "t": 1793624732.0048013,
-      "title": "فشار تل آویو به واشنگتن برای حمله نظامی به ایران همزمان با مذاکرات دوحه ⚡️ نخست وزیر اسرائیل در تماس تلفنی با رئیس جمهور"
-    },
-    {
-      "k": [
-        "اسرل",
-        "اگدر",
-        "بنمن",
-        "تشکل",
-        "تغر",
-        "جهن",
-        "حت",
-        "حزب",
-        "خن",
-        "دلت",
-        "دهم",
-        "رس",
-        "رست",
-        "سعر",
-        "صرت",
-        "لبرمن",
-        "لپد",
-        "مطرح",
-        "نتنه",
-        "نخهد",
-        "نخهم",
-        "نشست",
-        "همکر",
-        "هچ",
-        "پشنهد",
-        "کنست",
-        "گدن",
-        "یر"
-      ],
-      "s": "لیبرمن",
-      "t": 1793624784.571113,
-      "title": "لیبرمن: در هیچ دولت با نتانیاهو نخواهم نشست و ساعر و لاپید را برای ریاست پیشنهاد می دهم ⚡️ آویگدور لیبرمن، رئیس حزب «اسر"
-    },
-    {
-      "k": [
-        "ار",
-        "ارپ",
-        "اسپن",
-        "اضف",
-        "افزش",
-        "اقتصد",
-        "تحمل",
-        "تشرح",
-        "جنگ",
-        "خند",
-        "دش",
-        "دلل",
-        "سخت",
-        "سنچز",
-        "غرقنن",
-        "قمت",
-        "ملرد",
-        "نخست",
-        "هزن",
-        "وزر",
-        "پدر",
-        "پمد",
-        "کشر",
-        "گذشت",
-        "یر"
-      ],
-      "s": "پدرو سانچز",
-      "t": 1793626540.0139055,
-      "title": "پدرو سانچز: جنگ غیرقانونی علیه ایران ۱۰۰ میلیارد یورو هزینه به اروپا تحمیل کرد ⚡️ پدرو سانچز، نخست وزیر اسپانیا، جنگ علی"
-    },
-    {
-      "k": [
-        "اجر",
-        "ار",
-        "اشر",
-        "افزش",
-        "افند",
-        "امدگ",
-        "امنت",
-        "انقلب",
-        "بن",
-        "تن",
-        "تند",
-        "تکد",
-        "جغرف",
-        "جنگ",
-        "حز",
-        "حسن",
-        "حمل",
-        "درد",
-        "دستر",
-        "دمن",
-        "رز",
-        "رزم",
-        "رهبر",
-        "سخنگ",
-        "شنخت",
-        "صرت",
-        "فرتر",
-        "قشق",
-        "مجدد",
-        "مجلس",
-        "محدد",
-        "مرحل",
-        "مل",
-        "مند",
-        "منطق",
-        "نخهد",
-        "نسبت",
-        "نشد",
-        "نکت",
-        "هشمندن",
-        "پدفند",
-        "پشن",
-        "کمسن",
-        "گسترش",
-        "یبد",
-        "یفت"
-      ],
-      "t": 1793628375.449472,
-      "title": "سخنگوی کمیسیون امنیت ملی: حمله جدید به ایران می تواند دامنه جنگ را فراتر از مناطق شناخته شده گسترش دهد ⚡️ حسن قشقاوی، سخ"
-    },
-    {
-      "k": [
-        "بردکم",
-        "برقرر",
-        "بزر",
-        "تر",
-        "تصحب",
-        "حضر",
-        "خرد",
-        "دتسنتر",
-        "رقبت",
-        "سزند",
-        "شبک",
-        "شرکت",
-        "قصد",
-        "قطع",
-        "لمنتم",
-        "مرل",
-        "مستقم",
-        "نر",
-        "پد"
-      ],
-      "t": 1793628431.8683636,
-      "title": "مارول شرکت سازنده قطعات نوری را تصاحب می کند و در بازار شبکه دیتاسنترها حضور قوی تری پیدا می کند ⚡️ مارول با خرید شرکت س"
-    },
-    {
-      "k": [
-        "اردن",
-        "اسرل",
-        "افرد",
-        "امم",
-        "امنت",
-        "اند",
-        "بربر",
-        "بزرگ",
-        "تررسم",
-        "ترن",
-        "تسع",
-        "تسلم",
-        "تهدد",
-        "تکد",
-        "جر",
-        "حفظ",
-        "حمل",
-        "خرمن",
-        "در",
-        "دم",
-        "دنست",
-        "شهر",
-        "طلب",
-        "عبدلل",
-        "قطعن",
-        "لزم",
-        "مرگبر",
-        "مسلح",
-        "مقبل",
-        "ملک",
-        "منبع",
-        "نخهد",
-        "پدش",
-        "پرلم",
-        "کرک",
-        "کشر",
-        "کلس",
-        "گذشت",
-        "گشش"
-      ],
-      "t": 1793630135.9001446,
-      "title": "پادشاه اردن پس از حمله کرک بر مقابله با افراد مسلح تأکید کرد ⚡️ ملک عبدالله دوم، پادشاه اردن، در جریان گشایش دوره جدید پ"
-    },
     {
       "k": [
         "اتش",
@@ -9487,6 +9034,70 @@
       ],
       "t": 1793752427.1469321,
       "title": "افزایش شمار قربانیان حملات روسیه به مراکز غیرنظامی در اوکراین ⚡️ حملات ۲۴ ساعت گذشته روسیه به یک مرکز توزیع کمک های بشرد"
+    },
+    {
+      "k": [
+        "اتم",
+        "اجد",
+        "ار",
+        "اشع",
+        "افزش",
+        "امنت",
+        "بدن",
+        "بزدرندگ",
+        "بمب",
+        "بهن",
+        "تج",
+        "تهدد",
+        "تکد",
+        "حمل",
+        "خرج",
+        "خطر",
+        "دستب",
+        "سخت",
+        "سطح",
+        "سلح",
+        "عدم",
+        "فرهم",
+        "مجدت",
+        "مصطف",
+        "معتقد",
+        "نجف",
+        "نه",
+        "هست",
+        "پم",
+        "کشر",
+        "یعن"
+      ],
+      "s": "مصطفی نجفی",
+      "t": 1793761503.0091758,
+      "title": "مصطفی نجفی: خروج از ان پی تی بدون ساخت بمب اتم یعنی توجیه حمله هسته ای به ایران ⚡️ مصطفی نجفی معتقد است خروج از پیمان عد"
+    },
+    {
+      "k": [
+        "الت",
+        "اکثرت",
+        "بزب",
+        "تسلط",
+        "تصحب",
+        "تلش",
+        "جمهر",
+        "حزب",
+        "خه",
+        "ددن",
+        "دمکر",
+        "سن",
+        "شمل",
+        "قدرت",
+        "مفق",
+        "وشنگتن",
+        "پرز",
+        "کرس",
+        "کرلن",
+        "کنگر"
+      ],
+      "t": 1793761521.0763493,
+      "title": "پیروزی دموکرات ها در تصاحب کرسی سنا در کارولینای شمالی ⚡️ حزب دموکرات در تلاش برای بازیابی اکثریت در کنگره و پایان دادن "
     }
   ],
   "_telegram_errors": [
@@ -9620,7 +9231,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793759469
+    "at": 1793761281
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9634,20 +9245,15 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1793754526.0,
-    "last_failure": 1793754226,
-    "last_status": 500
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793756560,
-    "last_failure": 1793755960,
+    "disabled_until": 1793762109,
+    "last_failure": 1793761509,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793756260.0,
-    "last_failure": 1793755960,
-    "last_status": 599
+    "disabled_until": 1793761688.0,
+    "last_failure": 1793761388,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9662,7 +9268,7 @@
     "last_status": 599
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1793750669,
+    "last_quality_failure": 1793761508,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
