@@ -1,13 +1,22 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-05T17:52:46.370897+00:00",
+  "all_selected_blocked": false,
+  "ambiguous_publications": 1,
+  "checked_at": "2026-11-05T18:05:14.344373+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Analysis and speculation regarding geopolitical tensions and diplomacy.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "سی ان ان به نقل از منبع منطقه ای: پس از شکست حزب جمهوری خواه در انتخابات میان دوره ای آمریکا، «خطر وقوع جنگ با ایران» کاهش یافته/ احتمال پیش برد مسیر دیپلماسی در مقایسه با گزینه نظ",
+      "url": ""
+    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Routine remarks by a local official regarding a public demonstration.",
@@ -58,14 +67,6 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Analysis and speculation regarding geopolitical tensions and diplomacy.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "سی ان ان به نقل از منبع منطقه ای: پس از شکست حزب جمهوری خواه در انتخابات میان دوره ای آمریکا، «خطر وقوع جنگ با ایران» کاهش یافته/ احتمال پیش برد مسیر دیپلماسی در مقایسه با گزینه نظ",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Political analysis of US internal party dynamics and market trends.",
       "result": "editorial_blocked",
       "source": "",
@@ -82,18 +83,18 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Political opinion and rhetoric by a candidate, not a strategic decision.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "عبدل السید: ونس ترسو است و باید هشت ماه پیش از جنگ ایران فاصله می گرفت",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative political analysis regarding future military actions.",
       "result": "editorial_blocked",
       "source": "",
       "title": "دست ترامپ برای جنگ دوباره بسته شد / نتانیاهو شاید دست به انتحار بزند",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: General analysis of AI risks, not a specific concrete event.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "جعل صدا و تصویر؛ سلاح تازه جنگ روانی علیه افکار عمومی",
       "url": ""
     },
     {
@@ -106,14 +107,6 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: General analysis/commentary on military capabilities, not a specific recent event.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "پهپاد های گران قیمت آمریکا یکی پس از دیگری در تیررس ایران",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Political analysis of internal party disputes and election results.",
       "result": "editorial_blocked",
       "source": "",
@@ -122,18 +115,18 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis regarding US military options and regime change.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "۲۸ درصد پیشرفت طرح ملی جی نف در کارنامه دولت چهاردهم ثبت شد",
+      "title": "رویترز: ایران در آمریکا تغییر رژیم ایجاد کرد",
       "url": ""
     },
     {
       "error": "",
-      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Fictional or non-factual event regarding diplomatic meetings.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "سفارش های میلیاردی اسرائیل، مانع آمریکا برای قطع کمک های نظامی",
+      "title": "دیدار ملانیا ترامپ با فرستاده پوتین و مقام های اوکراینی در کاخ سفید",
       "url": ""
     },
     {
@@ -145,11 +138,30 @@
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "theverge.com",
+      "started_at": "2026-11-05T18:05:07.402317+00:00",
+      "title": "Claude AI can plug directly into your bank account",
+      "url": "https://theverge.com/ai-artificial-intelligence/1027652/anthropic-claude-plaid-personal-finance"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 8,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "theverge.com",
+      "title": "Claude AI can plug directly into your bank account",
+      "url": "https://theverge.com/ai-artificial-intelligence/1027652/anthropic-claude-plaid-personal-finance"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
@@ -160,11 +172,11 @@
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "irna.ir",
-      "started_at": "2026-11-05T17:52:40.101358+00:00",
-      "title": "حمله پهپادی به فرودگاه دمام عربستان",
-      "url": "https://irna.ir/news/86313584/%D8%AD%D9%85%D9%84%D9%87-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF%DB%8C-%D8%A8%D9%87-%D9%81%D8%B1%D9%88%D8%AF%DA%AF%D8%A7%D9%87-%D8%AF%D9%85%D8%A7%D9%85-%D8%B9%D8%B1%D8%A8%D8%B3%D8%AA%D8%A7%D9%86"
+      "source": "yjc.ir",
+      "started_at": "2026-11-05T18:04:44.754835+00:00",
+      "title": "سفارش های میلیاردی اسرائیل، مانع آمریکا برای قطع کمک های نظامی",
+      "url": "https://yjc.ir/fa/news/9145946/سفارش‌های-میلیاردی-اسرائیل-مانع-آمریکا-برای-قطع-کمک‌های-نظامی"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
