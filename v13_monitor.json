@@ -1,21 +1,14 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-05T21:36:22.738658+00:00",
+  "all_selected_blocked": false,
+  "ambiguous_publications": 1,
+  "checked_at": "2026-11-05T22:05:51.491649+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative claim about future military options, not an official decision.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "ادعای کانال ۱۵ اسرائیلی: گزینه حمله به ایران همچنان در حال بررسی است",
-      "url": ""
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Speculative claim by a former diplomat, not an official event.",
@@ -47,16 +40,59 @@
       "source": "",
       "title": "Midterm Election Losses Complicate Trump’s Options on Iran War",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Routine product release by a tech company.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "OpenAI released a new cybersecurity model. Is that enough?",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "entekhab.ir",
+      "started_at": "2026-11-05T22:04:44.923112+00:00",
+      "title": "ادعای ترامپ درباره ایران: ترجیح می دهم در صورت امکان، بقیه کشور را هم نابود نکنم؛ اما شاید مجبور شوم این کار را انجام دهم/ رویترز به نقل از مقام ارشد ایرانی: ایران پیشنهاد هسته ای",
+      "url": "https://entekhab.ir/fa/news/946669/ادعای-ترامپ-درباره-ایران-ترجیح-می-دهم-در-صورت-امکان-بقیه-کشور-را-هم-نابود-نکنم-اما-شاید-مجبور-شوم-این-کار-را-انجام-دهم-رویترز-به-نقل-از-مقام-ارشد-ایرانی-ایران-پیشنهاد-هسته-ای-خود-را-از-طریق-قطر-ارسال-کرده-و-آمریکا-در-حال-بررسی-آن-است"
+    },
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "entekhab.ir",
+      "started_at": "2026-11-05T22:05:29.977558+00:00",
+      "title": "اسلامی: گروسی همچون کارگزار دشمنان ما عمل کرده و عملاً اطلاعاتی را در اختیار آنها قرار می دهد/ تهدید ترامپ درباره حمله به کوه کلنگ، نشانه استیصال است",
+      "url": "https://entekhab.ir/fa/news/946672/اسلامی-گروسی-همچون-کارگزار-دشمنان-ما-عمل-کرده-و-عملا-اطلاعاتی-را-در-اختیار-آنها-قرار-می-دهد-تهدید-ترامپ-درباره-حمله-به-کوه-کلنگ-نشانه-استیصال-است"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 24,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "entekhab.ir",
+      "title": "ادعای ترامپ درباره ایران: ترجیح می دهم در صورت امکان، بقیه کشور را هم نابود نکنم؛ اما شاید مجبور شوم این کار را انجام دهم/ رویترز به نقل از مقام ارشد ایرانی: ایران پیشنهاد هسته ای ",
+      "url": "https://entekhab.ir/fa/news/946669/ادعای-ترامپ-درباره-ایران-ترجیح-می-دهم-در-صورت-امکان-بقیه-کشور-را-هم-نابود-نکنم-اما-شاید-مجبور-شوم-این-کار-را-انجام-دهم-رویترز-به-نقل-از-مقام-ارشد-ایرانی-ایران-پیشنهاد-هسته-ای-خود-را-از-طریق-قطر-ارسال-کرده-و-آمریکا-در-حال-بررسی-آن-است"
+    },
+    {
+      "intelligence_score": 18,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "entekhab.ir",
+      "title": "اسلامی: گروسی همچون کارگزار دشمنان ما عمل کرده و عملاً اطلاعاتی را در اختیار آنها قرار می دهد/ تهدید ترامپ درباره حمله به کوه کلنگ، نشانه استیصال است",
+      "url": "https://entekhab.ir/fa/news/946672/اسلامی-گروسی-همچون-کارگزار-دشمنان-ما-عمل-کرده-و-عملا-اطلاعاتی-را-در-اختیار-آنها-قرار-می-دهد-تهدید-ترامپ-درباره-حمله-به-کوه-کلنگ-نشانه-استیصال-است"
+    }
+  ],
   "no_publication_candidate": false,
-  "publication_gap": true,
-  "published": 0,
+  "publication_gap": false,
+  "published": 1,
   "run_status": "success",
   "selected_for_publication": 9,
   "skipped_duplicate": [
@@ -64,38 +100,11 @@
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "irna.ir",
-      "started_at": "2026-11-05T21:34:07.573551+00:00",
-      "title": "واکنش وزیر جنگ ترامپ به تلاش ها برای برکناری: عقب نشینی نمی کنیم!",
-      "url": "https://irna.ir/news/86313665/%D9%88%D8%A7%DA%A9%D9%86%D8%B4-%D9%88%D8%B2%DB%8C%D8%B1-%D8%AC%D9%86%DA%AF-%D8%AA%D8%B1%D8%A7%D9%85%D9%BE-%D8%A8%D9%87-%D8%AA%D9%84%D8%A7%D8%B4-%D9%87%D8%A7-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%A8%D8%B1%DA%A9%D9%86%D8%A7%D8%B1%DB%8C-%D8%B9%D9%82%D8%A8-%D9%86%D8%B4%DB%8C%D9%86%DB%8C-%D9%86%D9%85%DB%8C-%DA%A9%D9%86%DB%8C%D9%85"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
       "source": "aljazeera.com",
-      "started_at": "2026-11-05T21:34:33.415342+00:00",
-      "title": "Melania Trump hosts Russia-Ukraine meeting after Oleshky ceasefire",
-      "url": "https://aljazeera.com/video/newsfeed/2026/11/5/melania-trump-hosts-russia-ukraine-meeting-after-oleshky-ceasefire?traffic_source=rss"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "entekhab.ir",
-      "started_at": "2026-11-05T21:34:49.962052+00:00",
-      "title": "محسن رضایی درباره دیدار با پوتین: رئیس جمهور روسیه پیشنهاد خاصی در زمینه «پایان جنگ» ارائه نکرد، اما گفت اگر حالت «نه جنگ و نه صلح» زودتر تمام شود، به نفع ایران خواهد بود/ درباره پ",
-      "url": "https://entekhab.ir/fa/news/946667/محسن-رضایی-درباره-دیدار-با-پوتین-رئیس-جمهور-روسیه-پیشنهاد-خاصی-در-زمینه-پایان-جنگ-ارائه-نکرد-اما-گفت-اگر-حالت-نه-جنگ-و-نه-صلح-زودتر-تمام-شود-به-نفع-ایران-خواهد-بود-درباره-پساجنگ-و-ترتیبات-امنیتی-منطقه-با-ایشان-مشورت-انجام-دادیم"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "khabaronline.ir",
-      "started_at": "2026-11-05T21:35:10.816892+00:00",
-      "title": "حمله با چاقو مقابل سفارت سریلانکا در امان؛ یک نیروی امنیتی اردن کشته شد",
-      "url": "https://khabaronline.ir/news/2298191/%D8%AD%D9%85%D9%84%D9%87-%D8%A8%D8%A7-%DA%86%D8%A7%D9%82%D9%88-%D9%85%D9%82%D8%A7%D8%A8%D9%84-%D8%B3%D9%81%D8%A7%D8%B1%D8%AA-%D8%B3%D8%B1%DB%8C%D9%84%D8%A7%D9%86%DA%A9%D8%A7-%D8%AF%D8%B1-%D8%A7%D9%85%D8%A7%D9%86-%DB%8C%DA%A9-%D9%86%DB%8C%D8%B1%D9%88%DB%8C-%D8%A7%D9%85%D9%86%DB%8C%D8%AA%DB%8C-%D8%A7%D8%B1%D8%AF%D9%86"
+      "started_at": "2026-11-05T22:05:25.720766+00:00",
+      "title": "Iran says tankers struck in Hormuz amid fears of new US attack",
+      "url": "https://aljazeera.com/news/2026/11/5/iran-says-tankers-struck-in-hormuz-amid-fears-of-new-us-attack?traffic_source=rss"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
