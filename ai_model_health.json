@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793831985
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793831990
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793831990
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793831994
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793831994
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1793831998
     },
@@ -159,32 +139,52 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 6x",
       "t": 1793838878
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793841185
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793841186
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1793841187
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793841191
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1793841242
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-04",
-      "n": 105
+      "n": 106
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-04",
-      "n": 179
+      "n": 182
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-04",
-      "n": 73
+      "n": 74
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-04",
-      "n": 71
+      "n": 72
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-05",
-      "n": 6
+      "n": 9
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-05",
-      "n": 6
+      "n": 9
     },
     "openrouter:*": {
       "day": "2026-11-04",
@@ -467,48 +467,50 @@
     "2026-11-05": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 4,
+        "calls": 5,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 4,
-        "other": 0
+        "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 11,
+        "ok": 11,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 3,
-        "calls": 4,
+        "429": 4,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
         "429": 4,
-        "calls": 4,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 0
+        "other": 1
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 9,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
-        "other": 1
+        "ok": 7,
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 9,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
-        "other": 4
+        "ok": 4,
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       }
     }
@@ -1160,12 +1162,6 @@
       "topic": "فناوری",
       "until": 1793916178.6534052
     },
-    "v4|anthrax outbreak in africa’s oldest national park is killing hippos": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Local wildlife disease outbreak lacks significant global or national impact.",
-      "topic": "سلامت",
-      "until": 1793840617.329805
-    },
     "v4|as trump’s midterm deadline looms, gulf countries brace for possible renewal of iran war": {
       "ok": false,
       "reason": "ai openrouter/openrouter/free batch score=7 happened=False scope=world: Major geopolitical analysis of Gulf mediation efforts, no concrete event yet",
@@ -1346,12 +1342,6 @@
       "topic": "قضایی",
       "until": 1793842378.085309
     },
-    "v4|us department of justice expands its probe into alaska’s us senate election": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: US DOJ probes Alaska Senate election",
-      "topic": "سیاست",
-      "until": 1793840588.1191275
-    },
     "v4|us midterm election results live: trump blames iran war after losses": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Major US election results impacting global political landscape.",
@@ -1436,12 +1426,6 @@
       "topic": "ورزش",
       "until": 1793914372.079821
     },
-    "v4|آخرین خبرها از انتخابات میان دوره ای کنگره آمریکا در سایه رکود محبوبیت": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: انتخابات میانی آمریکا، تأثیر جهانی و مهم",
-      "topic": "سیاست",
-      "until": 1793840585.9901164
-    },
     "v4|آخرین فرصت برای هشت موقت پرسپولیس": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: فرصت طلایی برای پرسپولیس",
@@ -1513,6 +1497,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: شکست تیم باشگاهی در سطح دوم آسیا اهمیت ملی بالایی ندارد.",
       "topic": "ورزش",
       "until": 1793896488.1492927
+    },
+    "v4|آمار عجیب گل گهر: 8 مهاجم، 4 ترکیب و صفر گل!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: routine match result, no major impact",
+      "topic": "ورزش",
+      "until": 1793927584.4109855
     },
     "v4|آملی لاریجانی: دموکرات ها تغییری در سیاست خارجی آمریکا نمی دهند اما انتخابات سنا و مجلس نمایندگان نوعی رفراندوم نسبت به سیاست جنگ طلبی بود": {
       "ok": false,
@@ -1970,23 +1960,11 @@
       "topic": "سیاست",
       "until": 1793842365.6683552
     },
-    "v4|ترامپ همه حرصش را سر فاکس نیوز خالی کرد!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: ترامپ درباره پوشش فاکس نیوز اعلام کرد",
-      "topic": "سیاست",
-      "until": 1793840587.5295756
-    },
     "v4|ترامپ وضعیت اضطراری ملی آمریکا در قبال ایران را یک سال دیگر تمدید کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: تصمیم رسمی رئیس‌جمهور آمریکا برای تمدید وضعیت اضطراری علیه ایران.",
       "topic": "سیاست",
       "until": 1793905442.2545412
-    },
-    "v4|ترامپ: از تبدیل شدن به «آقای وتو» استقبال می کنم": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: تعبیر شخصی، نه تصمیم یا رویداد ملموس",
-      "topic": "سیاست",
-      "until": 1793840586.7713158
     },
     "v4|ترامپ: اگر دوباره مجبور شوم، باز هم به ایران حمله می کنم": {
       "ok": true,
@@ -2479,12 +2457,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Major shift in US legislative power impacting global politics.",
       "topic": "سیاست",
       "until": 1793856841.8430786
-    },
-    "v4|دنیس سیترونوویچ، رئیس سابق میز ایران در سازمان اطلاعات نظامی اسرائیل: پس از این همه ادعای نادرست اسرائیل، چرا باید انتظار داشت آمریکا هر هشدار جدید تل آویو در مورد ایران را بپذیرد؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل و نظر شخصی یک مقام سابق درباره روابط اطلاعاتی است.",
-      "topic": "سیاست",
-      "until": 1793840612.651902
     },
     "v4|دو شهید و زخمی در پی حمله رژیم صهیونیستی به جنوب لبنان": {
       "ok": true,
@@ -3224,6 +3196,12 @@
       "topic": "جامعه",
       "until": 1793849597.418221
     },
+    "v4|مهم ترین چالش سلامت زنان، اطلاع رسانی ناکافی درباره سرطان است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Commentary on health awareness, no concrete event",
+      "topic": "سلامت",
+      "until": 1793927583.5654316
+    },
     "v4|موج آبی به ساحل رسید و حالا عروسی سرخ آغاز می شود / از کنایه جیمی کیمل تا حمله ترامپ به رابرت دنیرو؛ هالیوود شکست جمهوری خواهان را جشن گرفت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Celebrity reactions to political events are not first-tier news.",
@@ -3427,6 +3405,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Minor sports result in a secondary group, not a major title.",
       "topic": "ورزش",
       "until": 1793874896.4182296
+    },
+    "v4|وزیر خارجه سابق آمریکا خواستار تلاش دموکرات ها برای حل دیپلماتیک جنگ علیه ایران شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارنظر مقامات سابق درباره جنگ، خبری غیررسمی و کم اهمیت است.",
+      "topic": "سیاست",
+      "until": 1793927597.185708
     },
     "v4|وزیر خارجه فرانسه: پیروزی دموکرات ها در آمریکا خبر بسیار خوبی است": {
       "ok": false,
@@ -3909,15 +3893,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "پیروزی دموکرات ها در تصاحب کرسی سنا در کارولینای شمالی ⚡️ حزب دموکرات در تلاش برای بازیابی اکثریت در کنگره و پ",
-      "id": "8dcc55c008",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793761516,
-      "verdict": "new",
-      "why": "انتخابات سنا آمریکا، موضوع جدید"
-    },
     {
       "head": "بحران کمبود و گرانی داروهای روانپزشکی و هشدار درباره کمبود تخت بیمارستانی ⚡️ رئیس انجمن علمی روانپزشکان ایران ",
       "id": "abe5c66e28",
@@ -4465,23 +4440,18 @@
       "t": 1793838866,
       "verdict": "repeat",
       "why": "same election reaction by قالیباف"
+    },
+    {
+      "head": "هشدار دموکرات ها به تیم ترامپ همزمان با شکست سنگین جمهوری خواهان در انتخابات میان دوره ای ⚡️ رأی دهندگان آمریک",
+      "id": "4548ac18e3",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793841229,
+      "verdict": "new",
+      "why": "نتیجه انتخابات میان دوره ای آمریکا و واکنش دموکرات ها"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: واکنش رسانه صهیونیستی به تحولات سیاسی آمریکا، تحلیل و نظر است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1793804689,
-      "title": "رسانه صهیونیست: دشمنان اسرائیل در آمریکا پیروز شدند"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: کنفرانس علمی، اثر ملی یا جهانی ندارد",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1793806446,
-      "title": "نوزدهمین همایش ملی و چهارمین همایش بین المللی بیوشیمی فیزیک ایران در تبریز برگزار می شود"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: Routine ministerial statement, no concrete decision",
       "rescued": false,
@@ -5027,125 +4997,26 @@
       "rule": "no-concrete-event",
       "t": 1793838820,
       "title": "محبی در اوج آمادگی؛/ پرسپولیس و حساب ویژه روی ستاره شماره ۱۰"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Commentary on health awareness, no concrete event",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1793841183,
+      "title": "مهم ترین چالش سلامت زنان، اطلاع رسانی ناکافی درباره سرطان است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: routine match result, no major impact",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1793841184,
+      "title": "آمار عجیب گل گهر: 8 مهاجم، 4 ترکیب و صفر گل!"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اثر",
-        "استقبل",
-        "افزش",
-        "انرژ",
-        "انضبط",
-        "بخشنم",
-        "بدج",
-        "ترم",
-        "تمم",
-        "تکد",
-        "تکمل",
-        "درمد",
-        "رد",
-        "طرح",
-        "محددت",
-        "مهر",
-        "نترز",
-        "نطمنن",
-        "نم",
-        "هزن",
-        "وبستگ",
-        "پدر",
-        "کهش"
-      ],
-      "t": 1793793979.7332473,
-      "title": "دولت با بودجه ۱۴۰۶ به استقبال محدودیت منابع می رود ⚡️ این بخشنامه در سایه نااطمینانی های اقتصادی، محدودیت منابع، آثار جن"
-    },
-    {
-      "h": [
-        "انتخب",
-        "حزب",
-        "در",
-        "دست",
-        "دمکر",
-        "سن",
-        "نمندگ",
-        "کنترل",
-        "کنگر"
-      ],
-      "t": 1793793986.9646523,
-      "title": "دموکرات ها با کنترل کنگره آمریکا چه می کنند؟ ⚡️ حزب دموکرات با پیروزی در انتخابات میان دوره ای آمریکا کنترل مجلس نمایندگ"
-    },
-    {
-      "h": [
-        "ارسل",
-        "تسس",
-        "ددست",
-        "ددگ",
-        "دستر",
-        "رز",
-        "رهبر",
-        "شهدت",
-        "شهر",
-        "فرم",
-        "فرمنده",
-        "قض",
-        "قه",
-        "لمرد",
-        "مربط",
-        "مرتبط",
-        "ورزشگ",
-        "پرند",
-        "کرج",
-        "کفرخست"
-      ],
-      "t": 1793795759.2682967,
-      "title": "دادستان تهران: کیفرخواست های مرتبط با جنگ های ۱۲ و ۴۰ روزه به دادگاه ارسال شد ⚡️ دادستان تهران در پی فرمان رهبر و دستور "
-    },
-    {
-      "h": [
-        "ارد",
-        "اسمعل",
-        "اکس",
-        "بق",
-        "حکم",
-        "خرج",
-        "سخنگ",
-        "شبک",
-        "نشت",
-        "هت",
-        "وزرت",
-        "وضح",
-        "پم"
-      ],
-      "t": 1793795785.9872117,
-      "title": "سخنگوی وزارت خارجه ایران: حمله به ایران پیروزی نمی آورد؛ مردم آمریکا پیام واضح دادند ⚡️ اسماعیل بقائی، سخنگوی وزارت امور"
-    },
-    {
-      "h": [
-        "اتلف",
-        "الت",
-        "اند",
-        "بشند",
-        "بنمن",
-        "بگرد",
-        "تشکل",
-        "تصمم",
-        "حزب",
-        "خهد",
-        "رقب",
-        "رهبر",
-        "عسک",
-        "مصحب",
-        "ملق",
-        "نتنه",
-        "نخست",
-        "هرزق"
-      ],
-      "t": 1793795819.456873,
-      "title": "رئیس جمهور اسرائیل با رهبران حزب در مورد تشکیل دولت با نتانیاهو یا رقبای او مصاحبه خواهد کرد ⚡️ رئیس جمهور اسرائیل، عیسا"
-    },
     {
       "h": [
         "اجر",
@@ -5573,6 +5444,29 @@
       ],
       "t": 1793831608.999028,
       "title": "پیدا شدن جسد معاون سروزیر باواریا در هتلی در برلین ⚡️ جسد هوبرت آیوانگر، معاون سروزیر و وزیر اقتصاد ایالت باواریا، بامدا"
+    },
+    {
+      "h": [
+        "انتخب",
+        "تحمل",
+        "تم",
+        "حزب",
+        "خه",
+        "در",
+        "دمکر",
+        "دهندگ",
+        "دژه",
+        "سخت",
+        "سرنگن",
+        "سنگن",
+        "شکست",
+        "هشدر",
+        "همزم",
+        "وگذر",
+        "کنگر"
+      ],
+      "t": 1793841242.6293454,
+      "title": "هشدار دموکرات ها به تیم ترامپ همزمان با شکست سنگین جمهوری خواهان در انتخابات میان دوره ای ⚡️ رأی دهندگان آمریکایی در انت"
     }
   ],
   "_published_incidents": [
@@ -5779,204 +5673,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ار",
-        "ارشد",
-        "اغز",
-        "اقدم",
-        "امرک",
-        "انجم",
-        "حمل",
-        "در",
-        "دشنب",
-        "شلک",
-        "قشم",
-        "معن",
-        "مقم",
-        "هپم",
-        "وکنش",
-        "گسترد"
-      ],
-      "t": 1793702114.4334755,
-      "title": "واکنش مقام ارشد آمریکایی به حمله قشم ⚡️ حمله به قشم در واکنش به شلیک ایران به سوی یک هواپیمای آمریکایی در روز دوشنبه انج"
-    },
-    {
-      "k": [
-        "اجتمع",
-        "اقدم",
-        "امر",
-        "امنت",
-        "انس",
-        "بند",
-        "ترن",
-        "تکد",
-        "جمهر",
-        "جن",
-        "حدث",
-        "حمل",
-        "خند",
-        "دنست",
-        "رس",
-        "زندگ",
-        "زنن",
-        "شجر",
-        "صرت",
-        "طب",
-        "فرمش",
-        "مدرس",
-        "مسلح",
-        "مسلحن",
-        "معن",
-        "منب",
-        "نبد",
-        "نشدن",
-        "نهد",
-        "گن",
-        "یک"
-      ],
-      "t": 1793704007.926783,
-      "title": "حمله به مدرسه میناب اقدامی مسلح و فراموش نشدنی است ⚡️ معاون رئیس جمهور در امور زنان و خانواده حادثه مدرسه شجره طیبه مینا"
-    },
-    {
-      "k": [
-        "اسرل",
-        "حمل",
-        "خن",
-        "دنشکد",
-        "زخم",
-        "علم",
-        "پهپد",
-        "کربرد",
-        "کشت",
-        "گذشت",
-        "ینس"
-      ],
-      "t": 1793704050.0614777,
-      "title": "حمله پهپادی به دانشکده خان یونس با ۱۳ کشته و زخمی ⚡️ حمله پهپادی اسرائیل به دانشکده علوم کاربردی خان یونس ۳ کشته و بیش ا"
-    },
-    {
-      "k": [
-        "احتمل",
-        "ار",
-        "امر",
-        "امرک",
-        "انتخب",
-        "انجم",
-        "بر",
-        "بشد",
-        "تد",
-        "تکد",
-        "تکذب",
-        "حمل",
-        "خرج",
-        "خص",
-        "در",
-        "درخست",
-        "رس",
-        "سرگ",
-        "لرف",
-        "مشخص",
-        "نشد",
-        "نکرد",
-        "هنز",
-        "هچ",
-        "وزر",
-        "وشنگتن",
-        "پگر"
-      ],
-      "s": "وزیر خارجه روسیه",
-      "t": 1793707616.606017,
-      "title": "وزیر خارجه روسیه: آمریکا هیچ درخواست مشخصی دربارهٔ گزارش های احتمالی حمله به ایران نکرد ⚡️ سرگئی لاوروف، وزیر امور خارجه"
-    },
-    {
-      "k": [
-        "احتمل",
-        "ار",
-        "امر",
-        "تهر",
-        "حمل",
-        "خرج",
-        "دست",
-        "سلح",
-        "صرت",
-        "معن",
-        "معهد",
-        "منع",
-        "نخهد",
-        "نزدک",
-        "هست",
-        "وزر",
-        "کرگر",
-        "کلنگ",
-        "که",
-        "گذشت",
-        "گسترش"
-      ],
-      "t": 1793709467.024982,
-      "title": "معاون وزیر امور خارجه: پایان معاهده منع گسترش سلاح های هسته ای نزدیک است ⚡️ معاون وزیر امور خارجه ایران پیش از حمله احتم"
-    },
-    {
-      "k": [
-        "اختر",
-        "اخترت",
-        "امک",
-        "انقلب",
-        "برد",
-        "تکد",
-        "جمهر",
-        "جنگ",
-        "دد",
-        "درفت",
-        "دلت",
-        "رس",
-        "رهبر",
-        "سد",
-        "فرهم",
-        "مذکر",
-        "مسعد",
-        "منفعت",
-        "نخهد",
-        "هچ",
-        "پزشک",
-        "کشر"
-      ],
-      "s": "پزشکیان",
-      "t": 1793709554.558607,
-      "title": "پزشکیان: جنگ به سود هیچ کس نیست و اختیارات مذاکره دریافت شده است ⚡️ مسعود پزشکیان رئیس جمهور تأکید کرد هیچ کشوری از جنگ "
-    },
-    {
-      "k": [
-        "ارتش",
-        "ارجع",
-        "اسرل",
-        "اقدم",
-        "بختند",
-        "بر",
-        "برت",
-        "بررس",
-        "بمبر",
-        "تحقق",
-        "جن",
-        "جنگ",
-        "خرد",
-        "دستگ",
-        "شهرند",
-        "شکت",
-        "فرنس",
-        "قض",
-        "لبن",
-        "لبنن",
-        "نخستن",
-        "ولدنش",
-        "پرس",
-        "پرند",
-        "کلد",
-        "گشد"
-      ],
-      "t": 1793711193.4909308,
-      "title": "فرانسه پرونده جنایات جنگی اسرائیلی گشود ⚡️ دستگاه قضایی فرانسه برای نخستین بار پرونده ای را برای بررسی جنایات جنگی ارتش "
-    },
     {
       "k": [
         "ار",
@@ -8543,6 +8239,55 @@
       ],
       "t": 1793831608.990701,
       "title": "پیدا شدن جسد معاون سروزیر باواریا در هتلی در برلین ⚡️ جسد هوبرت آیوانگر، معاون سروزیر و وزیر اقتصاد ایالت باواریا، بامدا"
+    },
+    {
+      "k": [
+        "اتهم",
+        "اصل",
+        "ال",
+        "امرک",
+        "انتخب",
+        "اند",
+        "برخرد",
+        "بزند",
+        "بگرند",
+        "تحمل",
+        "ترمپ",
+        "تم",
+        "تند",
+        "جمهر",
+        "حزب",
+        "خه",
+        "در",
+        "دغدغ",
+        "دلت",
+        "دمکر",
+        "دنلد",
+        "دهندگ",
+        "دژه",
+        "رقم",
+        "سخت",
+        "سرنشت",
+        "سرنگن",
+        "سس",
+        "سستفد",
+        "سنگن",
+        "شکست",
+        "فسد",
+        "قدرت",
+        "متحد",
+        "مجلس",
+        "مسل",
+        "نح",
+        "هشدر",
+        "همزم",
+        "وکل",
+        "وگذر",
+        "پرز",
+        "کنگر"
+      ],
+      "t": 1793841242.6193235,
+      "title": "هشدار دموکرات ها به تیم ترامپ همزمان با شکست سنگین جمهوری خواهان در انتخابات میان دوره ای ⚡️ رأی دهندگان آمریکایی در انت"
     }
   ],
   "_telegram_errors": [
@@ -8689,6 +8434,12 @@
       "method": "sendPhoto",
       "outcome": "ambiguous",
       "t": 1793808396.696625
+    },
+    {
+      "error": "ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=12)",
+      "method": "sendPhoto",
+      "outcome": "ambiguous",
+      "t": 1793841242.606055
     }
   ],
   "_text_polish": {
@@ -8700,7 +8451,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793838712
+    "at": 1793841108
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8714,15 +8465,20 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1793841523.0,
+    "last_failure": 1793841223,
+    "last_status": 503
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793839414,
-    "last_failure": 1793838814,
+    "disabled_until": 1793841791,
+    "last_failure": 1793841191,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793839410,
-    "last_failure": 1793838810,
-    "last_status": 429
+    "disabled_until": 1793841487.0,
+    "last_failure": 1793841187,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
