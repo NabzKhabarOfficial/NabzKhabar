@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793916269
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793916269
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1793916273
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1793916278
-    },
-    {
       "e": "EDITOR BATCH: 6/6 via gemini/gemini-3.1-flash-lite",
       "t": 1793916282
     },
@@ -159,24 +143,40 @@
     {
       "e": "AI PACE: gemini:gemini-3.1-flash-lite held 5x, groq:openai/gpt-oss-120b held 11x, groq:openai/gpt-oss-20b held 10x",
       "t": 1793919571
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793919778
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793919778
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
+      "t": 1793919782
+    },
+    {
+      "e": "AI PACE: gemini:gemini-3.1-flash-lite held 3x, groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 9x",
+      "t": 1793919864
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-05",
-      "n": 140
+      "n": 141
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-05",
-      "n": 113
+      "n": 119
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-05",
-      "n": 62
+      "n": 64
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-05",
-      "n": 52
+      "n": 54
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-05",
@@ -188,7 +188,7 @@
     },
     "openrouter:*": {
       "day": "2026-11-05",
-      "n": 16
+      "n": 17
     }
   },
   "_ai_usage": {
@@ -467,21 +467,21 @@
     "2026-11-05": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 177,
+        "calls": 178,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 175,
+        "ok": 176,
         "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 181,
+        "calls": 187,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 134,
-        "other": 47
+        "ok": 139,
+        "other": 48
       },
       "gemini:gemini-3.6-flash": {
-        "429": 41,
-        "calls": 93,
+        "429": 43,
+        "calls": 95,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 26,
@@ -489,11 +489,11 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 33,
-        "calls": 54,
+        "calls": 56,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 1,
-        "other": 20
+        "other": 22
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
@@ -511,15 +511,17 @@
       },
       "mistral:ministral-8b-latest": {
         "429": 0,
-        "calls": 7,
+        "calls": 8,
+        "last_error": "HTTP 503: {\"object\":\"error\",\"message\":\"Service unavailable.\",\"type\":\"internal_server_error\",\"param\":null,\"code\":\"3505\",\"raw_status_code\":503}",
         "ok": 7,
-        "other": 0
+        "other": 1
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 214,
-        "ok": 214,
-        "other": 0
+        "calls": 219,
+        "last_error": "HTTP 503: {\"object\":\"error\",\"message\":\"Service unavailable.\",\"type\":\"internal_server_error\",\"param\":null,\"code\":\"3505\",\"raw_status_code\":503}",
+        "ok": 217,
+        "other": 2
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 0,
@@ -557,8 +559,8 @@
       },
       "openrouter:openrouter/free": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       }
     }
@@ -1123,6 +1125,20 @@
       "t": 1793919553.3679872,
       "title": "مرجع تشیع بزرگ درگذشت",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1793919812.916557,
+      "title": "وزیر جنگ آمریکا: دولت ترامپ عقب نشینی نخواهد کرد",
+      "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1793919863.4517398,
+      "title": "ائتلاف عربستان موشک بالستیک به سمت مدینه را رهگیری کرد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-05",
@@ -1276,6 +1292,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis about future political implications of election results.",
       "topic": "سیاست",
       "until": 1793966727.9634569
+    },
+    "v4|jordanian officer killed in stabbing attack in amman": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Security incident involving a fatality, but below mass casualty threshold.",
+      "topic": "حادثه",
+      "until": 1794006182.67432
     },
     "v4|joshua wong, face of hong kong's pro-democracy protests, jailed for 10 years": {
       "ok": true,
@@ -4001,6 +4023,12 @@
       "topic": "سیاست",
       "until": 1793928769.761499
     },
+    "v4|واکنش وزیر جنگ ترامپ به تلاش ها برای برکناری": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official response from a US cabinet member regarding political stability.",
+      "topic": "سیاست",
+      "until": 1794006182.660467
+    },
     "v4|واکنش وزیر جنگ ترامپ به تلاش ها برای برکناری: عقب نشینی نمی کنیم!": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official statement by a US cabinet member regarding government stability.",
@@ -4705,25 +4733,6 @@
   },
   "_event_judge_log": [
     {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "واکنش تهران به انتخابات آمریکا؛ قالیباف: رای دهندگان به جنگ «نه» گفتند ⚡️ محمدباقر قالیباف، رئیس مجلس ایران، پ",
-      "id": "d7de22813d",
-      "match": "قالیباف: مردم آمریکا به جنگ طلبی دولت ترامپ «نه» گفتند",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793838866,
-      "verdict": "repeat",
-      "why": "same election reaction by قالیباف"
-    },
-    {
-      "head": "هشدار دموکرات ها به تیم ترامپ همزمان با شکست سنگین جمهوری خواهان در انتخابات میان دوره ای ⚡️ رأی دهندگان آمریک",
-      "id": "4548ac18e3",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793841229,
-      "verdict": "new",
-      "why": "نتیجه انتخابات میان دوره ای آمریکا و واکنش دموکرات ها"
-    },
-    {
       "head": "رهبر ایران: درگیری با آمریکا پس از انتخابات میانه روی آمریکا هم ادامه خواهد یافت ⚡️ رهبر ایران اعلام کرد درگیر",
       "id": "bdb5e7398c",
       "match": "",
@@ -5249,6 +5258,25 @@
       "t": 1793919571,
       "verdict": "repeat",
       "why": "مرجع تقلید حسین وحید خراسانی درگذشت"
+    },
+    {
+      "confirm": "mistral/open-mistral-nemo:new",
+      "head": "وزیر جنگ آمریکا: دولت ترامپ عقب نشینی نخواهد کرد ⚡️ پیت هگست، وزیر جنگ آمریکا، پس از شکست جمهوری خواهان در انت",
+      "id": "5ea76eafde",
+      "match": "ادامه کار وزیر جنگ آمریکا در پنتاگون با وجود گمانه زنی ها درباره استیضاح",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1793919794,
+      "verdict": "unconfirmed-repeat",
+      "why": "Same statement by US Defense Secretary about impeachment and staying."
+    },
+    {
+      "head": "ائتلاف عربستان موشک بالستیک به سمت مدینه را رهگیری کرد ⚡️ ائتلاف تحت رهبری عربستان یک موشک بالستیک شلیک شده تو",
+      "id": "c1442cfbc1",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1793919859,
+      "verdict": "new",
+      "why": "This is a new missile interception event targeting Medina."
     }
   ],
   "_importance_rescue_log": [
@@ -6432,6 +6460,47 @@
       ],
       "t": 1793919553.359691,
       "title": "مرجع تشیع بزرگ درگذشت ⚡️ مرجع عالی قدر جهان تشیع، آیت الله حسین وحید خراسانی، پس از عمری فعالیت درمانی در تهران درگذشت."
+    },
+    {
+      "h": [
+        "استضح",
+        "افزش",
+        "اقدم",
+        "انتخب",
+        "تخرب",
+        "تصف",
+        "تلش",
+        "خه",
+        "درخست",
+        "شکست",
+        "عقب",
+        "مخلف",
+        "مسر",
+        "نخهد",
+        "نشن",
+        "هگست",
+        "پت",
+        "کنگر"
+      ],
+      "t": 1793919812.9036689,
+      "title": "وزیر جنگ آمریکا: دولت ترامپ عقب نشینی نخواهد کرد ⚡️ پیت هگست، وزیر جنگ آمریکا، پس از شکست جمهوری خواهان در انتخابات کنگر"
+    },
+    {
+      "h": [
+        "اتلف",
+        "بلستک",
+        "تحت",
+        "حث",
+        "رهبر",
+        "رهگر",
+        "شبه",
+        "شلک",
+        "مدن",
+        "مشک",
+        "نبد"
+      ],
+      "t": 1793919863.425898,
+      "title": "ائتلاف عربستان موشک بالستیک به سمت مدینه را رهگیری کرد ⚡️ ائتلاف تحت رهبری عربستان یک موشک بالستیک شلیک شده توسط شبه نظا"
     }
   ],
   "_published_incidents": [
@@ -6705,6 +6774,25 @@
       "regions": [],
       "t": 1793918176.4030585,
       "title": "پاکستان پاسگاه های مرزی طالبان در شلوزان را بمباران کرد ⚡️ نیروهای پاکستان پس از تیراندازی نیروهای طالبان در منطقه مرزی ",
+      "toll": 0
+    },
+    {
+      "a": [
+        "اتلف",
+        "بلستک",
+        "تحت",
+        "رهبر",
+        "شبه",
+        "شلک",
+        "مدن",
+        "نبد"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1793919863.4390316,
+      "title": "ائتلاف عربستان موشک بالستیک به سمت مدینه را رهگیری کرد ⚡️ ائتلاف تحت رهبری عربستان یک موشک بالستیک شلیک شده توسط شبه نظا",
       "toll": 0
     }
   ],
@@ -9237,6 +9325,80 @@
       ],
       "t": 1793919553.3511474,
       "title": "مرجع تشیع بزرگ درگذشت ⚡️ مرجع عالی قدر جهان تشیع، آیت الله حسین وحید خراسانی، پس از عمری فعالیت درمانی در تهران درگذشت."
+    },
+    {
+      "k": [
+        "استضح",
+        "افزش",
+        "اقدم",
+        "امرک",
+        "انتخب",
+        "تخرب",
+        "ترمپ",
+        "تصف",
+        "تلش",
+        "جمهر",
+        "جنگ",
+        "خه",
+        "درخست",
+        "دلت",
+        "سس",
+        "شکست",
+        "عقب",
+        "مخلف",
+        "مسر",
+        "نخهد",
+        "نشن",
+        "هگست",
+        "وزر",
+        "پت",
+        "کنگر"
+      ],
+      "s": "وزیر جنگ آمریکا",
+      "t": 1793919812.8904028,
+      "title": "وزیر جنگ آمریکا: دولت ترامپ عقب نشینی نخواهد کرد ⚡️ پیت هگست، وزیر جنگ آمریکا، پس از شکست جمهوری خواهان در انتخابات کنگر"
+    },
+    {
+      "k": [
+        "اتلف",
+        "احتمل",
+        "استرتژک",
+        "اعلم",
+        "انه",
+        "بلستک",
+        "بندر",
+        "تحت",
+        "تسس",
+        "تنه",
+        "حث",
+        "حمل",
+        "خطر",
+        "دفع",
+        "رهبر",
+        "رهگر",
+        "ستن",
+        "شبه",
+        "شلک",
+        "شهر",
+        "عرب",
+        "عربست",
+        "عمل",
+        "مدن",
+        "مشک",
+        "منتشر",
+        "منطق",
+        "نبد",
+        "نزدک",
+        "نظم",
+        "نفت",
+        "هدف",
+        "هشدر",
+        "پگ",
+        "گند",
+        "ینب"
+      ],
+      "t": 1793919863.4129221,
+      "title": "ائتلاف عربستان موشک بالستیک به سمت مدینه را رهگیری کرد ⚡️ ائتلاف تحت رهبری عربستان یک موشک بالستیک شلیک شده توسط شبه نظا"
     }
   ],
   "_telegram_errors": [
@@ -9424,7 +9586,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793919376
+    "at": 1793919675
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9439,18 +9601,18 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1793919798.0,
-    "last_failure": 1793919498,
+    "disabled_until": 1793920127.0,
+    "last_failure": 1793919827,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1793919807.0,
-    "last_failure": 1793919507,
-    "last_status": 503
+    "disabled_until": 1793920434,
+    "last_failure": 1793919834,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793919802.0,
-    "last_failure": 1793919502,
+    "disabled_until": 1793920132.0,
+    "last_failure": 1793919832,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
@@ -9528,6 +9690,11 @@
     "last_failure": 1793880374,
     "last_status": 429
   },
+  "openrouter:ministral-8b-latest": {
+    "disabled_until": 1793920136.0,
+    "last_failure": 1793919836,
+    "last_status": 503
+  },
   "openrouter:mistral-small-latest": {
     "disabled_until": 1792091270,
     "last_failure": 1792090670,
@@ -9544,11 +9711,10 @@
     "last_failure": 1793880383,
     "last_status": 422
   },
-  "openrouter:openrouter/free": {
-    "disabled_until": 1793880433,
-    "last_failure": 1793880373,
-    "last_quality_failure": 1793871289,
-    "last_status": 422
+  "openrouter:open-mistral-nemo": {
+    "disabled_until": 1793920135.0,
+    "last_failure": 1793919835,
+    "last_status": 503
   },
   "openrouter:qwen/qwen3.8-27b:free": {
     "disabled_until": 1790400317,
