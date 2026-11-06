@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793921588
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793921588
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793921593
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1793921593
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 10x",
       "t": 1793921640
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
       "t": 1793926991
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793928793
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1793928794
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1793928794
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1793928815
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-05",
-      "n": 138
+      "n": 141
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-05",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-05",
-      "n": 58
+      "n": 59
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-06",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-06",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-05",
@@ -475,9 +475,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 9,
+        "calls": 12,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 7,
+        "ok": 10,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -489,25 +489,25 @@
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 1,
+        "429": 2,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 7,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 3,
-        "other": 5
+        "ok": 4,
+        "other": 6
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1138,6 +1138,12 @@
       "topic": "قضایی",
       "until": 1793930591.923306
     },
+    "v4|beau lamarre-condon trial live updates: double murder accused tells court of ‘outer-body experience’ after shootings": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Sydney double murder trial, not major international significance",
+      "topic": "قضایی",
+      "until": 1794015193.7483768
+    },
     "v4|beau lamarre-condon trial live updates: former police officer continues evidence in double murder trial": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: محاکمه قتل در سطح محلی است و اهمیت بین‌المللی ندارد",
@@ -1288,6 +1294,12 @@
       "topic": "قضایی",
       "until": 1793935999.2716362
     },
+    "v4|major tech stocks plunge as us midterms add to fears of ai slowdown": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سقوط سهام بزرگ فناوری در پی تحولات سیاسی آمریکا",
+      "topic": "اقتصاد",
+      "until": 1794015199.5415785
+    },
     "v4|mass protests in france driven by nationwide strike action": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major nationwide civil unrest involving 250,000 people in a G7 country.",
@@ -1341,6 +1353,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Corporate product launch, lacks global-scale impact on society or economy.",
       "topic": "فناوری",
       "until": 1794005924.2872262
+    },
+    "v4|peru airport officials discover 3,000 tarantulas smuggled inside dirty socks": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Large tarantula smuggling, minor crime",
+      "topic": "قضایی",
+      "until": 1794015192.8006742
     },
     "v4|police bodycam captures moments before deadly russian strike in ukraine": {
       "ok": true,
@@ -1479,12 +1497,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=local: آمادگی برای حوادث احتمالی، خبر دست‌اول و قطعی محسوب نمی‌شود.",
       "topic": "آب و هوا",
       "until": 1793970322.5047982
-    },
-    "v4|آمار عجیب گل گهر: 8 مهاجم، 4 ترکیب و صفر گل!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: routine match result, no major impact",
-      "topic": "ورزش",
-      "until": 1793927584.4109855
     },
     "v4|آمریکایی ها با ملت ایران دشمنی دارند؛ نباید به آنان خوش بین باشیم": {
       "ok": false,
@@ -3730,12 +3742,6 @@
       "topic": "اقتصاد",
       "until": 1793970272.2426655
     },
-    "v4|مهم ترین چالش سلامت زنان، اطلاع رسانی ناکافی درباره سرطان است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Commentary on health awareness, no concrete event",
-      "topic": "سلامت",
-      "until": 1793927583.5654316
-    },
     "v4|موافقت پارلمان ترکیه با توافق مکه": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: تصویب توافق نظامی بین‌المللی توسط پارلمان ترکیه",
@@ -4006,12 +4012,6 @@
       "topic": "سیاست",
       "until": 1793946846.88047
     },
-    "v4|واکنش عبدالله گنجی به نتیجه انتخابات مجلس نمایندگان و سنا در آمریکا؛ ایران گیت دیگری رقم خورد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: تحلیل شخصی یک فعال سیاسی درباره انتخابات آمریکا فاقد ارزش خبری است.",
-      "topic": "سیاست",
-      "until": 1793928769.761499
-    },
     "v4|واکنش وزیر جنگ ترامپ به تلاش ها برای برکناری": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official response from a US cabinet member regarding political stability.",
@@ -4071,12 +4071,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: موضع‌گیری رسمی وزیر دفاع آمریکا درباره تداوم سیاست‌های دولت",
       "topic": "سیاست",
       "until": 1794002682.6199694
-    },
-    "v4|وزیر خارجه سابق آمریکا خواستار تلاش دموکرات ها برای حل دیپلماتیک جنگ علیه ایران شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارنظر مقامات سابق درباره جنگ، خبری غیررسمی و کم اهمیت است.",
-      "topic": "سیاست",
-      "until": 1793927597.185708
     },
     "v4|وزیر دفاع:تعهد نیروهای مسلح،برخاسته از فرهنگی است که نسل های متوالی آن را تداوم بخشیده اند": {
       "ok": false,
@@ -4372,12 +4366,6 @@
       "topic": "سلامت",
       "until": 1793946787.2892265
     },
-    "v4|کاخ سفید در بحبوحه پیامدهای شکست های جمهوری خواهان، پیام ترامپ را تکرار کرد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=world: موضع‌گیری و شعار سیاسی بدون تصمیم یا رخداد مهم اجرایی",
-      "topic": "سیاست",
-      "until": 1793928763.2238355
-    },
     "v4|کارخانه تولیدی معدنی سلماس با سرمایه گذاری۱۳۰۰ میلیارد ریال افتتاح شد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، افتتاح کارخانه، اثر محدود",
@@ -4603,6 +4591,10 @@
     "iran says tankers struck in hormuz amid fears of new us attack": {
       "reason": "content_duplicate",
       "until": 1793937929.3684225
+    },
+    "major tech stocks plunge as us midterms add to fears of ai slowdown": {
+      "reason": "content_duplicate",
+      "until": 1793950415.8817883
     },
     "melania trump hosts russia-ukraine meeting after oleshky ceasefire": {
       "reason": "content_duplicate",
@@ -5280,27 +5272,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: پوتین انتقاد کرد، واکنش به مخالفت کشورهای دیگر",
-      "rescued": true,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793900060,
-      "title": "انتقاد پوتین از مخالفان بازگشت روسیه به ورزش"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine meeting regarding provincial university infrastructure and budget requests.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793900063,
-      "title": "لزوم افزایش اعتبارات و توسعه زیرساخت های دانشگاهی در قم"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Domestic basketball league win, limited national significance",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793901124,
-      "title": "کاله مازندران با سومین برد متوالی صدرنشین لیگ برتر بسکتبال شد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: سفر معاون اجرایی به گیلان",
       "rescued": false,
       "rule": "routine-statement",
@@ -5838,6 +5809,27 @@
       "rule": "no-concrete-event",
       "t": 1793926968,
       "title": "راهنمای کامل انتخاب رشته کنکور؛ از بررسی کارنامه تا اولویت بندی رشته محل ها"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Large tarantula smuggling, minor crime",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1793928792,
+      "title": "Peru airport officials discover 3,000 tarantulas smuggled inside dirty socks"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Sydney double murder trial, not major international significance",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1793928793,
+      "title": "Beau Lamarre-Condon trial live updates: double murder accused tells court of ‘outer-body experience’ after shootings"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سقوط سهام بزرگ فناوری در پی تحولات سیاسی آمریکا",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1793928799,
+      "title": "Major tech stocks plunge as US midterms add to fears of AI slowdown"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9592,7 +9584,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793926868
+    "at": 1793928696
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9606,20 +9598,15 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1793927272.0,
-    "last_failure": 1793926972,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1793927277.0,
     "last_failure": 1793926977,
     "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793927267.0,
-    "last_failure": 1793926967,
-    "last_status": 599
+    "disabled_until": 1793929394,
+    "last_failure": 1793928794,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
