@@ -1,10 +1,11 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
+  "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-06T00:33:58.293021+00:00",
+  "checked_at": "2026-11-06T01:03:11.885834+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -30,6 +31,14 @@
       "result": "editorial_blocked",
       "source": "",
       "title": "زلزله ۴.۱ ریشتری مسجدسلیمان را لرزاند",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: Speculative political commentary and cultural reaction, not a major event.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "Everyone’s Talking About the ‘Blue Tsunami.’ In Japan, It’s Complicated.",
       "url": ""
     },
     {
@@ -90,33 +99,51 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحلیل و بررسی پیامدهای انتخابات میان‌دوره ای آمریکا فاقد رویداد جدید است.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Casualties reported in a regional war zone conflict.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "انتخابات میان دوره ای آمریکا؛ این نتایج برای ایران و جهان چه پیامدهایی دارد؟",
+      "title": "شهادت ۹ شهروند یمنی در حملات عربستان در ۲۴ ساعت گذشته",
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "isna.ir",
+      "started_at": "2026-11-06T01:03:06.580185+00:00",
+      "title": "گزارش ها از وقوع دو انفجار در نجران عربستان",
+      "url": "https://isna.ir/news/1405081509754/%DA%AF%D8%B2%D8%A7%D8%B1%D8%B4-%D9%87%D8%A7-%D8%A7%D8%B2-%D9%88%D9%82%D9%88%D8%B9-%D8%AF%D9%88-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1-%D8%AF%D8%B1-%D9%86%D8%AC%D8%B1%D8%A7%D9%86-%D8%B9%D8%B1%D8%A8%D8%B3%D8%AA%D8%A7%D9%86"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 18,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "isna.ir",
+      "title": "گزارش ها از وقوع دو انفجار در نجران عربستان",
+      "url": "https://isna.ir/news/1405081509754/%DA%AF%D8%B2%D8%A7%D8%B1%D8%B4-%D9%87%D8%A7-%D8%A7%D8%B2-%D9%88%D9%82%D9%88%D8%B9-%D8%AF%D9%88-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1-%D8%AF%D8%B1-%D9%86%D8%AC%D8%B1%D8%A7%D9%86-%D8%B9%D8%B1%D8%A8%D8%B3%D8%AA%D8%A7%D9%86"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
   "run_status": "success",
-  "selected_for_publication": 12,
+  "selected_for_publication": 14,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "bbc.com",
-      "started_at": "2026-11-06T00:33:51.188496+00:00",
-      "title": "یک کشته و یک زخمی در حمله «تروریستی» در امان، پایتخت اردن",
-      "url": "https://bbc.com/persian/articles/c8kge7kgd55vo?at_campaign=rss&at_medium=RSS"
+      "source": "aljazeera.com",
+      "started_at": "2026-11-06T01:03:04.641567+00:00",
+      "title": "Iran war live: Trump warns US may have to ‘destroy’ rest of Iran",
+      "url": "https://aljazeera.com/news/liveblog/2026/11/6/iran-war-live-trump-warns-us-may-have-to-destroy-rest-of-iran?traffic_source=rss"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
