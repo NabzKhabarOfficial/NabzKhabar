@@ -1,11 +1,10 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": false,
+  "all_selected_blocked": true,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-05T23:34:00.208600+00:00",
+  "checked_at": "2026-11-06T00:03:56.676398+00:00",
   "diagnostics": [
-    "Selected stories did not reach confirmed publication.",
-    "Publication attempts failed or raised exceptions.",
+    "All selected stories were blocked or reconciled without a confirmed publication.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -31,14 +30,6 @@
       "result": "editorial_blocked",
       "source": "",
       "title": "زلزله ۴.۱ ریشتری مسجدسلیمان را لرزاند",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Security incident involving a fatality, but below mass casualty threshold.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "Jordanian officer killed in stabbing attack in Amman",
       "url": ""
     },
     {
@@ -75,6 +66,14 @@
     },
     {
       "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=4 happened=True scope=world: Zelensky says aid not received",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "زلنسکی: اوکراین هنوز ۱۶ میلیارد دلار کمک توافق شده با آمریکا را دریافت نکرده است",
+      "url": ""
+    },
+    {
+      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis about future intentions, not a concrete event.",
       "result": "editorial_blocked",
       "source": "",
@@ -96,34 +95,24 @@
       "source": "",
       "title": "تحقیق جدید: پرتوهای کیهانی می توانند بافت قلب فضانوردان مریخ را زخمی کنند",
       "url": ""
-    }
-  ],
-  "failed_publication_attempts": [
+    },
     {
       "error": "",
-      "result": "failed",
-      "source": "entekhab.ir",
-      "started_at": "2026-11-05T23:33:23.280283+00:00",
-      "title": "اسلامی: گروسی همچون کارگزار دشمنان ما عمل کرده و عملاً اطلاعاتی را در اختیار آنها قرار می دهد/ تهدید ترامپ درباره حمله به کوه کلنگ، نشانه استیصال است",
-      "url": "https://entekhab.ir/fa/news/946672/اسلامی-گروسی-همچون-کارگزار-دشمنان-ما-عمل-کرده-و-عملا-اطلاعاتی-را-در-اختیار-آنها-قرار-می-دهد-تهدید-ترامپ-درباره-حمله-به-کوه-کلنگ-نشانه-استیصال-است"
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=4 happened=True scope=world: UN says displaced in climate danger zones",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "Three in four displaced people live in climate danger zones, UN says",
+      "url": ""
     }
   ],
-  "failed_publications": 1,
+  "failed_publication_attempts": [],
+  "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [
-    {
-      "intelligence_score": 18,
-      "monitor_reason": "selected-but-not-published",
-      "publication_tier": 4,
-      "source": "entekhab.ir",
-      "title": "اسلامی: گروسی همچون کارگزار دشمنان ما عمل کرده و عملاً اطلاعاتی را در اختیار آنها قرار می دهد/ تهدید ترامپ درباره حمله به کوه کلنگ، نشانه استیصال است",
-      "url": "https://entekhab.ir/fa/news/946672/اسلامی-گروسی-همچون-کارگزار-دشمنان-ما-عمل-کرده-و-عملا-اطلاعاتی-را-در-اختیار-آنها-قرار-می-دهد-تهدید-ترامپ-درباره-حمله-به-کوه-کلنگ-نشانه-استیصال-است"
-    }
-  ],
+  "missed_selected_stories": [],
   "no_publication_candidate": false,
-  "publication_gap": false,
-  "published": 1,
+  "publication_gap": true,
+  "published": 0,
   "run_status": "success",
   "selected_for_publication": 15,
   "skipped_duplicate": [
@@ -132,7 +121,7 @@
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "bbc.com",
-      "started_at": "2026-11-05T23:33:18.921867+00:00",
+      "started_at": "2026-11-06T00:03:28.540125+00:00",
       "title": "یک کشته و یک زخمی در حمله «تروریستی» در امان، پایتخت اردن",
       "url": "https://bbc.com/persian/articles/c8kge7kgd55vo?at_campaign=rss&at_medium=RSS"
     },
@@ -140,11 +129,20 @@
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
+      "source": "entekhab.ir",
+      "started_at": "2026-11-06T00:03:32.086803+00:00",
+      "title": "اسلامی: گروسی همچون کارگزار دشمنان ما عمل کرده و عملاً اطلاعاتی را در اختیار آنها قرار می دهد/ تهدید ترامپ درباره حمله به کوه کلنگ، نشانه استیصال است",
+      "url": "https://entekhab.ir/fa/news/946672/اسلامی-گروسی-همچون-کارگزار-دشمنان-ما-عمل-کرده-و-عملا-اطلاعاتی-را-در-اختیار-آنها-قرار-می-دهد-تهدید-ترامپ-درباره-حمله-به-کوه-کلنگ-نشانه-استیصال-است"
+    },
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
       "source": "varzesh3.com",
-      "started_at": "2026-11-05T23:33:41.249989+00:00",
+      "started_at": "2026-11-06T00:03:40.602334+00:00",
       "title": "شکار پهپادهای MQM-۱۷٠ آمریکا در آسمان ایران",
       "url": "https://varzesh3.com/news/2442345/شکار-پهپادهای-mqm-۱۷٠-آمریکا-در-آسمان-ایران"
     }
   ],
-  "status": "publication_failure"
+  "status": "editorial_blocked"
 }
