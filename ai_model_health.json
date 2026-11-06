@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 10x",
-      "t": 1793921640
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793923374
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1793923375
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1793923375
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1793923381
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1793923389
     },
@@ -159,6 +139,26 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
       "t": 1793928815
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793932366
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793932367
+    },
+    {
+      "e": "EDITOR BATCH: 2/5 via groq/openai/gpt-oss-20b",
+      "t": 1793932369
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1793932369
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1793932404
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-05",
-      "n": 141
+      "n": 144
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-05",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-05",
-      "n": 59
+      "n": 60
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-06",
-      "n": 10
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-06",
-      "n": 10
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-05",
@@ -475,9 +475,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 12,
+        "calls": 15,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 10,
+        "ok": 13,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -490,55 +490,35 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 2,
-        "calls": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 0
+        "other": 1
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 11,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 4,
+        "ok": 8,
         "other": 6
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "اقتصاد",
-      "level": 3,
-      "t": 1793748862.296983,
-      "title": "هزینه ۱۲۷ میلیارد یورویی اروپا از بسته شدن تنگه هرمز",
-      "urgent": false
-    },
-    {
-      "label": "خبر",
-      "level": 3,
-      "t": 1793752395.506921,
-      "title": "کانوا بیش از ۱۲۰۰ شغل را در پی یک تغییر ساختار بزرگ حذف یا جابه جا می کند",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1793752427.1729631,
-      "title": "افزایش شمار قربانیان حملات روسیه به مراکز غیرنظامی در اوکراین",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1098,6 +1078,20 @@
       "t": 1793921619.7137249,
       "title": "تصویب توافقنامه سه جانبه دفاعی در پارلمان ترکیه",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1793932379.650474,
+      "title": "رکوردشکنی در انتخابات آمریکا: نخستین سناتور مسلمان و تغییر معادلات رای یهودیان",
+      "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1793932395.1088653,
+      "title": "روته: هیچ کدام از طرفین جنگ اوکراین پیروز نخواهند شد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-05",
@@ -1132,11 +1126,11 @@
       "topic": "فناوری",
       "until": 1794005914.6929483
     },
-    "v4|beau lamarre-condon trial live updates: accused double murderer gives evidence in high-profile case": {
+    "v4|beau lamarre-condon tells double murder trial shooting of jesse baird wasn’t intentional but ‘it was my fault’": {
       "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محاکمه قتل دو نفر در استرالیا، خبر محلی",
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian murder trial, not nationally significant",
       "topic": "قضایی",
-      "until": 1793930591.923306
+      "until": 1794018766.1695275
     },
     "v4|beau lamarre-condon trial live updates: double murder accused tells court of ‘outer-body experience’ after shootings": {
       "ok": false,
@@ -1155,6 +1149,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Trial of former police officer in Sydney",
       "topic": "قضایی",
       "until": 1794013352.572067
+    },
+    "v4|beau lamarre-condon trial live updates: prosecution begins cross-examination of double murder accused": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محاکمه قتل دو نفر در سیدنی، خبر محلی",
+      "topic": "قضایی",
+      "until": 1794018765.276121
     },
     "v4|bishara: us election deals a blow to warmongers": {
       "ok": false,
@@ -1221,12 +1221,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: Routine sports commentary and manager opinion, not a match result.",
       "topic": "ورزش",
       "until": 1794005924.279426
-    },
-    "v4|former police officer beau lamarre-condon enters witness box in sydney double murder trial": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محاکمه قتل دو نفر در استرالیا، خبر محلی",
-      "topic": "قضایی",
-      "until": 1793930592.8420794
     },
     "v4|how melania trump became a dark horse diplomat on ukraine": {
       "ok": false,
@@ -2272,6 +2266,12 @@
       "topic": "سیاست",
       "until": 1793958961.375108
     },
+    "v4|تفاوت الگوی مسمومیت در زنان و مردان / موج مسمومیت با الکل در دوران کرونا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: گزارش علمی محدود، اثرات محلی",
+      "topic": "سلامت",
+      "until": 1794018763.3208537
+    },
     "v4|تقویت گازرسانی در فریدونشهر و بویین میاندشت، با اعتبار ۹۰۰ میلیارد ریال": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Local infrastructure project with no national strategic impact.",
@@ -2866,6 +2866,12 @@
       "topic": "سیاست",
       "until": 1793935996.0018036
     },
+    "v4|روته: هیچ یک از طرفین جنگ اوکراین پیروز نخواهد شد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: NATO statement on Ukraine war outcome",
+      "topic": "سیاست",
+      "until": 1794018769.373222
+    },
     "v4|روزگار بی قراری؛ روایتی از ناآرامی های شمال ایران در سال های ۱۳۲۵-۱۳۲۰": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=1 happened=False scope=iran_national: معرفی کتاب و مرور رویداد تاریخی گذشته.",
@@ -2913,6 +2919,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: آمار و رکورد ورزشی عادی در لیگ قهرمانان.",
       "topic": "ورزش",
       "until": 1793939711.2815526
+    },
+    "v4|رکوردشکنی تاریخی در انتخابات آمریکا؛ از نخستین سناتور مسلمان تا تغییر معادلات رای یهودیان": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=9 happened=True scope=world: US midterms: historic Muslim senator, Jewish vote shift",
+      "topic": "سیاست",
+      "until": 1794018770.039567
     },
     "v4|زلزله سیاسی در واشنگتن؛ رای اعتراضی آمریکایی ها به ترامپ و جنگ علیه ایران": {
       "ok": true,
@@ -3424,6 +3436,12 @@
       "topic": "اقتصاد",
       "until": 1793948683.503459
     },
+    "v4|عضو هیئت رئیسه مجلس: کشورهای متخاصم در جنگ به آمریکا و رژیم صهیونیستی محدود نبودند، برخی اروپایی ها و تعدادی از کشورهای منطقه هم بودند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: Parliament member statement, no concrete action",
+      "topic": "سیاست",
+      "until": 1794018769.3598933
+    },
     "v4|عطر رضوی و عهد ولایت در شب ۲۵۰ بیعت در اراک": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و مذهبی فاقد اهمیت ملی یا بین‌المللی",
@@ -3694,6 +3712,12 @@
       "topic": "سیاست",
       "until": 1793968487.2652915
     },
+    "v4|معاون وزیر آموزش و پرورش: کرمان برای ساخت هزار کلاس درس تا مهر ۱۴۰۷ برنامه ریزی کند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=local: Provincial education building plan, limited national impact",
+      "topic": "جامعه",
+      "until": 1794018764.2660892
+    },
     "v4|معاون وزیر اقتصاد: رفع موانع تولید نیازمند اصلاح رویه های اجرایی است": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: اقتصاد: اصلاح رویه‌های اجرایی برای کاهش موانع تولید",
@@ -3747,6 +3771,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: تصویب توافق نظامی بین‌المللی توسط پارلمان ترکیه",
       "topic": "سیاست",
       "until": 1794002682.6324186
+    },
+    "v4|مکی: نباید تصور کرد که ریشه بحران های فرانسه صرفاً به تحولات اخیر بازمی گردد/ فشار اصلی اصلاحات اقتصادی مکرون بر طبقات متوسط جامعه وارد شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: Commentary on French pension reforms, not a major event",
+      "topic": "سیاست",
+      "until": 1794018766.7156603
     },
     "v4|ناصر ایمانی: بانک مرکزی رسماً روزانه هزار تا هزار و پانصد تومان به قیمت ارز اضافه می کند/ تصور دلار ۵۰ هزار تومانی با پایان جنگ اشتباه است": {
       "ok": false,
@@ -4592,6 +4622,10 @@
       "reason": "content_duplicate",
       "until": 1793937929.3684225
     },
+    "iran war live: trump warns us may have to ‘destroy’ rest of iran": {
+      "reason": "content_duplicate",
+      "until": 1793954000.3052335
+    },
     "major tech stocks plunge as us midterms add to fears of ai slowdown": {
       "reason": "content_duplicate",
       "until": 1793950415.8817883
@@ -4723,24 +4757,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "حملات هوایی ائتلاف سعودی به یمن با ۱۲ کشته و ۱۵ زخمی ⚡️ وزارت بهداشت و محیط زیست یمن در صنعا از شهادت ۱۲ غیرنظ",
-      "id": "ad3c3cefa1",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793846931,
-      "verdict": "new",
-      "why": "attack on Yemen by Saudi coalition"
-    },
-    {
-      "head": "آغاز شمارش آرای انتخابات سرنوشت ساز در آفریقای جنوبی ⚡️ شمارش آرا در سراسر آفریقای جنوبی پس از ثبت نام رکوردشک",
-      "id": "5d10856e8d",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793847916,
-      "verdict": "new",
-      "why": "انتخابات آفریقای جنوبی جدید و غیرمستقل"
-    },
     {
       "head": "سپاه پاسداران از توقف دو نفتکش و یک یدکش خبر داد و قیمت نفت به ۹۳.۸۳ دلار رسید ⚡️ سپاه پاسداران انقلاب اسلامی ",
       "id": "a1f93c09c4",
@@ -5268,44 +5284,27 @@
       "t": 1793921618,
       "verdict": "new",
       "why": "توافقنامه دفاعی جدید ترکیه با پاکستان و عربستان"
+    },
+    {
+      "head": "رکوردشکنی در انتخابات آمریکا: نخستین سناتور مسلمان و تغییر معادلات رای یهودیان ⚡️ انتخابات میان دوره ای آمریکا",
+      "id": "20115dbb97",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793932378,
+      "verdict": "new",
+      "why": "انتخابات میان دوره‌ای آمریکا، موضوع جدید"
+    },
+    {
+      "head": "روته: هیچ کدام از طرفین جنگ اوکراین پیروز نخواهند شد ⚡️ مارک روته، دبیرکل ناتو، اعلام کرد که هیچ یک از طرفین د",
+      "id": "d8a829c4b8",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1793932394,
+      "verdict": "new",
+      "why": "جنگ اوکراین موضوع جدید، بدون تکرار"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: سفر معاون اجرایی به گیلان",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1793901125,
-      "title": "در سفر یک روزه قائم پناه به گیلان چه گذشت؟"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: نتیجه بازی لیگ برتر بسکتبال اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793901126,
-      "title": "دیدار بسکتبال گلنور اصفهان و استقلال تهران"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Routine diplomatic statement without concrete policy change or strategic impact.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793901147,
-      "title": "اسلام آباد خواهان مشارکت سازنده همه طرف ها برای حل مناقشات در منطقه شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=iran_national: Routine political rhetoric and slogans by a member of parliament.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793901151,
-      "title": "متکی: مقاومت و ایستادگی از برکت خون شهدا است"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local land‑request directive, limited national significance",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1793901843,
-      "title": "درخواست های مرتبط با اراضی استان تهران ظرف ۱۵ روز تعیین تکلیف شود"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: پیام تسلیت مقامات برای مرگ افراد خبر درجه یک محسوب نمی‌شود",
       "rescued": false,
@@ -5830,193 +5829,47 @@
       "rule": "no-concrete-event",
       "t": 1793928799,
       "title": "Major tech stocks plunge as US midterms add to fears of AI slowdown"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: گزارش علمی محدود، اثرات محلی",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1793932363,
+      "title": "تفاوت الگوی مسمومیت در زنان و مردان / موج مسمومیت با الکل در دوران کرونا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=local: Provincial education building plan, limited national impact",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1793932364,
+      "title": "معاون وزیر آموزش و پرورش: کرمان برای ساخت هزار کلاس درس تا مهر ۱۴۰۷ برنامه ریزی کند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محاکمه قتل دو نفر در سیدنی، خبر محلی",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1793932365,
+      "title": "Beau Lamarre-Condon trial live updates: prosecution begins cross-examination of double murder accused"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian murder trial, not nationally significant",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1793932366,
+      "title": "Beau Lamarre-Condon tells double murder trial shooting of Jesse Baird wasn’t intentional but ‘it was my fault’"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: Commentary on French pension reforms, not a major event",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1793932366,
+      "title": "مکی: نباید تصور کرد که ریشه بحران های فرانسه صرفاً به تحولات اخیر بازمی گردد/ فشار اصلی اصلاحات اقتصادی مکرون بر طبقات م"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اتش",
-        "برخرد",
-        "تنگ",
-        "حرق",
-        "خمش",
-        "در",
-        "دچر",
-        "سز",
-        "سمن",
-        "شرق",
-        "متخلف",
-        "متقف",
-        "من",
-        "نبر",
-        "نفتکش",
-        "هرمز",
-        "وقع"
-      ],
-      "t": 1793878542.8081825,
-      "title": "وقوع آتش سوزی در یک نفتکش در شرق تنگه هرمز ⚡️ نیروی دریایی ارتش اعلام کرد یک نفتکش متخلف که سامانه ناوبری خود را خاموش ک"
-    },
-    {
-      "h": [
-        "بخت",
-        "ترندز",
-        "ترک",
-        "جن",
-        "حن",
-        "رسدگ",
-        "سربز",
-        "عبر",
-        "غرقنن",
-        "مرز",
-        "هدف"
-      ],
-      "t": 1793878559.4978278,
-      "title": "کشته شدن یک سرباز ترکیه در پی تیراندازی در مرز ایران ⚡️ یک سرباز ترکیه در حین رسیدگی به یک مورد عبور غیرقانونی در منطقه "
-    },
-    {
-      "h": [
-        "احتمل",
-        "اصل",
-        "انتخب",
-        "انتقد",
-        "جس",
-        "خه",
-        "دلل",
-        "دنست",
-        "رست",
-        "سست",
-        "سع",
-        "شدد",
-        "شکست",
-        "فصل",
-        "مدت",
-        "معن",
-        "نشن",
-        "ونس",
-        "گرفتن"
-      ],
-      "t": 1793878611.6104903,
-      "title": "جایس وانس با انتقاد شدید از جنگ ایران، فاصله خود را از ترامپ نشان داد ⚡️ جایس وانس، معاون رئیس جمهور آمریکا، پس از شکست "
-    },
-    {
-      "h": [
-        "افزش",
-        "خلص",
-        "درصد",
-        "دلل",
-        "سخت",
-        "سد",
-        "مل",
-        "نخست",
-        "نم",
-        "هزن",
-        "کهش",
-        "گر",
-        "گرن"
-      ],
-      "t": 1793880350.0920174,
-      "title": "سقوط ۶۶ درصدی سود گروه امارات در پی جنگ و گرانی سوخت ⚡️ گروه امارات از کاهش ۶۶ درصدی سود خالص خود در نیمه نخست سال مالی "
-    },
-    {
-      "h": [
-        "اجد",
-        "اخر",
-        "اشکر",
-        "بر",
-        "دگر",
-        "قدرت",
-        "معن",
-        "نشن"
-      ],
-      "t": 1793882106.863558,
-      "title": "معاون رئیس جمهور: جنگ اخیر قدرت نظامی ایران را آشکار کرد ⚡️ معاون رئیس جمهور گفت که جنگ اخیر نشان داد قدرت نظامی ایران ت"
-    },
-    {
-      "h": [
-        "اجر",
-        "ازد",
-        "است",
-        "بخش",
-        "بنزن",
-        "تغر",
-        "تقسم",
-        "تمن",
-        "خدر",
-        "سخت",
-        "سختر",
-        "سهم",
-        "طرح",
-        "لتر",
-        "مشمل",
-        "هزر",
-        "یفت"
-      ],
-      "t": 1793882150.767533,
-      "title": "سهمیه بنزین آزاد در ۱۱ استان تغییر یافت؛ ساختار سهمیه به سه بخش تقسیم شد ⚡️ ساختار سهمیه سوخت خودروهای مشمول در ۱۱ استان"
-    },
-    {
-      "h": [
-        "اردن",
-        "اقدم",
-        "امن",
-        "سرد",
-        "سلح",
-        "شهر",
-        "مسلح",
-        "مسلحن",
-        "منجر"
-      ],
-      "t": 1793885666.7674894,
-      "title": "حمله مسلحانه در امان منجر به کشته شدن یک نیروی امنیتی اردن شد ⚡️ دولت اردن حمله به یک نیروی امنیتی در شهر امان که منجر ب"
-    },
-    {
-      "h": [
-        "اتحد",
-        "اسمعل",
-        "بق",
-        "تکذب",
-        "خرج",
-        "دخلت",
-        "درگر",
-        "سخنگ",
-        "سست",
-        "مدخل",
-        "مسل",
-        "وزرت",
-        "کلس",
-        "یمن"
-      ],
-      "t": 1793887475.4934585,
-      "title": "رد ادعای مداخله ایران در یمن توسط بقائی ⚡️ اسماعیل بقائی سخنگوی وزارت امور خارجه ایران، ادعای کایا کالاس مسئول سیاست خار"
-    },
-    {
-      "h": [
-        "اتهم",
-        "تبن",
-        "جش",
-        "جنبش",
-        "حبس",
-        "خرج",
-        "خه",
-        "دمکرس",
-        "زند",
-        "سرشنس",
-        "شهر",
-        "فعل",
-        "قنن",
-        "محکم",
-        "مل",
-        "هنگ",
-        "ونگ",
-        "چهر",
-        "کنگ"
-      ],
-      "t": 1793887500.4826515,
-      "title": "جاشوا وانگ، فعال دموکراسی خواه هنگ کنگی به ۱۰ سال زندان محکوم شد ⚡️ جاشوا وانگ، چهره سرشناس جنبش دموکراسی خواهی هنگ کنگ،"
-    },
     {
       "h": [
         "اتش",
@@ -6482,6 +6335,49 @@
       ],
       "t": 1793921619.7011955,
       "title": "تصویب توافقنامه سه جانبه دفاعی در پارلمان ترکیه ⚡️ پارلمان ترکیه توافقنامه سه جانبه دفاعی با پاکستان و عربستان را تصویب "
+    },
+    {
+      "h": [
+        "انتخب",
+        "بزگشت",
+        "تغر",
+        "خه",
+        "در",
+        "دمکر",
+        "رکردشکن",
+        "سنتر",
+        "سنگن",
+        "شکست",
+        "قدرت",
+        "مسلم",
+        "معدل",
+        "نخستن",
+        "همر",
+        "کنگر",
+        "یهد"
+      ],
+      "t": 1793932379.6374578,
+      "title": "رکوردشکنی در انتخابات آمریکا: نخستین سناتور مسلمان و تغییر معادلات رای یهودیان ⚡️ انتخابات میان دوره ای آمریکا با شکست س"
+    },
+    {
+      "h": [
+        "تفق",
+        "دبرکل",
+        "درگر",
+        "رت",
+        "سزش",
+        "صلح",
+        "طرفن",
+        "مبتن",
+        "مرک",
+        "نت",
+        "نخهند",
+        "نزمند",
+        "هچ",
+        "کدم"
+      ],
+      "t": 1793932395.0960395,
+      "title": "روته: هیچ کدام از طرفین جنگ اوکراین پیروز نخواهند شد ⚡️ مارک روته، دبیرکل ناتو، اعلام کرد که هیچ یک از طرفین درگیری در ا"
     }
   ],
   "_published_incidents": [
@@ -6779,340 +6675,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اثر",
-        "استقبل",
-        "افزش",
-        "اقتصد",
-        "انرژ",
-        "انضبط",
-        "بخشنم",
-        "بدج",
-        "ترم",
-        "تمم",
-        "تکد",
-        "تکمل",
-        "جنگ",
-        "درمد",
-        "دلت",
-        "رد",
-        "طرح",
-        "محددت",
-        "منبع",
-        "مهر",
-        "نترز",
-        "نطمنن",
-        "نفت",
-        "نم",
-        "هزن",
-        "وبستگ",
-        "پدر",
-        "کهش"
-      ],
-      "t": 1793793979.7219374,
-      "title": "دولت با بودجه ۱۴۰۶ به استقبال محدودیت منابع می رود ⚡️ این بخشنامه در سایه نااطمینانی های اقتصادی، محدودیت منابع، آثار جن"
-    },
-    {
-      "k": [
-        "احتمل",
-        "احضر",
-        "اختر",
-        "اسند",
-        "الز",
-        "امرک",
-        "انتخب",
-        "بررس",
-        "برنم",
-        "تز",
-        "جمهر",
-        "حزب",
-        "حکم",
-        "خهند",
-        "در",
-        "دست",
-        "دمکر",
-        "رست",
-        "سم",
-        "سن",
-        "سگند",
-        "شهد",
-        "قدرت",
-        "لح",
-        "مجلس",
-        "مسدد",
-        "منصب",
-        "نمزد",
-        "نمندگ",
-        "هربرت",
-        "وت",
-        "پرز",
-        "ژن",
-        "کلد",
-        "کنترل",
-        "کنگر"
-      ],
-      "t": 1793793986.9532695,
-      "title": "دموکرات ها با کنترل کنگره آمریکا چه می کنند؟ ⚡️ حزب دموکرات با پیروزی در انتخابات میان دوره ای آمریکا کنترل مجلس نمایندگ"
-    },
-    {
-      "k": [
-        "ارسل",
-        "اقدم",
-        "انجم",
-        "تسس",
-        "تمم",
-        "تهر",
-        "تکد",
-        "جنگ",
-        "حمل",
-        "خهد",
-        "ددست",
-        "ددگ",
-        "دستر",
-        "رز",
-        "رسدگ",
-        "رهبر",
-        "سر",
-        "سپ",
-        "شهدت",
-        "شهر",
-        "عدلن",
-        "فرم",
-        "فرمنده",
-        "فرند",
-        "قض",
-        "قضت",
-        "قنن",
-        "قه",
-        "لمرد",
-        "مربط",
-        "مرتبط",
-        "هست",
-        "ورزشگ",
-        "پرند",
-        "چرچب",
-        "کر",
-        "کرج",
-        "کفرخست"
-      ],
-      "s": "دادستان تهران",
-      "t": 1793795759.2603154,
-      "title": "دادستان تهران: کیفرخواست های مرتبط با جنگ های ۱۲ و ۴۰ روزه به دادگاه ارسال شد ⚡️ دادستان تهران در پی فرمان رهبر و دستور "
-    },
-    {
-      "k": [
-        "ار",
-        "ارد",
-        "اسمعل",
-        "امر",
-        "امرک",
-        "اکس",
-        "بق",
-        "بپذرد",
-        "تجز",
-        "تن",
-        "تهدد",
-        "تکبر",
-        "حمل",
-        "حکم",
-        "خرج",
-        "خهد",
-        "دد",
-        "دررد",
-        "زن",
-        "سخنگ",
-        "سقط",
-        "شبک",
-        "شکست",
-        "غرر",
-        "مبن",
-        "مردم",
-        "منجر",
-        "نشت",
-        "نپذر",
-        "هت",
-        "وزرت",
-        "وضح",
-        "وقعت",
-        "پرز",
-        "پم"
-      ],
-      "t": 1793795785.9796076,
-      "title": "سخنگوی وزارت خارجه ایران: حمله به ایران پیروزی نمی آورد؛ مردم آمریکا پیام واضح دادند ⚡️ اسماعیل بقائی، سخنگوی وزارت امور"
-    },
-    {
-      "k": [
-        "اتلف",
-        "اخر",
-        "ارزب",
-        "اسرل",
-        "الت",
-        "امک",
-        "انتخب",
-        "اند",
-        "بشند",
-        "بنمن",
-        "بگرد",
-        "تشکل",
-        "تصمم",
-        "تن",
-        "جلس",
-        "جمهر",
-        "حزب",
-        "خهد",
-        "دلت",
-        "رس",
-        "رقب",
-        "رهبر",
-        "عسک",
-        "مختلف",
-        "مصحب",
-        "ملق",
-        "نتنه",
-        "نخست",
-        "هرزق",
-        "همکر",
-        "وزر",
-        "گر"
-      ],
-      "t": 1793795819.449158,
-      "title": "رئیس جمهور اسرائیل با رهبران حزب در مورد تشکیل دولت با نتانیاهو یا رقبای او مصاحبه خواهد کرد ⚡️ رئیس جمهور اسرائیل، عیسا"
-    },
-    {
-      "k": [
-        "اجر",
-        "اخرج",
-        "ادر",
-        "افغ",
-        "افغن",
-        "افغنست",
-        "ال",
-        "امرک",
-        "برنم",
-        "ترمپ",
-        "تند",
-        "جنب",
-        "حضر",
-        "حکم",
-        "ددگ",
-        "ددگه",
-        "دلت",
-        "رز",
-        "شهرند",
-        "طرح",
-        "فدرل",
-        "قض",
-        "متحد",
-        "متقف",
-        "معن",
-        "منطق",
-        "منظر",
-        "مهجر",
-        "مهجرت",
-        "نح",
-        "ندرد",
-        "نرک",
-        "هچ",
-        "وجد",
-        "پرز",
-        "پکست",
-        "گمرک"
-      ],
-      "t": 1793799360.8366437,
-      "title": "دادگاهی در آمریکا طرح اخراج مهاجران افغان را متوقف کرد ⚡️ یک دادگاه فدرال در آمریکا اجرای طرح دولت ترامپ برای اخراج مهاج"
-    },
-    {
-      "k": [
-        "ار",
-        "ارد",
-        "استفد",
-        "افزش",
-        "اقدم",
-        "امرک",
-        "بشتر",
-        "ترمپ",
-        "تقت",
-        "تلش",
-        "تنگ",
-        "تکتک",
-        "جنگ",
-        "حل",
-        "حمل",
-        "خرج",
-        "دلت",
-        "رکت",
-        "زرب",
-        "شلک",
-        "صرت",
-        "ضدزر",
-        "عمل",
-        "فشر",
-        "محدد",
-        "مختل",
-        "مد",
-        "مذکر",
-        "مغنطس",
-        "مقعت",
-        "من",
-        "منطق",
-        "منفجر",
-        "منند",
-        "نرنجک",
-        "نصب",
-        "نفت",
-        "نمتقرن",
-        "هرمز",
-        "ورد",
-        "پسخ",
-        "پهپد",
-        "چرک",
-        "کر",
-        "کشت"
-      ],
-      "t": 1793801258.7081766,
-      "title": "ایران با تاکتیک های جنگ چریکی در تنگه هرمز فشار بر دولت ترامپ را افزایش می دهد ⚡️ ایران برای مختل کردن خروج نفت از تنگه "
-    },
-    {
-      "k": [
-        "است",
-        "اصبت",
-        "افسر",
-        "الجف",
-        "الشمر",
-        "بلستک",
-        "تجمع",
-        "تحت",
-        "تعدد",
-        "تعز",
-        "حل",
-        "حمل",
-        "دد",
-        "ددن",
-        "دشمن",
-        "زخم",
-        "سخنگ",
-        "سرنگن",
-        "سعد",
-        "عربست",
-        "فرس",
-        "فرمنده",
-        "مجب",
-        "مرکز",
-        "مستقم",
-        "مسلح",
-        "مشک",
-        "نر",
-        "هدف",
-        "وبست",
-        "پشتر",
-        "پهپد",
-        "کشت",
-        "یمن"
-      ],
-      "t": 1793801298.3050642,
-      "title": "سخنگوی نیروهای مسلح یمن: مرکز نیروهای وابسته به عربستان در الجوف با موشک ها هدف قرار گرفت ⚡️ سخنگوی نیروهای مسلح یمن اعل"
-    },
     {
       "k": [
         "است",
@@ -9397,6 +8959,85 @@
       ],
       "t": 1793921619.6881268,
       "title": "تصویب توافقنامه سه جانبه دفاعی در پارلمان ترکیه ⚡️ پارلمان ترکیه توافقنامه سه جانبه دفاعی با پاکستان و عربستان را تصویب "
+    },
+    {
+      "k": [
+        "ار",
+        "ارش",
+        "اقتصد",
+        "امرک",
+        "انتخب",
+        "بزگشت",
+        "تج",
+        "ترمپ",
+        "تغر",
+        "جمهر",
+        "جنگ",
+        "حکت",
+        "خه",
+        "در",
+        "دمکر",
+        "دنلد",
+        "رکردشکن",
+        "سس",
+        "سنتر",
+        "سنگن",
+        "شکست",
+        "قبل",
+        "قدرت",
+        "مجلس",
+        "محببت",
+        "مسلم",
+        "معدل",
+        "نتج",
+        "نخستن",
+        "نرضت",
+        "همر",
+        "پمد",
+        "کشر",
+        "کنگر",
+        "کهش",
+        "یهد"
+      ],
+      "t": 1793932379.6239045,
+      "title": "رکوردشکنی در انتخابات آمریکا: نخستین سناتور مسلمان و تغییر معادلات رای یهودیان ⚡️ انتخابات میان دوره ای آمریکا با شکست س"
+    },
+    {
+      "k": [
+        "ارپ",
+        "اظهر",
+        "امرک",
+        "اکرن",
+        "برگزر",
+        "ترمپ",
+        "تفق",
+        "تلش",
+        "جنگ",
+        "دبرکل",
+        "درگر",
+        "دلت",
+        "دنلد",
+        "دپلمتک",
+        "رت",
+        "سزش",
+        "شرک",
+        "صلح",
+        "طرفن",
+        "مبتن",
+        "مذکر",
+        "مرک",
+        "مطرح",
+        "نت",
+        "نخهند",
+        "نزمند",
+        "همزم",
+        "هچ",
+        "پرز",
+        "کدم"
+      ],
+      "s": "روته",
+      "t": 1793932395.0831294,
+      "title": "روته: هیچ کدام از طرفین جنگ اوکراین پیروز نخواهند شد ⚡️ مارک روته، دبیرکل ناتو، اعلام کرد که هیچ یک از طرفین درگیری در ا"
     }
   ],
   "_telegram_errors": [
@@ -9584,7 +9225,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1793928696
+    "at": 1793932271
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9604,9 +9245,9 @@
     "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1793929394,
-    "last_failure": 1793928794,
-    "last_status": 429
+    "disabled_until": 1793932687.0,
+    "last_failure": 1793932387,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
