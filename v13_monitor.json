@@ -1,10 +1,11 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
+  "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-07T02:12:20.802480+00:00",
+  "checked_at": "2026-11-07T02:33:04.301017+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -26,7 +27,7 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Unverified claim of drone destruction",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Unverified claim of drone destruction",
       "result": "editorial_blocked",
       "source": "",
       "title": "یک فروند پهپاد MQ9 ارتش تروریستی آمریکا منهدم شد",
@@ -89,26 +90,44 @@
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "yjc.ir",
+      "started_at": "2026-11-07T02:32:44.784754+00:00",
+      "title": "شنیده شدن صدای چند انفجار در جزیره قشم .",
+      "url": "https://yjc.ir/fa/news/9146169/شنیده-شدن-صدای-چند-انفجار-در-جزیره-قشم-"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 17,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "yjc.ir",
+      "title": "شنیده شدن صدای چند انفجار در جزیره قشم .",
+      "url": "https://yjc.ir/fa/news/9146169/شنیده-شدن-صدای-چند-انفجار-در-جزیره-قشم-"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
   "run_status": "success",
-  "selected_for_publication": 11,
+  "selected_for_publication": 12,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "theverge.com",
-      "started_at": "2026-11-07T02:12:12.919682+00:00",
+      "started_at": "2026-11-07T02:32:56.273695+00:00",
       "title": "OpenAI valued at $1.25 trillion, as rival Anthropic nears its IPO",
       "url": "https://theverge.com/ai-artificial-intelligence/1029380/openai-1-25-trillion-investment-valuation"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
