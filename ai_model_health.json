@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1794004141
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794004147
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1794004148
     },
@@ -159,6 +151,14 @@
     {
       "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-120b",
       "t": 1794013377
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794015145
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1794015163
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-06",
-      "n": 128
+      "n": 129
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-06",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-06",
-      "n": 45
+      "n": 46
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-07",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-07",
-      "n": 7
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-06",
@@ -495,9 +495,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 7,
+        "calls": 8,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 6,
+        "ok": 7,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
@@ -517,17 +517,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 6,
+        "ok": 8,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 7,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 5,
-        "other": 2
+        "other": 3
       },
       "mistral:ministral-8b-latest": {
         "429": 0,
@@ -537,8 +537,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 11,
-        "ok": 11,
+        "calls": 12,
+        "ok": 12,
         "other": 0
       }
     }
@@ -1200,12 +1200,6 @@
       "topic": "نظامی",
       "until": 1794071009.5116563
     },
-    "v4|everyone’s talking about the ‘blue tsunami.’ in japan, it’s complicated.": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: Speculative political commentary and cultural reaction, not a major event.",
-      "topic": "جامعه",
-      "until": 1794013384.020193
-    },
     "v4|global tech stocks plunge as us midterms add to ai slowdown fears": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سقوط سهام فناوری جهانی و نگرانی درباره هوش مصنوعی",
@@ -1223,12 +1217,6 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Qatar PM urges US and Iran to act now",
       "topic": "سیاست",
       "until": 1794097947.3328848
-    },
-    "v4|iran war live: trump warns us may have to ‘destroy’ rest of iran": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Official threat from a former US president regarding military action.",
-      "topic": "سیاست",
-      "until": 1794013384.011168
     },
     "v4|iraq’s al-zaidi talks to trump as baghdad seeks to stay out of war on iran": {
       "ok": true,
@@ -2057,6 +2045,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=0 happened=False scope=world: رویداد تاریخی قدیمی و مربوط به بیش از یک قرن پیش است.",
       "topic": "جامعه",
       "until": 1794058569.5982678
+    },
+    "v4|بم و مسجدسلیمان با زلزله ۴.۱ لرزیدند/ثبت زمینلرزه ۴.۴ در سرجنگل": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: multiple moderate earthquakes, no casualties reported",
+      "topic": "آب و هوا",
+      "until": 1794101545.1994843
     },
     "v4|بهنام جو: توسعه شبکه فاضلاب قم با اعتبار ۱۶ همتی دنبال می شود": {
       "ok": false,
@@ -2976,12 +2970,6 @@
       "topic": "حادثه",
       "until": 1794042215.1266556
     },
-    "v4|شهادت ۹ شهروند یمنی در حملات عربستان در ۲۴ ساعت گذشته": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Casualties reported in a regional war zone conflict.",
-      "topic": "نظامی",
-      "until": 1794013384.0372548
-    },
     "v4|شهرداری امام زاده عبدالله با جشن ۷۰۰۰ نفری از قهرمانان کشتی جهان تجلیل کرد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: جشن محلی از قهرمانان کشتی",
@@ -3347,6 +3335,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: سیل مرگبار در فلوریدا با ۲ کشته و تلفات",
       "topic": "حادثه",
       "until": 1794038633.5034637
+    },
+    "v4|مصر از کشف جدید ذخایر گاز در مدیترانه رونمایی کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Egypt announces large Mediterranean gas discovery",
+      "topic": "اقتصاد",
+      "until": 1794101545.2102208
     },
     "v4|معافیت های هدفمند کشتیرانی / الجزیره اهداف تهران از صدور مجوز تردد به ۴ کشور را تحلیل کرد": {
       "ok": true,
@@ -3762,6 +3756,12 @@
       "topic": "ورزش",
       "until": 1794060313.3298204
     },
+    "v4|وزیر خارجه قطر: تلاش های میانجیگرانه ما برای ممانعت از تشدید تنش در منطقه ادامه دارد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: بیانیه دیپلماتیک، بدون تصمیم یا اقدام ملموس",
+      "topic": "سیاست",
+      "until": 1794101543.196718
+    },
     "v4|وزیر فرهنگ درگذشت منصور انوری را تسلیت گفت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=iran_national: Routine condolence message for a cultural figure.",
@@ -3996,12 +3996,6 @@
       "topic": "سیاست",
       "until": 1794074595.0186875
     },
-    "v4|گزارش ها از وقوع دو انفجار در نجران عربستان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Explosions reported in a regional conflict zone involving Saudi Arabia.",
-      "topic": "نظامی",
-      "until": 1794013384.0287726
-    },
     "v4|گسترش چوگان در میان دانش آموزان، راهبردی برای احیای میراث اصیل ایرانی است": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: پیشرفت فرهنگی، گسترش چوگان در مدارس",
@@ -4142,7 +4136,7 @@
     },
     "openai valued at $1.25 trillion, as rival anthropic nears its ipo": {
       "reason": "content_duplicate",
-      "until": 1794034996.9873843
+      "until": 1794036763.5233471
     },
     "paraguay’s president removed over financial crisis": {
       "reason": "content_duplicate",
@@ -4773,13 +4767,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Coach comments on scheduling uncertainty",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793979230,
-      "title": "نویدکیا: در فوتبال حرفه ای عجیب است ندانیم بازی بعدی مان چه زمانی است!"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: گلایه سرمربی سپاهان از برنامه مسابقات لیگ برتر فوتبال",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -5331,6 +5318,13 @@
       "rule": "no-concrete-event",
       "t": 1794009806,
       "title": "Leicester hold nerve to knock out sixth-tier Oxford City"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: بیانیه دیپلماتیک، بدون تصمیم یا اقدام ملموس",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1794015143,
+      "title": "وزیر خارجه قطر: تلاش های میانجیگرانه ما برای ممانعت از تشدید تنش در منطقه ادامه دارد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9040,7 +9034,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794013289
+    "at": 1794015065
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9081,7 +9075,7 @@
     "last_status": 422
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794013384,
+    "last_quality_failure": 1794015148,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
