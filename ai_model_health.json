@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794083602
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794083602
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
       "t": 1794088988
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1794090769
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-07",
-      "n": 87
+      "n": 89
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-07",
-      "n": 87
+      "n": 88
     },
     "openrouter:*": {
       "day": "2026-11-07",
@@ -519,16 +519,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 87,
+        "calls": 89,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 55,
+        "ok": 57,
         "other": 32
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 87,
+        "calls": 88,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 59,
+        "ok": 60,
         "other": 28
       },
       "mistral:ministral-8b-latest": {
@@ -1385,6 +1385,12 @@
       "topic": "سیاست",
       "until": 1794123229.470143
     },
+    "v4|rotherham end 10-game losing run with fa cup win over bromley": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مقابلۀ محلی فوتبال، اهمیت محدود",
+      "topic": "ورزش",
+      "until": 1794177160.2612278
+    },
     "v4|russia launches missile attack on kyiv, injuring residents": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله موشکی روسیه به کی‌یف و مجروح شدن غیرنظامیان",
@@ -1420,12 +1426,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: مسابقه املای دانش‌آموزی در استرالیا فاقد اهمیت خبری است",
       "topic": "جامعه",
       "until": 1794094386.4493442
-    },
-    "v4|whole australia team knew of sandpaper use - khawaja": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارات قدیمی درباره تقلب ورزشی با اهمیت محدود",
-      "topic": "ورزش",
-      "until": 1794090548.9001908
     },
     "v4|will new zealand join voters’ global revolt over soaring costs?": {
       "ok": false,
@@ -2429,12 +2429,6 @@
       "topic": "جامعه",
       "until": 1794170014.8445766
     },
-    "v4|تصاویر جدید از آتش سوزی در فرودگاه دمشق": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine report on a past fire with no casualties.",
-      "topic": "حادثه",
-      "until": 1794090554.4511228
-    },
     "v4|تصاویر مردمی از پرواز موشک های ایرانی در آسمان بندرعباس": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Visual evidence of military strikes in a regional war zone.",
@@ -2506,12 +2500,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: تماس تلفنی سران دو کشور درباره ایران موضوعی دیپلماتیک و مهم است.",
       "topic": "سیاست",
       "until": 1794162821.4307854
-    },
-    "v4|تماس وزیر مشاور در امور دفاع قطر با هگست": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine diplomatic phone call between defense officials.",
-      "topic": "سیاست",
-      "until": 1794090554.5003865
     },
     "v4|تناقض گویی و اعتراف آمریکا/ترامپ: در حال انجام حملات محدود به ایران هستیم": {
       "ok": true,
@@ -2843,12 +2831,6 @@
       "topic": "حادثه",
       "until": 1794157469.6631904
     },
-    "v4|در پی شکست انتخاباتی/تهدید سه هزار گروه محافظه کار از سوی کاخ سفید و واکنش جمهوری خواهان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=False scope=world: Speculative political reporting on internal US party tensions.",
-      "topic": "سیاست",
-      "until": 1794090554.4634728
-    },
     "v4|درخواست بازرگانان نفت برای بازگشت نفتکش های تحت تحریم آمریکا": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: درخواست رسمی شرکت‌های بازرگانی نفت برای بازگشت نفتکش‌های تحریمی",
@@ -3004,12 +2986,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=iran_national: تصمیم مقام ارشد بانکی برای تامین مالی تاسیسات حیاتی گاز.",
       "topic": "اقتصاد",
       "until": 1794123234.9939332
-    },
-    "v4|رئیس کمیسیون امنیت ملی مجلس: پاسخ ما به هر خطای آمریکا ضربه ای کاری است تا بزرگترین پایگاه نظامی آمریکا (اسرائیل) را یکبار برای همیشه آزاد کنیم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=iran_national: هشدار و موضع‌گیری کلی نماینده مجلس بدون وقوع رویداد جدید",
-      "topic": "سیاست",
-      "until": 1794090547.6764796
     },
     "v4|رابرت پیپ: ترامپ در تله تشدید تنش با ایران گرفتار شده است": {
       "ok": false,
@@ -3461,12 +3437,6 @@
       "topic": "حادثه",
       "until": 1794123235.003592
     },
-    "v4|صدای انفجار در قشم و بندرخمیر شنیده شد / ممکن است این صدا با شلیک تیر هشدار به سمت تنگه هرمز مرتبط باشد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Explosions in the Strait of Hormuz region are world-level security events.",
-      "topic": "نظامی",
-      "until": 1794090554.4381084
-    },
     "v4|صدای دو انفجار شنیده شده در قشم مربوط به مدیریت تنگه هرمز بود؛ تاکنون هیچ اصابتی در این جزیره گزارش نشده": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: گزارش انفجارها در قشم مرتبط با وضعیت جنگی منطقه است.",
@@ -3887,6 +3857,12 @@
       "topic": "اقتصاد",
       "until": 1794139422.903694
     },
+    "v4|مصدومیت مرد ۴۵ ساله بر اثر صاعقه زدگی در لیکک": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: Local lightning injury, no broader impact",
+      "topic": "سلامت",
+      "until": 1794177159.4222505
+    },
     "v4|مصر از کشف جدید ذخایر گاز در مدیترانه رونمایی کرد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Egypt announces large Mediterranean gas discovery",
@@ -4228,12 +4204,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local women's protest; low national impact",
       "topic": "جامعه",
       "until": 1794106987.1140888
-    },
-    "v4|واکنش عضو انصارالله و شورای عالی سیاسی یمن به تجاوز سعودی به بازاری در تعز": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Routine condemnation and political rhetoric by a regional official.",
-      "topic": "سیاست",
-      "until": 1794090554.5128489
     },
     "v4|وبگاه آمریکایی مدعی شد: ونس شخصا برای مذاکرات غیرمستقیم با ایران تقلا می کند": {
       "ok": false,
@@ -4595,12 +4565,6 @@
       "topic": "سیاست",
       "until": 1794121527.1066685
     },
-    "v4|گزارش اولیه از اصابت دو موشک در قشم / فارس: شنیده شدن صدای انفجار در قشم و بندرخمیر / وزارت بهداشت ادعای توزیع قرص های ید در شعاع ۲ تا ۳ کیلومتری تأسیسات هسته ای را تکذیب کرد/ رئیس": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=iran_national: Report of missile strikes in Iran during an active war context.",
-      "topic": "نظامی",
-      "until": 1794090554.4756658
-    },
     "v4|گزارش خبرنگار مهر از بارش های سیل آسای امروز در ایلام": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: گزارش خبری محلی و ویدئویی از بارش‌ها در ایلام.",
@@ -4738,12 +4702,6 @@
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=world: ۳۰ کشته و زخمی در حمله هوایی به بازار",
       "topic": "نظامی",
       "until": 1794110628.0665872
-    },
-    "v4|۳۰ شهید و ۲۱ زخمی در حملات عربستان و مزدوران آن در ۲۴ ساعت گذشته": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Mass casualties in a regional war zone are world news.",
-      "topic": "نظامی",
-      "until": 1794090554.4878726
     },
     "v4|۴۶۰۰۰ نفر به خیابان های پاریس آمدند؛ حمله پلیس فرانسه به مردم": {
       "ok": false,
@@ -5479,20 +5437,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: Internal policy statement by US official",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1794062041,
-      "title": "تلاش روبیو برای برقراری نظم در وزارت خارجه آمریکا با نگاه به انتخابات ۲۰۲۸"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=3 happened=True scope=iran_national: نتیجه مسابقه معمولی لیگ برتر؛ فاقد اهمیت ویژه خبری است",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1794062060,
-      "title": "فرار پیکان از شکست خانگی؛ حسرت نساجی در دقیقه ۹۵!"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: اعلام آمادگی اورژانس در استان‌های تحت تأثیر هشدار هواشناسی",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6037,6 +5981,20 @@
       "rule": "no-concrete-event",
       "t": 1794088953,
       "title": "Eisenkot Seeks to Oust Netanyahu as Prime Minister. Here’s How."
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: Local lightning injury, no broader impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1794090759,
+      "title": "مصدومیت مرد ۴۵ ساله بر اثر صاعقه زدگی در لیکک"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مقابلۀ محلی فوتبال، اهمیت محدود",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1794090760,
+      "title": "Rotherham end 10-game losing run with FA Cup win over Bromley"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9742,7 +9700,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794088870
+    "at": 1794090670
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9777,10 +9735,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794024254,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
