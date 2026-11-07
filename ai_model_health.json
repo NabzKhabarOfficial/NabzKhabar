@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794004135
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1794004141
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
       "t": 1794011590
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-120b",
+      "t": 1794013377
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-06",
-      "n": 127
+      "n": 128
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-06",
-      "n": 56
+      "n": 57
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-06",
-      "n": 44
+      "n": 45
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-07",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-07",
-      "n": 6
+      "n": 7
     },
     "openrouter:*": {
       "day": "2026-11-06",
@@ -495,21 +495,21 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 6,
+        "calls": 7,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 5,
+        "ok": 6,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
         "429": 2,
-        "calls": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 0,
+        "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 2,
+        "429": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -517,17 +517,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
-        "other": 1
+        "calls": 8,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 6,
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 7,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 5,
-        "other": 1
+        "other": 2
       },
       "mistral:ministral-8b-latest": {
         "429": 0,
@@ -537,8 +537,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 10,
-        "ok": 10,
+        "calls": 11,
+        "ok": 11,
         "other": 0
       }
     }
@@ -1176,18 +1176,6 @@
       "topic": "قضایی",
       "until": 1794015193.7483768
     },
-    "v4|beau lamarre-condon trial live updates: former police officer continues evidence in double murder trial": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: محاکمه قتل در سطح محلی است و اهمیت بین‌المللی ندارد",
-      "topic": "قضایی",
-      "until": 1794011626.6806834
-    },
-    "v4|beau lamarre-condon trial live updates: former police officer tells court of fatal confrontation with jesse baird and luke davies": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Trial of former police officer in Sydney",
-      "topic": "قضایی",
-      "until": 1794013352.572067
-    },
     "v4|beau lamarre-condon trial live updates: prosecution begins cross-examination of double murder accused": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محاکمه قتل دو نفر در سیدنی، خبر محلی",
@@ -1548,23 +1536,11 @@
       "topic": "سیاست",
       "until": 1794051274.5316443
     },
-    "v4|اتمام محرومیت آلوز تا ۲۳ آذر ماه/ بازگشت ستاره پرتغالی به سپاهان، ۳۸ روز دیگر!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=local: گمانه‌زنی درباره زمان پایان محرومیت یک بازیکن فوتبال و تیم باشگاهی",
-      "topic": "ورزش",
-      "until": 1794011618.368204
-    },
     "v4|اجازه نمی دهیم ترامپ بی هزینه و غرامت از منطقه فرار کند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Statement, no concrete event",
       "topic": "سیاست",
       "until": 1794085394.7622042
-    },
-    "v4|اجتماع شب دویست و پنجاهم در بیله سوار": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مراسم محلی حمایت از رزمندگان، تأثیر محدود",
-      "topic": "سیاست",
-      "until": 1794011595.8612995
     },
     "v4|اجتماع مردم دیّر در شب ۲۵۱": {
       "ok": false,
@@ -1841,12 +1817,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار معمولی ورزشی و عملکرد فردی بازیکنان اهمیت ملی ندارد.",
       "topic": "ورزش",
       "until": 1794074608.7858605
-    },
-    "v4|انتخابات میان دوره ای آمریکا؛ این نتایج برای ایران و جهان چه پیامدهایی دارد؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحلیل و بررسی پیامدهای انتخابات میان‌دوره ای آمریکا فاقد رویداد جدید است.",
-      "topic": "سیاست",
-      "until": 1794011630.7326488
     },
     "v4|انتقاد رییس نظام پزشکی از تأخیر در پرداخت مطالبات حوزه سلامت": {
       "ok": false,
@@ -2213,12 +2183,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Trump announces review of Russian fuel import ban",
       "topic": "سیاست",
       "until": 1794022387.374438
-    },
-    "v4|ترامپ در پی سقوط بازار سهام به دموکرات ها تاخت": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Political comment, low impact, not major decision",
-      "topic": "سیاست",
-      "until": 1794013348.9082665
     },
     "v4|ترامپ: بازار سهام، بر اساس نتایج انتخابات، یکی از بدترین روز های تاریخ خود را تجربه کرد؛ تماشای چنین چیزی واقعاً تأسف بار است / در نتیجه، موجودی حساب های بازنشستگی ۴۰۱ (k) شما کاهش": {
       "ok": true,
@@ -2712,12 +2676,6 @@
       "topic": "جامعه",
       "until": 1794074612.5536659
     },
-    "v4|راهنمای کامل انتخاب رشته کنکور؛ از بررسی کارنامه تا اولویت بندی رشته محل ها": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: راهنمای عمومی و آموزشی انتخاب رشته کنکور فاقد ارزش خبری درجه یک است.",
-      "topic": "جامعه",
-      "until": 1794013368.524871
-    },
     "v4|رایزنی نمایندگان مازندران برای واردات گاز از کشورهای همسایه و تأمین سوخت جایگزین": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=local: پیگیری نمایندگان استان برای واردات گاز و جلسات محلی",
@@ -3000,6 +2958,12 @@
       "topic": "اقتصاد",
       "until": 1794035023.5511384
     },
+    "v4|شرکت های گمنام، زنگ خطر حباب هوش مصنوعی را به صدا درآورده اند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=local: هشدارهای بازار، بدون واقعه یا تصمیم رسمی",
+      "topic": "فناوری",
+      "until": 1794099777.3734782
+    },
     "v4|شمارش معکوس برای ۲۰۲۸ / چتم هاوس: مهار سیاست خارجی نامحبوب ترامپ، کلید فتح کاخ سفید در انتخابات آینده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل و گمانه‌زنی درباره انتخابات آینده آمریکا و سیاست خارجی.",
@@ -3035,12 +2999,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Domestic league match, not top-tier news",
       "topic": "ورزش",
       "until": 1794065628.2637763
-    },
-    "v4|شوک ناگهانی ای اف سی به خاتون و سارا دیدار": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: غیبت یک بازیکن در لیگ قهرمانان زنان آسیا اهمیت ملی ندارد",
-      "topic": "ورزش",
-      "until": 1794011622.1336315
     },
     "v4|شکست در انتخابات، سرنوشت تصمیم ترامپ برای حمله مجدد به ایران پیچیده شد": {
       "ok": false,
@@ -3204,17 +3162,17 @@
       "topic": "سیاست",
       "until": 1794044087.4714785
     },
-    "v4|فرماندار کالیفرنیا مجازات ۵۴۸ زندانی محکوم به اعدام در این ایالت را به حبس ابد تغییر داد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: فرماندار کالیفرنیا حکم اعدام ۵۴۸ زندانی را به حبس ابد تغییر داد.",
-      "topic": "قضایی",
-      "until": 1794011615.175841
-    },
     "v4|فشار آمریکا، ترکیه را به توقف واردات گاز ترکمنستان از مسیر ایران وادار کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Significant shift in regional energy transit due to US sanctions.",
       "topic": "اقتصاد",
       "until": 1794065665.7670639
+    },
+    "v4|فواد ایزدی: عاصم منیر پروژه بگیر و آدم آمریکا است که با همراهی آمریکا علیه عمران خان کودتا کرد و آدم اطلاعاتی است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=0 happened=True scope=local: اظهارات شخصی، بدون تأیید یا واقعه",
+      "topic": "سیاست",
+      "until": 1794099777.3865705
     },
     "v4|فوتبال در دل ویرانه های غزه به یاد 1014 ستاره/ جام هزار شهید فلسطین: جام مقاومت (عکس)": {
       "ok": false,
@@ -3492,12 +3450,6 @@
       "topic": "اقتصاد",
       "until": 1794060313.3181834
     },
-    "v4|نشست ترامپ با مشاوران امنیت ملی اش درباره ایران": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Former president meeting, no official decision, low impact",
-      "topic": "سیاست",
-      "until": 1794013350.0689347
-    },
     "v4|نشست پوتین با شورای امنیت روسیه در آستانه مذاکرات سه جانبه صلح اوکراین": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: نشست پوتین و شورای امنیت در آستانه مذاکرات صلح.",
@@ -3774,6 +3726,12 @@
       "topic": "جامعه",
       "until": 1794081792.2119174
     },
+    "v4|وبگاه آمریکایی مدعی شد: ونس شخصا برای مذاکرات غیرمستقیم با ایران تقلا می کند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: ادعای غیرمستند درباره مذاکرات، بدون تصمیم رسمی",
+      "topic": "سیاست",
+      "until": 1794099777.3600025
+    },
     "v4|وحدت، سرمایه تاریخی و اجتماعی مردم گنبدکاووس است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: سخنان کلی مسئول محلی در مورد وحدت و فاقد ارزش خبری",
@@ -3785,12 +3743,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local US propane tank fire, limited impact, not major disaster",
       "topic": "حادثه",
       "until": 1794042175.7613094
-    },
-    "v4|وداع باشکوه مردم یزد با پیکرهای مطهر ۹ شهید دفاع مقدس": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مراسم یادبود شهیدان در یزد",
-      "topic": "جامعه",
-      "until": 1794013351.070674
     },
     "v4|وزارت بهداشت ادعای توزیع قرص های ید در شعاع ۲ تا ۳ کیلومتری تأسیسات هسته ای را تکذیب کرد/ رئیس فهرست عربی مشترک: شروط چهارگانه آیزنکوت برای تشکیل کابینه جدید اسرائیل غیرقابل قبول ا": {
       "ok": false,
@@ -4190,7 +4142,7 @@
     },
     "openai valued at $1.25 trillion, as rival anthropic nears its ipo": {
       "reason": "content_duplicate",
-      "until": 1794033190.2542968
+      "until": 1794034996.9873843
     },
     "paraguay’s president removed over financial crisis": {
       "reason": "content_duplicate",
@@ -9088,7 +9040,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794011461
+    "at": 1794013289
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9102,19 +9054,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1794011883.0,
-    "last_failure": 1794011583,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794012164,
-    "last_failure": 1794011564,
-    "last_status": 429
+    "disabled_until": 1794013452,
+    "last_failure": 1794013392,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794012160,
-    "last_failure": 1794011560,
+    "disabled_until": 1794013984,
+    "last_failure": 1794013384,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -9130,7 +9077,11 @@
     "last_status": 599
   },
   "groq:openai/gpt-oss-120b": {
-    "last_quality_failure": 1794009858,
+    "last_quality_failure": 1794013382,
+    "last_status": 422
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1794013384,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
