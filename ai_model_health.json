@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794004148
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794004149
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794004151
-    },
-    {
-      "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.1-flash-lite",
-      "t": 1794004154
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1794004198
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794006158
     },
@@ -159,32 +139,52 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1794015163
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794016965
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794016966
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794016967
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1794016982
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1794017044
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-06",
-      "n": 76
+      "n": 77
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-06",
-      "n": 129
+      "n": 132
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-06",
-      "n": 57
+      "n": 59
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-06",
-      "n": 46
+      "n": 48
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-07",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-07",
-      "n": 8
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-11-06",
@@ -495,16 +495,16 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 8,
+        "calls": 11,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 7,
+        "ok": 10,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
-        "429": 2,
-        "calls": 3,
+        "429": 3,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 1,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
@@ -517,17 +517,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 8,
-        "other": 2
+        "calls": 12,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 9,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
-        "other": 3
+        "ok": 8,
+        "other": 4
       },
       "mistral:ministral-8b-latest": {
         "429": 0,
@@ -537,8 +537,8 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 17,
+        "ok": 17,
         "other": 0
       }
     }
@@ -1170,12 +1170,6 @@
       "topic": "قضایی",
       "until": 1794018766.1695275
     },
-    "v4|beau lamarre-condon trial live updates: double murder accused tells court of ‘outer-body experience’ after shootings": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Sydney double murder trial, not major international significance",
-      "topic": "قضایی",
-      "until": 1794015193.7483768
-    },
     "v4|beau lamarre-condon trial live updates: prosecution begins cross-examination of double murder accused": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محاکمه قتل دو نفر در سیدنی، خبر محلی",
@@ -1193,6 +1187,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Analysis and speculation regarding US political developments.",
       "topic": "سیاست",
       "until": 1794065665.7966132
+    },
+    "v4|crusoe sells troubled wyoming data center project to google": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Business deal, limited global impact",
+      "topic": "فناوری",
+      "until": 1794103366.0295358
     },
     "v4|european troops prepare for possible post-ceasefire deployment to ukraine": {
       "ok": false,
@@ -1242,12 +1242,6 @@
       "topic": "حادثه",
       "until": 1794096206.0361397
     },
-    "v4|major tech stocks plunge as us midterms add to fears of ai slowdown": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سقوط سهام بزرگ فناوری در پی تحولات سیاسی آمریکا",
-      "topic": "اقتصاد",
-      "until": 1794015199.5415785
-    },
     "v4|openai reportedly raises an additional $11 billion at a $1.25 trillion valuation": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Major global-scale business event involving massive valuation.",
@@ -1271,12 +1265,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: استعفای رئیس‌جمهور یک کشور به دلیل بحران مالی رویدادی بین‌المللی و مهم است.",
       "topic": "سیاست",
       "until": 1794024196.7265828
-    },
-    "v4|peru airport officials discover 3,000 tarantulas smuggled inside dirty socks": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Large tarantula smuggling, minor crime",
-      "topic": "قضایی",
-      "until": 1794015192.8006742
     },
     "v4|pressure mounts on us defence chief hegseth after republican election rout": {
       "ok": false,
@@ -2297,6 +2285,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: تحلیل و مناظره کارشناسان درباره سیاست خارجی، رویداد محسوب نمی‌شود.",
       "topic": "سیاست",
       "until": 1794072847.3175824
+    },
+    "v4|تناقض گویی و اعتراف آمریکا/ترامپ: در حال انجام حملات محدود به ایران هستیم": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash score=9 happened=True scope=world: اظهارات رسمی رئیس‌جمهور آمریکا درباره انجام حملات محدود علیه ایران",
+      "topic": "نظامی",
+      "until": 1794103385.6443107
     },
     "v4|تهدید به خروج از ائتلاف میزبانی با مراکش/ پیروزی راست ها در اسپانیا یعنی جام جهانی روی هوا!": {
       "ok": true,
@@ -4068,6 +4062,12 @@
       "topic": "سیاست",
       "until": 1794051274.54327
     },
+    "v4|یک استاد دانشگاه: اندازه اقتصاد به تنهایی معیار سنجش قدرت فناورانه کشورها نیست": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Opinion piece, no concrete event, low significance",
+      "topic": "اقتصاد",
+      "until": 1794103364.2707257
+    },
     "v4|یک فروند پهپاد mq۹ دشمن آمریکایی رهگیری و منهدم شد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Official confirmation of military drone destruction by Iranian army.",
@@ -4136,7 +4136,7 @@
     },
     "openai valued at $1.25 trillion, as rival anthropic nears its ipo": {
       "reason": "content_duplicate",
-      "until": 1794036763.5233471
+      "until": 1794038644.7403133
     },
     "paraguay’s president removed over financial crisis": {
       "reason": "content_duplicate",
@@ -4171,13 +4171,17 @@
       "reason": "content_duplicate",
       "until": 1794020669.0189407
     },
+    "تناقض گویی و اعتراف آمریکا/ترامپ: در حال انجام حملات محدود به ایران هستیم": {
+      "reason": "content_duplicate",
+      "until": 1794038592.506468
+    },
     "تیم تپانچه میکس ایران نایب قهرمان جهان شد": {
       "reason": "content_duplicate",
       "until": 1794017064.4896653
     },
     "حادثه رانندگی در جاده چترود به کرمان ۷ کشته و ۲ مصدوم برجا گذاشت": {
       "reason": "content_duplicate",
-      "until": 1794015263.163546
+      "until": 1794038637.1185253
     },
     "درخواست گروسی برای خویشتنداری نظامی در اطراف نیروگاه هسته ای زاپوریژیا": {
       "reason": "content_duplicate",
@@ -4215,24 +4219,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "ائتلاف عربستان موشک بالستیک به سمت مدینه را رهگیری کرد ⚡️ ائتلاف تحت رهبری عربستان یک موشک بالستیک شلیک شده تو",
-      "id": "c1442cfbc1",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1793919859,
-      "verdict": "new",
-      "why": "This is a new missile interception event targeting Medina."
-    },
-    {
-      "head": "تصویب توافقنامه سه جانبه دفاعی در پارلمان ترکیه ⚡️ پارلمان ترکیه توافقنامه سه جانبه دفاعی با پاکستان و عربستان",
-      "id": "e2eb797d30",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1793921618,
-      "verdict": "new",
-      "why": "توافقنامه دفاعی جدید ترکیه با پاکستان و عربستان"
-    },
     {
       "head": "رکوردشکنی در انتخابات آمریکا: نخستین سناتور مسلمان و تغییر معادلات رای یهودیان ⚡️ انتخابات میان دوره ای آمریکا",
       "id": "20115dbb97",
@@ -4763,23 +4749,27 @@
       "t": 1794011553,
       "verdict": "new",
       "why": "مذاکره صلح ایران-آمریکا، موضوع جدید"
+    },
+    {
+      "head": "سوانح رانندگی در جاده چترود به کرمان هفت نفر را کشته و دو نفر را مصدوم کرد ⚡️ در ساعت ۱۹:۲۸ امروز، سانحه رانند",
+      "id": "2a1ea35230",
+      "match": "۷ کشته و ۲ مصدوم در تصادف جاده چترود به کرمان ⚡️ برخورد دو خودروی سواری پژو پارس و شاهین در کیلومتر ۱۰ جاده چت",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794017035,
+      "verdict": "repeat",
+      "why": "same accident, same location, similar casualties"
+    },
+    {
+      "head": "سوانح رانندگی در جاده چترود به کرمان هفت نفر را کشته و دو نفر را مصدوم کرد ⚡️ در ساعت ۱۹:۲۸ امروز، سانحه رانند",
+      "id": "2a1ea35230",
+      "match": "۷ کشته و ۲ مصدوم در تصادف جاده چترود به کرمان ⚡️ برخورد دو خودروی سواری پژو پارس و شاهین در کیلومتر ۱۰ جاده چت",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794017037,
+      "verdict": "repeat",
+      "why": "same accident, same location, similar casualties"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: گلایه سرمربی سپاهان از برنامه مسابقات لیگ برتر فوتبال",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1793979234,
-      "title": "نویدکیا: نمی دانیم بازی بعدی چه روزی است و این بد است"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: طرح لغو تعرفه‌ها، هنوز تصمیم نهایی نیست",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1793981001,
-      "title": "دموکرات ها برای لغو تعرفه های گمرکی کانادا برنامه ریزی می کنند"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: سخن‌گوی هواداران در مسابقه فوتبال",
       "rescued": false,
@@ -5325,6 +5315,20 @@
       "rule": "below-event-threshold",
       "t": 1794015143,
       "title": "وزیر خارجه قطر: تلاش های میانجیگرانه ما برای ممانعت از تشدید تنش در منطقه ادامه دارد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Opinion piece, no concrete event, low significance",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1794016964,
+      "title": "یک استاد دانشگاه: اندازه اقتصاد به تنهایی معیار سنجش قدرت فناورانه کشورها نیست"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Business deal, limited global impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794016966,
+      "title": "Crusoe sells troubled Wyoming data center project to Google"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9034,7 +9038,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794015065
+    "at": 1794016876
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9049,14 +9053,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794013452,
-    "last_failure": 1794013392,
-    "last_status": 422
+    "disabled_until": 1794017614,
+    "last_failure": 1794017014,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794013984,
-    "last_failure": 1794013384,
-    "last_status": 429
+    "disabled_until": 1794017282.0,
+    "last_failure": 1794016982,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9072,10 +9076,6 @@
   },
   "groq:openai/gpt-oss-120b": {
     "last_quality_failure": 1794013382,
-    "last_status": 422
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794015148,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
