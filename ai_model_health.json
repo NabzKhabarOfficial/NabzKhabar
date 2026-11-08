@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.5-flash-lite",
-      "t": 1794085411
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 9x",
-      "t": 1794085470
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794087181
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794087182
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 3x",
       "t": 1794099805
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794101556
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1794101560
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1794101572
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-07",
-      "n": 187
+      "n": 188
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-07",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-07",
-      "n": 79
+      "n": 80
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-08",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-08",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-07",
@@ -497,8 +497,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -510,30 +510,30 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 2,
-        "calls": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 7,
-        "other": 1
+        "calls": 10,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 8,
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 7,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       }
     }
@@ -1303,6 +1303,12 @@
       "topic": "ورزش",
       "until": 1794180785.6456895
     },
+    "v4|polish pm calls deadly krakow shooting an act of ‘terrorism’": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=6 happened=True scope=world: Six killed in Krakow shooting, labeled terrorism",
+      "topic": "حادثه",
+      "until": 1794187960.6108305
+    },
     "v4|ponga-inspired new zealand reach world cup final": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Reaching a World Cup final is a major international sports event.",
@@ -1825,6 +1831,12 @@
       "topic": "اقتصاد",
       "until": 1794139427.2711751
     },
+    "v4|اعلام وضعیت اضطراری در جزیره ای در اسپانیا در پی ورود هزاران مهاجر": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: وضعیت اضطراری در جزیره اسپانیا به دلیل مهاجرت",
+      "topic": "سیاست",
+      "until": 1794187957.647595
+    },
     "v4|افزایش تاب آوری دانش آموزان شیرازی در برابر بحران ها با آموزش های پدافند غیرعامل": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=1 happened=False scope=local: برنامه آموزش محلی و پدافند غیرعامل در دبستان شیراز.",
@@ -2041,6 +2053,12 @@
       "topic": "آب و هوا",
       "until": 1794157469.610998
     },
+    "v4|بارش های سیل آسا در کشور/ تهران هم در معرض باران شدید است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: Heavy rain warnings issued, no disaster yet",
+      "topic": "آب و هوا",
+      "until": 1794187960.597106
+    },
     "v4|بارش های چشمگیر ال نینو در پهنه اصفهان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: بارش شدید در اصفهان، خسارات محدود به استان",
@@ -2160,12 +2178,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Routine municipal preparedness for potential weather events, not a concrete incident.",
       "topic": "آب و هوا",
       "until": 1794173594.0345545
-    },
-    "v4|بم و مسجدسلیمان با زلزله ۴.۱ لرزیدند/ثبت زمینلرزه ۴.۴ در سرجنگل": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: multiple moderate earthquakes, no casualties reported",
-      "topic": "آب و هوا",
-      "until": 1794101545.1994843
     },
     "v4|بهنام جو: ۷ هزار چاه جذبی برای مهار روان آب های قم احداث شده است": {
       "ok": false,
@@ -3223,12 +3235,6 @@
       "topic": "سلامت",
       "until": 1794123229.479455
     },
-    "v4|شرکت های گمنام، زنگ خطر حباب هوش مصنوعی را به صدا درآورده اند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=local: هشدارهای بازار، بدون واقعه یا تصمیم رسمی",
-      "topic": "فناوری",
-      "until": 1794099777.3734782
-    },
     "v4|شمار کشته ها و زخمی های یمن به یکهزار و ۳۹ نفر رسید": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تلفات سنگین در جنگ یمن و عربستان از اخبار مهم جهانی است.",
@@ -3541,12 +3547,6 @@
       "topic": "سلامت",
       "until": 1794157473.2231872
     },
-    "v4|فواد ایزدی: عاصم منیر پروژه بگیر و آدم آمریکا است که با همراهی آمریکا علیه عمران خان کودتا کرد و آدم اطلاعاتی است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=0 happened=True scope=local: اظهارات شخصی، بدون تأیید یا واقعه",
-      "topic": "سیاست",
-      "until": 1794099777.3865705
-    },
     "v4|فکت چک؛ اخباری که ۱۶ آبان ۱۴۰۵ تکذیب شدند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: این مطلب یک گزارش تحلیلی و فکت‌چک است، نه یک رویداد خبری.",
@@ -3654,6 +3654,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: مرگ بیمار در بیمارستان شهری خبر محلی محسوب می شود",
       "topic": "سلامت",
       "until": 1794168248.5879772
+    },
+    "v4|مجلس نمایندگان و علمای یمن حمله به روستای شرق صنعا را محکوم کردند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Yemen parliament condemns Saudi attack",
+      "topic": "سیاست",
+      "until": 1794187960.5828834
     },
     "v4|مجوز خرید تراشه های پیشرفته انویدیا به شرکت چینی با دفتر خالی رسید": {
       "ok": true,
@@ -3768,12 +3774,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: Local lightning injury, no broader impact",
       "topic": "سلامت",
       "until": 1794177159.4222505
-    },
-    "v4|مصر از کشف جدید ذخایر گاز در مدیترانه رونمایی کرد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Egypt announces large Mediterranean gas discovery",
-      "topic": "اقتصاد",
-      "until": 1794101545.2102208
     },
     "v4|معاون بانک مرکزی: تأمین مالی بانکی ۷۵ درصد افزایش یافت": {
       "ok": true,
@@ -3930,6 +3930,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: افزایش چشمگیر و کم‌سابقه نرخ سود بین‌بانکی به حدود ۳۴ درصد.",
       "topic": "اقتصاد",
       "until": 1794151614.3219817
+    },
+    "v4|نسخه تازه برای مدیریت مصرف گاز در زمستان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=iran_national: New gas demand management plan announced",
+      "topic": "اقتصاد",
+      "until": 1794187960.624573
     },
     "v4|نعمتی: استرس تیر طلایی را دوست داشتم/ نام آرش کمانگیر بر روی مسابقات جهانی است": {
       "ok": false,
@@ -4111,12 +4117,6 @@
       "topic": "جامعه",
       "until": 1794106987.1140888
     },
-    "v4|وبگاه آمریکایی مدعی شد: ونس شخصا برای مذاکرات غیرمستقیم با ایران تقلا می کند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: ادعای غیرمستند درباره مذاکرات، بدون تصمیم رسمی",
-      "topic": "سیاست",
-      "until": 1794099777.3600025
-    },
     "v4|ورود سیلاب به گلزار شهدای دهستان «چمسنگر» خرم آباد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Local flooding incident with no major national impact or casualties.",
@@ -4164,12 +4164,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: موضع‌گیری رسمی وزیر خارجه فلسطین درباره تداوم حملات اسرائیل در غزه.",
       "topic": "سیاست",
       "until": 1794144870.4248252
-    },
-    "v4|وزیر خارجه قطر: تلاش های میانجیگرانه ما برای ممانعت از تشدید تنش در منطقه ادامه دارد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: بیانیه دیپلماتیک، بدون تصمیم یا اقدام ملموس",
-      "topic": "سیاست",
-      "until": 1794101543.196718
     },
     "v4|وزیر خارجه قطر: نباید به صداهای تندروهایی گوش دهیم که می خواهند روند مذاکرات ایران و آمریکا را به گروگان بگیرند/ منطقه دیگر توان تحمل یک دور جدید از تنش و تشدید درگیری ها را ندارد/": {
       "ok": true,
@@ -4635,17 +4629,9 @@
     }
   },
   "_editorial_blocks": {
-    "argentina set to go to cas after fifa rejects appeals": {
-      "reason": "content_duplicate",
-      "until": 1794099841.7718077
-    },
     "at least 27 people killed in strike near yemen's capital, houthi official says": {
       "reason": "content_duplicate",
       "until": 1794103463.188768
-    },
-    "at least five people killed in shooting in poland’s krakow": {
-      "reason": "content_duplicate",
-      "until": 1794089186.530216
     },
     "blow for netanyahu as opposition rival asked to form government by israel's president": {
       "reason": "content_duplicate",
@@ -4654,10 +4640,6 @@
     "eisenkot chosen over netanyahu to form israel’s next government": {
       "reason": "content_duplicate",
       "until": 1794117783.1752992
-    },
-    "houthis report 25 killed in yemen strikes": {
-      "reason": "content_duplicate",
-      "until": 1794096251.6947198
     },
     "houthis say at least 25 killed in saudi air strike": {
       "reason": "content_duplicate",
@@ -4671,30 +4653,14 @@
       "reason": "content_duplicate",
       "until": 1794107070.9245107
     },
-    "more than 50 killed in yemen in one of the deadliest 24 hours of the war": {
-      "reason": "content_duplicate",
-      "until": 1794094539.1408646
-    },
-    "اردوغان در گفت وگو با ترامپ: تنش های میان آمریکا و ایران باید از طریق دیپلماسی حل شود": {
-      "reason": "content_duplicate",
-      "until": 1794098056.5172498
-    },
-    "از کشف ماینر تا دستگیری عامل تیراندازی": {
-      "reason": "content_duplicate",
-      "until": 1794092689.0030339
+    "polish pm calls deadly krakow shooting an act of ‘terrorism’": {
+      "at": 1794101572.7188256,
+      "reason": "final_guard:broken-name",
+      "until": 1794123172.7188256
     },
     "با پایان یافتن انتخابات میان دوره ای، برخی مشاوران خارج از دولت با ترامپ تماس گرفته و این پیام را منتقل کرده اند که زمان پایان دادن به جنگ فرا رسیده / چندین مشاور تندرو خارج از دول": {
       "reason": "content_duplicate",
       "until": 1794102064.3451576
-    },
-    "تیراندازی در لهستان دست کم ۵ کشته و ۱۰ زخمی بر جا گذاشت": {
-      "at": 1794067586.550607,
-      "reason": "final_guard:broken-name",
-      "until": 1794089186.550607
-    },
-    "تیراندازی مرگبار در لهستان؛ ۵ کشته و ۱۲ زخمی": {
-      "reason": "content_duplicate",
-      "until": 1794092701.668497
     },
     "جدیدترین ادعای واهی نهاد تروریستی سنتکام درباره محاصره دریایی ایران": {
       "reason": "content_duplicate",
@@ -4704,10 +4670,6 @@
       "at": 1794087248.3781075,
       "reason": "final_guard:analyst-opinion",
       "until": 1794108848.3781075
-    },
-    "در تیراندازی مرگبار در میدان اصلی کراکوف در لهستان تعدادی کشته و مجروح شدند": {
-      "reason": "content_duplicate",
-      "until": 1794096206.0541327
     },
     "رئیس جمهور اسرائیل گادی آیزنکوت را مامور تشکیل دولت جدید کرد": {
       "reason": "content_duplicate",
@@ -4720,10 +4682,6 @@
     "رمزگشایی از پیام رهبر انقلاب به پوتین": {
       "reason": "content_duplicate",
       "until": 1794101989.5881574
-    },
-    "سفیر ایران در مسکو: محسن رضایی در دیدار با پوتین با اشاره به محتوای نامه «ونس» و تبیین پاسخ ایران، تصریح کرد که صرفِ مذاکره هرگز پایه گذار پایان جنگ نخواهد بود / درخصوص احتمال خروج": {
-      "reason": "content_duplicate",
-      "until": 1794099807.2679713
     },
     "سپاه: دو نفتکش در مسیر غیرمجاز تنگه هرمز، پس از برخورد با مین منفجر شدند؛ این دو نفتکش، در آتش بسیار شدیدی در حال سوختن هستند/ ادعای سنتکام: یک کشتی باری با پرچم سنت کیتس را در دری": {
       "reason": "content_duplicate",
@@ -4755,17 +4713,9 @@
       "reason": "final_guard:media-source",
       "until": 1794105291.4566705
     },
-    "نیروهای مسلح یمن: ۶ عملیات موشکی و پهپادی در عمق خاک عربستان انجام دادیم": {
-      "reason": "content_duplicate",
-      "until": 1794090911.9868567
-    },
     "۱۰۵ حمله هوایی عربستان به یمن طی ۲۴ ساعت گذشته": {
       "reason": "content_duplicate",
       "until": 1794102018.3735616
-    },
-    "۶ عملیات موشکی و پهپادی یمن علیه اهداف سعودی": {
-      "reason": "content_duplicate",
-      "until": 1794090964.2081146
     }
   },
   "_event_judge_log": [
@@ -5330,13 +5280,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مصاحبه سرمربی پس از بازی فوتبال لیگ برتر",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794065642,
-      "title": "نکونام: بازی هجومی نیاز به نفرات و ابزار دارد/تمرکزمان را بعد از ۱۰ نفره شدن حفظ کردیم"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد محلی تجلیل از حافظان قرآن در یک روستا اهمیت ملی ندارد",
       "rescued": false,
       "rule": "local-routine-low-value",
@@ -5888,6 +5831,13 @@
       "rule": "no-concrete-event",
       "t": 1794099747,
       "title": "How do spam callers get your number in the first place?"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: وضعیت اضطراری در جزیره اسپانیا به دلیل مهاجرت",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794101557,
+      "title": "اعلام وضعیت اضطراری در جزیره ای در اسپانیا در پی ورود هزاران مهاجر"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9371,7 +9321,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794099675
+    "at": 1794101469
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9391,8 +9341,8 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794100056.0,
-    "last_failure": 1794099756,
+    "disabled_until": 1794101871.0,
+    "last_failure": 1794101571,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
@@ -9406,10 +9356,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794099754,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
