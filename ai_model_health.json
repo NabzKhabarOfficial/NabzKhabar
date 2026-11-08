@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794087191
-    },
-    {
-      "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.1-flash-lite",
-      "t": 1794087194
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1794087248
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794088952
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794088953
     },
@@ -159,32 +143,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
       "t": 1794103789
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794105135
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794105135
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1794105137
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1794105201
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-07",
-      "n": 112
+      "n": 114
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-07",
-      "n": 192
+      "n": 195
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-07",
-      "n": 85
+      "n": 87
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-07",
-      "n": 83
+      "n": 87
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-08",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-08",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-07",
@@ -491,26 +491,26 @@
     "2026-11-08": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 10,
-        "ok": 10,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 2,
-        "calls": 4,
+        "429": 3,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 2,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 4,
-        "calls": 7,
+        "429": 6,
+        "calls": 9,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -518,42 +518,28 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 11,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 11,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
-        "429": 1,
-        "calls": 13,
+        "429": 2,
+        "calls": 18,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 12,
+        "ok": 16,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1793932379.650474,
-      "title": "رکوردشکنی در انتخابات آمریکا: نخستین سناتور مسلمان و تغییر معادلات رای یهودیان",
-      "urgent": false
-    },
-    {
-      "label": "موضع‌گیری",
-      "level": 4,
-      "t": 1793932395.1088653,
-      "title": "روته: هیچ کدام از طرفین جنگ اوکراین پیروز نخواهند شد",
-      "urgent": false
-    },
     {
       "label": "حادثه",
       "level": 3,
@@ -1127,6 +1113,20 @@
       "t": 1794103372.9623737,
       "title": "محکومیت حمله به شرق صنعا از سوی مجلس و علمای یمن",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1794105161.5312681,
+      "title": "توقف پروازها و هشدار امنیتی در شرق عربستان",
+      "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1794105200.1821754,
+      "title": "کشته شدن بیش از ۵۰ نفر در یکی از خونین ترین روزهای جنگ یمن",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-07",
@@ -1202,12 +1202,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مهاجرت و اضطراب در جزیره اسپانیا",
       "topic": "جامعه",
       "until": 1794189747.891149
-    },
-    "v4|crusoe sells troubled wyoming data center project to google": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Business deal, limited global impact",
-      "topic": "فناوری",
-      "until": 1794103366.0295358
     },
     "v4|dozens killed as humanitarian crisis mounts in yemen: what next for war?": {
       "ok": true,
@@ -2331,6 +2325,12 @@
       "topic": "سیاست",
       "until": 1794132299.4896393
     },
+    "v4|ترامپ وزارت دادگستری آمریکا را مامور تحقیق از دموکرات ها کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: Unverified claim by former president, no official action",
+      "topic": "سیاست",
+      "until": 1794191535.103098
+    },
     "v4|ترامپ: احتمالاً تغییراتی در تیم خود اعمال خواهم کرد، اما فعلاً نمی خواهم از کسی نام ببرم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Vague statement about potential future personnel changes.",
@@ -2397,6 +2397,12 @@
       "topic": "سیاست",
       "until": 1794164590.4741995
     },
+    "v4|تظاهرات صدها اسرائیلی در تل آویو برای مطالبه کنار گذاشتن نتانیاهو": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Protest in Tel Aviv demanding Netanyahu removal",
+      "topic": "سیاست",
+      "until": 1794191535.627424
+    },
     "v4|تعمیر بیش از ۱۰۰ هزار خانه آسیب دیده در جنگ": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: برنامه‌ها و اظهارات روتیین مقامات بنیاد مسکن، امتیاز پایین",
@@ -2439,12 +2445,6 @@
       "topic": "سیاست",
       "until": 1794162821.4307854
     },
-    "v4|تناقض گویی و اعتراف آمریکا/ترامپ: در حال انجام حملات محدود به ایران هستیم": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash score=9 happened=True scope=world: اظهارات رسمی رئیس‌جمهور آمریکا درباره انجام حملات محدود علیه ایران",
-      "topic": "نظامی",
-      "until": 1794103385.6443107
-    },
     "v4|تهران و واشنگتن در نقطه تصمیم قرار گرفته اند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: تهدید نظامی ترامپ و اعزام ناوگروه آمریکا به سنتکام",
@@ -2462,6 +2462,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: توسعه پژوهش‌های قرآنی در مدارس بوشهر محلی و غیرمهم است",
       "topic": "جامعه",
       "until": 1794155635.794931
+    },
+    "v4|توقف پروازها در فرودگاه دمام و اعلام هشدار در چند منطقه شرق عربستان": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: Security alert causes flight cancellations in Saudi Arabia.",
+      "topic": "حادثه",
+      "until": 1794191537.682656
     },
     "v4|تیراندازی در لهستان دست کم ۵ کشته و ۱۰ زخمی بر جا گذاشت": {
       "ok": true,
@@ -2498,6 +2504,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: آمار محلی آتش‌سوزی در اراضی طبیعی استان آذربایجان غربی.",
       "topic": "جامعه",
       "until": 1794119615.812876
+    },
+    "v4|ثبت دیجیتال املاک گام جدید برای حفظ سرمایه های برق کشور": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Administrative reform, limited national impact",
+      "topic": "اقتصاد",
+      "until": 1794191534.2189112
     },
     "v4|ثبت نام ۱۰۰ زوج در کرمانشاه برای ازدواج دانشجویی": {
       "ok": false,
@@ -3879,6 +3891,12 @@
       "topic": "نظامی",
       "until": 1794116076.8113058
     },
+    "v4|مهاجری: افرادی که ضدوحدت ملی عمل می کنند، ریشه در جای دیگری دارند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Political statement about foreign influence.",
+      "topic": "سیاست",
+      "until": 1794191537.6917496
+    },
     "v4|مهار سیلاب در محور کرج–کندوان با تلاش راهداران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سیلاب محدود و پاکسازی در محور کرج-کندوان، خبری است استانی و کم‌اهمیت.",
@@ -4521,23 +4539,11 @@
       "topic": "جامعه",
       "until": 1794134057.8244083
     },
-    "v4|یک استاد دانشگاه: اندازه اقتصاد به تنهایی معیار سنجش قدرت فناورانه کشورها نیست": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Opinion piece, no concrete event, low significance",
-      "topic": "اقتصاد",
-      "until": 1794103364.2707257
-    },
     "v4|یک جان باخته و سه مصدوم در حادثه رانندگی محور آزادشهر–مینودشت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: تصادف رانندگی محلی با یک کشته فاقد ارزش ملی است",
       "topic": "حادثه",
       "until": 1794168248.5744805
-    },
-    "v4|یک فروند پهپاد mq9 ارتش تروریستی آمریکا منهدم شد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Unverified claim of drone destruction",
-      "topic": "نظامی",
-      "until": 1794103932.4408069
     },
     "v4|یک قدم تا مرگ در کوهستان؛ نجات معجزه آسای زن کوهنورد پس از سقوط از ارتفاع/ عکس": {
       "ok": false,
@@ -4685,6 +4691,10 @@
       "reason": "content_duplicate",
       "until": 1794107070.9245107
     },
+    "more than 50 killed in yemen in one of the deadliest 24 hours of the war": {
+      "reason": "content_duplicate",
+      "until": 1794126795.8775446
+    },
     "polish pm calls deadly krakow shooting an act of ‘terrorism’": {
       "at": 1794101572.7188256,
       "reason": "final_guard:broken-name",
@@ -4759,33 +4769,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "علت صدای انفجار در بندرخمیر اعلام شد ⚡️ فرمانداری بندرخمیر در پی شنیده شدن صدای مهیب در این شهرستان، با صدور ا",
-      "id": "7c2739817c",
-      "match": "گزارش اصابت دو موشک در قشم و شنیده شدن صدای انفجار در قشم و بندرخمیر ⚡️ گزارش های اولیه از اصابت دو موشک در قش",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1794038895,
-      "verdict": "repeat",
-      "why": "این خبر تکراری است و پیشتر در مورد بندرخمیر غزاله شده است."
-    },
-    {
-      "head": "ثبت افت ۱۶.۹ درصدی قیمت نفت برنت و رسیدن به نرخ ۹۸ دلار ⚡️ قیمت نفت خام برنت برای تحویل در ماه ژانویه با ۰.۶ د",
-      "id": "9f3037ffdc",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794038939,
-      "verdict": "new",
-      "why": "price drop unrelated to listed events"
-    },
-    {
-      "head": "رایزنی وزیر خارجه ایران با ۱۲ کشور هم زمان با تحرکات دیپلماتیک برای مهار تنش ⚡️ عباس عراقچی وزیر امور خارجه در",
-      "id": "1e8679cb5f",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794040546,
-      "verdict": "new",
-      "why": "دیپلماتیک ایران با ۱۲ کشور، موضوع جدید"
-    },
     {
       "head": "درخواست بازرگانان نفت برای بازگشت نفتکش های تحت تحریم آمریکا ⚡️ شرکت های بازرگانی نفت به دلیل افزایش شدید هزین",
       "id": "e87fe0c656",
@@ -5316,30 +5299,38 @@
       "t": 1794103372,
       "verdict": "reaction",
       "why": "Condemnation by Yemeni officials regarding the previously reported attack in Sanaa."
+    },
+    {
+      "head": "توقف پروازها و هشدار امنیتی در شرق عربستان ⚡️ این رویداد هم زمان با صدور هشدارهای امنیتی در شهرهای دمام، احساء",
+      "id": "20d85b9622",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794105160,
+      "verdict": "new",
+      "why": "هشدار امنیتی و توقف پروازها در شرق عربستان"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "کشته شدن بیش از ۵۰ نفر در یکی از خونین ترین روزهای جنگ یمن ⚡️ حملات اخیر در یمن که به کشته شدن بیش از ۵۰ تن ان",
+      "id": "745cb35e3c",
+      "match": "ده ها کشته در حمله موشکی به تعز و تشدید بحران انسانی در یمن",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794105180,
+      "verdict": "repeat",
+      "why": "همان حمله موشکی به تعز با تلفات مشابه"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:new",
+      "head": "کشته شدن بیش از ۵۰ نفر در یکی از خونین ترین روزهای جنگ یمن ⚡️ حملات اخیر در یمن که به کشته شدن بیش از ۵۰ تن ان",
+      "id": "745cb35e3c",
+      "match": "ده ها کشته در حمله موشکی به تعز و تشدید بحران انسانی در یمن",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794105196,
+      "verdict": "unconfirmed-repeat",
+      "why": "همان حمله موشکی به تعز، با تعداد کشته‌ها متفاوت"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مادر باردار در اهواز درگذشت",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794067435,
-      "title": "جزییات مرگ مادر باردار اهواز منتشر شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: کاوش باستان‌شناسی محلی در شهرری فاقد اهمیت ملی یا بین‌المللی است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794067453,
-      "title": "فصل تازه کاوش های چشمه علی برای رمزگشایی از تاریخ کهن ری آغاز شد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: German defense minister says no hope for Trump's Ukraine approach.",
-      "rescued": true,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1794067455,
-      "title": "آلمان: امیدی به رویکرد ترامپ درباره اوکراین نیست"
-    },
     {
       "ai": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: طرح روتین پلیس محلی و فاقد اهمیت ملی",
       "rescued": false,
@@ -5878,27 +5869,33 @@
       "rule": "routine-metaphorical-topic",
       "t": 1794103349,
       "title": "واکنش همسر شهید مطهری به خواستگاری علی لاریجانی از دخترش؛ زیادی جوان است «مری جان»/ از نظر مالی خانواده علی بالاتر از خا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Administrative reform, limited national impact",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1794105134,
+      "title": "ثبت دیجیتال املاک گام جدید برای حفظ سرمایه های برق کشور"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: Unverified claim by former president, no official action",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794105135,
+      "title": "ترامپ وزارت دادگستری آمریکا را مامور تحقیق از دموکرات ها کرد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Protest in Tel Aviv demanding Netanyahu removal",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1794105135,
+      "title": "تظاهرات صدها اسرائیلی در تل آویو برای مطالبه کنار گذاشتن نتانیاهو"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "است",
-        "افزش",
-        "رست",
-        "زپرژ",
-        "شمر",
-        "قربن",
-        "نفر",
-        "کمشخ",
-        "یفت"
-      ],
-      "t": 1794060335.9446998,
-      "title": "افزایش شمار قربانیان حمله هوایی روسیه به زاپوریژیا به ۵۳ کشته ⚡️ شمار قربانیان حمله هوایی نیروهای روسیه به روستای کومیشو"
-    },
     {
       "h": [
         "ابرهم",
@@ -6304,34 +6301,48 @@
       ],
       "t": 1794103372.9319272,
       "title": "محکومیت حمله به شرق صنعا از سوی مجلس و علمای یمن ⚡️ مجلس نمایندگان و انجمن علمای یمن حملات عربستان علیه مردم این کشور را"
+    },
+    {
+      "h": [
+        "احس",
+        "بقق",
+        "تقف",
+        "دمم",
+        "ردد",
+        "زمن",
+        "سعد",
+        "شرق",
+        "شهر",
+        "صدر",
+        "ظهر",
+        "هشدر"
+      ],
+      "t": 1794105161.5236304,
+      "title": "توقف پروازها و هشدار امنیتی در شرق عربستان ⚡️ این رویداد هم زمان با صدور هشدارهای امنیتی در شهرهای دمام، احساء، بقیق و ظ"
+    },
+    {
+      "h": [
+        "اخر",
+        "انجمد",
+        "بز",
+        "ترن",
+        "حث",
+        "حمت",
+        "خنن",
+        "رز",
+        "رقم",
+        "زمن",
+        "سعد",
+        "مرگبرترن",
+        "نفر",
+        "یمن",
+        "یک"
+      ],
+      "t": 1794105200.1661344,
+      "title": "کشته شدن بیش از ۵۰ نفر در یکی از خونین ترین روزهای جنگ یمن ⚡️ حملات اخیر در یمن که به کشته شدن بیش از ۵۰ تن انجامید، یکی"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "ابد",
-        "افرد",
-        "الحق",
-        "الس",
-        "امم",
-        "جمع",
-        "شمس",
-        "شهرست",
-        "فرزند",
-        "فنج",
-        "محترم",
-        "مرحم",
-        "مسلح",
-        "نشنس"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1794036947.7341402,
-      "title": "ترور و شهادت امام جمعه محترم آباد در فنوج ⚡️ مولوی شمس الحق قاضی، امام جمعه شهر محترم آباد و فرزند مرحوم الیاس قاضی، در ",
-      "toll": 0
-    },
     {
       "a": [
         "اسم",
@@ -6579,6 +6590,26 @@
       "t": 1794096171.9134805,
       "title": "زلزله ۵.۷ ریشتری در ژاپن ۲۰ زخمی بر جای گذاشت ⚡️ زلزله ۵.۷ ریشتری مرکز ژاپن را لرزاند و دستکم ۲۰ نفر در استان آیچی مجروح",
       "toll": 20
+    },
+    {
+      "a": [
+        "اخر",
+        "انجمد",
+        "ترن",
+        "حمت",
+        "خنن",
+        "رقم",
+        "سعد",
+        "مرگبرترن",
+        "یمن"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1794105200.1742232,
+      "title": "کشته شدن بیش از ۵۰ نفر در یکی از خونین ترین روزهای جنگ یمن ⚡️ حملات اخیر در یمن که به کشته شدن بیش از ۵۰ تن انجامید، یکی",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
@@ -9036,6 +9067,63 @@
       ],
       "t": 1794103372.9204948,
       "title": "محکومیت حمله به شرق صنعا از سوی مجلس و علمای یمن ⚡️ مجلس نمایندگان و انجمن علمای یمن حملات عربستان علیه مردم این کشور را"
+    },
+    {
+      "k": [
+        "احس",
+        "امنت",
+        "بقق",
+        "تقف",
+        "دمم",
+        "ردد",
+        "زمن",
+        "سعد",
+        "شرق",
+        "شهر",
+        "صدر",
+        "ظهر",
+        "عربست",
+        "هشدر",
+        "پرز"
+      ],
+      "t": 1794105161.5155566,
+      "title": "توقف پروازها و هشدار امنیتی در شرق عربستان ⚡️ این رویداد هم زمان با صدور هشدارهای امنیتی در شهرهای دمام، احساء، بقیق و ظ"
+    },
+    {
+      "k": [
+        "ات",
+        "اخر",
+        "ازسرگر",
+        "اصل",
+        "انجمد",
+        "بز",
+        "به",
+        "ترن",
+        "جنگ",
+        "حث",
+        "حمت",
+        "حمل",
+        "خشنت",
+        "خنن",
+        "درگر",
+        "دلت",
+        "رز",
+        "رقم",
+        "زمن",
+        "سعد",
+        "سنگن",
+        "عربست",
+        "غرنظم",
+        "قربن",
+        "مرگبرترن",
+        "نفر",
+        "پردخت",
+        "کشت",
+        "یمن",
+        "یک"
+      ],
+      "t": 1794105200.1577675,
+      "title": "کشته شدن بیش از ۵۰ نفر در یکی از خونین ترین روزهای جنگ یمن ⚡️ حملات اخیر در یمن که به کشته شدن بیش از ۵۰ تن انجامید، یکی"
     }
   ],
   "_telegram_errors": [
@@ -9277,7 +9365,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794103704
+    "at": 1794105061
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9292,13 +9380,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794103445,
-    "last_failure": 1794103385,
+    "disabled_until": 1794105215,
+    "last_failure": 1794105155,
     "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794104379,
-    "last_failure": 1794103779,
+    "disabled_until": 1794105764,
+    "last_failure": 1794105163,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
