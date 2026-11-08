@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794087182
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794087183
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794087184
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1794087184
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794087191
     },
@@ -159,32 +143,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
       "t": 1794101572
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794103347
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794103349
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1794103350
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1794103388
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-07",
-      "n": 110
+      "n": 111
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-07",
-      "n": 188
+      "n": 191
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-07",
-      "n": 84
+      "n": 85
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-07",
-      "n": 80
+      "n": 82
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-08",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-08",
-      "n": 10
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-11-07",
@@ -491,49 +491,50 @@
     "2026-11-08": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 2,
-        "calls": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 1,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 2,
-        "calls": 4,
+        "429": 3,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 2
+        "other": 3
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
-        "other": 2
+        "ok": 9,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 9,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
-        "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "429": 1,
+        "calls": 12,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 11,
         "other": 0
       }
     }
@@ -1119,6 +1120,13 @@
       "t": 1794099787.3274624,
       "title": "انصارالله: حملات عربستان به تاسیسات غیرنظامی جنایت جنگی است",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1794103372.9623737,
+      "title": "محکومیت حمله به شرق صنعا از سوی مجلس و علمای یمن",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-07",
@@ -1188,6 +1196,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official decision by a head of state regarding government formation.",
       "topic": "سیاست",
       "until": 1794170036.3675072
+    },
+    "v4|canary islands’ el hierro declares emergency amid migrant, refugee influx": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مهاجرت و اضطراب در جزیره اسپانیا",
+      "topic": "جامعه",
+      "until": 1794189747.891149
     },
     "v4|crusoe sells troubled wyoming data center project to google": {
       "ok": false,
@@ -1584,6 +1598,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: گمانه‌زنی و تحلیل درباره تلاش‌های دیپلماتیک",
       "topic": "سیاست",
       "until": 1794121525.0036871
+    },
+    "v4|آیزنکوت: زمان تشکیل دولت اضطراری فرا رسیده است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Israeli leader calls for emergency government",
+      "topic": "سیاست",
+      "until": 1794189750.5732818
     },
     "v4|آیین تشییع شهید گمنام با حضور حماسی مردم محلات در شب ۲۵۲ پایداری": {
       "ok": false,
@@ -3661,6 +3681,12 @@
       "topic": "سیاست",
       "until": 1794187960.5828834
     },
+    "v4|مجلس نمایندگان و علمای یمن، حمله به روستای شرق صنعا را محکوم کردند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Yemeni parliament condemns attack",
+      "topic": "سیاست",
+      "until": 1794189750.5562935
+    },
     "v4|مجوز خرید تراشه های پیشرفته انویدیا به شرکت چینی با دفتر خالی رسید": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: افشای نقص نظارت آمریکا بر صادرات تراشه های پیشرفته",
@@ -4116,6 +4142,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local women's protest; low national impact",
       "topic": "جامعه",
       "until": 1794106987.1140888
+    },
+    "v4|واکنش همسر شهید مطهری به خواستگاری علی لاریجانی از دخترش؛ زیادی جوان است «مری جان»/ از نظر مالی خانواده علی بالاتر از خانواده فریده بودند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Personal family matter, not major national/international significance",
+      "topic": "جامعه",
+      "until": 1794189749.1000688
     },
     "v4|ورود سیلاب به گلزار شهدای دهستان «چمسنگر» خرم آباد": {
       "ok": false,
@@ -4658,6 +4690,10 @@
       "reason": "final_guard:broken-name",
       "until": 1794123172.7188256
     },
+    "آیزنکوت: زمان تشکیل دولت اضطراری فرا رسیده است": {
+      "reason": "content_duplicate",
+      "until": 1794124981.66827
+    },
     "با پایان یافتن انتخابات میان دوره ای، برخی مشاوران خارج از دولت با ترامپ تماس گرفته و این پیام را منتقل کرده اند که زمان پایان دادن به جنگ فرا رسیده / چندین مشاور تندرو خارج از دول": {
       "reason": "content_duplicate",
       "until": 1794102064.3451576
@@ -4713,30 +4749,16 @@
       "reason": "final_guard:media-source",
       "until": 1794105291.4566705
     },
+    "مجلس نمایندگان و علمای یمن، حمله به روستای شرق صنعا را محکوم کردند": {
+      "reason": "content_duplicate",
+      "until": 1794124960.613306
+    },
     "۱۰۵ حمله هوایی عربستان به یمن طی ۲۴ ساعت گذشته": {
       "reason": "content_duplicate",
       "until": 1794102018.3735616
     }
   },
   "_event_judge_log": [
-    {
-      "head": "ترور و شهادت امام جمعه محترم آباد در فنوج ⚡️ مولوی شمس الحق قاضی، امام جمعه شهر محترم آباد و فرزند مرحوم الیاس",
-      "id": "b514bff0b4",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794036947,
-      "verdict": "new",
-      "why": "موضوع جدید، ترور امام جمعه در فنوج"
-    },
-    {
-      "head": "علت صدای انفجار در بندرخمیر اعلام شد ⚡️ فرمانداری بندرخمیر در پی شنیده شدن صدای مهیب در این شهرستان، با صدور ا",
-      "id": "7c2739817c",
-      "match": "گزارش اصابت دو موشک در قشم و شنیده شدن صدای انفجار در قشم و بندرخمیر ⚡️ گزارش های اولیه از اصابت دو موشک در قش",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1794038875,
-      "verdict": "repeat",
-      "why": "قبلاً در مورد صدای انفجار در بندرخمیر اطلاع‌رسانی شده است."
-    },
     {
       "head": "علت صدای انفجار در بندرخمیر اعلام شد ⚡️ فرمانداری بندرخمیر در پی شنیده شدن صدای مهیب در این شهرستان، با صدور ا",
       "id": "7c2739817c",
@@ -5276,23 +5298,27 @@
       "t": 1794099762,
       "verdict": "unconfirmed-repeat",
       "why": "same Saudi airstrike on Yemen, different wording"
+    },
+    {
+      "head": "محکومیت حمله به شرق صنعا از سوی مجلس و علمای یمن ⚡️ مجلس نمایندگان و انجمن علمای یمن حملات عربستان علیه مردم ا",
+      "id": "85f5d3b47e",
+      "match": "حمله هوایی عربستان به منطقه بنی حشیش در صنعا کشته و زخمی کرد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794103360,
+      "verdict": "repeat",
+      "why": "مجلس و علمای یمن حمله عربستان به صنعا را محکوم کردند"
+    },
+    {
+      "head": "محکومیت حمله به شرق صنعا از سوی مجلس و علمای یمن ⚡️ مجلس نمایندگان و انجمن علمای یمن حملات عربستان علیه مردم ا",
+      "id": "85f5d3b47e",
+      "match": "حمله هوایی عربستان به منطقه بنی حشیش در صنعا کشته و زخمی کرد",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1794103372,
+      "verdict": "reaction",
+      "why": "Condemnation by Yemeni officials regarding the previously reported attack in Sanaa."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد محلی تجلیل از حافظان قرآن در یک روستا اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1794065646,
-      "title": "تجلیل از ۴۵ قرآن آموز و حافظ قرآن کریم در روستای گچین بندرعباس"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: محور محلی به دلیل باران بسته شد",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794067434,
-      "title": "محور کندوان و آزادراه تهران شمال مسدود شد"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مادر باردار در اهواز درگذشت",
       "rescued": false,
@@ -5838,26 +5864,26 @@
       "rule": "foreign-local-preselection",
       "t": 1794101557,
       "title": "اعلام وضعیت اضطراری در جزیره ای در اسپانیا در پی ورود هزاران مهاجر"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مهاجرت و اضطراب در جزیره اسپانیا",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794103347,
+      "title": "Canary Islands’ El Hierro declares emergency amid migrant, refugee influx"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Personal family matter, not major national/international significance",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1794103349,
+      "title": "واکنش همسر شهید مطهری به خواستگاری علی لاریجانی از دخترش؛ زیادی جوان است «مری جان»/ از نظر مالی خانواده علی بالاتر از خا"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ددن",
-        "سست",
-        "سستمتک",
-        "غرنظم",
-        "مرگبر",
-        "هدف",
-        "همچن",
-        "گرسنگ"
-      ],
-      "t": 1794058479.341366,
-      "title": "ادامه گرسنگی دادن و هدف قرار دادن غیرنظامیان توسط اسرائیل در غزه ⚡️ اسرائیل همچنان به سیاست مرگبار گرسنگی دادن و هدف قرا"
-    },
     {
       "h": [
         "است",
@@ -6264,6 +6290,20 @@
       ],
       "t": 1794099787.3167727,
       "title": "انصارالله: حملات عربستان به تاسیسات غیرنظامی جنایت جنگی است ⚡️ محمدعلی الحوثی، عضو شورای عالی سیاسی یمن، حملات مستمر عرب"
+    },
+    {
+      "h": [
+        "انجمن",
+        "شرق",
+        "صنع",
+        "علم",
+        "محکم",
+        "محکمت",
+        "نمندگ",
+        "یمن"
+      ],
+      "t": 1794103372.9319272,
+      "title": "محکومیت حمله به شرق صنعا از سوی مجلس و علمای یمن ⚡️ مجلس نمایندگان و انجمن علمای یمن حملات عربستان علیه مردم این کشور را"
     }
   ],
   "_published_incidents": [
@@ -6543,118 +6583,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "انفجر",
-        "انچ",
-        "برج",
-        "برخرد",
-        "بلدزر",
-        "بمرست",
-        "حدث",
-        "دستگ",
-        "رج",
-        "ره",
-        "شهد",
-        "شهر",
-        "لل",
-        "مصدم",
-        "منتقل",
-        "منجر",
-        "منطق",
-        "هشر",
-        "پزن",
-        "گذشت",
-        "گز",
-        "گچسر"
-      ],
-      "t": 1793972260.241307,
-      "title": "انفجار خط لوله گاز در گچساران با یک مصدوم ⚡️ برخورد یک دستگاه بلدوزر با خط لوله ۱۶ اینچ گاز شهری در منطقه سه راهی پازنان"
-    },
-    {
-      "k": [
-        "ارن",
-        "بردر",
-        "ثبت",
-        "جهن",
-        "حرکت",
-        "دست",
-        "دضرب",
-        "رکرد",
-        "سل",
-        "ششم",
-        "شهر",
-        "علرض",
-        "قهرم",
-        "مجمع",
-        "مدل",
-        "مسبق",
-        "نب",
-        "نصر",
-        "نقر",
-        "ننگب",
-        "وزن",
-        "چن",
-        "کلگرم",
-        "یفت",
-        "یکضرب"
-      ],
-      "n": [
-        "185",
-        "232",
-        "418"
-      ],
-      "t": 1793972300.956858,
-      "title": "علیرضا نصیری نایب قهرمان وزنه برداری جهان شد ⚡️ علیرضا نصیری وزنه بردار ۲۱ ساله ایرانی در مسابقات جهانی ۲۰۲۶ در شهر نینگ"
-    },
-    {
-      "k": [
-        "اتحد",
-        "اختلل",
-        "ارپ",
-        "اسب",
-        "اغز",
-        "افزش",
-        "الملل",
-        "انرژ",
-        "اژنس",
-        "اکتبر",
-        "بربر",
-        "بزرگ",
-        "ترن",
-        "تشدد",
-        "تعن",
-        "تند",
-        "خردر",
-        "دد",
-        "درصد",
-        "دسترس",
-        "ذخر",
-        "رسد",
-        "رقبت",
-        "زمست",
-        "سطح",
-        "طبع",
-        "ظرفت",
-        "عرض",
-        "فصل",
-        "قر",
-        "محمل",
-        "مخزن",
-        "مع",
-        "هدف",
-        "هشدر",
-        "وبستگ",
-        "ورد",
-        "وضعت",
-        "پذر",
-        "پن",
-        "کهش",
-        "گز"
-      ],
-      "t": 1793972320.341867,
-      "title": "هشدار آژانس بین المللی انرژی درباره ذخایر گاز اروپا؛ پایین ترین سطح از سال ۲۰۱۳ ⚡️ آژانس بین المللی انرژی هشدار داد که ا"
-    },
     {
       "k": [
         "اتحد",
@@ -9080,6 +9008,34 @@
       "s": "انصارالله",
       "t": 1794099787.301891,
       "title": "انصارالله: حملات عربستان به تاسیسات غیرنظامی جنایت جنگی است ⚡️ محمدعلی الحوثی، عضو شورای عالی سیاسی یمن، حملات مستمر عرب"
+    },
+    {
+      "k": [
+        "الشر",
+        "انجمن",
+        "بن",
+        "حشش",
+        "حمل",
+        "رست",
+        "سختند",
+        "شرق",
+        "صنع",
+        "طر",
+        "عربست",
+        "علم",
+        "مجلس",
+        "محکم",
+        "محکمت",
+        "مردم",
+        "مشخص",
+        "منطق",
+        "نمندگ",
+        "نهد",
+        "کشر",
+        "یمن"
+      ],
+      "t": 1794103372.9204948,
+      "title": "محکومیت حمله به شرق صنعا از سوی مجلس و علمای یمن ⚡️ مجلس نمایندگان و انجمن علمای یمن حملات عربستان علیه مردم این کشور را"
     }
   ],
   "_telegram_errors": [
@@ -9321,7 +9277,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794101469
+    "at": 1794103274
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9336,13 +9292,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794100399,
-    "last_failure": 1794099799,
-    "last_status": 429
+    "disabled_until": 1794103445,
+    "last_failure": 1794103385,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794101871.0,
-    "last_failure": 1794101571,
+    "disabled_until": 1794103656.0,
+    "last_failure": 1794103356,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
