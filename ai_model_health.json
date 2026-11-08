@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794087191
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794087191
     },
@@ -159,16 +155,20 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
       "t": 1794103388
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1794103789
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-07",
-      "n": 111
+      "n": 112
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-07",
-      "n": 191
+      "n": 192
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-07",
@@ -176,7 +176,7 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-07",
-      "n": 82
+      "n": 83
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-08",
@@ -491,14 +491,14 @@
     "2026-11-08": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 9,
-        "ok": 9,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -509,8 +509,8 @@
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 6,
+        "429": 4,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -532,9 +532,9 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 1,
-        "calls": 12,
+        "calls": 13,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 11,
+        "ok": 12,
         "other": 0
       }
     }
@@ -4663,7 +4663,7 @@
   "_editorial_blocks": {
     "at least 27 people killed in strike near yemen's capital, houthi official says": {
       "reason": "content_duplicate",
-      "until": 1794103463.188768
+      "until": 1794125389.514658
     },
     "blow for netanyahu as opposition rival asked to form government by israel's president": {
       "reason": "content_duplicate",
@@ -9277,7 +9277,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794103274
+    "at": 1794103704
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9297,9 +9297,9 @@
     "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794103656.0,
-    "last_failure": 1794103356,
-    "last_status": 503
+    "disabled_until": 1794104379,
+    "last_failure": 1794103779,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
