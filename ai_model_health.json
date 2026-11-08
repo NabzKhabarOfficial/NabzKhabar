@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794085410
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794085410
-    },
-    {
       "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.5-flash-lite",
       "t": 1794085411
     },
@@ -159,32 +151,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
       "t": 1794097962
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794099749
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1794099805
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-07",
-      "n": 108
+      "n": 110
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-07",
-      "n": 184
+      "n": 187
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-07",
-      "n": 82
+      "n": 84
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-07",
-      "n": 77
+      "n": 79
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-08",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-08",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-07",
@@ -491,48 +491,49 @@
     "2026-11-08": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 1,
-        "calls": 1,
+        "429": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 0,
+        "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
         "429": 2,
-        "calls": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 0
+        "other": 1
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 5,
+        "ok": 7,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 5,
-        "other": 1
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       }
     }
@@ -1111,6 +1112,13 @@
       "t": 1794096171.9238777,
       "title": "زلزله ۵.۷ ریشتری در ژاپن ۲۰ زخمی بر جای گذاشت",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1794099787.3274624,
+      "title": "انصارالله: حملات عربستان به تاسیسات غیرنظامی جنایت جنگی است",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-07",
@@ -1223,6 +1231,12 @@
       "topic": "حادثه",
       "until": 1794162847.8278685
     },
+    "v4|how do spam callers get your number in the first place?": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: General advice article, no significant event",
+      "topic": "فناوری",
+      "until": 1794186147.4718127
+    },
     "v4|how the iran war helped democrats win the midterms": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Analysis/opinion piece on past political events.",
@@ -1240,6 +1254,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=False scope=world: گزارش تحلیلی و پشت‌صحنه رسانه‌ای درباره جنگ بدون خبر فوری.",
       "topic": "نظامی",
       "until": 1794134076.3978767
+    },
+    "v4|iran war live: blasts heard in qeshm; us moves to block land supply routes": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Explosions reported in strategic Hormuz locations",
+      "topic": "نظامی",
+      "until": 1794186149.571721
     },
     "v4|islamist militant attack forces patients to flee ebola clinic in congo": {
       "ok": true,
@@ -3803,6 +3823,12 @@
       "topic": "سیاست",
       "until": 1794148474.7693255
     },
+    "v4|مقام انصارالله: حمله مستمر عربستان به تأسیسات و اهداف غیرنظامی جنایت جنگی است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Houthi official condemns Saudi attacks as war crimes",
+      "topic": "سیاست",
+      "until": 1794186149.583197
+    },
     "v4|مقام سابق خطاب به ترامپ: جنگ را همین امروز تمام و مقام های جنگ طلب را اخراج کن": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: مقاله و درخواست مقام پیشین آمریکایی از ترامپ",
@@ -4635,7 +4661,11 @@
     },
     "houthis say at least 25 killed in saudi air strike": {
       "reason": "content_duplicate",
-      "until": 1794098114.4048924
+      "until": 1794121405.1551833
+    },
+    "iran war live: blasts heard in qeshm; us moves to block land supply routes": {
+      "reason": "content_duplicate",
+      "until": 1794121392.1862962
     },
     "islamist militant attack forces patients to flee ebola clinic in congo": {
       "reason": "content_duplicate",
@@ -4739,15 +4769,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "نخست وزیر قطر: آمریکا همچنان به دنبال راه حلی برای مناقشه با ایران است ⚡️ محمد بن عبدالرحمن آل ثانی، نخست وزیر",
-      "id": "88666eaa92",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794036934,
-      "verdict": "new",
-      "why": "مذاکرات آمریکا و ایران، موضوع جدید"
-    },
     {
       "head": "ترور و شهادت امام جمعه محترم آباد در فنوج ⚡️ مولوی شمس الحق قاضی، امام جمعه شهر محترم آباد و فرزند مرحوم الیاس",
       "id": "b514bff0b4",
@@ -5295,16 +5316,19 @@
       "t": 1794096170,
       "verdict": "new",
       "why": "زلزله جدید در ژاپن، غیرمتعلق به موارد قبلی"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:reaction",
+      "head": "انصارالله: حملات عربستان به تاسیسات غیرنظامی جنایت جنگی است ⚡️ محمدعلی الحوثی، عضو شورای عالی سیاسی یمن، حملات",
+      "id": "190bc216a7",
+      "match": "حمله هوایی عربستان به منطقه بنی حشیش در صنعا کشته و زخمی کرد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794099762,
+      "verdict": "unconfirmed-repeat",
+      "why": "same Saudi airstrike on Yemen, different wording"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: اظهارنظر نخست‌وزیر اسلواکی درباره همه‌پرسی گذشته پیوستن به اتحادیه اروپا تاثیر جهانی ندارد",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794065638,
-      "title": "فیکو: احتمال دستکاری نتایج همه پرسی پیوستن اسلواکی به اتحادیه اروپا وجود دارد"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مصاحبه سرمربی پس از بازی فوتبال لیگ برتر",
       "rescued": false,
@@ -5857,78 +5881,19 @@
       "rule": "no-concrete-event",
       "t": 1794097950,
       "title": "'Wonderful goal' - Crewe's McNeill scores from halfway line"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: General advice article, no significant event",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794099747,
+      "title": "How do spam callers get your number in the first place?"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اردند",
-        "انتخب",
-        "تگزس",
-        "جنب",
-        "خه",
-        "در",
-        "دست",
-        "دمکر",
-        "سنت",
-        "شدند",
-        "قطع",
-        "پگ",
-        "کرلن",
-        "کنترل",
-        "کنزس",
-        "کنگر"
-      ],
-      "t": 1794053062.0419605,
-      "title": "پیروزی قاطع دموکرات ها در انتخابات میان دوره ای ۲۰۲۶ آمریکا ⚡️ دموکرات ها در انتخابات میان دوره ای ۲۰۲۶ کنترل هر دو مجلس"
-    },
-    {
-      "h": [
-        "است",
-        "اصبت",
-        "انسن",
-        "بحر",
-        "برج",
-        "بزر",
-        "تشدد",
-        "تعز",
-        "درگر",
-        "دنستند",
-        "طرف",
-        "مشک",
-        "مقصر",
-        "گذشت",
-        "یمن",
-        "یکدگر"
-      ],
-      "t": 1794054917.8606966,
-      "title": "ده ها کشته در حمله موشکی به تعز و تشدید بحران انسانی در یمن ⚡️ اصابت یک موشک به بازاری در استان تعز یمن ده ها کشته برجا "
-    },
-    {
-      "h": [
-        "اجتمع",
-        "ارز",
-        "اسلم",
-        "افزش",
-        "بب",
-        "ترمم",
-        "تفق",
-        "حقق",
-        "شر",
-        "عل",
-        "مبهلتفت",
-        "محل",
-        "مرحل",
-        "نبد",
-        "کرنم",
-        "کمسن"
-      ],
-      "t": 1794054963.342292,
-      "title": "توافق مجلس و دولت برای ترمیم دو مرحله ای حقوق ها از محل مابهالتفاوت ارز ⚡️ علی بابایی کارنامی، رئیس کمیسیون اجتماعی مجلس"
-    },
     {
       "h": [
         "ددن",
@@ -6327,6 +6292,28 @@
       ],
       "t": 1794096171.9028687,
       "title": "زلزله ۵.۷ ریشتری در ژاپن ۲۰ زخمی بر جای گذاشت ⚡️ زلزله ۵.۷ ریشتری مرکز ژاپن را لرزاند و دستکم ۲۰ نفر در استان آیچی مجروح"
+    },
+    {
+      "h": [
+        "الحث",
+        "انصرلل",
+        "اهدف",
+        "تسس",
+        "تصف",
+        "جنت",
+        "رد",
+        "زمن",
+        "شر",
+        "عض",
+        "عل",
+        "غرنظم",
+        "محمدعل",
+        "مستمر",
+        "گذشت",
+        "یمن"
+      ],
+      "t": 1794099787.3167727,
+      "title": "انصارالله: حملات عربستان به تاسیسات غیرنظامی جنایت جنگی است ⚡️ محمدعلی الحوثی، عضو شورای عالی سیاسی یمن، حملات مستمر عرب"
     }
   ],
   "_published_incidents": [
@@ -6606,57 +6593,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اختلل",
-        "ار",
-        "افزش",
-        "اقدم",
-        "امرک",
-        "انرژ",
-        "بزتب",
-        "بزر",
-        "تشدد",
-        "تمن",
-        "جنگ",
-        "جهن",
-        "حمل",
-        "خربر",
-        "زنجر",
-        "سزم",
-        "شخص",
-        "شرط",
-        "غذ",
-        "فشر",
-        "قمت",
-        "متحد",
-        "مج",
-        "مد",
-        "ملل",
-        "هزن",
-        "ونقل",
-        "پمد",
-        "کشرز"
-      ],
-      "t": 1793966702.9751606,
-      "title": "فشار جنگ آمریکا بر ایران بر زنجیره تأمین جهانی غذا ⚡️ سازمان خواربار و کشاورزی ملل متحد (فائو) اعلام کرد جنگ آمریکا علیه"
-    },
-    {
-      "k": [
-        "تثر",
-        "تحت",
-        "زلزل",
-        "زمن",
-        "سحل",
-        "شرق",
-        "لرز",
-        "لرزند",
-        "منطق",
-        "ژپن"
-      ],
-      "t": 1793968567.2037785,
-      "title": "زلزله در ساحل شرقی ژاپن زمین را لرزاند ⚡️ زمین لرزه ای در ساحل شرقی ژاپن زمین را لرزاند. ▫️ این زلزله منطقه را تحت تأثیر"
-    },
     {
       "k": [
         "انفجر",
@@ -9167,6 +9103,33 @@
       ],
       "t": 1794096171.8886838,
       "title": "زلزله ۵.۷ ریشتری در ژاپن ۲۰ زخمی بر جای گذاشت ⚡️ زلزله ۵.۷ ریشتری مرکز ژاپن را لرزاند و دستکم ۲۰ نفر در استان آیچی مجروح"
+    },
+    {
+      "k": [
+        "الحث",
+        "انصرلل",
+        "اهدف",
+        "تسس",
+        "تصف",
+        "جنت",
+        "جنگ",
+        "حمل",
+        "رد",
+        "زمن",
+        "سس",
+        "شر",
+        "عربست",
+        "عض",
+        "عل",
+        "غرنظم",
+        "محمدعل",
+        "مستمر",
+        "گذشت",
+        "یمن"
+      ],
+      "s": "انصارالله",
+      "t": 1794099787.301891,
+      "title": "انصارالله: حملات عربستان به تاسیسات غیرنظامی جنایت جنگی است ⚡️ محمدعلی الحوثی، عضو شورای عالی سیاسی یمن، حملات مستمر عرب"
     }
   ],
   "_telegram_errors": [
@@ -9408,7 +9371,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794097873
+    "at": 1794099675
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9423,14 +9386,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794096787,
-    "last_failure": 1794096187,
+    "disabled_until": 1794100399,
+    "last_failure": 1794099799,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794098552,
-    "last_failure": 1794097952,
-    "last_status": 429
+    "disabled_until": 1794100056.0,
+    "last_failure": 1794099756,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9443,6 +9406,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1794099754,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
