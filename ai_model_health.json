@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794088953
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
-      "t": 1794088954
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1794088988
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
-      "t": 1794090769
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794092370
     },
@@ -159,32 +143,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 5x",
       "t": 1794105201
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794106958
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794106959
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1794106960
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1794107001
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-07",
-      "n": 114
+      "n": 115
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-07",
-      "n": 195
+      "n": 198
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-07",
-      "n": 87
+      "n": 88
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-07",
-      "n": 87
+      "n": 88
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-08",
-      "n": 14
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-08",
-      "n": 14
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-11-07",
@@ -491,26 +491,26 @@
     "2026-11-08": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 13,
-        "ok": 13,
+        "calls": 16,
+        "ok": 16,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 3,
-        "calls": 6,
+        "429": 4,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 6,
-        "calls": 9,
+        "429": 7,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -518,23 +518,23 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
+        "ok": 13,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
+        "ok": 13,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
-        "429": 2,
-        "calls": 18,
+        "429": 3,
+        "calls": 23,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 16,
+        "ok": 20,
         "other": 0
       }
     }
@@ -1127,6 +1127,13 @@
       "t": 1794105200.1821754,
       "title": "کشته شدن بیش از ۵۰ نفر در یکی از خونین ترین روزهای جنگ یمن",
       "urgent": false
+    },
+    {
+      "label": "حادثه",
+      "level": 4,
+      "t": 1794107000.8506389,
+      "title": "انفجار لاستیک کامیون هنگام باد کردن در ویتنام",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-07",
@@ -1203,6 +1210,12 @@
       "topic": "جامعه",
       "until": 1794189747.891149
     },
+    "v4|cold blast brings springtime snow to alpine regions as temperatures plummet across australia’s south-east": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Unseasonal snow in SE Australia, no major impact",
+      "topic": "آب و هوا",
+      "until": 1794193358.5932505
+    },
     "v4|dozens killed as humanitarian crisis mounts in yemen: what next for war?": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: کشته شدن ده‌ها نفر و درگیری‌های نظامی در یمن.",
@@ -1268,6 +1281,12 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Explosions reported in strategic Hormuz locations",
       "topic": "نظامی",
       "until": 1794186149.571721
+    },
+    "v4|iran war live: us moves to block land supply routes; uae rescues 22 sailors": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Explosions reported in Strait of Hormuz, major cities.",
+      "topic": "نظامی",
+      "until": 1794193360.206367
     },
     "v4|islamist militant attack forces patients to flee ebola clinic in congo": {
       "ok": true,
@@ -1364,12 +1383,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تحریم‌های رسمی وزارت خزانه داری آمریکا علیه صرافی‌های مرتبط با ایران.",
       "topic": "اقتصاد",
       "until": 1794119615.8421783
-    },
-    "v4|will new zealand join voters’ global revolt over soaring costs?": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Speculation on future election outcome",
-      "topic": "سیاست",
-      "until": 1794105158.1777658
     },
     "v4|will trump strike nuclear sites again as iran engages ‘cognitive warfare’?": {
       "ok": false,
@@ -1983,6 +1996,12 @@
       "topic": "حادثه",
       "until": 1794146703.8478158
     },
+    "v4|انفجار لاستیک کامیون هنگام باد کردن در ویتنام": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Truck tire exploded, minor injury.",
+      "topic": "حادثه",
+      "until": 1794193360.2162287
+    },
     "v4|انفجار ناشی از نشت گاز جان یک نفر را در چناران گرفت": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: یک انفجار گاز محلی، یک کشته، اثر ملی کم",
@@ -2096,6 +2115,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: تغییر شاخص کل بورس یک رویداد مهم اقتصادی ملی است.",
       "topic": "اقتصاد",
       "until": 1794132299.4526887
+    },
+    "v4|باید با خارجی ها رقابت کنیم اما حمایت ها کافی نیست": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Board game maker cites weak support, low margins",
+      "topic": "اقتصاد",
+      "until": 1794193357.218017
     },
     "v4|ببینید / تصاویری دیده نشده از نیروهای پدافندی در ارتفاعات تهران؛ اسفند ۱۴۰۴": {
       "ok": false,
@@ -3309,12 +3334,6 @@
       "topic": "حادثه",
       "until": 1794108776.5175314
     },
-    "v4|شنیده شدن صدای چند انفجار در جزیره قشم .": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=iran_national: Explosions in strategic areas like Qeshm are treated as national security events.",
-      "topic": "حادثه",
-      "until": 1794105163.8544984
-    },
     "v4|شهادت و جراحت ۸۳ نفر در حملات ۲۴ ساعت گذشته عربستان به یمن": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تلفات حملات نظامی روزانه در درگیری‌های منطقه‌ای یمن و عربستان.",
@@ -4101,6 +4120,12 @@
       "topic": "اقتصاد",
       "until": 1794123234.97485
     },
+    "v4|همسرم به دلیل اینکه نمی توانم بچه دار شوم از من خواسته زن دوم بگیرم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=local: Personal marital advice, not newsworthy",
+      "topic": "جامعه",
+      "until": 1794193359.003306
+    },
     "v4|همکاری ایران و چین باید به سمت پایداری و تاب آور شدن حرکت کند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Statement, no concrete event",
@@ -4687,6 +4712,10 @@
       "reason": "content_duplicate",
       "until": 1794121392.1862962
     },
+    "iran war live: us moves to block land supply routes; uae rescues 22 sailors": {
+      "reason": "content_duplicate",
+      "until": 1794128563.5915303
+    },
     "islamist militant attack forces patients to flee ebola clinic in congo": {
       "reason": "content_duplicate",
       "until": 1794107070.9245107
@@ -4755,9 +4784,8 @@
       "until": 1794107055.5815244
     },
     "ماجرای صداهای انفجار در جنوب ایران": {
-      "at": 1794083691.4566705,
-      "reason": "final_guard:media-source",
-      "until": 1794105291.4566705
+      "reason": "content_duplicate",
+      "until": 1794128589.0849988
     },
     "مجلس نمایندگان و علمای یمن، حمله به روستای شرق صنعا را محکوم کردند": {
       "reason": "content_duplicate",
@@ -4769,15 +4797,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "درخواست بازرگانان نفت برای بازگشت نفتکش های تحت تحریم آمریکا ⚡️ شرکت های بازرگانی نفت به دلیل افزایش شدید هزین",
-      "id": "e87fe0c656",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794042267,
-      "verdict": "new",
-      "why": "موضوع جدید: تحریم نفتکش‌ها و هزینه‌های حمل‌ونقل"
-    },
     {
       "head": "بحران کمبود ۴۰۰ میلیون مترمکعبی گاز در کشور ⚡️ احمد فاطمی، رئیس مجمع نمایندگان استان مازندران از کمبود ۴۰۰ میل",
       "id": "bdd3d223a6",
@@ -5328,30 +5347,18 @@
       "t": 1794105196,
       "verdict": "unconfirmed-repeat",
       "why": "همان حمله موشکی به تعز، با تعداد کشته‌ها متفاوت"
+    },
+    {
+      "head": "انفجار لاستیک کامیون هنگام باد کردن در ویتنام ⚡️ ترکیدن ناگهانی لاستیک یک کامیون هنگام باد کردن در ویتنام، آن ",
+      "id": "0a1142ce99",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794106998,
+      "verdict": "new",
+      "why": "تک‌روید انفجار لاستیک در ویتنام"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: طرح روتین پلیس محلی و فاقد اهمیت ملی",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1794067458,
-      "title": "۱۳۶ معتاد متجاهر در اسلامشهر جمع آوری شدند"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Generic advisory comment, no concrete policy decision",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1794069213,
-      "title": "اقتدار اقتصادی کشور با تکیه بر تولید محقق می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مصاحبه ورزشی معمولی و اظهارات بازیکن پس از بازی لیگ برتر",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1794069223,
-      "title": "هاشم نژاد: از هواداران انتظار بیشتری داشتم/ ترابی بهترین وینگر ایران است"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: توافق دولت آلمان برای صدور مجوز ورود مخفیانه به منازل شهروندان",
       "rescued": true,
@@ -5890,79 +5897,33 @@
       "rule": "strict-source-below-importance(8<10)",
       "t": 1794105135,
       "title": "تظاهرات صدها اسرائیلی در تل آویو برای مطالبه کنار گذاشتن نتانیاهو"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Board game maker cites weak support, low margins",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1794106957,
+      "title": "باید با خارجی ها رقابت کنیم اما حمایت ها کافی نیست"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Unseasonal snow in SE Australia, no major impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794106958,
+      "title": "Cold blast brings springtime snow to alpine regions as temperatures plummet across Australia’s south-east"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=local: Personal marital advice, not newsworthy",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1794106959,
+      "title": "همسرم به دلیل اینکه نمی توانم بچه دار شوم از من خواسته زن دوم بگیرم"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ابرهم",
-        "الخلل",
-        "انتشر",
-        "تشدد",
-        "جنبش",
-        "حمس",
-        "دن",
-        "شهرک",
-        "قدس",
-        "محکم",
-        "مسجد",
-        "مسجدلقص",
-        "نسبت",
-        "نشن",
-        "هشدر",
-        "یرش"
-      ],
-      "t": 1794062099.8635623,
-      "title": "هشدار حماس نسبت به تشدید جنگ دینی در مسجدالاقصی و مسجد ابراهیمی ⚡️ جنبش حماس با انتشار بیانیه ای، یورش شهرک نشینان و نظا"
-    },
-    {
-      "h": [
-        "احتمل",
-        "النعم",
-        "امدگ",
-        "خرج",
-        "خش",
-        "دخل",
-        "دفع",
-        "دپلمس",
-        "رشد",
-        "شر",
-        "عل",
-        "فدرل",
-        "مذکر",
-        "مضع",
-        "مل",
-        "نسبت",
-        "وقع",
-        "پشرفت",
-        "کمت"
-      ],
-      "t": 1794062111.6881347,
-      "title": "موضع امارات درباره مذاکرات ایران و آمریکا؛ خوش بینی به دیپلماسی و آمادگی برای جنگ ⚡️ علی راشد النعیمی، رئیس کمیته دفاع، "
-    },
-    {
-      "h": [
-        "انترپک",
-        "حسب",
-        "حضر",
-        "دسترس",
-        "رست",
-        "سرس",
-        "شرکت",
-        "قنن",
-        "مسدد",
-        "مسددسز",
-        "نشد",
-        "پشتبن",
-        "کربر",
-        "کلد"
-      ],
-      "t": 1794062131.1522005,
-      "title": "مسدودسازی حساب های کاربری ایرانی در سرویس کلاد توسط آنتروپیک ⚡️ شرکت آنتروپیک در راستای قوانین جدید خود، دسترسی کاربران "
-    },
     {
       "h": [
         "انرژ",
@@ -6340,6 +6301,21 @@
       ],
       "t": 1794105200.1661344,
       "title": "کشته شدن بیش از ۵۰ نفر در یکی از خونین ترین روزهای جنگ یمن ⚡️ حملات اخیر در یمن که به کشته شدن بیش از ۵۰ تن انجامید، یکی"
+    },
+    {
+      "h": [
+        "بد",
+        "ترکدن",
+        "شدت",
+        "لستک",
+        "نگهن",
+        "هنگم",
+        "وتنم",
+        "پرتب",
+        "کمن"
+      ],
+      "t": 1794107000.8321202,
+      "title": "انفجار لاستیک کامیون هنگام باد کردن در ویتنام ⚡️ ترکیدن ناگهانی لاستیک یک کامیون هنگام باد کردن در ویتنام، آن را با شدت "
     }
   ],
   "_published_incidents": [
@@ -6609,6 +6585,25 @@
       "regions": [],
       "t": 1794105200.1742232,
       "title": "کشته شدن بیش از ۵۰ نفر در یکی از خونین ترین روزهای جنگ یمن ⚡️ حملات اخیر در یمن که به کشته شدن بیش از ۵۰ تن انجامید، یکی",
+      "toll": 0
+    },
+    {
+      "a": [
+        "ترکدن",
+        "شدت",
+        "لستک",
+        "نگهن",
+        "هنگم",
+        "وتنم",
+        "پرتب",
+        "کمن"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1794107000.8415668,
+      "title": "انفجار لاستیک کامیون هنگام باد کردن در ویتنام ⚡️ ترکیدن ناگهانی لاستیک یک کامیون هنگام باد کردن در ویتنام، آن را با شدت ",
       "toll": 0
     }
   ],
@@ -9124,6 +9119,29 @@
       ],
       "t": 1794105200.1577675,
       "title": "کشته شدن بیش از ۵۰ نفر در یکی از خونین ترین روزهای جنگ یمن ⚡️ حملات اخیر در یمن که به کشته شدن بیش از ۵۰ تن انجامید، یکی"
+    },
+    {
+      "k": [
+        "امد",
+        "انفجر",
+        "بد",
+        "ترکدن",
+        "درست",
+        "شدت",
+        "فرد",
+        "لستک",
+        "مرد",
+        "نزدک",
+        "نشست",
+        "نگهن",
+        "هنگم",
+        "وتنم",
+        "پرتب",
+        "پشت",
+        "کمن"
+      ],
+      "t": 1794107000.8225293,
+      "title": "انفجار لاستیک کامیون هنگام باد کردن در ویتنام ⚡️ ترکیدن ناگهانی لاستیک یک کامیون هنگام باد کردن در ویتنام، آن را با شدت "
     }
   ],
   "_telegram_errors": [
@@ -9365,7 +9383,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794105061
+    "at": 1794106868
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
