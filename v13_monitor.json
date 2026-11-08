@@ -2,8 +2,10 @@
   "ai_pool": {},
   "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-07T23:34:08.497140+00:00",
+  "checked_at": "2026-11-08T00:03:12.858748+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -46,61 +48,62 @@
       "source": "",
       "title": "Abdul El-Sayed slams Trump’s tariff war with Canada",
       "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: مسابقه فوتبال لیگ برتر انگلیس و فاقد اهمیت برای ایران",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "Muniz strike denies Newcastle and Jaissle much-needed win",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=world: مقاله آموزشی و تکنولوژی شخصی فاقد ارزش خبری است",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "You can easily keep your home network running during a power outage — here's how",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=local: Unverified claim, no event",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "ادعای سنتکام درباره حمله به یک کشتی در دریای عمان / در تلاش برای نقض محاصره دریایی علیه ایران بود",
-      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "nytimes.com",
+      "started_at": "2026-11-08T00:03:03.709397+00:00",
+      "title": "At Least 6 Dead in Poland After Gunman Opens Fire in Krakow, Police Say",
+      "url": "https://nytimes.com/2026/11/07/world/europe/krakow-poland-shooting.html"
+    },
+    {
+      "error": "",
+      "result": "failed",
+      "source": "nytimes.com",
+      "started_at": "2026-11-08T00:03:06.572228+00:00",
+      "title": "More Than 50 Killed in Yemen in One of the Deadliest 24 Hours of the War",
+      "url": "https://nytimes.com/2026/11/07/world/middleeast/more-than-50-killed-in-yemen.html"
+    }
+  ],
+  "failed_publications": 2,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 14,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "nytimes.com",
+      "title": "At Least 6 Dead in Poland After Gunman Opens Fire in Krakow, Police Say",
+      "url": "https://nytimes.com/2026/11/07/world/europe/krakow-poland-shooting.html"
+    },
+    {
+      "intelligence_score": 13,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "nytimes.com",
+      "title": "More Than 50 Killed in Yemen in One of the Deadliest 24 Hours of the War",
+      "url": "https://nytimes.com/2026/11/07/world/middleeast/more-than-50-killed-in-yemen.html"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": false,
   "published": 1,
   "run_status": "success",
-  "selected_for_publication": 11,
+  "selected_for_publication": 9,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "irna.ir",
-      "started_at": "2026-11-07T23:33:11.525992+00:00",
-      "title": "شمار کشته ها و زخمی های یمن به یکهزار و ۳۹ نفر رسید",
-      "url": "https://irna.ir/news/86315285/%D8%B4%D9%85%D8%A7%D8%B1-%DA%A9%D8%B4%D8%AA%D9%87-%D9%87%D8%A7%DB%8C-%D8%B2%D8%AE%D9%85%DB%8C-%D9%87%D8%A7%DB%8C-%DB%8C%D9%85%D9%86-%D8%A8%D9%87-%DB%8C%DA%A9%D9%87%D8%B2%D8%A7%D8%B1-%D9%88-%DB%B3%DB%B9-%D9%86%D9%81%D8%B1-%D8%B1%D8%B3%DB%8C%D8%AF"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "isna.ir",
-      "started_at": "2026-11-07T23:33:34.993393+00:00",
-      "title": "شهادت و جراحت ۸۳ نفر در حملات ۲۴ ساعت گذشته عربستان به یمن",
-      "url": "https://isna.ir/news/1405081711004/%D8%B4%D9%87%D8%A7%D8%AF%D8%AA-%D9%88-%D8%AC%D8%B1%D8%A7%D8%AD%D8%AA-%DB%B8%DB%B3-%D9%86%D9%81%D8%B1-%D8%AF%D8%B1-%D8%AD%D9%85%D9%84%D8%A7%D8%AA-%DB%B2%DB%B4-%D8%B3%D8%A7%D8%B9%D8%AA-%DA%AF%D8%B0%D8%B4%D8%AA%D9%87-%D8%B9%D8%B1%D8%A8%D8%B3%D8%AA%D8%A7%D9%86-%D8%A8%D9%87-%DB%8C%D9%85%D9%86"
+      "source": "aljazeera.com",
+      "started_at": "2026-11-08T00:02:53.770206+00:00",
+      "title": "Eisenkot chosen over Netanyahu to form Israel’s next government",
+      "url": "https://aljazeera.com/video/newsfeed/2026/11/7/eisenkot-chosen-over-netanyahu-to-form-israels-next-government?traffic_source=rss"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
