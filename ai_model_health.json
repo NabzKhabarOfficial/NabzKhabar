@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-26b-a4b-it:free: HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry sh",
-      "t": 1794171848
-    },
-    {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-31b-it:free: HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortl",
-      "t": 1794171848
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 7 stories",
-      "t": 1794171848
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794171848
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794171848
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794171849
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794171849
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
       "t": 1794177219
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794178967
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794178968
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794178968
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1794178970
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
+      "t": 1794178973
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1794178996
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-08",
-      "n": 113
+      "n": 114
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-08",
-      "n": 191
+      "n": 194
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-08",
-      "n": 86
+      "n": 87
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-08",
-      "n": 79
+      "n": 80
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-08",
-      "n": 89
+      "n": 90
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-08",
-      "n": 89
+      "n": 90
     },
     "openrouter:*": {
       "day": "2026-11-08",
@@ -491,46 +491,46 @@
     "2026-11-08": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 135,
+        "calls": 136,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 132,
+        "ok": 133,
         "other": 3
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 252,
+        "calls": 255,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 247,
+        "ok": 250,
         "other": 5
       },
       "gemini:gemini-3.6-flash": {
         "429": 61,
-        "calls": 113,
+        "calls": 114,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 48,
+        "ok": 49,
         "other": 4
       },
       "gemini:gemini-3.8-flash": {
         "429": 54,
-        "calls": 69,
+        "calls": 70,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 1,
-        "other": 14
+        "other": 15
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 89,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "calls": 90,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 74,
-        "other": 15
+        "other": 16
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 89,
+        "calls": 90,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 60,
+        "ok": 61,
         "other": 29
       },
       "mistral:ministral-8b-latest": {
@@ -542,9 +542,9 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 78,
-        "calls": 223,
+        "calls": 225,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 145,
+        "ok": 147,
         "other": 0
       },
       "openrouter:dots-studio/dots-3-note-preview:free": {
@@ -1175,6 +1175,13 @@
       "t": 1794177211.3059182,
       "title": "پیروزی لندو نوریس در گرندپری سائوپائولو با وجود اشتباهات مرسدس",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1794178984.4232903,
+      "title": "ادعای وزیر خارجه آمریکا درباره غیرقابل قبول بودن مطالبات ایران و بی ثمر بودن مذاکرات",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-08",
@@ -1407,12 +1414,6 @@
       "topic": "فناوری",
       "until": 1794263584.6415954
     },
-    "v4|qualifying conditions borderline - but norris and russell hoping for more rain": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: F1 qualifying, not top‑tier news",
-      "topic": "ورزش",
-      "until": 1794182563.0879166
-    },
     "v4|reeling from rare mass shooting, poles ask what set off young suspect": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تیراندازی مرگبار با قربانیان متعدد در لهستان، واقعه مهم جهانی.",
@@ -1454,6 +1455,18 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Significant legal development in global AI and copyright industry.",
       "topic": "فناوری",
       "until": 1794254801.3691535
+    },
+    "v4|surgeon having lunch near krakow shooting undoubtedly saved officer's life, colleague says": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local Krakow shooting, surgeon saved officer",
+      "topic": "حادثه",
+      "until": 1794265367.9991732
+    },
+    "v4|targeted by u.s., armed group strikes back in colombia": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله گروه مسلح با پهپاد به یک پایگاه نظامی در کلمبیا.",
+      "topic": "نظامی",
+      "until": 1794265373.4552107
     },
     "v4|train crash kills seven, injures dozens near egypt’s cairo city": {
       "ok": true,
@@ -1730,6 +1743,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اظهارنظر رسمی ترامپ درباره احتمال جنگ و مذاکرات با ایران",
       "topic": "سیاست",
       "until": 1794247559.5735638
+    },
+    "v4|ادعای روبیو: مطالبات ایران غیرقابل قبول است؛ مذاکرات نتیجه بخش نبود": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: وزیر خارجه آمریکا درباره مذاکرات ایران موضع رسمی اعلام کرد.",
+      "topic": "سیاست",
+      "until": 1794265373.4283502
     },
     "v4|ادعای سفیر آمریکا درباره تهران؛ پایتخت های اروپایی در تیررس موشک های ایران قرار دارند": {
       "ok": true,
@@ -2066,12 +2085,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Routine academic conference on urban development.",
       "topic": "جامعه",
       "until": 1794213212.1365364
-    },
-    "v4|بازگشایی سفارت مصر در لیبی بعد از ۱۲ سال تعطیلی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: دوباره‌افتتاح سفارت، تاثیر محدود",
-      "topic": "سیاست",
-      "until": 1794184348.6306145
     },
     "v4|باند سارقان حرفه ای خودرو در استان بوشهر متلاشی شد": {
       "ok": false,
@@ -2522,12 +2535,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: خبر عمرانی و محلی درباره تکمیل پروژه جاده‌ای در قشم.",
       "topic": "اقتصاد",
       "until": 1794236612.2513845
-    },
-    "v4|تیراندازی مرگبار در کراکوف لهستان؛ سه جسد دیگر در خانه مهاجم پیدا شد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: 6 dead, >10 injured, major Poland shooting",
-      "topic": "حادثه",
-      "until": 1794182563.0992692
     },
     "v4|ثبت بارش ۱۲۱ میلی متری در امامزاده علی کهگیلویه و بویراحمد": {
       "ok": false,
@@ -3152,12 +3159,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Minor earthquake with no significant damage or casualties.",
       "topic": "آب و هوا",
       "until": 1794239526.9670992
-    },
-    "v4|زلزله ۵.۷ ریشتری در ژاپن ۲۰ زخمی بر جای گذاشت": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: 20 injured, major Japan earthquake",
-      "topic": "حادثه",
-      "until": 1794182563.0737178
     },
     "v4|زمین های کشاورزی پرچل الیگودرز زیر گل ولای رفت": {
       "ok": false,
@@ -3824,6 +3825,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=True scope=world: Diplomatic rhetoric and accusations, not a concrete policy decision.",
       "topic": "سیاست",
       "until": 1794236608.861418
+    },
+    "v4|مشارکت ۲۰۰ هزار نفری در تظاهرات آمستردام؛ «طوفان سرخ» در حمایت از فلسطین": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: تظاهرات بسیار بزرگ در حمایت از فلسطین در آمستردام برگزار شد.",
+      "topic": "جامعه",
+      "until": 1794265373.441928
     },
     "v4|مشاهده دود غلیظ از پالایشگاه نفت تهران": {
       "ok": false,
@@ -4881,15 +4888,6 @@
   },
   "_event_judge_log": [
     {
-      "head": "انفجار لاستیک کامیون هنگام باد کردن در ویتنام ⚡️ ترکیدن ناگهانی لاستیک یک کامیون هنگام باد کردن در ویتنام، آن ",
-      "id": "0a1142ce99",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794106998,
-      "verdict": "new",
-      "why": "تک‌روید انفجار لاستیک در ویتنام"
-    },
-    {
       "head": "جواد لاریجانی: هر اقدام نظامی یا ترور علیه ایران باید با پاسخ شدیدتر مواجه شود ⚡️ محمدجواد لاریجانی، کارشناس ا",
       "id": "dea163442b",
       "match": "مقام ارشد امنیتی: هرگونه حمله به ایران با پاسخ نامحدود و ویرانگر مواجه خواهد شد",
@@ -5423,16 +5421,18 @@
       "t": 1794177209,
       "verdict": "new",
       "why": "different event: Formula 1 race victory"
+    },
+    {
+      "head": "ادعای وزیر خارجه آمریکا درباره غیرقابل قبول بودن مطالبات ایران و بی ثمر بودن مذاکرات ⚡️ وزیر خارجه آمریکا مذاک",
+      "id": "141716134e",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794178983,
+      "verdict": "new",
+      "why": "مذاکرات ایران-آمریکا موضوع جدید"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: حرفه‌ای، تاثیر محدود، نه‌قابل‌توجه",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794151984,
-      "title": "لغو ضوابط حق الزحمه حسابرسی بدون بررسی کارشناسی قابل دفاع نیست"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Minor institutional appointment, limited national impact",
       "rescued": false,
@@ -5985,38 +5985,19 @@
       "rule": "foreign-local-preselection",
       "t": 1794177188,
       "title": "Norris wins gripping race after Antonelli and Russell errors"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local Krakow shooting, surgeon saved officer",
+      "rescued": false,
+      "rule": "final-scope-preselection",
+      "t": 1794178968,
+      "title": "Surgeon having lunch near Krakow shooting undoubtedly saved officer's life, colleague says"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "افت",
-        "اقلم",
-        "برگر",
-        "بندر",
-        "تخل",
-        "تنش",
-        "درصد",
-        "درنرد",
-        "دنبل",
-        "سزم",
-        "شکب",
-        "عمل",
-        "مجمع",
-        "محمد",
-        "مخطر",
-        "مدرعمل",
-        "نسب",
-        "کل",
-        "کهش",
-        "یفت"
-      ],
-      "t": 1794134113.277014,
-      "title": "افت ۴۰ درصدی تخلیه و بارگیری کالا در بنادر ایران ⚡️ محمد شکیبی نسب، مدیرعامل سازمان بنادر و دریانوردی، اعلام کرد که به د"
-    },
     {
       "h": [
         "استفد",
@@ -6440,6 +6421,22 @@
       ],
       "t": 1794177211.292907,
       "title": "پیروزی لندو نوریس در گرندپری سائوپائولو با وجود اشتباهات مرسدس ⚡️ لندو نوریس، راننده مک لارن، در شرایط جوی ناپایدار گرند"
+    },
+    {
+      "h": [
+        "بدن",
+        "تصف",
+        "ثمر",
+        "خرج",
+        "خند",
+        "غرقبل",
+        "قبل",
+        "مذکر",
+        "مطلب",
+        "کمل"
+      ],
+      "t": 1794178984.4105065,
+      "title": "ادعای وزیر خارجه آمریکا درباره غیرقابل قبول بودن مطالبات ایران و بی ثمر بودن مذاکرات ⚡️ وزیر خارجه آمریکا مذاکرات با ایر"
     }
   ],
   "_published_incidents": [
@@ -6739,40 +6736,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "است",
-        "اصفه",
-        "انتظم",
-        "تر",
-        "ترندز",
-        "تقف",
-        "خدر",
-        "خلف",
-        "دستگ",
-        "دستگر",
-        "رل",
-        "سعت",
-        "شدند",
-        "طرح",
-        "عمل",
-        "فرر",
-        "فرمنده",
-        "قتل",
-        "متهم",
-        "محل",
-        "مدت",
-        "ملن",
-        "پکسز",
-        "کرن",
-        "گذشت"
-      ],
-      "n": [
-        "530"
-      ],
-      "t": 1794047692.174206,
-      "title": "دستگیری قاتل فراری و عامل تیراندازی در اصفهان ⚡️ فرماندهی انتظامی استان اصفهان طی ۲۴ ساعت گذشته از دستگیری عامل تیرانداز"
-    },
     {
       "k": [
         "افرد",
@@ -9457,6 +9420,48 @@
       ],
       "t": 1794177211.2791164,
       "title": "پیروزی لندو نوریس در گرندپری سائوپائولو با وجود اشتباهات مرسدس ⚡️ لندو نوریس، راننده مک لارن، در شرایط جوی ناپایدار گرند"
+    },
+    {
+      "k": [
+        "ادع",
+        "ار",
+        "اقدم",
+        "امرک",
+        "بدن",
+        "بعد",
+        "تردد",
+        "ترمپ",
+        "تصف",
+        "تهدد",
+        "تهر",
+        "تکد",
+        "ثمر",
+        "جمهر",
+        "خرج",
+        "خند",
+        "خهند",
+        "در",
+        "دفع",
+        "دنلد",
+        "رس",
+        "رسدگ",
+        "صرت",
+        "غرقبل",
+        "قبل",
+        "مجه",
+        "مذکر",
+        "مضع",
+        "مطلب",
+        "منطق",
+        "نخهد",
+        "نر",
+        "وزر",
+        "وگذر",
+        "کشر",
+        "کمل"
+      ],
+      "t": 1794178984.397388,
+      "title": "ادعای وزیر خارجه آمریکا درباره غیرقابل قبول بودن مطالبات ایران و بی ثمر بودن مذاکرات ⚡️ وزیر خارجه آمریکا مذاکرات با ایر"
     }
   ],
   "_telegram_errors": [
@@ -9716,7 +9721,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794177072
+    "at": 1794178880
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9730,20 +9735,15 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1794177505.0,
-    "last_failure": 1794177205,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794177814,
-    "last_failure": 1794177214,
-    "last_status": 429
+    "disabled_until": 1794179054,
+    "last_failure": 1794178994,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794177483.0,
-    "last_failure": 1794177183,
-    "last_status": 599
+    "disabled_until": 1794179270.0,
+    "last_failure": 1794178970,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
