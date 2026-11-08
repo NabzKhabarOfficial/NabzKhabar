@@ -1,18 +1,29 @@
 {
   "ai_pool": {},
   "all_selected_blocked": false,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-08T20:07:10.848280+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-11-08T20:36:16.614073+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: سقوط بالگرد در اندونزی بدون تلفات سنگین یا اهمیت جهانی.",
+      "reason": "ai_unavailable_foreign",
+      "result": "editorial_blocked",
+      "source": "nytimes.com",
+      "started_at": "2026-11-08T20:35:26.032442+00:00",
+      "title": "What to Know About the Mass Shooting in Krakow, Poland",
+      "url": "https://nytimes.com/2026/11/08/world/europe/poland-krakow-mass-shooting.html"
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: خبر محلی و استانی پلیس درباره توقیف خودرو و اتباع.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "سقوط بالگرد سوپر پوما در اندونزی",
+      "title": "توقیف ۳۵ دستگاه وسیله نقلیه هنجارشکن و دستگیری ۱۵ تبعه غیرمجاز در گرمسار و آرادان",
       "url": ""
     },
     {
@@ -25,51 +36,60 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: خبر حاشیه‌ای و شخصی درباره سفر درمانی یک فرد",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Opinion of a local US state senator, not a strategic official.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "جنگجوی زخمی طالبان که «تشنه شهادت» بود، برای درمان به هند رفته است",
+      "title": "سناتور منتخب دموکرات: جنگ علیه ایران احمقانه بود",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Speculative media report on negotiations without official confirmation.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "جزئیاتی از طرح قطر برای پایان جنگ ایران و آمریکا",
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "entekhab.ir",
+      "started_at": "2026-11-08T20:35:04.461388+00:00",
+      "title": "العربیه به نقل از یک منبع عراقی: در پی حمله پهپادی به میدان گازی کورمور در سلیمانیه، خسارات گسترده ای به این میدان وارد شده / گزارش ها از توقف تولید در میدان گازی کورمور در سلیمانی",
+      "url": "https://entekhab.ir/fa/news/947101/العربیه-به-نقل-از-یک-منبع-عراقی-در-پی-حمله-پهپادی-به-میدان-گازی-کورمور-در-سلیمانیه-خسارات-گسترده-ای-به-این-میدان-وارد-شده-گزارش-ها-از-توقف-تولید-در-میدان-گازی-کورمور-در-سلیمانیه-خبر-می-دهد"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "entekhab.ir",
+      "title": "العربیه به نقل از یک منبع عراقی: در پی حمله پهپادی به میدان گازی کورمور در سلیمانیه، خسارات گسترده ای به این میدان وارد شده / گزارش ها از توقف تولید در میدان گازی کورمور در سلیمانی",
+      "url": "https://entekhab.ir/fa/news/947101/العربیه-به-نقل-از-یک-منبع-عراقی-در-پی-حمله-پهپادی-به-میدان-گازی-کورمور-در-سلیمانیه-خسارات-گسترده-ای-به-این-میدان-وارد-شده-گزارش-ها-از-توقف-تولید-در-میدان-گازی-کورمور-در-سلیمانیه-خبر-می-دهد"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": false,
   "published": 1,
   "run_status": "success",
-  "selected_for_publication": 7,
+  "selected_for_publication": 8,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "independentpersian.com",
-      "started_at": "2026-11-08T20:06:55.377579+00:00",
-      "title": "خسارات جزئی حمله موشکی حوثی ها به ساختمان آرامکو در ریاض",
-      "url": "https://independentpersian.com/node/423092/%D8%AC%D9%87%D8%A7%D9%86/%D8%AE%D8%B3%D8%A7%D8%B1%D8%A7%D8%AA-%D8%AC%D8%B2%D8%A6%DB%8C-%D8%AD%D9%85%D9%84%D9%87-%D9%85%D9%88%D8%B4%DA%A9%DB%8C-%D8%AD%D9%88%D8%AB%DB%8C%E2%80%8C%D9%87%D8%A7-%D8%A8%D9%87-%D8%B3%D8%A7%D8%AE%D8%AA%D9%85%D8%A7%D9%86-%D8%A2%D8%B1%D8%A7%D9%85%DA%A9%D9%88-%D8%AF%D8%B1-%D8%B1%DB%8C%D8%A7%D8%B6"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "nytimes.com",
-      "started_at": "2026-11-08T20:07:03.012250+00:00",
-      "title": "What to Know About the Mass Shooting in Krakow, Poland",
-      "url": "https://nytimes.com/2026/11/08/world/europe/poland-krakow-mass-shooting.html"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "entekhab.ir",
-      "started_at": "2026-11-08T20:07:05.069345+00:00",
-      "title": "ارتش: قبل از ظهر امروز، یک نفتکش متخلف که سامانه های شناسایی خود را خاموش کرده بر اثر برخورد با مین دریایی دچار آتش سوزی شد",
-      "url": "https://entekhab.ir/fa/news/947081/ارتش-قبل-از-ظهر-امروز-یک-نفتکش-متخلف-که-سامانه-های-شناسایی-خود-را-خاموش-کرده-بر-اثر-برخورد-با-مین-دریایی-دچار-آتش-سوزی-شد"
+      "source": "isna.ir",
+      "started_at": "2026-11-08T20:34:04.334097+00:00",
+      "title": "حمله عربستان به مواضع غیرنظامی در الحدیده یمن",
+      "url": "https://isna.ir/news/1405081711834/%D8%AD%D9%85%D9%84%D9%87-%D8%B9%D8%B1%D8%A8%D8%B3%D8%AA%D8%A7%D9%86-%D8%A8%D9%87-%D9%85%D9%88%D8%A7%D8%B6%D8%B9-%D8%BA%DB%8C%D8%B1%D9%86%D8%B8%D8%A7%D9%85%DB%8C-%D8%AF%D8%B1-%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AF%D9%87-%DB%8C%D9%85%D9%86"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
