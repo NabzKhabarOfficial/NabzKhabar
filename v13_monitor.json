@@ -2,20 +2,13 @@
   "ai_pool": {},
   "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-08T21:06:42.379874+00:00",
+  "checked_at": "2026-11-08T21:33:25.523628+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "ai_unavailable_foreign",
-      "result": "editorial_blocked",
-      "source": "aljazeera.com",
-      "started_at": "2026-11-08T21:05:22.257527+00:00",
-      "title": "Israeli opposition leader warns of ‘point of no return’ for democracy",
-      "url": "https://aljazeera.com/video/newsfeed/2026/11/8/8-11-clip-eisenkot-address-il?traffic_source=rss"
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: خبر محلی و استانی پلیس درباره توقیف خودرو و اتباع.",
@@ -26,7 +19,7 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سیل در یک شهر کوچک محلی است و اهمیت ملی ندارد",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: سیل در یک شهر کوچک محلی است و اهمیت ملی ندارد",
       "result": "editorial_blocked",
       "source": "",
       "title": "جاری شدن سیل در شهر آشخانه",
@@ -34,7 +27,7 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: ادعای تایید نشده و ویدیو غیرمعتبر درباره حمله نظامی",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: ادعای تایید نشده و ویدیو غیرمعتبر درباره حمله نظامی",
       "result": "editorial_blocked",
       "source": "",
       "title": "ویدیوی منتسب به حمله امشب به جزیره قشم",
@@ -42,58 +35,68 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Routine political rhetoric and opinion by a university professor.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "سردار مقدسی: در جنگ نابرابر، آمریکا از پنج اریکه قدرت به زیر کشیده شد",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: General political commentary and slogans by a local speaker.",
       "result": "editorial_blocked",
       "source": "",
       "title": "جلایی: جنگ امروز با آمریکا نبرد هویت و تمدن ملت ایران است",
       "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Opinion of a local US state senator, not a strategic official.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "سناتور منتخب دموکرات: جنگ علیه ایران احمقانه بود",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Speculative media report on negotiations without official confirmation.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "جزئیاتی از طرح قطر برای پایان جنگ ایران و آمریکا",
-      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "aljazeera.com",
+      "started_at": "2026-11-08T21:32:46.723397+00:00",
+      "title": "Deadly sand cliff collapses on displaced families in Gaza",
+      "url": "https://aljazeera.com/video/newsfeed/2026/11/8/deadly-sand-cliff-collapses-on-displaced-families-in-gaza?traffic_source=rss"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "aljazeera.com",
+      "title": "Deadly sand cliff collapses on displaced families in Gaza",
+      "url": "https://aljazeera.com/video/newsfeed/2026/11/8/deadly-sand-cliff-collapses-on-displaced-families-in-gaza?traffic_source=rss"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": false,
   "published": 1,
   "run_status": "success",
-  "selected_for_publication": 10,
+  "selected_for_publication": 9,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "irna.ir",
-      "started_at": "2026-11-08T21:04:21.714179+00:00",
-      "title": "حمله پهپادی و انفجار در میدان گازی کورمور عراق",
-      "url": "https://irna.ir/news/86316309/%D8%AD%D9%85%D9%84%D9%87-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF%DB%8C-%D9%88-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1-%D8%AF%D8%B1-%D9%85%DB%8C%D8%AF%D8%A7%D9%86-%DA%AF%D8%A7%D8%B2%DB%8C-%DA%A9%D9%88%D8%B1%D9%85%D9%88%D8%B1-%D8%B9%D8%B1%D8%A7%D9%82"
+      "source": "isna.ir",
+      "started_at": "2026-11-08T21:32:40.427023+00:00",
+      "title": "حمله پهپادی به میدان گازی کورمور عراق؛ آتش سوزی گسترده و قطع برق در اقلیم کردستان",
+      "url": "https://isna.ir/news/1405081811855/%D8%AD%D9%85%D9%84%D9%87-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF%DB%8C-%D8%A8%D9%87-%D9%85%DB%8C%D8%AF%D8%A7%D9%86-%DA%AF%D8%A7%D8%B2%DB%8C-%DA%A9%D9%88%D8%B1%D9%85%D9%88%D8%B1-%D8%B9%D8%B1%D8%A7%D9%82-%D8%A2%D8%AA%D8%B4-%D8%B3%D9%88%D8%B2%DB%8C-%DA%AF%D8%B3%D8%AA%D8%B1%D8%AF%D9%87-%D9%88-%D9%82%D8%B7%D8%B9"
     },
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "entekhab.ir",
-      "started_at": "2026-11-08T21:06:01.410472+00:00",
-      "title": "تا این لحظه اصابت پرتابه از سوی آمریکا، صرفا در قشم رخ داده؛ در بندرعباس و سیریک هیچ اصابتی رخ نداده",
-      "url": "https://entekhab.ir/fa/news/947107/تسنیم-تا-این-لحظه-اصابت-پرتابه-از-سوی-آمریکا-صرفا-در-قشم-رخ-داده-در-بندرعباس-و-سیریک-هیچ-اصابتی-رخ-نداده"
+      "started_at": "2026-11-08T21:32:50.169363+00:00",
+      "title": "معاون استاندار خوزستان: صدای انفجار در ماهشهر ناشی از ترکیدن دو ترانس برق بود",
+      "url": "https://entekhab.ir/fa/news/947098/معاون-استاندار-خوزستان-صدای-انفجار-در-ماهشهر-ناشی-از-ترکیدن-دو-ترانس-برق-بود"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
