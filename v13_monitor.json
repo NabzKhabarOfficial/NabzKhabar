@@ -2,28 +2,13 @@
   "ai_pool": {},
   "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-08T19:05:22.119014+00:00",
+  "checked_at": "2026-11-08T19:34:42.062987+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "final_guard:broken-name",
-      "result": "editorial_blocked",
-      "source": "bbc.co.uk",
-      "started_at": "2026-11-08T19:05:03.465662+00:00",
-      "title": "How the deadly shooting in Krakow unfolded",
-      "url": "https://bbc.co.uk/news/videos/cq74p2zpwyjmo?at_campaign=rss&at_medium=RSS"
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: اخبار محلی و رویدادهای استانی امتیاز پایینی دارند.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "تصاویر جالب از سیلاب در راه آهن لرستان و بازگشایی مسیر",
-      "url": ""
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: هشدار و پیش‌بینی هواشناسی بدون وقوع رویداد قطعی.",
@@ -34,18 +19,18 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Train derailment is a major accident, but lacks specific casualty count.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Minor local fire incident with no mass casualties.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "Footage shows derailed carriages after fatal train crash in Egypt",
+      "title": "آتش سوزی در خیابان غیاثی پور تهران",
       "url": ""
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: تکذیب شایعه و رویداد عادی اداری محسوب می‌شود.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Train derailment is a major accident, but lacks specific casualty count.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "اطلاعیه شرکت توانیر درباره شایعه حمله سایبری به شبکه برق پایتخت",
+      "title": "Footage shows derailed carriages after fatal train crash in Egypt",
       "url": ""
     },
     {
@@ -63,16 +48,58 @@
       "source": "",
       "title": "سناریو های محتمل پیش روی آمریکا برای آغاز جنگ",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Personal opinion of a politician, not an official government policy.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "عبدل السید: جنگ علیه ایران احمقانه بود",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: Routine local administrative preparedness announcement for potential weather.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "آمادگی حداکثری دستگاه های اجرایی برای مقابله با بحران های احتمالی ناشی از بارندگی ها",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Routine provincial news summary with no national impact.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "اخبار کوتاه کرمانشاه؛ از ارتقای شاخص امنیت تا تلاش برای جذب سرمایه گذاری",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "yjc.ir",
+      "started_at": "2026-11-08T19:34:09.582326+00:00",
+      "title": "ترامپ: اگر مذاکرات به خوبی پیش برود، بعید است به ایران حمله کنیم",
+      "url": "https://yjc.ir/fa/news/9146900/ترامپ-اگر-مذاکرات-به-خوبی-پیش-برود-بعید-است-به-ایران-حمله-کنیم"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 20,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "yjc.ir",
+      "title": "ترامپ: اگر مذاکرات به خوبی پیش برود، بعید است به ایران حمله کنیم",
+      "url": "https://yjc.ir/fa/news/9146900/ترامپ-اگر-مذاکرات-به-خوبی-پیش-برود-بعید-است-به-ایران-حمله-کنیم"
+    }
+  ],
   "no_publication_candidate": false,
-  "publication_gap": false,
-  "published": 2,
+  "publication_gap": true,
+  "published": 0,
   "run_status": "success",
   "selected_for_publication": 10,
   "skipped_duplicate": [
@@ -81,10 +108,10 @@
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "entekhab.ir",
-      "started_at": "2026-11-08T19:04:14.862077+00:00",
+      "started_at": "2026-11-08T19:34:34.390480+00:00",
       "title": "ارتش: قبل از ظهر امروز، یک نفتکش متخلف که سامانه های شناسایی خود را خاموش کرده بر اثر برخورد با مین دریایی دچار آتش سوزی شد",
       "url": "https://entekhab.ir/fa/news/947081/ارتش-قبل-از-ظهر-امروز-یک-نفتکش-متخلف-که-سامانه-های-شناسایی-خود-را-خاموش-کرده-بر-اثر-برخورد-با-مین-دریایی-دچار-آتش-سوزی-شد"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
