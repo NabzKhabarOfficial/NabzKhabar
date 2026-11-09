@@ -1,38 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794180753
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794180753
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1794180754
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794180759
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794180759
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794180763
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794180763
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
-      "t": 1794180767
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 10x",
       "t": 1794180822
     },
@@ -159,32 +127,64 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
       "t": 1794189805
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794191553
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794191554
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1794191569
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794191575
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794191576
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794191576
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
+      "t": 1794191577
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 10x",
+      "t": 1794191653
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-08",
-      "n": 124
+      "n": 128
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-08",
-      "n": 213
+      "n": 220
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-08",
-      "n": 95
+      "n": 98
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-08",
-      "n": 93
+      "n": 97
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-09",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-09",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-08",
@@ -489,26 +489,26 @@
     "2026-11-09": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 15,
+        "ok": 15,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 1,
-        "calls": 4,
+        "429": 2,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 3,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 4,
-        "calls": 5,
+        "429": 7,
+        "calls": 8,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -516,23 +516,23 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 9,
-        "other": 3
+        "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
-        "other": 3
+        "ok": 10,
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
-        "429": 3,
-        "calls": 18,
+        "429": 8,
+        "calls": 26,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 15,
+        "ok": 18,
         "other": 0
       }
     }
@@ -1153,6 +1153,13 @@
       "t": 1794188044.1467273,
       "title": "تحقیقات انویدیا درباره رابطه جنسن هوانگ با مظنون جاسوسی برای چین",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1794191618.9086165,
+      "title": "دیدار ترامپ و نخست وزیر قطر در واشنگتن",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-08",
@@ -1228,6 +1235,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=world: مصدومیت جزئی یک بازیکن و انتظار برای تست پزشکی.",
       "topic": "ورزش",
       "until": 1794238400.4274676
+    },
+    "v4|europe to press us on ukraine peace and iran at paris g7 ministers talks": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: G7 ministers meeting to discuss Iran strikes and Ukraine.",
+      "topic": "سیاست",
+      "until": 1794277977.9287293
     },
     "v4|europe will take part in us-mediated ukraine talks in abu dhabi, french fm says": {
       "ok": true,
@@ -1366,6 +1379,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: سفر پاپ یک رویداد دیپلماتیک و مذهبی است، نه خبری درجه یک.",
       "topic": "سیاست",
       "until": 1794263583.9470873
+    },
+    "v4|pope leo delivers stinging rebuke of milei’s austerity measures during argentina visit": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=world: پاپ نقد اقدامات سختگیرانهٔ میلِی",
+      "topic": "سیاست",
+      "until": 1794277976.5574064
     },
     "v4|qalo sl-1 vs. garmin cirqa: how these minimalist wearables compare": {
       "ok": false,
@@ -1937,12 +1956,6 @@
       "topic": "سیاست",
       "until": 1794261815.498965
     },
-    "v4|امارات از نجات ۲۲ تن از خدمه یک کشتی باری در دریای عمان خبر داد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: نجات خدمه یک کشتی در دریای عمان توسط امارات.",
-      "topic": "حادثه",
-      "until": 1794195159.830997
-    },
     "v4|امام جمعه تبریز: دولت به جای تصدی گری، زمینه تولید و تجارت را تسهیل کند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: بیانیه بدون تصمیم اجرایی، صرفاً پیشنهاد سیاست‌گذاری",
@@ -2032,12 +2045,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=local: سیلاب و آب‌گرفتگی محلی در روستا بدون تلفات جانی",
       "topic": "آب و هوا",
       "until": 1794263598.91257
-    },
-    "v4|بارش های شدید در راه خراسان شمالی؛ حریم رودخانه ها را ترک کنید": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: هشدار بارش و سیلاب، هنوز خسارت نیست",
-      "topic": "آب و هوا",
-      "until": 1794196995.9822972
     },
     "v4|بارش های ۲ روز گذشته به ۱۳۰ منزل مسکونی در اصفهان خسارت زد": {
       "ok": false,
@@ -2290,6 +2297,18 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=iran_national: General statement on social policy, not a concrete event.",
       "topic": "جامعه",
       "until": 1794204229.3297257
+    },
+    "v4|ترامپ امروز در واشنگتن میزبان نخست وزیر قطر است": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: مذاکرات سطح بالا درباره تنش‌های ایران و آمریکا در واشنگتن",
+      "topic": "سیاست",
+      "until": 1794277974.8729794
+    },
+    "v4|ترامپ بار دیگر به شکست خود و حزبش به دلیل تجاوز بی دلیل علیه ایران اعتراف کرد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اظهارنظر رسمی رئیس‌جمهور آمریکا درباره شکست انتخاباتی و ایران.",
+      "topic": "سیاست",
+      "until": 1794277977.9530246
     },
     "v4|ترامپ عقب نشینی نکند شکست جمهوری خواهان در ۲۰۲۸ هم قطعی است": {
       "ok": false,
@@ -3695,12 +3714,6 @@
       "topic": "سیاست",
       "until": 1794242079.2401526
     },
-    "v4|محاصره دریایی ایران؛ از مناسبات بین المللی تا موازنه قدرت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Academic analysis and opinion, not an official policy decision or event.",
-      "topic": "سیاست",
-      "until": 1794195172.6881015
-    },
     "v4|مدارس مازندران دوشنبه غیرحضوری است/ تداوم فعالیت ادارات": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: مدارس غیرحضوری به دلیل بارش شدید",
@@ -3790,6 +3803,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=True scope=world: Diplomatic rhetoric and accusations, not a concrete policy decision.",
       "topic": "سیاست",
       "until": 1794236608.861418
+    },
+    "v4|مسیر تازه پتروشیمی ها برای تامین گاز مورد نیاز تولید": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: روال و برنامه‌های وزارتخانه برای بهینه‌سازی مصرف گاز صنعت.",
+      "topic": "اقتصاد",
+      "until": 1794277977.940864
     },
     "v4|مشارکت ۲۰۰ هزار نفری در تظاهرات آمستردام؛ «طوفان سرخ» در حمایت از فلسطین": {
       "ok": false,
@@ -4013,12 +4032,6 @@
       "topic": "سیاست",
       "until": 1794209645.432821
     },
-    "v4|هشدار درباره بزرگراه های تهران؛ امام علی، مدرس و ستاری در مسیر سیلاب واریزه ای": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Speculative warning about potential future risks, not a concrete event.",
-      "topic": "آب و هوا",
-      "until": 1794195172.6269088
-    },
     "v4|هشدار درباره تبدیل تالاب های ایران به کانون سرریز ویروس های حیوانی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: هشدار کارشناسی و پیش‌بینی درباره وضعیت تالاب‌ها و بیماری‌ها.",
@@ -4078,12 +4091,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: واژگونی اتوبوس تیم بسکتبال آکادمی با اهمیت محدود.",
       "topic": "ورزش",
       "until": 1794205991.4807038
-    },
-    "v4|واژگونی اتوبوس در محور عبدالخان به شوش با ۱۸ مصدوم": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: 18 injured in bus crash on Abdekhaneh road",
-      "topic": "حادثه",
-      "until": 1794196996.55407
     },
     "v4|واژگونی تراکتور در خراسان شمالی ۱۴ مصدوم برجا گذاشت": {
       "ok": true,
@@ -4759,18 +4766,14 @@
     }
   },
   "_editorial_blocks": {
-    "cctv captures streets shaking as 5.7-magnitude earthquake hits japan": {
-      "reason": "content_duplicate",
-      "until": 1794173646.1347623
-    },
     "drone attack suspends production at iraq’s khor mor gasfield": {
       "reason": "content_duplicate",
       "until": 1794211405.3805711
     },
-    "how the deadly shooting in krakow unfolded": {
-      "at": 1794164721.9084716,
-      "reason": "final_guard:broken-name",
-      "until": 1794186321.9084716
+    "europe to press us on ukraine peace and iran at paris g7 ministers talks": {
+      "at": 1794191653.8878639,
+      "reason": "final_guard:ai-contradiction",
+      "until": 1794213253.8878639
     },
     "iran war live: trump says ‘iron gate’ in effect; drone hits iraq gas field": {
       "reason": "content_duplicate",
@@ -4792,10 +4795,6 @@
       "reason": "content_duplicate",
       "until": 1794202422.0152283
     },
-    "poland mourns six killed in attack as authorities launch ‘terrorism’ probe": {
-      "reason": "content_duplicate",
-      "until": 1794174756.417815
-    },
     "reeling from rare mass shooting, poles ask what set off young suspect": {
       "reason": "content_duplicate",
       "until": 1794197082.9276505
@@ -4804,41 +4803,29 @@
       "reason": "content_duplicate",
       "until": 1794202740.7912326
     },
-    "seven dead and 114 injured in train crash near cairo": {
-      "reason": "content_duplicate",
-      "until": 1794184503.3864534
-    },
     "targeted by u.s., armed group strikes back in colombia": {
       "reason": "content_duplicate",
       "until": 1794202409.2893267
-    },
-    "train crash kills seven, injures dozens near egypt’s cairo city": {
-      "reason": "content_duplicate",
-      "until": 1794180916.719483
     },
     "trump vows comeback as parties clash over democrat prosecution threats": {
       "reason": "content_duplicate",
       "until": 1794209648.7592816
     },
-    "ukraine: russian strikes leave hundreds of thousands without power": {
-      "reason": "content_duplicate",
-      "until": 1794182837.0385144
-    },
-    "ادعای ترامپ: بازگشت به جنگ با ایران بسیار بعید است": {
-      "reason": "content_duplicate",
-      "until": 1794182793.201467
-    },
     "افزایش شمار شهدای حمله سعودی به شرق صنعاء به ۴۴ نفر": {
       "reason": "content_duplicate",
       "until": 1794197036.3624115
     },
-    "برخورد دو قطار در مصر چهار کشته و ۸۸ زخمی بر جای گذاشت": {
+    "العربیه به نقل از یک منبع عراقی: در پی حمله پهپادی به میدان گازی کورمور در سلیمانیه، خسارات گسترده ای به این میدان وارد شده / گزارش ها از توقف تولید در میدان گازی کورمور در سلیمانی": {
       "reason": "content_duplicate",
-      "until": 1794179183.8042045
+      "until": 1794213253.8308554
     },
     "تا این لحظه اصابت پرتابه از سوی آمریکا، صرفا در قشم رخ داده؛ در بندرعباس و سیریک هیچ اصابتی رخ نداده": {
       "reason": "content_duplicate",
       "until": 1794193602.161419
+    },
+    "ترامپ بار دیگر به شکست خود و حزبش به دلیل تجاوز بی دلیل علیه ایران اعتراف کرد": {
+      "reason": "content_duplicate",
+      "until": 1794213198.581271
     },
     "ترامپ: به احتمال زیاد از سرگیری جنگ ایران ضروری نیست؛ به شدت می خواهند توافق کنند": {
       "reason": "content_duplicate",
@@ -4856,63 +4843,16 @@
       "reason": "content_duplicate",
       "until": 1794193489.9384449
     },
-    "خسارات جزئی حمله موشکی حوثی ها به ساختمان آرامکو در ریاض": {
-      "reason": "content_duplicate",
-      "until": 1794190022.5431287
-    },
-    "خسارت به برج آرامکو در ریاض بر اثر سقوط بقایای موشک های یمنی": {
-      "reason": "content_duplicate",
-      "until": 1794173619.6052592
-    },
-    "دختران ایران از صعود به فینال المپیک جوانان بازماندند": {
-      "reason": "content_duplicate",
-      "until": 1794174750.7225122
-    },
     "روبیو درباره احتمال اقدام نظامی: همه چیز به سطح تهدید یا قصد تهران برای حمله به منافع آمریکا بستگی دارد": {
       "reason": "content_duplicate",
       "until": 1794202718.90432
     },
-    "ساختمان آرامکو و مرکز مالی ملک عبدالله در ریاض هدف حمله قرار گرفتند/عربستان خسارت به تاسیسات نفتی آرامکو را تأیید کرد": {
-      "reason": "content_duplicate",
-      "until": 1794180895.0466383
-    },
     "معاون استاندار خوزستان: صدای انفجار در ماهشهر ناشی از ترکیدن دو ترانس برق بود": {
       "reason": "content_duplicate",
       "until": 1794197100.9947033
-    },
-    "۴ جان باخته و ۸۸ زخمی در پی حادثه واژگونی قطار در مصر": {
-      "reason": "content_duplicate",
-      "until": 1794173642.129617
     }
   },
   "_event_judge_log": [
-    {
-      "head": "متوسط افزایش ۳۵ درصدی حقوق کارکنان دولت در بودجه ۱۴۰۶ ⚡️ ضوابط مالی لایحه بودجه ۱۴۰۶، متوسط افزایش حقوق کارکنا",
-      "id": "838e988d47",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1794121511,
-      "verdict": "new",
-      "why": "The new post discusses government salary increases for 1406, which is distinct from all published it"
-    },
-    {
-      "head": "۴ کشته و ۱۱ مصدوم در حوادث جوی کشور ⚡️ سازمان اورژانس کشور از کشته شدن چهار نفر و مصدوم شدن ۱۱ تن در پی حوادث ",
-      "id": "5c15864d29",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794123291,
-      "verdict": "new",
-      "why": "حوادث جوی جدید، غیرمتعلق به رویدادهای قبلی"
-    },
-    {
-      "head": "دفع تهاجم ۱۴۲ پهپاد اوکراینی توسط پدافند روسیه ⚡️ پدافند هوایی روسیه طی شب گذشته موفق شد ۱۴۲ فروند پهپاد اوکرا",
-      "id": "0dc198a18e",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794123308,
-      "verdict": "new",
-      "why": "توضیح جدید حمله پهپاد اوکراینی به روسیه"
-    },
     {
       "head": "درخشش یوسفی در وزنه برداری قهرمانی جهان با رکوردشکنی و کسب طلا ⚡️ علیرضا یوسفی در پیکارهای وزنه برداری قهرمانی",
       "id": "b912e7c12d",
@@ -5432,23 +5372,36 @@
       "t": 1794188043,
       "verdict": "new",
       "why": "نویسنده جدید، موضوع تحقیقات انویدیا"
+    },
+    {
+      "head": "اعتراف ترامپ به شکست حزبش به دلیل تجاوز به ایران ⚡️ دونالد ترامپ، رئیس جمهور جمهوری خواه و جنگ طلب آمریکا، در ",
+      "id": "8a7bb775d3",
+      "match": "شکست در انتخابات میان دوره ای و آینده نامشخص حزب جمهوری خواه",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794191590,
+      "verdict": "repeat",
+      "why": "اعتراف به شکست انتخابات میان دوره‌ای"
+    },
+    {
+      "head": "اعتراف ترامپ به شکست حزبش به دلیل تجاوز به ایران ⚡️ دونالد ترامپ، رئیس جمهور جمهوری خواه و جنگ طلب آمریکا، در ",
+      "id": "8a7bb775d3",
+      "match": "شکست در انتخابات میان دوره ای و آینده نامشخص حزب جمهوری خواه",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1794191598,
+      "verdict": "repeat",
+      "why": "The post discusses the same election defeat mentioned in item 4."
+    },
+    {
+      "head": "دیدار ترامپ و نخست وزیر قطر در واشنگتن ⚡️ دونالد ترامپ امروز در واشنگتن میزبان محمد بن عبدالرحمن آل ثانی، نخست",
+      "id": "31fa59482e",
+      "match": "",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1794191617,
+      "verdict": "new",
+      "why": "This is a new diplomatic meeting not previously reported."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی درباره رفع کدورت آب شرب سرپل ذهاب.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794155666,
-      "title": "عبدالی: کدورت آب شرب سرپل ذهاب برطرف شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خرید آمبولانس برای همدان محلی و غیرمهم برای کل کشور است",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1794155670,
-      "title": "همدان در کمتر از سه ماه صاحب ۲۱ آمبولانس جدید شد"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: گزارش برگزاری یک کنفرانس دانشگاهی محلی اهمیت ملی ندارد.",
       "rescued": false,
@@ -5994,73 +5947,26 @@
       "rule": "foreign-local-preselection",
       "t": 1794189794,
       "title": "Polluted Delhi Tries ‘Green’ Fireworks to Clear the Air at Diwali"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: مذاکرات سطح بالا درباره تنش‌های ایران و آمریکا در واشنگتن",
+      "rescued": true,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1794191574,
+      "title": "ترامپ امروز در واشنگتن میزبان نخست وزیر قطر است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=world: پاپ نقد اقدامات سختگیرانهٔ میلِی",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794191576,
+      "title": "Pope Leo delivers stinging rebuke of Milei’s austerity measures during Argentina visit"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اختلل",
-        "بختن",
-        "بختند",
-        "برندگ",
-        "جر",
-        "جن",
-        "سرسر",
-        "سلب",
-        "شدد",
-        "مج",
-        "مصدمت",
-        "منجر",
-        "نفر",
-        "ونقل",
-        "چهر",
-        "یزد"
-      ],
-      "t": 1794144861.4989018,
-      "title": "موج بارندگی شدید در ایران؛ چهار نفر جان باختند ⚡️ موج بارندگی های شدید در سراسر ایران منجر به جاری شدن سیلاب، اختلال در "
-    },
-    {
-      "h": [
-        "اسلم",
-        "اهدف",
-        "تممت",
-        "حکمت",
-        "خرج",
-        "سرزمن",
-        "صدر",
-        "غرنظم",
-        "محصر",
-        "محکم",
-        "محکمت",
-        "مل",
-        "نقض",
-        "وزرت",
-        "یمن"
-      ],
-      "t": 1794144878.6482167,
-      "title": "محکومیت حمله به اهداف غیرنظامی یمن توسط وزارت امور خارجه ایران ⚡️ وزارت امور خارجه جمهوری اسلامی ایران با صدور بیانیه ای"
-    },
-    {
-      "h": [
-        "اثر",
-        "است",
-        "برج",
-        "جز",
-        "خرج",
-        "رل",
-        "شدند",
-        "قطر",
-        "مجرح",
-        "مصر",
-        "نفر",
-        "گذشت"
-      ],
-      "t": 1794146653.4274204,
-      "title": "خروج قطار از ریل در مصر ۶۰ زخمی برجای گذاشت ⚡️ بر اثر خروج یک قطار از ریل در استان جیزه در مصر، ۶۰ نفر مجروح شدند."
-    },
     {
       "h": [
         "اس",
@@ -6449,6 +6355,24 @@
       ],
       "t": 1794188044.133864,
       "title": "تحقیقات انویدیا درباره رابطه جنسن هوانگ با مظنون جاسوسی برای چین ⚡️ شرکت انویدیا در پی انتشار گزارش هایی درباره رابطه جن"
+    },
+    {
+      "h": [
+        "تحل",
+        "تنش",
+        "ثن",
+        "خهد",
+        "ددر",
+        "عبدلرحمن",
+        "قطر",
+        "محمد",
+        "مزب",
+        "نخست",
+        "وشنگتن",
+        "گفتگ"
+      ],
+      "t": 1794191618.8979294,
+      "title": "دیدار ترامپ و نخست وزیر قطر در واشنگتن ⚡️ دونالد ترامپ امروز در واشنگتن میزبان محمد بن عبدالرحمن آل ثانی، نخست وزیر قطر،"
     }
   ],
   "_published_incidents": [
@@ -6660,74 +6584,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اسرل",
-        "ددن",
-        "سست",
-        "سستمتک",
-        "غرنظم",
-        "غزه",
-        "مرگبر",
-        "هدف",
-        "همچن",
-        "گرسنگ"
-      ],
-      "t": 1794058479.3277671,
-      "title": "ادامه گرسنگی دادن و هدف قرار دادن غیرنظامیان توسط اسرائیل در غزه ⚡️ اسرائیل همچنان به سیاست مرگبار گرسنگی دادن و هدف قرا"
-    },
-    {
-      "k": [
-        "ار",
-        "اردند",
-        "اسب",
-        "است",
-        "افزش",
-        "امددگر",
-        "انجم",
-        "بدن",
-        "برن",
-        "بشردستن",
-        "بمب",
-        "تزع",
-        "جست",
-        "حمل",
-        "رس",
-        "رست",
-        "زر",
-        "زند",
-        "زپرژ",
-        "سنگن",
-        "شدند",
-        "شمر",
-        "عمل",
-        "فرد",
-        "قربن",
-        "مجر",
-        "محل",
-        "مدرس",
-        "مفقدشد",
-        "نجت",
-        "نر",
-        "نفر",
-        "هشت",
-        "هفت",
-        "همچن",
-        "وج",
-        "وقف",
-        "پد",
-        "پنهگ",
-        "پکر",
-        "کشت",
-        "کمشخ",
-        "کمک",
-        "گرفترند",
-        "گسترد",
-        "یفت"
-      ],
-      "t": 1794060335.9309323,
-      "title": "افزایش شمار قربانیان حمله هوایی روسیه به زاپوریژیا به ۵۳ کشته ⚡️ شمار قربانیان حمله هوایی نیروهای روسیه به روستای کومیشو"
-    },
     {
       "k": [
         "ابرهم",
@@ -9263,6 +9119,51 @@
       ],
       "t": 1794188044.1206734,
       "title": "تحقیقات انویدیا درباره رابطه جنسن هوانگ با مظنون جاسوسی برای چین ⚡️ شرکت انویدیا در پی انتشار گزارش هایی درباره رابطه جن"
+    },
+    {
+      "k": [
+        "ار",
+        "ازد",
+        "امر",
+        "امرک",
+        "امنت",
+        "انجم",
+        "انرژ",
+        "بحر",
+        "تحل",
+        "ترمپ",
+        "تضمن",
+        "تلفن",
+        "تمس",
+        "تمن",
+        "تنش",
+        "تکد",
+        "ثن",
+        "جلگر",
+        "خهد",
+        "ددر",
+        "دنبل",
+        "دنلد",
+        "دپلمس",
+        "زنجر",
+        "ضررت",
+        "عبدلرحمن",
+        "قطر",
+        "لزم",
+        "محمد",
+        "مزب",
+        "منطق",
+        "نخست",
+        "نشست",
+        "وزر",
+        "وشنگتن",
+        "پشن",
+        "کشترن",
+        "کهش",
+        "گفتگ"
+      ],
+      "t": 1794191618.8869045,
+      "title": "دیدار ترامپ و نخست وزیر قطر در واشنگتن ⚡️ دونالد ترامپ امروز در واشنگتن میزبان محمد بن عبدالرحمن آل ثانی، نخست وزیر قطر،"
     }
   ],
   "_telegram_errors": [
@@ -9522,7 +9423,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794189681
+    "at": 1794191479
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9537,14 +9438,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794189862,
-    "last_failure": 1794189802,
-    "last_status": 422
+    "disabled_until": 1794192246,
+    "last_failure": 1794191646,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794190370,
-    "last_failure": 1794189770,
-    "last_status": 429
+    "disabled_until": 1794191869.0,
+    "last_failure": 1794191569,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
