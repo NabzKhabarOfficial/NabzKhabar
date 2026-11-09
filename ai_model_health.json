@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.5-flash-lite",
-      "t": 1794175415
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 12x, groq:openai/gpt-oss-20b held 10x",
-      "t": 1794175501
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794177167
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794177168
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1794177183
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794177183
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794177184
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794177184
     },
@@ -159,32 +131,60 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1794186185
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794187970
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794187972
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794187973
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794187973
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=40)",
+      "t": 1794188013
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
+      "t": 1794188014
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1794188048
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-08",
-      "n": 121
+      "n": 123
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-08",
-      "n": 207
+      "n": 210
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-08",
-      "n": 92
+      "n": 93
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-08",
-      "n": 90
+      "n": 92
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-09",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-09",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-08",
@@ -489,26 +489,26 @@
     "2026-11-09": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 1,
-        "calls": 1,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 0,
+        "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 2,
-        "calls": 3,
+        "429": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -516,22 +516,23 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 8,
-        "other": 0
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 8,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
-        "429": 2,
-        "calls": 12,
+        "429": 3,
+        "calls": 17,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 10,
+        "ok": 14,
         "other": 0
       }
     }
@@ -1138,6 +1139,20 @@
       "t": 1794186179.7887037,
       "title": "سیل و طوفان در برزیل چندین کشته بر جای گذاشت",
       "urgent": false
+    },
+    {
+      "label": "هسته‌ای",
+      "level": 4,
+      "t": 1794188029.1811192,
+      "title": "دونالد ترامپ: فعالیتی در سایت هسته ای کوه کلنگ مشاهده نشده است",
+      "urgent": false
+    },
+    {
+      "label": "فناوری",
+      "level": 3,
+      "t": 1794188044.1467273,
+      "title": "تحقیقات انویدیا درباره رابطه جنسن هوانگ با مظنون جاسوسی برای چین",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-08",
@@ -1177,12 +1192,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Earthquake with over 20 injuries qualifies as significant world news.",
       "topic": "حادثه",
       "until": 1794232983.372687
-    },
-    "v4|cold blast brings springtime snow to alpine regions as temperatures plummet across australia’s south-east": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Unseasonal snow in SE Australia, no major impact",
-      "topic": "آب و هوا",
-      "until": 1794193358.5932505
     },
     "v4|deadly sand cliff collapses on displaced families in gaza": {
       "ok": true,
@@ -1423,6 +1432,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: تصادف قطار در مصر با ۴ کشته، زیر آستانه رویدادهای رده‌اول جهانی است.",
       "topic": "حادثه",
       "until": 1794267163.1547046
+    },
+    "v4|trump vows comeback as parties clash over democrat prosecution threats": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: واکنش دونالد ترامپ به نتایج انتخابات میان‌دوره‌ای کنگره و تنش سیاسی",
+      "topic": "سیاست",
+      "until": 1794274414.0794888
     },
     "v4|ukraine: russian strikes leave hundreds of thousands without power": {
       "ok": true,
@@ -2048,12 +2063,6 @@
       "topic": "قضایی",
       "until": 1794229491.45697
     },
-    "v4|باید با خارجی ها رقابت کنیم اما حمایت ها کافی نیست": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Board game maker cites weak support, low margins",
-      "topic": "اقتصاد",
-      "until": 1794193357.218017
-    },
     "v4|ببینید/ جاری شدن سیل در خیابان های بوشهر": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=local: Local weather event and school closures in specific counties.",
@@ -2222,6 +2231,12 @@
       "topic": "سیاست",
       "until": 1794209665.8360627
     },
+    "v4|تحقیقات انویدیا در خصوص رابطه مدیرعامل این شرکت با مظنون جاسوسی برای چین": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: آغاز تحقیقات انویدیا درباره رابطه مدیرعامل با مظنون جاسوسی",
+      "topic": "فناوری",
+      "until": 1794274414.092914
+    },
     "v4|تحقیقات درباره تیراندازی مرگبار در لهستان با عنوان اقدام تروریستی": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo score=6 happened=True scope=world: تروریسم در لهستان، ۱۰+ کشته/جرحی",
@@ -2311,6 +2326,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: واکنش رسمی رئیس‌جمهور سابق آمریکا به نتایج انتخابات کنگره",
       "topic": "سیاست",
       "until": 1794234829.2629213
+    },
+    "v4|ترامپ: هیچگونه فعالیتی در کوه کلنگ رصد نشده است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Trump says no activity at Kahrizak nuclear site.",
+      "topic": "سیاست",
+      "until": 1794274371.0938368
     },
     "v4|تردد در جاده های ایلام با وجود بارش های سنگین برقرار است": {
       "ok": false,
@@ -3734,6 +3755,12 @@
       "topic": "سیاست",
       "until": 1794229544.2578235
     },
+    "v4|مرتس: از فرصت گفت وگو با پوتین استقبال می کنم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Potential dialogue if Putin attends G20 summit",
+      "topic": "سیاست",
+      "until": 1794274372.8715205
+    },
     "v4|مرگ تلخ معلم بازنشسته با حمله سگ شکاری / دادستان دستور دستگیری متولی نگهداری حیوان را صادر کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Local criminal incident involving a single fatality.",
@@ -3883,12 +3910,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: جنگ بزرگ و انهدام پهپادها در روسیه.",
       "topic": "نظامی",
       "until": 1794256434.272937
-    },
-    "v4|مهاجری: افرادی که ضدوحدت ملی عمل می کنند، ریشه در جای دیگری دارند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Political statement about foreign influence.",
-      "topic": "سیاست",
-      "until": 1794191537.6917496
     },
     "v4|موج بارندگی در سراسر ایران؛ چهار نفر بر اثر سیل و صاعقه جان باخته اند": {
       "ok": true,
@@ -4051,12 +4072,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خرید آمبولانس برای همدان محلی و غیرمهم برای کل کشور است",
       "topic": "سلامت",
       "until": 1794242070.8410347
-    },
-    "v4|همسرم به دلیل اینکه نمی توانم بچه دار شوم از من خواسته زن دوم بگیرم": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=local: Personal marital advice, not newsworthy",
-      "topic": "جامعه",
-      "until": 1794193359.003306
     },
     "v4|هیچ گونه حمله سایبری یا اختلالی در شبکه برق پایتخت رخ نداده است": {
       "ok": false,
@@ -4797,6 +4812,10 @@
       "reason": "content_duplicate",
       "until": 1794180916.719483
     },
+    "trump vows comeback as parties clash over democrat prosecution threats": {
+      "reason": "content_duplicate",
+      "until": 1794209648.7592816
+    },
     "ukraine: russian strikes leave hundreds of thousands without power": {
       "reason": "content_duplicate",
       "until": 1794182837.0385144
@@ -4863,24 +4882,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "عضو کمیسیون امنیت مجلس: محدودیت جغرافیایی در حمله به پایگاه های آمریکا برداشته می شود ⚡️ فداحسین مالکی عضو کمی",
-      "id": "365685af98",
-      "match": "سخنگوی سپاه: محدودیت برد موشک های ایران برداشته شده است",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794121452,
-      "verdict": "repeat",
-      "why": "محدودیت جغرافیایی برد موشک‌های ایران برداشته شد"
-    },
-    {
-      "head": "عضو کمیسیون امنیت مجلس: محدودیت جغرافیایی در حمله به پایگاه های آمریکا برداشته می شود ⚡️ فداحسین مالکی عضو کمی",
-      "id": "365685af98",
-      "match": "مقام ارشد امنیتی: هرگونه حمله به ایران با پاسخ نامحدود و ویرانگر مواجه خواهد شد",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1794121472,
-      "verdict": "repeat",
-      "why": "مقام امنیتی و نماینده مجلس درباره پاسخ بدون محدودیت به آمریکا."
-    },
     {
       "head": "متوسط افزایش ۳۵ درصدی حقوق کارکنان دولت در بودجه ۱۴۰۶ ⚡️ ضوابط مالی لایحه بودجه ۱۴۰۶، متوسط افزایش حقوق کارکنا",
       "id": "838e988d47",
@@ -5409,23 +5410,27 @@
       "t": 1794186178,
       "verdict": "new",
       "why": "فاجعه طبیعی جدید در برزیل، غیرمستقیم مرتبط با موج بارندگی ایران"
+    },
+    {
+      "head": "دونالد ترامپ: فعالیتی در سایت هسته ای کوه کلنگ مشاهده نشده است ⚡️ دونالد ترامپ، رئیس جمهور آمریکا اعلام کرد هی",
+      "id": "2fb6489cae",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794188028,
+      "verdict": "new",
+      "why": "Different event: Trump's statement on North Korea site"
+    },
+    {
+      "head": "تحقیقات انویدیا درباره رابطه جنسن هوانگ با مظنون جاسوسی برای چین ⚡️ شرکت انویدیا در پی انتشار گزارش هایی دربار",
+      "id": "fd0e2d8f63",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794188043,
+      "verdict": "new",
+      "why": "نویسنده جدید، موضوع تحقیقات انویدیا"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine administrative reminder regarding tax deadlines for local businesses.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1794153120,
-      "title": "مدیرکل امور مالیاتی جنوب تهران: مؤدیان تعیین تکلیف مالیاتی را به روزهای پایانی موکول نکنند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=1 happened=False scope=local: آمادگی شهرداری سمنان برای سیل احتمالی خبر محلی و کم‌اهمیت است",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1794153841,
-      "title": "آمادگی کامل شهرداری سمنان برای مقابله با سیلاب های احتمالی"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: بیانیه بدون تصمیم اجرایی، صرفاً پیشنهاد سیاست‌گذاری",
       "rescued": false,
@@ -5971,31 +5976,26 @@
       "rule": "routine-statement",
       "t": 1794186163,
       "title": "ترامپ: احتمالا با روسای جمهوری روسیه و چین دیدار و درباره ایران گفت وگو می کنم"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Trump says no activity at Kahrizak nuclear site.",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1794187971,
+      "title": "ترامپ: هیچگونه فعالیتی در کوه کلنگ رصد نشده است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Potential dialogue if Putin attends G20 summit",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1794187972,
+      "title": "مرتس: از فرصت گفت وگو با پوتین استقبال می کنم"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اغز",
-        "اقدم",
-        "تحقق",
-        "ترندز",
-        "جرم",
-        "ددستن",
-        "شنب",
-        "شهر",
-        "لهست",
-        "مرگبر",
-        "مسلح",
-        "مسلحن",
-        "کرکف"
-      ],
-      "t": 1794143222.9741223,
-      "title": "آغاز تحقیقات درباره تیراندازی مرگبار در لهستان با اقدام مسلحانه ⚡️ دادستانی کل لهستان تحقیقات درباره تیراندازی روز شنبه "
-    },
     {
       "h": [
         "اختلل",
@@ -6411,6 +6411,40 @@
       ],
       "t": 1794186179.75003,
       "title": "سیل و طوفان در برزیل چندین کشته بر جای گذاشت ⚡️ بارش باران های سیل آسا و وقوع طوفان در ایالت های سائوپائولو و ریودوژانیر"
+    },
+    {
+      "h": [
+        "رصد",
+        "ست",
+        "فعلت",
+        "مشهد",
+        "نشد",
+        "هچ",
+        "کلنگ",
+        "که",
+        "گن"
+      ],
+      "t": 1794188029.1685817,
+      "title": "دونالد ترامپ: فعالیتی در سایت هسته ای کوه کلنگ مشاهده نشده است ⚡️ دونالد ترامپ، رئیس جمهور آمریکا اعلام کرد هیچ گونه فعا"
+    },
+    {
+      "h": [
+        "اغز",
+        "انتشر",
+        "اند",
+        "تحقق",
+        "جسس",
+        "جنسن",
+        "ربط",
+        "شرکت",
+        "فرد",
+        "مدرعمل",
+        "مستقل",
+        "مظنن",
+        "هنگ"
+      ],
+      "t": 1794188044.133864,
+      "title": "تحقیقات انویدیا درباره رابطه جنسن هوانگ با مظنون جاسوسی برای چین ⚡️ شرکت انویدیا در پی انتشار گزارش هایی درباره رابطه جن"
     }
   ],
   "_published_incidents": [
@@ -9156,6 +9190,75 @@
       ],
       "t": 1794186179.7318254,
       "title": "سیل و طوفان در برزیل چندین کشته بر جای گذاشت ⚡️ بارش باران های سیل آسا و وقوع طوفان در ایالت های سائوپائولو و ریودوژانیر"
+    },
+    {
+      "k": [
+        "ار",
+        "امرک",
+        "انتقل",
+        "ترمپ",
+        "جمهر",
+        "دنلد",
+        "رس",
+        "رصد",
+        "ست",
+        "فعلت",
+        "مبن",
+        "مد",
+        "مدع",
+        "مشهد",
+        "مکن",
+        "ندرد",
+        "نشد",
+        "هست",
+        "هچ",
+        "وجد",
+        "کلنگ",
+        "که",
+        "گزرش",
+        "گن"
+      ],
+      "s": "دونالد ترامپ",
+      "t": 1794188029.155335,
+      "title": "دونالد ترامپ: فعالیتی در سایت هسته ای کوه کلنگ مشاهده نشده است ⚡️ دونالد ترامپ، رئیس جمهور آمریکا اعلام کرد هیچ گونه فعا"
+    },
+    {
+      "k": [
+        "ازدج",
+        "اسرر",
+        "اغز",
+        "افتدن",
+        "امنت",
+        "انتشر",
+        "اند",
+        "تحقق",
+        "جسس",
+        "جنسن",
+        "خرج",
+        "خطر",
+        "خهد",
+        "دشتن",
+        "دلل",
+        "ربط",
+        "شرکت",
+        "فرد",
+        "مدر",
+        "مدرعمل",
+        "مستقل",
+        "مظنن",
+        "مل",
+        "ندرد",
+        "نگرن",
+        "هت",
+        "همکر",
+        "هنگ",
+        "وجد",
+        "پذرفت",
+        "چرچب",
+        "چن"
+      ],
+      "t": 1794188044.1206734,
+      "title": "تحقیقات انویدیا درباره رابطه جنسن هوانگ با مظنون جاسوسی برای چین ⚡️ شرکت انویدیا در پی انتشار گزارش هایی درباره رابطه جن"
     }
   ],
   "_telegram_errors": [
@@ -9415,7 +9518,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794186078
+    "at": 1794187873
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9430,14 +9533,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794184987,
-    "last_failure": 1794184387,
-    "last_status": 429
+    "disabled_until": 1794188083,
+    "last_failure": 1794188023,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794186770,
-    "last_failure": 1794186170,
-    "last_status": 429
+    "disabled_until": 1794188313.0,
+    "last_failure": 1794188013,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
