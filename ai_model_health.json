@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794175411
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794175411
-    },
-    {
       "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.5-flash-lite",
       "t": 1794175415
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 2x",
       "t": 1794184413
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794186166
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1794186185
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-08",
-      "n": 206
+      "n": 207
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-08",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-08",
-      "n": 89
+      "n": 90
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-09",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-09",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-08",
@@ -495,8 +495,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -507,8 +507,8 @@
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 2,
+        "429": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -516,22 +516,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
-        "other": 1
+        "ok": 6,
+        "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 9,
+        "calls": 12,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 7,
+        "ok": 10,
         "other": 0
       }
     }
@@ -1131,10 +1131,23 @@
       "t": 1794184412.4982905,
       "title": "شکست در انتخابات میان دوره ای و آینده نامشخص حزب جمهوری خواه",
       "urgent": false
+    },
+    {
+      "label": "حادثه",
+      "level": 5,
+      "t": 1794186179.7887037,
+      "title": "سیل و طوفان در برزیل چندین کشته بر جای گذاشت",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-08",
   "_editor_gate_cache": {
+    "v4|'i treat all these people like they are victims', says doctor who treated krakow shooting suspect": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Local Polish shooting, limited international impact",
+      "topic": "حادثه",
+      "until": 1794272566.015553
+    },
     "v4|10 apple products and features that transformed under tim cook's leadership": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Apple product list, no major event",
@@ -1266,6 +1279,12 @@
       "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Drone strike on Iraqi gas field, regional conflict",
       "topic": "حادثه",
       "until": 1794270762.1928117
+    },
+    "v4|iran war live: trump says ‘iron gate’ in effect; drone hits iraq gasfield": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Drone strike on Iraqi gasfield, regional security escalation",
+      "topic": "نظامی",
+      "until": 1794272566.0289257
     },
     "v4|iran war live: us moves to block land supply routes; uae rescues 22 sailors": {
       "ok": true,
@@ -2251,17 +2270,17 @@
       "topic": "سیاست",
       "until": 1794206013.1392455
     },
-    "v4|ترامپ وزارت دادگستری آمریکا را مامور تحقیق از دموکرات ها کرد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: Unverified claim by former president, no official action",
-      "topic": "سیاست",
-      "until": 1794191535.103098
-    },
     "v4|ترامپ: آمریکا با نتایج انتخابات اخیر، گام بزرگی به عقب در تاریخ برداشت؛ بازار سهام که در دوران ریاست جمهوری «ترامپ» مانند یک موشک اوج گرفته بود، تنها در یک روز با زیانی ۳ تریلیون د": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: واکنش یا اظهارنظر سیاسی مقام سابق بدون رویداد مشخص",
       "topic": "سیاست",
       "until": 1794234824.6095343
+    },
+    "v4|ترامپ: احتمالا با روسای جمهوری روسیه و چین دیدار و درباره ایران گفت وگو می کنم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: بیانیهٔ احتمالی، نه تصمیم قطعی",
+      "topic": "سیاست",
+      "until": 1794272563.6673477
     },
     "v4|ترامپ: اگر مذاکرات به خوبی پیش برود، بعید است به ایران حمله کنیم": {
       "ok": true,
@@ -2359,12 +2378,6 @@
       "topic": "سیاست",
       "until": 1794211503.2594936
     },
-    "v4|تظاهرات صدها اسرائیلی در تل آویو برای مطالبه کنار گذاشتن نتانیاهو": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Protest in Tel Aviv demanding Netanyahu removal",
-      "topic": "سیاست",
-      "until": 1794191535.627424
-    },
     "v4|تظاهرات صدها اسرائیلی در تل آویو برای کنار گذاشتن نتانیاهو/ معترضان خواستار ائتلاف عربی ـ یهودی شدند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: تظاهرات اعتراضی در اسرائیل که اهمیت بین‌المللی دارد اما محدود است.",
@@ -2436,12 +2449,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: دیدار تشریفاتی سفیر جدید ایران در ژاپن با وزیر ورزش",
       "topic": "ورزش",
       "until": 1794218618.1838126
-    },
-    "v4|توقف پروازها در فرودگاه دمام و اعلام هشدار در چند منطقه شرق عربستان": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: Security alert causes flight cancellations in Saudi Arabia.",
-      "topic": "حادثه",
-      "until": 1794191537.682656
     },
     "v4|توقیف ۳۵ دستگاه وسیله نقلیه هنجارشکن و دستگیری ۱۵ تبعه غیرمجاز در گرمسار و آرادان": {
       "ok": false,
@@ -4750,6 +4757,10 @@
       "reason": "content_duplicate",
       "until": 1794205981.7430084
     },
+    "iran war live: trump says ‘iron gate’ in effect; drone hits iraq gasfield": {
+      "reason": "content_duplicate",
+      "until": 1794207784.9950924
+    },
     "israeli opposition leader warns of ‘point of no return’ for democracy": {
       "reason": "content_duplicate",
       "until": 1794197065.5960312
@@ -4852,15 +4863,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "توقف مشکوک شناورهای مرتبط با ایران بر فراز کابل های زیردریایی خلیج عمان ⚡️ چهار شناور مرتبط با ایران پس از تهد",
-      "id": "6997e9f577",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794119625,
-      "verdict": "new",
-      "why": "توقف شناورهای ایرانی بر کابل‌های زیردریایی خلیج عمان"
-    },
     {
       "head": "عضو کمیسیون امنیت مجلس: محدودیت جغرافیایی در حمله به پایگاه های آمریکا برداشته می شود ⚡️ فداحسین مالکی عضو کمی",
       "id": "365685af98",
@@ -5398,16 +5400,18 @@
       "t": 1794184408,
       "verdict": "new",
       "why": "The post discusses US midterm election results, which is not listed."
+    },
+    {
+      "head": "سیل و طوفان در برزیل چندین کشته بر جای گذاشت ⚡️ بارش باران های سیل آسا و وقوع طوفان در ایالت های سائوپائولو و ",
+      "id": "caf74070b8",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794186178,
+      "verdict": "new",
+      "why": "فاجعه طبیعی جدید در برزیل، غیرمستقیم مرتبط با موج بارندگی ایران"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=1 happened=False scope=local: برگزاری رویداد و جایزه آکادمیک فاقد ارزش خبری مهم",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1794153115,
-      "title": "برگزاری جایزه نجم الملک با هدف تقویت نقش حکمرانی و سیاستگذاری دانشگاه ها"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine administrative reminder regarding tax deadlines for local businesses.",
       "rescued": false,
@@ -5960,38 +5964,19 @@
       "rule": "no-concrete-event",
       "t": 1794184360,
       "title": "10 Apple products and features that transformed under Tim Cook's leadership"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: بیانیهٔ احتمالی، نه تصمیم قطعی",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1794186163,
+      "title": "ترامپ: احتمالا با روسای جمهوری روسیه و چین دیدار و درباره ایران گفت وگو می کنم"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "افزش",
-        "ال",
-        "برد",
-        "برلن",
-        "برکسل",
-        "بلستک",
-        "تررس",
-        "تقرب",
-        "تمم",
-        "تند",
-        "دد",
-        "درند",
-        "سفر",
-        "لندن",
-        "متحد",
-        "مدع",
-        "مشک",
-        "مک",
-        "هکب",
-        "پتخت"
-      ],
-      "t": 1794141238.4655726,
-      "title": "سفیر آمریکا در اسرائیل: پایتخت های اروپایی در تیررس موشک های ایران قرار دارند ⚡️ مایک هاکابی، سفیر ایالات متحده در اسرائ"
-    },
     {
       "h": [
         "اغز",
@@ -6406,115 +6391,29 @@
       ],
       "t": 1794184412.4853077,
       "title": "شکست در انتخابات میان دوره ای و آینده نامشخص حزب جمهوری خواه ⚡️ حزب جمهوری خواه پس از شکست چشمگیر در انتخابات میان د دور"
+    },
+    {
+      "h": [
+        "اس",
+        "الت",
+        "بر",
+        "برزل",
+        "برش",
+        "دست",
+        "ردژنر",
+        "سل",
+        "سپل",
+        "طف",
+        "مفقد",
+        "وقع",
+        "چندن",
+        "گذشت"
+      ],
+      "t": 1794186179.75003,
+      "title": "سیل و طوفان در برزیل چندین کشته بر جای گذاشت ⚡️ بارش باران های سیل آسا و وقوع طوفان در ایالت های سائوپائولو و ریودوژانیر"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "برج",
-        "بلر",
-        "تسس",
-        "سنت",
-        "شهرست",
-        "منفجر",
-        "هشت",
-        "پدگ",
-        "کلمب"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1794114278.1210332,
-      "title": "حمله پهپادی به پادگان نظامی در کلمبیا با ۳ کشته ⚡️ حمله پهپادی با مواد منفجره به تأسیسات نظامی در شهرستان سانتا روزا در ",
-      "toll": 3
-    },
-    {
-      "a": [
-        "انرژ",
-        "برق",
-        "تسس",
-        "خمش",
-        "رفت",
-        "سرسر",
-        "قطع",
-        "منجر",
-        "کمل",
-        "گسترد"
-      ],
-      "cities": [
-        "کی یف"
-      ],
-      "kind": "attack",
-      "places": [
-        "کی یف"
-      ],
-      "regions": [
-        "ukraine"
-      ],
-      "t": 1794114320.1640573,
-      "title": "کی یف در پی حملات روسیه در خاموشی فرو رفت ⚡️ حملات گسترده روسیه به تأسیسات انرژی اوکراین منجر به قطع برق سراسری در کی یف",
-      "toll": 0
-    },
-    {
-      "a": [
-        "مسلح",
-        "نجر",
-        "وقع",
-        "پتخت",
-        "یمن"
-      ],
-      "cities": [
-        "ریاض"
-      ],
-      "kind": "attack",
-      "places": [
-        "ریاض"
-      ],
-      "regions": [
-        "gulf"
-      ],
-      "t": 1794116113.0678232,
-      "title": "حمله پهپادی یمن به ریاض و وقوع انفجار در نجران ⚡️ نیروهای مسلح یمن با پهپاد به پایتخت عربستان حمله کردند.",
-      "toll": 0
-    },
-    {
-      "a": [
-        "تقف",
-        "تهدد",
-        "خلج",
-        "دجتل",
-        "ددن",
-        "زردر",
-        "زرسخت",
-        "شنر",
-        "طلن",
-        "عمن",
-        "فرز",
-        "مبن",
-        "مدت",
-        "مرتبط",
-        "مشکک",
-        "چهر",
-        "کبل"
-      ],
-      "cities": [
-        "تهران",
-        "کابل"
-      ],
-      "kind": "attack",
-      "places": [
-        "تهران",
-        "کابل"
-      ],
-      "regions": [
-        "afghanistan",
-        "iran_tehran"
-      ],
-      "t": 1794119627.8039703,
-      "title": "توقف مشکوک شناورهای مرتبط با ایران بر فراز کابل های زیردریایی خلیج عمان ⚡️ چهار شناور مرتبط با ایران پس از تهدید تهران م",
-      "toll": 0
-    },
     {
       "a": [
         "ازف",
@@ -6701,112 +6600,28 @@
       "t": 1794171920.2421968,
       "title": "معاون سیاسی استانداری خوزستان دربارهٔ صدای انفجار در ماهشهر توضیح داد ⚡️ معاون امنیتی سیاسی استانداری خوزستان در پاسخ به",
       "toll": 0
+    },
+    {
+      "a": [
+        "الت",
+        "برزل",
+        "برش",
+        "ردژنر",
+        "سپل",
+        "مفقد",
+        "وقع"
+      ],
+      "cities": [],
+      "kind": "flood",
+      "places": [],
+      "regions": [],
+      "t": 1794186179.7696776,
+      "title": "سیل و طوفان در برزیل چندین کشته بر جای گذاشت ⚡️ بارش باران های سیل آسا و وقوع طوفان در ایالت های سائوپائولو و ریودوژانیر",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ارگ",
-        "است",
-        "اصبت",
-        "اغز",
-        "الملل",
-        "انسن",
-        "بحر",
-        "برج",
-        "بزر",
-        "تشدد",
-        "تعز",
-        "جمهر",
-        "جنگ",
-        "حث",
-        "حل",
-        "حمل",
-        "درگر",
-        "دلت",
-        "دنستند",
-        "رست",
-        "رسمت",
-        "ره",
-        "رهبر",
-        "شر",
-        "شنخت",
-        "صده",
-        "طرف",
-        "عمل",
-        "مشک",
-        "معتقدند",
-        "مقصر",
-        "ممکن",
-        "نظر",
-        "نفر",
-        "هرگن",
-        "هزر",
-        "وخم",
-        "پفشر",
-        "کشت",
-        "گذرد",
-        "گذشت",
-        "گر",
-        "یمن",
-        "یکدگر"
-      ],
-      "t": 1794054917.8491704,
-      "title": "ده ها کشته در حمله موشکی به تعز و تشدید بحران انسانی در یمن ⚡️ اصابت یک موشک به بازاری در استان تعز یمن ده ها کشته برجا "
-    },
-    {
-      "k": [
-        "اجتمع",
-        "اجر",
-        "ادع",
-        "ار",
-        "ارز",
-        "اسفندم",
-        "اسلم",
-        "افزش",
-        "ال",
-        "العد",
-        "امتز",
-        "بب",
-        "بدج",
-        "بست",
-        "بن",
-        "ترمم",
-        "تفق",
-        "جر",
-        "جمهر",
-        "حقق",
-        "خص",
-        "دلت",
-        "دم",
-        "رس",
-        "شر",
-        "شمل",
-        "شهررم",
-        "ظرفت",
-        "عل",
-        "فق",
-        "قنن",
-        "مبهلتفت",
-        "مجلس",
-        "محل",
-        "مرحل",
-        "منبع",
-        "مه",
-        "نبد",
-        "نخست",
-        "هزر",
-        "همت",
-        "پشش",
-        "پشنهد",
-        "کرمند",
-        "کرنم",
-        "کمسن"
-      ],
-      "t": 1794054963.3317983,
-      "title": "توافق مجلس و دولت برای ترمیم دو مرحله ای حقوق ها از محل مابهالتفاوت ارز ⚡️ علی بابایی کارنامی، رئیس کمیسیون اجتماعی مجلس"
-    },
     {
       "k": [
         "اسرل",
@@ -9320,6 +9135,27 @@
       ],
       "t": 1794184412.4699185,
       "title": "شکست در انتخابات میان دوره ای و آینده نامشخص حزب جمهوری خواه ⚡️ حزب جمهوری خواه پس از شکست چشمگیر در انتخابات میان د دور"
+    },
+    {
+      "k": [
+        "اس",
+        "الت",
+        "بر",
+        "برزل",
+        "برش",
+        "دست",
+        "ردژنر",
+        "سل",
+        "سپل",
+        "طف",
+        "مفقد",
+        "وقع",
+        "چندن",
+        "کشت",
+        "گذشت"
+      ],
+      "t": 1794186179.7318254,
+      "title": "سیل و طوفان در برزیل چندین کشته بر جای گذاشت ⚡️ بارش باران های سیل آسا و وقوع طوفان در ایالت های سائوپائولو و ریودوژانیر"
     }
   ],
   "_telegram_errors": [
@@ -9579,7 +9415,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794184268
+    "at": 1794186078
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9599,8 +9435,8 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794184983,
-    "last_failure": 1794184383,
+    "disabled_until": 1794186770,
+    "last_failure": 1794186170,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
