@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1794175398
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794175405
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794175405
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794175406
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794175406
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794175411
     },
@@ -159,32 +139,52 @@
     {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
       "t": 1794182628
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794184359
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794184360
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794184361
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1794184362
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1794184413
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-08",
-      "n": 119
+      "n": 121
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-08",
-      "n": 205
+      "n": 206
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-08",
-      "n": 91
+      "n": 92
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-08",
-      "n": 86
+      "n": 89
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-09",
-      "n": 4
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-08",
-      "n": 90
+      "day": "2026-11-09",
+      "n": 6
     },
     "openrouter:*": {
       "day": "2026-11-08",
@@ -487,28 +487,56 @@
       }
     },
     "2026-11-09": {
-      "groq:openai/gpt-oss-120b": {
+      "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
-      "mistral:open-mistral-nemo": {
+      "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 2,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 6,
+        "ok": 6,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 6,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 5,
+        "other": 1
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 2,
+        "calls": 9,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 7,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "موضع‌گیری",
-      "level": 4,
-      "t": 1794011554.2722795,
-      "title": "قطر: آمریکا و ایران نباید منتظر لحظه ی کامل برای رسیدن به صلح باشند",
-      "urgent": false
-    },
     {
       "label": "سیاست",
       "level": 4,
@@ -1096,10 +1124,23 @@
       "t": 1794182635.9874756,
       "title": "روبیو درباره احتمال اقدام نظامی: همه چیز به سطح تهدید یا قصد تهران برای حمله به منافع ما بستگی دارد",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1794184412.4982905,
+      "title": "شکست در انتخابات میان دوره ای و آینده نامشخص حزب جمهوری خواه",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-08",
   "_editor_gate_cache": {
+    "v4|10 apple products and features that transformed under tim cook's leadership": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Apple product list, no major event",
+      "topic": "فناوری",
+      "until": 1794270760.8782141
+    },
     "v4|a sample of over 5,000 drives reveals one problem with new hdds": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=world: This is a minor tech product analysis, not a major event.",
@@ -1117,12 +1158,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Finals of a major international sports competition.",
       "topic": "ورزش",
       "until": 1794213212.17251
-    },
-    "v4|canary islands’ el hierro declares emergency amid migrant, refugee influx": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مهاجرت و اضطراب در جزیره اسپانیا",
-      "topic": "جامعه",
-      "until": 1794189747.891149
     },
     "v4|cctv captures streets shaking as 5.7-magnitude earthquake hits japan": {
       "ok": true,
@@ -1225,6 +1260,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: تهدید متقابل مقامات ارشد ایران و آمریکا در سطح کلان جهانی.",
       "topic": "نظامی",
       "until": 1794256434.2298265
+    },
+    "v4|iran war live: trump says ‘iron gate’ in effect; drone hits iraq gas field": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Drone strike on Iraqi gas field, regional conflict",
+      "topic": "حادثه",
+      "until": 1794270762.1928117
     },
     "v4|iran war live: us moves to block land supply routes; uae rescues 22 sailors": {
       "ok": true,
@@ -1502,6 +1543,12 @@
       "topic": "جامعه",
       "until": 1794252848.4439502
     },
+    "v4|آمادگی دانشجویان آلمان برای برگزاری اعتصاب سراسری در ۲۰ نوامبر": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: اعلام اعتصاب آینده، هنوز رخ نداده",
+      "topic": "سیاست",
+      "until": 1794270758.96377
+    },
     "v4|آمادگی کامل شهرداری سمنان برای مقابله با سیلاب های احتمالی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=1 happened=False scope=local: آمادگی شهرداری سمنان برای سیل احتمالی خبر محلی و کم‌اهمیت است",
@@ -1562,17 +1609,17 @@
       "topic": "سیاست",
       "until": 1794240257.246107
     },
-    "v4|آیزنکوت: زمان تشکیل دولت اضطراری فرا رسیده است": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Israeli leader calls for emergency government",
-      "topic": "سیاست",
-      "until": 1794189750.5732818
-    },
     "v4|آیین نامه اجرایی حمایت از ایرانیان خارج از کشور تصویب شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=iran_national: Official government decision regarding policy for Iranians abroad.",
       "topic": "سیاست",
       "until": 1794227620.2398589
+    },
+    "v4|ائتلاف ترامپ فروپاشیده است؛ جمهوری خواهان حالا چه خواهند کرد؟": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: collapse of Trump's coalition in 2026 midterms",
+      "topic": "سیاست",
+      "until": 1794270760.1115038
     },
     "v4|اتفاقی باورنکردنی در جنگ اوکراین": {
       "ok": false,
@@ -2431,12 +2478,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: گزارش بارش محلی در یک منطقه کوچک و فاقد اهمیت ملی",
       "topic": "آب و هوا",
       "until": 1794198815.6052012
-    },
-    "v4|ثبت دیجیتال املاک گام جدید برای حفظ سرمایه های برق کشور": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Administrative reform, limited national impact",
-      "topic": "اقتصاد",
-      "until": 1794191534.2189112
     },
     "v4|ثبت نام آزمون تبدیل وضعیت کارمندان پیمانی تمدید شد؛ آزمون ۲۷ آذر": {
       "ok": false,
@@ -3638,12 +3679,6 @@
       "topic": "سیاست",
       "until": 1794242079.2401526
     },
-    "v4|مجلس نمایندگان و علمای یمن، حمله به روستای شرق صنعا را محکوم کردند": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Yemeni parliament condemns attack",
-      "topic": "سیاست",
-      "until": 1794189750.5562935
-    },
     "v4|محاصره دریایی ایران؛ از مناسبات بین المللی تا موازنه قدرت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Academic analysis and opinion, not an official policy decision or event.",
@@ -3667,6 +3702,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: تصادف اتوبوس تیم بسکتبال آکادمی با تلفات محدود خبر محلی است.",
       "topic": "ورزش",
       "until": 1794218622.57326
+    },
+    "v4|مدیرعامل انویدیا در تله معشوقه مظنون به جاسوسی برای چین؛ جنسن هوانگ عذرخواهی کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Nvidia CEO scandal, unverified affair",
+      "topic": "فناوری",
+      "until": 1794270762.1792407
     },
     "v4|مدیرکل امور مالیاتی جنوب تهران: مؤدیان تعیین تکلیف مالیاتی را به روزهای پایانی موکول نکنند": {
       "ok": false,
@@ -3872,12 +3913,6 @@
       "topic": "جامعه",
       "until": 1794258198.4234254
     },
-    "v4|نسخه تازه برای مدیریت مصرف گاز در زمستان": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=iran_national: New gas demand management plan announced",
-      "topic": "اقتصاد",
-      "until": 1794187960.624573
-    },
     "v4|نصب گسترده دوربین های تله ای در منطقه شکارممنوع اشکورات رودسر": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: اقدام اجرایی و محلی سازمان محیط زیست در یک منطقه.",
@@ -4064,12 +4099,6 @@
       "topic": "سیاست",
       "until": 1794198820.7195387
     },
-    "v4|واکنش همسر شهید مطهری به خواستگاری علی لاریجانی از دخترش؛ زیادی جوان است «مری جان»/ از نظر مالی خانواده علی بالاتر از خانواده فریده بودند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Personal family matter, not major national/international significance",
-      "topic": "جامعه",
-      "until": 1794189749.1000688
-    },
     "v4|وداع با نویسنده «جاده جنگ»؛ کتابی که باید در میان نسل جدید ترویج شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: مراسم ترحیم و فعالیت‌های فرهنگی محلی فاقد اهمیت ملی است.",
@@ -4153,6 +4182,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: زلزله با مقیاس پایین و بدون خسارت گزارش شده است.",
       "topic": "آب و هوا",
       "until": 1794234859.3313644
+    },
+    "v4|وقوع سیل و طوفان شدید در برزیل چندین کشته بر جای گذاشت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: Severe floods in Brazil kill several, cause massive power outages",
+      "topic": "آب و هوا",
+      "until": 1794270757.972614
     },
     "v4|ویدئوی آب گرفتگی منتشرشده در فضای مجازی ارتباطی با شبکه مترو تهران ندارد": {
       "ok": false,
@@ -4711,6 +4746,10 @@
       "reason": "final_guard:broken-name",
       "until": 1794186321.9084716
     },
+    "iran war live: trump says ‘iron gate’ in effect; drone hits iraq gas field": {
+      "reason": "content_duplicate",
+      "until": 1794205981.7430084
+    },
     "israeli opposition leader warns of ‘point of no return’ for democracy": {
       "reason": "content_duplicate",
       "until": 1794197065.5960312
@@ -4813,34 +4852,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "کی یف در پی حملات روسیه در خاموشی فرو رفت ⚡️ حملات گسترده روسیه به تأسیسات انرژی اوکراین منجر به قطع برق سراسر",
-      "id": "5aad709a88",
-      "match": "زلنسکی: روسیه در حملات به کی یف از موشک های کره شمالی استفاده کرد",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794114305,
-      "verdict": "repeat",
-      "why": "same attack on Kyiv, Russian missiles"
-    },
-    {
-      "head": "کی یف در پی حملات روسیه در خاموشی فرو رفت ⚡️ حملات گسترده روسیه به تأسیسات انرژی اوکراین منجر به قطع برق سراسر",
-      "id": "5aad709a88",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1794114319,
-      "verdict": "new",
-      "why": "حمله جدید به تاسیسات انرژی و خاموشی کی‌یف است."
-    },
-    {
-      "confirm": "gemini/gemini-3.5-flash-lite:new",
-      "head": "حمله پهپادی یمن به ریاض و وقوع انفجار در نجران ⚡️ نیروهای مسلح یمن با پهپاد به پایتخت عربستان حمله کردند.",
-      "id": "7e1a33cd71",
-      "match": "ده ها کشته در حمله موشکی به تعز و تشدید بحران انسانی در یمن",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794116102,
-      "verdict": "unconfirmed-repeat",
-      "why": "same drone attack on Saudi Arabia, Yemen’s military"
-    },
     {
       "head": "توقف مشکوک شناورهای مرتبط با ایران بر فراز کابل های زیردریایی خلیج عمان ⚡️ چهار شناور مرتبط با ایران پس از تهد",
       "id": "6997e9f577",
@@ -5358,37 +5369,38 @@
       "t": 1794182635,
       "verdict": "new",
       "why": "نظریه نظامی آمریکا بر احتمال حمله ایران"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "پهپاد عراق را به دست می آورد؛ گازخانه خرمور آسیب می بیند ⚡️ پهپاد در منطقه کردستان شمالی عراق به گازخانه خرمور",
+      "id": "50b618fe2f",
+      "match": "حمله پهپادی به میدان گازی کورمور در سلیمانیه و توقف تولید ⚡️ حمله پهپادی به میدان گازی کورمور در استان سلیمانی",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794184368,
+      "verdict": "repeat",
+      "why": "same attack on Khormor gas field"
+    },
+    {
+      "confirm": "mistral/open-mistral-nemo:repeat",
+      "head": "پهپاد عراق را به دست می آورد؛ گازخانه خرمور آسیب می بیند ⚡️ پهپاد در منطقه کردستان شمالی عراق به گازخانه خرمور",
+      "id": "50b618fe2f",
+      "match": "حمله پهپادی به میدان گازی کورمور در سلیمانیه و توقف تولید ⚡️ حمله پهپادی به میدان گازی کورمور در استان سلیمانی",
+      "model": "groq/openai/gpt-oss-20b",
+      "t": 1794184380,
+      "verdict": "repeat",
+      "why": "Same drone attack on gas field in northern Kurdistan"
+    },
+    {
+      "head": "شکست در انتخابات میان دوره ای و آینده نامشخص حزب جمهوری خواه ⚡️ حزب جمهوری خواه پس از شکست چشمگیر در انتخابات ",
+      "id": "f4c6bd2205",
+      "match": "",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1794184408,
+      "verdict": "new",
+      "why": "The post discusses US midterm election results, which is not listed."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: اخبار محلی و اظهارات استاندار درباره حمایت از ورزش کرمانشاه اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1794151995,
-      "title": "ضرورت استفاده از ظرفیت بنگاه های اقتصادی برای حمایت از تیم های لیگ برتری کرمانشاه"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مصاحبه ورزشی، تأثیر محدود",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794153086,
-      "title": "از بغض برای اسطوره تا اشک هایی که برای جوبیلو ریخته شد؛ توفیق اجباری نه، توبیخ اجباری شدیم"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=3 happened=True scope=iran_national: پیام تبریک و تقدیر روتین وزارت ورزش فاقد ارزش خبری اول است",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794153107,
-      "title": "وزارت ورزش و جوانان: رکوردشکنی یوسفی، نقطه برجسته حضور وزنه برداری در چین بود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: اظهارات و انتقادات سیاسی ترامپ درباره انتخابات و اقتصاد",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1794153110,
-      "title": "ترامپ: با نتایج انتخابات، آمریکا گامی بزرگ به عقب برداشت"
-    },
     {
       "ai": "ai gemini/gemini-3.6-flash score=1 happened=False scope=local: برگزاری رویداد و جایزه آکادمیک فاقد ارزش خبری مهم",
       "rescued": false,
@@ -5920,30 +5932,40 @@
       "rule": "final-scope-preselection",
       "t": 1794182625,
       "title": "‘This happened very quick’: Beau Lamarre-Condon reenacts shooting Jesse Baird during double murder trial"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: Severe floods in Brazil kill several, cause massive power outages",
+      "rescued": true,
+      "rule": "final-scope-preselection",
+      "t": 1794184357,
+      "title": "وقوع سیل و طوفان شدید در برزیل چندین کشته بر جای گذاشت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: اعلام اعتصاب آینده، هنوز رخ نداده",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794184358,
+      "title": "آمادگی دانشجویان آلمان برای برگزاری اعتصاب سراسری در ۲۰ نوامبر"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: collapse of Trump's coalition in 2026 midterms",
+      "rescued": true,
+      "rule": "below-event-threshold",
+      "t": 1794184360,
+      "title": "ائتلاف ترامپ فروپاشیده است؛ جمهوری خواهان حالا چه خواهند کرد؟"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Apple product list, no major event",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794184360,
+      "title": "10 Apple products and features that transformed under Tim Cook's leadership"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ادس",
-        "تجهز",
-        "تسلح",
-        "جنب",
-        "ددن",
-        "در",
-        "دفع",
-        "غرب",
-        "محمل",
-        "هدف",
-        "وزرت",
-        "کنتنر"
-      ],
-      "t": 1794139504.3803422,
-      "title": "حمله روسیه به کشتی حامل محموله نظامی اوکراین در دریای سیاه ⚡️ وزارت دفاع روسیه از هدف قرار دادن یک کشتی کانتینری حامل تس"
-    },
     {
       "h": [
         "افزش",
@@ -6365,6 +6387,25 @@
       ],
       "t": 1794182635.9745991,
       "title": "روبیو درباره احتمال اقدام نظامی: همه چیز به سطح تهدید یا قصد تهران برای حمله به منافع ما بستگی دارد ⚡️ روبیو درباره احتم"
+    },
+    {
+      "h": [
+        "اتلف",
+        "ارزب",
+        "اغز",
+        "انتخب",
+        "اند",
+        "حزب",
+        "حم",
+        "در",
+        "شکست",
+        "عمق",
+        "فرپش",
+        "نمشخص",
+        "چشمگر"
+      ],
+      "t": 1794184412.4853077,
+      "title": "شکست در انتخابات میان دوره ای و آینده نامشخص حزب جمهوری خواه ⚡️ حزب جمهوری خواه پس از شکست چشمگیر در انتخابات میان د دور"
     }
   ],
   "_published_incidents": [
@@ -6664,57 +6705,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اردند",
-        "اسرل",
-        "امرک",
-        "امنت",
-        "انتخب",
-        "اند",
-        "برخ",
-        "برنگخت",
-        "تگزس",
-        "جمهر",
-        "جنب",
-        "حکت",
-        "خه",
-        "در",
-        "درصد",
-        "دست",
-        "دمکر",
-        "رسن",
-        "رهب",
-        "سنت",
-        "شدند",
-        "شهد",
-        "شکست",
-        "فلسطن",
-        "قطع",
-        "قنن",
-        "مجلس",
-        "مصر",
-        "نتج",
-        "نظرسنج",
-        "نمندگ",
-        "نهد",
-        "نگرن",
-        "وشنگتن",
-        "پرز",
-        "پشن",
-        "پگ",
-        "چهر",
-        "کرلن",
-        "کمک",
-        "کنترل",
-        "کنزس",
-        "کنگر",
-        "گذر",
-        "یهد"
-      ],
-      "t": 1794053062.028251,
-      "title": "پیروزی قاطع دموکرات ها در انتخابات میان دوره ای ۲۰۲۶ آمریکا ⚡️ دموکرات ها در انتخابات میان دوره ای ۲۰۲۶ کنترل هر دو مجلس"
-    },
     {
       "k": [
         "ارگ",
@@ -9284,6 +9274,52 @@
       ],
       "t": 1794182635.9576674,
       "title": "روبیو درباره احتمال اقدام نظامی: همه چیز به سطح تهدید یا قصد تهران برای حمله به منافع ما بستگی دارد ⚡️ روبیو درباره احتم"
+    },
+    {
+      "k": [
+        "اتلف",
+        "اختلف",
+        "ارزب",
+        "استرتژست",
+        "استن",
+        "اغز",
+        "انتخب",
+        "انتصب",
+        "اند",
+        "برنم",
+        "بزگشت",
+        "ترمپ",
+        "ترمپسم",
+        "تعدل",
+        "جمهر",
+        "حزب",
+        "حم",
+        "در",
+        "دنلد",
+        "دچر",
+        "رس",
+        "سس",
+        "سست",
+        "سفد",
+        "سنت",
+        "شکست",
+        "عمق",
+        "فرپش",
+        "محفظ",
+        "مسر",
+        "مقم",
+        "ملر",
+        "ندرد",
+        "نشن",
+        "نظر",
+        "نمشخص",
+        "چشمگر",
+        "کخ",
+        "کر",
+        "کرکن"
+      ],
+      "t": 1794184412.4699185,
+      "title": "شکست در انتخابات میان دوره ای و آینده نامشخص حزب جمهوری خواه ⚡️ حزب جمهوری خواه پس از شکست چشمگیر در انتخابات میان د دور"
     }
   ],
   "_telegram_errors": [
@@ -9543,7 +9579,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794182531
+    "at": 1794184268
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9558,13 +9594,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794181704,
-    "last_failure": 1794181104,
+    "disabled_until": 1794184987,
+    "last_failure": 1794184387,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794181354,
-    "last_failure": 1794180754,
+    "disabled_until": 1794184983,
+    "last_failure": 1794184383,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
