@@ -1,6 +1,22 @@
 {
   "_ai_extra_log": [
     {
+      "e": "EDITOR BATCH gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1794181104
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
+      "t": 1794181109
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1794181140
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794182628
+    },
+    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794184359
     },
@@ -133,50 +149,34 @@
       "t": 1794191653
     },
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794193176
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794193177
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1794193192
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794193193
+      "t": 1794193397
     },
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794193193
+      "e": "EDITOR BATCH: 5/5 via groq/openai/gpt-oss-20b",
+      "t": 1794193399
     },
     {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1794193198
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1794193262
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1794193442
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-08",
-      "n": 131
+      "n": 130
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-08",
-      "n": 223
+      "n": 222
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-08",
-      "n": 100
+      "n": 99
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-08",
-      "n": 100
+      "n": 99
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-09",
@@ -489,26 +489,26 @@
     "2026-11-09": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 11,
+        "ok": 11,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 18,
-        "ok": 18,
+        "calls": 17,
+        "ok": 17,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 4,
-        "calls": 9,
+        "429": 3,
+        "calls": 8,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 8,
-        "calls": 9,
+        "429": 9,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -525,12 +525,12 @@
         "429": 0,
         "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
-        "other": 6
+        "ok": 11,
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
-        "429": 10,
-        "calls": 31,
+        "429": 9,
+        "calls": 30,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
         "ok": 21,
         "other": 0
@@ -1164,8 +1164,8 @@
     {
       "label": "سیاست",
       "level": 4,
-      "t": 1794193210.3045723,
-      "title": "بلینکن: اعطای امتیاز به ایران پیش نیاز هرگونه توافق دیپلماتیک است",
+      "t": 1794193414.9955082,
+      "title": "بلینکن: امتیاز دادن به ایران لازمه توافق دیپلماتیک است",
       "urgent": false
     }
   ],
@@ -1227,9 +1227,9 @@
     },
     "v4|drone attack on iraqi kurdistan gas field triggers mass blackout": {
       "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله پهپادی به تاسیسات انرژی و گاز در خاورمیانه رویداد مهم جهانی است.",
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Drone attack halted gas production, caused blackout",
       "topic": "حادثه",
-      "until": 1794279598.2404213
+      "until": 1794279799.6986647
     },
     "v4|drone attack suspends production at iraq’s khor mor gasfield": {
       "ok": true,
@@ -1326,6 +1326,12 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Drone strike on Iraqi gasfield, regional security escalation",
       "topic": "نظامی",
       "until": 1794272566.0289257
+    },
+    "v4|iran war live: trump to talk to xi, putin about tehran, ‘denuclearization’": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: Trump proposes talks, no concrete decision",
+      "topic": "سیاست",
+      "until": 1794279799.6873128
     },
     "v4|israeli opposition leader warns of ‘point of no return’ for democracy": {
       "ok": true,
@@ -2163,9 +2169,9 @@
     },
     "v4|بلینکن: دادن امتیاز به ایران پیش نیاز دستیابی به هرگونه توافق دیپلماتیک است": {
       "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع رسمی مقامات ارشد درباره توافق با ایران رویداد سطح یک است.",
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=iran_national: Blinken says sanctions needed for diplomacy",
       "topic": "سیاست",
-      "until": 1794279598.2533507
+      "until": 1794279799.7098725
     },
     "v4|بمب های آمریکایی و میراث ویرانی، بیماری و فقر برای مردم افغانستان": {
       "ok": false,
@@ -3135,9 +3141,9 @@
     },
     "v4|روزنامه جمهوری اسلامی: دستگاه های اطلاعاتی و امنیتی با افراد مشکوکی که در تجمعات، به مسئولان توهین می کنند برخورد کنند": {
       "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=iran_national: این یک پیشنهاد رسانه‌ای و تحلیل است، نه یک تصمیم رسمی اجرایی.",
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: پیشنهاد بدون وقوع واقعه، خبری محلی",
       "topic": "سیاست",
-      "until": 1794279593.503162
+      "until": 1794279797.319102
     },
     "v4|روزنامه های ورزشی یکشنبه ۱۷ آبان ۱۴۰۵": {
       "ok": false,
@@ -3333,9 +3339,9 @@
     },
     "v4|سیلاب جاده گنبد- کلاله را مسدود کرد": {
       "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: مسدود شدن جاده محلی در یک شهرستان کوچک، اخبار محلی محسوب می شود.",
-      "topic": "حادثه",
-      "until": 1794279598.2269108
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Flood blocked road, local impact",
+      "topic": "آب و هوا",
+      "until": 1794279799.6071043
     },
     "v4|سیلاب خیابان های سوق کهگیلویه وبویراحمد را فرا گرفت": {
       "ok": false,
@@ -3438,12 +3444,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: هشدار هواشناسی و پیش‌بینی محلی برای بارش",
       "topic": "آب و هوا",
       "until": 1794214741.048155
-    },
-    "v4|صفحه نخست روزنامه ها – یکشنبه ۱۷ آبان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: مرور روزنامه ها رویداد اصلی خبری محسوب نمی شود",
-      "topic": "سیاست",
-      "until": 1794198797.4881496
     },
     "v4|ضرورت استفاده از ظرفیت بنگاه های اقتصادی برای حمایت از تیم های لیگ برتری کرمانشاه": {
       "ok": false,
@@ -3606,12 +3606,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: موضع‌گیری یک فراکسیون پارلمانی خارجی درباره مسائل مرزی است.",
       "topic": "سیاست",
       "until": 1794234859.384107
-    },
-    "v4|فرصت سوزی ایران در استفاده از ظرفیت دانشمندان؛ از تجربه ساخت واکسن کرونا تا چارچوب های mof": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=iran_national: تحلیل و انتقاد کارشناسی درباره ظرفیت‌های علمی فاقد رویداد عینی است.",
-      "topic": "فناوری",
-      "until": 1794197014.4459465
     },
     "v4|فرصت های تازه برای تهران و کی یف": {
       "ok": false,
@@ -3937,6 +3931,12 @@
       "topic": "حادثه",
       "until": 1794231247.3660915
     },
+    "v4|موشک های هسته ای در خدمت ناسا برای رسیدن به عمق فضا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=1 happened=False scope=local: Speculative claim about nuclear rockets",
+      "topic": "فناوری",
+      "until": 1794279799.721107
+    },
     "v4|موشک های هسته ای در راستای رساندن ناسا به عمق فضا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: مطلب علمی و آموزشی عمومی بدون رویداد خبری مشخص",
@@ -3963,9 +3963,9 @@
     },
     "v4|نتانیاهو پشت درهای بسته قدرت / آغاز شمارش معکوس برای پایان دوران نتانیاهو": {
       "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: نتانیاهو ادامه‌دار بودن دولت تا تشکیل کابینه جدید",
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: نتانیاهو همچنان نخست‌وزیر تا تشکیل کابینه جدید",
       "topic": "سیاست",
-      "until": 1794279576.916421
+      "until": 1794279796.236785
     },
     "v4|نصب گسترده دوربین های تله ای در منطقه شکارممنوع اشکورات رودسر": {
       "ok": false,
@@ -4775,7 +4775,7 @@
   "_editorial_blocks": {
     "drone attack on iraqi kurdistan gas field triggers mass blackout": {
       "reason": "content_duplicate",
-      "until": 1794214841.636533
+      "until": 1794215033.310795
     },
     "drone attack suspends production at iraq’s khor mor gasfield": {
       "reason": "content_duplicate",
@@ -4864,7 +4864,7 @@
     },
     "نتانیاهو پشت درهای بسته قدرت / آغاز شمارش معکوس برای پایان دوران نتانیاهو": {
       "reason": "content_duplicate",
-      "until": 1794214862.5398438
+      "until": 1794215042.7139251
     }
   },
   "_event_judge_log": [
@@ -5407,13 +5407,13 @@
       "why": "This is a new diplomatic meeting not previously reported."
     },
     {
-      "head": "بلینکن: اعطای امتیاز به ایران پیش نیاز هرگونه توافق دیپلماتیک است ⚡️ آنتونی بلینکن، وزیر خارجه پیشین آمریکا، د",
-      "id": "f98f3c9d2a",
+      "head": "بلینکن: امتیاز دادن به ایران لازمه توافق دیپلماتیک است ⚡️ آنتونی بلینکن وزیر خارجه سابق آمریکا اعلام کرد دستیا",
+      "id": "17bb4e4efb",
       "match": "",
       "model": "mistral/open-mistral-nemo",
-      "t": 1794193209,
+      "t": 1794193413,
       "verdict": "new",
-      "why": "نقد سیاست خارجی آمریکا، موضوع جدید"
+      "why": "نقد بلینکن در مورد امتیازدهی ایران"
     }
   ],
   "_importance_rescue_log": [
@@ -5964,17 +5964,17 @@
       "title": "Pope Leo delivers stinging rebuke of Milei’s austerity measures during Argentina visit"
     },
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: نتانیاهو ادامه‌دار بودن دولت تا تشکیل کابینه جدید",
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: نتانیاهو همچنان نخست‌وزیر تا تشکیل کابینه جدید",
       "rescued": true,
       "rule": "no-concrete-event",
-      "t": 1794193176,
+      "t": 1794193396,
       "title": "نتانیاهو پشت درهای بسته قدرت / آغاز شمارش معکوس برای پایان دوران نتانیاهو"
     },
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=iran_national: این یک پیشنهاد رسانه‌ای و تحلیل است، نه یک تصمیم رسمی اجرایی.",
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: پیشنهاد بدون وقوع واقعه، خبری محلی",
       "rescued": false,
       "rule": "below-event-threshold",
-      "t": 1794193193,
+      "t": 1794193397,
       "title": "روزنامه جمهوری اسلامی: دستگاه های اطلاعاتی و امنیتی با افراد مشکوکی که در تجمعات، به مسئولان توهین می کنند برخورد کنند"
     }
   ],
@@ -6372,25 +6372,21 @@
     },
     {
       "h": [
-        "اعط",
         "امتز",
         "انتن",
         "بلنکن",
         "تفق",
-        "تنگ",
         "خرج",
+        "ددن",
         "دستب",
         "دپلمتک",
-        "مدرت",
-        "مصحب",
-        "نز",
-        "هرمز",
-        "هرگن",
-        "پشن",
-        "کهش"
+        "سبق",
+        "لزم",
+        "نزمند",
+        "هرگن"
       ],
-      "t": 1794193210.2917323,
-      "title": "بلینکن: اعطای امتیاز به ایران پیش نیاز هرگونه توافق دیپلماتیک است ⚡️ آنتونی بلینکن، وزیر خارجه پیشین آمریکا، در مصاحبه ا"
+      "t": 1794193414.9845378,
+      "title": "بلینکن: امتیاز دادن به ایران لازمه توافق دیپلماتیک است ⚡️ آنتونی بلینکن وزیر خارجه سابق آمریکا اعلام کرد دستیابی به هرگو"
     }
   ],
   "_published_incidents": [
@@ -9063,50 +9059,26 @@
     },
     {
       "k": [
-        "اختر",
         "ار",
-        "استرتژک",
-        "اشر",
-        "اعط",
         "امتز",
         "امرک",
         "انتن",
-        "انجم",
-        "بخهد",
         "بلنکن",
-        "بگرد",
-        "تحرم",
-        "ترجح",
-        "تردد",
-        "تشدد",
         "تفق",
-        "تند",
-        "تنش",
-        "تنمند",
-        "تنگ",
-        "تکد",
         "خرج",
+        "ددن",
         "دستب",
         "دپلمتک",
-        "رفع",
-        "زمن",
-        "قبل",
-        "مدرت",
-        "مسر",
-        "مصحب",
-        "مصلح",
-        "نز",
-        "هرمز",
+        "سبق",
+        "لزم",
+        "نزمند",
         "هرگن",
         "وزر",
-        "پشن",
-        "کشت",
-        "کنترل",
-        "کهش"
+        "کشر"
       ],
       "s": "بلینکن",
-      "t": 1794193210.2783024,
-      "title": "بلینکن: اعطای امتیاز به ایران پیش نیاز هرگونه توافق دیپلماتیک است ⚡️ آنتونی بلینکن، وزیر خارجه پیشین آمریکا، در مصاحبه ا"
+      "t": 1794193414.9585452,
+      "title": "بلینکن: امتیاز دادن به ایران لازمه توافق دیپلماتیک است ⚡️ آنتونی بلینکن وزیر خارجه سابق آمریکا اعلام کرد دستیابی به هرگو"
     }
   ],
   "_telegram_errors": [
@@ -9366,7 +9338,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794193092
+    "at": 1794193318
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9381,14 +9353,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794193815,
-    "last_failure": 1794193215,
+    "disabled_until": 1794192246,
+    "last_failure": 1794191646,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794193492.0,
-    "last_failure": 1794193192,
-    "last_status": 599
+    "disabled_until": 1794194005,
+    "last_failure": 1794193405,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9403,7 +9375,7 @@
     "last_status": 599
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794193214,
+    "last_quality_failure": 1794193405,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
