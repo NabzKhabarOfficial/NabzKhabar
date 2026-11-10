@@ -1,9 +1,11 @@
 {
   "ai_pool": {},
   "all_selected_blocked": false,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-10T22:35:02.925227+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-11-10T23:04:24.895627+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -89,33 +91,52 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: no-ai-fallback-fail-closed",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=world: خبر ورزشی غیرمهم و حاشیه‌ای",
       "result": "editorial_blocked",
       "source": "",
-      "title": "روابط راهبردی با چین باید از توافقات کاغذی به همکاری های عملیاتی برسد",
+      "title": "Injured Feyi-Waboso is our Robinson – Sinfield",
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "aljazeera.com",
+      "started_at": "2026-11-10T23:03:33.617862+00:00",
+      "title": "Russia expels Moldovan diplomat in tit-for-tat move",
+      "url": "https://aljazeera.com/news/2026/11/10/russia-expels-moldovan-diplomat-in-tit-for-tat-move?traffic_source=rss"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "aljazeera.com",
+      "title": "Russia expels Moldovan diplomat in tit-for-tat move",
+      "url": "https://aljazeera.com/news/2026/11/10/russia-expels-moldovan-diplomat-in-tit-for-tat-move?traffic_source=rss"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": false,
   "published": 1,
   "run_status": "success",
-  "selected_for_publication": 13,
+  "selected_for_publication": 14,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "nytimes.com",
-      "started_at": "2026-11-10T22:34:06.823794+00:00",
-      "title": "Rubio Says ‘Major Combat Operations’ in Iran War Are No Longer Needed",
-      "url": "https://nytimes.com/2026/11/10/us/politics/rubio-iran-war.html"
+      "source": "aljazeera.com",
+      "started_at": "2026-11-10T23:03:56.086685+00:00",
+      "title": "US House begins vote on motion to advance impeachment of Pete Hegseth",
+      "url": "https://aljazeera.com/news/2026/11/10/us-house-begins-vote-on-motion-to-advance-impeachment-of-pete-hegseth?traffic_source=rss"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
