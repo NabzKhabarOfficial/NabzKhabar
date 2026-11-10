@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1794259978
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794261799
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1794261800
     },
@@ -159,32 +151,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
       "t": 1794267198
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794268995
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1794269030
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-09",
-      "n": 113
+      "n": 114
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-09",
-      "n": 193
+      "n": 194
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-09",
-      "n": 80
+      "n": 82
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-09",
-      "n": 78
+      "n": 80
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-11-09",
-      "n": 90
+      "day": "2026-11-10",
+      "n": 4
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-09",
-      "n": 90
+      "day": "2026-11-10",
+      "n": 2
     },
     "openrouter:*": {
       "day": "2026-11-09",
@@ -192,103 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-11-06": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 79,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 78,
-        "other": 1
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 202,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 196,
-        "other": 6
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 25,
-        "calls": 71,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 36,
-        "other": 10
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 15,
-        "calls": 30,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
-        "other": 15
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 72,
-        "other": 18
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 61,
-        "other": 29
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 0,
-        "calls": 4,
-        "ok": 4,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 0,
-        "calls": 155,
-        "ok": 155,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 2,
-        "calls": 2,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.a",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 2,
-        "calls": 2,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/wo",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 1,
-        "calls": 2,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"liquid/lfm-2.5-2.6b:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/work",
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:nvidia/nemotron-3.5-super-vl:free": {
-        "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 3,
-        "ok": 3,
-        "other": 0
-      }
-    },
     "2026-11-07": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -582,6 +485,53 @@
         "429": 0,
         "calls": 14,
         "ok": 14,
+        "other": 0
+      }
+    },
+    "2026-11-10": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 0,
+        "calls": 2,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 1,
+        "other": 1
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 4,
+        "ok": 4,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 2,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 0,
+        "other": 2
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
         "other": 0
       }
     }
@@ -1377,12 +1327,6 @@
       "topic": "حادثه",
       "until": 1794279799.6986647
     },
-    "v4|drone attack suspends production at iraq’s khor mor gasfield": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: حمله پهپادی به میدان گازی کردستان عراق و قطع برق",
-      "topic": "نظامی",
-      "until": 1794276195.5829933
-    },
     "v4|europe to press us on ukraine peace and iran at paris g7 ministers talks": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: G7 ministers meeting to discuss Iran strikes and Ukraine.",
@@ -1425,6 +1369,12 @@
       "topic": "حادثه",
       "until": 1794309038.5803092
     },
+    "v4|here’s what trump said he knew about jensen huang": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Trump's remarks on personal affair, low impact",
+      "topic": "سیاست",
+      "until": 1794355393.683606
+    },
     "v4|immigrants are being systematically returned home despite court orders": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=6 happened=True scope=world: گزارش نقض سیستماتیک حقوق مهاجران توسط دولت آمریکا و شرکای خارجی",
@@ -1436,6 +1386,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis by an expert regarding US election outcomes.",
       "topic": "سیاست",
       "until": 1794319472.5282993
+    },
+    "v4|iran war live: trump says war ‘effectively over’, iran demands ‘surrender’": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Trump's war status statement, official position",
+      "topic": "سیاست",
+      "until": 1794355395.8640363
     },
     "v4|iran war live: trump to talk to xi, putin about tehran, ‘denuclearisation’": {
       "ok": true,
@@ -1521,12 +1477,6 @@
       "topic": "حادثه",
       "until": 1794297844.550894
     },
-    "v4|polluted delhi tries ‘green’ fireworks to clear the air at diwali": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: موضوع محلی و زیست‌محیطی در هند که اهمیت ملی یا جهانی ندارد.",
-      "topic": "آب و هوا",
-      "until": 1794276194.6290684
-    },
     "v4|pope leo delivers stinging rebuke of milei’s austerity measures during argentina visit": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=world: پاپ نقد اقدامات سختگیرانهٔ میلِی",
@@ -1604,6 +1554,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis by experts regarding US policy.",
       "topic": "سیاست",
       "until": 1794326681.3743753
+    },
+    "v4|trump, rubio defend hegseth as impeachment bid nears": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: US impeachment debate, limited broader impact",
+      "topic": "سیاست",
+      "until": 1794355395.8784142
     },
     "v4|turkey steel factory blast kills at least 16 people": {
       "ok": true,
@@ -2546,12 +2502,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: گزارش تبلیغاتی و شعاری است و رویداد مشخصی محسوب نمی‌شود",
       "topic": "جامعه",
       "until": 1794314118.8385606
-    },
-    "v4|ترامپ امروز در واشنگتن میزبان نخست وزیر قطر است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: مذاکرات سطح بالا درباره تنش‌های ایران و آمریکا در واشنگتن",
-      "topic": "سیاست",
-      "until": 1794277974.8729794
     },
     "v4|ترامپ بار دیگر به شکست خود و حزبش به دلیل تجاوز بی دلیل علیه ایران اعتراف کرد": {
       "ok": true,
@@ -4233,6 +4183,12 @@
       "topic": "سیاست",
       "until": 1794326681.3014305
     },
+    "v4|نویسنده ایرلندی: نسل جدید غرب از فلسطین حمایت می کند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Opinion statement, no concrete event",
+      "topic": "سیاست",
+      "until": 1794355392.358279
+    },
     "v4|نگرانی از کاهش توان خرید کارکنان دولت / حذف یارانه افرادی که بالای ۲۰ میلیون حقوق می گیرند به زیان ۹۸ درصد کارمندان است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: تحلیل و گمانه‌زنی درباره سیاست‌های حقوق و دستمزد دولتی.",
@@ -4857,12 +4813,6 @@
       "topic": "آب و هوا",
       "until": 1794342833.6888855
     },
-    "v4|‘i never executed jesse baird’: beau lamarre-condon reenacts shooting when giving evidence in nsw trial": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: محاکمه پلیس قاتل در استرالیا اخبار محلی بین‌المللی است.",
-      "topic": "قضایی",
-      "until": 1794276180.3313742
-    },
     "v4|‘tents don’t protect us’: rains flood displaced palestinians in gaza": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: بحران انسانی و آبگرفتگی چادرهای آوارگان فلسطینی در غزه.",
@@ -4871,17 +4821,14 @@
     }
   },
   "_editorial_blocks": {
-    "shock and grief in poland after weekend mass shooting": {
-      "reason": "content_duplicate",
-      "until": 1794263734.7563398
+    "iran war live: trump says war ‘effectively over’, iran demands ‘surrender’": {
+      "at": 1794269030.0435655,
+      "reason": "final_guard:ai-contradiction",
+      "until": 1794290630.0435655
     },
     "آژانس انرژی اتمی حمله به کارکنان نیروگاه زاپروژیا را محکوم کرد": {
       "reason": "content_duplicate",
       "until": 1794270973.3503644
-    },
-    "اتهام زنی فرانسوی ها به ایران درباره حملات سایبری به فروشگاه ها": {
-      "reason": "content_duplicate",
-      "until": 1794265527.0763016
     },
     "ادامه لفاظی های ترامپ درباره ایران": {
       "at": 1794263628.6350887,
@@ -4908,17 +4855,9 @@
       "reason": "content_duplicate",
       "until": 1794274436.976077
     },
-    "حملات هوایی عربستان به فرودگاه الحدیده و مناطق مسکونی یمن": {
-      "reason": "content_duplicate",
-      "until": 1794263709.381545
-    },
     "روسیه: به دنبال رویارویی مسلحانه با اروپا نیستیم": {
       "reason": "content_duplicate",
       "until": 1794270962.070855
-    },
-    "رویترز: مقام های فرانسوی به دست داشتن ایران در حملات سایبری به یخچال ها مشکوک هستند / در صورت تأیید این موضوع، این حملات در زمره مخرب ترین حملات سایبری جنگ با ایران قرار خواهند گرف": {
-      "reason": "content_duplicate",
-      "until": 1794267252.4859784
     },
     "زیر تیغ استیضاح؛ وزیر جنگ ترامپ مخالفان جنگ علیه ایران را به بازی سیاسی متهم کرد": {
       "at": 1794249373.9823503,
@@ -4936,10 +4875,6 @@
     "هگست: نمی توانیم اجازه دهیم ایران به بمب اتمی دست یابد": {
       "reason": "content_duplicate",
       "until": 1794272808.5409305
-    },
-    "یحیی سریع: جنگنده های سعودی ۱۰۳ بار یمن را بمباران کردند": {
-      "reason": "content_duplicate",
-      "until": 1794267224.716323
     }
   },
   "_event_judge_log": [
@@ -5501,20 +5436,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Club match, no national or international impact",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794238377,
-      "title": "جایگاه پارس جنوبی در صدر جدول مستحکم شد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مدارس قرآن در استان آغاز فعالیت",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1794238378,
-      "title": "۳۹ مدرسه رسمی حفظ قرآن در آذربایجان شرقی فعالیت خود را آغاز کردند"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تصادف رانندگی در سطح شهرستان و فاقد اهمیت ملی یا بین‌المللی است.",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -6059,6 +5980,20 @@
       "rule": "no-concrete-event",
       "t": 1794267189,
       "title": "Sabalenka wins WTA Finals opener despite wayward serve"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Opinion statement, no concrete event",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1794268992,
+      "title": "نویسنده ایرلندی: نسل جدید غرب از فلسطین حمایت می کند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Trump's remarks on personal affair, low impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794268993,
+      "title": "Here’s what Trump said he knew about Jensen Huang"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10712,7 +10647,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794267073
+    "at": 1794268885
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10727,14 +10662,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794267480.0,
-    "last_failure": 1794267180,
-    "last_status": 503
+    "disabled_until": 1794269087,
+    "last_failure": 1794269027,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794267475.0,
-    "last_failure": 1794267175,
-    "last_status": 599
+    "disabled_until": 1794269323.0,
+    "last_failure": 1794269023,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -10747,6 +10682,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1794269019,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
