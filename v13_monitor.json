@@ -2,8 +2,10 @@
   "ai_pool": {},
   "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-10T21:34:37.263685+00:00",
+  "checked_at": "2026-11-10T22:04:03.064372+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -29,6 +31,14 @@
       "result": "editorial_blocked",
       "source": "",
       "title": "US voters want Democrats focused on ending Iran war, lowering costs: Poll",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Analysis and commentary on G7 and Ukraine diplomacy, not a new event.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "'Europe not going anywhere': G7 summit a 'signal to Russians' that Europe is standing behind Ukraine",
       "url": ""
     },
     {
@@ -86,37 +96,62 @@
       "source": "",
       "title": "کارشناس عرب: جنگ آمریکا علیه ایران به نابودی کشورهای خلیج فارس منجر می شود",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Routine official remarks on strategic cooperation without concrete new decisions.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "قالیباف: توسعه روابط راهبردی با چین باید از توافقات کاغذی به همکاری های عملیاتی برسد",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Speculative/fictional scenario regarding a non-existent war and bombing.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "اعتراض چهره سابق جمهوری خواه به کشتار کودکان میناب؛ «کاخ سفید باید پاسخگو باشد»",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "nytimes.com",
+      "started_at": "2026-11-10T22:03:55.761978+00:00",
+      "title": "Rubio Says ‘Major Combat Operations’ in Iran War Are No Longer Needed",
+      "url": "https://nytimes.com/2026/11/10/us/politics/rubio-iran-war.html"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "nytimes.com",
+      "title": "Rubio Says ‘Major Combat Operations’ in Iran War Are No Longer Needed",
+      "url": "https://nytimes.com/2026/11/10/us/politics/rubio-iran-war.html"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": false,
-  "published": 2,
+  "published": 1,
   "run_status": "success",
-  "selected_for_publication": 14,
+  "selected_for_publication": 16,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "yjc.ir",
-      "started_at": "2026-11-10T21:33:27.500626+00:00",
-      "title": "سه سانحه واژگونی در محورهای آذربایجان غربی با یک کشته و ۱۰ مصدوم",
-      "url": "https://yjc.ir/fa/news/9147720/سه-سانحه-واژگونی-در-محورهای-آذربایجان‌غربی-با-یک-کشته-و-۱۰-مصدوم"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "yjc.ir",
-      "started_at": "2026-11-10T21:33:51.468094+00:00",
-      "title": "بازداشت نظامی آمریکایی در انگلیس به ظن جاسوسی",
-      "url": "https://yjc.ir/fa/news/9147717/بازداشت-نظامی-آمریکایی-در-انگلیس-به-ظن-جاسوسی"
+      "source": "france24.com",
+      "started_at": "2026-11-10T22:03:58.026518+00:00",
+      "title": "Eisenkot pushes October 7 inquiry as Netanyahu targets Arab parties in tense new parliament",
+      "url": "https://france24.com/en/middle-east/20261110-eisenkot-pushes-october-7-inquiry-as-netanyahu-targets-arab-parties-in-tense-new-parliament"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
