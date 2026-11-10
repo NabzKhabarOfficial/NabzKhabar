@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794263562
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794263563
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794263563
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 6x",
       "t": 1794272776
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-120b",
+      "t": 1794274342
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1794274383
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-09",
-      "n": 197
+      "n": 199
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-09",
-      "n": 85
+      "n": 87
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-09",
-      "n": 83
+      "n": 85
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-10",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-10",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-09",
@@ -497,46 +497,46 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 4,
+        "calls": 6,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 3,
+        "ok": 5,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
         "429": 3,
-        "calls": 5,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
+        "ok": 3,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 2,
+        "429": 2,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 7,
+        "ok": 9,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 8,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
-        "429": 2,
-        "calls": 7,
+        "429": 3,
+        "calls": 11,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 5,
+        "ok": 8,
         "other": 0
       }
     }
@@ -1392,6 +1392,12 @@
       "topic": "سیاست",
       "until": 1794319472.5282993
     },
+    "v4|iran war live: iran demands us ‘surrender’ to its conditions": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Trump declares war effectively over, major political statement",
+      "topic": "نظامی",
+      "until": 1794360742.6094618
+    },
     "v4|iran war live: trump says war ‘effectively over’, iran demands ‘surrender’": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Trump's war status statement, official position",
@@ -2214,6 +2220,12 @@
       "topic": "سیاست",
       "until": 1794299623.5987523
     },
+    "v4|اکسیوس: ترامپ می خواهد به مذاکره با تهران فرصت بدهد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Trump says new Iran campaign unlikely, official stance",
+      "topic": "نظامی",
+      "until": 1794360742.6289513
+    },
     "v4|ایران خودرو در پرونده ۱۶۰۰ میلیاردی تبرئه شد": {
       "ok": false,
       "reason": "ai openrouter/openrouter/free batch score=3 happened=False scope=local: Iran Auto acquitted in 1600 billion case, routine court ruling",
@@ -2399,12 +2411,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Top US official statement on nuclear/sanctions policy and Iran negotiations.",
       "topic": "سیاست",
       "until": 1794315878.567841
-    },
-    "v4|بلینکن: دادن امتیاز به ایران پیش نیاز دستیابی به هرگونه توافق دیپلماتیک است": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=iran_national: Blinken says sanctions needed for diplomacy",
-      "topic": "سیاست",
-      "until": 1794279799.7098725
     },
     "v4|بلینکن، وزیر خارجه پیشین آمریکا: برای حل مسئله ایران، لازم است به ایرانی ها [امتیازاتی] مرتبط با تنگه هرمز یا کاهش تحریم ها داده شود/ این راهکارها به تشدید تنش ترجیح دارند": {
       "ok": false,
@@ -3636,6 +3642,12 @@
       "topic": "سیاست",
       "until": 1794330238.346467
     },
+    "v4|عضو هیات رئیسه مجلس: چین و روسیه روابط با تهران را در چارچوب منافع خود تنظیم می کنند/ چین از تعهد رسمی دفاعی به ایران پرهیز کرده است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: Parliament member comments, no concrete decision",
+      "topic": "سیاست",
+      "until": 1794360742.6193616
+    },
     "v4|عطر رنج و رنگ امید در دشت های زعفرانی خراسان شمالی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: گزارش محلی برداشت زعفران در خراسان شمالی",
@@ -3948,12 +3960,6 @@
       "topic": "جامعه",
       "until": 1794303217.3233657
     },
-    "v4|مردم ایران با روحیه پهلوانی و قهرمانی از حضور در میدان خسته نمی شوند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: بیانیه تشویقی، بدون رویداد ملموس",
-      "topic": "ورزش",
-      "until": 1794281590.8352878
-    },
     "v4|مرز باریک میان استرس طبیعی و اختلال را بشناسیم": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Health commentary, no concrete event",
@@ -4073,12 +4079,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: معرفی و تمجید تسلیحاتی بدون رویداد مشخص.",
       "topic": "نظامی",
       "until": 1794310479.054297
-    },
-    "v4|موشک های هسته ای در خدمت ناسا برای رسیدن به عمق فضا": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=1 happened=False scope=local: Speculative claim about nuclear rockets",
-      "topic": "فناوری",
-      "until": 1794279799.721107
     },
     "v4|میدان داری مردم خمین در شب ۲۵۴ تجدید میثاق با رهبری": {
       "ok": false,
@@ -4834,6 +4834,10 @@
       "reason": "content_duplicate",
       "until": 1794292394.60198
     },
+    "iran war live: iran demands us ‘surrender’ to its conditions": {
+      "reason": "content_duplicate",
+      "until": 1794295966.0948818
+    },
     "iran war live: trump says war ‘effectively over’, iran demands ‘surrender’": {
       "at": 1794269030.0435655,
       "reason": "final_guard:ai-contradiction",
@@ -4843,10 +4847,6 @@
       "at": 1794270798.567012,
       "reason": "final_guard:off-topic-lead",
       "until": 1794292398.567012
-    },
-    "آژانس انرژی اتمی حمله به کارکنان نیروگاه زاپروژیا را محکوم کرد": {
-      "reason": "content_duplicate",
-      "until": 1794270973.3503644
     },
     "اخباری از حملات موشکی به عربستان": {
       "reason": "content_duplicate",
@@ -4863,7 +4863,12 @@
     },
     "انتقاد نمایندگی ایران از برخورد گزینشی گروسی با حملات به تأسیسات هسته ای": {
       "reason": "content_duplicate",
-      "until": 1794272871.7784362
+      "until": 1794295983.9015512
+    },
+    "اکسیوس: ترامپ می خواهد به مذاکره با تهران فرصت بدهد": {
+      "at": 1794274383.9151745,
+      "reason": "final_guard:dangling-lead",
+      "until": 1794295983.9151745
     },
     "ترامپ در گفت وگو با رویترز: قطر و عربستان خواستار راه حل مسالمت آمیز در مورد ایران هستند / هر زمان بخواهیم آماده حمله هستیم": {
       "reason": "content_duplicate",
@@ -4881,15 +4886,6 @@
       "reason": "content_duplicate",
       "until": 1794292389.7639217
     },
-    "روسیه: به دنبال رویارویی مسلحانه با اروپا نیستیم": {
-      "reason": "content_duplicate",
-      "until": 1794270962.070855
-    },
-    "زیر تیغ استیضاح؛ وزیر جنگ ترامپ مخالفان جنگ علیه ایران را به بازی سیاسی متهم کرد": {
-      "at": 1794249373.9823503,
-      "reason": "final_guard:dangling-lead",
-      "until": 1794270973.9823503
-    },
     "سرنگونی پهپاد شناسایی عربستان سعودی در شمال یمن": {
       "reason": "content_duplicate",
       "until": 1794281576.6475074
@@ -4898,9 +4894,9 @@
       "reason": "content_duplicate",
       "until": 1794283434.4740665
     },
-    "هگست: نمی توانیم اجازه دهیم ایران به بمب اتمی دست یابد": {
+    "طرح استیضاح وزیر دفاع آمریکا از جمله در ارتباط با حمله به مدرسه میناب، به مجلس نمایندگان ارائه شد": {
       "reason": "content_duplicate",
-      "until": 1794272808.5409305
+      "until": 1794295951.0550888
     }
   },
   "_event_judge_log": [
@@ -10673,7 +10669,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794272602
+    "at": 1794274267
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10687,19 +10683,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1794273012.0,
-    "last_failure": 1794272712,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794273307,
-    "last_failure": 1794272707,
-    "last_status": 429
+    "disabled_until": 1794274439,
+    "last_failure": 1794274379,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794273303,
-    "last_failure": 1794272703,
+    "disabled_until": 1794274972,
+    "last_failure": 1794274372,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10713,10 +10704,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-120b": {
-    "last_quality_failure": 1794270786,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
