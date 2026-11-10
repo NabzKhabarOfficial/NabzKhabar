@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794261800
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1794261800
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1794261804
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1794269030
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794270781
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1794270798
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-10",
-      "n": 4
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-10",
-      "n": 2
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-11-09",
@@ -517,21 +517,21 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 2,
+        "calls": 5,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 0,
+        "ok": 3,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       }
     }
@@ -1327,12 +1327,6 @@
       "topic": "حادثه",
       "until": 1794279799.6986647
     },
-    "v4|europe to press us on ukraine peace and iran at paris g7 ministers talks": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: G7 ministers meeting to discuss Iran strikes and Ukraine.",
-      "topic": "سیاست",
-      "until": 1794277977.9287293
-    },
     "v4|explosion at steel plant in turkey kills 16, president says": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Industrial disaster with mass casualties (16 dead).",
@@ -1477,12 +1471,6 @@
       "topic": "حادثه",
       "until": 1794297844.550894
     },
-    "v4|pope leo delivers stinging rebuke of milei’s austerity measures during argentina visit": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=world: پاپ نقد اقدامات سختگیرانهٔ میلِی",
-      "topic": "سیاست",
-      "until": 1794277976.5574064
-    },
     "v4|qatar pm meets with trump for talks on ending war on iran": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: High-level diplomatic meeting regarding ongoing regional war and mediation.",
@@ -1578,6 +1566,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: از سرگیری مذاکرات صلح اوکراین با هدایت آمریکا.",
       "topic": "سیاست",
       "until": 1794305022.762269
+    },
+    "v4|ukraine peace talks resume with 'some flexibility' by warring sides, us officials say": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Trilateral peace negotiations officially resumed in UAE",
+      "topic": "سیاست",
+      "until": 1794357181.3744135
     },
     "v4|venmo finally launches an in-app bill splitting feature": {
       "ok": false,
@@ -3162,6 +3156,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Major national economic corruption case involving massive financial turnover.",
       "topic": "قضایی",
       "until": 1794319482.719328
+    },
+    "v4|ردپای حملات سایبری سپاه از شارلی ابدو تا المپیک پاریس و یخچال های اروپا؛ فرانسه و آمریکا تهران را متهم کردند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Foreign ministers publicly accuse Iran of cyber attack",
+      "topic": "سیاست",
+      "until": 1794357181.3597758
     },
     "v4|رسانه ها درخط مقدم مقابله با جنگ شناختی وتقویت امید اجتماعی قرار دارند": {
       "ok": false,
@@ -4821,10 +4821,19 @@
     }
   },
   "_editorial_blocks": {
+    "explosion at turkish steel plant kills at least 16 people": {
+      "reason": "content_duplicate",
+      "until": 1794292394.60198
+    },
     "iran war live: trump says war ‘effectively over’, iran demands ‘surrender’": {
       "at": 1794269030.0435655,
       "reason": "final_guard:ai-contradiction",
       "until": 1794290630.0435655
+    },
+    "ukraine peace talks resume with 'some flexibility' by warring sides, us officials say": {
+      "at": 1794270798.567012,
+      "reason": "final_guard:off-topic-lead",
+      "until": 1794292398.567012
     },
     "آژانس انرژی اتمی حمله به کارکنان نیروگاه زاپروژیا را محکوم کرد": {
       "reason": "content_duplicate",
@@ -4854,6 +4863,10 @@
     "جنگ علیه ایران؛ اولین بند از استیضاح هگست": {
       "reason": "content_duplicate",
       "until": 1794274436.976077
+    },
+    "ردپای حملات سایبری سپاه از شارلی ابدو تا المپیک پاریس و یخچال های اروپا؛ فرانسه و آمریکا تهران را متهم کردند": {
+      "reason": "content_duplicate",
+      "until": 1794292389.7639217
     },
     "روسیه: به دنبال رویارویی مسلحانه با اروپا نیستیم": {
       "reason": "content_duplicate",
@@ -10647,7 +10660,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794268885
+    "at": 1794270676
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10683,8 +10696,8 @@
     "last_failure": 1791936876,
     "last_status": 599
   },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794269019,
+  "groq:openai/gpt-oss-120b": {
+    "last_quality_failure": 1794270786,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
