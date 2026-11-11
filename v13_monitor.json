@@ -2,8 +2,10 @@
   "ai_pool": {},
   "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-11T00:03:07.641399+00:00",
+  "checked_at": "2026-11-11T00:33:01.490105+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -41,26 +43,10 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Corporate IPO, not major global shock",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "Anthropic eyes $1.4 trillion valuation in blockbuster IPO",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: محصول نرم‌افزاری جدید شرکتی؛ رویداد سطح یک جهانی محسوب نمی‌شود.",
       "result": "editorial_blocked",
       "source": "",
       "title": "Anthropic launches Claude Meetings to turn workplace discussions into plans and tasks",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis regarding political maneuvers and impeachment proceedings.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "از میناب تا واشنگتن؛ وزیر جنگ ترامپ در چنبره قانون و استیضاح در کنگره",
       "url": ""
     },
     {
@@ -96,26 +82,34 @@
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
-  "feed_summary": {},
-  "important_missed": [],
-  "missed_selected_stories": [],
-  "no_publication_candidate": false,
-  "publication_gap": false,
-  "published": 1,
-  "run_status": "success",
-  "selected_for_publication": 13,
-  "skipped_duplicate": [
+  "failed_publication_attempts": [
     {
       "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "isna.ir",
-      "started_at": "2026-11-11T00:03:02.088688+00:00",
-      "title": "جمهوری خواهان پرونده استیضاح وزیر جنگ آمریکا را مسدود کردند",
-      "url": "https://isna.ir/news/1405082013546/%D8%AC%D9%85%D9%87%D9%88%D8%B1%DB%8C-%D8%AE%D9%88%D8%A7%D9%87%D8%A7%D9%86-%D9%BE%D8%B1%D9%88%D9%86%D8%AF%D9%87-%D8%A7%D8%B3%D8%AA%DB%8C%D8%B6%D8%A7%D8%AD-%D9%88%D8%B2%DB%8C%D8%B1-%D8%AC%D9%86%DA%AF-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7-%D8%B1%D8%A7-%D9%85%D8%B3%D8%AF%D9%88%D8%AF-%DA%A9%D8%B1%D8%AF%D9%86%D8%AF"
+      "result": "failed",
+      "source": "aljazeera.com",
+      "started_at": "2026-11-11T00:32:58.701806+00:00",
+      "title": "Iran war live: Hegseth survives impeachment bid; Iran denies US talks",
+      "url": "https://aljazeera.com/news/liveblog/2026/11/11/iran-war-live-hegseth-survives-impeachment-bid-iran-denies-us-talks?traffic_source=rss"
     }
   ],
-  "status": "healthy"
+  "failed_publications": 1,
+  "feed_summary": {},
+  "important_missed": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 13,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "aljazeera.com",
+      "title": "Iran war live: Hegseth survives impeachment bid; Iran denies US talks",
+      "url": "https://aljazeera.com/news/liveblog/2026/11/11/iran-war-live-hegseth-survives-impeachment-bid-iran-denies-us-talks?traffic_source=rss"
+    }
+  ],
+  "no_publication_candidate": false,
+  "publication_gap": true,
+  "published": 0,
+  "run_status": "success",
+  "selected_for_publication": 10,
+  "skipped_duplicate": [],
+  "status": "publication_failure"
 }

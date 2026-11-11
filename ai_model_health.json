@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1794350006
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 11x, groq:openai/gpt-oss-20b held 10x",
-      "t": 1794350102
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794351784
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794351785
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1794351785
     },
@@ -159,6 +143,22 @@
     {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
       "t": 1794355370
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794357170
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794357171
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1794357171
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1794357181
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-10",
-      "n": 220
+      "n": 221
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-10",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-10",
-      "n": 97
+      "n": 98
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-11",
-      "n": 3
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-10",
-      "n": 90
+      "day": "2026-11-11",
+      "n": 2
     },
     "openrouter:*": {
       "day": "2026-11-10",
@@ -489,11 +489,32 @@
       }
     },
     "2026-11-11": {
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
-        "other": 0
+        "calls": 6,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 5,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 2,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 1,
+        "other": 1
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1322,12 +1343,6 @@
       "topic": "فناوری",
       "until": 1794420200.092341
     },
-    "v4|here’s what trump said he knew about jensen huang": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Trump's remarks on personal affair, low impact",
-      "topic": "سیاست",
-      "until": 1794355393.683606
-    },
     "v4|injured feyi-waboso is our robinson – sinfield": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=world: خبر ورزشی غیرمهم و حاشیه‌ای",
@@ -1340,17 +1355,17 @@
       "topic": "نظامی",
       "until": 1794404094.534911
     },
+    "v4|iran war live: hegseth survives impeachment bid; iran denies us talks": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=iran_national: Impeachment bid failed, Iran denies US talks, national political significance",
+      "topic": "سیاست",
+      "until": 1794443578.141795
+    },
     "v4|iran war live: iran demands us ‘surrender’ to its conditions": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Trump declares war effectively over, major political statement",
       "topic": "نظامی",
       "until": 1794360742.6094618
-    },
-    "v4|iran war live: trump says war ‘effectively over’, iran demands ‘surrender’": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Trump's war status statement, official position",
-      "topic": "سیاست",
-      "until": 1794355395.8640363
     },
     "v4|iraq blocks iranian football team’s plane from landing over us sanctions": {
       "ok": true,
@@ -1513,12 +1528,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع‌گیری رسمی رئیس‌جمهور آمریکا درباره ایران و وضعیت درگیری‌های خاورمیانه.",
       "topic": "سیاست",
       "until": 1794371658.8996427
-    },
-    "v4|trump, rubio defend hegseth as impeachment bid nears": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: US impeachment debate, limited broader impact",
-      "topic": "سیاست",
-      "until": 1794355395.8784142
     },
     "v4|ukraine peace talks resume with 'some flexibility' by warring sides, us officials say": {
       "ok": true,
@@ -2353,6 +2362,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine administrative opinion on school closures, not a concrete policy decision.",
       "topic": "جامعه",
       "until": 1794404065.25645
+    },
+    "v4|تعیین رهبر اقلیت جمهوری خواه/احتمال ریاست حکیم جفریز بر مجلس بعدی نمایندگان آمریکا": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: انتخاب رهبر اقلیت جمهوری‌خواه در مجلس نمایندگان آمریکا.",
+      "topic": "سیاست",
+      "until": 1794443576.1238947
     },
     "v4|تغییر مسیر واردات کالاهای اساسی هزینه تامین نهاده ها را افزایش داد": {
       "ok": false,
@@ -3836,12 +3851,6 @@
       "topic": "اقتصاد",
       "until": 1794398801.2983897
     },
-    "v4|نویسنده ایرلندی: نسل جدید غرب از فلسطین حمایت می کند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Opinion statement, no concrete event",
-      "topic": "سیاست",
-      "until": 1794355392.358279
-    },
     "v4|نکات طلایی برای تقویت سیستم ایمنی در فصل پاییز": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: نکات عمومی سلامتی و فصلی فاقد ارزش خبری درجه یک است",
@@ -4387,6 +4396,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: گزارش آماری هفتگی زمین‌لرزه‌ها رویداد مهم فوری محسوب نمی‌شود",
       "topic": "جامعه",
       "until": 1794373549.05455
+    },
+    "v4|‘everything and everyone we love is at stake’: thunberg slams cop31 talks": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Activist speech at COP31, no concrete decision",
+      "topic": "آب و هوا",
+      "until": 1794443577.0079849
     },
     "v4|‘positive momentum’: is the us war on iran about to end?": {
       "ok": false,
@@ -5059,20 +5074,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: صادرات استان مرکزی اعلام شد",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1794324836,
-      "title": "غلامی: صادرات گمرکات استان مرکزی به یک میلیارد و ۱۴۶ میلیون دلار رسید"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: کشف تعدادی دستگاه رمزارز در یک شهر محلی و کم‌اهمیت است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1794324849,
-      "title": "کشف ۱۲ دستگاه استخراج غیرمجاز رمز ارز در ارومیه"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: EU commissioner urges increased Gaza aid; warns flood‑hit refugee tents",
       "rescued": true,
       "rule": "strict-source-below-importance(8<10)",
@@ -5617,6 +5618,20 @@
       "rule": "below-event-threshold",
       "t": 1794354950,
       "title": "دیوان محاسبات کشور؛ بررسی وظایف، اختیارات و نقش آن در نظارت بر بودجه"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: انتخاب رهبر اقلیت جمهوری‌خواه در مجلس نمایندگان آمریکا.",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1794357176,
+      "title": "تعیین رهبر اقلیت جمهوری خواه/احتمال ریاست حکیم جفریز بر مجلس بعدی نمایندگان آمریکا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Activist speech at COP31, no concrete decision",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794357177,
+      "title": "‘Everything and everyone we love is at stake’: Thunberg slams COP31 talks"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9436,7 +9451,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794355291
+    "at": 1794357087
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9461,9 +9476,9 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794355237.0,
-    "last_failure": 1794354937,
-    "last_status": 599
+    "disabled_until": 1794357771,
+    "last_failure": 1794357171,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
