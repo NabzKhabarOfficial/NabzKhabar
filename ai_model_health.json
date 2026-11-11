@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1794427500
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794427508
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794427508
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794427511
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794427511
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: no usable verdict",
-      "t": 1794427516
-    },
-    {
       "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.1-flash-lite",
       "t": 1794427518
     },
@@ -159,36 +135,60 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
       "t": 1794434633
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794436405
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794436406
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1794436421
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794436429
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-20b",
+      "t": 1794436432
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 6x",
+      "t": 1794436547
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-11",
-      "n": 75
+      "n": 78
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-11",
-      "n": 129
+      "n": 134
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-11",
-      "n": 53
+      "n": 57
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-11",
-      "n": 53
+      "n": 56
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-11",
-      "n": 87
+      "n": 89
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-11",
-      "n": 87
+      "n": 89
     },
     "openrouter:*": {
       "day": "2026-11-11",
-      "n": 26
+      "n": 33
     }
   },
   "_ai_usage": {
@@ -491,29 +491,29 @@
     "2026-11-11": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 106,
+        "calls": 109,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 102,
+        "ok": 105,
         "other": 4
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 202,
+        "calls": 207,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 184,
+        "ok": 189,
         "other": 18
       },
       "gemini:gemini-3.6-flash": {
-        "429": 34,
-        "calls": 84,
+        "429": 35,
+        "calls": 88,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 36,
+        "ok": 39,
         "other": 14
       },
       "gemini:gemini-3.8-flash": {
-        "429": 35,
-        "calls": 55,
+        "429": 37,
+        "calls": 57,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 5,
@@ -521,62 +521,62 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 87,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 66,
-        "other": 21
+        "calls": 89,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 67,
+        "other": 22
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 87,
+        "calls": 89,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 55,
-        "other": 32
+        "ok": 56,
+        "other": 33
       },
       "mistral:ministral-8b-latest": {
-        "429": 11,
-        "calls": 12,
+        "429": 12,
+        "calls": 13,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
         "ok": 1,
         "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 84,
-        "calls": 215,
+        "429": 85,
+        "calls": 220,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 131,
+        "ok": 135,
         "other": 0
       },
       "openrouter:baidu/ernie-5.5-flash-preview:free": {
+        "429": 0,
+        "calls": 4,
+        "ok": 4,
+        "other": 0
+      },
+      "openrouter:dots-studio/dots-3-note-preview:free": {
         "429": 0,
         "calls": 3,
         "ok": 3,
         "other": 0
       },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      },
       "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.a",
         "ok": 0,
         "other": 0
       },
       "openrouter:google/gemma-4-31b-it:free": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/wo",
         "ok": 0,
         "other": 0
       },
       "openrouter:liquid/lfm-2.5-2.6b:free": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "openrouter:liquid/lfm-3-1.7b:free": {
@@ -588,8 +588,8 @@
       },
       "openrouter:openrouter/free": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       }
     }
@@ -1266,16 +1266,24 @@
       "t": 1794432869.6425667,
       "title": "انفجار و آتش سوزی در تأسیسات گازی بندر بریقه لیبی",
       "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1794436449.5446615,
+      "title": "دائمی شدن ممنوعیت ورود دارندگان گذرنامه اسرائیلی به مالدیو",
+      "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1794436546.8390675,
+      "title": "سخنگوی وزارت بهداشت یمن: شمار کشته و زخمی در حملات به یمن به هزار و ۱۳۹ نفر رسید",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-11",
   "_editor_gate_cache": {
-    "v4|'europe not going anywhere': g7 summit a 'signal to russians' that europe is standing behind ukraine": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Analysis and commentary on G7 and Ukraine diplomacy, not a new event.",
-      "topic": "سیاست",
-      "until": 1794434624.9451394
-    },
     "v4|a museum’s ‘wanted’ poster campaign brings looted painting back to france": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: موضوع فرهنگی و موزه ای برای مخاطب عام در ایران اهمیتی ندارد",
@@ -1396,6 +1404,12 @@
       "topic": "قضایی",
       "until": 1794519188.9242733
     },
+    "v4|judge rules trump’s $10bn bbc defamation suit can proceed": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: High‑profile US defamation case proceeds",
+      "topic": "قضایی",
+      "until": 1794522829.3369184
+    },
     "v4|labor won’t scrap abc and sbc ombudsmen in favour of external body as suggested by antisemitism envoy": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=world: ",
@@ -1413,18 +1427,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: ",
       "topic": "نظامی",
       "until": 1794454407.6094146
-    },
-    "v4|man city thrash inter to claim first cl win of season": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: پیروزی در مرحله گروهی لیگ قهرمانان اروپا اهمیت درجه یک جهانی ندارد",
-      "topic": "ورزش",
-      "until": 1794436398.0211492
-    },
-    "v4|meghan's father thomas markle back in federal custody after allegedly removing ankle monitor": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: دستگیری پدر مگان مارکل رویداد درجه یک جهانی محسوب نمی‌شود.",
-      "topic": "قضایی",
-      "until": 1794436393.8061535
     },
     "v4|missing 11-month-old baby found buried alive in a crate in south carolina": {
       "ok": false,
@@ -1558,12 +1560,6 @@
       "topic": "حادثه",
       "until": 1794486922.4279351
     },
-    "v4|west bank: population and healthcare actors, such as msf, 'still facing movement restrictions'": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Movement restrictions hinder medical access",
-      "topic": "سلامت",
-      "until": 1794436388.812913
-    },
     "v4|what do kyiv residents think about giving up territory to russia?": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: مذاکرات صلح اوکراین و مواضع رئیس‌جمهور آمریکا رویداد مهم جهانی است.",
@@ -1641,12 +1637,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: تحلیل و گمانه‌زنی درباره وضعیت مذاکرات بدون رویداد مشخص",
       "topic": "سیاست",
       "until": 1794461668.1646185
-    },
-    "v4|آمریکا پایگاه نظامی در لهستان می سازد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: US‑Poland base approval, major strategic shift",
-      "topic": "نظامی",
-      "until": 1794436378.2844598
     },
     "v4|آموزش ۸۸۰ داوطلب تهرانی برای حمایت روانی در بحران": {
       "ok": false,
@@ -1780,6 +1770,12 @@
       "topic": "قضایی",
       "until": 1794488811.236231
     },
+    "v4|اراده ملت ایران شکست ناپذیر است": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash score=1 happened=True scope=iran_national: اظهارات روتین و شعاری مسئولان فاقد ارزش خبری است",
+      "topic": "سیاست",
+      "until": 1794522828.4578378
+    },
     "v4|ارتباط میان پژوهش و ترویج، حلقه مفقوده کشاورزی کشور": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=1 happened=False scope=iran_national: اظهارات عمومی و کارشناسی رئیس یک ایستگاه تحقیقاتی",
@@ -1834,6 +1830,12 @@
       "topic": "جامعه",
       "until": 1794467119.681546
     },
+    "v4|استیو بنن: باید راهی برای خروج از جنگ با ایران پیدا کنیم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=world: Strategist calls for exit from US-Iran war",
+      "topic": "سیاست",
+      "until": 1794522832.3816075
+    },
     "v4|اسلواکی با مشارکت در تأمین وام جدید اوکراین مخالفت کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: مخالفت رسمی نخست‌وزیر اسلواکی با وام کلان اوکراین",
@@ -1857,12 +1859,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: Official report of dismantling a terrorist cell and weapons seizure.",
       "topic": "نظامی",
       "until": 1794476051.0243475
-    },
-    "v4|اعتراض چهره سابق جمهوری خواه به کشتار کودکان میناب؛ «کاخ سفید باید پاسخگو باشد»": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Speculative/fictional scenario regarding a non-existent war and bombing.",
-      "topic": "سیاست",
-      "until": 1794434624.9644895
     },
     "v4|اعتراف آمریکایی ها به قتل عام کودکان میناب": {
       "ok": false,
@@ -2488,6 +2484,12 @@
       "topic": "اقتصاد",
       "until": 1794454407.646636
     },
+    "v4|جانشین رئیس ستاد کل نیروهای مسلح: رازهایی در شهر موشکی نهفته که امیدواریم مجبور به گشودن پرده اسرار نشویم/ به انتقام خون امام شهید مصمم هستیم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=iran_national: Iranian deputy commander hints at secrets in missile city",
+      "topic": "نظامی",
+      "until": 1794522832.4068007
+    },
     "v4|جدال بورس با کانال ۸.۵ میلیون واحد!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=4 happened=True scope=iran_national: گزارش نوسانات روزانه شاخص بورس؛ فاقد شوک اقتصادی.",
@@ -2842,6 +2844,12 @@
       "topic": "جامعه",
       "until": 1794441350.0101867
     },
+    "v4|رئیس جمهور مالدیو: ممنوعیت ورود دارندگان گذرنامه اسرائیلی دائمی می شود": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Maldives president announces permanent ban on Israeli passports",
+      "topic": "سیاست",
+      "until": 1794522832.368595
+    },
     "v4|رئیس جمهور: محیط زیست، قربانی خاموش جنگ هاست": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine speech at a conference; lacks concrete policy change or event.",
@@ -2901,12 +2909,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine diplomatic pleasantries and general expressions of concern by foreign leaders.",
       "topic": "سیاست",
       "until": 1794503062.2103665
-    },
-    "v4|روایت مهندس ناسا از زندگی در مریخ": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=world: مصاحبه و روایت شخصی از شبیه‌سازی مریخ؛ فاقد ارزش خبری فوری",
-      "topic": "فناوری",
-      "until": 1794436387.911341
     },
     "v4|روزنامه جمهوری اسلامی خطاب به پزشکیان: شما می توانید جلوی گرانی را بگیرید، به شرطی که در دولت خانه تکانی کنید": {
       "ok": false,
@@ -3436,12 +3438,6 @@
       "topic": "سیاست",
       "until": 1794508494.9938202
     },
-    "v4|قالیباف: توسعه روابط راهبردی با چین باید از توافقات کاغذی به همکاری های عملیاتی برسد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Routine official remarks on strategic cooperation without concrete new decisions.",
-      "topic": "سیاست",
-      "until": 1794434624.955452
-    },
     "v4|قالیباف: توپ مذاکرات در زمین آمریکاست/ ما وضعیت «نه جنگ و نه صلح» را ادامه نخواهیم داد": {
       "ok": true,
       "reason": "ai mistral/open-mistral-nemo batch score=8 happened=True scope=iran_national: رئیس مجلس اعلام رسمی «نه جنگ و نه صلح» و انتقال توپ مذاکرات به آمریکا",
@@ -3868,6 +3864,12 @@
       "topic": "نظامی",
       "until": 1794474263.3977714
     },
+    "v4|وزارت بهداشت یمن: شمار شهدا و زخمی های حملات عربستان به یک هزار و ۱۳۹ نفر رسید": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: Yemen health ministry reports 1,139 casualties from Saudi attacks",
+      "topic": "سلامت",
+      "until": 1794522832.3941934
+    },
     "v4|وزیر خزانه داری آمریکا در پی تهدیدهای تهران، از خانه اش در واشنگتن به پایگاه نظامی منتقل شد": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: US Treasury Secretary moved to military base after Tehran threats",
@@ -4287,6 +4289,11 @@
       "reason": "content_duplicate",
       "until": 1794456212.5503316
     },
+    "judge rules trump’s $10bn bbc defamation suit can proceed": {
+      "at": 1794436547.913651,
+      "reason": "ai_unavailable_foreign",
+      "until": 1794437747.913651
+    },
     "russia and ukraine agree to major prisoner swap as peace talks end": {
       "reason": "content_duplicate",
       "until": 1794456233.6184683
@@ -4299,18 +4306,9 @@
       "reason": "content_duplicate",
       "until": 1794441966.0588386
     },
-    "spain’s first general strike in 14 years begins": {
-      "reason": "content_duplicate",
-      "until": 1794418620.9888875
-    },
     "three women killed in la crash as driver arrested": {
       "reason": "content_duplicate",
       "until": 1794452651.232762
-    },
-    "violent clashes near the sudanese border: at least 65 dead in western ethiopia": {
-      "at": 1794400592.739157,
-      "reason": "final_guard:ai-garbled",
-      "until": 1794422192.739157
     },
     "ادعای ترامپ درباره جنگ با ایران: پیروزی کامل می خواهیم، نه ۹۳ درصدی": {
       "reason": "content_duplicate",
@@ -4328,10 +4326,6 @@
       "reason": "content_duplicate",
       "until": 1794443765.7951899
     },
-    "حماس: حمله صهیونیست ها به نابلس تروریسم سازمان یافته است": {
-      "reason": "content_duplicate",
-      "until": 1794424063.898357
-    },
     "حمله موشکی یمن به اتاق عملیات عربستان در عدن": {
       "reason": "content_duplicate",
       "until": 1794456207.9842272
@@ -4339,10 +4333,6 @@
     "حمله پهپادی یمن به ایستگاه تقویت فشار نفت عربستان": {
       "reason": "content_duplicate",
       "until": 1794452638.7649784
-    },
-    "سپاه: دو فروند نفتکش که به صورت مخفیانه قصد خروج از مسیر غیر مجاز در تنگه هرمز را داشتند، به مین های دریایی برخورد کردند و دچار انفجار مهیبی شدند": {
-      "reason": "content_duplicate",
-      "until": 1794418593.1497984
     },
     "شلیک موشک های بالستیک ارتش یمن به مقر فرماندهی و اتاق عملیات عربستان": {
       "reason": "content_duplicate",
@@ -4363,25 +4353,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند ⚡️ قانونگذاران مجلس نمایندگان ایالات مت",
-      "id": "5de99acb75",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794355377,
-      "verdict": "new",
-      "why": "استیضاح وزیر جنگ ترامپ در مجلس نمایندگان آمریکا"
-    },
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "هگست برکناری شکست خورد؛ ایران مذاکرات با آمریکا را رد کرد ⚡️ تلاش برای برکناری هگست در برابر مخالفت دو جانبه د",
-      "id": "185576d119",
-      "match": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1794359034,
-      "verdict": "repeat",
-      "why": "The post discusses the failed attempt to oust Trump's war minister."
-    },
     {
       "head": "هگست برکناری شکست خورد؛ ایران مذاکرات با آمریکا را رد کرد ⚡️ تلاش برای برکناری هگست در برابر مخالفت دو جانبه د",
       "id": "185576d119",
@@ -4914,23 +4885,28 @@
       "t": 1794432843,
       "verdict": "unconfirmed-repeat",
       "why": "انفجار در تأسیسات گازی بندر بریقه لیبی"
+    },
+    {
+      "head": "دائمی شدن ممنوعیت ورود دارندگان گذرنامه اسرائیلی به مالدیو ⚡️ رئیس جمهور مالدیو اعلام کرد که دولت این کشور قصد",
+      "id": "53cd78005c",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794436448,
+      "verdict": "new",
+      "why": "ممنوعیت ورود گذرنامه اسرائیلی به مالدیو"
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:update",
+      "head": "سخنگوی وزارت بهداشت یمن: شمار کشته و زخمی در حملات به یمن به هزار و ۱۳۹ نفر رسید ⚡️ سخنگوی وزارت بهداشت یمن اع",
+      "id": "44efb20486",
+      "match": "حمله نیروهای مسلح یمن به فرودگاه ریاض و تأسیسات نفتی ینبع",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794436535,
+      "verdict": "unconfirmed-repeat",
+      "why": "همه‌نگار وزارت بهداشت یمن، کشته و زخمی در حمله به یمن"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=1 happened=True scope=local: کشف محلی مواد مخدر در نایین و رویداد کم‌اهمیت شهری",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1794393201,
-      "title": "۳۰ کیلوگرم تریاک در محورهای نایین کشف شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: اظهارات تکراری مسئول میان‌رتبه درباره فشار آمریکا بر ایران",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794395062,
-      "title": "روسیه: رویکرد آمریکا مبتنی بر فشار به ایران نادرست است"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: University course registration announcement, no national impact",
       "rescued": false,
@@ -5476,42 +5452,26 @@
       "rule": "below-event-threshold",
       "t": 1794434593,
       "title": "مشارکت مردم در تدوین طرح جامع اصفهان به فهم مسائل شهر وابسته است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=1 happened=True scope=iran_national: اظهارات روتین و شعاری مسئولان فاقد ارزش خبری است",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1794436428,
+      "title": "اراده ملت ایران شکست ناپذیر است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: High‑profile US defamation case proceeds",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1794436429,
+      "title": "Judge rules Trump’s $10bn BBC defamation suit can proceed"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ارش",
-        "جنگند",
-        "سخنگ",
-        "مسلح",
-        "مقبل",
-        "یمن"
-      ],
-      "t": 1794389685.6820307,
-      "title": "مقابله ارتش یمن با آرایش نظامی جنگنده های عربستان ⚡️ سخنگوی نیروهای مسلح یمن از مقابله با آرایش نظامی جنگنده های عربستان"
-    },
-    {
-      "h": [
-        "ابن",
-        "اجر",
-        "اسکل",
-        "بشهر",
-        "جفر",
-        "جل",
-        "سحل",
-        "سنم",
-        "شند",
-        "صد",
-        "محدد",
-        "مدت"
-      ],
-      "t": 1794391571.1828322,
-      "title": "صدای انفجارهای سینمایی در ساحل بوشهر شنیده می شود ⚡️ این جلوه ها به مدت سه شب از ۲۰ آبان ماه در محدوده ساحلی بوشهر و اسک"
-    },
     {
       "h": [
         "اقدم",
@@ -5928,6 +5888,40 @@
       ],
       "t": 1794432869.622651,
       "title": "انفجار و آتش سوزی در تأسیسات گازی بندر بریقه لیبی ⚡️ وقوع انفجار و آتش سوزی در کارخانه گاز شرکت سرت در بندر بریقه لیبی، "
+    },
+    {
+      "h": [
+        "بدن",
+        "درندگ",
+        "دم",
+        "شرط",
+        "صرت",
+        "قصد",
+        "قنن",
+        "ملد",
+        "ممنعت",
+        "ورد",
+        "گذرنم"
+      ],
+      "t": 1794436449.5317972,
+      "title": "دائمی شدن ممنوعیت ورود دارندگان گذرنامه اسرائیلی به مالدیو ⚡️ رئیس جمهور مالدیو اعلام کرد که دولت این کشور قصد دارد ممنو"
+    },
+    {
+      "h": [
+        "بهدشت",
+        "تکنن",
+        "رسد",
+        "سخنگ",
+        "سم",
+        "سپتمبر",
+        "شمر",
+        "نفر",
+        "هزر",
+        "وزرت",
+        "یمن"
+      ],
+      "t": 1794436546.8268366,
+      "title": "سخنگوی وزارت بهداشت یمن: شمار کشته و زخمی در حملات به یمن به هزار و ۱۳۹ نفر رسید ⚡️ سخنگوی وزارت بهداشت یمن اعلام کرد از"
     }
   ],
   "_published_incidents": [
@@ -6241,234 +6235,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "است",
-        "افزش",
-        "امر",
-        "تصدف",
-        "تلف",
-        "درصد",
-        "رنندگ",
-        "سنح",
-        "فت",
-        "مدت",
-        "مشب",
-        "مصدم",
-        "مقس",
-        "نفر",
-        "هزر",
-        "همد",
-        "پنج",
-        "گذشت"
-      ],
-      "n": [
-        "245"
-      ],
-      "t": 1794303307.3825164,
-      "title": "افزایش ۱۶.۶ درصدی تلفات تصادفات در همدان با ۲۴۵ فوتی ⚡️ آمار فوتی های تصادفات این استان در مقایسه با مدت مشابه سال گذشته"
-    },
-    {
-      "k": [
-        "اجرست",
-        "اخر",
-        "ارز",
-        "اشر",
-        "اقتصد",
-        "اقدم",
-        "الت",
-        "انتظر",
-        "برنم",
-        "بزر",
-        "بنک",
-        "تحل",
-        "ترم",
-        "ثبت",
-        "جدد",
-        "حز",
-        "دست",
-        "رس",
-        "عبدلنصر",
-        "مدرت",
-        "مرکز",
-        "نطمنن",
-        "نظرت",
-        "هدف",
-        "همت",
-        "وژ",
-        "پل",
-        "کمک",
-        "کهش"
-      ],
-      "s": "همتی",
-      "t": 1794303344.597269,
-      "title": "همتی: کاهش نااطمینانی و مدیریت انتظارات تورمی در اولویت است ⚡️ عبدالناصر همتی، رئیس کل بانک مرکزی، با اشاره به تحولات اق"
-    },
-    {
-      "k": [
-        "ابظب",
-        "است",
-        "اغز",
-        "امرک",
-        "امنت",
-        "انسن",
-        "اکرن",
-        "بحر",
-        "بررس",
-        "برگزر",
-        "تضمن",
-        "تنش",
-        "جرد",
-        "جنب",
-        "جنگ",
-        "حضر",
-        "رز",
-        "رزن",
-        "رس",
-        "رستم",
-        "صرت",
-        "عمرف",
-        "محرت",
-        "مدنسک",
-        "مذکر",
-        "مسل",
-        "مضعت",
-        "نشست",
-        "همچن",
-        "وتکف",
-        "وفصل",
-        "ولدمر",
-        "وگ",
-        "پشن",
-        "کشنر",
-        "کهش"
-      ],
-      "t": 1794305144.1963832,
-      "title": "آغاز مذاکرات سه جانبه روسیه، آمریکا و اوکراین در ابوظبی ⚡️ مذاکرات سه جانبه روسیه، آمریکا و اوکراین با محوریت حل وفصل بح"
-    },
-    {
-      "k": [
-        "اسپن",
-        "افسر",
-        "انفجر",
-        "دگر",
-        "زخم",
-        "شدد",
-        "شمل",
-        "مجرح",
-        "محل",
-        "مسکن",
-        "ممر",
-        "منجر",
-        "پلس",
-        "کشت"
-      ],
-      "t": 1794305171.9826183,
-      "title": "کشته و زخمی شدن دو پلیس در پی انفجار در شمال اسپانیا ⚡️ انفجار یک شیء در محله ای مسکونی در شمال اسپانیا منجر به کشته شدن"
-    },
-    {
-      "k": [
-        "امسل",
-        "حمل",
-        "خست",
-        "خهد",
-        "دست",
-        "دلت",
-        "رسد",
-        "رفت",
-        "زمست",
-        "زمستن",
-        "سخنگ",
-        "صرف",
-        "مترمکعب",
-        "مردم",
-        "مصرف",
-        "ملن",
-        "نترز",
-        "پلشگ",
-        "گذشت",
-        "گز"
-      ],
-      "n": [
-        "230",
-        "430"
-      ],
-      "s": "سخنگوی دولت",
-      "t": 1794305214.7850795,
-      "title": "سخنگوی دولت: ناترازی گاز زمستانی به ۴۳۰ میلیون مترمکعب خواهد رسید ⚡️ سخنگوی دولت اعلام کرد ناترازی گاز در زمستان امسال ب"
-    },
-    {
-      "k": [
-        "ارن",
-        "اقدم",
-        "امر",
-        "امض",
-        "بدند",
-        "برجم",
-        "برنم",
-        "بزگشت",
-        "بلستک",
-        "بم",
-        "بنک",
-        "تحرم",
-        "خرج",
-        "دبر",
-        "سخت",
-        "شرکت",
-        "شمل",
-        "فعل",
-        "مرتبط",
-        "مشک",
-        "نهد",
-        "هست",
-        "وزر",
-        "چهر",
-        "کند"
-      ],
-      "t": 1794306871.804636,
-      "title": "بازگشت تحریم های کانادا علیه ۱۱ نهاد ایرانی ⚡️ کانادا تحریم های ۱۱ نهاد ایرانی مرتبط با برنامه های هسته ای و موشکی بالست"
-    },
-    {
-      "k": [
-        "اغز",
-        "افزش",
-        "اقتصد",
-        "امد",
-        "امرک",
-        "امض",
-        "اکسن",
-        "بررس",
-        "بزگشت",
-        "بلدست",
-        "تحل",
-        "تصب",
-        "تغر",
-        "تفهم",
-        "حضر",
-        "خصص",
-        "دد",
-        "دلت",
-        "دنبل",
-        "سختر",
-        "سس",
-        "شرکت",
-        "فرصت",
-        "قنن",
-        "مبل",
-        "مل",
-        "نفت",
-        "نفذ",
-        "نم",
-        "هدرکربن",
-        "وشنگتن",
-        "ونزل",
-        "پرلم",
-        "کشر",
-        "گذشت"
-      ],
-      "t": 1794306919.3558292,
-      "title": "بازگشت اکسون موبیل پس از ۱۹ سال به ونزوئلا ⚡️ شرکت نفتی آمریکایی اکسون موبیل پس از گذشت ۱۹ سال و به دنبال تغییرات سیاسی "
-    },
     {
       "k": [
         "افرط",
@@ -9417,6 +9183,62 @@
       ],
       "t": 1794432869.6123917,
       "title": "انفجار و آتش سوزی در تأسیسات گازی بندر بریقه لیبی ⚡️ وقوع انفجار و آتش سوزی در کارخانه گاز شرکت سرت در بندر بریقه لیبی، "
+    },
+    {
+      "k": [
+        "اسرل",
+        "بدن",
+        "جمهر",
+        "درندگ",
+        "دلت",
+        "دم",
+        "رس",
+        "شرط",
+        "صرت",
+        "قصد",
+        "قنن",
+        "ملد",
+        "ممنعت",
+        "ورد",
+        "کشر",
+        "گذرنم"
+      ],
+      "t": 1794436449.518329,
+      "title": "دائمی شدن ممنوعیت ورود دارندگان گذرنامه اسرائیلی به مالدیو ⚡️ رئیس جمهور مالدیو اعلام کرد که دولت این کشور قصد دارد ممنو"
+    },
+    {
+      "k": [
+        "ار",
+        "اطلع",
+        "امر",
+        "بهدشت",
+        "تلف",
+        "تکنن",
+        "حمل",
+        "رسد",
+        "زخم",
+        "سخنگ",
+        "سم",
+        "سپتمبر",
+        "شمر",
+        "شمل",
+        "عهد",
+        "مختلف",
+        "مسلت",
+        "منطق",
+        "نش",
+        "نفر",
+        "هزر",
+        "وزرت",
+        "کشت",
+        "کشر",
+        "یمن"
+      ],
+      "n": [
+        "139"
+      ],
+      "t": 1794436546.814283,
+      "title": "سخنگوی وزارت بهداشت یمن: شمار کشته و زخمی در حملات به یمن به هزار و ۱۳۹ نفر رسید ⚡️ سخنگوی وزارت بهداشت یمن اعلام کرد از"
     }
   ],
   "_telegram_errors": [
@@ -9724,7 +9546,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794434491
+    "at": 1794436290
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9738,15 +9560,23 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "last_quality_failure": 1794436521,
+    "last_status": 422
+  },
+  "gemini:gemini-3.5-flash-lite": {
+    "last_quality_failure": 1794436516,
+    "last_status": 422
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794435183,
-    "last_failure": 1794434583,
+    "disabled_until": 1794437036,
+    "last_failure": 1794436436,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794434881.0,
-    "last_failure": 1794434581,
-    "last_status": 503
+    "disabled_until": 1794436721.0,
+    "last_failure": 1794436421,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9790,8 +9620,8 @@
     "last_status": 429
   },
   "openrouter:baidu/ernie-5.5-flash-preview:free": {
-    "disabled_until": 1794399194,
-    "last_failure": 1794399134,
+    "disabled_until": 1794436553,
+    "last_failure": 1794436493,
     "last_status": 422
   },
   "openrouter:cohere/north-mini-code:free": {
@@ -9801,19 +9631,19 @@
   },
   "openrouter:dots-studio/dots-3-note-preview:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1794391663,
-    "last_failure": 1794391603,
+    "disabled_until": 1794436568,
+    "last_failure": 1794436508,
     "last_status": 422
   },
   "openrouter:google/gemma-4-26b-a4b-it:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1794399641,
-    "last_failure": 1794399041,
+    "disabled_until": 1794437088,
+    "last_failure": 1794436488,
     "last_status": 429
   },
   "openrouter:google/gemma-4-31b-it:free": {
-    "disabled_until": 1794399641,
-    "last_failure": 1794399041,
+    "disabled_until": 1794437088,
+    "last_failure": 1794436488,
     "last_quality_failure": 1793794017,
     "last_status": 429
   },
@@ -9824,8 +9654,8 @@
   },
   "openrouter:liquid/lfm-2.5-2.6b:free": {
     "daily_quota_rest": true,
-    "disabled_until": 1794391666,
-    "last_failure": 1794391606,
+    "disabled_until": 1794436573,
+    "last_failure": 1794436513,
     "last_status": 422
   },
   "openrouter:liquid/lfm-3-1.7b:free": {
@@ -9834,8 +9664,8 @@
     "last_status": 429
   },
   "openrouter:ministral-8b-latest": {
-    "disabled_until": 1794404771,
-    "last_failure": 1794404171,
+    "disabled_until": 1794437065,
+    "last_failure": 1794436465,
     "last_status": 429
   },
   "openrouter:mistral-small-latest": {
@@ -9855,9 +9685,9 @@
     "last_status": 422
   },
   "openrouter:openrouter/free": {
-    "disabled_until": 1794404205,
-    "last_failure": 1794404145,
-    "last_quality_failure": 1794378887,
+    "disabled_until": 1794436548,
+    "last_failure": 1794436488,
+    "last_quality_failure": 1794436476,
     "last_status": 422
   },
   "openrouter:qwen/qwen3.8-27b:free": {
