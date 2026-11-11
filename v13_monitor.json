@@ -1,22 +1,14 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-11T17:35:08.392195+00:00",
+  "all_selected_blocked": false,
+  "ambiguous_publications": 1,
+  "checked_at": "2026-11-11T18:06:12.612818+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "final_guard:media-source",
-      "result": "editorial_blocked",
-      "source": "france24.com",
-      "started_at": "2026-11-11T17:35:02.142424+00:00",
-      "title": "Exclusive: EU's Kallas says US 'can't negotiate on our behalf' on lifting Russia sanctions",
-      "url": "https://france24.com/en/tv-shows/talking-europe/20261111-exclusive-eu-s-kallas-says-us-can-t-negotiate-on-our-behalf-on-lifting-russia-sanctions"
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=3 happened=False scope=world: تحلیل و گمانه‌زنی رسانه‌ای درباره مواضع احتمالی ترامپ.",
@@ -31,6 +23,14 @@
       "result": "editorial_blocked",
       "source": "",
       "title": "پزشکیان: حمله به مناطق زیست محیطی تعرض به سرمایه مشترک نسل های امروز و آینده است",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=3 happened=True scope=iran_national: اظهارات تحلیلگر درباره روایات مذاکرات گذشته",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "علی واعظ: وقتی ایران طرح هفت روزه را به چینی ها داد، آن ها گفتند اگر شما اقدام هسته ای را در این مرحله نگنجانید، ترامپ قبول نخواهد کرد / این طرح نهایتا به جایی نرسید و مذاکرات در ب",
       "url": ""
     },
     {
@@ -80,85 +80,47 @@
       "source": "",
       "title": "روسیه: نشانه های آغاز جنگ با ایران مشهود است، خسارت ها سنگین خواهد بود",
       "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=3 happened=True scope=iran_national: سخنرانی و درخواست رئیس‌جمهور در کنفرانس اقلیمی سازمان ملل",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "درخواست پزشکیان از جامعه جهانی برای جبران خسارات زیست محیطی جنگ به ایران",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=2 happened=False scope=world: تحلیل و گمانه‌زنی رسانه‌ای درباره آینده خاورمیانه",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "فارین پالیسی: وضعیت ژئوپلیتیک ایران، سوریه و عراق پس از پایان جنگ تغییر ساختاری نخواهد کرد",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=1 happened=False scope=local: خبر توزیع سریال انیمیشن در شبکه نمایش خانگی",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "قسمت های تازه «بچه زرنگ؛ گروه نجات جنگل» پنجشنبه عرضه می شود/ از گم شدن عکاس طبیعت تا تعقیب روباه زرد",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=3 happened=True scope=iran_national: اظهارات تحلیلگر درباره روایات مذاکرات گذشته",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "علی واعظ: وقتی ایران طرح هفت روزه را به چینی ها داد، آن ها گفتند اگر شما اقدام هسته ای را در این مرحله نگنجانید، ترامپ قبول نخواهد کرد / این طرح نهایتا به جایی نرسید و مذاکرات در ب",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=2 happened=True scope=local: سخنان و هشدار عمومی فرمانده سپاه ناحیه",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "اخبار تأییدنشده به جنگ روانی دشمن دامن می زند",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: خاطره و ادعای مجری آمریکایی درباره مذاکره گذشته",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "تاکر کارلسون، مجری مطرح آمریکایی: در دیدار خصوصی پیش از آغاز جنگ با ایران، اهداف اسرائیل را به گوش ترامپ رساندم / پس از بیان این ارزیابی ها، ترامپ در پاسخ گفت «حق با توست؛ اما در ن",
-      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "irna.ir",
+      "started_at": "2026-11-11T18:03:48.802408+00:00",
+      "title": "رسانه های انگلیسی زبان: ایران گزینه انتقال مواد هسته ای را منتفی اعلام کرد",
+      "url": "https://irna.ir/news/86319428/%D8%B1%D8%B3%D8%A7%D9%86%D9%87-%D9%87%D8%A7%DB%8C-%D8%A7%D9%86%DA%AF%D9%84%DB%8C%D8%B3%DB%8C-%D8%B2%D8%A8%D8%A7%D9%86-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%DA%AF%D8%B2%DB%8C%D9%86%D9%87-%D8%A7%D9%86%D8%AA%D9%82%D8%A7%D9%84-%D9%85%D9%88%D8%A7%D8%AF-%D9%87%D8%B3%D8%AA%D9%87-%D8%A7%DB%8C-%D8%B1%D8%A7-%D9%85%D9%86%D8%AA%D9%81%DB%8C"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 19,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "irna.ir",
+      "title": "رسانه های انگلیسی زبان: ایران گزینه انتقال مواد هسته ای را منتفی اعلام کرد",
+      "url": "https://irna.ir/news/86319428/%D8%B1%D8%B3%D8%A7%D9%86%D9%87-%D9%87%D8%A7%DB%8C-%D8%A7%D9%86%DA%AF%D9%84%DB%8C%D8%B3%DB%8C-%D8%B2%D8%A8%D8%A7%D9%86-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%DA%AF%D8%B2%DB%8C%D9%86%D9%87-%D8%A7%D9%86%D8%AA%D9%82%D8%A7%D9%84-%D9%85%D9%88%D8%A7%D8%AF-%D9%87%D8%B3%D8%AA%D9%87-%D8%A7%DB%8C-%D8%B1%D8%A7-%D9%85%D9%86%D8%AA%D9%81%DB%8C"
+    }
+  ],
   "no_publication_candidate": false,
-  "publication_gap": true,
-  "published": 0,
+  "publication_gap": false,
+  "published": 2,
   "run_status": "success",
-  "selected_for_publication": 17,
+  "selected_for_publication": 13,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "entekhab.ir",
-      "started_at": "2026-11-11T17:34:23.829053+00:00",
-      "title": "ادعای ترامپ: آمریکا جنگ با ایران را آغاز نکرد؛ تهران از سال ۱۹۷۹ تاکنون در حال جنگ با آمریکا بوده / این مسئله باید مدت ها پیش حل وفصل می شد",
-      "url": "https://entekhab.ir/fa/news/947544/ادعای-ترامپ-آمریکا-جنگ-با-ایران-را-آغاز-نکرد-تهران-از-سال-1979-تاکنون-در-حال-جنگ-با-آمریکا-بوده-این-مسئله-باید-مدت-ها-پیش-حل-وفصل-می-شد"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
       "source": "bbc.co.uk",
-      "started_at": "2026-11-11T17:35:05.089670+00:00",
+      "started_at": "2026-11-11T18:06:08.069238+00:00",
       "title": "Russia-Ukraine talks turn to post-war security but end without breakthrough",
       "url": "https://bbc.co.uk/news/articles/ck792we7zrz4o?at_campaign=rss&at_medium=RSS"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
