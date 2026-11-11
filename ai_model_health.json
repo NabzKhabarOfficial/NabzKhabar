@@ -1,38 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794354942
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794354942
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794354950
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794354950
-    },
-    {
-      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.1-flash-lite",
-      "t": 1794354951
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 10x",
-      "t": 1794355027
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
-      "t": 1794355370
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794357170
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1794357171
     },
@@ -159,32 +127,64 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
       "t": 1794364484
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794366193
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794366194
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794366194
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794366198
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794366198
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1794366200
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
+      "t": 1794366204
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 7x",
+      "t": 1794366272
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-10",
-      "n": 139
+      "n": 141
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-10",
-      "n": 237
+      "n": 242
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-10",
-      "n": 106
+      "n": 108
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-10",
-      "n": 106
+      "n": 108
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-11",
-      "n": 14
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-11",
-      "n": 14
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-11-10",
@@ -491,28 +491,29 @@
     "2026-11-11": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
-        "other": 0
+        "calls": 10,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 9,
+        "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 17,
+        "calls": 22,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 16,
-        "other": 1
+        "ok": 20,
+        "other": 2
       },
       "gemini:gemini-3.6-flash": {
-        "429": 2,
-        "calls": 8,
+        "429": 3,
+        "calls": 9,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 5,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 5,
-        "calls": 6,
+        "429": 6,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -520,35 +521,28 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
+        "ok": 13,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
-        "other": 7
+        "ok": 8,
+        "other": 8
       },
       "mistral:open-mistral-nemo": {
-        "429": 7,
-        "calls": 23,
+        "429": 8,
+        "calls": 28,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 16,
+        "ok": 20,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1794193414.9955082,
-      "title": "بلینکن: امتیاز دادن به ایران لازمه توافق دیپلماتیک است",
-      "urgent": false
-    },
     {
       "label": "موضع‌گیری",
       "level": 4,
@@ -1255,6 +1249,20 @@
       "t": 1794364481.3329551,
       "title": "احمد العلوانی، نماینده سابق پارلمان عراق، در بیروت کشته شد",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1794366238.2219658,
+      "title": "موسویان به ترامپ هشدار می دهد: فرصت تاریخی «اسلام آباد پلاس» را از دست ندهید",
+      "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 3,
+      "t": 1794366271.5479002,
+      "title": "رئیس جمهور السالوادور: مقر اصلی یک گروه جنایتکار بزرگ هائیتی تخریب شد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-10",
@@ -1360,6 +1368,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine product release, not a global-scale business or tech shock.",
       "topic": "فناوری",
       "until": 1794420200.092341
+    },
+    "v4|headquarters of haitian gang destroyed, el salvador's president says": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: انهدام مقر باند گانگستری در هاییتی توسط ارتش السالوادور",
+      "topic": "نظامی",
+      "until": 1794452598.0734599
     },
     "v4|injured feyi-waboso is our robinson – sinfield": {
       "ok": false,
@@ -1805,6 +1819,12 @@
       "topic": "سیاست",
       "until": 1794427421.8150585
     },
+    "v4|ارتش آلمان استفاده از پهپادها و خودروهای چینی را در اماکن نظامی ممنوع کرد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Official security decision by a major military regarding foreign technology.",
+      "topic": "نظامی",
+      "until": 1794452604.7933192
+    },
     "v4|ارتش قاچاقچی آمریکا با دروغ، نفتکش های بیچاره را به کام دیوارهای آتشین می کشانَد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: ادعاها و اظهارات مقام نظامی بدون رویداد مشخص",
@@ -2117,6 +2137,12 @@
       "topic": "اقتصاد",
       "until": 1794389627.3065526
     },
+    "v4|بازی تدارکاتی با عراق، بی ارزش بود / حالا که زیر دعوت شان زدند نباید می رفتید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Friendly match scheduled, no result yet",
+      "topic": "ورزش",
+      "until": 1794452594.2757013
+    },
     "v4|برخورد زنجیره ای ۱۱ وسیله نقلیه در دو تصادف شب گذشته پایتخت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: تصادف رانندگی درون‌شهری در تهران بدون تلفات گسترده، خبر محلی است.",
@@ -2158,6 +2184,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: رونمایی از قطعه موشک یک رویداد فنی عادی و غیر استراتژیک است.",
       "topic": "فناوری",
       "until": 1794391501.464559
+    },
+    "v4|بلومبرگ: ایران ماهانه ۵۰ موشک تولید می کند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Intelligence estimate report on military production capabilities.",
+      "topic": "نظامی",
+      "until": 1794452604.8072112
     },
     "v4|بلومبرگ: ذخایر موشک های پاتریوت در اروپا به حداقل رسیده است": {
       "ok": true,
@@ -3028,6 +3060,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official UN statement on humanitarian crisis in Gaza war zone.",
       "topic": "سیاست",
       "until": 1794389636.7721896
+    },
+    "v4|سامان قدوس، با وقار و با عزت از تیم ملی خداحافظی کرد / او به بازیکنانی که به هر قیمت می خواهند بمانند تلنگر زد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: بازیکن ملی بازنشستگی، اثر کم‌اهمیت بر ورزش",
+      "topic": "ورزش",
+      "until": 1794452593.7310114
     },
     "v4|ساماندهی سیلاب های ورودی به شهر غلامان با اجرای طرح احداث کانال و حوضچه های رسوب گیر": {
       "ok": false,
@@ -3995,6 +4033,12 @@
       "topic": "سیاست",
       "until": 1794418455.6097784
     },
+    "v4|واکنش فلاحت پیشه به سعید جلیلی: در ۱ سال ۳۰۰ میلیارد دلار خسارت به کشور زدند/ تا محاکمه نشوند ملت در گازانبر جنگ و تحریم می ماند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Opinion and political rhetoric by a former official, not a decision.",
+      "topic": "سیاست",
+      "until": 1794452604.7792938
+    },
     "v4|وزیر خارجه مصر خواستار جلوگیری از کشیده شدن منطقه به درگیری شد": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Official statement to prevent regional escalation.",
@@ -4144,6 +4188,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: مذاکرات صلح اوکراین و موضع رسمی لاوروف و زلنسکی",
       "topic": "سیاست",
       "until": 1794407759.3885667
+    },
+    "v4|پیشنهاد سیدحسین موسویان به ترامپ: فرصت تاریخی «اسلام آباد پلاس» را از دست نده / پیام انتخاباتی مردم کشورت، پایان دادن به جنگ است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: نتایج میانه‌دوره‌ای آمریکا، تغییر کنترل کنگره",
+      "topic": "سیاست",
+      "until": 1794452592.9636292
     },
     "v4|پیکر پاک شهید گمنام در آغوش دانشجویان دانشگاه یاسوج": {
       "ok": false,
@@ -4553,25 +4603,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "gemini/gemini-3.5-flash-lite:new",
-      "head": "سفر غیرمنتظره نخست وزیر قطر به پاریس برای رایزنی درباره تحولات ایران ⚡️ نخست وزیر قطر در سفری اعلام نشده به پا",
-      "id": "0db43c187d",
-      "match": "ترامپ: قطر و عربستان خواستار توافق مسالمت آمیز با ایران هستند ⚡️ دونالد ترامپ اعلام کرد قطر و عربستان سعودی خو",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794303247,
-      "verdict": "unconfirmed-repeat",
-      "why": "قطر و عربستان سعودی خواستار توافق مسالمت آمیز با ایران"
-    },
-    {
-      "head": "افزایش ۱۶.۶ درصدی تلفات تصادفات در همدان با ۲۴۵ فوتی ⚡️ آمار فوتی های تصادفات این استان در مقایسه با مدت مشابه",
-      "id": "c5a0991ee6",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794303304,
-      "verdict": "new",
-      "why": "different event: traffic accident fatalities"
-    },
     {
       "head": "همتی: کاهش نااطمینانی و مدیریت انتظارات تورمی در اولویت است ⚡️ عبدالناصر همتی، رئیس کل بانک مرکزی، با اشاره به",
       "id": "f75b4a8aed",
@@ -5100,37 +5131,27 @@
       "t": 1794364480,
       "verdict": "new",
       "why": "No previous report on the death of Iraqi MP Ahmed al-Alwani."
+    },
+    {
+      "head": "موسویان به ترامپ هشدار می دهد: فرصت تاریخی «اسلام آباد پلاس» را از دست ندهید ⚡️ سیدحسین موسویان در پی شکست انت",
+      "id": "f407a3252f",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794366234,
+      "verdict": "new",
+      "why": "فرصت تاریخی «اسلام آباد پلاس» موضوع جدید"
+    },
+    {
+      "head": "رئیس جمهور السالوادور: مقر اصلی یک گروه جنایتکار بزرگ هائیتی تخریب شد ⚡️ نایب بوکله، رئیس جمهور السالوادور، اع",
+      "id": "6542cfa83e",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1794366270,
+      "verdict": "new",
+      "why": "This is a new event regarding El Salvador's military operation in Haiti."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: گزارش عملکرد محلی شوراهای حل اختلاف اردبیل فاقد اهمیت ملی.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794330238,
-      "title": "صلح و سازش؛ راهبرد شورای حل اختلاف اردبیل"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: واکنش رسمی وزیر خارجه ایران به اتهام فرانسه",
-      "rescued": true,
-      "rule": "foreign-local-preselection",
-      "t": 1794332055,
-      "title": "واکنش عراقچی به ادعای مضحک دولت فرانسه"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Local flood prep, no actual event occurred",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1794332056,
-      "title": "آمادگی ۱۱ منطقه شیراز برای بارش های سیل آسا / پیش بینی اسکان اضطراری شهروندان"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: امضای اسناد همکاری اقتصادی رویداد روتین و کم‌اثر است",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1794332062,
-      "title": "امضای اسناد همکاری اقتصادی ایران و ارمنستان در نوزدهمین اجلاس کمیسیون مشترک"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: مراسم و همایش فرهنگی است و ارزش خبری ملی ندارد.",
       "rescued": false,
@@ -5662,30 +5683,40 @@
       "rule": "strict-source-below-importance(8<10)",
       "t": 1794364391,
       "title": "نماینده مجلس: طرف موقع تجاوز وحشیانه و پرپر شدن ۱۶۸ دسته گل معصوم مینابی، لال مونی گرفته، بعد ژست مظلومیت هم می گیرد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: نتایج میانه‌دوره‌ای آمریکا، تغییر کنترل کنگره",
+      "rescued": true,
+      "rule": "final-scope-preselection",
+      "t": 1794366192,
+      "title": "پیشنهاد سیدحسین موسویان به ترامپ: فرصت تاریخی «اسلام آباد پلاس» را از دست نده / پیام انتخاباتی مردم کشورت، پایان دادن به"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: بازیکن ملی بازنشستگی، اثر کم‌اهمیت بر ورزش",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1794366193,
+      "title": "سامان قدوس، با وقار و با عزت از تیم ملی خداحافظی کرد / او به بازیکنانی که به هر قیمت می خواهند بمانند تلنگر زد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Friendly match scheduled, no result yet",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1794366194,
+      "title": "بازی تدارکاتی با عراق، بی ارزش بود / حالا که زیر دعوت شان زدند نباید می رفتید"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: انهدام مقر باند گانگستری در هاییتی توسط ارتش السالوادور",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1794366198,
+      "title": "Headquarters of Haitian gang destroyed, El Salvador's president says"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "حضر",
-        "خرج",
-        "خسرت",
-        "در",
-        "دلل",
-        "رب",
-        "عمل",
-        "محصر",
-        "مرک",
-        "نز",
-        "ورنگر",
-        "گسترد"
-      ],
-      "t": 1794321434.9975548,
-      "title": "مارکو روبیو: نیازی به عملیات نظامی گسترده علیه ایران نیست ⚡️ مارکو روبیو، وزیر خارجه آمریکا اعلام کرد که به دلیل خسارت ه"
-    },
     {
       "h": [
         "الند",
@@ -6290,6 +6321,52 @@
       ],
       "t": 1794364481.3224323,
       "title": "احمد العلوانی، نماینده سابق پارلمان عراق، در بیروت کشته شد ⚡️ احمد العلوانی، نماینده سابق پارلمان عراق، در آپارتمانی در "
+    },
+    {
+      "h": [
+        "ابد",
+        "استفد",
+        "اسلم",
+        "انتخبت",
+        "ترخ",
+        "تنش",
+        "ددن",
+        "دست",
+        "دعت",
+        "سدحسن",
+        "شکست",
+        "فرصت",
+        "مس",
+        "ندهد",
+        "هشدر",
+        "پلس",
+        "کهش"
+      ],
+      "t": 1794366238.2093794,
+      "title": "موسویان به ترامپ هشدار می دهد: فرصت تاریخی «اسلام آباد پلاس» را از دست ندهید ⚡️ سیدحسین موسویان در پی شکست انتخاباتی ترا"
+    },
+    {
+      "h": [
+        "اصل",
+        "السلدر",
+        "بزرگ",
+        "بکل",
+        "تخرب",
+        "جنتکر",
+        "حم",
+        "زمن",
+        "مجتمع",
+        "مز",
+        "معرف",
+        "مقر",
+        "نب",
+        "هت",
+        "پرتپرنس",
+        "چهرصد",
+        "گر"
+      ],
+      "t": 1794366271.5352495,
+      "title": "رئیس جمهور السالوادور: مقر اصلی یک گروه جنایتکار بزرگ هائیتی تخریب شد ⚡️ نایب بوکله، رئیس جمهور السالوادور، اعلام کرد نی"
     }
   ],
   "_published_incidents": [
@@ -6520,46 +6597,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اختلل",
-        "ازد",
-        "الت",
-        "الملل",
-        "امر",
-        "امنت",
-        "انرژ",
-        "بحر",
-        "بدر",
-        "تجرت",
-        "تنش",
-        "تکد",
-        "جر",
-        "جنگ",
-        "جهن",
-        "خرج",
-        "خستر",
-        "خهد",
-        "ددن",
-        "دپلمتک",
-        "دپلمس",
-        "رسن",
-        "رهکر",
-        "سس",
-        "عبدلعط",
-        "غذ",
-        "فرنس",
-        "مج",
-        "مصحب",
-        "مصر",
-        "منطق",
-        "هشدر",
-        "وزر",
-        "کشترن"
-      ],
-      "t": 1794235209.214375,
-      "title": "تاکید مصر بر اولویت دیپلماسی در بحران منطقه و هشدار درباره اختلال در تجارت جهانی ⚡️ وزیر امور خارجه مصر در مصاحبه با رسا"
-    },
     {
       "k": [
         "اسرل",
@@ -9089,6 +9126,95 @@
       ],
       "t": 1794364481.3113787,
       "title": "احمد العلوانی، نماینده سابق پارلمان عراق، در بیروت کشته شد ⚡️ احمد العلوانی، نماینده سابق پارلمان عراق، در آپارتمانی در "
+    },
+    {
+      "k": [
+        "ابد",
+        "اجد",
+        "ار",
+        "استر",
+        "استفد",
+        "اسرل",
+        "اسلم",
+        "امز",
+        "امنت",
+        "انتخبت",
+        "بپردزد",
+        "تحت",
+        "ترخ",
+        "ترمپ",
+        "تفهم",
+        "تنش",
+        "جنگ",
+        "حل",
+        "ددن",
+        "دست",
+        "دعت",
+        "ره",
+        "سدحسن",
+        "شکست",
+        "فرصت",
+        "فشر",
+        "مس",
+        "ممکن",
+        "منج",
+        "منطق",
+        "ندهد",
+        "نظم",
+        "نم",
+        "نگرن",
+        "هشدر",
+        "وجد",
+        "پشن",
+        "پلس",
+        "پکست",
+        "چرچب",
+        "کهش",
+        "گر"
+      ],
+      "t": 1794366238.1960402,
+      "title": "موسویان به ترامپ هشدار می دهد: فرصت تاریخی «اسلام آباد پلاس» را از دست ندهید ⚡️ سیدحسین موسویان در پی شکست انتخاباتی ترا"
+    },
+    {
+      "k": [
+        "اخر",
+        "اصل",
+        "السلدر",
+        "بخش",
+        "بزرگ",
+        "بکل",
+        "تحت",
+        "تخرب",
+        "ترسندن",
+        "جمهر",
+        "جنتکر",
+        "حم",
+        "حمل",
+        "دلل",
+        "ربش",
+        "رس",
+        "زمن",
+        "شنخت",
+        "شهرند",
+        "مجتمع",
+        "مز",
+        "معرف",
+        "مقر",
+        "نب",
+        "نر",
+        "نظم",
+        "هت",
+        "وسع",
+        "پتخت",
+        "پرتپرنس",
+        "چهرصد",
+        "کشر",
+        "کنترل",
+        "گر"
+      ],
+      "s": "رئیس جمهور السالوادور",
+      "t": 1794366271.5222452,
+      "title": "رئیس جمهور السالوادور: مقر اصلی یک گروه جنایتکار بزرگ هائیتی تخریب شد ⚡️ نایب بوکله، رئیس جمهور السالوادور، اعلام کرد نی"
     }
   ],
   "_telegram_errors": [
@@ -9384,7 +9510,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794364281
+    "at": 1794366081
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9398,15 +9524,25 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1794366528.0,
+    "last_failure": 1794366228,
+    "last_status": 503
+  },
+  "gemini:gemini-3.5-flash-lite": {
+    "disabled_until": 1794366500.0,
+    "last_failure": 1794366200,
+    "last_status": 503
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794363268,
-    "last_failure": 1794362668,
+    "disabled_until": 1794366823,
+    "last_failure": 1794366223,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794364676.0,
-    "last_failure": 1794364376,
-    "last_status": 503
+    "disabled_until": 1794366841,
+    "last_failure": 1794366241,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
