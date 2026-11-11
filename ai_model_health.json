@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1794350006
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1794350006
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 10x",
       "t": 1794355027
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794355370
     }
   ],
   "_ai_pace": {
@@ -179,8 +179,8 @@
       "n": 97
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-11-10",
-      "n": 90
+      "day": "2026-11-11",
+      "n": 3
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-10",
@@ -192,105 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-11-07": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 133,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 127,
-        "other": 6
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 254,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 242,
-        "other": 12
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 56,
-        "calls": 105,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 41,
-        "other": 8
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 60,
-        "calls": 83,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 3,
-        "other": 20
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 58,
-        "other": 32
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 62,
-        "other": 28
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 1,
-        "calls": 4,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 3,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 17,
-        "calls": 266,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 249,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 3,
-        "calls": 3,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.a",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 3,
-        "calls": 3,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/wo",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-3-1.7b:free": {
-        "429": 2,
-        "calls": 2,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"liquid/lfm-3-1.7b:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/worksp",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 5,
-        "ok": 5,
-        "other": 0
-      }
-    },
     "2026-11-08": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -584,6 +485,20 @@
         "429": 0,
         "calls": 21,
         "ok": 21,
+        "other": 0
+      }
+    },
+    "2026-11-11": {
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 3,
+        "ok": 3,
+        "other": 0
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       }
     }
@@ -1288,6 +1203,13 @@
       "t": 1794355026.456044,
       "title": "عراق به دلیل تحریم های آمریکا از فرود هواپیمای تیم ملی فوتبال ایران جلوگیری کرد",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1794355380.7709315,
+      "title": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-10",
@@ -1315,6 +1237,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: درخواست حقوق بشری سازمان عفو بین‌الملل اهمیت درجه یک جهانی ندارد.",
       "topic": "سیاست",
       "until": 1794364389.796197
+    },
+    "v4|anthropic eyes $1.4 trillion valuation in blockbuster ipo": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Corporate IPO, not major global shock",
+      "topic": "اقتصاد",
+      "until": 1794441770.6909025
     },
     "v4|anthropic launches claude meetings to turn workplace discussions into plans and tasks": {
       "ok": false,
@@ -2575,6 +2503,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: تصمیم رسمی مجلس نمایندگان آمریکا درباره طرح استیضاح وزیر جنگ.",
       "topic": "سیاست",
       "until": 1794441351.9357822
+    },
+    "v4|جمهوری خواهان پرونده استیضاح وزیر جنگ آمریکا را مسدود کردند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: US House moves impeachment, significant political event",
+      "topic": "سیاست",
+      "until": 1794441770.705098
     },
     "v4|جنگ با یمن، سرمایه گذاران را از استارت آپ های سعودی فراری داد": {
       "ok": false,
@@ -4507,6 +4441,10 @@
       "reason": "content_duplicate",
       "until": 1794368043.1247158
     },
+    "جمهوری خواهان پرونده استیضاح وزیر جنگ آمریکا را مسدود کردند": {
+      "reason": "content_duplicate",
+      "until": 1794376987.4814417
+    },
     "روبیو: فشار اقتصادی تحریم ها علیه ایران روزبه روز افزایش می یابد": {
       "reason": "content_duplicate",
       "until": 1794360903.9914029
@@ -4570,15 +4508,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "تحقیقات فرانسه درباره حملات سایبری ایران به یخچال های فروشگاهی ⚡️ فرانسه اعلام کرد سپاه پاسداران انقلاب اسلامی",
-      "id": "f1acc7bfcc",
-      "match": "فرانسه سپاه پاسداران را مسئول حملات سایبری به یخچال سوپرمارکت ها معرفی کرد",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794287284,
-      "verdict": "repeat",
-      "why": "فرانسه مسئولیت سپاه را تکرار کرد"
-    },
     {
       "head": "ناسا برنامه های جدید خود برای پایگاه ماه را اعلام کرد ⚡️ ناسا قراردادهایی برای ساخت پایگاه ماه و مأموریت های ق",
       "id": "fb19305912",
@@ -5117,6 +5046,15 @@
       "t": 1794355025,
       "verdict": "new",
       "why": "This is a new event regarding the Iraqi government denying landing to Iran's national football team "
+    },
+    {
+      "head": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند ⚡️ قانونگذاران مجلس نمایندگان ایالات مت",
+      "id": "5de99acb75",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794355377,
+      "verdict": "new",
+      "why": "استیضاح وزیر جنگ ترامپ در مجلس نمایندگان آمریکا"
     }
   ],
   "_importance_rescue_log": [
@@ -6212,6 +6150,29 @@
       ],
       "t": 1794355026.4486094,
       "title": "عراق به دلیل تحریم های آمریکا از فرود هواپیمای تیم ملی فوتبال ایران جلوگیری کرد ⚡️ دولت عراق به دلیل تحریم های آمریکا عل"
+    },
+    {
+      "h": [
+        "ارجع",
+        "استضح",
+        "ال",
+        "تصب",
+        "خه",
+        "شدند",
+        "شنب",
+        "طرح",
+        "قض",
+        "قننگذر",
+        "متحد",
+        "مخلف",
+        "مفق",
+        "منع",
+        "نرک",
+        "نمندگ",
+        "کمت"
+      ],
+      "t": 1794355380.7604663,
+      "title": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند ⚡️ قانونگذاران مجلس نمایندگان ایالات متحده در نیو"
     }
   ],
   "_published_incidents": [
@@ -9144,6 +9105,42 @@
       ],
       "t": 1794355026.440868,
       "title": "عراق به دلیل تحریم های آمریکا از فرود هواپیمای تیم ملی فوتبال ایران جلوگیری کرد ⚡️ دولت عراق به دلیل تحریم های آمریکا عل"
+    },
+    {
+      "k": [
+        "ارجع",
+        "استضح",
+        "اقدم",
+        "ال",
+        "بررس",
+        "ترمپ",
+        "تصب",
+        "جمهر",
+        "جنگ",
+        "خه",
+        "شدند",
+        "شنب",
+        "صحن",
+        "طرح",
+        "علن",
+        "قض",
+        "قننگذر",
+        "متحد",
+        "مجلس",
+        "مخلف",
+        "مفق",
+        "منع",
+        "نرک",
+        "نمندگ",
+        "وزر",
+        "کمت"
+      ],
+      "n": [
+        "204",
+        "211"
+      ],
+      "t": 1794355380.748009,
+      "title": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند ⚡️ قانونگذاران مجلس نمایندگان ایالات متحده در نیو"
     }
   ],
   "_telegram_errors": [
@@ -9439,7 +9436,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794354845
+    "at": 1794355291
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
