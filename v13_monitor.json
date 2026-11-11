@@ -2,8 +2,10 @@
   "ai_pool": {},
   "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-11T01:04:05.800095+00:00",
+  "checked_at": "2026-11-11T01:33:46.079316+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -65,14 +67,6 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=world: Opinion by US senator, no concrete event",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "سندرز: جنگ ایران بر مبنای دروغ شروع شد",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Official reaction/statement by a high-ranking government official.",
       "result": "editorial_blocked",
       "source": "",
@@ -86,28 +80,44 @@
       "source": "",
       "title": "کارشناس عرب: جنگ آمریکا علیه ایران به نابودی کشورهای خلیج فارس منجر می شود",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=6 happened=True scope=world: failed impeachment of US Defense Secretary",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "طرح استیضاح پیت هگست در مجلس نمایندگان آمریکا ناکام ماند",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "aljazeera.com",
+      "started_at": "2026-11-11T01:33:43.069717+00:00",
+      "title": "Spain holds state funeral for 69 victims of deadly train crash",
+      "url": "https://aljazeera.com/video/newsfeed/2026/11/11/spain-holds-state-funeral-for-69-victims-of-deadly-train-crash?traffic_source=rss"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "aljazeera.com",
+      "title": "Spain holds state funeral for 69 victims of deadly train crash",
+      "url": "https://aljazeera.com/video/newsfeed/2026/11/11/spain-holds-state-funeral-for-69-victims-of-deadly-train-crash?traffic_source=rss"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": false,
   "published": 1,
   "run_status": "success",
   "selected_for_publication": 12,
-  "skipped_duplicate": [
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "isna.ir",
-      "started_at": "2026-11-11T01:03:24.197550+00:00",
-      "title": "واکنش ترامپ به رد پرونده استیضاح هگست در مجلس نمایندگان",
-      "url": "https://isna.ir/news/1405082013548/%D9%88%D8%A7%DA%A9%D9%86%D8%B4-%D8%AA%D8%B1%D8%A7%D9%85%D9%BE-%D8%A8%D9%87-%D8%B1%D8%AF-%D9%BE%D8%B1%D9%88%D9%86%D8%AF%D9%87-%D8%A7%D8%B3%D8%AA%DB%8C%D8%B6%D8%A7%D8%AD-%D9%87%DA%AF%D8%B3%D8%AA-%D8%AF%D8%B1-%D9%85%D8%AC%D9%84%D8%B3-%D9%86%D9%85%D8%A7%DB%8C%D9%86%D8%AF%DA%AF%D8%A7%D9%86"
-    }
-  ],
-  "status": "healthy"
+  "skipped_duplicate": [],
+  "status": "publication_failure"
 }

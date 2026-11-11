@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1794351794
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1794351798
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794351807
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794351807
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
       "t": 1794359045
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794360796
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1794360798
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1794360825
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-10",
-      "n": 130
+      "n": 132
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-10",
-      "n": 222
+      "n": 223
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-10",
-      "n": 99
+      "n": 100
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-10",
-      "n": 99
+      "n": 100
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-11",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-11",
-      "n": 7
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-10",
@@ -491,48 +491,49 @@
     "2026-11-11": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 3,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 2,
+        "other": 1
+      },
+      "gemini:gemini-3.6-flash": {
         "429": 0,
         "calls": 2,
         "ok": 2,
         "other": 0
       },
-      "gemini:gemini-3.6-flash": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
       "gemini:gemini-3.8-flash": {
-        "429": 2,
-        "calls": 2,
+        "429": 3,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 7,
+        "ok": 9,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 7,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 3
+        "calls": 10,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 6,
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 8,
+        "calls": 10,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 6,
+        "ok": 8,
         "other": 0
       }
     }
@@ -1230,6 +1231,13 @@
       "t": 1794359044.5645688,
       "title": "هگست برکناری شکست خورد؛ ایران مذاکرات با آمریکا را رد کرد",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 3,
+      "t": 1794360821.590313,
+      "title": "انتقال وزیر خزانه داری آمریکا به پایگاه نظامی در پی تهدیدهای تهران",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-10",
@@ -1245,12 +1253,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=False scope=iran_national: تحلیل و بررسی گزارش ادعایی یک رسانه خارجی.",
       "topic": "سیاست",
       "until": 1794396816.0430753
-    },
-    "v4|after meeting qatar pm, trump calls iran war ‘effectively over’ militarily": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Official statements by a head of state regarding war status.",
-      "topic": "سیاست",
-      "until": 1794359117.076978
     },
     "v4|amnesty urges el salvador to disclose terms of haiti troop deployment": {
       "ok": false,
@@ -1281,12 +1283,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official legal threat against a former head of state.",
       "topic": "سیاست",
       "until": 1794404096.6623647
-    },
-    "v4|beau lamarre-condon denies being ‘obsessed’ with jesse baird as double murder trial continues": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Trial continues, statement denied obsession.",
-      "topic": "قضایی",
-      "until": 1794359102.5709152
     },
     "v4|beau lamarre-condon denies making fake grindr account for jesse baird, double murder trial hears": {
       "ok": false,
@@ -1365,12 +1361,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=iran_national: Impeachment bid failed, Iran denies US talks, national political significance",
       "topic": "سیاست",
       "until": 1794443578.141795
-    },
-    "v4|iran war live: iran demands us ‘surrender’ to its conditions": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Trump declares war effectively over, major political statement",
-      "topic": "نظامی",
-      "until": 1794360742.6094618
     },
     "v4|iraq blocks iranian football team’s plane from landing over us sanctions": {
       "ok": true,
@@ -1498,6 +1488,12 @@
       "topic": "حادثه",
       "until": 1794364357.0256307
     },
+    "v4|spain holds state funeral for 69 victims of deadly train crash": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: state funeral for 69 victims of train crash",
+      "topic": "حادثه",
+      "until": 1794447198.4498377
+    },
     "v4|spain's king and queen attend memorial service for rail crash victims": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: مراسم یادبود قربانیان حادثه قطار خبر درجه یک محسوب نمی شود",
@@ -1515,12 +1511,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: انتخاب رهبر جدید جمهوری‌خواهان مجلس نمایندگان آمریکا پس از انتخابات",
       "topic": "سیاست",
       "until": 1794438207.8815978
-    },
-    "v4|trump says fbi probing nvidia ceo’s affair with alleged spy": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: Trump claims Nvidia CEO unaware of alleged spy",
-      "topic": "سیاست",
-      "until": 1794359102.0656836
     },
     "v4|trump says israel, gulf allies must repay iran war cost: what does it mean?": {
       "ok": false,
@@ -1767,12 +1757,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Speculative warning about potential noise from local activities.",
       "topic": "جامعه",
       "until": 1794388009.04793
-    },
-    "v4|اخباری از حملات موشکی به عربستان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Missile attacks on major Saudi cities constitute major regional war news.",
-      "topic": "نظامی",
-      "until": 1794359117.0634792
     },
     "v4|اختتامیه جایزه «امیر»": {
       "ok": false,
@@ -2062,12 +2046,6 @@
       "topic": "جامعه",
       "until": 1794366435.9402053
     },
-    "v4|اکسیوس: ترامپ می خواهد به مذاکره با تهران فرصت بدهد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Trump says new Iran campaign unlikely, official stance",
-      "topic": "نظامی",
-      "until": 1794360742.6289513
-    },
     "v4|اکسیوس: قدرت وتوی ترامپ در کنگره، مانع مأموریت سیاسی گسترده دموکرات ها خواهد بود/ از سویی ترامپ می تواند با تهدید به وتوی طرح ها مانع تصویب قوانین شود، از طرفی هم وتو کردن طرح های": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis of future political dynamics in the US Congress.",
@@ -2145,6 +2123,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: آمادگی شبکه برق شهرستان اسفراین خبر محلی و روتین است.",
       "topic": "اقتصاد",
       "until": 1794400468.3695526
+    },
+    "v4|بزرگ ترین اقتصادهای جهان با بدهکارترین ها یکی نیستند!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: تحلیل عمومی، رویداد خاصی رخ نداده",
+      "topic": "اقتصاد",
+      "until": 1794447196.542092
     },
     "v4|بغزیان، یک اقتصاددان: دولت کسری بودجه ۱۴۰۶ را پنهان نکند / افزایش مالیات در اقتصاد تورمی هنر نیست": {
       "ok": false,
@@ -2872,6 +2856,12 @@
       "topic": "سیاست",
       "until": 1794384627.5109131
     },
+    "v4|رایزنی دیپلماتیک ایران و روسیه در مسکو درباره مسائل منطقه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Diplomatic meeting, no concrete decision announced",
+      "topic": "سیاست",
+      "until": 1794447195.7601564
+    },
     "v4|رایزنی فشرده قطر با اروپا و عربستان درباره جنگ ایران پس از دیدار با ترامپ": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash batch score=8 happened=True scope=world: دیپلماسی اضطراری قطر با آمریکا، اروپا و عربستان درباره جنگ ایران",
@@ -3292,11 +3282,11 @@
       "topic": "قضایی",
       "until": 1794398879.7613125
     },
-    "v4|طرح استیضاح وزیر دفاع آمریکا از جمله در ارتباط با حمله به مدرسه میناب، به مجلس نمایندگان ارائه شد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Formal submission of impeachment motion against a US Cabinet member.",
+    "v4|طرح استیضاح پیت هگست در مجلس نمایندگان آمریکا ناکام ماند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=6 happened=True scope=world: failed impeachment of US Defense Secretary",
       "topic": "سیاست",
-      "until": 1794359117.0492344
+      "until": 1794447198.4746265
     },
     "v4|طرح تبدیل «توافق چارچوب» میان لبنان و اسرائیل به قطعنامه شورای امنیت": {
       "ok": false,
@@ -3357,12 +3347,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: عضو خبرگان خواستار ترویج غذاهای ارگانیک",
       "topic": "سلامت",
       "until": 1794431022.7460942
-    },
-    "v4|عضو هیات رئیسه مجلس: چین و روسیه روابط با تهران را در چارچوب منافع خود تنظیم می کنند/ چین از تعهد رسمی دفاعی به ایران پرهیز کرده است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: Parliament member comments, no concrete decision",
-      "topic": "سیاست",
-      "until": 1794360742.6193616
     },
     "v4|عقب ماندگی قوانین از فناوری؛ نسخه تازه دولت برای فضای مجازی چیست؟": {
       "ok": false,
@@ -3519,12 +3503,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: تاکید وزیر خارجه روسیه بر همکاری ایران و کشورهای عربی",
       "topic": "سیاست",
       "until": 1794409565.2049713
-    },
-    "v4|لاوروف: غرب به دنبال کنترل منابع انرژی و مواد معدنی حیاتی است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: بیانیه کلی، بدون تصمیم یا اثر فوری",
-      "topic": "سیاست",
-      "until": 1794359100.23182
     },
     "v4|لایروبی ۳۵ کیلومتر از رودخانه ها و مسیل های همدان در پی هشدارهای سیلابی": {
       "ok": false,
@@ -3988,6 +3966,12 @@
       "topic": "سیاست",
       "until": 1794413048.3505375
     },
+    "v4|وزیر خزانه داری آمریکا در پی تهدیدهای تهران، از خانه اش در واشنگتن به پایگاه نظامی منتقل شد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: US Treasury Secretary moved to military base after Tehran threats",
+      "topic": "سیاست",
+      "until": 1794447198.4624283
+    },
     "v4|وزیر علوم: هیچ نسخه خطی در کتابخانه استاد مینوی آسیب ندیده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات وزیر درباره آسیب ندیدن کتابخانه محلی، اهمیت ملی ندارد",
@@ -4251,12 +4235,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: EU commissioner urges increased Gaza aid; warns flood‑hit refugee tents",
       "topic": "سیاست",
       "until": 1794412988.979104
-    },
-    "v4|کنایه زیدآبادی به رقابت انتخاباتی جلیلی و پزشکیان؛ برخی ها فقط می گفتند که آن یکی روی کار نیاید": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Political commentary, no concrete event",
-      "topic": "سیاست",
-      "until": 1794359103.0876637
     },
     "v4|کنترل ممنوعیت تصدی بیش از یک شغل در سامانه جامع ثبت شرکت ها اجرایی شد": {
       "ok": false,
@@ -4542,15 +4520,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "پزشکیان: تحریم و ترور دانشمندان جلوه های آپارتاید علمی است ⚡️ مسعود پزشکیان، رئیس جمهوری در پیام خود به پنجمین",
-      "id": "df5522bb49",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794294232,
-      "verdict": "new",
-      "why": "آپارتاید علمی و تحریم دانشمندان"
-    },
     {
       "head": "نرخ تورم مهرماه ۱۴۰۵ به ۷۱.۴ درصد رسید ⚡️ بانک مرکزی اعلام کرد نرخ تورم در مهرماه ۱۴۰۵ به ۷۱.۴ درصد رسیده و شا",
       "id": "2bbf495532",
@@ -5090,23 +5059,19 @@
       "t": 1794359043,
       "verdict": "new",
       "why": "مذاکرات ایران و آمریکا جدید است"
+    },
+    {
+      "confirm": "groq/openai/gpt-oss-20b:new",
+      "head": "انتقال وزیر خزانه داری آمریکا به پایگاه نظامی در پی تهدیدهای تهران ⚡️ اسکات بسنت، وزیر خزانه داری آمریکا، به د",
+      "id": "f9dfe24064",
+      "match": "تخلیه هواپیماهای نظامی آمریکا از پایگاهی در بریتانیا در پی تهدید ایران",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794360819,
+      "verdict": "unconfirmed-repeat",
+      "why": "وزیر خزانه داری آمریکا به پایگاه نظامی نقل مکان"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=2 happened=True scope=iran_national: سخنان عام و غیراستراتژیک رئیس‌جمهور درباره نقش مساجد",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794326624,
-      "title": "پزشکیان: مساجد بهترین ساختار برای تقویت انسجام ملی و تحقق عدالت اجتماعی هستند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی تامین زمین برای مدرسه سازی اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1794326625,
-      "title": "تأمین ۷۰۰ هزار مترمربع زمین برای مدرسه سازی در تهران"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تاکید مقام دولتی بر تبیین تاریخی، بدون تصمیم اجرایی جدید",
       "rescued": false,
@@ -5652,6 +5617,20 @@
       "rule": "no-concrete-event",
       "t": 1794359001,
       "title": "What is the average lifespan of recordable Blu-ray discs?"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Diplomatic meeting, no concrete decision announced",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1794360795,
+      "title": "رایزنی دیپلماتیک ایران و روسیه در مسکو درباره مسائل منطقه"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: تحلیل عمومی، رویداد خاصی رخ نداده",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794360796,
+      "title": "بزرگ ترین اقتصادهای جهان با بدهکارترین ها یکی نیستند!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6198,6 +6177,27 @@
       ],
       "t": 1794359044.5525367,
       "title": "هگست برکناری شکست خورد؛ ایران مذاکرات با آمریکا را رد کرد ⚡️ تلاش برای برکناری هگست در برابر مخالفت دو جانبه در جنگ شکست"
+    },
+    {
+      "h": [
+        "اسلم",
+        "اسک",
+        "انتقل",
+        "بسنت",
+        "ترک",
+        "تهدد",
+        "خزن",
+        "در",
+        "درفت",
+        "دلل",
+        "سکنت",
+        "محل",
+        "مقصد",
+        "وشنگتن",
+        "پگ"
+      ],
+      "t": 1794360821.5780761,
+      "title": "انتقال وزیر خزانه داری آمریکا به پایگاه نظامی در پی تهدیدهای تهران ⚡️ اسکات بسنت، وزیر خزانه داری آمریکا، به دلیل دریافت"
     }
   ],
   "_published_incidents": [
@@ -6439,118 +6439,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اخر",
-        "ار",
-        "استصل",
-        "اشر",
-        "امدگ",
-        "امرک",
-        "بزدرندگ",
-        "تغر",
-        "جنب",
-        "جنگ",
-        "حدکثر",
-        "حمل",
-        "ددر",
-        "درفت",
-        "دستر",
-        "دفتر",
-        "دفع",
-        "دنست",
-        "دهند",
-        "رد",
-        "رسل",
-        "رقم",
-        "رهبرد",
-        "زمن",
-        "زند",
-        "سردر",
-        "سس",
-        "سن",
-        "شرط",
-        "ضرب",
-        "عقدت",
-        "فرمن",
-        "فرمند",
-        "فرمنده",
-        "لزم",
-        "مسلح",
-        "معظم",
-        "معن",
-        "نر",
-        "نش",
-        "نشن",
-        "وحشت",
-        "کشر"
-      ],
-      "s": "سردار سنایی راد",
-      "t": 1794229518.1425624,
-      "title": "سردار سنایی راد: زمان و پایان جنگ را ایران رقم می زند/ حملات آمریکا از سر استیصال است ⚡️ سردار رسول سنایی راد، معاون سیا"
-    },
-    {
-      "k": [
-        "است",
-        "الحدد",
-        "جنگند",
-        "حمل",
-        "عربست",
-        "فردگ",
-        "منطق",
-        "هدف",
-        "یمن"
-      ],
-      "t": 1794229559.70454,
-      "title": "حمله جنگنده های عربستان به فرودگاه الحدیده یمن ⚡️ جنگنده های عربستان فرودگاه الحدیده و مناطقی در این استان را هدف قرار د"
-    },
-    {
-      "k": [
-        "ات",
-        "احتمل",
-        "ار",
-        "استد",
-        "اغز",
-        "افت",
-        "افزش",
-        "امرک",
-        "انترمدت",
-        "انس",
-        "برنت",
-        "بشترن",
-        "بشک",
-        "بلغ",
-        "به",
-        "تنش",
-        "تگزس",
-        "حمل",
-        "خم",
-        "درصد",
-        "دلر",
-        "رسد",
-        "رشد",
-        "زمن",
-        "طل",
-        "قمت",
-        "مرز",
-        "معمل",
-        "نفت",
-        "نقد",
-        "هفتگ",
-        "همن",
-        "وست",
-        "کرن",
-        "کهش",
-        "گذشت",
-        "یفت"
-      ],
-      "n": [
-        "4118.5",
-        "4127.2"
-      ],
-      "t": 1794229583.5360343,
-      "title": "کاهش قیمت نفت و افزایش بهای طلا در پی کاهش تنش ها میان آمریکا و ایران ⚡️ قیمت نفت خام برنت در پی کاهش احتمال حمله آمریکا"
-    },
     {
       "k": [
         "اعزم",
@@ -9049,6 +8937,62 @@
       ],
       "t": 1794359044.5400734,
       "title": "هگست برکناری شکست خورد؛ ایران مذاکرات با آمریکا را رد کرد ⚡️ تلاش برای برکناری هگست در برابر مخالفت دو جانبه در جنگ شکست"
+    },
+    {
+      "k": [
+        "ار",
+        "ارزب",
+        "ارشد",
+        "اسلم",
+        "اسک",
+        "اقتصد",
+        "امرک",
+        "امنت",
+        "انتقل",
+        "بدند",
+        "برنم",
+        "بسنت",
+        "تحت",
+        "ترک",
+        "تهدد",
+        "تهر",
+        "جمهر",
+        "حفظت",
+        "خزن",
+        "ددن",
+        "در",
+        "درفت",
+        "دلت",
+        "دلل",
+        "رز",
+        "سکنت",
+        "شمر",
+        "طرح",
+        "عقب",
+        "فشر",
+        "محل",
+        "مرحل",
+        "مشب",
+        "مقصد",
+        "مقم",
+        "منتقل",
+        "نخهد",
+        "نشن",
+        "نظم",
+        "نقش",
+        "هدف",
+        "ورد",
+        "وزر",
+        "وزرت",
+        "وشنگتن",
+        "پشرفت",
+        "پگ",
+        "پگر",
+        "کرزر",
+        "کشر"
+      ],
+      "t": 1794360821.5655909,
+      "title": "انتقال وزیر خزانه داری آمریکا به پایگاه نظامی در پی تهدیدهای تهران ⚡️ اسکات بسنت، وزیر خزانه داری آمریکا، به دلیل دریافت"
     }
   ],
   "_telegram_errors": [
@@ -9344,7 +9288,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794358895
+    "at": 1794360694
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9359,18 +9303,18 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1794355266.0,
-    "last_failure": 1794354966,
+    "disabled_until": 1794361103.0,
+    "last_failure": 1794360803,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794355537,
-    "last_failure": 1794354937,
-    "last_status": 429
+    "disabled_until": 1794360874,
+    "last_failure": 1794360814,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794357771,
-    "last_failure": 1794357171,
+    "disabled_until": 1794361406,
+    "last_failure": 1794360806,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -9384,6 +9328,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1794360802,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
