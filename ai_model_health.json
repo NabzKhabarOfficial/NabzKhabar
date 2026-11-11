@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1794351785
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794351790
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794351790
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1794351794
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1794357181
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794359001
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1794359003
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
+      "t": 1794359045
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-10",
-      "n": 129
+      "n": 130
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-10",
-      "n": 221
+      "n": 222
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-10",
-      "n": 98
+      "n": 99
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-10",
-      "n": 98
+      "n": 99
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-11",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-11",
-      "n": 2
+      "n": 7
     },
     "openrouter:*": {
       "day": "2026-11-10",
@@ -489,63 +489,55 @@
       }
     },
     "2026-11-11": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
       "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
         "429": 0,
         "calls": 1,
         "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 1,
+        "429": 2,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 5,
+        "ok": 7,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 2,
+        "calls": 7,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 1,
-        "other": 1
+        "ok": 4,
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
-        "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "429": 2,
+        "calls": 8,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 6,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "موضع‌گیری",
-      "level": 4,
-      "t": 1794182635.9874756,
-      "title": "روبیو درباره احتمال اقدام نظامی: همه چیز به سطح تهدید یا قصد تهران برای حمله به منافع ما بستگی دارد",
-      "urgent": false
-    },
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1794184412.4982905,
-      "title": "شکست در انتخابات میان دوره ای و آینده نامشخص حزب جمهوری خواه",
-      "urgent": false
-    },
-    {
-      "label": "حادثه",
-      "level": 5,
-      "t": 1794186179.7887037,
-      "title": "سیل و طوفان در برزیل چندین کشته بر جای گذاشت",
-      "urgent": false
-    },
     {
       "label": "هسته‌ای",
       "level": 4,
@@ -1231,6 +1223,13 @@
       "t": 1794355380.7709315,
       "title": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1794359044.5645688,
+      "title": "هگست برکناری شکست خورد؛ ایران مذاکرات با آمریکا را رد کرد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-10",
@@ -1288,6 +1287,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Trial continues, statement denied obsession.",
       "topic": "قضایی",
       "until": 1794359102.5709152
+    },
+    "v4|beau lamarre-condon denies making fake grindr account for jesse baird, double murder trial hears": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محاکمه قتل دو نفر در استرالیا، خبر محلی",
+      "topic": "قضایی",
+      "until": 1794445400.113769
     },
     "v4|beau lamarre-condon denies stalking jesse baird as double murder trial continues": {
       "ok": false,
@@ -1529,12 +1534,6 @@
       "topic": "سیاست",
       "until": 1794371658.8996427
     },
-    "v4|ukraine peace talks resume with 'some flexibility' by warring sides, us officials say": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Trilateral peace negotiations officially resumed in UAE",
-      "topic": "سیاست",
-      "until": 1794357181.3744135
-    },
     "v4|us hegseth faces republican impeachment bid over abuse of power in iran war": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash batch score=8 happened=True scope=world: اقدام رسمی در کنگره برای استیضاح وزیر دفاع آمریکا در موضوع جنگ.",
@@ -1576,6 +1575,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis piece about internet theory, not a concrete event.",
       "topic": "فناوری",
       "until": 1794431076.9928534
+    },
+    "v4|what is the average lifespan of recordable blu-ray discs?": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: No concrete event, just informational content",
+      "topic": "فناوری",
+      "until": 1794445401.0281813
     },
     "v4|why u.s. business deals are unlikely to get putin to give any ground": {
       "ok": false,
@@ -2879,12 +2884,6 @@
       "topic": "سیاست",
       "until": 1794396816.0349808
     },
-    "v4|ردپای حملات سایبری سپاه از شارلی ابدو تا المپیک پاریس و یخچال های اروپا؛ فرانسه و آمریکا تهران را متهم کردند": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Foreign ministers publicly accuse Iran of cyber attack",
-      "topic": "سیاست",
-      "until": 1794357181.3597758
-    },
     "v4|رسانه صهیونیستی: شاهد چرخش سیاست آمریکا در قبال اسرائیل هستیم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: گمانه‌زنی رسانه‌ای درباره تغییر سیاست‌های آمریکا بدون تصمیم رسمی.",
@@ -3160,6 +3159,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Official statement by a US Senator regarding a cabinet nominee.",
       "topic": "سیاست",
       "until": 1794404096.716318
+    },
+    "v4|سندرز: جنگ ایران بر مبنای دروغ شروع شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=world: Opinion by US senator, no concrete event",
+      "topic": "سیاست",
+      "until": 1794445403.2167954
     },
     "v4|سه سانحه واژگونی در محورهای آذربایجان غربی با یک کشته و ۱۰ مصدوم": {
       "ok": true,
@@ -3941,6 +3946,12 @@
       "topic": "سیاست",
       "until": 1794405829.433016
     },
+    "v4|واکنش ترامپ به رد پرونده استیضاح هگست در مجلس نمایندگان": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Trump reacts to House vote, official statement",
+      "topic": "سیاست",
+      "until": 1794445403.229801
+    },
     "v4|واکنش عالیپور به رقابت با کارلوس ناسار/ نصیری: کار تا المپیک سخت است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: مصاحبه routine وزنه برداران درباره تمرینات و مسابقات",
@@ -4419,6 +4430,10 @@
       "reason": "content_duplicate",
       "until": 1794369842.9154503
     },
+    "iran war live: hegseth survives impeachment bid; iran denies us talks": {
+      "reason": "content_duplicate",
+      "until": 1794380643.2104
+    },
     "police officer dies and another injured after backpack explosion in northern spain": {
       "at": 1794323378.5270514,
       "reason": "final_guard:ai-contradiction",
@@ -4500,6 +4515,10 @@
       "reason": "final_guard:ai-contradiction",
       "until": 1794337733.598292
     },
+    "واکنش ترامپ به رد پرونده استیضاح هگست در مجلس نمایندگان": {
+      "reason": "content_duplicate",
+      "until": 1794380610.6460505
+    },
     "واکنش عراقچی به ادعای حمله سایبری ایران به یخچال های فرانسه": {
       "at": 1794337506.7130554,
       "reason": "ai_unavailable_persian_fallback",
@@ -4523,24 +4542,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "ناسا برنامه های جدید خود برای پایگاه ماه را اعلام کرد ⚡️ ناسا قراردادهایی برای ساخت پایگاه ماه و مأموریت های ق",
-      "id": "fb19305912",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794292426,
-      "verdict": "new",
-      "why": "ناسا و برنامه‌های ماه جدید"
-    },
-    {
-      "head": "بلالی: صنعت موشکی ایران به خودکفایی رسید و از وابستگی به خارج خارج شد ⚡️ مشاور فرمانده نیروی هوافضای سپاه پاسد",
-      "id": "2239861a6e",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794292459,
-      "verdict": "new",
-      "why": "خودکفایی صنعت موشکی ایران، موضوع جدید"
-    },
     {
       "head": "پزشکیان: تحریم و ترور دانشمندان جلوه های آپارتاید علمی است ⚡️ مسعود پزشکیان، رئیس جمهوری در پیام خود به پنجمین",
       "id": "df5522bb49",
@@ -5070,23 +5071,28 @@
       "t": 1794355377,
       "verdict": "new",
       "why": "استیضاح وزیر جنگ ترامپ در مجلس نمایندگان آمریکا"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "هگست برکناری شکست خورد؛ ایران مذاکرات با آمریکا را رد کرد ⚡️ تلاش برای برکناری هگست در برابر مخالفت دو جانبه د",
+      "id": "185576d119",
+      "match": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1794359034,
+      "verdict": "repeat",
+      "why": "The post discusses the failed attempt to oust Trump's war minister."
+    },
+    {
+      "head": "هگست برکناری شکست خورد؛ ایران مذاکرات با آمریکا را رد کرد ⚡️ تلاش برای برکناری هگست در برابر مخالفت دو جانبه د",
+      "id": "185576d119",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794359043,
+      "verdict": "new",
+      "why": "مذاکرات ایران و آمریکا جدید است"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: EU commissioner urges increased Gaza aid; warns flood‑hit refugee tents",
-      "rescued": true,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1794326588,
-      "title": "کمیسر اتحادیه اروپا: کمک های بیشتری وارد غزه شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: حمله به یک کشتی در سواحل عمان رویداد مهم منطقه‌ای و امنیتی است",
-      "rescued": true,
-      "rule": "foreign-local-preselection",
-      "t": 1794326616,
-      "title": "حادثه دریایی در مقابل سواحل عمان"
-    },
     {
       "ai": "ai gemini/gemini-3.6-flash score=2 happened=True scope=iran_national: سخنان عام و غیراستراتژیک رئیس‌جمهور درباره نقش مساجد",
       "rescued": false,
@@ -5632,37 +5638,26 @@
       "rule": "no-concrete-event",
       "t": 1794357177,
       "title": "‘Everything and everyone we love is at stake’: Thunberg slams COP31 talks"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محاکمه قتل دو نفر در استرالیا، خبر محلی",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794359000,
+      "title": "Beau Lamarre-Condon denies making fake Grindr account for Jesse Baird, double murder trial hears"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: No concrete event, just informational content",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794359001,
+      "title": "What is the average lifespan of recordable Blu-ray discs?"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اختر",
-        "است",
-        "بحر",
-        "برند",
-        "برگ",
-        "تصمم",
-        "تمم",
-        "تنگ",
-        "دست",
-        "سفد",
-        "قبل",
-        "قدرتمند",
-        "مجه",
-        "مقعت",
-        "نه",
-        "هرمز",
-        "کخ",
-        "کنترل",
-        "گر"
-      ],
-      "t": 1794312502.9535494,
-      "title": "کاخ سفید: ترامپ در مواجهه با ایران تمام برگ های برنده را در اختیار دارد ⚡️ کاخ سفید اعلام کرد دونالد ترامپ در قبال ایران"
-    },
     {
       "h": [
         "ابظب",
@@ -6188,6 +6183,21 @@
       ],
       "t": 1794355380.7604663,
       "title": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند ⚡️ قانونگذاران مجلس نمایندگان ایالات متحده در نیو"
+    },
+    {
+      "h": [
+        "بربر",
+        "برکنر",
+        "تلش",
+        "جنب",
+        "خرد",
+        "شکست",
+        "مخلفت",
+        "مذکر",
+        "هگست"
+      ],
+      "t": 1794359044.5525367,
+      "title": "هگست برکناری شکست خورد؛ ایران مذاکرات با آمریکا را رد کرد ⚡️ تلاش برای برکناری هگست در برابر مخالفت دو جانبه در جنگ شکست"
     }
   ],
   "_published_incidents": [
@@ -6429,145 +6439,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ابتد",
-        "ابظب",
-        "ار",
-        "ال",
-        "امد",
-        "امر",
-        "امرک",
-        "انر",
-        "بشد",
-        "تفق",
-        "جمع",
-        "جنگ",
-        "ددن",
-        "در",
-        "دستب",
-        "دشر",
-        "دپلمتک",
-        "رس",
-        "رسد",
-        "رهبرد",
-        "سس",
-        "طلن",
-        "عدم",
-        "قرقش",
-        "قطعت",
-        "متحد",
-        "مخلف",
-        "مدت",
-        "مشر",
-        "ممکن",
-        "منطق",
-        "نشست",
-        "نظر",
-        "همن",
-        "وگ",
-        "پمد"
-      ],
-      "s": "انور قرقاش",
-      "t": 1794225909.5640652,
-      "title": "انور قرقاش: دستیابی به توافق جامع میان آمریکا و ایران دشوار است ⚡️ انور قرقاش، مشاور دیپلماتیک رئیس امارات، در نشست گفت "
-    },
-    {
-      "k": [
-        "اتش",
-        "ازمر",
-        "امدد",
-        "انفجر",
-        "اهن",
-        "ترک",
-        "تلش",
-        "تم",
-        "سز",
-        "غرب",
-        "فلد",
-        "مهر",
-        "نش",
-        "هستند",
-        "وقع",
-        "کرخن"
-      ],
-      "t": 1794225922.771129,
-      "title": "انفجار در کارخانه فولاد ازمیر ترکیه ⚡️ انفجاری در یک کارخانه آهن و فولاد در ازمیر واقع در غرب ترکیه رخ داد. ▫️ تیم های ا"
-    },
-    {
-      "k": [
-        "اتحد",
-        "اجد",
-        "ادس",
-        "ارپ",
-        "اسب",
-        "است",
-        "انرژ",
-        "اکرن",
-        "بخشدن",
-        "بدج",
-        "برج",
-        "بزسز",
-        "بعث",
-        "بق",
-        "بندر",
-        "تخصص",
-        "تفق",
-        "جمهر",
-        "جهت",
-        "حمل",
-        "ددن",
-        "دستکم",
-        "رس",
-        "زخم",
-        "زرسخت",
-        "زلنسک",
-        "سرعت",
-        "سزکر",
-        "سقط",
-        "شبن",
-        "شهر",
-        "لننگرد",
-        "متقبل",
-        "مرگ",
-        "مشک",
-        "منجر",
-        "نفت",
-        "نفر",
-        "ولدمر",
-        "پلشگ",
-        "پهپد",
-        "چهر",
-        "کشت",
-        "کشر",
-        "گذشت"
-      ],
-      "t": 1794225968.5049794,
-      "title": "دستکم چهار کشته در پی حملات متقابل شبانه میان روسیه و اوکراین ⚡️ حملات متقابل شبانه میان روسیه و اوکراین به کشته شدن دست"
-    },
-    {
-      "k": [
-        "افتدن",
-        "اندختند",
-        "بزمندند",
-        "تنگ",
-        "در",
-        "دشمن",
-        "سعت",
-        "سمن",
-        "سپ",
-        "مسر",
-        "نبر",
-        "نر",
-        "نفتکش",
-        "هرمز",
-        "چهر",
-        "کر",
-        "گذشت"
-      ],
-      "t": 1794225988.8890142,
-      "title": "از کار افتادن سامانه های ناوبری در تنگه هرمز ⚡️ نیروهای دریایی سپاه سامانه های ناوبری دشمن را در تنگه هرمز از کار انداخت"
-    },
     {
       "k": [
         "اخر",
@@ -9156,6 +9027,28 @@
       ],
       "t": 1794355380.748009,
       "title": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند ⚡️ قانونگذاران مجلس نمایندگان ایالات متحده در نیو"
+    },
+    {
+      "k": [
+        "ار",
+        "امرک",
+        "بربر",
+        "برکنر",
+        "تلش",
+        "جنب",
+        "جنگ",
+        "خرد",
+        "زمن",
+        "شکست",
+        "مخلفت",
+        "مذکر",
+        "مذکرت",
+        "ندرد",
+        "هگست",
+        "وجد"
+      ],
+      "t": 1794359044.5400734,
+      "title": "هگست برکناری شکست خورد؛ ایران مذاکرات با آمریکا را رد کرد ⚡️ تلاش برای برکناری هگست در برابر مخالفت دو جانبه در جنگ شکست"
     }
   ],
   "_telegram_errors": [
@@ -9451,7 +9344,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794357087
+    "at": 1794358895
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
