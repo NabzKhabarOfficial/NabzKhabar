@@ -1,35 +1,20 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
+  "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-11T04:05:10.573899+00:00",
+  "checked_at": "2026-11-11T04:34:46.762653+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Opinion and political rhetoric by a former official, not a decision.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "واکنش فلاحت پیشه به سعید جلیلی: در ۱ سال ۳۰۰ میلیارد دلار خسارت به کشور زدند/ تا محاکمه نشوند ملت در گازانبر جنگ و تحریم می ماند",
-      "url": ""
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Official security decision by a major military regarding foreign technology.",
       "result": "editorial_blocked",
       "source": "",
       "title": "ارتش آلمان استفاده از پهپادها و خودروهای چینی را در اماکن نظامی ممنوع کرد",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=2 happened=False scope=local: سناریوسازی و گمانه‌زنی درباره زلزله تهران بدون وقوع حادثه",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "۳سناریوی لرزه ای تهران؛ مرکزوشرق در کانون آسیب پذیری/بحران فقط با بزرگی زلزله شکل نمی گیرد",
       "url": ""
     },
     {
@@ -55,25 +40,60 @@
       "source": "",
       "title": "Anthropic launches Claude Meetings to turn workplace discussions into plans and tasks",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Official reaction/statement by a high-ranking government official.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "ونس تلاش برای استیضاح وزیر جنگ آمریکا را «نمایشی مضحک» خواند!",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "aljazeera.com",
+      "started_at": "2026-11-11T04:34:43.557410+00:00",
+      "title": "Spain holds state funeral for 69 victims of deadly train crash",
+      "url": "https://aljazeera.com/video/newsfeed/2026/11/11/spain-holds-state-funeral-for-69-victims-of-deadly-train-crash?traffic_source=rss"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "aljazeera.com",
+      "title": "Spain holds state funeral for 69 victims of deadly train crash",
+      "url": "https://aljazeera.com/video/newsfeed/2026/11/11/spain-holds-state-funeral-for-69-victims-of-deadly-train-crash?traffic_source=rss"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
   "run_status": "success",
-  "selected_for_publication": 10,
+  "selected_for_publication": 9,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
+      "source": "isna.ir",
+      "started_at": "2026-11-11T04:33:40.146050+00:00",
+      "title": "سناتور آمریکایی: جنگ ایران فقط هزینه ها را بالا برد، نه امنیت را",
+      "url": "https://isna.ir/news/1405082013554/%D8%B3%D9%86%D8%A7%D8%AA%D9%88%D8%B1-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7%DB%8C%DB%8C-%D8%AC%D9%86%DA%AF-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D9%81%D9%82%D8%B7-%D9%87%D8%B2%DB%8C%D9%86%D9%87-%D9%87%D8%A7-%D8%B1%D8%A7-%D8%A8%D8%A7%D9%84%D8%A7-%D8%A8%D8%B1%D8%AF-%D9%86%D9%87-%D8%A7%D9%85%D9%86%DB%8C%D8%AA"
+    },
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
       "source": "aljazeera.com",
-      "started_at": "2026-11-11T04:03:56.030931+00:00",
+      "started_at": "2026-11-11T04:33:46.673556+00:00",
       "title": "Iran war live: US House blocks Hegseth impeachment with 11 Democrats absent",
       "url": "https://aljazeera.com/news/liveblog/2026/11/11/iran-war-live-hegseth-survives-impeachment-bid-iran-denies-us-talks?traffic_source=rss"
     },
@@ -81,29 +101,11 @@
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "khabaronline.ir",
-      "started_at": "2026-11-11T04:04:00.131437+00:00",
-      "title": "جمهوریخواهان استیضاح وزیر جنگ را متوقف کردند/ ترامپ: پیروزی او در ایران منجر به تبرئه یک میهن پرست بزرگ آمریکایی شد",
-      "url": "https://khabaronline.ir/news/2300577/%D8%AC%D9%85%D9%87%D9%88%D8%B1%DB%8C%D8%AE%D9%88%D8%A7%D9%87%D8%A7%D9%86-%D8%A7%D8%B3%D8%AA%DB%8C%D8%B6%D8%A7%D8%AD-%D9%88%D8%B2%DB%8C%D8%B1-%D8%AC%D9%86%DA%AF-%D8%B1%D8%A7-%D9%85%D8%AA%D9%88%D9%82%D9%81-%DA%A9%D8%B1%D8%AF%D9%86%D8%AF-%D8%AA%D8%B1%D8%A7%D9%85%D9%BE-%D9%BE%DB%8C%D8%B1%D9%88%D8%B2%DB%8C-%D8%A7%D9%88"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "aljazeera.com",
-      "started_at": "2026-11-11T04:04:09.372691+00:00",
-      "title": "Section 219: the future of US-Israeli defence partnership",
-      "url": "https://aljazeera.com/video/newsfeed/2026/11/11/aje-onl-nf_the-future-of-us-israeli-defence-partnership-101126?traffic_source=rss"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
       "source": "yjc.ir",
-      "started_at": "2026-11-11T04:04:56.877778+00:00",
-      "title": "بازداشت نظامی آمریکایی در انگلیس به ظن جاسوسی",
-      "url": "https://yjc.ir/fa/news/9147717/بازداشت-نظامی-آمریکایی-در-انگلیس-به-ظن-جاسوسی"
+      "started_at": "2026-11-11T04:34:29.798170+00:00",
+      "title": "سه سانحه واژگونی در محورهای آذربایجان غربی با یک کشته و ۱۰ مصدوم",
+      "url": "https://yjc.ir/fa/news/9147720/سه-سانحه-واژگونی-در-محورهای-آذربایجان‌غربی-با-یک-کشته-و-۱۰-مصدوم"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
