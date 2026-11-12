@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
-      "t": 1794434633
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794436405
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794436406
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1794436421
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794436429
     },
@@ -159,12 +143,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
       "t": 1794443604
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794445402
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794445402
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1794445408
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1794445426
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-11",
-      "n": 85
+      "n": 86
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-11",
@@ -172,19 +172,19 @@
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-11",
-      "n": 62
+      "n": 64
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-11",
-      "n": 61
+      "n": 62
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-12",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-12",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-11",
@@ -498,8 +498,8 @@
     "2026-11-12": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -510,37 +510,38 @@
       },
       "gemini:gemini-3.6-flash": {
         "429": 1,
-        "calls": 1,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 0,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
         "429": 1,
-        "calls": 1,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 0
+        "other": 1
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 5,
-        "other": 1
+        "calls": 8,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 6,
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 2,
-        "other": 4
+        "other": 6
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 5,
+        "calls": 7,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 3,
+        "ok": 5,
         "other": 0
       }
     }
@@ -1259,6 +1260,13 @@
       "t": 1794441844.0129025,
       "title": "۴ کشته و چندین نفر زخمی در بمباران مجتمع پزشکی ناصر در خان یونس",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1794445425.129617,
+      "title": "پیروزی تاریخی دموکرات ها در انتخابات مجلس سنای میسیسیپی",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-11",
@@ -1281,12 +1289,6 @@
       "topic": "ورزش",
       "until": 1794529997.4956372
     },
-    "v4|beau lamarre-condon denies making fake grindr account for jesse baird, double murder trial hears": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محاکمه قتل دو نفر در استرالیا، خبر محلی",
-      "topic": "قضایی",
-      "until": 1794445400.113769
-    },
     "v4|bessent’s relocation: from us to eu, is iran bringing war to western soil?": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=False scope=world: تحلیل و گمانه‌زنی کارشناس درباره احتمال گسترش جنگ.",
@@ -1304,6 +1306,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Legal ruling in a foreign country with no direct impact on Iran.",
       "topic": "قضایی",
       "until": 1794526392.05711
+    },
+    "v4|democrat scott colom seals historic win in mississippi senate race": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: پیروزی تاریخی در انتخابات سنای آمریکا",
+      "topic": "سیاست",
+      "until": 1794531811.4118326
     },
     "v4|democrat scott colom wins mississippi senate race in surprise victory for party": {
       "ok": false,
@@ -1532,12 +1540,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: اعلام چارچوب جدید دفاعی ۱۰ کشور اروپایی علیه تهدیدات روسیه",
       "topic": "نظامی",
       "until": 1794486919.9401233
-    },
-    "v4|what is the average lifespan of recordable blu-ray discs?": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: No concrete event, just informational content",
-      "topic": "فناوری",
-      "until": 1794445401.0281813
     },
     "v4|«بچه زرنگ؛ گروه نجات جنگل» با ماجرای تازه می آید؛ در جستجوی روباه زرد": {
       "ok": false,
@@ -3039,12 +3041,6 @@
       "topic": "سلامت",
       "until": 1794485389.590773
     },
-    "v4|سندرز: جنگ ایران بر مبنای دروغ شروع شد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=world: Opinion by US senator, no concrete event",
-      "topic": "سیاست",
-      "until": 1794445403.2167954
-    },
     "v4|سنگدوینی: مالیات واحدهای اقتصادی گلستان نباید به استان های دیگر برود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: درخواست نماینده مجلس برای پرداخت مالیات استانی، محلی و فاقد ارزش ملی.",
@@ -3669,6 +3665,12 @@
       "topic": "سیاست",
       "until": 1794504765.9635108
     },
+    "v4|نمایندگان پارلمان فرانسه طرحی برای ممنوعیت تجارت با شهرک های غیرقانونی اسرائیل ارائه کردند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: French MPs propose trade ban on Israeli settlements",
+      "topic": "سیاست",
+      "until": 1794531812.9226792
+    },
     "v4|هاشمی: ۱۲ همت اعتبار برای خراسان جنوبی جذب شد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: جذب 12 همت اعتبار برای خراسان جنوبی",
@@ -3776,12 +3778,6 @@
       "reason": "ai gemini/gemini-3.8-flash batch score=6 happened=True scope=world: رأی منفی مجلس نمایندگان آمریکا به استیضاح وزیر دفاع.",
       "topic": "سیاست",
       "until": 1794479634.646612
-    },
-    "v4|واکنش ترامپ به رد پرونده استیضاح هگست در مجلس نمایندگان": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Trump reacts to House vote, official statement",
-      "topic": "سیاست",
-      "until": 1794445403.229801
     },
     "v4|واکنش فلاحت پیشه به سعید جلیلی: در ۱ سال ۳۰۰ میلیارد دلار خسارت به کشور زدند/ تا محاکمه نشوند ملت در گازانبر جنگ و تحریم می ماند": {
       "ok": false,
@@ -4308,15 +4304,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "تاب آوری ایران در برابر محاصره دریایی فراتر از تصور آمریکا بود ⚡️ مجید شاکری، مشاور قالیباف و عضو تیم مذاکره ک",
-      "id": "4451e8db75",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1794362701,
-      "verdict": "new",
-      "why": "The post discusses Iran's maritime resilience in negotiations, which is not covered in previous post"
-    },
     {
       "head": "واژگونی قایق مهاجران در سواحل سنگال با ۳۹ کشته ⚡️ دست کم ۳۹ نفر در پی واژگونی یک قایق حامل مهاجران در سواحل سن",
       "id": "58a12f36e7",
@@ -4858,16 +4845,18 @@
       "t": 1794441842,
       "verdict": "new",
       "why": "A new specific attack on Nasser Medical Complex with distinct casualties."
+    },
+    {
+      "head": "پیروزی تاریخی دموکرات ها در انتخابات مجلس سنای میسیسیپی ⚡️ اسکات کولوم، نامزد دموکرات در یک رقابت فشرده با شکس",
+      "id": "42bb58ae07",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794445424,
+      "verdict": "new",
+      "why": "انتخابات سنای میسیسیپی، موضوع جدید"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: دیدار تشریفاتی سران دو کشور در حاشیه اجلاس بین‌المللی",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1794400481,
-      "title": "دیدار سران ایران و پاکستان در حاشیه اجلاس تغییرات اقلیمی سازمان ملل"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: دیدار تشریفاتی سران در حاشیه کنفرانس بین‌المللی اهمیت درجه یک ندارد",
       "rescued": false,
@@ -5420,51 +5409,19 @@
       "rule": "routine-metaphorical-topic",
       "t": 1794443597,
       "title": "Andreeva wins 11 games in a row to thrash Sabalenka at WTA Finals"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: پیروزی تاریخی در انتخابات سنای آمریکا",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1794445411,
+      "title": "Democrat Scott Colom seals historic win in Mississippi Senate race"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ابظب",
-        "اسر",
-        "برخ",
-        "تبدل",
-        "تفهم",
-        "جر",
-        "خهد",
-        "رسد",
-        "صلح",
-        "مذکر",
-        "مسل",
-        "مسک",
-        "هت",
-        "وگ",
-        "پشرفت",
-        "چرچب",
-        "کنند",
-        "یفت"
-      ],
-      "t": 1794400536.4098558,
-      "title": "پیشرفت روسیه و اوکراین در مذاکرات ابوظبی درباره مسائل امنیتی و تبادل اسرا ⚡️ رئیس هیئت مذاکره کننده روسیه در ابوظبی اعلا"
-    },
-    {
-      "h": [
-        "بخش",
-        "جگزن",
-        "خم",
-        "دد",
-        "سفر",
-        "ورد",
-        "پرد",
-        "پشنهد",
-        "پکن"
-      ],
-      "t": 1794400569.991571,
-      "title": "سفیر آمریکا در چین: ترامپ به پکن پیشنهاد کرد بخشی از واردات نفت ایران را با نفت آمریکا جایگزین کند ⚡️ دیوید پردو، سفیر آ"
-    },
     {
       "h": [
         "السعد",
@@ -5913,6 +5870,31 @@
       ],
       "t": 1794441843.9881258,
       "title": "۴ کشته و چندین نفر زخمی در بمباران مجتمع پزشکی ناصر در خان یونس ⚡️ در حملهٔ مستقیم ارتش اسرائیل به مجتمع پزشکی ناصر در ش"
+    },
+    {
+      "h": [
+        "اسمت",
+        "اسک",
+        "الت",
+        "انتخب",
+        "ترخ",
+        "ددن",
+        "دست",
+        "دمکر",
+        "رقبت",
+        "سن",
+        "سنتر",
+        "سند",
+        "شکست",
+        "فشرد",
+        "مسسپ",
+        "نمزد",
+        "هد",
+        "کلم",
+        "یفت"
+      ],
+      "t": 1794445425.1170754,
+      "title": "پیروزی تاریخی دموکرات ها در انتخابات مجلس سنای میسیسیپی ⚡️ اسکات کولوم، نامزد دموکرات در یک رقابت فشرده با شکست دادن سین"
     }
   ],
   "_published_incidents": [
@@ -6190,79 +6172,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اختر",
-        "اخر",
-        "ار",
-        "ارنم",
-        "ارپ",
-        "است",
-        "اسلم",
-        "افزش",
-        "اقتصد",
-        "امرک",
-        "اهدف",
-        "بحر",
-        "برخلف",
-        "برند",
-        "برنم",
-        "برگ",
-        "تحللگر",
-        "تدم",
-        "ترمپ",
-        "تصمم",
-        "تعن",
-        "تمم",
-        "تند",
-        "تنش",
-        "تنگ",
-        "تهدد",
-        "تهر",
-        "تکد",
-        "تکلف",
-        "جد",
-        "جمهر",
-        "حل",
-        "حکمت",
-        "خصمت",
-        "خمن",
-        "دد",
-        "درند",
-        "دست",
-        "دنبل",
-        "دنلد",
-        "ذخر",
-        "رس",
-        "سخن",
-        "سست",
-        "سفد",
-        "غرب",
-        "فرپش",
-        "قبل",
-        "قدرتمند",
-        "قطع",
-        "لفظ",
-        "مجتب",
-        "مجه",
-        "مشک",
-        "معتقدند",
-        "مقعت",
-        "منجر",
-        "نظم",
-        "نمش",
-        "نه",
-        "هرمز",
-        "پشن",
-        "کخ",
-        "کرشنس",
-        "کنترل",
-        "گر"
-      ],
-      "s": "کاخ سفید",
-      "t": 1794312502.9454944,
-      "title": "کاخ سفید: ترامپ در مواجهه با ایران تمام برگ های برنده را در اختیار دارد ⚡️ کاخ سفید اعلام کرد دونالد ترامپ در قبال ایران"
-    },
     {
       "k": [
         "ابظب",
@@ -9230,6 +9139,61 @@
       ],
       "t": 1794441843.9755073,
       "title": "۴ کشته و چندین نفر زخمی در بمباران مجتمع پزشکی ناصر در خان یونس ⚡️ در حملهٔ مستقیم ارتش اسرائیل به مجتمع پزشکی ناصر در ش"
+    },
+    {
+      "k": [
+        "اختر",
+        "اخر",
+        "ار",
+        "اسمت",
+        "اسک",
+        "اقتصد",
+        "الت",
+        "انتخب",
+        "بخش",
+        "بر",
+        "تثر",
+        "تحت",
+        "ترخ",
+        "جمهر",
+        "جنگ",
+        "حزب",
+        "خه",
+        "ددن",
+        "در",
+        "دست",
+        "دمکر",
+        "دهه",
+        "رقبت",
+        "رند",
+        "سلط",
+        "سن",
+        "سنتر",
+        "سند",
+        "سهپست",
+        "شکست",
+        "فرستد",
+        "فشرد",
+        "مجلس",
+        "مسسپ",
+        "نتج",
+        "نخستن",
+        "نرضت",
+        "نمزد",
+        "هد",
+        "پرز",
+        "کرس",
+        "کلم",
+        "کنترل",
+        "گرفتند",
+        "گسترد",
+        "یفت"
+      ],
+      "n": [
+        "140"
+      ],
+      "t": 1794445425.104158,
+      "title": "پیروزی تاریخی دموکرات ها در انتخابات مجلس سنای میسیسیپی ⚡️ اسکات کولوم، نامزد دموکرات در یک رقابت فشرده با شکست دادن سین"
     }
   ],
   "_telegram_errors": [
@@ -9537,7 +9501,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794443474
+    "at": 1794445293
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9552,14 +9516,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794444188,
-    "last_failure": 1794443588,
-    "last_status": 429
+    "disabled_until": 1794445479,
+    "last_failure": 1794445419,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794444184,
-    "last_failure": 1794443584,
-    "last_status": 429
+    "disabled_until": 1794445708.0,
+    "last_failure": 1794445408,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9574,7 +9538,7 @@
     "last_status": 599
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794443601,
+    "last_quality_failure": 1794445416,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
