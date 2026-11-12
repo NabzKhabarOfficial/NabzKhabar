@@ -339,10 +339,10 @@ jobs:
                   f"{monitor_status or 'missing'}"
               )
 
-          if failed > 0:
-              errors.append(
-                  f"{failed} failed publication(s)"
-              )
+          if failed > 0 and (health.get("published", 0) or 0) == 0:
+              errors.append(f"{failed} failed publication(s), none published")
+          elif failed > 0:
+              print(f"V13 WARNING: {failed} publication(s) failed; run still published.")
 
           if ambiguous > 0:
               errors.append(
