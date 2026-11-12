@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794436429
-    },
-    {
-      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-20b",
-      "t": 1794436432
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1794436547
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794438166
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794438167
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794438167
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1794438167
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
       "t": 1794438186
     },
@@ -159,32 +131,60 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1794445426
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794447715
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794447716
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1794447719
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1794447720
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794447725
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794447726
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1794447739
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-11",
-      "n": 86
+      "n": 87
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-11",
-      "n": 146
+      "n": 148
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-11",
-      "n": 64
+      "n": 65
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-11",
-      "n": 62
+      "n": 63
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-12",
-      "n": 10
+      "n": 11
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-12",
-      "n": 8
+      "n": 11
     },
     "openrouter:*": {
       "day": "2026-11-11",
@@ -498,50 +498,50 @@
     "2026-11-12": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
         "calls": 3,
         "ok": 3,
         "other": 0
       },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 5,
+        "ok": 5,
+        "other": 0
+      },
       "gemini:gemini-3.6-flash": {
-        "429": 1,
-        "calls": 3,
+        "429": 2,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
         "429": 1,
-        "calls": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "calls": 11,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
         "ok": 8,
-        "other": 2
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
-        "other": 6
+        "ok": 3,
+        "other": 8
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 7,
+        "calls": 9,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 5,
+        "ok": 7,
         "other": 0
       }
     }
@@ -1493,12 +1493,6 @@
       "topic": "سیاست",
       "until": 1794506627.579933
     },
-    "v4|spain holds state funeral for 69 victims of deadly train crash": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: state funeral for 69 victims of train crash",
-      "topic": "حادثه",
-      "until": 1794447198.4498377
-    },
     "v4|spain’s first general strike in 14 years begins": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major national strike in a European country affecting transport and industry.",
@@ -2123,12 +2117,6 @@
       "topic": "جامعه",
       "until": 1794486922.369743
     },
-    "v4|بزرگ ترین اقتصادهای جهان با بدهکارترین ها یکی نیستند!": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: تحلیل عمومی، رویداد خاصی رخ نداده",
-      "topic": "اقتصاد",
-      "until": 1794447196.542092
-    },
     "v4|بسته سیاستی اعتلای علوم پایه رونمایی شد؛ تأکید شورای عالی عتف بر تدوین برنامه های عملیاتی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Policy package unveiled, no immediate impact",
@@ -2152,6 +2140,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: گزارش اختصاصی اطلاعاتی غربی از آمار تولید موشک بالستیک ایران",
       "topic": "نظامی",
       "until": 1794470728.4332979
+    },
+    "v4|بلومبرگ: ایران بخش قابل توجهی از توان موشکی خود را بازسازی کرده است": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: گزارش بلومبرگ درباره بازسازی توان موشکی ایران",
+      "topic": "نظامی",
+      "until": 1794534129.6319385
     },
     "v4|بلومبرگ: ایران ماهانه ۵۰ موشک تولید می کند": {
       "ok": false,
@@ -2825,12 +2819,6 @@
       "topic": "فناوری",
       "until": 1794468820.7708285
     },
-    "v4|رایزنی دیپلماتیک ایران و روسیه در مسکو درباره مسائل منطقه": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Diplomatic meeting, no concrete decision announced",
-      "topic": "سیاست",
-      "until": 1794447195.7601564
-    },
     "v4|رسانه های انگلیسی زبان: ایران گزینه انتقال مواد هسته ای را منتفی اعلام کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Official decision by Iran regarding nuclear materials transport policy.",
@@ -3202,12 +3190,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=iran_national: IRGC unveiled missile city; US escalates economic pressure",
       "topic": "نظامی",
       "until": 1794458246.5602875
-    },
-    "v4|طرح استیضاح پیت هگست در مجلس نمایندگان آمریکا ناکام ماند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=6 happened=True scope=world: failed impeachment of US Defense Secretary",
-      "topic": "سیاست",
-      "until": 1794447198.4746265
     },
     "v4|طرح سه فوریتی اقتصاد مقاومتی، تکرار فاجعه تثبیت قیمت ها در مجلس هفتم است": {
       "ok": false,
@@ -3833,12 +3815,6 @@
       "topic": "سلامت",
       "until": 1794522832.3941934
     },
-    "v4|وزیر خزانه داری آمریکا در پی تهدیدهای تهران، از خانه اش در واشنگتن به پایگاه نظامی منتقل شد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: US Treasury Secretary moved to military base after Tehran threats",
-      "topic": "سیاست",
-      "until": 1794447198.4624283
-    },
     "v4|وقتی فناوری پهپاد ایرانی الگوی آمریکا شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Propaganda/analysis piece, not a concrete new event or decision.",
@@ -3958,6 +3934,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، بدون اثر ملی یا بین‌المللی",
       "topic": "سلامت",
       "until": 1794476008.0758705
+    },
+    "v4|پیروزی تاریخی برای دموکرات ها؛ اولین سناتور سیاهپوست در می سی سی پی بعد از ۱۴۰ سال": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: پیروزی تاریخی و غیرمنتظره نامزد دموکرات در سنای آمریکا.",
+      "topic": "سیاست",
+      "until": 1794534125.4579613
     },
     "v4|پیشنهاد سیدحسین موسویان به ترامپ: فرصت تاریخی «اسلام آباد پلاس» را از دست نده / پیام انتخاباتی مردم کشورت، پایان دادن به جنگ است": {
       "ok": true,
@@ -4280,6 +4262,10 @@
       "reason": "content_duplicate",
       "until": 1794454479.8202085
     },
+    "بلومبرگ: ایران بخش قابل توجهی از توان موشکی خود را بازسازی کرده است": {
+      "reason": "content_duplicate",
+      "until": 1794469335.4313152
+    },
     "ثبت ۱۴۴ حمله به کشتی ها در تنگه هرمز از ۲۸ فوریه/ ۸ کشتی غرق شدند": {
       "reason": "content_duplicate",
       "until": 1794443765.7951899
@@ -4309,6 +4295,10 @@
       "at": 1794416773.1755276,
       "reason": "final_guard:local-crash",
       "until": 1794438373.1755276
+    },
+    "پیروزی تاریخی برای دموکرات ها؛ اولین سناتور سیاهپوست در می سی سی پی بعد از ۱۴۰ سال": {
+      "reason": "content_duplicate",
+      "until": 1794469339.3912435
     },
     "یمن: تأسیسات نفتی عربستان راهدف قرار دادیم؛ ادعای حمله به مکه کذب است": {
       "reason": "content_duplicate",
@@ -4870,13 +4860,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: سخنان مقام دولتی درباره نشانی استاندارد و سرشماری، رویداد مهمی محسوب نمی‌شود.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794400501,
-      "title": "سرشماری دقیق از نشانی دقیق آغاز می شود"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: routine diplomatic meeting, no major decision",
       "rescued": false,
       "rule": "routine-statement",
@@ -5428,6 +5411,13 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1794447154,
       "title": "اتصال مراکز داده به شبکه برق شتاب می گیرد"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: پیروزی تاریخی و غیرمنتظره نامزد دموکرات در سنای آمریکا.",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1794447725,
+      "title": "پیروزی تاریخی برای دموکرات ها؛ اولین سناتور سیاهپوست در می سی سی پی بعد از ۱۴۰ سال"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9513,7 +9503,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794447070
+    "at": 1794447633
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9528,13 +9518,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794445479,
-    "last_failure": 1794445419,
-    "last_status": 422
+    "disabled_until": 1794448320,
+    "last_failure": 1794447720,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794445708.0,
-    "last_failure": 1794445408,
+    "disabled_until": 1794448020.0,
+    "last_failure": 1794447720,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
@@ -9548,10 +9538,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794445416,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
