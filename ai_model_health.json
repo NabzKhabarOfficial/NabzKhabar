@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1794438186
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794438187
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794438187
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
       "t": 1794447739
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794448981
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1794449002
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-11",
-      "n": 148
+      "n": 149
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-11",
-      "n": 65
+      "n": 66
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-11",
-      "n": 63
+      "n": 64
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-12",
-      "n": 11
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-12",
-      "n": 11
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-11-11",
@@ -504,13 +504,13 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 2,
-        "calls": 4,
+        "429": 3,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 2,
         "other": 0
@@ -525,23 +525,23 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 11,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 8,
+        "ok": 9,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 11,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
+        "ok": 4,
         "other": 8
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 9,
+        "calls": 10,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 7,
+        "ok": 8,
         "other": 0
       }
     }
@@ -2663,6 +2663,12 @@
       "topic": "جامعه",
       "until": 1794481465.9520369
     },
+    "v4|در ابتدای موج آنفلوآنزا قرار داریم/ پیش بینی اوج موج بیماری در اوسط آذرماه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=iran_national: پیش‌بینی موج آنفلوآنزا، هنوز رخ نداده",
+      "topic": "سلامت",
+      "until": 1794535381.3532848
+    },
     "v4|در شهر موشکی رونمایی شده، رازها و فناوری های نهفته ای قرار دارد که هنوز پرده از آن ها برداشته نشده/ پاسخ بدون محدودیت جغرافیایی، یعنی اگر هواپیمایی از هر کشوری نقطه ای از ایران را": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Routine military rhetoric and commentary on naval positioning.",
@@ -3196,6 +3202,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: تحلیل و یادداشت کارشناسی درباره طرح اقتصادی مجلس",
       "topic": "اقتصاد",
       "until": 1794456226.8608115
+    },
+    "v4|ظرفیت تولید داخلی تجهیزات وملزومات بیمارستانی مغفول درسایه واردات/تجربه موفق ساخت نویگیتور": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: اعلام وابستگی واردات در بیمارستان",
+      "topic": "سلامت",
+      "until": 1794535381.9234207
     },
     "v4|ظرفیت خالی ۸۰ میلیون مترمکعبی سدهای پیرانشهر برای مهار سیلاب؛ ۵ رودخانه اصلی لایروبی شدند": {
       "ok": false,
@@ -4298,7 +4310,7 @@
     },
     "پیروزی تاریخی برای دموکرات ها؛ اولین سناتور سیاهپوست در می سی سی پی بعد از ۱۴۰ سال": {
       "reason": "content_duplicate",
-      "until": 1794469339.3912435
+      "until": 1794470602.8121715
     },
     "یمن: تأسیسات نفتی عربستان راهدف قرار دادیم؛ ادعای حمله به مکه کذب است": {
       "reason": "content_duplicate",
@@ -4860,20 +4872,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: routine diplomatic meeting, no major decision",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1794402321,
-      "title": "دیدار عراقچی با نماینده اوگاندا در حاشیه کاپ ۳۱"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: نکته تغذیه عمومی",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794402321,
-      "title": "بدترین زمان برای خوردن صبحانه از نظر متخصصان تغذیه"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مراسم وداع با شهید گمنام شهرستانی و محلی است.",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -5418,6 +5416,20 @@
       "rule": "foreign-local-preselection",
       "t": 1794447725,
       "title": "پیروزی تاریخی برای دموکرات ها؛ اولین سناتور سیاهپوست در می سی سی پی بعد از ۱۴۰ سال"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=iran_national: پیش‌بینی موج آنفلوآنزا، هنوز رخ نداده",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794448981,
+      "title": "در ابتدای موج آنفلوآنزا قرار داریم/ پیش بینی اوج موج بیماری در اوسط آذرماه"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: اعلام وابستگی واردات در بیمارستان",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1794448981,
+      "title": "ظرفیت تولید داخلی تجهیزات وملزومات بیمارستانی مغفول درسایه واردات/تجربه موفق ساخت نویگیتور"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9503,7 +9515,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794447633
+    "at": 1794448885
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9518,8 +9530,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794448320,
-    "last_failure": 1794447720,
+    "disabled_until": 1794449596,
+    "last_failure": 1794448996,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
