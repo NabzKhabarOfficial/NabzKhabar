@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794434578
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794434579
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794434579
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
       "t": 1794440014
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794441796
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1794441845
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-11",
-      "n": 143
+      "n": 144
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-11",
-      "n": 60
+      "n": 61
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-11",
-      "n": 59
+      "n": 60
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-11-11",
-      "n": 90
+      "day": "2026-11-12",
+      "n": 4
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-11",
-      "n": 90
+      "day": "2026-11-12",
+      "n": 2
     },
     "openrouter:*": {
       "day": "2026-11-11",
@@ -192,104 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-11-08": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 141,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 138,
-        "other": 3
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 266,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 261,
-        "other": 5
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 63,
-        "calls": 118,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 51,
-        "other": 4
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 60,
-        "calls": 76,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
-        "other": 15
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 74,
-        "other": 16
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 61,
-        "other": 29
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 5,
-        "calls": 7,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 2,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 82,
-        "calls": 235,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 153,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 3,
-        "ok": 3,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 4,
-        "calls": 4,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.a",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 4,
-        "calls": 4,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/wo",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 0,
-        "calls": 3,
-        "ok": 3,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-3-1.7b:free": {
-        "429": 0,
-        "calls": 3,
-        "ok": 3,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 8,
-        "ok": 8,
-        "other": 0
-      }
-    },
     "2026-11-09": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -590,6 +492,34 @@
         "429": 0,
         "calls": 14,
         "ok": 14,
+        "other": 0
+      }
+    },
+    "2026-11-12": {
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 4,
+        "ok": 4,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 2,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 1,
+        "other": 1
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 2,
+        "calls": 4,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 2,
         "other": 0
       }
     }
@@ -1294,6 +1224,20 @@
       "t": 1794440013.046022,
       "title": "سقوط ارزش سهام انویدیا همزمان با احتمال برکناری جنسن هوانگ",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 5,
+      "t": 1794441804.4023128,
+      "title": "زلنسکی: روسیه پیشنهاد آتش بس ما را رد کرد",
+      "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1794441844.0129025,
+      "title": "۴ کشته و چندین نفر زخمی در بمباران مجتمع پزشکی ناصر در خان یونس",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-11",
@@ -1309,12 +1253,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: مرگ سفیر روسیه در ایالات متحده آمریکا.",
       "topic": "سیاست",
       "until": 1794517420.4590123
-    },
-    "v4|anthropic eyes $1.4 trillion valuation in blockbuster ipo": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Corporate IPO, not major global shock",
-      "topic": "اقتصاد",
-      "until": 1794441770.6909025
     },
     "v4|beau lamarre-condon denies making fake grindr account for jesse baird, double murder trial hears": {
       "ok": false,
@@ -1339,6 +1277,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Legal ruling in a foreign country with no direct impact on Iran.",
       "topic": "قضایی",
       "until": 1794526392.05711
+    },
+    "v4|democrat scott colom wins mississippi senate race in surprise victory for party": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US Senate race, limited global impact",
+      "topic": "سیاست",
+      "until": 1794528194.766379
     },
     "v4|eu ready for 'united response' after france blames iran for fridge hacks": {
       "ok": true,
@@ -1405,12 +1349,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: ",
       "topic": "سیاست",
       "until": 1794454407.6226377
-    },
-    "v4|iraq blocks iranian football team’s plane from landing over us sanctions": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: ممانعت از ورود تیم ملی فوتبال ایران به عراق به دلیل تحریم‌ها.",
-      "topic": "ورزش",
-      "until": 1794441351.919425
     },
     "v4|judge allows trump’s defamation lawsuit against the bbc to proceed": {
       "ok": true,
@@ -1537,12 +1475,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: تصمیم‌گیری باشگاهی راگبی، خارج از مسابقات درجه اول یا ملی",
       "topic": "ورزش",
       "until": 1794486920.0236232
-    },
-    "v4|teddy riner candidacy 'illustrative of this hunger for an alternative' to le pen or mélenchon": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: نامزدی احتمالی یک ورزشکار تحلیل و گمانه‌زنی سیاسی است.",
-      "topic": "سیاست",
-      "until": 1794440018.9382572
     },
     "v4|three women killed in la crash as driver arrested": {
       "ok": true,
@@ -1735,12 +1667,6 @@
       "reason": "ai gemini/gemini-3.8-flash batch score=2 happened=True scope=local: اخبار محلی و استانی بازگشایی راه‌ها در اندیکا",
       "topic": "حادثه",
       "until": 1794479608.9218805
-    },
-    "v4|ادامه بی سروصدای جنگ در تنگه هرمز؛ آمریکا به قشم حمله می کند، سپاه به جزیره دیدامار عمان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: گزارش حملات نظامی مستقیم در تنگه هرمز و جزیره قشم.",
-      "topic": "نظامی",
-      "until": 1794441351.9277158
     },
     "v4|ادعای ترامپ درباره جنگ با ایران: پیروزی کامل می خواهیم، نه ۹۳ درصدی": {
       "ok": true,
@@ -2540,18 +2466,6 @@
       "topic": "سیاست",
       "until": 1794450798.3686204
     },
-    "v4|جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: تصمیم رسمی مجلس نمایندگان آمریکا درباره طرح استیضاح وزیر جنگ.",
-      "topic": "سیاست",
-      "until": 1794441351.9357822
-    },
-    "v4|جمهوری خواهان پرونده استیضاح وزیر جنگ آمریکا را مسدود کردند": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: US House moves impeachment, significant political event",
-      "topic": "سیاست",
-      "until": 1794441770.705098
-    },
     "v4|جمهوریخواهان استیضاح وزیر جنگ را متوقف کردند/ ترامپ: پیروزی او در ایران منجر به تبرئه یک میهن پرست بزرگ آمریکایی شد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: شکست طرح استیضاح وزیر جنگ در مجلس نمایندگان آمریکا.",
@@ -2833,12 +2747,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: دیدار تشریفاتی سران در حاشیه کنفرانس بین‌المللی اهمیت درجه یک ندارد",
       "topic": "سیاست",
       "until": 1794486898.7351627
-    },
-    "v4|دیوان محاسبات کشور؛ بررسی وظایف، اختیارات و نقش آن در نظارت بر بودجه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: مقاله تحلیلی و معرفی نهاد دیوان محاسبات است و رویداد جدیدی ندارد.",
-      "topic": "جامعه",
-      "until": 1794441350.0101867
     },
     "v4|رئیس جمهور مالدیو: ممنوعیت ورود دارندگان گذرنامه اسرائیلی دائمی می شود": {
       "ok": true,
@@ -3908,12 +3816,6 @@
       "topic": "سیاست",
       "until": 1794483315.9597783
     },
-    "v4|پاریس هم پرونده تحریم را باز کرده، هم از خطر جنگ می گوید": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: وزیر خارجه فرانسه رسماً از برنامه برای تحریم‌های جدید علیه ایران خبر داد.",
-      "topic": "سیاست",
-      "until": 1794441351.9107988
-    },
     "v4|پاسخگویی برخط به بیش از ۸ میلیون درخواست حوزه دانشجویی وزارت علوم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: Routine administrative report on digital services, lacks national strategic impact.",
@@ -4076,12 +3978,6 @@
       "topic": "اقتصاد",
       "until": 1794463441.197195
     },
-    "v4|کارشناس مسئول بهزیستی: از هر ۵ ماموریت اورژانس اجتماعی خراسان رضوی، یک مورد کودک آزاری است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: گزارش آماری استانی از وضعیت آسیب‌های اجتماعی که فاقد اهمیت ملی است.",
-      "topic": "جامعه",
-      "until": 1794441342.727431
-    },
     "v4|کال آف دیوتی با بازسازی جنگ دو کره، بحث آزادی هنری را در کره جنوبی داغ کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=world: خبر مربوط به بازی ویدیویی و حواشی فرهنگی آن",
@@ -4117,6 +4013,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: کشف فرآورده نفتی قاچاق در یک کارگاه محلی.",
       "topic": "قضایی",
       "until": 1794486922.3991802
+    },
+    "v4|کمیته دوم سازمان ملل قطعنامه حاکمیت فلسطین بر منابع طبیعی خود را تصویب کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: پیشنویس قطعنامه‌ UN، نه تصمیم نهایی",
+      "topic": "سیاست",
+      "until": 1794528196.4674823
     },
     "v4|کنایه پزشکیان به آمریکا: جنگ را آغاز و ادعا کردند که هدفشان جلوگیری از دستیابی ایران به سلاح های هسته ای است، سپس برای اولین بار از موشک «پی آراس ام» در لامرد استفاده کردند/ اکنون": {
       "ok": true,
@@ -4262,6 +4164,12 @@
       "topic": "اقتصاد",
       "until": 1794486922.384629
     },
+    "v4|۴ شهید و تعدادی زخمی در بمباران مجتمع پزشکی ناصر در خان یونس": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: گزارش بمباران و کشته شدن ۴ نفر در غزه",
+      "topic": "نظامی",
+      "until": 1794528196.4542096
+    },
     "v4|۴ هزار کیلومتر راه عشایری کهگیلویه و بویراحمد نیازمند بازگشایی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: خبر محلی درباره نیاز به بازسازی جاده‌های عشایری",
@@ -4373,24 +4281,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "هگست با حمایت جمهوری خواهان از استیضاح در مجلس نمایندگان آمریکا گریخت ⚡️ مجلس نمایندگان آمریکا با رأی اکثریت ج",
-      "id": "8e6bce25de",
-      "match": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794362654,
-      "verdict": "repeat",
-      "why": "استیضاح وزیر جنگ آمریکا توسط مجلس نمایندگان"
-    },
-    {
-      "head": "هگست با حمایت جمهوری خواهان از استیضاح در مجلس نمایندگان آمریکا گریخت ⚡️ مجلس نمایندگان آمریکا با رأی اکثریت ج",
-      "id": "8e6bce25de",
-      "match": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1794362659,
-      "verdict": "repeat",
-      "why": "Both report the same legislative action blocking Hegseth's impeachment."
-    },
     {
       "head": "تاب آوری ایران در برابر محاصره دریایی فراتر از تصور آمریکا بود ⚡️ مجید شاکری، مشاور قالیباف و عضو تیم مذاکره ک",
       "id": "4451e8db75",
@@ -4923,16 +4813,27 @@
       "t": 1794440009,
       "verdict": "new",
       "why": "موضوع جدید: رسوایی اخلاقی و احتمال برکناری مدیرعامل"
+    },
+    {
+      "head": "زلنسکی: روسیه پیشنهاد آتش بس ما را رد کرد ⚡️ ولودیمیر زلنسکی، رئیس جمهور اوکراین، روز چهارشنبه اعلام کرد که آت",
+      "id": "1d163453e2",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794441803,
+      "verdict": "new",
+      "why": "مذاکرات آتش‌بس جدید اوکراین-روسیه، غیرمستقیم و غیرمورد تکرار"
+    },
+    {
+      "head": "۴ کشته و چندین نفر زخمی در بمباران مجتمع پزشکی ناصر در خان یونس ⚡️ در حملهٔ مستقیم ارتش اسرائیل به مجتمع پزشکی",
+      "id": "128e46866a",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1794441842,
+      "verdict": "new",
+      "why": "A new specific attack on Nasser Medical Complex with distinct casualties."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Policy review, low national impact",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794398989,
-      "title": "سند توسعه متوازن دانشگاه های علوم پزشکی در دست بازنگری قرار دارد"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: عمق چاه‌های آب در کرج به ۲۳۰ متر رسید",
       "rescued": false,
@@ -5485,50 +5386,19 @@
       "rule": "no-concrete-event",
       "t": 1794439996,
       "title": "Nvidia’s stock drops as board reportedly preps to oust CEO Jensen Huang"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US Senate race, limited global impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794441794,
+      "title": "Democrat Scott Colom wins Mississippi Senate race in surprise victory for party"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اقدم",
-        "خصمن",
-        "دستر",
-        "رهبر",
-        "محسب",
-        "محصر",
-        "محمد",
-        "مخبر",
-        "مشر",
-        "معظم",
-        "هرگن",
-        "همره"
-      ],
-      "t": 1794396929.6003785,
-      "title": "مخبر: هرگونه همراهی در محاصره خصمانه علیه ایران، اقدامی جنگی است ⚡️ محمد مخبر، مشاور و دستیار مقام معظم رهبری، اعلام کرد"
-    },
-    {
-      "h": [
-        "اسلم",
-        "اقدم",
-        "تررست",
-        "جنب",
-        "جنبش",
-        "جنت",
-        "حمس",
-        "خند",
-        "شهرک",
-        "فلسطن",
-        "مسلح",
-        "مقمت",
-        "نبلس",
-        "نشن"
-      ],
-      "t": 1794396964.124583,
-      "title": "حماس: حمله شهرک نشینان به نابلس مسلح است ⚡️ جنبش مقاومت اسلامی فلسطین حمله شهرک نشینان اسرائیلی به جنوب نابلس را جنایت و"
-    },
     {
       "h": [
         "ابظب",
@@ -5984,69 +5854,41 @@
       ],
       "t": 1794440013.033795,
       "title": "سقوط ارزش سهام انویدیا همزمان با احتمال برکناری جنسن هوانگ ⚡️ هیئت مدیره شرکت انویدیا در پی رسوایی های اخلاقی اخیر جنسن "
+    },
+    {
+      "h": [
+        "اتش",
+        "برقرر",
+        "زلنسک",
+        "نخهد",
+        "ولدمر",
+        "پشنهد",
+        "چهرشنب"
+      ],
+      "t": 1794441804.3902428,
+      "title": "زلنسکی: روسیه پیشنهاد آتش بس ما را رد کرد ⚡️ ولودیمیر زلنسکی، رئیس جمهور اوکراین، روز چهارشنبه اعلام کرد که آتش بس میان "
+    },
+    {
+      "h": [
+        "بمبر",
+        "خن",
+        "شدند",
+        "شهر",
+        "فلسطن",
+        "مجتمع",
+        "مستقم",
+        "نصر",
+        "نفر",
+        "پزشک",
+        "چندن",
+        "چهر",
+        "ینس"
+      ],
+      "t": 1794441843.9881258,
+      "title": "۴ کشته و چندین نفر زخمی در بمباران مجتمع پزشکی ناصر در خان یونس ⚡️ در حملهٔ مستقیم ارتش اسرائیل به مجتمع پزشکی ناصر در ش"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "ارژنتن",
-        "اسلم",
-        "اقدم",
-        "انقلب",
-        "خرج",
-        "خندن",
-        "سزم",
-        "شنسد",
-        "مسلح",
-        "وزرت",
-        "وکنش",
-        "پسدر"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1794375304.1798763,
-      "title": "نیروی دریایی و نیروی هوایی آرژانتین سازمان مسلح اعلام شدند ⚡️ وزارت امور خارجه جمهوری اسلامی ایران در بیانیه ای اعلام کر",
-      "toll": 0
-    },
-    {
-      "a": [
-        "احتمل",
-        "ارد",
-        "تفهم",
-        "تلش",
-        "جهت",
-        "خرج",
-        "ددر",
-        "دستب",
-        "دپلمتک",
-        "دپلمس",
-        "فرصت",
-        "قطر",
-        "نخست",
-        "هفت",
-        "وشنگتن",
-        "پرس",
-        "پشبرد"
-      ],
-      "cities": [
-        "تهران",
-        "دوحه"
-      ],
-      "kind": "attack",
-      "places": [
-        "تهران",
-        "دوحه"
-      ],
-      "regions": [
-        "gulf",
-        "iran_tehran"
-      ],
-      "t": 1794375349.3935316,
-      "title": "فرصت دو هفته ای قطر برای دیپلماسی میان واشنگتن و تهران پیش از حمله احتمالی آمریکا ⚡️ نخست وزیر قطر در دیدار با وزیران خا",
-      "toll": 0
-    },
     {
       "a": [
         "تشدد",
@@ -6293,93 +6135,34 @@
       "t": 1794432869.6326692,
       "title": "انفجار و آتش سوزی در تأسیسات گازی بندر بریقه لیبی ⚡️ وقوع انفجار و آتش سوزی در کارخانه گاز شرکت سرت در بندر بریقه لیبی، ",
       "toll": 0
+    },
+    {
+      "a": [
+        "فلسطن",
+        "مجتمع",
+        "مستقم",
+        "نصر",
+        "پزشک",
+        "چهر",
+        "ینس"
+      ],
+      "cities": [
+        "خان یونس"
+      ],
+      "kind": "attack",
+      "places": [
+        "خان یونس"
+      ],
+      "regions": [
+        "gaza"
+      ],
+      "t": 1794441844.000657,
+      "title": "۴ کشته و چندین نفر زخمی در بمباران مجتمع پزشکی ناصر در خان یونس ⚡️ در حملهٔ مستقیم ارتش اسرائیل به مجتمع پزشکی ناصر در ش",
+      "toll": 4
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ار",
-        "استن",
-        "اصل",
-        "بدج",
-        "بق",
-        "بل",
-        "بنک",
-        "ترزنم",
-        "تسهل",
-        "تشدد",
-        "تکلف",
-        "خلق",
-        "دد",
-        "درصد",
-        "رسد",
-        "رشد",
-        "زر",
-        "سختر",
-        "شمل",
-        "فعل",
-        "متر",
-        "مرکز",
-        "مقدر",
-        "مند",
-        "نترز",
-        "نقدنگ",
-        "هستند",
-        "پل",
-        "چلش",
-        "کسر",
-        "کنترل",
-        "کنل",
-        "کهش"
-      ],
-      "t": 1794310513.0616274,
-      "title": "رشد نقدینگی ایران به آستانه کانال ۴۰ درصد؛ سه موتور خلق پول فعال ⚡️ نقدینگی ایران به آستانه کانال ۴۰ درصد رسیده و سه موت"
-    },
-    {
-      "k": [
-        "اتهم",
-        "اجز",
-        "اختر",
-        "اخترتش",
-        "ار",
-        "اقدم",
-        "الت",
-        "امرک",
-        "انتخب",
-        "بدن",
-        "تجرب",
-        "تجز",
-        "تمس",
-        "جمهر",
-        "جنگ",
-        "حزب",
-        "حل",
-        "دفع",
-        "دنبل",
-        "زن",
-        "سس",
-        "سستفد",
-        "سنگن",
-        "شکست",
-        "صرت",
-        "غرقنن",
-        "متهم",
-        "مجلس",
-        "مدت",
-        "مس",
-        "مطرح",
-        "مقل",
-        "نمند",
-        "هشت",
-        "وزر",
-        "پگرد",
-        "کنتک",
-        "کنگر"
-      ],
-      "t": 1794310522.9469917,
-      "title": "کنگره آمریکا به دنبال پیگرد سیاسی وزیر دفاع آمریکا به اتهام تجاوز به اختیارات در جنگ با ایران ⚡️ یک نماینده جمهوری خواه "
-    },
     {
       "k": [
         "اختر",
@@ -9354,6 +9137,72 @@
       ],
       "t": 1794440013.0233364,
       "title": "سقوط ارزش سهام انویدیا همزمان با احتمال برکناری جنسن هوانگ ⚡️ هیئت مدیره شرکت انویدیا در پی رسوایی های اخلاقی اخیر جنسن "
+    },
+    {
+      "k": [
+        "اتش",
+        "اکرن",
+        "برقرر",
+        "تقف",
+        "جمهر",
+        "درگر",
+        "رس",
+        "زلنسک",
+        "نخهد",
+        "ولدمر",
+        "پشنهد",
+        "چهرشنب"
+      ],
+      "s": "زلنسکی",
+      "t": 1794441804.3775084,
+      "title": "زلنسکی: روسیه پیشنهاد آتش بس ما را رد کرد ⚡️ ولودیمیر زلنسکی، رئیس جمهور اوکراین، روز چهارشنبه اعلام کرد که آتش بس میان "
+    },
+    {
+      "k": [
+        "ار",
+        "ارتش",
+        "اسرل",
+        "اندخت",
+        "بمبر",
+        "تن",
+        "جنب",
+        "حمل",
+        "خدم",
+        "خسر",
+        "خطر",
+        "خن",
+        "درمن",
+        "دفع",
+        "دم",
+        "زخم",
+        "سختم",
+        "سخنگ",
+        "سزم",
+        "سنگن",
+        "شدند",
+        "شهر",
+        "طبق",
+        "غزه",
+        "فلسطن",
+        "مجتمع",
+        "مد",
+        "مدن",
+        "مرکز",
+        "مستقم",
+        "مهم",
+        "نر",
+        "نصر",
+        "نفر",
+        "هدف",
+        "ورد",
+        "پزشک",
+        "چندن",
+        "چهر",
+        "کشت",
+        "ینس"
+      ],
+      "t": 1794441843.9755073,
+      "title": "۴ کشته و چندین نفر زخمی در بمباران مجتمع پزشکی ناصر در خان یونس ⚡️ در حملهٔ مستقیم ارتش اسرائیل به مجتمع پزشکی ناصر در ش"
     }
   ],
   "_telegram_errors": [
@@ -9661,7 +9510,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794439879
+    "at": 1794441689
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
