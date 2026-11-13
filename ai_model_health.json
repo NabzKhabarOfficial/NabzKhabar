@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794524660
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794524660
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1794524663
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1794535488
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1794537195
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1794537258
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-12",
-      "n": 207
+      "n": 210
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-12",
-      "n": 92
+      "n": 93
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-12",
-      "n": 90
+      "n": 93
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-13",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-13",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-12",
@@ -503,69 +503,48 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 10,
-        "ok": 10,
+        "calls": 13,
+        "ok": 13,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 3,
-        "calls": 4,
+        "429": 4,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 11,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
-        "other": 3
+        "ok": 10,
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
-        "429": 3,
-        "calls": 11,
+        "429": 4,
+        "calls": 15,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 8,
+        "ok": 11,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1794362702.2666388,
-      "title": "تاب آوری ایران در برابر محاصره دریایی فراتر از تصور آمریکا بود",
-      "urgent": false
-    },
-    {
-      "label": "خبر",
-      "level": 3,
-      "t": 1794362742.7882555,
-      "title": "واژگونی قایق مهاجران در سواحل سنگال با ۳۹ کشته",
-      "urgent": false
-    },
-    {
-      "label": "خبر",
-      "level": 4,
-      "t": 1794364407.9401026,
-      "title": "افزایش کنترل ایران بر تنگه هرمز به گفته سناتور دموکرات",
-      "urgent": false
-    },
     {
       "label": "خبر",
       "level": 4,
@@ -1209,6 +1188,13 @@
       "t": 1794535486.9052536,
       "title": "انصارالله: حمله پهپادی موفق به شرکت آرامکو در ریاض",
       "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 4,
+      "t": 1794537241.1221242,
+      "title": "دیدار روسای جمهور ایران و برزیل در ترکیه",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-12",
@@ -1237,23 +1223,11 @@
       "topic": "حادثه",
       "until": 1794603796.6014297
     },
-    "v4|argentina’s milei cries as he bids farewell to the pope": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: Milei cries during farewell to Pope Leo XIV",
-      "topic": "سیاست",
-      "until": 1794537167.2997584
-    },
     "v4|army officer accused of trying to spy for russia is afghan war veteran": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: High-level espionage case involving a NATO officer and Russia.",
       "topic": "سیاست",
       "until": 1794605602.1266887
-    },
-    "v4|barcelona erupts in violence after general strike": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: Violent protests and clashes during a general strike in Barcelona.",
-      "topic": "حادثه",
-      "until": 1794537195.9377587
     },
     "v4|beau lamarre-condon bought sim card under pseudonym a month before alleged murders, trial hears": {
       "ok": false,
@@ -1543,6 +1517,12 @@
       "topic": "اقتصاد",
       "until": 1794551678.775212
     },
+    "v4|zelensky welcomes us bringing europe into russia-ukraine peace talks": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Zelensky welcomes US role in Ukraine peace talks",
+      "topic": "سیاست",
+      "until": 1794623595.9439454
+    },
     "v4|«امیدوارها»، روایت هویت یزد از قاب شبکه یک به خانه های ایرانی می آید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر انتشار سریال تلویزیونی محلی و استانی است.",
@@ -1626,12 +1606,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: بیان آمادگی و برنامه‌ها از سوی مقام مسئول، فاقد رویداد.",
       "topic": "اقتصاد",
       "until": 1794571495.416494
-    },
-    "v4|آمادگی شبکه گاز تهران برای زمستان/ صرفه جویی همچنان ضروری است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: Routine preparedness report and conservation appeal for Tehran gas network.",
-      "topic": "اقتصاد",
-      "until": 1794537195.95121
     },
     "v4|آمریکا با ادامه محاصره به دنبال نارضایتی مردم ایران است / احتمال حمله نظامی هنوز وجود دارد": {
       "ok": false,
@@ -1770,12 +1744,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Historical overview, no recent concrete event",
       "topic": "نظامی",
       "until": 1794542556.7951896
-    },
-    "v4|از حال رفتن گارد تشریفات کاخ الیزه در پاریس": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: یک حادثه جزئی و غیرسیاسی در حاشیه یک مراسم تشریفاتی است.",
-      "topic": "جامعه",
-      "until": 1794537191.5292132
     },
     "v4|از خوابیدن در خیابان تا فتح اسکار؛ داستان باورنکردنی سیلوستر استالونه با راکی": {
       "ok": false,
@@ -2034,12 +2002,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: بازدید مسئول دولتی از یک مدرسه در شهرستان، خبری محلی و تشریفاتی است.",
       "topic": "جامعه",
       "until": 1794553438.344167
-    },
-    "v4|بازدید کیم جونگ اون از پایگاه دریایی در دست احداث در ساحل شرقی کره شمالی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: minor foreign military visit, low global impact",
-      "topic": "نظامی",
-      "until": 1794537166.3795965
     },
     "v4|باند سرقت ۸۰ میلیارد ریالی احشام در خمینی شهر منهدم شد": {
       "ok": false,
@@ -2310,6 +2272,12 @@
       "reason": "ai gemini/gemini-3.8-flash batch score=4 happened=False scope=world: گزارش تحلیلی رسانه‌ای درباره برنامه موشکی عربستان بدون رخداد عینی جدید.",
       "topic": "نظامی",
       "until": 1794567900.7957723
+    },
+    "v4|تشریح اقدامات سلامت در میناب؛ از بیمارستان تا حمایت های روانی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی؛ اقدامات بهداشتی در شهر میناب",
+      "topic": "سلامت",
+      "until": 1794623591.8959198
     },
     "v4|تشنج در تحلیف": {
       "ok": false,
@@ -2719,6 +2687,12 @@
       "topic": "قضایی",
       "until": 1794553467.8092582
     },
+    "v4|درخواست ۱۳ نهاد فرانسوی برای ممنوعیت واردات کالاهای شهرک های صهیونیستی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: French NGOs call for ban on settlement products",
+      "topic": "سیاست",
+      "until": 1794623595.9577239
+    },
     "v4|درگذشت رئیس اسبق دانشگاه علامه طباطبائی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=local: درگذشت رئیس اسبق یک دانشگاه خبر فاقد اهمیت کشوری است",
@@ -3007,6 +2981,12 @@
       "topic": "سیاست",
       "until": 1794562434.3641994
     },
+    "v4|سقوط بالگرد در جنوب شرقی ترکیه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Helicopter crash in Turkey kills four",
+      "topic": "حادثه",
+      "until": 1794623595.9830003
+    },
     "v4|سندرز: جنگ ایالات متحده با ایران بر پایه دروغ بنا شده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: اظهار نظر سناتور موضع رسمی دولت یا رئیس کشور نیست.",
@@ -3084,6 +3064,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: انفجار در منطقه حساس خلیج فارس و تنگه هرمز",
       "topic": "نظامی",
       "until": 1794596662.344945
+    },
+    "v4|شهدای حمله اسرائیل به بیمارستان ناصر غزه به هفت نفر رسید/تداوم حملات به مناطق آوارگان": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Israeli strike on Gaza hospital kills seven",
+      "topic": "نظامی",
+      "until": 1794623595.9704723
     },
     "v4|شورای امنیت سازمان ملل تحریم های مرتبط با یمن را تمدید کرد": {
       "ok": true,
@@ -3378,12 +3364,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Political opinion/warning by an opposition party leader.",
       "topic": "سیاست",
       "until": 1794566066.8694105
-    },
-    "v4|ماجرای «قطر گیت» در کنست رژیم صهیونیستی چه بود؟": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Claim about Qatar funds, no official confirmation, political speculation.",
-      "topic": "سیاست",
-      "until": 1794537165.262052
     },
     "v4|محاصره نتوانست زنجیره تأمین را قطع کند؛ هزینه واردات بالا رفت و تورم تشدید شد/ مرزهای شمالی جایگزین مسیرهای تجاری محدودشده شدند": {
       "ok": false,
@@ -3804,12 +3784,6 @@
       "reason": "ai gemini/gemini-3.8-flash batch score=3 happened=True scope=world: موضع‌گیری و هشدار چهره اپوزیسیون اسرائیل؛ فاقد تصمیم رسمی یا اقدام عملی.",
       "topic": "سیاست",
       "until": 1794567900.7611306
-    },
-    "v4|هشدار چلسی به کارکنانش؛ مراقب افشای اطلاعات باشگاه باشید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: هشدار داخلی باشگاه چلسی به کارکنان خبر درجه یک نیست",
-      "topic": "ورزش",
-      "until": 1794537187.3741717
     },
     "v4|همزمان با روز ملی هوا فضا و شهادت سردار طهرانی مقدم؛ فیلم «خدای جنگ» در قاب نمایش": {
       "ok": false,
@@ -4317,6 +4291,10 @@
       "reason": "content_duplicate",
       "until": 1794549845.8745167
     },
+    "zelensky welcomes us bringing europe into russia-ukraine peace talks": {
+      "reason": "content_duplicate",
+      "until": 1794558858.7079234
+    },
     "ادعای ترامپ در پاسخ به اینکه «آیا برای استفاده از نیروی نظامی علیه ایران تردید خواهید کرد؟»: اگر می دیدم اوضاع در مسیر دیگری پیش می رود، این کار را انجام می دادم؛ حتی ممکن است همین": {
       "reason": "content_duplicate",
       "until": 1794545352.59473
@@ -4371,21 +4349,16 @@
       "reason": "content_duplicate",
       "until": 1794557047.6919496
     },
+    "شهدای حمله اسرائیل به بیمارستان ناصر غزه به هفت نفر رسید/تداوم حملات به مناطق آوارگان": {
+      "reason": "content_duplicate",
+      "until": 1794558817.8534207
+    },
     "مشاور رهبری: پیام اخیر رهبر انقلاب، غیرمستقیم یعنی محدودیت برد موشک هایمان را برداشته ایم/ هر چه آمریکایی ها ادامه بدهند بیشتر در باتلاق غرق می شوند": {
       "reason": "content_duplicate",
       "until": 1794551648.7197084
     }
   },
   "_event_judge_log": [
-    {
-      "head": "فرمان آماده باش اسرائیل برای حمله احتمالی به ایران و تأکید سپاه بر توسعه موشکی ⚡️ اسرائیل به ارتش خود دستور دا",
-      "id": "653a265068",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794458046,
-      "verdict": "new",
-      "why": "هیچ ارتباط مستقیم با رویدادهای قبلی"
-    },
     {
       "head": "افت قیمت نفت پس از رشد یک دلاری در روز گذشته ⚡️ این افت پس از افزایش بیش از یک دلاری قیمت نفت در معاملات روز گ",
       "id": "b126a3dec8",
@@ -4926,16 +4899,18 @@
       "t": 1794535485,
       "verdict": "new",
       "why": "This is a new drone attack on Aramco in Riyadh."
+    },
+    {
+      "head": "دیدار روسای جمهور ایران و برزیل در ترکیه ⚡️ رئیس جمهور ایران و برزیل در ترکیه دیدار کردند و درباره توسعه روابط",
+      "id": "e9eaf210bb",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1794537239,
+      "verdict": "new",
+      "why": "دیدار روسای جمهور ایران و برزیل در ترکیه مورد مشابهی ندارد"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اخبار محصولات تجاری و پیش‌خرید فناوری ارزش خبری درجه یک ندارد",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1794497635,
-      "title": "Pre-orders for some Apple Home Collection devices will open November 13"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: US starts talks with Europe on security structure",
       "rescued": true,
@@ -5488,36 +5463,19 @@
       "rule": "no-concrete-event",
       "t": 1794533603,
       "title": "Pegula saves match point to beat Noskova & reach WTA Finals last four"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی؛ اقدامات بهداشتی در شهر میناب",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1794537191,
+      "title": "تشریح اقدامات سلامت در میناب؛ از بیمارستان تا حمایت های روانی"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اختلف",
-        "ارشد",
-        "الشعب",
-        "الل",
-        "انحصر",
-        "بدر",
-        "تشدد",
-        "حزب",
-        "حشد",
-        "ددر",
-        "رهبر",
-        "سزم",
-        "سلح",
-        "مضع",
-        "نخست",
-        "نشست",
-        "چهر",
-        "گرد"
-      ],
-      "t": 1794494034.3340583,
-      "title": "نشست نخست وزیر عراق با رهبران حشد الشعبی و سازمان بدر ⚡️ نخست وزیر عراق در پی تشدید اختلافات دولت با گردان های حزب الله "
-    },
     {
       "h": [
         "ازمش",
@@ -5949,6 +5907,20 @@
       ],
       "t": 1794535486.8921049,
       "title": "انصارالله: حمله پهپادی موفق به شرکت آرامکو در ریاض ⚡️ انصارالله اعلام کرد که حمله پهپادی موفق به شرکت آرامکو در ریاض انج"
+    },
+    {
+      "h": [
+        "بحث",
+        "برزل",
+        "ترک",
+        "تسع",
+        "ددر",
+        "ربط",
+        "مسل",
+        "همکر"
+      ],
+      "t": 1794537241.109395,
+      "title": "دیدار روسای جمهور ایران و برزیل در ترکیه ⚡️ رئیس جمهور ایران و برزیل در ترکیه دیدار کردند و درباره توسعه روابط، همکاری ه"
     }
   ],
   "_published_incidents": [
@@ -8286,6 +8258,46 @@
       "s": "انصارالله",
       "t": 1794535486.8786266,
       "title": "انصارالله: حمله پهپادی موفق به شرکت آرامکو در ریاض ⚡️ انصارالله اعلام کرد که حمله پهپادی موفق به شرکت آرامکو در ریاض انج"
+    },
+    {
+      "k": [
+        "اجلس",
+        "ار",
+        "اشر",
+        "اقتصد",
+        "اقلم",
+        "امرک",
+        "بحث",
+        "برزل",
+        "ترک",
+        "تسع",
+        "تصر",
+        "تغر",
+        "تکد",
+        "جمهر",
+        "حش",
+        "حمل",
+        "ددر",
+        "دنبل",
+        "ربط",
+        "رس",
+        "سزم",
+        "سلح",
+        "عدم",
+        "متحد",
+        "مسر",
+        "مسل",
+        "ملل",
+        "منطق",
+        "نبد",
+        "هست",
+        "همکر",
+        "هچ",
+        "پزشک",
+        "گه"
+      ],
+      "t": 1794537241.0966227,
+      "title": "دیدار روسای جمهور ایران و برزیل در ترکیه ⚡️ رئیس جمهور ایران و برزیل در ترکیه دیدار کردند و درباره توسعه روابط، همکاری ه"
     }
   ],
   "_telegram_errors": [
@@ -8593,7 +8605,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794535317
+    "at": 1794537077
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
