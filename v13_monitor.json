@@ -1,11 +1,10 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": false,
-  "ambiguous_publications": 1,
-  "checked_at": "2026-11-13T18:11:19.874110+00:00",
+  "all_selected_blocked": true,
+  "ambiguous_publications": 0,
+  "checked_at": "2026-11-13T18:35:49.181015+00:00",
   "diagnostics": [
-    "Selected stories did not reach confirmed publication.",
-    "Publication attempts failed or raised exceptions.",
+    "All selected stories were blocked or reconciled without a confirmed publication.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -19,7 +18,7 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارات سیاسی داخلی اسرائیل درباره نتانیاهو فاقد اهمیت راهبردی برای ایران است.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: اظهارات سیاسی داخلی اسرائیل درباره نتانیاهو فاقد اهمیت راهبردی برای ایران است.",
       "result": "editorial_blocked",
       "source": "",
       "title": "هشدار آیزنکوت به نتانیاهو درباره حمله به ایران",
@@ -39,22 +38,6 @@
       "result": "editorial_blocked",
       "source": "",
       "title": "After Xi Purges China’s Generals, a Military Inquisitor Rises",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=world: Minor lifestyle and celebrity-related trivia.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "Whatever happened to the diamond that went missing in F1 crash?",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=local: درگیری محدود در سوریه با تلفات اندک، اهمیت بین‌المللی ندارد.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "کشته و زخمی شدن نظامیان سوری طی حمله ای در دیرالزور",
       "url": ""
     },
     {
@@ -83,6 +66,14 @@
     },
     {
       "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: تحلیل و نظر سیاسی درباره ادعای بحرین و حقوق بین الملل.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "تناقض حقوقی ادعای بحرین؛ مشارکت در جنگ و مطالبه غرامت از ایران",
+      "url": ""
+    },
+    {
+      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: General health advice and medical information, not a news event.",
       "result": "editorial_blocked",
       "source": "",
@@ -99,18 +90,10 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=0 happened=False scope=local: Religious/ideological commentary, not a news event.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: نظر و توئیت یک کارشناس درباره اظهارات مقامات رسمی.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "تربیت زهرایی؛ راه ساخت نسلی مقاوم در برابر جنگ نرم",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Official government decision regarding international sports sanctions.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "Estonia latest country to ban Russian athletes",
+      "title": "واکنش فواد ایزدی به گفته قالیباف مبنی بر این که «توپ در زمین آمریکاست»: شرایط نه جنگ نه صلح نتیجه ۷ ماه توپ بازی با قاتلان رهبر شهید است",
       "url": ""
     },
     {
@@ -128,45 +111,37 @@
       "source": "",
       "title": "ضرغامی: ۴۰سال پیش که بخشی از قطعات موشک را برای شهید طهرانی مقدم می ساختیم گفت باید بتوانیم اسراییل رو بزنیم/ ۲۰ سال پیش گفت حاج عزت، ساختیم، بیا ببین",
       "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine diplomatic statement regarding EU candidacy status.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "'We have done all our homework' to get EU candidate status: Kosovo's PM Albin Kurti",
-      "url": ""
     }
   ],
-  "failed_publication_attempts": [
-    {
-      "error": "",
-      "reason": "telegram-transport-uncertain-no-retry",
-      "result": "ambiguous",
-      "source": "khabaronline.ir",
-      "started_at": "2026-11-13T18:10:24.533869+00:00",
-      "title": "نشت گاز و انفجار در آرژانتین",
-      "url": "https://khabaronline.ir/news/2301629/%D9%86%D8%B4%D8%AA-%DA%AF%D8%A7%D8%B2-%D9%88-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1-%D8%AF%D8%B1-%D8%A2%D8%B1%DA%98%D8%A7%D9%86%D8%AA%DB%8C%D9%86-%D9%81%DB%8C%D9%84%D9%85"
-    }
-  ],
+  "failed_publication_attempts": [],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [
-    {
-      "intelligence_score": 23,
-      "monitor_reason": "selected-but-not-published",
-      "publication_tier": 4,
-      "source": "khabaronline.ir",
-      "title": "نشت گاز و انفجار در آرژانتین",
-      "url": "https://khabaronline.ir/news/2301629/%D9%86%D8%B4%D8%AA-%DA%AF%D8%A7%D8%B2-%D9%88-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1-%D8%AF%D8%B1-%D8%A2%D8%B1%DA%98%D8%A7%D9%86%D8%AA%DB%8C%D9%86-%D9%81%DB%8C%D9%84%D9%85"
-    }
-  ],
+  "missed_selected_stories": [],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
   "run_status": "success",
-  "selected_for_publication": 17,
-  "skipped_duplicate": [],
-  "status": "publication_failure"
+  "selected_for_publication": 15,
+  "skipped_duplicate": [
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
+      "source": "khabaronline.ir",
+      "started_at": "2026-11-13T18:34:41.500117+00:00",
+      "title": "نشت گاز و انفجار در آرژانتین",
+      "url": "https://khabaronline.ir/news/2301629/%D9%86%D8%B4%D8%AA-%DA%AF%D8%A7%D8%B2-%D9%88-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1-%D8%AF%D8%B1-%D8%A2%D8%B1%DA%98%D8%A7%D9%86%D8%AA%DB%8C%D9%86-%D9%81%DB%8C%D9%84%D9%85"
+    },
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
+      "source": "bbc.co.uk",
+      "started_at": "2026-11-13T18:35:41.255265+00:00",
+      "title": "UN watchdog 'increasingly concerned' over uninspected Iran nuclear site",
+      "url": "https://bbc.co.uk/news/articles/cm75261e3pdko?at_campaign=rss&at_medium=RSS"
+    }
+  ],
+  "status": "editorial_blocked"
 }
