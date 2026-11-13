@@ -1,6 +1,18 @@
 {
   "_ai_extra_log": [
     {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
+      "t": 1794605654
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 6x",
+      "t": 1794605705
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794607390
+    },
+    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794607390
     },
@@ -129,42 +141,30 @@
       "t": 1794611080
     },
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794612691
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794612691
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1794612706
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1794612721
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794612722
+      "t": 1794612897
     },
     {
       "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794612722
+      "t": 1794612897
     },
     {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1794612726
+      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=40)",
+      "t": 1794612937
     },
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
-      "t": 1794612766
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.6-flash",
+      "t": 1794612955
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1794612986
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-13",
-      "n": 92
+      "n": 91
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-13",
@@ -176,7 +176,7 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-13",
-      "n": 59
+      "n": 58
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-13",
@@ -497,10 +497,10 @@
     "2026-11-13": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 106,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"The service is currently unavailable.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 97,
-        "other": 9
+        "calls": 105,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 95,
+        "other": 10
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
@@ -510,8 +510,8 @@
         "other": 11
       },
       "gemini:gemini-3.6-flash": {
-        "429": 38,
-        "calls": 70,
+        "429": 39,
+        "calls": 71,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 25,
@@ -519,11 +519,11 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 33,
-        "calls": 57,
+        "calls": 56,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 24
+        "other": 23
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
@@ -547,8 +547,8 @@
         "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 72,
-        "calls": 218,
+        "429": 71,
+        "calls": 217,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
         "ok": 146,
         "other": 0
@@ -1216,13 +1216,6 @@
       "t": 1794611061.0713344,
       "title": "برگزاری نشست سه جانبه ترامپ، شی و پوتین در حاشیه اجلاس اپک چین",
       "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 3,
-      "t": 1794612760.004916,
-      "title": "برخورد نفتکش با کشتی تفریحی در آمریکا و آغاز عملیات امدادونجات",
-      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-13",
@@ -1365,12 +1358,6 @@
       "topic": "ورزش",
       "until": 1794697418.8013911
     },
-    "v4|global microsoft outage affects outlook and teams as company says fixes not providing ‘anticipated relief’": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: Global Microsoft outage causing massive disruption to enterprise services and users worldwide.",
-      "topic": "فناوری",
-      "until": 1794612847.291337
-    },
     "v4|goalkeeper involved in fatal collision gets 12-game ban": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Disciplinary action in sports is not a first-tier news story.",
@@ -1457,21 +1444,15 @@
     },
     "v4|rescue efforts under way after tanker strikes river cruise boat in us": {
       "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: Major accident on Mississippi River with 129 passengers involved.",
+      "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: Major ship collision in US with 129 passengers at risk",
       "topic": "حادثه",
-      "until": 1794699126.8150103
+      "until": 1794699355.273578
     },
     "v4|ronaldinho, 46, to play first game since 2015": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر ورزشی غیرحرفه‌ای و فاقد اهمیت ملی یا بین‌المللی است.",
       "topic": "ورزش",
       "until": 1794684964.5747123
-    },
-    "v4|russian court jails rights lawyer for 12 years on treason charge": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: صدور حکم سنگین ۱۲ سال زندان برای وکیل روس به اتهام خیانت.",
-      "topic": "قضایی",
-      "until": 1794612834.693057
     },
     "v4|scandal-hit nvidia ceo jensen huang quits, plunging ai chipmaking giant into turmoil": {
       "ok": true,
@@ -1604,12 +1585,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Ceremonial funeral for war martyrs, not a major national event",
       "topic": "جامعه",
       "until": 1794630842.2113485
-    },
-    "v4|آغاز سال مالی ۲۰۲۷ آمریکا با کسری بودجه ۴۰۴ میلیارد دلاری": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: ثبت کسری بودجه ۴۰۴ میلیارد دلاری در آغاز سال مالی آمریکا",
-      "topic": "اقتصاد",
-      "until": 1794612817.8634615
     },
     "v4|آغاز قطع گاز ویلاها و سکونتگاه های غیردائم در چهارمحال وبختیاری": {
       "ok": false,
@@ -2492,12 +2467,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Routine provincial infrastructure report and administrative PR.",
       "topic": "اقتصاد",
       "until": 1794632637.2584953
-    },
-    "v4|حدادعادل: امروز باید برای موفقیت رهبری و عبور کشور از شرایط دشوار دعا کنیم/ انتخاب آیت الله سیدمجتبی خامنه ای به رهبری موجی از امید در جامعه ایجاد کرد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: نظر و سخنرانی مقام سیاسی، فاقد ارزش خبری درجه یک",
-      "topic": "سیاست",
-      "until": 1794612839.118444
     },
     "v4|حزب الله لبنان حمله به مجتمع پزشکی ناصر در غزه را محکوم کرد": {
       "ok": false,
@@ -3411,12 +3380,6 @@
       "topic": "جامعه",
       "until": 1794686654.1499095
     },
-    "v4|مراسم وداع با پیکر شهدای گمنام در میدان های تهران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مراسم وداع با شهدا در تهران، محلی و آیین مذهبی محسوب می شود.",
-      "topic": "جامعه",
-      "until": 1794612826.4039943
-    },
     "v4|مرتضی غرقی: به من گفتند ۲.۲ میلیارد دلار در بورس را نابود کردی!": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: Unverified claim, not major economic shock",
@@ -3599,9 +3562,9 @@
     },
     "v4|نمایندگان چین و روسیه: جنگ علیه ایران باید فورا پایان یابد/جایگزینی برای مذاکره وجود ندارد": {
       "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: Official positions of China and Russia at UN Security Council.",
+      "reason": "ai gemini/gemini-3.6-flash batch score=8 happened=True scope=world: Official stance of China and Russia at UNSC on war",
       "topic": "سیاست",
-      "until": 1794699126.822747
+      "until": 1794699355.2823281
     },
     "v4|نوسازی و توسعه زیرساخت های برق قم با شتاب دنبال می شود": {
       "ok": false,
@@ -3674,12 +3637,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: India seeks private investors for $910M SPR project",
       "topic": "اقتصاد",
       "until": 1794659605.0681844
-    },
-    "v4|هوای اراک در وضعیت اضطرار؛ از دورکاری مادران تا تعطیلی موقت آندسازی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تعطیلی و آلودگی هوا در سطح استانی و محلی است.",
-      "topic": "آب و هوا",
-      "until": 1794699122.231666
     },
     "v4|هوای تهران از عصر امروز آلوده تر می شود": {
       "ok": false,
@@ -3896,12 +3853,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: Routine local administrative advice regarding gas consumption in Ardabil.",
       "topic": "آب و هوا",
       "until": 1794630880.570884
-    },
-    "v4|پیکر مطهر سه شهید گمنام در زنجان تشییع می شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تشیییع شهدای گمنام در زنجان رویدادی محلی و استانی است",
-      "topic": "جامعه",
-      "until": 1794612830.5001712
     },
     "v4|چرا سهم تجدیدپذیرها در ایران ناچیز است؟/ نقشه راه عبور از ناترازی برق": {
       "ok": false,
@@ -4135,6 +4086,10 @@
       "reason": "content_duplicate",
       "until": 1794621909.140914
     },
+    "rescue efforts under way after tanker strikes river cruise boat in us": {
+      "reason": "content_duplicate",
+      "until": 1794634581.4848893
+    },
     "truck and bus crash in india’s assam state kills at least 24 people": {
       "reason": "content_duplicate",
       "until": 1794609312.8657794
@@ -4190,10 +4145,19 @@
     },
     "نمایندگان چین و روسیه: جنگ علیه ایران باید فورا پایان یابد/جایگزینی برای مذاکره وجود ندارد": {
       "reason": "content_duplicate",
-      "until": 1794634334.4737246
+      "until": 1794634566.5098028
     }
   },
   "_event_judge_log": [
+    {
+      "head": "مشاور فرمانده سپاه: پایگاه های دور دست آمریکا در دایره اهداف ایران قرار گرفتند ⚡️ مشاور فرمانده کل سپاه در قرا",
+      "id": "d99fd2ffa6",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794513979,
+      "verdict": "new",
+      "why": "پایگاه‌های دور دست آمریکا در فهرست اهداف ایران"
+    },
     {
       "head": "ترامپ از جمهوری خواهان سنا می خواهد بودجه نظامی را پیش از بازگشت دموکرات ها تصویب کنند ⚡️ ترامپ در پیامی خواست",
       "id": "868ec26677",
@@ -4729,18 +4693,16 @@
       "t": 1794611060,
       "verdict": "new",
       "why": "موضوع جدید: نشست سه جانبه سیاسی"
-    },
-    {
-      "head": "برخورد نفتکش با کشتی تفریحی در آمریکا و آغاز عملیات امدادونجات ⚡️ یک فروند نفتکش در رودخانه می سی سی پی در نیو",
-      "id": "33536c6014",
-      "match": "",
-      "model": "gemini/gemini-3.6-flash",
-      "t": 1794612758,
-      "verdict": "new",
-      "why": "No previous post reports a ship collision in the Mississippi River."
     }
   ],
   "_importance_rescue_log": [
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آغاز ساخت یک مجموعه ورزشی محلی در سوسنگرد اهمیت ملی ندارد",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1794584123,
+      "title": "عملیات ساخت مجموعه فرهنگی ورزشی سوسنگرد آغاز شد"
+    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تصادفات رانندگی استانی با آسیب‌های محدود و محلی",
       "rescued": false,
@@ -5293,19 +5255,32 @@
       "rule": "foreign-local-preselection",
       "t": 1794611018,
       "title": "France hold nerve to edge past South Africa in thriller"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تعطیلی و آلودگی هوا در سطح استانی و محلی است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794612722,
-      "title": "هوای اراک در وضعیت اضطرار؛ از دورکاری مادران تا تعطیلی موقت آندسازی"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
+    {
+      "h": [
+        "است",
+        "المندب",
+        "بب",
+        "جدد",
+        "جنب",
+        "رسدن",
+        "رقم",
+        "زدند",
+        "سحل",
+        "صنع",
+        "عدن",
+        "لحج",
+        "وقعت",
+        "پشر"
+      ],
+      "t": 1794567918.0099807,
+      "title": "پیشروی نیروهای صنعا به خط ساحلی جنوب باب المندب ⚡️ نیروهای صنعا با پیشروی در جنوب باب المندب و رسیدن به خط ساحلی میان اس"
+    },
     {
       "h": [
         "برخردر",
@@ -5751,26 +5726,6 @@
       ],
       "t": 1794611061.0613337,
       "title": "برگزاری نشست سه جانبه ترامپ، شی و پوتین در حاشیه اجلاس اپک چین ⚡️ دونالد ترامپ، شی جینپینگ و ولادیمیر پوتین در حاشیه اجل"
-    },
-    {
-      "h": [
-        "اغز",
-        "امددنج",
-        "برخرد",
-        "تفرح",
-        "ردخن",
-        "شنر",
-        "عمل",
-        "غرق",
-        "فرند",
-        "مجب",
-        "نرل",
-        "نفتکش",
-        "نم",
-        "گسترد"
-      ],
-      "t": 1794612759.9978416,
-      "title": "برخورد نفتکش با کشتی تفریحی در آمریکا و آغاز عملیات امدادونجات ⚡️ یک فروند نفتکش در رودخانه می سی سی پی در نیواورلئان با"
     }
   ],
   "_published_incidents": [
@@ -6106,6 +6061,59 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
+    {
+      "k": [
+        "است",
+        "بشتر",
+        "تنش",
+        "خرس",
+        "دچر",
+        "شدت",
+        "شمل",
+        "مزندر",
+        "هستند",
+        "وسعت",
+        "چلش",
+        "کشر",
+        "گز",
+        "گلست"
+      ],
+      "t": 1794481523.4312656,
+      "title": "۱۱ استان کشور دچار تنش گازی هستند ⚡️ بر این اساس، ۱۱ استان کشور دچار تنش گازی هستند که این چالش در استان های مازندران، خ"
+    },
+    {
+      "k": [
+        "الت",
+        "امرک",
+        "انتخب",
+        "بزرگ",
+        "بزسز",
+        "بشترن",
+        "تحل",
+        "جمعت",
+        "جنگ",
+        "دخل",
+        "در",
+        "دشتن",
+        "زمن",
+        "سفدپست",
+        "سنتر",
+        "صحب",
+        "محسب",
+        "محفظ",
+        "مسسپ",
+        "نخستن",
+        "نزدک",
+        "نسل",
+        "وجد",
+        "پرز",
+        "پست",
+        "کر",
+        "کنترل"
+      ],
+      "t": 1794481580.386474,
+      "title": "انتخاب نخستین سناتور سیاه پوست میسیسیپی پس از جنگ داخلی آمریکا ⚡️ این پیروزی، میسیسیپی را صاحب نخستین سناتور سیاه پوست خ"
+    },
     {
       "k": [
         "اسرل",
@@ -8749,45 +8757,6 @@
       ],
       "t": 1794611061.0513036,
       "title": "برگزاری نشست سه جانبه ترامپ، شی و پوتین در حاشیه اجلاس اپک چین ⚡️ دونالد ترامپ، شی جینپینگ و ولادیمیر پوتین در حاشیه اجل"
-    },
-    {
-      "k": [
-        "اتش",
-        "اغز",
-        "امدد",
-        "امددنج",
-        "امرک",
-        "برخرد",
-        "تردد",
-        "تعلق",
-        "تفرح",
-        "حدث",
-        "حضر",
-        "حلت",
-        "حمل",
-        "در",
-        "درمد",
-        "درند",
-        "ردخن",
-        "سحل",
-        "شنر",
-        "عمل",
-        "غرق",
-        "فرند",
-        "مجب",
-        "محل",
-        "مسفر",
-        "نر",
-        "نرل",
-        "نشن",
-        "نفتکش",
-        "نم",
-        "کشت",
-        "گرد",
-        "گسترد"
-      ],
-      "t": 1794612759.9904523,
-      "title": "برخورد نفتکش با کشتی تفریحی در آمریکا و آغاز عملیات امدادونجات ⚡️ یک فروند نفتکش در رودخانه می سی سی پی در نیواورلئان با"
     }
   ],
   "_telegram_errors": [
@@ -9119,7 +9088,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794612608
+    "at": 1794612810
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9133,14 +9102,19 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1794613276.0,
+    "last_failure": 1794612976,
+    "last_status": 503
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794613021.0,
-    "last_failure": 1794612721,
-    "last_status": 599
+    "disabled_until": 1794613559,
+    "last_failure": 1794612959,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794613006.0,
-    "last_failure": 1794612706,
+    "disabled_until": 1794613237.0,
+    "last_failure": 1794612937,
     "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
