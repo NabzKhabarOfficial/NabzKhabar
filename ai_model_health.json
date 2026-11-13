@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1794523729
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794523734
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794523734
-    },
-    {
       "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
       "t": 1794523739
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
       "t": 1794531810
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794533603
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794533604
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1794533654
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-12",
-      "n": 201
+      "n": 206
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-12",
-      "n": 89
+      "n": 91
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-12",
-      "n": 87
+      "n": 89
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-13",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-13",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-12",
@@ -503,43 +503,43 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 1,
-        "calls": 2,
+        "429": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 1,
+        "429": 3,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 6,
-        "other": 2
+        "calls": 10,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 7,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 8,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
-        "429": 1,
-        "calls": 5,
+        "429": 2,
+        "calls": 8,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 4,
+        "ok": 6,
         "other": 0
       }
     }
@@ -1280,23 +1280,11 @@
       "topic": "حادثه",
       "until": 1794607435.4751503
     },
-    "v4|democrat scott colom seals historic win in mississippi senate race": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: پیروزی تاریخی در انتخابات سنای آمریکا",
-      "topic": "سیاست",
-      "until": 1794531811.4118326
-    },
     "v4|democrats launch nvidia investigation, write scathing letter on huang’s ‘scheme’ with trump": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: تحقیقات کنگره درباره انویدیا و ترامپ",
       "topic": "فناوری",
       "until": 1794610134.495584
-    },
-    "v4|former italian red brigades member escapes house arrest in argentina": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Minor criminal escape, limited impact",
-      "topic": "قضایی",
-      "until": 1794533555.809792
     },
     "v4|france's social safety net: can it afford to be so generous?": {
       "ok": false,
@@ -1429,6 +1417,12 @@
       "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: درگذشت شخصیت غیرشاخص؛ فاقد اهمیت در اخبار درجه یک جهانی",
       "topic": "سیاست",
       "until": 1794616407.5489216
+    },
+    "v4|pegula saves match point to beat noskova & reach wta finals last four": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: WTA Finals match, not a final or decisive result",
+      "topic": "ورزش",
+      "until": 1794620003.7505398
     },
     "v4|pope leo xiv goes home to peru, meeting ghosts of his past": {
       "ok": false,
@@ -1663,12 +1657,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: خبر هشدار، پیش‌بینی، بدون رویداد واقعی",
       "topic": "اقتصاد",
       "until": 1794560039.6947613
-    },
-    "v4|اتصال مراکز داده به شبکه برق شتاب می گیرد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: General trend, no concrete event or decision",
-      "topic": "فناوری",
-      "until": 1794533554.9389567
     },
     "v4|اجازه ندهیم فرصت پزشکی خانواده به تهدید تبدیل شود/ لزوم رعایت الزامات اجرایی": {
       "ok": false,
@@ -2234,6 +2222,12 @@
       "topic": "اقتصاد",
       "until": 1794542586.2687235
     },
+    "v4|تجلی عشق به میهن و ولایت؛ اهتزاز پرچم مزین به دست خط رهبری": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Flag ceremony, local religious event, no broader impact",
+      "topic": "جامعه",
+      "until": 1794620001.932914
+    },
     "v4|تجمع بی نظیر جانفدایان ارومیه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: رزمایش محلی و استانی، فاقد اهمیت ملی و بین‌المللی",
@@ -2419,6 +2413,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آمار محلی و استانی مراکز درمان ناباروری شیراز اهمیت ملی ندارد.",
       "topic": "سلامت",
       "until": 1794573268.086349
+    },
+    "v4|ثبت بیش از ۹۳۱ حمله به بخش بهداشت و درمان غزه از اکتبر ۲۰۲۳": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: 931 attacks on Gaza health sector by Israeli army",
+      "topic": "نظامی",
+      "until": 1794620004.8531122
     },
     "v4|ثبت نام پانزدهمین دوره مسابقات مناظرات دانشجویی در قم تا ۲۵ آبان": {
       "ok": false,
@@ -3764,12 +3764,6 @@
       "topic": "سیاست",
       "until": 1794542578.2653785
     },
-    "v4|نمایندگان پارلمان فرانسه طرحی برای ممنوعیت تجارت با شهرک های غیرقانونی اسرائیل ارائه کردند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: French MPs propose trade ban on Israeli settlements",
-      "topic": "سیاست",
-      "until": 1794531812.9226792
-    },
     "v4|نگرانی خانوارهای راز و جرگلان از تأمین گرمای زمستان؛ ۸۰ درصد سهمیه نفت توزیع شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: Local news about regional heating concerns and routine distribution.",
@@ -4346,15 +4340,20 @@
     },
     "انصارالله: اجرای چند عملیات علیه زیرساخت های نظامی و نفتی عربستان/ حمله به ایستگاه پمپاژ شماره هفت در خط لوله شرق به غرب عربستان/ عملیات علیه شرکت آرامکو در ریاض، یک هواپیمای باری": {
       "reason": "content_duplicate",
-      "until": 1794531882.559291
+      "until": 1794555248.453936
     },
-    "انصارالله: حمله پهپادی موفق به شرکت آرامکو در ریاض": {
+    "ترامپ با ادعای حفاظت از متحدان آمریکا، جنگ تجاوزکارانه به ایران را توجیه کرد": {
       "reason": "content_duplicate",
-      "until": 1794530125.8993917
+      "until": 1794555221.160642
     },
     "ترامپ باز هم ایران را به حمله نظامی تهدید کرد؛ تکرار ادعاهای همیشگی": {
       "reason": "content_duplicate",
       "until": 1794539013.992363
+    },
+    "ثبت بیش از ۹۳۱ حمله به بخش بهداشت و درمان غزه از اکتبر ۲۰۲۳": {
+      "at": 1794533654.9613843,
+      "reason": "final_guard:old-event",
+      "until": 1794555254.9613843
     },
     "ثبت ۹۳۱ حمله به مراکز درمانی غزه از آغاز جنگ در اکتبر ۲۰۲۳ تاکنون": {
       "at": 1794517473.524127,
@@ -4369,10 +4368,6 @@
       "reason": "content_duplicate",
       "until": 1794535501.4386601
     },
-    "حمله مرگبار اسرائیل به بیمارستان ناصر در جنوب غزه": {
-      "reason": "content_duplicate",
-      "until": 1794528279.7674098
-    },
     "حمله پهپادی مجدد یمن به خط لوله نفت راهبردی عربستان": {
       "reason": "content_duplicate",
       "until": 1794544473.7235599
@@ -4381,29 +4376,13 @@
       "reason": "content_duplicate",
       "until": 1794537270.963833
     },
-    "حمله یمن به چند پایگاه و تاسیسات نفتی عربستان": {
-      "reason": "content_duplicate",
-      "until": 1794531872.4571302
-    },
     "رسانه های آمریکا: ترامپ، ونس را از مذاکره با تهران کنار گذاشت": {
       "reason": "content_duplicate",
       "until": 1794549813.034999
     },
-    "زخمی شدن شماری از خدمه نفتکش در پی حمله با پرتابه ناشناس در خلیج فارس": {
-      "reason": "content_duplicate",
-      "until": 1794522965.3551247
-    },
-    "شنیده شدن صدای انفجار در سیریک/ برخی منابع این صدا ها را ناشی از شلیک هشدار به سمت کشتی های متخلف عنوان کرده اند": {
-      "reason": "content_duplicate",
-      "until": 1794531914.24275
-    },
     "مشاور رهبری: پیام اخیر رهبر انقلاب، غیرمستقیم یعنی محدودیت برد موشک هایمان را برداشته ایم/ هر چه آمریکایی ها ادامه بدهند بیشتر در باتلاق غرق می شوند": {
       "reason": "content_duplicate",
       "until": 1794551648.7197084
-    },
-    "یک نفتکش در تنگه هرمز مورد حمله واقع شد": {
-      "reason": "content_duplicate",
-      "until": 1794528294.4823797
     }
   },
   "_event_judge_log": [
@@ -4961,20 +4940,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: اعلام فروش بازیکن در باشگاه، واکنش سرمربی",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794497628,
-      "title": "بی اطلاعی و ناراحتی تارتار از آگهی فروش محمودی؛ او بخشیده شده بود"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: نتایج کنکور در هفته آینده اعلام می‌شود",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794497630,
-      "title": "وزارت علوم: اعلام نتایج نهایی آزمون سراسری تا هفته آینده"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اخبار محصولات تجاری و پیش‌خرید فناوری ارزش خبری درجه یک ندارد",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -5519,6 +5484,20 @@
       "rule": "foreign-local-preselection",
       "t": 1794531786,
       "title": "Beau Lamarre-Condon bought sim card under pseudonym a month before alleged murders, trial hears"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Flag ceremony, local religious event, no broader impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794533601,
+      "title": "تجلی عشق به میهن و ولایت؛ اهتزاز پرچم مزین به دست خط رهبری"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: WTA Finals match, not a final or decisive result",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794533603,
+      "title": "Pegula saves match point to beat Noskova & reach WTA Finals last four"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8963,7 +8942,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794531690
+    "at": 1794533474
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8978,14 +8957,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794528800,
-    "last_failure": 1794528200,
+    "disabled_until": 1794534214,
+    "last_failure": 1794533614,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794530303.0,
-    "last_failure": 1794530003,
-    "last_status": 599
+    "disabled_until": 1794534209,
+    "last_failure": 1794533609,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
