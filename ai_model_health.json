@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794526430
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794526434
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794526434
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794526439
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794526439
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1794526443
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 10x",
-      "t": 1794526489
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1794528195
     },
@@ -159,36 +131,64 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 7x",
       "t": 1794539127
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794540886
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794540886
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1794540886
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1794540906
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794540908
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-20b",
+      "t": 1794540909
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
+      "t": 1794541083
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-12",
-      "n": 132
+      "n": 134
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-12",
-      "n": 218
+      "n": 226
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-12",
-      "n": 95
+      "n": 100
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-12",
-      "n": 95
+      "n": 100
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-13",
-      "n": 16
+      "n": 18
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-13",
-      "n": 16
+      "n": 18
     },
     "openrouter:*": {
-      "day": "2026-11-12",
-      "n": 38
+      "day": "2026-11-13",
+      "n": 1
     }
   },
   "_ai_usage": {
@@ -497,68 +497,67 @@
     "2026-11-13": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 21,
-        "ok": 21,
+        "calls": 29,
+        "ok": 29,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 5,
-        "calls": 6,
+        "429": 9,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 5,
-        "calls": 5,
+        "429": 10,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 16,
+        "calls": 18,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 12,
-        "other": 4
+        "ok": 13,
+        "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 16,
+        "calls": 18,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
-        "other": 5
+        "ok": 12,
+        "other": 6
+      },
+      "mistral:ministral-8b-latest": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 0,
+        "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 4,
-        "calls": 19,
+        "429": 9,
+        "calls": 30,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 15,
+        "ok": 21,
+        "other": 0
+      },
+      "openrouter:openrouter/free": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "اقتصاد",
-      "level": 4,
-      "t": 1794368046.44688,
-      "title": "تاثیر تنش ها بر وابستگی کشورها به سوخت",
-      "urgent": false
-    },
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1794368086.3758976,
-      "title": "ادامه مذاکرات اوکراین و روسیه با میانجی گری آمریکا در ابوظبی",
-      "urgent": false
-    },
     {
       "label": "خبر",
       "level": 4,
@@ -1180,6 +1179,13 @@
       "level": 3,
       "t": 1794539126.5054433,
       "title": "مکزیک: از ژانویه ۲۰۲۵ کاروانی از مهاجران به مرز آمریکا نرسیده است",
+      "urgent": false
+    },
+    {
+      "label": "حادثه",
+      "level": 5,
+      "t": 1794541026.2032006,
+      "title": "تصادف مینی بوس در جاده های کوهستانی نپال، ۱۰ کشته و ۵ زخمی",
       "urgent": false
     }
   ],
@@ -2487,6 +2493,12 @@
       "topic": "نظامی",
       "until": 1794553467.769182
     },
+    "v4|حسینی خراسانی: تبعیت از رهبری مسیر تداوم عزت و شکوه ملت ایران است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Political statement, no concrete decision or major impact",
+      "topic": "سیاست",
+      "until": 1794627307.9954112
+    },
     "v4|حضور معاون اجرایی رئیس جمهور در مدرسه شجره طیبه میناب": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بازدید مقام دولتی از مدرسه در میناب محلی است",
@@ -2907,12 +2919,6 @@
       "topic": "حادثه",
       "until": 1794566049.0137863
     },
-    "v4|سال ها برای مادر گریستی، امسال ما در فراق تو به روضه می نشینیم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=1 happened=True scope=iran_national: برگزاری مراسم مذهبی و سالگرد فاقد ارزش خبری است",
-      "topic": "جامعه",
-      "until": 1794540804.751615
-    },
     "v4|سال ۱۴۰۶ چند روز تعطیل رسمی دارد؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اطلاعات تقویم رسمی کشور جزو اخبار عمومی و غیر استراتژیک است.",
@@ -2967,6 +2973,12 @@
       "topic": "حادثه",
       "until": 1794623595.9830003
     },
+    "v4|سقوط مینی بوس در جاده های کوهستانی نپال؛ ۱۰ کشته و ۵ زخمی": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Accident on mountain road, 10 dead",
+      "topic": "حادثه",
+      "until": 1794627309.8598187
+    },
     "v4|سندرز: جنگ ایالات متحده با ایران بر پایه دروغ بنا شده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: اظهار نظر سناتور موضع رسمی دولت یا رئیس کشور نیست.",
@@ -3002,12 +3014,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=8 happened=True scope=world: اصابت موشک به منطقه سیریک هرمزگان در جریان جنگ منطقه‌ای",
       "topic": "نظامی",
       "until": 1794598467.6165628
-    },
-    "v4|سیلاب و آب گرفتگی خیابان های ریاض عربستان": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Floods in Riyadh, no casualties reported.",
-      "topic": "آب و هوا",
-      "until": 1794540807.8101559
     },
     "v4|شاهرخی: بیمارستان دوم میناب تا هفته دولت وارد چرخ خدمت می شود": {
       "ok": false,
@@ -3207,6 +3213,12 @@
       "topic": "فناوری",
       "until": 1794564257.5228143
     },
+    "v4|فراخوان های جهانی برای تحریم تسلیحاتی رژیم اسرائیل": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Calls for sanctions after bomb remnants found",
+      "topic": "سیاست",
+      "until": 1794627309.8731225
+    },
     "v4|فردا؛ تشییع پیکرهای ۱۱۰ شهید گمنام از دانشگاه تهران تا معراج شهدا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=local: مراسم تشییع و مناسبت‌های مذهبی و فرهنگی در اولویت خبری نیستند.",
@@ -3351,12 +3363,6 @@
       "topic": "اقتصاد",
       "until": 1794576795.0538476
     },
-    "v4|محسن رضایی: ذره ای از مواد غنی سازی شده هسته ای را از ایران خارج نخواهیم کرد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=iran_national: Iran's nuclear policy stance, no export of enriched material.",
-      "topic": "سیاست",
-      "until": 1794540807.822812
-    },
     "v4|مخابره کد اضطراری توسط هواگرد آمریکایی در نزدیکی سواحل عمان/ این هواگرد برای جابه جایی نیرو، محموله و تجهیزات ضروری میان پایگاه های ساحلی و ناو های هواپیمابر به کار گرفته می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: مخابره کد اضطراری توسط هواگرد نظامی آمریکا در منطقه حساس خلیج فارس.",
@@ -3477,12 +3483,6 @@
       "topic": "نظامی",
       "until": 1794600271.0118346
     },
-    "v4|مشکلات اقتصادی، الگوی سرقت ها را تغییر داده / سالخوردگان، طعمه جدید سارقان": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=iran_national: Economic downturn increases thefts, not a major national/international event",
-      "topic": "اقتصاد",
-      "until": 1794540805.7687564
-    },
     "v4|مطالبات یک هزار و ۲۰۰ میلیارد تومانی پیمانکاران در مسیر تکمیل بزرگراه زاهدان-خاش مانع توقف پروژه نشد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: گزارش پیشرفت یک پروژه عمرانی استانی و مطالبات پیمانکاران آن.",
@@ -3596,6 +3596,12 @@
       "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Scientific heritage, not a top-tier event.",
       "topic": "جامعه",
       "until": 1794618188.3455753
+    },
+    "v4|نامزدی ون هالن برای رهبری اکثریت مجلس سنای آمریکا": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: نامزدی سناتور آمریکایی برای رهبری اکثریت سنا",
+      "topic": "سیاست",
+      "until": 1794627306.997777
     },
     "v4|ناکامی هندبالیست های تبریزی در اصفهان": {
       "ok": false,
@@ -4113,6 +4119,12 @@
       "topic": "سیاست",
       "until": 1794585859.2739582
     },
+    "v4|کوشنر: مذاکرات آینده برای حل بحران اوکراین با مشارکت اروپایی ها گسترش می یابد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: US envoy announces expanded Ukraine talks with Europe",
+      "topic": "سیاست",
+      "until": 1794627309.8851461
+    },
     "v4|گام خراسان شمالی برای کاهش مصرف گاز با جایگزینی ۵۲ هزار بخاری پربازده": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=1 happened=True scope=local: طرح استانی تعویض بخاری‌ها یک خبر کاملاً محلی است.",
@@ -4154,6 +4166,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: رونمایی از دستاورد تکنولوژیک مهم توسط یک شرکت بزرگ جهانی",
       "topic": "فناوری",
       "until": 1794551678.845866
+    },
+    "v4|یمن: شورای ترامپ در جنایات اسرائیل همدستی می کند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Yemen condemns Israel, accuses Trump council of complicity",
+      "topic": "سیاست",
+      "until": 1794627309.8953364
     },
     "v4|یک تیم گروهک تجزیه طلب پژاک به طور کامل متلاشی شد": {
       "ok": false,
@@ -4293,7 +4311,7 @@
     },
     "ادعای ترامپ: شاید همین حالا دستور حمله نظامی به ایران را بدهم": {
       "reason": "content_duplicate",
-      "until": 1794539055.0254521
+      "until": 1794562683.5249355
     },
     "انصارالله: اجرای چند عملیات علیه زیرساخت های نظامی و نفتی عربستان/ حمله به ایستگاه پمپاژ شماره هفت در خط لوله شرق به غرب عربستان/ عملیات علیه شرکت آرامکو در ریاض، یک هواپیمای باری": {
       "reason": "content_duplicate",
@@ -4303,35 +4321,14 @@
       "reason": "content_duplicate",
       "until": 1794555221.160642
     },
-    "ترامپ باز هم ایران را به حمله نظامی تهدید کرد؛ تکرار ادعاهای همیشگی": {
-      "reason": "content_duplicate",
-      "until": 1794539013.992363
-    },
     "ثبت بیش از ۹۳۱ حمله به بخش بهداشت و درمان غزه از اکتبر ۲۰۲۳": {
       "at": 1794533654.9613843,
       "reason": "final_guard:old-event",
       "until": 1794555254.9613843
     },
-    "ثبت ۹۳۱ حمله به مراکز درمانی غزه از آغاز جنگ در اکتبر ۲۰۲۳ تاکنون": {
-      "at": 1794517473.524127,
-      "reason": "final_guard:old-event",
-      "until": 1794539073.524127
-    },
-    "جزئیات حمله به سیریک هرمزگان": {
-      "reason": "content_duplicate",
-      "until": 1794533776.535435
-    },
-    "جزئیات دیدار روسای جمهور ایران و برزیل/ پزشکیان: پیش از آغاز حملات در جنگ ۴۰ روزه، ایران در مسیر حل مسائل قرار داشت/ تهران هیچ گاه به دنبال دستیابی به سلاح هسته ای نبوده و نیست/ رژ": {
-      "reason": "content_duplicate",
-      "until": 1794535501.4386601
-    },
     "حمله پهپادی مجدد یمن به خط لوله نفت راهبردی عربستان": {
       "reason": "content_duplicate",
       "until": 1794544473.7235599
-    },
-    "حمله یمن به تاسیسات نفتی ینبع و ایستگاه پمپاژ نفت عربستان": {
-      "reason": "content_duplicate",
-      "until": 1794537270.963833
     },
     "رسانه های آمریکا: ترامپ، ونس را از مذاکره با تهران کنار گذاشت": {
       "reason": "content_duplicate",
@@ -4352,37 +4349,18 @@
     "کوشنر: آمریکا در تلاش برای انجام بزرگ ترین تبادل زندانیان در جنگ روسیه و اوکراین است": {
       "reason": "content_duplicate",
       "until": 1794560684.388209
+    },
+    "کوشنر: مذاکرات آینده برای حل بحران اوکراین با مشارکت اروپایی ها گسترش می یابد": {
+      "reason": "content_duplicate",
+      "until": 1794562517.043894
+    },
+    "یمن: شورای ترامپ در جنایات اسرائیل همدستی می کند": {
+      "at": 1794541083.5404956,
+      "reason": "final_guard:loaded-wording",
+      "until": 1794562683.5404956
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
-      "head": "حمله هوایی اسرائیل به بیمارستان ناصر در غزه پنج کشته برجا گذاشت ⚡️ بر اثر حمله هوایی اسرائیل به ساختمانی در بی",
-      "id": "1bebef514b",
-      "match": "۴ کشته و چندین نفر زخمی در بمباران مجتمع پزشکی ناصر در خان یونس",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794461710,
-      "verdict": "repeat",
-      "why": "همان حمله به بیمارستان ناصر، خان یونس"
-    },
-    {
-      "head": "انفجار دو نفتکش در تنگه هرمز ⚡️ روابط عمومی نیروی دریایی سپاه پاسداران انقلاب اسلامی از انفجار دو نفتکش در تنگ",
-      "id": "f04f711599",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794467114,
-      "verdict": "repeat",
-      "why": "same event: explosions in Hormuz Strait"
-    },
-    {
-      "head": "حسین طائب: ایران در جنگ ۴۰ روزه پایگاه دیگو گارسیا را هدف قرار داد ⚡️ حسین طائب، رئیس سازمان بسیج مستضعفین اعل",
-      "id": "86b1ec72fc",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794467163,
-      "verdict": "new",
-      "why": "جنگ ۴۰ روزه و حمله به دیگو گارسیا"
-    },
     {
       "confirm": "gemini/gemini-3.1-flash-lite:repeat",
       "head": "قالیباف: آخرین پاسخ ایران به آمریکا داده شد ⚡️ محمدباقر قالیباف اعلام کرد که ایران آخرین پاسخ خود را به آمریکا",
@@ -4903,23 +4881,38 @@
       "t": 1794539125,
       "verdict": "new",
       "why": "موضوع جدید: مهاجرت مکزیک به آمریکا"
+    },
+    {
+      "head": "تصادف مینی بوس در جاده های کوهستانی نپال، ۱۰ کشته و ۵ زخمی ⚡️ یک مینی بوس برقی در جاده های کوهستانی نپال از مس",
+      "id": "4c3eed4347",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794541025,
+      "verdict": "new",
+      "why": "جاده کوهستانی نپال، تصادف مینی بوس برقی، ۱۰ کشته و ۵ زخمی"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "ادعای ترامپ درباره حمله نظامی به ایران و کنترل تنگه هرمز ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، با ادعای از دست ر",
+      "id": "7dbc36ff2e",
+      "match": "جهش قیمت جهانی انرژی پس از اظهارات ترامپ درباره توافق با ایران",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1794541056,
+      "verdict": "repeat",
+      "why": "Another statement by Trump regarding Iran and the Strait of Hormuz."
+    },
+    {
+      "confirm": "mistral/open-mistral-nemo:repeat",
+      "head": "ادعای ترامپ درباره حمله نظامی به ایران و کنترل تنگه هرمز ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، با ادعای از دست ر",
+      "id": "7dbc36ff2e",
+      "match": "جهش قیمت جهانی انرژی پس از اظهارات ترامپ درباره توافق با ایران",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1794541082,
+      "verdict": "repeat",
+      "why": "ترامپ مجددا درباره تنگه هرمز و حمله نظامی اظهارنظر کرده است"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار استانی و نشست های مسئولان محلی اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794503027,
-      "title": "از تعیین تکلیف طرح های نیمه تمام تا چالش تأمین نیروی کار ماهر در اردبیل"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=2 happened=True scope=local: درگذشت رئیس اسبق یک دانشگاه خبر فاقد اهمیت کشوری است",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1794503042,
-      "title": "درگذشت رئیس اسبق دانشگاه علامه طباطبائی"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine religious commentary by a cleric, lacks national strategic significance.",
       "rescued": false,
@@ -5465,6 +5458,20 @@
       "rule": "no-concrete-event",
       "t": 1794539072,
       "title": "Trump moots toppling Cuba authorities before leaving office"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: نامزدی سناتور آمریکایی برای رهبری اکثریت سنا",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794540907,
+      "title": "نامزدی ون هالن برای رهبری اکثریت مجلس سنای آمریکا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Political statement, no concrete decision or major impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794540908,
+      "title": "حسینی خراسانی: تبعیت از رهبری مسیر تداوم عزت و شکوه ملت ایران است"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -5932,55 +5939,26 @@
       ],
       "t": 1794539126.492935,
       "title": "مکزیک: از ژانویه ۲۰۲۵ کاروانی از مهاجران به مرز آمریکا نرسیده است ⚡️ رئیس جمهور مکزیک اعلام کرد که از زمان بازگشت رئیس ج"
+    },
+    {
+      "h": [
+        "برق",
+        "بس",
+        "تصدف",
+        "جد",
+        "خرج",
+        "شب",
+        "مسر",
+        "من",
+        "نپل",
+        "پن",
+        "کهستن"
+      ],
+      "t": 1794541026.1828518,
+      "title": "تصادف مینی بوس در جاده های کوهستانی نپال، ۱۰ کشته و ۵ زخمی ⚡️ یک مینی بوس برقی در جاده های کوهستانی نپال از مسیر خارج شد"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "اسلم",
-        "انقلب",
-        "تنگ",
-        "ربط",
-        "عمم",
-        "نفتکش",
-        "هرمز",
-        "پسدر"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [
-        "تنگه هرمز"
-      ],
-      "regions": [
-        "hormuz"
-      ],
-      "t": 1794467114.892436,
-      "title": "انفجار دو نفتکش در تنگه هرمز ⚡️ روابط عمومی نیروی دریایی سپاه پاسداران انقلاب اسلامی از انفجار دو نفتکش در تنگه هرمز خبر",
-      "toll": 0
-    },
-    {
-      "a": [
-        "برج",
-        "خدر",
-        "دستگ",
-        "منفجر",
-        "پترزبرگ",
-        "پشکن"
-      ],
-      "cities": [
-        "سن پترزبورگ"
-      ],
-      "kind": "attack",
-      "places": [
-        "سن پترزبورگ"
-      ],
-      "regions": [
-        "russia"
-      ],
-      "t": 1794473717.7345326,
-      "title": "انفجار خودرو در سن پترزبورگ یک کشته برجای گذاشت ⚡️ یک دستگاه خودرو در منطقه پوشکین سن پترزبورگ منفجر شد.",
-      "toll": 0
-    },
     {
       "a": [
         "السف",
@@ -6092,6 +6070,23 @@
       "t": 1794512182.4007764,
       "title": "وقوع انفجار نظامی در سیریک هرمزگان ⚡️ انفجارهای متعددی در منطقه هرمز و شهرستان سیریک در شرق استان هرمزگان شنیده شد.",
       "toll": 0
+    },
+    {
+      "a": [
+        "برق",
+        "تصدف",
+        "خرج",
+        "مسر",
+        "نپل",
+        "کهستن"
+      ],
+      "cities": [],
+      "kind": "crash",
+      "places": [],
+      "regions": [],
+      "t": 1794541026.1931272,
+      "title": "تصادف مینی بوس در جاده های کوهستانی نپال، ۱۰ کشته و ۵ زخمی ⚡️ یک مینی بوس برقی در جاده های کوهستانی نپال از مسیر خارج شد",
+      "toll": 10
     }
   ],
   "_published_incidents_v2": true,
@@ -8378,6 +8373,26 @@
       "s": "مکزیک",
       "t": 1794539126.4800825,
       "title": "مکزیک: از ژانویه ۲۰۲۵ کاروانی از مهاجران به مرز آمریکا نرسیده است ⚡️ رئیس جمهور مکزیک اعلام کرد که از زمان بازگشت رئیس ج"
+    },
+    {
+      "k": [
+        "برق",
+        "بس",
+        "تصدف",
+        "جد",
+        "خرج",
+        "زخم",
+        "سقط",
+        "شب",
+        "مسر",
+        "من",
+        "نپل",
+        "پن",
+        "کشت",
+        "کهستن"
+      ],
+      "t": 1794541026.1717176,
+      "title": "تصادف مینی بوس در جاده های کوهستانی نپال، ۱۰ کشته و ۵ زخمی ⚡️ یک مینی بوس برقی در جاده های کوهستانی نپال از مسیر خارج شد"
     }
   ],
   "_telegram_errors": [
@@ -8685,7 +8700,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794538928
+    "at": 1794540772
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8699,14 +8714,18 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "last_quality_failure": 1794540929,
+    "last_status": 422
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794539656,
-    "last_failure": 1794539056,
-    "last_status": 429
+    "disabled_until": 1794541206.0,
+    "last_failure": 1794540906,
+    "last_status": 599
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794539652,
-    "last_failure": 1794539052,
+    "disabled_until": 1794541486,
+    "last_failure": 1794540886,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -8794,6 +8813,11 @@
     "last_failure": 1794378914,
     "last_status": 429
   },
+  "openrouter:ministral-8b-latest": {
+    "disabled_until": 1794541537,
+    "last_failure": 1794540937,
+    "last_status": 429
+  },
   "openrouter:mistral-small-latest": {
     "disabled_until": 1792091270,
     "last_failure": 1792090670,
@@ -8810,11 +8834,10 @@
     "last_failure": 1793975814,
     "last_status": 422
   },
-  "openrouter:openrouter/free": {
-    "disabled_until": 1794514014,
-    "last_failure": 1794513954,
-    "last_quality_failure": 1794436476,
-    "last_status": 422
+  "openrouter:open-mistral-nemo": {
+    "disabled_until": 1794541533,
+    "last_failure": 1794540933,
+    "last_status": 429
   },
   "openrouter:qwen/qwen3.8-27b:free": {
     "disabled_until": 1790400317,
