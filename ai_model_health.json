@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794523728
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794523729
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794523729
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1794523729
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1794530048
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794531786
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1794531788
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1794531810
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-12",
-      "n": 200
+      "n": 201
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-12",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-12",
-      "n": 86
+      "n": 87
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-13",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-13",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-12",
@@ -503,8 +503,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -523,16 +523,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 4,
+        "ok": 6,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
+        "ok": 6,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
@@ -1261,6 +1261,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: Violent protests and clashes during a general strike in Barcelona.",
       "topic": "حادثه",
       "until": 1794537195.9377587
+    },
+    "v4|beau lamarre-condon bought sim card under pseudonym a month before alleged murders, trial hears": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian murder trial, limited national impact",
+      "topic": "قضایی",
+      "until": 1794618186.3045192
     },
     "v4|bolivia arrests former judge on suspicion of drug trafficking": {
       "ok": false,
@@ -2246,6 +2252,12 @@
       "topic": "نظامی",
       "until": 1794560606.7851398
     },
+    "v4|ترامپ با ادعای حفاظت از متحدان آمریکا، جنگ تجاوزکارانه به ایران را توجیه کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Trump justifies war against Iran.",
+      "topic": "سیاست",
+      "until": 1794618188.356645
+    },
     "v4|ترامپ باز هم ایران را به حمله نظامی تهدید کرد؛ تکرار ادعاهای همیشگی": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تهدید رسمی رئیس‌جمهور آمریکا علیه ایران با گزینه نظامی.",
@@ -2809,6 +2821,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: Official position by Parliament Speaker on regional war and security.",
       "topic": "سیاست",
       "until": 1794553474.8045423
+    },
+    "v4|رابطه عاطفی جای چرتکه انداختن و حساب و کتاب نیست": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: Relationship advice article, no concrete event or national impact",
+      "topic": "جامعه",
+      "until": 1794618185.0147886
     },
     "v4|راهبرد چین در بحران خاورمیانه": {
       "ok": false,
@@ -3625,6 +3643,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local political gathering, no national impact",
       "topic": "سیاست",
       "until": 1794609209.3133793
+    },
+    "v4|میراث فسیلی ایران؛ گنجینه ای علمی در خدمت زمین شناسی و اکتشاف منابع طبیعی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=iran_national: Scientific heritage, not a top-tier event.",
+      "topic": "جامعه",
+      "until": 1794618188.3455753
     },
     "v4|ناکامی هندبالیست های تبریزی در اصفهان": {
       "ok": false,
@@ -4937,20 +4961,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial futsal wins, limited national relevance",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794497626,
-      "title": "۲ پیروزی خارج از خانه برای نمایندگان فوتسال خراسان جنوبی در لیگ دسته اول کشور"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Actor's death, cultural news, low national impact",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1794497627,
-      "title": "درگذشت پرویز پرورش؛ بازیگری که پس از دریافت جایزه فجر از سینما دور شد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: اعلام فروش بازیکن در باشگاه، واکنش سرمربی",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5495,6 +5505,20 @@
       "rule": "foreign-local-preselection",
       "t": 1794530007,
       "title": "Paul Barril, French ‘Supergendarme’ Turned Mercenary, Has Died"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: Relationship advice article, no concrete event or national impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1794531785,
+      "title": "رابطه عاطفی جای چرتکه انداختن و حساب و کتاب نیست"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian murder trial, limited national impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794531786,
+      "title": "Beau Lamarre-Condon bought sim card under pseudonym a month before alleged murders, trial hears"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8939,7 +8963,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794529873
+    "at": 1794531690
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8952,10 +8976,6 @@
     "last_error": "HTTP 402 payment required (no free quota on this account)",
     "last_failure": 1791935762,
     "last_status": 402
-  },
-  "gemini:gemini-3.5-flash-lite": {
-    "last_quality_failure": 1794528234,
-    "last_status": 422
   },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1794528800,
