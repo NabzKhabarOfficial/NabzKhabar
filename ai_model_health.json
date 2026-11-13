@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: no usable verdict",
-      "t": 1794521019
-    },
-    {
-      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.6-flash",
-      "t": 1794521035
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 7x",
-      "t": 1794521149
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794522808
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794522809
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794522810
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794522810
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 10x",
       "t": 1794526489
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794528195
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794528196
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1794528196
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1794528200
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1794528207
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1794528245
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-12",
-      "n": 131
+      "n": 132
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-12",
-      "n": 197
+      "n": 200
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-12",
-      "n": 87
+      "n": 88
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-12",
-      "n": 84
+      "n": 85
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-11-12",
-      "n": 90
+      "day": "2026-11-13",
+      "n": 4
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-12",
-      "n": 90
+      "day": "2026-11-13",
+      "n": 4
     },
     "openrouter:*": {
       "day": "2026-11-12",
@@ -192,105 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-11-09": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 147,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 144,
-        "other": 3
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 265,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 255,
-        "other": 10
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 53,
-        "calls": 101,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 41,
-        "other": 7
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 58,
-        "calls": 80,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
-        "other": 22
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 67,
-        "other": 23
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 60,
-        "other": 30
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 7,
-        "calls": 9,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 2,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 77,
-        "calls": 233,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 156,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 3,
-        "ok": 3,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 4,
-        "calls": 4,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.a",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 4,
-        "calls": 4,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/wo",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 0,
-        "calls": 3,
-        "ok": 3,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-3-1.7b:free": {
-        "429": 1,
-        "calls": 2,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"liquid/lfm-3-1.7b:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/worksp",
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 14,
-        "ok": 14,
-        "other": 0
-      }
-    },
     "2026-11-10": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -592,30 +493,58 @@
         "ok": 19,
         "other": 0
       }
+    },
+    "2026-11-13": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 3,
+        "ok": 3,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 4,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 3,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 4,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 3,
+        "other": 1
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 1,
+        "calls": 4,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 3,
+        "other": 0
+      }
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1794351863.6526794,
-      "title": "جیم جردن به رهبر جمهوری خواهان مجلس نمایندگان آمریکا انتخاب شد",
-      "urgent": false
-    },
-    {
-      "label": "ورزش",
-      "level": 3,
-      "t": 1794355026.456044,
-      "title": "عراق به دلیل تحریم های آمریکا از فرود هواپیمای تیم ملی فوتبال ایران جلوگیری کرد",
-      "urgent": false
-    },
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1794355380.7709315,
-      "title": "جمهوری خواهان مانع تصویب استیضاح وزیر جنگ ترامپ در مجلس نمایندگان شدند",
-      "urgent": false
-    },
     {
       "label": "سیاست",
       "level": 4,
@@ -1280,10 +1209,23 @@
       "t": 1794522845.7058501,
       "title": "ادعای ترامپ: برد موشک های ایران به اروپا و آمریکا می رسد",
       "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 4,
+      "t": 1794528224.6610441,
+      "title": "وزارت خزانه داری آمریکا کسری بودجه ۴۰۴ میلیارد دلاری را گزارش کرد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-12",
   "_editor_gate_cache": {
+    "v4|'wrong' and 'nonsense' - cummins on khawaja sandpaper claims": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Minor sports dispute, not top-tier",
+      "topic": "ورزش",
+      "until": 1794614593.9396877
+    },
     "v4|a key paris agreement goal is dead. what now?": {
       "ok": false,
       "reason": "ai openrouter/openrouter/free batch score=2 happened=False scope=world:  COP31 analysis/explainer, no concrete event",
@@ -1343,12 +1285,6 @@
       "reason": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: پیروزی تاریخی در انتخابات سنای آمریکا",
       "topic": "سیاست",
       "until": 1794531811.4118326
-    },
-    "v4|democrat scott colom wins mississippi senate race in surprise victory for party": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US Senate race, limited global impact",
-      "topic": "سیاست",
-      "until": 1794528194.766379
     },
     "v4|democrats launch nvidia investigation, write scathing letter on huang’s ‘scheme’ with trump": {
       "ok": false,
@@ -1452,6 +1388,12 @@
       "topic": "سیاست",
       "until": 1794538996.3217907
     },
+    "v4|meta's muse can now make calls on your behalf (if you have a paid subscription)": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: New AI feature, limited impact",
+      "topic": "فناوری",
+      "until": 1794614607.4676058
+    },
     "v4|mississippi elects democrat colom as state's first post-civil war black senator": {
       "ok": true,
       "reason": "ai gemini/gemini-3.8-flash batch score=7 happened=True scope=world: Historic election result: Mississippi elects first Black senator since Reconstruction.",
@@ -1512,6 +1454,12 @@
       "topic": "قضایی",
       "until": 1794612834.693057
     },
+    "v4|scandal-hit nvidia ceo jensen huang quits, plunging ai chipmaking giant into turmoil": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=9 happened=True scope=world: استعفای مدیرعامل انویدیا و بحران امنیتی فناوری",
+      "topic": "فناوری",
+      "until": 1794614605.2047768
+    },
     "v4|softbank’s billion-dollar loss may have put a cap on ai’s natural gas ambitions": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Corporate financial loss is not a top-tier global economic event.",
@@ -1547,6 +1495,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: شایعات و رسوایی‌های شخصی مقام‌های فناوری ارزش خبری درجه یک ندارد.",
       "topic": "فناوری",
       "until": 1794607414.8209066
+    },
+    "v4|tourists brave a muddy jungle trek to see a famed world war ii wreck": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=local: Adventure tourism story, limited relevance",
+      "topic": "جامعه",
+      "until": 1794614607.4961457
     },
     "v4|two dead, several injured after new york building collapses": {
       "ok": true,
@@ -2814,6 +2768,12 @@
       "topic": "قضایی",
       "until": 1794589475.2297347
     },
+    "v4|دویست و پنجاه و هفتمین شب مقاومت در شیراز؛ آمیزه اشک فاطمی و اقتدار موشکی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Local commemorative rally, no national significance",
+      "topic": "جامعه",
+      "until": 1794614607.4869854
+    },
     "v4|دیدار سفیر ایران با وزیر الجزایری با محوریت توسعه همکاری های اقتصادی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: دیدار تشریفاتی سفیر و وزیر بدون تصمیم مهم اقتصادی",
@@ -2873,6 +2833,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=iran_national: General remarks and slogans by an official on social resilience.",
       "topic": "جامعه",
       "until": 1794566066.914728
+    },
+    "v4|رسانه های آمریکا: ترامپ، ونس را از مذاکره با تهران کنار گذاشت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: US president removed negotiator from Tehran talks",
+      "topic": "سیاست",
+      "until": 1794614607.4772332
     },
     "v4|روایت بارزانی از دیدار با پزشکیان": {
       "ok": false,
@@ -3960,6 +3926,12 @@
       "topic": "جامعه",
       "until": 1794603783.6486657
     },
+    "v4|وزارت خزانه داری آمریکا از ثبت کسری بودجه بی سابقه ۴۰۴ میلیارد دلاری خبر داد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: US announces record budget deficit, global economic impact",
+      "topic": "اقتصاد",
+      "until": 1794614593.0674005
+    },
     "v4|وزارت دفاع ترکیه: چهار نظامی در سانحه سقوط بالگرد کشته شدند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Military helicopter crash with multiple fatalities is significant world news.",
@@ -4176,12 +4148,6 @@
       "topic": "اقتصاد",
       "until": 1794598437.9777842
     },
-    "v4|کمیته دوم سازمان ملل قطعنامه حاکمیت فلسطین بر منابع طبیعی خود را تصویب کرد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: پیشنویس قطعنامه‌ UN، نه تصمیم نهایی",
-      "topic": "سیاست",
-      "until": 1794528196.4674823
-    },
     "v4|کوشنر: رایزنی با اروپا درباره ساختار امنیتی این قاره آغاز شده است": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: US starts talks with Europe on security structure",
@@ -4302,12 +4268,6 @@
       "topic": "ورزش",
       "until": 1794567900.7839787
     },
-    "v4|۴ شهید و تعدادی زخمی در بمباران مجتمع پزشکی ناصر در خان یونس": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: گزارش بمباران و کشته شدن ۴ نفر در غزه",
-      "topic": "نظامی",
-      "until": 1794528196.4542096
-    },
     "v4|۴۴ کشته و زخمی طی تصادف زنجیره ای در فجیره امارات": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: تصادف سنگین با ۱۴ کشته و ۳۰ زخمی در امارات",
@@ -4360,6 +4320,10 @@
       "reason": "content_duplicate",
       "until": 1794548060.9113615
     },
+    "scandal-hit nvidia ceo jensen huang quits, plunging ai chipmaking giant into turmoil": {
+      "reason": "content_duplicate",
+      "until": 1794549845.8745167
+    },
     "ادعای ترامپ در پاسخ به اینکه «آیا برای استفاده از نیروی نظامی علیه ایران تردید خواهید کرد؟»: اگر می دیدم اوضاع در مسیر دیگری پیش می رود، این کار را انجام می دادم؛ حتی ممکن است همین": {
       "reason": "content_duplicate",
       "until": 1794545352.59473
@@ -4409,6 +4373,10 @@
       "reason": "content_duplicate",
       "until": 1794531872.4571302
     },
+    "رسانه های آمریکا: ترامپ، ونس را از مذاکره با تهران کنار گذاشت": {
+      "reason": "content_duplicate",
+      "until": 1794549813.034999
+    },
     "زخمی شدن شماری از خدمه نفتکش در پی حمله با پرتابه ناشناس در خلیج فارس": {
       "reason": "content_duplicate",
       "until": 1794522965.3551247
@@ -4423,15 +4391,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "پیروزی تاریخی دموکرات ها در انتخابات مجلس سنای میسیسیپی ⚡️ اسکات کولوم، نامزد دموکرات در یک رقابت فشرده با شکس",
-      "id": "42bb58ae07",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794445424,
-      "verdict": "new",
-      "why": "انتخابات سنای میسیسیپی، موضوع جدید"
-    },
     {
       "confirm": "gemini/gemini-3.5-flash-lite:repeat",
       "head": "فرمان آماده باش اسرائیل برای حمله احتمالی به ایران و تأکید سپاه بر توسعه موشکی ⚡️ اسرائیل به ارتش خود دستور دا",
@@ -4973,30 +4932,18 @@
       "t": 1794522844,
       "verdict": "new",
       "why": "ادعای جدید ترامپ در مورد برد موشک‌های ایران"
+    },
+    {
+      "head": "وزارت خزانه داری آمریکا کسری بودجه ۴۰۴ میلیارد دلاری را گزارش کرد ⚡️ وزارت خزانه داری آمریکا اعلام کرد که دولت",
+      "id": "6651b8c33c",
+      "match": "",
+      "model": "groq/openai/gpt-oss-20b",
+      "t": 1794528223,
+      "verdict": "new",
+      "why": "no matching event"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Anniversary speech, local reconstruction focus, not major national impact",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1794495808,
-      "title": "استاندار کرمانشاه: سرپل ذهاب نماد اراده برای ساختن دوباره است"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Statement criticizing draft law",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794495809,
-      "title": "انتقاد صادقی از جزئیات طرح «مقابله با نفوذ»"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: پروژه ورزشی محلی، هنوز در دست اجرا",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1794495811,
-      "title": "معاون استاندار: دومین میدان بزرگ سوارکاری کشور در دهکده المپیک کرمانشاه احداث می شود"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: Routine parliamentary comment on cabinet formation process, lacks strategic impact.",
       "rescued": false,
@@ -5535,47 +5482,33 @@
       "rule": "strict-source-below-importance(8<10)",
       "t": 1794526439,
       "title": "حدادعادل: امروز باید برای موفقیت رهبری و عبور کشور از شرایط دشوار دعا کنیم/ انتخاب آیت الله سیدمجتبی خامنه ای به رهبری م"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: US announces record budget deficit, global economic impact",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1794528193,
+      "title": "وزارت خزانه داری آمریکا از ثبت کسری بودجه بی سابقه ۴۰۴ میلیارد دلاری خبر داد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Minor sports dispute, not top-tier",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794528193,
+      "title": "'Wrong' and 'nonsense' - Cummins on Khawaja sandpaper claims"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=9 happened=True scope=world: استعفای مدیرعامل انویدیا و بحران امنیتی فناوری",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1794528205,
+      "title": "Scandal-hit Nvidia CEO Jensen Huang quits, plunging AI chipmaking giant into turmoil"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "است",
-        "بشتر",
-        "تنش",
-        "خرس",
-        "دچر",
-        "شدت",
-        "شمل",
-        "مزندر",
-        "هستند",
-        "وسعت",
-        "چلش",
-        "گز",
-        "گلست"
-      ],
-      "t": 1794481523.4428773,
-      "title": "۱۱ استان کشور دچار تنش گازی هستند ⚡️ بر این اساس، ۱۱ استان کشور دچار تنش گازی هستند که این چالش در استان های مازندران، خ"
-    },
-    {
-      "h": [
-        "انتخب",
-        "بزسز",
-        "دخل",
-        "در",
-        "زمن",
-        "سنتر",
-        "صحب",
-        "مسسپ",
-        "نخستن",
-        "پست"
-      ],
-      "t": 1794481580.3980484,
-      "title": "انتخاب نخستین سناتور سیاه پوست میسیسیپی پس از جنگ داخلی آمریکا ⚡️ این پیروزی، میسیسیپی را صاحب نخستین سناتور سیاه پوست خ"
-    },
     {
       "h": [
         "اسلم",
@@ -6156,6 +6089,22 @@
       ],
       "t": 1794522845.6927023,
       "title": "ادعای ترامپ: برد موشک های ایران به اروپا و آمریکا می رسد ⚡️ همچنین ترامپ ادعا کرد اروپا به دلیل فاصله جغرافیایی کمتر، پی"
+    },
+    {
+      "h": [
+        "اغز",
+        "اکتبر",
+        "بدج",
+        "خزن",
+        "در",
+        "دلر",
+        "مل",
+        "ملرد",
+        "وزرت",
+        "کسر"
+      ],
+      "t": 1794528224.6520386,
+      "title": "وزارت خزانه داری آمریکا کسری بودجه ۴۰۴ میلیارد دلاری را گزارش کرد ⚡️ وزارت خزانه داری آمریکا اعلام کرد که دولت سال مالی "
     }
   ],
   "_published_incidents": [
@@ -6320,82 +6269,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ار",
-        "ارپ",
-        "اسب",
-        "اقدم",
-        "امرک",
-        "تبع",
-        "ترخ",
-        "تمم",
-        "ثبت",
-        "جغرف",
-        "جنگ",
-        "حفظ",
-        "خصمن",
-        "خهد",
-        "دستر",
-        "دنبل",
-        "رسندن",
-        "رهبر",
-        "شندند",
-        "فرغ",
-        "متج",
-        "متجزن",
-        "محددت",
-        "محسب",
-        "محصر",
-        "محمد",
-        "مخبر",
-        "مسلت",
-        "مشر",
-        "مشرکت",
-        "معظم",
-        "مقم",
-        "ملت",
-        "منطق",
-        "هرگن",
-        "هستند",
-        "همره",
-        "پژک",
-        "کنندگ"
-      ],
-      "s": "مخبر",
-      "t": 1794396929.5869272,
-      "title": "مخبر: هرگونه همراهی در محاصره خصمانه علیه ایران، اقدامی جنگی است ⚡️ محمد مخبر، مشاور و دستیار مقام معظم رهبری، اعلام کرد"
-    },
-    {
-      "k": [
-        "اتش",
-        "اسرل",
-        "اسلم",
-        "اصل",
-        "اقدم",
-        "تررست",
-        "جنب",
-        "جنبش",
-        "جنت",
-        "حمس",
-        "حمل",
-        "خدر",
-        "خند",
-        "درخت",
-        "سختم",
-        "شهرک",
-        "فلسطن",
-        "مسلح",
-        "مقمت",
-        "نبلس",
-        "نشن",
-        "کشد",
-        "یکصد"
-      ],
-      "s": "حماس",
-      "t": 1794396964.1113715,
-      "title": "حماس: حمله شهرک نشینان به نابلس مسلح است ⚡️ جنبش مقاومت اسلامی فلسطین حمله شهرک نشینان اسرائیلی به جنوب نابلس را جنایت و"
-    },
     {
       "k": [
         "ابرز",
@@ -8732,6 +8605,41 @@
       "s": "ادعای ترامپ",
       "t": 1794522845.679131,
       "title": "ادعای ترامپ: برد موشک های ایران به اروپا و آمریکا می رسد ⚡️ همچنین ترامپ ادعا کرد اروپا به دلیل فاصله جغرافیایی کمتر، پی"
+    },
+    {
+      "k": [
+        "اصل",
+        "اغز",
+        "افزش",
+        "امرک",
+        "اکتبر",
+        "بدج",
+        "خزن",
+        "در",
+        "درصد",
+        "درمد",
+        "دلت",
+        "دلر",
+        "رقم",
+        "سبق",
+        "عمل",
+        "مل",
+        "ملرد",
+        "نسبت",
+        "هزن",
+        "همن",
+        "وزرت",
+        "چشمگر",
+        "کسر",
+        "کهش",
+        "گذشت",
+        "یفت"
+      ],
+      "n": [
+        "404"
+      ],
+      "t": 1794528224.6423194,
+      "title": "وزارت خزانه داری آمریکا کسری بودجه ۴۰۴ میلیارد دلاری را گزارش کرد ⚡️ وزارت خزانه داری آمریکا اعلام کرد که دولت سال مالی "
     }
   ],
   "_telegram_errors": [
@@ -9039,7 +8947,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794526296
+    "at": 1794528105
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9054,18 +8962,17 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1794526743.0,
-    "last_failure": 1794526443,
-    "last_status": 503
+    "last_quality_failure": 1794528234,
+    "last_status": 422
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794527021,
-    "last_failure": 1794526421,
+    "disabled_until": 1794528800,
+    "last_failure": 1794528200,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794527013,
-    "last_failure": 1794526413,
+    "disabled_until": 1794528796,
+    "last_failure": 1794528196,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -9082,10 +8989,6 @@
   },
   "groq:openai/gpt-oss-120b": {
     "last_quality_failure": 1794504246,
-    "last_status": 422
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794504249,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
