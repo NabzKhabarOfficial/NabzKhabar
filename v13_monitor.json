@@ -1,21 +1,14 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-13T13:35:11.811932+00:00",
+  "all_selected_blocked": false,
+  "ambiguous_publications": 1,
+  "checked_at": "2026-11-13T14:06:53.070799+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: یک کشته و چهار زخمی در تیراندازی محلی، خبری جهانی یا ملی نیست",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "Washington residents hold vigil after deadly shooting",
-      "url": ""
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=4 happened=True scope=world: Analysis of internal military personnel changes and political implications.",
@@ -31,77 +24,47 @@
       "source": "",
       "title": "Whatever happened to the diamond that went missing in F1 crash?",
       "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: گزارش تحلیلی و پیش‌بینی اقتصادی است و نه یک رویداد قطعی.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "جنگ در خلیج فارس؛ خسارت ۲۰۰ میلیارد دلاری و انقباض اقتصادی کشورهای عربی",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: گزارش روزنامه درباره اختلاف نظرها و گمانه‌زنی",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "اسرائیل در دوراهی جنگ با ایران؛ اختلاف نتانیاهو و ارتش",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: خبر محلی مربوط به حفاظت از منابع طبیعی در چند شهرستان است.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "عملیات مقابله با آفت لورانتوس در هزار هکتار از جنگل های بلوط کردستان آغاز شد",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: تحلیل و پیش‌بینی کارشناسی است و نه یک تصمیم یا رویداد رسمی.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "نسخه یک کارشناس برای عبور از بحران؛ تثبیت اقتصادی، مقابله با رانت و بازسازی اعتماد عمومی/ تورم احتمالا سه رقمی خواهد شد",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: دستور اداری و توصیه برای بازسازی است و نه یک رویداد عملیاتی.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "سرپرست وزارت نفت: بازسازی تأسیسات آسیب دیده صنعت نفت سرعت بخشی شود",
-      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "irna.ir",
+      "started_at": "2026-11-13T14:05:06.281708+00:00",
+      "title": "حمله ارتش یمن به تجمع افسران سعودی در عدن",
+      "url": "https://irna.ir/news/86320696/%D8%AD%D9%85%D9%84%D9%87-%D8%A7%D8%B1%D8%AA%D8%B4-%DB%8C%D9%85%D9%86-%D8%A8%D9%87-%D8%AA%D8%AC%D9%85%D8%B9-%D8%A7%D9%81%D8%B3%D8%B1%D8%A7%D9%86-%D8%B3%D8%B9%D9%88%D8%AF%DB%8C-%D8%AF%D8%B1-%D8%B9%D8%AF%D9%86"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 19,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "irna.ir",
+      "title": "حمله ارتش یمن به تجمع افسران سعودی در عدن",
+      "url": "https://irna.ir/news/86320696/%D8%AD%D9%85%D9%84%D9%87-%D8%A7%D8%B1%D8%AA%D8%B4-%DB%8C%D9%85%D9%86-%D8%A8%D9%87-%D8%AA%D8%AC%D9%85%D8%B9-%D8%A7%D9%81%D8%B3%D8%B1%D8%A7%D9%86-%D8%B3%D8%B9%D9%88%D8%AF%DB%8C-%D8%AF%D8%B1-%D8%B9%D8%AF%D9%86"
+    }
+  ],
   "no_publication_candidate": false,
-  "publication_gap": true,
-  "published": 0,
+  "publication_gap": false,
+  "published": 2,
   "run_status": "success",
-  "selected_for_publication": 10,
+  "selected_for_publication": 6,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "mehrnews.com",
-      "started_at": "2026-11-13T13:34:25.566042+00:00",
-      "title": "اذعان سنتکام به حمله پهپادی ایران به مقر نظامی آمریکا در بحرین",
-      "url": "https://mehrnews.com/news/7009706/%D8%A7%D8%B0%D8%B9%D8%A7%D9%86-%D8%B3%D9%86%D8%AA%DA%A9%D8%A7%D9%85-%D8%A8%D9%87-%D8%AD%D9%85%D9%84%D9%87-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF%DB%8C-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%A8%D9%87-%D9%85%D9%82%D8%B1-%D9%86%D8%B8%D8%A7%D9%85%DB%8C-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7-%D8%AF%D8%B1-%D8%A8%D8%AD%D8%B1%DB%8C%D9%86"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "khabaronline.ir",
-      "started_at": "2026-11-13T13:34:33.196894+00:00",
-      "title": "پاسخ کاتس به درخواست اپوزیسیون برای انجام ندادن اقدام نظامی",
-      "url": "https://khabaronline.ir/news/2301521/%D9%BE%D8%A7%D8%B3%D8%AE-%DA%A9%D8%A7%D8%AA%D8%B3-%D8%A8%D9%87-%D8%AF%D8%B1%D8%AE%D9%88%D8%A7%D8%B3%D8%AA-%D8%A7%D9%BE%D9%88%D8%B2%DB%8C%D8%B3%DB%8C%D9%88%D9%86-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%A7%D9%86%D8%AC%D8%A7%D9%85-%D9%86%D8%AF%D8%A7%D8%AF%D9%86-%D8%A7%D9%82%D8%AF%D8%A7%D9%85-%D9%86%D8%B8%D8%A7%D9%85%DB%8C"
+      "source": "bbc.co.uk",
+      "started_at": "2026-11-13T14:06:39.706972+00:00",
+      "title": "UN watchdog 'increasingly concerned' over Iran nuclear site",
+      "url": "https://bbc.co.uk/news/articles/cm75261e3pdko?at_campaign=rss&at_medium=RSS"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
