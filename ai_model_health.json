@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794690455
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794690455
-    },
-    {
-      "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.5-flash-lite",
-      "t": 1794690460
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 4x",
       "t": 1794690575
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
       "t": 1794694051
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794695583
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794695584
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1794695602
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-14",
-      "n": 99
+      "n": 100
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-14",
-      "n": 165
+      "n": 166
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-14",
-      "n": 73
+      "n": 74
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-14",
-      "n": 67
+      "n": 68
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-14",
-      "n": 87
+      "n": 89
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-14",
-      "n": 87
+      "n": 89
     },
     "openrouter:*": {
       "day": "2026-11-14",
@@ -496,29 +496,29 @@
     "2026-11-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 135,
+        "calls": 136,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 130,
+        "ok": 131,
         "other": 5
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 245,
+        "calls": 246,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 236,
-        "other": 9
+        "other": 10
       },
       "gemini:gemini-3.6-flash": {
-        "429": 53,
-        "calls": 97,
+        "429": 54,
+        "calls": 98,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 40,
         "other": 4
       },
       "gemini:gemini-3.8-flash": {
-        "429": 52,
-        "calls": 66,
+        "429": 53,
+        "calls": 67,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -526,16 +526,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 87,
+        "calls": 89,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 55,
-        "other": 32
+        "ok": 56,
+        "other": 33
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 87,
+        "calls": 89,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 52,
+        "ok": 54,
         "other": 35
       },
       "mistral:ministral-8b-latest": {
@@ -547,9 +547,9 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 67,
-        "calls": 224,
+        "calls": 225,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 157,
+        "ok": 158,
         "other": 0
       },
       "openrouter:baidu/ernie-5.5-flash-preview:free": {
@@ -1279,23 +1279,11 @@
       "topic": "نظامی",
       "until": 1794695713.9974477
     },
-    "v4|eisenkot accuses netanyahu of fueling ‘racist’ hostility against arabs": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: انتقاد تند آیزنکوت از نتانیاهو درباره اظهارات علیه اعراب",
-      "topic": "سیاست",
-      "until": 1794693822.3756871
-    },
     "v4|elon musk, other tech execs sign petition calling on nvidia to reinstate jensen huang": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: طومار اینترنتی تکنولوژی اهمیت درجه یک خبری ندارد.",
       "topic": "فناوری",
       "until": 1794780216.9632244
-    },
-    "v4|export-banned nvidia chips are behind china’s most powerful ai models — uh-oh, jensen!": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: Global-scale tech news on banned chips used in China's AI.",
-      "topic": "فناوری",
-      "until": 1794693831.1631854
     },
     "v4|faa allows flights to resume after hours-long ground stop across the us": {
       "ok": true,
@@ -1350,12 +1338,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=world: مصاحبه و بررسی زندگی شخصی و ورزشی بازیکن چلسی.",
       "topic": "ورزش",
       "until": 1794726304.3546197
-    },
-    "v4|how does a 74-year-old in argentina escape house arrest on the fifth floor?": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: Minor crime and escape story, not first-tier world news.",
-      "topic": "جامعه",
-      "until": 1794693831.173616
     },
     "v4|hungary seizes $18m cash tied to ex-orban-era minister in probe": {
       "ok": false,
@@ -2293,12 +2275,6 @@
       "topic": "حادثه",
       "until": 1794724521.5391583
     },
-    "v4|برخورد پرتابه و آتش سوزی یک کشتی در ساحل عمان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: Attack on a ship in the region is a major security event.",
-      "topic": "حادثه",
-      "until": 1794693826.7542853
-    },
     "v4|برخورد یک نفتکش با کشتی مسافربری در نیواورلئان/۳۲ نفر به بیمارستان منتقل شدند": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Ship collision with dozens hospitalized",
@@ -2899,6 +2875,12 @@
       "topic": "جامعه",
       "until": 1794729874.4984343
     },
+    "v4|خانوارهای ایرانی چند نفره شده اند؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Demographic trend, not a major concrete event",
+      "topic": "جامعه",
+      "until": 1794781984.544595
+    },
     "v4|خبرنگار الجزیره: تاکنون تصمیمی برای آغاز جنگ علیه ایران گرفته نشده/ جنگ، قطعی و اجتناب ناپذیر نیست/ مسیر دیپلماسی هنوز به پایان نرسیده و ممکن است خبرهای مثبتی در راه باشد؛ اکنون نگ": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: گزارش مهم درباره وضعیت جنگ و دیپلماسی بین ایران و آمریکا",
@@ -3072,12 +3054,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Routine cultural/propaganda activity in Tehran.",
       "topic": "جامعه",
       "until": 1794746098.1202385
-    },
-    "v4|دیوارنگاری میدان ولیعصر (عج) به رنگ هواوفضا درآمد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: Ceremony and mural unveiling, low importance PR news.",
-      "topic": "جامعه",
-      "until": 1794693831.183777
     },
     "v4|رئیس آژانس بین المللی انرژی: جهان انرژی هرگز مانند پیش از جنگ علیه ایران نخواهد بود": {
       "ok": false,
@@ -3967,6 +3943,12 @@
       "topic": "جامعه",
       "until": 1794724521.527055
     },
+    "v4|منتقد ادبی فرانسوی در اعتراض به منع معرفی کتابی درباره فلسطین از شغل خود کناره گیری می کند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Critic resigns over book ban protest",
+      "topic": "سیاست",
+      "until": 1794781985.286029
+    },
     "v4|مهلت ارسال آثار به جشنواره مونولوگ تهران تا ۳۰ آبان تمدید شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: تمدید مهلت جشنوره هنری اهمیت ملی ندارد",
@@ -4657,6 +4639,12 @@
       "topic": "فناوری",
       "until": 1794742447.4978733
     },
+    "v4|کوشنر: در تلاش برای تسهیل گفت وگوی مستقیم میان اروپا و روسیه هستم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Statement of intention, no concrete event",
+      "topic": "سیاست",
+      "until": 1794781983.707165
+    },
     "v4|کیهان: شرایط کشور بحرانی نیست، دولت آن را بحرانی نشان می دهد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=iran_national: Opinion piece and political commentary, not a concrete event.",
@@ -4854,9 +4842,8 @@
       "until": 1794699272.6549208
     },
     "‘get focused on london’: how iran’s agents attacked european targets": {
-      "at": 1794694051.853174,
-      "reason": "ai_unavailable_foreign",
-      "until": 1794695251.853174
+      "reason": "content_duplicate",
+      "until": 1794717202.01568
     }
   },
   "_event_judge_log": [
@@ -5409,20 +5396,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Statement, no concrete event",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1794666850,
-      "title": "صادقی: برخی تلاش می کنند وحدت ملی را به وحدت جناحی تقلیل دهند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=iran_national: Routine administrative news regarding retirement payments for university staff.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794666870,
-      "title": "تامین منابع پاداش پایان خدمت بیش از ۱۸۰۰ بازنشسته آموزش عالی"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=iran_national: کسب مدال طلا و برنز قهرمانی جوانان آسیا توسط پدلیست‌های ایران",
       "rescued": true,
       "rule": "below-event-threshold",
@@ -5967,6 +5940,20 @@
       "rule": "no-concrete-event",
       "t": 1794693816,
       "title": "Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Statement of intention, no concrete event",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1794695583,
+      "title": "کوشنر: در تلاش برای تسهیل گفت وگوی مستقیم میان اروپا و روسیه هستم"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Demographic trend, not a major concrete event",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794695584,
+      "title": "خانوارهای ایرانی چند نفره شده اند؟"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10187,7 +10174,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794693678
+    "at": 1794695505
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10202,19 +10189,19 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1794694125.0,
-    "last_failure": 1794693825,
+    "disabled_until": 1794695896.0,
+    "last_failure": 1794695596,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794694114.0,
-    "last_failure": 1794693814,
-    "last_status": 599
+    "disabled_until": 1794696191,
+    "last_failure": 1794695591,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794694099.0,
-    "last_failure": 1794693799,
-    "last_status": 599
+    "disabled_until": 1794696187,
+    "last_failure": 1794695587,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
