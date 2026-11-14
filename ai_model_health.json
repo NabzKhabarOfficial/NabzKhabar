@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
-      "t": 1794605654
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1794605705
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794607390
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794607390
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
       "t": 1794612986
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794614560
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794614563
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1794614669
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-13",
-      "n": 91
+      "n": 92
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-13",
-      "n": 157
+      "n": 158
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-13",
-      "n": 66
+      "n": 68
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-13",
-      "n": 58
+      "n": 60
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-11-13",
-      "n": 90
+      "day": "2026-11-14",
+      "n": 4
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-13",
-      "n": 90
+      "day": "2026-11-14",
+      "n": 4
     },
     "openrouter:*": {
       "day": "2026-11-13",
@@ -192,105 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-11-10": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 159,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 126,
-        "other": 33
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 288,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 256,
-        "other": 32
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 75,
-        "calls": 128,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 35,
-        "other": 18
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 64,
-        "calls": 104,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
-        "other": 40
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 65,
-        "other": 25
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 51,
-        "other": 39
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 21,
-        "calls": 34,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 13,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 175,
-        "calls": 365,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 190,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 7,
-        "calls": 7,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.a",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 5,
-        "calls": 5,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/wo",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-2.5-2.6b:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:liquid/lfm-3-1.7b:free": {
-        "429": 1,
-        "calls": 1,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"liquid/lfm-3-1.7b:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/worksp",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 21,
-        "ok": 21,
-        "other": 0
-      }
-    },
     "2026-11-11": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -591,23 +492,51 @@
         "ok": 18,
         "other": 0
       }
+    },
+    "2026-11-14": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 2,
+        "calls": 2,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 4,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 3,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 4,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 3,
+        "other": 1
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 1,
+        "calls": 5,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 4,
+        "other": 0
+      }
     }
   },
   "_daily_items": [
-    {
-      "label": "حادثه",
-      "level": 4,
-      "t": 1794440013.046022,
-      "title": "سقوط ارزش سهام انویدیا همزمان با احتمال برکناری جنسن هوانگ",
-      "urgent": false
-    },
-    {
-      "label": "موضع‌گیری",
-      "level": 5,
-      "t": 1794441804.4023128,
-      "title": "زلنسکی: روسیه پیشنهاد آتش بس ما را رد کرد",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1216,6 +1145,20 @@
       "t": 1794611061.0713344,
       "title": "برگزاری نشست سه جانبه ترامپ، شی و پوتین در حاشیه اجلاس اپک چین",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1794614579.6445282,
+      "title": "برخورد نفتکش و کشتی مسافربری در نیواورلئان",
+      "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 3,
+      "t": 1794614613.3762844,
+      "title": "حملات گسترده روسیه به اوکراین و پرتاب ۱۲۰۰ پهپاد از سوی کی یف",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-13",
@@ -1352,6 +1295,12 @@
       "topic": "ورزش",
       "until": 1794650701.4650004
     },
+    "v4|france edge past south africa after thriller in nations championship": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Foreign rugby result, low relevance for Iran",
+      "topic": "ورزش",
+      "until": 1794700962.1576514
+    },
     "v4|france hold nerve to edge past south africa in thriller": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: پیروزی فرانسه برابر آفریقای جنوبی در مسابقه دوستانه راگبی اهمیت جهانی ندارد",
@@ -1453,6 +1402,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر ورزشی غیرحرفه‌ای و فاقد اهمیت ملی یا بین‌المللی است.",
       "topic": "ورزش",
       "until": 1794684964.5747123
+    },
+    "v4|russia strikes targets across ukraine as kyiv launches nearly 1,200 drones": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Major drone exchange in Ukraine war",
+      "topic": "نظامی",
+      "until": 1794700963.3780746
     },
     "v4|scandal-hit nvidia ceo jensen huang quits, plunging ai chipmaking giant into turmoil": {
       "ok": true,
@@ -2119,6 +2074,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: Attack on a ship in the region is a major security event.",
       "topic": "حادثه",
       "until": 1794693826.7542853
+    },
+    "v4|برخورد یک نفتکش با کشتی مسافربری در نیواورلئان/۳۲ نفر به بیمارستان منتقل شدند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Ship collision with dozens hospitalized",
+      "topic": "حادثه",
+      "until": 1794700963.3855698
     },
     "v4|برد هفت گله هلند در لیگ ملتها/ ۳ امتیاز ارزشمند کلوپ در زمین حریف": {
       "ok": false,
@@ -3920,6 +3881,12 @@
       "topic": "سیاست",
       "until": 1794641687.9406295
     },
+    "v4|کلیدهای ارتقای هوش تجاری در بورس": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: تحقیق در مورد هوش تجاری بورس",
+      "topic": "اقتصاد",
+      "until": 1794700960.6660497
+    },
     "v4|کوشنر: آمریکا در تلاش برای انجام بزرگ ترین تبادل زندانیان در جنگ روسیه و اوکراین است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: موضع رسمی فرستاده آمریکا درباره تلاش برای تبادل زندانیان جنگ.",
@@ -3949,6 +3916,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: بسته شدن یک گذرگاه مرزی مهم تجاری با ایران به دستور بغداد.",
       "topic": "اقتصاد",
       "until": 1794665050.794656
+    },
+    "v4|گرگان در شب ۲۵۸؛ خیابان هایی که هنوز از حضور مردم گرم اند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمع مردم، بدون پیامدهای گسترده",
+      "topic": "جامعه",
+      "until": 1794700961.415072
     },
     "v4|گزارش آژانس بین المللی انرژی درباره کاهش تقاضای نفت در سال ۲۰۲۶": {
       "ok": false,
@@ -4078,10 +4051,6 @@
     }
   },
   "_editorial_blocks": {
-    "microsoft services are returning after an outage took down outlook, teams and more": {
-      "reason": "content_duplicate",
-      "until": 1794611100.525074
-    },
     "nvidia scandal fallout widens as trump's treasury secretary blames cabinet colleague": {
       "reason": "content_duplicate",
       "until": 1794621909.140914
@@ -4089,10 +4058,6 @@
     "rescue efforts under way after tanker strikes river cruise boat in us": {
       "reason": "content_duplicate",
       "until": 1794634581.4848893
-    },
-    "truck and bus crash in india’s assam state kills at least 24 people": {
-      "reason": "content_duplicate",
-      "until": 1794609312.8657794
     },
     "آمریکا از واکنش به حادثه پهپادی در پایگاهی نظامی در انگلیس خبر داد": {
       "reason": "content_duplicate",
@@ -4119,14 +4084,6 @@
       "reason": "final_guard:ai-garbled",
       "until": 1794629119.7319942
     },
-    "ترور یک مامور پلیس در خاش/مهاجمان متواری شدند": {
-      "reason": "content_duplicate",
-      "until": 1794611089.6491644
-    },
-    "تماس تلفنی ترامپ و نتانیاهو در تعطیلات آخر هفته گذشته بر سر ازسرگیری حملات نظامی علیه ایران به «یک جنگ لفظی وحشتناک همراه با فریاد زدن» تبدیل شده / نتانیاهو به شدت خواهان بازگشت به": {
-      "reason": "content_duplicate",
-      "until": 1794611062.8352034
-    },
     "حمله به مواضع نیروهای وابسته به عربستان در ۳ استان یمن": {
       "reason": "content_duplicate",
       "until": 1794623708.6477036
@@ -4135,9 +4092,10 @@
       "reason": "content_duplicate",
       "until": 1794614674.7467015
     },
-    "شهادت یکی از کارکنان انتظامی در حمله مسلحانه تروریستی در خاش": {
-      "reason": "content_duplicate",
-      "until": 1794611051.85086
+    "سپاه: ۲ نفتکش متخلف در جنوب تنگه با اصابت به مین دریایی منفجر و دچار آتش سوزی شدند": {
+      "at": 1794614669.6157362,
+      "reason": "final_guard:dangling-lead",
+      "until": 1794636269.6157362
     },
     "نشت گاز و انفجار در آرژانتین": {
       "reason": "content_duplicate",
@@ -4149,24 +4107,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "مشاور فرمانده سپاه: پایگاه های دور دست آمریکا در دایره اهداف ایران قرار گرفتند ⚡️ مشاور فرمانده کل سپاه در قرا",
-      "id": "d99fd2ffa6",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794513979,
-      "verdict": "new",
-      "why": "پایگاه‌های دور دست آمریکا در فهرست اهداف ایران"
-    },
-    {
-      "head": "ترامپ از جمهوری خواهان سنا می خواهد بودجه نظامی را پیش از بازگشت دموکرات ها تصویب کنند ⚡️ ترامپ در پیامی خواست",
-      "id": "868ec26677",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1794515706,
-      "verdict": "new",
-      "why": "This is a new political statement by Trump regarding military budget approval."
-    },
     {
       "head": "تعلیق پروازهای فرودگاه دمام و تمدید تعطیلی فرودگاه نجران در عربستان ⚡️ پروازهای فرودگاه بین المللی ملک فهد در ",
       "id": "fe50bdbd3d",
@@ -4693,30 +4633,27 @@
       "t": 1794611060,
       "verdict": "new",
       "why": "موضوع جدید: نشست سه جانبه سیاسی"
+    },
+    {
+      "head": "برخورد نفتکش و کشتی مسافربری در نیواورلئان ⚡️ یک کشتی تفریحی در پی برخورد با یک تانکر نفتکش در نیواورلئان واژگ",
+      "id": "925735fbeb",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794614570,
+      "verdict": "new",
+      "why": "موضوع جدید: تصادف کشتی در نیواورلئان"
+    },
+    {
+      "head": "حملات گسترده روسیه به اوکراین و پرتاب ۱۲۰۰ پهپاد از سوی کی یف ⚡️ روسیه در حملات روز پنجشنبه به اهدافی در سراسر",
+      "id": "3c4651da1d",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794614603,
+      "verdict": "new",
+      "why": "گزارش جدید حمله روسیه به اوکراین با پرتاب پهپاد"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آغاز ساخت یک مجموعه ورزشی محلی در سوسنگرد اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794584123,
-      "title": "عملیات ساخت مجموعه فرهنگی ورزشی سوسنگرد آغاز شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: تصادفات رانندگی استانی با آسیب‌های محدود و محلی",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1794584128,
-      "title": "مصدومیت ۱۳ نفر در سه حادثه رانندگی در اصفهان و نجف آباد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: EU seeks seat, but no concrete decision made",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1794585770,
-      "title": "Europe seeks seat at Ukraine peace talks but lacks unified voice"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: توسعه شبکه برق در قم",
       "rescued": false,
@@ -5255,57 +5192,33 @@
       "rule": "foreign-local-preselection",
       "t": 1794611018,
       "title": "France hold nerve to edge past South Africa in thriller"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: تحقیق در مورد هوش تجاری بورس",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1794614560,
+      "title": "کلیدهای ارتقای هوش تجاری در بورس"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمع مردم، بدون پیامدهای گسترده",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1794614561,
+      "title": "گرگان در شب ۲۵۸؛ خیابان هایی که هنوز از حضور مردم گرم اند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Foreign rugby result, low relevance for Iran",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794614562,
+      "title": "France edge past South Africa after thriller in Nations Championship"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "است",
-        "المندب",
-        "بب",
-        "جدد",
-        "جنب",
-        "رسدن",
-        "رقم",
-        "زدند",
-        "سحل",
-        "صنع",
-        "عدن",
-        "لحج",
-        "وقعت",
-        "پشر"
-      ],
-      "t": 1794567918.0099807,
-      "title": "پیشروی نیروهای صنعا به خط ساحلی جنوب باب المندب ⚡️ نیروهای صنعا با پیشروی در جنوب باب المندب و رسیدن به خط ساحلی میان اس"
-    },
-    {
-      "h": [
-        "برخردر",
-        "دفع",
-        "عرقچ",
-        "مسلحن",
-        "مشرع",
-        "همچن"
-      ],
-      "t": 1794569682.4040146,
-      "title": "عراقچی: ایران همچنان از حق دفاع مشروع برخوردار است ⚡️ در پی این حمله مسلحانه، ایران همچنان از حق دفاع مشروع خود برخوردار"
-    },
-    {
-      "h": [
-        "تعمل",
-        "جگزن",
-        "دپلمتک",
-        "سز",
-        "صحن",
-        "ظرف",
-        "کمن"
-      ],
-      "t": 1794569714.4202898,
-      "title": "ظریف: تعامل دیپلماتیک جایگزینی برای جنگ است، نه صحنه سازی برای کمین ⚡️ به گفته وی، تعامل دیپلماتیک جایگزینی برای جنگ است"
-    },
     {
       "h": [
         "ارشد",
@@ -5726,42 +5639,41 @@
       ],
       "t": 1794611061.0613337,
       "title": "برگزاری نشست سه جانبه ترامپ، شی و پوتین در حاشیه اجلاس اپک چین ⚡️ دونالد ترامپ، شی جینپینگ و ولادیمیر پوتین در حاشیه اجل"
+    },
+    {
+      "h": [
+        "اغز",
+        "برخرد",
+        "تفرح",
+        "تنکر",
+        "ردخن",
+        "عمل",
+        "مسفربر",
+        "نجت",
+        "نرل",
+        "نفتکش",
+        "وژگن"
+      ],
+      "t": 1794614579.6373534,
+      "title": "برخورد نفتکش و کشتی مسافربری در نیواورلئان ⚡️ یک کشتی تفریحی در پی برخورد با یک تانکر نفتکش در نیواورلئان واژگون شد و عم"
+    },
+    {
+      "h": [
+        "اهدف",
+        "بمرست",
+        "خسرت",
+        "سرسر",
+        "ورد",
+        "پرتب",
+        "پنجشنب",
+        "پهپد",
+        "گسترد"
+      ],
+      "t": 1794614613.3609986,
+      "title": "حملات گسترده روسیه به اوکراین و پرتاب ۱۲۰۰ پهپاد از سوی کی یف ⚡️ روسیه در حملات روز پنجشنبه به اهدافی در سراسر اوکراین، "
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "برق",
-        "تصدف",
-        "خرج",
-        "مسر",
-        "نپل",
-        "کهستن"
-      ],
-      "cities": [],
-      "kind": "crash",
-      "places": [],
-      "regions": [],
-      "t": 1794541026.1931272,
-      "title": "تصادف مینی بوس در جاده های کوهستانی نپال، ۱۰ کشته و ۵ زخمی ⚡️ یک مینی بوس برقی در جاده های کوهستانی نپال از مسیر خارج شد",
-      "toll": 10
-    },
-    {
-      "a": [
-        "انجمد",
-        "دنبل",
-        "عمل",
-        "مطلب",
-        "پسخگ"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1794548081.7178938,
-      "title": "افزایش مطالبات بین المللی برای تحریم اسرائیل ⚡️ این حمله به شهادت و زخمی شدن ده ها تن انجامید و مطالبات بین المللی برای ",
-      "toll": 0
-    },
     {
       "a": [
         "ارسل",
@@ -6057,63 +5969,35 @@
       "t": 1794605682.0592177,
       "title": "پناه گرفتن نظامیان آمریکایی در پایگاه نظامی انگلیس پس از فعالیت پهپادی ⚡️ شماری از نیروهای آمریکایی مستقر در پایگاه هوای",
       "toll": 0
+    },
+    {
+      "a": [
+        "اهدف",
+        "بمرست",
+        "خسرت",
+        "سرسر",
+        "ورد",
+        "پرتب",
+        "پنجشنب",
+        "گسترد"
+      ],
+      "cities": [
+        "کی یف"
+      ],
+      "kind": "attack",
+      "places": [
+        "کی یف"
+      ],
+      "regions": [
+        "ukraine"
+      ],
+      "t": 1794614613.3687212,
+      "title": "حملات گسترده روسیه به اوکراین و پرتاب ۱۲۰۰ پهپاد از سوی کی یف ⚡️ روسیه در حملات روز پنجشنبه به اهدافی در سراسر اوکراین، ",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "است",
-        "بشتر",
-        "تنش",
-        "خرس",
-        "دچر",
-        "شدت",
-        "شمل",
-        "مزندر",
-        "هستند",
-        "وسعت",
-        "چلش",
-        "کشر",
-        "گز",
-        "گلست"
-      ],
-      "t": 1794481523.4312656,
-      "title": "۱۱ استان کشور دچار تنش گازی هستند ⚡️ بر این اساس، ۱۱ استان کشور دچار تنش گازی هستند که این چالش در استان های مازندران، خ"
-    },
-    {
-      "k": [
-        "الت",
-        "امرک",
-        "انتخب",
-        "بزرگ",
-        "بزسز",
-        "بشترن",
-        "تحل",
-        "جمعت",
-        "جنگ",
-        "دخل",
-        "در",
-        "دشتن",
-        "زمن",
-        "سفدپست",
-        "سنتر",
-        "صحب",
-        "محسب",
-        "محفظ",
-        "مسسپ",
-        "نخستن",
-        "نزدک",
-        "نسل",
-        "وجد",
-        "پرز",
-        "پست",
-        "کر",
-        "کنترل"
-      ],
-      "t": 1794481580.386474,
-      "title": "انتخاب نخستین سناتور سیاه پوست میسیسیپی پس از جنگ داخلی آمریکا ⚡️ این پیروزی، میسیسیپی را صاحب نخستین سناتور سیاه پوست خ"
-    },
     {
       "k": [
         "اسرل",
@@ -8757,6 +8641,52 @@
       ],
       "t": 1794611061.0513036,
       "title": "برگزاری نشست سه جانبه ترامپ، شی و پوتین در حاشیه اجلاس اپک چین ⚡️ دونالد ترامپ، شی جینپینگ و ولادیمیر پوتین در حاشیه اجل"
+    },
+    {
+      "k": [
+        "اغز",
+        "برخرد",
+        "تفرح",
+        "تنکر",
+        "ردخن",
+        "عمل",
+        "مسفربر",
+        "نجت",
+        "نرل",
+        "نفتکش",
+        "وژگن",
+        "کشت"
+      ],
+      "t": 1794614579.6294992,
+      "title": "برخورد نفتکش و کشتی مسافربری در نیواورلئان ⚡️ یک کشتی تفریحی در پی برخورد با یک تانکر نفتکش در نیواورلئان واژگون شد و عم"
+    },
+    {
+      "k": [
+        "اغز",
+        "اهدف",
+        "اکرن",
+        "بزرگ",
+        "بمرست",
+        "ترن",
+        "تهجم",
+        "حمل",
+        "خسرت",
+        "رس",
+        "زمن",
+        "سرسر",
+        "عمل",
+        "مضع",
+        "نزدک",
+        "ورد",
+        "پرتب",
+        "پنجشنب",
+        "پهپد",
+        "کشر",
+        "گسترد",
+        "یک"
+      ],
+      "t": 1794614613.3531837,
+      "title": "حملات گسترده روسیه به اوکراین و پرتاب ۱۲۰۰ پهپاد از سوی کی یف ⚡️ روسیه در حملات روز پنجشنبه به اهدافی در سراسر اوکراین، "
     }
   ],
   "_telegram_errors": [
@@ -9088,7 +9018,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794612810
+    "at": 1794614473
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9102,14 +9032,9 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1794613276.0,
-    "last_failure": 1794612976,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794613559,
-    "last_failure": 1794612959,
+    "disabled_until": 1794615195,
+    "last_failure": 1794614595,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
@@ -9131,10 +9056,6 @@
   },
   "groq:openai/gpt-oss-120b": {
     "last_quality_failure": 1794573385,
-    "last_status": 422
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794573387,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
