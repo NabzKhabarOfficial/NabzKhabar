@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794691998
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794691998
-    },
-    {
-      "e": "EDITOR BATCH mistral/open-mistral-nemo: HTTP 429: {\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-      "t": 1794692002
-    },
-    {
-      "e": "EDITOR BATCH openrouter/openrouter/free: no usable verdict",
-      "t": 1794692018
-    },
-    {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-26b-a4b-it:free: HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry sh",
-      "t": 1794692018
-    },
-    {
-      "e": "EDITOR BATCH openrouter/google/gemma-4-31b-it:free: HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortl",
-      "t": 1794692018
-    },
-    {
       "e": "EDITOR BATCH: no verdict for 6 stories",
       "t": 1794692018
     },
@@ -159,24 +135,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
       "t": 1794697421
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794699162
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794699162
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1794699177
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794699180
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794699180
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 6x",
+      "t": 1794699221
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-14",
-      "n": 101
+      "n": 104
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-14",
-      "n": 174
+      "n": 177
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-14",
-      "n": 76
+      "n": 79
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-14",
-      "n": 70
+      "n": 72
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-14",
@@ -496,29 +496,29 @@
     "2026-11-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 137,
+        "calls": 140,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 132,
+        "ok": 135,
         "other": 5
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 254,
+        "calls": 257,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 244,
+        "ok": 247,
         "other": 10
       },
       "gemini:gemini-3.6-flash": {
-        "429": 55,
-        "calls": 100,
+        "429": 57,
+        "calls": 103,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 41,
+        "ok": 42,
         "other": 4
       },
       "gemini:gemini-3.8-flash": {
-        "429": 54,
-        "calls": 69,
+        "429": 55,
+        "calls": 70,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -546,10 +546,10 @@
         "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 68,
-        "calls": 228,
+        "429": 69,
+        "calls": 231,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 160,
+        "ok": 162,
         "other": 0
       },
       "openrouter:baidu/ernie-5.5-flash-preview:free": {
@@ -1301,23 +1301,11 @@
       "topic": "ورزش",
       "until": 1794700962.1576514
     },
-    "v4|france hold nerve to edge past south africa in thriller": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: پیروزی فرانسه برابر آفریقای جنوبی در مسابقه دوستانه راگبی اهمیت جهانی ندارد",
-      "topic": "ورزش",
-      "until": 1794697418.8013911
-    },
     "v4|german spies granted sweeping new powers": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: Major legislative decision by a national parliament granting sweeping new powers to spies.",
       "topic": "سیاست",
       "until": 1794719103.1193624
-    },
-    "v4|goalkeeper involved in fatal collision gets 12-game ban": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Disciplinary action in sports is not a first-tier news story.",
-      "topic": "ورزش",
-      "until": 1794697426.3988185
     },
     "v4|how a reunion with scout bompastor solved chelsea's striker issue": {
       "ok": false,
@@ -1474,6 +1462,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major disruption affecting 1.5 million passengers and international air travel.",
       "topic": "جامعه",
       "until": 1794731691.0175846
+    },
+    "v4|us flights resume after ageing technology blamed for outage": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: Major disruption to US aviation system affecting thousands of flights.",
+      "topic": "فناوری",
+      "until": 1794785587.5380316
     },
     "v4|us flights resume after faa lifts hours-long nationwide ground stop": {
       "ok": true,
@@ -2003,12 +1997,6 @@
       "topic": "فناوری",
       "until": 1794726279.739503
     },
-    "v4|امیدواری سازمان ملل به میانجی گری برای توافق مسالمت آمیز ایران و آمریکا": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Routine diplomatic expression of hope without concrete action or decision.",
-      "topic": "سیاست",
-      "until": 1794697426.3891792
-    },
     "v4|انتخابات ۲ فدراسیون، تافته جدا بافته!": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=iran_national: تصمیم وزارت ورزش درباره فدراسیون‌ها، خبر ورزشی سطح پایین است.",
@@ -2452,6 +2440,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: مشکل زیست‌محیطی محلی و اخطاریه اداره محیط زیست در شادگان.",
       "topic": "جامعه",
       "until": 1794722710.7145755
+    },
+    "v4|تداوم اختلال گسترده در آسمان آمریکا؛ لغو و تاخیر بیش از ۱۱ هزار پرواز در دومین روز": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: اختلال گسترده و لغو بیش از ۱۱ هزار پرواز در آمریکا",
+      "topic": "حادثه",
+      "until": 1794785580.0165255
     },
     "v4|تدوین الگوی آموزش مدارس حتی در شرایط جنگی/ پیش بینی آموزش متناسب با سطح تهدید": {
       "ok": false,
@@ -3365,12 +3359,6 @@
       "topic": "نظامی",
       "until": 1794735227.5912912
     },
-    "v4|سی ان ان: گزارش های اولیه حاکی از آن است که هیچ حمله سایبری علیه سامانه ناوبری هوایی آمریکا صورت نگرفته": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: تکذیب حمله سایبری به سامانه ناوبری هوایی آمریکا توسط سی ان ان",
-      "topic": "فناوری",
-      "until": 1794697413.2582972
-    },
     "v4|سیلوا: به خاطر نبود رونالدو ناراحتم/ بار سنگینی روی شانه هایم هست": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=world: مصاحبه و اظهارات روتین بازیکن فوتبال؛ فاقد اهمیت خبری ملی یا جهانی.",
@@ -3935,12 +3923,6 @@
       "topic": "جامعه",
       "until": 1794715480.24592
     },
-    "v4|موشک بالستیک سپاه در اجتماع شبانه مردم شیراز": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: Public display or gathering is not a strategic military event.",
-      "topic": "نظامی",
-      "until": 1794697426.4085023
-    },
     "v4|موضع ترامپ و مقام های دولت آمریکا نسبت به لغو پروازهای آمریکا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: واکنش مقامات آمریکایی به لغو پروازها فاقد جزئیات مشخص است.",
@@ -4096,12 +4078,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative report on future policy, not an official government announcement.",
       "topic": "سیاست",
       "until": 1794751490.5286798
-    },
-    "v4|نیویورک پست: ترامپ، شی و پوتین پنجشنبه در چین، دیدار سه جانبه برگزار می کنند / ممکن است در این دیدار جنگ علیه ایران نیز مورد بحث قرار گیرد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: High-level trilateral meeting between world leaders regarding major geopolitical conflict.",
-      "topic": "سیاست",
-      "until": 1794697426.3795166
     },
     "v4|هاشمی نخل ابراهیمی: مدارس فرسوده بشاگرد نیازمند بازسازی فوری هستند": {
       "ok": false,
@@ -4264,12 +4240,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: نظر و توییت یک مقام سابق، رویداد ملموس محسوب نمی‌شود.",
       "topic": "سیاست",
       "until": 1794717220.720338
-    },
-    "v4|وزیر امنیت داخلی آمریکا: دلیل توقف پروازها، یک ۱۱ سپتامبر دیگر نیست؛ آنچه رخ داده، قطعی در شبکه مخابراتی است/ اتفاقی که برای سومین بار از زمان حوادث ۱۱ سپتامبر ۲۰۰۱ رخ می دهد؛ دستو": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Major disruption to US aviation infrastructure is a significant global event.",
-      "topic": "فناوری",
-      "until": 1794697426.3678644
     },
     "v4|وزیر امنیت داخلی آمریکا: هیچ مدرکی دال بر حمله عمدی به سامانه ارتباطی هوانوردی وجود ندارد": {
       "ok": false,
@@ -4815,6 +4785,10 @@
       "reason": "content_duplicate",
       "until": 1794713733.4052465
     },
+    "us flights resume after ageing technology blamed for outage": {
+      "reason": "content_duplicate",
+      "until": 1794720821.8153787
+    },
     "ادامه لغو پروازهای شرکت های هواپیمایی مهم در آمریکا": {
       "reason": "content_duplicate",
       "until": 1794697513.7545815
@@ -4827,9 +4801,17 @@
       "reason": "content_duplicate",
       "until": 1794712150.2580438
     },
+    "تداوم اختلال گسترده در آسمان آمریکا؛ لغو و تاخیر بیش از ۱۱ هزار پرواز در دومین روز": {
+      "reason": "content_duplicate",
+      "until": 1794720807.1892276
+    },
     "جزئیات واژگونی مرگبار اتوبوس در ایلام از زبان فراجا / ۷ کشته و ۲۵ مصدوم": {
       "reason": "content_duplicate",
       "until": 1794704599.0978918
+    },
+    "حمله عربستان به محله ای در یمن": {
+      "reason": "content_duplicate",
+      "until": 1794720797.6722813
     },
     "حمله پهپادی یمن به جده": {
       "reason": "content_duplicate",
@@ -5398,13 +5380,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: نفوذ نظامیان صهیونیست به خاک سوریه رویدادی مهم و امنیتی است.",
-      "rescued": true,
-      "rule": "no-concrete-event",
-      "t": 1794668644,
-      "title": "نفوذ نیروهای صهیونیست به حومه قنیطره با ۶ خودروی نظامی"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Officially scheduled trilateral summit, significant diplomatic development",
       "rescued": true,
       "rule": "routine-statement",
@@ -5956,6 +5931,13 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1794697376,
       "title": "زیارت پرچم متبرک با دستخط رهبر انقلاب در موج ۲۵۹ تجمعات گنبدکاووس"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=8 happened=True scope=world: اختلال گسترده و لغو بیش از ۱۱ هزار پرواز در آمریکا",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1794699180,
+      "title": "تداوم اختلال گسترده در آسمان آمریکا؛ لغو و تاخیر بیش از ۱۱ هزار پرواز در دومین روز"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10109,7 +10091,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794697277
+    "at": 1794699086
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10123,15 +10105,19 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "last_quality_failure": 1794699200,
+    "last_status": 422
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794697967,
-    "last_failure": 1794697367,
+    "disabled_until": 1794699791,
+    "last_failure": 1794699191,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794697660.0,
-    "last_failure": 1794697360,
-    "last_status": 503
+    "disabled_until": 1794699478,
+    "last_failure": 1794699177,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
