@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794693784
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794693784
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794693784
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
       "t": 1794693799
     },
@@ -159,6 +147,18 @@
     {
       "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
       "t": 1794708167
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794709947
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1794709949
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1794709961
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-14",
-      "n": 184
+      "n": 185
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-14",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-14",
-      "n": 81
+      "n": 82
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-15",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-15",
-      "n": 10
+      "n": 13
     },
     "openrouter:*": {
       "day": "2026-11-14",
@@ -495,8 +495,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -508,24 +508,25 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 6,
-        "calls": 6,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 0
+        "other": 1
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 11,
+        "ok": 13,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 13,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
-        "other": 5
+        "ok": 7,
+        "other": 6
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1298,6 +1299,12 @@
       "topic": "نظامی",
       "until": 1794792762.929675
     },
+    "v4|katherine deves among four nsw upper house candidates revealed by one nation": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: کاندیداتوری محلی است، تأثیر محدود",
+      "topic": "سیاست",
+      "until": 1794796347.6490128
+    },
     "v4|macron says limiting ukraine aid would pave way to 'another war'": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official position by a head of state on the Ukraine war.",
@@ -1309,12 +1316,6 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Tech outage restoration, not top-tier news",
       "topic": "فناوری",
       "until": 1794790706.2340698
-    },
-    "v4|microsoft services begin recovering after global outage": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اختلال و بازیابی سراسری سرویس‌های مایکروسافت در سطح جهان.",
-      "topic": "فناوری",
-      "until": 1794708219.638622
     },
     "v4|microsoft ‘deeply sorry’ for global disruption that could have billion-dollar impact on australia": {
       "ok": true,
@@ -1724,12 +1725,6 @@
       "topic": "حادثه",
       "until": 1794769389.6397543
     },
-    "v4|ادعای وزیر امنیت آمریکا: نشانه ای از حمله سایبری وجود ندارد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: موضع‌گیری رسمی وزیر آمریکایی درباره عدم وجود حمله سایبری در اختلال پروازها",
-      "topic": "فناوری",
-      "until": 1794708212.6329627
-    },
     "v4|ادعای وزیر خارجه آمریکا: فشار اقتصادی ای که ما بر ایران وارد می کنیم، آن قدر شدید است که دیگر نیازی به اقدام نظامی نیست/ می دانم که جنگ محبوبیت ندارد؛ باور کنید هیچ جنگی محبوب نیست": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اظهارات رسمی وزیر خارجه آمریکا درباره فشار اقتصادی بر ایران",
@@ -1771,6 +1766,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: شهادت یک ورزشکار و پاسدار در درگیری امنیتی راسک.",
       "topic": "نظامی",
       "until": 1794764036.1476445
+    },
+    "v4|از نشست سه جانبه پوتین، شی و ترامپ انتظار چه چیزی را داشته باشیم / از رویای مهار هسته ای پکن تا بن بست جنگ ایران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Planned trilateral meeting, no outcome yet",
+      "topic": "سیاست",
+      "until": 1794796349.239101
     },
     "v4|استاندار ایلام برای امدادرسانی فوری به مصدومان واژگونی اتوبوس دستور داد": {
       "ok": false,
@@ -2252,12 +2253,6 @@
       "topic": "جامعه",
       "until": 1794733451.356724
     },
-    "v4|بلوک با زلزله ۳.۸ و قلعه رییسی با زلزله ۳.۲ لرزیدند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: زلزله‌های خفیف محلی و بدون خسارت.",
-      "topic": "آب و هوا",
-      "until": 1794708219.628374
-    },
     "v4|بلینکن: ایران بعد از جنگ از موقعیت قدرتمندتری در منطقه برخوردار شده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: اظهارنظر مقام سابق آمریکایی تحلیل و موضع‌گیری غیر‌استراتژیک فوری محسوب می‌شود.",
@@ -2545,12 +2540,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اعلام راه های دسترسی به کیفیت هوای تهران خبری محلی است.",
       "topic": "آب و هوا",
       "until": 1794726298.7988174
-    },
-    "v4|توئیت حسام الدین آشنا با هشتگ «نفوذ»: در این کشور کسانی هستند که به هزینه مجلس در ماه های آخر دوره رئیس جمهور آمریکا به او پاس گل می دهند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: نظر و توییت یک مقام سابق درباره سیاست داخلی.",
-      "topic": "سیاست",
-      "until": 1794708215.3251529
     },
     "v4|توافق ایران و دانشگاه پاپی آنتونیانوم برای گسترش همکاری های علمی و دینی": {
       "ok": false,
@@ -3608,12 +3597,6 @@
       "topic": "نظامی",
       "until": 1794765879.9604495
     },
-    "v4|لغو برخی محدودیت های پروازی آمریکا / وزیر آمریکایی: سیستم ناوبری ما بسیار کهنه است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: US lifts flight limits, routine transport announcement",
-      "topic": "اقتصاد",
-      "until": 1794708213.7376883
-    },
     "v4|لغو بیش از ۲۵۰۰ پرواز در آمریکا در روز شنبه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=world: لغو گسترده بیش از ۲۵۰۰ پرواز در آمریکا",
@@ -4214,12 +4197,6 @@
       "topic": "سیاست",
       "until": 1794728111.511
     },
-    "v4|وضعیت اضطراری در شبکه هوانوردی آمریکا؛ ترامپ احتمال حمله سایبری یا هوش مصنوعی را رد کرد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اختلال گسترده در شبکه هوانوردی آمریکا و موضع‌گیری رئیس‌جمهور.",
-      "topic": "فناوری",
-      "until": 1794708219.6480267
-    },
     "v4|وقتی تاد هم نتوانست موشک ایرانی را رهگیری کند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Historical commentary and analysis of past events.",
@@ -4243,6 +4220,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=0 happened=True scope=local: Lifestyle and nature-related human interest content.",
       "topic": "جامعه",
       "until": 1794724525.817129
+    },
+    "v4|وقوع چند انفجار در پایتخت عربستان": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Explosions in Riyadh by Yemeni forces",
+      "topic": "حادثه",
+      "until": 1794796349.2505274
     },
     "v4|ولی نصر، مشاور پیشین اوباما: تصمیم گیری مهم در ارتباط با جنگ ایران، در نشست سه جانبه ترامپ، شی و پوتین اتفاق خواهد افتاد": {
       "ok": false,
@@ -4591,6 +4574,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Weak regulation hampers online business growth",
       "topic": "اقتصاد",
       "until": 1794783758.8714526
+    },
+    "v4|۱۰ غذای سالم که انرژی را افزایش می دهند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Health advice article, not a news event",
+      "topic": "سلامت",
+      "until": 1794796346.920842
     },
     "v4|۱۰ هزار لیتر گازوئیل قاچاق در مرزهای آبی بوشهر کشف شد": {
       "ok": false,
@@ -5286,20 +5275,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=iran_national: قرار دادگاه تهران برای پرونده جنگی آمریکا",
-      "rescued": true,
-      "rule": "final-scope-preselection",
-      "t": 1794672218,
-      "title": "پرونده جنایت جنگی شهدای چاه تنگوی قشم تا ۲ روز آینده به دادسرای تهران ارسال می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اعلام تاریخ نشست سه جانبه سران روسیه، چین و آمریکا",
-      "rescued": true,
-      "rule": "routine-statement",
-      "t": 1794672223,
-      "title": "کرملین تاریخ دیدار پوتین ـ شی ـ ترامپ را اعلام کرد"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: یورش پلیس فرانسه به معترضان مردمی در چند شهر",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5844,6 +5819,20 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1794704304,
       "title": "گردان های القسام شهادت فرمانده خود را تأیید کرد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Health advice article, not a news event",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1794709946,
+      "title": "۱۰ غذای سالم که انرژی را افزایش می دهند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: کاندیداتوری محلی است، تأثیر محدود",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794709947,
+      "title": "Katherine Deves among four NSW upper house candidates revealed by One Nation"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9925,7 +9914,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794708079
+    "at": 1794709866
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9943,19 +9932,15 @@
     "last_quality_failure": 1794701000,
     "last_status": 422
   },
-  "gemini:gemini-3.5-flash-lite": {
-    "last_quality_failure": 1794706386,
-    "last_status": 422
-  },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1794706446,
     "last_failure": 1794706386,
     "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794706970,
-    "last_failure": 1794706370,
-    "last_status": 429
+    "disabled_until": 1794710256.0,
+    "last_failure": 1794709956,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9968,10 +9953,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794706370,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
