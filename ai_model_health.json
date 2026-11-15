@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 13x, groq:openai/gpt-oss-20b held 13x",
-      "t": 1794692133
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1794693782
     },
@@ -159,32 +155,36 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1794704597
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1794706404
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-14",
-      "n": 107
+      "n": 108
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-14",
-      "n": 183
+      "n": 184
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-14",
-      "n": 81
+      "n": 82
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-14",
-      "n": 80
+      "n": 81
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-15",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-15",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-14",
@@ -495,42 +495,42 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 1,
-        "calls": 2,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 1,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 5,
-        "calls": 5,
+        "429": 6,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 7,
+        "ok": 9,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 4
+        "ok": 5,
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       }
     }
@@ -1292,6 +1292,12 @@
       "topic": "سیاست",
       "until": 1794787379.3793552
     },
+    "v4|israeli air strike kills senior hamas commander in gaza": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Major war casualty affecting Israel‑Gaza conflict dynamics",
+      "topic": "نظامی",
+      "until": 1794792762.929675
+    },
     "v4|macron says limiting ukraine aid would pave way to 'another war'": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official position by a head of state on the Ukraine war.",
@@ -1459,12 +1465,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major business/political fallout involving a global tech leader.",
       "topic": "فناوری",
       "until": 1794764041.4208179
-    },
-    "v4|what we know about china's military exercises around taiwan": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و بررسی رزمایش نظامی چین و تایوان",
-      "topic": "نظامی",
-      "until": 1794704627.9915357
     },
     "v4|«آن سوی آوار»؛ روایتی از دانشمندان هسته ای در دل جنگ": {
       "ok": false,
@@ -2713,12 +2713,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: حملات نظامی و تنش در منطقه خاورمیانه",
       "topic": "نظامی",
       "until": 1794724516.5742724
-    },
-    "v4|حملات روسیه به اوکراین سه کشته و بیش از ۵۰ زخمی بر جای گذاشت": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حملات موشکی روسیه به اوکراین با ۳ کشته و ۵۰ زخمی",
-      "topic": "حادثه",
-      "until": 1794704628.0037158
     },
     "v4|حملات هوایی و توپخانه ای عربستان به مناطق مختلف صعده یمن": {
       "ok": true,
@@ -4130,12 +4124,6 @@
       "topic": "حادثه",
       "until": 1794761608.0539887
     },
-    "v4|واکنش ترامپ به زمینگیر شدن پروازها در فرودگاه های آمریکا": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: US flight delays, low impact",
-      "topic": "سیاست",
-      "until": 1794704611.6547074
-    },
     "v4|واکنش ترامپ و مقامات واشنگتن به لغو پروازها در سراسر آمریکا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: واکنش‌های سیاسی به یک اختلال فنی، فاقد اهمیت راهبردی یا بحران کلان است.",
@@ -4153,12 +4141,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: public reaction, no concrete event",
       "topic": "سیاست",
       "until": 1794761577.3485727
-    },
-    "v4|واکنش نیروی هوایی آمریکا به فعالیت مشکوک پهپادی بر فراز پایگاه نظامی در انگلیس": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: واکنش ارتش آمریکا به فعالیت پهپادی مشکوک در انگلیس",
-      "topic": "نظامی",
-      "until": 1794704628.0157156
     },
     "v4|واکنش همتی به اظهارات جدید بسنت: جوجه را آخر پاییز بشمارید!": {
       "ok": false,
@@ -4189,12 +4171,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: نظر و توییت یک مقام سابق، رویداد ملموس محسوب نمی‌شود.",
       "topic": "سیاست",
       "until": 1794717220.720338
-    },
-    "v4|وزیر امنیت داخلی آمریکا: هیچ مدرکی دال بر حمله عمدی به سامانه ارتباطی هوانوردی وجود ندارد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=world: اعلام مقام ارشد آمریکا درباره علت توقف پروازهای این کشور",
-      "topic": "فناوری",
-      "until": 1794704623.1935096
     },
     "v4|وزیر حمل و نقل آمریکا: فناوری قدیمی عامل توقف سراسری پروازها بود": {
       "ok": true,
@@ -4622,12 +4598,6 @@
       "topic": "اقتصاد",
       "until": 1794783758.8714526
     },
-    "v4|یک کارشناس طلا: طلای سپرده گذاری شده در بانک ها می تواند وارد چرخه تولید شود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Expert suggests using bank gold for production",
-      "topic": "اقتصاد",
-      "until": 1794704624.0847244
-    },
     "v4|۱۰ هزار لیتر گازوئیل قاچاق در مرزهای آبی بوشهر کشف شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Routine local smuggling seizure, lacks national economic significance.",
@@ -4711,12 +4681,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: خبر استانی و محلی مربوط به تعمیر تجهیزات مخابراتی.",
       "topic": "جامعه",
       "until": 1794760456.5267408
-    },
-    "v4|‘get focused on london’: how iran’s agents attacked european targets": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: گزارش تحقیقی درباره حملات عوامل ایران در اروپا و بریتانیا",
-      "topic": "نظامی",
-      "until": 1794704627.979029
     }
   },
   "_editorial_blocks": {
@@ -4728,6 +4692,10 @@
       "at": 1794701051.7449358,
       "reason": "final_guard:ai-contradiction",
       "until": 1794722651.7449358
+    },
+    "israeli air strike kills senior hamas commander in gaza": {
+      "reason": "content_duplicate",
+      "until": 1794728004.63488
     },
     "macron says limiting ukraine aid would pave way to 'another war'": {
       "reason": "content_duplicate",
@@ -9963,7 +9931,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794704486
+    "at": 1794706277
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9981,14 +9949,18 @@
     "last_quality_failure": 1794701000,
     "last_status": 422
   },
+  "gemini:gemini-3.5-flash-lite": {
+    "last_quality_failure": 1794706386,
+    "last_status": 422
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794701595,
-    "last_failure": 1794700995,
-    "last_status": 429
+    "disabled_until": 1794706446,
+    "last_failure": 1794706386,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794705192,
-    "last_failure": 1794704592,
+    "disabled_until": 1794706970,
+    "last_failure": 1794706370,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
@@ -10003,8 +9975,8 @@
     "last_failure": 1791936876,
     "last_status": 599
   },
-  "groq:openai/gpt-oss-120b": {
-    "last_quality_failure": 1794700985,
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1794706370,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
