@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794693782
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794693784
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1794706404
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794708167
     }
   ],
   "_ai_pace": {
@@ -180,7 +180,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-15",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-15",
@@ -515,9 +515,9 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 9,
+        "ok": 11,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
@@ -2960,12 +2960,6 @@
       "topic": "سیاست",
       "until": 1794780184.122262
     },
-    "v4|دیابت پنهان در کمین ۲۵۲ میلیون نفر": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: Statistical health issue, no concrete event occurred",
-      "topic": "سلامت",
-      "until": 1794706405.4804
-    },
     "v4|دیدار مادر و جوان مفقودشده پس از ۱۸ سال": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: خبر عاطفی و محلی پیدا شدن فرد مفقودشده.",
@@ -2977,6 +2971,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Routine cultural/propaganda activity in Tehran.",
       "topic": "جامعه",
       "until": 1794746098.1202385
+    },
+    "v4|ذات الریه همچنان از علل اصلی مرگ های قابل پیشگیری / مصرف خودسرانه آنتی بیوتیک ممنوع": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=iran_national: Health ministry warning, not a concrete event",
+      "topic": "سلامت",
+      "until": 1794794567.4825544
     },
     "v4|رئیس آژانس بین المللی انرژی: جهان انرژی هرگز مانند پیش از جنگ علیه ایران نخواهد بود": {
       "ok": false,
@@ -3530,6 +3530,12 @@
       "topic": "جامعه",
       "until": 1794735227.5507956
     },
+    "v4|فعال شدن آژیرهای خطر در بحرین": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Sirens activation in Bahrain, no confirmed attack",
+      "topic": "امنیت",
+      "until": 1794794567.4675436
+    },
     "v4|فعالیت مشکوک پهپادها بر فراز پایگاه آمریکایی در بریتانیا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: رویداد امنیتی پیرامون پایگاه نظامی آمریکا",
@@ -3986,12 +3992,6 @@
       "topic": "سیاست",
       "until": 1794774796.4184082
     },
-    "v4|نماینده مجلس: پارسال با حذف ارز ۲۸ هزار و ۵۰۰ تومانی حدود ۱۰ میلیون از جیب هر ایرانی برداشتند و تنها یک میلیون تومان کالابرگ دادند/ این یعنی فقیرسازی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: politician's criticism, not official decision",
-      "topic": "اقتصاد",
-      "until": 1794706408.0546048
-    },
     "v4|نماینده پیشین کنگره آمریکا: پایان امپراتوری ایالات متحده حتمی است": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Former congressman's opinion, no official decision, low impact",
@@ -4213,12 +4213,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Speculative analysis by an academic, not an official policy decision.",
       "topic": "سیاست",
       "until": 1794728111.511
-    },
-    "v4|وضعیت اضطراری در شبکه هوانوردی آمریکا و توقف هزاران پرواز/زمان رفع اختلال نامعلوم": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=4 happened=True scope=world: major US flight disruption, no deaths",
-      "topic": "اقتصاد",
-      "until": 1794706408.0421798
     },
     "v4|وضعیت اضطراری در شبکه هوانوردی آمریکا؛ ترامپ احتمال حمله سایبری یا هوش مصنوعی را رد کرد": {
       "ok": true,
@@ -9931,7 +9925,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794706277
+    "at": 1794708079
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
