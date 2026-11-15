@@ -2,18 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794692018
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794692018
-    },
-    {
-      "e": "EDITOR GATE openrouter/openrouter/free: no usable verdict",
-      "t": 1794692021
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794692024
     },
     {
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 1x",
       "t": 1794701051
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794702775
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-20b",
+      "t": 1794702777
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1794702807
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-14",
-      "n": 180
+      "n": 182
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-14",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-14",
-      "n": 77
+      "n": 79
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-15",
-      "n": 4
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-15",
-      "n": 4
+      "n": 6
     },
     "openrouter:*": {
       "day": "2026-11-14",
@@ -495,8 +495,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -507,42 +507,35 @@
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 4,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 3,
+        "ok": 5,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 4,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 0,
+        "ok": 2,
         "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "اقتصاد",
-      "level": 4,
-      "t": 1794528224.6610441,
-      "title": "وزارت خزانه داری آمریکا کسری بودجه ۴۰۴ میلیارد دلاری را گزارش کرد",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1186,10 +1179,23 @@
       "t": 1794697405.6757858,
       "title": "ادعای ارتش اسرائیل درباره هدف قرار دادن فرمانده تیپ رفح حماس",
       "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 5,
+      "t": 1794702789.8845205,
+      "title": "اسرائیل تعهد می کند تا حمله بر غزه را ادامه دهد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-14",
   "_editor_gate_cache": {
+    "v4|11 gadgets under $10 that solve everyday problems": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=1 happened=False scope=local: List of cheap gadgets",
+      "topic": "فناوری",
+      "until": 1794789177.3592968
+    },
     "v4|arsenal target nusa could cost £66m - sunday's gossip": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=local: Transfer rumor, no confirmed deal",
@@ -1238,6 +1244,12 @@
       "topic": "فناوری",
       "until": 1794710032.2338705
     },
+    "v4|fiji 'did ireland a favour' before south africa game": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: routine rugby match, no major impact",
+      "topic": "ورزش",
+      "until": 1794789175.605563
+    },
     "v4|german spies granted sweeping new powers": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: Major legislative decision by a national parliament granting sweeping new powers to spies.",
@@ -1267,6 +1279,12 @@
       "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Qatar-Turkey defense deal amid Yemen fighting",
       "topic": "نظامی",
       "until": 1794702841.0237222
+    },
+    "v4|iran war live: israel vows gaza ‘offensive policy’ despite caretaker status": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Israel pledges continued Gaza offensive",
+      "topic": "سیاست",
+      "until": 1794789177.3107305
     },
     "v4|iran war live: tehran says tanker hit naval mine, caught fire": {
       "ok": true,
@@ -1393,6 +1411,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major disruption affecting 1.5 million passengers and international air travel.",
       "topic": "جامعه",
       "until": 1794731691.0175846
+    },
+    "v4|us blames outdated technology for nationwide flight disruption": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=world: US blames tech for flight disruption",
+      "topic": "فناوری",
+      "until": 1794789177.3325007
     },
     "v4|us flights resume after ageing technology blamed for outage": {
       "ok": true,
@@ -2732,6 +2756,12 @@
       "topic": "نظامی",
       "until": 1794756887.706374
     },
+    "v4|حمله نیروهای مسلح یمن به منطقه شرق عربستان": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Yemen forces attack Saudi region",
+      "topic": "نظامی",
+      "until": 1794789177.3458745
+    },
     "v4|حمله پهپادهای روسیه به شرکت «نفت وگاز» اوکراین": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Attack on critical energy infrastructure in a major ongoing war.",
@@ -3980,6 +4010,12 @@
       "topic": "اقتصاد",
       "until": 1794706408.0546048
     },
+    "v4|نماینده پیشین کنگره آمریکا: پایان امپراتوری ایالات متحده حتمی است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Former congressman's opinion, no official decision, low impact",
+      "topic": "سیاست",
+      "until": 1794789174.367647
+    },
     "v4|نگاه تک بعدی به اصلاح قانون مهریه به بهای تضعیف امنیت اقتصادی زنان؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: اظهارنظر کارشناسی و انتقاد از قانون است، نه تصمیم قطعی.",
@@ -4742,15 +4778,6 @@
   },
   "_event_judge_log": [
     {
-      "head": "توقف سراسری پروازها در آمریکا؛ هزاران پرواز زمین گیر شدند ⚡️ اختلال در شبکه ارتباطی و راداری مراکز کنترل ترافی",
-      "id": "334873b597",
-      "match": "وزیر امنیت داخلی آمریکا: توقف پروازها ناشی از حمله ای دیگر نیست و ارتباطی با حوادث ۱۱ سپتامبر ندارد",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1794630869,
-      "verdict": "repeat",
-      "why": "توقف پروازها و اختلال شبکه ارتباطی"
-    },
-    {
       "head": "سازمان ملل: سیاست های اسرائیل تلفات طوفان زمستانی در غزه را تشدید کرد ⚡️ سازمان ملل اعلام کرد اگر اسرائیل اجاز",
       "id": "cb71955bfe",
       "match": "",
@@ -5286,23 +5313,18 @@
       "t": 1794697404,
       "verdict": "new",
       "why": "موضوع جدید: حمله اسرائیل به فرمانده حماس"
+    },
+    {
+      "head": "اسرائیل تعهد می کند تا حمله بر غزه را ادامه دهد ⚡️ اسرائیل تعهد کرده که سیاست حمله ای خود را بر غزه ادامه دهد.",
+      "id": "1018e65092",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1794702787,
+      "verdict": "new",
+      "why": "General continuation of Gaza policy is not in previous posts."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: تحرکات نظامی اسرائیل در جنوب سوریه",
-      "rescued": true,
-      "rule": "no-concrete-event",
-      "t": 1794670444,
-      "title": "تشدید تحرکات نظامیان اسرائیلی در جنوب سوریه"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Statement, no concrete event",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1794670445,
-      "title": "ایستادگی ملت در برابر دشمن برآمده از فرهنگ ۱۴۰۰ ساله است"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: پیروزی دموکرات‌ها در انتخابات کنگره و آغاز چالش با ترامپ",
       "rescued": true,
@@ -5848,6 +5870,20 @@
       "rule": "no-concrete-event",
       "t": 1794700979,
       "title": "Iraq PM targets powerful militia stronghold in $30m oil smuggling probe"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Former congressman's opinion, no official decision, low impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794702774,
+      "title": "نماینده پیشین کنگره آمریکا: پایان امپراتوری ایالات متحده حتمی است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: routine rugby match, no major impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794702775,
+      "title": "Fiji 'did Ireland a favour' before South Africa game"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6769,116 +6805,29 @@
       "t": 1794697405.6641004,
       "title": "ادعای ارتش اسرائیل درباره هدف قرار دادن فرمانده تیپ رفح حماس ⚡️ ارتش اسرائیل مدعی شد که یکی از چهره های برجسته حماس را ه",
       "toll": 0
+    },
+    {
+      "a": [
+        "تعهد",
+        "سست"
+      ],
+      "cities": [
+        "غزه"
+      ],
+      "kind": "attack",
+      "places": [
+        "غزه"
+      ],
+      "regions": [
+        "gaza"
+      ],
+      "t": 1794702789.8715518,
+      "title": "اسرائیل تعهد می کند تا حمله بر غزه را ادامه دهد ⚡️ اسرائیل تعهد کرده که سیاست حمله ای خود را بر غزه ادامه دهد.",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "است",
-        "اقدم",
-        "المندب",
-        "بب",
-        "تنگن",
-        "جدد",
-        "جنب",
-        "رسدن",
-        "رقم",
-        "زدند",
-        "سحل",
-        "سعد",
-        "شدد",
-        "صنع",
-        "عدن",
-        "عربست",
-        "لحج",
-        "نر",
-        "نظم",
-        "وبست",
-        "وقعت",
-        "پشر",
-        "کشر"
-      ],
-      "t": 1794567918.0026116,
-      "title": "پیشروی نیروهای صنعا به خط ساحلی جنوب باب المندب ⚡️ نیروهای صنعا با پیشروی در جنوب باب المندب و رسیدن به خط ساحلی میان اس"
-    },
-    {
-      "k": [
-        "ار",
-        "ال",
-        "الملل",
-        "برخردر",
-        "تج",
-        "تسل",
-        "حقق",
-        "حمل",
-        "دفع",
-        "زر",
-        "سد",
-        "عبس",
-        "عرقچ",
-        "فعل",
-        "فقد",
-        "قبل",
-        "متحد",
-        "متخلفن",
-        "مسلت",
-        "مسلحن",
-        "مشرع",
-        "معتبر",
-        "نشت",
-        "نظم",
-        "هرگن",
-        "همچن",
-        "کشر",
-        "یددشت"
-      ],
-      "s": "عراقچی",
-      "t": 1794569682.3950398,
-      "title": "عراقچی: ایران همچنان از حق دفاع مشروع برخوردار است ⚡️ در پی این حمله مسلحانه، ایران همچنان از حق دفاع مشروع خود برخوردار"
-    },
-    {
-      "k": [
-        "تعمل",
-        "جنگ",
-        "جگزن",
-        "دپلمتک",
-        "سز",
-        "صحن",
-        "ظرف",
-        "کمن"
-      ],
-      "s": "ظریف",
-      "t": 1794569714.4113483,
-      "title": "ظریف: تعامل دیپلماتیک جایگزینی برای جنگ است، نه صحنه سازی برای کمین ⚡️ به گفته وی، تعامل دیپلماتیک جایگزینی برای جنگ است"
-    },
-    {
-      "k": [
-        "ار",
-        "ارشد",
-        "ارض",
-        "اسرل",
-        "اشغل",
-        "امرک",
-        "تحل",
-        "جنگ",
-        "ددر",
-        "در",
-        "سفر",
-        "طرفن",
-        "فرمند",
-        "فرمنده",
-        "منطق",
-        "نر",
-        "نشد",
-        "نظم",
-        "نگ",
-        "پنجم",
-        "گفتگ"
-      ],
-      "t": 1794571498.7246516,
-      "title": "دیدار فرمانده ناوگان پنجم آمریکا با فرماندهان نظامی اسرائیل درباره ایران ⚡️ فرمانده ناوگان پنجم نیروی دریایی آمریکا در س"
-    },
     {
       "k": [
         "اثر",
@@ -9616,6 +9565,21 @@
       ],
       "t": 1794697405.625994,
       "title": "ادعای ارتش اسرائیل درباره هدف قرار دادن فرمانده تیپ رفح حماس ⚡️ ارتش اسرائیل مدعی شد که یکی از چهره های برجسته حماس را ه"
+    },
+    {
+      "k": [
+        "اسرل",
+        "تعهد",
+        "حل",
+        "حمل",
+        "درگر",
+        "سست",
+        "غزه",
+        "منطق",
+        "یمن"
+      ],
+      "t": 1794702789.8578,
+      "title": "اسرائیل تعهد می کند تا حمله بر غزه را ادامه دهد ⚡️ اسرائیل تعهد کرده که سیاست حمله ای خود را بر غزه ادامه دهد. ▫️ در حال"
     }
   ],
   "_telegram_errors": [
@@ -10001,7 +9965,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794700901
+    "at": 1794702679
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10017,10 +9981,6 @@
   },
   "gemini:gemini-3.1-flash-lite": {
     "last_quality_failure": 1794701000,
-    "last_status": 422
-  },
-  "gemini:gemini-3.5-flash-lite": {
-    "last_quality_failure": 1794700992,
     "last_status": 422
   },
   "gemini:gemini-3.6-flash": {
@@ -10047,10 +10007,6 @@
   },
   "groq:openai/gpt-oss-120b": {
     "last_quality_failure": 1794700985,
-    "last_status": 422
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794700987,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
