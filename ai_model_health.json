@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794692024
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794692024
-    },
-    {
       "e": "EDITOR GATE openrouter/openrouter/free: no usable verdict",
       "t": 1794692026
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
       "t": 1794702807
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1794704306
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1794704320
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-15",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-15",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-14",
@@ -515,22 +515,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 5,
+        "ok": 7,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
+        "ok": 4,
         "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       }
     }
@@ -1274,12 +1274,6 @@
       "topic": "قضایی",
       "until": 1794717220.89441
     },
-    "v4|iran war live: fighting grips yemen as qatar, turkiye sign defence deal": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Qatar-Turkey defense deal amid Yemen fighting",
-      "topic": "نظامی",
-      "until": 1794702841.0237222
-    },
     "v4|iran war live: israel vows gaza ‘offensive policy’ despite caretaker status": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Israel pledges continued Gaza offensive",
@@ -1303,6 +1297,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official position by a head of state on the Ukraine war.",
       "topic": "سیاست",
       "until": 1794774796.4350994
+    },
+    "v4|microsoft confirms all services are restored after global outage": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Tech outage restoration, not top-tier news",
+      "topic": "فناوری",
+      "until": 1794790706.2340698
     },
     "v4|microsoft services begin recovering after global outage": {
       "ok": true,
@@ -1555,12 +1555,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=iran_national: Routine proposal about school continuity; lacks concrete decision or immediate event.",
       "topic": "جامعه",
       "until": 1794731677.1444135
-    },
-    "v4|آژیر خطر در پایگاه نیروی هوایی سلطنتی «فلت ول» انگلیس به صدا در آمد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: هشدار امنیتی در پایگاه هوایی انگلیس بدون درگیری یا خسارت",
-      "topic": "نظامی",
-      "until": 1794702839.515258
     },
     "v4|آیا ایران هم روی میز شنزن است؟": {
       "ok": false,
@@ -2491,6 +2485,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=iran_national: مقاله تحلیلی و انتقادی درباره سیاست‌های بنزینی.",
       "topic": "اقتصاد",
       "until": 1794740104.0387213
+    },
+    "v4|تظاهرات ده ها هزار نفری در پرتغال در اعتراض به بحران مسکن": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Housing protest abroad, low national impact",
+      "topic": "جامعه",
+      "until": 1794790706.248511
     },
     "v4|تعمیر تخصصی ریکلوزر در کردستان ۵ میلیارد تومان صرفه جویی به همراه داشت": {
       "ok": false,
@@ -3518,12 +3518,6 @@
       "topic": "فناوری",
       "until": 1794756887.7767105
     },
-    "v4|فرانسه خواستار فشار بر یمن برای توقف حمله به عربستان شد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: French FM urges pressure on Yemen to stop attacks",
-      "topic": "سیاست",
-      "until": 1794702841.0062726
-    },
     "v4|فرمانده پیشین سپاه: محسن رضایی و قالیباف هیچ اختلافی باهم ندارند/ زمان جنگ ایران و عراق از قذافی موشک گرفتیم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=iran_national: Historical commentary and opinion by a former official.",
@@ -3967,12 +3961,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Routine official remarks at a conference, not a strategic decision.",
       "topic": "سیاست",
       "until": 1794746098.0945125
-    },
-    "v4|نقش فناوری های نوین در شناسایی ذخایر پنهان فلزات راهبردی شمال شرق کشور": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Academic discussion, no concrete event, low national impact",
-      "topic": "فناوری",
-      "until": 1794702819.7369647
     },
     "v4|نقشه انتقال پایتخت از تهران به اصفهان در بحبوحه جنگ جهانی اول": {
       "ok": false,
@@ -4574,6 +4562,12 @@
       "topic": "فناوری",
       "until": 1794722710.6980042
     },
+    "v4|گردان های القسام شهادت فرمانده خود را تأیید کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Hamas confirms commander killed in Israeli strike",
+      "topic": "نظامی",
+      "until": 1794790704.264632
+    },
     "v4|گرمسار میزبان ۴۰ درصد صنایع سمنان؛ موانع تولید ۱۰ واحد صنعتی بررسی شد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بررسی مشکلات تولیدی چند واحد صنعتی در گرمسار محلی است",
@@ -4770,6 +4764,10 @@
     "رویترز: ترامپ در صورت خودداری ایران از اقدامات تحریک آمیز، فرمان حمله نخواهد داد": {
       "reason": "content_duplicate",
       "until": 1794715431.267853
+    },
+    "گردان های القسام شهادت فرمانده خود را تأیید کرد": {
+      "reason": "content_duplicate",
+      "until": 1794725914.8475196
     },
     "‘get focused on london’: how iran’s agents attacked european targets": {
       "reason": "content_duplicate",
@@ -5326,13 +5324,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: پیروزی دموکرات‌ها در انتخابات کنگره و آغاز چالش با ترامپ",
-      "rescued": true,
-      "rule": "foreign-local-preselection",
-      "t": 1794670461,
-      "title": "آغاز چالش تازه ترامپ با کنگره"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=iran_national: قرار دادگاه تهران برای پرونده جنگی آمریکا",
       "rescued": true,
       "rule": "final-scope-preselection",
@@ -5884,6 +5875,13 @@
       "rule": "foreign-local-preselection",
       "t": 1794702775,
       "title": "Fiji 'did Ireland a favour' before South Africa game"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Hamas confirms commander killed in Israeli strike",
+      "rescued": true,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1794704304,
+      "title": "گردان های القسام شهادت فرمانده خود را تأیید کرد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9965,7 +9963,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794702679
+    "at": 1794704225
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
