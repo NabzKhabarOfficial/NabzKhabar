@@ -1,21 +1,14 @@
 {
   "ai_pool": {},
   "all_selected_blocked": false,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-16T23:06:29.777575+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-11-16T23:35:53.223753+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "ai_unavailable_persian_fallback",
-      "result": "editorial_blocked",
-      "source": "isna.ir",
-      "started_at": "2026-11-16T23:05:41.295374+00:00",
-      "title": "سپاه: نهمین پهپاد MQM-۱۷۰ آمریکایی به غنیمت گرفته شد",
-      "url": "https://isna.ir/news/1405082617663/%D8%B3%D9%BE%D8%A7%D9%87-%D9%86%D9%87%D9%85%DB%8C%D9%86-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF-MQM-%DB%B1%DB%B7%DB%B0-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7%DB%8C%DB%8C-%D8%A8%D9%87-%D8%BA%D9%86%DB%8C%D9%85%D8%AA-%DA%AF%D8%B1%D9%81%D8%AA%D9%87-%D8%B4%D8%AF"
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative tech blog post, not a confirmed major corporate event.",
@@ -50,6 +43,14 @@
     },
     {
       "error": "",
+      "reason": "editor_gate: ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: اختلال گسترده در سیستم‌های هواپیمایی یونایتد ایرلاینز با تاثیر جهانی",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "United Airlines has fixed issue that caused 'widespread system outage'",
+      "url": ""
+    },
+    {
+      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Global-scale tech update regarding safety and content moderation.",
       "result": "editorial_blocked",
       "source": "",
@@ -66,10 +67,10 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Major global airline system outage affecting international travel.",
+      "reason": "editor_gate: cached:ai openrouter/openrouter/free batch score=2 happened=True scope=world: اختلال فنی موقت بانکداری آنلاین، بدون تلفات یا خسارت بزرگ",
       "result": "editorial_blocked",
       "source": "",
-      "title": "United Airlines is experiencing a 'widespread system outage'",
+      "title": "آسوشیتدپرس: مشتریان برخی از بزرگ ترین بانک های آمریکا از اختلال در دسترسی به حساب های آنلاین خود خبر می دهند",
       "url": ""
     },
     {
@@ -82,14 +83,6 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Routine opinion piece on AI limitations in literary translation.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "یک مترجم: هوش مصنوعی در ترجمه ادبی قابل اعتماد نیست",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: اظهارات غیررسمی و تبلیغاتی یک نامزد انتخاباتی",
       "result": "editorial_blocked",
       "source": "",
@@ -97,26 +90,45 @@
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "isna.ir",
+      "started_at": "2026-11-16T23:35:26.267209+00:00",
+      "title": "سپاه: نهمین پهپاد MQM-۱۷۰ آمریکایی به غنیمت گرفته شد",
+      "url": "https://isna.ir/news/1405082617663/%D8%B3%D9%BE%D8%A7%D9%87-%D9%86%D9%87%D9%85%DB%8C%D9%86-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF-MQM-%DB%B1%DB%B7%DB%B0-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7%DB%8C%DB%8C-%D8%A8%D9%87-%D8%BA%D9%86%DB%8C%D9%85%D8%AA-%DA%AF%D8%B1%D9%81%D8%AA%D9%87-%D8%B4%D8%AF"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "isna.ir",
+      "title": "سپاه: نهمین پهپاد MQM-۱۷۰ آمریکایی به غنیمت گرفته شد",
+      "url": "https://isna.ir/news/1405082617663/%D8%B3%D9%BE%D8%A7%D9%87-%D9%86%D9%87%D9%85%DB%8C%D9%86-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF-MQM-%DB%B1%DB%B7%DB%B0-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7%DB%8C%DB%8C-%D8%A8%D9%87-%D8%BA%D9%86%DB%8C%D9%85%D8%AA-%DA%AF%D8%B1%D9%81%D8%AA%D9%87-%D8%B4%D8%AF"
+    }
+  ],
   "no_publication_candidate": false,
-  "publication_gap": false,
-  "published": 1,
+  "publication_gap": true,
+  "published": 0,
   "run_status": "success",
-  "selected_for_publication": 13,
+  "selected_for_publication": 12,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "irna.ir",
-      "started_at": "2026-11-16T23:06:26.309861+00:00",
+      "started_at": "2026-11-16T23:35:49.169192+00:00",
       "title": "چهارمین نفتکش متخلف طی ۲۴ ساعت گذشته در شرق تنگه هرمز دچار آتش سوزی شد",
       "url": "https://irna.ir/news/86323919/%DA%86%D9%87%D8%A7%D8%B1%D9%85%DB%8C%D9%86-%D9%86%D9%81%D8%AA%DA%A9%D8%B4-%D9%85%D8%AA%D8%AE%D9%84%D9%81-%D8%B7%DB%8C-%DB%B2%DB%B4-%D8%B3%D8%A7%D8%B9%D8%AA-%DA%AF%D8%B0%D8%B4%D8%AA%D9%87-%D8%AF%D8%B1-%D8%B4%D8%B1%D9%82-%D8%AA%D9%86%DA%AF%D9%87-%D9%87%D8%B1%D9%85%D8%B2-%D8%AF%DA%86%D8%A7%D8%B1-%D8%A2%D8%AA%D8%B4"
     }
   ],
-  "status": "healthy"
+  "status": "publication_failure"
 }
