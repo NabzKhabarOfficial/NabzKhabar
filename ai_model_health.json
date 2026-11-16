@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794781989
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1794782008
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1794782008
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1794782018
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794783762
     },
@@ -159,6 +143,22 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1794794563
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794796389
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794796390
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1794796392
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1794796398
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-16",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-16",
-      "n": 7
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-15",
@@ -507,16 +507,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
-        "other": 2
+        "ok": 11,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 7,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
+        "ok": 7,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
@@ -1358,6 +1358,12 @@
       "topic": "فناوری",
       "until": 1794868389.6939366
     },
+    "v4|hundreds of thousands of czechs protest in prague over public media funding plan": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=world: Mass protest in Prague over media funding plan.",
+      "topic": "سیاست",
+      "until": 1794882792.2511404
+    },
     "v4|indian chip startup bharat semi lands $24m seed round as it eyes global ai sensor market": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: خبر جذب سرمایه یک استارتاپ هندی اهمیت ملی یا جهانی ندارد.",
@@ -1418,17 +1424,17 @@
       "topic": "قضایی",
       "until": 1794825294.975054
     },
-    "v4|katherine deves among four nsw upper house candidates revealed by one nation": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: کاندیداتوری محلی است، تأثیر محدود",
-      "topic": "سیاست",
-      "until": 1794796347.6490128
-    },
     "v4|miguel angel felix gallardo, architect of mexico’s drug trade, dies aged 80": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: مرگ یک چهره بسیار مشهور جهانی در زندان",
       "topic": "حادثه",
       "until": 1794870180.0616066
+    },
+    "v4|miguel ángel félix gallardo, mexican drug lord, dies in prison": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Death of notorious Mexican drug lord",
+      "topic": "قضایی",
+      "until": 1794882790.3853345
     },
     "v4|mp helen haines leaves hospital four weeks after alleged attack and double leg amputation": {
       "ok": false,
@@ -1441,6 +1447,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: سفر یک چهره سلطنتی و دیدار با کهنه‌سربازان در اوکراین.",
       "topic": "جامعه",
       "until": 1794855810.489041
+    },
+    "v4|prince harry praises war veterans on surprise visit to ukraine": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=world: Visit by Prince Harry to Ukraine, praising veterans.",
+      "topic": "سیاست",
+      "until": 1794882792.2229211
     },
     "v4|protesters condemn us policies as asean summit begins in manila": {
       "ok": false,
@@ -1784,6 +1796,12 @@
       "topic": "نظامی",
       "until": 1794812693.3167825
     },
+    "v4|ارزش صادراتی زعفران ایران به ۱۳۰۰ دلار کاهش یافته است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=iran_national: Export value of saffron fell to $1300.",
+      "topic": "اقتصاد",
+      "until": 1794882792.2368414
+    },
     "v4|ارزیابی آمادگی آبفا فارس برای تداوم آبرسانی در شرایط قطع برق": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=1 happened=False scope=local: رزمایش و ارزیابی آمادگی استانی آبفا",
@@ -1813,12 +1831,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: برنامه ویدیویی تحلیلی و ترکیبی شامل بررسی اخبار و شایعات مختلف.",
       "topic": "جامعه",
       "until": 1794855810.4602551
-    },
-    "v4|از نشست سه جانبه پوتین، شی و ترامپ انتظار چه چیزی را داشته باشیم / از رویای مهار هسته ای پکن تا بن بست جنگ ایران": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: Planned trilateral meeting, no outcome yet",
-      "topic": "سیاست",
-      "until": 1794796349.239101
     },
     "v4|از هشدار درباره آلودگی هوا تا تذکر درباره قطع درختان و انتخابات هیئت رئیسه شورای شهر تهران": {
       "ok": false,
@@ -2942,12 +2954,6 @@
       "topic": "سیاست",
       "until": 1794798171.4933188
     },
-    "v4|ذات الریه همچنان از علل اصلی مرگ های قابل پیشگیری / مصرف خودسرانه آنتی بیوتیک ممنوع": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=iran_national: Health ministry warning, not a concrete event",
-      "topic": "سلامت",
-      "until": 1794794567.4825544
-    },
     "v4|رئیس اتاق اصناف: [امسال] سه استان گلستان، مازندران و خراسان شمالی با احتمال قطعی گاز مواجه هستند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=local: پیش‌بینی و احتمال قطعی گاز در آینده است و نه تصمیم قطعی.",
@@ -3512,12 +3518,6 @@
       "topic": "سیاست",
       "until": 1794857621.076576
     },
-    "v4|فعال شدن آژیرهای خطر در بحرین": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Sirens activation in Bahrain, no confirmed attack",
-      "topic": "امنیت",
-      "until": 1794794567.4675436
-    },
     "v4|فلاحت پیشه: برخلاف امیدواران خدایان شرقی، معتقدم ایران نه مسئله اصلی بلکه بخشی از معامله سه رهبر «نشست شنژن» است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: تحلیل و نظر یک سیاستمدار درباره نشست آینده",
@@ -3920,6 +3920,12 @@
       "topic": "جامعه",
       "until": 1794801796.150456
     },
+    "v4|نشست شی، ترامپ و پوتین پنجشنبه در شنژن چین": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Announcement of trilateral summit on nuclear arms control",
+      "topic": "سیاست",
+      "until": 1794882788.6687887
+    },
     "v4|نقشه دموکرات ها برای پایان جنگ": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: اعلام اولویت‌ها و طرح‌های نمایندگان کنگره، تصمیم قطعی یا رویداد اجرایی نیست.",
@@ -4213,12 +4219,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Minor weather event with no reported mass casualties or major damage.",
       "topic": "آب و هوا",
       "until": 1794810846.8512962
-    },
-    "v4|وقوع چند انفجار در پایتخت عربستان": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Explosions in Riyadh by Yemeni forces",
-      "topic": "حادثه",
-      "until": 1794796349.2505274
     },
     "v4|وقوع ۲ انفجار در شهر عدن": {
       "ok": true,
@@ -4651,12 +4651,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر پرداخت مطالبات داروخانه‌های یک استان محلی است.",
       "topic": "سلامت",
       "until": 1794852298.9648254
-    },
-    "v4|۱۰ غذای سالم که انرژی را افزایش می دهند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Health advice article, not a news event",
-      "topic": "سلامت",
-      "until": 1794796346.920842
     },
     "v4|۱۸۰ هزار میلیارد تومان از اموال محکومان پرونده بانک ایران زمین در حال انتقال به بانک مرکزی": {
       "ok": true,
@@ -5466,20 +5460,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: اعتراف وزیر خزانه‌داری آمریکا به شناسایی محل سکونتش توسط ایران",
-      "rescued": true,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794760446,
-      "title": "بسنت: انتشار تصویر خانه ام، ایران را قادر به شناسایی محل سکونتم کرد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Residential explosion, single injury, local news",
-      "rescued": true,
-      "rule": "final-scope-preselection",
-      "t": 1794762208,
-      "title": "انفجار یک واحد مسکونی در سنگستان همدان"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Student debate event, limited impact",
       "rescued": false,
       "rule": "no-concrete-event",
@@ -6024,6 +6004,20 @@
       "rule": "no-concrete-event",
       "t": 1794794552,
       "title": "Suspected China spy linked to Nvidia's ex-boss left in 2025, Megaspeed says"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Announcement of trilateral summit on nuclear arms control",
+      "rescued": true,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1794796388,
+      "title": "نشست شی، ترامپ و پوتین پنجشنبه در شنژن چین"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Death of notorious Mexican drug lord",
+      "rescued": true,
+      "rule": "foreign-local-preselection",
+      "t": 1794796390,
+      "title": "Miguel Ángel Félix Gallardo, Mexican Drug Lord, Dies in Prison"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10555,7 +10549,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794794473
+    "at": 1794796286
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
