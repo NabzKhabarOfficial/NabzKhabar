@@ -1,22 +1,14 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-16T21:36:22.686878+00:00",
+  "all_selected_blocked": false,
+  "ambiguous_publications": 2,
+  "checked_at": "2026-11-16T22:07:17.292592+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "final_guard:local-level",
-      "result": "editorial_blocked",
-      "source": "aljazeera.com",
-      "started_at": "2026-11-16T21:36:18.399559+00:00",
-      "title": "Mamdani to disband NYPD unit deployed at Columbia protests",
-      "url": "https://aljazeera.com/video/newsfeed/2026/11/16/mamdani-to-disband-nypd-unit-deployed-at-columbia-protests?traffic_source=rss"
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative tech blog post, not a confirmed major corporate event.",
@@ -51,51 +43,85 @@
     },
     {
       "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative statement about future war duration, not a concrete policy decision.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "ونس پیش بینی خود درباره زمان «پایان» جنگ با ایران را اعلام کرد",
+      "url": ""
+    },
+    {
+      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: اظهارنظر یک سناتور که سیاست رسمی دولت آمریکا محسوب نمی‌شود",
       "result": "editorial_blocked",
       "source": "",
       "title": "سناتور آمریکایی: در جنگ علیه ایران بدون هیچ هدفی فقط انسان کشتیم/ باید به برجام بازگشت",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai openrouter/openrouter/free batch score=2 happened=True scope=world: اختلال فنی موقت بانکداری آنلاین، بدون تلفات یا خسارت بزرگ",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "آسوشیتدپرس: مشتریان برخی از بزرگ ترین بانک های آمریکا از اختلال در دسترسی به حساب های آنلاین خود خبر می دهند",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "irna.ir",
+      "started_at": "2026-11-16T22:05:30.885737+00:00",
+      "title": "نهمین پهپاد MQM-170 آمریکایی به غنیمت گرفته شد/ تداوم شکست تجهیزات پیشرفته سنتکام",
+      "url": "https://irna.ir/news/86323924/%D9%86%D9%87%D9%85%DB%8C%D9%86-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF-MQM-170-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7%DB%8C%DB%8C-%D8%A8%D9%87-%D8%BA%D9%86%DB%8C%D9%85%D8%AA-%DA%AF%D8%B1%D9%81%D8%AA%D9%87-%D8%B4%D8%AF-%D8%AA%D8%AF%D8%A7%D9%88%D9%85-%D8%B4%DA%A9%D8%B3%D8%AA-%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA"
+    },
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "mehrnews.com",
+      "started_at": "2026-11-16T22:06:19.297504+00:00",
+      "title": "وقوع سه حادثه در یک روز؛ از انفجار مسکونی تا دو مورد مسمومیت با گاز",
+      "url": "https://mehrnews.com/news/7013401/%D9%88%D9%82%D9%88%D8%B9-%D8%B3%D9%87-%D8%AD%D8%A7%D8%AF%D8%AB%D9%87-%D8%AF%D8%B1-%DB%8C%DA%A9-%D8%B1%D9%88%D8%B2-%D8%A7%D8%B2-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1-%D9%85%D8%B3%DA%A9%D9%88%D9%86%DB%8C-%D8%AA%D8%A7-%D8%AF%D9%88-%D9%85%D9%88%D8%B1%D8%AF-%D9%85%D8%B3%D9%85%D9%88%D9%85%DB%8C%D8%AA"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 24,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "mehrnews.com",
+      "title": "وقوع سه حادثه در یک روز؛ از انفجار مسکونی تا دو مورد مسمومیت با گاز",
+      "url": "https://mehrnews.com/news/7013401/%D9%88%D9%82%D9%88%D8%B9-%D8%B3%D9%87-%D8%AD%D8%A7%D8%AF%D8%AB%D9%87-%D8%AF%D8%B1-%DB%8C%DA%A9-%D8%B1%D9%88%D8%B2-%D8%A7%D8%B2-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1-%D9%85%D8%B3%DA%A9%D9%88%D9%86%DB%8C-%D8%AA%D8%A7-%D8%AF%D9%88-%D9%85%D9%88%D8%B1%D8%AF-%D9%85%D8%B3%D9%85%D9%88%D9%85%DB%8C%D8%AA"
+    },
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "irna.ir",
+      "title": "نهمین پهپاد MQM-170 آمریکایی به غنیمت گرفته شد/ تداوم شکست تجهیزات پیشرفته سنتکام",
+      "url": "https://irna.ir/news/86323924/%D9%86%D9%87%D9%85%DB%8C%D9%86-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF-MQM-170-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7%DB%8C%DB%8C-%D8%A8%D9%87-%D8%BA%D9%86%DB%8C%D9%85%D8%AA-%DA%AF%D8%B1%D9%81%D8%AA%D9%87-%D8%B4%D8%AF-%D8%AA%D8%AF%D8%A7%D9%88%D9%85-%D8%B4%DA%A9%D8%B3%D8%AA-%D8%AA%D8%AC%D9%87%DB%8C%D8%B2%D8%A7%D8%AA"
+    }
+  ],
   "no_publication_candidate": false,
-  "publication_gap": true,
-  "published": 0,
+  "publication_gap": false,
+  "published": 1,
   "run_status": "success",
-  "selected_for_publication": 9,
+  "selected_for_publication": 11,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
-      "source": "isna.ir",
-      "started_at": "2026-11-16T21:35:54.749316+00:00",
-      "title": "حمله پهپادی به مقر نیروهای جدایی طلب در سلیمانیه عراق",
-      "url": "https://isna.ir/news/1405082617656/%D8%AD%D9%85%D9%84%D9%87-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF%DB%8C-%D8%A8%D9%87-%D9%85%D9%82%D8%B1-%D9%86%DB%8C%D8%B1%D9%88%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D8%A7%DB%8C%DB%8C-%D8%B7%D9%84%D8%A8-%D8%AF%D8%B1-%D8%B3%D9%84%DB%8C%D9%85%D8%A7%D9%86%DB%8C%D9%87-%D8%B9%D8%B1%D8%A7%D9%82"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
       "source": "irna.ir",
-      "started_at": "2026-11-16T21:36:02.491404+00:00",
+      "started_at": "2026-11-16T22:06:16.093205+00:00",
       "title": "چهارمین نفتکش متخلف طی ۲۴ ساعت گذشته در شرق تنگه هرمز دچار آتش سوزی شد",
       "url": "https://irna.ir/news/86323919/%DA%86%D9%87%D8%A7%D8%B1%D9%85%DB%8C%D9%86-%D9%86%D9%81%D8%AA%DA%A9%D8%B4-%D9%85%D8%AA%D8%AE%D9%84%D9%81-%D8%B7%DB%8C-%DB%B2%DB%B4-%D8%B3%D8%A7%D8%B9%D8%AA-%DA%AF%D8%B0%D8%B4%D8%AA%D9%87-%D8%AF%D8%B1-%D8%B4%D8%B1%D9%82-%D8%AA%D9%86%DA%AF%D9%87-%D9%87%D8%B1%D9%85%D8%B2-%D8%AF%DA%86%D8%A7%D8%B1-%D8%A2%D8%AA%D8%B4"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "irna.ir",
-      "started_at": "2026-11-16T21:36:07.808884+00:00",
-      "title": "حمله پهپادی در شمال عراق",
-      "url": "https://irna.ir/news/86323915/%D8%AD%D9%85%D9%84%D9%87-%D9%BE%D9%87%D9%BE%D8%A7%D8%AF%DB%8C-%D8%AF%D8%B1-%D8%B4%D9%85%D8%A7%D9%84-%D8%B9%D8%B1%D8%A7%D9%82"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
