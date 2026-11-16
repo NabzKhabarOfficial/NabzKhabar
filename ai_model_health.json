@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794780190
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794780190
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794780195
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794780195
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1794780213
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1794780213
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1794780232
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
       "t": 1794780233
     },
@@ -159,6 +131,34 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
       "t": 1794785617
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794789181
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794789182
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1794789197
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794789207
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794789207
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1794789209
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
+      "t": 1794789209
     }
   ],
   "_ai_pace": {
@@ -172,19 +172,19 @@
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-15",
-      "n": 76
+      "n": 77
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-15",
-      "n": 76
+      "n": 77
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-16",
-      "n": 3
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-15",
-      "n": 90
+      "day": "2026-11-16",
+      "n": 3
     },
     "openrouter:*": {
       "day": "2026-11-15",
@@ -487,11 +487,25 @@
       }
     },
     "2026-11-16": {
+      "gemini:gemini-3.6-flash": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
+        "calls": 6,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 5,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
         "calls": 3,
-        "ok": 3,
-        "other": 0
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 2,
+        "other": 1
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -1182,11 +1196,11 @@
       "topic": "فناوری",
       "until": 1794816321.9035366
     },
-    "v4|11 gadgets under $10 that solve everyday problems": {
+    "v4|10 things your iphone's notes app can do other than taking notes": {
       "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=1 happened=False scope=local: List of cheap gadgets",
+      "reason": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: Tech tip article, not a news event",
       "topic": "فناوری",
-      "until": 1794789177.3592968
+      "until": 1794875607.0533195
     },
     "v4|70 bodies recovered from gaza rubble, thousands still missing": {
       "ok": true,
@@ -1272,6 +1286,12 @@
       "topic": "ورزش",
       "until": 1794832464.694554
     },
+    "v4|eisenkot says netanyahu can’t remain israel pm amid alleged vote meddling": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: اظهارنظر سیاسی آیزنکوت درباره ادعای مداخله نتانیاهو در انتخابات",
+      "topic": "سیاست",
+      "until": 1794875605.4319642
+    },
     "v4|england stun spain to end la roja’s 43-game unbeaten run": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: پیروزی مهم تیم ملی انگلیس و پایان رکورد اسپانیا",
@@ -1295,12 +1315,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: مرگ یک سرباز کانادایی ناشی از حادثه قبلی، فاقد تلفات بالا.",
       "topic": "حادثه",
       "until": 1794821716.409649
-    },
-    "v4|fiji 'did ireland a favour' before south africa game": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: routine rugby match, no major impact",
-      "topic": "ورزش",
-      "until": 1794789175.605563
     },
     "v4|first win for duncan after 12 years & 222 attempts": {
       "ok": false,
@@ -1355,12 +1369,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: حمله پهپادی سپاه به پایگاه نظامی آمریکا در بحرین.",
       "topic": "نظامی",
       "until": 1794841766.0236642
-    },
-    "v4|iran war live: israel vows gaza ‘offensive policy’ despite caretaker status": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Israel pledges continued Gaza offensive",
-      "topic": "سیاست",
-      "until": 1794789177.3107305
     },
     "v4|iran war live: saudi-led coalition strikes down 3 drones": {
       "ok": true,
@@ -1428,6 +1436,12 @@
       "topic": "سیاست",
       "until": 1794823470.294223
     },
+    "v4|russia's mega-rich are already imagining a future after putin": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Speculation about future oligarchy, no concrete event",
+      "topic": "سیاست",
+      "until": 1794875607.7653968
+    },
     "v4|ruthless australia win record fourth women's world cup": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Final result of a major international sports championship.",
@@ -1464,6 +1478,12 @@
       "topic": "ورزش",
       "until": 1794871998.4060314
     },
+    "v4|the pros and cons of using cloud storage over local storage": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: مقاله تحلیلی، نه رویداد خبری",
+      "topic": "فناوری",
+      "until": 1794875606.2112076
+    },
     "v4|thousands in portugal protest against surging rental prices": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: Housing protest in Portugal; standard social issue without major global impact.",
@@ -1487,12 +1507,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Major drone strikes on Russian industrial and petrochemical infrastructure.",
       "topic": "نظامی",
       "until": 1794860096.2975764
-    },
-    "v4|us blames outdated technology for nationwide flight disruption": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=world: US blames tech for flight disruption",
-      "topic": "فناوری",
-      "until": 1794789177.3325007
     },
     "v4|what causes a sudden drop in phone battery percentage?": {
       "ok": false,
@@ -2051,6 +2065,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: گزارش آماری و پژوهشی فاقد رویداد فوری و اثرگذار ملی.",
       "topic": "جامعه",
       "until": 1794816323.5950902
+    },
+    "v4|ایران کانون های داخلی ریزگرد را ساماندهی کرد؛ حالا نوبت ترکمنستان است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Governor reduces dust storm days",
+      "topic": "آب و هوا",
+      "until": 1794875609.2489033
     },
     "v4|اینفوگرافیک| بلوبری در یاسوج": {
       "ok": false,
@@ -2718,12 +2738,6 @@
       "topic": "نظامی",
       "until": 1794798204.0260406
     },
-    "v4|حمله نیروهای مسلح یمن به منطقه شرق عربستان": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Yemen forces attack Saudi region",
-      "topic": "نظامی",
-      "until": 1794789177.3458745
-    },
     "v4|حمله پهپادهای اوکراینی به یک پالایشگاه نفت در نیژنکامسک روسیه": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Drone attack on a major industrial/oil facility in a regional war zone.",
@@ -2921,6 +2935,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=False scope=iran_national: هشدار و تحلیل کارشناسی درباره زلزله بدون وقوع حادثه جدید",
       "topic": "حادثه",
       "until": 1794850407.653147
+    },
+    "v4|رئیس جمهور عراق از ترامپ خواست به سیاست پایان دادن به جنگ ها بازگردد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=world: Iraqi president requests Trump to end wars",
+      "topic": "سیاست",
+      "until": 1794875609.2344582
     },
     "v4|راز عجیب اسکلت هایی که صدها سال قدیمی تر از زمان واقعی شان به نظر می رسند!": {
       "ok": false,
@@ -3917,12 +3937,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=world: Personal opinion of a parliamentarian, not an official executive action.",
       "topic": "سیاست",
       "until": 1794819869.9480674
-    },
-    "v4|نماینده پیشین کنگره آمریکا: پایان امپراتوری ایالات متحده حتمی است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Former congressman's opinion, no official decision, low impact",
-      "topic": "سیاست",
-      "until": 1794789174.367647
     },
     "v4|نمایندگان احزاب در صورت تصویب لایحه جدید، حق رای در کمیسیون ماده ۱۰ می گیرند": {
       "ok": false,
@@ -5395,34 +5409,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Local educational infrastructure issues in Shadegan are not national-level news.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794758627,
-      "title": "وضعیت سرانه آموزشی در شهرستان شادگان نگران کننده است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: پرواز بالگردها بدون وقوع حادثه یا تصمیم رسمی",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1794758648,
-      "title": "پرواز غیرمعمول چهار بالگرد نظامی آمریکا در نزدیکی کاخ سفید"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: آب و هوای تهران، پیش‌بینی بارش، خبر محلی",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1794758649,
-      "title": "تهران تا امشب درگیر آلودگی هوا؛ بارش باران و برف از فردا آغاز می شود"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، یک نفر آسیب، اثر محدود",
-      "rescued": true,
-      "rule": "final-scope-preselection",
-      "t": 1794760437,
-      "title": "انفجار یک واحد مسکونی در \"سنگستان\" همدان"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: خبر محلی درباره وضعیت آموزشی",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -5953,6 +5939,34 @@
       "rule": "no-concrete-event",
       "t": 1794787429,
       "title": "What causes a sudden drop in phone battery percentage?"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: اظهارنظر سیاسی آیزنکوت درباره ادعای مداخله نتانیاهو در انتخابات",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794789205,
+      "title": "Eisenkot says Netanyahu can’t remain Israel PM amid alleged vote meddling"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: مقاله تحلیلی، نه رویداد خبری",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794789206,
+      "title": "The pros and cons of using cloud storage over local storage"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: Tech tip article, not a news event",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794789207,
+      "title": "10 things your iPhone's Notes app can do other than taking notes"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Speculation about future oligarchy, no concrete event",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794789207,
+      "title": "Russia's mega-rich are already imagining a future after Putin"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10484,7 +10498,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794787346
+    "at": 1794789072
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10504,9 +10518,9 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794786181,
-    "last_failure": 1794785581,
-    "last_status": 429
+    "disabled_until": 1794789497.0,
+    "last_failure": 1794789197,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
