@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1794780233
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794781987
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794781988
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x",
       "t": 1794789209
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-120b",
+      "t": 1794792766
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1794792778
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-16",
-      "n": 7
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-16",
-      "n": 3
+      "n": 4
     },
     "openrouter:*": {
       "day": "2026-11-15",
@@ -495,22 +495,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 7,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 6,
+        "ok": 9,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 3,
+        "calls": 4,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
+        "ok": 3,
         "other": 1
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       }
     }
@@ -1393,12 +1393,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Targeted killing of a senior military commander in an active war.",
       "topic": "نظامی",
       "until": 1794859471.296085
-    },
-    "v4|israeli air strike kills senior hamas commander in gaza": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Major war casualty affecting Israel‑Gaza conflict dynamics",
-      "topic": "نظامی",
-      "until": 1794792762.929675
     },
     "v4|jordan sentences three men to death by hanging after deadly church attack": {
       "ok": true,
@@ -2978,6 +2972,12 @@
       "topic": "سیاست",
       "until": 1794801800.7168539
     },
+    "v4|رهگیری و انهدام ۲۳۰ پهپاد اوکراینی در آسمان روسیه طی۱۲ ساعت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Russia reports massive drone interceptions, significant war escalation",
+      "topic": "نظامی",
+      "until": 1794879166.6488779
+    },
     "v4|روابط عمومی سپاه: رادار سایت پدافندی آمریکا در بحرین با شش فروند پهپاد مورد هدف قرار گرفت": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Direct military attack on a foreign military base in the region.",
@@ -3619,6 +3619,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: نتیجه بازی لیگ برتر فوتسال برای مخاطب ملی اهمیت ندارد.",
       "topic": "ورزش",
       "until": 1794860080.5566864
+    },
+    "v4|ماهوارهٔ هوش مصنوعی گوگل فعال شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Google AI satellite launch, limited global impact",
+      "topic": "فناوری",
+      "until": 1794879166.6356275
     },
     "v4|مایک پنس: فساد خانواده ترامپ برای مردم آمریکا نگران کننده است": {
       "ok": false,
@@ -4454,6 +4460,12 @@
       "topic": "سیاست",
       "until": 1794812683.2824483
     },
+    "v4|کویت و عمان بر حمایت از تلاش ها در جهت کاهش تنش در منطقه تاکید کردند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: بیانیه دیپلماتیک عمومی، اثر ملموس یا تصمیم جدید نیست",
+      "topic": "سیاست",
+      "until": 1794879163.9627295
+    },
     "v4|گاز ادارات و اماکن عمومی متخلف در تهران قطع می شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=local: هشدار و گشت نظارتی مصرف گاز در استان تهران",
@@ -4645,6 +4657,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Retrospective report on past events, not a new breaking development.",
       "topic": "سیاست",
       "until": 1794805474.2515593
+    },
+    "v4|‘the blood of these brothers cries out’: pope leo demands justice for people killed protecting the amazon": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Pope speech on Amazon defenders, not top‑tier news",
+      "topic": "جامعه",
+      "until": 1794879166.6217084
     }
   },
   "_editorial_blocks": {
@@ -4662,7 +4680,7 @@
     },
     "estonia to close russian border crossings after 'sabotage' attempt at drone factory": {
       "reason": "content_duplicate",
-      "until": 1794787556.2164695
+      "until": 1794814378.9412327
     },
     "explosion near syria’s capital kills father and child": {
       "reason": "content_duplicate",
@@ -4764,6 +4782,10 @@
     "دو ایستگاه پمپاژ نفت در عربستان و فرودگاه ریاض هدف قرار گرفت": {
       "reason": "content_duplicate",
       "until": 1794795308.8096642
+    },
+    "رهگیری و انهدام ۲۳۰ پهپاد اوکراینی در آسمان روسیه طی۱۲ ساعت": {
+      "reason": "content_duplicate",
+      "until": 1794814374.858784
     },
     "روابط عمومی سپاه: رادار سایت پدافندی آمریکا در بحرین با شش فروند پهپاد مورد هدف قرار گرفت": {
       "reason": "content_duplicate",
@@ -5397,13 +5419,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: تحلیل و نظرات کارشناسی درباره بازی دوستانه فوتبال اهمیت درجه یک ندارد.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794760438,
-      "title": "تحلیل یک عراقیِ نام آشنا از بازی با ایران: «فراتر از یک دیدار دوستانه معمولی»"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: رویداد شهری و اعطای جایزه شهرداری تهران محلی محسوب می شود",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5955,6 +5970,13 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1794790962,
       "title": "موفقیت نمایشگاه های تجاری به شکل گیری همکاری های اقتصادی است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: بیانیه دیپلماتیک عمومی، اثر ملموس یا تصمیم جدید نیست",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794792763,
+      "title": "کویت و عمان بر حمایت از تلاش ها در جهت کاهش تنش در منطقه تاکید کردند"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10486,7 +10508,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794790885
+    "at": 1794792673
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
