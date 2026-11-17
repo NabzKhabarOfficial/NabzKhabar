@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794868527
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794868527
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1794868532
-    },
-    {
-      "e": "EDITOR BATCH: 6/6 via gemini/gemini-3.1-flash-lite",
-      "t": 1794868536
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 7x",
-      "t": 1794868611
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1794870289
     },
@@ -159,32 +139,52 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 8x",
       "t": 1794873314
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794873920
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794873922
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1794873923
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1794873941
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1794874011
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-16",
-      "n": 113
+      "n": 114
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-16",
-      "n": 175
+      "n": 180
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-16",
-      "n": 77
+      "n": 79
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-16",
-      "n": 76
+      "n": 78
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-11-16",
-      "n": 90
+      "day": "2026-11-17",
+      "n": 5
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-16",
-      "n": 90
+      "day": "2026-11-17",
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-11-16",
@@ -192,104 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-11-13": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 105,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 95,
-        "other": 10
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 224,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 213,
-        "other": 11
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 39,
-        "calls": 71,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 25,
-        "other": 7
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 33,
-        "calls": 56,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
-        "other": 23
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 65,
-        "other": 25
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 61,
-        "other": 29
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 8,
-        "calls": 12,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 4,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 71,
-        "calls": 217,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 146,
-        "other": 0
-      },
-      "openrouter:apodex/apodex-1.1-mini:free": {
-        "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      },
-      "openrouter:baidu/ernie-5.5-flash-preview:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 4,
-        "calls": 5,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.a",
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 4,
-        "calls": 4,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/wo",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 18,
-        "ok": 18,
-        "other": 0
-      }
-    },
     "2026-11-14": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -582,6 +484,55 @@
         "429": 0,
         "calls": 15,
         "ok": 15,
+        "other": 0
+      }
+    },
+    "2026-11-17": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 5,
+        "ok": 5,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 0,
+        "calls": 2,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 2
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 4,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 2,
+        "other": 3
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 1,
+        "calls": 3,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 2,
         "other": 0
       }
     }
@@ -1251,6 +1202,13 @@
       "t": 1794870339.4408038,
       "title": "مخالفت نخست وزیر انگلیس با جنگ علیه ایران",
       "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1794874002.6585572,
+      "title": "سفر دونالد ترامپ به فیلیپین و چین برای شرکت در نشست های سران",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-16",
@@ -1483,6 +1441,12 @@
       "topic": "فناوری",
       "until": 1794875606.2112076
     },
+    "v4|trump departs for asean on summit with xi and putin": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سفر رئیس‌جمهور آمریکا به مانیل برای دیدار با رهبران",
+      "topic": "سیاست",
+      "until": 1794960346.9705834
+    },
     "v4|ukraine hits key crimea bridge with drones": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: حمله پهپادی اوکراین به پل کلیدی در کریمه",
@@ -1513,17 +1477,17 @@
       "topic": "نظامی",
       "until": 1794913447.9779644
     },
-    "v4|what causes a sudden drop in phone battery percentage?": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: Tech advice article, not a news event",
-      "topic": "فناوری",
-      "until": 1794873829.4826136
-    },
     "v4|what will europe do next in ukraine?": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=world: تحلیل و بررسی اختلاف‌نظرها درباره جنگ اوکراین.",
       "topic": "سیاست",
       "until": 1794947783.7390869
+    },
+    "v4|whether it's black friday or a ceo scandal, nvidia gpus just don't get deep discounts": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: GPU pricing issue, no major national or international impact",
+      "topic": "فناوری",
+      "until": 1794960319.3421082
     },
     "v4|why starshield limits are hurting ukraine against jet-powered drones": {
       "ok": false,
@@ -3000,12 +2964,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Minor tactical engagement involving small drones in a regional conflict zone.",
       "topic": "نظامی",
       "until": 1794933268.9954274
-    },
-    "v4|سرپناه همچنان در صدر هزینه ها": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: سهم هزینه مسکن ثابت، اثر کلان ندارند",
-      "topic": "اقتصاد",
-      "until": 1794873828.745021
     },
     "v4|سفر آسیایی ترامپ زیر سایه بحران های آمریکا؛ ایران و اوکراین روی میز دیدار با شی و پوتین": {
       "ok": false,
@@ -4525,9 +4483,8 @@
       "until": 1794886577.95806
     },
     "سپاه: نهمین پهپاد mqm-۱۷۰ آمریکایی به غنیمت گرفته شد": {
-      "at": 1794870389.5878553,
-      "reason": "ai_unavailable_persian_fallback",
-      "until": 1794871589.5878553
+      "reason": "content_duplicate",
+      "until": 1794895567.323589
     },
     "عملیات زیرگیری با خودرو در یک ایست بازرسی نظامی در کرانه باختری / دو نفر زخمی شدند": {
       "reason": "content_duplicate",
@@ -4555,16 +4512,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "ورود ناو هواپیمابر آمریکایی به منطقه و ادعای سپاه درباره برخورد مین با نفت کش ها در تنگه هرمز ⚡️ همزمان سپاه پ",
-      "id": "eff96308a0",
-      "match": "نفتکش در خلیج فارس پیش از تنگه هرمز مورد حمله قرار گرفت",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1794816379,
-      "verdict": "repeat",
-      "why": "Reports the same incident regarding oil tankers in the Strait of Hormuz."
-    },
     {
       "confirm": "gemini/gemini-3.1-flash-lite:repeat",
       "head": "ورود ناو هواپیمابر آمریکایی به منطقه و ادعای سپاه درباره برخورد مین با نفت کش ها در تنگه هرمز ⚡️ همزمان سپاه پ",
@@ -5096,16 +5043,18 @@
       "t": 1794872136,
       "verdict": "new",
       "why": "پهپاد آمریکایی در جنوب قشم، موضوع جدید"
+    },
+    {
+      "head": "سفر دونالد ترامپ به فیلیپین و چین برای شرکت در نشست های سران ⚡️ دونالد ترامپ برای شرکت در نشست رهبران آسه آن ع",
+      "id": "43783053b3",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1794873999,
+      "verdict": "new",
+      "why": "The post is about Trump's trip to the Philippines and China, which is not in the list."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر فرهنگی و استانی درباره پایتختی کتاب، اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1794839621,
-      "title": "نامزدی شاهین شهر و شهرضا برای پایتختی کتاب ایران"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Expert rebuts Trump claim, no concrete event",
       "rescued": false,
@@ -5658,74 +5607,19 @@
       "rule": "foreign-local-preselection",
       "t": 1794873280,
       "title": "Labor to announce policy backflip and allow more backpackers to stay in Australia"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: GPU pricing issue, no major national or international impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1794873919,
+      "title": "Whether it's Black Friday or a CEO scandal, NVIDIA GPUs just don't get deep discounts"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اثر",
-        "انرژ",
-        "بحر",
-        "بنک",
-        "تثر",
-        "تدم",
-        "ترم",
-        "تنش",
-        "فشر",
-        "مرکز",
-        "معن",
-        "نرخ",
-        "نسبت",
-        "نش",
-        "هشدر",
-        "یر"
-      ],
-      "t": 1794828977.5297863,
-      "title": "هشدار بانک مرکزی اروپا درباره تأثیر تنش با ایران بر نرخ تورم ⚡️ معاون رئیس بانک مرکزی اروپا نسبت به تداوم فشارهای تورمی "
-    },
-    {
-      "h": [
-        "اتحد",
-        "اعمل",
-        "جدگن",
-        "حقق",
-        "خرج",
-        "شخص",
-        "فهرست",
-        "محددت",
-        "مرتبط",
-        "مفقت",
-        "نهد"
-      ],
-      "t": 1794830665.8958445,
-      "title": "تحریم های جدید اروپا علیه ۱۴۰ شخص و نهاد مرتبط با روسیه ⚡️ وزیران خارجه اتحادیه اروپا با اعمال محدودیت های جدید در سه فه"
-    },
-    {
-      "h": [
-        "اتهم",
-        "استن",
-        "اطلع",
-        "تلدکنند",
-        "خربکرن",
-        "خند",
-        "دخلت",
-        "دستر",
-        "دمتر",
-        "سخنگ",
-        "سزم",
-        "شرکت",
-        "مبن",
-        "پسکف",
-        "پهپد",
-        "کرملن",
-        "کمل"
-      ],
-      "t": 1794830725.0097523,
-      "title": "کرملین اتهامات استونی مبنی بر دخالت روسیه در حملات خرابکارانه را رد کرد ⚡️ دیمیتری پسکوف سخنگوی کرملین ادعای دولت استونی"
-    },
     {
       "h": [
         "اربل",
@@ -6396,6 +6290,21 @@
       ],
       "t": 1794872148.6789553,
       "title": "سپاه: پهپاد آمریکایی در جنوب قشم به زمین نشست ⚡️ سپاه پاسداران با استفاده از عملیات جنگ الکترونیک، یک پهپاد آمریکایی را "
+    },
+    {
+      "h": [
+        "اسه",
+        "رهبر",
+        "سرن",
+        "سفر",
+        "شرکت",
+        "عزم",
+        "فلپن",
+        "منل",
+        "نشست"
+      ],
+      "t": 1794874002.647591,
+      "title": "سفر دونالد ترامپ به فیلیپین و چین برای شرکت در نشست های سران ⚡️ دونالد ترامپ برای شرکت در نشست رهبران آسه آن عازم مانیل "
     }
   ],
   "_published_incidents": [
@@ -6752,62 +6661,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اتهم",
-        "ارب",
-        "اسکنس",
-        "انبر",
-        "بخش",
-        "برد",
-        "تحقق",
-        "تسع",
-        "تقف",
-        "جر",
-        "جنگل",
-        "خزن",
-        "دستگ",
-        "دفن",
-        "دلت",
-        "دلر",
-        "دگر",
-        "زمن",
-        "سختم",
-        "سستک",
-        "سعت",
-        "شمرش",
-        "شمل",
-        "ضبط",
-        "فرنت",
-        "فسد",
-        "مبرز",
-        "مبلغ",
-        "متعلق",
-        "مجرست",
-        "مزرع",
-        "مظنن",
-        "ملرد",
-        "ملن",
-        "مکلش",
-        "نقد",
-        "نهد",
-        "هشت",
-        "وزر",
-        "وکتر",
-        "وکل",
-        "پرمن",
-        "پرند",
-        "پشن",
-        "پل",
-        "پنج",
-        "پنه",
-        "کرمند",
-        "کشف",
-        "یر"
-      ],
-      "t": 1794744379.802574,
-      "title": "کشف ۲۰ میلیون دلار پول نقد در پرونده فساد وزیر پیشین مجارستان ⚡️ نهاد مبارزه با فساد در مجارستان ۱۹.۶ میلیون دلار پول نق"
-    },
     {
       "k": [
         "احتمل",
@@ -9989,6 +9842,34 @@
       "s": "سپاه",
       "t": 1794872148.6555254,
       "title": "سپاه: پهپاد آمریکایی در جنوب قشم به زمین نشست ⚡️ سپاه پاسداران با استفاده از عملیات جنگ الکترونیک، یک پهپاد آمریکایی را "
+    },
+    {
+      "k": [
+        "اسه",
+        "ترمپ",
+        "جن",
+        "جنب",
+        "خهد",
+        "ددر",
+        "دنلد",
+        "ره",
+        "رهبر",
+        "سرن",
+        "سفر",
+        "سپس",
+        "شرکت",
+        "شنژن",
+        "عزم",
+        "فلپن",
+        "منل",
+        "نشست",
+        "ولدمر",
+        "پتن",
+        "پنگ",
+        "چن"
+      ],
+      "t": 1794874002.6360848,
+      "title": "سفر دونالد ترامپ به فیلیپین و چین برای شرکت در نشست های سران ⚡️ دونالد ترامپ برای شرکت در نشست رهبران آسه آن عازم مانیل "
     }
   ],
   "_telegram_errors": [
@@ -10536,7 +10417,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794873055
+    "at": 1794873682
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10551,18 +10432,18 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "last_quality_failure": 1794873304,
+    "last_quality_failure": 1794873962,
     "last_status": 422
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794873894,
-    "last_failure": 1794873294,
-    "last_status": 429
+    "disabled_until": 1794874241.0,
+    "last_failure": 1794873941,
+    "last_status": 599
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794873571.0,
-    "last_failure": 1794873271,
-    "last_status": 599
+    "disabled_until": 1794874223.0,
+    "last_failure": 1794873923,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -10577,11 +10458,11 @@
     "last_status": 599
   },
   "groq:openai/gpt-oss-120b": {
-    "last_quality_failure": 1794832577,
+    "last_quality_failure": 1794873954,
     "last_status": 422
   },
   "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794832578,
+    "last_quality_failure": 1794873973,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
