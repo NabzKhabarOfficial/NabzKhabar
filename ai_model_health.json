@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794870289
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794870291
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1794870295
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
       "t": 1794870310
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
       "t": 1794874011
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794875740
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1794875742
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1794875758
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-16",
-      "n": 180
+      "n": 182
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-16",
-      "n": 79
+      "n": 80
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-16",
-      "n": 78
+      "n": 79
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-17",
-      "n": 5
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-17",
-      "n": 5
+      "n": 6
     },
     "openrouter:*": {
       "day": "2026-11-16",
@@ -496,36 +496,37 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 1,
-        "calls": 1,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 0,
+        "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 0,
-        "calls": 2,
+        "429": 1,
+        "calls": 3,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
         "other": 2
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 4,
+        "ok": 5,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
+        "ok": 3,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
@@ -1225,12 +1226,6 @@
       "topic": "فناوری",
       "until": 1794954926.7556233
     },
-    "v4|10 things your iphone's notes app can do other than taking notes": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: Tech tip article, not a news event",
-      "topic": "فناوری",
-      "until": 1794875607.0533195
-    },
     "v4|abdul el-sayed’s victory is a blow to the politics of islamophobia": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Opinion piece on local/regional political identity and social trends.",
@@ -1285,17 +1280,17 @@
       "topic": "آب و هوا",
       "until": 1794927912.6303675
     },
+    "v4|cybersecurity ai startup corma reaches $1b valuation in about 3 months": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Startup valuation, not national significance",
+      "topic": "فناوری",
+      "until": 1794962142.4556355
+    },
     "v4|czech mass protests: media is the first casualty 'when you want to attack democracy'": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Large scale protests against government policy on public broadcasting.",
       "topic": "سیاست",
       "until": 1794956721.5457613
-    },
-    "v4|eisenkot says netanyahu can’t remain israel pm amid alleged vote meddling": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=3 happened=True scope=world: اظهارنظر سیاسی آیزنکوت درباره ادعای مداخله نتانیاهو در انتخابات",
-      "topic": "سیاست",
-      "until": 1794875605.4319642
     },
     "v4|every xbox console generation sorted by release date": {
       "ok": false,
@@ -1393,12 +1388,6 @@
       "topic": "نظامی",
       "until": 1794926030.6319172
     },
-    "v4|russia's mega-rich are already imagining a future after putin": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Speculation about future oligarchy, no concrete event",
-      "topic": "سیاست",
-      "until": 1794875607.7653968
-    },
     "v4|russia's war on ukraine: 'americans want to have a deal whatever the cost for both ukraine & europe'": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Analysis and speculation regarding peace talks, not a concrete event.",
@@ -1434,12 +1423,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: Routine legislative orientation and reporting on midterm election aftermath.",
       "topic": "سیاست",
       "until": 1794949585.7922122
-    },
-    "v4|the pros and cons of using cloud storage over local storage": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: مقاله تحلیلی، نه رویداد خبری",
-      "topic": "فناوری",
-      "until": 1794875606.2112076
     },
     "v4|trump departs for asean on summit with xi and putin": {
       "ok": true,
@@ -1999,12 +1982,6 @@
       "topic": "اقتصاد",
       "until": 1794915329.7152267
     },
-    "v4|ایران کانون های داخلی ریزگرد را ساماندهی کرد؛ حالا نوبت ترکمنستان است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: Governor reduces dust storm days",
-      "topic": "آب و هوا",
-      "until": 1794875609.2489033
-    },
     "v4|ایرانی ها سالانه ۱۸۰۰ تُن آنتی بیوتیک مصرف می کنند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: آمار مصرف دارو و هشدار کلی بدون رویداد مشخص.",
@@ -2461,6 +2438,12 @@
       "topic": "اقتصاد",
       "until": 1794897319.5053241
     },
+    "v4|حمایت ماهانه بهزیستی خراسان رضوی به بیش از ۲۰۰۰ کودک بی سرپرست و بدسرپرست": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial welfare aid, limited national impact",
+      "topic": "جامعه",
+      "until": 1794962139.9031608
+    },
     "v4|حمایت کایا کالاس از اتهام حمله سایبری علیه ایران": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official statement by a top EU official regarding sanctions against Iran.",
@@ -2718,12 +2701,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: درخواست رسمی مقام ارشد عراق از رئیس‌جمهور آمریکا درباره ایران و جنگ.",
       "topic": "سیاست",
       "until": 1794897319.4542837
-    },
-    "v4|رئیس جمهور عراق از ترامپ خواست به سیاست پایان دادن به جنگ ها بازگردد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=world: Iraqi president requests Trump to end wars",
-      "topic": "سیاست",
-      "until": 1794875609.2344582
     },
     "v4|رئیس پارلمان لبنان: تحولات لبنان به اوضاع منطقه گره خورده/ «وضعیت نه جنگ و نه صلح» بر منطقه حاکم است و مشخص نیست روند تحولات به سمت تشدید تنش حرکت می کند یا آرامش": {
       "ok": true,
@@ -3108,6 +3085,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Significant mass casualty report in an active regional war zone.",
       "topic": "حادثه",
       "until": 1794933269.0387456
+    },
+    "v4|شهادت یک زن فلسطینی در منطقه اریحا به ضرب گلوله شهرک نشینان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=True scope=world: One death in Palestinian shooting",
+      "topic": "حادثه",
+      "until": 1794962142.4762795
     },
     "v4|شهردار صدرا: طرح جامع حمل ونقل شهر با افق ۱۵ ساله تدوین می شود": {
       "ok": false,
@@ -3498,6 +3481,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: Germany rejects Russia's security architecture proposal",
       "topic": "سیاست",
       "until": 1794940422.3185067
+    },
+    "v4|مدودف: تحریم ها باید به عنوان جنایتی علیه بشریت شناخته شوند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=world: Opinion on sanctions, no decision",
+      "topic": "سیاست",
+      "until": 1794962142.466358
     },
     "v4|مدودف: غرب در تلاش برای نابودی اکثریت جهانی است": {
       "ok": false,
@@ -5056,13 +5045,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Expert rebuts Trump claim, no concrete event",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1794841478,
-      "title": "ادعای پیروزی ترامپ در برابر ایران دروغ است؛ تهران شکست نخورد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Minor foreign accident, few casualties, limited impact",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5614,6 +5596,13 @@
       "rule": "no-concrete-event",
       "t": 1794873919,
       "title": "Whether it's Black Friday or a CEO scandal, NVIDIA GPUs just don't get deep discounts"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial welfare aid, limited national impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1794875739,
+      "title": "حمایت ماهانه بهزیستی خراسان رضوی به بیش از ۲۰۰۰ کودک بی سرپرست و بدسرپرست"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10417,7 +10406,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794873682
+    "at": 1794875508
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10436,14 +10425,14 @@
     "last_status": 422
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794874241.0,
-    "last_failure": 1794873941,
-    "last_status": 599
+    "disabled_until": 1794875811,
+    "last_failure": 1794875751,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794874223.0,
-    "last_failure": 1794873923,
-    "last_status": 503
+    "disabled_until": 1794876344,
+    "last_failure": 1794875744,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
