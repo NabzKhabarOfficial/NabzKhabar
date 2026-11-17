@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794873256
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794873256
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
       "t": 1794873271
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
       "t": 1794879339
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1794881087
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1794881115
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-16",
-      "n": 196
+      "n": 197
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-16",
-      "n": 86
+      "n": 87
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-16",
-      "n": 83
+      "n": 84
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-17",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-17",
-      "n": 10
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-11-16",
@@ -496,15 +496,15 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 20,
-        "ok": 20,
+        "calls": 21,
+        "ok": 21,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 5,
-        "calls": 8,
+        "calls": 9,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 3,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
@@ -517,23 +517,23 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 8,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 7,
         "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 9,
+        "calls": 10,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 7,
+        "ok": 8,
         "other": 0
       }
     }
@@ -1245,12 +1245,6 @@
       "topic": "سیاست",
       "until": 1794909940.8636167
     },
-    "v4|apple launches new app to study how people use ai for health": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=local: Minor Apple app launch, limited impact",
-      "topic": "فناوری",
-      "until": 1794880955.690377
-    },
     "v4|bahrain convicts dozens of shiite clerics in sweeping terrorism trial": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Landmark court ruling involving international political accusations.",
@@ -1365,12 +1359,6 @@
       "topic": "قضایی",
       "until": 1794882790.3853345
     },
-    "v4|mp helen haines leaves hospital four weeks after alleged attack and double leg amputation": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Australian MP injury, not nationally significant",
-      "topic": "سیاست",
-      "until": 1794880955.6808867
-    },
     "v4|mp helen haines’s first words since leaving hospital after alleged attack led to double amputation": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: مرخص شدن نماینده پارلمان استرالیا از بیمارستان، خبری محلی یا کم‌اهمیت جهانی.",
@@ -1418,12 +1406,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Mass casualty event with more than 10 people killed.",
       "topic": "حادثه",
       "until": 1794954936.377878
-    },
-    "v4|suspected china spy linked to nvidia's ex-boss left in 2025, megaspeed says": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: رسوایی جاسوسی و تراشه های هوش مصنوعی انویدیا",
-      "topic": "فناوری",
-      "until": 1794880952.401189
     },
     "v4|tech leaders are convinced that jensen huang’s exit was a plot against him": {
       "ok": false,
@@ -1682,12 +1664,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: ابلاغ دستورالعمل تسویه بدهی دولت توسط وزیر اقتصاد",
       "topic": "اقتصاد",
       "until": 1794915329.7302632
-    },
-    "v4|اتهام مداخله دفتر نتانیاهو در انتخابات و پرونده سازی علیه فعالان عرب": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Allegations of Israeli election meddling, limited relevance",
-      "topic": "سیاست",
-      "until": 1794880955.7177417
     },
     "v4|اجتماع ۲۶۱ مردم شهرکرد پرشور تر از همیشه": {
       "ok": false,
@@ -2319,12 +2295,6 @@
       "topic": "سیاست",
       "until": 1794963907.082963
     },
-    "v4|تهران با حملات پهپادی جدید سطح تنش را افزایش می دهد؛ ترامپ از ادامه سیاست انتظار می گوید": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Reported Iranian drone attacks on Bahrain raise tensions",
-      "topic": "نظامی",
-      "until": 1794880955.7091715
-    },
     "v4|توسعه همکاری های هسته ای محور دیدار مقامات لهستان و ازبکستان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Routine diplomatic meeting between two foreign nations.",
@@ -2540,6 +2510,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=world: Celebrity/lifestyle news regarding a football player's family.",
       "topic": "ورزش",
       "until": 1794940470.8472555
+    },
+    "v4|حمله نتانیاهو به رهبران اروپایی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: رسانه‌ای سیاسی، بدون تصمیم ملموس",
+      "topic": "سیاست",
+      "until": 1794967487.431145
     },
     "v4|حمله نظامی به ایران نقض آشکار حقوق بین الملل/ محیط زیست قربانی جنگ شد": {
       "ok": false,
@@ -2840,6 +2816,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine diplomatic consultation without concrete policy changes or agreements.",
       "topic": "سیاست",
       "until": 1794942274.675079
+    },
+    "v4|روسیه چگونه از جنگ و محاصره ایران سود می برد؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=False scope=local: تحلیل، نه رویداد واقعی",
+      "topic": "اقتصاد",
+      "until": 1794967487.4582875
     },
     "v4|رونمایی از ربات غول پیکر سیتکس در میدان آزادی": {
       "ok": false,
@@ -3495,6 +3477,12 @@
       "topic": "نظامی",
       "until": 1794924276.7366445
     },
+    "v4|محبوبیت ترامپ در میان آمریکایی ها همچنان در سطوح پایین قرار دارد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Opinion poll, no concrete event or major impact",
+      "topic": "سیاست",
+      "until": 1794967484.00771
+    },
     "v4|محدودیت استارشلید و تشدید حملات روسیه به اوکراین": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: اظهارات زلنسکی درباره تاثیر محدودیت استارشلید بر جنگ اوکراین.",
@@ -3987,6 +3975,12 @@
       "topic": "سیاست",
       "until": 1794927909.540856
     },
+    "v4|واکنش بقائی به اظهارات روبیو:منطق برتری شمشیر بر قانون، جهان را به سمت تروریسم سوق می دهد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: اظهار نظر رسمی، بدون اقدام جدید",
+      "topic": "سیاست",
+      "until": 1794967487.4466221
+    },
     "v4|واکنش ترامپ در زمینه تهدید حملات پهپادی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: اظهارات غیررسمی و تبلیغاتی یک نامزد انتخاباتی",
@@ -4317,6 +4311,12 @@
       "topic": "اقتصاد",
       "until": 1794902701.0947518
     },
+    "v4|کمک نظامی ۴۷.۹۴ میلیارد دلاری آمریکا به اسرائیل در عرض ۸ سال": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=4 happened=True scope=world: گزارش بودجه، تصمیم قبلی، نه جدید",
+      "topic": "سیاست",
+      "until": 1794967487.4699373
+    },
     "v4|کمیسیون اروپا پیشنهاد وام ۴۵ میلیارد یورویی به اوکراین را ارائه می کند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=4 happened=False scope=world: گزارش از تصمیم احتمالی و ارائه پیشنهاد وام، هنوز تصویب نشده است.",
@@ -4527,6 +4527,10 @@
     "نهمین پهپاد mqm-170 آمریکایی به غنیمت گرفته شد/ تداوم شکست تجهیزات پیشرفته سنتکام": {
       "reason": "content_duplicate",
       "until": 1794900900.477172
+    },
+    "واکنش بقائی به اظهارات روبیو:منطق برتری شمشیر بر قانون، جهان را به سمت تروریسم سوق می دهد": {
+      "reason": "content_duplicate",
+      "until": 1794902694.0947711
     },
     "وقوع سه حادثه در یک روز؛ از انفجار مسکونی تا دو مورد مسمومیت با گاز": {
       "reason": "content_duplicate",
@@ -5089,13 +5093,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد محلی و فرهنگی دانش‌آموزی در یزد فاقد اهمیت ملی.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1794843670,
-      "title": "حضور پرشور دانش آموزان یزد در برنامه های فرهنگی شبانه"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بازسازی گنبد حرم یک مکان مذهبی محلی است.",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5647,6 +5644,13 @@
       "rule": "strict-source-below-importance(8<10)",
       "t": 1794879272,
       "title": "ماجرای تنش لفظی جواد لاریجانی با علی اکبر ولایتی/ او به دامپروری روی آورده و شتر پرورش می دهد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Opinion poll, no concrete event or major impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1794881084,
+      "title": "محبوبیت ترامپ در میان آمریکایی ها همچنان در سطوح پایین قرار دارد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10352,7 +10356,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794879070
+    "at": 1794880881
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10371,9 +10375,9 @@
     "last_status": 422
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794879867,
-    "last_failure": 1794879267,
-    "last_status": 429
+    "disabled_until": 1794881173,
+    "last_failure": 1794881113,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1794879560.0,
@@ -10394,10 +10398,6 @@
   },
   "groq:openai/gpt-oss-120b": {
     "last_quality_failure": 1794873954,
-    "last_status": 422
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1794873973,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
