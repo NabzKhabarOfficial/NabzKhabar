@@ -1,10 +1,11 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
+  "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-17T23:33:57.141993+00:00",
+  "checked_at": "2026-11-18T00:05:16.134973+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -74,23 +75,65 @@
     },
     {
       "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Northern Ireland promotion, not major international impact",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "Belief and bench help Northern Ireland scale new heights as promotion secured",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b batch score=3 happened=False scope=local: Unconfirmed claim Nvidia exiting China market",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "Nvidia is abandoning China after Jensen Huang’s ouster",
+      "url": ""
+    },
+    {
+      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Media analysis and speculation rather than a concrete event.",
       "result": "editorial_blocked",
       "source": "",
       "title": "Tracking China’s War of Words Against Japan",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Australian retailer creditors meeting, limited broader relevance",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "David Jones: what went wrong and what happens next? Five takeaways from first creditors meeting",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "isna.ir",
+      "started_at": "2026-11-18T00:04:15.097221+00:00",
+      "title": "شنیده شدن صدای انفجارهای متعدد در بحرین",
+      "url": "https://isna.ir/news/1405082718579/%D8%B4%D9%86%DB%8C%D8%AF%D9%87-%D8%B4%D8%AF%D9%86-%D8%B5%D8%AF%D8%A7%DB%8C-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%D9%85%D8%AA%D8%B9%D8%AF%D8%AF-%D8%AF%D8%B1-%D8%A8%D8%AD%D8%B1%DB%8C%D9%86"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 17,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "isna.ir",
+      "title": "شنیده شدن صدای انفجارهای متعدد در بحرین",
+      "url": "https://isna.ir/news/1405082718579/%D8%B4%D9%86%DB%8C%D8%AF%D9%87-%D8%B4%D8%AF%D9%86-%D8%B5%D8%AF%D8%A7%DB%8C-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%D9%85%D8%AA%D8%B9%D8%AF%D8%AF-%D8%AF%D8%B1-%D8%A8%D8%AD%D8%B1%DB%8C%D9%86"
+    }
+  ],
   "no_publication_candidate": false,
-  "publication_gap": true,
-  "published": 0,
+  "publication_gap": false,
+  "published": 2,
   "run_status": "success",
-  "selected_for_publication": 9,
+  "selected_for_publication": 15,
   "skipped_duplicate": [],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
