@@ -1,12 +1,22 @@
 {
   "ai_pool": {},
   "all_selected_blocked": false,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-18T00:34:30.825578+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-11-18T01:04:04.012232+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: US claim expired munitions, no confirmed event",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "ادعای تازه مقام نظامی آمریکا؛ در حمله به ایران از مهمات «تاریخ مصرف گذشته» استفاده کردیم",
+      "url": ""
+    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=5 happened=False scope=world: Speculative economic policy discussion regarding trade and tariffs.",
@@ -65,42 +75,58 @@
     },
     {
       "error": "",
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=1 happened=False scope=local: Question about saffron market, no event",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "آیا زعفران ایرانی جای طلای سرخ کشمیر را می گیرد؟",
+      "url": ""
+    },
+    {
+      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Media analysis and speculation rather than a concrete event.",
       "result": "editorial_blocked",
       "source": "",
       "title": "Tracking China’s War of Words Against Japan",
       "url": ""
-    }
-  ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
-  "feed_summary": {},
-  "important_missed": [],
-  "missed_selected_stories": [],
-  "no_publication_candidate": false,
-  "publication_gap": false,
-  "published": 1,
-  "run_status": "success",
-  "selected_for_publication": 11,
-  "skipped_duplicate": [
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "isna.ir",
-      "started_at": "2026-11-18T00:33:42.416981+00:00",
-      "title": "شنیده شدن صدای انفجارهای متعدد در بحرین",
-      "url": "https://isna.ir/news/1405082718579/%D8%B4%D9%86%DB%8C%D8%AF%D9%87-%D8%B4%D8%AF%D9%86-%D8%B5%D8%AF%D8%A7%DB%8C-%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%D9%85%D8%AA%D8%B9%D8%AF%D8%AF-%D8%AF%D8%B1-%D8%A8%D8%AD%D8%B1%DB%8C%D9%86"
     },
     {
       "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "bbc.co.uk",
-      "started_at": "2026-11-18T00:33:48.255729+00:00",
-      "title": "Nvidia says it won't reinstate Huang as firm reports bumper results",
-      "url": "https://bbc.co.uk/news/articles/cm2kl50vkwkdo?at_campaign=rss&at_medium=RSS"
+      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=world: Party vows 90% cut, not yet enacted",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "One Nation says it would cut Australia’s refugee intake by 90% under ‘tough stance’",
+      "url": ""
     }
   ],
-  "status": "healthy"
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "bbc.com",
+      "started_at": "2026-11-18T01:03:46.613477+00:00",
+      "title": "آصف مرچنت به جرم سازمان دهی طرح ترور و دریافت پول از سپاه پاسداران به ۲۷ سال زندان محکوم شد",
+      "url": "https://bbc.com/persian/articles/cwz0kll92xlpo?at_campaign=rss&at_medium=RSS"
+    }
+  ],
+  "failed_publications": 0,
+  "feed_summary": {},
+  "important_missed": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 14,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "bbc.com",
+      "title": "آصف مرچنت به جرم سازمان دهی طرح ترور و دریافت پول از سپاه پاسداران به ۲۷ سال زندان محکوم شد",
+      "url": "https://bbc.com/persian/articles/cwz0kll92xlpo?at_campaign=rss&at_medium=RSS"
+    }
+  ],
+  "no_publication_candidate": false,
+  "publication_gap": true,
+  "published": 0,
+  "run_status": "success",
+  "selected_for_publication": 12,
+  "skipped_duplicate": [],
+  "status": "publication_failure"
 }

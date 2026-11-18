@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794955308
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794955312
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1794955312
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.5-flash-lite",
-      "t": 1794955316
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 8x",
-      "t": 1794955388
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794956606
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1794956607
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1794956608
     },
@@ -159,32 +131,60 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
       "t": 1794962070
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794963802
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1794963803
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1794963804
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1794963822
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1794963823
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-20b",
+      "t": 1794963826
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1794963843
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-17",
-      "n": 121
+      "n": 122
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-17",
-      "n": 207
+      "n": 208
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-17",
-      "n": 82
+      "n": 83
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-17",
-      "n": 83
+      "n": 84
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-18",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-18",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-17",
@@ -491,23 +491,24 @@
     "2026-11-18": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 9,
+        "calls": 10,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 8,
+        "ok": 9,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
         "429": 3,
-        "calls": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 0
+        "other": 1
       },
       "gemini:gemini-3.8-flash": {
         "429": 1,
@@ -518,17 +519,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 2
+        "ok": 5,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
-        "other": 3
+        "ok": 4,
+        "other": 4
       },
       "mistral:ministral-8b-latest": {
         "429": 0,
@@ -538,9 +539,9 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 3,
-        "calls": 8,
+        "calls": 10,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 5,
+        "ok": 7,
         "other": 0
       }
     }
@@ -1429,6 +1430,12 @@
       "topic": "فناوری",
       "until": 1795041708.0848978
     },
+    "v4|one nation says it would cut australia’s refugee intake by 90% under ‘tough stance’": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=world: Party vows 90% cut, not yet enacted",
+      "topic": "سیاست",
+      "until": 1795050226.0360417
+    },
     "v4|palestinian woman, 72, shot dead by israeli settlers in west bank, health ministry says": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: کشته شدن یک زن در درگیری کرانه باختری",
@@ -1482,6 +1489,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: ",
       "topic": "نظامی",
       "until": 1794999941.116014
+    },
+    "v4|top irgc commander in iraq for talks amid kataib hezbollah tensions": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سفر فرمانده ارشد سپاه به عراق برای مذاکرات امنیتی و منطقه‌ای",
+      "topic": "نظامی",
+      "until": 1795050223.3196232
     },
     "v4|tracking china’s war of words against japan": {
       "ok": false,
@@ -1639,6 +1652,12 @@
       "topic": "سیاست",
       "until": 1794994443.4560175
     },
+    "v4|آصف مرچنت به جرم سازمان دهی طرح ترور و دریافت پول از سپاه پاسداران به ۲۷ سال زندان محکوم شد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=iran_national: Pakistani convicted for terror plot, 27-year sentence",
+      "topic": "قضایی",
+      "until": 1795050226.0106423
+    },
     "v4|آغاز پروژه عمرانی سالن مهران مشهد از آذرماه با ۹۰۰ میلیارد تومان هزینه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: پروژه عمرانی استانی و محلی است و اهمیت ملی ندارد.",
@@ -1729,6 +1748,12 @@
       "topic": "سیاست",
       "until": 1795003436.5747745
     },
+    "v4|آیا زعفران ایرانی جای طلای سرخ کشمیر را می گیرد؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=1 happened=False scope=local: Question about saffron market, no event",
+      "topic": "اقتصاد",
+      "until": 1795050226.0234041
+    },
     "v4|آیا نتانیاهو ترامپ را به جنگ می کشاند؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: مقاله تحلیلی و گمانه‌زنی درباره تنش‌ها.",
@@ -1800,6 +1825,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: اختلال کوتاه‌مدت سرویس هواشناسی آمریکا",
       "topic": "آب و هوا",
       "until": 1795035800.0123127
+    },
+    "v4|ادعای تازه مقام نظامی آمریکا؛ در حمله به ایران از مهمات «تاریخ مصرف گذشته» استفاده کردیم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=False scope=world: US claim expired munitions, no confirmed event",
+      "topic": "سیاست",
+      "until": 1795050225.82581
     },
     "v4|ادعای سی ان ان به نقل از منابع آمریکایی: ایران در حال بررسی هدف قرار دادن مقام های ارشد دولت ترامپ از طریق انفجار «بمب کثیف» است/ هنوز شواهدی وجود ندارد که نشان دهد تهران چنین تصمی": {
       "ok": true,
@@ -1933,12 +1964,6 @@
       "topic": "سیاست",
       "until": 1795032321.4422097
     },
-    "v4|افزایش بارش در حوضه های آبریز؛ دریای خزر رکورددار است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: آمار کلی بارش‌ها و هواشناسی اهمیت درجه اول ندارد.",
-      "topic": "آب و هوا",
-      "until": 1794971099.931649
-    },
     "v4|افزایش سقف حقوق کارکنان صنعت نفت تصویب شد/ سقف خالص پرداختی ۲۰ تا حداکثر ۸۵ درصد افزایش خواهد یافت": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: Official government decision on salary caps for a major industry.",
@@ -1980,12 +2005,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Routine provincial utility consumption report and request for conservation.",
       "topic": "جامعه",
       "until": 1794980152.143669
-    },
-    "v4|افشاگری جو بایدن از نظرات آنگلا مرکل درباره ترامپ / رئیس جمهور منتخب آمریکا احساساتی و شیفته پوتین بود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: خاطرات سیاستمداران بازنشسته ارزش خبری درجه یک جهانی ندارد.",
-      "topic": "سیاست",
-      "until": 1794971104.1017773
     },
     "v4|افشاگری نظامی آمریکایی: پنتاگون هشدارها درباره حمله ایران را نادیده گرفت": {
       "ok": true,
@@ -2166,12 +2185,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: ایده و بررسی محصول خودرویی اخبار درجه یک نیست.",
       "topic": "فناوری",
       "until": 1795030539.6471972
-    },
-    "v4|ایران به دنبال ایجاد منطقه ای عاری از سلاح های هسته ای است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: مواضع دیپلماتیک نماینده ایران در سازمان ملل",
-      "topic": "سیاست",
-      "until": 1794971108.578574
     },
     "v4|ایران- عراق؛ نبرد قلعه نویی و آرنولد برای قهرمانی": {
       "ok": false,
@@ -2527,12 +2540,6 @@
       "topic": "جامعه",
       "until": 1794974745.3147252
     },
-    "v4|تعطیلی فرودگاه ریاض در پی حمله پهپادی": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله پهپادی و تعطیلی فرودگاه در منطقه جنگی",
-      "topic": "نظامی",
-      "until": 1794971108.5641694
-    },
     "v4|تعمیر ۳۵۳ واحد آسیب دیده از جنگ در ابهر به پایان رسید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Local infrastructure and reconstruction project in a specific county.",
@@ -2676,12 +2683,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: قهرمانی تیم ملی فوتبال ایران در یک تورنمنت بین‌المللی",
       "topic": "ورزش",
       "until": 1795030535.9124823
-    },
-    "v4|جان ۱۲۰۰ بیمار هموفیلی در خطر است؛ درخواست از معاون اول پزشکیان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.8-flash score=3 happened=True scope=iran_national: درخواست و هشدار یک کانون صنفی، فاقد تصمیم قطعی یا رویداد نهایی",
-      "topic": "سلامت",
-      "until": 1794972912.5140495
     },
     "v4|جانشین سپاه صاحب الزمان(عج): هم صدایی دولت و ملت ضرورت امروز است": {
       "ok": false,
@@ -2898,6 +2899,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: اقدام استانی و محلی مربوط به نانوایی‌های فارس.",
       "topic": "اقتصاد",
       "until": 1794981996.3024752
+    },
+    "v4|دویست و شصت و دومین شب تجمعات مردم زنجان در میدان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local nightly protest in Zanjan, no national significance",
+      "topic": "جامعه",
+      "until": 1795050201.4213486
     },
     "v4|دویست و شصت و دومین شب تجمعات مردم کرج": {
       "ok": false,
@@ -3720,12 +3727,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: اظهارنظر نماینده مجلس درباره پیگیری موضوع، فاقد تصمیم قطعی یا رویداد جدید است.",
       "topic": "اقتصاد",
       "until": 1794987452.826728
-    },
-    "v4|محبوبیت ترامپ همچنان در پایین سطح قرار دارد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: نظرسنجی درباره محبوبیت ترامپ رویداد قطعی و درجه یک نیست",
-      "topic": "سیاست",
-      "until": 1794971091.7206094
     },
     "v4|مخازن گازوئیل باعث حریق یک ساختمان در جنوب تهران شد": {
       "ok": false,
@@ -5010,16 +5011,6 @@
       "id": "7022934fc5",
       "match": "مخالفت نخست وزیر انگلیس با جنگ علیه ایران",
       "model": "mistral/open-mistral-nemo",
-      "t": 1794899209,
-      "verdict": "repeat",
-      "why": "نخست‌وزیر انگلیس در مورد جنگ با ایران"
-    },
-    {
-      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
-      "head": "درخواست نخست وزیر انگلیس برای پایان درگیری با ایران و بازگشایی تنگه هرمز ⚡️ اندی برنهام، نخست وزیر انگلیس، با ",
-      "id": "7022934fc5",
-      "match": "مخالفت نخست وزیر انگلیس با جنگ علیه ایران",
-      "model": "mistral/open-mistral-nemo",
       "t": 1794899225,
       "verdict": "repeat",
       "why": "نخست‌وزیر انگلیس در مورد جنگ با ایران"
@@ -5548,23 +5539,18 @@
       "t": 1794962068,
       "verdict": "new",
       "why": "This is a new quarterly financial report for Nvidia."
+    },
+    {
+      "head": "آصف مرچنت به جرم سازمان دهی طرح ترور به دستور سپاه پاسداران به ۲۷ سال زندان محکوم شد ⚡️ آصف مرچنت، تبعه پاکستا",
+      "id": "5e2145a360",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1794963831,
+      "verdict": "new",
+      "why": "موضوع جدید: محاکمه و محکومیت فردی"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: تحول در نظارت بازار به هوشمند",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1794931592,
-      "title": "پزشکیان: نظارت بر بازار باید از رویکردهای سنتی و میدانی به سمت نظارت های هوشمند حرکت کند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد فرهنگی و تجدید میثاق نوجوانان محلی خبری رده‌اول محسوب نمی‌شود.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1794931603,
-      "title": "نوجوانان ایرانی پای عهد خود با رهبر شهید ایستادند"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: قهوه گران‌تر، اثرات اقتصادی محدود",
       "rescued": false,
@@ -6110,6 +6096,20 @@
       "rule": "no-concrete-event",
       "t": 1794962021,
       "title": "Nvidia promises that revenue will keep soaring — for now"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local nightly protest in Zanjan, no national significance",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1794963801,
+      "title": "دویست و شصت و دومین شب تجمعات مردم زنجان در میدان"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سفر فرمانده ارشد سپاه به عراق برای مذاکرات امنیتی و منطقه‌ای",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1794963823,
+      "title": "Top IRGC commander in Iraq for talks amid Kataib Hezbollah tensions"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -6689,6 +6689,28 @@
       ],
       "t": 1794962069.5108464,
       "title": "تداوم رشد درآمدهای انویدیا در دوران پس از جنسن هوانگ ⚡️ شرکت انویدیا با وجود خروج جنسن هوانگ، مدیرعامل و بنیان گذار خود،"
+    },
+    {
+      "h": [
+        "اصف",
+        "تبع",
+        "ترر",
+        "جرم",
+        "درفت",
+        "دستر",
+        "ده",
+        "زند",
+        "سزم",
+        "طرح",
+        "محکم",
+        "مرچنت",
+        "نم",
+        "پسدر",
+        "پل",
+        "پکستن"
+      ],
+      "t": 1794963843.8483515,
+      "title": "آصف مرچنت به جرم سازمان دهی طرح ترور به دستور سپاه پاسداران به ۲۷ سال زندان محکوم شد ⚡️ آصف مرچنت، تبعه پاکستانی، به جرم"
     }
   ],
   "_published_incidents": [
@@ -6992,80 +7014,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اربل",
-        "جد",
-        "حمل",
-        "خبر",
-        "طلب",
-        "عرق",
-        "مسلح",
-        "مقر",
-        "منبع",
-        "وقع",
-        "پهپد",
-        "گر"
-      ],
-      "t": 1794832542.731527,
-      "title": "حمله پهپادی به مقرهای گروه های جدایی طلب در اربیل ⚡️ منابع خبری از وقوع حملات پهپادی علیه مقرهای گروه های مسلح و جدایی ط"
-    },
-    {
-      "k": [
-        "ار",
-        "بر",
-        "تکند",
-        "حضر",
-        "سهم",
-        "شرکت",
-        "فنل",
-        "مسبق",
-        "نخستن",
-        "گرندپر"
-      ],
-      "t": 1794832565.545492,
-      "title": "حضور تکواندو ایران با ۹ سهمیه در فینال گرندپری ⚡️ تکواندو ایران برای نخستین بار با ۹ سهمیه در مسابقات فینال گرندپری شرکت"
-    },
-    {
-      "k": [
-        "ادر",
-        "ارتبط",
-        "افرط",
-        "اقدم",
-        "الزم",
-        "امنت",
-        "انتشر",
-        "تجه",
-        "تعن",
-        "تلگرم",
-        "تکلف",
-        "جرم",
-        "جلگر",
-        "حفظت",
-        "دستر",
-        "دسترس",
-        "دلل",
-        "رسن",
-        "سبر",
-        "شرکت",
-        "عرق",
-        "غرمجز",
-        "قنن",
-        "محت",
-        "مسدد",
-        "مل",
-        "مهلت",
-        "نخست",
-        "نهد",
-        "هت",
-        "هدف",
-        "وزر",
-        "وضعت",
-        "کنند"
-      ],
-      "t": 1794832648.649612,
-      "title": "عراق تلگرام را مسدود کرد ⚡️ هیئت رسانه و ارتباطات عراق با دستور نخست وزیر، دسترسی به تلگرام را به دلیل بی توجهی به الزام"
-    },
     {
       "k": [
         "اذرم",
@@ -10308,6 +10256,49 @@
       ],
       "t": 1794962069.4956567,
       "title": "تداوم رشد درآمدهای انویدیا در دوران پس از جنسن هوانگ ⚡️ شرکت انویدیا با وجود خروج جنسن هوانگ، مدیرعامل و بنیان گذار خود،"
+    },
+    {
+      "k": [
+        "اتهم",
+        "از",
+        "اصف",
+        "اعترف",
+        "اقدم",
+        "امرک",
+        "بدن",
+        "تبع",
+        "ترر",
+        "ترمپ",
+        "تط",
+        "تلش",
+        "جرم",
+        "ددگ",
+        "درفت",
+        "دستر",
+        "دنلد",
+        "ده",
+        "زند",
+        "سزم",
+        "سپ",
+        "شنخت",
+        "طرح",
+        "فرد",
+        "قتل",
+        "مجرم",
+        "محکم",
+        "مرس",
+        "مرچنت",
+        "مسلح",
+        "نم",
+        "نک",
+        "هل",
+        "پسدر",
+        "پل",
+        "پکستن",
+        "کر"
+      ],
+      "t": 1794963843.8366683,
+      "title": "آصف مرچنت به جرم سازمان دهی طرح ترور به دستور سپاه پاسداران به ۲۷ سال زندان محکوم شد ⚡️ آصف مرچنت، تبعه پاکستانی، به جرم"
     }
   ],
   "_telegram_errors": [
@@ -10898,6 +10889,12 @@
       "method": "sendPhoto",
       "outcome": "ambiguous",
       "t": 1794955388.3503304
+    },
+    {
+      "error": "ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=12)",
+      "method": "sendPhoto",
+      "outcome": "ambiguous",
+      "t": 1794963843.8161983
     }
   ],
   "_text_polish": {
@@ -10909,7 +10906,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1794961877
+    "at": 1794963682
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10924,13 +10921,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1794962584,
-    "last_failure": 1794961984,
-    "last_status": 429
+    "disabled_until": 1794964104.0,
+    "last_failure": 1794963804,
+    "last_status": 503
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1794962303.0,
-    "last_failure": 1794962003,
+    "disabled_until": 1794964122.0,
+    "last_failure": 1794963822,
     "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
