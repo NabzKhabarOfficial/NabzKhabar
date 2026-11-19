@@ -1,10 +1,11 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
+  "all_selected_blocked": false,
   "ambiguous_publications": 0,
-  "checked_at": "2026-11-19T03:04:07.149889+00:00",
+  "checked_at": "2026-11-19T03:33:05.123136+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -42,14 +43,6 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: گزارش رسانه‌ای درباره حضور مخفیانه پرسنل نظامی فرانسه در اوکراین.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "War in Ukraine: Is France in direct conflict with Russia?",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: گزارش میدانی و خبری از جنگ اوکراین که واجد رویداد استراتژیک جدیدی نیست.",
       "result": "editorial_blocked",
       "source": "",
@@ -82,18 +75,18 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: حاشیه‌ای بی‌اثر و فاقد پیامد ملموس در روابط بین‌الملل.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=iran_national: یادداشت انتقادی و اظهارنظر درباره سخنان معاون اول رئیس‌جمهور است.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "مشاهده کیف هسته ای روسیه در سفر پوتین به چین",
+      "title": "آقای عارف! خدمتتان ارادت داریم اما عامل اصلی تورم،افزایش دستمزد کارگران و کارمندان نیست",
       "url": ""
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: هشدار و توصیه دولتی برای صرفه‌جویی، فاقد رویداد عینی مشخص.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: حاشیه‌ای بی‌اثر و فاقد پیامد ملموس در روابط بین‌الملل.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "اگر مردم در مصرف گاز صرفه جویی نکنند، زمستان امسال سخت خواهد بود",
+      "title": "مشاهده کیف هسته ای روسیه در سفر پوتین به چین",
       "url": ""
     },
     {
@@ -105,16 +98,44 @@
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
-  "failed_publications": 0,
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "result": "failed",
+      "source": "aljazeera.com",
+      "started_at": "2026-11-19T03:32:56.151837+00:00",
+      "title": "Iran war live: Trump says Iran seeks new weapons; Houthis target Riyadh",
+      "url": "https://aljazeera.com/news/liveblog/2026/11/19/iran-war-live-saudi-led-coalition-strikes-yemen-ships-on-fire-in-hormuz?traffic_source=rss"
+    }
+  ],
+  "failed_publications": 1,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 12,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "aljazeera.com",
+      "title": "Iran war live: Trump says Iran seeks new weapons; Houthis target Riyadh",
+      "url": "https://aljazeera.com/news/liveblog/2026/11/19/iran-war-live-saudi-led-coalition-strikes-yemen-ships-on-fire-in-hormuz?traffic_source=rss"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": true,
   "published": 0,
   "run_status": "success",
-  "selected_for_publication": 12,
-  "skipped_duplicate": [],
-  "status": "editorial_blocked"
+  "selected_for_publication": 13,
+  "skipped_duplicate": [
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
+      "source": "aljazeera.com",
+      "started_at": "2026-11-19T03:32:59.917566+00:00",
+      "title": "China’s Xi greets Putin and Trump at APEC before historic summit",
+      "url": "https://aljazeera.com/video/newsfeed/2026/11/19/chinas-xi-greets-putin-and-trump-at-apec-before-historic-summit?traffic_source=rss"
+    }
+  ],
+  "status": "publication_failure"
 }
