@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
-      "t": 1795129505
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795131169
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795131169
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795131170
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795131170
     },
@@ -159,32 +143,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 3x",
       "t": 1795140222
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795141961
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795141962
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795141962
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 7x",
+      "t": 1795142035
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-19",
-      "n": 111
+      "n": 114
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-19",
-      "n": 191
+      "n": 196
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-19",
-      "n": 85
+      "n": 87
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-19",
-      "n": 85
+      "n": 87
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-20",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-20",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-19",
@@ -491,51 +491,58 @@
     "2026-11-20": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 9,
-        "ok": 9,
+        "calls": 11,
+        "ok": 11,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 16,
+        "calls": 21,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 15,
+        "ok": 20,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
-        "429": 4,
-        "calls": 5,
+        "429": 5,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 1,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 12,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 12,
+        "calls": 14,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5869, Requested 2475. Please try again in 2.579999",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
-        "other": 6
+        "ok": 6,
+        "other": 7
+      },
+      "mistral:ministral-8b-latest": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 0,
+        "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 2,
-        "calls": 14,
+        "429": 5,
+        "calls": 19,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 12,
+        "ok": 14,
         "other": 0
       }
     }
@@ -1118,12 +1125,6 @@
       "topic": "فناوری",
       "until": 1795165540.27467
     },
-    "v4|elon musk says record spending on us midterms was 'pretty foolish'": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Musk comment lacks major political impact",
-      "topic": "سیاست",
-      "until": 1795140990.4023905
-    },
     "v4|europe ready for talks with russia on ending war in ukraine, leaders say": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: آمادگی رهبران اروپایی برای مذاکرات صلح جنگ اوکراین",
@@ -1520,12 +1521,6 @@
       "topic": "سیاست",
       "until": 1795205057.6525695
     },
-    "v4|ادعای ترامپ: خواهان توافقی پایدار با ایران هستم": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: اظهارنظر رئیس‌جمهور آمریکا درباره توافق با ایران دارای اهمیت راهبردی است",
-      "topic": "سیاست",
-      "until": 1795140206.592999
-    },
     "v4|ادعای ترامپ: سال نو میلادی نزدیک است؛ پس از اول ژانویه خواهیم دید در درگیری با ایران چه اتفاقی میفتد/ ایرانی ها رفتارهای بدی داشته اند/ در مورد احتمال حمله ایران با بمب کثیف، فکر ن": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: اظهارات رئیس‌جمهور سابق آمریکا درباره تنش‌های احتمالی با ایران پس از ژانویه",
@@ -1675,6 +1670,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=1 happened=False scope=iran_national: تحلیل کارشناس اقتصادی درباره نظارت بر بانک‌ها",
       "topic": "اقتصاد",
       "until": 1795167229.3829157
+    },
+    "v4|اقدام امنیتی غیرمعمول در هواپیمای ترامپ؛ تلفن های خبرنگاران ضبط شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Minor security measure, limited impact",
+      "topic": "سیاست",
+      "until": 1795228360.5280204
     },
     "v4|انتقال سوخت تخصیصی معادن به محل دیگر ممنوع است": {
       "ok": false,
@@ -2822,6 +2823,12 @@
       "topic": "نظامی",
       "until": 1795205057.676589
     },
+    "v4|شنیده شدن صدای انفجار در مناطق مختلف جنوب عربستان": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: گزارش انفجار در مناطق حساس عربستان در چارچوب درگیری‌های منطقه‌ای",
+      "topic": "نظامی",
+      "until": 1795228366.2495618
+    },
     "v4|شهادت ۱۹ آواره یمنی در حمله عربستان به یک قایق": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: کشته شدن شمار زیادی از غیرنظامیان در حمله نظامی.",
@@ -2960,6 +2967,12 @@
       "topic": "سیاست",
       "until": 1795165540.2620373
     },
+    "v4|فعالیت ۶۵۰۰ مراقب مدارس در کشور/ هشدار حذف ورزش از برنامه برخی مدارس": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Policy on school health monitors, not major national impact",
+      "topic": "سلامت",
+      "until": 1795228361.4013934
+    },
     "v4|فناوری های نوین در مسیر حل چالش های مدیریت شهری تهران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: نمایشگاه‌های شهری و فناوری‌های محلی در اولویت خبری نبز خبر نیستند.",
@@ -3019,6 +3032,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: انتخاب بازیکنان والیبال به عنوان ستاره‌های جام ۲۰۲۶",
       "topic": "ورزش",
       "until": 1795145545.5046394
+    },
+    "v4|محمدرضا نقدی: ده ها سفارتخانه در تهران برای اسرائیل اطلاعات جمع آوری می کنند/ رژیم صهیونیستی چشم اندازی برای بقا ندارد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Claim about foreign embassies gathering intel",
+      "topic": "سیاست",
+      "until": 1795228361.8710625
     },
     "v4|مخالفت گندمکاران با ورود مستقیم به بورس": {
       "ok": false,
@@ -3888,7 +3907,7 @@
     },
     "آمریکا چند فرد و شرکت در جنوب شرق آسیا را تحریم کرد": {
       "reason": "content_duplicate",
-      "until": 1795140367.74094
+      "until": 1795163635.4073503
     },
     "ادعای ترامپ: تا آغاز سال جدید میلادی درباره گام بعدی خود در جنگ با ایران تصمیم گیری نخواهم کرد": {
       "reason": "content_duplicate",
@@ -3896,7 +3915,7 @@
     },
     "ادعای ترامپ: تا آغاز سال جدید میلادی، درباره گام بعدی در جنگ با ایران تصمیم گیری نخواهم کرد/ من برای گرفتن تصمیم در مورد ایران عجله ندارم؛ خواهیم دید پس از آغاز سال جدید چه اتفاقی": {
       "reason": "content_duplicate",
-      "until": 1795140358.1981957
+      "until": 1795163624.4367187
     },
     "بیانیه مشترک بین المللی در حمایت از کودکان ایرانی قربانی جنگ و ترور": {
       "reason": "content_duplicate",
@@ -3948,24 +3967,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "ادعای ترامپ درباره تلاش ایران برای دستیابی به سلاح های بیولوژیک و حمله حوثی ها به ریاض ⚡️ دونالد ترامپ مدعی شد",
-      "id": "d55360b12f",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795061076,
-      "verdict": "new",
-      "why": "This is a new statement by Trump regarding biological weapons."
-    },
-    {
-      "head": "زخمی شدن ۸ فلسطینی در حمله با خودرو توسط یک شهرک نشین ⚡️ هشت فلسطینی از جمله سه زن عصر چهارشنبه در پی حمله یک ",
-      "id": "067d3eed27",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795062854,
-      "verdict": "new",
-      "why": "هجوم جدید با خودرو در کفر قاسم، متفاوت از موارد قبلی"
-    },
     {
       "head": "دستگیری محکوم اقتصادی پرونده شهر خودرو و ریگان خودرو با ۱۳۰۰ شاکی ⚡️ دادستان عمومی و انقلاب تهران از دستگیری ی",
       "id": "4ff0978d22",
@@ -4506,30 +4507,29 @@
       "t": 1795140201,
       "verdict": "new",
       "why": "بازنگری تیم امنیت سایبری، موضوع جدید"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "ترامپ: تا آغاز سال جدید میلادی تصمیمی درباره ایران نمی گیرم ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، در هواپیمای ری",
+      "id": "d39d89f931",
+      "match": "ترامپ: بدون مشارکت زلنسکی هیچ تصمیم دربارهٔ اوکراین نخواهد گرفت ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، گفت که بدو",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795141988,
+      "verdict": "repeat",
+      "why": "same Trump statement on Iran decision delay"
+    },
+    {
+      "confirm": "none:-",
+      "head": "ترامپ: تا آغاز سال جدید میلادی تصمیمی درباره ایران نمی گیرم ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، در هواپیمای ری",
+      "id": "d39d89f931",
+      "match": "خط و نشان ترامپ برای ایران پس از اول ژانویه",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795141993,
+      "verdict": "repeat",
+      "why": "The new post is essentially the same statement by Trump regarding Iran decision."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: UK expelled Myanmar military attaché after ICJ genocide ruling",
-      "rescued": true,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795104267,
-      "title": "انگلیس وابسته نظامی میانمار را اخراج کرد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: New financial instruments announced by Tehran Stock Exchange",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795104269,
-      "title": "معرفی سه ابزار مالی جدید بورس تهران تا پایان سال"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: خبر استانی و مربوط به تخلفات خرد در توزیع نان است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1795104304,
-      "title": "خریدهای نامتعارف نان یارانه ای در خراسان شمالی شناسایی شده است"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: دانشگاه آینده، منشور آموزشی، رویداد محلی",
       "rescued": false,
@@ -5068,6 +5068,27 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1795140188,
       "title": "سید مهدی میرباقری: غرب با طوفانی غیرقابل پیش بینی از سوی قائد شهید مواجه شد/ غرب گرایان در جهان اسلام و کشور خودمان نیز "
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Minor security measure, limited impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795141960,
+      "title": "اقدام امنیتی غیرمعمول در هواپیمای ترامپ؛ تلفن های خبرنگاران ضبط شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Policy on school health monitors, not major national impact",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1795141961,
+      "title": "فعالیت ۶۵۰۰ مراقب مدارس در کشور/ هشدار حذف ورزش از برنامه برخی مدارس"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Claim about foreign embassies gathering intel",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1795141961,
+      "title": "محمدرضا نقدی: ده ها سفارتخانه در تهران برای اسرائیل اطلاعات جمع آوری می کنند/ رژیم صهیونیستی چشم اندازی برای بقا ندارد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8650,7 +8671,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795140087
+    "at": 1795141869
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8665,13 +8686,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795138978,
-    "last_failure": 1795138378,
-    "last_status": 429
+    "disabled_until": 1795142042,
+    "last_failure": 1795141982,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795138974,
-    "last_failure": 1795138374,
+    "disabled_until": 1795142575,
+    "last_failure": 1795141975,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
