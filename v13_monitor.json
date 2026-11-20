@@ -1,22 +1,14 @@
 {
   "ai_pool": {},
-  "all_selected_blocked": true,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-20T16:14:55.568336+00:00",
+  "all_selected_blocked": false,
+  "ambiguous_publications": 1,
+  "checked_at": "2026-11-20T16:36:25.066029+00:00",
   "diagnostics": [
-    "All selected stories were blocked or reconciled without a confirmed publication.",
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
-    {
-      "error": "",
-      "reason": "final_guard:ai-contradiction",
-      "result": "editorial_blocked",
-      "source": "isna.ir",
-      "started_at": "2026-11-20T15:35:16.145173+00:00",
-      "title": "نتانیاهو نمایندگان عرب را «حامیان تروریسم که خواستار نابودی دولت یهود هستند، خواند",
-      "url": "https://isna.ir/news/1405082920292/%D9%86%D8%AA%D8%A7%D9%86%DB%8C%D8%A7%D9%87%D9%88-%D9%86%D9%85%D8%A7%DB%8C%D9%86%D8%AF%DA%AF%D8%A7%D9%86-%D8%B9%D8%B1%D8%A8-%D8%B1%D8%A7-%D8%AD%D8%A7%D9%85%DB%8C%D8%A7%D9%86-%D8%AA%D8%B1%D9%88%D8%B1%DB%8C%D8%B3%D9%85-%DA%A9%D9%87-%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%D8%A7%D8%B1-%D9%86%D8%A7%D8%A8%D9%88%D8%AF%DB%8C-%D8%AF%D9%88%D9%84%D8%AA"
-    },
     {
       "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.6-flash batch score=1 happened=False scope=local: آموزش و توصیه عمومی بدون وقوع رویداد جدید",
@@ -32,46 +24,63 @@
       "source": "",
       "title": "کمیسیون اروپا با ابزارهای هوش مصنوعی هدف حمله سایبری قرار گرفت",
       "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Speculative/investigative report on lobbying, lacks immediate strategic policy impact.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "افشای لابی گری پنهان تل آویو در ایالت های آمریکا / پیشنهاد سفر رایگان به دادستان آیووا برای تصویب قوانین ضدتحریم",
+      "url": ""
+    },
+    {
+      "error": "",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Opinion/statement by a single senator, not an official government policy.",
+      "result": "editorial_blocked",
+      "source": "",
+      "title": "برنی سندرز: جنگ علیه ایران بر پایه دروغ آغاز شد",
+      "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "irna.ir",
+      "started_at": "2026-11-20T16:34:05.539335+00:00",
+      "title": "وزارت خارجه یمن: عربستان با حمله به بندر الحدیده مرتکب حماقت شد/ جهان پاسخ ما را خواهد دید",
+      "url": "https://irna.ir/news/86327613/%D9%88%D8%B2%D8%A7%D8%B1%D8%AA-%D8%AE%D8%A7%D8%B1%D8%AC%D9%87-%DB%8C%D9%85%D9%86-%D8%B9%D8%B1%D8%A8%D8%B3%D8%AA%D8%A7%D9%86-%D8%A8%D8%A7-%D8%AD%D9%85%D9%84%D9%87-%D8%A8%D9%87-%D8%A8%D9%86%D8%AF%D8%B1-%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AF%D9%87-%D9%85%D8%B1%D8%AA%DA%A9%D8%A8-%D8%AD%D9%85%D8%A7%D9%82%D8%AA"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 24,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "irna.ir",
+      "title": "وزارت خارجه یمن: عربستان با حمله به بندر الحدیده مرتکب حماقت شد/ جهان پاسخ ما را خواهد دید",
+      "url": "https://irna.ir/news/86327613/%D9%88%D8%B2%D8%A7%D8%B1%D8%AA-%D8%AE%D8%A7%D8%B1%D8%AC%D9%87-%DB%8C%D9%85%D9%86-%D8%B9%D8%B1%D8%A8%D8%B3%D8%AA%D8%A7%D9%86-%D8%A8%D8%A7-%D8%AD%D9%85%D9%84%D9%87-%D8%A8%D9%87-%D8%A8%D9%86%D8%AF%D8%B1-%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AF%D9%87-%D9%85%D8%B1%D8%AA%DA%A9%D8%A8-%D8%AD%D9%85%D8%A7%D9%82%D8%AA"
+    }
+  ],
   "no_publication_candidate": false,
-  "publication_gap": true,
-  "published": 0,
+  "publication_gap": false,
+  "published": 2,
   "run_status": "success",
-  "selected_for_publication": 6,
+  "selected_for_publication": 8,
   "skipped_duplicate": [
     {
       "error": "",
       "reason": "recent-semantic-history",
       "result": "skipped_duplicate",
       "source": "independentpersian.com",
-      "started_at": "2026-11-20T15:34:18.424019+00:00",
+      "started_at": "2026-11-20T16:34:00.942700+00:00",
       "title": "ترامپ به رهبران اروپایی: پوتین می خواهد به جنگ پایان دهد و برای توافق آماده است",
       "url": "https://independentpersian.com/node/423289/%D8%AC%D9%87%D8%A7%D9%86/%D8%AA%D8%B1%D8%A7%D9%85%D9%BE-%D8%A8%D9%87-%D8%B1%D9%87%D8%A8%D8%B1%D8%A7%D9%86-%D8%A7%D8%B1%D9%88%D9%BE%D8%A7%DB%8C%DB%8C-%D9%BE%D9%88%D8%AA%DB%8C%D9%86-%D9%85%DB%8C%E2%80%8C%D8%AE%D9%88%D8%A7%D9%87%D8%AF-%D8%A8%D9%87-%D8%AC%D9%86%DA%AF-%D9%BE%D8%A7%DB%8C%D8%A7%D9%86-%D8%AF%D9%87%D8%AF-%D9%88-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D9%88%D8%A7%D9%81%D9%82-%D8%A2%D9%85%D8%A7%D8%AF%D9%87-%D8%A7%D8%B3%D8%AA"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "khabaronline.ir",
-      "started_at": "2026-11-20T15:34:46.973580+00:00",
-      "title": "حمله شبانۀ روسیه به ۳ پل مهم پایتخت اوکراین",
-      "url": "https://khabaronline.ir/news/2304664/%D8%AD%D9%85%D9%84%D9%87-%D8%B4%D8%A8%D8%A7%D9%86%DB%80-%D8%B1%D9%88%D8%B3%DB%8C%D9%87-%D8%A8%D9%87-%DB%B3-%D9%BE%D9%84-%D9%85%D9%87%D9%85-%D9%BE%D8%A7%DB%8C%D8%AA%D8%AE%D8%AA-%D8%A7%D9%88%DA%A9%D8%B1%D8%A7%DB%8C%D9%86-%D9%81%DB%8C%D9%84%D9%85"
-    },
-    {
-      "error": "",
-      "reason": "recent-semantic-history",
-      "result": "skipped_duplicate",
-      "source": "entekhab.ir",
-      "started_at": "2026-11-20T15:35:59.929383+00:00",
-      "title": "ادعای سی بی اس به نقل از منابع آگاه: اسرائیل و آمریکا در حال بررسی آغاز حمله ای جدید علیه ایران در آینده نزدیک هستند",
-      "url": "https://entekhab.ir/fa/news/948826/ادعای-سی-بی-اس-به-نقل-از-منابع-آگاه-اسرائیل-و-آمریکا-در-حال-بررسی-آغاز-حمله-ای-جدید-علیه-ایران-در-آینده-نزدیک-هستند"
     }
   ],
-  "status": "editorial_blocked"
+  "status": "publication_failure"
 }
