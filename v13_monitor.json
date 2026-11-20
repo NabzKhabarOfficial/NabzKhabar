@@ -1,9 +1,11 @@
 {
   "ai_pool": {},
   "all_selected_blocked": false,
-  "ambiguous_publications": 0,
-  "checked_at": "2026-11-20T12:07:05.209975+00:00",
+  "ambiguous_publications": 1,
+  "checked_at": "2026-11-20T12:35:46.689525+00:00",
   "diagnostics": [
+    "Selected stories did not reach confirmed publication.",
+    "Publication attempts failed or raised exceptions.",
     "Editorial gate blocked one or more candidates."
   ],
   "editorial_blocked": [
@@ -17,22 +19,6 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Local administrative action regarding waste disposal in a small town.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "شکایت محیط زیست پیشوا علیه ۲ خودروی متخلف به دلیل تخلیه غیرمجاز پسماند",
-      "url": ""
-    },
-    {
-      "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Nationwide strike in a major European country affecting public services.",
-      "result": "editorial_blocked",
-      "source": "",
-      "title": "Italy strike draws workers, students into nationwide protests over wages and living costs",
-      "url": ""
-    },
-    {
-      "error": "",
       "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: حمله سایبری به کمیسیون اروپا با ابزارهای هوش مصنوعی.",
       "result": "editorial_blocked",
       "source": "",
@@ -41,39 +27,68 @@
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative report about potential government shutdown; not a confirmed event.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: دیدار و گفتگوی روسای جمهور و مقامات دو کشور.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "احتمال تعطیلی دولت آمریکا در پی اختلاف بر سر جنگ علیه ایران",
+      "title": "روسیه و تاجیکستان در اندیشه تحکیم همکاری نظامی مقابل خطر تروریسم",
       "url": ""
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Routine diplomatic meeting and general discussion on military cooperation.",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=world: نظر و پیش‌بینی شخصی یک فیلسوف درباره آینده.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "روسیه و تاجیکستان در اندیشه تحکیم همکاری نظامی مقابل خطر تروریسم از افغانستان",
+      "title": "فیلسوف سوئدی: هوش مصنوعی می تواند عمر انسان را به ۱۴۰۰ سال برساند",
       "url": ""
     },
     {
       "error": "",
-      "reason": "editor_gate: cached:ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=local: محلی، محیط‌زیستی، بدون رویداد مهم",
+      "reason": "editor_gate: cached:ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: گزارش تاریخی و سالگرد درگذشت چهره‌ای از گذشته.",
       "result": "editorial_blocked",
       "source": "",
-      "title": "پاییز جنگل های هیرکانی در ارتفاعات سوادکوه",
+      "title": "حسن پیرنیا؛ رئیس الوزاریی که تاریخ ایران باستان را نوشت و در ۵۸ سالگی آموختن زبان آلمانی را آغاز کرد",
       "url": ""
     }
   ],
-  "failed_publication_attempts": [],
+  "failed_publication_attempts": [
+    {
+      "error": "",
+      "reason": "telegram-transport-uncertain-no-retry",
+      "result": "ambiguous",
+      "source": "fararu.com",
+      "started_at": "2026-11-20T12:34:17.828022+00:00",
+      "title": "تعطیلی دولت آمریکا در آستانه کریسمس به دلیل اختلاف بر سر جنگ ایران",
+      "url": "https://fararu.com/fa/news/1018364/%D8%AA%D8%B9%D8%B7%DB%8C%D9%84%DB%8C-%D8%AF%D9%88%D9%84%D8%AA-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7-%D8%AF%D8%B1-%D8%A2%D8%B3%D8%AA%D8%A7%D9%86%D9%87-%DA%A9%D8%B1%DB%8C%D8%B3%D9%85%D8%B3-%D8%A8%D9%87-%D8%AF%D9%84%DB%8C%D9%84-%D8%A7%D8%AE%D8%AA%D9%84%D8%A7%D9%81-%D8%A8%D8%B1-%D8%B3%D8%B1-%D8%AC%D9%86%DA%AF-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86"
+    }
+  ],
   "failed_publications": 0,
   "feed_summary": {},
   "important_missed": [],
-  "missed_selected_stories": [],
+  "missed_selected_stories": [
+    {
+      "intelligence_score": 23,
+      "monitor_reason": "selected-but-not-published",
+      "publication_tier": 4,
+      "source": "fararu.com",
+      "title": "تعطیلی دولت آمریکا در آستانه کریسمس به دلیل اختلاف بر سر جنگ ایران",
+      "url": "https://fararu.com/fa/news/1018364/%D8%AA%D8%B9%D8%B7%DB%8C%D9%84%DB%8C-%D8%AF%D9%88%D9%84%D8%AA-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7-%D8%AF%D8%B1-%D8%A2%D8%B3%D8%AA%D8%A7%D9%86%D9%87-%DA%A9%D8%B1%DB%8C%D8%B3%D9%85%D8%B3-%D8%A8%D9%87-%D8%AF%D9%84%DB%8C%D9%84-%D8%A7%D8%AE%D8%AA%D9%84%D8%A7%D9%81-%D8%A8%D8%B1-%D8%B3%D8%B1-%D8%AC%D9%86%DA%AF-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86"
+    }
+  ],
   "no_publication_candidate": false,
   "publication_gap": false,
-  "published": 4,
+  "published": 2,
   "run_status": "success",
-  "selected_for_publication": 11,
-  "skipped_duplicate": [],
-  "status": "healthy"
+  "selected_for_publication": 9,
+  "skipped_duplicate": [
+    {
+      "error": "",
+      "reason": "recent-semantic-history",
+      "result": "skipped_duplicate",
+      "source": "irna.ir",
+      "started_at": "2026-11-20T12:35:16.973293+00:00",
+      "title": "ارتش یمن: بندر «الحدیده» را بزنید، بندر «جده» را می زنیم",
+      "url": "https://irna.ir/news/86327479/%D8%A7%D8%B1%D8%AA%D8%B4-%DB%8C%D9%85%D9%86-%D8%A8%D9%86%D8%AF%D8%B1-%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AF%D9%87-%D8%B1%D8%A7-%D8%A8%D8%B2%D9%86%DB%8C%D8%AF-%D8%A8%D9%86%D8%AF%D8%B1-%D8%AC%D8%AF%D9%87-%D8%B1%D8%A7-%D9%85%DB%8C-%D8%B2%D9%86%DB%8C%D9%85"
+    }
+  ],
+  "status": "publication_failure"
 }
