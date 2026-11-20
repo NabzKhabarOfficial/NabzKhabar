@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
-      "t": 1795132997
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
-      "t": 1795133039
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1795134899
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1795134900
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795134902
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795134902
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795134902
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 5x",
       "t": 1795143918
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795145566
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795145566
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795145567
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795145567
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.5-flash-lite",
+      "t": 1795145568
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 7x",
+      "t": 1795145630
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-19",
-      "n": 118
+      "n": 119
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-19",
-      "n": 198
+      "n": 204
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-19",
-      "n": 88
+      "n": 91
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-19",
-      "n": 90
+      "n": 91
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-20",
-      "n": 16
+      "n": 18
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-20",
-      "n": 16
+      "n": 18
     },
     "openrouter:*": {
       "day": "2026-11-19",
@@ -491,22 +491,22 @@
     "2026-11-20": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 15,
-        "ok": 15,
+        "calls": 16,
+        "ok": 16,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 23,
+        "calls": 29,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 21,
+        "ok": 27,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
-        "429": 5,
-        "calls": 8,
+        "429": 6,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 3,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
@@ -518,17 +518,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 16,
+        "calls": 18,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 13,
+        "ok": 15,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 16,
+        "calls": 18,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5869, Requested 2475. Please try again in 2.579999",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
+        "ok": 10,
         "other": 7
       },
       "mistral:ministral-8b-latest": {
@@ -539,10 +539,10 @@
         "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 5,
-        "calls": 23,
+        "429": 7,
+        "calls": 28,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 18,
+        "ok": 21,
         "other": 0
       }
     }
@@ -1051,6 +1051,13 @@
       "t": 1795143917.0227087,
       "title": "واکنش امارات به اخراج سفیر خود از سومالی",
       "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1795145586.17376,
+      "title": "توقف فروش بلیت پروازهای هواپیمایی اسرائیل به امارات",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-19",
@@ -1373,6 +1380,12 @@
       "topic": "سیاست",
       "until": 1795151065.7403653
     },
+    "v4|«شهر اسفنجی»، راه نجات شهرها از سیلاب؟": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: نظر کارشناسی و پیشنهاد درباره مدیریت سیلاب",
+      "topic": "جامعه",
+      "until": 1795231968.8077624
+    },
     "v4|آسوشیتدپرس: آمریکا به دنبال مهار برنامه هسته ای ایران با فشار اقتصادی است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: گزارش مهم درباره سیاست فشار اقتصادی آمریکا علیه ایران.",
@@ -1529,12 +1542,6 @@
       "topic": "سیاست",
       "until": 1795151065.753279
     },
-    "v4|ادعای ترامپ: چین و روسیه در مناقشه با ایران به سود واشنگتن عمل کردند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: یک ادعای غیررسمی، بدون تصمیم یا رخداد ملموس",
-      "topic": "سیاست",
-      "until": 1795143830.8273149
-    },
     "v4|ادعای وزیر جنگ آمریکا: توافق نفتی ما با ونزوئلا، تنگه هرمز را به عاملی بی اهمیت برای نیم کره غربی تبدیل می کند/ توافق جدیدی جهت همکاری نظامی با ونزوئلا منعقد کردیم": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: مواضع رسمی وزیر جنگ آمریکا درباره تنگه هرمز و ونزوئلا.",
@@ -1558,12 +1565,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حریق نفتکش‌ها در تنگه هرمز رویداد مهم جهانی و نظامی است",
       "topic": "نظامی",
       "until": 1795171075.1767302
-    },
-    "v4|ارزیابی محصولات غذایی باید در شرایط واقعی تولید انجام شود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Statement on food safety evaluation standards by Food and Drug Organization",
-      "topic": "سلامت",
-      "until": 1795145567.48909
     },
     "v4|اروپا ۹۰ میلیارد یورو به اوکراین کمک می کند": {
       "ok": true,
@@ -1738,12 +1739,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: بررسی حمله مشترک به ایران توسط رئیس‌جمهور آمریکا.",
       "topic": "سیاست",
       "until": 1795149234.8504004
-    },
-    "v4|اگر مردم در مصرف گاز صرفه جویی نکنند، زمستان امسال سخت خواهد بود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: هشدار و توصیه دولتی برای صرفه‌جویی، فاقد رویداد عینی مشخص.",
-      "topic": "اقتصاد",
-      "until": 1795143846.7900405
     },
     "v4|ای بی سی نیوز: حضور پوتین در کنار ترامپ و شی جایگاه جهانی او را ارتقا می دهد": {
       "ok": false,
@@ -2327,6 +2322,12 @@
       "topic": "ورزش",
       "until": 1795210414.1622837
     },
+    "v4|حمله عربستان به قایق آوارگان در سواحل یمن ۱۹ کشته برجای گذاشت": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله نظامی مرگبار در منطقه جنگی با تلفات بالا",
+      "topic": "حادثه",
+      "until": 1795231968.8310375
+    },
     "v4|حمله موشکی گسترده یمن به جنوب عربستان؛ انفجارهای شدید در ابها و خمیس مشیط": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Regional war zone attack on major Saudi cities.",
@@ -2344,6 +2345,12 @@
       "reason": "ai mistral/open-mistral-nemo score=8 happened=True scope=world: هجوم هوایی اسرائیل به جنوب لبنان، با تلفات احتمالی",
       "topic": "نظامی",
       "until": 1795199734.9381588
+    },
+    "v4|خاورمیانه در تعقیب آمریکای شمالی!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=world: آمار مصرف نفت، نه رویداد، تحلیل",
+      "topic": "اقتصاد",
+      "until": 1795231965.202159
     },
     "v4|خریدهای نامتعارف نان یارانه ای در خراسان شمالی شناسایی شده است": {
       "ok": false,
@@ -2428,6 +2435,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: Arrest of a major economic criminal with 1300 private plaintiffs.",
       "topic": "قضایی",
       "until": 1795152837.003917
+    },
+    "v4|دستیارهای هوشمند به کمک تصمیم گیری وزیران می آیند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: University AI project announcement, not major national impact",
+      "topic": "فناوری",
+      "until": 1795231966.3750381
     },
     "v4|دسیسه های همسر سوم برای یک طبیب سنتی/ او عکس خود با طبیب سنتی را برای زنش فرستاد و منجر به طلاق شد / شوهرش هم کشته شد": {
       "ok": false,
@@ -2530,12 +2543,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: دیدار تشریفاتی سفرای دو کشور ارزش خبری درجه یک ندارد",
       "topic": "سیاست",
       "until": 1795199669.968015
-    },
-    "v4|رایزنی ولیعهد عربستان و فرمانده سنتکام در سایه تنش های منطقه ای": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: دیدار ولیعهد عربستان و فرمانده سنتکام در تنش‌های منطقه‌ای",
-      "topic": "نظامی",
-      "until": 1795143837.5072904
     },
     "v4|ربیعی: ذوب آهن در ۳۵ بازی ۳۴ امتیاز کسب کرده است": {
       "ok": false,
@@ -2651,12 +2658,6 @@
       "topic": "حادثه",
       "until": 1795205032.2336607
     },
-    "v4|زاکانی: ۲۱۱ نقطه تهران برای ساخت مسکن اجتماعی نوسازی می شود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Municipal housing plan, limited national impact",
-      "topic": "جامعه",
-      "until": 1795145546.3107731
-    },
     "v4|زیدآبادی: اگر ایران فرمول سه قدرت جهانی را نپذیرفت؟ به جای پاسخ به این پرسش های پردردسر بهتر است منتظر نتایج نشست سه جانبه بمانیم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: This is an opinion piece and speculation by a commentator.",
@@ -2771,6 +2772,12 @@
       "topic": "سیاست",
       "until": 1795221344.7738998
     },
+    "v4|سنای آمریکا قطعنامه محدودکننده اختیارات جنگی ترامپ در قبال ایران را رد کرد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تصمیم سنای آمریکا درباره اختیارات جنگی مرتبط با ایران",
+      "topic": "سیاست",
+      "until": 1795231968.7991788
+    },
     "v4|سندرز: ترامپ جنگ نتانیاهو را انجام داد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: اظهارنظر تحلیلی و سیاسی یک سناتور که تصمیم رسمی محسوب نمی‌شود.",
@@ -2812,6 +2819,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=local: خبر استانی و اظهارات مقامات محلی منطقه آزاد چابهار",
       "topic": "اقتصاد",
       "until": 1795171075.2589781
+    },
+    "v4|شرکت هواپیمایی اسرائیل فروش بلیت به امارات را متوقف کرد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: توقف پروازهای شرکت العال به امارات تا سال ۲۰۲۶",
+      "topic": "اقتصاد",
+      "until": 1795231968.81787
     },
     "v4|شرکت پتروشیمی الصدف عربستان هدف قرار گرفت": {
       "ok": true,
@@ -2902,12 +2915,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=False scope=iran_national: بسته خبری و مرور مواضع، رویداد مشخصی محسوب نمی‌شود.",
       "topic": "سیاست",
       "until": 1795149234.8399026
-    },
-    "v4|صفحه نخست روزنامه ها – پنج شنبه ۲۸ آبان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: مرور روزنامه‌ها و تیترهای مطبوعات فاقد اهمیت ملی یا بین‌المللی است.",
-      "topic": "جامعه",
-      "until": 1795143833.8421218
     },
     "v4|طرح برخورد با رانندگان دارای سرعت بحرانی/ بیش از ۱۷ هزار خودرو اعمال قانون شد": {
       "ok": false,
@@ -3028,12 +3035,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: اظهارنظر شخصی یک کارآفرین درباره وقایع تاریخی.",
       "topic": "سیاست",
       "until": 1795154662.0895636
-    },
-    "v4|محمد موسوی و ولی زاده در جمع ستارگان والیبال جهان": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: انتخاب بازیکنان والیبال به عنوان ستاره‌های جام ۲۰۲۶",
-      "topic": "ورزش",
-      "until": 1795145545.5046394
     },
     "v4|محمدرضا نقدی: ده ها سفارتخانه در تهران برای اسرائیل اطلاعات جمع آوری می کنند/ رژیم صهیونیستی چشم اندازی برای بقا ندارد": {
       "ok": false,
@@ -3479,12 +3480,6 @@
       "topic": "حادثه",
       "until": 1795178005.797194
     },
-    "v4|وقتی دموکرات ها تنور جنگ با ایران را گرم می کنند/ پیشنهاد الاغ ها برای حمله به سدهای ایران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و گمانه‌زنی رسانه‌ای درباره جنگ و تنش، نه یک رویداد قطعی.",
-      "topic": "سیاست",
-      "until": 1795143846.7761033
-    },
     "v4|وودی آلن در ۹۰ سالگی با پنجاه ویکمین فیلمش به سینما بازگشت؛ مادرید لوکیشن تازه کارگردان آمریکایی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اخبار مربوط به فرهنگ و هنر و سینما درجه یک محسوب نمی‌شود.",
@@ -3556,6 +3551,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: پذیرش 66 دانش‌آموز در دانشگاه‌ها",
       "topic": "جامعه",
       "until": 1795149200.6236675
+    },
+    "v4|پرونده قتل سوگند؛ مسئولیت حقوقی سکوت در برابر خشونت": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: موت نوجوان، حادثه محلی",
+      "topic": "جامعه",
+      "until": 1795231967.356004
     },
     "v4|پزشکیان: علاوه بر جنگ نظامی، در معرض فشار های شدید اقتصادی و فرهنگی نیز قرار داریم/ حذف ارز ترجیحی در شرایط محدودیت منابع ارزی و دشواری تأمین کالا های اساسی، با هدف جلوگیری از اختل": {
       "ok": true,
@@ -3665,29 +3666,23 @@
       "topic": "سیاست",
       "until": 1795197903.1534002
     },
-    "v4|چند توصیه به دارندگان رمز ارز": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: توصیه‌های آموزشی درباره امنیت رمزارزها رویداد مأموریتی مهمی نیست",
-      "topic": "فناوری",
-      "until": 1795145566.964266
-    },
     "v4|چهار حادثه در هرمزگان ۲ کشته و ۱۳ مصدوم برجا گذاشت": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=local: Local accidents with low casualty count, not meeting national threshold.",
       "topic": "حادثه",
       "until": 1795152836.9760897
     },
-    "v4|چگونه با اضطراب رانندگی خداحافظی کنیم؟": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=False scope=local: محتوای آموزشی و سبک زندگی است و فاقد ارزش خبری ملی است.",
-      "topic": "سلامت",
-      "until": 1795143842.3887773
-    },
     "v4|کدام کسب وکارها در آینده موفق خواهند بود؟": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: Speculative future business piece, no actual event",
       "topic": "اقتصاد",
       "until": 1795158296.5161722
+    },
+    "v4|کلاله روز گذشته گرم ترین نقطه گلستان شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: گرمای شدید در کلاله",
+      "topic": "آب و هوا",
+      "until": 1795231966.9250555
     },
     "v4|کمال گرایی چگونه ذهن را خسته و زندگی را فرسوده می کند؟": {
       "ok": false,
@@ -3784,12 +3779,6 @@
       "reason": "ai gemini/gemini-3.6-flash score=1 happened=True scope=iran_national: پویش تبلیغاتی و ترویجی کم‌اهمیت با ارزش خبری بسیار پایین",
       "topic": "جامعه",
       "until": 1795156815.5918918
-    },
-    "v4|یالتای جدید یا بن بست راهبردی؟ / چشم انداز نشست سه جانبه ترامپ، پوتین و شی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: گفت‌وگو فرضی، جلسه‌ای هنوز برگزار نشده",
-      "topic": "سیاست",
-      "until": 1795143831.9692492
     },
     "v4|یمن خواستار تحقیق بین المللی درباره جنایات جنگی عربستان شد": {
       "ok": false,
@@ -3963,6 +3952,10 @@
       "reason": "content_duplicate",
       "until": 1795156559.516521
     },
+    "حمله عربستان به قایق آوارگان در سواحل یمن ۱۹ کشته برجای گذاشت": {
+      "reason": "content_duplicate",
+      "until": 1795167180.4976962
+    },
     "حمله موفق ارتش یمن به اهدافی در عمق خاک عربستان": {
       "reason": "content_duplicate",
       "until": 1795140305.5306704
@@ -3970,6 +3963,10 @@
     "سنای آمریکا قطعنامه محدودکردن اختیارات نظامی ترامپ در قبال ایران را رد کرد": {
       "reason": "content_duplicate",
       "until": 1795156647.6317883
+    },
+    "سنای آمریکا قطعنامه محدودکننده اختیارات جنگی ترامپ در قبال ایران را رد کرد": {
+      "reason": "content_duplicate",
+      "until": 1795167230.2073781
     },
     "شهادت ۱۹ آواره یمنی در حمله عربستان به یک قایق": {
       "reason": "content_duplicate",
@@ -3987,21 +3984,16 @@
       "reason": "content_duplicate",
       "until": 1795154606.1197383
     },
+    "گزارش ها از شنیده شدن صدای انفجار در چند منطقه عربستان": {
+      "reason": "content_duplicate",
+      "until": 1795167205.9532661
+    },
     "گسترش حملات ایران به پایگاه های آمریکا در خلیج فارس": {
       "reason": "content_duplicate",
       "until": 1795152810.2804275
     }
   },
   "_event_judge_log": [
-    {
-      "head": "خروج ناو هواپیمابر جورج واشنگتن از خاورمیانه و بررسی حمله احتمالی ترامپ به ایران ⚡️ ناو هواپیمابر جورج واشنگتن",
-      "id": "fa7a72cafd",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795071967,
-      "verdict": "new",
-      "why": "ناو هواپیمابر جدید و حمله احتمالی ترامپ به ایران"
-    },
     {
       "head": "تلاش چین برای دور زدن محدودیت های آمریکا جهت دستیابی به تراشه های انویدیا ⚡️ ارتش چین تلاش می کند با دور زدن م",
       "id": "94045b375d",
@@ -4553,37 +4545,18 @@
       "t": 1795143916,
       "verdict": "new",
       "why": "اخبار متفاوت، واکنش امارات به اخراج سفیر"
+    },
+    {
+      "head": "توقف فروش بلیت پروازهای هواپیمایی اسرائیل به امارات ⚡️ شرکت هواپیمایی العال فروش بلیت پروازهای خود به مقصد اما",
+      "id": "b25671f7a1",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795145585,
+      "verdict": "new",
+      "why": "هواپیمایی اسرائیل به امارات، موضوع جدید"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: کسب مدال طلا و برنز توسط سنگ‌نوردان ایران در مسابقات بین‌المللی.",
-      "rescued": true,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1795109606,
-      "title": "درخشش سنگ نوردان ایران در جام آزاد پیمان شانگهای"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، فرهنگی؛ تأثیر محدود به شهرستان",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1795109607,
-      "title": "فرماندار: خوسف به عنوان دیار علم، فرهنگ و هنر ثبت ملی می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اخبار استانی و محلی خراسان شمالی اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1795109615,
-      "title": "۶۰ ثانیه با خراسان شمالی؛ از جشنواره عکس تا اینترنت روستایی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: سفر استانی وزیر و مراسم افتتاحیه یا بازدید محلی است",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795109617,
-      "title": "سفر دو روزه وزیر تعاون، کار و رفاه اجتماعی به مازندران"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: دیدار مقام دولتی با خانواده شهدا در سطح استانی و محلی است.",
       "rescued": false,
@@ -5115,36 +5088,40 @@
       "rule": "below-event-threshold",
       "t": 1795143821,
       "title": "شهید قدوسی: ما برای اسلام و دینمان خیلی بیشتر از انقلابمان ارزش قائلیم"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=world: آمار مصرف نفت، نه رویداد، تحلیل",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1795145565,
+      "title": "خاورمیانه در تعقیب آمریکای شمالی!"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: University AI project announcement, not major national impact",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1795145566,
+      "title": "دستیارهای هوشمند به کمک تصمیم گیری وزیران می آیند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: گرمای شدید در کلاله",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1795145566,
+      "title": "کلاله روز گذشته گرم ترین نقطه گلستان شد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: موت نوجوان، حادثه محلی",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795145567,
+      "title": "پرونده قتل سوگند؛ مسئولیت حقوقی سکوت در برابر خشونت"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اجلس",
-        "اپک",
-        "تبدل",
-        "ثبت",
-        "جن",
-        "حش",
-        "رهبرد",
-        "سفد",
-        "شدند",
-        "شنزن",
-        "شهر",
-        "متعهد",
-        "نظر",
-        "وضعت",
-        "ولدمر",
-        "پتن",
-        "پنگ",
-        "کخ"
-      ],
-      "t": 1795100764.0164948,
-      "title": "کاخ سفید: ترامپ، پوتین و شی جین پینگ در حاشیه اجلاس آپک به ثبات راهبردی متعهد شدند ⚡️ کاخ سفید اعلام کرد که دونالد ترامپ"
-    },
     {
       "h": [
         "تصف",
@@ -5653,6 +5630,21 @@
       ],
       "t": 1795143917.0155349,
       "title": "واکنش امارات به اخراج سفیر خود از سومالی ⚡️ وزارت امور خارجه امارات در واکنش به اخراج سفیر این کشور از سومالی، این اقدام"
+    },
+    {
+      "h": [
+        "العل",
+        "بلت",
+        "تقف",
+        "شرکت",
+        "عرب",
+        "فرش",
+        "متحد",
+        "متقف",
+        "مقصد"
+      ],
+      "t": 1795145586.1652048,
+      "title": "توقف فروش بلیت پروازهای هواپیمایی اسرائیل به امارات ⚡️ شرکت هواپیمایی العال فروش بلیت پروازهای خود به مقصد امارات متحده "
     }
   ],
   "_published_incidents": [
@@ -8004,6 +7996,25 @@
       ],
       "t": 1795143917.0081475,
       "title": "واکنش امارات به اخراج سفیر خود از سومالی ⚡️ وزارت امور خارجه امارات در واکنش به اخراج سفیر این کشور از سومالی، این اقدام"
+    },
+    {
+      "k": [
+        "اسرل",
+        "العل",
+        "امر",
+        "بلت",
+        "تقف",
+        "شرکت",
+        "عرب",
+        "فرش",
+        "متحد",
+        "متقف",
+        "مقصد",
+        "هپم",
+        "پرز"
+      ],
+      "t": 1795145586.1526194,
+      "title": "توقف فروش بلیت پروازهای هواپیمایی اسرائیل به امارات ⚡️ شرکت هواپیمایی العال فروش بلیت پروازهای خود به مقصد امارات متحده "
     }
   ],
   "_telegram_errors": [
@@ -8617,7 +8628,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795143736
+    "at": 1795145467
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8631,14 +8642,9 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1795144151.0,
-    "last_failure": 1795143851,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795143904,
-    "last_failure": 1795143844,
+    "disabled_until": 1795145634,
+    "last_failure": 1795145574,
     "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
