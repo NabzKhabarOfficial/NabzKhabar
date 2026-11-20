@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795129431
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795129435
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795129435
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1795129439
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
       "t": 1795129505
     },
@@ -159,32 +143,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
       "t": 1795138392
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795140188
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795140189
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795140190
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1795140222
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-19",
-      "n": 110
+      "n": 111
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-19",
-      "n": 188
+      "n": 191
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-19",
-      "n": 84
+      "n": 85
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-19",
-      "n": 84
+      "n": 85
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-20",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-20",
-      "n": 10
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-11-19",
@@ -491,51 +491,51 @@
     "2026-11-20": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 13,
+        "calls": 16,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 12,
+        "ok": 15,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
-        "429": 3,
-        "calls": 4,
+        "429": 4,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 2,
-        "calls": 2,
+        "429": 3,
+        "calls": 3,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
+        "ok": 10,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 10,
+        "calls": 12,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5869, Requested 2475. Please try again in 2.579999",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 5
+        "ok": 5,
+        "other": 6
       },
       "mistral:open-mistral-nemo": {
-        "429": 1,
-        "calls": 11,
+        "429": 2,
+        "calls": 14,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 10,
+        "ok": 12,
         "other": 0
       }
     }
@@ -1023,6 +1023,13 @@
       "t": 1795138391.742482,
       "title": "تاکید ویتکاف بر عزم ترامپ برای پایان جنگ اوکراین",
       "urgent": false
+    },
+    {
+      "label": "فناوری",
+      "level": 3,
+      "t": 1795140206.2747915,
+      "title": "بازنگری ترامپ در تیم امنیت سایبری کاخ سفید پس از اختلالات زیرساختی آمریکا",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-19",
@@ -1032,12 +1039,6 @@
       "reason": "ai openrouter/google/gemma-4-31b-it:free batch score=8 happened=True scope=world: Landmark international court ruling on genocide.",
       "topic": "قضایی",
       "until": 1795178060.4126556
-    },
-    "v4|after a.i. cheating scandal, south korea adopts new restrictions for grueling college entrance exam": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: محدودیت‌های امتحانی کره جنوبی خبری فرعی و غیرمهم است",
-      "topic": "جامعه",
-      "until": 1795140178.1343844
     },
     "v4|anthropic becomes one of world's most valuable public companies in stock market debut": {
       "ok": true,
@@ -1159,12 +1160,6 @@
       "topic": "سیاست",
       "until": 1795213993.376325
     },
-    "v4|general pants co enters voluntary administration, putting hundreds of jobs at risk": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=local: Australian retailer admin, limited global impact",
-      "topic": "اقتصاد",
-      "until": 1795140168.2285886
-    },
     "v4|haiti police say at least 34 suspected gang members killed in raid": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: درگیری مسلحانه و کشته شدن ده‌ها نفر در هائیتی",
@@ -1243,6 +1238,12 @@
       "topic": "اقتصاد",
       "until": 1795194375.6910517
     },
+    "v4|myanmar committed genocide against the rohingya, top global court finds": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=9 happened=True scope=world: ICJ genocide ruling on Myanmar, major international legal event",
+      "topic": "قضایی",
+      "until": 1795226588.266525
+    },
     "v4|pm sánchez admits 'mistakes' in key debate ahead of spain's election": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Debate, admits mistakes, no major impact",
@@ -1266,12 +1267,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تصمیم سنای آمریکا درباره اختیارات جنگی مرتبط با ایران.",
       "topic": "سیاست",
       "until": 1795210414.1206796
-    },
-    "v4|settler rams into palestinians at multiple locations in central israel": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=world: حمله با خودرو و زخمی شدن فلسطینیان در اسرائیل",
-      "topic": "حادثه",
-      "until": 1795138405.0097795
     },
     "v4|the best european strikers this century - ranked by you": {
       "ok": false,
@@ -1374,12 +1369,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Historic trilateral summit between leaders of three major global powers.",
       "topic": "سیاست",
       "until": 1795173072.6969566
-    },
-    "v4|xi-trump-putin talks live: china, us and russia leaders to hold landmark three-way meeting": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: Planned trilateral meeting, no event yet",
-      "topic": "سیاست",
-      "until": 1795140178.7870297
     },
     "v4|«او کیست؟»؛ مواجه عجیب ترامپ با پوتین": {
       "ok": false,
@@ -1500,6 +1489,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: پنج نفر مصدوم، حادثه رانندگی در گرمی",
       "topic": "حادثه",
       "until": 1795167200.3034208
+    },
+    "v4|اختلالات زیرساختی گسترده آمریکا؛ ترامپ به دنبال تغییر تیم سایبری کاخ سفید": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: تصمیم رئیس‌جمهور آمریکا برای تغییر تیم سایبری پس از اختلالات.",
+      "topic": "فناوری",
+      "until": 1795226590.8195376
     },
     "v4|ادعای ترامپ خطاب به رئیس جمهور چین: ما و شما در این زمینه که باید جریان انتقال انرژی از طریق تنگه هرمز تضمین شود و ایران به سلاح هسته ای دست پیدا نکند، منافع مشترکی داریم/ می خواهی": {
       "ok": true,
@@ -1951,12 +1946,6 @@
       "topic": "سیاست",
       "until": 1795210422.195028
     },
-    "v4|بنت در دیداری طولانی با نتانیاهو، متحدانش را غافلگیر کرد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: گمانه‌زنی سیاسی داخلی اسرائیل و فاقد تاثیر راهبردی بر امنیت منطقه.",
-      "topic": "سیاست",
-      "until": 1795138412.121051
-    },
     "v4|بیانیه روسیه، چین و آمریکا پس از نشست سران در اجلاس اپک": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite score=9 happened=True scope=world: بیانیه مشترک سه قدرت جهانی درباره ثبات راهبردی و امنیت بین‌المللی",
@@ -2178,6 +2167,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Policy statement, no concrete action taken",
       "topic": "اقتصاد",
       "until": 1795205053.5978909
+    },
+    "v4|تهیه بشقاب غذایی برای کودکان کشور": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: National nutrition guidelines announcement, low impact",
+      "topic": "سلامت",
+      "until": 1795226587.2878761
     },
     "v4|توقیف خودرو با راننده ۱۴ ساله در محور رشت ـ قزوین": {
       "ok": false,
@@ -2539,12 +2534,6 @@
       "topic": "قضایی",
       "until": 1795167229.3933418
     },
-    "v4|راه اندازی ۲۰ مرکز رشد نوین در ۲۰ دانشگاه؛ آیا دانشگاه ها به صنعت وصل می شوند؟": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: راه‌اندازی ۲۰ مرکز رشد، اثر محدود بر اقتصاد و صنعت",
-      "topic": "فناوری",
-      "until": 1795140167.4842951
-    },
     "v4|رایزنی وزیر ارتباطات الجزایر و سفیر جمهوری اسلامی ایران": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: دیدار تشریفاتی سفرای دو کشور ارزش خبری درجه یک ندارد",
@@ -2808,6 +2797,12 @@
       "reason": "ai openrouter/google/gemma-4-31b-it:free batch score=9 happened=True scope=world: Explosions of tankers in Hormuz are world news.",
       "topic": "نظامی",
       "until": 1795178060.397256
+    },
+    "v4|سید مهدی میرباقری: غرب با طوفانی غیرقابل پیش بینی از سوی قائد شهید مواجه شد/ غرب گرایان در جهان اسلام و کشور خودمان نیز در این تله گرفتار شده اند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Political statement, no concrete event",
+      "topic": "سیاست",
+      "until": 1795226588.8051214
     },
     "v4|شب ۲۶۴ بیعت؛ میدان شهدای اراک میزبان مردم دیار آفتاب است": {
       "ok": false,
@@ -3881,7 +3876,7 @@
     },
     "europe ready for talks with russia on ending war in ukraine, leaders say": {
       "reason": "content_duplicate",
-      "until": 1795138576.2752986
+      "until": 1795161822.6164637
     },
     "senate republicans in us reject measure to limit trump’s war powers in iran": {
       "reason": "content_duplicate",
@@ -3953,15 +3948,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "تمدید بازداشت مدیر بیمارستان کمال عدوان غزه توسط اسرائیل ⚡️ دادگاهی در بئر السبع بازداشت دکتر حسام ابوصفیه، مد",
-      "id": "fb0f8d2ef3",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795050216,
-      "verdict": "new",
-      "why": "بازداشت مدیر بیمارستان غزه، موضوع جدید"
-    },
     {
       "head": "ادعای ترامپ درباره تلاش ایران برای دستیابی به سلاح های بیولوژیک و حمله حوثی ها به ریاض ⚡️ دونالد ترامپ مدعی شد",
       "id": "d55360b12f",
@@ -4511,30 +4497,18 @@
       "t": 1795138390,
       "verdict": "new",
       "why": "جنگ اوکراین و موضع ترامپ جدید"
+    },
+    {
+      "head": "بازنگری ترامپ در تیم امنیت سایبری کاخ سفید پس از اختلالات زیرساختی آمریکا ⚡️ دونالد ترامپ، رئیس جمهوری آمریکا،",
+      "id": "7d87f08ee4",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795140201,
+      "verdict": "new",
+      "why": "بازنگری تیم امنیت سایبری، موضوع جدید"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: محصول زعفران در کبودرآهنگ",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1795102420,
-      "title": "مراحل برداشت و فرآوری طلای سرخ در کبودرآهنگ"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=False scope=local: Routine slogan by a local official with no concrete event.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795102429,
-      "title": "بسیج با اطاعت پذیری سدی نفوذناپذیر در برابر نقشه های دشمن است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تعطیلی مدارس یک استان به دلیل آنفلوآنزا خبری محلی است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795102444,
-      "title": "غیرحضوری شدن مدارس استان بوشهر در روزهای شنبه و یکشنبه"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: UK expelled Myanmar military attaché after ICJ genocide ruling",
       "rescued": true,
@@ -5073,6 +5047,27 @@
       "rule": "no-concrete-event",
       "t": 1795138371,
       "title": "Democrats say law firm gave $11.8m worth of service to Trump administration"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: National nutrition guidelines announcement, low impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795140187,
+      "title": "تهیه بشقاب غذایی برای کودکان کشور"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=9 happened=True scope=world: ICJ genocide ruling on Myanmar, major international legal event",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1795140188,
+      "title": "Myanmar Committed Genocide Against the Rohingya, Top Global Court Finds"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Political statement, no concrete event",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795140188,
+      "title": "سید مهدی میرباقری: غرب با طوفانی غیرقابل پیش بینی از سوی قائد شهید مواجه شد/ غرب گرایان در جهان اسلام و کشور خودمان نیز "
     }
   ],
   "_join_button_cleanup_done": true,
@@ -5589,62 +5584,32 @@
       ],
       "t": 1795138391.7348711,
       "title": "تاکید ویتکاف بر عزم ترامپ برای پایان جنگ اوکراین ⚡️ استیو ویتکاف، فرستاده ویژه دونالد ترامپ، رئیس جمهور آمریکا، در برلین"
+    },
+    {
+      "h": [
+        "اختلل",
+        "اسب",
+        "برز",
+        "بزنگر",
+        "ترکب",
+        "تم",
+        "حت",
+        "زرسخت",
+        "سبر",
+        "سفد",
+        "شبک",
+        "مصنع",
+        "نگرن",
+        "هش",
+        "پذر",
+        "کخ",
+        "گسترد"
+      ],
+      "t": 1795140206.255003,
+      "title": "بازنگری ترامپ در تیم امنیت سایبری کاخ سفید پس از اختلالات زیرساختی آمریکا ⚡️ دونالد ترامپ، رئیس جمهوری آمریکا، در پی برو"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "ابد",
-        "برج",
-        "بعد",
-        "بندرعبس",
-        "تصدف",
-        "تنل",
-        "تنگ",
-        "حدث",
-        "رنندگ",
-        "محدد",
-        "محر",
-        "هرمزگ",
-        "چهر"
-      ],
-      "cities": [
-        "بندرعباس"
-      ],
-      "kind": "crash",
-      "places": [
-        "بندرعباس",
-        "هرمزگان"
-      ],
-      "regions": [
-        "iran_south"
-      ],
-      "t": 1795066504.3874946,
-      "title": "چهار حادثه در هرمزگان ۲ کشته و ۱۳ مصدوم برجا گذاشت ⚡️ تصادف رانندگی در محور بندرعباس به حاجی آباد محدوده بعد از تونل تنگ",
-      "toll": 13
-    },
-    {
-      "a": [
-        "احتمل",
-        "بررس",
-        "تدر",
-        "ترک",
-        "جرج",
-        "جگزن",
-        "خرج",
-        "خرمن",
-        "رزلت",
-        "هپمبر",
-        "وشنگتن"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795071975.9538,
-      "title": "خروج ناو هواپیمابر جورج واشنگتن از خاورمیانه و بررسی حمله احتمالی ترامپ به ایران ⚡️ ناو هواپیمابر جورج واشنگتن خاورمیانه",
-      "toll": 0
-    },
     {
       "a": [
         "انتشر",
@@ -5762,6 +5727,30 @@
       ],
       "t": 1795129484.2278936,
       "title": "گسترش حملات ایران به پایگاه های آمریکا در خلیج فارس ⚡️ ایران در واکنش به حملات آمریکا، دامنه عملیات خود را علیه مواضع نظ",
+      "toll": 0
+    },
+    {
+      "a": [
+        "اختلل",
+        "اسب",
+        "برز",
+        "بزنگر",
+        "ترکب",
+        "زرسخت",
+        "سبر",
+        "سفد",
+        "شبک",
+        "مصنع",
+        "نگرن",
+        "پذر",
+        "گسترد"
+      ],
+      "cities": [],
+      "kind": "cyber",
+      "places": [],
+      "regions": [],
+      "t": 1795140206.2652154,
+      "title": "بازنگری ترامپ در تیم امنیت سایبری کاخ سفید پس از اختلالات زیرساختی آمریکا ⚡️ دونالد ترامپ، رئیس جمهوری آمریکا، در پی برو",
       "toll": 0
     }
   ],
@@ -8017,6 +8006,37 @@
       ],
       "t": 1795138391.7269495,
       "title": "تاکید ویتکاف بر عزم ترامپ برای پایان جنگ اوکراین ⚡️ استیو ویتکاف، فرستاده ویژه دونالد ترامپ، رئیس جمهور آمریکا، در برلین"
+    },
+    {
+      "k": [
+        "اختلل",
+        "اسب",
+        "امرک",
+        "امنت",
+        "برز",
+        "بزنگر",
+        "ترمپ",
+        "ترکب",
+        "تم",
+        "جمهر",
+        "حت",
+        "دلت",
+        "دنلد",
+        "رس",
+        "زرسخت",
+        "سبر",
+        "سفد",
+        "شبک",
+        "مصنع",
+        "نگرن",
+        "هش",
+        "پذر",
+        "کخ",
+        "کشر",
+        "گسترد"
+      ],
+      "t": 1795140206.244235,
+      "title": "بازنگری ترامپ در تیم امنیت سایبری کاخ سفید پس از اختلالات زیرساختی آمریکا ⚡️ دونالد ترامپ، رئیس جمهوری آمریکا، در پی برو"
     }
   ],
   "_telegram_errors": [
@@ -8630,7 +8650,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795138262
+    "at": 1795140087
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8643,10 +8663,6 @@
     "last_error": "HTTP 402 payment required (no free quota on this account)",
     "last_failure": 1791935762,
     "last_status": 402
-  },
-  "gemini:gemini-3.1-flash-lite": {
-    "last_quality_failure": 1795136609,
-    "last_status": 422
   },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1795138978,
