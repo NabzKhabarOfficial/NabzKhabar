@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795127593
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795127598
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795127598
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1795127603
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 8x",
       "t": 1795127707
     },
@@ -159,32 +143,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 6x",
       "t": 1795135047
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795136582
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795136583
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795136583
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1795136640
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-19",
-      "n": 107
+      "n": 109
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-19",
-      "n": 182
+      "n": 186
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-19",
-      "n": 81
+      "n": 83
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-19",
-      "n": 81
+      "n": 83
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-20",
-      "n": 7
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-20",
-      "n": 7
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-19",
@@ -491,20 +491,21 @@
     "2026-11-20": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
+        "calls": 7,
+        "ok": 7,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 7,
+        "calls": 11,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 6,
+        "ok": 10,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
-        "429": 0,
-        "calls": 1,
+        "429": 2,
+        "calls": 3,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 1,
         "other": 0
       },
@@ -517,24 +518,24 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 7,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 6,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 1,
-        "calls": 7,
+        "calls": 8,
         "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5869, Requested 2475. Please try again in 2.579999",
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
+        "ok": 4,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 1,
-        "calls": 7,
+        "calls": 9,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 6,
+        "ok": 8,
         "other": 0
       }
     }
@@ -1037,6 +1038,12 @@
       "topic": "فناوری",
       "until": 1795219395.7993572
     },
+    "v4|anthropic’s 7 founders cashed out nearly $2b in record-breaking ipo": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: عرضه اولیه بی‌سابقه و تاریخی شرکت آنتروپیک با ارزش عظیم",
+      "topic": "فناوری",
+      "until": 1795222984.039421
+    },
     "v4|apec summit: lots of gloss, little real progress?": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: historic first trilateral meeting of US, China, and Russia leaders",
@@ -1228,6 +1235,12 @@
       "reason": "ai openrouter/openrouter/free batch score=7 happened=True scope=world: توافق آمریکا/چین/روسیه برای افزایش عرضه نفت",
       "topic": "اقتصاد",
       "until": 1795194375.6910517
+    },
+    "v4|pm sánchez admits 'mistakes' in key debate ahead of spain's election": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Debate, admits mistakes, no major impact",
+      "topic": "سیاست",
+      "until": 1795222983.1897078
     },
     "v4|putin, trump and xi condemn nuclear war as europe watches closely": {
       "ok": true,
@@ -2488,12 +2501,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: دیدار فرمانده سنتکام با ولیعهد عربستان درباره تحولات امنیتی منطقه",
       "topic": "سیاست",
       "until": 1795154632.9329665
-    },
-    "v4|دیدار وزیر دفاع عربستان با فرمانده سنتکام در ریاض": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: دیدار مقام نظامی عربستان با سنتکام روتین و کم اهمیت است",
-      "topic": "نظامی",
-      "until": 1795136583.6965802
     },
     "v4|دیدار کمتر از یک ساعته پوتین و ترامپ در چین با محوریت جنگ اوکراین": {
       "ok": true,
@@ -3863,13 +3870,14 @@
       "reason": "content_duplicate",
       "until": 1795154639.2088106
     },
+    "anthropic’s 7 founders cashed out nearly $2b in record-breaking ipo": {
+      "at": 1795136640.2970145,
+      "reason": "final_guard:ai-contradiction",
+      "until": 1795158240.2970145
+    },
     "burnham says europe 'ready to enter negotiations' to help end russia's war in ukraine": {
       "reason": "content_duplicate",
       "until": 1795140375.5874002
-    },
-    "china, russia and us agree peace declaration with no mention of ukraine and iran wars": {
-      "reason": "content_duplicate",
-      "until": 1795126076.4299653
     },
     "dutch and austrian embassies are damaged as russian drones swarm kyiv": {
       "at": 1795122714.7732852,
@@ -3886,7 +3894,7 @@
     },
     "trump, xi and putin seek to project power at their first summit": {
       "reason": "content_duplicate",
-      "until": 1795131431.1615798
+      "until": 1795158205.6100154
     },
     "آمریکا چند فرد و شرکت در جنوب شرق آسیا را تحریم کرد": {
       "reason": "content_duplicate",
@@ -3899,10 +3907,6 @@
     "ادعای ترامپ: تا آغاز سال جدید میلادی، درباره گام بعدی در جنگ با ایران تصمیم گیری نخواهم کرد/ من برای گرفتن تصمیم در مورد ایران عجله ندارم؛ خواهیم دید پس از آغاز سال جدید چه اتفاقی": {
       "reason": "content_duplicate",
       "until": 1795140358.1981957
-    },
-    "انگلیس وابسته نظامی میانمار را اخراج کرد": {
-      "reason": "content_duplicate",
-      "until": 1795126010.780452
     },
     "بیانیه مشترک بین المللی در حمایت از کودکان ایرانی قربانی جنگ و ترور": {
       "reason": "content_duplicate",
@@ -3947,15 +3951,6 @@
     "وال استریت ژورنال: بخش زیادی از تجهیزات و امکانات نظامی آمریکا به اسرائیل منتقل شد": {
       "reason": "content_duplicate",
       "until": 1795154606.1197383
-    },
-    "پاسخ تهران به بیانیه مشترک اروپا و آمریکا: در دنیای این ها بمباران تأسیسات هسته ای تحت پادمان ایران، به معنای حفاظت از آن ها است": {
-      "at": 1795108049.9948967,
-      "reason": "final_guard:opinion",
-      "until": 1795129649.9948967
-    },
-    "پوتین: آتش بس جزئی پس از حمله به پل کریمه منتفی است": {
-      "reason": "content_duplicate",
-      "until": 1795134975.2270222
     },
     "گسترش حملات ایران به پایگاه های آمریکا در خلیج فارس": {
       "reason": "content_duplicate",
@@ -4525,20 +4520,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: واکنش رسمی کاخ سفید به نشست سران آمریکا، روسیه و چین",
-      "rescued": true,
-      "rule": "routine-statement",
-      "t": 1795100655,
-      "title": "نخستین واکنش کاخ سفید به نشست سه جانبه آمریکا، روسیه و چین"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Commemoration ceremony, no major impact",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1795100656,
-      "title": "گرامیداشت یاد شهدای میناب در هفته دوستی کودکان ایران و ایتالیا"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: ۳ هزار نوجوان در سرود ملی شرکت کردند",
       "rescued": false,
       "rule": "routine-metaphorical-topic",
@@ -5083,6 +5064,20 @@
       "rule": "foreign-local-preselection",
       "t": 1795134939,
       "title": "Four bodies recovered after Senegal boat capsizes amid migration surge"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Debate, admits mistakes, no major impact",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795136583,
+      "title": "PM Sánchez admits 'mistakes' in key debate ahead of Spain's election"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: عرضه اولیه بی‌سابقه و تاریخی شرکت آنتروپیک با ارزش عظیم",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1795136584,
+      "title": "Anthropic’s 7 founders cashed out nearly $2B in record-breaking IPO"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8661,7 +8656,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795134754
+    "at": 1795136492
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8675,10 +8670,18 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "last_quality_failure": 1795136609,
+    "last_status": 422
+  },
+  "gemini:gemini-3.5-flash-lite": {
+    "last_quality_failure": 1795136613,
+    "last_status": 422
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795135238.0,
-    "last_failure": 1795134938,
-    "last_status": 599
+    "disabled_until": 1795137199,
+    "last_failure": 1795136599,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1795135223.0,
