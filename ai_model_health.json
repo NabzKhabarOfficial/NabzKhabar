@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795125880
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795125880
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795125882
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795125882
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1795131210
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795132996
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1795132997
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1795133039
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-19",
-      "n": 102
+      "n": 104
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-19",
-      "n": 175
+      "n": 176
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-19",
-      "n": 78
+      "n": 79
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-19",
-      "n": 78
+      "n": 79
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-11-19",
-      "n": 90
+      "day": "2026-11-20",
+      "n": 4
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-19",
-      "n": 90
+      "day": "2026-11-20",
+      "n": 4
     },
     "openrouter:*": {
       "day": "2026-11-19",
@@ -192,105 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-11-16": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 138,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 130,
-        "other": 8
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 226,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 207,
-        "other": 19
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 40,
-        "calls": 69,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 27,
-        "other": 2
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 38,
-        "calls": 64,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
-        "other": 25
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 65,
-        "other": 25
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 60,
-        "other": 30
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 16,
-        "calls": 20,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 4,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 78,
-        "calls": 230,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 152,
-        "other": 0
-      },
-      "openrouter:baidu/ernie-5.5-flash-preview:free": {
-        "429": 0,
-        "calls": 6,
-        "ok": 6,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 4,
-        "ok": 4,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 8,
-        "calls": 8,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.a",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 6,
-        "calls": 6,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/wo",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:inclusionai/ling-3.2-flash:free": {
-        "429": 1,
-        "calls": 3,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"inclusionai/ling-3.2-flash:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.",
-        "ok": 2,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 15,
-        "ok": 15,
-        "other": 0
-      }
-    },
     "2026-11-17": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -584,6 +485,41 @@
         "429": 0,
         "calls": 21,
         "ok": 21,
+        "other": 0
+      }
+    },
+    "2026-11-20": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 4,
+        "ok": 4,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 1,
+        "calls": 4,
+        "last_429": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m2z997apea7tvg54y2e1wwnw` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5869, Requested 2475. Please try again in 2.579999",
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 2,
+        "other": 1
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       }
     }
@@ -1100,6 +1036,12 @@
       "topic": "فناوری",
       "until": 1795133046.2045417
     },
+    "v4|anthropic becomes one of world's most valuable public companies in stock market debut": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: AI IPO makes Anthropic globally valuable company",
+      "topic": "فناوری",
+      "until": 1795219395.7993572
+    },
     "v4|apec summit: lots of gloss, little real progress?": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: historic first trilateral meeting of US, China, and Russia leaders",
@@ -1177,6 +1119,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=False scope=world: تصمیم برای تغییرات ساختاری در سال‌های آینده",
       "topic": "ورزش",
       "until": 1795212296.3569524
+    },
+    "v4|fiona the hippo dies after swallowing a hat at cincinnati zoo": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: خبر محلی، تأثیر محدود و غیر استراتژیک",
+      "topic": "جامعه",
+      "until": 1795219394.9182217
     },
     "v4|florida man found guilty in plot to kill haiti’s president": {
       "ok": false,
@@ -2312,6 +2260,12 @@
       "topic": "سیاست",
       "until": 1795158336.6571176
     },
+    "v4|جنگ با ایران کمبود مهمات ارتش آمریکا را تشدید کرد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=world: Report claims war will worsen US munitions shortage.",
+      "topic": "سیاست|نظامی",
+      "until": 1795219397.2797964
+    },
     "v4|جنگ طلبان دولت ترامپ، در حال دیکته کردن نظرات خود به او برای جنگیدن با ایران هستند / می خواهند ترامپ را متقاعد کنند که مذاکره و محاصره به جایی نمی رسد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: تحلیل و گمانه‌زنی رسانه‌ای درباره سیاست‌های دولت آمریکا.",
@@ -2714,6 +2668,12 @@
       "topic": "فناوری",
       "until": 1795192430.863722
     },
+    "v4|رونمایی از پرچم منقش به دستخط مقام معظم رهبری در اجتماع مردم زنجان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Ceremonial flag unveiling in Zanjan, local, no major impact",
+      "topic": "جامعه",
+      "until": 1795219393.0681853
+    },
     "v4|رونمایی از پوستر همایش ملی کریم خان زند در ملایر": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: پوشتر همایش ملی در ملایر",
@@ -3019,6 +2979,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: تعطیلی مدارس یک استان به دلیل آنفلوآنزا خبری محلی است.",
       "topic": "سلامت",
       "until": 1795188844.6793394
+    },
+    "v4|فرسودگی و اسیب دیدگی ۴۰ درصد مخازن زباله تهران/ ورود فرمول های جدید برای مدیریت شیرابه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مسئله محلی تعمیر مخازن زباله تهران",
+      "topic": "جامعه",
+      "until": 1795219393.9572153
     },
     "v4|فرماندار: خوسف به عنوان دیار علم، فرهنگ و هنر ثبت ملی می شود": {
       "ok": false,
@@ -3463,6 +3429,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: گزارش وال استریت ژورنال درباره راهبرد فشار اقتصادی آمریکا بر ایران",
       "topic": "سیاست",
       "until": 1795217570.908424
+    },
+    "v4|وال استریت ژورنال: بخش زیادی از تجهیزات و امکانات نظامی آمریکا به اسرائیل منتقل شد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: US carrier entered Middle East, equipment moved to Israel.",
+      "topic": "نظامی",
+      "until": 1795219397.2931073
     },
     "v4|واژگونی مینی بوس در محور بستان آباد ـ سراب با یک کشته و چهار مصدوم": {
       "ok": false,
@@ -3928,6 +3900,10 @@
     }
   },
   "_editorial_blocks": {
+    "anthropic becomes one of world's most valuable public companies in stock market debut": {
+      "reason": "content_duplicate",
+      "until": 1795154639.2088106
+    },
     "burnham says europe 'ready to enter negotiations' to help end russia's war in ukraine": {
       "reason": "content_duplicate",
       "until": 1795140375.5874002
@@ -4000,6 +3976,10 @@
     "هزینه جنگ تجاوزکارانه آمریکا علیه ایران از ۴۸ میلیارد دلار فراتر رفت": {
       "reason": "content_duplicate",
       "until": 1795151049.8006387
+    },
+    "وال استریت ژورنال: بخش زیادی از تجهیزات و امکانات نظامی آمریکا به اسرائیل منتقل شد": {
+      "reason": "content_duplicate",
+      "until": 1795154606.1197383
     },
     "پاسخ تهران به بیانیه مشترک اروپا و آمریکا: در دنیای این ها بمباران تأسیسات هسته ای تحت پادمان ایران، به معنای حفاظت از آن ها است": {
       "at": 1795108049.9948967,
@@ -4577,34 +4557,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Coach criticizes AFC decision, no major competition outcome",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1795097015,
-      "title": "واکنش تند شمسایی به تصمیم AFC: حق بازیکنان ما خورده شد و عدالت زیر سوال رفت"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مصاحبه ورزشی و اظهارات معمولی بازیکن فوتبال اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1795097043,
-      "title": "از هواداران پرسپولیس همچون تراکتور ممنونم؛ مدیون خانواده ام هستم"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: برگزاری هفته بسیج در انزلی",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1795097044,
-      "title": "برگزاری هفته بسیج در انزلی با محوریت خدمت رسانی و مشارکت مردمی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: هشدار محلی درباره کافی‌نت‌ها در مازندران فاقد اهمیت ملی است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795097051,
-      "title": "هشدار معاون دادگستری مازندران درباره فعالیت بی ضابطه کافی نت ها در خدمات قضایی"
-    },
-    {
       "ai": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: نشست سه جانبه سران چین، روسیه و آمریکا درباره بحران‌های جهانی",
       "rescued": true,
       "rule": "routine-statement",
@@ -5135,6 +5087,34 @@
       "rule": "no-concrete-event",
       "t": 1795131195,
       "title": "Trump posthumously pardons US baseball legend Pete Rose"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Ceremonial flag unveiling in Zanjan, local, no major impact",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1795132993,
+      "title": "رونمایی از پرچم منقش به دستخط مقام معظم رهبری در اجتماع مردم زنجان"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مسئله محلی تعمیر مخازن زباله تهران",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795132993,
+      "title": "فرسودگی و اسیب دیدگی ۴۰ درصد مخازن زباله تهران/ ورود فرمول های جدید برای مدیریت شیرابه"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: خبر محلی، تأثیر محدود و غیر استراتژیک",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795132994,
+      "title": "Fiona the hippo dies after swallowing a hat at Cincinnati Zoo"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: AI IPO makes Anthropic globally valuable company",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1795132995,
+      "title": "Anthropic becomes one of world's most valuable public companies in stock market debut"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8889,7 +8869,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795131063
+    "at": 1795132893
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8902,6 +8882,11 @@
     "last_error": "HTTP 402 payment required (no free quota on this account)",
     "last_failure": 1791935762,
     "last_status": 402
+  },
+  "gemini:gemini-3.5-flash-lite": {
+    "disabled_until": 1795133308.0,
+    "last_failure": 1795133008,
+    "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1795130026,
@@ -8924,6 +8909,12 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "disabled_until": 1795133607,
+    "last_failure": 1795133007,
+    "last_quality_failure": 1795133002,
+    "last_status": 429
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
