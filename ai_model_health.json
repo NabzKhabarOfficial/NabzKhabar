@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795210472
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795210472
-    },
-    {
-      "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.5-flash-lite",
-      "t": 1795210476
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
-      "t": 1795210536
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795212173
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795212174
     },
@@ -159,24 +139,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
       "t": 1795215840
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795216266
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795216266
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1795216266
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1795216270
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1795216294
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-20",
-      "n": 91
+      "n": 93
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-20",
-      "n": 156
+      "n": 159
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-20",
-      "n": 66
+      "n": 67
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-20",
-      "n": 60
+      "n": 61
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-20",
@@ -491,29 +491,29 @@
     "2026-11-20": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 119,
+        "calls": 121,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 115,
+        "ok": 117,
         "other": 4
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 217,
+        "calls": 220,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 207,
+        "ok": 210,
         "other": 10
       },
       "gemini:gemini-3.6-flash": {
-        "429": 25,
-        "calls": 54,
+        "429": 26,
+        "calls": 55,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 25,
         "other": 4
       },
       "gemini:gemini-3.8-flash": {
-        "429": 21,
-        "calls": 47,
+        "429": 22,
+        "calls": 48,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 2,
@@ -544,10 +544,10 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 39,
-        "calls": 168,
+        "calls": 169,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
         "last_error": "HTTP 402: {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null,\"code\":\"2314\",\"raw_status_code\":402}",
-        "ok": 117,
+        "ok": 118,
         "other": 12
       },
       "openrouter:baidu/ernie-5.5-flash-preview:free": {
@@ -1247,12 +1247,6 @@
       "topic": "جامعه",
       "until": 1795262648.461697
     },
-    "v4|judge finds thomas markle mentally fit to stand trial on child abuse charges": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: محاکمه چهره‌های حاشیه‌ای و جرایم فردی خبر درجه یک محسوب نمی‌شود.",
-      "topic": "قضایی",
-      "until": 1795215831.1127083
-    },
     "v4|kataib hezbollah faces deadline to leave iraqi stronghold": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Hezbollah militia faces deadline to exit Iraq.",
@@ -1264,12 +1258,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: مقاله تحلیلی و عمومی درباره مصدومیت بازیکنان فوتبال.",
       "topic": "ورزش",
       "until": 1795242865.48511
-    },
-    "v4|lyon outclass arsenal in 2-0 champions league win": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: نتیجه مسابقه در سطح لیگ قهرمانان فوتبال اروپا",
-      "topic": "ورزش",
-      "until": 1795215839.811095
     },
     "v4|myanmar committed genocide against the rohingya, top global court finds": {
       "ok": true,
@@ -1366,12 +1354,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: محرومیت سه ماهه ورزشکار یو اف سی اهمیت جهانی ندارد.",
       "topic": "ورزش",
       "until": 1795257273.0979254
-    },
-    "v4|unseeded sykes stuns humphries in grand slam thriller": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: مسابقات دارت جزو اخبار درجه یک جهانی نیست.",
-      "topic": "ورزش",
-      "until": 1795215835.1720054
     },
     "v4|what the new uk-eu deal could mean for future post-brexit relations": {
       "ok": false,
@@ -2326,6 +2308,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: حمله نظامی جدید ارتش اسرائیل به جنوب لبنان.",
       "topic": "نظامی",
       "until": 1795250114.8259647
+    },
+    "v4|حمله سایبری به وزارت کشاورزی آمریکا": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: حمله سایبری به وزارت کشاورزی آمریکا تاثیر جهانی کلیدی ندارد",
+      "topic": "فناوری",
+      "until": 1795302675.3618567
     },
     "v4|حمله شبانۀ روسیه به ۳ پل مهم پایتخت اوکراین": {
       "ok": true,
@@ -3443,12 +3431,6 @@
       "topic": "فناوری",
       "until": 1795278808.4840217
     },
-    "v4|نوای مداحی «دایه دایه وقت جنگه» توسط مداح لرستانی در اجلاس پیرغلامان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: مراسم و همایش محلی، بدون اهمیت ملی",
-      "topic": "جامعه",
-      "until": 1795215839.7990587
-    },
     "v4|نوسازی بیش از ۱۲ هزار دستگاه تاکسی در تهران/ انتقال ترمینال های جنوب و غرب به منطقه ۱۸": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: اخبار شهری و برنامه‌های اجرایی شهرداری تهران فاقد اهمیت ملی است.",
@@ -3472,12 +3454,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major revelation regarding intelligence sources for potential military escalation.",
       "topic": "سیاست",
       "until": 1795255441.1336865
-    },
-    "v4|هزینه جنگ تجاوزکارانه آمریکا علیه ایران از ۴۸ میلیارد دلار فراتر رفت": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: گزارش رسمی پنتاگون درباره هزینه نظامی جنگ با ایران",
-      "topic": "نظامی",
-      "until": 1795215839.786604
     },
     "v4|هشدار آمریکا به سنگاپور و مالزی درباره دور زدن تحریم های ایران": {
       "ok": true,
@@ -4034,6 +4010,10 @@
     "هشدار آمریکا به سنگاپور و مالزی درباره دور زدن تحریم های ایران": {
       "reason": "content_duplicate",
       "until": 1795223114.8201368
+    },
+    "وزارت خزانه داری آمریکا در اقدامی خصمانه ۴ تبعه ایرانی را تحریم کرد": {
+      "reason": "content_duplicate",
+      "until": 1795237881.5172591
     },
     "وزارت دفاع روسیه از حمله به نیروگاه حرارتی اوکراین خبر داد": {
       "reason": "content_duplicate",
@@ -4602,13 +4582,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Religious leader's statement, no concrete decision",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1795188824,
-      "title": "امام جمعه کیش: ایران برابر زیاده خواهی آمریکا عقب نشینی نخواهد کرد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Regional club volleyball match, not top-tier national/international event",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5160,6 +5133,13 @@
       "rule": "no-concrete-event",
       "t": 1795215817,
       "title": "Tech stock sell-off drags markets down as Anthropic shares slide"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: حمله سایبری به وزارت کشاورزی آمریکا تاثیر جهانی کلیدی ندارد",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795216275,
+      "title": "حمله سایبری به وزارت کشاورزی آمریکا"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9235,7 +9215,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795215711
+    "at": 1795216192
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9250,14 +9230,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795216108.0,
-    "last_failure": 1795215808,
-    "last_status": 599
+    "disabled_until": 1795216870,
+    "last_failure": 1795216270,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795216093.0,
-    "last_failure": 1795215793,
-    "last_status": 503
+    "disabled_until": 1795216866,
+    "last_failure": 1795216266,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
