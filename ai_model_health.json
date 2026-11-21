@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795214014
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: no usable verdict",
-      "t": 1795214019
-    },
-    {
-      "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.1-flash-lite",
-      "t": 1795214056
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 6x",
-      "t": 1795214081
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795215788
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795215788
     },
@@ -159,32 +139,52 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
       "t": 1795219454
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795221238
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795221238
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1795221253
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1795221268
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1795221288
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-20",
-      "n": 98
+      "n": 100
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-20",
-      "n": 168
+      "n": 171
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-20",
-      "n": 71
+      "n": 72
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-20",
-      "n": 65
+      "n": 66
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-21",
-      "n": 5
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-21",
-      "n": 5
+      "n": 6
     },
     "openrouter:*": {
       "day": "2026-11-20",
@@ -495,14 +495,14 @@
     "2026-11-21": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -520,16 +520,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 5,
-        "other": 0
+        "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 3,
-        "other": 2
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
@@ -1107,12 +1108,6 @@
       "topic": "ورزش",
       "until": 1795298593.235786
     },
-    "v4|anthropic becomes one of world's most valuable public companies in stock market debut": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: AI IPO makes Anthropic globally valuable company",
-      "topic": "فناوری",
-      "until": 1795219395.7993572
-    },
     "v4|anthropic shares slump on second day of trading as markets reel from ai sell-off": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: Major global tech IPO and significant market-wide AI stock sell-off.",
@@ -1185,12 +1180,6 @@
       "topic": "سیاست",
       "until": 1795221305.444594
     },
-    "v4|fiona the hippo dies after swallowing a hat at cincinnati zoo": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=1 happened=True scope=local: خبر محلی، تأثیر محدود و غیر استراتژیک",
-      "topic": "جامعه",
-      "until": 1795219394.9182217
-    },
     "v4|former french prime minister dominique de villepin to announce presidential bid": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculation about a future political campaign launch.",
@@ -1232,6 +1221,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: مقاله تحلیلی و عمومی درباره مصدومیت بازیکنان فوتبال.",
       "topic": "ورزش",
       "until": 1795242865.48511
+    },
+    "v4|m 6.7 - 9 km ne of carhuamayo, peru": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: زمین‌لرزه متوسط در پرو بدون گزارش تلفات گسترده جهانی.",
+      "topic": "حادثه",
+      "until": 1795307669.4160151
     },
     "v4|myanmar committed genocide against the rohingya, top global court finds": {
       "ok": true,
@@ -2205,12 +2200,6 @@
       "topic": "جامعه",
       "until": 1795250114.862129
     },
-    "v4|جنگ با ایران کمبود مهمات ارتش آمریکا را تشدید کرد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=3 happened=False scope=world: Report claims war will worsen US munitions shortage.",
-      "topic": "سیاست|نظامی",
-      "until": 1795219397.2797964
-    },
     "v4|جنگ علیه ایران، پاشنه آشیل انتخاباتی جمهوری خواهان؛ هشدار درباره تکرار اشتباه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=world: مقاله تحلیلی و هشدار یک استاد دانشگاه است و رویداد اجرایی ندارد.",
@@ -2588,12 +2577,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Routine diplomatic meeting and general discussion on military cooperation.",
       "topic": "سیاست",
       "until": 1795262648.4826894
-    },
-    "v4|رونمایی از پرچم منقش به دستخط مقام معظم رهبری در اجتماع مردم زنجان": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Ceremonial flag unveiling in Zanjan, local, no major impact",
-      "topic": "جامعه",
-      "until": 1795219393.0681853
     },
     "v4|رونمایی از کاتالوگ پژوهش های عکس پژوهی مازندران در بنای تاریخی نجفی بابل": {
       "ok": false,
@@ -3063,12 +3046,6 @@
       "topic": "سیاست",
       "until": 1795293188.8935516
     },
-    "v4|فرسودگی و اسیب دیدگی ۴۰ درصد مخازن زباله تهران/ ورود فرمول های جدید برای مدیریت شیرابه": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مسئله محلی تعمیر مخازن زباله تهران",
-      "topic": "جامعه",
-      "until": 1795219393.9572153
-    },
     "v4|فرماندار اصلاندوز: ماهیت پهپاد پیدا شده در حال بررسی است": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: پیدا شدن پهپاد سقوطی در شهرستان، هنوز جزئیات نامشخص",
@@ -3488,12 +3465,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: هشدار محلی، بدون رویداد ملموس",
       "topic": "سیاست",
       "until": 1795255404.4023755
-    },
-    "v4|وال استریت ژورنال: بخش زیادی از تجهیزات و امکانات نظامی آمریکا به اسرائیل منتقل شد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: US carrier entered Middle East, equipment moved to Israel.",
-      "topic": "نظامی",
-      "until": 1795219397.2931073
     },
     "v4|وال استریت ژورنال: ترامپ در جریان بازگشت از چین به کوشنر گفته «پوتین از جنگ خسته شده و آماده دستیابی به توافق است» / ناظران معتقدند پوتین در نشست با ترامپ به یک دستاورد دیپلماتیک ب": {
       "ok": false,
@@ -4567,13 +4538,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Historical analysis, no current event",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795192412,
-      "title": "دلیل اصلی چاقی زنان قاجار از نظر یک خانم اروپایی"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: جشن برداشت زعفران در روستای آبیز",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5125,6 +5089,13 @@
       "rule": "no-concrete-event",
       "t": 1795219375,
       "title": "Overturned boat carrying mourners to funeral kills at least four in Nigeria"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: زمین‌لرزه متوسط در پرو بدون گزارش تلفات گسترده جهانی.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795221269,
+      "title": "M 6.7 - 9 km NE of Carhuamayo, Peru"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9191,7 +9162,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795219280
+    "at": 1795221084
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9206,14 +9177,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795219467,
-    "last_failure": 1795219407,
-    "last_status": 422
+    "disabled_until": 1795221568.0,
+    "last_failure": 1795221268,
+    "last_status": 599
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795219751.0,
-    "last_failure": 1795219451,
-    "last_status": 503
+    "disabled_until": 1795221553.0,
+    "last_failure": 1795221253,
+    "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
