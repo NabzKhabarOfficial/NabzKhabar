@@ -2,22 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795215788
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795215788
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1795215793
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1795215808
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795215809
     },
     {
@@ -159,32 +143,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1795221288
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795223047
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795223048
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
+      "t": 1795223063
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1795223111
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-20",
-      "n": 100
+      "n": 101
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-20",
-      "n": 171
+      "n": 173
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-20",
-      "n": 72
+      "n": 74
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-20",
-      "n": 66
+      "n": 67
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-21",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-21",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-20",
@@ -495,20 +495,21 @@
     "2026-11-21": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 6,
-        "ok": 6,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "429": 1,
+        "calls": 3,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
@@ -520,23 +521,23 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
-        "other": 1
+        "ok": 6,
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
-        "other": 3
+        "ok": 4,
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 4,
+        "calls": 5,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 2,
+        "ok": 3,
         "other": 0
       }
     }
@@ -1114,12 +1115,6 @@
       "topic": "اقتصاد",
       "until": 1795278839.6559796
     },
-    "v4|anthropic’s 7 founders cashed out nearly $2b in record-breaking ipo": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: عرضه اولیه بی‌سابقه و تاریخی شرکت آنتروپیک با ارزش عظیم",
-      "topic": "فناوری",
-      "until": 1795222984.039421
-    },
     "v4|atp increases player compensation to $350m & delays doubles cuts decision": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=world: تصمیم رسمی تنیس مردان برای افزایش پاداش بازیکنان.",
@@ -1174,12 +1169,6 @@
       "topic": "سیاست",
       "until": 1795264442.7797565
     },
-    "v4|el salvador’s bukele expected to formalise bid for third presidential term": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: نامزدی احتمالی رئیس‌جمهور السالوادور پیش‌بینی است و رویداد قطعی نیست",
-      "topic": "سیاست",
-      "until": 1795221305.444594
-    },
     "v4|former french prime minister dominique de villepin to announce presidential bid": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculation about a future political campaign launch.",
@@ -1191,12 +1180,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Ongoing negotiations and deadlock are not a concrete final decision.",
       "topic": "آب و هوا",
       "until": 1795303997.948538
-    },
-    "v4|four bodies recovered after senegal boat capsizes amid migration surge": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: غرق شدن قایق مهاجران و کشف چهار جسد در سنگال",
-      "topic": "حادثه",
-      "until": 1795221339.7302618
     },
     "v4|gta 6 made $3.79 billion in its first day, but rockstar's workers still lack job security": {
       "ok": false,
@@ -1264,12 +1247,6 @@
       "topic": "قضایی",
       "until": 1795300410.5835419
     },
-    "v4|pm sánchez admits 'mistakes' in key debate ahead of spain's election": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Debate, admits mistakes, no major impact",
-      "topic": "سیاست",
-      "until": 1795222983.1897078
-    },
     "v4|poland condemns russian ‘provocation’ after airspace violations": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: محکومیت رسمی نقض حریم هوایی توسط لهستان",
@@ -1287,12 +1264,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=world: Minor sports news regarding an individual player's suspension.",
       "topic": "ورزش",
       "until": 1795255441.1192882
-    },
-    "v4|religion should be removed from terrorism definition under australian law as it gives ‘false credibility’, watchdog says": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Recommendation by a watchdog, not an official legislative decision.",
-      "topic": "سیاست",
-      "until": 1795221344.8112586
     },
     "v4|scotland change captain again as darge injured": {
       "ok": false,
@@ -1317,12 +1288,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: گزارش تحلیلی درباره تاثیر جنگ اوکراین بر حیات وحش.",
       "topic": "جامعه",
       "until": 1795257273.1219485
-    },
-    "v4|trump flaunts camaraderie with xi and putin but has little to show for it": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Analysis of diplomatic relations with no concrete policy breakthrough or event.",
-      "topic": "سیاست",
-      "until": 1795221344.7988532
     },
     "v4|trump threatens ‘tremendous tax’ for moving ai data centers outside the us": {
       "ok": true,
@@ -1623,12 +1588,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: جشن برداشت زعفران در روستای آبیز",
       "topic": "جامعه",
       "until": 1795278813.3550205
-    },
-    "v4|استاندار خوزستان: روند امدادرسانی به حادثه دیدگان ایلام در دزفول بسیار مطلوب است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local bus crash, provincial rescue, no wide significance",
-      "topic": "حادثه",
-      "until": 1795221302.1115744
     },
     "v4|استاندار کرمانشاه: ۲۰ دستگاه آمبولانس به ناوگان درمانی اضافه می شود": {
       "ok": false,
@@ -2014,12 +1973,6 @@
       "topic": "سیاست",
       "until": 1795284241.4965947
     },
-    "v4|تداوم حضور مردم گنبد در شب ۲۶۴ تجمعات": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: جمعیت در شهر گنبدکاووس حضور داشت",
-      "topic": "جامعه",
-      "until": 1795221302.626041
-    },
     "v4|ترافیک سنگین در محورهای کندوان، هراز و سوادکوه/ اعمال محدودیت های ترافیکی از ساعت ۱۴": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine traffic updates and road restrictions are local service news.",
@@ -2271,12 +2224,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تحولات جنگ در غزه و نقض آتش‌بس",
       "topic": "سیاست",
       "until": 1795298593.2237875
-    },
-    "v4|حمله تلافی جویانه ارتش یمن به جیزان عربستان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Military escalation in regional war zone involving Saudi Arabia and Yemen.",
-      "topic": "نظامی",
-      "until": 1795221344.7608411
     },
     "v4|حمله تند نخست وزیر اسبق رژیم صهیونیستی به نتانیاهو: بازنده و فریبکار است": {
       "ok": false,
@@ -2728,12 +2675,6 @@
       "topic": "سیاست",
       "until": 1795242865.4720848
     },
-    "v4|سنای آمریکا قطعنامه محدودکردن اختیارات نظامی ترامپ در قبال ایران را رد کرد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Official US Senate vote on military powers regarding Iran.",
-      "topic": "سیاست",
-      "until": 1795221344.7738998
-    },
     "v4|سنای آمریکا قطعنامه محدودکننده اختیارات جنگی ترامپ در قبال ایران را رد کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تصمیم سنای آمریکا درباره اختیارات جنگی مرتبط با ایران",
@@ -3112,12 +3053,6 @@
       "topic": "فناوری",
       "until": 1795264441.8079095
     },
-    "v4|قانونگذار آمریکایی از تامین مالی جنگ تجاوزکارانه علیه ایران انتقاد کرد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine political criticism by a single lawmaker, not a policy decision.",
-      "topic": "سیاست",
-      "until": 1795221344.7862527
-    },
     "v4|قرعه کشی لیگ ملت های اروپا/ مصاف دشوار فرانسه با قهرمان جهان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: قرعه‌کشی مرحله یک‌چهارم نهایی لیگ ملت‌های اروپا",
@@ -3225,12 +3160,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: اعلام رسمی برنامه اقتصادی دولت برای کاهش تورم توسط وزیر",
       "topic": "اقتصاد",
       "until": 1795289675.68298
-    },
-    "v4|مدیر ملی امنیت سایبری آمریکا از سمت خود کناره گیری کرد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: استعفای مقام ارشد امنیت سایبری آمریکا رویدادی مهم است.",
-      "topic": "فناوری",
-      "until": 1795221301.2625732
     },
     "v4|مدیر کل صمت البرز: رفع موانع برق شهرک صنعتی اشتهارد در حال پیگیری است": {
       "ok": false,
@@ -3616,6 +3545,12 @@
       "topic": "سلامت",
       "until": 1795239169.89399
     },
+    "v4|پس از هشت سال سفر؛ فضاپیمایی سرانجام به عطارد اسرارآمیز می رسد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.6-flash score=5 happened=False scope=world: فضاپیما در آستانه رسیدن به عطارد است و رویداد هنوز کامل رخ نداده.",
+      "topic": "فناوری",
+      "until": 1795309476.8480003
+    },
     "v4|پل بیات را خراب کردند، اما مسیر ساختن متوقف نشد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: حمله به زیرساخت مهم ارتباطی در آزادراه تبریز-زنجان.",
@@ -3952,7 +3887,7 @@
     },
     "انفجار یک نفتکش متخلف بعد از اصابت به مین در دهانه بندر خصب": {
       "reason": "content_duplicate",
-      "until": 1795221320.2805357
+      "until": 1795244691.8270266
     },
     "اکسیوس: ویتکاف و کوشنر در برلین با مقام های ارشد قطری دیدار کردند تا درباره مذاکرات ایران گفت و گو کنند": {
       "reason": "content_duplicate",
@@ -4538,13 +4473,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: جشن برداشت زعفران در روستای آبیز",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1795192413,
-      "title": "از گل بنفش تا طلای سرخ؛ جشن شکرانه برداشت زعفران در روستای آبیز"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Deputy minister visit, no major decision or impact",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5096,6 +5024,13 @@
       "rule": "no-concrete-event",
       "t": 1795221269,
       "title": "M 6.7 - 9 km NE of Carhuamayo, Peru"
+    },
+    {
+      "ai": "ai gemini/gemini-3.6-flash score=5 happened=False scope=world: فضاپیما در آستانه رسیدن به عطارد است و رویداد هنوز کامل رخ نداده.",
+      "rescued": false,
+      "rule": "routine-statement",
+      "t": 1795223076,
+      "title": "پس از هشت سال سفر؛ فضاپیمایی سرانجام به عطارد اسرارآمیز می رسد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9162,7 +9097,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795221084
+    "at": 1795222891
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9177,13 +9112,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795221568.0,
-    "last_failure": 1795221268,
-    "last_status": 599
+    "disabled_until": 1795223695,
+    "last_failure": 1795223095,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795221553.0,
-    "last_failure": 1795221253,
+    "disabled_until": 1795223363.0,
+    "last_failure": 1795223063,
     "last_status": 599
   },
   "github:openai/gpt-4.1-mini": {
@@ -9197,14 +9132,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-120b": {
-    "last_quality_failure": 1795219447,
-    "last_status": 422
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1795219449,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
