@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795215809
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795215809
     },
@@ -159,32 +155,36 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
       "t": 1795223111
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1795224866
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-20",
-      "n": 101
+      "n": 102
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-20",
-      "n": 173
+      "n": 175
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-20",
-      "n": 74
+      "n": 75
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-20",
-      "n": 67
+      "n": 68
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-21",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-21",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-20",
@@ -495,49 +495,50 @@
     "2026-11-21": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 8,
-        "ok": 8,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 1,
-        "calls": 3,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 2,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 0,
-        "calls": 2,
+        "429": 1,
+        "calls": 3,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
         "other": 2
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 8,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 4
+        "ok": 5,
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 5,
+        "calls": 7,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 3,
+        "ok": 5,
         "other": 0
       }
     }
@@ -1151,12 +1152,6 @@
       "topic": "ورزش",
       "until": 1795303996.5730855
     },
-    "v4|democrats say law firm gave $11.8m worth of service to trump administration": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: ادعای دموکرات‌ها علیه ترامپ یک مناقشه سیاسی داخلی در آمریکا است و خبر درجه یک محسوب نمی‌شود.",
-      "topic": "سیاست",
-      "until": 1795224771.1973608
-    },
     "v4|easing back from brexit: what to expect at u.k. summit with e.u.": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative piece on future expectations regarding UK-EU relations.",
@@ -1762,6 +1757,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Military escalation and infrastructure destruction in a regional war zone.",
       "topic": "نظامی",
       "until": 1795278830.0629194
+    },
+    "v4|انفجار یک نفتکش در دهانهٔ بندر خصب عمان": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: Oil tanker hit mine, exploded at Oman's Khasab port",
+      "topic": "حادثه",
+      "until": 1795311229.7034533
     },
     "v4|انفجار یک نفتکش متخلف بعد از اصابت به مین در دهانه بندر خصب": {
       "ok": true,
@@ -2783,12 +2784,6 @@
       "topic": "قضایی",
       "until": 1795293212.1136143
     },
-    "v4|صادرات کره جنوبی تاریخ ساز شد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=world: South Korea's export record, limited relevance for Iran",
-      "topic": "اقتصاد",
-      "until": 1795224768.877847
-    },
     "v4|صداپیشه مادر «هاچ زنبور عسل» درگذشت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.8-flash score=2 happened=True scope=iran_national: درگذشت دوبلور، خبر فرهنگی غیرفوری و فاقد اهمیت درجه‌یک ملی است",
@@ -3509,12 +3504,6 @@
       "topic": "سیاست",
       "until": 1795286025.3362975
     },
-    "v4|ویتکاف: ترامپ مصمم به پایان دادن به جنگ اوکراین است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: اعلام رسمی عزم دولت جدید آمریکا برای پایان دادن به جنگ اوکراین",
-      "topic": "سیاست",
-      "until": 1795224783.629756
-    },
     "v4|پاییز جنگل های هیرکانی در ارتفاعات سوادکوه": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=local: محلی، محیط‌زیستی، بدون رویداد مهم",
@@ -3719,12 +3708,6 @@
       "topic": "آب و هوا",
       "until": 1795231966.9250555
     },
-    "v4|کمال گرایی چگونه ذهن را خسته و زندگی را فرسوده می کند؟": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: Self‑help piece, no actual event",
-      "topic": "سلامت",
-      "until": 1795224769.5560627
-    },
     "v4|کمیسیون اروپا با ابزارهای هوش مصنوعی هدف حمله سایبری قرار گرفت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: حمله سایبری به کمیسیون اروپا با ابزارهای هوش مصنوعی.",
@@ -3884,6 +3867,10 @@
     "ادعای ترامپ: ایرانی ها می خواهند به توافق برسند، اما نمی خواهند توافقی را بپذیرند که از نظر من قابل قبول باشد / ما می خواهیم به یک توافق واقعی برسیم، نه یک توافق صوری / جنگ علیه ای": {
       "reason": "content_duplicate",
       "until": 1795224889.0446122
+    },
+    "انفجار یک نفتکش در دهانهٔ بندر خصب عمان": {
+      "reason": "content_duplicate",
+      "until": 1795246460.8755567
     },
     "انفجار یک نفتکش متخلف بعد از اصابت به مین در دهانه بندر خصب": {
       "reason": "content_duplicate",
@@ -9097,7 +9084,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795222891
+    "at": 1795224675
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9112,14 +9099,14 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795223695,
-    "last_failure": 1795223095,
-    "last_status": 429
+    "disabled_until": 1795224908,
+    "last_failure": 1795224848,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795223363.0,
-    "last_failure": 1795223063,
-    "last_status": 599
+    "disabled_until": 1795225440,
+    "last_failure": 1795224840,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9132,6 +9119,10 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1795224840,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
