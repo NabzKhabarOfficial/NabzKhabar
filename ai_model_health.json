@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1795296777
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795296778
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795296778
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1795296783
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 7x",
-      "t": 1795296833
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1795298577
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1795298577
     },
@@ -159,16 +135,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 9x",
       "t": 1795302248
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795303963
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795303963
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1795303964
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: no usable verdict",
+      "t": 1795303969
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
+      "t": 1795303974
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1795303974
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-21",
-      "n": 114
+      "n": 115
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-21",
-      "n": 194
+      "n": 195
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-21",
@@ -176,7 +176,7 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-21",
-      "n": 84
+      "n": 85
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-21",
@@ -495,16 +495,16 @@
     "2026-11-21": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 148,
+        "calls": 149,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 134,
+        "ok": 135,
         "other": 14
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 268,
+        "calls": 269,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 246,
+        "ok": 247,
         "other": 22
       },
       "gemini:gemini-3.6-flash": {
@@ -517,11 +517,11 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 40,
-        "calls": 70,
+        "calls": 71,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 3,
-        "other": 27
+        "other": 28
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
@@ -1463,12 +1463,6 @@
       "topic": "نظامی",
       "until": 1795338301.3693829
     },
-    "v4|tech stock sell-off drags markets down as anthropic shares slide": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: سقوط سهام فناوری و ورود بازارهای آمریکا به محدوده اصلاحی",
-      "topic": "اقتصاد",
-      "until": 1795302217.6532154
-    },
     "v4|thousands protest across europe over living costs and housing": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: اعتراضات گسترده مردمی در چندین کشور اروپایی.",
@@ -1636,12 +1630,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: آموزش محیط‌زیست محلی، تأثیر محدود بر جامعه",
       "topic": "آب و هوا",
       "until": 1795356238.8136358
-    },
-    "v4|آنروا: ۸۵ درصد ساکنان غزه برای دسترسی به آب با مشکل مواجه اند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major humanitarian crisis report regarding a war zone with global significance.",
-      "topic": "جامعه",
-      "until": 1795302221.9896736
     },
     "v4|آژیر خطر مجدد در بحرین؛ صداوسیما: اصابت پهپاد به پایگاه هوایی صخیر در بحرین/ سپاه: در حمله به پایگاه های الرفاع و عوالی بحرین، دو رادار متعلق به سامانه های پاتریوت آمریکا هدف قرار": {
       "ok": true,
@@ -2375,6 +2363,12 @@
       "topic": "ورزش",
       "until": 1795316627.3627353
     },
+    "v4|جفری ساکس: آمریکا نه در جنگ تجاری و نه نظامی حریف چین نیست": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Opinion and analysis by an economist; not an official policy decision.",
+      "topic": "سیاست",
+      "until": 1795390374.0283754
+    },
     "v4|جفریز: ایران قوی تر نیز شده است؛ هشدار درباره استیضاح ترامپ": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official statement by US leadership regarding Iran's strategic position.",
@@ -2483,12 +2477,6 @@
       "topic": "نظامی",
       "until": 1795321981.4177551
     },
-    "v4|حمله تند نخست وزیر اسبق رژیم صهیونیستی به نتانیاهو: بازنده و فریبکار است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine political criticism by a former official, not a strategic decision.",
-      "topic": "سیاست",
-      "until": 1795302221.9808383
-    },
     "v4|حمله دیگر عربستان به جنوب غرب یمن": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله نظامی در منطقه جنگی یمن از اخبار کلان جهانی است.",
@@ -2500,12 +2488,6 @@
       "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: cyber attack on foreign ministry website",
       "topic": "فناوری",
       "until": 1795305777.039183
-    },
-    "v4|حمله سایبری به وزارت کشاورزی آمریکا": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: حمله سایبری به وزارت کشاورزی آمریکا تاثیر جهانی کلیدی ندارد",
-      "topic": "فناوری",
-      "until": 1795302675.3618567
     },
     "v4|حمله عربستان به بندر المخا در یمن": {
       "ok": true,
@@ -3082,6 +3064,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: تصمیم مقام رسمی درباره FATF با اهمیت اقتصادی ملی.",
       "topic": "اقتصاد",
       "until": 1795350880.9912975
+    },
+    "v4|شوک نفتی ناشی از جنگ ایران بر مذاکرات اقلیمی کاپ ۳۱ در ترکیه سایه انداخت": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine reporting on climate summit delays; lacks a concrete new decision.",
+      "topic": "آب و هوا",
+      "until": 1795390374.0153701
     },
     "v4|شکار موشک با چاپ استیک؛ استارشیپ چطور قواعد بازی فضا را برای همیشه عوض کرد؟": {
       "ok": false,
@@ -3881,12 +3869,6 @@
       "topic": "نظامی",
       "until": 1795358095.3284473
     },
-    "v4|وزارت کشاورزی آمریکا هدف حمله سایبری قرار گرفت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=6 happened=True scope=world: حمله سایبری به وزارت کشاورزی آمریکا و اختلال در زیرساخت‌های این کشور",
-      "topic": "فناوری",
-      "until": 1795303967.8732467
-    },
     "v4|وزیر خارجه ترکیه: کشور های بسیار زیادی سامانه های دفاعی روسیه را خریداری کرده اند؛ آمریکا کدام یک از این کشور ها را تحریم کرده است؟ / اسرائیل در واشنگتن به شدت در حال لابی گری است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine diplomatic rhetoric and criticism without concrete policy change.",
@@ -4175,12 +4157,6 @@
       "topic": "جامعه",
       "until": 1795372453.1859567
     },
-    "v4|گرگانی ها در موج ۲۶۵؛ خیابان ها همچنان صحنه حضور مردم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Local gathering in Gorgan is not a first-tier national news event.",
-      "topic": "جامعه",
-      "until": 1795302209.6036904
-    },
     "v4|گزارش ها از هک شدن پایگاه اطلاعات جرائم اف بی آی حکایت دارد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: حمله سایبری و هک پایگاه اطلاعات جرائم اف‌بی‌آی آمریکا",
@@ -4216,12 +4192,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine provincial development project report with no national strategic impact.",
       "topic": "جامعه",
       "until": 1795321967.3120756
-    },
-    "v4|۲۶۵ شب از همبستگی مردم شیعه و سنی شهرستان مرزی تربت جام": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: رویداد محلی و تجمعات فرمایشی شهرستانی ارزش خبری درجه یک ندارد",
-      "topic": "جامعه",
-      "until": 1795302213.442528
     },
     "v4|۳۰ درصد ظرفیت منتقل شده پزشکی و دندانپزشکی از پذیرش سال ۱۴۰۶ کسر می شود": {
       "ok": false,
@@ -9675,7 +9645,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795302080
+    "at": 1795303874
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9695,9 +9665,9 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795302767,
-    "last_failure": 1795302167,
-    "last_status": 429
+    "disabled_until": 1795304264.0,
+    "last_failure": 1795303964,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
