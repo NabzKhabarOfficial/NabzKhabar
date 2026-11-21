@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795215813
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795215813
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795215817
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795215817
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
       "t": 1795226761
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795228444
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-20b",
+      "t": 1795228446
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1795228562
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-20",
-      "n": 104
+      "n": 106
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-20",
-      "n": 177
+      "n": 181
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-20",
-      "n": 78
+      "n": 80
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-20",
-      "n": 72
+      "n": 77
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-21",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-21",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-20",
@@ -495,14 +495,14 @@
     "2026-11-21": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 8,
+        "ok": 8,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 16,
+        "ok": 16,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -514,57 +514,36 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 1,
-        "calls": 5,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 2,
-        "other": 2
+        "other": 4
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 12,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 8,
         "other": 6
       },
       "mistral:open-mistral-nemo": {
-        "429": 4,
-        "calls": 12,
+        "429": 6,
+        "calls": 18,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 8,
+        "ok": 12,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 3,
-      "t": 1795048453.3287325,
-      "title": "حمایت چین از حاکمیت و امنیت ایران",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1795048481.014053,
-      "title": "حملات هوایی جنگنده های عراقی علیه مواضع داعش",
-      "urgent": false
-    },
-    {
-      "label": "قضایی",
-      "level": 4,
-      "t": 1795050217.2750993,
-      "title": "تمدید بازداشت مدیر بیمارستان کمال عدوان غزه توسط اسرائیل",
-      "urgent": false
-    },
     {
       "label": "خبر",
       "level": 3,
@@ -1082,6 +1061,27 @@
       "t": 1795219386.2830045,
       "title": "اعلام وضعیت اضطراری جنگنده اف-۱۶ آمریکایی پس از بازگشت از تنگه هرمز",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 5,
+      "t": 1795228456.3258865,
+      "title": "مقام مخالف نتانیاهو: حمله به ایران با انگیزه های سیاسی خواهد بود",
+      "urgent": false
+    },
+    {
+      "label": "حادثه",
+      "level": 5,
+      "t": 1795228511.6869214,
+      "title": "زلزله ۶.۷ ریشتری مرکز پرو را لرزاند",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1795228551.1652997,
+      "title": "آمریکا محدودیت های جدیدی بر روابط دفاعی با کانادا اعمال کرد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-20",
@@ -1398,6 +1398,12 @@
       "topic": "سیاست",
       "until": 1795251920.1180649
     },
+    "v4|آمریکا محدودیت های جدیدی بر روابط دفاعی با کانادا اعمال کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: US imposes new defense restrictions on Canada",
+      "topic": "سیاست",
+      "until": 1795314846.1233726
+    },
     "v4|آمریکا چهار ایرانی را به اتهام دور زدن تحریم های نفتی تحریم کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اعمال تحریم‌های جدید آمریکا علیه شهروندان ایرانی.",
@@ -1649,12 +1655,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Speculative/investigative report on lobbying, lacks immediate strategic policy impact.",
       "topic": "سیاست",
       "until": 1795278830.0266597
-    },
-    "v4|اقدام امنیتی غیرمعمول در هواپیمای ترامپ؛ تلفن های خبرنگاران ضبط شد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Minor security measure, limited impact",
-      "topic": "سیاست",
-      "until": 1795228360.5280204
     },
     "v4|الجزیره: طلا بزرگ ترین کاهش قیمت هفتگی خود از ماه مارس گذشته را ثبت کرد و به ۳۵۲۰ دلار در هر اونس رسید": {
       "ok": true,
@@ -1991,6 +1991,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Official statement by a major political figure regarding international legal institutions.",
       "topic": "سیاست",
       "until": 1795293212.1535168
+    },
+    "v4|ترامپ: شهرهای آمریکا کثیف و مشمئزکننده هستند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Trump's remark, no concrete policy impact",
+      "topic": "سیاست",
+      "until": 1795314844.1719449
     },
     "v4|ترامپ: قیمت بنزین به این بستگی دارد که تکلیف مان را با ایران چطور روشن کنیم": {
       "ok": true,
@@ -2550,6 +2556,12 @@
       "topic": "اقتصاد",
       "until": 1795266259.6300426
     },
+    "v4|زلزله ای به بزرگی ۶.۷ ریشتر مرکز پرو را لرزاند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: 6.7 magnitude earthquake in Peru",
+      "topic": "آب و هوا",
+      "until": 1795314846.0984046
+    },
     "v4|زلزله ۵.۴ ریشتری در کالیفرنیا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: زلزله با مقیاس متوسط بدون تلفات گسترده، خبر محلی محسوب می‌شود.",
@@ -2735,12 +2747,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Explosion/military activity in a sensitive border region.",
       "topic": "نظامی",
       "until": 1795278830.0543025
-    },
-    "v4|شنیده شدن صدای انفجار در مناطق مختلف جنوب عربستان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=8 happened=True scope=world: گزارش انفجار در مناطق حساس عربستان در چارچوب درگیری‌های منطقه‌ای",
-      "topic": "نظامی",
-      "until": 1795228366.2495618
     },
     "v4|شهید قدوسی: ما برای اسلام و دینمان خیلی بیشتر از انقلابمان ارزش قائلیم": {
       "ok": false,
@@ -3018,12 +3024,6 @@
       "topic": "جامعه",
       "until": 1795237603.4183397
     },
-    "v4|فعالیت ۶۵۰۰ مراقب مدارس در کشور/ هشدار حذف ورزش از برنامه برخی مدارس": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Policy on school health monitors, not major national impact",
-      "topic": "سلامت",
-      "until": 1795228361.4013934
-    },
     "v4|فکت چک؛ اخباری که ۲۹ آبان ۱۴۰۵ تکذیب شدند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=1 happened=False scope=local: Fact‑check summary, no concrete event occurred",
@@ -3101,12 +3101,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: محرومیت بازیکنی در اکوادور؛ خبر ورزشی کم‌اهمیت.",
       "topic": "ورزش",
       "until": 1795250114.874141
-    },
-    "v4|محمدرضا نقدی: ده ها سفارتخانه در تهران برای اسرائیل اطلاعات جمع آوری می کنند/ رژیم صهیونیستی چشم اندازی برای بقا ندارد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Claim about foreign embassies gathering intel",
-      "topic": "سیاست",
-      "until": 1795228361.8710625
     },
     "v4|مخبر: آمریکا دیگر توان یارکشی علیه ایران را ندارد": {
       "ok": false,
@@ -3233,6 +3227,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: درگیری و رویداد نظامی در منطقه جنگی یمن",
       "topic": "نظامی",
       "until": 1795284260.405949
+    },
+    "v4|مقام مخالف نتانیاهو: حمله به ایران با انگیزه های سیاسی انجام خواهد شد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=iran_national: Israeli war minister threatens attack",
+      "topic": "سیاست",
+      "until": 1795314846.1112401
     },
     "v4|ممنوعیت تردد در مسیر جنوب به شمال چالوس و آزادراه تهران ـ شمال/ ترافیک سنگین در محورهای مواصلاتی": {
       "ok": false,
@@ -3696,6 +3696,12 @@
       "topic": "آب و هوا",
       "until": 1795231966.9250555
     },
+    "v4|کمبود ویتامین d و افزایش خطر ابتلا به نوعی مشکل قلبی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Study lacks immediate national impact",
+      "topic": "سلامت",
+      "until": 1795314842.991745
+    },
     "v4|کمیسیون اروپا با ابزارهای هوش مصنوعی هدف حمله سایبری قرار گرفت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: حمله سایبری به کمیسیون اروپا با ابزارهای هوش مصنوعی.",
@@ -3903,35 +3909,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "پیروزی مقتدرانه لیون مقابل آرسنال در لیگ قهرمانان زنان ⚡️ تیم فوتبال زنان لیون با برتری ۲ بر صفر مقابل آرسنال ",
-      "id": "85ed94d6fa",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795129503,
-      "verdict": "new",
-      "why": "فوتبال زنان لیگ قهرمانان جدید"
-    },
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "حمله تلافی جویانه ارتش یمن به جیزان عربستان ⚡️ ارتش یمن در پاسخ به حمله جنگنده های سعودی به صنعا، جیزان در جنو",
-      "id": "745bc9a7da",
-      "match": "حمله هوایی سعودی به مناطق یمن؛ کشته و زخمی در تعز و مأرب",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795134954,
-      "verdict": "repeat",
-      "why": "حمله تلافی‌جویانه یمن به عربستان پس از حمله سعودی به یمن"
-    },
-    {
-      "confirm": "groq/openai/gpt-oss-120b:new",
-      "head": "حمله تلافی جویانه ارتش یمن به جیزان عربستان ⚡️ ارتش یمن در پاسخ به حمله جنگنده های سعودی به صنعا، جیزان در جنو",
-      "id": "745bc9a7da",
-      "match": "حمله هوایی سعودی به مناطق یمن؛ کشته و زخمی در تعز و مأرب",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795134963,
-      "verdict": "unconfirmed-repeat",
-      "why": "same Saudi-Yemen attack, reversed roles"
-    },
     {
       "head": "تاکید ویتکاف بر عزم ترامپ برای پایان جنگ اوکراین ⚡️ استیو ویتکاف، فرستاده ویژه دونالد ترامپ، رئیس جمهور آمریکا",
       "id": "c4dd1afe64",
@@ -4449,23 +4426,36 @@
       "t": 1795226691,
       "verdict": "repeat",
       "why": "The new post reports the same statement by Trump about Putin."
+    },
+    {
+      "head": "مقام مخالف نتانیاهو: حمله به ایران با انگیزه های سیاسی خواهد بود ⚡️ وزیر جنگ سابق اسرائیل، آویگدور لیبرمن، هشد",
+      "id": "9ca321f6a1",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795228455,
+      "verdict": "new",
+      "why": "موضوع جدید: تحلیل سیاسی حمله احتمالی به ایران"
+    },
+    {
+      "head": "زلزله ۶.۷ ریشتری مرکز پرو را لرزاند ⚡️ زمین لرزه ای به بزرگی ۶.۷ ریشتر مناطق مرکزی کشور پرو را لرزاند.",
+      "id": "333135a8c9",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795228510,
+      "verdict": "new",
+      "why": "earthquake Peru 6.7 magnitude unrelated"
+    },
+    {
+      "head": "آمریکا محدودیت های جدیدی بر روابط دفاعی با کانادا اعمال کرد ⚡️ پیت هگست وزیر جنگ آمریکا محدودیت های جدیدی را د",
+      "id": "279713d7b9",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795228550,
+      "verdict": "new",
+      "why": "This is a new report about US-Canada defense relations."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات امام جمعه تبریز درباره مقاومت و آمریکا ارزش خبری ملی ندارد",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1795194242,
-      "title": "امام جمعه تبریز: به آمریکایی ها می گوییم با دم شیر بازی نکنند/ برخی مقاومت را معادل گرسنگی و مشکلات معیشتی و در مقابل تس"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات حاشیه‌ای وroutine درباره بازیکنان فوتبال، فاقد ارزش خبری درجه یک.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795194251,
-      "title": "خلیلی: خلیل زاده هم مثل بیرانوند پرسپولیسی است"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: مجمع عمومی حزب داخلی رویداد رده اول محسوب نمی‌شود.",
       "rescued": false,
@@ -5011,189 +5001,26 @@
       "rule": "no-concrete-event",
       "t": 1795226646,
       "title": "COP31 deal stalls as nations struggle to agree on climate plan"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Study lacks immediate national impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795228443,
+      "title": "کمبود ویتامین D و افزایش خطر ابتلا به نوعی مشکل قلبی"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Trump's remark, no concrete policy impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1795228444,
+      "title": "ترامپ: شهرهای آمریکا کثیف و مشمئزکننده هستند"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اجد",
-        "امد",
-        "تلف",
-        "جن",
-        "حفر",
-        "خک",
-        "دفع",
-        "فرد",
-        "لهست",
-        "مشک",
-        "ندشت",
-        "کرز"
-      ],
-      "t": 1795176274.6106124,
-      "title": "سقوط موشک کروز روسی در خاک لهستان ⚡️ وزیر دفاع لهستان اعلام کرد موشک روسی در خاک لهستان فرود آمده و حفره ایجاد کرده اما "
-    },
-    {
-      "h": [
-        "است",
-        "افرد",
-        "الزد",
-        "النصر",
-        "انج",
-        "ببل",
-        "بردر",
-        "تمم",
-        "تکد",
-        "جرف",
-        "حضر",
-        "خطب",
-        "سرزمن",
-        "عل",
-        "فرزند",
-        "فرمند",
-        "فلح",
-        "مستقر",
-        "مسلح",
-        "نخست",
-        "نستم",
-        "نستند",
-        "هستند",
-        "همن",
-        "پم"
-      ],
-      "t": 1795176311.1595747,
-      "title": "پیام الزیدی به نیروهای مستقر در جرف النصر: ما در حال جنگ نیستیم ⚡️ علی فالح الزیدی، نخست وزیر و فرمانده کل نیروهای مسلح "
-    },
-    {
-      "h": [
-        "الحدد",
-        "بمبر",
-        "بندر",
-        "تمم",
-        "سخنگ",
-        "هدف",
-        "هشدر",
-        "گرفتن",
-        "گرند",
-        "یمن"
-      ],
-      "t": 1795176380.28033,
-      "title": "هشدار ارتش یمن درباره هدف قرار گرفتن بنادر عربستان ⚡️ سخنگوی ارتش یمن اعلام کرد که اگر بندر الحدیده بمباران شود، تمام بن"
-    },
-    {
-      "h": [
-        "انتقل",
-        "تحت",
-        "جزر",
-        "خرک",
-        "خم",
-        "دگر",
-        "محمل",
-        "منتقل",
-        "نخستن",
-        "هشدر",
-        "همزم"
-      ],
-      "t": 1795176424.0176167,
-      "title": "نخستین انتقال نفت کش به نفت کش در ایران همزمان با هشدار آمریکا ⚡️ یک نفت کش تحت تحریم آمریکا محموله نفت خام ایران را در "
-    },
-    {
-      "h": [
-        "امک",
-        "انرژ",
-        "بزر",
-        "تحل",
-        "سختر",
-        "سرم",
-        "فرهم",
-        "محسب",
-        "مستقم",
-        "مشرکت",
-        "مصب",
-        "معن",
-        "گذر",
-        "گز",
-        "گم"
-      ],
-      "t": 1795178056.1156213,
-      "title": "امکان سرمایه گذاری مستقیم مردم در بازار نفت و میعانات گازی فراهم می شود ⚡️ این مصوبه گامی برای تحول ساختار بازار انرژی و"
-    },
-    {
-      "h": [
-        "احتمل",
-        "اختلف",
-        "استن",
-        "افزش",
-        "بدج",
-        "تعطل",
-        "تمن",
-        "خطر",
-        "خه",
-        "دد",
-        "دلر",
-        "دلل",
-        "دمکر",
-        "قبل",
-        "ملرد",
-        "هزن",
-        "پنتگن",
-        "کرسمس",
-        "کنگر"
-      ],
-      "t": 1795178116.5395494,
-      "title": "خطر تعطیلی دولت آمریکا در آستانه کریسمس به دلیل اختلاف بر سر بودجه جنگ ایران ⚡️ اختلاف دموکرات ها و جمهوری خواهان کنگره "
-    },
-    {
-      "h": [
-        "اخبر",
-        "انتشر",
-        "برس",
-        "برگر",
-        "بم",
-        "بنک",
-        "تلش",
-        "تمم",
-        "تکد",
-        "حش",
-        "خرج",
-        "خهد",
-        "شکست",
-        "صدر",
-        "عبس",
-        "عرقچ",
-        "مبن",
-        "محصر",
-        "مذکر",
-        "نمشگ",
-        "پشبرد",
-        "کر",
-        "کنم"
-      ],
-      "t": 1795178145.4857073,
-      "title": "عراقچی: برای صادرات نفت تلاش می کنیم محاصره شکسته شود ⚡️ عباس عراقچی وزیر امور خارجه، در حاشیه نمایشگاه بورس، بانک و بیم"
-    },
-    {
-      "h": [
-        "تفلس",
-        "تمس",
-        "خرج",
-        "درک",
-        "دهند",
-        "رض",
-        "سعد",
-        "سفر",
-        "فردگ",
-        "محر",
-        "نشن",
-        "نقش",
-        "وقعت",
-        "ژپلتک"
-      ],
-      "t": 1795185330.3674242,
-      "title": "سفیر ایران در تفلیس: تماس وزیر خارجه عربستان با وزیر خارجه ایران پس از حمله به فرودگاه ریاض ⚡️ سفیر ایران در تفلیس گفت ک"
-    },
     {
       "h": [
         "الحدد",
@@ -5531,69 +5358,52 @@
       ],
       "t": 1795219386.2753754,
       "title": "اعلام وضعیت اضطراری جنگنده اف-۱۶ آمریکایی پس از بازگشت از تنگه هرمز ⚡️ یک جنگنده اف-۱۶ نیروی هوایی آمریکا پس از بازگشت ا"
+    },
+    {
+      "h": [
+        "احتمل",
+        "انگز",
+        "اگدر",
+        "خهد",
+        "سبق",
+        "لبرمن",
+        "مخلف",
+        "نتنه",
+        "هشدر"
+      ],
+      "t": 1795228456.3143141,
+      "title": "مقام مخالف نتانیاهو: حمله به ایران با انگیزه های سیاسی خواهد بود ⚡️ وزیر جنگ سابق اسرائیل، آویگدور لیبرمن، هشدار داد که "
+    },
+    {
+      "h": [
+        "بزرگ",
+        "رشتر",
+        "زلزل",
+        "زمن",
+        "لرز",
+        "لرزند",
+        "مرکز",
+        "پر"
+      ],
+      "t": 1795228511.663738,
+      "title": "زلزله ۶.۷ ریشتری مرکز پرو را لرزاند ⚡️ زمین لرزه ای به بزرگی ۶.۷ ریشتر مناطق مرکزی کشور پرو را لرزاند."
+    },
+    {
+      "h": [
+        "اعمل",
+        "جدد",
+        "دفع",
+        "ربط",
+        "محددت",
+        "هگست",
+        "پت",
+        "کند"
+      ],
+      "t": 1795228551.1533134,
+      "title": "آمریکا محدودیت های جدیدی بر روابط دفاعی با کانادا اعمال کرد ⚡️ پیت هگست وزیر جنگ آمریکا محدودیت های جدیدی را در روابط دف"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "ارشد",
-        "اظهرت",
-        "اعترف",
-        "انجم",
-        "برتن",
-        "تهجم",
-        "سبر",
-        "سبق",
-        "عمل",
-        "فرمند",
-        "کره"
-      ],
-      "cities": [],
-      "kind": "cyber",
-      "places": [],
-      "regions": [],
-      "t": 1795154717.3311043,
-      "title": "اعتراف فرمانده ارشد نظامی بریتانیا به عملیات سایبری علیه ایران ⚡️ یک فرمانده ارشد نظامی بریتانیا در اظهاراتی کم سابقه به",
-      "toll": 0
-    },
-    {
-      "a": [
-        "انهدم",
-        "دفع",
-        "فرز",
-        "مختلف",
-        "وزرت"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795158332.6255524,
-      "title": "انهدام ۳۱۰ پهپاد اوکراینی بر فراز روسیه ⚡️ وزارت دفاع روسیه از انهدام ۳۱۰ پهپاد اوکراینی بر فراز مناطق مختلف این کشور خب",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اژر",
-        "ثبت",
-        "خطر",
-        "دربن",
-        "درمدن",
-        "فصل",
-        "لهست",
-        "مدربست",
-        "همزم",
-        "چهل",
-        "کلمتر"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795160135.234734,
-      "title": "انفجار در شرق لهستان همزمان با به صدا درآمدن آژیر خطر ⚡️ دوربین های مداربسته انفجاری را در نزدیکی منطقه خمی لیک در شرق ل",
-      "toll": 0
-    },
     {
       "a": [
         "اجد",
@@ -5775,110 +5585,26 @@
       "t": 1795214067.5100605,
       "title": "هشدار سنتکام به دولت آمریکا درباره از دست رفتن فرصت حمله به ایران و فشار مقام های اسرائیلی بر ترامپ ⚡️ فرماندهی مرکزی آم",
       "toll": 0
+    },
+    {
+      "a": [
+        "بزرگ",
+        "رشتر",
+        "زلزل",
+        "لرز",
+        "لرزند"
+      ],
+      "cities": [],
+      "kind": "quake",
+      "places": [],
+      "regions": [],
+      "t": 1795228511.6754322,
+      "title": "زلزله ۶.۷ ریشتری مرکز پرو را لرزاند ⚡️ زمین لرزه ای به بزرگی ۶.۷ ریشتر مناطق مرکزی کشور پرو را لرزاند.",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "الملل",
-        "بخش",
-        "تبعد",
-        "تخرب",
-        "حکم",
-        "خشنت",
-        "ددگ",
-        "ردد",
-        "رست",
-        "رهنگ",
-        "زمن",
-        "سکن",
-        "شدند",
-        "طر",
-        "فجع",
-        "قبل",
-        "محکمت",
-        "مسل",
-        "مسلمن",
-        "مقصر",
-        "منمر",
-        "نسل",
-        "کرزر",
-        "کش",
-        "کشت",
-        "کمل",
-        "گسترد"
-      ],
-      "t": 1795091703.7721987,
-      "title": "محکومیت میانمار به نسل کشی روهینگیا در دادگاه بین المللی ⚡️ یک دادگاه بین المللی حکم داد که میانمار در قبال این فجایع مق"
-    },
-    {
-      "k": [
-        "اسرل",
-        "اطلع",
-        "امرک",
-        "امز",
-        "بزدد",
-        "تکد",
-        "جنت",
-        "حضر",
-        "حمل",
-        "خن",
-        "خهد",
-        "دمن",
-        "دنش",
-        "رس",
-        "ستد",
-        "سرلشکر",
-        "سعت",
-        "شجر",
-        "شهد",
-        "طب",
-        "عبدلله",
-        "عل",
-        "مدرس",
-        "مرتکب",
-        "مسلح",
-        "مقعت",
-        "منب",
-        "نر",
-        "وحشتنک",
-        "پک",
-        "کدک",
-        "کمل",
-        "گلزر"
-      ],
-      "s": "سرلشکر عبداللهی",
-      "t": 1795097085.0353997,
-      "title": "سرلشکر عبداللهی: آمریکا با اطلاع از حضور دانش آموزان به مدرسه میناب حمله کرد ⚡️ سرلشکر علی عبداللهی، رئیس ستاد کل نیروها"
-    },
-    {
-      "k": [
-        "ارز",
-        "انتقل",
-        "ترجح",
-        "تضح",
-        "تهر",
-        "جمهر",
-        "حذف",
-        "حمت",
-        "دلت",
-        "دنشج",
-        "دنشگ",
-        "رس",
-        "قلب",
-        "مردم",
-        "منبع",
-        "منتقل",
-        "هدف",
-        "پزشک",
-        "کلبرگ",
-        "کنگر"
-      ],
-      "s": "پزشکیان",
-      "t": 1795097126.0103583,
-      "title": "پزشکیان: دولت با حذف ارز ترجیحی، منابع حمایتی را به مردم منتقل کرد ⚡️ رئیس جمهور در کنگره دانشجویی دانشگاه تهران، حذف ار"
-    },
     {
       "k": [
         "اجلس",
@@ -8464,6 +8190,92 @@
       ],
       "t": 1795219386.2634456,
       "title": "اعلام وضعیت اضطراری جنگنده اف-۱۶ آمریکایی پس از بازگشت از تنگه هرمز ⚡️ یک جنگنده اف-۱۶ نیروی هوایی آمریکا پس از بازگشت ا"
+    },
+    {
+      "k": [
+        "احتمل",
+        "ار",
+        "اسرل",
+        "انگز",
+        "اگدر",
+        "تلزن",
+        "تهدد",
+        "تکد",
+        "جنگ",
+        "حمل",
+        "خهد",
+        "سبق",
+        "سس",
+        "فر",
+        "لبرمن",
+        "مخلف",
+        "مطرح",
+        "مقم",
+        "نتنه",
+        "ندرد",
+        "هشدر",
+        "هچ",
+        "وجد",
+        "وزر",
+        "وگ",
+        "کنل",
+        "گزرش"
+      ],
+      "s": "مقام مخالف نتانیاهو",
+      "t": 1795228456.3021278,
+      "title": "مقام مخالف نتانیاهو: حمله به ایران با انگیزه های سیاسی خواهد بود ⚡️ وزیر جنگ سابق اسرائیل، آویگدور لیبرمن، هشدار داد که "
+    },
+    {
+      "k": [
+        "بزرگ",
+        "تلف",
+        "تکنن",
+        "جزت",
+        "خسر",
+        "رشتر",
+        "زلزل",
+        "زمن",
+        "شدت",
+        "لرز",
+        "لرزند",
+        "مخبر",
+        "مرکز",
+        "مز",
+        "مقم",
+        "منتشر",
+        "منطق",
+        "نشد",
+        "نکردند",
+        "پر",
+        "کشر",
+        "کنن",
+        "گزرش"
+      ],
+      "t": 1795228511.6518326,
+      "title": "زلزله ۶.۷ ریشتری مرکز پرو را لرزاند ⚡️ زمین لرزه ای به بزرگی ۶.۷ ریشتر مناطق مرکزی کشور پرو را لرزاند. ▫️ تاکنون گزارشی "
+    },
+    {
+      "k": [
+        "اعمل",
+        "امرک",
+        "تصمم",
+        "جدد",
+        "جنگ",
+        "خهد",
+        "دفع",
+        "ربط",
+        "سل",
+        "محددت",
+        "مقم",
+        "منزل",
+        "هگست",
+        "وزر",
+        "پت",
+        "کشر",
+        "کند"
+      ],
+      "t": 1795228551.1409316,
+      "title": "آمریکا محدودیت های جدیدی بر روابط دفاعی با کانادا اعمال کرد ⚡️ پیت هگست وزیر جنگ آمریکا محدودیت های جدیدی را در روابط دف"
     }
   ],
   "_telegram_errors": [
@@ -9077,7 +8889,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795226476
+    "at": 1795228282
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9095,6 +8907,11 @@
     "disabled_until": 1795226723,
     "last_failure": 1795226663,
     "last_status": 422
+  },
+  "gemini:gemini-3.8-flash": {
+    "disabled_until": 1795228856.0,
+    "last_failure": 1795228556,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
