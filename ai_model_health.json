@@ -180,7 +180,7 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-22",
-      "n": 10
+      "n": 11
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-22",
@@ -521,9 +521,9 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 11,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 10,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
@@ -1845,12 +1845,6 @@
       "topic": "حادثه",
       "until": 1795358091.5615952
     },
-    "v4|انفجار یک نفتکش در دهانهٔ بندر خصب عمان": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: Oil tanker hit mine, exploded at Oman's Khasab port",
-      "topic": "حادثه",
-      "until": 1795311229.7034533
-    },
     "v4|انهدام موفق یک فروند پهپاد شناسایی دشمن مقابل سواحل بوشهر": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: Military engagement involving drone destruction in the Persian Gulf.",
@@ -2498,6 +2492,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: انفجار و آتش‌سوزی در نفتکش‌ها در تنگه هرمز",
       "topic": "نظامی",
       "until": 1795341967.5687788
+    },
+    "v4|خشم سناتور آمریکایی از مواضع ترامپ درباره پوتین": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Senator condemns Trump’s friendly remark about Putin",
+      "topic": "سیاست",
+      "until": 1795399356.2053056
     },
     "v4|دادگاه آمریکا طرح ارتش برای انفجار مواد سمی در آیووا را متوقف کرد": {
       "ok": false,
@@ -4922,13 +4922,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial communications investment, limited national impact.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795278832,
-      "title": "ثبت ۶.۵ همت سرمایه گذاری در بخش ارتباطات مازندران"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: محدودیت برق به دلیل کمبود سوخت",
       "rescued": false,
       "rule": "strict-source-below-importance(9<10)",
@@ -5480,6 +5473,13 @@
       "rule": "no-concrete-event",
       "t": 1795311145,
       "title": "جوزف عون: تکمیل استقلال لبنان مستلزم پایان اشغالگری اسرائیل است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Senator condemns Trump’s friendly remark about Putin",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795312956,
+      "title": "خشم سناتور آمریکایی از مواضع ترامپ درباره پوتین"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9373,7 +9373,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795311067
+    "at": 1795312875
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
