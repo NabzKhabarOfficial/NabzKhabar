@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1795302166
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1795302167
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795302167
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795302172
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795302172
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795302177
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795302177
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
       "t": 1795314799
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795316563
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795316564
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795316565
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795316567
+    },
+    {
+      "e": "EDITOR BATCH: 7/7 via gemini/gemini-3.1-flash-lite",
+      "t": 1795316569
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1795316597
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-21",
-      "n": 118
+      "n": 119
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-21",
-      "n": 203
+      "n": 204
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-21",
-      "n": 90
+      "n": 91
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-21",
-      "n": 90
+      "n": 91
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-22",
-      "n": 14
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-22",
-      "n": 12
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-11-21",
@@ -497,20 +497,20 @@
     "2026-11-22": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
@@ -521,23 +521,23 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 13,
+        "ok": 15,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
-        "other": 5
+        "ok": 10,
+        "other": 6
       },
       "mistral:open-mistral-nemo": {
         "429": 4,
-        "calls": 14,
+        "calls": 16,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 10,
+        "ok": 12,
         "other": 0
       }
     }
@@ -1232,6 +1232,12 @@
       "topic": "نظامی",
       "until": 1795386768.44191
     },
+    "v4|bessent confirms he’s living on us military base over iran fears": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Official statement by a US cabinet member regarding security threats.",
+      "topic": "سیاست",
+      "until": 1795402969.506459
+    },
     "v4|can mediation succeed in a war-torn world? | episode 1": {
       "ok": false,
       "reason": "ai gemini/gemini-3.8-flash batch score=1 happened=False scope=world: برنامه تحلیلی و پادکستی فاقد رخداد تازه خبری",
@@ -1351,6 +1357,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=world: Lifestyle and career profile of an athlete, not a major result.",
       "topic": "ورزش",
       "until": 1795329264.9750838
+    },
+    "v4|man found dead on flinders island believed to have been shot by officer, police say": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=local: Minor local crime incident in a remote area.",
+      "topic": "حادثه",
+      "until": 1795402969.494458
     },
     "v4|man found dead on flinders island linked to shooting of police officer, tasmanian authorities say": {
       "ok": false,
@@ -1550,12 +1562,6 @@
       "topic": "سیاست",
       "until": 1795340070.7649925
     },
-    "v4|آمریکا محدودیت های جدیدی بر روابط دفاعی با کانادا اعمال کرد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: US imposes new defense restrictions on Canada",
-      "topic": "سیاست",
-      "until": 1795314846.1233726
-    },
     "v4|آمریکا معامله گران نفتی و افراد مرتبط با دولت ایران را تحریم می کند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: اعمال تحریم‌های جدید آمریکا علیه افراد مرتبط با نفت ایران.",
@@ -1621,6 +1627,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: پروژه‌های ارتش در ۲۵ استان اجرا شد",
       "topic": "نظامی",
       "until": 1795354458.7890773
+    },
+    "v4|اجرای قرارداد جدید بیمه تکمیلی بازنشستگان با افزایش۷۰ درصدی تعهدات/ فرصت ۳ماهه ثبت درخواست": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Retiree insurance change, limited national significance",
+      "topic": "سلامت",
+      "until": 1795402963.485107
     },
     "v4|احتمال قطع گاز برخی مراکز عمومی برای یک ماه /تصمیمات کشور نباید برمدیریت گاز کرمان موثرباشد": {
       "ok": false,
@@ -2042,6 +2054,12 @@
       "topic": "سلامت",
       "until": 1795331108.1512258
     },
+    "v4|تاثیر رژیم غذایی کتوژنیک در کاهش ۶۷ درصدی چربی کبد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: مطالعه علمی، کاهش چربی کبد 67٪",
+      "topic": "سلامت",
+      "until": 1795402964.8396842
+    },
     "v4|تاکید سئول بر ضرورت شتاب بخشی به رقابت در عرصه هوش مصنوعی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: تاکید مقام کره ای بر توسعه هوش مصنوعی رویداد بزرگ جهانی نیست",
@@ -2065,6 +2083,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: University health project fully funded by tax.",
       "topic": "سلامت",
       "until": 1795352643.932469
+    },
+    "v4|تدابیر و راهبردهای رهبر معظم انقلاب مسیر اداره کشور را مشخص می کند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: بیانیه سیاسی بدون تصمیم ملموس",
+      "topic": "سیاست",
+      "until": 1795402962.3845236
     },
     "v4|تداوم بمباران یمن از سوی جنگنده های سعودی": {
       "ok": true,
@@ -2126,12 +2150,6 @@
       "topic": "سیاست",
       "until": 1795325669.6195288
     },
-    "v4|ترامپ: شهرهای آمریکا کثیف و مشمئزکننده هستند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Trump's remark, no concrete policy impact",
-      "topic": "سیاست",
-      "until": 1795314844.1719449
-    },
     "v4|ترامپ: هک سامانه های اف بی آی ممکن است اطلاعات تازه ای درباره پرونده دخالت روسیه در انتخابات فاش کند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: Trump claims FBI hack may reveal new info.",
@@ -2191,6 +2209,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local alcohol poisoning deaths, limited national impact",
       "topic": "سلامت",
       "until": 1795381410.1171317
+    },
+    "v4|تلاقی «هوش مصنوعی» و «مد و لباس»": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: Routine cultural event and festival PR.",
+      "topic": "جامعه",
+      "until": 1795402969.5493705
     },
     "v4|تمدید مهلت ثبت نام تک دروس دانشگاه علوم پزشکی هوشمند": {
       "ok": false,
@@ -2419,6 +2443,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله نظامی در منطقه جنگی یمن و درگیری‌های منطقه‌ای.",
       "topic": "نظامی",
       "until": 1795332887.5143032
+    },
+    "v4|حمله مجدد عربستان به جنوب غرب یمن": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Military escalation in a regional war zone.",
+      "topic": "نظامی",
+      "until": 1795402969.538277
     },
     "v4|حمله پلنگ در بشاگرد ۷ رأس گوسفند را تلف کرد": {
       "ok": false,
@@ -2720,6 +2750,12 @@
       "topic": "حادثه",
       "until": 1795334670.0629635
     },
+    "v4|روزنامه اطلاعات: دولت در مورد کمبود بنزین و مشکل نان صادقانه با مردم حرف نمی زند / شرایط جنگ و محاصره را لاپوشان نکنید": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Opinion piece and criticism, not a concrete government decision.",
+      "topic": "سیاست",
+      "until": 1795402969.5278122
+    },
     "v4|روزنامه جمهوری اسلامی: چین و روسیه با گرفتارشدن ترامپ در باتلاق جنگ با ایران مشکل ندارند، اما این جنگ را با منافع خود در تضاد نمی دانند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: تحلیل رسانه‌ای درباره مواضع کشورها و فاقد رویداد قطعی و رسمی است.",
@@ -2797,12 +2833,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارات معمول نماینده مجلس درباره وحدت ملی و تنوع اقوام",
       "topic": "سیاست",
       "until": 1795356274.5710244
-    },
-    "v4|زلزله ای به بزرگی ۶.۷ ریشتر مرکز پرو را لرزاند": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: 6.7 magnitude earthquake in Peru",
-      "topic": "آب و هوا",
-      "until": 1795314846.0984046
     },
     "v4|زلزله خوی تلفاتی نداشت/ مدیریت بحران در آماده باش کامل": {
       "ok": false,
@@ -3001,6 +3031,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Explosion in a sensitive maritime region near the Persian Gulf.",
       "topic": "حادثه",
       "until": 1795370636.6710007
+    },
+    "v4|شهادت پنج فلسطینی در حملات رژیم صهیونیستی به مناطق مختلف غزه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Ongoing regional conflict casualties, below the mass casualty threshold.",
+      "topic": "نظامی",
+      "until": 1795402969.5591776
     },
     "v4|شهروندان قزوین سهمیه شیرخشک نوزادان را در اختیار دیگران قرار ندهند": {
       "ok": false,
@@ -3530,12 +3566,6 @@
       "topic": "جامعه",
       "until": 1795363473.9995914
     },
-    "v4|مقام مخالف نتانیاهو: حمله به ایران با انگیزه های سیاسی انجام خواهد شد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=iran_national: Israeli war minister threatens attack",
-      "topic": "سیاست",
-      "until": 1795314846.1112401
-    },
     "v4|مهلت پایان سال به کشتارگاه بیرجند؛ تعطیلی در صورت رفع نشدن بوی نامطبوع": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: تصمیم قضایی محلی درباره یک کشتارگاه در سطح شهرستان.",
@@ -3908,6 +3938,12 @@
       "topic": "سیاست",
       "until": 1795327566.8655329
     },
+    "v4|ویتامینی که خطر زوال عقل را تا ۵۰ درصد کاهش می دهد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Claim vitamin B2 reduces dementia risk 50%",
+      "topic": "سلامت",
+      "until": 1795402964.163243
+    },
     "v4|ویرانگری بولدوزرهای اسرائیلی در زوطر؛ ساکنان تماشاگر و مقامات محو شدند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: تشدید درگیری و تخریب در منطقه جنگی مرزی با اسرائیل رویداد مهم منطقه‌ای است.",
@@ -4076,12 +4112,6 @@
       "topic": "اقتصاد",
       "until": 1795381431.5127149
     },
-    "v4|کمبود ویتامین d و افزایش خطر ابتلا به نوعی مشکل قلبی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Study lacks immediate national impact",
-      "topic": "سلامت",
-      "until": 1795314842.991745
-    },
     "v4|کوثری: نتانیاهو اکنون مانند حیوانی زخمی عمل می کند/ ایران برای پیشبرد برنامه هسته ای خود از کسی اجازه نمی گیرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: مواضع رسمی نماینده مجلس درباره برنامه هسته‌ای و تهدیدات.",
@@ -4147,6 +4177,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine provincial development project report with no national strategic impact.",
       "topic": "جامعه",
       "until": 1795321967.3120756
+    },
+    "v4|۳ کشته بر اثر تیراندازی در ایالت اوهایو آمریکا": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=local: Casualty count is below the threshold of 10 for world news.",
+      "topic": "حادثه",
+      "until": 1795402969.5173564
     },
     "v4|۳ کشته در تیراندازی به یک جشن خانوادگی در آمریکا": {
       "ok": false,
@@ -4262,6 +4298,10 @@
       "reason": "content_duplicate",
       "until": 1795323848.2463071
     },
+    "bessent confirms he’s living on us military base over iran fears": {
+      "reason": "content_duplicate",
+      "until": 1795338197.002885
+    },
     "could iran reverse its stated policy of a civil-only nuclear programme?": {
       "at": 1795280702.8525188,
       "reason": "final_guard:dangling-lead",
@@ -4344,6 +4384,10 @@
     "حمله دیگر عربستان به جنوب غرب یمن": {
       "reason": "content_duplicate",
       "until": 1795323817.5226617
+    },
+    "حمله مجدد عربستان به جنوب غرب یمن": {
+      "reason": "content_duplicate",
+      "until": 1795338177.297488
     },
     "حکیم جفریز: با جدیت به دنبال پایان دادن به جنگ ایران خواهیم بود": {
       "reason": "content_duplicate",
@@ -4936,34 +4980,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اظهار نظر نماینده مجلس درباره صنایع دستی و نشاط اجتماعی",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1795278833,
-      "title": "«صنایع دستی» پیوند دهنده فرهنگ اقوام و رونق بخش نشاط اجتماعی است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اخبار روال اداری و سازمان استاندارد فاقد اهمیت درجه یک است",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1795278865,
-      "title": "اصلاح رویه های ارزیابی انطباق با تدوین مقررات فنی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=7 happened=True scope=world: دیدار مقامات ارشد و اعلام کمک‌های نظامی جدید به اوکراین",
-      "rescued": true,
-      "rule": "routine-statement",
-      "t": 1795278870,
-      "title": "دیدار زلنسکی و وزیر دفاع انگلیس برای دریافت کمک های نظامی بیشتر"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: small local fire, no casualties or wider impact",
-      "rescued": false,
-      "rule": "final-scope-preselection",
-      "t": 1795280595,
-      "title": "آتش سوزی ۳ مغازه در جاده جیرده رشت مهار شد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Commentary, no concrete decision or major impact",
       "rescued": false,
       "rule": "strict-source-below-importance(8<10)",
@@ -5494,6 +5510,34 @@
       "rule": "routine-metaphorical-topic",
       "t": 1795314762,
       "title": "زندی: ممکن است روسیه از اورانیوم ایران به عنوان کارت بازی در موضوع اوکراین استفاده کند/ وضعیت تأسیسات ما نه برای خودمان "
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: بیانیه سیاسی بدون تصمیم ملموس",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1795316562,
+      "title": "تدابیر و راهبردهای رهبر معظم انقلاب مسیر اداره کشور را مشخص می کند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Retiree insurance change, limited national significance",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795316563,
+      "title": "اجرای قرارداد جدید بیمه تکمیلی بازنشستگان با افزایش۷۰ درصدی تعهدات/ فرصت ۳ماهه ثبت درخواست"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: Claim vitamin B2 reduces dementia risk 50%",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795316564,
+      "title": "ویتامینی که خطر زوال عقل را تا ۵۰ درصد کاهش می دهد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: مطالعه علمی، کاهش چربی کبد 67٪",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795316564,
+      "title": "تاثیر رژیم غذایی کتوژنیک در کاهش ۶۷ درصدی چربی کبد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9389,7 +9433,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795314690
+    "at": 1795316471
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9404,8 +9448,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795307650,
-    "last_failure": 1795307590,
+    "disabled_until": 1795316653,
+    "last_failure": 1795316593,
     "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
