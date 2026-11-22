@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795300359
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795300359
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795300359
     },
@@ -159,12 +151,20 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1795305821
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795307571
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1795307604
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-21",
-      "n": 117
+      "n": 118
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-21",
@@ -172,19 +172,19 @@
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-21",
-      "n": 89
+      "n": 90
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-21",
-      "n": 87
+      "n": 89
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-22",
-      "n": 4
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-22",
-      "n": 2
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-11-21",
@@ -495,7 +495,25 @@
       }
     },
     "2026-11-22": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
       "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
         "429": 0,
         "calls": 1,
         "ok": 1,
@@ -503,22 +521,22 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 2,
+        "calls": 5,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 1,
-        "other": 1
+        "ok": 2,
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
-        "429": 1,
-        "calls": 3,
+        "429": 2,
+        "calls": 6,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 2,
+        "ok": 4,
         "other": 0
       }
     }
@@ -1167,6 +1185,13 @@
       "t": 1795305819.9996877,
       "title": "هجوم روسی در کریوی ریه: دو نفر کشته و 60 زخمی شد",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1795307603.613024,
+      "title": "محکومیت حمله ایران به پایگاه های آمریکا در بحرین",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-21",
@@ -1182,6 +1207,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Routine sports news about a player's performance.",
       "topic": "ورزش",
       "until": 1795365284.8034794
+    },
+    "v4|10 things you should never do on your android phone": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: Tech advice article, not a news event",
+      "topic": "فناوری",
+      "until": 1795393970.7644575
     },
     "v4|athlete who lost hand saving friends in attack 'would do it again'": {
       "ok": false,
@@ -1296,6 +1327,12 @@
       "reason": "ai mistral/open-mistral-nemo batch score=9 happened=True scope=world: Official Iranian claim of downing US drones + stalled war talks",
       "topic": "نظامی",
       "until": 1795347267.238927
+    },
+    "v4|iran war live: iran targets us military in bahrain; houthi strikes continue": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Iran strikes US assets in Bahrain, Houthi tensions rise.",
+      "topic": "نظامی",
+      "until": 1795393971.5983412
     },
     "v4|iran’s irgc downs us drone over hormuz as efforts to end war remain stalled": {
       "ok": true,
@@ -3673,6 +3710,12 @@
       "topic": "سیاست",
       "until": 1795368883.4092317
     },
+    "v4|هشدار پلیس فتا خراسان رضوی درباره سوءاستفاده کلاهبرداران سایبری از سیم کارت های بی هویت": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، هشدار بدون حادثه یا تصمیم مهم",
+      "topic": "فناوری",
+      "until": 1795393969.8187637
+    },
     "v4|هفته سیزدهم لیگ برتر فوتبال ایران؛ فولاد خوزستان - سپاهان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Regular league match, not top‑tier news",
@@ -4208,6 +4251,10 @@
       "reason": "content_duplicate",
       "until": 1795326879.2310207
     },
+    "iran war live: iran targets us military in bahrain; houthi strikes continue": {
+      "reason": "content_duplicate",
+      "until": 1795329194.7791357
+    },
     "israeli strike hits food aid vehicle in gaza, killing three": {
       "reason": "content_duplicate",
       "until": 1795321982.057589
@@ -4310,25 +4357,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "اعلام وضعیت اضطراری جنگنده اف-۱۶ آمریکایی پس از بازگشت از تنگه هرمز ⚡️ یک جنگنده اف-۱۶ نیروی هوایی آمریکا پس ا",
-      "id": "cd327c6759",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795219385,
-      "verdict": "new",
-      "why": "جنگنده اف-۱۶ در تنگه هرمز، موضوع جدید"
-    },
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "ترامپ: پوتین می خواهد جنگ پایان یابد و برای توافق آماده است ⚡️ دونالد ترامپ پس از بازگشت از چین، در تماس تلفنی",
-      "id": "0a42838055",
-      "match": "ترامپ: پوتین تمایل خود را برای پایان جنگ از طریق دیپلماسی ابراز کرد",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795226691,
-      "verdict": "repeat",
-      "why": "The new post reports the same statement by Trump about Putin."
-    },
     {
       "head": "مقام مخالف نتانیاهو: حمله به ایران با انگیزه های سیاسی خواهد بود ⚡️ وزیر جنگ سابق اسرائیل، آویگدور لیبرمن، هشد",
       "id": "9ca321f6a1",
@@ -4859,23 +4887,27 @@
       "t": 1795305818,
       "verdict": "new",
       "why": "حمله موشکی به کریوی ریه در لیست قبلی وجود ندارد."
+    },
+    {
+      "head": "محکومیت حمله ایران به پایگاه های آمریکا در بحرین ⚡️ بحرین حملات ایران به دارایی های نظامی ایالات متحده در این ",
+      "id": "c2e8cfa64c",
+      "match": "سپاه دو پایگاه ایالات متحده در بحرین را هدف قرار داد",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795307594,
+      "verdict": "repeat",
+      "why": "same attack on US bases in Bahrain"
+    },
+    {
+      "head": "محکومیت حمله ایران به پایگاه های آمریکا در بحرین ⚡️ بحرین حملات ایران به دارایی های نظامی ایالات متحده در این ",
+      "id": "c2e8cfa64c",
+      "match": "سپاه دو پایگاه ایالات متحده در بحرین را هدف قرار داد",
+      "model": "gemini/gemini-3.8-flash",
+      "t": 1795307603,
+      "verdict": "reaction",
+      "why": "Bahrain condemns Iranian strikes on US bases reported in item 8"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اظهارات تشریفاتی و روتین وزیر خارجه درباره روابط با عمان",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1795277066,
-      "title": "عراقچی: روابط ایران و عمان از پایه های مستحکمی برخوردار است"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: Speculative US party talk, no concrete decision",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1795277067,
-      "title": "دوراهی جمهوری خواهان؛ مشارکت با ترامپ یا عبور از او؟"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: اظهار نظر فرهنگی و علمی که فاقد اهمیت ملی یا بین‌المللی است.",
       "rescued": false,
@@ -5421,55 +5453,26 @@
       "rule": "local-routine-low-value",
       "t": 1795305255,
       "title": "دویست و شصت و ششمین شب تجمعات مردم زنجان در میدان"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، هشدار بدون حادثه یا تصمیم مهم",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795307569,
+      "title": "هشدار پلیس فتا خراسان رضوی درباره سوءاستفاده کلاهبرداران سایبری از سیم کارت های بی هویت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=0 happened=False scope=local: Tech advice article, not a news event",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795307570,
+      "title": "10 things you should never do on your Android phone"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اسب",
-        "اسفند",
-        "بزسز",
-        "بزگشت",
-        "بسج",
-        "تسس",
-        "تلش",
-        "دد",
-        "رز",
-        "شبن",
-        "شرکت",
-        "ظرفت",
-        "مترمکعب",
-        "مدر",
-        "مل",
-        "ملن",
-        "هشت",
-        "هفت",
-        "گذشت",
-        "گز"
-      ],
-      "t": 1795263600.3901415,
-      "title": "شرکت ملی گاز: ۱۰۰ میلیون مترمکعب ظرفیت گازی آسیب دیده پس از حمله آمریکا و اسرائیلی ها بازسازی شد ⚡️ شرکت ملی گاز ایران گ"
-    },
-    {
-      "h": [
-        "انتقل",
-        "تنگ",
-        "حجم",
-        "دم",
-        "رسد",
-        "نخست",
-        "نصف",
-        "نم",
-        "نمبر",
-        "هرمز",
-        "گر"
-      ],
-      "t": 1795263656.7104535,
-      "title": "نیمه گیری حجم نفت از تنگه هرمز در هفته دوم نوامبر ⚡️ حجم انتقال نفت از تنگه هرمز در هفته دوم نوامبر به نصف حجم هفته نخست"
-    },
     {
       "h": [
         "شند",
@@ -5922,6 +5925,19 @@
       ],
       "t": 1795305819.9907453,
       "title": "هجوم روسی در کریوی ریه: دو نفر کشته و 60 زخمی شد ⚡️ هجوم موشک روسی به شهر کریوی ریه، مسکن رئیس جمهور اوکراین، باعث کشته "
+    },
+    {
+      "h": [
+        "ال",
+        "بحرن",
+        "در",
+        "متحد",
+        "محکم",
+        "محکمت",
+        "پگ"
+      ],
+      "t": 1795307603.6008193,
+      "title": "محکومیت حمله ایران به پایگاه های آمریکا در بحرین ⚡️ بحرین حملات ایران به دارایی های نظامی ایالات متحده در این کشور را مح"
     }
   ],
   "_published_incidents": [
@@ -6301,134 +6317,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اجد",
-        "امد",
-        "تلف",
-        "جن",
-        "حفر",
-        "خک",
-        "دفع",
-        "رس",
-        "سقط",
-        "فرد",
-        "لهست",
-        "مشک",
-        "ندشت",
-        "وزر",
-        "کرز"
-      ],
-      "t": 1795176274.6031444,
-      "title": "سقوط موشک کروز روسی در خاک لهستان ⚡️ وزیر دفاع لهستان اعلام کرد موشک روسی در خاک لهستان فرود آمده و حفره ایجاد کرده اما "
-    },
-    {
-      "k": [
-        "است",
-        "اعمل",
-        "اغز",
-        "افرد",
-        "اقتدر",
-        "الزد",
-        "النصر",
-        "انج",
-        "انحصر",
-        "ببرند",
-        "ببل",
-        "بردر",
-        "بشد",
-        "تمم",
-        "تکد",
-        "جرف",
-        "جنگ",
-        "حضر",
-        "حکمت",
-        "خرج",
-        "خست",
-        "خشتن",
-        "خطب",
-        "در",
-        "دست",
-        "دلت",
-        "سرزمن",
-        "سز",
-        "سلح",
-        "عرق",
-        "عل",
-        "فرزند",
-        "فرمند",
-        "فلح",
-        "مرحل",
-        "مستقر",
-        "مسلح",
-        "منطق",
-        "نبد",
-        "نخست",
-        "نر",
-        "نستم",
-        "نستند",
-        "نقط",
-        "هستند",
-        "همن",
-        "همگر",
-        "هچ",
-        "وجد",
-        "وزر",
-        "پش",
-        "پم",
-        "یکپرچ"
-      ],
-      "t": 1795176311.1521347,
-      "title": "پیام الزیدی به نیروهای مستقر در جرف النصر: ما در حال جنگ نیستیم ⚡️ علی فالح الزیدی، نخست وزیر و فرمانده کل نیروهای مسلح "
-    },
-    {
-      "k": [
-        "ارتش",
-        "الحدد",
-        "بمبر",
-        "بندر",
-        "تمم",
-        "سخنگ",
-        "عربست",
-        "هدف",
-        "هشدر",
-        "گرفتن",
-        "گرند",
-        "یمن"
-      ],
-      "t": 1795176380.2718256,
-      "title": "هشدار ارتش یمن درباره هدف قرار گرفتن بنادر عربستان ⚡️ سخنگوی ارتش یمن اعلام کرد که اگر بندر الحدیده بمباران شود، تمام بن"
-    },
-    {
-      "k": [
-        "ار",
-        "ازسرگر",
-        "امرک",
-        "انتقل",
-        "بندر",
-        "تحت",
-        "تحرم",
-        "جزر",
-        "خرک",
-        "خم",
-        "دد",
-        "دهند",
-        "دگر",
-        "زمن",
-        "عمل",
-        "محصر",
-        "محمل",
-        "منتقل",
-        "نخستن",
-        "نفت",
-        "هدف",
-        "هشدر",
-        "همزم",
-        "کشت"
-      ],
-      "t": 1795176424.0097268,
-      "title": "نخستین انتقال نفت کش به نفت کش در ایران همزمان با هشدار آمریکا ⚡️ یک نفت کش تحت تحریم آمریکا محموله نفت خام ایران را در "
-    },
     {
       "k": [
         "اقتصد",
@@ -8956,6 +8844,31 @@
       ],
       "t": 1795305819.981461,
       "title": "هجوم روسی در کریوی ریه: دو نفر کشته و 60 زخمی شد ⚡️ هجوم موشک روسی به شهر کریوی ریه، مسکن رئیس جمهور اوکراین، باعث کشته "
+    },
+    {
+      "k": [
+        "ار",
+        "ال",
+        "امرک",
+        "بحرن",
+        "حث",
+        "حل",
+        "حمل",
+        "در",
+        "سعد",
+        "عربست",
+        "متحد",
+        "مجب",
+        "محکم",
+        "محکمت",
+        "نظم",
+        "نگرن",
+        "همچن",
+        "پگ",
+        "کشر"
+      ],
+      "t": 1795307603.588229,
+      "title": "محکومیت حمله ایران به پایگاه های آمریکا در بحرین ⚡️ بحرین حملات ایران به دارایی های نظامی ایالات متحده در این کشور را مح"
     }
   ],
   "_telegram_errors": [
@@ -9569,7 +9482,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795305706
+    "at": 1795307480
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9584,9 +9497,9 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795305842,
-    "last_failure": 1795305242,
-    "last_status": 429
+    "disabled_until": 1795307650,
+    "last_failure": 1795307590,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
     "disabled_until": 1795305834,
@@ -9607,6 +9520,10 @@
   },
   "groq:openai/gpt-oss-120b": {
     "last_quality_failure": 1795305789,
+    "last_status": 422
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1795307574,
     "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
