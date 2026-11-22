@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.5-flash-lite",
-      "t": 1795300368
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 5x",
-      "t": 1795300386
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1795302166
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1795311162
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1795314765
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x",
+      "t": 1795314799
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-21",
-      "n": 201
+      "n": 203
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-21",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-21",
-      "n": 89
+      "n": 90
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-22",
-      "n": 11
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-22",
-      "n": 7
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-11-21",
@@ -503,8 +503,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 1,
-        "ok": 1,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -521,42 +521,28 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 11,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 13,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 7,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 3
+        "ok": 7,
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
-        "429": 3,
-        "calls": 9,
+        "429": 4,
+        "calls": 14,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 6,
+        "ok": 10,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1795138391.742482,
-      "title": "تاکید ویتکاف بر عزم ترامپ برای پایان جنگ اوکراین",
-      "urgent": false
-    },
-    {
-      "label": "فناوری",
-      "level": 3,
-      "t": 1795140206.2747915,
-      "title": "بازنگری ترامپ در تیم امنیت سایبری کاخ سفید پس از اختلالات زیرساختی آمریکا",
-      "urgent": false
-    },
     {
       "label": "موضع‌گیری",
       "level": 5,
@@ -1193,6 +1179,13 @@
       "t": 1795311161.1406865,
       "title": "تلویزیون رسمی بحرین: پدافند هوایی در مقابل حملات هوایی ایران",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 3,
+      "t": 1795314786.6655433,
+      "title": "پناهندگان فلسطینی در غزه به اعتراض علیه حملات هوایی اسرائیل ادامه می دهند",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-21",
@@ -1251,12 +1244,6 @@
       "topic": "ورزش",
       "until": 1795386759.7470293
     },
-    "v4|cop31 deal stalls as nations struggle to agree on climate plan": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: COP31 negotiations stalled, no decisive outcome",
-      "topic": "آب و هوا",
-      "until": 1795313046.7282252
-    },
     "v4|cop31 به وقت اضافه کشید؛ بحث و جدل بر سرِ حذفِ سوخت های فسیلی از پیش نویس": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: کشیده شدن مذاکرات مهم اقلیمی سازمان ملل به وقت اضافه.",
@@ -1280,6 +1267,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: Major missile and drone attack with multiple casualties in Kyiv.",
       "topic": "حادثه",
       "until": 1795385000.1953523
+    },
+    "v4|displaced palestinians protest as israeli air strikes continue in gaza": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Protests over ongoing Israeli air strikes in Gaza",
+      "topic": "نظامی",
+      "until": 1795401165.3021545
     },
     "v4|drone attack sets russian cargo ship ablaze in gulf of finland": {
       "ok": true,
@@ -1695,6 +1688,12 @@
       "topic": "جامعه",
       "until": 1795383162.573933
     },
+    "v4|از رفع خرابی تا شفافیت صورتحساب/ آزمون بزرگ تحول در مخابرات ایران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=iran_national: Iran telecom customers demand service improvements and billing clarity",
+      "topic": "اقتصاد",
+      "until": 1795401165.3201365
+    },
     "v4|از رومینگ همراه اول روی دکل ایرانسل تا پوشش ۹۷ درصدی اینترنت در نکا": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Routine local infrastructure update in a specific county.",
@@ -2036,12 +2035,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی و برنامه‌ریزی مسکن ملی در رودان اهمیت ملی ندارد",
       "topic": "جامعه",
       "until": 1795341883.118819
-    },
-    "v4|بیش فعالی ممکن است خطر زوال عقل را افزایش دهد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: پیش‌بینی علمی، نه رویداد واقعی",
-      "topic": "سلامت",
-      "until": 1795313045.6274822
     },
     "v4|بیماران برای دریافت آنتی بیوتیک اصرار نکنند/مقاومت میکروبی در کمین درمان عفونت ها": {
       "ok": false,
@@ -2834,6 +2827,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Official position by a head of state on major international diplomacy.",
       "topic": "سیاست",
       "until": 1795354520.1183538
+    },
+    "v4|زندی: ممکن است روسیه از اورانیوم ایران به عنوان کارت بازی در موضوع اوکراین استفاده کند/ وضعیت تأسیسات ما نه برای خودمان روشن است و نه برای آژانس": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Speculative comment, no concrete event or decision",
+      "topic": "سیاست",
+      "until": 1795401162.289683
     },
     "v4|زیتون طلایی جشنواره ایتالیا به «دوچرخه آبی» رسید": {
       "ok": false,
@@ -4149,6 +4148,12 @@
       "topic": "جامعه",
       "until": 1795321967.3120756
     },
+    "v4|۳ کشته در تیراندازی به یک جشن خانوادگی در آمریکا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Shooting at Ohio family gathering kills three",
+      "topic": "حادثه",
+      "until": 1795401165.3113482
+    },
     "v4|۳۰ درصد ظرفیت منتقل شده پزشکی و دندانپزشکی از پذیرش سال ۱۴۰۶ کسر می شود": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: policy change in medical admissions",
@@ -4172,6 +4177,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: گزارش پایان یک نمایشگاه تجاری محلی فاقد اهمیت ملی یا بین‌المللی است.",
       "topic": "اقتصاد",
       "until": 1795349921.2678804
+    },
+    "v4|۴ مجروح بر اثر سقوط یک هواپیمای کوچک در شیلی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Small plane crash injures four, limited impact",
+      "topic": "حادثه",
+      "until": 1795401165.2927961
     },
     "v4|۴۰۰۰ دختر سنندجی در جشن تکلیف «فرشتگان کُرد ایرانی» بهار بندگی را جشن گرفتند": {
       "ok": false,
@@ -4256,6 +4267,10 @@
       "reason": "final_guard:dangling-lead",
       "until": 1795302302.8525188
     },
+    "displaced palestinians protest as israeli air strikes continue in gaza": {
+      "reason": "content_duplicate",
+      "until": 1795336382.0679429
+    },
     "france secure nations championship final with springboks": {
       "reason": "content_duplicate",
       "until": 1795321986.5701635
@@ -4302,9 +4317,8 @@
       "until": 1795293313.287369
     },
     "ببینید / شعله های آتش در بحرین در پی حمله ایران": {
-      "at": 1795291580.6204913,
-      "reason": "final_guard:ai-contradiction",
-      "until": 1795313180.6204913
+      "reason": "content_duplicate",
+      "until": 1795336399.9232426
     },
     "بروجردی: اگر آمریکا مانع عبور نفتکش ها شود، به جنگ برمی گردیم/ تا حالا درباره استفاده از موشک ها خویشتن داری کردیم/ هر چه بادا باد": {
       "reason": "content_duplicate",
@@ -4370,24 +4384,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "آمریکا محدودیت های جدیدی بر روابط دفاعی با کانادا اعمال کرد ⚡️ پیت هگست وزیر جنگ آمریکا محدودیت های جدیدی را د",
-      "id": "279713d7b9",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795228550,
-      "verdict": "new",
-      "why": "This is a new report about US-Canada defense relations."
-    },
-    {
-      "head": "بازندگان و برندگان نشست رهبران چین، آمریکا و روسیه ⚡️ یک کارشناس مسائل بین الملل نشست سه جانبه سران چین، آمریک",
-      "id": "cbf3491dc2",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795233848,
-      "verdict": "new",
-      "why": "This international summit news is distinct from all previous posts."
-    },
     {
       "confirm": "gemini/gemini-3.5-flash-lite:repeat",
       "head": "مرور مطبوعات؛ از بن بست نشست شنژن تا تصمیم ایران درباره محاصره دریایی ⚡️ همچنین موضوع تصمیم ایران برای پایان م",
@@ -4918,16 +4914,27 @@
       "t": 1795311160,
       "verdict": "new",
       "why": "No identical Bahrain air defense event reported"
+    },
+    {
+      "head": "پناهندگان فلسطینی در غزه به اعتراض علیه حملات هوایی اسرائیل ادامه می دهند ⚡️ پناهندگان فلسطینی در ناحیهٔ خط زر",
+      "id": "41ce9a745d",
+      "match": "حملات اسرائیل به غزه چهار فلسطینی را کشت و چند نفر را زخمی کرد",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795314782,
+      "verdict": "repeat",
+      "why": "Reports the same ongoing Israeli airstrikes and protests in Gaza."
+    },
+    {
+      "head": "پناهندگان فلسطینی در غزه به اعتراض علیه حملات هوایی اسرائیل ادامه می دهند ⚡️ پناهندگان فلسطینی در ناحیهٔ خط زر",
+      "id": "41ce9a745d",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795314786,
+      "verdict": "new",
+      "why": "Different protest event in Gaza on Saturday."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: محدودیت برق به دلیل کمبود سوخت",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1795278833,
-      "title": "کدام مشترکان از اول آذر با محدودیت برق روبه رو می شوند؟"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: اظهار نظر نماینده مجلس درباره صنایع دستی و نشاط اجتماعی",
       "rescued": false,
@@ -5480,45 +5487,19 @@
       "rule": "foreign-local-preselection",
       "t": 1795312956,
       "title": "خشم سناتور آمریکایی از مواضع ترامپ درباره پوتین"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Speculative comment, no concrete event or decision",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1795314762,
+      "title": "زندی: ممکن است روسیه از اورانیوم ایران به عنوان کارت بازی در موضوع اوکراین استفاده کند/ وضعیت تأسیسات ما نه برای خودمان "
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اسب",
-        "بم",
-        "جنب",
-        "جنگند",
-        "خلج",
-        "رهگر",
-        "سمن",
-        "شلک",
-        "شنزد",
-        "فرز",
-        "فرس",
-        "فرند",
-        "مستقر",
-        "پدفند"
-      ],
-      "t": 1795268252.7067714,
-      "title": "آسیب به جنگنده آمریکایی با شلیک پدافند ارتش ⚡️ سامانه های بومی نیروی پدافند هوایی ارتش مستقر در جنوب کشور یک فروند جنگند"
-    },
-    {
-      "h": [
-        "بر",
-        "حرکت",
-        "خلج",
-        "فنلند",
-        "نشنس",
-        "پهپد",
-        "کلننگرد"
-      ],
-      "t": 1795269887.2294145,
-      "title": "حمله پهپادی به کشتی باری روسیه در خلیج فنلاند ⚡️ دو پهپاد ناشناس به یک کشتی باری روسی در حال حرکت به سمت کالینینگراد در "
-    },
     {
       "h": [
         "انتقل",
@@ -5949,54 +5930,23 @@
       ],
       "t": 1795311161.1300857,
       "title": "تلویزیون رسمی بحرین: پدافند هوایی در مقابل حملات هوایی ایران ⚡️ سامانه پدافند هوایی این کشور در حال مقابله با حملات هوای"
+    },
+    {
+      "h": [
+        "اعترض",
+        "دهند",
+        "زرد",
+        "شنب",
+        "فلسطن",
+        "نح",
+        "پردخت",
+        "پنهندگ"
+      ],
+      "t": 1795314786.6466932,
+      "title": "پناهندگان فلسطینی در غزه به اعتراض علیه حملات هوایی اسرائیل ادامه می دهند ⚡️ پناهندگان فلسطینی در ناحیهٔ خط زرد غزه در ر"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "اتش",
-        "استگ",
-        "برق",
-        "بصر",
-        "دچر",
-        "نرگ",
-        "وقع"
-      ],
-      "cities": [
-        "بصره"
-      ],
-      "kind": "fire",
-      "places": [
-        "بصره"
-      ],
-      "regions": [
-        "iraq_south"
-      ],
-      "t": 1795237563.3482676,
-      "title": "وقوع انفجار و آتش سوزی در نیروگاه برق بصره ⚡️ ایستگاه گاز نیروگاه برق استان بصره در جنوب عراق دچار انفجار و آتش سوزی شد.",
-      "toll": 0
-    },
-    {
-      "a": [
-        "العدل",
-        "تشرح",
-        "حدث",
-        "خردسل",
-        "دختر",
-        "مدر",
-        "مسلحن",
-        "مهدس",
-        "هلنک",
-        "گرهک"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795248342.3380196,
-      "title": "روایت شهادت دختر خردسال در حمله مسلحانه جیش العدل ⚡️ مادر شهید مهدیس، کودک یک سال و نیمه ای که در حمله مسلحانه گروهک جیش",
-      "toll": 0
-    },
     {
       "a": [
         "تحقق",
@@ -6323,6 +6273,30 @@
       ],
       "t": 1795298656.4810674,
       "title": "حمله مرگبار روسیه به کی یف و سراسر اوکراین با صدها پهپاد و موشک ⚡️ روسیه با شلیک بیش از ۴۰۰ پهپاد و ۱۱۰ موشک به نقاط مخت",
+      "toll": 0
+    },
+    {
+      "a": [
+        "اعترض",
+        "دهند",
+        "زرد",
+        "شنب",
+        "فلسطن",
+        "پردخت",
+        "پنهندگ"
+      ],
+      "cities": [
+        "غزه"
+      ],
+      "kind": "attack",
+      "places": [
+        "غزه"
+      ],
+      "regions": [
+        "gaza"
+      ],
+      "t": 1795314786.6566813,
+      "title": "پناهندگان فلسطینی در غزه به اعتراض علیه حملات هوایی اسرائیل ادامه می دهند ⚡️ پناهندگان فلسطینی در ناحیهٔ خط زرد غزه در ر",
       "toll": 0
     }
   ],
@@ -8760,6 +8734,48 @@
       "s": "تلویزیون رسمی بحرین",
       "t": 1795311161.1189222,
       "title": "تلویزیون رسمی بحرین: پدافند هوایی در مقابل حملات هوایی ایران ⚡️ سامانه پدافند هوایی این کشور در حال مقابله با حملات هوای"
+    },
+    {
+      "k": [
+        "ارد",
+        "اسرل",
+        "اعترض",
+        "البلح",
+        "بر",
+        "تخرب",
+        "حدقل",
+        "حمل",
+        "خند",
+        "در",
+        "دهند",
+        "زرد",
+        "سرپن",
+        "سعت",
+        "شنب",
+        "شهردر",
+        "غزه",
+        "فلسطن",
+        "مجرح",
+        "مسکن",
+        "مفقد",
+        "نح",
+        "نفر",
+        "همر",
+        "وحد",
+        "وزرت",
+        "پردخت",
+        "پنج",
+        "پنهندگ",
+        "کر",
+        "کشت",
+        "کمتر",
+        "گذشت"
+      ],
+      "n": [
+        "233"
+      ],
+      "t": 1795314786.6368186,
+      "title": "پناهندگان فلسطینی در غزه به اعتراض علیه حملات هوایی اسرائیل ادامه می دهند ⚡️ پناهندگان فلسطینی در ناحیهٔ خط زرد غزه در ر"
     }
   ],
   "_telegram_errors": [
@@ -9373,7 +9389,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795312875
+    "at": 1795314690
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9408,10 +9424,6 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1795307574,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
