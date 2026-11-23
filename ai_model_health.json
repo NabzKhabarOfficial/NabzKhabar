@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.6-flash",
-      "t": 1795388621
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 5x",
-      "t": 1795388646
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795390356
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795390356
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 4x",
       "t": 1795395836
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795397580
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795397580
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1795397669
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-22",
-      "n": 101
+      "n": 102
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-22",
-      "n": 173
+      "n": 175
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-22",
-      "n": 77
+      "n": 78
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-22",
-      "n": 71
+      "n": 72
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-23",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-23",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-22",
@@ -499,48 +499,50 @@
     "2026-11-23": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
+        "calls": 2,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 1,
-        "other": 0
+        "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 9,
+        "ok": 9,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 0,
-        "calls": 1,
+        "429": 1,
+        "calls": 2,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
         "other": 1
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
+        "ok": 6,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 5,
+        "ok": 7,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 5,
+        "calls": 8,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 3,
+        "ok": 6,
         "other": 0
       }
     }
@@ -1260,6 +1262,12 @@
       "topic": "سیاست",
       "until": 1795482229.6617475
     },
+    "v4|australian politics live: hanson calls coalition and labor a ‘uni’ party; minns ends presser after heckling from greens candidate": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian political remarks, no major impact",
+      "topic": "سیاست",
+      "until": 1795483980.0361137
+    },
     "v4|australian politics live: labor to extend pbs medicine price freeze; angus taylor pays tribute to ‘beloved’ meldrum": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اخبار داخلی و سیاست استرالیا برای مخاطب ایرانی اهمیت درجه یک ندارد",
@@ -1290,6 +1298,12 @@
       "topic": "حادثه",
       "until": 1795406633.3115735
     },
+    "v4|democrats win largest house majority since 1992 after flipping north carolina seat": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: US Democrats secure largest House majority since 1992",
+      "topic": "سیاست",
+      "until": 1795483980.6843655
+    },
     "v4|displaced palestinians protest as israeli air strikes continue in gaza": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Protests over ongoing Israeli air strikes in Gaza",
@@ -1301,12 +1315,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=True scope=world: Industrial accident with low casualty count, does not meet major disaster threshold.",
       "topic": "حادثه",
       "until": 1795415618.2479706
-    },
-    "v4|drones, texts and diversions: how mexico captured a most wanted man": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Capture of cartel leader, limited international impact",
-      "topic": "قضایی",
-      "until": 1795397548.016836
     },
     "v4|fire at confectionary factory in indonesia leaves at least three dead and dozens missing": {
       "ok": false,
@@ -2538,12 +2546,6 @@
       "topic": "سیاست",
       "until": 1795410322.7662144
     },
-    "v4|جوزف عون: تکمیل استقلال لبنان مستلزم پایان اشغالگری اسرائیل است": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: Lebanese president declares independence requires ending Israeli occupation",
-      "topic": "سیاست",
-      "until": 1795397545.5346873
-    },
     "v4|حاکم شرع دیوان محاسبات: ادامه فعالیت محمد شریعتمداری در هلدینگ خلیج فارس غیر قانونی است/ از زمان صدور و ابلاغ حکم انفصال، هر گونه مداخله، اعمال اختیار، امضا و اقدام اداری یا مالی ا": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: Official legal ruling regarding a major state-owned economic entity.",
@@ -2952,12 +2954,6 @@
       "topic": "حادثه",
       "until": 1795471462.1703494
     },
-    "v4|رکوردشکنی ایران در دولت الکترونیک/صعود در رده بندی جهانی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=iran_national: E‑government ranking rise, limited national significance",
-      "topic": "فناوری",
-      "until": 1795397548.0275574
-    },
     "v4|زاکانی از طرح بزرگ تحول در جنوب غرب تهران خبر داد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: شهردار تهران طرح توسعه منطقه ۱۸ را اعلام کرد",
@@ -3203,6 +3199,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Routine commentary by a former official on market performance.",
       "topic": "اقتصاد",
       "until": 1795433718.7718732
+    },
+    "v4|شب ۲۶۷ در شهرستان های خراسان شمالی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی؛ تظاهرات حمایت از ولایت",
+      "topic": "سیاست",
+      "until": 1795483979.19884
     },
     "v4|شرکت های انگلیسی با گسترش هوش مصنوعی نیروی انسانی خود را کاهش می دهند": {
       "ok": false,
@@ -3978,6 +3980,12 @@
       "topic": "فناوری",
       "until": 1795451693.8130803
     },
+    "v4|هوش مصنوعی قبض برق خانوارها را سنگین تر می کند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: AI raises household electricity costs",
+      "topic": "فناوری",
+      "until": 1795483981.5172508
+    },
     "v4|هوشمندسازی سازمان ها با خرید سامانه آغاز نمی شود/ پیش نیازهای توسعه هوش مصنوعی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=1 happened=False scope=iran_national: مقاله‌ای تحلیلی و عمومی درباره هوش مصنوعی، فاقد رویداد خبری.",
@@ -4604,6 +4612,11 @@
     }
   },
   "_editorial_blocks": {
+    "democrats win largest house majority since 1992 after flipping north carolina seat": {
+      "at": 1795397669.0168984,
+      "reason": "final_guard:old-event",
+      "until": 1795419269.0168984
+    },
     "israel’s eisenkot slams ‘jewish terrorism’ after attacks by settlers in west bank": {
       "reason": "content_duplicate",
       "until": 1795404841.3504584
@@ -4616,46 +4629,13 @@
       "reason": "content_duplicate",
       "until": 1795413813.4320233
     },
-    "zelenskyy urges us to release patriot missiles as russia kills 3 in ukraine": {
-      "reason": "content_duplicate",
-      "until": 1795386906.9958315
-    },
-    "zelenskyy urges us to release patriot missiles as russia kills 5 in ukraine": {
-      "reason": "content_duplicate",
-      "until": 1795390507.056847
-    },
     "zelenskyy urges us to release patriot missiles as russia kills 7 in ukraine": {
       "reason": "content_duplicate",
       "until": 1795400514.595629
     },
-    "آتش سوزی مرگبار در کارخانه تولید آب نبات": {
-      "reason": "content_duplicate",
-      "until": 1795394133.5044045
-    },
-    "ادعای ترامپ: اگر توافقی حاصل نشود، پس از سال نو جنگ با ایران را از سر خواهیم گرفت": {
-      "reason": "content_duplicate",
-      "until": 1795392311.8005748
-    },
-    "افزایش ۲۵ درصدی جان باختگان تصادفات درون شهری همدان": {
-      "at": 1795358164.9994857,
-      "reason": "final_guard:local-crash",
-      "until": 1795379764.9994857
-    },
     "انفجار ناو جنگی روسیه در بندر بنغازی لیبی": {
       "reason": "content_duplicate",
-      "until": 1795395914.0037313
-    },
-    "ای بی سی نیوز: حملات در تنگه هرمز به بالاترین سطح از زمان آغاز جنگ رسید / «بازی انطباق و تقابل»؛ مأموریت دشوار واشنگتن برای حفظ جریان نفت": {
-      "reason": "content_duplicate",
-      "until": 1795370691.2076054
-    },
-    "بازگشت خاموشی ها به ایران با آغاز فصل سرما": {
-      "reason": "content_duplicate",
-      "until": 1795377878.739527
-    },
-    "بحرین حملات جمهوری اسلامی ایران را محکوم کرد و از شورای امنیت سازمان ملل خواست وارد عمل شود": {
-      "reason": "content_duplicate",
-      "until": 1795367045.4057825
+      "until": 1795419257.12649
     },
     "تجاوز سعودی به الحدیده یمن شهید و زخمی برجای گذاشت": {
       "reason": "content_duplicate",
@@ -4664,14 +4644,6 @@
     "ترامپ: در صورت عدم توافق، پس از سال نو حملات به ایران را از سر می گیریم": {
       "reason": "content_duplicate",
       "until": 1795397736.8613405
-    },
-    "حمله پهپادی در پاکستان ۱۲ زخمی برجای گذاشت": {
-      "reason": "content_duplicate",
-      "until": 1795368929.5251212
-    },
-    "حکیم جفریز: باید به جنگ پرهزینه علیه ایران پایان دهیم": {
-      "reason": "content_duplicate",
-      "until": 1795390473.9940748
     },
     "رویترز: حمله با استفاده از قایق های بدون سرنشین به یک کشتی روسی و یک کشتی دیگر با پرچم مالت در سواحل بنغازی / ۱۰ نفر از جمله شهروندان روس و لیبیایی زخمی شدند": {
       "reason": "content_duplicate",
@@ -4693,21 +4665,9 @@
       "reason": "content_duplicate",
       "until": 1795397800.6500442
     },
-    "قالیباف: شرایط نه جنگ و نه صلح قابل ادامه دادن نیست": {
-      "reason": "content_duplicate",
-      "until": 1795386996.2372677
-    },
-    "قالیباف: متهم کردن یکدیگر به جنگ طلبی یا وادادگی، مسیر پایان دادن به این شرایط نیست": {
-      "reason": "content_duplicate",
-      "until": 1795370721.7316325
-    },
     "مجروح شدن ۳ مأمور انتظامی مشهد در حمله با چاقو": {
       "reason": "content_duplicate",
       "until": 1795400527.963462
-    },
-    "مفقود شدن ده ها نفر پس از آتش سوزی در کارخانه ای در اندونزی": {
-      "reason": "content_duplicate",
-      "until": 1795365293.7261283
     },
     "مقام نظامی یمنی: آرامکو همچنان در فهرست اهداف نیروهای مسلح یمن قرار دارد": {
       "reason": "content_duplicate",
@@ -4717,33 +4677,13 @@
       "reason": "content_duplicate",
       "until": 1795403025.0103045
     },
-    "نیروهای مسلح یمن از حمله به پالایشگاه نفتی رابغ و یک رادار در جنوب ریاض خبر دادند": {
-      "reason": "content_duplicate",
-      "until": 1795390503.5599742
-    },
     "هشدار درباره باز شدن پای لیبی به جنگ اوکراین و روسیه/ درخواست برای مداخله شورای امنیت": {
       "reason": "content_duplicate",
       "until": 1795410240.6989727
     },
-    "کارخانه ای در اندونزی طعمه حریق شد؛ ده ها نفر کشته و مفقود شدند": {
-      "reason": "content_duplicate",
-      "until": 1795385111.0184166
-    },
-    "کاپ ۳۱؛ اختلاف نظر بر سر سوخت های فسیلی مانع از توافق در اجلاس تغییرات اقلیمی شد": {
-      "reason": "content_duplicate",
-      "until": 1795385086.0107758
-    },
-    "گزارش ها از حمله پهپادی به ریاض": {
-      "reason": "content_duplicate",
-      "until": 1795365333.654226
-    },
     "گسترش جنگ روسیه و اوکراین به مدیترانه؛ ناو روسی در بندر بنغازی منفجر شد": {
       "reason": "content_duplicate",
       "until": 1795399438.3784661
-    },
-    "۲ نفتکش متخلف در شرق تنگه هرمز دچار حریق شدند": {
-      "reason": "content_duplicate",
-      "until": 1795385118.2649317
     }
   },
   "_event_judge_log": [
@@ -5304,27 +5244,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: قهرمانی تیم ملی پاراتکواندوی بانوان ایران در رقابت های جهانی",
-      "rescued": true,
-      "rule": "below-event-threshold",
-      "t": 1795367051,
-      "title": "پزشکیان قهرمانی تیم ملی پاراتکواندوی بانوان ایران در رقابت های جهانی را تبریک گفت"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و مربوط به سرانه ورزشی در یک شهرستان است.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1795367052,
-      "title": "افزایش ۱۵۰ درصدی سرانه ورزشی مدارس در فریدن"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=iran_national: اظهارات کلی مقام بانک مرکزی درباره لزوم ثبات اقتصادی",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1795367075,
-      "title": "ثبات پایدار اقتصادی در گرو هماهنگی سیاست های پولی، مالی و ارزی است"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اعلام آمادگی یک سناتور ایالتی برای دیدار با ترامپ اهمیت ملی ندارد.",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5862,6 +5781,27 @@
       "rule": "no-concrete-event",
       "t": 1795395827,
       "title": "COP31 fails to reach major climate deal as talks expose deep divisions"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی؛ تظاهرات حمایت از ولایت",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1795397579,
+      "title": "شب ۲۶۷ در شهرستان های خراسان شمالی"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian political remarks, no major impact",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795397580,
+      "title": "Australian politics live: Hanson calls Coalition and Labor a ‘uni’ party; Minns ends presser after heckling from Greens "
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: US Democrats secure largest House majority since 1992",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1795397580,
+      "title": "Democrats win largest House majority since 1992 after flipping North Carolina seat"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -10178,7 +10118,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795395700
+    "at": 1795397484
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10192,15 +10132,20 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.1-flash-lite": {
+    "disabled_until": 1795397959.0,
+    "last_failure": 1795397659,
+    "last_status": 503
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795390984,
-    "last_failure": 1795390384,
-    "last_status": 429
+    "disabled_until": 1795397725,
+    "last_failure": 1795397665,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795396115.0,
-    "last_failure": 1795395815,
-    "last_status": 599
+    "disabled_until": 1795398188,
+    "last_failure": 1795397588,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
