@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795469595
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795469596
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1795469597
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
       "t": 1795469598
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x, openrouter:* held 5x",
       "t": 1795473354
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795474999
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1795475000
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1795475058
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-23",
-      "n": 94
+      "n": 96
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-23",
-      "n": 167
+      "n": 169
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-23",
-      "n": 79
+      "n": 80
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-23",
-      "n": 74
+      "n": 75
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-23",
-      "n": 89
+      "n": 90
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-23",
-      "n": 89
+      "n": 90
     },
     "openrouter:*": {
       "day": "2026-11-23",
@@ -499,29 +499,29 @@
     "2026-11-23": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 125,
+        "calls": 126,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 72,
-        "other": 53
+        "other": 54
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 238,
+        "calls": 240,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 200,
-        "other": 38
+        "ok": 201,
+        "other": 39
       },
       "gemini:gemini-3.6-flash": {
         "429": 37,
-        "calls": 96,
+        "calls": 97,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 52,
+        "ok": 53,
         "other": 7
       },
       "gemini:gemini-3.8-flash": {
-        "429": 37,
-        "calls": 89,
+        "429": 38,
+        "calls": 90,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -529,30 +529,30 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 89,
+        "calls": 90,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 65,
+        "ok": 66,
         "other": 24
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 89,
+        "calls": 90,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 57,
+        "ok": 58,
         "other": 32
       },
       "mistral:ministral-8b-latest": {
         "429": 41,
-        "calls": 64,
+        "calls": 65,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 23,
+        "ok": 24,
         "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 190,
-        "calls": 358,
+        "429": 191,
+        "calls": 362,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 168,
+        "ok": 171,
         "other": 0
       },
       "openrouter:baidu/ernie-5.5-flash-preview:free": {
@@ -1587,6 +1587,12 @@
       "topic": "نظامی",
       "until": 1795514743.5629568
     },
+    "v4|آخرین سکانس تلویزیونی زنده یاد غلامرضا نیکخواه در سریال «مرد ۳۰۰۰ چهره»": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: خبر فرهنگی، اثر کم‌اهمیت، تأثیر ملی محدود",
+      "topic": "جامعه",
+      "until": 1795561398.9794314
+    },
     "v4|آزادی نوجوان خوزستانی با پیگیری قضایی و همت خیرین": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Local judicial news regarding a minor, lacks national or strategic significance.",
@@ -1970,6 +1976,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: انتشار راهنمای دانشگاه برای نودانشجویان خبری محلی و غیرمهم است.",
       "topic": "جامعه",
       "until": 1795509273.8562374
+    },
+    "v4|انتقاد از رفتارستیزه جویانه وزیر جنگ آمریکا؛ رئیس دفتر سابق هگست خواستار استعفای او شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=world: Former US official criticizes Pentagon, no official decision.",
+      "topic": "سیاست",
+      "until": 1795561400.9094343
     },
     "v4|انتقاد روزنامه جمهوری اسلامی از فقهای شورای نگهبان در باره خلاف شرع دانستن ستاد ساماندهی اینترنت: در شرایط جنگی کشور، منافع ملت را هم در نظر بگیرید": {
       "ok": false,
@@ -2750,6 +2762,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمع شهر زنجان بدون پیامدهای گسترده",
       "topic": "جامعه",
       "until": 1795559611.334098
+    },
+    "v4|رئیس جمهور ارمنستان ۶ سفیر و نماینده این کشور در ناتو را برکنار کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Armenian president dismisses six ambassadors, a major diplomatic move.",
+      "topic": "سیاست",
+      "until": 1795561400.9240243
     },
     "v4|رئیس جمهور: فقدان دکتر گلشنی ضایعه ای عمیق برای جامعه علمی است": {
       "ok": false,
@@ -4329,6 +4347,10 @@
       "reason": "content_duplicate",
       "until": 1795489522.9146802
     },
+    "ukraine claims it sank russian warship off libya": {
+      "reason": "content_duplicate",
+      "until": 1795496658.2436347
+    },
     "what russian warship did ukraine just sink?": {
       "at": 1795473354.9023688,
       "reason": "ai_unavailable_foreign",
@@ -4890,13 +4912,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine statement by a provincial official regarding local bread distribution.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795439060,
-      "title": "تغییری در قیمت و سهمیه نان مصرف خانوارها ایجاد نمی شود"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارات تکراری نماینده مجلس درباره آمریکا؛ فاقد تصمیم ملموس",
       "rescued": false,
       "rule": "strict-source-below-importance(8<10)",
@@ -5448,6 +5463,13 @@
       "rule": "no-concrete-event",
       "t": 1795473228,
       "title": "Welcome to elite impunity, Jensen Huang"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: خبر فرهنگی، اثر کم‌اهمیت، تأثیر ملی محدود",
+      "rescued": false,
+      "rule": "low-value",
+      "t": 1795474998,
+      "title": "آخرین سکانس تلویزیونی زنده یاد غلامرضا نیکخواه در سریال «مرد ۳۰۰۰ چهره»"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9466,7 +9488,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795473082
+    "at": 1795474900
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9481,24 +9503,24 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1795473519.0,
-    "last_failure": 1795473219,
+    "disabled_until": 1795475309.0,
+    "last_failure": 1795475009,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1795473607.0,
-    "last_failure": 1795473307,
+    "disabled_until": 1795475320.0,
+    "last_failure": 1795475020,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795473896,
-    "last_failure": 1795473296,
-    "last_status": 429
+    "disabled_until": 1795475084,
+    "last_failure": 1795475024,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795473532.0,
-    "last_failure": 1795473232,
-    "last_status": 503
+    "disabled_until": 1795475613,
+    "last_failure": 1795475013,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9584,11 +9606,6 @@
     "last_failure": 1795363547,
     "last_status": 422
   },
-  "openrouter:ministral-8b-latest": {
-    "disabled_until": 1795473945,
-    "last_failure": 1795473345,
-    "last_status": 429
-  },
   "openrouter:mistral-small-latest": {
     "disabled_until": 1792091270,
     "last_failure": 1792090670,
@@ -9604,11 +9621,6 @@
     "disabled_until": 1793975874,
     "last_failure": 1793975814,
     "last_status": 422
-  },
-  "openrouter:open-mistral-nemo": {
-    "disabled_until": 1795473940,
-    "last_failure": 1795473340,
-    "last_status": 429
   },
   "openrouter:openrouter/free": {
     "disabled_until": 1795473414,
