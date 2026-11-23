@@ -1,34 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795390356
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=15)",
-      "t": 1795390371
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795390374
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795390374
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795390377
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795390377
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1795390380
-    },
-    {
       "e": "EDITOR BATCH gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1795390384
     },
@@ -159,32 +131,60 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
       "t": 1795397669
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795399386
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795399387
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795399388
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795399388
+    },
+    {
+      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1795399390
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.1-flash-lite",
+      "t": 1795399395
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 7x",
+      "t": 1795399462
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-22",
-      "n": 102
+      "n": 105
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-22",
-      "n": 175
+      "n": 179
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-22",
-      "n": 78
+      "n": 80
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-22",
-      "n": 72
+      "n": 76
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-23",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-23",
-      "n": 10
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-11-22",
@@ -499,76 +499,62 @@
     "2026-11-23": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
+        "calls": 5,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
+        "ok": 4,
         "other": 1
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 9,
-        "ok": 9,
-        "other": 0
+        "calls": 13,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 12,
+        "other": 1
       },
       "gemini:gemini-3.6-flash": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
         "429": 1,
-        "calls": 2,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 1
+        "other": 4
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 8,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 7,
+        "ok": 9,
         "other": 3
       },
+      "mistral:ministral-8b-latest": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
       "mistral:open-mistral-nemo": {
-        "429": 2,
-        "calls": 8,
+        "429": 5,
+        "calls": 14,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 6,
+        "ok": 9,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1795214067.5222042,
-      "title": "هشدار سنتکام به دولت آمریکا درباره از دست رفتن فرصت حمله به ایران و فشار مقام های اسرائیلی بر ترامپ",
-      "urgent": false
-    },
-    {
-      "label": "سیاست",
-      "level": 5,
-      "t": 1795217613.4479792,
-      "title": "حماس: تشدید حملات اسرائیل به غزه نقض توافق آتش بس است",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1795219386.2830045,
-      "title": "اعلام وضعیت اضطراری جنگنده اف-۱۶ آمریکایی پس از بازگشت از تنگه هرمز",
-      "urgent": false
-    },
     {
       "label": "موضع‌گیری",
       "level": 5,
@@ -1240,6 +1226,20 @@
       "t": 1795386824.2218573,
       "title": "حمله عربستان به یک کارخانه در استان صنعای یمن",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1795399402.882823,
+      "title": "حمله عربستان به غرب یمن چهار کشته و هجده زخمی برجای گذاشت",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1795399461.1136456,
+      "title": "آمادگی کره شمالی برای تقویت روابط با کشورهای محترم شمار حاکمیت این کشور",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-22",
@@ -1273,6 +1273,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اخبار داخلی و سیاست استرالیا برای مخاطب ایرانی اهمیت درجه یک ندارد",
       "topic": "سیاست",
       "until": 1795475010.3291783
+    },
+    "v4|australian politics live: pm’s staff numbers exceed crossbench’s allocation combined; minns ends presser after heckling": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=local: بررسی وضعیت کارکنان نخست‌وزیر و پایان نشست",
+      "topic": "سیاست",
+      "until": 1795485788.2167566
     },
     "v4|beau lamarre-condon ‘executed’ jesse baird and luke davies then lied about it, prosecution argues": {
       "ok": false,
@@ -1339,6 +1345,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Industrial disaster with significant casualties meets the threshold for world news.",
       "topic": "حادثه",
       "until": 1795421087.1415365
+    },
+    "v4|israeli political leaders denounce ‘jewish terrorism’ after west bank attacks": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Significant political reaction to violent regional conflict and civil unrest.",
+      "topic": "سیاست",
+      "until": 1795485795.0181725
     },
     "v4|israeli settlers attack multiple palestinian villages as pogroms surge": {
       "ok": true,
@@ -2378,6 +2390,12 @@
       "topic": "اقتصاد",
       "until": 1795460631.3285935
     },
+    "v4|تولید محتوا با هوش مصنوعی در دوره های زمستان جهاد دانشگاهی آموزش داده می شود": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: دوره‌های آموزشی محلی، اثر محدود بر کل کشور",
+      "topic": "فناوری",
+      "until": 1795485785.1791015
+    },
     "v4|تولید گاز به ۷۰۷.۴ میلیون مترمکعب رسید": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=iran_national: Significant national data regarding energy production and supply.",
@@ -2636,6 +2654,12 @@
       "topic": "نظامی",
       "until": 1795408471.482351
     },
+    "v4|حمله عربستان به غرب یمن ۴ کشته و ۱۸ زخمی برجای گذاشت": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Airstrike in regional war zone causing multiple casualties.",
+      "topic": "حادثه",
+      "until": 1795485795.030709
+    },
     "v4|حمله عربستان به یک کارخانه در استان صنعای یمن": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Military strike in a regional war zone involving Saudi Arabia.",
@@ -2684,12 +2708,6 @@
       "topic": "ورزش",
       "until": 1795449815.0694816
     },
-    "v4|خشم سناتور آمریکایی از مواضع ترامپ درباره پوتین": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Senator condemns Trump’s friendly remark about Putin",
-      "topic": "سیاست",
-      "until": 1795399356.2053056
-    },
     "v4|خشکسالی و تغییر اقلیم بحران در ایران پایان می یابد؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Long-term climate forecast and speculation, not a current event.",
@@ -2719,6 +2737,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=0 happened=False scope=local: محتوای فرهنگی و پیشنهادی که فاقد ارزش خبری ملی یا بین‌المللی است.",
       "topic": "جامعه",
       "until": 1795406624.137107
+    },
+    "v4|درخواست تخصیص کالابرگ به موادغذایی سالم تر/ توجه به «چاقی» در سند ملی بیماری های غیرواگیر": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: National health policy announcement, low impact",
+      "topic": "سلامت",
+      "until": 1795485786.511353
     },
     "v4|دروازه بان باسابقه لیگ برتر درگذشت": {
       "ok": false,
@@ -3151,6 +3175,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Opinion/rhetoric by a senator, not an official policy decision.",
       "topic": "سیاست",
       "until": 1795415610.641215
+    },
+    "v4|سناتور دموکرات خواستار توقف تامین بودجه جنگ علیه ایران شد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=False scope=world: Individual senator's proposal; not an official government decision or policy.",
+      "topic": "سیاست",
+      "until": 1795485795.0420496
     },
     "v4|سه پلیس با حمله ۲شرور در مشهد مجروح شدند": {
       "ok": true,
@@ -4226,6 +4256,12 @@
       "topic": "سلامت",
       "until": 1795426437.638672
     },
+    "v4|کره شمالی آماده است روابط خود را با همه کسانی که به حاکمیت آن احترام می گذارند، تقویت کند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: North Korean leader declares readiness to strengthen ties with respectful states.",
+      "topic": "سیاست",
+      "until": 1795485787.1330032
+    },
     "v4|کسری ۱۳۰ میلیون مترمکعبی گاز پس از جنگ": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: اعلام کسری بزرگ گاز و تاثیر بر صنایع کشور.",
@@ -4643,7 +4679,7 @@
     },
     "ترامپ: در صورت عدم توافق، پس از سال نو حملات به ایران را از سر می گیریم": {
       "reason": "content_duplicate",
-      "until": 1795397736.8613405
+      "until": 1795421046.4428022
     },
     "رویترز: حمله با استفاده از قایق های بدون سرنشین به یک کشتی روسی و یک کشتی دیگر با پرچم مالت در سواحل بنغازی / ۱۰ نفر از جمله شهروندان روس و لیبیایی زخمی شدند": {
       "reason": "content_duplicate",
@@ -4687,24 +4723,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "از حملات تلافی جویانه ایران به پایگاه های آمریکا تا بن بست در مذاکرات ⚡️ ایران در واکنش به تنش ها به دو رادار ",
-      "id": "001d2c1286",
-      "match": "سپاه دو پایگاه ایالات متحده در بحرین را هدف قرار داد",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1795323471,
-      "verdict": "repeat",
-      "why": "The post describes the same attack on US bases in Bahrain."
-    },
-    {
-      "head": "تداوم حملات اسرائیل به جنوب لبنان و خسارت به بخش کشاورزی ⚡️ حملات هوایی و توپخانه ای اسرائیل در سایه نقض آتش ب",
-      "id": "8285987cf3",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795323936,
-      "verdict": "new",
-      "why": "هجوم اسرائیل به جنوب لبنان جدید"
-    },
     {
       "confirm": "gemini/gemini-3.1-flash-lite:repeat",
       "head": "عبور نفتکش ایرانی خط شکن از تنگه هرمز ⚡️ داده های ردیابی دریایی نشان می دهد یک نفتکش ایرانی با نام خط شکن با ر",
@@ -5240,37 +5258,27 @@
       "t": 1795392213,
       "verdict": "repeat",
       "why": "Reports the exact same Russian ship attack in Benghazi."
+    },
+    {
+      "head": "حمله عربستان به غرب یمن چهار کشته و هجده زخمی برجای گذاشت ⚡️ حمله هوایی عربستان سعودی به ساختمان تأسیسات وابست",
+      "id": "ee5349fbb8",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795399401,
+      "verdict": "new",
+      "why": "هجوم جدید عربستان به یمن در منطقه جدید"
+    },
+    {
+      "head": "آمادگی کره شمالی برای تقویت روابط با کشورهای محترم شمار حاکمیت این کشور ⚡️ رهبر کره شمالی اعلام کرد که پیونگ ی",
+      "id": "bce3700cab",
+      "match": "",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1795399460,
+      "verdict": "new",
+      "why": "This is a unique diplomatic statement by North Korea."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اعلام آمادگی یک سناتور ایالتی برای دیدار با ترامپ اهمیت ملی ندارد.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1795367080,
-      "title": "عبدل السید: برای دیدار با ترامپ آماده ام"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=0 happened=False scope=local: بسته خبری محلی و رویدادهای شهرستان‌های غرب اصفهان",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1795367085,
-      "title": "اخبار کوتاه از غرب اصفهان"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: دولت پاکستان سفر می‌کند، دعوت سران روسیه و ایران",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1795368830,
-      "title": "سفر نخست وزیر پاکستان به روسیه و ایران برای دعوت سران دو کشور به اجلاس شانگهای"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial bread quota unchanged, limited national relevance",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1795368831,
-      "title": "مدیرکل غله مازندران: هیچ تغییری در سهمیه عادی نان خانوارها ایجاد نمی شود"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مسمومیت گاز در روستای کوثر",
       "rescued": false,
@@ -5802,251 +5810,40 @@
       "rule": "no-concrete-event",
       "t": 1795397580,
       "title": "Democrats win largest House majority since 1992 after flipping North Carolina seat"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: دوره‌های آموزشی محلی، اثر محدود بر کل کشور",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1795399385,
+      "title": "تولید محتوا با هوش مصنوعی در دوره های زمستان جهاد دانشگاهی آموزش داده می شود"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: National health policy announcement, low impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795399386,
+      "title": "درخواست تخصیص کالابرگ به موادغذایی سالم تر/ توجه به «چاقی» در سند ملی بیماری های غیرواگیر"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: North Korean leader declares readiness to strengthen ties with respectful states.",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1795399387,
+      "title": "کره شمالی آماده است روابط خود را با همه کسانی که به حاکمیت آن احترام می گذارند، تقویت کند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=local: بررسی وضعیت کارکنان نخست‌وزیر و پایان نشست",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795399388,
+      "title": "Australian politics live: PM’s staff numbers exceed crossbench’s allocation combined; Minns ends presser after heckling"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "جن",
-        "حقق",
-        "ددگ",
-        "معن",
-        "پگر",
-        "چهر"
-      ],
-      "t": 1795343674.2252307,
-      "title": "پیگیری حقوقی جنایات جنگی علیه ایران در دادگاه های ۴ کشور اروپایی و آمریکا ⚡️ معاون حقوقی رئیس جمهور از پیگیری حقوقی جنای"
-    },
-    {
-      "h": [
-        "بر",
-        "بلتکلف",
-        "تکد",
-        "خرج",
-        "دنست",
-        "زن",
-        "سرع",
-        "صلح",
-        "ضرر",
-        "ضررت",
-        "عزتمندن",
-        "مسعد",
-        "مقتدرن",
-        "نع",
-        "وضعت",
-        "پزشک"
-      ],
-      "t": 1795343704.7315981,
-      "title": "پزشکیان: خروج مقتدرانه از وضعیت «نه جنگ و نه صلح» ضروری است ⚡️ مسعود پزشکیان رئیس جمهور، وضعیت «نه جنگ و نه صلح» را نوعی"
-    },
-    {
-      "h": [
-        "اتش",
-        "امک",
-        "تهدد",
-        "خهد",
-        "دهم",
-        "سدعل",
-        "صدر",
-        "صرت",
-        "فرهم",
-        "ممنعت",
-        "نشد",
-        "نمند",
-        "هدف",
-        "وضعت",
-        "وکنش",
-        "چه",
-        "کشد",
-        "یزد"
-      ],
-      "t": 1795347378.8405287,
-      "title": "تهدید نماینده مجلس: در صورت ممانعت از صادرات نفت ایران، چاه های نفتی کشورهای منطقه را هدف قرار می دهیم ⚡️ سیدعلی یزدی خو"
-    },
-    {
-      "h": [
-        "ارسل",
-        "خردر",
-        "خست",
-        "درخست",
-        "زلنسک",
-        "صدر",
-        "متحد",
-        "مجز",
-        "مشک",
-        "ولدمر",
-        "پترت"
-      ],
-      "t": 1795349075.3636456,
-      "title": "درخواست زلنسکی از آمریکا برای صدور مجوز ارسال موشک های پاتریوت به اوکراین ⚡️ ولودیمیر زلنسکی، رئیس جمهور اوکراین از آمری"
-    },
-    {
-      "h": [
-        "اجد",
-        "اشر",
-        "اصلح",
-        "اغز",
-        "انرژ",
-        "بنزن",
-        "تکد",
-        "حز",
-        "ضررت",
-        "قلبف",
-        "مشکل",
-        "گز"
-      ],
-      "t": 1795349104.0734565,
-      "title": "قالیباف: اصلاحات حوزه انرژی باید از گاز آغاز شود ⚡️ قالیباف با اشاره به ضرورت اصلاحات انرژی، تاکید کرد که این اصلاحات با"
-    },
-    {
-      "h": [
-        "اتحد",
-        "اجلس",
-        "اخرن",
-        "اقلم",
-        "انتل",
-        "ترک",
-        "تفق",
-        "خطر",
-        "رسم",
-        "فرپش",
-        "مذکر",
-        "معرض",
-        "نس",
-        "نم"
-      ],
-      "t": 1795350948.9930253,
-      "title": "اجلاس اقلیمی در ترکیه در خطر فروپاشی؛ اروپا آخرین پیش نویس را رد کرد ⚡️ مذاکرات اقلیمی در آنتالیای ترکیه پس از رد رسمی آ"
-    },
-    {
-      "h": [
-        "تلف",
-        "خرطم",
-        "درم",
-        "سد",
-        "شمر",
-        "غرنظم",
-        "مسکن",
-        "منجر",
-        "پهپد"
-      ],
-      "t": 1795350965.1342764,
-      "title": "حملات پهپادی به مناطق مسکونی خارطوم و ام درمان با تلفات غیرنظامی ⚡️ حملات پهپادهای انفجاری به مناطق مسکونی در خارطوم و ا"
-    },
-    {
-      "h": [
-        "برد",
-        "بسج",
-        "تعن",
-        "تن",
-        "خبرنگر",
-        "دقق",
-        "سردر",
-        "سزم",
-        "فعل",
-        "قرش",
-        "مشک",
-        "مقدر",
-        "هزر",
-        "وگ",
-        "کلمتر"
-      ],
-      "t": 1795350979.5084183,
-      "title": "سردار قریشی: برد موشک ها بیش از دو هزار کیلومتر است اما نمی توان دقیق گفت ⚡️ سردار قریشی، رئیس سازمان بسیج، در گفت وگو ب"
-    },
-    {
-      "h": [
-        "افزش",
-        "بربر",
-        "تبست",
-        "ترم",
-        "تلدکنند",
-        "درصد",
-        "شخص",
-        "عبر",
-        "فصل",
-        "قبل",
-        "مرز",
-        "مرکز",
-        "مشب",
-        "نسبت",
-        "نقط",
-        "یفت"
-      ],
-      "t": 1795351006.049572,
-      "title": "تورم تولیدکننده از مرز ۱۲۰ درصد عبور کرد ⚡️ مرکز آمار ایران اعلام کرد شاخص قیمت کل تولیدکننده در تابستان ۱۴۰۵ با تورم نق"
-    },
-    {
-      "h": [
-        "بندر",
-        "حدث",
-        "خند",
-        "دنستند",
-        "سربز",
-        "شعب",
-        "غرقنن",
-        "نرضت",
-        "نکف",
-        "پنتگن",
-        "پهپد",
-        "کت"
-      ],
-      "t": 1795354528.2146373,
-      "title": "نارضایتی خانواده سربازان آمریکایی از گزارش پنتاگون درباره حمله پهپادی ایران ⚡️ خانواده های سربازان آمریکایی کشته شده در "
-    },
-    {
-      "h": [
-        "اجر",
-        "بمبر",
-        "بنمن",
-        "رزن",
-        "سنگن",
-        "طرح",
-        "فشر",
-        "مدت",
-        "نتنه",
-        "نخست",
-        "هفت",
-        "چهر",
-        "کرزر"
-      ],
-      "t": 1795354548.2740035,
-      "title": "فشار نتانیاهو برای اجرای طرح حمله هوایی سنگین علیه ایران ⚡️ بنیامین نتانیاهو نخست وزیر اسرائیل در حال رایزنی برای اجرای "
-    },
-    {
-      "h": [
-        "ارد",
-        "بر",
-        "بم",
-        "ترم",
-        "جد",
-        "حلق",
-        "دره",
-        "دگر",
-        "رست",
-        "زن",
-        "سختگ",
-        "سل",
-        "شدد",
-        "صرت",
-        "فرد",
-        "مد",
-        "مرد",
-        "مردبگ",
-        "مصدم",
-        "نش",
-        "نشت",
-        "همد",
-        "چه",
-        "گردن",
-        "گز"
-      ],
-      "t": 1795354565.686558,
-      "title": "انفجار چاه در همدان یک کشته و مصدوم به بار آورد ⚡️ انفجار ناشی از نشت گاز در یک حلقه چاه در میدان بیمه و جاده دره مرادبی"
-    },
     {
       "h": [
         "اتق",
@@ -6335,91 +6132,51 @@
       ],
       "t": 1795386824.2057312,
       "title": "حمله عربستان به یک کارخانه در استان صنعای یمن ⚡️ حمله عربستان به یک کارخانه سنگ شکن در استان صنعا منجر به کشته شدن یکی ا"
+    },
+    {
+      "h": [
+        "الحدد",
+        "برج",
+        "تسس",
+        "سختم",
+        "سعد",
+        "شرکت",
+        "شهر",
+        "غرب",
+        "مخبر",
+        "هجد",
+        "وبست",
+        "چهر",
+        "گذشت",
+        "یمن"
+      ],
+      "t": 1795399402.8602645,
+      "title": "حمله عربستان به غرب یمن چهار کشته و هجده زخمی برجای گذاشت ⚡️ حمله هوایی عربستان سعودی به ساختمان تأسیسات وابسته به شرکت "
+    },
+    {
+      "h": [
+        "احترم",
+        "امدگ",
+        "تقت",
+        "تمم",
+        "حکمت",
+        "دست",
+        "ربط",
+        "رهبر",
+        "شمر",
+        "شمل",
+        "محترم",
+        "همکر",
+        "پنگ",
+        "کره",
+        "گذرند",
+        "ینگ"
+      ],
+      "t": 1795399461.10297,
+      "title": "آمادگی کره شمالی برای تقویت روابط با کشورهای محترم شمار حاکمیت این کشور ⚡️ رهبر کره شمالی اعلام کرد که پیونگ یانگ آمادگی"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "ابرشم",
-        "استندر",
-        "اصفه",
-        "انجم",
-        "بحر",
-        "بهرست",
-        "صفه",
-        "عمل",
-        "محدد",
-        "مدرت",
-        "مدرکل",
-        "معدم",
-        "مهم",
-        "نکرد",
-        "کنترل"
-      ],
-      "cities": [
-        "اصفهان"
-      ],
-      "kind": "attack",
-      "places": [
-        "اصفهان"
-      ],
-      "regions": [
-        "iran_isfahan"
-      ],
-      "t": 1795323433.955096,
-      "title": "شنیده شدن صدای انفجار در جنوب اصفهان و شهر ابریشم ⚡️ مدیرکل مدیریت بحران استانداری اصفهان از انجام انفجارهای کنترل شده ب",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اتش",
-        "تدم",
-        "تپخن",
-        "خسرت",
-        "زنبردر",
-        "عمد",
-        "مجب",
-        "مزرع",
-        "نبد",
-        "نقض",
-        "کشرز",
-        "کند"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [
-        "جنوب لبنان"
-      ],
-      "regions": [
-        "lebanon_south"
-      ],
-      "t": 1795323937.885385,
-      "title": "تداوم حملات اسرائیل به جنوب لبنان و خسارت به بخش کشاورزی ⚡️ حملات هوایی و توپخانه ای اسرائیل در سایه نقض آتش بس، موجب نا",
-      "toll": 0
-    },
-    {
-      "a": [
-        "استفد",
-        "جنگند",
-        "خرکف",
-        "پنج",
-        "کلگرم",
-        "کنترل"
-      ],
-      "cities": [
-        "خارکیف"
-      ],
-      "kind": "attack",
-      "places": [
-        "خارکیف"
-      ],
-      "regions": [
-        "ukraine"
-      ],
-      "t": 1795332924.1063948,
-      "title": "حمله هوایی روسیه به مرکز کنترل پهپادهای اوکراین در خارکیف ⚡️ جنگنده های روسیه با استفاده از پنج بمب ۵۰۰ کیلوگرمی، یک مرک",
-      "toll": 0
-    },
     {
       "a": [
         "اتش",
@@ -6797,213 +6554,32 @@
       "t": 1795386824.21396,
       "title": "حمله عربستان به یک کارخانه در استان صنعای یمن ⚡️ حمله عربستان به یک کارخانه سنگ شکن در استان صنعا منجر به کشته شدن یکی ا",
       "toll": 0
+    },
+    {
+      "a": [
+        "الحدد",
+        "برج",
+        "تسس",
+        "سختم",
+        "سعد",
+        "شرکت",
+        "مخبر",
+        "هجد",
+        "وبست",
+        "چهر",
+        "یمن"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1795399402.8721955,
+      "title": "حمله عربستان به غرب یمن چهار کشته و هجده زخمی برجای گذاشت ⚡️ حمله هوایی عربستان سعودی به ساختمان تأسیسات وابسته به شرکت ",
+      "toll": 18
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اخر",
-        "ار",
-        "اسفند",
-        "بخت",
-        "بختن",
-        "بختند",
-        "جر",
-        "جن",
-        "جنگ",
-        "خردد",
-        "دست",
-        "دشتند",
-        "رز",
-        "رسد",
-        "زر",
-        "شدند",
-        "شمر",
-        "فرردن",
-        "مجرح",
-        "مجمع",
-        "نفر",
-        "هزر",
-        "هفت",
-        "پرحسن",
-        "کدک",
-        "کلند"
-      ],
-      "n": [
-        "115",
-        "383",
-        "428"
-      ],
-      "t": 1795257281.933409,
-      "title": "جان باختن ۴۲۸ کودک در دو جنگ اخیر علیه ایران ⚡️ پیرحسین کولیوند اعلام کرد بر اساس مجموع گزارش ها، شمار کودکان جان باخته "
-    },
-    {
-      "k": [
-        "اتهم",
-        "اثر",
-        "اختلف",
-        "ادر",
-        "اگه",
-        "بزدشت",
-        "بزرگ",
-        "تحقق",
-        "تز",
-        "تهر",
-        "جرحت",
-        "جن",
-        "خدر",
-        "خردر",
-        "خنرز",
-        "دد",
-        "درگر",
-        "دهم",
-        "رس",
-        "زپس",
-        "سل",
-        "شدت",
-        "صفر",
-        "عمد",
-        "قتل",
-        "متهم",
-        "مرد",
-        "مرگ",
-        "مرگبر",
-        "نبد",
-        "نزع",
-        "نش",
-        "پلس"
-      ],
-      "t": 1795259103.9456437,
-      "title": "قتل مرد ۵۷ ساله در تهران بر سر نبود جک و زاپاس خودروی صفر ⚡️ رئیس پلیس آگاهی تهران بزرگ از مرگ مردی ۵۷ ساله بر اثر شدت ج"
-    },
-    {
-      "k": [
-        "ار",
-        "اسب",
-        "اسرل",
-        "اسفند",
-        "اطلع",
-        "امرک",
-        "بزسز",
-        "بزگشت",
-        "بسج",
-        "تخصص",
-        "تسس",
-        "تلش",
-        "تکد",
-        "حضر",
-        "حمل",
-        "دد",
-        "دستگ",
-        "رز",
-        "رسن",
-        "رهکر",
-        "زمست",
-        "سپ",
-        "شبن",
-        "شرکت",
-        "صدسم",
-        "صرف",
-        "ضررت",
-        "ظرفت",
-        "فصل",
-        "مترمکعب",
-        "مجلس",
-        "مختلف",
-        "مدر",
-        "مدرت",
-        "مردم",
-        "مشرکت",
-        "مصرف",
-        "مل",
-        "ملن",
-        "نر",
-        "نشست",
-        "نمندگ",
-        "هشت",
-        "هفت",
-        "وزرت",
-        "گذشت",
-        "گز"
-      ],
-      "s": "شرکت ملی گاز",
-      "t": 1795263600.377559,
-      "title": "شرکت ملی گاز: ۱۰۰ میلیون مترمکعب ظرفیت گازی آسیب دیده پس از حمله آمریکا و اسرائیلی ها بازسازی شد ⚡️ شرکت ملی گاز ایران گ"
-    },
-    {
-      "k": [
-        "انتقل",
-        "تنگ",
-        "حجم",
-        "دم",
-        "رسد",
-        "نخست",
-        "نصف",
-        "نفت",
-        "نم",
-        "نمبر",
-        "هرمز",
-        "گر"
-      ],
-      "t": 1795263656.697674,
-      "title": "نیمه گیری حجم نفت از تنگه هرمز در هفته دوم نوامبر ⚡️ حجم انتقال نفت از تنگه هرمز در هفته دوم نوامبر به نصف حجم هفته نخست"
-    },
-    {
-      "k": [
-        "انفجر",
-        "سپ",
-        "شند",
-        "شهرست",
-        "شهسر",
-        "صد",
-        "علت",
-        "معدن",
-        "مهب",
-        "نش",
-        "کش"
-      ],
-      "t": 1795264574.9115732,
-      "title": "علت صدای مهیب انفجار در کاشان چه بود؟ ⚡️ سپاه کاشان اعلام کرد که صدای مهیب شنیده شده در شهرستان ناشی از انفجار در معدن ش"
-    },
-    {
-      "k": [
-        "ارتش",
-        "اسب",
-        "اضطرر",
-        "امرک",
-        "انفجر",
-        "بم",
-        "جنب",
-        "جنگند",
-        "خلب",
-        "خلج",
-        "دچر",
-        "رهگر",
-        "سمن",
-        "شلک",
-        "شنزد",
-        "فرد",
-        "فردگ",
-        "فرز",
-        "فرس",
-        "فرند",
-        "لغ",
-        "متجز",
-        "مجرت",
-        "مستقر",
-        "مشک",
-        "ممرت",
-        "منطق",
-        "نر",
-        "نچر",
-        "پدفند",
-        "کشر",
-        "یک"
-      ],
-      "t": 1795268252.6932569,
-      "title": "آسیب به جنگنده آمریکایی با شلیک پدافند ارتش ⚡️ سامانه های بومی نیروی پدافند هوایی ارتش مستقر در جنوب کشور یک فروند جنگند"
-    },
     {
       "k": [
         "اتش",
@@ -9505,6 +9081,57 @@
       ],
       "t": 1795386824.1970935,
       "title": "حمله عربستان به یک کارخانه در استان صنعای یمن ⚡️ حمله عربستان به یک کارخانه سنگ شکن در استان صنعا منجر به کشته شدن یکی ا"
+    },
+    {
+      "k": [
+        "الحدد",
+        "برج",
+        "تسس",
+        "تلف",
+        "تکنن",
+        "حمل",
+        "دنبل",
+        "زخم",
+        "سختم",
+        "سعد",
+        "شرکت",
+        "شهر",
+        "عربست",
+        "غرب",
+        "مخبر",
+        "هجد",
+        "وبست",
+        "چهر",
+        "کشت",
+        "گذشت",
+        "ید",
+        "یمن"
+      ],
+      "t": 1795399402.8480237,
+      "title": "حمله عربستان به غرب یمن چهار کشته و هجده زخمی برجای گذاشت ⚡️ حمله هوایی عربستان سعودی به ساختمان تأسیسات وابسته به شرکت "
+    },
+    {
+      "k": [
+        "احترم",
+        "امدگ",
+        "تقت",
+        "تمم",
+        "حکمت",
+        "دست",
+        "ربط",
+        "رهبر",
+        "شمر",
+        "شمل",
+        "محترم",
+        "همکر",
+        "پنگ",
+        "کره",
+        "کشر",
+        "گذرند",
+        "ینگ"
+      ],
+      "t": 1795399461.0919406,
+      "title": "آمادگی کره شمالی برای تقویت روابط با کشورهای محترم شمار حاکمیت این کشور ⚡️ رهبر کره شمالی اعلام کرد که پیونگ یانگ آمادگی"
     }
   ],
   "_telegram_errors": [
@@ -10118,7 +9745,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795397484
+    "at": 1795399278
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -10138,14 +9765,14 @@
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795397725,
-    "last_failure": 1795397665,
+    "disabled_until": 1795399473,
+    "last_failure": 1795399413,
     "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795398188,
-    "last_failure": 1795397588,
-    "last_status": 429
+    "disabled_until": 1795399690.0,
+    "last_failure": 1795399390,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
