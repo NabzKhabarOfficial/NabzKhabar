@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1795473209
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795473211
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1795473212
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
       "t": 1795480451
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1795482175
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1795482200
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-23",
-      "n": 173
+      "n": 174
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-23",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-24",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-24",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-24",
@@ -503,9 +503,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 3,
+        "calls": 4,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
+        "ok": 2,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -525,16 +525,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 5,
+        "ok": 7,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
+        "ok": 5,
         "other": 3
       },
       "mistral:ministral-8b-latest": {
@@ -546,9 +546,9 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 8,
+        "calls": 10,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 6,
+        "ok": 8,
         "other": 0
       },
       "openrouter:openrouter/free": {
@@ -560,13 +560,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 5,
-      "t": 1795307603.613024,
-      "title": "محکومیت حمله ایران به پایگاه های آمریکا در بحرین",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 4,
@@ -1245,6 +1238,13 @@
       "t": 1795480392.4709837,
       "title": "کشته و زخمی شدن کارکنان آنروا در حمله اسرائیل به نوار غزه",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 3,
+      "t": 1795482199.9367144,
+      "title": "احضار سفیر روسیه به دنبال نقض احتمالی حریم هوایی فنلاند",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-23",
@@ -1254,6 +1254,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=1 happened=True scope=world: صحنه برجسته از بازی عادی لیگ ان‌اف‌ال فاقد اهمیت خبر نخست",
       "topic": "ورزش",
       "until": 1795523670.8227754
+    },
+    "v4|24 killed after fire rips through candy factory in indonesia": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: 24 dead factory fire, major disaster",
+      "topic": "حادثه",
+      "until": 1795568575.8988953
     },
     "v4|anthropic launches claude ship, letting ai agents review, fix, and approve code changes": {
       "ok": false,
@@ -1447,12 +1453,6 @@
       "topic": "فناوری",
       "until": 1795540298.0995314
     },
-    "v4|south korea’s stock market tumbles as ai bubble fears mount": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: افت شدید شاخص بازار سهام کره جنوبی به دلیل ترس از حباب هوش مصنوعی",
-      "topic": "اقتصاد",
-      "until": 1795480404.4755275
-    },
     "v4|the woman who took canada to court over genocide": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=False scope=world: گزارش توصیفی و پرتره اجتماعی، فاقد رویداد مهم یا خبر فوری",
@@ -1476,12 +1476,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: درگذشت چهره فرهنگی خارجی، فاقد اهمیت درجه یک برای مخاطب ایرانی",
       "topic": "جامعه",
       "until": 1795482220.2062697
-    },
-    "v4|tributes flow for molly meldrum: human nature, jason donovan and others remember music industry great": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=world: درگذشت مجری موسیقی استرالیایی؛ فاقد اهمیت خبری بین‌المللی",
-      "topic": "جامعه",
-      "until": 1795480410.4086218
     },
     "v4|trump calls to ‘expedite’ us federal executions, blasts gavin newsom": {
       "ok": false,
@@ -2305,12 +2299,6 @@
       "topic": "سلامت",
       "until": 1795536304.5549815
     },
-    "v4|تعویق ۱۶۰۰ پرواز در آمریکا به دلیل اختلال فنی در خطوط هوایی دلتا": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: اختلال فنی و تاخیر در ۱۶۰۰ پرواز شرکت دلتا در آمریکا",
-      "topic": "فناوری",
-      "until": 1795480399.8754642
-    },
     "v4|تغییری در قیمت و سهمیه نان مصرف خانوارها ایجاد نمی شود": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine statement by a provincial official regarding local bread distribution.",
@@ -2454,6 +2442,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: بیانیه سیاسی و تکراری از یک گروه، فاقد رویداد جدید و مشخص.",
       "topic": "سیاست",
       "until": 1795505719.0093207
+    },
+    "v4|جرد کوشنر درباره جمهوری اسلامی دقیقا چه فکر می کند؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Speculative article, no concrete event",
+      "topic": "سیاست",
+      "until": 1795568575.9070244
     },
     "v4|جزییات مصدوم شدن مدیر مجتمع پتروشیمی کارون بر اثر تیراندازی": {
       "ok": true,
@@ -4123,12 +4117,6 @@
       "topic": "جامعه",
       "until": 1795493017.5975993
     },
-    "v4|کوشنر: اطمینان دادن به روسیه بخشی از تمهیدات امنیتی برای اوکراین و اروپاست": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: اظهارات فرستاده آمریکا درباره ضمانت‌های امنیتی به اوکراین و روسیه",
-      "topic": "سیاست",
-      "until": 1795480397.639644
-    },
     "v4|کیفیت متغیر هوای تهران طی آبان؛ تنفس هوای پاک تا ناسالم": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local Tehran air quality fluctuations, not national significance",
@@ -4267,12 +4255,6 @@
       "topic": "اقتصاد",
       "until": 1795505709.9531457
     },
-    "v4|۹ هدف اصلی دموکرات های کنگره برای محاکمه سیاسی ترامپ | از جنگ ایران تا اسناد اپستین و انویدیا | دموکرات ها باید کدام پرونده ها را در اولویت قرار دهند؟ - اقتصادنیوز سایت مرجع اقتصاد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: تحلیل و گمانه‌زنی درباره اهداف دموکرات‌ها و فاقد رویداد قطعی است.",
-      "topic": "سیاست",
-      "until": 1795480412.6100476
-    },
     "v4|‘extremely concerning’: inside a us army plan to detonate iowa lead stores": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Local environmental and safety issue in the US, lacks global impact.",
@@ -4321,15 +4303,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "بازگرداندن ۲ میلیارد و ۵۴۱ میلیون دلار اموال مسروقه به دولت عراق ⚡️ دولت عراق در قالب طرح مبارزه با فساد موسوم",
-      "id": "f2c7efd83d",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795403042,
-      "verdict": "new",
-      "why": "اموال مسروقه عراقی، موضوع جدید و غیرمستقل"
-    },
     {
       "head": "کره جنوبی مداخله در جنگ علیه ایران را رد کرد ⚡️ کانگ شین-چول، وزیر دفاع کره جنوبی، تمدید مأموریت یگان ضد دزدی ",
       "id": "fd5cd7e7df",
@@ -4855,6 +4828,15 @@
       "t": 1795480391,
       "verdict": "new",
       "why": "گزارش جدید در مورد حمله اسرائیل به غزه و آسیب به کارکنان آنروا است"
+    },
+    {
+      "head": "احضار سفیر روسیه به دنبال نقض احتمالی حریم هوایی فنلاند ⚡️ وزارت امور خارجه فنلاند روز دوشنبه سفیر روسیه را در",
+      "id": "3dee21d31f",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795482198,
+      "verdict": "new",
+      "why": "هیچ ارتباط با رویدادهای قبلی ندارد"
     }
   ],
   "_importance_rescue_log": [
@@ -5425,82 +5407,6 @@
   "_published_heads": [
     {
       "h": [
-        "اثر",
-        "اقدم",
-        "بر",
-        "بلتک",
-        "تررسم",
-        "جلگر",
-        "حز",
-        "خستر",
-        "در",
-        "فنلند",
-        "متهم",
-        "نزدک",
-        "هدف",
-        "پهپد",
-        "کرملن",
-        "گرفتن"
-      ],
-      "t": 1795437282.135507,
-      "title": "روسیه، اوکراین را به تروریسم دریایی در بالتیک متهم کرد ⚡️ کرملین پس از هدف قرار گرفتن یک کشتی باری روسیه در آب های بین ا"
-    },
-    {
-      "h": [
-        "ابلغ",
-        "ارز",
-        "ارزش",
-        "ال",
-        "انه",
-        "تجهز",
-        "ترخص",
-        "تصب",
-        "تعن",
-        "تلد",
-        "خشک",
-        "در",
-        "شر",
-        "شرخشک",
-        "عرف",
-        "مبن",
-        "محسب",
-        "محمدرض",
-        "مد",
-        "معن",
-        "نرخ",
-        "نم",
-        "هت",
-        "پزشک",
-        "گمرک"
-      ],
-      "t": 1795437374.7863193,
-      "title": "نرخ ارز گمرکی ترخیص دارو و شیرخشک تعیین شد ⚡️ محمدرضا عارف معاون اول رئیس جمهور، تصویب نامه هیئت وزیران درباره تعیین نرخ"
-    },
-    {
-      "h": [
-        "اثر",
-        "تبرز",
-        "خدر",
-        "خسرت",
-        "طبق",
-        "مرل",
-        "مسکن",
-        "مصدم",
-        "مع",
-        "مغز",
-        "منزل",
-        "نشت",
-        "ورد",
-        "پرک",
-        "چند",
-        "گذشت",
-        "گز"
-      ],
-      "t": 1795437477.5284486,
-      "title": "انفجار منزل مسکونی در تبریز؛ خسارت به سه خودرو و چند مغازه ⚡️ انفجار یک منزل مسکونی سه طبقه در منطقه مارالان تبریز بر اث"
-    },
-    {
-      "h": [
         "بندر",
         "بنغز",
         "خند",
@@ -5822,6 +5728,27 @@
       ],
       "t": 1795480392.4558218,
       "title": "کشته و زخمی شدن کارکنان آنروا در حمله اسرائیل به نوار غزه ⚡️ آژانس امدادرسانی و کاریابی سازمان ملل برای آوارگان فلسطینی "
+    },
+    {
+      "h": [
+        "احتمل",
+        "احضر",
+        "بر",
+        "بلگرد",
+        "حرم",
+        "خرج",
+        "خلج",
+        "دشنب",
+        "دنبل",
+        "سفر",
+        "فرند",
+        "فنلند",
+        "نقض",
+        "وزرت",
+        "پهپد"
+      ],
+      "t": 1795482199.929101,
+      "title": "احضار سفیر روسیه به دنبال نقض احتمالی حریم هوایی فنلاند ⚡️ وزارت امور خارجه فنلاند روز دوشنبه سفیر روسیه را در پی نقض اح"
     }
   ],
   "_published_incidents": [
@@ -6002,139 +5929,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اتحد",
-        "اجلس",
-        "احتمل",
-        "اخرن",
-        "ارپ",
-        "افزش",
-        "اقدم",
-        "اقلم",
-        "انتل",
-        "اند",
-        "اندخت",
-        "اندزد",
-        "تخر",
-        "ترک",
-        "تصمم",
-        "تفق",
-        "خطر",
-        "رسم",
-        "شکست",
-        "طرفن",
-        "عدم",
-        "فرپش",
-        "مذکر",
-        "معرض",
-        "مهم",
-        "نس",
-        "نم",
-        "گر"
-      ],
-      "t": 1795350948.9795032,
-      "title": "اجلاس اقلیمی در ترکیه در خطر فروپاشی؛ اروپا آخرین پیش نویس را رد کرد ⚡️ مذاکرات اقلیمی در آنتالیای ترکیه پس از رد رسمی آ"
-    },
-    {
-      "k": [
-        "انفجر",
-        "تخرب",
-        "تلف",
-        "حمل",
-        "خرطم",
-        "درم",
-        "زخم",
-        "سد",
-        "شمر",
-        "غرنظم",
-        "مجب",
-        "مسکن",
-        "منجر",
-        "منزل",
-        "منطق",
-        "پهپد",
-        "کشت"
-      ],
-      "t": 1795350965.1209655,
-      "title": "حملات پهپادی به مناطق مسکونی خارطوم و ام درمان با تلفات غیرنظامی ⚡️ حملات پهپادهای انفجاری به مناطق مسکونی در خارطوم و ا"
-    },
-    {
-      "k": [
-        "ار",
-        "امک",
-        "برد",
-        "بسج",
-        "بپردزد",
-        "تعن",
-        "تن",
-        "تند",
-        "تهجم",
-        "تهدد",
-        "حز",
-        "خبرنگر",
-        "دشمن",
-        "دفع",
-        "دقق",
-        "رس",
-        "سردر",
-        "سزم",
-        "فعل",
-        "قرش",
-        "متنسب",
-        "مشک",
-        "مقبل",
-        "مقدر",
-        "نظم",
-        "هجم",
-        "هزر",
-        "وگ",
-        "کلمتر"
-      ],
-      "s": "سردار قریشی",
-      "t": 1795350979.494724,
-      "title": "سردار قریشی: برد موشک ها بیش از دو هزار کیلومتر است اما نمی توان دقیق گفت ⚡️ سردار قریشی، رئیس سازمان بسیج، در گفت وگو ب"
-    },
-    {
-      "k": [
-        "ار",
-        "افزش",
-        "امر",
-        "بخش",
-        "بربر",
-        "بشترن",
-        "تبست",
-        "تجرب",
-        "ترم",
-        "تلدکنند",
-        "ثبت",
-        "خدم",
-        "درصد",
-        "سلن",
-        "شخص",
-        "صنعت",
-        "عبر",
-        "فصل",
-        "قبل",
-        "قمت",
-        "مرز",
-        "مرکز",
-        "مز",
-        "مشب",
-        "نسبت",
-        "نقط",
-        "کشرز",
-        "کمترن",
-        "یفت"
-      ],
-      "n": [
-        "120",
-        "120.9",
-        "147.3"
-      ],
-      "t": 1795351006.0360422,
-      "title": "تورم تولیدکننده از مرز ۱۲۰ درصد عبور کرد ⚡️ مرکز آمار ایران اعلام کرد شاخص قیمت کل تولیدکننده در تابستان ۱۴۰۵ با تورم نق"
-    },
     {
       "k": [
         "ار",
@@ -8457,6 +8251,39 @@
       ],
       "t": 1795480392.4480734,
       "title": "کشته و زخمی شدن کارکنان آنروا در حمله اسرائیل به نوار غزه ⚡️ آژانس امدادرسانی و کاریابی سازمان ملل برای آوارگان فلسطینی "
+    },
+    {
+      "k": [
+        "احتمل",
+        "احضر",
+        "افزش",
+        "امر",
+        "اهدف",
+        "اکرن",
+        "بر",
+        "بلگرد",
+        "حرم",
+        "حمل",
+        "خرج",
+        "خلج",
+        "دشنب",
+        "دنبل",
+        "رس",
+        "سفر",
+        "غرنظم",
+        "فرند",
+        "فنلند",
+        "محکم",
+        "مسک",
+        "نقض",
+        "هلسنک",
+        "وزرت",
+        "پهپد",
+        "کشت",
+        "کشر"
+      ],
+      "t": 1795482199.9189773,
+      "title": "احضار سفیر روسیه به دنبال نقض احتمالی حریم هوایی فنلاند ⚡️ وزارت امور خارجه فنلاند روز دوشنبه سفیر روسیه را در پی نقض اح"
     }
   ],
   "_telegram_errors": [
@@ -9070,7 +8897,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795480268
+    "at": 1795482073
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9087,11 +8914,6 @@
   "gemini:gemini-3.1-flash-lite": {
     "disabled_until": 1795480705.0,
     "last_failure": 1795480405,
-    "last_status": 503
-  },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1795480707.0,
-    "last_failure": 1795480407,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
