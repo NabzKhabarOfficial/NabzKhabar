@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1795473212
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1795473219
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795473220
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795473220
     },
@@ -159,16 +147,28 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 1x",
       "t": 1795482200
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795483985
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
+      "t": 1795483986
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
+      "t": 1795484010
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-23",
-      "n": 101
+      "n": 102
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-23",
-      "n": 174
+      "n": 175
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-23",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-24",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-24",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-24",
@@ -496,16 +496,16 @@
     "2026-11-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 4,
+        "calls": 5,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 2,
+        "ok": 3,
         "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 4,
+        "calls": 5,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 2,
+        "ok": 3,
         "other": 2
       },
       "gemini:gemini-3.6-flash": {
@@ -525,16 +525,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 7,
+        "ok": 9,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 7,
         "other": 3
       },
       "mistral:ministral-8b-latest": {
@@ -546,9 +546,9 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 2,
-        "calls": 10,
+        "calls": 12,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 8,
+        "ok": 10,
         "other": 0
       },
       "openrouter:openrouter/free": {
@@ -560,13 +560,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1795311161.1406865,
-      "title": "تلویزیون رسمی بحرین: پدافند هوایی در مقابل حملات هوایی ایران",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 3,
@@ -1245,6 +1238,13 @@
       "t": 1795482199.9367144,
       "title": "احضار سفیر روسیه به دنبال نقض احتمالی حریم هوایی فنلاند",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 3,
+      "t": 1795484009.483585,
+      "title": "جزئیات جان باختن نظامیان سالوادوری در هائیتی از سوی بوکله اعلام شد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-23",
@@ -1261,6 +1261,12 @@
       "topic": "حادثه",
       "until": 1795568575.8988953
     },
+    "v4|airports, public transport shut down amid national strike in belgium": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: National strike shuts airports in Belgium.",
+      "topic": "سیاست",
+      "until": 1795570386.369677
+    },
     "v4|anthropic launches claude ship, letting ai agents review, fix, and approve code changes": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=4 happened=True scope=world: رونمایی از ابزار برنامه‌نویسی جدید آنتروپیک، رویداد تخصصی فناوری",
@@ -1272,18 +1278,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Major military escalation and mass casualties in an ongoing war.",
       "topic": "نظامی",
       "until": 1795516497.6977751
-    },
-    "v4|australian politics live: hanson calls coalition and labor a ‘uni’ party; liberals demand bowen resign over cop ‘disaster’": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: Routine political commentary and climate policy discussion, not a major event.",
-      "topic": "سیاست",
-      "until": 1795482229.6617475
-    },
-    "v4|australian politics live: hanson calls coalition and labor a ‘uni’ party; minns ends presser after heckling from greens candidate": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Australian political remarks, no major impact",
-      "topic": "سیاست",
-      "until": 1795483980.0361137
     },
     "v4|australian politics live: pm’s staff numbers exceed crossbench’s allocation combined; minns ends presser after heckling": {
       "ok": false,
@@ -1297,23 +1291,17 @@
       "topic": "قضایی",
       "until": 1795491324.7056453
     },
-    "v4|beau lamarre-condon ‘executed’ jesse baird and luke davies then lied about it, prosecution argues": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Trial of murder case in Sydney",
-      "topic": "قضایی",
-      "until": 1795482217.8185558
+    "v4|bukele shares details on deaths of salvadoran troops in haiti intervention": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: Salvadoran troops killed in Haiti intervention.",
+      "topic": "نظامی",
+      "until": 1795570386.3834355
     },
     "v4|child rescued in ukraine after russian drone attack kills 10": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: حمله پهپادی در اوکراین با ۱۰ کشته؛ واجد شرط تلفات عمده.",
       "topic": "نظامی",
       "until": 1795502085.1733837
-    },
-    "v4|cop31 fails to reach major climate deal as talks expose deep divisions": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash score=7 happened=True scope=world: شکست در دستیابی به توافق در نشست جهانی اقلیمی COP31",
-      "topic": "آب و هوا",
-      "until": 1795482227.5158074
     },
     "v4|deadly fire rips through candy factory in indonesia": {
       "ok": true,
@@ -1326,12 +1314,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Mass casualties in a major international conflict.",
       "topic": "نظامی",
       "until": 1795514717.0611665
-    },
-    "v4|democrats win largest house majority since 1992 after flipping north carolina seat": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: US Democrats secure largest House majority since 1992",
-      "topic": "سیاست",
-      "until": 1795483980.6843655
     },
     "v4|dozens unaccounted for after fire rips through candy factory in indonesia": {
       "ok": true,
@@ -1470,12 +1452,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=True scope=world: Local disaster in a small town, lacks global or national scale.",
       "topic": "حادثه",
       "until": 1795514717.0466838
-    },
-    "v4|tributes flow for molly meldrum: anthony albanese, jason donovan and others remember music industry great": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: درگذشت چهره فرهنگی خارجی، فاقد اهمیت درجه یک برای مخاطب ایرانی",
-      "topic": "جامعه",
-      "until": 1795482220.2062697
     },
     "v4|trump calls to ‘expedite’ us federal executions, blasts gavin newsom": {
       "ok": false,
@@ -1680,12 +1656,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=0 happened=True scope=local: مراسم جوایز رسانه‌ای در تهران، رویداد محلی",
       "topic": "جامعه",
       "until": 1795550746.7299206
-    },
-    "v4|اختلال در بیش از ۱۶۰۰ پرواز هواپیما در آمریکا": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=4 happened=True scope=world: اختلال فنی در پروازهای شرکت دلتا آمریکا بدون تلفات",
-      "topic": "اقتصاد",
-      "until": 1795482216.0674713
     },
     "v4|اختلال پشت اختلال؛ پروازها در آمریکا زمین گیر شدند": {
       "ok": false,
@@ -2208,12 +2178,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=False scope=world: تحلیل و بررسی تبعات اقتصادی جنگ بر خطوط هوایی بدون رویداد جدید",
       "topic": "اقتصاد",
       "until": 1795511087.3138196
-    },
-    "v4|تجاوز سعودی به الحدیده یمن شهید و زخمی برجای گذاشت": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Military attack in a regional war zone causing casualties.",
-      "topic": "نظامی",
-      "until": 1795482229.6771488
     },
     "v4|تجلیل پزشکیان از آثار رضا امیرخانی": {
       "ok": false,
@@ -2887,6 +2851,12 @@
       "topic": "اقتصاد",
       "until": 1795503833.7656522
     },
+    "v4|رینگ بوکس خراسان رضوی زیر سایه کمبودهای مالی و زیرساختی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Local boxing infrastructure problems, no major national impact",
+      "topic": "ورزش",
+      "until": 1795570384.8939173
+    },
     "v4|زلزله در امپراتوری نیم قرنی دلار؛ جنگ علیه ایران پاشنه آشیل آمریکا را برملا کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=False scope=world: تحلیل رسانه‌ای درباره دلار و جنگ، بدون رویداد یا تصمیم جدید.",
@@ -3109,12 +3079,6 @@
       "topic": "فناوری",
       "until": 1795510110.7144952
     },
-    "v4|شب ۲۶۷ در شهرستان های خراسان شمالی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی؛ تظاهرات حمایت از ولایت",
-      "topic": "سیاست",
-      "until": 1795483979.19884
-    },
     "v4|شبی که صدها نفر چشم از شانزه لیزه برنمی داشتند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Lifestyle and cultural event with no international or national significance.",
@@ -3162,6 +3126,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=0 happened=False scope=world: مطلب فرهنگی و گردشگری.",
       "topic": "جامعه",
       "until": 1795509287.5283177
+    },
+    "v4|شهر در انتظار «فیبرنوری» اما قربانی بازی های اداری": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Municipal‑telecom tariff dispute stalls fiber‑optic project",
+      "topic": "فناوری",
+      "until": 1795570384.1779208
     },
     "v4|شهروندان اتلاف انرژی در دستگاه های اجرایی را گزارش دهند": {
       "ok": false,
@@ -3601,12 +3571,6 @@
       "topic": "سیاست",
       "until": 1795540298.1099768
     },
-    "v4|مقام آمریکایی اظهارات ترامپ درباره دوستی با پوتین را زیر سؤال برد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Routine official remark on foreign policy, not a strategic decision.",
-      "topic": "سیاست",
-      "until": 1795482229.692823
-    },
     "v4|ملانیا ترامپ: آمریکا در حال کار روی پیشنهادهای جدید برای حل وفصل جنگ اوکراین است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: First lady is not a key decision-maker; vague ongoing plans.",
@@ -3822,12 +3786,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=iran_national: National team victory in a continental tournament group stage.",
       "topic": "ورزش",
       "until": 1795513367.3812768
-    },
-    "v4|هوش مصنوعی قبض برق خانوارها را سنگین تر می کند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: AI raises household electricity costs",
-      "topic": "فناوری",
-      "until": 1795483981.5172508
     },
     "v4|واردات گوشت قرمز از بیش از ۲۰۰ هزار تن به کمتر از ۳۰ هزار تن کاهش یافت": {
       "ok": false,
@@ -4117,12 +4075,6 @@
       "topic": "جامعه",
       "until": 1795493017.5975993
     },
-    "v4|کیفیت متغیر هوای تهران طی آبان؛ تنفس هوای پاک تا ناسالم": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Local Tehran air quality fluctuations, not national significance",
-      "topic": "آب و هوا",
-      "until": 1795482217.09436
-    },
     "v4|کیم جونگ اون: کره شمالی به دنبال سلطه جویی و توسعه طلبی نیست": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-20b score=7 happened=True scope=world: North Korea denies expansionist intent, seeks mutual respect",
@@ -4303,15 +4255,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "کره جنوبی مداخله در جنگ علیه ایران را رد کرد ⚡️ کانگ شین-چول، وزیر دفاع کره جنوبی، تمدید مأموریت یگان ضد دزدی ",
-      "id": "fd5cd7e7df",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795404959,
-      "verdict": "new",
-      "why": "کره جنوبی رد مداخله در جنگ آمریکا-اسرائیل-ایران"
-    },
     {
       "head": "ترامپ از ائتلاف مشتاقان خواست هزینه جنگ اوکراین را به اقتصاد داخلی اختصاص دهد ⚡️ دونالد ترامپ در گفتگوی تلفنی ",
       "id": "0e52e65970",
@@ -4837,23 +4780,18 @@
       "t": 1795482198,
       "verdict": "new",
       "why": "هیچ ارتباط با رویدادهای قبلی ندارد"
+    },
+    {
+      "head": "جزئیات جان باختن نظامیان سالوادوری در هائیتی از سوی بوکله اعلام شد ⚡️ نایب بوکله، رئیس جمهور السالوادور، هویت ",
+      "id": "73524d2da4",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795484008,
+      "verdict": "new",
+      "why": "هائیتی، سالوادور، عملیات ضدباندهای مسلح"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: کتاب درسی به هنر خراطی اختصاص یافت",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1795440813,
-      "title": "خراطی دزفول به کتاب های درسی فنی وحرفه ای و کاردانش راه یافت"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر استانی مربوط به مسدودسازی چاه‌های غیرمجاز",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795440833,
-      "title": "خروج ۵۴ حلقه چاه غیرمجاز از مدار بهره برداری در خراسان رضوی"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Opinion statement, no concrete event",
       "rescued": false,
@@ -5399,84 +5337,26 @@
       "rule": "foreign-local-preselection",
       "t": 1795480380,
       "title": "Trump calls to ‘expedite’ US federal executions, blasts Gavin Newsom"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Municipal‑telecom tariff dispute stalls fiber‑optic project",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1795483984,
+      "title": "شهر در انتظار «فیبرنوری» اما قربانی بازی های اداری"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Local boxing infrastructure problems, no major national impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1795483984,
+      "title": "رینگ بوکس خراسان رضوی زیر سایه کمبودهای مالی و زیرساختی"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "بندر",
-        "بنغز",
-        "خند",
-        "دنست",
-        "رست",
-        "شر",
-        "عض",
-        "لب",
-        "منزل"
-      ],
-      "t": 1795439149.652168,
-      "title": "حمله به بندر بنغازی؛ لیبی آن را اعلام جنگ دانست ⚡️ عضو شورای ریاست جمهوری لیبی، حمله به بندر بنغازی را به منزله اعلام جن"
-    },
-    {
-      "h": [
-        "ازد",
-        "افزش",
-        "امدگ",
-        "انتظم",
-        "تد",
-        "تکد",
-        "دفع",
-        "سردر",
-        "قدرت",
-        "مرکز",
-        "مسلح",
-        "مند",
-        "نمد",
-        "نکم"
-      ],
-      "t": 1795439167.130119,
-      "title": "سردار ایزدی: حمله به مراکز انتظامی تهران ناکام ماند ⚡️ سردار ایزدی ناکامی حمله به مراکز انتظامی تهران را تأیید کرد و از "
-    },
-    {
-      "h": [
-        "ارشد",
-        "تند",
-        "جبه",
-        "حضر",
-        "دفع",
-        "محرمن",
-        "منجر",
-        "نتنه",
-        "نشست",
-        "هشدر",
-        "چندجبه",
-        "چندن"
-      ],
-      "t": 1795439216.635363,
-      "title": "هشدار ارتش اسرائیل به نتانیاهو درباره جنگ چندجبهه ای با حمله به ایران ⚡️ ارتش اسرائیل در نشستی محرمانه با حضور نتانیاهو "
-    },
-    {
-      "h": [
-        "بدن",
-        "برلن",
-        "برگزر",
-        "جنب",
-        "حضر",
-        "شنژن",
-        "فصل",
-        "متحد",
-        "مشرت",
-        "مشرکت",
-        "نشست",
-        "وشنگتن",
-        "گم"
-      ],
-      "t": 1795439225.484068,
-      "title": "نشست شنژن بدون حضور اروپا: گام دیگر در فاصله واشنگتن و برلین ⚡️ نشست سه جانبه آمریکا، روسیه و چین در شنژن بدون مشارکت ار"
-    },
     {
       "h": [
         "اجز",
@@ -5749,6 +5629,26 @@
       ],
       "t": 1795482199.929101,
       "title": "احضار سفیر روسیه به دنبال نقض احتمالی حریم هوایی فنلاند ⚡️ وزارت امور خارجه فنلاند روز دوشنبه سفیر روسیه را در پی نقض اح"
+    },
+    {
+      "h": [
+        "السلدر",
+        "بختن",
+        "بکل",
+        "جر",
+        "جز",
+        "جن",
+        "حدث",
+        "سلدر",
+        "شرح",
+        "ضدبند",
+        "عمل",
+        "مسلح",
+        "نب",
+        "هت"
+      ],
+      "t": 1795484009.4703293,
+      "title": "جزئیات جان باختن نظامیان سالوادوری در هائیتی از سوی بوکله اعلام شد ⚡️ نایب بوکله، رئیس جمهور السالوادور، هویت سه نظامی ک"
     }
   ],
   "_published_incidents": [
@@ -8284,6 +8184,63 @@
       ],
       "t": 1795482199.9189773,
       "title": "احضار سفیر روسیه به دنبال نقض احتمالی حریم هوایی فنلاند ⚡️ وزارت امور خارجه فنلاند روز دوشنبه سفیر روسیه را در پی نقض اح"
+    },
+    {
+      "k": [
+        "اثر",
+        "اجز",
+        "السلدر",
+        "انج",
+        "انفجر",
+        "بخت",
+        "بختن",
+        "بختند",
+        "بدن",
+        "بکل",
+        "ترس",
+        "ترک",
+        "تلش",
+        "تلف",
+        "جد",
+        "جر",
+        "جز",
+        "جمهر",
+        "جن",
+        "حدث",
+        "خند",
+        "دست",
+        "دلت",
+        "دلر",
+        "رس",
+        "سلدر",
+        "سم",
+        "شرح",
+        "ضدبند",
+        "عل",
+        "عمل",
+        "متعهد",
+        "مستقر",
+        "مستمر",
+        "مسلح",
+        "مل",
+        "مهن",
+        "نب",
+        "نر",
+        "نرنجک",
+        "نظم",
+        "نفر",
+        "هت",
+        "هزر",
+        "همن",
+        "هنگم",
+        "پردخت",
+        "پهپد",
+        "کشت",
+        "کشر",
+        "کمک"
+      ],
+      "t": 1795484009.4570818,
+      "title": "جزئیات جان باختن نظامیان سالوادوری در هائیتی از سوی بوکله اعلام شد ⚡️ نایب بوکله، رئیس جمهور السالوادور، هویت سه نظامی ک"
     }
   ],
   "_telegram_errors": [
@@ -8897,7 +8854,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795482073
+    "at": 1795483872
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8910,11 +8867,6 @@
     "last_error": "HTTP 402 payment required (no free quota on this account)",
     "last_failure": 1791935762,
     "last_status": 402
-  },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1795480705.0,
-    "last_failure": 1795480405,
-    "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1795481049,
