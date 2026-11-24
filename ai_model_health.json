@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795471559
-    },
-    {
-      "e": "EDITOR BATCH mistral/open-mistral-nemo: no usable verdict",
-      "t": 1795471562
-    },
-    {
-      "e": "EDITOR BATCH: 5/5 via openrouter/openrouter/free",
-      "t": 1795471590
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 7x, openrouter:* held 12x",
-      "t": 1795471643
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1795473209
     },
@@ -159,36 +143,52 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
       "t": 1795478677
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795480376
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795480377
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795480380
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1795480451
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-23",
-      "n": 98
+      "n": 101
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-23",
-      "n": 171
+      "n": 173
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-23",
-      "n": 83
+      "n": 85
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-23",
-      "n": 78
+      "n": 79
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-24",
-      "n": 5
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-24",
-      "n": 4
+      "n": 6
     },
     "openrouter:*": {
-      "day": "2026-11-23",
-      "n": 42
+      "day": "2026-11-24",
+      "n": 1
     }
   },
   "_ai_usage": {
@@ -496,50 +496,65 @@
     "2026-11-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 1,
+        "calls": 4,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
-        "other": 1
+        "ok": 2,
+        "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 1,
+        "calls": 3,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
-        "other": 1
+        "ok": 1,
+        "other": 2
       },
       "gemini:gemini-3.6-flash": {
-        "429": 0,
-        "calls": 2,
+        "429": 1,
+        "calls": 3,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 2,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
         "429": 1,
-        "calls": 1,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 0
+        "other": 1
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 4,
+        "ok": 5,
         "other": 1
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 4,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 2,
-        "other": 2
+        "ok": 3,
+        "other": 3
+      },
+      "mistral:ministral-8b-latest": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 0,
+        "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 1,
-        "calls": 3,
+        "429": 2,
+        "calls": 8,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 2,
+        "ok": 6,
+        "other": 0
+      },
+      "openrouter:openrouter/free": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
         "other": 0
       }
     }
@@ -1223,6 +1238,13 @@
       "t": 1795478675.984945,
       "title": "ناتو در برابر تهدیدات فضایی دفاع می کند",
       "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 5,
+      "t": 1795480392.4709837,
+      "title": "کشته و زخمی شدن کارکنان آنروا در حمله اسرائیل به نوار غزه",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-23",
@@ -1359,6 +1381,12 @@
       "topic": "سیاست",
       "until": 1795556002.170662
     },
+    "v4|iran war live: iran says three ships catch fire after hitting hormuz mines": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Three tankers caught fire after hitting mines in Hormuz",
+      "topic": "نظامی",
+      "until": 1795566781.3702643
+    },
     "v4|israeli attacks on medics in occupied west bank surge by 350%: rights group": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: گزارش نهاد حقوق بشری درباره افزایش حملات به امدادگران.",
@@ -1454,6 +1482,12 @@
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=world: درگذشت مجری موسیقی استرالیایی؛ فاقد اهمیت خبری بین‌المللی",
       "topic": "جامعه",
       "until": 1795480410.4086218
+    },
+    "v4|trump calls to ‘expedite’ us federal executions, blasts gavin newsom": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Routine political rhetoric regarding domestic US judicial policy.",
+      "topic": "سیاست",
+      "until": 1795566780.5772052
     },
     "v4|trump engineered a risky comeback for jensen huang": {
       "ok": false,
@@ -2156,6 +2190,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: ادعای مقام‌های امنیتی روسیه بدون سند دقیق",
       "topic": "نظامی",
       "until": 1795489435.1427891
+    },
+    "v4|تاکر کارلسون: دولت ترامپ فاسد است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Opinion statement, no concrete event",
+      "topic": "سیاست",
+      "until": 1795566776.8112235
     },
     "v4|تاکید بر ضرورت نقش آفرینی دستگاه های اجرایی در تحقق«مدرسه ایمن» در سیستان و بلوچستان": {
       "ok": false,
@@ -4245,6 +4285,10 @@
       "reason": "content_duplicate",
       "until": 1795489522.9146802
     },
+    "iran war live: iran says three ships catch fire after hitting hormuz mines": {
+      "reason": "content_duplicate",
+      "until": 1795502043.3426793
+    },
     "nato vows space defence after russia nuclear satellite report": {
       "at": 1795476876.8779392,
       "reason": "ai_unavailable_foreign",
@@ -4277,15 +4321,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "تصمیمات تازه برای مدیریت مصرف بنزین و توسعه سوخت جایگزین ⚡️ برنامه های مدیریت مصرف و توزیع سوخت شامل توسعه سوخ",
-      "id": "f5158efcf2",
-      "match": "",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1795401234,
-      "verdict": "new",
-      "why": "This is a new policy announcement regarding domestic fuel management."
-    },
     {
       "head": "بازگرداندن ۲ میلیارد و ۵۴۱ میلیون دلار اموال مسروقه به دولت عراق ⚡️ دولت عراق در قالب طرح مبارزه با فساد موسوم",
       "id": "f2c7efd83d",
@@ -4811,23 +4846,18 @@
       "t": 1795478674,
       "verdict": "new",
       "why": "No matching event"
+    },
+    {
+      "head": "کشته و زخمی شدن کارکنان آنروا در حمله اسرائیل به نوار غزه ⚡️ آژانس امدادرسانی و کاریابی سازمان ملل برای آوارگا",
+      "id": "a4db1ee71e",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795480391,
+      "verdict": "new",
+      "why": "گزارش جدید در مورد حمله اسرائیل به غزه و آسیب به کارکنان آنروا است"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=iran_national: Future summit announcement, not yet occurred",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795440812,
-      "title": "بقایی: تهران میزبان اجلاس سران اکو در ۱۲ و ۱۳ آذر خواهد بود"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: بیانیه شرکت در حواشی نمایش خانگی",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1795440812,
-      "title": "بیانیه ساترا در پی حواشی اخیر نمایش خانگی؛ منافع تجاری نباید غلبه کند"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: کتاب درسی به هنر خراطی اختصاص یافت",
       "rescued": false,
@@ -5373,6 +5403,20 @@
       "rule": "routine-metaphorical-topic",
       "t": 1795478643,
       "title": "EU plans sports ban in sweeping new Russia sanctions proposal"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Opinion statement, no concrete event",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795480376,
+      "title": "تاکر کارلسون: دولت ترامپ فاسد است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Routine political rhetoric regarding domestic US judicial policy.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795480380,
+      "title": "Trump calls to ‘expedite’ US federal executions, blasts Gavin Newsom"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -5761,179 +5805,26 @@
       ],
       "t": 1795478675.9772391,
       "title": "ناتو در برابر تهدیدات فضایی دفاع می کند ⚡️ رئیس ناتو، مارک روت، اعلام کرد که اتحاد در برابر تهدیدات فضایی دفاع خواهد کرد"
+    },
+    {
+      "h": [
+        "ارگ",
+        "امددرسن",
+        "انر",
+        "اژنس",
+        "جر",
+        "سزم",
+        "فلسطن",
+        "ملل",
+        "کرب",
+        "کرمند",
+        "کرکن"
+      ],
+      "t": 1795480392.4558218,
+      "title": "کشته و زخمی شدن کارکنان آنروا در حمله اسرائیل به نوار غزه ⚡️ آژانس امدادرسانی و کاریابی سازمان ملل برای آوارگان فلسطینی "
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "اتش",
-        "ازنکت",
-        "اپزسن",
-        "بختر",
-        "تررسم",
-        "خند",
-        "رست",
-        "رهبر",
-        "شهرک",
-        "فلسطن",
-        "محکم",
-        "نشن",
-        "کرن",
-        "یهد"
-      ],
-      "cities": [],
-      "kind": "fire",
-      "places": [
-        "کرانه باختری"
-      ],
-      "regions": [
-        "westbank"
-      ],
-      "t": 1795383242.9714417,
-      "title": "گادی آیزنکوت حملات شهرک نشینان در کرانه باختری را «تروریسم یهودی» خواند ⚡️ گادی آیزنکوت، از رهبران اپوزیسیون اسرائیل، حم",
-      "toll": 0
-    },
-    {
-      "a": [
-        "سنگ",
-        "شکن",
-        "صنع",
-        "صنعت",
-        "منجر",
-        "وحد",
-        "کرخن",
-        "کرگر",
-        "یمن"
-      ],
-      "cities": [
-        "صنعا"
-      ],
-      "kind": "attack",
-      "places": [
-        "صنعا"
-      ],
-      "regions": [
-        "yemen"
-      ],
-      "t": 1795386824.21396,
-      "title": "حمله عربستان به یک کارخانه در استان صنعای یمن ⚡️ حمله عربستان به یک کارخانه سنگ شکن در استان صنعا منجر به کشته شدن یکی ا",
-      "toll": 0
-    },
-    {
-      "a": [
-        "الحدد",
-        "برج",
-        "تسس",
-        "سختم",
-        "سعد",
-        "شرکت",
-        "مخبر",
-        "هجد",
-        "وبست",
-        "چهر",
-        "یمن"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795399402.8721955,
-      "title": "حمله عربستان به غرب یمن چهار کشته و هجده زخمی برجای گذاشت ⚡️ حمله هوایی عربستان سعودی به ساختمان تأسیسات وابسته به شرکت ",
-      "toll": 18
-    },
-    {
-      "a": [
-        "انقلب",
-        "ددست",
-        "دستر",
-        "دستگر",
-        "شنس",
-        "صدر",
-        "ضرب",
-        "عمم",
-        "مجتمع",
-        "محمد",
-        "مدر",
-        "مهر",
-        "مهشهر",
-        "مهم",
-        "پترشم",
-        "کرن"
-      ],
-      "cities": [
-        "ماهشهر",
-        "مهران"
-      ],
-      "kind": "attack",
-      "places": [
-        "ماهشهر",
-        "مهران"
-      ],
-      "regions": [
-        "iran_kermanshah",
-        "iran_khuzestan"
-      ],
-      "t": 1795408550.542987,
-      "title": "جزئیات تیراندازی به مدیر مجتمع پتروشیمی کارون در ماهشهر ⚡️ سید مهران مهمان نواز دادستان عمومی و انقلاب ماهشهر از صدور دس",
-      "toll": 0
-    },
-    {
-      "a": [
-        "بدن",
-        "بنغز",
-        "سحل",
-        "سرنشن",
-        "ملت",
-        "پرچم"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795408564.2901194,
-      "title": "حمله قایق های بدون سرنشین به دو کشتی در بنغازی با ۱۰ زخمی ⚡️ حمله قایق های بدون سرنشین به یک کشتی روسی و یک کشتی با پرچم",
-      "toll": 10
-    },
-    {
-      "a": [
-        "اخر",
-        "بشترن",
-        "تشدد",
-        "تمم",
-        "شلک",
-        "مدع"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795412154.269907,
-      "title": "ادعای ترامپ درباره تشدید حملات موشکی و پهپادی ایران ⚡️ دونالد ترامپ، رئیس جمهور آمریکا مدعی شد ایران در هفته گذشته بیشتر",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اطرف",
-        "اغز",
-        "بلترن",
-        "تنگ",
-        "دخل",
-        "سبق",
-        "سطح",
-        "هرمز"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [
-        "تنگه هرمز"
-      ],
-      "regions": [
-        "hormuz"
-      ],
-      "t": 1795413912.312544,
-      "title": "افزایش بی سابقه حملات در تنگه هرمز به بالاترین سطح از زمان آغاز جنگ ⚡️ حملات گزارش شده به کشتی ها در داخل و اطراف تنگه ه",
-      "toll": 0
-    },
     {
       "a": [
         "اجر",
@@ -6082,33 +5973,35 @@
       "t": 1795444710.889307,
       "title": "روسی ثبت تصاویر ویرانگر سونامی پس از زلزله ⚡️ یک مرد روسی تصاویری از لحظه وقوع سونامی پس از زلزله ای ویرانگر ثبت کرد که ",
       "toll": 0
+    },
+    {
+      "a": [
+        "ارگ",
+        "امددرسن",
+        "انر",
+        "اژنس",
+        "سزم",
+        "فلسطن",
+        "ملل",
+        "کرب",
+        "کرمند",
+        "کرکن"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [
+        "نوار غزه"
+      ],
+      "regions": [
+        "gaza"
+      ],
+      "t": 1795480392.4635608,
+      "title": "کشته و زخمی شدن کارکنان آنروا در حمله اسرائیل به نوار غزه ⚡️ آژانس امدادرسانی و کاریابی سازمان ملل برای آوارگان فلسطینی ",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اجد",
-        "اشر",
-        "اصلح",
-        "اغز",
-        "اقتصد",
-        "امنت",
-        "انرژ",
-        "بنزن",
-        "تکد",
-        "حز",
-        "دلت",
-        "ضررت",
-        "قلبف",
-        "مردم",
-        "مشکل",
-        "گز"
-      ],
-      "s": "قالیباف",
-      "t": 1795349104.0646827,
-      "title": "قالیباف: اصلاحات حوزه انرژی باید از گاز آغاز شود ⚡️ قالیباف با اشاره به ضرورت اصلاحات انرژی، تاکید کرد که این اصلاحات با"
-    },
     {
       "k": [
         "اتحد",
@@ -8541,6 +8434,29 @@
       ],
       "t": 1795478675.9688208,
       "title": "ناتو در برابر تهدیدات فضایی دفاع می کند ⚡️ رئیس ناتو، مارک روت، اعلام کرد که اتحاد در برابر تهدیدات فضایی دفاع خواهد کرد"
+    },
+    {
+      "k": [
+        "ارگ",
+        "اسرل",
+        "امددرسن",
+        "انر",
+        "اژنس",
+        "جر",
+        "حمل",
+        "زخم",
+        "سزم",
+        "غزه",
+        "فلسطن",
+        "ملل",
+        "نر",
+        "کرب",
+        "کرمند",
+        "کرکن",
+        "کشت"
+      ],
+      "t": 1795480392.4480734,
+      "title": "کشته و زخمی شدن کارکنان آنروا در حمله اسرائیل به نوار غزه ⚡️ آژانس امدادرسانی و کاریابی سازمان ملل برای آوارگان فلسطینی "
     }
   ],
   "_telegram_errors": [
@@ -9154,7 +9070,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795478487
+    "at": 1795480268
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9169,24 +9085,24 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1795478926.0,
-    "last_failure": 1795478626,
+    "disabled_until": 1795480705.0,
+    "last_failure": 1795480405,
     "last_status": 503
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1795478927.0,
-    "last_failure": 1795478627,
+    "disabled_until": 1795480707.0,
+    "last_failure": 1795480407,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795478726,
-    "last_failure": 1795478666,
-    "last_status": 422
+    "disabled_until": 1795481049,
+    "last_failure": 1795480449,
+    "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795479230,
-    "last_failure": 1795478630,
-    "last_status": 429
+    "disabled_until": 1795480717.0,
+    "last_failure": 1795480417,
+    "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -9273,8 +9189,8 @@
     "last_status": 422
   },
   "openrouter:ministral-8b-latest": {
-    "disabled_until": 1795477476,
-    "last_failure": 1795476876,
+    "disabled_until": 1795481036,
+    "last_failure": 1795480436,
     "last_status": 429
   },
   "openrouter:mistral-small-latest": {
@@ -9291,11 +9207,6 @@
   "openrouter:nvidia/nemotron-3.5-super-vl:free": {
     "disabled_until": 1793975874,
     "last_failure": 1793975814,
-    "last_status": 422
-  },
-  "openrouter:openrouter/free": {
-    "disabled_until": 1795473414,
-    "last_failure": 1795473354,
     "last_status": 422
   },
   "openrouter:qwen/qwen3.8-27b:free": {
