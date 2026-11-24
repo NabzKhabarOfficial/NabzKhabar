@@ -1,38 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x, openrouter:* held 5x",
-      "t": 1795473354
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795474999
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-20b",
-      "t": 1795475000
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 5x",
-      "t": 1795475058
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795476788
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795476788
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1795476788
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795476805
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795476805
     },
@@ -159,16 +127,48 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 8x",
       "t": 1795485941
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795487591
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795487592
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795487592
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795487593
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795487597
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795487597
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.5-flash-lite",
+      "t": 1795487602
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 6x",
+      "t": 1795487645
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-23",
-      "n": 109
+      "n": 112
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-23",
-      "n": 181
+      "n": 187
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-23",
@@ -176,15 +176,15 @@
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-23",
-      "n": 82
+      "n": 83
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-24",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-24",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-24",
@@ -496,17 +496,17 @@
     "2026-11-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 11,
+        "calls": 14,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 9,
+        "ok": 12,
         "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 11,
+        "calls": 17,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 6,
-        "other": 5
+        "ok": 11,
+        "other": 6
       },
       "gemini:gemini-3.6-flash": {
         "429": 1,
@@ -517,25 +517,25 @@
       },
       "gemini:gemini-3.8-flash": {
         "429": 2,
-        "calls": 5,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 3
+        "other": 4
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
-        "other": 3
+        "ok": 10,
+        "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 7,
-        "other": 5
+        "other": 7
       },
       "mistral:ministral-8b-latest": {
         "429": 1,
@@ -545,10 +545,10 @@
         "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 5,
-        "calls": 18,
+        "429": 6,
+        "calls": 22,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 13,
+        "ok": 16,
         "other": 0
       },
       "openrouter:openrouter/free": {
@@ -560,13 +560,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 3,
-      "t": 1795314786.6655433,
-      "title": "پناهندگان فلسطینی در غزه به اعتراض علیه حملات هوایی اسرائیل ادامه می دهند",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 4,
@@ -1266,6 +1259,13 @@
       "t": 1795485940.5003216,
       "title": "تلاش نخست وزیر قطر برای احیای مذاکرات ایران و آمریکا پس از دیدار با روبیو",
       "urgent": false
+    },
+    {
+      "label": "هسته‌ای",
+      "level": 4,
+      "t": 1795487632.5953252,
+      "title": "تأکید ایران بر عدم انتقال اورانیوم غنی شده به خارج از کشور",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-23",
@@ -1456,6 +1456,12 @@
       "topic": "فناوری",
       "until": 1795540298.0995314
     },
+    "v4|sky news documentary wins international emmy": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=world: برنده شدن جایزه تلویزیونی رویداد درجه یک محسوب نمی شود.",
+      "topic": "جامعه",
+      "until": 1795573997.2637908
+    },
     "v4|the woman who took canada to court over genocide": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=False scope=world: گزارش توصیفی و پرتره اجتماعی، فاقد رویداد مهم یا خبر فوری",
@@ -1503,6 +1509,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله نظامی پهپادی اوکراین به ناو روسیه و تأیید رئیس‌جمهور.",
       "topic": "نظامی",
       "until": 1795518230.7112005
+    },
+    "v4|us flew surveillance drone over mexico to help capture top drug lord": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: عملیات پهپادی آمریکا و دستگیری یکی از قاچاقچیان بزرگ.",
+      "topic": "نظامی",
+      "until": 1795574002.0951774
     },
     "v4|welcome to elite impunity, jensen huang": {
       "ok": false,
@@ -1719,6 +1731,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: گزارش رسانه‌ای درباره افزایش شدید حملات در تنگه هرمز.",
       "topic": "نظامی",
       "until": 1795500294.5252943
+    },
+    "v4|ادعای وال استریت ژورنال: آمریکا ایران را مسئول حملات سایبری علیه کشتی ها می داند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: گمانه‌زنی و ادعای یک روزنامه درباره بررسی‌های اولیه آمریکا.",
+      "topic": "سیاست",
+      "until": 1795574002.0665336
     },
     "v4|ادعای ژنرال بازنشسته ارتش آمریکا: موساد و سیا در حال مسلح کردن ده ها هزار نفر از ایرانیان هستند": {
       "ok": false,
@@ -2170,12 +2188,6 @@
       "topic": "ورزش",
       "until": 1795494843.9456954
     },
-    "v4|تاثیر مصرف زودهنگام متفورمین در کاهش خطر کووید": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: مطالعه پزشکی، اثر محدود، خبری محلی",
-      "topic": "سلامت",
-      "until": 1795487583.4607296
-    },
     "v4|تاس : مزدوران فرانسوی در کنار اوکراین می جنگند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: ادعای مقام‌های امنیتی روسیه بدون سند دقیق",
@@ -2302,12 +2314,6 @@
       "topic": "اقتصاد",
       "until": 1795525460.6530545
     },
-    "v4|تقابل ارتش آمریکا با دادگاه بر سر انفجار چندین تن مواد شیمیایی": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=local: قصد ارتش آمریکا برای انفجار مواد شیمیایی در آیووا رویداد ملی نیست",
-      "topic": "قضایی",
-      "until": 1795487582.0707345
-    },
     "v4|تقدیر سازمان لیگ از هواداران فولاد و سپاهان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تشویق هواداران در لیگ برتر",
@@ -2343,6 +2349,12 @@
       "reason": "ai mistral/open-mistral-nemo score=8 happened=True scope=world: رهبر ایران تهدید اروپا با موشک‌های ۴۵۰۰ کیلومتری پس از تحریم‌های دریایی آمریکا",
       "topic": "سیاست",
       "until": 1795530939.8111675
+    },
+    "v4|تهران از مازوت سوزی در امان است/ قبض پرمصرف ها سنگین تر می شود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: اظهارات مقام‌های داخلی درباره وضعیت مصرف سوخت نیروگاه‌ها.",
+      "topic": "جامعه",
+      "until": 1795574002.0820913
     },
     "v4|توافق عراق و مصر برای لغو روادید میان دو کشور": {
       "ok": true,
@@ -2692,6 +2704,12 @@
       "topic": "سیاست",
       "until": 1795543636.7491992
     },
+    "v4|دولت ترامپ، دست داشتن ایران در حملات سایبری به نفتکش ها را رد کرد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تکذیب رسمی مقام آمریکایی درباره نقش ایران در حملات سایبری.",
+      "topic": "سیاست",
+      "until": 1795574002.052117
+    },
     "v4|دویست و شصت و هشتمین شب تجمعات مردم زنجان در میدان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمع شهر زنجان بدون پیامدهای گسترده",
@@ -2811,12 +2829,6 @@
       "reason": "ai gemini/gemini-3.6-flash score=2 happened=False scope=world: شایعات نقل‌وانتقالات و علاقه‌مندی باشگاه‌ها خبر درجه‌یک نیست.",
       "topic": "ورزش",
       "until": 1795530889.75264
-    },
-    "v4|رهبر کره شمالی: به دنبال توسعه طلبی و سلطه جویی منطقه نیستیم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: بیان مواضع تکراری رهبر کره شمالی بدون اهمیت راهبردی ویژه",
-      "topic": "سیاست",
-      "until": 1795487586.326256
     },
     "v4|روایت افشاگر واترگیت از پشت پرده تصمیم ترامپ برای حمله به ایران": {
       "ok": false,
@@ -3298,6 +3310,12 @@
       "topic": "اقتصاد",
       "until": 1795523660.9232254
     },
+    "v4|فردوسی پور: ایران اورانیوم غنی شده خود را در داخل نگه خواهد داشت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Iran officially refuses to export enriched uranium, confirming nuclear stance",
+      "topic": "سیاست",
+      "until": 1795573990.3398392
+    },
     "v4|فرماندار تنگستان: شیوه جدید فعالیت نانوایی ها اطلاع رسانی شود": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: فرماندار درخواست اطلاع‌رسانی دقیق",
@@ -3526,12 +3544,6 @@
       "topic": "جامعه",
       "until": 1795530874.143296
     },
-    "v4|مدیریت جدید مصرف بنزین با چند تصمیم تازه/ از توسعه cng تا ساماندهی کارت های آزاد": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: تصمیمات دولتی و رسمی درباره توزیع سوخت و کارت بنزین با اثر سراسری.",
-      "topic": "اقتصاد",
-      "until": 1795487598.735102
-    },
     "v4|مذاکرات نتانیاهو و آیزنکوت برای تشکیل کابینه، بدون نتیجه پایان یافت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=5 happened=True scope=world: Political development regarding cabinet formation in Israel.",
@@ -3724,12 +3736,6 @@
       "topic": "جامعه",
       "until": 1795513367.3418677
     },
-    "v4|نواب: هیچکس نمی تواند ساختار حکومتی ایران را با جنگ برهم بزند": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: سخنرانی، نظر و شعار مقام مذهبی؛ رخداد مشخصی محسوب نمی شود.",
-      "topic": "سیاست",
-      "until": 1795487598.713574
-    },
     "v4|نیرو های مسلح انتقام خون رهبر شهید را فراموش نمی کنند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: General rhetoric, no concrete action or decision",
@@ -3801,6 +3807,12 @@
       "reason": "ai openrouter/openrouter/free batch score=2 happened=False scope=world: ICRC warning statement, no new event",
       "topic": "سیاست",
       "until": 1795557990.4343045
+    },
+    "v4|همه آنچه باید از مشهورترین مرد لیبی بدانیم / صدام حفتر از نزدیکی با ترکیه تا نمایش قدرت در لیبی": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: بررسی زندگی و اقدامات صدام حفتر خبر درجه یک محسوب نمی‌شود.",
+      "topic": "سیاست",
+      "until": 1795573992.9357276
     },
     "v4|هندبال زنان قهرمانی آسیا/ شروع ایران با برد مقابل هنگ کنگ": {
       "ok": false,
@@ -3945,12 +3957,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: گزارش عملکرد و آمار داخلی قوه قضاییه ارزش خبری درجه یک ندارد.",
       "topic": "قضایی",
       "until": 1795510082.3713152
-    },
-    "v4|پلنگ چاق چینی در ۱۹ سالگی از رژیم غذایی معاف شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=world: خبر سبک زندگی و حاشیه ای؛ فاقد ارزش خبری درجه یک.",
-      "topic": "جامعه",
-      "until": 1795487598.7244394
     },
     "v4|پنج عامل افزایش قیمت خودرو در بازار": {
       "ok": false,
@@ -4221,12 +4227,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=False scope=iran_national: اظهارات معاون وزیر درباره آمار خسارات گذشته زیرساخت‌ها",
       "topic": "اقتصاد",
       "until": 1795505709.9531457
-    },
-    "v4|‘extremely concerning’: inside a us army plan to detonate iowa lead stores": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Local environmental and safety issue in the US, lacks global impact.",
-      "topic": "جامعه",
-      "until": 1795487591.4437358
     }
   },
   "_editorial_blocks": {
@@ -4256,9 +4256,17 @@
       "reason": "content_duplicate",
       "until": 1795478969.4820287
     },
+    "حمله پهپادی اسرائیل به یک مقر پلیس در غزه ۳ فلسطینی را به شهادت رساند": {
+      "reason": "content_duplicate",
+      "until": 1795509210.8750374
+    },
     "دموکرات ها و جمهوری خواهان به دنبال قطع بودجه جنگ علیه ایران هستند": {
       "reason": "content_duplicate",
       "until": 1795478886.9427183
+    },
+    "دولت ترامپ، دست داشتن ایران در حملات سایبری به نفتکش ها را رد کرد": {
+      "reason": "content_duplicate",
+      "until": 1795509245.9264586
     },
     "رویترز: ناتو در پی حادثه موشکی، هواپیماهای «آواکس» به لهستان اعزام می کند": {
       "reason": "content_duplicate",
@@ -4270,15 +4278,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "جزئیات تیراندازی به مدیر مجتمع پتروشیمی کارون در ماهشهر ⚡️ سید مهران مهمان نواز دادستان عمومی و انقلاب ماهشهر ",
-      "id": "34f9900b33",
-      "match": "",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1795408549,
-      "verdict": "new",
-      "why": "This is a unique shooting incident involving a petrochemical manager."
-    },
     {
       "confirm": "groq/openai/gpt-oss-120b:update",
       "head": "حمله قایق های بدون سرنشین به دو کشتی در بنغازی با ۱۰ زخمی ⚡️ حمله قایق های بدون سرنشین به یک کشتی روسی و یک کش",
@@ -4802,30 +4801,18 @@
       "t": 1795485939,
       "verdict": "new",
       "why": "This is a new diplomatic effort regarding Iran-US negotiations."
+    },
+    {
+      "head": "تأکید ایران بر عدم انتقال اورانیوم غنی شده به خارج از کشور ⚡️ مجتبی فردوسی پور، مسئول دفتر حفاظت منافع ایران د",
+      "id": "2073377827",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795487631,
+      "verdict": "new",
+      "why": "This is a new statement by an Iranian official regarding enriched uranium."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آغاز کارگاه آموزشی و آماده‌سازی آژانس اتمی رویداد درجه‌یک محسوب نمی‌شود.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795442950,
-      "title": "آغاز به کار کارگاه منطقه ای آژانس بین المللی انرژی اتمی با حضور ۲۲ کشور در اسلام آباد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: ثبت‌نام سوخت عشایر فارس خبری استانی و اداری است.",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1795442959,
-      "title": "مدیرکل امور عشایر استان: عشایر نیازمند سوخت فارس تا چهارم آذر در سامانه آماری ثبت نام شوند"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر تخریب پاتوق‌های مواد مخدر در پیشوا محلی و کوچک است",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795442963,
-      "title": "۱۶ پاتوق و محل فروش مواد مخدر در پیشوا تخریب شد"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: مراسم داخلی، تأثیر ملی یا جهانی ندارد",
       "rescued": false,
@@ -5364,6 +5351,27 @@
       "rule": "foreign-local-preselection",
       "t": 1795485840,
       "title": "Israeli minister approves return of Flydubai flights"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Iran officially refuses to export enriched uranium, confirming nuclear stance",
+      "rescued": true,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1795487590,
+      "title": "فردوسی پور: ایران اورانیوم غنی شده خود را در داخل نگه خواهد داشت"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: بررسی زندگی و اقدامات صدام حفتر خبر درجه یک محسوب نمی‌شود.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795487592,
+      "title": "همه آنچه باید از مشهورترین مرد لیبی بدانیم / صدام حفتر از نزدیکی با ترکیه تا نمایش قدرت در لیبی"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=world: برنده شدن جایزه تلویزیونی رویداد درجه یک محسوب نمی شود.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795487597,
+      "title": "Sky News documentary wins International Emmy"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -5674,6 +5682,29 @@
       ],
       "t": 1795485940.4872913,
       "title": "تلاش نخست وزیر قطر برای احیای مذاکرات ایران و آمریکا پس از دیدار با روبیو ⚡️ شیخ محمد بن عبدالرحمن آل ثانی، نخست وزیر و "
+    },
+    {
+      "h": [
+        "ارنم",
+        "انتقل",
+        "تکد",
+        "حفظت",
+        "خرج",
+        "دفتر",
+        "عدم",
+        "غن",
+        "فردس",
+        "قصد",
+        "قهر",
+        "مجتب",
+        "مسل",
+        "منتقل",
+        "منفع",
+        "ندرد",
+        "پر"
+      ],
+      "t": 1795487632.581886,
+      "title": "تأکید ایران بر عدم انتقال اورانیوم غنی شده به خارج از کشور ⚡️ مجتبی فردوسی پور، مسئول دفتر حفاظت منافع ایران در قاهره اع"
     }
   ],
   "_published_incidents": [
@@ -8207,6 +8238,43 @@
       ],
       "t": 1795485940.474254,
       "title": "تلاش نخست وزیر قطر برای احیای مذاکرات ایران و آمریکا پس از دیدار با روبیو ⚡️ شیخ محمد بن عبدالرحمن آل ثانی، نخست وزیر و "
+    },
+    {
+      "k": [
+        "اتم",
+        "ار",
+        "ارنم",
+        "الملل",
+        "انتقل",
+        "انرژ",
+        "اژنس",
+        "بق",
+        "تحت",
+        "تکد",
+        "حفظت",
+        "خرج",
+        "دفتر",
+        "عدم",
+        "غن",
+        "فردس",
+        "قصد",
+        "قهر",
+        "مجتب",
+        "مد",
+        "مسل",
+        "مقم",
+        "منتقل",
+        "مند",
+        "منفع",
+        "ندرد",
+        "نظرت",
+        "هست",
+        "پر",
+        "کشر",
+        "کنترل"
+      ],
+      "t": 1795487632.5686426,
+      "title": "تأکید ایران بر عدم انتقال اورانیوم غنی شده به خارج از کشور ⚡️ مجتبی فردوسی پور، مسئول دفتر حفاظت منافع ایران در قاهره اع"
     }
   ],
   "_telegram_errors": [
@@ -8820,7 +8888,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795485680
+    "at": 1795487476
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8835,8 +8903,8 @@
     "last_status": 402
   },
   "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1795486161.0,
-    "last_failure": 1795485861,
+    "disabled_until": 1795487923.0,
+    "last_failure": 1795487623,
     "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
@@ -8845,8 +8913,8 @@
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795486167.0,
-    "last_failure": 1795485867,
+    "disabled_until": 1795487914.0,
+    "last_failure": 1795487614,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
