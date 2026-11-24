@@ -1,38 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795473220
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795473225
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795473225
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795473229
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795473229
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1795473232
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: no usable verdict",
-      "t": 1795473237
-    },
-    {
-      "e": "EDITOR BATCH: 3/3 via gemini/gemini-3.6-flash",
-      "t": 1795473277
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x, openrouter:* held 5x",
       "t": 1795473354
     },
@@ -159,32 +127,64 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 2x",
       "t": 1795484010
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795485832
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795485833
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795485836
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795485836
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795485841
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795485841
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.5-flash-lite",
+      "t": 1795485843
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 8x",
+      "t": 1795485941
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-23",
-      "n": 102
+      "n": 109
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-23",
-      "n": 175
+      "n": 181
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-23",
-      "n": 85
+      "n": 86
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-23",
-      "n": 79
+      "n": 82
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-24",
-      "n": 10
+      "n": 12
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-24",
-      "n": 10
+      "n": 12
     },
     "openrouter:*": {
       "day": "2026-11-24",
@@ -496,17 +496,17 @@
     "2026-11-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 5,
+        "calls": 11,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 3,
+        "ok": 9,
         "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 5,
+        "calls": 11,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 3,
-        "other": 2
+        "ok": 6,
+        "other": 5
       },
       "gemini:gemini-3.6-flash": {
         "429": 1,
@@ -516,39 +516,39 @@
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 1,
-        "calls": 2,
+        "429": 2,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 1
+        "other": 3
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 10,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "calls": 12,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 9,
-        "other": 1
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 7,
-        "other": 3
+        "other": 5
       },
       "mistral:ministral-8b-latest": {
         "429": 1,
-        "calls": 1,
+        "calls": 2,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 0,
+        "ok": 1,
         "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 2,
-        "calls": 12,
+        "429": 5,
+        "calls": 18,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 10,
+        "ok": 13,
         "other": 0
       },
       "openrouter:openrouter/free": {
@@ -1245,6 +1245,27 @@
       "t": 1795484009.483585,
       "title": "جزئیات جان باختن نظامیان سالوادوری در هائیتی از سوی بوکله اعلام شد",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1795485853.169226,
+      "title": "احتمال حملات سایبری به ۵۰ نفتکش با نقش احتمالی جمهوری اسلامی ایران",
+      "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 4,
+      "t": 1795485921.1952677,
+      "title": "تحقیقات کمیسیون بورس آمریکا درباره حسابداری انویدیا",
+      "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1795485940.5003216,
+      "title": "تلاش نخست وزیر قطر برای احیای مذاکرات ایران و آمریکا پس از دیدار با روبیو",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-23",
@@ -1278,12 +1299,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Major military escalation and mass casualties in an ongoing war.",
       "topic": "نظامی",
       "until": 1795516497.6977751
-    },
-    "v4|australian politics live: pm’s staff numbers exceed crossbench’s allocation combined; minns ends presser after heckling": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=local: بررسی وضعیت کارکنان نخست‌وزیر و پایان نشست",
-      "topic": "سیاست",
-      "until": 1795485788.2167566
     },
     "v4|beau lamarre-condon acted like a ‘poorly behaved boyfriend’ before alleged double murders, defence argues": {
       "ok": false,
@@ -1381,11 +1396,11 @@
       "topic": "حادثه",
       "until": 1795500294.5766723
     },
-    "v4|israeli political leaders denounce ‘jewish terrorism’ after west bank attacks": {
+    "v4|israeli minister approves return of flydubai flights": {
       "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Significant political reaction to violent regional conflict and civil unrest.",
-      "topic": "سیاست",
-      "until": 1795485795.0181725
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: تصمیم اولیه برای ازسرگیری پروازها هنوز نهایی نشده است",
+      "topic": "اقتصاد",
+      "until": 1795572240.8831065
     },
     "v4|live: russian strikes kill at least 15 people in kyiv region, ukraine says": {
       "ok": true,
@@ -1416,6 +1431,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: حملات سنگین روسیه به زیرساخت‌های انرژی در جنگ اوکراین",
       "topic": "نظامی",
       "until": 1795514743.5915303
+    },
+    "v4|qatar pm looks to revive us-iran talks after meeting rubio": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع‌گیری نخست‌وزیر قطر درباره تلاش برای احیای مذاکرات ایران و آمریکا.",
+      "topic": "سیاست",
+      "until": 1795572243.942127
     },
     "v4|russian ships hit by ukrainian drones off libya coast, zelensky says": {
       "ok": true,
@@ -1632,6 +1653,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis and opinion piece on potential war scenarios.",
       "topic": "سیاست",
       "until": 1795498505.6077223
+    },
+    "v4|احتمال حمله سایبری به ۵۰ کشتی حامل نفت و مواد قابل اشتعال؛ مظنون اصلی: جمهوری اسلامی ایران": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تحقیقات آمریکا درباره احتمال حملات سایبری ایران به نفتکش‌ها.",
+      "topic": "نظامی",
+      "until": 1795572243.9552367
     },
     "v4|اخبار کوتاه تهران؛ پوستر دومین جشنواره «عاملیت هنر» رونمایی شد/ کیفیت هوا در شرایط ناسالم": {
       "ok": false,
@@ -2233,6 +2260,12 @@
       "topic": "قضایی",
       "until": 1795530899.1029735
     },
+    "v4|تربیت نیروی انسانی در جهاددانشگاهی باید از دوران دانشجویی آغاز شود": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine administrative statement regarding internal organizational training programs.",
+      "topic": "جامعه",
+      "until": 1795572234.9492037
+    },
     "v4|ترکیب احتمالی تراکتور برابر الوصل امارات": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=local: ترکیب احتمالی تیم فوتبال تراکتور پیش از مسابقه رویداد قطعی نیست",
@@ -2340,12 +2373,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=iran_national: Official update on national energy production capacity and infrastructure restoration.",
       "topic": "اقتصاد",
       "until": 1795525512.3205438
-    },
-    "v4|تولید محتوا با هوش مصنوعی در دوره های زمستان جهاد دانشگاهی آموزش داده می شود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: دوره‌های آموزشی محلی، اثر محدود بر کل کشور",
-      "topic": "فناوری",
-      "until": 1795485785.1791015
     },
     "v4|تولید گاز در نخستین روز آذر افزایش و مصرف آن کاهش یافت": {
       "ok": false,
@@ -2521,17 +2548,23 @@
       "topic": "حادثه",
       "until": 1795494856.8233569
     },
-    "v4|حمله عربستان به غرب یمن ۴ کشته و ۱۸ زخمی برجای گذاشت": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Airstrike in regional war zone causing multiple casualties.",
-      "topic": "حادثه",
-      "until": 1795485795.030709
-    },
     "v4|حمله قایق های بدون سرنشین اوکراینی به کشتی های روسی در بندری در لیبی": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Military escalation involving drone attacks on foreign vessels in a port.",
       "topic": "نظامی",
       "until": 1795507454.313507
+    },
+    "v4|حمله پهپادهای حامل مواد منفجره به مقر پلیس در کلمبیا": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: حمله پهپادی محلی به مقر پلیس در کلمبیا با تلفات کم.",
+      "topic": "حادثه",
+      "until": 1795572243.9808981
+    },
+    "v4|حمله پهپادی اسرائیل به یک مقر پلیس در غزه ۳ فلسطینی را به شهادت رساند": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله پهپادی اسرائیل در غزه و شهادت ۳ فلسطینی در منطقه جنگی.",
+      "topic": "نظامی",
+      "until": 1795572243.9679062
     },
     "v4|حمله پهپادی به نیروهای امنیت داخلی سوریه در سویداء؛ چهار نفر زخمی شدند": {
       "ok": false,
@@ -2616,12 +2649,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: واکنش یک شخص به درگذشت یک چهره فرهنگی، خبری غیرمهم است.",
       "topic": "جامعه",
       "until": 1795552428.2603397
-    },
-    "v4|درخواست تخصیص کالابرگ به موادغذایی سالم تر/ توجه به «چاقی» در سند ملی بیماری های غیرواگیر": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: National health policy announcement, low impact",
-      "topic": "سلامت",
-      "until": 1795485786.511353
     },
     "v4|دستگیری ۹ نفر از عاملان نزاع در اصفهان و کشف ۵۶ وسیله نقلیه مسروقه در خمینی شهر": {
       "ok": false,
@@ -3030,12 +3057,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=True scope=world: Repetitive political opinion/criticism on the war effort.",
       "topic": "سیاست",
       "until": 1795494856.8644629
-    },
-    "v4|سناتور دموکرات خواستار توقف تامین بودجه جنگ علیه ایران شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=4 happened=False scope=world: Individual senator's proposal; not an official government decision or policy.",
-      "topic": "سیاست",
-      "until": 1795485795.0420496
     },
     "v4|سناتور دموکرات خواستار پاسخگویی ترامپ در مورد جنگ افروزی علیه ایران شد": {
       "ok": false,
@@ -4045,12 +4066,6 @@
       "topic": "نظامی",
       "until": 1795491348.870195
     },
-    "v4|کره شمالی آماده است روابط خود را با همه کسانی که به حاکمیت آن احترام می گذارند، تقویت کند": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: North Korean leader declares readiness to strengthen ties with respectful states.",
-      "topic": "سیاست",
-      "until": 1795485787.1330032
-    },
     "v4|کشته شدن کارمند سازمان ملل در حمله اسرائیل به نوار غزه": {
       "ok": true,
       "reason": "ai openrouter/openrouter/free batch score=6 happened=True scope=world: UNRWA staffer killed, three wounded in Israeli strike",
@@ -4255,35 +4270,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "ترامپ از ائتلاف مشتاقان خواست هزینه جنگ اوکراین را به اقتصاد داخلی اختصاص دهد ⚡️ دونالد ترامپ در گفتگوی تلفنی ",
-      "id": "0e52e65970",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795405010,
-      "verdict": "new",
-      "why": "This is a new statement by Trump regarding Ukraine war funds."
-    },
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "حمله شناورهای بدون سرنشین به کشتی های روسی و مالتی در سواحل بنغازی ⚡️ حمله شهپادها به یک کشتی جنگی روسیه و یک ",
-      "id": "ef54d3e3cb",
-      "match": "دولت شرق لیبی: کشتی روسی در بنادر بنغازی احتمالاً با حمله پهپاد هدف قرار گرفته",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795408495,
-      "verdict": "repeat",
-      "why": "این پست همان خبر حمله پهپادی به کشتی روسی در بنغازی لیبی است که قبلاً منتشر شده."
-    },
-    {
-      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
-      "head": "حمله شناورهای بدون سرنشین به کشتی های روسی و مالتی در سواحل بنغازی ⚡️ حمله شهپادها به یک کشتی جنگی روسیه و یک ",
-      "id": "ef54d3e3cb",
-      "match": "دولت شرق لیبی: کشتی روسی در بنادر بنغازی احتمالاً با حمله پهپاد هدف قرار گرفته",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795408512,
-      "verdict": "repeat",
-      "why": "همین حمله به کشتی روسی در بنغازی"
-    },
     {
       "head": "جزئیات تیراندازی به مدیر مجتمع پتروشیمی کارون در ماهشهر ⚡️ سید مهران مهمان نواز دادستان عمومی و انقلاب ماهشهر ",
       "id": "34f9900b33",
@@ -4789,23 +4775,36 @@
       "t": 1795484008,
       "verdict": "new",
       "why": "هائیتی، سالوادور، عملیات ضدباندهای مسلح"
+    },
+    {
+      "head": "احتمال حملات سایبری به ۵۰ نفتکش با نقش احتمالی جمهوری اسلامی ایران ⚡️ آمریکا در حال بررسی احتمال دست داشتن جمه",
+      "id": "739829abf8",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795485852,
+      "verdict": "new",
+      "why": "هیچ ارتباط مستقیم با رویدادهای قبلی"
+    },
+    {
+      "head": "تحقیقات کمیسیون بورس آمریکا درباره حسابداری انویدیا ⚡️ کمیسیون بورس و اوراق بهادار آمریکا بررسی هایی را در مور",
+      "id": "44c9c53ca1",
+      "match": "",
+      "model": "mistral/ministral-8b-latest",
+      "t": 1795485920,
+      "verdict": "new",
+      "why": "موضوع حسابداری انویدیا و بررسی کمیسیون بورس آمریکا"
+    },
+    {
+      "head": "تلاش نخست وزیر قطر برای احیای مذاکرات ایران و آمریکا پس از دیدار با روبیو ⚡️ شیخ محمد بن عبدالرحمن آل ثانی، نخ",
+      "id": "e7bfb25e85",
+      "match": "",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1795485939,
+      "verdict": "new",
+      "why": "This is a new diplomatic effort regarding Iran-US negotiations."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Opinion statement, no concrete event",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795442925,
-      "title": "افشاگر واترگیت: ترامپ هیولایی بسیار بدتر از نیکسون است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=iran_national: اظهارنظر و تحلیل درباره گزارش های گروسی بدون رویداد جدید",
-      "rescued": false,
-      "rule": "strict-source-below-importance(9<10)",
-      "t": 1795442929,
-      "title": "ابهام در گزارش های گروسی درباره ذخایر اورانیوم ایران"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: آغاز کارگاه آموزشی و آماده‌سازی آژانس اتمی رویداد درجه‌یک محسوب نمی‌شود.",
       "rescued": false,
@@ -5351,59 +5350,26 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1795483984,
       "title": "رینگ بوکس خراسان رضوی زیر سایه کمبودهای مالی و زیرساختی"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine administrative statement regarding internal organizational training programs.",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1795485834,
+      "title": "تربیت نیروی انسانی در جهاددانشگاهی باید از دوران دانشجویی آغاز شود"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: تصمیم اولیه برای ازسرگیری پروازها هنوز نهایی نشده است",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795485840,
+      "title": "Israeli minister approves return of Flydubai flights"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اجز",
-        "اشکر",
-        "برنم",
-        "تسع",
-        "تنقض",
-        "جلگر",
-        "حل",
-        "رکرد",
-        "سست",
-        "سعد",
-        "شر",
-        "فعلت",
-        "قبل",
-        "متنقض",
-        "نب",
-        "همس",
-        "وشنگتن"
-      ],
-      "t": 1795440901.9631777,
-      "title": "نایب رئیس شورای امنیت روسیه: آمریکا در قبال ایران و عربستان سعودی رویکردی متناقض دارد ⚡️ نایب رئیس شورای امنیت روسیه گفت"
-    },
-    {
-      "h": [
-        "ارشد",
-        "امک",
-        "بزند",
-        "تعرض",
-        "تند",
-        "تنه",
-        "حت",
-        "خهد",
-        "در",
-        "زرسخت",
-        "زمن",
-        "سردر",
-        "فرمند",
-        "مشر",
-        "ندرد",
-        "نقد",
-        "پسخ",
-        "گزن"
-      ],
-      "t": 1795440959.384951,
-      "title": "نقدی: آمریکا تنها می تواند به ایران حمله هوایی بزند و با هر تعرض به زیرساخت های حیاتی، ایران پاسخ خواهد داد ⚡️ سردار نقد"
-    },
     {
       "h": [
         "ابعد",
@@ -5649,6 +5615,65 @@
       ],
       "t": 1795484009.4703293,
       "title": "جزئیات جان باختن نظامیان سالوادوری در هائیتی از سوی بوکله اعلام شد ⚡️ نایب بوکله، رئیس جمهور السالوادور، هویت سه نظامی ک"
+    },
+    {
+      "h": [
+        "احتمل",
+        "اسلم",
+        "اشتعل",
+        "بررس",
+        "دست",
+        "دشتن",
+        "سبر",
+        "قبل",
+        "مد",
+        "نفتکش",
+        "نقش"
+      ],
+      "t": 1795485853.1438084,
+      "title": "احتمال حملات سایبری به ۵۰ نفتکش با نقش احتمالی جمهوری اسلامی ایران ⚡️ آمریکا در حال بررسی احتمال دست داشتن جمهوری اسلامی"
+    },
+    {
+      "h": [
+        "ارق",
+        "اغز",
+        "اند",
+        "بررس",
+        "برس",
+        "بهدر",
+        "تحقق",
+        "حسبدر",
+        "شرکت",
+        "نح",
+        "کمسن"
+      ],
+      "t": 1795485921.1826842,
+      "title": "تحقیقات کمیسیون بورس آمریکا درباره حسابداری انویدیا ⚡️ کمیسیون بورس و اوراق بهادار آمریکا بررسی هایی را در مورد نحوه حسا"
+    },
+    {
+      "h": [
+        "اح",
+        "ال",
+        "تدم",
+        "تلش",
+        "تنش",
+        "ثن",
+        "خرج",
+        "ددر",
+        "رب",
+        "شخ",
+        "عبدلرحمن",
+        "قطر",
+        "متحد",
+        "محمد",
+        "مذکر",
+        "مرک",
+        "نخست",
+        "وشنگتن",
+        "کهش"
+      ],
+      "t": 1795485940.4872913,
+      "title": "تلاش نخست وزیر قطر برای احیای مذاکرات ایران و آمریکا پس از دیدار با روبیو ⚡️ شیخ محمد بن عبدالرحمن آل ثانی، نخست وزیر و "
     }
   ],
   "_published_incidents": [
@@ -5825,178 +5850,30 @@
       "t": 1795480392.4635608,
       "title": "کشته و زخمی شدن کارکنان آنروا در حمله اسرائیل به نوار غزه ⚡️ آژانس امدادرسانی و کاریابی سازمان ملل برای آوارگان فلسطینی ",
       "toll": 0
+    },
+    {
+      "a": [
+        "احتمل",
+        "اسلم",
+        "اشتعل",
+        "بررس",
+        "دشتن",
+        "سبر",
+        "قبل",
+        "نفتکش",
+        "نقش"
+      ],
+      "cities": [],
+      "kind": "cyber",
+      "places": [],
+      "regions": [],
+      "t": 1795485853.1564806,
+      "title": "احتمال حملات سایبری به ۵۰ نفتکش با نقش احتمالی جمهوری اسلامی ایران ⚡️ آمریکا در حال بررسی احتمال دست داشتن جمهوری اسلامی",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ار",
-        "امرک",
-        "بندر",
-        "حدث",
-        "حمل",
-        "خند",
-        "دنستند",
-        "سربز",
-        "شعب",
-        "غرقنن",
-        "نرضت",
-        "نکف",
-        "پنتگن",
-        "پهپد",
-        "کت",
-        "کشت"
-      ],
-      "t": 1795354528.2007847,
-      "title": "نارضایتی خانواده سربازان آمریکایی از گزارش پنتاگون درباره حمله پهپادی ایران ⚡️ خانواده های سربازان آمریکایی کشته شده در "
-    },
-    {
-      "k": [
-        "ابرز",
-        "اجر",
-        "ار",
-        "اسرل",
-        "اصل",
-        "امرک",
-        "انگز",
-        "بلژک",
-        "بمبر",
-        "بنمن",
-        "تردد",
-        "تسس",
-        "تسع",
-        "تضعف",
-        "تمم",
-        "تنمند",
-        "تهر",
-        "جنگ",
-        "حفظ",
-        "حمل",
-        "دلل",
-        "رزن",
-        "سز",
-        "سس",
-        "سلح",
-        "سنگن",
-        "شرط",
-        "شم",
-        "طرح",
-        "عر",
-        "عمل",
-        "فشر",
-        "قدرت",
-        "متمرکز",
-        "مدت",
-        "مستحکم",
-        "مقم",
-        "نتنه",
-        "نخست",
-        "نسبت",
-        "نظم",
-        "نگرن",
-        "هدف",
-        "هفت",
-        "وزر",
-        "پشنهد",
-        "چهر",
-        "کت",
-        "کرزر",
-        "کلنگ",
-        "که"
-      ],
-      "t": 1795354548.2594686,
-      "title": "فشار نتانیاهو برای اجرای طرح حمله هوایی سنگین علیه ایران ⚡️ بنیامین نتانیاهو نخست وزیر اسرائیل در حال رایزنی برای اجرای "
-    },
-    {
-      "k": [
-        "ارد",
-        "ارژنس",
-        "است",
-        "انفجر",
-        "بر",
-        "بم",
-        "تجمع",
-        "ترم",
-        "تند",
-        "جد",
-        "حلق",
-        "خطر",
-        "دره",
-        "دگر",
-        "رس",
-        "رست",
-        "زن",
-        "سختگ",
-        "سل",
-        "شدد",
-        "صرت",
-        "فرد",
-        "فض",
-        "مد",
-        "مرد",
-        "مردبگ",
-        "مرکز",
-        "مصدم",
-        "منجر",
-        "نش",
-        "نشت",
-        "هشدر",
-        "همد",
-        "چه",
-        "کشت",
-        "گردن",
-        "گز"
-      ],
-      "n": [
-        "115"
-      ],
-      "t": 1795354565.6717155,
-      "title": "انفجار چاه در همدان یک کشته و مصدوم به بار آورد ⚡️ انفجار ناشی از نشت گاز در یک حلقه چاه در میدان بیمه و جاده دره مرادبی"
-    },
-    {
-      "k": [
-        "اتق",
-        "ار",
-        "افزش",
-        "امک",
-        "اند",
-        "انک",
-        "بخش",
-        "برد",
-        "برس",
-        "برطرف",
-        "بست",
-        "تلد",
-        "تکد",
-        "جنگ",
-        "حمد",
-        "خستر",
-        "درصد",
-        "رز",
-        "زمن",
-        "سرپرست",
-        "شرط",
-        "صدر",
-        "صرف",
-        "صنعت",
-        "ضررت",
-        "عرض",
-        "فعل",
-        "مدرت",
-        "مشرکت",
-        "مشکل",
-        "نش",
-        "نشست",
-        "نفت",
-        "همکر",
-        "وجد",
-        "وزرت",
-        "گز"
-      ],
-      "t": 1795356322.9144447,
-      "title": "عرضه نفت در بورس طی روزهای آینده ⚡️ حمید بورد، سرپرست وزارت نفت، در نشست با فعالان صنعتی در اتاق ایران از عرضه نفت در بو"
-    },
     {
       "k": [
         "احمر",
@@ -8241,6 +8118,95 @@
       ],
       "t": 1795484009.4570818,
       "title": "جزئیات جان باختن نظامیان سالوادوری در هائیتی از سوی بوکله اعلام شد ⚡️ نایب بوکله، رئیس جمهور السالوادور، هویت سه نظامی ک"
+    },
+    {
+      "k": [
+        "اجد",
+        "احتمل",
+        "ار",
+        "اسلم",
+        "اشتعل",
+        "امرک",
+        "امنت",
+        "بررس",
+        "بمب",
+        "تهدد",
+        "جمهر",
+        "حمل",
+        "در",
+        "دست",
+        "دشتن",
+        "رس",
+        "سبر",
+        "شرکت",
+        "عل",
+        "عمل",
+        "قبل",
+        "مختل",
+        "مد",
+        "مسر",
+        "مظنن",
+        "نظر",
+        "نفت",
+        "نفتکش",
+        "نقش",
+        "نهد",
+        "نگرن",
+        "پم",
+        "کشت",
+        "کشترن",
+        "گذر",
+        "یک"
+      ],
+      "t": 1795485853.1310449,
+      "title": "احتمال حملات سایبری به ۵۰ نفتکش با نقش احتمالی جمهوری اسلامی ایران ⚡️ آمریکا در حال بررسی احتمال دست داشتن جمهوری اسلامی"
+    },
+    {
+      "k": [
+        "ارق",
+        "اغز",
+        "امرک",
+        "اند",
+        "بررس",
+        "برس",
+        "بهدر",
+        "تحقق",
+        "حسبدر",
+        "شرکت",
+        "نح",
+        "کمسن"
+      ],
+      "t": 1795485921.1697044,
+      "title": "تحقیقات کمیسیون بورس آمریکا درباره حسابداری انویدیا ⚡️ کمیسیون بورس و اوراق بهادار آمریکا بررسی هایی را در مورد نحوه حسا"
+    },
+    {
+      "k": [
+        "اح",
+        "ار",
+        "ال",
+        "امر",
+        "امرک",
+        "تدم",
+        "تلش",
+        "تنش",
+        "ثن",
+        "خرج",
+        "ددر",
+        "رب",
+        "شخ",
+        "عبدلرحمن",
+        "قطر",
+        "متحد",
+        "محمد",
+        "مذکر",
+        "مرک",
+        "نخست",
+        "وزر",
+        "وشنگتن",
+        "کهش"
+      ],
+      "t": 1795485940.474254,
+      "title": "تلاش نخست وزیر قطر برای احیای مذاکرات ایران و آمریکا پس از دیدار با روبیو ⚡️ شیخ محمد بن عبدالرحمن آل ثانی، نخست وزیر و "
     }
   ],
   "_telegram_errors": [
@@ -8854,7 +8820,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795483872
+    "at": 1795485680
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8868,14 +8834,19 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.5-flash-lite": {
+    "disabled_until": 1795486161.0,
+    "last_failure": 1795485861,
+    "last_status": 503
+  },
   "gemini:gemini-3.6-flash": {
     "disabled_until": 1795481049,
     "last_failure": 1795480449,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795480717.0,
-    "last_failure": 1795480417,
+    "disabled_until": 1795486167.0,
+    "last_failure": 1795485867,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
