@@ -5,6 +5,11 @@ not a green run. Since the editor gate ships a guaranteed-publication fallback
 (Nov 2026), a zero-publication run means even the fallback bar found nothing
 publishable - that state deserves a visible alert issue, and the watchdog
 workflow closes the issue again once publication recovers.
+
+One exception, per CHANGE_CONTROL_POLICY.md: a run the gate failed closed
+because NO AI provider answered (no-ai-fallback-fail-closed) is not the same
+failure as an editorial shutdown. It stays visible as a warning, but it must
+not page the outage alert.
 """
 from __future__ import annotations
 
@@ -16,6 +21,9 @@ from pathlib import Path
 HEALTH = Path("v13_health.json")
 MONITOR = Path("v13_monitor.json")
 MAX_AGE_SECONDS = 20 * 60
+# Reasons the engine records when it failed closed because no AI provider
+# answered. Per CHANGE_CONTROL_POLICY.md these are not editorial outages.
+FAIL_CLOSED_MARKERS = ("ai_unavailable", "no-ai-fallback-fail-closed")
 
 
 def _read(path):
@@ -67,13 +75,27 @@ def main():
     # guaranteed-publication fallback in place, reaching this state means the
     # fallback bar also found nothing (no AI verdict >= 5 with happened=true
     # and non-local scope), so the channel is silent and someone should look.
+    # Exception (policy): when every blocked attempt failed closed because no
+    # AI provider answered, the run is a provider outage, not an editorial
+    # one - it stays visible as a warning instead of paging the alert.
     selected = int(health.get("selected_for_publication", 0) or 0)
     published = int(health.get("published", 0) or 0)
     if status == "editorial_blocked" and selected and published == 0:
-        errors.append(
-            f"run published nothing: {selected} selected, 0 published "
-            "(editorial gate blocked everything and the fallback found nothing)"
+        attempts = [a for a in (health.get("publication_attempts") or []) if isinstance(a, dict)]
+        fail_closed_no_ai = bool(attempts) and all(
+            any(marker in str(a.get("reason", "")) for marker in FAIL_CLOSED_MARKERS)
+            for a in attempts
         )
+        if fail_closed_no_ai:
+            print("::warning title=NabzKhabar no publication this run::"
+                  f"{selected} selected, 0 published "
+                  "(no AI provider available - engine failed closed per policy)")
+            print("PUBLICATION WATCHDOG: WARNING - fail-closed run (AI providers unavailable)")
+        else:
+            errors.append(
+                f"run published nothing: {selected} selected, 0 published "
+                "(editorial gate blocked everything and the fallback found nothing)"
+            )
 
     if errors:
         print("PUBLICATION WATCHDOG: ALERT")
