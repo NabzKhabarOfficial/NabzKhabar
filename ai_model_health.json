@@ -1,26 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1795557822
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795557823
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795557837
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795557837
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795557840
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795557840
     },
@@ -159,32 +139,52 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
       "t": 1795564985
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795565284
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795565285
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795565285
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795565286
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1795565322
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-24",
-      "n": 80
+      "n": 82
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-24",
-      "n": 137
+      "n": 140
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-24",
-      "n": 61
+      "n": 62
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-24",
-      "n": 61
+      "n": 62
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-25",
-      "n": 4
+      "n": 5
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-25",
-      "n": 3
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-11-24",
@@ -493,16 +493,44 @@
       }
     },
     "2026-11-25": {
-      "groq:openai/gpt-oss-120b": {
+      "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 2,
+        "ok": 2,
         "other": 0
       },
-      "groq:openai/gpt-oss-20b": {
+      "gemini:gemini-3.5-flash-lite": {
         "429": 0,
         "calls": 3,
         "ok": 3,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 4,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 3,
+        "other": 2
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 1,
+        "calls": 3,
+        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+        "ok": 2,
         "other": 0
       }
     }
@@ -1172,6 +1200,13 @@
       "t": 1795561443.4429576,
       "title": "هواوی در دادگاه آمریکا به سرقت اسرار تجاری محکوم شد",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 3,
+      "t": 1795565321.198374,
+      "title": "حملات توپخانه ای و پهپادی اسرائیل به جنوب لبنان",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-24",
@@ -1205,6 +1240,12 @@
       "reason": "ai openrouter/openrouter/free batch score=5 happened=True scope=world: Business acquisition, not top-tier global",
       "topic": "فناوری",
       "until": 1795629897.0459394
+    },
+    "v4|bellingham plays down zidane comparison after wonder goal": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Routine sports commentary and player quotes are not first-tier news.",
+      "topic": "ورزش",
+      "until": 1795651690.0265296
     },
     "v4|bellingham stunner, mbappe brace help real madrid rout psv": {
       "ok": false,
@@ -1241,12 +1282,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: Minor foreign attack with few injuries, below top-tier threshold.",
       "topic": "حادثه",
       "until": 1795581270.935985
-    },
-    "v4|eu plans sports ban in sweeping new russia sanctions proposal": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=4 happened=False scope=world: صرفاً یک طرح پیشنهادی تحریمی است و هنوز تصویب نشده",
-      "topic": "سیاست",
-      "until": 1795565043.7135408
     },
     "v4|excavator threatens sacred alpine lake in the himalayas": {
       "ok": false,
@@ -1367,6 +1402,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع‌گیری نخست‌وزیر قطر درباره تلاش برای احیای مذاکرات ایران و آمریکا.",
       "topic": "سیاست",
       "until": 1795572243.942127
+    },
+    "v4|rebel group retreats in dr congo after heavy clashes with government forces": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: درگیری منطقه‌ای در کنگو اولویت اول برای مخاطب ایرانی محسوب نمی‌شود.",
+      "topic": "نظامی",
+      "until": 1795651685.887132
     },
     "v4|russia's war on ukraine: 'both sides are prepared to operate outside of the conflict zone'": {
       "ok": false,
@@ -2262,18 +2303,6 @@
       "topic": "سیاست",
       "until": 1795608221.5944796
     },
-    "v4|دیدار روبیو با نخست وزیر قطر / الجزیره: جنگ علیه ایران یکی از محور های اصلی این دیدار است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Diplomatic meeting, no concrete outcome",
-      "topic": "سیاست",
-      "until": 1795565045.3774884
-    },
-    "v4|دیدار کوتاه ونس با نخست وزیر قطر": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: دیدار کوتاه، بدون اعلام تصمیم مهم",
-      "topic": "سیاست",
-      "until": 1795565012.5595157
-    },
     "v4|دیوان محاسبات: ادامه فعالیت محمد شریعتمداری فاقد وجاهت قانونی است / حکم انفصال وی قطعی و لازم الاجراست": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=iran_national: حکم قطعی و رسمی دیوان محاسبات بر انفصال مسئول ارشد.",
@@ -2345,12 +2374,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=False scope=iran_national: تحلیل روزنامه درباره منافع ایران از نشست بین‌المللی",
       "topic": "سیاست",
       "until": 1795583801.2413912
-    },
-    "v4|روزنامه نگار مشهور آمریکایی: جنگ با ایران یک اشتباه بزرگ بود": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: Opinion piece, no concrete decision",
-      "topic": "سیاست",
-      "until": 1795565045.3669286
     },
     "v4|روزهای خونین در یمن با بیش از ۱۰۰ شهید و ده ها زخمی": {
       "ok": true,
@@ -3425,6 +3448,10 @@
       "reason": "content_duplicate",
       "until": 1795565117.3822477
     },
+    "نهادهای اطلاعاتی ارشد ایالات متحده هدف حمله سایبری قرار گرفتند": {
+      "reason": "content_duplicate",
+      "until": 1795586912.261325
+    },
     "وارد آمدن خسارت به بلندترین برج عربستان در پی حمله ارتش یمن": {
       "reason": "content_duplicate",
       "until": 1795572251.78798
@@ -3444,16 +3471,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
-      "head": "سناتورهای آمریکایی در مذاکره برای قطع بودجه جنگ با ایران ⚡️ سناتورهای ارشد دموکرات و جمهوری خواه در ایالات متح",
-      "id": "671d503cee",
-      "match": "جفریز: دموکرات ها در کنگره جدید آمریکا، پایان جنگ علیه ایران را اولویت اعلام کردند",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795457282,
-      "verdict": "repeat",
-      "why": "مذاکره قطع بودجه جنگ ایران، واکنش دموکرات‌ها"
-    },
     {
       "head": "بخشایش اردستانی: تهران توانایی هدف گیری اروپا با موشک های خود را اعلام کرد ⚡️ عضو کمیسیون امنیت ملی مجلس گفت ج",
       "id": "56081da0ee",
@@ -3975,23 +3992,18 @@
       "t": 1795561442,
       "verdict": "new",
       "why": "موضوع جدید: محکومیت حقوقی هواوی در آمریکا"
+    },
+    {
+      "head": "حملات توپخانه ای و پهپادی اسرائیل به جنوب لبنان ⚡️ اسرائیل در دور جدید حملات خود، بخش هایی از اراضی کشاورزی و ",
+      "id": "4bd27304ce",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795565320,
+      "verdict": "new",
+      "why": "حمله جدید به جنوب لبنان در لیست وجود ندارد."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: cultural tribute, not first‑tier national or international news",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795532648,
-      "title": "میز ویژه آثار مرحوم رضا امیرخانی در باغ کتاب تهران"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: درخواست از دولت برای کاهش زمان سفر ریلی",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1795532670,
-      "title": "تأمین پارکینگ و توسعه حمل ونقل ریلی زائران رضوی در اولویت دولت باشد"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Hat-trick in Nagoya, not a major competition",
       "rescued": false,
@@ -4537,75 +4549,26 @@
       "rule": "strict-source-below-importance(7<10)",
       "t": 1795564981,
       "title": "۲۶۹ امین تجمعات شبانه مردم گرگان"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: درگیری منطقه‌ای در کنگو اولویت اول برای مخاطب ایرانی محسوب نمی‌شود.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795565285,
+      "title": "Rebel group retreats in DR Congo after heavy clashes with government forces"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: Routine sports commentary and player quotes are not first-tier news.",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795565290,
+      "title": "Bellingham plays down Zidane comparison after wonder goal"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "است",
-        "تر",
-        "تمرن",
-        "تکتک",
-        "حدث",
-        "شند",
-        "صد",
-        "عملت",
-        "لشکر",
-        "مد",
-        "مربط",
-        "مزندر",
-        "نتج",
-        "ندد",
-        "هچ",
-        "کربل",
-        "کنترل"
-      ],
-      "t": 1795520211.9311695,
-      "title": "صدای انفجارهای ساری نتیجه تمرین نظامی بود ⚡️ سپاه کربلا استان مازندران اعلام کرد صدای انفجارهای شنیده شده در ساری مربوط "
-    },
-    {
-      "h": [
-        "ابتد",
-        "اسب",
-        "اطرف",
-        "تجه",
-        "ثبت",
-        "دربن",
-        "زده",
-        "سختم",
-        "شند",
-        "شک",
-        "صد",
-        "فصل",
-        "قبل",
-        "لحظ",
-        "مج",
-        "مدربست",
-        "مغز",
-        "هن"
-      ],
-      "t": 1795520302.6664376,
-      "title": "انفجار در هانوی: موج شوک ساختمان های اطراف را آسیب زده و صدای آن تا فاصله قابل توجهی شنیده شد ⚡️ دوربین های مداربسته یک "
-    },
-    {
-      "h": [
-        "ابنحل",
-        "ترر",
-        "حمس",
-        "دخل",
-        "سزم",
-        "شبک",
-        "شدند",
-        "مدع",
-        "مشترک",
-        "نعم"
-      ],
-      "t": 1795521982.7777781,
-      "title": "ادعای تل آویو درباره ترور رئیس سازمان امنیت داخلی غزه ⚡️ ارتش اسرائیل و شاباک در بیانیه ای مشترک مدعی شدند نعیم ابونحل، "
-    },
     {
       "h": [
         "اذرم",
@@ -4977,27 +4940,27 @@
       ],
       "t": 1795561443.4322178,
       "title": "هواوی در دادگاه آمریکا به سرقت اسرار تجاری محکوم شد ⚡️ هیات منصفه ای در ایالات متحده شرکت هواوی را در پرونده کلاهبرداری "
+    },
+    {
+      "h": [
+        "ارض",
+        "بخش",
+        "بر",
+        "تپخن",
+        "جنب",
+        "در",
+        "شهرک",
+        "مرز",
+        "هدف",
+        "پهپد",
+        "کشرز",
+        "گلل"
+      ],
+      "t": 1795565321.1850114,
+      "title": "حملات توپخانه ای و پهپادی اسرائیل به جنوب لبنان ⚡️ اسرائیل در دور جدید حملات خود، بخش هایی از اراضی کشاورزی و شهرک های م"
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "خدر",
-        "دستگ",
-        "منفجر",
-        "وقع",
-        "ولسنس",
-        "کلمب",
-        "گذر"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795497437.9297588,
-      "title": "انفجار خودروی بمب گذاری شده در استان متا در کلمبیا ⚡️ یک دستگاه خودروی بمب گذاری شده در شهر ویلاویسنسیو واقع در استان مت",
-      "toll": 0
-    },
     {
       "a": [
         "اجد",
@@ -5235,139 +5198,30 @@
       "t": 1795561421.9071712,
       "title": "هشدار یمن به عربستان درباره حمله به بندر الحدیده ⚡️ سخنگوی نیروهای مسلح یمن هشدار داد در صورت حمله نیروهای ائتلاف به بند",
       "toll": 0
+    },
+    {
+      "a": [
+        "ارض",
+        "تپخن",
+        "شهرک",
+        "کشرز",
+        "گلل"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [
+        "جنوب لبنان"
+      ],
+      "regions": [
+        "lebanon_south"
+      ],
+      "t": 1795565321.1917555,
+      "title": "حملات توپخانه ای و پهپادی اسرائیل به جنوب لبنان ⚡️ اسرائیل در دور جدید حملات خود، بخش هایی از اراضی کشاورزی و شهرک های م",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ارپ",
-        "اصل",
-        "امد",
-        "امدگ",
-        "امرک",
-        "امنت",
-        "اکرن",
-        "برلن",
-        "برگزر",
-        "تمن",
-        "تکد",
-        "جمهر",
-        "جنگ",
-        "حت",
-        "حضر",
-        "خهد",
-        "رس",
-        "زلنسک",
-        "سز",
-        "صلح",
-        "فرد",
-        "مجمع",
-        "مذکر",
-        "مسل",
-        "منطق",
-        "نت",
-        "نشست",
-        "وقع",
-        "ولدمر",
-        "پرلمن",
-        "چهرجنب",
-        "کشر",
-        "یرتلنتک"
-      ],
-      "t": 1795433709.3365922,
-      "title": "آمادگی اوکراین برای مذاکرات چهارجانبه صلح با آمریکا، اروپا و روسیه ⚡️ ولودیمیر زلنسکی، رئیس جمهور اوکراین اعلام کرد که ا"
-    },
-    {
-      "k": [
-        "ابرز",
-        "اتهم",
-        "اسرل",
-        "اظهر",
-        "افزش",
-        "اقدم",
-        "الملل",
-        "امر",
-        "انگلس",
-        "ترخ",
-        "جن",
-        "جنگ",
-        "حمت",
-        "حکم",
-        "خرج",
-        "ددگستر",
-        "رسدگ",
-        "رهنگ",
-        "شدد",
-        "شهد",
-        "صدر",
-        "غزه",
-        "فلسطن",
-        "لندن",
-        "مسلمن",
-        "مطرح",
-        "منمر",
-        "نر",
-        "نسل",
-        "نگرن",
-        "وزر",
-        "کش"
-      ],
-      "s": "انگلیس",
-      "t": 1795433752.605042,
-      "title": "انگلیس: شواهد جنایات جنگی در غزه رو به افزایش است ⚡️ وزیر امور خارجه انگلیس با ابراز نگرانی شدید از اقدامات اسرائیل در ن"
-    },
-    {
-      "k": [
-        "اصل",
-        "اغز",
-        "بدند",
-        "برخردر",
-        "برس",
-        "بزر",
-        "بق",
-        "تقض",
-        "تم",
-        "تهر",
-        "ثبت",
-        "حقق",
-        "خرج",
-        "خرد",
-        "درمد",
-        "رشد",
-        "سهم",
-        "شخص",
-        "شرکت",
-        "صندق",
-        "متسط",
-        "مثبت",
-        "محدد",
-        "معمل",
-        "ملرد",
-        "ملن",
-        "مند",
-        "نقدنگ",
-        "نمد",
-        "هزر",
-        "همر",
-        "وحد",
-        "ورد",
-        "وزن",
-        "پل",
-        "کر",
-        "کچک"
-      ],
-      "n": [
-        "394",
-        "465",
-        "530",
-        "543",
-        "782",
-        "810"
-      ],
-      "t": 1795433786.6162047,
-      "title": "بورس تهران با رشد شاخص های اصلی و ورود پول حقیقی به بازار سهام آغاز به کار کرد ⚡️ بورس تهران امروز با رشد شاخص کل ۶۷ هزا"
-    },
     {
       "k": [
         "اتش",
@@ -7535,6 +7389,38 @@
       ],
       "t": 1795561443.4211063,
       "title": "هواوی در دادگاه آمریکا به سرقت اسرار تجاری محکوم شد ⚡️ هیات منصفه ای در ایالات متحده شرکت هواوی را در پرونده کلاهبرداری "
+    },
+    {
+      "k": [
+        "اتش",
+        "ارض",
+        "ارگ",
+        "اسرل",
+        "انفجر",
+        "بخش",
+        "بر",
+        "بغ",
+        "تپخن",
+        "جنب",
+        "حمل",
+        "در",
+        "زتن",
+        "سز",
+        "شهرک",
+        "غرنظم",
+        "لبن",
+        "مرز",
+        "منجر",
+        "منطق",
+        "هدف",
+        "وقع",
+        "پهپد",
+        "کشرز",
+        "گسترد",
+        "گلل"
+      ],
+      "t": 1795565321.1781354,
+      "title": "حملات توپخانه ای و پهپادی اسرائیل به جنوب لبنان ⚡️ اسرائیل در دور جدید حملات خود، بخش هایی از اراضی کشاورزی و شهرک های م"
     }
   ],
   "_telegram_errors": [
@@ -8148,7 +8034,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795564874
+    "at": 1795565211
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8162,14 +8048,9 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1795561485,
-    "last_failure": 1795561425,
-    "last_status": 422
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795562006,
-    "last_failure": 1795561406,
+    "disabled_until": 1795565905,
+    "last_failure": 1795565305,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
