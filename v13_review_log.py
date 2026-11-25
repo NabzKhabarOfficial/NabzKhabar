@@ -29,7 +29,11 @@ REJ_LOG = os.path.join("docs", "review", "rejected_log.json")
 TG_KEEP_SECONDS = 3 * 24 * 3600
 TG_MAX = 900
 REJ_KEEP_SECONDS = 48 * 3600
-REJ_MAX = 4000
+# 1500 covers the full 48h window at ~700 rejections/day (measured Nov 25:
+# 4000 entries were ~90% single-run, one-hit titles). The old cap of 4000
+# made this file the single largest object in every runtime-state commit
+# (~2.4 MB each run); 1500 keeps the same analysis window at ~0.9 MB.
+REJ_MAX = 1500
 CAPTION_LIMIT = 1000
 _SEND = re.compile(r"/(sendMessage|sendPhoto|sendVideo|sendAnimation|sendMediaGroup|editMessageText|editMessageCaption)(?:$|\?)")
 SENT = []

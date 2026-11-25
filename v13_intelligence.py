@@ -807,9 +807,30 @@ def _load_rejected_history():
     return data if isinstance(data, list) else []
 
 
+# The rejected-news telemetry is diagnostic only (nothing at runtime reads it
+# back; the editor-gate cache in ai_model_health.json keeps per-title
+# verdicts). Trimming each record on save keeps the committed state file from
+# adding ~1 MB of git-history churn per week.
+REJECTED_NEWS_KEEP_FIELDS = (
+    "checked_at", "title", "source", "category",
+    "intelligence_score", "reason", "stage",
+)
+
+
+def _trim_rejected_record(record):
+    """Keep the diagnostic core of a rejection record.
+
+    Dropped: published_at, url, age_seconds and the four boolean override
+    flags (rarely useful in aggregate analysis, easy to re-derive from a
+    candidate in future runs).
+    """
+    return {k: record.get(k) for k in REJECTED_NEWS_KEEP_FIELDS}
+
+
 def _save_rejected_history(history):
     try:
-        history = history[-MAX_REJECTED_NEWS_HISTORY:]
+        history = [_trim_rejected_record(r) if isinstance(r, dict) else r
+                   for r in history[-MAX_REJECTED_NEWS_HISTORY:]]
         _atomic_save_json(REJECTED_NEWS_FILE, history)
     except Exception as exc:
         print(f"V13 REJECTED NEWS WRITE ERROR: {type(exc).__name__}", flush=True)
