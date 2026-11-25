@@ -54,6 +54,17 @@ capitals and major cities of the countries involved (and on energy sites or
 shipping in Hormuz / Red Sea / Bab el-Mandeb) are world news, never local.
 WAR_ZONE marks them as hard events: they skip the local veto, get the rescue
 path, the rubric says so explicitly, and the AI bar for them is 5 instead of 7.
+
+English hard events + provider telemetry (Nov 2026)
+---------------------------------------------------
+English hard-event keywords (hostage, kidnapped, dead, explosion...) were
+missing from HARD_HAPPENED, so e.g. the Cartagena supermarket hostage-taking
+(AI verdict: score=6, happened=True) was rejected for not being a "hard
+event" and missed the 7->6 bar. HARD_HAPPENED now matches both languages
+(HARD_HAPPENED_FA / HARD_HAPPENED_EN) and the cache was bumped to v5 so the
+old wrong rejections are judged again. ai_judge also records the providers it
+tried/succeeded into health['ai_pool'] (it was never written before, so the
+monitor always showed an empty pool during outages).
 """
 
 import json
@@ -64,7 +75,7 @@ import time
 MIN_AI_SCORE = 7
 HARD_EVENT_MIN_AI_SCORE = 6  # hard events that already happened (deaths, crashes, strikes)
 CACHE_KEY = "_editor_gate_cache"
-CACHE_VERSION = "v4"    # bump when the rubric or thresholds change: old verdicts are ignored
+CACHE_VERSION = "v5"    # v5: HARD_HAPPENED now covers English hard events; old verdicts are re-judged
 CACHE_TTL = 24 * 3600
 CACHE_MAX = 600
 AI_TIMEOUT = 15
@@ -95,7 +106,10 @@ NON_EVENT = re.compile(
     r"رزمایش|مانور|تمرین (?:امداد|میدانی)|همایش|هم ?اندیشی|سمینار|وبینار|نشست (?:تخصصی|علمی|خبری|هم)|"
     r"جشنواره|نمایشگاه|افتتاح|کلنگ ?زنی|بهره ?برداری|بازدید|تجلیل|تقدیر از|نکوداشت|گرامیداشت|"
     r"بزرگداشت|سالگرد|مراسم|برگزار (?:می ?شود|شد|خواهد شد|می ?گردد)|میزبانی [^،؛.]{0,25} از|"
-    r"قرار است|در دستور کار|برنامه ریزی برای|تشکیل کمیته|کارگروه|جلسه شورای)"
+    r"قرار است|در دستور کار|برنامه ریزی برای|تشکیل کمیته|کارگروه|جلسه شورای|"
+    r"\b(?:training|drill|exercise|simulation|course|workshop|seminar|conference|ceremony|inaugurat\w*|"
+    r"summit|briefing|exhibition|fair)\b|\bto be held\b|\bscheduled for\b|\bplans?\b to)",
+    re.I,
 )
 LOCAL_LEVEL = re.compile(
     r"(?:شهرستان|بخشدار|بخشداری|فرماندار|فرمانداری|دهیار|دهیاری|روستای|روستاهای|شهردار|شهرداری|"
@@ -103,12 +117,26 @@ LOCAL_LEVEL = re.compile(
     r"(?:در|از) استان [^\s،]+|میزبانی (?:شهر |شهرستان )?[^\s،]+ از)"
 )
 # Hard event that already happened (title only, past tense / tolls).
-HARD_HAPPENED = re.compile(
+# English hard-event keywords (hostage, kidnapped, outbreak, wildfire...) were
+# missing, so e.g. "Gunmen hold two dozen people hostage at supermarket in
+# Colombia's Cartagena" (AI: score=6, happened=True) was blocked for not being
+# a "hard event". Persian/English lists stay separate so mixed titles still match.
+HARD_HAPPENED_FA = re.compile(
     r"(?:کشته (?:شد|شدند)|\d+\s*کشته|جان (?:باخت|باختند|سپرد)|کشته و زخمی|\d+\s*(?:نفر )?زخمی|"
     r"انفجار (?:در|رخ)|زلزله(?: ای)? (?:\d|به بزرگی|شدید)|سقوط (?:هواپیما|بالگرد)|"
-    r"حمله (?:موشکی|پهپادی|هوایی|تروریستی)|حمله کرد|بمباران|ترور|گروگان|"
-    r"killed|dead|explosion|earthquake|airstrike|missile strike|plane crash)",
+    r"حمله (?:موشکی|پهپادی|هوایی|تروریستی)|حمله کرد|بمباران|ترور|گروگان)"
+)
+HARD_HAPPENED_EN = re.compile(
+    r"(?:\b(?:\d+\s*)?killed\b|\bdead\b|\bdeaths?\b|\bmass shooting\b|\bhostage|\btook hostage|\bheld hostage|"
+    r"\bkidnap\w*|\bexplosion\b|\bblast\b|\bearhquake\b|\bairstrike\b|\bmissile strike\b|\bplane crash\w*|"
+    r"\bderail\w*|\bwildfire\b|\bflood\w*\b|\bsank\b|\bsinks?\b|\bshooting\b|\bstabbing\b|\bsuicide bomb\w*|"
+    r"\bcar bomb|\bexplosive device\b|\boutbreak\b|\bcollapse[d]?\b)",
     re.I,
+)
+# Kept under the historical name for the modules that import it (v13_mistral,
+# v13_quality_fix, v13_text_polish): a match in either language counts.
+HARD_HAPPENED = re.compile(
+    HARD_HAPPENED_FA.pattern + r"|" + HARD_HAPPENED_EN.pattern, re.I
 )
 # Regional war: events in capitals / major cities / energy and shipping hubs of the
 # countries involved are first-tier, never "local".
@@ -274,6 +302,33 @@ def _openai_style(session, url, key, model, prompt, extra=None):
     return _parse(content)
 
 
+def _record_pool(names, ok=False):
+    """Persist which AI providers this gate attempted/succeeded, for the monitor.
+
+    The monitor reads health['ai_pool']; nothing ever wrote it, so it was always
+    {} and outage triage could not tell "no providers configured" from
+    "providers failing". This stays best-effort and never breaks judging.
+    """
+    if not names:
+        return
+    try:
+        load, save = _health_io()
+        health = load()
+        pool = health.get("ai_pool")
+        if not isinstance(pool, dict):
+            pool = {}
+        now = int(time.time())
+        for name in names:
+            entry = pool.get(name) or {}
+            entry["last_tried"] = now
+            entry["last_success" if ok else "last_attempt"] = now
+            pool[name] = entry
+        health["ai_pool"] = pool
+        save(health)
+    except Exception as exc:
+        print(f"V13 EDITOR GATE: pool telemetry warning {type(exc).__name__}: {exc}", flush=True)
+
+
 def ai_judge(main, candidate):
     """(verdict dict, provider) or (None, "") when every provider failed."""
     session = getattr(main, "SESSION", None)
@@ -306,12 +361,17 @@ def ai_judge(main, candidate):
     if orouter:
         attempts.append(("openrouter/free", lambda: _openai_style(
             session, "https://openrouter.ai/api/v1/chat/completions", orouter, "openrouter/free", prompt)))
+    # Observability: record which providers this gate actually tried, so
+    # v13_monitor's ai_pool reflects reality instead of always being empty.
+    tried = [name for name, _ in attempts]
+    _record_pool(tried)
     for name, call in attempts:
         if time.monotonic() >= deadline:
             break
         try:
             verdict = call()
             if verdict:
+                _record_pool([name], ok=True)
                 return verdict, name
             print(f"V13 EDITOR GATE: {name} returned no usable verdict", flush=True)
         except Exception as exc:

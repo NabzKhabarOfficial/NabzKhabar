@@ -467,7 +467,15 @@ def _patch_editor_gate():
     if "SECURITY AND MASS CASUALTIES" not in eg.PROMPT and "Story:\nTITLE" in eg.PROMPT:
         eg.PROMPT = eg.PROMPT.replace("Story:\nTITLE", EDITOR_RULES + "Story:\nTITLE", 1)
     # Old cached "local" rejections must be judged again under the new rules.
-    eg.CACHE_VERSION = "v4"
+    # This layer needs at least "v4"; never downgrade a newer version another
+    # layer already set (v13_editor_gate is on "v5" now and pinning "v4" here
+    # used to silently resurrect every old rejection).
+    def _version_int(value):
+        digits = "".join(ch for ch in str(value) if ch.isdigit())
+        return int(digits) if digits else 0
+
+    if _version_int(eg.CACHE_VERSION) < 4:
+        eg.CACHE_VERSION = "v4"
     eg._text_polish = True
 
 
