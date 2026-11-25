@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795559578
-    },
-    {
-      "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.5-flash-lite",
-      "t": 1795559584
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 5x",
       "t": 1795559600
     },
@@ -159,32 +151,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
       "t": 1795568637
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1795570388
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1795570446
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-24",
-      "n": 83
+      "n": 86
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-24",
-      "n": 142
+      "n": 146
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-24",
-      "n": 63
+      "n": 65
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-24",
-      "n": 63
+      "n": 65
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-25",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-25",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-24",
@@ -495,49 +495,51 @@
     "2026-11-25": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 6,
+        "ok": 6,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 5,
-        "ok": 5,
-        "other": 0
+        "calls": 9,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 8,
+        "other": 1
       },
       "gemini:gemini-3.6-flash": {
-        "429": 2,
-        "calls": 2,
+        "429": 4,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 0,
-        "calls": 1,
+        "429": 1,
+        "calls": 3,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 7,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
-        "other": 3
+        "ok": 6,
+        "other": 4
       },
       "mistral:open-mistral-nemo": {
-        "429": 1,
-        "calls": 5,
+        "429": 5,
+        "calls": 11,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 4,
+        "ok": 6,
         "other": 0
       }
     }
@@ -1221,6 +1223,13 @@
       "t": 1795568636.0750048,
       "title": "تعلیق عملیات مشترک دولت آمریکا با اکوادور",
       "urgent": false
+    },
+    {
+      "label": "اقتصاد",
+      "level": 3,
+      "t": 1795570445.6318533,
+      "title": "درخواست ۱۱۵ میلیارد یورویی اوکراین برای تأمین مالی در سال ۲۰۲۷",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-24",
@@ -1230,12 +1239,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل عملکرد تیم فوتبال منچسترسیتی، فاقد اهمیت خبری سطح اول.",
       "topic": "ورزش",
       "until": 1795649605.65581
-    },
-    "v4|airports, public transport shut down amid national strike in belgium": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=local: National strike shuts airports in Belgium.",
-      "topic": "سیاست",
-      "until": 1795570386.369677
     },
     "v4|alaska ends deal to give voter records to us justice department": {
       "ok": false,
@@ -1273,12 +1276,6 @@
       "topic": "جامعه",
       "until": 1795642406.1884632
     },
-    "v4|bukele shares details on deaths of salvadoran troops in haiti intervention": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b batch score=7 happened=True scope=world: Salvadoran troops killed in Haiti intervention.",
-      "topic": "نظامی",
-      "until": 1795570386.3834355
-    },
     "v4|car bomb strikes governor’s office in meta, colombia": {
       "ok": true,
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: انفجار خودروی بمب‌گذاری‌شده در ساختمان فرمانداری در کلمبیا",
@@ -1308,6 +1305,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: گروگان‌گیری ۲۵ نفر در کلمبیا و اختلال در پروازها",
       "topic": "حادثه",
       "until": 1795644248.935143
+    },
+    "v4|gunmen hold dozens hostage in colombia supermarket": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Hostage crisis in Colombia supermarket, armed attack",
+      "topic": "حادثه",
+      "until": 1795656788.1202428
     },
     "v4|gunmen hold two dozen people hostage at supermarket in colombia's cartagena": {
       "ok": false,
@@ -1482,6 +1485,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=local: Helicopter crash kills five, no cause disclosed.",
       "topic": "حادثه",
       "until": 1795642406.7510257
+    },
+    "v4|ukraine seeks €115 billion in foreign aid for 2027, zelensky says": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Zelensky announces massive aid request, significant international impact",
+      "topic": "اقتصاد",
+      "until": 1795656788.128357
     },
     "v4|us flew surveillance drone over mexico to help capture top drug lord": {
       "ok": true,
@@ -2359,6 +2368,12 @@
       "topic": "نظامی",
       "until": 1795633462.516677
     },
+    "v4|رضا امیرخانی؛ شیفته خمینی که خواستار محدود شدن دوره رهبری شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=local: Retrospective piece on deceased journalist, no new event",
+      "topic": "سیاست",
+      "until": 1795656788.104178
+    },
     "v4|روایت تلخ پدر حسنا، دختر ۸ ساله ای که بر اثر حمله سگ جان خود را از دست داد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=local: حادثه فردی و محلی حمله سگ بدون تلفات عمومی.",
@@ -2412,12 +2427,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: Commentary and analysis by an expert or lower official, speculation.",
       "topic": "سیاست",
       "until": 1795581270.9625316
-    },
-    "v4|رینگ بوکس خراسان رضوی زیر سایه کمبودهای مالی و زیرساختی": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Local boxing infrastructure problems, no major national impact",
-      "topic": "ورزش",
-      "until": 1795570384.8939173
     },
     "v4|رییس دانشکدگان کشاورزی دانشگاه تهران: واسطه گری ثروت کشاورزی کشور را می بلعد": {
       "ok": false,
@@ -2598,12 +2607,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=iran_national: School attack killed students, national security incident",
       "topic": "جامعه",
       "until": 1795597482.9687836
-    },
-    "v4|شهر در انتظار «فیبرنوری» اما قربانی بازی های اداری": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Municipal‑telecom tariff dispute stalls fiber‑optic project",
-      "topic": "فناوری",
-      "until": 1795570384.1779208
     },
     "v4|شوری: روس ها و چینی ها می دانند که نمی توان انتظار چندانی از نتایج گفت وگوها با ترامپ داشت/ این نشست بیش از جنبه عملی جنبه ای نمادین دارد": {
       "ok": false,
@@ -2874,6 +2877,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و اظهارنظر کارشناس درباره تسلیحات",
       "topic": "نظامی",
       "until": 1795645984.235632
+    },
+    "v4|میادین نجف آباد به زمین بازی خانواده ها تبدیل شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، فرهنگی‑ورزشی، اثر محدود",
+      "topic": "ورزش",
+      "until": 1795656784.442828
     },
     "v4|میرغضنفری: توسعه روستاها نباید با محدودیت های غیرضروری متوقف شود": {
       "ok": false,
@@ -3241,6 +3250,12 @@
       "topic": "اقتصاد",
       "until": 1795645984.2491107
     },
+    "v4|کد ملی و پستی به هم رسیدند/ نقشه جدید خدمات هوشمند ایرانیان": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=iran_national: Government digital integration announced, limited national impact",
+      "topic": "فناوری",
+      "until": 1795656788.112422
+    },
     "v4|کرملین: حضور پوتین در اجلاس گروه ۲۰ هنوز قطعی نشده است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: اعلام عدم اتخاذ تصمیم قطعی درباره سفر پوتین",
@@ -3421,6 +3436,10 @@
       "reason": "content_duplicate",
       "until": 1795579481.8976798
     },
+    "gunmen hold dozens hostage in colombia supermarket": {
+      "reason": "content_duplicate",
+      "until": 1795592022.1061873
+    },
     "hormuz oil traffic is down 40 percent: are iran’s tanker attacks working?": {
       "reason": "content_duplicate",
       "until": 1795559717.7441466
@@ -3485,27 +3504,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "سفیر ایران در وین: محاصره دریایی آمریکا و اقدامات قهری علیه ایران جنایت جنگی است ⚡️ سفیر ایران در وین محاصره د",
-      "id": "f0e9ff888b",
-      "t": 1795458988,
-      "verdict": "unavailable"
-    },
-    {
-      "head": "وزارت خزانه داری آمریکا: تحریم های جدید علیه ایران و نهادهای دورزنی تحریم ⚡️ وزارت خزانه داری آمریکا با اقدام ",
-      "id": "943877c625",
-      "t": 1795466159,
-      "verdict": "unavailable"
-    },
-    {
-      "head": "نیروی دریایی سپاه: نفتکش های متخلف در تنگه هرمز منفجر شدند ⚡️ نیروی دریایی سپاه اعلام کرد سه نفتکش متخلف در تن",
-      "id": "5e8b5c0e3c",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795469659,
-      "verdict": "new",
-      "why": "تنگه هرمز در اخبار قبلی بدون انفجار نفتکش"
-    },
     {
       "head": "آژیرهای خطر در ابها و جازان به صدا درآمدند ⚡️ آژیرهای خطر در شهر ابها و منطقه جازان عربستان فعال شد.",
       "id": "5c7d8b8684",
@@ -4015,16 +4013,38 @@
       "t": 1795568634,
       "verdict": "new",
       "why": "عملیات مشترک جدید آمریکا و اکوادور"
+    },
+    {
+      "confirm": "groq/openai/gpt-oss-20b:repeat",
+      "head": "گروگان گیری ده ها نفر در یک فروشگاه در کلمبیا ⚡️ گروهی از افراد مسلح پس از ناکامی در یک سرقت، حدود ۲۰ نفر را د",
+      "id": "99e682386c",
+      "match": "انفجار خودروی بمب گذاری شده در استان متا در کلمبیا",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795570409,
+      "verdict": "repeat",
+      "why": "گروگانگیری در فروشگاه کارتاخنا کلمبیا"
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "گروگان گیری ده ها نفر در یک فروشگاه در کلمبیا ⚡️ گروهی از افراد مسلح پس از ناکامی در یک سرقت، حدود ۲۰ نفر را د",
+      "id": "99e682386c",
+      "match": "رئیس جمهور کلمبیا: گروگانگیری در سوپرمارکت شهر کارتاخنا",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795570414,
+      "verdict": "repeat",
+      "why": "خبر گروگان‌گیری در سوپرمارکت کارتاخنا قبلاً در فهرست منتشر شده است."
+    },
+    {
+      "head": "درخواست ۱۱۵ میلیارد یورویی اوکراین برای تأمین مالی در سال ۲۰۲۷ ⚡️ ولودیمیر زلنسکی، رئیس جمهور اوکراین اعلام کر",
+      "id": "374813607f",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795570444,
+      "verdict": "new",
+      "why": "درخواست جدید کمک مالی اوکراین برای سال ۲۰۲۷"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: پیشنهاد نماینده مجلس برای تشکیل شعبه ویژه قضایی است.",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1795534869,
-      "title": "پورکبگانی: شعبه ویژه قضایی برای صیانت از اموال ورزشی تشکیل شود"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر محلی درباره وضعیت مدارس و مشارکت خیرین در شاهرود",
       "rescued": false,
@@ -4577,6 +4597,13 @@
       "rule": "no-concrete-event",
       "t": 1795568626,
       "title": "Iraq’s Prime Minister Aims to Wrest More Power from Kurdistan Region"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، فرهنگی‑ورزشی، اثر محدود",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1795570384,
+      "title": "میادین نجف آباد به زمین بازی خانواده ها تبدیل شد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -4969,6 +4996,24 @@
       ],
       "t": 1795568636.0643744,
       "title": "تعلیق عملیات مشترک دولت آمریکا با اکوادور ⚡️ دولت آمریکا پس از بررسی یک عملیات توسط نیروهای اکوادور که منجر به کشته شدن "
+    },
+    {
+      "h": [
+        "تمن",
+        "حفظ",
+        "خرج",
+        "درخست",
+        "زلنسک",
+        "مل",
+        "ملرد",
+        "نز",
+        "ولدمر",
+        "پشبرد",
+        "کمک",
+        "یر"
+      ],
+      "t": 1795570445.6243474,
+      "title": "درخواست ۱۱۵ میلیارد یورویی اوکراین برای تأمین مالی در سال ۲۰۲۷ ⚡️ ولودیمیر زلنسکی، رئیس جمهور اوکراین اعلام کرد که این ک"
     }
   ],
   "_published_incidents": [
@@ -5233,139 +5278,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "انجم",
-        "اکرن",
-        "بندر",
-        "بنغز",
-        "جمهر",
-        "جنگ",
-        "حمل",
-        "خند",
-        "دنست",
-        "رست",
-        "شر",
-        "عض",
-        "لب",
-        "مسل",
-        "مقم",
-        "منزل"
-      ],
-      "t": 1795439149.6369214,
-      "title": "حمله به بندر بنغازی؛ لیبی آن را اعلام جنگ دانست ⚡️ عضو شورای ریاست جمهوری لیبی، حمله به بندر بنغازی را به منزله اعلام جن"
-    },
-    {
-      "k": [
-        "ازد",
-        "افزش",
-        "امدگ",
-        "انتظم",
-        "تد",
-        "تهر",
-        "تکد",
-        "حمل",
-        "دفع",
-        "سردر",
-        "قدرت",
-        "مرکز",
-        "مسلح",
-        "مند",
-        "نر",
-        "نمد",
-        "نکم",
-        "کشر"
-      ],
-      "s": "سردار ایزدی",
-      "t": 1795439167.1145346,
-      "title": "سردار ایزدی: حمله به مراکز انتظامی تهران ناکام ماند ⚡️ سردار ایزدی ناکامی حمله به مراکز انتظامی تهران را تأیید کرد و از "
-    },
-    {
-      "k": [
-        "ار",
-        "ارتش",
-        "ارزب",
-        "ارشد",
-        "اسرل",
-        "انتظر",
-        "انگز",
-        "اگدر",
-        "تج",
-        "تضد",
-        "تند",
-        "جبه",
-        "جنگ",
-        "حضر",
-        "حمل",
-        "دفع",
-        "دنست",
-        "رس",
-        "رمن",
-        "سر",
-        "سس",
-        "عمل",
-        "غرقبل",
-        "غزه",
-        "لبرمن",
-        "لبن",
-        "مبن",
-        "محدد",
-        "محرمن",
-        "مسد",
-        "مقم",
-        "منجر",
-        "مندن",
-        "نتنه",
-        "نر",
-        "نشست",
-        "هرگن",
-        "هشدر",
-        "پنج",
-        "چندجبه",
-        "چندن",
-        "کمل",
-        "گفمن"
-      ],
-      "t": 1795439216.6186283,
-      "title": "هشدار ارتش اسرائیل به نتانیاهو درباره جنگ چندجبهه ای با حمله به ایران ⚡️ ارتش اسرائیل در نشستی محرمانه با حضور نتانیاهو "
-    },
-    {
-      "k": [
-        "ارپ",
-        "امرک",
-        "بدن",
-        "برلن",
-        "برگزر",
-        "بزرگ",
-        "بزگشت",
-        "تحللگر",
-        "ترمپ",
-        "جنب",
-        "حضر",
-        "دست",
-        "رس",
-        "سست",
-        "شنژن",
-        "شکف",
-        "عمق",
-        "فصل",
-        "قدرت",
-        "متحد",
-        "مشرت",
-        "مشرکت",
-        "ملمس",
-        "نتج",
-        "نشست",
-        "نشنگر",
-        "نمد",
-        "هچ",
-        "وشنگتن",
-        "چن",
-        "گم"
-      ],
-      "t": 1795439225.4676256,
-      "title": "نشست شنژن بدون حضور اروپا: گام دیگر در فاصله واشنگتن و برلین ⚡️ نشست سه جانبه آمریکا، روسیه و چین در شنژن بدون مشارکت ار"
-    },
     {
       "k": [
         "اجز",
@@ -7341,6 +7253,41 @@
       ],
       "t": 1795568636.0529783,
       "title": "تعلیق عملیات مشترک دولت آمریکا با اکوادور ⚡️ دولت آمریکا پس از بررسی یک عملیات توسط نیروهای اکوادور که منجر به کشته شدن "
+    },
+    {
+      "k": [
+        "اتحد",
+        "ارپ",
+        "اظهر",
+        "اقتصد",
+        "اکرن",
+        "بن",
+        "تعهد",
+        "تمن",
+        "تکنن",
+        "جمهر",
+        "جنگ",
+        "حفظ",
+        "خرج",
+        "درخست",
+        "درفت",
+        "رس",
+        "زلنسک",
+        "مبلغ",
+        "مل",
+        "ملرد",
+        "نز",
+        "ولدمر",
+        "پشبرد",
+        "کشر",
+        "کمک",
+        "یر"
+      ],
+      "n": [
+        "115"
+      ],
+      "t": 1795570445.6164925,
+      "title": "درخواست ۱۱۵ میلیارد یورویی اوکراین برای تأمین مالی در سال ۲۰۲۷ ⚡️ ولودیمیر زلنسکی، رئیس جمهور اوکراین اعلام کرد که این ک"
     }
   ],
   "_telegram_errors": [
@@ -7954,7 +7901,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795568493
+    "at": 1795570308
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -7968,15 +7915,20 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
+  "gemini:gemini-3.5-flash-lite": {
+    "disabled_until": 1795570700.0,
+    "last_failure": 1795570400,
+    "last_status": 503
+  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795567406,
-    "last_failure": 1795566806,
+    "disabled_until": 1795570995,
+    "last_failure": 1795570395,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795567106.0,
-    "last_failure": 1795566806,
-    "last_status": 503
+    "disabled_until": 1795570991,
+    "last_failure": 1795570391,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
@@ -7994,6 +7946,10 @@
     "disabled_until": 1795549126.0,
     "last_failure": 1795548826,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1795570391,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
