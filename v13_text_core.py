@@ -21,6 +21,12 @@ from urllib.parse import (
 from bs4 import BeautifulSoup
 
 
+# Tunables used by the helpers below. They live in this leaf module (no import
+# cycle) and the monolith re-exports them so `main.<name>` keeps working.
+SEMANTIC_HISTORY_DAYS = 7   # semantic duplicate protection window (days)
+MAX_NEWS_AGE_HOURS = 0.5    # hard freshness window (delayed stories -> v13_freshness_rescue)
+
+
 # ============================================================
 
 def normalize_space(text):

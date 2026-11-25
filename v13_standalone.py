@@ -27,8 +27,10 @@ from v13_text_core import (  # noqa: F401 - re-exported for the install() stack
     IMPORTANT_KEYWORDS,
     IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES,
     IMPORTANT_RESCUE_PATTERNS,
+    MAX_NEWS_AGE_HOURS,
     MEDIUM_QUALITY_HOSTS,
     ROUNDUP_PATTERNS,
+    SEMANTIC_HISTORY_DAYS,
     SOURCE_PHRASES,
     STOPWORDS,
     TRACKING_PARAMETERS,
@@ -121,12 +123,8 @@ FEED_COLLECTION_WINDOW_MINUTES = 30
 # Rescue only high-impact events; routine foreign-local stories remain blocked.
 IMPORTANT_NEWS_RESCUE_MAX_AGE_MINUTES = 360
 
-# Normal publication freshness is 30 minutes. Do not silently widen this
-# value: delayed high-impact stories are handled only by v13_freshness_rescue.
-MAX_NEWS_AGE_HOURS = 0.5
-
-# Semantic duplicate protection window.
-SEMANTIC_HISTORY_DAYS = 7
+# MAX_NEWS_AGE_HOURS and SEMANTIC_HISTORY_DAYS live in v13_text_core (imported
+# above) so the extracted helpers and the monolith share one definition.
 
 HISTORY_FILE = "sent_news.txt"
 MAX_HASH_HISTORY = 5000
