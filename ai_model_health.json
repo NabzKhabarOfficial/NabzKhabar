@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795557840
-    },
-    {
-      "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.6-flash",
-      "t": 1795557848
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 5x",
-      "t": 1795557881
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795559568
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795559569
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
-      "t": 1795559570
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795559571
     },
@@ -159,6 +135,30 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
       "t": 1795565322
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795566798
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795566799
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795566799
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1795566806
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1795566806
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1795566811
     }
   ],
   "_ai_pace": {
@@ -168,23 +168,23 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-24",
-      "n": 140
+      "n": 141
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-24",
-      "n": 62
+      "n": 63
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-24",
-      "n": 62
+      "n": 63
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-25",
-      "n": 5
+      "n": 6
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-25",
-      "n": 5
+      "n": 6
     },
     "openrouter:*": {
       "day": "2026-11-24",
@@ -501,29 +501,36 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
+        "calls": 4,
+        "ok": 4,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 1,
-        "calls": 1,
+        "429": 2,
+        "calls": 2,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
+      "gemini:gemini-3.8-flash": {
+        "429": 0,
+        "calls": 1,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 0,
+        "other": 1
+      },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 4,
-        "other": 1
+        "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 5,
+        "calls": 6,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 3,
+        "ok": 4,
         "other": 2
       },
       "mistral:open-mistral-nemo": {
@@ -1229,6 +1236,12 @@
       "topic": "سیاست",
       "until": 1795570386.369677
     },
+    "v4|alaska ends deal to give voter records to us justice department": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Alaska cancels voter record sharing with DOJ, ending Trump-era push.",
+      "topic": "سیاست",
+      "until": 1795653199.3082948
+    },
     "v4|amazon’s decart acquisition is a bet on using software to narrow the gap with nvidia in the ai chip race": {
       "ok": true,
       "reason": "ai openrouter/openrouter/free batch score=7 happened=True scope=world: خرید ۷.۵ میلیارد دلاری شرکت توسط آمازون",
@@ -1318,12 +1331,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis and expert opinion on international relations.",
       "topic": "سیاست",
       "until": 1795597511.5252426
-    },
-    "v4|iran war live: iran says three ships catch fire after hitting hormuz mines": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: Three tankers caught fire after hitting mines in Hormuz",
-      "topic": "نظامی",
-      "until": 1795566781.3702643
     },
     "v4|is libya a new front in the ukraine war?": {
       "ok": false,
@@ -1451,12 +1458,6 @@
       "topic": "فناوری",
       "until": 1795626339.1895678
     },
-    "v4|trump calls to ‘expedite’ us federal executions, blasts gavin newsom": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Routine political rhetoric regarding domestic US judicial policy.",
-      "topic": "سیاست",
-      "until": 1795566780.5772052
-    },
     "v4|trump’s nvidia push shows companies’ importance in global economic war": {
       "ok": false,
       "reason": "ai openrouter/openrouter/free batch score=2 happened=False scope=world: تحلیل و تفسیر، نه رویداد مشخص",
@@ -1486,6 +1487,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=world: Opinion and political analysis regarding Israeli internal politics.",
       "topic": "سیاست",
       "until": 1795592114.083235
+    },
+    "v4|yale’s sonnenfeld: nvidia is a ‘detriment’ to u.s. industrial might — not a champion": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: اظهارنظر کارشناسی و انتقاد تحلیلی، یک رویداد قطعی نیست.",
+      "topic": "فناوری",
+      "until": 1795653211.549175
     },
     "v4|«برابر آینده»؛ دانشجویان در جایگاه پرسشگر و ارزیاب سیاست های مسئولان": {
       "ok": false,
@@ -1948,12 +1955,6 @@
       "reason": "ai openrouter/openrouter/free batch score=7 happened=True scope=iran_national: Iranian medal at World Junior Championships",
       "topic": "ورزش",
       "until": 1795629897.0527334
-    },
-    "v4|تاکر کارلسون: دولت ترامپ فاسد است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Opinion statement, no concrete event",
-      "topic": "سیاست",
-      "until": 1795566776.8112235
     },
     "v4|تایید حمله به سه کشتی در شرق تنگه هرمز": {
       "ok": true,
@@ -4005,20 +4006,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Hat-trick in Nagoya, not a major competition",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1795534399,
-      "title": "روایت ضیغمی نژاد از هت تریک طلایی در ناگویا"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial minister visit, project openings, no national impact",
-      "rescued": false,
-      "rule": "routine-statement",
-      "t": 1795534400,
-      "title": "سفر وزیر ارتباطات و فناوری اطلاعات به اردبیل"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: انتصاب رئیس فرهنگستان علوم پزشکی رویداد داخلی و کم اهمیت است",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -4563,6 +4550,20 @@
       "rule": "foreign-local-preselection",
       "t": 1795565290,
       "title": "Bellingham plays down Zidane comparison after wonder goal"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Alaska cancels voter record sharing with DOJ, ending Trump-era push.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795566799,
+      "title": "Alaska ends deal to give voter records to US Justice Department"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: اظهارنظر کارشناسی و انتقاد تحلیلی، یک رویداد قطعی نیست.",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795566811,
+      "title": "Yale’s Sonnenfeld: Nvidia is a ‘detriment’ to U.S. industrial might — not a champion"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8034,7 +8035,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795565211
+    "at": 1795566680
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8049,13 +8050,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795565905,
-    "last_failure": 1795565305,
+    "disabled_until": 1795567406,
+    "last_failure": 1795566806,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795563497.0,
-    "last_failure": 1795563197,
+    "disabled_until": 1795567106.0,
+    "last_failure": 1795566806,
     "last_status": 503
   },
   "github:openai/gpt-4.1-mini": {
