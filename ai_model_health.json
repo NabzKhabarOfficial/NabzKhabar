@@ -1,22 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795559571
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795559571
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795559575
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795559575
-    },
-    {
       "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1795559578
     },
@@ -159,16 +143,32 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1795566811
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795568624
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795568625
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795568625
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1795568637
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-24",
-      "n": 82
+      "n": 83
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-24",
-      "n": 141
+      "n": 142
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-24",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-25",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-25",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-24",
@@ -495,14 +495,14 @@
     "2026-11-25": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 2,
-        "ok": 2,
+        "calls": 3,
+        "ok": 3,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -521,23 +521,23 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
-        "other": 2
+        "ok": 5,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 4,
-        "other": 2
+        "calls": 8,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 5,
+        "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 1,
-        "calls": 3,
+        "calls": 5,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 2,
+        "ok": 4,
         "other": 0
       }
     }
@@ -1214,6 +1214,13 @@
       "t": 1795565321.198374,
       "title": "حملات توپخانه ای و پهپادی اسرائیل به جنوب لبنان",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1795568636.0750048,
+      "title": "تعلیق عملیات مشترک دولت آمریکا با اکوادور",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-24",
@@ -1223,12 +1230,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=world: تحلیل عملکرد تیم فوتبال منچسترسیتی، فاقد اهمیت خبری سطح اول.",
       "topic": "ورزش",
       "until": 1795649605.65581
-    },
-    "v4|24 killed after fire rips through candy factory in indonesia": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: 24 dead factory fire, major disaster",
-      "topic": "حادثه",
-      "until": 1795568575.8988953
     },
     "v4|airports, public transport shut down amid national strike in belgium": {
       "ok": false,
@@ -1331,6 +1332,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative analysis and expert opinion on international relations.",
       "topic": "سیاست",
       "until": 1795597511.5252426
+    },
+    "v4|iraq’s prime minister aims to wrest more power from kurdistan region": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تحلیل سیاسی از تغییرات قدرت داخلی در عراق بدون رویداد فوری و قطعی",
+      "topic": "سیاست",
+      "until": 1795655026.912286
     },
     "v4|is libya a new front in the ukraine war?": {
       "ok": false,
@@ -1457,6 +1464,12 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: تصمیم پلتفرم جهانی تایدال برای حذف میلیونی آثار هوش مصنوعی",
       "topic": "فناوری",
       "until": 1795626339.1895678
+    },
+    "v4|trump administration pauses joint operations with ecuador": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: US halts joint ops with Ecuador amid investigation of Ecuadorian operation",
+      "topic": "سیاست",
+      "until": 1795655025.3114855
     },
     "v4|trump’s nvidia push shows companies’ importance in global economic war": {
       "ok": false,
@@ -2111,12 +2124,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: regional health case, limited national impact",
       "topic": "سلامت",
       "until": 1795606453.9904423
-    },
-    "v4|جرد کوشنر درباره جمهوری اسلامی دقیقا چه فکر می کند؟": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Speculative article, no concrete event",
-      "topic": "سیاست",
-      "until": 1795568575.9070244
     },
     "v4|جشنواره «زن و رسانه» برگزار می شود": {
       "ok": false,
@@ -2976,6 +2983,12 @@
       "topic": "سیاست",
       "until": 1795640623.659044
     },
+    "v4|هشدار صریح صنعا به ریاض: جده در تیررس ارتش یمن است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: Yemeni military threatens Saudi ports, official statement, regional conflict",
+      "topic": "نظامی",
+      "until": 1795655023.4670846
+    },
     "v4|هشدار وزارت صمت به معادن؛ فروش سوخت سهمیه ای ممنوع شد": {
       "ok": false,
       "reason": "ai openrouter/openrouter/free batch score=4 happened=True scope=iran_national: بخشنامه ممنوعیت فروش سوخت سهمیه‌ای به غیر",
@@ -3472,15 +3485,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "بخشایش اردستانی: تهران توانایی هدف گیری اروپا با موشک های خود را اعلام کرد ⚡️ عضو کمیسیون امنیت ملی مجلس گفت ج",
-      "id": "56081da0ee",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795458931,
-      "verdict": "new",
-      "why": "طرح تهدید موشکی اروپا توسط مقام ایرانی جدید است."
-    },
     {
       "head": "سفیر ایران در وین: محاصره دریایی آمریکا و اقدامات قهری علیه ایران جنایت جنگی است ⚡️ سفیر ایران در وین محاصره د",
       "id": "f0e9ff888b",
@@ -4002,30 +4006,18 @@
       "t": 1795565320,
       "verdict": "new",
       "why": "حمله جدید به جنوب لبنان در لیست وجود ندارد."
+    },
+    {
+      "head": "تعلیق عملیات مشترک دولت آمریکا با اکوادور ⚡️ دولت آمریکا پس از بررسی یک عملیات توسط نیروهای اکوادور که منجر به",
+      "id": "f262fa7992",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795568634,
+      "verdict": "new",
+      "why": "عملیات مشترک جدید آمریکا و اکوادور"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: انتصاب رئیس فرهنگستان علوم پزشکی رویداد داخلی و کم اهمیت است",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1795534401,
-      "title": "سیدعلیرضا مرندی به عنوان رئیس فرهنگستان علوم پزشکی منصوب شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: صدور رای دادگاه عالی ورزش و تعیین قهرمان فوتبال آفریقا",
-      "rescued": true,
-      "rule": "routine-metaphorical-topic",
-      "t": 1795534410,
-      "title": "با رای دادگاه عالی ورزش؛ سنگال قهرمان آفریقا شد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: برنامه و هدف‌گذاری شهرداری برای مسکن محلی محسوب می‌شود",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1795534863,
-      "title": "هدف گذاری ساخت ۹۰ هزار واحد مسکونی در بافت فرسوده تهران"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: پیشنهاد نماینده مجلس برای تشکیل شعبه ویژه قضایی است.",
       "rescued": false,
@@ -4564,31 +4556,33 @@
       "rule": "no-concrete-event",
       "t": 1795566811,
       "title": "Yale’s Sonnenfeld: Nvidia is a ‘detriment’ to U.S. industrial might — not a champion"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=7 happened=True scope=world: Yemeni military threatens Saudi ports, official statement, regional conflict",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1795568623,
+      "title": "هشدار صریح صنعا به ریاض: جده در تیررس ارتش یمن است"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: US halts joint ops with Ecuador amid investigation of Ecuadorian operation",
+      "rescued": true,
+      "rule": "no-concrete-event",
+      "t": 1795568625,
+      "title": "Trump Administration Pauses Joint Operations With Ecuador"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: تحلیل سیاسی از تغییرات قدرت داخلی در عراق بدون رویداد فوری و قطعی",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795568626,
+      "title": "Iraq’s Prime Minister Aims to Wrest More Power from Kurdistan Region"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اذرم",
-        "است",
-        "بختند",
-        "بشهر",
-        "تصدف",
-        "جن",
-        "دست",
-        "رهر",
-        "شهر",
-        "شهرند",
-        "معبر",
-        "نفر",
-        "پلس"
-      ],
-      "t": 1795523828.9488392,
-      "title": "رئیس پلیس راهور بوشهر: ۱۲ شهروند در تصادفات شهری استان جان باختند ⚡️ رئیس پلیس راهور بوشهر اعلام کرد که در آذرماه ۱۴۰۴، "
-    },
     {
       "h": [
         "امد",
@@ -4959,6 +4953,22 @@
       ],
       "t": 1795565321.1850114,
       "title": "حملات توپخانه ای و پهپادی اسرائیل به جنوب لبنان ⚡️ اسرائیل در دور جدید حملات خود، بخش هایی از اراضی کشاورزی و شهرک های م"
+    },
+    {
+      "h": [
+        "اکدر",
+        "بررس",
+        "بند",
+        "تعلق",
+        "رهبر",
+        "عمل",
+        "متقف",
+        "متهم",
+        "مشترک",
+        "منجر"
+      ],
+      "t": 1795568636.0643744,
+      "title": "تعلیق عملیات مشترک دولت آمریکا با اکوادور ⚡️ دولت آمریکا پس از بررسی یک عملیات توسط نیروهای اکوادور که منجر به کشته شدن "
     }
   ],
   "_published_incidents": [
@@ -5223,118 +5233,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اتش",
-        "اثر",
-        "ادع",
-        "اقدم",
-        "الملل",
-        "اکرن",
-        "بر",
-        "بلتک",
-        "تد",
-        "تررسم",
-        "جلگر",
-        "جنگ",
-        "حز",
-        "حمل",
-        "خستر",
-        "خلج",
-        "در",
-        "دچر",
-        "رس",
-        "سرت",
-        "سز",
-        "فنلند",
-        "متهم",
-        "مرز",
-        "مقم",
-        "منطق",
-        "نخست",
-        "ندد",
-        "نزدک",
-        "نشن",
-        "هدف",
-        "هست",
-        "هنز",
-        "وزر",
-        "وکنش",
-        "پهپد",
-        "کرملن",
-        "کشت",
-        "کشر",
-        "گرفتن"
-      ],
-      "t": 1795437282.1205535,
-      "title": "روسیه، اوکراین را به تروریسم دریایی در بالتیک متهم کرد ⚡️ کرملین پس از هدف قرار گرفتن یک کشتی باری روسیه در آب های بین ا"
-    },
-    {
-      "k": [
-        "ابلغ",
-        "ارز",
-        "ارزش",
-        "از",
-        "اطفل",
-        "ال",
-        "انه",
-        "تجهز",
-        "ترخص",
-        "تصب",
-        "تعن",
-        "تلد",
-        "تم",
-        "جمهر",
-        "خشک",
-        "در",
-        "دلر",
-        "رس",
-        "شر",
-        "شرخشک",
-        "عرف",
-        "مبن",
-        "محسب",
-        "محمدرض",
-        "مد",
-        "مصب",
-        "مصرف",
-        "معن",
-        "ملزم",
-        "نرخ",
-        "نم",
-        "هت",
-        "وزر",
-        "پزشک",
-        "گمرک"
-      ],
-      "t": 1795437374.7715662,
-      "title": "نرخ ارز گمرکی ترخیص دارو و شیرخشک تعیین شد ⚡️ محمدرضا عارف معاون اول رئیس جمهور، تصویب نامه هیئت وزیران درباره تعیین نرخ"
-    },
-    {
-      "k": [
-        "اثر",
-        "انفجر",
-        "تبرز",
-        "خدر",
-        "خسرت",
-        "طبق",
-        "مرل",
-        "مسکن",
-        "مصدم",
-        "مع",
-        "مغز",
-        "منزل",
-        "منطق",
-        "نشت",
-        "ورد",
-        "پرک",
-        "چند",
-        "گذشت",
-        "گز"
-      ],
-      "t": 1795437477.5134962,
-      "title": "انفجار منزل مسکونی در تبریز؛ خسارت به سه خودرو و چند مغازه ⚡️ انفجار یک منزل مسکونی سه طبقه در منطقه مارالان تبریز بر اث"
-    },
     {
       "k": [
         "انجم",
@@ -7422,6 +7320,27 @@
       ],
       "t": 1795565321.1781354,
       "title": "حملات توپخانه ای و پهپادی اسرائیل به جنوب لبنان ⚡️ اسرائیل در دور جدید حملات خود، بخش هایی از اراضی کشاورزی و شهرک های م"
+    },
+    {
+      "k": [
+        "امرک",
+        "اکدر",
+        "بررس",
+        "بند",
+        "تعلق",
+        "دلت",
+        "رهبر",
+        "عمل",
+        "متقف",
+        "متهم",
+        "مشترک",
+        "منجر",
+        "نر",
+        "نظم",
+        "کشت"
+      ],
+      "t": 1795568636.0529783,
+      "title": "تعلیق عملیات مشترک دولت آمریکا با اکوادور ⚡️ دولت آمریکا پس از بررسی یک عملیات توسط نیروهای اکوادور که منجر به کشته شدن "
     }
   ],
   "_telegram_errors": [
@@ -8035,7 +7954,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795566680
+    "at": 1795568493
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
