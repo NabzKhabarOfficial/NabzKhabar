@@ -2,14 +2,6 @@
   "_ai_extra_log": [
     {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795563191
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795563191
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795563192
     },
     {
@@ -159,16 +151,24 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
       "t": 1795572235
+    },
+    {
+      "e": "EDITOR BATCH: 5/5 via groq/openai/gpt-oss-120b",
+      "t": 1795573968
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1795574005
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-24",
-      "n": 89
+      "n": 90
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-24",
-      "n": 151
+      "n": 154
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-24",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-25",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-25",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-24",
@@ -495,15 +495,15 @@
     "2026-11-25": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 9,
-        "ok": 9,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 14,
+        "calls": 17,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 13,
+        "ok": 16,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
@@ -523,35 +523,28 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 9,
         "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 7,
+        "ok": 9,
         "other": 5
       },
       "mistral:open-mistral-nemo": {
-        "429": 7,
-        "calls": 15,
+        "429": 9,
+        "calls": 20,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 8,
+        "ok": 11,
         "other": 0
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 4,
-      "t": 1795399461.1136456,
-      "title": "آمادگی کره شمالی برای تقویت روابط با کشورهای محترم شمار حاکمیت این کشور",
-      "urgent": false
-    },
     {
       "label": "اقتصاد",
       "level": 3,
@@ -1237,6 +1230,13 @@
       "t": 1795572234.2034762,
       "title": "رایزنی تلفنی وزرای خارجه عربستان و آمریکا",
       "urgent": false
+    },
+    {
+      "label": "سیاست",
+      "level": 4,
+      "t": 1795573986.1124136,
+      "title": "وزیر دفاع اسرائیل: اطلاعاتی درباره برنامه ایران برای سلاح های شیمیایی در اختیار دارند",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-24",
@@ -1367,12 +1367,6 @@
       "topic": "سلامت",
       "until": 1795604784.9106681
     },
-    "v4|israeli minister approves return of flydubai flights": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=world: تصمیم اولیه برای ازسرگیری پروازها هنوز نهایی نشده است",
-      "topic": "اقتصاد",
-      "until": 1795572240.8831065
-    },
     "v4|israeli minister approves return of flydubai flights to tel aviv": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: تصویب اولیه ازسرگیری پروازهای دبی به تل‌آویو",
@@ -1426,12 +1420,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official statement by a head of state regarding military retaliation.",
       "topic": "سیاست",
       "until": 1795635270.4935937
-    },
-    "v4|qatar pm looks to revive us-iran talks after meeting rubio": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع‌گیری نخست‌وزیر قطر درباره تلاش برای احیای مذاکرات ایران و آمریکا.",
-      "topic": "سیاست",
-      "until": 1795572243.942127
     },
     "v4|rebel group retreats in dr congo after heavy clashes with government forces": {
       "ok": false,
@@ -1565,6 +1553,12 @@
       "topic": "ورزش",
       "until": 1795606454.5796242
     },
+    "v4|آمریکا برای شهروندانش در غرب آسیا هشدار صادر کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: US travel advisory for West Asia due to threats",
+      "topic": "سیاست",
+      "until": 1795660368.9069903
+    },
     "v4|آمریکا تحریم های جدیدی مرتبط با ایران اعمال کرد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اعمال تحریم‌های جدید آمریکا علیه افراد و نهادهای مرتبط با ایران.",
@@ -1642,12 +1636,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، آزمایش نسخه الکترونیک در درمانگاه‌های تهران",
       "topic": "سلامت",
       "until": 1795592074.5025403
-    },
-    "v4|احتمال حمله سایبری به ۵۰ کشتی حامل نفت و مواد قابل اشتعال؛ مظنون اصلی: جمهوری اسلامی ایران": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: تحقیقات آمریکا درباره احتمال حملات سایبری ایران به نفتکش‌ها.",
-      "topic": "نظامی",
-      "until": 1795572243.9552367
     },
     "v4|احتمال حمله یک جانبه اسرائیل به ایران؛ واشنگتن از تهران توافقی «واقعی» می خواهد": {
       "ok": true,
@@ -2051,12 +2039,6 @@
       "topic": "جامعه",
       "until": 1795604695.8624399
     },
-    "v4|تربیت نیروی انسانی در جهاددانشگاهی باید از دوران دانشجویی آغاز شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: Routine administrative statement regarding internal organizational training programs.",
-      "topic": "جامعه",
-      "until": 1795572234.9492037
-    },
     "v4|تصادف تیبا با تریلر در محور تربت حیدریه - زاوه ۲ کشته برجای گذاشت": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=True scope=local: Routine local road accident with low casualty count.",
@@ -2177,6 +2159,12 @@
       "topic": "قضایی",
       "until": 1795622657.8824801
     },
+    "v4|جنگنده های سعودی الحدیده را بمباران کردند؛ صنعا: بنادر دریای سرخ سعودی هدف قرار می گیرند": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Saudi airstrike on Hodeidah amid Yemen war",
+      "topic": "نظامی",
+      "until": 1795660368.8648007
+    },
     "v4|حاشیه تازه در پرونده قهرمانی آفریقا؛ مراکش از تماس مشکوک خبر داد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: ادعای حاشیه‌ای و غیرمهم درباره تماس در فوتبال آفریقا",
@@ -2218,18 +2206,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: گزارش هک سازمان اطلاعات مرکزی آمریکا (سیا)",
       "topic": "فناوری",
       "until": 1795644248.9128847
-    },
-    "v4|حمله پهپادهای حامل مواد منفجره به مقر پلیس در کلمبیا": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=world: حمله پهپادی محلی به مقر پلیس در کلمبیا با تلفات کم.",
-      "topic": "حادثه",
-      "until": 1795572243.9808981
-    },
-    "v4|حمله پهپادی اسرائیل به یک مقر پلیس در غزه ۳ فلسطینی را به شهادت رساند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله پهپادی اسرائیل در غزه و شهادت ۳ فلسطینی در منطقه جنگی.",
-      "topic": "نظامی",
-      "until": 1795572243.9679062
     },
     "v4|خلع سلاح کتائب حزب الله در جرف الصخر؛ فرصتی که به اختلاف افکنی آمریکا و اسرائیل نرسید": {
       "ok": true,
@@ -2783,6 +2759,12 @@
       "topic": "سیاست",
       "until": 1795590308.6688316
     },
+    "v4|لفاظی ترامپ: جنگ با ایران تا ژانویه آینده تأمین مالی شده است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Trump claims war with Iran funded till Jan",
+      "topic": "سیاست",
+      "until": 1795660368.8969827
+    },
     "v4|لوکاشنکو: آماده ام تا به عنوان ضامن امنیت، زلنسکی را به مسکو همراهی کنم": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: Lukashenko offers security escort for Zelensky to Moscow",
@@ -2962,6 +2944,18 @@
       "reason": "ai openrouter/openrouter/free score=2 happened=True scope=local: Provincial political meeting, not top national or international story.",
       "topic": "سیاست",
       "until": 1795638881.2416885
+    },
+    "v4|نعیمی پور: ایران می تواند محوریت ابتکار «پیمان محمد» در منطقه باشد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: پیشنهاد است، تصمیم یا اقدام ملموس نیست",
+      "topic": "سیاست",
+      "until": 1795660364.7791421
+    },
+    "v4|نفوذ هکرها به سازمان تروریستی سیا": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Reported CIA cyber breach by hackers",
+      "topic": "فناوری",
+      "until": 1795660368.8864844
     },
     "v4|نقش آفرینی خیرین در نیمی از پروژه های مدرسه سازی گیلان": {
       "ok": false,
@@ -3227,6 +3221,12 @@
       "topic": "سلامت",
       "until": 1795579541.8021944
     },
+    "v4|پیامدهای ماندگار بمباران های اسرائیل در غزه / از آلودگی ۹۹ درصدی سرزمین تا کارشکنی در بازسازی و ممانعت از ورود تجهیزات": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Analytical piece on Gaza bombing aftermath",
+      "topic": "سیاست",
+      "until": 1795660368.8760552
+    },
     "v4|پیشنهاد تشکیل کارگروه مشترک دانشگاه تهران و بنیاد مستضعفان برای توسعه فناوری های کشاورزی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: پیشنهاد کارگروه دانشگاه تهران برای توسعه فناوری",
@@ -3485,6 +3485,10 @@
       "reason": "content_duplicate",
       "until": 1795570584.9833987
     },
+    "آمریکا برای شهروندانش در غرب آسیا هشدار صادر کرد": {
+      "reason": "content_duplicate",
+      "until": 1795595605.3367252
+    },
     "ادعای ترامپ: با ایران یک دوره توقف موقت داشتیم، اما فهمیدیم که نمی توان به آن ها اعتماد کرد": {
       "reason": "content_duplicate",
       "until": 1795575905.8851027
@@ -3502,6 +3506,10 @@
       "reason": "ai_unavailable_persian_fallback",
       "until": 1795553745.9015179
     },
+    "جنگنده های سعودی الحدیده را بمباران کردند؛ صنعا: بنادر دریای سرخ سعودی هدف قرار می گیرند": {
+      "reason": "content_duplicate",
+      "until": 1795595575.5516362
+    },
     "حماس: اسرائیل با ترور مقام ارشد امنیتی غزه به دنبال برهم زدن امنیت داخلی است": {
       "reason": "content_duplicate",
       "until": 1795554399.5182128
@@ -3517,6 +3525,10 @@
     "لوکاشنکو: آماده ام تا به عنوان ضامن امنیت، زلنسکی را به مسکو همراهی کنم": {
       "reason": "content_duplicate",
       "until": 1795565117.3822477
+    },
+    "نفوذ هکرها به سازمان تروریستی سیا": {
+      "reason": "content_duplicate",
+      "until": 1795595596.9549406
     },
     "نهادهای اطلاعاتی ارشد ایالات متحده هدف حمله سایبری قرار گرفتند": {
       "reason": "content_duplicate",
@@ -3541,15 +3553,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "کشته و زخمی شدن کارکنان آنروا در حمله اسرائیل به نوار غزه ⚡️ آژانس امدادرسانی و کاریابی سازمان ملل برای آوارگا",
-      "id": "a4db1ee71e",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795480391,
-      "verdict": "new",
-      "why": "گزارش جدید در مورد حمله اسرائیل به غزه و آسیب به کارکنان آنروا است"
-    },
     {
       "head": "احضار سفیر روسیه به دنبال نقض احتمالی حریم هوایی فنلاند ⚡️ وزارت امور خارجه فنلاند روز دوشنبه سفیر روسیه را در",
       "id": "3dee21d31f",
@@ -4079,16 +4082,18 @@
       "t": 1795572233,
       "verdict": "new",
       "why": "This is a diplomatic discussion, distinct from previous reported events."
+    },
+    {
+      "head": "وزیر دفاع اسرائیل: اطلاعاتی درباره برنامه ایران برای سلاح های شیمیایی در اختیار دارند ⚡️ وزیر دفاع اسرائیل اعل",
+      "id": "fcbbc4dce7",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795573985,
+      "verdict": "new",
+      "why": "نوشته جدید در مورد ادعاهای جدید اسرائیل و آمریکا است"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Religious conference, no national impact",
-      "rescued": false,
-      "rule": "local-routine-low-value",
-      "t": 1795536256,
-      "title": "همایش ملی «هم عهدی تا تمدن نوین اسلامی» در فیضیه قم برگزار شد"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، جمع‌آوری معتادان و دستگیری زوج در اصفهان",
       "rescued": false,
@@ -4641,57 +4646,19 @@
       "rule": "strict-source-below-importance(8<10)",
       "t": 1795572177,
       "title": "روغن ۲۲ میلیون تومانی در بازار آزاد!/ کامیونداران خواستار توزیع مستمر سهمیه دولتی شدند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: پیشنهاد است، تصمیم یا اقدام ملموس نیست",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1795573964,
+      "title": "نعیمی پور: ایران می تواند محوریت ابتکار «پیمان محمد» در منطقه باشد"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "برج",
-        "دد",
-        "رض",
-        "سعد",
-        "مرکز",
-        "مل",
-        "پتخت",
-        "یک"
-      ],
-      "t": 1795529269.106104,
-      "title": "انفجار در یکی از برج های مرکز مالی ریاض ⚡️ منابع سعودی از انفجار در یکی از برج های مرکز مالی ریاض خبر دادند که در پایتخت"
-    },
-    {
-      "h": [
-        "ارض",
-        "الت",
-        "انتقم",
-        "انقلب",
-        "تجمع",
-        "تممت",
-        "تکد",
-        "جدت",
-        "حسن",
-        "خن",
-        "دفع",
-        "دنبل",
-        "رهبر",
-        "سنندج",
-        "شهد",
-        "عمم",
-        "فرمش",
-        "مسلح",
-        "مضع",
-        "مطلب",
-        "معن",
-        "مل",
-        "منفع",
-        "نشدن",
-        "هدند"
-      ],
-      "t": 1795529344.9682932,
-      "title": "هداوند: انتقام خون رهبر و دفاع از منافع ملی در اولویت نیروهای مسلح است ⚡️ معاون سیاسی ارتش، حسن هداوند، در تجمع مردم سنن"
-    },
     {
       "h": [
         "افرد",
@@ -5062,6 +5029,24 @@
       ],
       "t": 1795572234.194994,
       "title": "رایزنی تلفنی وزرای خارجه عربستان و آمریکا ⚡️ مارکو روبیو، وزیر امور خارجه آمریکا و فیصل بن فرحان، وزیر امور خارجه عربستا"
+    },
+    {
+      "h": [
+        "اختر",
+        "اطلعت",
+        "برنم",
+        "تلد",
+        "درند",
+        "دفع",
+        "سلح",
+        "شم",
+        "منتظر",
+        "مند",
+        "نبد",
+        "هشدر"
+      ],
+      "t": 1795573986.1019251,
+      "title": "وزیر دفاع اسرائیل: اطلاعاتی درباره برنامه ایران برای سلاح های شیمیایی در اختیار دارند ⚡️ وزیر دفاع اسرائیل اعلام کرد که "
     }
   ],
   "_published_incidents": [
@@ -7345,6 +7330,47 @@
       ],
       "t": 1795572234.1861112,
       "title": "رایزنی تلفنی وزرای خارجه عربستان و آمریکا ⚡️ مارکو روبیو، وزیر امور خارجه آمریکا و فیصل بن فرحان، وزیر امور خارجه عربستا"
+    },
+    {
+      "k": [
+        "اختر",
+        "ار",
+        "اسرل",
+        "اطلعت",
+        "اقدم",
+        "القع",
+        "امرک",
+        "امنت",
+        "بخش",
+        "برنم",
+        "بشد",
+        "تلد",
+        "حفظ",
+        "حمل",
+        "درند",
+        "دستن",
+        "دفع",
+        "سر",
+        "سلح",
+        "شم",
+        "صرت",
+        "غزه",
+        "قرب",
+        "قصد",
+        "لبن",
+        "منتظر",
+        "مند",
+        "منطق",
+        "نبد",
+        "نر",
+        "نشن",
+        "هشدر",
+        "وزر",
+        "کنترل"
+      ],
+      "s": "وزیر دفاع اسرائیل",
+      "t": 1795573986.0909321,
+      "title": "وزیر دفاع اسرائیل: اطلاعاتی درباره برنامه ایران برای سلاح های شیمیایی در اختیار دارند ⚡️ وزیر دفاع اسرائیل اعلام کرد که "
     }
   ],
   "_telegram_errors": [
@@ -7958,7 +7984,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795572084
+    "at": 1795573874
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -7998,10 +8024,6 @@
     "disabled_until": 1795549126.0,
     "last_failure": 1795548826,
     "last_status": 599
-  },
-  "groq:openai/gpt-oss-20b": {
-    "last_quality_failure": 1795570391,
-    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
