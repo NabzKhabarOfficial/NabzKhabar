@@ -65,6 +65,21 @@ event" and missed the 7->6 bar. HARD_HAPPENED now matches both languages
 old wrong rejections are judged again. ai_judge also records the providers it
 tried/succeeded into health['ai_pool'] (it was never written before, so the
 monitor always showed an empty pool during outages).
+
+Guaranteed publication (Nov 2026)
+---------------------------------
+Telemetry showed whole days where the strict bar approved nothing (real
+verdicts landed on 5-6 with happened=true, scope=world, e.g. "Haftar visits
+Turkiye" score=4, "Ben-Gvir mosque raids" score=5), so the channel stayed
+silent while the workflow stayed green. MIN_AI_SCORE is NOT lowered - the
+front-page bar keeps selecting what is genuinely first-tier. Instead, when a
+run approves nothing at all, the gate publishes exactly ONE story as an
+explicit fallback: the best candidate that still carries a real AI verdict
+of score >= 5, happened=true, scope != local, and no deterministic veto.
+It is deterministic, logged, counted in telemetry
+(fallback_publications), can be disabled with EDITOR_GATE_FALLBACK=0, and
+never applies when the normal bar already approved something. With no AI
+verdict at all the gate stays fail-closed.
 """
 
 import json
@@ -74,8 +89,9 @@ import time
 
 MIN_AI_SCORE = 7
 HARD_EVENT_MIN_AI_SCORE = 6  # hard events that already happened (deaths, crashes, strikes)
+FALLBACK_MIN_AI_SCORE = 5  # guaranteed-publication bar when the normal bar approved nothing
 CACHE_KEY = "_editor_gate_cache"
-CACHE_VERSION = "v5"    # v5: HARD_HAPPENED now covers English hard events; old verdicts are re-judged
+CACHE_VERSION = "v5"    # v5: English hard events + guaranteed-publication fallback; old verdicts are re-judged
 CACHE_TTL = 24 * 3600
 CACHE_MAX = 600
 AI_TIMEOUT = 15
@@ -400,6 +416,41 @@ def fallback_accepts(candidate):
     return bool(HARD_HAPPENED.search(title)) and not LOCAL_LEVEL.search(title) and not NON_EVENT.search(title)
 
 
+def fallback_enabled():
+    """The guaranteed-publication fallback can be turned off with EDITOR_GATE_FALLBACK=0."""
+    return os.getenv("EDITOR_GATE_FALLBACK", "1").strip().lower() not in ("0", "false", "no", "off")
+
+
+def fallback_publication_pick(pool):
+    """Best 'guaranteed publication' story when the normal bar approved nothing.
+
+    Eligible: judged by a live AI verdict, score >= FALLBACK_MIN_AI_SCORE,
+    the event happened, scope is not local, and no deterministic veto.
+    Ranking: hard/war events first, then score, then tier, then intelligence.
+    Returns the single best candidate or None.
+    """
+    best, best_key = None, None
+    for candidate in pool:
+        verdict = candidate.get("editor_verdict")
+        if not isinstance(verdict, dict):
+            continue
+        if str(verdict.get("scope", "")).lower() == "local":
+            continue
+        score = int(verdict.get("score", 0) or 0)
+        if score < FALLBACK_MIN_AI_SCORE or not bool(verdict.get("happened")):
+            continue
+        if deterministic_veto(candidate):
+            continue
+        title = _norm(candidate.get("title", ""))
+        hard = 1 if (war_zone(title) or HARD_HAPPENED.search(title)) else 0
+        key = (hard, score,
+               int(candidate.get("publication_tier", 1) or 1),
+               int(candidate.get("intelligence_score", 0) or 0))
+        if best_key is None or key > best_key:
+            best, best_key = candidate, key
+    return best
+
+
 # --------------------------------------------------------------------------
 # Cache (persisted inside ai_model_health.json, which the workflow commits)
 # --------------------------------------------------------------------------
@@ -446,11 +497,13 @@ REJECTED_THIS_RUN = {}
 # They were only backfill reserves, so they are removed from the run's
 # "selected" telemetry instead of being reported as lost publications.
 UNUSED_RESERVES = set()
+# Titles published through the guaranteed-publication fallback this run.
+FALLBACK_THIS_RUN = []
 
 
 def record_blocks(health_file="v13_health.json"):
     """Fix this run's telemetry: rejections -> editorial_blocked, reserves -> not selected."""
-    if not REJECTED_THIS_RUN and not UNUSED_RESERVES:
+    if not REJECTED_THIS_RUN and not UNUSED_RESERVES and not FALLBACK_THIS_RUN:
         return 0
     try:
         with open(health_file, "r", encoding="utf-8") as f:
@@ -478,6 +531,9 @@ def record_blocks(health_file="v13_health.json"):
     if added:
         health["editorial_blocked_publications"] = int(health.get("editorial_blocked_publications", 0) or 0) + added
         changed = True
+    if FALLBACK_THIS_RUN:
+        health["fallback_publications"] = int(health.get("fallback_publications", 0) or 0) + len(FALLBACK_THIS_RUN)
+        changed = True
     if changed:
         with open(health_file, "w", encoding="utf-8") as f:
             json.dump(health, f, ensure_ascii=False, indent=2)
@@ -504,13 +560,28 @@ def judge(main, candidate):
     key = _cache_key(candidate)
     cached = _cache_get(key)
     if cached:
+        candidate["editor_verdict"] = {
+            "score": int(cached.get("score", 0) or 0),
+            "happened": bool(cached.get("happened")),
+            "scope": str(cached.get("scope", "") or ""),
+            "provider": "cache",
+        }
         return bool(cached.get("ok")), "cached:" + str(cached.get("reason", ""))
     verdict, provider = ai_judge(main, candidate)
     if verdict:
         ok = bool(ai_accepts(verdict, candidate))
         reason = f"ai {provider} score={verdict.get('score')} happened={verdict.get('happened')} scope={verdict.get('scope')}: {verdict.get('reason', '')}"
         candidate["editor_topic"] = str(verdict.get("topic", "") or "")
-        _cache_put(key, {"ok": ok, "reason": reason, "topic": candidate["editor_topic"]})
+        candidate["editor_verdict"] = {
+            "score": int(verdict.get("score", 0) or 0),
+            "happened": bool(verdict.get("happened")),
+            "scope": str(verdict.get("scope", "") or ""),
+            "provider": provider,
+        }
+        _cache_put(key, {"ok": ok, "reason": reason, "topic": candidate["editor_topic"],
+                         "score": int(verdict.get("score", 0) or 0),
+                         "happened": bool(verdict.get("happened")),
+                         "scope": str(verdict.get("scope", "") or "")})
         return ok, reason
     ok = fallback_accepts(candidate)
     return ok, "no-ai-fallback-" + ("hard-event" if ok else "fail-closed")
@@ -533,6 +604,19 @@ def gate_pool(main, pool, target, budget=JUDGE_BUDGET, judge_fn=None):
         else:
             _audit(main, candidate, int(candidate.get("intelligence_score", 0) or 0), reason[:200])
             REJECTED_THIS_RUN[title] = (candidate, reason)
+    if not kept and pool and fallback_enabled():
+        pick = fallback_publication_pick(pool)
+        if pick is not None:
+            pick_title = str(pick.get("title", "")).strip()
+            REJECTED_THIS_RUN.pop(pick_title, None)
+            UNUSED_RESERVES.discard(pick_title)
+            pick["editor_fallback_publication"] = True
+            FALLBACK_THIS_RUN.append(pick_title)
+            kept.append(pick)
+            verdict = pick.get("editor_verdict") or {}
+            print(f"V13 EDITOR GATE: FALLBACK PUBLICATION (normal bar approved nothing) "
+                  f"score={verdict.get('score')} happened={verdict.get('happened')} scope={verdict.get('scope')} "
+                  f"{pick.get('title', '')}", flush=True)
     return kept
 
 
@@ -639,4 +723,5 @@ def install(main):
     atexit.register(record_blocks)  # runs after the engine has written v13_health.json
     _patch_topic_label()
     print(f"V13 EDITOR GATE ACTIVE: deterministic veto + AI editor (score>={MIN_AI_SCORE}, happened, not local), "
-          f"fail-closed, backfill pool {POOL_SIZE}", flush=True)
+          f"fail-closed, backfill pool {POOL_SIZE}, "
+          f"guaranteed-publication fallback {'ON' if fallback_enabled() else 'OFF'} (score>={FALLBACK_MIN_AI_SCORE})", flush=True)
