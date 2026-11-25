@@ -1,8 +1,10 @@
 """Fail loudly when the news engine stops producing fresh runtime evidence.
 
-A run that selects stories and publishes none is reported as a WARNING, not a
-failure: editorial blocks are a legitimate outcome. The warning makes a long
-silent stretch visible in the job log without turning healthy runs red.
+A run that selects stories and publishes none is an outage for a news channel,
+not a green run. Since the editor gate ships a guaranteed-publication fallback
+(Nov 2026), a zero-publication run means even the fallback bar found nothing
+publishable - that state deserves a visible alert issue, and the watchdog
+workflow closes the issue again once publication recovers.
 """
 from __future__ import annotations
 
@@ -61,13 +63,17 @@ def main():
     if feed_summary and feed_summary.get("total", 0) and feed_summary.get("feeds_with_candidates", 0) == 0:
         errors.append("all observed feeds returned zero candidates")
 
-    # Warning only: selected stories, nothing published, editorial gate decided.
+    # A silent zero-publication run is an outage, not a warning: with the
+    # guaranteed-publication fallback in place, reaching this state means the
+    # fallback bar also found nothing (no AI verdict >= 5 with happened=true
+    # and non-local scope), so the channel is silent and someone should look.
     selected = int(health.get("selected_for_publication", 0) or 0)
     published = int(health.get("published", 0) or 0)
     if status == "editorial_blocked" and selected and published == 0:
-        print("::warning title=NabzKhabar no publication this run::"
-              f"{selected} selected, 0 published (all blocked by editorial gate)")
-        print("PUBLICATION WATCHDOG: WARNING - run published nothing (editorial blocks)")
+        errors.append(
+            f"run published nothing: {selected} selected, 0 published "
+            "(editorial gate blocked everything and the fallback found nothing)"
+        )
 
     if errors:
         print("PUBLICATION WATCHDOG: ALERT")
