@@ -1,42 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795581239
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795581244
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795581244
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.5-flash-lite: no usable verdict",
-      "t": 1795581249
-    },
-    {
-      "e": "EDITOR BATCH gemini/gemini-3.8-flash: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=40)",
-      "t": 1795581291
-    },
-    {
-      "e": "EDITOR BATCH: no verdict for 8 stories",
-      "t": 1795581291
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795581291
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795581291
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795581291
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.5-flash-lite: no usable verdict",
       "t": 1795581297
     },
@@ -159,32 +123,68 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 10x, groq:openai/gpt-oss-20b held 8x",
       "t": 1795584986
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795588426
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795588426
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795588427
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1795588427
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1795588431
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795588437
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795588439
+    },
+    {
+      "e": "EDITOR BATCH: 8/8 via gemini/gemini-3.5-flash-lite",
+      "t": 1795588442
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 5x",
+      "t": 1795588538
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-24",
-      "n": 108
+      "n": 110
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-24",
-      "n": 181
+      "n": 187
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-24",
-      "n": 78
+      "n": 81
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-24",
-      "n": 78
+      "n": 81
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-25",
-      "n": 25
+      "n": 29
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-25",
-      "n": 25
+      "n": 29
     },
     "openrouter:*": {
       "day": "2026-11-25",
@@ -495,27 +495,27 @@
     "2026-11-25": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 26,
-        "ok": 26,
+        "calls": 27,
+        "ok": 27,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 44,
+        "calls": 50,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 40,
+        "ok": 46,
         "other": 4
       },
       "gemini:gemini-3.6-flash": {
-        "429": 15,
-        "calls": 15,
+        "429": 18,
+        "calls": 18,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 13,
-        "calls": 15,
+        "429": 16,
+        "calls": 18,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 0,
@@ -523,17 +523,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 25,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 18,
-        "other": 7
+        "calls": 29,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
+        "ok": 21,
+        "other": 8
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 25,
+        "calls": 29,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 17,
-        "other": 8
+        "ok": 19,
+        "other": 10
       },
       "mistral:ministral-8b-latest": {
         "429": 2,
@@ -543,10 +543,10 @@
         "other": 0
       },
       "mistral:open-mistral-nemo": {
-        "429": 26,
-        "calls": 56,
+        "429": 27,
+        "calls": 61,
         "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 30,
+        "ok": 34,
         "other": 0
       },
       "openrouter:baidu/ernie-5.5-flash-preview:free": {
@@ -584,13 +584,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1795413912.3250234,
-      "title": "افزایش بی سابقه حملات در تنگه هرمز به بالاترین سطح از زمان آغاز جنگ",
-      "urgent": false
-    },
     {
       "label": "خبر",
       "level": 4,
@@ -1248,6 +1241,13 @@
       "t": 1795584985.7738006,
       "title": "آمار رسمی روسیه نشان می دهد صدها هزار سرباز در جنگ اوکراین کشته شدند",
       "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 4,
+      "t": 1795588537.3501155,
+      "title": "مسمومیت ۳۵۹ نفر و جان باختن ۱۴ نفر بر اثر مصرف الکل در ۵ شهر ایران",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-24",
@@ -1642,12 +1642,6 @@
       "topic": "جامعه",
       "until": 1795633378.5298753
     },
-    "v4|اخبار کوتاه تهران؛ احداث مسیر دوچرخه سواری در بوستان علم و فناوری/ هوا سالم شد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، پروژه شهری و بهبود هوا",
-      "topic": "آب و هوا",
-      "until": 1795586729.4482124
-    },
     "v4|ادعای ان بی سی: اختلاف در کاخ سفید بر سر ترور مقامات ایرانی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative reporting on internal discussions, not an official policy decision.",
@@ -1732,12 +1726,6 @@
       "topic": "نظامی",
       "until": 1795597582.9007633
     },
-    "v4|اعتراف افسر ارشد آمریکایی به ضربات دقیق ایران به سامانه های راداری در روزهای گذشته": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=iran_national: ادعای یک افسر بازنشسته است و نه یک رویداد رسمی تایید شده.",
-      "topic": "نظامی",
-      "until": 1795586782.5948467
-    },
     "v4|اعضای بدن دختر شیروانی جان بیماران را نجات داد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: خبر اهدای عضو محلی و فاقد اهمیت ملی یا جهانی است",
@@ -1749,12 +1737,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: ثبت نام دوره کارشناسی ارشد ناپیوسته آموزش پزشکی",
       "topic": "سلامت",
       "until": 1795602816.5742424
-    },
-    "v4|افتخارآفرینی بسیج رسانه خراسان جنوبی با فتح سکوی نخست هوش مصنوعی جام رسانه ای امید": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Provincial media win AI contest; limited national impact",
-      "topic": "فناوری",
-      "until": 1795586728.471002
     },
     "v4|افزایش موارد ابتلا به آنفولانزا در ایلام": {
       "ok": false,
@@ -1791,12 +1773,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=6 happened=True scope=world: Attack on a cargo ship is a significant international security event.",
       "topic": "نظامی",
       "until": 1795597511.548158
-    },
-    "v4|انسداد ۵۶۲ حلقه چاه غیرمجاز در سیستان بلوچستان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=local: اقدام اجرایی استانی و روتین در حوزه مدیریت منابع آب است.",
-      "topic": "جامعه",
-      "until": 1795586782.6509395
     },
     "v4|انصارالله بنادر دریای سرخ سعودی را تهدید کرد/حمله به قلب اقتصادی عربستان؛ کابوس ریاض از گسترش نفوذ انصارالله در باب المندب و قطع شریان اقتصادی": {
       "ok": true,
@@ -1846,6 +1822,18 @@
       "topic": "ورزش",
       "until": 1795590308.710277
     },
+    "v4|اوکراین مسئولیت حمله به خلیج فنلاند را نیز بر عهده گرفت": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اعتراف رسمی ریاست جمهوری اوکراین به حمله پهپادی در خلیج فنلاند.",
+      "topic": "نظامی",
+      "until": 1795674842.118357
+    },
+    "v4|ایران نه از جنگ می هراسد و نه در برابر مشکلات مردم بی تفاوت می ماند": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: اظهارات کلی و تکراری مقامات سیاسی درباره جنگ و مذاکره.",
+      "topic": "سیاست",
+      "until": 1795674842.1331224
+    },
     "v4|اینانلو:پیوند حوزه و دانشگاه باید به حل مسائل و چالش های نظام منجر شود": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Statement, no concrete decision or immediate impact",
@@ -1858,6 +1846,12 @@
       "topic": "ورزش",
       "until": 1795620810.120232
     },
+    "v4|بازدید رئیس جمهور از آرامگاه فردوسی، مزار شجریان و اخوان ثالث": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بازدید رئیس‌جمهور از آرامگاه‌ها رویدادی تشریفاتی و غیرسرنوشت‌ساز است.",
+      "topic": "جامعه",
+      "until": 1795674836.808126
+    },
     "v4|بازسازی اقتصاد پس از جنگ؛ چه کسی هزینه را می پردازد؟": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=iran_national: Speculative analysis piece regarding post-war economic reconstruction.",
@@ -1869,12 +1863,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: رشد بورس‌های آسیا به دلیل تحولات بازار آمریکا و انویدیا",
       "topic": "اقتصاد",
       "until": 1795592088.5145674
-    },
-    "v4|بازگشت ۲۵۲ واحد آسیب دیده از جنگ به چرخه تولید در تهران": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=local: گزارش عملکرد استانی و روابط عمومی اداره صنعت تهران",
-      "topic": "اقتصاد",
-      "until": 1795586778.230015
     },
     "v4|بانوان طلایه دار برنامه های اجتماع شب های اقتدار در سمنان": {
       "ok": false,
@@ -1923,6 +1911,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Billiards cup participation not top‑tier sports news",
       "topic": "ورزش",
       "until": 1795615511.3174427
+    },
+    "v4|بیماری های قلبی و عروقی ۸۰ درصد علت مرگ در خراسان شمالی است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Statistical health data for a province",
+      "topic": "سلامت",
+      "until": 1795674826.6783044
     },
     "v4|تأمین پارکینگ و توسعه حمل ونقل ریلی زائران رضوی در اولویت دولت باشد": {
       "ok": false,
@@ -2026,6 +2020,12 @@
       "topic": "حادثه",
       "until": 1795635259.6183705
     },
+    "v4|تصویب قانون جامع منع خشونت علیه زنان ضروری است/ باید قبل از وقوع جنایت از زنان حمایت کرد": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=iran_national: مقاله و یادداشت مناسبتی درباره خشونت علیه زنان بدون رویداد خاص.",
+      "topic": "جامعه",
+      "until": 1795674842.1404843
+    },
     "v4|تفکر بسیجی، پشتوانه پایداری تولید و تقویت ارزآوری کشور است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=iran_national: اظهارات مقام وزارت صمت درباره فرهنگ بسیجی اهمیت ملی ندارد",
@@ -2103,6 +2103,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: regional health case, limited national impact",
       "topic": "سلامت",
       "until": 1795606453.9904423
+    },
+    "v4|جزئیات طرح ناتو ۳؛ آمریکا به دنبال کاهش تعهدات اروپایی": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: راهبرد جدید آمریکا و ناتو برای تغییر تعهدات نظامی در اروپا.",
+      "topic": "سیاست",
+      "until": 1795674842.1477141
     },
     "v4|جشنواره «زن و رسانه» برگزار می شود": {
       "ok": false,
@@ -2200,6 +2206,12 @@
       "topic": "حادثه",
       "until": 1795662211.011407
     },
+    "v4|خنثی سازی و انهدام مهمات عمل نکرده جنگ در حومه اندیمشک": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: اقدام روتیین محلی در حومه اندیمشک برای انهدام مهمات قدیمی.",
+      "topic": "حادثه",
+      "until": 1795674842.1550844
+    },
     "v4|دادستان تهران: محل نگهداری ۱۰ هزار خودروی خارج از ضوابط پلمب شد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: محل نگهداری ۱۰ هزار خودرو پلمب شد",
@@ -2217,6 +2229,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: محیط آموزشی محلی، تأثیر محدود",
       "topic": "سلامت",
       "until": 1795608220.7446814
+    },
+    "v4|دانشگاه علوم پزشکی شهیدبهشتی با ۳ پلتفرم به دنبال توسعه فناوری «اگزوزوم»": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: دانشگاه برنامه‌ توسعه فناوری اگزوزوم، اثر محدود",
+      "topic": "فناوری",
+      "until": 1795674823.4512904
     },
     "v4|دبیرکل سازمان ملل متحد درباره خطرات هوش مصنوعی بدون نظارت هشدار داد": {
       "ok": false,
@@ -2266,6 +2284,12 @@
       "topic": "سیاست",
       "until": 1795633396.4273908
     },
+    "v4|دوپینگ و مربیگری بدون صلاحیت؛ دو چالش بدنسازی ایران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: دپینگ و مربیگری داخلی، موضوع محدود به بدنسازی ایران",
+      "topic": "ورزش",
+      "until": 1795674824.3470633
+    },
     "v4|دویست و شصت و نهمین شب تجمعات مردم زنجان در میدان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تظاهرات بدون پیامدهای گسترده",
@@ -2289,12 +2313,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=iran_national: حکم قطعی و رسمی دیوان محاسبات بر انفصال مسئول ارشد.",
       "topic": "قضایی",
       "until": 1795590308.7205875
-    },
-    "v4|دیوان محاسبات: بازگشت بیش از ۱۱ میلیارد تومان از بدهی شرکت های پتروشیمی و فولادی به خزانه": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=iran_national: بازگشت بیش از ۱۱ همت بدهی پتروشیمی‌ها به خزانه کشور",
-      "topic": "اقتصاد",
-      "until": 1795586778.284636
     },
     "v4|رئیس جمهور: برای حل مشکلات کشور باید باید منافع شخصی و جناحی را کنار بگذاریم": {
       "ok": true,
@@ -2343,12 +2361,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=local: حادثه فردی و محلی حمله سگ بدون تلفات عمومی.",
       "topic": "حادثه",
       "until": 1795590308.6794095
-    },
-    "v4|روایت تلخ پدر حسنا، دختر ۸ ساله ای که بر اثر حمله سگ جان خود را از دست داد: چرا باید یک کودک قربانی چنین حادثه ای شود و هیچ نهادی پاسخگوی این وضعیت نباشد؟ / یک استاد دانشگاه: آنچه": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=local: حادثه تلخ محلی و جان باختن یک کودک",
-      "topic": "حادثه",
-      "until": 1795586778.216817
     },
     "v4|روایت شرمینه چهل امیرانی از دو اتفاق تلخ در ناگویا و دوحه": {
       "ok": false,
@@ -2427,12 +2439,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Minister's comment, no concrete decision or impact",
       "topic": "فناوری",
       "until": 1795602816.0131128
-    },
-    "v4|سرخس؛ سرزمین چهار راه اقوام و قطب انرژی شرق کشور": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Local governor highlights development potential",
-      "topic": "اقتصاد",
-      "until": 1795586729.9667351
     },
     "v4|سردار نجات: آمریکایی ها به هیچ عهد و پیمان و قراردادی پایبند نیستند": {
       "ok": false,
@@ -2542,6 +2548,12 @@
       "topic": "اقتصاد",
       "until": 1795597484.7995598
     },
+    "v4|سود خالص تلفیقی شستا ۱۳۴همت/آسیب انتشار آمار غیرمستند به اعتماد عمومی و دارایی بازنشسته ها": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=True scope=iran_national: اعلام آمار رسمی و مالی شرکت بزرگ شستا.",
+      "topic": "اقتصاد",
+      "until": 1795674842.162496
+    },
     "v4|سود ۱۵میلیون دلاری ترامپ از بازگشت مدیر اجرایی شرکت «انویدیا»": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=world: Market fluctuation affecting personal assets; not a major economic shock.",
@@ -2553,6 +2565,12 @@
       "reason": "ai mistral/open-mistral-nemo score=8 happened=True scope=world: هجوم به کشتی کانتینر در تنگه هرمز، تهدید ترافیک دریایی",
       "topic": "نظامی",
       "until": 1795631716.00972
+    },
+    "v4|سپاه: ۲ فروند نفتکش متخلف در سواحل جنوبی و شرقی تنگه هرمز در پی اصابت به مین دچار انفجار و آتش سوزی در موتورخانه شدند / به تمامی خدمه کشتی های با موقعیت یاب خاموش هشدار می دهیم، مر": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: انفجار نفتکش‌ها در تنگه هرمز رویداد نظامی و امنیتی بزرگ منطقه‌ای.",
+      "topic": "نظامی",
+      "until": 1795674842.1103134
     },
     "v4|سیدعلیرضا مرندی به عنوان رئیس فرهنگستان علوم پزشکی منصوب شد": {
       "ok": false,
@@ -2614,12 +2632,6 @@
       "topic": "سیاست",
       "until": 1795664034.461211
     },
-    "v4|صورتحساب ۴۰ همتی تکمیل بزرگراه قزوین، الموت تنکابن روی دست دولت": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=False scope=local: گزارش محلی درباره اعتبار مورد نیاز پروژه بزرگراهی",
-      "topic": "اقتصاد",
-      "until": 1795586778.2453208
-    },
     "v4|ضرب الاجل ۲۵ هفته ای برای تعیین تکلیف مقالات مشکوک/ریترکت شدن مقاله ننگ نیست": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=world: Report urges 25‑week deadline for journal corrections",
@@ -2680,11 +2692,11 @@
       "topic": "نظامی",
       "until": 1795619047.7096884
     },
-    "v4|فروپاشی پیمان اقلیمی «کاپ ۳۱»؛ برنامه مالی سازگاری آسیای مرکزی بلاتکلیف ماند": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: شکست مذاکرات جهانی اقلیمی یک رویداد مهم بین‌المللی محسوب می‌شود.",
-      "topic": "آب و هوا",
-      "until": 1795586782.6368816
+    "v4|فعالیت های ورزشی دانشگاه فرهنگیان باید به خوابگاه ها برسد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: University sports expansion, no national impact",
+      "topic": "ورزش",
+      "until": 1795674825.0741553
     },
     "v4|فلسفه برای کودک چه اثری بر تفکر انتقادی دارد؟؛لوازم تربیت انسان متفکر": {
       "ok": false,
@@ -2746,12 +2758,6 @@
       "topic": "فناوری",
       "until": 1795588461.363079
     },
-    "v4|محمدپور: ما ایران هستیم و برای قهرمانی آمده ایم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: اظهارات پیش از مسابقه و کری‌خوانی بازیکن است و نه نتیجه مسابقه.",
-      "topic": "ورزش",
-      "until": 1795586782.6230474
-    },
     "v4|محمودزاده: مدرسه خط مقدم استمرار انقلاب و پیشرفت کشور است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=iran_national: سخنان مقام دولتی درباره اهمیت مدرسه و آموزش و پرورش.",
@@ -2788,6 +2794,12 @@
       "topic": "سیاست",
       "until": 1795669461.6072564
     },
+    "v4|مسمومیت الکلی ۳۵۹ نفر در ۵ شهر کشور/ ۱۴ نفر جان باختند": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=iran_national: آمار بالای مسمومیت و مرگ‌ومیر ناشی از الکل در چندین شهر.",
+      "topic": "سلامت",
+      "until": 1795674842.1258607
+    },
     "v4|مسکو: تعاملات سیاسی با برزیل را تقویت خواهیم کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: اظهارنظر دیپلماتیک معمولی درباره روابط روسیه و برزیل اهمیت درجه یک ندارد",
@@ -2823,12 +2835,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: اظهارات غیررسمی و تهدیدآمیز یک نماینده مجلس درباره مسائل داخلی آمریکا",
       "topic": "سیاست",
       "until": 1795635231.5625362
-    },
-    "v4|ممدانی: تحریم شهرک نشین ها کافی نیست، بودجه نظامی اسرائیل قطع شود": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: اظهار نظر شهردار نیویورک فاقد تصمیم‌گیری و ارزش خبری بالا",
-      "topic": "سیاست",
-      "until": 1795586778.203432
     },
     "v4|منطقه نه خواهان جنگ است، نه مشتاق آشتی تهران و واشنگتن/ ابوالفتح: اگر فشارهای اقتصادی به نتیجه موردنظر نرسد، ممکن است ترامپ با حمله نظامی موافقت کند": {
       "ok": false,
@@ -3046,12 +3052,6 @@
       "topic": "نظامی",
       "until": 1795637034.0082898
     },
-    "v4|واژگونی سمند در نجف آباد ۶ دختر نوجوان را مصدوم کرد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: 6 teenage girls injured in car explosion in Najafabad",
-      "topic": "حادثه",
-      "until": 1795586730.6663342
-    },
     "v4|واکنش بازارهای نفت به اتفاقی که پیش نیامد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=False scope=world: تحلیل و پیش‌بینی بازار نفت است و نه یک رویداد قطعی.",
@@ -3075,12 +3075,6 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: انتشار اتوبوس‌های برقی فقط شهری، اثر محدود",
       "topic": "اقتصاد",
       "until": 1795608220.2080874
-    },
-    "v4|وزارت خزانه داری آمریکا، این بار نظام بانکداری ایران را هدف گرفت / ادعای بسنت: نظام بانکداری، آخرین شریان حیاتی مالی ایران است؛ این شبکه را بر می چینیم": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=9 happened=True scope=world: اعمال تحریم‌های جدید آمریکا علیه نظام بانکی ایران یک رویداد راهبردی است.",
-      "topic": "اقتصاد",
-      "until": 1795586782.609121
     },
     "v4|وزیر ارتباطات و فناوری اطلاعات برای بازدید و افتتاح چند طرح وارد اردبیل شد": {
       "ok": false,
@@ -3124,12 +3118,6 @@
       "topic": "سیاست",
       "until": 1795651380.4937246
     },
-    "v4|پایداری شبکه برق در شرایط بحرانی با تلاش جهادی محقق شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=True scope=local: سخنان مسئول محلی درباره پایداری شبکه برق شیراز",
-      "topic": "اقتصاد",
-      "until": 1795586778.2715838
-    },
     "v4|پایش سلامت روان کارگران ۱۴ بنگاه تولیدی و صنعتی سیستان و بلوچستان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: بررسی سلامت روان در بنگاه‌های صنعتی سیستان و بلوچستان",
@@ -3141,12 +3129,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=world: انتشار اسناد تاریخی درباره پاگنده، خبری حاشیه‌ای و غیرمرتبط با اولویت‌های کانال است.",
       "topic": "جامعه",
       "until": 1795615525.423503
-    },
-    "v4|پزشکیان وارد مشهد شد": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash score=2 happened=True scope=iran_national: سفر استانی رئیس‌جمهور رویدادی روتین و فاقد اهمیت ویژه است",
-      "topic": "سیاست",
-      "until": 1795586749.6952496
     },
     "v4|پزشکیان: دشمنان نمی توانند ایران را وادار به تسلیم کنند/ با ملت ما باید با عزت سخن بگویند": {
       "ok": false,
@@ -3274,12 +3256,6 @@
       "topic": "فناوری",
       "until": 1795656788.112422
     },
-    "v4|کرملین: حضور پوتین در اجلاس گروه ۲۰ هنوز قطعی نشده است": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=True scope=world: اعلام عدم اتخاذ تصمیم قطعی درباره سفر پوتین",
-      "topic": "سیاست",
-      "until": 1795586778.258443
-    },
     "v4|کشف محموله ۲۵۸ میلیاردی قاچاق در مرزهای سیستان و بلوچستان": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=True scope=iran_national: کشف کالای قاچاق و دستگیری متهمان در استان",
@@ -3376,12 +3352,6 @@
       "topic": "سیاست",
       "until": 1795626267.4151428
     },
-    "v4|۲۰ کشته طی بازداشت سرکرده کارتل مواد مخدر در مکزیک": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: کشته شدن ۲۰ نفر در عملیات درگیری با کارتل در مکزیک",
-      "topic": "حادثه",
-      "until": 1795586778.1890917
-    },
     "v4|۲۶۹ امین تجمعات شبانه مردم گرگان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: جمعیت محلی در گرگان",
@@ -3433,6 +3403,10 @@
       "reason": "content_duplicate",
       "until": 1795604720.4500005
     },
+    "اوکراین مسئولیت حمله به خلیج فنلاند را نیز بر عهده گرفت": {
+      "reason": "content_duplicate",
+      "until": 1795610056.6976166
+    },
     "ترامپ: بودجه جنگ تا آخر ژانویه تامین شده است/ به دنبال تغییر نظام ایران نیستم اما اسرائیل می تواند/ اگر تهران بازی غرامت راه بیندازد ما برنده ایم": {
       "reason": "content_duplicate",
       "until": 1795604711.0661
@@ -3440,6 +3414,14 @@
     "جنگنده های سعودی الحدیده را بمباران کردند؛ صنعا: بنادر دریای سرخ سعودی هدف قرار می گیرند": {
       "reason": "content_duplicate",
       "until": 1795595575.5516362
+    },
+    "ریاض: حمله به یکی از برج های منطقه اقتصادی ملک عبدالله با استفاده از یک فروند پهپاد انجام شده": {
+      "reason": "content_duplicate",
+      "until": 1795610094.668377
+    },
+    "سپاه: ۲ فروند نفتکش متخلف در سواحل جنوبی و شرقی تنگه هرمز در پی اصابت به مین دچار انفجار و آتش سوزی در موتورخانه شدند / به تمامی خدمه کشتی های با موقعیت یاب خاموش هشدار می دهیم، مر": {
+      "reason": "content_duplicate",
+      "until": 1795610065.558006
     },
     "صبحانه خبری، ۴ آذر ۱۴۰۵؛ از ماموریت نتانیاهو به نمایندگانش برای متقاعد کردن مقام های کاخ سفید به حمله مجدد به ایران تا ادعای ان بی سی مبنی بر اختلاف در کاخ سفید بر سر ترور مقامات ا": {
       "reason": "content_duplicate",
@@ -3455,15 +3437,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "تأکید ایران بر عدم انتقال اورانیوم غنی شده به خارج از کشور ⚡️ مجتبی فردوسی پور، مسئول دفتر حفاظت منافع ایران د",
-      "id": "2073377827",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795487631,
-      "verdict": "new",
-      "why": "This is a new statement by an Iranian official regarding enriched uranium."
-    },
     {
       "head": "پرواز پهپاد جاسوسی آمریکا بر فراز مکزیک برای بازداشت قاچاقچی بزرگ مواد مخدر ⚡️ مقام های مکزیک اعلام کردند ایال",
       "id": "80ba36cedf",
@@ -3995,44 +3968,18 @@
       "t": 1795584985,
       "verdict": "new",
       "why": "جنگ اوکراین و آمار رسمی کشته‌شدگان روسی"
+    },
+    {
+      "head": "مسمومیت ۳۵۹ نفر و جان باختن ۱۴ نفر بر اثر مصرف الکل در ۵ شهر ایران ⚡️ حسین کرمان پور، رئیس مرکز روابط عمومی و ",
+      "id": "1fb59a3ab7",
+      "match": "",
+      "model": "mistral/open-mistral-nemo",
+      "t": 1795588536,
+      "verdict": "new",
+      "why": "موضوع جدید: مسمومیت و مرگ بر اثر الکل"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Cleric's remark, no concrete event",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795548811,
-      "title": "ابطحی: دعواهای داخلی چراغ سبز به دشمن است"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: آمار تماس‌های پلیس استانی محلی است و اهمیت ملی ندارد",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795548827,
-      "title": "ثبت بیش از ۳۴ هزار تماس با مرکز پلیس ۱۱۰ لرستان در آبان ماه"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=iran_national: اظهارات غیررسمی و تهدیدآمیز یک نماینده مجلس درباره مسائل داخلی آمریکا",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1795548831,
-      "title": "مقتدایی: اگر آمریکایی ها به کوه کلنگ حمله کنند کاخ سفید پودر خواهد شد/ اتفاقی در هیئت حاکمه آمریکا افتاد که ترامپ تصورش "
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: مرگ ۱۴ نفر و مسمومیت ۳۵۹ نفر با الکل در چند شهر",
-      "rescued": true,
-      "rule": "no-concrete-event",
-      "t": 1795548843,
-      "title": "آخرین آمار شمار مسمومین و فوتی های مسمومیت های الکی"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: کشف مواد مخدر و دستگیری قاچاقچیان در سطح محلی و شهر قائم‌شهر",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795548847,
-      "title": "۶۶ کیلوگرم مواد مخدر و هفت خودرو در قائمشهر کشف و توقیف شد"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، مراسم شبانه، بدون پیامدهای گسترده",
       "rescued": false,
@@ -4557,6 +4504,41 @@
       "rule": "routine-metaphorical-topic",
       "t": 1795584852,
       "title": "عضو هیئت علمی دانشگاه سیستان و بلوچستان در شمار سرآمدان آموزشی کشور قرار گرفت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: دانشگاه برنامه‌ توسعه فناوری اگزوزوم، اثر محدود",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1795588423,
+      "title": "دانشگاه علوم پزشکی شهیدبهشتی با ۳ پلتفرم به دنبال توسعه فناوری «اگزوزوم»"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: دپینگ و مربیگری داخلی، موضوع محدود به بدنسازی ایران",
+      "rescued": false,
+      "rule": "strict-source-below-importance(8<10)",
+      "t": 1795588424,
+      "title": "دوپینگ و مربیگری بدون صلاحیت؛ دو چالش بدنسازی ایران"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: University sports expansion, no national impact",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1795588425,
+      "title": "فعالیت های ورزشی دانشگاه فرهنگیان باید به خوابگاه ها برسد"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Statistical health data for a province",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795588426,
+      "title": "بیماری های قلبی و عروقی ۸۰ درصد علت مرگ در خراسان شمالی است"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: بازدید رئیس‌جمهور از آرامگاه‌ها رویدادی تشریفاتی و غیرسرنوشت‌ساز است.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1795588436,
+      "title": "بازدید رئیس جمهور از آرامگاه فردوسی، مزار شجریان و اخوان ثالث"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -4906,6 +4888,33 @@
       ],
       "t": 1795584985.7623959,
       "title": "آمار رسمی روسیه نشان می دهد صدها هزار سرباز در جنگ اوکراین کشته شدند ⚡️ داده های رسمی روسیه که توسط بی بی سی روسی تحلیل "
+    },
+    {
+      "h": [
+        "اثر",
+        "اطلع",
+        "الکل",
+        "بختن",
+        "بندرعبس",
+        "بهدشت",
+        "جن",
+        "حسن",
+        "ربط",
+        "شرز",
+        "شهر",
+        "عمم",
+        "مردشت",
+        "مرکز",
+        "مسممت",
+        "مصرف",
+        "نشبر",
+        "نفر",
+        "وزرت",
+        "پر",
+        "کرم"
+      ],
+      "t": 1795588537.3420043,
+      "title": "مسمومیت ۳۵۹ نفر و جان باختن ۱۴ نفر بر اثر مصرف الکل در ۵ شهر ایران ⚡️ حسین کرمان پور، رئیس مرکز روابط عمومی و اطلاع رسان"
     }
   ],
   "_published_incidents": [
@@ -5180,65 +5189,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ابزر",
-        "احضر",
-        "ار",
-        "ارد",
-        "اردستن",
-        "ارپ",
-        "استفد",
-        "اسلم",
-        "اعترض",
-        "افزش",
-        "الم",
-        "امرک",
-        "امنت",
-        "انتظر",
-        "بخشش",
-        "بن",
-        "تصف",
-        "تعرض",
-        "تن",
-        "تهر",
-        "جمهر",
-        "حمل",
-        "خرج",
-        "خند",
-        "دد",
-        "در",
-        "دقت",
-        "زمن",
-        "سخن",
-        "سخنگ",
-        "عض",
-        "قطر",
-        "مجلس",
-        "محدد",
-        "محصر",
-        "مذکر",
-        "مشترک",
-        "مشک",
-        "مقبل",
-        "مل",
-        "منج",
-        "منسب",
-        "نظم",
-        "هدف",
-        "همره",
-        "همن",
-        "وزرت",
-        "چنگ",
-        "کردر",
-        "کشر",
-        "کمسن",
-        "گر"
-      ],
-      "s": "بخشایش اردستانی",
-      "t": 1795458932.4767914,
-      "title": "بخشایش اردستانی: تهران توانایی هدف گیری اروپا با موشک های خود را اعلام کرد ⚡️ عضو کمیسیون امنیت ملی مجلس گفت جمهوری اسلا"
-    },
     {
       "k": [
         "ار",
@@ -7230,6 +7180,55 @@
       ],
       "t": 1795584985.7499413,
       "title": "آمار رسمی روسیه نشان می دهد صدها هزار سرباز در جنگ اوکراین کشته شدند ⚡️ داده های رسمی روسیه که توسط بی بی سی روسی تحلیل "
+    },
+    {
+      "k": [
+        "اثر",
+        "ار",
+        "ارژنس",
+        "اطلع",
+        "الکل",
+        "بختن",
+        "بدن",
+        "برز",
+        "بندرعبس",
+        "بهدشت",
+        "تخر",
+        "تکد",
+        "جن",
+        "حسن",
+        "خست",
+        "ربط",
+        "رس",
+        "رسن",
+        "شرز",
+        "شهر",
+        "شهرند",
+        "صرت",
+        "ضررت",
+        "علمت",
+        "عمم",
+        "غرعد",
+        "مرجع",
+        "مردشت",
+        "مرکز",
+        "مسل",
+        "مسممت",
+        "مصرف",
+        "مقم",
+        "نشبر",
+        "نفر",
+        "هرگن",
+        "وزرت",
+        "پر",
+        "پرهز",
+        "کرم"
+      ],
+      "n": [
+        "359"
+      ],
+      "t": 1795588537.3337762,
+      "title": "مسمومیت ۳۵۹ نفر و جان باختن ۱۴ نفر بر اثر مصرف الکل در ۵ شهر ایران ⚡️ حسین کرمان پور، رئیس مرکز روابط عمومی و اطلاع رسان"
     }
   ],
   "_telegram_errors": [
@@ -7843,7 +7842,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795586496
+    "at": 1795588304
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -7857,24 +7856,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "last_quality_failure": 1795584972,
-    "last_status": 422
-  },
-  "gemini:gemini-3.5-flash-lite": {
-    "disabled_until": 1795585185.0,
-    "last_failure": 1795584885,
-    "last_quality_failure": 1795583132,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795585447,
-    "last_failure": 1795584847,
+    "disabled_until": 1795589031,
+    "last_failure": 1795588431,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795585443,
-    "last_failure": 1795584843,
+    "disabled_until": 1795589027,
+    "last_failure": 1795588427,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
