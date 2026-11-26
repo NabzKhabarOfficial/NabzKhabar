@@ -1,10 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795649568
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795649572
     },
@@ -159,6 +155,10 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 3x, groq:openai/gpt-oss-20b held 3x",
       "t": 1795658601
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1795660379
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-25",
-      "n": 208
+      "n": 210
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-25",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-26",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-26",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-25",
@@ -495,9 +495,9 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 13,
+        "ok": 15,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
@@ -516,49 +516,28 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 8,
-        "other": 4
+        "ok": 9,
+        "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
-        "other": 4
+        "ok": 9,
+        "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 402: {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null,\"code\":\"2314\",\"raw_status_code\":402}",
         "ok": 0,
-        "other": 14
+        "other": 16
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1795485853.169226,
-      "title": "احتمال حملات سایبری به ۵۰ نفتکش با نقش احتمالی جمهوری اسلامی ایران",
-      "urgent": false
-    },
-    {
-      "label": "اقتصاد",
-      "level": 4,
-      "t": 1795485921.1952677,
-      "title": "تحقیقات کمیسیون بورس آمریکا درباره حسابداری انویدیا",
-      "urgent": false
-    },
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1795485940.5003216,
-      "title": "تلاش نخست وزیر قطر برای احیای مذاکرات ایران و آمریکا پس از دیدار با روبیو",
-      "urgent": false
-    },
     {
       "label": "هسته‌ای",
       "level": 4,
@@ -1118,6 +1097,13 @@
       "t": 1795658600.7166462,
       "title": "کارزار مبارزه با فساد شی جین پینگ چهره نوظهور حزب کمونیست چین را هدف قرار داد",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 3,
+      "t": 1795660378.3332024,
+      "title": "کیم جونگ اون: کره شمالی باید تسلیحات اتمی تاکتیکی را گسترش دهد",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-25",
@@ -1205,12 +1191,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Analysis of diplomatic relations, not a concrete new event.",
       "topic": "سیاست",
       "until": 1795685697.5996919
-    },
-    "v4|poll finds us voters want government to end iran war regardless of terms": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=True scope=world: نظرسنجی درباره جنگ، رویداد ملموس اجرایی محسوب نمی‌شود.",
-      "topic": "سیاست",
-      "until": 1795658588.4184425
     },
     "v4|russia's own figures show almost 500,000 deaths in war in ukraine": {
       "ok": true,
@@ -1818,12 +1798,6 @@
       "topic": "سیاست",
       "until": 1795683838.6254795
     },
-    "v4|ترامپ: بودجه جنگ ایران تا نیمه بهمن ماه تامین شده است": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: اظهارنظر رئیس‌جمهور آمریکا درباره تامین بودجه جنگ و تهدیدها اهمیت بالا دارد.",
-      "topic": "نظامی",
-      "until": 1795658588.4270306
-    },
     "v4|ترامپ: بودجه جنگ تا آخر ژانویه تامین شده است/ به دنبال تغییر نظام ایران نیستم اما اسرائیل می تواند/ اگر تهران بازی غرامت راه بیندازد ما برنده ایم": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=9 happened=True scope=world: اظهارات مهم ترامپ درباره ایران، جنگ و تغییر نظام",
@@ -2237,12 +2211,6 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Local sports controversies, no major event",
       "topic": "ورزش",
       "until": 1795669429.0827816
-    },
-    "v4|روغن ۲۲ میلیون تومانی در بازار آزاد!/ کامیونداران خواستار توزیع مستمر سهمیه دولتی شدند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: قیمت روغن 22 میلیون تومان، کامیونداران درخواست توزیع مستمر",
-      "topic": "اقتصاد",
-      "until": 1795658577.5057638
     },
     "v4|رژیم صهیونیستی؛ منفورتر از همیشه، منزوی تر از گذشته": {
       "ok": false,
@@ -2814,12 +2782,6 @@
       "topic": "سیاست",
       "until": 1795662210.9999588
     },
-    "v4|نعیمی پور: ایران می تواند محوریت ابتکار «پیمان محمد» در منطقه باشد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: پیشنهاد است، تصمیم یا اقدام ملموس نیست",
-      "topic": "سیاست",
-      "until": 1795660364.7791421
-    },
     "v4|نفوذ هکرها به سازمان تروریستی سیا": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Reported CIA cyber breach by hackers",
@@ -2909,12 +2871,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات روتین مقامات درباره آلودگی هوا و خودروهای فرسوده",
       "topic": "جامعه",
       "until": 1795692827.659897
-    },
-    "v4|هک سازمان تروریستی سیا": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: نفوذ سایبری به نهادهای امنیتی آمریکا رویدادی مهم و جهانی است.",
-      "topic": "فناوری",
-      "until": 1795658588.409388
     },
     "v4|والانیوز: اسرائیل در جنگ با ایران به بن بست خورد": {
       "ok": false,
@@ -3144,12 +3100,6 @@
       "topic": "سیاست",
       "until": 1795700070.0508547
     },
-    "v4|گفتگوی تلفنی وزرای خارجه عربستان و آمریکا": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=8 happened=True scope=world: گفتگوی وزرای خارجه آمریکا و عربستان درباره امنیت منطقه و یمن",
-      "topic": "سیاست",
-      "until": 1795658575.6162374
-    },
     "v4|گفتگوی رئیس جمهور با دانشجوی معترض در دیدار دانشگاهیان مشهد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: رئیس جمهور با دانشجوی معترض در مشهد گفتگو کرد",
@@ -3239,6 +3189,15 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: تحلیل و بررسی جنگ یمن و رویکرد کلی شبه‌نظامیان.",
       "topic": "نظامی",
       "until": 1795732465.0968738
+    },
+    "v5|kim jong un says north korea should widen deployment of tactical nukes": {
+      "happened": true,
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: North Korean leader threatens war over nuclear denial",
+      "scope": "world",
+      "score": 8,
+      "topic": "نظامی",
+      "until": 1795746765.4751086
     },
     "v5|mexico investigates possible cartel links of prosecutor who aided c.i.a.": {
       "ok": false,
@@ -3916,15 +3875,6 @@
   },
   "_event_judge_log": [
     {
-      "head": "حمله موشکی به مقر گروه های مسلح مخالف ایران در عراق ⚡️ رسانه های عربی از حمله موشکی به مقر گروه های مسلح و جدا",
-      "id": "ac27245e2f",
-      "match": "حملات پهپادی به پایگاه گروهک های ضدایرانی در اربیل عراق",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795548913,
-      "verdict": "repeat",
-      "why": "همان حمله به گروه‌های مسلح در عراق"
-    },
-    {
       "head": "سقوط بالگرد نظامی ترکیه پنج کشته بر جای گذاشت ⚡️ وزارت دفاع ترکیه اعلام کرد پنج نظامی در سقوط یک بالگرد نظامی ",
       "id": "119b626b56",
       "match": "",
@@ -4464,6 +4414,15 @@
       "t": 1795658599,
       "verdict": "new",
       "why": "This is a unique report about Chinese internal political anti-corruption efforts."
+    },
+    {
+      "head": "کیم جونگ اون: کره شمالی باید تسلیحات اتمی تاکتیکی را گسترش دهد ⚡️ کیم جونگ اون، رهبر کره شمالی، در جریان بازدی",
+      "id": "f7e174fbfe",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795660377,
+      "verdict": "new",
+      "why": "This is a new statement by Kim Jong Un on tactical nuclear weapons."
     }
   ],
   "_importance_rescue_log": [
@@ -5242,6 +5201,28 @@
       ],
       "t": 1795658600.6977906,
       "title": "کارزار مبارزه با فساد شی جین پینگ چهره نوظهور حزب کمونیست چین را هدف قرار داد ⚡️ مقام های چینی در چارچوب کارزار مبارزه ب"
+    },
+    {
+      "h": [
+        "اتم",
+        "استقرر",
+        "ان",
+        "بزدد",
+        "تسس",
+        "تسلح",
+        "تکتک",
+        "جر",
+        "حز",
+        "خستر",
+        "رهبر",
+        "شمل",
+        "مختلف",
+        "کره",
+        "کم",
+        "گسترش"
+      ],
+      "t": 1795660378.3218384,
+      "title": "کیم جونگ اون: کره شمالی باید تسلیحات اتمی تاکتیکی را گسترش دهد ⚡️ کیم جونگ اون، رهبر کره شمالی، در جریان بازدید از تأسیس"
     }
   ],
   "_published_incidents": [
@@ -5489,78 +5470,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "انفجر",
-        "برج",
-        "دد",
-        "رض",
-        "سعد",
-        "عربست",
-        "مرکز",
-        "مل",
-        "منبع",
-        "پتخت",
-        "یک"
-      ],
-      "t": 1795529269.0951371,
-      "title": "انفجار در یکی از برج های مرکز مالی ریاض ⚡️ منابع سعودی از انفجار در یکی از برج های مرکز مالی ریاض خبر دادند که در پایتخت"
-    },
-    {
-      "k": [
-        "ارتش",
-        "ارض",
-        "ازد",
-        "اشر",
-        "اقدم",
-        "الت",
-        "امنت",
-        "انتقم",
-        "انقلب",
-        "بربر",
-        "تجمع",
-        "تجهز",
-        "تممت",
-        "تنگ",
-        "تکد",
-        "جدت",
-        "حسن",
-        "حضر",
-        "حمل",
-        "خن",
-        "خهند",
-        "دشمن",
-        "دفع",
-        "دنبل",
-        "دنست",
-        "رهبر",
-        "سز",
-        "سس",
-        "سنندج",
-        "شهد",
-        "عمم",
-        "فرمش",
-        "لزم",
-        "مد",
-        "مردم",
-        "مسلح",
-        "مضع",
-        "مطلب",
-        "معن",
-        "مل",
-        "منفع",
-        "نر",
-        "نشدن",
-        "هدند",
-        "هرمز",
-        "پسخ",
-        "پشتن",
-        "کشر"
-      ],
-      "s": "هداوند",
-      "t": 1795529344.9573214,
-      "title": "هداوند: انتقام خون رهبر و دفاع از منافع ملی در اولویت نیروهای مسلح است ⚡️ معاون سیاسی ارتش، حسن هداوند، در تجمع مردم سنن"
-    },
     {
       "k": [
         "ارتش",
@@ -7429,6 +7338,54 @@
       ],
       "t": 1795658600.6848958,
       "title": "کارزار مبارزه با فساد شی جین پینگ چهره نوظهور حزب کمونیست چین را هدف قرار داد ⚡️ مقام های چینی در چارچوب کارزار مبارزه ب"
+    },
+    {
+      "k": [
+        "اتم",
+        "استقرر",
+        "اظهر",
+        "ان",
+        "انفجر",
+        "انکر",
+        "بزدد",
+        "بل",
+        "تسس",
+        "تسلح",
+        "تلش",
+        "تنش",
+        "تکتک",
+        "جر",
+        "جنگ",
+        "حز",
+        "حفظ",
+        "خستر",
+        "خند",
+        "دنست",
+        "رهبر",
+        "زمن",
+        "سزش",
+        "شمل",
+        "غرقبل",
+        "غرنظم",
+        "مختلف",
+        "مرز",
+        "مطرح",
+        "من",
+        "منزل",
+        "منطق",
+        "هرگن",
+        "هست",
+        "وضعت",
+        "وقع",
+        "کره",
+        "کشر",
+        "کم",
+        "گرفتن",
+        "گسترش"
+      ],
+      "s": "کیم جونگ اون",
+      "t": 1795660378.3099492,
+      "title": "کیم جونگ اون: کره شمالی باید تسلیحات اتمی تاکتیکی را گسترش دهد ⚡️ کیم جونگ اون، رهبر کره شمالی، در جریان بازدید از تأسیس"
     }
   ],
   "_telegram_errors": [
@@ -8042,7 +7999,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795658477
+    "at": 1795660276
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8077,6 +8034,14 @@
     "last_error": "bad body JSONDecodeError: OK\r\n",
     "last_failure": 1791936876,
     "last_status": 599
+  },
+  "groq:openai/gpt-oss-120b": {
+    "last_quality_failure": 1795660369,
+    "last_status": 422
+  },
+  "groq:openai/gpt-oss-20b": {
+    "last_quality_failure": 1795660371,
+    "last_status": 422
   },
   "groq:qwen/qwen3-32b": {
     "disabled_until": 1792151656.0,
