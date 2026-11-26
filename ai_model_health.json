@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795649572
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795649572
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795649576
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1795649580
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
       "t": 1795660379
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795662161
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795662161
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 8x, groq:openai/gpt-oss-20b held 6x",
+      "t": 1795662211
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-25",
-      "n": 122
+      "n": 125
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-25",
-      "n": 210
+      "n": 214
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-25",
-      "n": 93
+      "n": 95
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-25",
-      "n": 93
+      "n": 95
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-26",
-      "n": 14
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-26",
-      "n": 14
+      "n": 16
     },
     "openrouter:*": {
       "day": "2026-11-25",
@@ -489,51 +489,51 @@
     "2026-11-26": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 10,
+        "ok": 10,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 16,
+        "calls": 20,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 15,
+        "ok": 19,
         "other": 1
       },
       "gemini:gemini-3.6-flash": {
-        "429": 7,
-        "calls": 7,
+        "429": 9,
+        "calls": 9,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 6,
-        "calls": 6,
+        "429": 8,
+        "calls": 8,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 9,
+        "ok": 11,
         "other": 5
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 11,
         "other": 5
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 16,
+        "calls": 21,
         "last_error": "HTTP 402: {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null,\"code\":\"2314\",\"raw_status_code\":402}",
         "ok": 0,
-        "other": 16
+        "other": 21
       }
     }
   },
@@ -1294,12 +1294,6 @@
       "topic": "نظامی",
       "until": 1795691113.3083143
     },
-    "v4|آمریکا برای شهروندانش در غرب آسیا هشدار صادر کرد": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: US travel advisory for West Asia due to threats",
-      "topic": "سیاست",
-      "until": 1795660368.9069903
-    },
     "v4|آمریکا تا دو سال آینده موشک های پاتریوت را فقط برای خود تأمین می کند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=3 happened=False scope=world: اظهار نظر و تحلیل کارشناس نظامی روسی",
@@ -1948,12 +1942,6 @@
       "topic": "جامعه",
       "until": 1795700055.8017025
     },
-    "v4|جنگنده های سعودی الحدیده را بمباران کردند؛ صنعا: بنادر دریای سرخ سعودی هدف قرار می گیرند": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Saudi airstrike on Hodeidah amid Yemen war",
-      "topic": "نظامی",
-      "until": 1795660368.8648007
-    },
     "v4|جهاد دانشگاهی البرز رتبه نخست جایزه ملی جوانی جمعیت را کسب کرد": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر استانی، رویداد سازمانی و کم اهمیت برای کل کشور",
@@ -2542,12 +2530,6 @@
       "topic": "جامعه",
       "until": 1795681556.762463
     },
-    "v4|لفاظی ترامپ: جنگ با ایران تا ژانویه آینده تأمین مالی شده است": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Trump claims war with Iran funded till Jan",
-      "topic": "سیاست",
-      "until": 1795660368.8969827
-    },
     "v4|لهستان در امتداد مرزهای شرقی خود منطقه پرواز ممنوع ایجاد می کند": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=5 happened=False scope=world: اعلام قصد لهستان برای ایجاد منطقه پرواز ممنوع در مرزها.",
@@ -2782,12 +2764,6 @@
       "topic": "سیاست",
       "until": 1795662210.9999588
     },
-    "v4|نفوذ هکرها به سازمان تروریستی سیا": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Reported CIA cyber breach by hackers",
-      "topic": "فناوری",
-      "until": 1795660368.8864844
-    },
     "v4|نقش چین و روسیه در جنگ": {
       "ok": false,
       "reason": "ai gemini/gemini-3.6-flash batch score=2 happened=False scope=world: تحلیل و تبیین موضع دو کشور و فاقد خبر رویدادی جدید.",
@@ -3021,12 +2997,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=True scope=iran_national: Routine official message/ceremonial statement without strategic policy shift.",
       "topic": "سیاست",
       "until": 1795681556.8051145
-    },
-    "v4|پیامدهای ماندگار بمباران های اسرائیل در غزه / از آلودگی ۹۹ درصدی سرزمین تا کارشکنی در بازسازی و ممانعت از ورود تجهیزات": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Analytical piece on Gaza bombing aftermath",
-      "topic": "سیاست",
-      "until": 1795660368.8760552
     },
     "v4|پیروزی حسین وفایی مقابل هند در اسنوکر قهرمانی بریتانیا": {
       "ok": false,
@@ -3424,6 +3394,12 @@
       "topic": "سیاست",
       "until": 1795719867.8131628
     },
+    "v5|تعویض داور بازی گل گهر به دلیل احتمال مصرف الکل": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تعویض داور در مسابقه باشگاه",
+      "topic": "ورزش",
+      "until": 1795748561.7043128
+    },
     "v5|تفت؛ ۲۷۰ شب حماسه و ایستادگی": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: خبر محلی و رویداد شهرستانی، فاقد ارزش ملی یا بین‌المللی.",
@@ -3483,6 +3459,12 @@
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: رالی سیاسی محلی، نه تصمیم یا بحران ملی",
       "topic": "سیاست",
       "until": 1795734207.4899108
+    },
+    "v5|حمله سایبری به شرکت وان پس ورد کانادا": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: حمله سایبری به شرکت خارجی، اثر محدود",
+      "topic": "فناوری",
+      "until": 1795748560.3858047
     },
     "v5|حمله یمنی ها به عمق خاک عربستان؛ جیزان و بندر جده هدف قرار گرفت": {
       "ok": true,
@@ -3610,6 +3592,12 @@
       "topic": "جامعه",
       "until": 1795725200.2918963
     },
+    "v5|طراحی سامانه «مهج»؛ ثبت اطلاعات دانش آموزان و فرهنگیان شهید": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: مطرح‌کردن سامانه ثبت شهدا، اثر محدود و اداری",
+      "topic": "جامعه",
+      "until": 1795748561.3027596
+    },
     "v5|عملیات انتحاری سه داعشی در الحسکه سوریه / 2 نیروی امنیتی کشته و پنج تن زخمی شدند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: حمله انتحاری داعش در سوریه با تلفات نیروهای امنیتی",
@@ -3693,6 +3681,15 @@
       "reason": "ai openrouter/openrouter/free score=2 happened=True scope=local: Local Basij ceremony, no national impact",
       "topic": "جامعه",
       "until": 1795719896.0183303
+    },
+    "v5|نادر انتصار: جنگ ایران عامل تعیین کننده شکست جمهوری خواهان نبود / اظهارات ونس را نباید بزرگ کرد": {
+      "happened": false,
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=iran_national: نظر درباره تأثیر جنگ بر انتخابات آمریکا",
+      "scope": "iran_national",
+      "score": 2,
+      "topic": "سیاست",
+      "until": 1795748562.381876
     },
     "v5|نحوه استفاده از اینترنت ۵g/دلیل عدم افزایش تعرفه ها": {
       "ok": false,
@@ -3840,7 +3837,7 @@
     },
     "new us tariffs: 'trump lashing out really indiscriminately', expert says": {
       "reason": "content_duplicate",
-      "until": 1795673095.145918
+      "until": 1795683811.5443728
     },
     "آتش سوزی در مصر ۲۱ کشته برجای گذاشت": {
       "reason": "content_duplicate",
@@ -3874,24 +3871,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "سقوط بالگرد نظامی ترکیه پنج کشته بر جای گذاشت ⚡️ وزارت دفاع ترکیه اعلام کرد پنج نظامی در سقوط یک بالگرد نظامی ",
-      "id": "119b626b56",
-      "match": "",
-      "model": "mistral/open-mistral-nemo",
-      "t": 1795548965,
-      "verdict": "new",
-      "why": "سقوط بالگرد نظامی جدید و غیرمستقیم"
-    },
-    {
-      "head": "سفیر ایران در سازمان ملل: تسلیحاتی سازی هوش مصنوعی خطر جنگ های جدید را تشدید می کند ⚡️ سفیر ایران در سازمان مل",
-      "id": "5d52b20c97",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795554259,
-      "verdict": "new",
-      "why": "The post discusses AI weapons in the UN, which is a new topic."
-    },
     {
       "head": "ادعای ترامپ: آمریکا نفت بیشتری از تنگه هرمز دریافت می کند ⚡️ دونالد ترامپ، رئیس جمهور آمریکا، روز سه شنبه ادعا",
       "id": "948ced3270",
@@ -4423,30 +4402,29 @@
       "t": 1795660377,
       "verdict": "new",
       "why": "This is a new statement by Kim Jong Un on tactical nuclear weapons."
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "انتقاد کارشناس اقتصادی از تعرفه های جدید آمریکا علیه چین و اتحادیه اروپا ⚡️ دولت آمریکا در پی تحقیقاتی پیرامون",
+      "id": "77d2cef371",
+      "match": "واکنش های جهانی به تعرفه های جدید ترامپ همزمان با سقوط ارزش سهام آمریکا",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1795662184,
+      "verdict": "repeat",
+      "why": "Both posts cover the same news regarding new US trade tariffs."
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "انتقاد کارشناس اقتصادی از تعرفه های جدید آمریکا علیه چین و اتحادیه اروپا ⚡️ دولت آمریکا در پی تحقیقاتی پیرامون",
+      "id": "77d2cef371",
+      "match": "واکنش های جهانی به تعرفه های جدید ترامپ همزمان با سقوط ارزش سهام آمریکا",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1795662204,
+      "verdict": "repeat",
+      "why": "Both posts cover the same news regarding new US trade tariffs."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: افتتاح مرکز آموزشی جانفدا برای خانواده‌ها در تهران",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1795622646,
-      "title": "افتتاح مرکز آموزشی نظامی «جانفدا» ویژه خانواده ها"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=local: Local gathering of martyrs, no national impact.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1795622647,
-      "title": "علی آبادی: اجتماع بزرگ جان فدایان ایران در بجنورد برگزار می شود"
-    },
-    {
-      "ai": "ai gemini/gemini-3.6-flash score=2 happened=True scope=local: پیام تسلیت برای درگذشت استاد دانشگاه؛ فاقد ارزش خبری مهم",
-      "rescued": false,
-      "rule": "low-value",
-      "t": 1795622662,
-      "title": "میرباقری شاهرودی: گلشنی از چهره های نهادساز عرصه علم بود"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Unverified claim, no concrete event occurred",
       "rescued": false,
@@ -4985,6 +4963,27 @@
       "rule": "final-scope-preselection",
       "t": 1795658405,
       "title": "Photos: Storms and an El Nino-charged king tide batter California’s coast"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: حمله سایبری به شرکت خارجی، اثر محدود",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795662160,
+      "title": "حمله سایبری به شرکت وان پس ورد کانادا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: مطرح‌کردن سامانه ثبت شهدا، اثر محدود و اداری",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1795662161,
+      "title": "طراحی سامانه «مهج»؛ ثبت اطلاعات دانش آموزان و فرهنگیان شهید"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: تعویض داور در مسابقه باشگاه",
+      "rescued": false,
+      "rule": "routine-metaphorical-topic",
+      "t": 1795662161,
+      "title": "تعویض داور بازی گل گهر به دلیل احتمال مصرف الکل"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -7999,7 +7998,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795660276
+    "at": 1795662069
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
