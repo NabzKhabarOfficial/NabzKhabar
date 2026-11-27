@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795735980
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795735988
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795735988
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
       "t": 1795746541
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795746773
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1795746790
     }
   ],
   "_ai_pace": {
@@ -168,15 +168,15 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-26",
-      "n": 247
+      "n": 249
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-26",
-      "n": 110
+      "n": 111
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-26",
-      "n": 110
+      "n": 111
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-27",
@@ -184,7 +184,7 @@
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-27",
-      "n": 13
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-26",
@@ -494,20 +494,20 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 12,
-        "ok": 12,
+        "calls": 14,
+        "ok": 14,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
         "429": 4,
-        "calls": 4,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 0,
+        "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 6,
-        "calls": 6,
+        "429": 7,
+        "calls": 7,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
@@ -521,56 +521,21 @@
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 13,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 10,
+        "ok": 11,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 10,
+        "calls": 12,
         "last_error": "HTTP 402: {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null,\"code\":\"2314\",\"raw_status_code\":402}",
         "ok": 0,
-        "other": 10
+        "other": 12
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1795568636.0750048,
-      "title": "تعلیق عملیات مشترک دولت آمریکا با اکوادور",
-      "urgent": false
-    },
-    {
-      "label": "اقتصاد",
-      "level": 3,
-      "t": 1795570445.6318533,
-      "title": "درخواست ۱۱۵ میلیارد یورویی اوکراین برای تأمین مالی در سال ۲۰۲۷",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1795572197.462975,
-      "title": "ترامپ: بودجه عملیات نظامی در ایران تا پایان ژانویه تأمین شده است",
-      "urgent": false
-    },
-    {
-      "label": "خبر",
-      "level": 4,
-      "t": 1795572234.2034762,
-      "title": "رایزنی تلفنی وزرای خارجه عربستان و آمریکا",
-      "urgent": false
-    },
-    {
-      "label": "سیاست",
-      "level": 4,
-      "t": 1795573986.1124136,
-      "title": "وزیر دفاع اسرائیل: اطلاعاتی درباره برنامه ایران برای سلاح های شیمیایی در اختیار دارند",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1095,6 +1060,13 @@
       "t": 1795741399.7566924,
       "title": "بحران برق اوکراین در جنگ با روسیه",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 5,
+      "t": 1795746789.4034662,
+      "title": "حمله پهپادی به جنوب عربستان",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-26",
@@ -1254,15 +1226,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: تایید رسمی کشته شدن شهروندان توسط دولت ایتالیا.",
       "topic": "نظامی",
       "until": 1795799076.3762426
-    },
-    "v5|kim jong un says north korea should widen deployment of tactical nukes": {
-      "happened": true,
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b score=8 happened=True scope=world: North Korean leader threatens war over nuclear denial",
-      "scope": "world",
-      "score": 8,
-      "topic": "نظامی",
-      "until": 1795746765.4751086
     },
     "v5|new zealand's ruling coalition falls short of parliamentary majority by one seat": {
       "ok": false,
@@ -1824,6 +1787,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: حمله پهپادی اوکراین به پالایشگاه نفت روسیه در منطقه جنگی.",
       "topic": "نظامی",
       "until": 1795800837.8070793
+    },
+    "v5|ایا با قطع کابل های دریایی اینترنت از بین می رود؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=world: هیچ رویداد واقعی رخ نداده",
+      "topic": "فناوری",
+      "until": 1795833173.7434678
     },
     "v5|ایران خودش زمان جنگ بعدی را تعیین می کند": {
       "ok": false,
@@ -4136,15 +4105,6 @@
   },
   "_event_judge_log": [
     {
-      "head": "انفجار مهیب در ریاض و توقف پروازهای فرودگاه دمام ⚡️ صدای انفجاری مهیب در ریاض شنیده شد و آژیر خطر در پایتخت عر",
-      "id": "923e052c5b",
-      "match": "",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1795644288,
-      "verdict": "new",
-      "why": "This is a distinct security incident in Riyadh."
-    },
-    {
       "head": "انهدام پهپاد جت مدار روسیه توسط سامانه لیزری اوکراین برای نخستین بار در جهان ⚡️ اوکراین اعلام کرد که سامانه لی",
       "id": "809da10c51",
       "match": "",
@@ -4684,16 +4644,18 @@
       "t": 1795741398,
       "verdict": "new",
       "why": "General power crisis in Kyiv is a separate topic from specific military strikes."
+    },
+    {
+      "head": "حمله پهپادی به جنوب عربستان ⚡️ شهرهای ابها و خمیس مشیط در جنوب عربستان هدف حمله پهپادی قرار گرفتند.",
+      "id": "807f5ae6bc",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795746788,
+      "verdict": "new",
+      "why": "حمله پهپادی جدید به شهرهای ابها و خمیس مشیط."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=False scope=world: Senators propose 75% cut in hyper-sonic weapons budget.",
-      "rescued": false,
-      "rule": "foreign-local-preselection",
-      "t": 1795712636,
-      "title": "سناتورهای آمریکایی پیشنهاد کاهش ۷۵ درصدی بودجه توسعه تسلیحات هایپرسونیک را مطرح کردند"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: اظهارات تشریفاتی وزیر خارجه درباره اصفهان رویداد مهمی محسوب نمی‌شود.",
       "rescued": false,
@@ -5246,83 +5208,19 @@
       "rule": "strict-source-below-importance(9<10)",
       "t": 1795746534,
       "title": "سوال نماینده قم از وزیر خارجه درباره ترک فعل در معرفی شرکت های حامی و مرتبط با اسرائیل/ بسیاری از این شرکت ها در حال فعا"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=0 happened=False scope=world: هیچ رویداد واقعی رخ نداده",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795746773,
+      "title": "ایا با قطع کابل های دریایی اینترنت از بین می رود؟"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "الحرث",
-        "امدد",
-        "جنگند",
-        "دفع",
-        "سعد",
-        "صنع",
-        "عمل",
-        "مدن",
-        "هدف",
-        "همزم",
-        "یمن"
-      ],
-      "t": 1795698284.5924668,
-      "title": "حمله جنگنده های سعودی به نیروهای امدادی یمن در صنعاء ⚡️ جنگنده های سعودی همزمان با عملیات امدادی نیروهای دفاع مدنی در من"
-    },
-    {
-      "h": [
-        "اعمل",
-        "انتقد",
-        "تجر",
-        "تعرف",
-        "خدمت",
-        "خرج",
-        "سخنگ",
-        "سد",
-        "منفع",
-        "ندنست",
-        "هچ",
-        "وزرت",
-        "وکنش",
-        "پشنهد"
-      ],
-      "t": 1795700115.0744085,
-      "title": "واکنش چین به تعرفه های ترامپ: جنگ تجاری به سود هیچ کس نیست ⚡️ سخنگوی وزارت خارجه چین از پیشنهاد دونالد ترامپ برای اعمال "
-    },
-    {
-      "h": [
-        "اعزم",
-        "الم",
-        "دعت",
-        "دفع",
-        "سفر",
-        "مسک",
-        "نبد",
-        "نمند",
-        "نکند",
-        "پتن"
-      ],
-      "t": 1795700149.1776378,
-      "title": "وزیر دفاع آلمان: اروپا دعوت پوتین برای سفر به مسکو را رد نکند ⚡️ وزیر دفاع آلمان اعلام کرد که کشورهای اروپایی نباید دعوت"
-    },
-    {
-      "h": [
-        "انتشر",
-        "تعدد",
-        "حت",
-        "حرم",
-        "دد",
-        "متخصم",
-        "مدع",
-        "مقعت",
-        "نقط",
-        "هدف",
-        "پهپد",
-        "کت"
-      ],
-      "t": 1795701911.6931083,
-      "title": "ارتش کویت مدعی حمله پهپادی ایران به یک نقطه حیاتی شد ⚡️ ارتش کویت با انتشار بیانیه ای مدعی شد که تعدادی پهپاد متخاصم از "
-    },
     {
       "h": [
         "است",
@@ -5734,99 +5632,23 @@
       ],
       "t": 1795741399.74772,
       "title": "بحران برق اوکراین در جنگ با روسیه ⚡️ در پایتخت اوکراین، کمبود برق و آب به بخش روزمره زندگی تبدیل شده است."
+    },
+    {
+      "h": [
+        "ابه",
+        "جنب",
+        "خمس",
+        "شهر",
+        "مشط",
+        "هدف",
+        "پهپد",
+        "گرفتند"
+      ],
+      "t": 1795746789.3869011,
+      "title": "حمله پهپادی به جنوب عربستان ⚡️ شهرهای ابها و خمیس مشیط در جنوب عربستان هدف حمله پهپادی قرار گرفتند."
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "ارشد",
-        "حمس",
-        "ددن",
-        "فرمنده",
-        "مدع"
-      ],
-      "cities": [
-        "غزه"
-      ],
-      "kind": "attack",
-      "places": [
-        "غزه"
-      ],
-      "regions": [
-        "gaza"
-      ],
-      "t": 1795673087.182176,
-      "title": "ادعای ترور عضو ارشد حماس توسط اسرائیل ⚡️ ارتش اسرائیل مدعی هدف قرار دادن یکی از فرماندهان ارشد حماس در غزه شد.",
-      "toll": 0
-    },
-    {
-      "a": [
-        "a321",
-        "a340",
-        "اربس",
-        "اسلم",
-        "اشن",
-        "الن",
-        "انتشر",
-        "انهدم",
-        "تشرفت",
-        "تصر",
-        "رمض",
-        "فردگ",
-        "فرند",
-        "متعلق",
-        "منتشر",
-        "مهربد"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795676780.1903424,
-      "title": "انتشار تصاویر بمباران هواپیماهای تشریفاتی دولت در فرودگاه مهرآباد ⚡️ تصاویر حمله آمریکا به فرودگاه مهرآباد و انهدام دو ف",
-      "toll": 0
-    },
-    {
-      "a": [
-        "امدن",
-        "خسر",
-        "متقبل",
-        "مختلف",
-        "منجر",
-        "ورد"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795676806.532313,
-      "title": "حملات متقابل پهپادی و موشکی میان روسیه و اوکراین و زخمی شدن ده ها تن ⚡️ حملات متقابل میان روسیه و اوکراین در مناطق مختلف",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اختلل",
-        "برخرد",
-        "تنگ",
-        "عرض",
-        "معمل",
-        "نگرن",
-        "هرمز",
-        "پلشگ",
-        "یمن"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [
-        "تنگه هرمز"
-      ],
-      "regions": [
-        "hormuz"
-      ],
-      "t": 1795676833.9959745,
-      "title": "افزایش قیمت نفت در پی نگرانی از اختلال عرضه و حملات در تنگه هرمز ⚡️ قیمت نفت خام در معاملات آسیا در پی نگرانی از اختلال ",
-      "toll": 0
-    },
     {
       "a": [
         "اسپس",
@@ -5995,121 +5817,24 @@
       "t": 1795732453.4127371,
       "title": "تصاویر ماهواره ای از وقوع آتش سوزی در پالایشگاه رأس تنوره عربستان ⚡️ تصاویر ماهواره ای از پالایشگاه رأس تنوره در عربستان",
       "toll": 0
+    },
+    {
+      "a": [
+        "ابه",
+        "خمس",
+        "مشط"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1795746789.3953955,
+      "title": "حمله پهپادی به جنوب عربستان ⚡️ شهرهای ابها و خمیس مشیط در جنوب عربستان هدف حمله پهپادی قرار گرفتند.",
+      "toll": 0
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ار",
-        "ارتش",
-        "استفد",
-        "اسلم",
-        "اعمل",
-        "امر",
-        "امن",
-        "انجم",
-        "اهدف",
-        "اکرم",
-        "بهن",
-        "تر",
-        "تمم",
-        "تنگ",
-        "تکد",
-        "جمهر",
-        "حمل",
-        "دستر",
-        "دشمن",
-        "دهند",
-        "سخنگ",
-        "سرتپ",
-        "شنر",
-        "صرف",
-        "عبر",
-        "فرتر",
-        "فرمنده",
-        "لزم",
-        "محمد",
-        "مرقبت",
-        "مسل",
-        "مسلح",
-        "مشک",
-        "مضع",
-        "منطق",
-        "نر",
-        "هرمز",
-        "هست",
-        "همهنگ",
-        "کنترل"
-      ],
-      "s": "سخنگوی ارتش",
-      "t": 1795613718.819884,
-      "title": "سخنگوی ارتش: اهداف دشمن در حمله به ایران فراتر از مسائل هسته ای و موشکی بود ⚡️ امیر سرتیپ محمد اکرمی نیا سخنگوی ارتش جمه"
-    },
-    {
-      "k": [
-        "اتخذ",
-        "الکسندر",
-        "انجم",
-        "بزر",
-        "بستگ",
-        "بنزن",
-        "تصمم",
-        "تلش",
-        "تمدد",
-        "تمم",
-        "تمن",
-        "خهد",
-        "دخل",
-        "دسمبر",
-        "دلت",
-        "رس",
-        "سخت",
-        "سرعت",
-        "صدر",
-        "طرق",
-        "لزم",
-        "مسک",
-        "معن",
-        "ممنعت",
-        "نخست",
-        "نک",
-        "ورد",
-        "وزر",
-        "وضعت"
-      ],
-      "s": "مسکو",
-      "t": 1795613766.8635588,
-      "title": "مسکو: تصمیم درباره تمدید ممنوعیت صادرات بنزین در دسامبر اتخاذ می شود ⚡️ معاون نخست وزیر روسیه الکساندر نواک اعلام کرد که"
-    },
-    {
-      "k": [
-        "اتبع",
-        "انتقل",
-        "بنک",
-        "تسهل",
-        "تند",
-        "خرج",
-        "درفت",
-        "رس",
-        "سقف",
-        "صدر",
-        "مجمع",
-        "محددت",
-        "مرکز",
-        "معدل",
-        "نشد",
-        "نظر",
-        "نقل",
-        "هزر",
-        "پل",
-        "کرت",
-        "گردشگر",
-        "یر"
-      ],
-      "t": 1795613823.7867134,
-      "title": "صدور کارت گردشگری ۱۰ هزار یورویی برای اتباع خارجی ⚡️ رئیس کل بانک مرکزی از صدور کارت گردشگری برای تسهیل نقل و انتقال پول"
-    },
     {
       "k": [
         "اتش",
@@ -7904,6 +7629,26 @@
       ],
       "t": 1795741399.739206,
       "title": "بحران برق اوکراین در جنگ با روسیه ⚡️ در پایتخت اوکراین، کمبود برق و آب به بخش روزمره زندگی تبدیل شده است. ▫️ کسب وکارها "
+    },
+    {
+      "k": [
+        "ابه",
+        "جنب",
+        "حمل",
+        "خمس",
+        "ردد",
+        "رسن",
+        "شهر",
+        "عربست",
+        "مشط",
+        "منبع",
+        "هدف",
+        "پهپد",
+        "کشر",
+        "گرفتند"
+      ],
+      "t": 1795746789.3779771,
+      "title": "حمله پهپادی به جنوب عربستان ⚡️ شهرهای ابها و خمیس مشیط در جنوب عربستان هدف حمله پهپادی قرار گرفتند. ▫️ منابع رسانه ای ای"
     }
   ],
   "_telegram_errors": [
@@ -8517,7 +8262,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795746450
+    "at": 1795746694
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
