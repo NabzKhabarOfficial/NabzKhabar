@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795732391
-    },
-    {
-      "e": "EDITOR BATCH: 2/2 via gemini/gemini-3.1-flash-lite",
-      "t": 1795732392
-    },
-    {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 11x, groq:openai/gpt-oss-20b held 10x",
       "t": 1795732466
     },
@@ -159,32 +151,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1795739664
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1795741383
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
+      "t": 1795741427
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-26",
-      "n": 140
+      "n": 141
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-26",
-      "n": 239
+      "n": 242
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-26",
-      "n": 106
+      "n": 108
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-26",
-      "n": 106
+      "n": 108
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-27",
-      "n": 6
+      "n": 8
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-27",
-      "n": 6
+      "n": 8
     },
     "openrouter:*": {
       "day": "2026-11-26",
@@ -488,61 +488,54 @@
     "2026-11-27": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 3,
-        "ok": 3,
-        "other": 0
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
         "calls": 4,
         "ok": 4,
         "other": 0
       },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 7,
+        "ok": 7,
+        "other": 0
+      },
       "gemini:gemini-3.6-flash": {
-        "429": 3,
-        "calls": 3,
+        "429": 4,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 2,
-        "calls": 2,
+        "429": 4,
+        "calls": 4,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 4,
+        "ok": 6,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 6,
+        "calls": 8,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 3,
+        "ok": 5,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 4,
+        "calls": 7,
         "last_error": "HTTP 402: {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null,\"code\":\"2314\",\"raw_status_code\":402}",
         "ok": 0,
-        "other": 4
+        "other": 7
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 3,
-      "t": 1795565321.198374,
-      "title": "حملات توپخانه ای و پهپادی اسرائیل به جنوب لبنان",
-      "urgent": false
-    },
     {
       "label": "سیاست",
       "level": 4,
@@ -1095,6 +1088,13 @@
       "t": 1795737843.5544045,
       "title": "معاون دفتر عارف: محاصره زمینی ایران تنها در رؤیای مقامات آمریکایی است؛ مرزهای زمینی فعال تر از جنگ رمضان",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1795741399.7566924,
+      "title": "بحران برق اوکراین در جنگ با روسیه",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-26",
@@ -1128,6 +1128,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: انفجار تانکر سوخت در قاهره با ۳۱ کشته و مصدومان زیاد",
       "topic": "حادثه",
       "until": 1795743194.0967488
+    },
+    "v5|australia's sandpapergate probe to also include 2017-18 ashes": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Cricket scandal probe expanded, limited broader significance",
+      "topic": "ورزش",
+      "until": 1795827781.8903944
     },
     "v5|bangladesh garment workers clash with police over low wages": {
       "ok": false,
@@ -1236,6 +1242,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: تحریم مقام ارشد دیوان کیفری بین‌المللی توسط آمریکا.",
       "topic": "قضایی",
       "until": 1795761770.5855012
+    },
+    "v5|inside ukraine’s power crisis amid its war with russia": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: major war‑related power crisis",
+      "topic": "اقتصاد",
+      "until": 1795827783.7481525
     },
     "v5|iranian monarchists disrupt paris event, highlighting bitter diaspora divide": {
       "ok": false,
@@ -3781,6 +3793,12 @@
       "topic": "سیاست",
       "until": 1795779205.671435
     },
+    "v5|پنتاگون به دنبال مجهز کردن خودروهای زرهی به هوش مصنوعی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=world: future AI equip plan, not occurred",
+      "topic": "نظامی",
+      "until": 1795827783.7573912
+    },
     "v5|پنجمین مراسم جشن ایران بانو": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: مراسم جشن فرهنگی در ورزشگاه شهید شیرودی",
@@ -4080,7 +4098,7 @@
     },
     "سفارت ایران در رم: ادعای نقش ایران در حمله پهپادی به کویت که به کشته شدن دو تبعه ایتالیایی منجر شد را قاطعانه رد می کنیم": {
       "reason": "content_duplicate",
-      "until": 1795739716.5315077
+      "until": 1795763027.6756039
     },
     "عراقچی در گفت وگوی تلفنی با همتای کویتی خود: ادعاها درباره حمله پهپادی ایران به کویت را قاطعانه رد می کنم/ تهران هیچ گونه دخالتی در این حادثه نداشته/ ایران برای انجام تحقیقات مشترک": {
       "reason": "content_duplicate",
@@ -4105,15 +4123,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "حمله انتحاری داعش در الحسکه سوریه با کشته و زخمی شدن ۵ تن ⚡️ فرمانده امنیت داخلی استان الحسکه در شمال شرق سوری",
-      "id": "6e399edf99",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795644262,
-      "verdict": "new",
-      "why": "حمله داعش در الحسکه سوریه در میان اخبار قبلی نیست."
-    },
     {
       "head": "انفجار مهیب در ریاض و توقف پروازهای فرودگاه دمام ⚡️ صدای انفجاری مهیب در ریاض شنیده شد و آژیر خطر در پایتخت عر",
       "id": "923e052c5b",
@@ -4654,16 +4663,18 @@
       "t": 1795737842,
       "verdict": "new",
       "why": "Unique statement on ground siege, not previously reported"
+    },
+    {
+      "head": "بحران برق اوکراین در جنگ با روسیه ⚡️ در پایتخت اوکراین، کمبود برق و آب به بخش روزمره زندگی تبدیل شده است.",
+      "id": "d4d4e1dc85",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795741398,
+      "verdict": "new",
+      "why": "General power crisis in Kyiv is a separate topic from specific military strikes."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=1 happened=False scope=local: سخنرانی و روایت دفاع مقدس در یزد خبر محلی کم اهمیت است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1795709046,
-      "title": "یکتا: خون شهدا زمینه ساز بعثت دوباره ملت ایران شده است"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: انتقاد نخست وزیر عراق از درآمدهای اقلیم کردستان و قاچاق نفت",
       "rescued": true,
@@ -5216,6 +5227,13 @@
       "rule": "no-concrete-event",
       "t": 1795739601,
       "title": "تداوم لفاظی ها و تناقض گویی های رئیس جمهور متوهم آمریکا درباره ایران"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Cricket scandal probe expanded, limited broader significance",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795741381,
+      "title": "Australia's sandpapergate probe to also include 2017-18 Ashes"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -5690,6 +5708,20 @@
       ],
       "t": 1795737843.5449903,
       "title": "معاون دفتر عارف: محاصره زمینی ایران تنها در رؤیای مقامات آمریکایی است؛ مرزهای زمینی فعال تر از جنگ رمضان ⚡️ عباس پازوکی،"
+    },
+    {
+      "h": [
+        "بحر",
+        "بخش",
+        "برق",
+        "تبدل",
+        "رزمر",
+        "زندگ",
+        "پتخت",
+        "کمبد"
+      ],
+      "t": 1795741399.74772,
+      "title": "بحران برق اوکراین در جنگ با روسیه ⚡️ در پایتخت اوکراین، کمبود برق و آب به بخش روزمره زندگی تبدیل شده است."
     }
   ],
   "_published_incidents": [
@@ -5955,72 +5987,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اثر",
-        "احتمل",
-        "انفجر",
-        "دنگ",
-        "رستر",
-        "رسترن",
-        "شهر",
-        "قدرتمند",
-        "مرگبر",
-        "منطق",
-        "نشت",
-        "هت",
-        "هن",
-        "وتنم",
-        "پت",
-        "گز"
-      ],
-      "t": 1795610161.1496572,
-      "title": "انفجار مرگبار در رستورانی در ویتنام ⚡️ یک انفجار قدرتمند بر اثر احتمال نشت گاز در یک رستوران هات پات در منطقه دونگ دا شه"
-    },
-    {
-      "k": [
-        "اتبع",
-        "احزب",
-        "ار",
-        "اعزم",
-        "امنت",
-        "تردد",
-        "تصف",
-        "تصمم",
-        "تضمن",
-        "تقت",
-        "جمهر",
-        "جنب",
-        "جنگ",
-        "حفظت",
-        "خرمن",
-        "در",
-        "رس",
-        "سحل",
-        "سل",
-        "سمل",
-        "عرب",
-        "عمن",
-        "غرمستقم",
-        "مخلف",
-        "مدخل",
-        "ممرت",
-        "منگ",
-        "نخهد",
-        "نر",
-        "هچ",
-        "ورد",
-        "چنگ",
-        "کره",
-        "کشت",
-        "گسترش",
-        "یبد",
-        "یگن"
-      ],
-      "s": "سئول",
-      "t": 1795610183.108048,
-      "title": "سئول: مأموریت نیروی دریایی کره جنوبی در خاورمیانه گسترش می یابد، اما وارد جنگ نمی شود ⚡️ رئیس جمهور کره جنوبی لی جائه می"
-    },
     {
       "k": [
         "ار",
@@ -7903,6 +7869,29 @@
       "s": "معاون دفتر عارف",
       "t": 1795737843.5352619,
       "title": "معاون دفتر عارف: محاصره زمینی ایران تنها در رؤیای مقامات آمریکایی است؛ مرزهای زمینی فعال تر از جنگ رمضان ⚡️ عباس پازوکی،"
+    },
+    {
+      "k": [
+        "استفد",
+        "اکرن",
+        "بحر",
+        "بخش",
+        "برق",
+        "تبدل",
+        "جنگ",
+        "رزمر",
+        "رس",
+        "زندگ",
+        "قطع",
+        "مقبل",
+        "وکر",
+        "پتخت",
+        "ژنرتر",
+        "کسب",
+        "کمبد"
+      ],
+      "t": 1795741399.739206,
+      "title": "بحران برق اوکراین در جنگ با روسیه ⚡️ در پایتخت اوکراین، کمبود برق و آب به بخش روزمره زندگی تبدیل شده است. ▫️ کسب وکارها "
     }
   ],
   "_telegram_errors": [
@@ -8516,7 +8505,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795739480
+    "at": 1795741308
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
