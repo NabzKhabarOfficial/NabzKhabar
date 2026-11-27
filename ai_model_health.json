@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795735976
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795735976
-    },
-    {
       "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
       "t": 1795735980
     },
@@ -159,6 +151,14 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 9x, groq:openai/gpt-oss-20b held 8x",
       "t": 1795745068
+    },
+    {
+      "e": "EDITOR BATCH: 3/3 via groq/openai/gpt-oss-120b",
+      "t": 1795746536
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 1x",
+      "t": 1795746541
     }
   ],
   "_ai_pace": {
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-27",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-27",
-      "n": 12
+      "n": 13
     },
     "openrouter:*": {
       "day": "2026-11-26",
@@ -514,16 +514,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 8,
+        "ok": 10,
         "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 13,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 10,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
@@ -1341,6 +1341,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis piece regarding future economic impacts.",
       "topic": "اقتصاد",
       "until": 1795808036.4350595
+    },
+    "v5|zelenskyy warns of major russian attack as trump urges putin to ‘pull back’": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Speculative warnings, no concrete decision",
+      "topic": "سیاست",
+      "until": 1795832936.7980168
     },
     "v5|«ایران قوی» آزمون خود را در جنگ پس داد/ باید به قطب تامین امنیت کشورهای منطقه تبدیل شویم": {
       "ok": false,
@@ -2851,6 +2857,12 @@
       "topic": "اقتصاد",
       "until": 1795797286.3862262
     },
+    "v5|سوال نماینده قم از وزیر خارجه درباره ترک فعل در معرفی شرکت های حامی و مرتبط با اسرائیل/ بسیاری از این شرکت ها در حال فعالیت در ایران هستند": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: MP questions foreign minister on Israeli‑linked companies",
+      "topic": "سیاست",
+      "until": 1795832934.353596
+    },
     "v5|سوانسون، مدیر سابق میز ایران در شورای امنیت ملی آمریکا: شاید ایران به این نتیجه رسیده که درگیری اجتناب ناپذیر است و باید نبرد بعدی را با زمان بندی مورد نظر خودش و نه ترامپ، آغاز کن": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحلیل و گمانه‌زنی مقام سابق آمریکایی درباره جنگ احتمالی",
@@ -3343,6 +3355,12 @@
       "topic": "جامعه",
       "until": 1795809870.843197
     },
+    "v5|مکرون: توقف حمایت از اوکراین، امنیت اروپا را به خطر می اندازد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Macron's warning, no concrete action",
+      "topic": "سیاست",
+      "until": 1795832936.8211343
+    },
     "v5|مکرون: قطع حمایت از اوکراین امنیت اروپا را به خطر می اندازد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: موضع‌گیری رسمی رئیس‌جمهور فرانسه درباره امنیت اروپا و جنگ اوکراین.",
@@ -3477,6 +3495,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=3 happened=False scope=world: Speculative report on budget pressures; lacks a concrete official decision.",
       "topic": "اقتصاد",
       "until": 1795772036.9245837
+    },
+    "v5|هشدار درباره الگوی پرخطر مصرف الکل در ایران / جای خالی مراکز تخصصی ترک الکل": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: Health warning, no incident",
+      "topic": "سلامت",
+      "until": 1795832936.8115716
     },
     "v5|همکاری آسه آن و شرق آسیا در پرداخت های دیجیتال فرامرزی": {
       "ok": false,
@@ -4664,13 +4688,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مراسم بزرگداشت و رویدادهای تشریفاتی امتیاز پایینی دارند",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795710881,
-      "title": "بزرگداشت شهدای ناو دنا و جماران"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-20b score=3 happened=False scope=world: Senators propose 75% cut in hyper-sonic weapons budget.",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5222,6 +5239,13 @@
       "rule": "no-concrete-event",
       "t": 1795744995,
       "title": "New Zealand's ruling coalition falls short of parliamentary majority by one seat"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: MP questions foreign minister on Israeli‑linked companies",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795746534,
+      "title": "سوال نماینده قم از وزیر خارجه درباره ترک فعل در معرفی شرکت های حامی و مرتبط با اسرائیل/ بسیاری از این شرکت ها در حال فعا"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8493,7 +8517,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795744883
+    "at": 1795746450
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
