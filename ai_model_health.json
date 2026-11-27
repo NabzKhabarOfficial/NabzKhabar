@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.5-flash-lite",
-      "t": 1795813424
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 14x, groq:openai/gpt-oss-20b held 12x",
-      "t": 1795813505
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795815187
     },
@@ -159,32 +151,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
       "t": 1795818811
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795820584
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
+      "t": 1795820606
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-27",
-      "n": 126
+      "n": 127
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-27",
-      "n": 216
+      "n": 218
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-27",
-      "n": 96
+      "n": 97
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-27",
-      "n": 96
+      "n": 97
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-27",
-      "n": 89
+      "n": 90
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-27",
-      "n": 89
+      "n": 90
     },
     "openrouter:*": {
       "day": "2026-11-27",
@@ -488,29 +488,29 @@
     "2026-11-27": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 139,
+        "calls": 140,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 128,
+        "ok": 129,
         "other": 11
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 281,
+        "calls": 283,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 277,
+        "ok": 279,
         "other": 4
       },
       "gemini:gemini-3.6-flash": {
-        "429": 76,
-        "calls": 102,
+        "429": 77,
+        "calls": 103,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 25,
         "other": 1
       },
       "gemini:gemini-3.8-flash": {
-        "429": 80,
-        "calls": 108,
+        "429": 81,
+        "calls": 109,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
         "ok": 2,
@@ -518,16 +518,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 89,
+        "calls": 90,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 64,
+        "ok": 65,
         "other": 25
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 89,
+        "calls": 90,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 57,
+        "ok": 58,
         "other": 32
       },
       "mistral:ministral-8b-latest": {
@@ -539,10 +539,10 @@
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 207,
+        "calls": 209,
         "last_error": "HTTP 402: {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null,\"code\":\"2314\",\"raw_status_code\":402}",
         "ok": 0,
-        "other": 207
+        "other": 209
       },
       "openrouter:baidu/ernie-5.5-flash-preview:free": {
         "429": 0,
@@ -586,34 +586,6 @@
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 5,
-      "t": 1795644263.3322463,
-      "title": "حمله انتحاری داعش در الحسکه سوریه با کشته و زخمی شدن ۵ تن",
-      "urgent": false
-    },
-    {
-      "label": "حادثه",
-      "level": 4,
-      "t": 1795644289.2815883,
-      "title": "انفجار مهیب در ریاض و توقف پروازهای فرودگاه دمام",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 3,
-      "t": 1795646110.9113822,
-      "title": "انهدام پهپاد جت مدار روسیه توسط سامانه لیزری اوکراین برای نخستین بار در جهان",
-      "urgent": false
-    },
-    {
-      "label": "نظامی",
-      "level": 3,
-      "t": 1795646137.4721348,
-      "title": "لهستان در پی نقض مکرر حریم هوایی، منطقه پرواز ممنوع در مرز اوکراین ایجاد می کند",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 5,
@@ -1271,6 +1243,13 @@
       "t": 1795817041.6574636,
       "title": "خروج اوگاندا از شرق جمهوری دموکراتیک کنگو",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 3,
+      "t": 1795820605.1707346,
+      "title": "ارتش آمریکا یک کشتی تجاری را در دریای عمان از کار انداخت",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-27",
@@ -1316,12 +1295,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=world: Speculative analysis on US policy rather than a concrete event.",
       "topic": "سیاست",
       "until": 1795862002.1698284
-    },
-    "v5|diesel tanker carrying up to 7,000 tonnes capsizes near ibiza, killing one": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=world: غرق شدن نفتکش با تلفات انسانی و خسارت زیست‌محیطی",
-      "topic": "حادثه",
-      "until": 1795818791.1861877
     },
     "v5|eu leaders split over budget spending and a $49 billion loan to ukraine": {
       "ok": true,
@@ -1413,6 +1386,12 @@
       "topic": "ورزش",
       "until": 1795826051.2519772
     },
+    "v5|princess kate’s cancer documentary ‘heal’: 3 takeaways": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Royal documentary release, low international significance",
+      "topic": "سلامت",
+      "until": 1795906983.892258
+    },
     "v5|putin unveils new russian nuclear-powered submarine with hypersonic weapons": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: رونمایی پوتین از زیردریایی هستهی جدید روسیه",
@@ -1490,6 +1469,15 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Official proposal for a ceasefire in a major ongoing conflict.",
       "topic": "سیاست",
       "until": 1795901615.543757
+    },
+    "v5|us military says it disabled merchant ship trying to breach iran blockade": {
+      "happened": true,
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b score=8 happened=True scope=world: US disabled merchant ship breaching Iran blockade",
+      "scope": "world",
+      "score": 8,
+      "topic": "نظامی",
+      "until": 1795906984.4080145
     },
     "v5|us too focused on middle east and not pushing russia hard enough, zelensky tells bbc": {
       "ok": true,
@@ -2363,12 +2351,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=6 happened=True scope=iran_national: تصادف منجر به مصدومیت ۱۵ نفر در یک حادثه جاده‌ای",
       "topic": "حادثه",
       "until": 1795883619.9882872
-    },
-    "v5|تصاویر ماهواره ای از آتش سوزی در بزرگترین پالایشگاه عربستان": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=8 happened=True scope=world: Explosion at a major oil refinery is a global energy event.",
-      "topic": "حادثه",
-      "until": 1795818792.4799526
     },
     "v5|تصاویر؛ ویرانه های دو برج مراقبت بعد از حملات جنگ ۴۰ روزه": {
       "ok": false,
@@ -4083,12 +4065,6 @@
       "topic": "سلامت",
       "until": 1795840417.1260834
     },
-    "v5|۵۴۳ مسموم و ۲۳ کشته در موج مشروبات آلوده؛ نیشابور در صدر آمار / ۲۰۵ نفر دیالیز شدند+ جدول آمار به تفکیک شهرها": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=iran_national: Mass casualty event involving over 20 deaths is national news.",
-      "topic": "سلامت",
-      "until": 1795818792.4881241
-    },
     "v5|۶۰ مدرسه در بشاگرد به نیروگاه خورشیدی مجهز می شوند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: پیش‌بینی نصب نیروگاه خورشیدی، خبر محلی",
@@ -4216,15 +4192,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "مکرون: رها کردن اوکراین امنیت اروپا را به خطر می اندازد ⚡️ امانوئل مکرون رئیس جمهور فرانسه جنگ در اوکراین را م",
-      "id": "c038e14997",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795759446,
-      "verdict": "new",
-      "why": "Macron's statement is a new political declaration about Ukraine."
-    },
     {
       "head": "تحریم های استرالیا علیه دو فرد مرتبط با ادعای حملات ضد یهود ⚡️ استرالیا امروز تحریم هایی را علیه دو نفر وضع کر",
       "id": "620608993b",
@@ -4757,16 +4724,18 @@
       "t": 1795817040,
       "verdict": "new",
       "why": "این خبر درباره اوگاندا و کنگو در لیست منتشر شده قبلی وجود ندارد."
+    },
+    {
+      "head": "ارتش آمریکا یک کشتی تجاری را در دریای عمان از کار انداخت ⚡️ فرماندهی مرکزی ایالات متحده اعلام کرد جنگنده های ا",
+      "id": "4d9fdacee0",
+      "match": "",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795820604,
+      "verdict": "new",
+      "why": "This is a distinct naval incident in the Gulf of Oman."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: سرقت خرد در یک شهرستان که فاقد اهمیت ملی یا بین‌المللی است.",
-      "rescued": false,
-      "rule": "below-event-threshold",
-      "t": 1795790034,
-      "title": "لباس خدمه، پوشش سرقت طلای بیماران در جویبار"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=6 happened=True scope=world: حمله سایبری به وزارت کار انگلیس و قطعی خدمات آنلاین",
       "rescued": false,
@@ -5319,49 +5288,19 @@
       "rule": "routine-metaphorical-topic",
       "t": 1795818785,
       "title": "آنفلوآنزای شدید در کمین کودکان؛ دو دانش آموز سیرجانی جان باختند"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Royal documentary release, low international significance",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795820583,
+      "title": "Princess Kate’s Cancer Documentary ‘Heal’: 3 Takeaways"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "اجر",
-        "افزش",
-        "ال",
-        "انجم",
-        "بزر",
-        "تجرت",
-        "تعرف",
-        "جهن",
-        "خرج",
-        "زدن",
-        "سلط",
-        "صنعت",
-        "ضرب",
-        "متحد",
-        "هدف"
-      ],
-      "t": 1795773937.6901622,
-      "title": "تعرفه های جدید ترامپ با هدف خارج کردن تجارت جهانی از سلطه چین انجام شد ⚡️ افزایش جدید تعرفه های ایالات متحده با هدف بازآ"
-    },
-    {
-      "h": [
-        "افرد",
-        "تحرک",
-        "تدم",
-        "حم",
-        "درع",
-        "شدند",
-        "ضرب",
-        "قنطر",
-        "نشنس",
-        "گلل"
-      ],
-      "t": 1795775640.1571014,
-      "title": "کشته شدن دو نظامی سوری در درعا و تداوم تحرکات نظامی اسرائیل در قنیطره ⚡️ دو نظامی ارتش سوریه در حومه درعا به ضرب گلوله ا"
-    },
     {
       "h": [
         "اتش",
@@ -5847,6 +5786,31 @@
       ],
       "t": 1795817041.644444,
       "title": "خروج اوگاندا از شرق جمهوری دموکراتیک کنگو ⚡️ اوگاندا در پی تیرگی روابط با کینشاسا، خروج نیروهای خود از یک شهر کلیدی در ش"
+    },
+    {
+      "h": [
+        "ال",
+        "اندخت",
+        "اندختند",
+        "تجر",
+        "تسلح",
+        "جنگند",
+        "در",
+        "دقق",
+        "سستم",
+        "شلک",
+        "عمن",
+        "فرمنده",
+        "متحد",
+        "مرکز",
+        "پرچم",
+        "پشر",
+        "پشن",
+        "پل",
+        "کر"
+      ],
+      "t": 1795820605.1608036,
+      "title": "ارتش آمریکا یک کشتی تجاری را در دریای عمان از کار انداخت ⚡️ فرماندهی مرکزی ایالات متحده اعلام کرد جنگنده های این کشور با"
     }
   ],
   "_published_incidents": [
@@ -8756,6 +8720,46 @@
       ],
       "t": 1795817041.6309652,
       "title": "خروج اوگاندا از شرق جمهوری دموکراتیک کنگو ⚡️ اوگاندا در پی تیرگی روابط با کینشاسا، خروج نیروهای خود از یک شهر کلیدی در ش"
+    },
+    {
+      "k": [
+        "ار",
+        "ارتش",
+        "اسب",
+        "ال",
+        "امرک",
+        "اندخت",
+        "اندختند",
+        "بندر",
+        "تجر",
+        "تسلح",
+        "تلش",
+        "جنگند",
+        "خدم",
+        "در",
+        "دقق",
+        "سستم",
+        "شلک",
+        "عبر",
+        "عمن",
+        "غرنظم",
+        "فرمنده",
+        "متحد",
+        "محصر",
+        "مدع",
+        "مرکز",
+        "ندد",
+        "وجد",
+        "پرچم",
+        "پشر",
+        "پشن",
+        "پل",
+        "کر",
+        "کشت",
+        "کشر"
+      ],
+      "t": 1795820605.150173,
+      "title": "ارتش آمریکا یک کشتی تجاری را در دریای عمان از کار انداخت ⚡️ فرماندهی مرکزی ایالات متحده اعلام کرد جنگنده های این کشور با"
     }
   ],
   "_telegram_errors": [
@@ -9369,7 +9373,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795818670
+    "at": 1795820505
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
