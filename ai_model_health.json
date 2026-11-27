@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 11x, groq:openai/gpt-oss-20b held 10x",
-      "t": 1795732466
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795734198
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795734199
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795734199
     },
@@ -159,12 +147,24 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
       "t": 1795741427
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795743187
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1795743190
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
+      "t": 1795743199
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-26",
-      "n": 141
+      "n": 142
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-26",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-27",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-27",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-26",
@@ -488,8 +488,8 @@
     "2026-11-27": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
+        "calls": 5,
+        "ok": 5,
         "other": 0
       },
       "gemini:gemini-3.5-flash-lite": {
@@ -514,16 +514,16 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
-        "other": 2
+        "ok": 7,
+        "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 7,
         "other": 3
       },
       "mistral:open-mistral-nemo": {
@@ -1282,12 +1282,6 @@
       "topic": "آب و هوا",
       "until": 1795744805.7902327
     },
-    "v5|powerful us storm forces historic postponement of new york's thanksgiving day parade": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Storm postpones NYC parade",
-      "topic": "آب و هوا",
-      "until": 1795743186.9665453
-    },
     "v5|selby faces tough uk championship opener, with allen set to feature": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: مسابقه اسنوکر معمولی و غیرسرنوشت‌ساز در سطح بین‌المللی",
@@ -1341,12 +1335,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: انتقاد صریح رئیس‌جمهور اوکراین از رویکرد آمریکا و ترامپ در قبال روسیه",
       "topic": "سیاست",
       "until": 1795820621.1432877
-    },
-    "v5|what we know about trump's thanksgiving tariffs": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=world: Speculative tariff plan, no official decision yet",
-      "topic": "اقتصاد",
-      "until": 1795741422.421239
     },
     "v5|what will trump’s latest tariffs mean for the world?": {
       "ok": false,
@@ -1425,12 +1413,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=True scope=local: Routine administrative announcement regarding an exam.",
       "topic": "جامعه",
       "until": 1795793685.8254392
-    },
-    "v5|آماده دستور نخست وزیر برای استقرار نیرو در مناطق مختلف هستیم": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=5 happened=True scope=world: دستور نخست وزیر عراق برای استقرار نیرو در استان‌ها",
-      "topic": "نظامی",
-      "until": 1795743186.4584932
     },
     "v5|آمریکا از وحدت ملت ایران شکست می خورد": {
       "ok": false,
@@ -1546,17 +1528,23 @@
       "topic": "ورزش",
       "until": 1795786402.3222659
     },
-    "v5|ادامه شکست های تهران بیشه چمستان و تداوم صدرنشینی مهرگان مازندران در لیگ برتر والیبال": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Domestic volleyball league result, not top‑tier",
-      "topic": "ورزش",
-      "until": 1795741420.0313082
+    "v5|ادامه جنایت صهیونیست ها در غزه": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Israeli airstrikes hit Gaza, civilian injuries reported",
+      "topic": "نظامی",
+      "until": 1795829590.3335667
     },
     "v5|ادعای ایتالیا: دو شهروند ما در حمله به کویت جان باختند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: اعلام نخست وزیر ایتالیا درباره کشته شدن شهروندانش در کویت.",
       "topic": "حادثه",
       "until": 1795795462.0242908
+    },
+    "v5|ادعای تکراری ترامپ: پیروزی در دسترس ماست!": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: Trump claims victory over Iran, no concrete action.",
+      "topic": "سیاست",
+      "until": 1795829588.0770092
     },
     "v5|ادعای زلنسکی درباره تدارک حمله جدید روسیه": {
       "ok": false,
@@ -1653,6 +1641,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=iran_national: اعلام اسامی تیم ملی بسکتبال رویداد درجه اول جهانی نیست.",
       "topic": "ورزش",
       "until": 1795786427.3087683
+    },
+    "v5|اعلام هشدار حمله هوایی در لتونی": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=world: Minor air‑space alert, no actual incident",
+      "topic": "نظامی",
+      "until": 1795829590.3246772
     },
     "v5|افتتاح سالن همایش دانشکده اقتصاد دانشگاه مازندران با حضور معاون وزارت علوم": {
       "ok": false,
@@ -3406,12 +3400,6 @@
       "topic": "قضایی",
       "until": 1795808021.1998553
     },
-    "v5|نحوه استفاده از اینترنت ۵g/دلیل عدم افزایش تعرفه ها": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Routine operator statement, no major impact",
-      "topic": "فناوری",
-      "until": 1795743183.7253144
-    },
     "v5|نخست وزیر عراق: درآمدهای اقلیم کردستان به گروه های خاص می رسد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: انتقاد نخست وزیر عراق از درآمدهای اقلیم کردستان و قاچاق نفت",
@@ -3570,12 +3558,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=world: گزارش رسمی جنگ اوکراین و رهگیری گسترده پهپادها.",
       "topic": "نظامی",
       "until": 1795781046.6732943
-    },
-    "v5|وزارت دفاع عراق: آماده استقرار یگان های نظامی در مناطق مختلف کشور هستیم": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: Official readiness to deploy troops across Iraq",
-      "topic": "نظامی",
-      "until": 1795741422.4333522
     },
     "v5|وزش باد شدید در تهران و بازگشت آلاینده ها از جمعه": {
       "ok": false,
@@ -4676,13 +4658,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: انتقاد نخست وزیر عراق از درآمدهای اقلیم کردستان و قاچاق نفت",
-      "rescued": true,
-      "rule": "strict-source-below-importance(8<10)",
-      "t": 1795709056,
-      "title": "نخست وزیر عراق: درآمدهای اقلیم کردستان به گروه های خاص می رسد"
-    },
-    {
       "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Commentary, no concrete decision or event",
       "rescued": false,
       "rule": "strict-source-below-importance(7<10)",
@@ -5234,6 +5209,13 @@
       "rule": "foreign-local-preselection",
       "t": 1795741381,
       "title": "Australia's sandpapergate probe to also include 2017-18 Ashes"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-20b score=3 happened=True scope=iran_national: Trump claims victory over Iran, no concrete action.",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1795743188,
+      "title": "ادعای تکراری ترامپ: پیروزی در دسترس ماست!"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -8505,7 +8487,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795741308
+    "at": 1795743099
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
