@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795730612
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795730612
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795730613
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795730613
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795730618
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795730618
-    },
-    {
       "e": "EDITOR BATCH: 4/4 via gemini/gemini-3.1-flash-lite",
       "t": 1795730635
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 7x, groq:openai/gpt-oss-20b held 7x",
       "t": 1795736020
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795737819
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795737820
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1795737820
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
+      "t": 1795737824
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1795737832
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x",
+      "t": 1795737866
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-26",
-      "n": 137
+      "n": 138
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-26",
-      "n": 235
+      "n": 236
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-26",
-      "n": 103
+      "n": 105
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-26",
-      "n": 103
+      "n": 105
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-11-26",
-      "n": 90
+      "day": "2026-11-27",
+      "n": 5
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-26",
-      "n": 90
+      "day": "2026-11-27",
+      "n": 5
     },
     "openrouter:*": {
       "day": "2026-11-26",
@@ -192,106 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-11-23": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 127,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 72,
-        "other": 55
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 241,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 201,
-        "other": 40
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 37,
-        "calls": 97,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 53,
-        "other": 7
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 38,
-        "calls": 92,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 1,
-        "other": 53
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 66,
-        "other": 24
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 58,
-        "other": 32
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 43,
-        "calls": 67,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 24,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 193,
-        "calls": 368,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 175,
-        "other": 0
-      },
-      "openrouter:baidu/ernie-5.5-flash-preview:free": {
-        "429": 0,
-        "calls": 3,
-        "ok": 3,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 2,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Provider returned error\",\"code\":400,\"metadata\":{\"raw\":\"{\\\"code\\\":400,\\\"msg\\\":\\\"bad request\\\",\\\"request_id\\\":\\\"f78c4130-4cc4-4e43-bc62-b9e3c7899e88\\\"}\",\"provider_name\":\"AtlasCloud\"",
-        "ok": 1,
-        "other": 1
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 5,
-        "calls": 5,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.a",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 5,
-        "calls": 5,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/wo",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:inclusionai/ling-3.2-flash:free": {
-        "429": 1,
-        "calls": 1,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"inclusionai/ling-3.2-flash:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 26,
-        "ok": 26,
-        "other": 0
-      }
-    },
     "2026-11-24": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -584,23 +484,58 @@
         "ok": 23,
         "other": 0
       }
+    },
+    "2026-11-27": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 1,
+        "ok": 1,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 2,
+        "calls": 2,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 2,
+        "calls": 2,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 4,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 5,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 3,
+        "other": 2
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 3,
+        "last_error": "HTTP 402: {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null,\"code\":\"2314\",\"raw_status_code\":402}",
+        "ok": 0,
+        "other": 3
+      }
     }
   },
   "_daily_items": [
-    {
-      "label": "نظامی",
-      "level": 4,
-      "t": 1795561421.917653,
-      "title": "هشدار یمن به عربستان درباره حمله به بندر الحدیده",
-      "urgent": false
-    },
-    {
-      "label": "انتظامی",
-      "level": 3,
-      "t": 1795561443.4429576,
-      "title": "هواوی در دادگاه آمریکا به سرقت اسرار تجاری محکوم شد",
-      "urgent": false
-    },
     {
       "label": "نظامی",
       "level": 3,
@@ -1153,6 +1088,13 @@
       "t": 1795732453.4208086,
       "title": "تصاویر ماهواره ای از وقوع آتش سوزی در پالایشگاه رأس تنوره عربستان",
       "urgent": false
+    },
+    {
+      "label": "موضع‌گیری",
+      "level": 4,
+      "t": 1795737843.5544045,
+      "title": "معاون دفتر عارف: محاصره زمینی ایران تنها در رؤیای مقامات آمریکایی است؛ مرزهای زمینی فعال تر از جنگ رمضان",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-26",
@@ -1162,12 +1104,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: حادثه معدن با تلفات انسانی بالا در سطح جهانی.",
       "topic": "حادثه",
       "until": 1795761771.7176316
-    },
-    "v5|africa c.d.c. chief faces turmoil over management amid ebola crisis": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=world: Management scandal, limited immediate health impact",
-      "topic": "سلامت",
-      "until": 1795737825.0196738
     },
     "v5|amazon workers around the world plan strikes and protests on black friday and cyber monday": {
       "ok": false,
@@ -1246,12 +1182,6 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: Major disaster with over 10 deaths is world news.",
       "topic": "حادثه",
       "until": 1795817035.872724
-    },
-    "v5|duran duran guitarist andy taylor dies aged 65": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=world: موت هنرمند مشهور، تأثیر محدود",
-      "topic": "سلامت",
-      "until": 1795737826.6365848
     },
     "v5|explosion occurs at oil facility in thailand’s bangkok": {
       "ok": true,
@@ -1619,6 +1549,12 @@
       "topic": "حادثه",
       "until": 1795795462.0242908
     },
+    "v5|ادعای زلنسکی درباره تدارک حمله جدید روسیه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=False scope=world: Speculative statements, no concrete event",
+      "topic": "سیاست",
+      "until": 1795824232.011965
+    },
     "v5|ادعای زلنسکی: روسیه در تدارک یک حمله گسترده به اوکراین است": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=4 happened=False scope=world: Intelligence claims and warnings about a future planned attack.",
@@ -1820,12 +1756,6 @@
       "topic": "نظامی",
       "until": 1795788267.9003696
     },
-    "v5|انفجار در نزدیکی یک نفتکش در غرب دبی": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Explosion near oil tanker in Gulf, potential shipping threat",
-      "topic": "حادثه",
-      "until": 1795737828.7151933
-    },
     "v5|انفجار دو نفتکش دیگر در مسیر غیر مجاز تنگه هرمز": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=9 happened=True scope=world: انفجار نفتکش در تنگه هرمز رویداد راهبردی بین‌المللی است.",
@@ -1867,12 +1797,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اهدا شال خادمی به رئیس‌جمهور یک رویداد تشریفاتی و غیرمهم است",
       "topic": "جامعه",
       "until": 1795790029.8187296
-    },
-    "v5|اولویت های تخصیص ارز جابجا شد/ لوکس ها حذف شدند": {
-      "ok": true,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=iran_national: Central bank reallocates foreign exchange, shifts priorities amid sanctions",
-      "topic": "اقتصاد",
-      "until": 1795737828.7275152
     },
     "v5|اوکراین و ایران محور مذاکرات ترامپ و دبیرکل ناتو در مارآلاگو": {
       "ok": true,
@@ -2996,6 +2920,12 @@
       "topic": "فناوری",
       "until": 1795791879.8989818
     },
+    "v5|شکست عملیات جاسوسی سایبری سرویس های خارجی در ترکیه": {
+      "ok": false,
+      "reason": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: خنثی‌سازی عملیات جاسوسی سایبری علیه مراکز حساس دولتی ترکیه",
+      "topic": "نظامی",
+      "until": 1795824228.9880524
+    },
     "v5|صادرات، حلقه مفقوده صنعت پر درآمد اسب کشور": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=1 happened=False scope=local: Local industry commentary and opinion on export infrastructure challenges.",
@@ -3278,6 +3208,12 @@
       "topic": "سیاست",
       "until": 1795788273.8632884
     },
+    "v5|مجری سابق آمریکایی: ترامپ در آستانه مرگ است": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: شایعهٔ سلامت ترامپ، بدون تأیید رسمی",
+      "topic": "سیاست",
+      "until": 1795824230.0111346
+    },
     "v5|مجلسی ها علی رغم انتقادات شدید افکار عمومی، «طرح نفوذ» را تصویب کردند": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=7 happened=True scope=iran_national: تصویب نهایی طرح مقابله با نفوذ در مجلس شورای اسلامی.",
@@ -3343,6 +3279,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=local: گزارش محلی درباره مدیریت مصرف گاز در استان کرمان.",
       "topic": "جامعه",
       "until": 1795754445.284702
+    },
+    "v5|معاون دفتر عارف: محاصره زمینی ایران فقط در رویای مقامات آمریکایی وجود دارد/ مرزهای زمینی ایران بسیار فعال تر از قبل جنگ رمضان است": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=iran_national: Official denial of US ground‑siege claim",
+      "topic": "سیاست",
+      "until": 1795824232.0219958
     },
     "v5|معاون سابق مشاور امنیت ملی ترامپ: ترامپ تمایل دارد حمله احتمالی به ایران را تا زمان تشکیل یک دولت باثبات در اسرائیل به تعویق بیندازد؛ او هیچ احساس فوریتی برای حمله فوری ندارد/ این": {
       "ok": false,
@@ -3721,12 +3663,6 @@
       "reason": "ai openrouter/openrouter/free score=1 happened=True scope=local: انتشار کتاب فرهنگی، فاقد اهمیت خبری ملی",
       "topic": "جامعه",
       "until": 1795782922.8848257
-    },
-    "v5|وقوع حادثه دریایی در نزدیکی دبی": {
-      "ok": true,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: گزارش حادثه دریایی در خلیج فارس توسط UKMTO",
-      "topic": "حادثه",
-      "until": 1795737824.255168
     },
     "v5|وقوع زلزله با بزرگای ۴.۱ در کلاته خیج سمنان": {
       "ok": false,
@@ -4149,6 +4085,10 @@
       "reason": "content_duplicate",
       "until": 1795736116.5602434
     },
+    "رایزنی آژانس بین المللی انرژی اتمی برای آتش بس محلی در جنوب شرقی اوکراین": {
+      "reason": "content_duplicate",
+      "until": 1795759462.984475
+    },
     "سردار شکارچی ادعا های ارتش کویت مبنی بر وقوع حمله نیرو های ایرانی را تکذیب کرد": {
       "reason": "content_duplicate",
       "until": 1795736087.5732791
@@ -4179,15 +4119,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "انفجار و آتش سوزی در کارخانه هوافضای ویترفورد ⚡️ انفجارهای پیاپی و آتش سوزی گسترده ای در کارخانه هوافضای ویترف",
-      "id": "a46980f23f",
-      "match": "",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1795642604,
-      "verdict": "new",
-      "why": "This is a distinct industrial accident unrelated to previous reports."
-    },
     {
       "head": "حمله انتحاری داعش در الحسکه سوریه با کشته و زخمی شدن ۵ تن ⚡️ فرمانده امنیت داخلی استان الحسکه در شمال شرق سوری",
       "id": "6e399edf99",
@@ -4728,23 +4659,18 @@
       "t": 1795732451,
       "verdict": "new",
       "why": "It is a new report about Ras Tanura refinery."
+    },
+    {
+      "head": "معاون دفتر عارف: محاصره زمینی ایران تنها در رؤیای مقامات آمریکایی است؛ مرزهای زمینی فعال تر از جنگ رمضان ⚡️ عب",
+      "id": "b34a8c0e0a",
+      "match": "",
+      "model": "groq/openai/gpt-oss-120b",
+      "t": 1795737842,
+      "verdict": "new",
+      "why": "Unique statement on ground siege, not previously reported"
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: آتش‌سوزی محلی، خسارت محدود به دو خانه",
-      "rescued": false,
-      "rule": "routine-metaphorical-topic",
-      "t": 1795709024,
-      "title": "آتش ناشی از دپوی سوخت در زابل به ۲ خانه خسارت زد"
-    },
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: مطالبات بیمه‌ای دانشگاه علوم پزشکی گیلان موضوعی استانی و محلی است.",
-      "rescued": false,
-      "rule": "strict-source-below-importance(7<10)",
-      "t": 1795709036,
-      "title": "مطالبات بیمه ای مراکز درمانی گیلان از ۶ هزار میلیارد تومان گذشت"
-    },
     {
       "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=world: گمانه‌زنی درباره دیدارهای احتمالی آینده و فاقد قطعیت اجرایی است.",
       "rescued": false,
@@ -5290,6 +5216,20 @@
       "rule": "foreign-local-preselection",
       "t": 1795736005,
       "title": "Selby faces tough UK Championship opener, with Allen set to feature"
+    },
+    {
+      "ai": "ai gemini/gemini-3.1-flash-lite score=5 happened=True scope=world: خنثی‌سازی عملیات جاسوسی سایبری علیه مراکز حساس دولتی ترکیه",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795737828,
+      "title": "شکست عملیات جاسوسی سایبری سرویس های خارجی در ترکیه"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=world: شایعهٔ سلامت ترامپ، بدون تأیید رسمی",
+      "rescued": false,
+      "rule": "foreign-local-preselection",
+      "t": 1795737830,
+      "title": "مجری سابق آمریکایی: ترامپ در آستانه مرگ است"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -5740,6 +5680,30 @@
       ],
       "t": 1795732453.4044442,
       "title": "تصاویر ماهواره ای از وقوع آتش سوزی در پالایشگاه رأس تنوره عربستان ⚡️ تصاویر ماهواره ای از پالایشگاه رأس تنوره در عربستان"
+    },
+    {
+      "h": [
+        "اجتمع",
+        "ارتبط",
+        "اطلع",
+        "ال",
+        "اکس",
+        "تنه",
+        "دفتر",
+        "رمض",
+        "زمن",
+        "شبک",
+        "عبس",
+        "عرف",
+        "فعل",
+        "محصر",
+        "مرز",
+        "معن",
+        "وجد",
+        "پزک"
+      ],
+      "t": 1795737843.5449903,
+      "title": "معاون دفتر عارف: محاصره زمینی ایران تنها در رؤیای مقامات آمریکایی است؛ مرزهای زمینی فعال تر از جنگ رمضان ⚡️ عباس پازوکی،"
     }
   ],
   "_published_incidents": [
@@ -6005,236 +5969,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "اتل",
-        "ار",
-        "ارپ",
-        "اسلم",
-        "انک",
-        "بگد",
-        "تهر",
-        "تکد",
-        "جمهر",
-        "خه",
-        "درخست",
-        "دستب",
-        "دنبل",
-        "سخن",
-        "سفر",
-        "سلح",
-        "صد",
-        "صلح",
-        "محکم",
-        "مستقل",
-        "هست",
-        "وحد",
-        "کمک"
-      ],
-      "t": 1795602932.4583597,
-      "title": "درخواست سفیر ایران در ایتالیا از اروپا برای کمک به صلح ⚡️ سفیر جمهوری اسلامی ایران در ایتالیا با تأکید بر اینکه تهران خو"
-    },
-    {
-      "k": [
-        "اسک",
-        "اقدم",
-        "امرک",
-        "بخش",
-        "بمبرد",
-        "تلد",
-        "تهجم",
-        "دربرد",
-        "رض",
-        "سرم",
-        "شرکت",
-        "طرح",
-        "عربست",
-        "عربستن",
-        "محسب",
-        "مشترک",
-        "نم",
-        "همکر",
-        "وسپ",
-        "وکتر",
-        "پهپد",
-        "گذر"
-      ],
-      "t": 1795602985.2662332,
-      "title": "تولید پهپاد تهاجمی در عربستان با همکاری شرکت آمریکایی ⚡️ شرکت آمریکایی وکتور از سرمایه گذاری مشترک با یک شرکت عربستانی ب"
-    },
-    {
-      "k": [
-        "اتم",
-        "اختر",
-        "ارزب",
-        "اسرل",
-        "امرک",
-        "برنم",
-        "تسس",
-        "تسع",
-        "تصر",
-        "دمن",
-        "دنشمند",
-        "دهند",
-        "ذخر",
-        "رژم",
-        "رکتر",
-        "فدرسن",
-        "فعلت",
-        "مشکک",
-        "مهر",
-        "نشن",
-        "هست",
-        "پشن",
-        "پلتنم",
-        "پژهشگر",
-        "کلهک",
-        "کلگرم",
-        "گزرش"
-      ],
-      "t": 1795603028.6750312,
-      "title": "ارزیابی جدید از برنامه هسته ای اسرائیل؛ فعالیت مشکوک در دیمونا و ذخیره ۹۰ کلاهک اتمی ⚡️ پژوهشگران فدراسیون دانشمندان آمر"
-    },
-    {
-      "k": [
-        "ادع",
-        "ار",
-        "اسرل",
-        "اطلعت",
-        "اقدم",
-        "امرک",
-        "انتقد",
-        "انگز",
-        "اگدر",
-        "بدن",
-        "برد",
-        "بنمن",
-        "حزب",
-        "حمل",
-        "خن",
-        "دلت",
-        "دلل",
-        "رهبر",
-        "زر",
-        "سس",
-        "سل",
-        "سلح",
-        "شم",
-        "عملت",
-        "غرقنن",
-        "فر",
-        "لبرمن",
-        "مخلفت",
-        "مربط",
-        "مستقل",
-        "مشرکت",
-        "مقت",
-        "نتنه",
-        "ندرد",
-        "نظر",
-        "هشدر",
-        "وجد",
-        "یکجنب"
-      ],
-      "t": 1795606506.9560008,
-      "title": "مخالفت لیبرمن با حمله مستقل اسرائیل به ایران ⚡️ آویگدور لیبرمن رهبر حزب اسرائیل خانه ما اعلام کرد که از نظر اطلاعاتی و ع"
-    },
-    {
-      "k": [
-        "ار",
-        "ارد",
-        "افزش",
-        "بل",
-        "تدم",
-        "تصرف",
-        "تلف",
-        "حث",
-        "حمت",
-        "درگر",
-        "دست",
-        "دلت",
-        "رهبرد",
-        "سعد",
-        "شبه",
-        "عربست",
-        "فرسش",
-        "متحد",
-        "منجر",
-        "منطق",
-        "نبرد",
-        "نظم",
-        "پشر",
-        "کشر",
-        "یمن"
-      ],
-      "t": 1795606545.01246,
-      "title": "پیشروی حوثی ها و افزایش تلفات دولت یمن ⚡️ این درگیری ها با تداوم پیشروی حوثی ها به افزایش تلفات دولت یمن منجر شده است. ▫"
-    },
-    {
-      "k": [
-        "اسس",
-        "اصلح",
-        "افزش",
-        "ال",
-        "التهب",
-        "بزر",
-        "بست",
-        "بندر",
-        "تدن",
-        "ترخص",
-        "تسهل",
-        "تعن",
-        "تلدکنندگ",
-        "تم",
-        "تمن",
-        "تنظم",
-        "تکد",
-        "ثبت",
-        "جلس",
-        "جلگر",
-        "جمهر",
-        "حدقل",
-        "حفظ",
-        "خدر",
-        "خستر",
-        "دستر",
-        "رد",
-        "رس",
-        "رفع",
-        "رن",
-        "ستد",
-        "سخت",
-        "سزکر",
-        "سقف",
-        "صدر",
-        "عرف",
-        "فرتر",
-        "فرنگ",
-        "قرمز",
-        "قمت",
-        "لبن",
-        "محمدرض",
-        "مدت",
-        "مدرت",
-        "معن",
-        "منع",
-        "مکرن",
-        "نبد",
-        "هدف",
-        "هزر",
-        "ورد",
-        "وردت",
-        "وژ",
-        "پز",
-        "کل",
-        "کمن",
-        "گج",
-        "گرم",
-        "گشت"
-      ],
-      "t": 1795606567.6582918,
-      "title": "دستور معاون اول رئیس جمهور برای تعیین سقف قیمت ماکارونی و مدیریت بازار کالاهای اساسی ⚡️ محمدرضا عارف معاون اول رئیس جمهو"
-    },
     {
       "k": [
         "اثر",
@@ -8148,6 +7882,41 @@
       ],
       "t": 1795732453.3959675,
       "title": "تصاویر ماهواره ای از وقوع آتش سوزی در پالایشگاه رأس تنوره عربستان ⚡️ تصاویر ماهواره ای از پالایشگاه رأس تنوره در عربستان"
+    },
+    {
+      "k": [
+        "اجتمع",
+        "ار",
+        "ارتبط",
+        "اطلع",
+        "ال",
+        "امرک",
+        "اکس",
+        "تنه",
+        "جمهر",
+        "جنگ",
+        "در",
+        "دفتر",
+        "رس",
+        "رسن",
+        "رمض",
+        "زمن",
+        "شبک",
+        "عبس",
+        "عرف",
+        "فعل",
+        "محصر",
+        "مرز",
+        "معن",
+        "مقم",
+        "نسبت",
+        "هستند",
+        "وجد",
+        "پزک"
+      ],
+      "s": "معاون دفتر عارف",
+      "t": 1795737843.5352619,
+      "title": "معاون دفتر عارف: محاصره زمینی ایران تنها در رؤیای مقامات آمریکایی است؛ مرزهای زمینی فعال تر از جنگ رمضان ⚡️ عباس پازوکی،"
     }
   ],
   "_telegram_errors": [
@@ -8761,7 +8530,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795735879
+    "at": 1795737686
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -8776,13 +8545,13 @@
     "last_status": 402
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795736580,
-    "last_failure": 1795735980,
+    "disabled_until": 1795738424,
+    "last_failure": 1795737824,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795736576,
-    "last_failure": 1795735976,
+    "disabled_until": 1795738420,
+    "last_failure": 1795737820,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
