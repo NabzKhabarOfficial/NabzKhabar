@@ -1,30 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795816989
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795816993
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795816993
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
-      "t": 1795816999
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795817001
-    },
-    {
-      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795817008
-    },
-    {
       "e": "EDITOR BATCH groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795817008
     },
@@ -159,32 +135,56 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 5x, groq:openai/gpt-oss-20b held 3x",
       "t": 1795827837
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795829563
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795829564
+    },
+    {
+      "e": "EDITOR GATE gemini/gemini-3.1-flash-lite: HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"statu",
+      "t": 1795829572
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795829573
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-20b",
+      "t": 1795829575
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 11x, groq:openai/gpt-oss-20b held 9x",
+      "t": 1795829660
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-27",
-      "n": 132
+      "n": 137
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-27",
-      "n": 227
+      "n": 235
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-27",
-      "n": 101
+      "n": 104
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-27",
-      "n": 101
+      "n": 104
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-28",
-      "n": 8
+      "n": 10
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-28",
-      "n": 8
+      "n": 10
     },
     "openrouter:*": {
       "day": "2026-11-27",
@@ -488,61 +488,55 @@
     "2026-11-28": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 4,
-        "ok": 4,
-        "other": 0
+        "calls": 8,
+        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
+        "ok": 6,
+        "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 7,
-        "ok": 7,
+        "calls": 15,
+        "ok": 15,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 3,
-        "calls": 3,
+        "429": 5,
+        "calls": 6,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "ok": 0,
+        "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 3,
-        "calls": 3,
+        "429": 5,
+        "calls": 5,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 8,
+        "calls": 10,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 6,
+        "ok": 8,
         "other": 2
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 8,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"ma",
-        "ok": 3,
-        "other": 5
+        "calls": 10,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 4,
+        "other": 6
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 10,
+        "calls": 15,
         "last_error": "HTTP 402: {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null,\"code\":\"2314\",\"raw_status_code\":402}",
         "ok": 0,
-        "other": 10
+        "other": 15
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "موضع‌گیری",
-      "level": 3,
-      "t": 1795655031.005778,
-      "title": "وزارت دفاع عراق: آماده استقرار یگان های نظامی در مناطق مختلف کشور",
-      "urgent": false
-    },
     {
       "label": "خبر",
       "level": 3,
@@ -1207,6 +1201,13 @@
       "t": 1795827821.1076562,
       "title": "سازمان جهانی بهداشت حملات اسرائیل به بخش سلامت غزه را محکوم کرد",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 3,
+      "t": 1795829624.0311315,
+      "title": "افزایش شمار شهدای حملات عربستان به یمن به ۵۲۴ نفر",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-27",
@@ -1394,6 +1395,12 @@
       "topic": "سلامت",
       "until": 1795885457.181449
     },
+    "v5|son of hamas chief and his family survive israeli airstrike, group says": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Hamas leader's son survived Israeli strike",
+      "topic": "نظامی",
+      "until": 1795915975.1317635
+    },
     "v5|spain’s far-right era ended in 1975. will this man change that?": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحلیل و گمانه‌زنی درباره انتخابات و نظرسنجی‌های اسپانیا",
@@ -1573,6 +1580,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: نتیجه نظرسنجی و تحلیل است، نه تصمیم قطعی دولتی",
       "topic": "سیاست",
       "until": 1795838592.80029
+    },
+    "v5|آمار شهدای حملات عربستان به یمن به ۵۲۴ نفر رسید": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Yemen casualties from Saudi attacks reach 524",
+      "topic": "نظامی",
+      "until": 1795915975.1484919
     },
     "v5|آمریکا اثر سامانه های جدید پدافندی را در میدان خواهد دید": {
       "ok": false,
@@ -2113,6 +2126,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: Statement on unity, not a concrete event",
       "topic": "سیاست",
       "until": 1795865663.3237462
+    },
+    "v5|بیانیه دبیر کل سازمان ملل درباره حمله پهپادی در کویت": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: UN condemns Kuwaiti drone attack",
+      "topic": "سیاست",
+      "until": 1795915975.1401348
     },
     "v5|تأکید ایران و سه کشور منطقه بر توسعه همکاری های گردشگری": {
       "ok": false,
@@ -2840,6 +2859,12 @@
       "topic": "جامعه",
       "until": 1795844018.3474953
     },
+    "v5|زرآباد در یک هفته سه بار لرزید/ثبت زلزله ۴.۴ در ارزوئیه": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=2 happened=True scope=iran_national: several small earthquakes recorded",
+      "topic": "حادثه",
+      "until": 1795915975.123359
+    },
     "v5|زلنسکی: پوتین متجاوز و قاتل است و نمی تواند دوست باشد": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: واکنش تند رئیس‌جمهور اوکراین به ترامپ و پوتین",
@@ -2917,6 +2942,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: اطلاعیه رزمایش یا انهدام کنترل‌شده مهمات و انفجار احتمالی",
       "topic": "نظامی",
       "until": 1795890871.7756581
+    },
+    "v5|سکوهای رمزارزی در آزمون اعتماد/سرمایه مردم چقدر امن است؟": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Discussion, no concrete event occurred",
+      "topic": "فناوری",
+      "until": 1795915962.6073296
     },
     "v5|شبکه سازی و تکمیل زنجیره ارزش؛ مأموریت مغفول صندوق های پژوهش و فناوری": {
       "ok": false,
@@ -3037,6 +3068,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=2 happened=False scope=iran_national: Historical retrospective and routine remarks by a military official.",
       "topic": "نظامی",
       "until": 1795860307.7609777
+    },
+    "v5|عراق گذرگاه های زمینی و رودخانه ای بین استان الحسکه سوریه و اقلیم کردستان را بست": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: بسته شدن مرزهای عراق و سوریه توسط دولت مرکزی",
+      "topic": "سیاست",
+      "until": 1795915973.4170136
     },
     "v5|عرب سرخی دبیرکل حزب توسعه ملی شد": {
       "ok": false,
@@ -3638,6 +3675,12 @@
       "topic": "سیاست",
       "until": 1795840417.1165118
     },
+    "v5|وزیر دفاع: نیروی دریایی به سامانه های پیشرفته دفاعی تجهیز می شود": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Future navy upgrades announced, no concrete implementation yet",
+      "topic": "نظامی",
+      "until": 1795915963.537943
+    },
     "v5|وزیر علوم: دانشجوی خوابگاهی در هر ترم حدود ۱۰۰ میلیون تومان یارانه تغذیه دریافت می کند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=3 happened=True scope=iran_national: Student nutrition subsidy announcement, limited national impact",
@@ -4011,6 +4054,10 @@
       "reason": "content_duplicate",
       "until": 1795835105.7584124
     },
+    "son of hamas chief and his family survive israeli airstrike, group says": {
+      "reason": "content_duplicate",
+      "until": 1795851260.526704
+    },
     "zelensky criticises 'strange' trump-putin friendship in bbc interview": {
       "at": 1795802675.1904256,
       "reason": "final_guard:media-source",
@@ -4019,6 +4066,10 @@
     "انفجار ۲ نفتکش متخلف در دهانه بندر خصب و شرق تنگه هرمز": {
       "reason": "content_duplicate",
       "until": 1795838620.5256586
+    },
+    "بیانیه دبیر کل سازمان ملل درباره حمله پهپادی در کویت": {
+      "reason": "content_duplicate",
+      "until": 1795851191.2372253
     },
     "تمدید قرارداد ترکیه برای واردات گاز از ایران": {
       "at": 1795802675.1904256,
@@ -4043,7 +4094,7 @@
     },
     "واکنش دبیرکل سازمان ملل متحد به حمله پهپادی به کویت: از سرگیری خصومت ها در منطقه می تواند پیامد های ویرانگری برای خاورمیانه و فراتر از آن به همراه داشته باشد / از همه طرف ها می خوا": {
       "reason": "content_duplicate",
-      "until": 1795827811.204326
+      "until": 1795851235.186153
     },
     "۱۴ غیرنظامی از جمله ۱۲ کودک در حملات سعودی به یمن شهید شدند": {
       "reason": "content_duplicate",
@@ -4051,15 +4102,6 @@
     }
   },
   "_event_judge_log": [
-    {
-      "head": "عقب نشینی جنگنده آمریکایی با آتش اخطار پدافند سپاه ⚡️ نیروی دریایی سپاه پاسداران انقلاب اسلامی از عقب نشینی یک",
-      "id": "d8efc03c76",
-      "match": "",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795763060,
-      "verdict": "new",
-      "why": "This is a new military incident involving US and IRGC forces."
-    },
     {
       "head": "افزایش قیمت جهانی نفت و طلا ⚡️ قیمت نفت در بازارهای جهانی در پی تداوم حملات به نفتکش ها در تنگه هرمز و زیرساخت",
       "id": "03fb325e2b",
@@ -4592,30 +4634,18 @@
       "t": 1795827820,
       "verdict": "new",
       "why": "This is a specific condemnation of attacks on health workers."
+    },
+    {
+      "head": "افزایش شمار شهدای حملات عربستان به یمن به ۵۲۴ نفر ⚡️ با این حملات، مجموع شهدای یمن از زمان آغاز تشدید تنش ها ب",
+      "id": "e65e6d618a",
+      "match": "شهادت ۱۱ نفر در حمله هوایی عربستان به منطقه مسکونی در یمن",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795829623,
+      "verdict": "update",
+      "why": "افزایش آمار شهدای یمن و به‌روزرسانی تلفات حمله عربستان."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Cultural appointment, low national impact",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795793634,
-      "title": "حکم جدید علی اکبر صالحی برای محمد حیدری"
-    },
-    {
-      "ai": "ai gemini/gemini-3.1-flash-lite score=3 happened=False scope=iran_national: این خبر صرفاً بیانگر اهداف و برنامه‌های کلی برای آینده است.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795793655,
-      "title": "سند تحول بسیج؛ برنامه گسترش اختیارات این نهاد در ایران چیست؟"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: دستگیری ۴۱ سارق در خراسان شمالی",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795793655,
-      "title": "توئی: ۴۱ سارق و مال خر در خراسان شمالی دستگیر شدند"
-    },
     {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: سخنان مقامات محلی و توصیه‌های عمومی ارزش خبری ندارد.",
       "rescued": false,
@@ -5154,46 +5184,33 @@
       "rule": "foreign-local-preselection",
       "t": 1795827810,
       "title": "'Poison seller' Kenneth Law apologises in court to the families of his victims"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Discussion, no concrete event occurred",
+      "rescued": false,
+      "rule": "strict-source-below-importance(9<10)",
+      "t": 1795829562,
+      "title": "سکوهای رمزارزی در آزمون اعتماد/سرمایه مردم چقدر امن است؟"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Future navy upgrades announced, no concrete implementation yet",
+      "rescued": false,
+      "rule": "no-concrete-event",
+      "t": 1795829563,
+      "title": "وزیر دفاع: نیروی دریایی به سامانه های پیشرفته دفاعی تجهیز می شود"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=world: بسته شدن مرزهای عراق و سوریه توسط دولت مرکزی",
+      "rescued": true,
+      "rule": "routine-metaphorical-topic",
+      "t": 1795829573,
+      "title": "عراق گذرگاه های زمینی و رودخانه ای بین استان الحسکه سوریه و اقلیم کردستان را بست"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "ارزش",
-        "بر",
-        "جهن",
-        "دلل",
-        "رفت",
-        "رنق",
-        "صدر",
-        "فرتر",
-        "مصنع",
-        "نخستن",
-        "نم",
-        "هش",
-        "پش",
-        "گز"
-      ],
-      "t": 1795784693.0657666,
-      "title": "ارزش صادرات جهانی نیمه رساناها از نفت و گاز پیشی گرفت ⚡️ ارزش صادرات جهانی نیمه رساناها به دلیل رونق هوش مصنوعی، برای نخ"
-    },
-    {
-      "h": [
-        "اثر",
-        "اصبت",
-        "جزر",
-        "در",
-        "شمل",
-        "غنم",
-        "من",
-        "نفتکش"
-      ],
-      "t": 1795784725.4753149,
-      "title": "انفجار نفتکش در شمال جزیره غنم با اصابت مین دریایی ⚡️ نیروی دریایی سپاه از انفجار یک نفتکش در شمال جزیره غنم بر اثر اصاب"
-    },
     {
       "h": [
         "بتش",
@@ -5590,47 +5607,26 @@
       ],
       "t": 1795827821.0933113,
       "title": "سازمان جهانی بهداشت حملات اسرائیل به بخش سلامت غزه را محکوم کرد ⚡️ مدیرکل سازمان جهانی بهداشت کشته شدن دو کارمند «پزشکان"
+    },
+    {
+      "h": [
+        "اغز",
+        "افزش",
+        "تشدد",
+        "تنش",
+        "رسد",
+        "زمن",
+        "شمر",
+        "شهد",
+        "مجمع",
+        "نفر",
+        "یمن"
+      ],
+      "t": 1795829624.013672,
+      "title": "افزایش شمار شهدای حملات عربستان به یمن به ۵۲۴ نفر ⚡️ با این حملات، مجموع شهدای یمن از زمان آغاز تشدید تنش ها به ۵۲۴ نفر "
     }
   ],
   "_published_incidents": [
-    {
-      "a": [
-        "استرل",
-        "فرد",
-        "مرتبط",
-        "وضع",
-        "یهد"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795761269.4096549,
-      "title": "تحریم های استرالیا علیه دو فرد مرتبط با ادعای حملات ضد یهود ⚡️ استرالیا امروز تحریم هایی را علیه دو نفر وضع کرد.",
-      "toll": 0
-    },
-    {
-      "a": [
-        "اتش",
-        "اخطر",
-        "اسلم",
-        "انقلب",
-        "جزر",
-        "جنگند",
-        "عقب",
-        "فرند",
-        "نشن",
-        "هنگم",
-        "پسدر"
-      ],
-      "cities": [],
-      "kind": "attack",
-      "places": [],
-      "regions": [],
-      "t": 1795763062.4963367,
-      "title": "عقب نشینی جنگنده آمریکایی با آتش اخطار پدافند سپاه ⚡️ نیروی دریایی سپاه پاسداران انقلاب اسلامی از عقب نشینی یک فروند جنگ",
-      "toll": 0
-    },
     {
       "a": [
         "اقدم",
@@ -5973,43 +5969,26 @@
       "t": 1795825981.9109077,
       "title": "پسر حماس در حمله اسرائیل جان سالم به در برد، چهار فلسطینی در غزه کشته شدند ⚡️ پسر حماس، ایزدالین حیا، در حمله هوایی اسرا",
       "toll": 0
+    },
+    {
+      "a": [
+        "اغز",
+        "تشدد",
+        "تنش",
+        "مجمع",
+        "یمن"
+      ],
+      "cities": [],
+      "kind": "attack",
+      "places": [],
+      "regions": [],
+      "t": 1795829624.022473,
+      "title": "افزایش شمار شهدای حملات عربستان به یمن به ۵۲۴ نفر ⚡️ با این حملات، مجموع شهدای یمن از زمان آغاز تشدید تنش ها به ۵۲۴ نفر ",
+      "toll": 1051
     }
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "الحدد",
-        "الحرث",
-        "امدد",
-        "بمبر",
-        "بن",
-        "بندر",
-        "تعز",
-        "جنگند",
-        "حمل",
-        "خهند",
-        "دفع",
-        "سعد",
-        "سمع",
-        "صرت",
-        "صنع",
-        "عمل",
-        "غرنظم",
-        "مدن",
-        "مسلح",
-        "منزل",
-        "منطق",
-        "نر",
-        "هدف",
-        "هشدر",
-        "همزم",
-        "کرخن",
-        "یمن"
-      ],
-      "t": 1795698284.5830684,
-      "title": "حمله جنگنده های سعودی به نیروهای امدادی یمن در صنعاء ⚡️ جنگنده های سعودی همزمان با عملیات امدادی نیروهای دفاع مدنی در من"
-    },
     {
       "k": [
         "ادع",
@@ -8545,6 +8524,39 @@
       ],
       "t": 1795827821.0802693,
       "title": "سازمان جهانی بهداشت حملات اسرائیل به بخش سلامت غزه را محکوم کرد ⚡️ مدیرکل سازمان جهانی بهداشت کشته شدن دو کارمند «پزشکان"
+    },
+    {
+      "k": [
+        "اغز",
+        "افزش",
+        "بهدشت",
+        "تشدد",
+        "تنش",
+        "حمل",
+        "رسد",
+        "زخم",
+        "زمن",
+        "سعت",
+        "سعد",
+        "شمر",
+        "شهد",
+        "شهدت",
+        "شهرند",
+        "عربست",
+        "مجمع",
+        "مرس",
+        "نر",
+        "نفر",
+        "وزرت",
+        "گذشت",
+        "یمن"
+      ],
+      "n": [
+        "1051",
+        "524"
+      ],
+      "t": 1795829624.0051146,
+      "title": "افزایش شمار شهدای حملات عربستان به یمن به ۵۲۴ نفر ⚡️ با این حملات، مجموع شهدای یمن از زمان آغاز تشدید تنش ها به ۵۲۴ نفر "
     }
   ],
   "_telegram_errors": [
@@ -9158,7 +9170,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795827689
+    "at": 1795829497
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9173,19 +9185,19 @@
     "last_status": 402
   },
   "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1795819084.0,
-    "last_failure": 1795818784,
-    "last_status": 599
+    "disabled_until": 1795829872.0,
+    "last_failure": 1795829572,
+    "last_status": 503
   },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795819361,
-    "last_failure": 1795818761,
-    "last_status": 429
+    "disabled_until": 1795829644,
+    "last_failure": 1795829584,
+    "last_status": 422
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795822670.0,
-    "last_failure": 1795822370,
-    "last_status": 503
+    "disabled_until": 1795830177,
+    "last_failure": 1795829577,
+    "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
     "disabled_until": 1791937176.0,
