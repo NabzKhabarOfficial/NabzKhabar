@@ -1,14 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR BATCH: 5/5 via gemini/gemini-3.1-flash-lite",
-      "t": 1795815215
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 12x, groq:openai/gpt-oss-20b held 10x",
-      "t": 1795815275
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
       "t": 1795816983
     },
@@ -159,32 +151,40 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 4x",
       "t": 1795822385
+    },
+    {
+      "e": "EDITOR BATCH: 2/2 via groq/openai/gpt-oss-120b",
+      "t": 1795824168
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 3x",
+      "t": 1795824196
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-27",
-      "n": 128
+      "n": 130
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-27",
-      "n": 220
+      "n": 222
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-27",
-      "n": 98
+      "n": 99
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-27",
-      "n": 98
+      "n": 99
     },
     "groq:openai/gpt-oss-120b": {
-      "day": "2026-11-27",
-      "n": 90
+      "day": "2026-11-28",
+      "n": 4
     },
     "groq:openai/gpt-oss-20b": {
-      "day": "2026-11-27",
-      "n": 90
+      "day": "2026-11-28",
+      "n": 4
     },
     "openrouter:*": {
       "day": "2026-11-27",
@@ -192,105 +192,6 @@
     }
   },
   "_ai_usage": {
-    "2026-11-24": {
-      "gemini:gemini-3.1-flash-lite": {
-        "429": 0,
-        "calls": 105,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 62,
-        "other": 43
-      },
-      "gemini:gemini-3.5-flash-lite": {
-        "429": 0,
-        "calls": 203,
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 159,
-        "other": 44
-      },
-      "gemini:gemini-3.6-flash": {
-        "429": 26,
-        "calls": 60,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 25,
-        "other": 9
-      },
-      "gemini:gemini-3.8-flash": {
-        "429": 29,
-        "calls": 76,
-        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
-        "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 0,
-        "other": 47
-      },
-      "groq:openai/gpt-oss-120b": {
-        "429": 0,
-        "calls": 89,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 71,
-        "other": 18
-      },
-      "groq:openai/gpt-oss-20b": {
-        "429": 0,
-        "calls": 90,
-        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 47,
-        "other": 43
-      },
-      "mistral:ministral-8b-latest": {
-        "429": 39,
-        "calls": 53,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 14,
-        "other": 0
-      },
-      "mistral:open-mistral-nemo": {
-        "429": 250,
-        "calls": 434,
-        "last_429": "{\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
-        "ok": 184,
-        "other": 0
-      },
-      "openrouter:baidu/ernie-5.5-flash-preview:free": {
-        "429": 0,
-        "calls": 2,
-        "ok": 2,
-        "other": 0
-      },
-      "openrouter:dots-studio/dots-3-note-preview:free": {
-        "429": 0,
-        "calls": 1,
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-26b-a4b-it:free": {
-        "429": 5,
-        "calls": 6,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.a",
-        "ok": 1,
-        "other": 0
-      },
-      "openrouter:google/gemma-4-31b-it:free": {
-        "429": 2,
-        "calls": 2,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/wo",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:inclusionai/ling-3.2-flash:free": {
-        "429": 1,
-        "calls": 1,
-        "last_429": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"inclusionai/ling-3.2-flash:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.",
-        "ok": 0,
-        "other": 0
-      },
-      "openrouter:openrouter/free": {
-        "429": 0,
-        "calls": 26,
-        "ok": 26,
-        "other": 0
-      }
-    },
     "2026-11-25": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
@@ -582,6 +483,55 @@
         "calls": 16,
         "ok": 16,
         "other": 0
+      }
+    },
+    "2026-11-28": {
+      "gemini:gemini-3.1-flash-lite": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      },
+      "gemini:gemini-3.5-flash-lite": {
+        "429": 0,
+        "calls": 2,
+        "ok": 2,
+        "other": 0
+      },
+      "gemini:gemini-3.6-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
+      "gemini:gemini-3.8-flash": {
+        "429": 1,
+        "calls": 1,
+        "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
+        "ok": 0,
+        "other": 0
+      },
+      "groq:openai/gpt-oss-120b": {
+        "429": 0,
+        "calls": 4,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 3,
+        "other": 1
+      },
+      "groq:openai/gpt-oss-20b": {
+        "429": 0,
+        "calls": 4,
+        "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+        "ok": 0,
+        "other": 4
+      },
+      "mistral:open-mistral-nemo": {
+        "429": 0,
+        "calls": 4,
+        "last_error": "HTTP 402: {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null,\"code\":\"2314\",\"raw_status_code\":402}",
+        "ok": 0,
+        "other": 4
       }
     }
   },
@@ -1314,6 +1264,12 @@
       "topic": "جامعه",
       "until": 1795880079.3377955
     },
+    "v5|hamas chief’s last surviving son escapes israeli strike in gaza": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=7 happened=True scope=world: Targeted strike on Hamas leader’s son",
+      "topic": "نظامی",
+      "until": 1795910568.9527311
+    },
     "v5|inside ukraine’s power crisis amid its war with russia": {
       "ok": true,
       "reason": "ai groq/openai/gpt-oss-120b batch score=8 happened=True scope=world: major war‑related power crisis",
@@ -1415,12 +1371,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=3 happened=False scope=world: گزارش تحلیلی مؤسسه مطالعاتی درباره جنگ ترکیبی روسیه و اروپا.",
       "topic": "سیاست",
       "until": 1795867497.8409665
-    },
-    "v5|selby faces tough uk championship opener, with allen set to feature": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=world: مسابقه اسنوکر معمولی و غیرسرنوشت‌ساز در سطح بین‌المللی",
-      "topic": "ورزش",
-      "until": 1795822405.4035578
     },
     "v5|sierra leone: maternal deaths fall as healthcare improves, but challenges remain": {
       "ok": false,
@@ -2262,12 +2212,6 @@
       "topic": "اقتصاد",
       "until": 1795844005.4014106
     },
-    "v5|تداوم اجتماع شبانه اردبیلی ها در خونخواهی رهبر شهید": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Local gathering in Ardabil is not a first-tier national news event.",
-      "topic": "جامعه",
-      "until": 1795822397.1734898
-    },
     "v5|تداوم سرمایه گذاری اجتماعی ایرانسل در مسیر عدالت آموزشی": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: سرمایه‌گذاری اجتماعی ایرانسل، ساخت مدرسه محلی",
@@ -2586,12 +2530,6 @@
       "topic": "فناوری",
       "until": 1795878232.0073872
     },
-    "v5|خروش حماسی مردم مشگین شهر": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=1 happened=True scope=local: راهپیمایی محلی و استانی فاقد اهمیت ملی است",
-      "topic": "جامعه",
-      "until": 1795822401.1109009
-    },
     "v5|خسارت ۱۰۰ میلیارد دلاری قاچاق نفت اقلیم کردستان به عراق": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=6 happened=True scope=world: اعلام رسمی دولت عراق درباره خسارت عظیم قاچاق نفت.",
@@ -2682,17 +2620,17 @@
       "topic": "جامعه",
       "until": 1795842217.7715125
     },
+    "v5|دولت عراق مدعی مقابله جدی با قاچاق نفت و پول شد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Government vows crackdown, no concrete action",
+      "topic": "اقتصاد",
+      "until": 1795910568.960251
+    },
     "v5|دویست و هفتاد و دومین شب تجمعات مردم زنجان در میدان": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: محلی، تجمع زنجان، بدون پیامدهای ملی",
       "topic": "جامعه",
       "until": 1795905155.6345456
-    },
-    "v5|دویست و هفتاد و یکمین شب تجمعات مردم زنجان در میدان": {
-      "ok": false,
-      "reason": "ai gemini/gemini-3.1-flash-lite score=1 happened=True scope=local: این یک تجمع محلی و تکراری است و فاقد اهمیت ملی است.",
-      "topic": "جامعه",
-      "until": 1795822388.7818558
     },
     "v5|دیدار جمعی از فعالان مدنی، نویسندگان و حامیان حقوق مردم فلسطین با سفیر جمهوری اسلامی ایران": {
       "ok": false,
@@ -3552,6 +3490,12 @@
       "topic": "نظامی",
       "until": 1795869246.1359525
     },
+    "v5|نیروی دریایی سپاه: انتقام شهدای عرصه دریا عهدی است که با خون بسته ایم": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Commemorative message, no concrete event",
+      "topic": "نظامی",
+      "until": 1795910566.8451445
+    },
     "v5|هشدار انصارالله به لندن درباره مداخله در جنگ یمن": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع‌گیری رسمی مقام ارشد انصارالله علیه مداخله نظامی انگلیس.",
@@ -3683,15 +3627,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=True scope=local: مصاحبه سرمربی تیم فوتبال پس از یک مسابقه عادی لیگ.",
       "topic": "ورزش",
       "until": 1795881885.7685456
-    },
-    "v5|وزارت خارجه چین: توکیو روند امحای سلاح های شیمیایی رها شده در چین را تسریع بخشد": {
-      "happened": true,
-      "ok": false,
-      "reason": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=world: درخواست دیپلماتیک روتین پکن از توکیو، فاقد اهمیت درجه یک جهانی",
-      "scope": "world",
-      "score": 3,
-      "topic": "سیاست",
-      "until": 1795822407.7233238
     },
     "v5|وزارت کار و بازنشستگی بریتانیا هدف حمله سایبری قرار گرفت": {
       "ok": false,
@@ -4085,6 +4020,11 @@
     }
   },
   "_editorial_blocks": {
+    "hamas chief’s last surviving son escapes israeli strike in gaza": {
+      "at": 1795824196.1685517,
+      "reason": "final_guard:ai-contradiction",
+      "until": 1795845796.1685517
+    },
     "kyiv offers black sea ceasefire, as putin expands russia’s navy": {
       "reason": "content_duplicate",
       "until": 1795826117.838849
@@ -4093,35 +4033,14 @@
       "reason": "content_duplicate",
       "until": 1795835105.7584124
     },
-    "trump embraced xi, then slapped new tariffs on china: what’s his game plan?": {
-      "reason": "content_duplicate",
-      "until": 1795808070.7777345
-    },
     "zelensky criticises 'strange' trump-putin friendship in bbc interview": {
       "at": 1795802675.1904256,
       "reason": "final_guard:media-source",
       "until": 1795824275.1904256
     },
-    "اختلاف میان رئیس موساد و رئیس ستاد کل ارتش اسرائیل، بر سر زمان حمله به ایران و امکان اجرای آن بدون مشارکت آمریکا/گوفمن از انجام حمله ای مستقل از سوی اسرائیل حمایت می کند/زمیر از حم": {
-      "at": 1795788341.4363835,
-      "reason": "final_guard:media-source",
-      "until": 1795809941.4363835
-    },
-    "المیادین: حمله به کویت، طرحی صهیونیستی برای متهم کردن ایران است": {
-      "reason": "content_duplicate",
-      "until": 1795813476.9485695
-    },
     "انفجار ۲ نفتکش متخلف در دهانه بندر خصب و شرق تنگه هرمز": {
       "reason": "content_duplicate",
       "until": 1795838620.5256586
-    },
-    "برد ۱۰-۲ ساحلی ایران مقابل لبنان؛ صعود بی دردسر به فینال آسیا": {
-      "reason": "content_duplicate",
-      "until": 1795808121.4005919
-    },
-    "ترور فرزند رئیس جنبش حماس در غزه ناکام ماند": {
-      "reason": "content_duplicate",
-      "until": 1795815326.8806808
     },
     "تمدید قرارداد ترکیه برای واردات گاز از ایران": {
       "at": 1795802675.1904256,
@@ -4131,18 +4050,6 @@
     "حمله به نیروهای ارتش و امنیتی دولت موقت سوریه/۶ نظامی کشته و زخمی شدند": {
       "reason": "content_duplicate",
       "until": 1795824249.10278
-    },
-    "حمله پهپادی به ریاض": {
-      "reason": "content_duplicate",
-      "until": 1795802738.7953813
-    },
-    "رویترز: قیمت نفت روز جمعه افزایش یافت و در مسیر پایان دادن به روند کاهشی سه هفته ای قرار گرفت / این افزایش در پی تشدید نگرانی ها درباره صادرات نفت خاورمیانه، به دنبال حملات به نفتک": {
-      "reason": "content_duplicate",
-      "until": 1795815386.73267
-    },
-    "صعود قاطع ساحلی بازان ایرانی به فینال جام ملت های آسیا": {
-      "reason": "content_duplicate",
-      "until": 1795811757.361594
     },
     "نهاد دریایی انگلیس از وقوع حادثه امنیتی برای یک کشتی باری در دریای عمان خبر داد": {
       "reason": "content_duplicate",
@@ -4156,29 +4063,9 @@
       "reason": "content_duplicate",
       "until": 1795836853.505199
     },
-    "واکنش حماس به تلاش رژیم اسرائیل برای ترور آخرین پسر الحیه": {
-      "reason": "content_duplicate",
-      "until": 1795815301.0141196
-    },
     "واکنش دبیرکل سازمان ملل متحد به حمله پهپادی به کویت: از سرگیری خصومت ها در منطقه می تواند پیامد های ویرانگری برای خاورمیانه و فراتر از آن به همراه داشته باشد / از همه طرف ها می خوا": {
       "reason": "content_duplicate",
       "until": 1795827811.204326
-    },
-    "وزیر خارجه ایتالیا: ایرانی ها می گویند پهپادی که به کویت اصابت کرد از خاک ایران به پرواز درنیامده / ایرانی ها گفته اند آماده اند در کنار ایتالیایی ها و کویتی ها در یک کمیته تحقیق م": {
-      "reason": "content_duplicate",
-      "until": 1795820678.168328
-    },
-    "کویت سفیر ایران را احضار کرد": {
-      "reason": "content_duplicate",
-      "until": 1795817160.274159
-    },
-    "کویت سفیر ایران را احضار کرد / ادعای کویت: «مسئولیت کامل حمله پهپادی بر عهده تهران است»": {
-      "reason": "content_duplicate",
-      "until": 1795818922.2487648
-    },
-    "یکی از رهبران حماس: ترور فرزند رئیس جنبش حماس در غزه ناکام ماند": {
-      "reason": "content_duplicate",
-      "until": 1795811770.4688995
     },
     "۱۴ غیرنظامی از جمله ۱۲ کودک در حملات سعودی به یمن شهید شدند": {
       "reason": "content_duplicate",
@@ -4731,13 +4618,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=False scope=local: وعده معاون رئیس‌جمهور برای تأمین بودجه سد محلی، اخبار محلی و کم‌اهمیت.",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795791835,
-      "title": "معاون رئیس جمهور: تمام تلاش خود را برای تأمین منابع مالی سد «ورگر» آبدانان به کار می گیرم"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=False scope=world: تحلیل و گمانه‌زنی درباره انتخابات و نظرسنجی‌های اسپانیا",
       "rescued": false,
       "rule": "foreign-local-preselection",
@@ -5289,6 +5169,13 @@
       "rule": "foreign-local-preselection",
       "t": 1795822384,
       "title": "France’s Bookstores, Beloved Curators of Literature, Are in a Deep Crisis"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Commemorative message, no concrete event",
+      "rescued": false,
+      "rule": "below-event-threshold",
+      "t": 1795824166,
+      "title": "نیروی دریایی سپاه: انتقام شهدای عرصه دریا عهدی است که با خون بسته ایم"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9367,7 +9254,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795822277
+    "at": 1795824073
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
