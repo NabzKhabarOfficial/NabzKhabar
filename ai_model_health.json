@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "EDITOR GATE gemini/gemini-3.8-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795818757
-    },
-    {
-      "e": "EDITOR GATE gemini/gemini-3.6-flash: HTTP 429: { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: ",
-      "t": 1795818761
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795818765
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795818765
     },
@@ -159,32 +147,44 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 2x, groq:openai/gpt-oss-20b held 1x",
       "t": 1795831408
+    },
+    {
+      "e": "EDITOR BATCH groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
+      "t": 1795833169
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-20b",
+      "t": 1795833170
+    },
+    {
+      "e": "AI PACE: groq:openai/gpt-oss-120b held 15x, groq:openai/gpt-oss-20b held 13x",
+      "t": 1795833268
     }
   ],
   "_ai_pace": {
     "gemini:gemini-3.1-flash-lite": {
       "day": "2026-11-27",
-      "n": 138
+      "n": 143
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-27",
-      "n": 236
+      "n": 244
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-27",
-      "n": 105
+      "n": 109
     },
     "gemini:gemini-3.8-flash": {
       "day": "2026-11-27",
-      "n": 105
+      "n": 109
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-28",
-      "n": 12
+      "n": 14
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-28",
-      "n": 12
+      "n": 14
     },
     "openrouter:*": {
       "day": "2026-11-27",
@@ -488,69 +488,55 @@
     "2026-11-28": {
       "gemini:gemini-3.1-flash-lite": {
         "429": 0,
-        "calls": 9,
+        "calls": 14,
         "last_error": "HTTP 503: { \"error\": { \"code\": 503, \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\", \"status\": \"UNAVAILABLE\" } } ",
-        "ok": 7,
+        "ok": 12,
         "other": 2
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 16,
-        "ok": 16,
+        "calls": 24,
+        "ok": 24,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
-        "429": 6,
-        "calls": 7,
+        "429": 9,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 1,
         "other": 0
       },
       "gemini:gemini-3.8-flash": {
-        "429": 6,
-        "calls": 6,
+        "429": 10,
+        "calls": 10,
         "last_429": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, hea",
         "ok": 0,
         "other": 0
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 9,
+        "ok": 11,
         "other": 3
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 12,
+        "calls": 14,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 5,
+        "ok": 7,
         "other": 7
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
-        "calls": 16,
+        "calls": 26,
         "last_error": "HTTP 402: {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null,\"code\":\"2314\",\"raw_status_code\":402}",
         "ok": 0,
-        "other": 16
+        "other": 26
       }
     }
   },
   "_daily_items": [
-    {
-      "label": "خبر",
-      "level": 3,
-      "t": 1795658600.7166462,
-      "title": "کارزار مبارزه با فساد شی جین پینگ چهره نوظهور حزب کمونیست چین را هدف قرار داد",
-      "urgent": false
-    },
-    {
-      "label": "موضع‌گیری",
-      "level": 3,
-      "t": 1795660378.3332024,
-      "title": "کیم جونگ اون: کره شمالی باید تسلیحات اتمی تاکتیکی را گسترش دهد",
-      "urgent": false
-    },
     {
       "label": "خبر",
       "level": 4,
@@ -1208,6 +1194,20 @@
       "t": 1795829624.0311315,
       "title": "افزایش شمار شهدای حملات عربستان به یمن به ۵۲۴ نفر",
       "urgent": false
+    },
+    {
+      "label": "نظامی",
+      "level": 4,
+      "t": 1795833191.4826987,
+      "title": "کانادا سفیر روسیه را به دلیل ورود موشک روسی به لهستان احضار کرد",
+      "urgent": false
+    },
+    {
+      "label": "خبر",
+      "level": 3,
+      "t": 1795833204.8066278,
+      "title": "تأکید قطر و کانادا بر بازسازی سوریه و حقوق فلسطینی ها",
+      "urgent": false
     }
   ],
   "_digest_last_date": "2026-11-27",
@@ -1304,6 +1304,12 @@
       "score": 8,
       "topic": "نظامی",
       "until": 1795912359.704776
+    },
+    "v5|israel kills two msf staff in targeted strike on gaza clinic": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Israeli strike kills two MSF staff in Gaza clinic.",
+      "topic": "حادثه",
+      "until": 1795919570.911498
     },
     "v5|israeli attacks on women and girls meant ‘to destroy life’ in gaza: amnesty": {
       "ok": true,
@@ -1407,6 +1413,12 @@
       "topic": "ورزش",
       "until": 1795883658.088707
     },
+    "v5|taiwan votes in local elections to choose mayors, other leaders": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Taiwan local elections, limited international impact",
+      "topic": "سیاست",
+      "until": 1795919569.4064183
+    },
     "v5|trump backs iraqi pm’s oil smuggling crackdown": {
       "ok": true,
       "reason": "ai gemini/gemini-3.1-flash-lite batch score=7 happened=True scope=world: International involvement in regional oil smuggling and border security.",
@@ -1487,12 +1499,6 @@
       "reason": "ai gemini/gemini-3.6-flash batch score=7 happened=True scope=world: موضع‌گیری رسمی رئیس‌جمهور اوکراین درباره مذاکرات صلح و آمریکا",
       "topic": "سیاست",
       "until": 1795858526.9145243
-    },
-    "v5|zelenskyy warns of major russian attack as trump urges putin to ‘pull back’": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Speculative warnings, no concrete decision",
-      "topic": "سیاست",
-      "until": 1795832936.7980168
     },
     "v5|«انگیزه ترامپ کشی و جشن انقلاب فلسطین» با یک خطابه بلند": {
       "ok": false,
@@ -1718,6 +1724,12 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=1 happened=True scope=local: مراسم بزرگداشت و خاطره‌گویی است و اهمیت ملی ندارد.",
       "topic": "جامعه",
       "until": 1795871060.6279476
+    },
+    "v5|استقلال به دنبال بازگشت به کورس/ جدال سپاهان برای حفظ صدر": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Domestic league preview, low national impact",
+      "topic": "ورزش",
+      "until": 1795919568.2862442
     },
     "v5|اظهارات وزیر خارجه ایتالیا درباره حمله پهپادی به کویت": {
       "ok": true,
@@ -2096,6 +2108,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: Routine diplomatic statement on regional cooperation without concrete new policy changes.",
       "topic": "سیاست",
       "until": 1795903385.197251
+    },
+    "v5|تأکید قطر و کانادا بر حمایت از بازسازی سوریه و حقوق فلسطینی ها": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Qatar, Canada call for Syria reconstruction, Palestinian rights.",
+      "topic": "سیاست",
+      "until": 1795919570.9355206
     },
     "v5|تئاتر کودک و نوجوان می تواند دریچه سبزی بر دنیای پر از نیکی ها برای فرزندان ایران بگشاید": {
       "ok": false,
@@ -2889,12 +2907,6 @@
       "topic": "فناوری",
       "until": 1795854851.312158
     },
-    "v5|سوال نماینده قم از وزیر خارجه درباره ترک فعل در معرفی شرکت های حامی و مرتبط با اسرائیل/ بسیاری از این شرکت ها در حال فعالیت در ایران هستند": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: MP questions foreign minister on Israeli‑linked companies",
-      "topic": "سیاست",
-      "until": 1795832934.353596
-    },
     "v5|سپاه: احتمال شنیده شدن صدای انفجارهای کنترل شده در کرمانشاه در روز شنبه": {
       "ok": false,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=2 happened=False scope=local: اطلاعیه رزمایش یا انهدام کنترل‌شده مهمات و انفجار احتمالی",
@@ -3351,12 +3363,6 @@
       "topic": "فناوری",
       "until": 1795887191.7225611
     },
-    "v5|مکرون: توقف حمایت از اوکراین، امنیت اروپا را به خطر می اندازد": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Macron's warning, no concrete action",
-      "topic": "سیاست",
-      "until": 1795832936.8211343
-    },
     "v5|مکرون: قطع حمایت از اوکراین امنیت اروپا را به خطر می اندازد / جنگ در اوکراین یک مساله حیاتی برای اروپایی ها است": {
       "happened": true,
       "ok": true,
@@ -3482,12 +3488,6 @@
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=world: موضع‌گیری رسمی مقام ارشد انصارالله علیه مداخله نظامی انگلیس.",
       "topic": "نظامی",
       "until": 1795878245.8380246
-    },
-    "v5|هشدار درباره الگوی پرخطر مصرف الکل در ایران / جای خالی مراکز تخصصی ترک الکل": {
-      "ok": false,
-      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=iran_national: Health warning, no incident",
-      "topic": "سلامت",
-      "until": 1795832936.8115716
     },
     "v5|هشدار سازمان ملل درباره گرسنگی حاد ۶۷ درصد از مردم غزه": {
       "happened": true,
@@ -3813,6 +3813,12 @@
       "topic": "جامعه",
       "until": 1795883658.1089704
     },
+    "v5|کانادا سفیر روسیه را به دلیل ورود موشک های روسی به لهستان احضار کرد": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Canada summons Russian ambassador over missiles in Poland.",
+      "topic": "سیاست",
+      "until": 1795919570.9237525
+    },
     "v5|کانادایی ها خواستار اخراج سفیر آمریکا شدند": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=False scope=world: petition for expulsion of US ambassador",
@@ -3872,6 +3878,12 @@
       "reason": "ai gemini/gemini-3.1-flash-lite score=3 happened=True scope=world: کاهش جزئی تولید ناخالص داخلی فرانسه تاثیر جهانی محدودی دارد.",
       "topic": "اقتصاد",
       "until": 1795872797.5022182
+    },
+    "v5|گزارش ها از حملات هوایی عربستان به پایتخت و جنوب یمن": {
+      "ok": true,
+      "reason": "ai groq/openai/gpt-oss-20b batch score=8 happened=True scope=world: Saudi air attacks reported in Sana'a, southern Yemen.",
+      "topic": "حادثه",
+      "until": 1795919570.9472435
     },
     "v5|گل دیرهنگام خیبر در قزوین و شروع تلخ وریا غفوری روی نیمکت شمس آذر": {
       "ok": false,
@@ -3998,6 +4010,10 @@
       "reason": "content_duplicate",
       "until": 1795849437.3149395
     },
+    "israel kills two msf staff in targeted strike on gaza clinic": {
+      "reason": "content_duplicate",
+      "until": 1795854820.8717244
+    },
     "kyiv offers black sea ceasefire, as putin expands russia’s navy": {
       "reason": "content_duplicate",
       "until": 1795826117.838849
@@ -4052,50 +4068,16 @@
       "reason": "content_duplicate",
       "until": 1795851235.186153
     },
+    "گزارش ها از حملات هوایی عربستان به پایتخت و جنوب یمن": {
+      "reason": "content_duplicate",
+      "until": 1795854868.706763
+    },
     "۱۴ غیرنظامی از جمله ۱۲ کودک در حملات سعودی به یمن شهید شدند": {
       "reason": "content_duplicate",
       "until": 1795829687.9167843
     }
   },
   "_event_judge_log": [
-    {
-      "head": "افزایش قیمت جهانی نفت و طلا ⚡️ قیمت نفت در بازارهای جهانی در پی تداوم حملات به نفتکش ها در تنگه هرمز و زیرساخت",
-      "id": "03fb325e2b",
-      "match": "افزایش قیمت نفت در پی نگرانی از اختلال عرضه و حملات در تنگه هرمز",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795763082,
-      "verdict": "repeat",
-      "why": "مشابه خبر ۳۹ درباره افزایش قیمت نفت در پی حملات تنگه هرمز"
-    },
-    {
-      "head": "افزایش قیمت جهانی نفت و طلا ⚡️ قیمت نفت در بازارهای جهانی در پی تداوم حملات به نفتکش ها در تنگه هرمز و زیرساخت",
-      "id": "03fb325e2b",
-      "match": "افزایش قیمت نفت در پی نگرانی از اختلال عرضه و حملات در تنگه هرمز",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1795763087,
-      "verdict": "repeat",
-      "why": "The post reports the same event regarding oil price increases."
-    },
-    {
-      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
-      "head": "عراقچی حادثه مرگبار کویت را مشکوک خواند ⚡️ عباس عراقچی، وزیر خارجه ایران، حادثه مرگبار کویت را «مشکوک» توصیف ک",
-      "id": "76e6ea1c27",
-      "match": "عراقچی: حمله به کویت سناریویی از پیش طراحی شده برای شعله ور کردن جنگ است",
-      "model": "gemini/gemini-3.1-flash-lite",
-      "t": 1795763115,
-      "verdict": "repeat",
-      "why": "The event regarding the Kuwait incident was already reported."
-    },
-    {
-      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
-      "head": "عراقچی حادثه مرگبار کویت را مشکوک خواند ⚡️ عباس عراقچی، وزیر خارجه ایران، حادثه مرگبار کویت را «مشکوک» توصیف ک",
-      "id": "76e6ea1c27",
-      "match": "عراقچی: حمله به کویت سناریویی از پیش طراحی شده برای شعله ور کردن جنگ است",
-      "model": "gemini/gemini-3.5-flash-lite",
-      "t": 1795763128,
-      "verdict": "repeat",
-      "why": "عراقچی حادثه کویت را مشکوک خوانده و مشابه مورد ۱۷ است."
-    },
     {
       "head": "روسیه ممنوعیت صادرات سوخت جت را تا ۱۱ فروردین ۱۴۰۶ تمدید کرد ⚡️ هیئت وزیران روسیه اعلام کرد که ممنوعیت صادرات ",
       "id": "86c035e47b",
@@ -4599,23 +4581,47 @@
       "t": 1795829623,
       "verdict": "update",
       "why": "افزایش آمار شهدای یمن و به‌روزرسانی تلفات حمله عربستان."
+    },
+    {
+      "head": "کانادا سفیر روسیه را به دلیل ورود موشک روسی به لهستان احضار کرد ⚡️ کانادا در اعتراض به ورود موشک روسی به حریم ",
+      "id": "d5eb6787ea",
+      "match": "",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1795833190,
+      "verdict": "new",
+      "why": "This is a specific diplomatic event not listed in previous posts."
+    },
+    {
+      "head": "تأکید قطر و کانادا بر بازسازی سوریه و حقوق فلسطینی ها ⚡️ قطر و کانادا در نخستین گفت وگوی راهبردی خود در اتاوا ",
+      "id": "965f80067c",
+      "match": "",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1795833204,
+      "verdict": "new",
+      "why": "This is a unique diplomatic meeting between Qatar and Canada."
+    },
+    {
+      "confirm": "gemini/gemini-3.5-flash-lite:repeat",
+      "head": "حملات هوایی عربستان به صنعا و مناطق جنوبی یمن ⚡️ این حملات هوایی علاوه بر پایتخت، مناطقی در جنوب یمن را نیز هد",
+      "id": "5f65bb8e9f",
+      "match": "شهادت ۱۱ نفر در حمله هوایی عربستان به منطقه مسکونی در یمن",
+      "model": "gemini/gemini-3.1-flash-lite",
+      "t": 1795833247,
+      "verdict": "repeat",
+      "why": "Reports the same ongoing Saudi airstrikes on Yemen."
+    },
+    {
+      "confirm": "gemini/gemini-3.1-flash-lite:repeat",
+      "head": "حملات هوایی عربستان به صنعا و مناطق جنوبی یمن ⚡️ این حملات هوایی علاوه بر پایتخت، مناطقی در جنوب یمن را نیز هد",
+      "id": "5f65bb8e9f",
+      "match": "افزایش شمار شهدای حملات عربستان به یمن به ۵۲۴ نفر",
+      "model": "gemini/gemini-3.5-flash-lite",
+      "t": 1795833256,
+      "verdict": "repeat",
+      "why": "حملات هوایی عربستان به یمن در لیست قبلی نیز گزارش شده است."
     }
   ],
   "_importance_rescue_log": [
-    {
-      "ai": "ai gemini/gemini-3.5-flash-lite score=3 happened=True scope=local: حادثه رانندگی استانی با آسیب‌های محدود، فاقد اهمیت ملی یا بین‌المللی",
-      "rescued": true,
-      "rule": "routine-metaphorical-topic",
-      "t": 1795795472,
-      "title": "۱۴ مصدوم در واژگونی خودرو حامل ورزشکاران پارالمپیکی در محدوده نظرآباد"
-    },
-    {
-      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Administrative prison leave, limited national impact",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795795473,
-      "title": "اعطای مرخصی به ۱۳۵ زندانی زن با حضور رئیس کل دادگستری استان تهران در زندان زنان"
-    },
     {
       "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: بیان عمومی، بدون تأثیر فوری بر سیاست یا اقتصاد",
       "rescued": false,
@@ -5161,63 +5167,26 @@
       "rule": "routine-statement",
       "t": 1795831398,
       "title": "وزیر دفاع عربستان: نشست مکه بر موضع واحد کشورهای سه گانه تأکید داشت"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=False scope=local: Domestic league preview, low national impact",
+      "rescued": false,
+      "rule": "strict-source-below-importance(7<10)",
+      "t": 1795833168,
+      "title": "استقلال به دنبال بازگشت به کورس/ جدال سپاهان برای حفظ صدر"
+    },
+    {
+      "ai": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=local: Taiwan local elections, limited international impact",
+      "rescued": false,
+      "rule": "local-routine-low-value",
+      "t": 1795833169,
+      "title": "Taiwan votes in local elections to choose mayors, other leaders"
     }
   ],
   "_join_button_cleanup_done": true,
   "_mistral_nemo_purge_v1": 1792089848,
   "_mistral_nemo_purge_v2": 1792091005,
   "_published_heads": [
-    {
-      "h": [
-        "بتش",
-        "بحبح",
-        "ترک",
-        "تفق",
-        "تمدد",
-        "شرکت",
-        "فشر",
-        "مل",
-        "ورد",
-        "گز"
-      ],
-      "t": 1795786502.2030573,
-      "title": "تمدید توافق گازی ایران و ترکیه تا سال ۲۰۳۲ در بحبوحه فشارهای اقتصادی آمریکا ⚡️ شرکت بوتاش ترکیه و شرکت ملی گاز ایران توا"
-    },
-    {
-      "h": [
-        "احتمل",
-        "اختلف",
-        "انجم",
-        "بدن",
-        "دچر",
-        "زمن",
-        "ستد",
-        "سطح",
-        "عل",
-        "عمل",
-        "مستقل",
-        "مسد",
-        "مشرکت",
-        "نظر"
-      ],
-      "t": 1795788291.990353,
-      "title": "اختلاف در سطوح عالی اسرائیل بر سر حمله نظامی به ایران ⚡️ رئیس موساد و رئیس ستاد ارتش اسرائیل بر سر زمان حمله به ایران و "
-    },
-    {
-      "h": [
-        "افزش",
-        "درغن",
-        "رتب",
-        "سظن",
-        "عل",
-        "عمل",
-        "پرچم",
-        "پهپد",
-        "کت"
-      ],
-      "t": 1795788331.002159,
-      "title": "ادعای حمله پهپادی به کویت عملیات پرچم دروغین است ⚡️ یک منبع امنیتی عالی رتبه منطقه ای اعلام کرد که ادعای حمله پهپادی به "
-    },
     {
       "h": [
         "ابر",
@@ -5580,6 +5549,40 @@
       ],
       "t": 1795829624.013672,
       "title": "افزایش شمار شهدای حملات عربستان به یمن به ۵۲۴ نفر ⚡️ با این حملات، مجموع شهدای یمن از زمان آغاز تشدید تنش ها به ۵۲۴ نفر "
+    },
+    {
+      "h": [
+        "ات",
+        "احضر",
+        "اعترض",
+        "حرم",
+        "دلل",
+        "سفر",
+        "لهست",
+        "مشک",
+        "ورد",
+        "کند"
+      ],
+      "t": 1795833191.4708936,
+      "title": "کانادا سفیر روسیه را به دلیل ورود موشک روسی به لهستان احضار کرد ⚡️ کانادا در اعتراض به ورود موشک روسی به حریم هوایی لهست"
+    },
+    {
+      "h": [
+        "ات",
+        "بزسز",
+        "تلش",
+        "تکد",
+        "حقق",
+        "حمت",
+        "رهبرد",
+        "فلسطن",
+        "قطر",
+        "نخستن",
+        "وگ",
+        "کند"
+      ],
+      "t": 1795833204.7946763,
+      "title": "تأکید قطر و کانادا بر بازسازی سوریه و حقوق فلسطینی ها ⚡️ قطر و کانادا در نخستین گفت وگوی راهبردی خود در اتاوا بر حمایت ا"
     }
   ],
   "_published_incidents": [
@@ -5945,98 +5948,6 @@
   ],
   "_published_incidents_v2": true,
   "_published_stories": [
-    {
-      "k": [
-        "ادع",
-        "ارز",
-        "اشبع",
-        "اعمل",
-        "امرک",
-        "انتقد",
-        "بزر",
-        "تجر",
-        "ترمپ",
-        "تعرف",
-        "تلد",
-        "جنگ",
-        "جهن",
-        "خدمت",
-        "خرج",
-        "دنست",
-        "دنلد",
-        "سخنگ",
-        "سد",
-        "ظرفت",
-        "قمت",
-        "مخلفت",
-        "مزد",
-        "منفع",
-        "ندنست",
-        "هچ",
-        "وزرت",
-        "وکنش",
-        "پشنهد",
-        "پکن",
-        "چن",
-        "کل"
-      ],
-      "t": 1795700115.0642679,
-      "title": "واکنش چین به تعرفه های ترامپ: جنگ تجاری به سود هیچ کس نیست ⚡️ سخنگوی وزارت خارجه چین از پیشنهاد دونالد ترامپ برای اعمال "
-    },
-    {
-      "k": [
-        "ارپ",
-        "اعزم",
-        "الم",
-        "جمهر",
-        "دعت",
-        "دفع",
-        "رس",
-        "سفر",
-        "مسک",
-        "نبد",
-        "نمند",
-        "نکند",
-        "وزر",
-        "پتن",
-        "کشر"
-      ],
-      "s": "وزیر دفاع آلمان",
-      "t": 1795700149.1676075,
-      "title": "وزیر دفاع آلمان: اروپا دعوت پوتین برای سفر به مسکو را رد نکند ⚡️ وزیر دفاع آلمان اعلام کرد که کشورهای اروپایی نباید دعوت"
-    },
-    {
-      "k": [
-        "ار",
-        "ارتش",
-        "انتشر",
-        "بن",
-        "ترکش",
-        "تعدد",
-        "حت",
-        "حرم",
-        "حمل",
-        "دد",
-        "سقط",
-        "متخصم",
-        "مجرح",
-        "مدع",
-        "مسلح",
-        "مقبل",
-        "مقعت",
-        "نر",
-        "نش",
-        "نقط",
-        "هدف",
-        "پهپد",
-        "چهر",
-        "کت",
-        "کشر",
-        "گذشت"
-      ],
-      "t": 1795701911.6782594,
-      "title": "ارتش کویت مدعی حمله پهپادی ایران به یک نقطه حیاتی شد ⚡️ ارتش کویت با انتشار بیانیه ای مدعی شد که تعدادی پهپاد متخاصم از "
-    },
     {
       "k": [
         "است",
@@ -8513,6 +8424,43 @@
       ],
       "t": 1795829624.0051146,
       "title": "افزایش شمار شهدای حملات عربستان به یمن به ۵۲۴ نفر ⚡️ با این حملات، مجموع شهدای یمن از زمان آغاز تشدید تنش ها به ۵۲۴ نفر "
+    },
+    {
+      "k": [
+        "ات",
+        "احضر",
+        "اعترض",
+        "حرم",
+        "دلل",
+        "رس",
+        "سفر",
+        "لهست",
+        "مشک",
+        "ورد",
+        "کند"
+      ],
+      "t": 1795833191.4589105,
+      "title": "کانادا سفیر روسیه را به دلیل ورود موشک روسی به لهستان احضار کرد ⚡️ کانادا در اعتراض به ورود موشک روسی به حریم هوایی لهست"
+    },
+    {
+      "k": [
+        "ات",
+        "الملل",
+        "بزسز",
+        "تلش",
+        "تکد",
+        "حقق",
+        "حمت",
+        "رهبرد",
+        "سر",
+        "فلسطن",
+        "قطر",
+        "نخستن",
+        "وگ",
+        "کند"
+      ],
+      "t": 1795833204.7825022,
+      "title": "تأکید قطر و کانادا بر بازسازی سوریه و حقوق فلسطینی ها ⚡️ قطر و کانادا در نخستین گفت وگوی راهبردی خود در اتاوا بر حمایت ا"
     }
   ],
   "_telegram_errors": [
@@ -9126,7 +9074,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795831281
+    "at": 1795833078
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
@@ -9140,19 +9088,14 @@
     "last_failure": 1791935762,
     "last_status": 402
   },
-  "gemini:gemini-3.1-flash-lite": {
-    "disabled_until": 1795829872.0,
-    "last_failure": 1795829572,
-    "last_status": 503
-  },
   "gemini:gemini-3.6-flash": {
-    "disabled_until": 1795831993,
-    "last_failure": 1795831393,
+    "disabled_until": 1795833812,
+    "last_failure": 1795833212,
     "last_status": 429
   },
   "gemini:gemini-3.8-flash": {
-    "disabled_until": 1795831989,
-    "last_failure": 1795831389,
+    "disabled_until": 1795833807,
+    "last_failure": 1795833207,
     "last_status": 429
   },
   "github:openai/gpt-4.1-mini": {
