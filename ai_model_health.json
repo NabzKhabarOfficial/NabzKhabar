@@ -1,18 +1,6 @@
 {
   "_ai_extra_log": [
     {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 6x, groq:openai/gpt-oss-20b held 4x",
-      "t": 1795818811
-    },
-    {
-      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
-      "t": 1795820584
-    },
-    {
-      "e": "AI PACE: groq:openai/gpt-oss-120b held 4x, groq:openai/gpt-oss-20b held 3x",
-      "t": 1795820606
-    },
-    {
       "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 429: {\"error\":{\"message\":\"NabzKhabar local pace limit: this model has used its share of the quota so far today; it gets more later\"}}",
       "t": 1795822347
     },
@@ -159,6 +147,18 @@
     {
       "e": "AI PACE: groq:openai/gpt-oss-120b held 1x, groq:openai/gpt-oss-20b held 1x",
       "t": 1795833459
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-120b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795834996
+    },
+    {
+      "e": "EDITOR GATE groq/openai/gpt-oss-20b: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_",
+      "t": 1795834997
+    },
+    {
+      "e": "EDITOR BATCH: 4/4 via groq/openai/gpt-oss-120b",
+      "t": 1795835001
     }
   ],
   "_ai_pace": {
@@ -168,7 +168,7 @@
     },
     "gemini:gemini-3.5-flash-lite": {
       "day": "2026-11-27",
-      "n": 245
+      "n": 246
     },
     "gemini:gemini-3.6-flash": {
       "day": "2026-11-27",
@@ -180,11 +180,11 @@
     },
     "groq:openai/gpt-oss-120b": {
       "day": "2026-11-28",
-      "n": 14
+      "n": 16
     },
     "groq:openai/gpt-oss-20b": {
       "day": "2026-11-28",
-      "n": 14
+      "n": 15
     },
     "openrouter:*": {
       "day": "2026-11-27",
@@ -495,8 +495,8 @@
       },
       "gemini:gemini-3.5-flash-lite": {
         "429": 0,
-        "calls": 25,
-        "ok": 25,
+        "calls": 26,
+        "ok": 26,
         "other": 0
       },
       "gemini:gemini-3.6-flash": {
@@ -515,17 +515,17 @@
       },
       "groq:openai/gpt-oss-120b": {
         "429": 0,
-        "calls": 14,
+        "calls": 16,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
-        "ok": 11,
-        "other": 3
+        "ok": 12,
+        "other": 4
       },
       "groq:openai/gpt-oss-20b": {
         "429": 0,
-        "calls": 14,
+        "calls": 15,
         "last_error": "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
         "ok": 7,
-        "other": 7
+        "other": 8
       },
       "mistral:open-mistral-nemo": {
         "429": 0,
@@ -2391,6 +2391,12 @@
       "topic": "سیاست",
       "until": 1795844003.3860288
     },
+    "v5|حاجی بابایی: ایران اقتدار و سلاح های کشنده تری نسبت به جنگ ۴۰ روزه دارد": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Opinion, no policy change",
+      "topic": "سیاست",
+      "until": 1795921401.6958332
+    },
     "v5|حاجی بابایی: خوزستان به تنهایی ظرفیت اداره اقتصاد ایران را دارد": {
       "ok": false,
       "reason": "ai groq/openai/gpt-oss-120b score=2 happened=True scope=iran_national: Deputy speaker's claim, no concrete policy change",
@@ -2576,6 +2582,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: Provincial athletes win bronze in national Pilates championship",
       "topic": "ورزش",
       "until": 1795892574.6112528
+    },
+    "v5|درخواست سناتور آمریکایی از کنگره برای قطع بودجه جنگ علیه ایران": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=3 happened=True scope=world: Senator's request, not yet enacted",
+      "topic": "سیاست",
+      "until": 1795921401.7081704
     },
     "v5|درخواست مردم بندرعباس از دریادار عظمایی در قالب یک شعار": {
       "ok": false,
@@ -3093,6 +3105,12 @@
       "topic": "سیاست",
       "until": 1795899804.3999655
     },
+    "v5|فرمانده نیروی دریایی ارتش: در صورت خطای دشمن، با سلسله ای از عملیات ها پاسخ خواهیم داد": {
+      "ok": true,
+      "reason": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: هشدار رسمی فرمانده نیروی دریایی درباره پاسخ نظامی به دشمن",
+      "topic": "نظامی",
+      "until": 1795921398.419347
+    },
     "v5|فرمانده نیروی دریایی ارتش: قطعاً عملیات هایی [برای شکستن محاصره] در پیش است": {
       "ok": true,
       "reason": "ai gemini/gemini-3.5-flash-lite batch score=8 happened=True scope=iran_national: اعلام عملیات در پیش توسط فرمانده نیروی دریایی در وضعیت جنگی",
@@ -3291,6 +3309,12 @@
       "topic": "سیاست",
       "until": 1795901615.553916
     },
+    "v5|مصرف الکل در زنان بیشتر از مردان افزایش یافته؛ سه داروی اصلی درمان وابستگی به الکل در ایران موجود نیست": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=1 happened=True scope=local: Health data, no event",
+      "topic": "سلامت",
+      "until": 1795921401.7204368
+    },
     "v5|مطالبات خانواده های جان باختگان حادثه آبدانان را شخصاً پیگیری می کنم": {
       "ok": false,
       "reason": "ai gemini/gemini-3.1-flash-lite score=2 happened=True scope=local: Routine official statement regarding a local accident, lacks national strategic impact.",
@@ -3404,6 +3428,12 @@
       "reason": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=local: میزبانی رویدادهای ورزشی ملی در شهرستان نائین",
       "topic": "ورزش",
       "until": 1795890842.7807002
+    },
+    "v5|نادر انتصار: ایران باید هم منتظر افزایش درگیری نظامی باشد و هم عقب نشینی ترامپ از جنگ": {
+      "ok": false,
+      "reason": "ai groq/openai/gpt-oss-120b batch score=2 happened=True scope=local: Speculative commentary, no concrete decision",
+      "topic": "سیاست",
+      "until": 1795921401.6830096
     },
     "v5|ناوهای آمریکایی زیر ضرب اقتدار دریایی ایران": {
       "ok": false,
@@ -4629,13 +4659,6 @@
   ],
   "_importance_rescue_log": [
     {
-      "ai": "ai groq/openai/gpt-oss-20b score=2 happened=True scope=iran_national: بیان عمومی، بدون تأثیر فوری بر سیاست یا اقتصاد",
-      "rescued": false,
-      "rule": "no-concrete-event",
-      "t": 1795795473,
-      "title": "معاون وزیر علوم: دانشگاه های کشور از آنِ همه دانشجویان با هر نگرشی و تفکری است"
-    },
-    {
       "ai": "ai gemini/gemini-3.5-flash-lite score=2 happened=True scope=local: اظهارات نماینده مجلس درباره توسعه شهری ساری محلی است.",
       "rescued": false,
       "rule": "below-event-threshold",
@@ -5187,6 +5210,13 @@
       "rule": "local-routine-low-value",
       "t": 1795833169,
       "title": "Taiwan votes in local elections to choose mayors, other leaders"
+    },
+    {
+      "ai": "ai gemini/gemini-3.5-flash-lite score=7 happened=True scope=iran_national: هشدار رسمی فرمانده نیروی دریایی درباره پاسخ نظامی به دشمن",
+      "rescued": true,
+      "rule": "below-event-threshold",
+      "t": 1795834998,
+      "title": "فرمانده نیروی دریایی ارتش: در صورت خطای دشمن، با سلسله ای از عملیات ها پاسخ خواهیم داد"
     }
   ],
   "_join_button_cleanup_done": true,
@@ -9080,7 +9110,7 @@
       "12h-incident-dedup",
       "editor-security-rules"
     ],
-    "at": 1795833381
+    "at": 1795834888
   },
   "cerebras:gpt-oss-120b": {
     "disabled_until": 1791957362.1997006,
